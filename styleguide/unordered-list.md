@@ -1,0 +1,43 @@
+[View original HTML](/styleguide/unordered-list.html)
+
+Use an unordered or bulleted list when you have a collection of 3 or more things and the order of the items does not matter. These items could be nouns, phrases, or topics.
+
+For example:
+
+* This is a list item
+
+  * This is a sub-item
+
+If you only have 2 items in your list, it’s okay to just write it out in a sentence.
+
+Use an unordered list when:
+
+* Writing a prerequisites section in your documentation.
+* Writing a See Also section in your documentation.
+* Structuring the `nav.adoc` file in a documentation module.
+
+|  | Use an unordered list for prerequisites and the See Also section even if it contains only a single item. |
+|  | -------------------------------------------------------------------------------------------------------- |
+
+Use an asterix (`*`) to render an item as an unordered list item. The number of asterixes sets the depth of the list item.
+
+For more information about how to format an unordered list in Antora, see [Unordered Lists](#home:contribute:basics.adoc#unordered-lists) in the Contributing to the Documentation guide.
+
+## [](#punctuation-in-unordered-lists)Punctuation in Unordered Lists
+
+When writing an unordered list, add ending punctuation to each line item when:
+
+* Each item in your list is a complete sentence.
+* Each item in your list is a phrase of more than 3 words.
+
+For example, if your list items are only 1-3 words long, or simple noun phrases, you do not need to add ending punctuation:
+
+* Availability Zones
+* Database Option
+* Database Support Plan
+
+When list items are more complex, add ending punctuation:
+
+* Enable Multiple Availability Zones for your cluster.
+* Choose a cluster Support Plan that supports Multiple Availability Zones.
+* Choose a database option with multiple nodes, either Multi-Node or Custom.

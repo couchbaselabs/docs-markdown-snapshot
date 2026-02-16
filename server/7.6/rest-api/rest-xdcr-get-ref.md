@@ -1,0 +1,83 @@
+[View original HTML](/server/7.6/rest-api/rest-xdcr-get-ref.html)
+
+> The REST API can be used to retrieve an existing XDCR reference to a defined, target cluster. 
+
+## [](#description)Description
+
+On the cluster that is intended to be a _source_ for XDCR, a _reference_ to an intended _target_ cluster must first be defined. The target cluster is typically a different cluster from the source cluster; but may be the same cluster.
+
+Following their definition, details of all a source cluster’s references can be retrieved.
+
+The Full Admin, Cluster Admin, or XDCR Admin role is required.
+
+## [](#http-method-and-uri)HTTP method and URI
+
+GET /pools/default/remoteClusters
+
+## [](#curl-syntax)Curl Syntax
+
+Curl request syntax:
+
+curl -u <username>:<password>
+    http://<ip-address-or-domain-name>:8091/pools/default/remoteClusters
+
+The `ip-address-or-domain-name` should refer to a cluster on which one or more references to target clusters have been defined. Information is returned on each of the defined references.
+
+## [](#responses)Responses
+
+Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI returns `404 Object Not Found`.
+
+Success returns `200 OK`, and a JSON array each of whose members is a JSON object containing key-value pairs that provided information on a specific, defined reference. The keys and their values are as follows:
+
+* `connectivityStatus`. Describes the current status of the connection. The value is one of the following strings:
+
+  * `RC_INIT`. The connection is still starting up, and not all information has yet been populated.
+  * `RC_OK`. The connection is good, and has no issues.
+  * `RC_AUTH_ERROR`. An authentication error has occurred. Note that if this status has been established during a standard, internal refresh of the connection, a subsequent refresh may establish a different status; such as `RC_OK`.
+  * `RC_DEGRADED`. One or more nodes is demonstrating connectivity issues. Note that if this status has been established during a standard, internal refresh of the connection, a subsequent refresh may establish a different status; such as `RC_OK`.
+  * `RC_ERROR`. No node is responding. This status is typically established due to an extension of problems that previously led to an `RC_DEGRADED` status.
+* `deleted`. Whether the reference has been deleted. The value can be one of the booleans `true` and `false`.
+* `hostname`. A string that is the IP address (or domain name) and port number of the target cluster.
+* `name`. A string that is the locally defined reference to the target cluster.
+* `secureType`. A string that specifies the level of security required for connection. This can be `none`, `half`, or `full`.
+* `uri`. A string that is the URI of the locally named target cluster. For example, `"/pools/default/remoteClusters/FirstTarget"`.
+* `username`. A string that is the name of the current user.
+* `uuid`. A string that is the universally unique identifier for the reference. For example, `"5ccf771844cd32375df8c4de70e9d44e"`.
+* `"validateURI".`A string that is the URI for internal validation of the reference. For example, `"/pools/default/remoteClusters/SecondTarget?just_validate=1"`.
+
+## [](#example)Example
+
+The following example returns the current references that have been defined for a local cluster. Note that the output is piped to [jq](https://stedolan.github.io/jq/), to facilitate readability.
+
+curl -u Administrator:password -X GET http://localhost:8091/pools/default/remoteClusters | jq '.'
+
+If successful, the call returns output such as the following:
+
+[
+  {
+    "connectivityStatus": "RC_ERROR",
+    "deleted": false,
+    "hostname": "10.144.220.103:8091",
+    "name": "SecondTarget",
+    "secureType": "none",
+    "uri": "/pools/default/remoteClusters/SecondTarget",
+    "username": "Administrator",
+    "uuid": "5ccf771844cd32375df8c4de70e9d44e",
+    "validateURI": "/pools/default/remoteClusters/SecondTarget?just_validate=1"
+  },
+  {
+    "connectivityStatus": "RC_OK",
+    "deleted": false,
+    "hostname": "10.144.220.102:8091",
+    "name": "FirstTarget",
+    "secureType": "none",
+    "uri": "/pools/default/remoteClusters/FirstTarget",
+    "username": "Administrator",
+    "uuid": "3e6b2e88808a68b1b844930e11290fbd",
+    "validateURI": "/pools/default/remoteClusters/FirstTarget?just_validate=1"
+  }
+]
+
+## [](#see-also)See Also
+
+For examples of creating references with UI, CLI, and REST API, see [Create a Reference](../manage/manage-xdcr/create-xdcr-reference.md). For REST-specific information, see [Setting a Target-Cluster Reference](rest-xdcr-create-ref.md).

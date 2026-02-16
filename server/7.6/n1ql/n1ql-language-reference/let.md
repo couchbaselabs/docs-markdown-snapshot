@@ -1,0 +1,152 @@
+[View original HTML](/server/7.6/n1ql/n1ql-language-reference/let.html)
+
+> Use `LET` to create variables for later use within a query. 
+
+## [](#purpose)Purpose
+
+In a query expression, it is sometimes useful to store the result of a sub-expression in order to use it in subsequent clauses. You can do this with the `LET` keyword, which creates a new variable and initializes it with the result of the expression you supply. You can use the `LET` clause within an array, in a for-loop, or independently.
+
+Without the `LET` clause, your complex queries would need to be divided into two separate queries:
+
+* One query to get a particular value (or set of values), and
+* One query to use the value (or values) from the first query.
+
+If the `LET` variable is referenced in the `WHERE` clause, then it is evaluated before the `WHERE` clause; otherwise, it is evaluated after the `WHERE` clause.
+
+Couchbase Server 6.5 and later supports chained `LET` clauses. A variable that you create in one `LET` clause may be referenced in a later `LET` clause, as detailed in [Example 3](#ex3).
+
+Each `LET` alias needs to be unique within its scope.
+
+## [](#prerequisites)Prerequisites
+
+The `LET` clause can only be used in a `SELECT` statement, and in order for you to select data from a document or keyspace, you must have the `query_select` privilege on the document or keyspace. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
+
+## [](#syntax)Syntax
+
+```ebnf
+let-clause ::= 'LET' alias '=' expr ( ',' alias '=' expr )*
+```
+
+![Syntax diagram](../_images/n1ql-language-reference/let-clause.png) 
+
+## [](#arguments)Arguments
+
+alias
+
+\[Required\] [Identifier](identifiers.md) that represents the name of the variable.
+
+expr
+
+\[Required\] [Expression](index.md#N1QL%5FExpressions) that represents the value assigned to its `alias`.
+
+## [](#examples%5Fsection)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+Example 1\. Use LET to set variables to a number, an operation on a field, and a subquery
+
+Find all airports and cities between certain latitudes in a country with a landmark.
+
+```sqlpp
+SELECT t1.airportname, t1.geo.lat, t1.geo.lon, t1.city, t1.type
+FROM airport t1
+LET min_lat = 71, max_lat = ABS(t1.geo.lon)*4+1,
+    place = (SELECT RAW t2.country
+            FROM landmark t2)
+WHERE t1.geo.lat > min_lat
+AND t1.geo.lat < max_lat
+AND t1.country IN place;
+```
+
+Results
+
+```JSON
+[
+  {
+    "airportname": "Wiley Post Will Rogers Mem",
+    "city": "Barrow",
+    "lat": 71.285446,
+    "lon": -156.766003,
+    "type": "airport"
+  },
+  {
+    "airportname": "Dillant Hopkins Airport",
+    "city": "Keene",
+    "lat": 72.270833,
+    "lon": 42.898333,
+    "type": "airport"
+  }
+]
+```
+
+Example 2\. Use LET to set a variable in an array
+
+Find all Sunday flights (`day = 0`) to the Charles De Gaulle airport (`CDG`) on Air India (`AI`) airlines.
+
+```sqlpp
+SELECT t1.airline, t1.destinationairport, sch AS schedule
+FROM route AS t1
+LET sch = ARRAY v FOR v IN t1.schedule WHEN v.day = 0 END (1)
+WHERE t1.destinationairport = "CDG"
+AND t1.airline = "AI";
+```
+
+| **1** | In this example, the variable sch is not used in the WHERE clause, but used only in the projection. Therefore, the Query Planner defers the evaluation to post-predicate evaluation, so there is no overhead for documents that are not qualified by the predicates. |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Results
+
+```JSON
+[
+  {
+    "airline": "AI",
+    "destinationairport": "CDG",
+    "schedule": [
+      {
+        "day": 0,
+        "flight": "AI988",
+        "utc": "00:24:00"
+      },
+      {
+        "day": 0,
+        "flight": "AI972",
+        "utc": "17:32:00"
+      }
+    ]
+  }
+]
+```
+
+Example 3\. Use chained LET
+
+Variant of [Example 1](#ex1).
+
+```sqlpp
+SELECT t1.airportname, t1.geo.lat, t1.geo.lon, t1.city, t1.type
+FROM airport t1
+LET max_lat = ABS(t1.geo.lon)*4+1, (1)
+    min_lat = max_lat - 90, (2)
+    place = (SELECT RAW t2.country
+            FROM landmark t2)
+WHERE t1.geo.lat > min_lat
+AND t1.geo.lat < max_lat
+AND t1.country IN place;
+```
+
+| **1** | The variable max\_lat is defined in the first clause of the LET statement.                              |
+| ----- | ------------------------------------------------------------------------------------------------------- |
+| **2** | The variable max\_lat is referenced by the min\_lat variable in the second clause of the LET statement. |
+
+Results
+
+```JSON
+[
+  {
+    "airportname": "Wideawake Field",
+    "city": "Georgetown Acension Island Santa Helena",
+    "lat": -7.969597,
+    "lon": -14.393664,
+    "type": "airport"
+  }
+]
+```

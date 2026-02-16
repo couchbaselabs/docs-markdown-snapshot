@@ -1,0 +1,95 @@
+[View original HTML](/server/7.2/learn/services-and-indexes/services/backup-service.html)
+
+> The Backup Service allows full and incremental data-backups to be scheduled, and also allows the scheduling of _merges_ of previously made data-backups. 
+
+## [](#backup-service-overview)Overview
+
+The Backup Service supports the scheduling of full and incremental data backups, either for specific individual buckets, or for all buckets on the cluster. (Both Couchbase and Ephemeral buckets can be backed up). The Backup Service also allows the scheduling of _merges_ of previously made backups. Data to be backed up can also be selected by _service_: for example, the data for the _Data_ and _Index_ Services alone might be selected for backup, with no other service’s data included.
+
+The service — which is also referred to as _backup_ (Couchbase Backup Service) — can be configured and administered by means of the Couchbase Web Console UI, the CLI, or the REST API.
+
+## [](#backup-service-and-cbbackupmgr)The Backup Service and cbbackupmgr
+
+The Backup Service’s underlying backup tasks are performed by `cbbackupmgr`, which can also be used independently, on the command line, to perform backups and merges. The Backup Service and `cbbackupmgr` (when the latter is used independently) have the following, principal differences:
+
+* Whereas the Backup Service allows backup, restore, and archiving to be configured for the local cluster, and also permits restore to be configured for a remote cluster; `cbbackupmgr` allows backup, restore, and archiving each to be configured either for the local or for a remote cluster.
+* Whereas `cbbackupmgr` allows backups, merges, and other related operations only to be executed individually, the Backup Service provides automated, recurrent execution of such operations.
+
+See [cbbackupmgr](../../../backup-restore/enterprise-backup-restore.md), for more information.
+
+Note that both the Backup Service and `cbbackupmgr` allow _full_ and _incremental_ backups. Unlike the Backup Service, `cbbackupmgr` requires a new repository to be created for each new, full backup (successive `cbbackupmgr` backups to the same repository being incremental). Both allow incremental backups, once created, to be merged, and their data deduplicated. Both use the same backup archive structure; and allow the contents of backups to be listed, and specific documents to be searched for.
+
+## [](#backup-service-architecture)Backup-Service Architecture
+
+The Backup Service has a _leader-follower_ architecture. This means that one of the cluster’s Backup-Service nodes is elected by ns\_server to be the _leader_; and is thereby made responsible for dispatching backup tasks; for handling the addition and removal of nodes from the Backup Service; for cleaning up orphaned tasks; and for ensuring that global storage-locations are accessible by all Backup-Service nodes.
+
+If the _leader_ becomes unresponsive, or is lost due to failover, the Backup Service ceases operation; until a rebalance has been performed. During the course of this rebalance, ns\_server elects a new leader, and the Backup Service resumes, using the surviving Backup-Service nodes.
+
+## [](#plans)Plans
+
+The Backup Service is automated through the scheduling of _plans_, defined by the administrator. A plan contains the following information:
+
+* The data of which services is to be backed up.
+* The storage location of the backup. This can be either `filesystem` or `cloud` storage.  
+Selecting `cloud` storage for the backup location will require additional parameters such as the name of the bucket for storing the backup, and the access credentials.
+* The _schedule_ on which backups (or backups and merges) will be performed.
+* The type of task to be performed: this can either be _one or more backups_, or _one or more backups and one or more merges_. Backups can be _full_ or _incremental_.
+
+## [](#repositories)Repositories
+
+A _repository_ is a location that contains backed up data. The location must be accessible to all nodes in the cluster, and must be assigned a name that is unique across the cluster. A repository is defined with reference either to _a specific bucket_, or to _all buckets_ in the cluster\_. Data from each specified bucket will be backed up in the specified repository.
+
+A repository is defined with reference to a specific _plan_. Once repository-definition is completed, backups (or backups and merges) are performed of the data in the specified bucket (or buckets), with the data being saved in the repository on the schedule specified in the plan.
+
+## [](#inspecting-and-restoring)Inspecting and Restoring
+
+The Backup Service allows inspection to be performed on the history of backups made to a specific repository. Plans can be created, reviewed and deleted. Individual documents can be searched for, in respositories.
+
+Data from individual or selected backups within a repository can be _restored_ to the cluster, to a specified bucket. Document keys and values can be _filtered_, to ensure that only a subset of the data is restored. Data may be restored to its original keyspace, or _mapped_ for restoration to a different keyspace.
+
+## [](#archiving-and-importing)Archiving and Importing
+
+If a repository no longer needs to be _active_ (that is, with ongoing backups and merges continuing to occur), it can be _archived_: this means that the repository is still accessible, but no longer receives data backups.
+
+An archived repository can be _deleted_, so that the Backup Service no longer keeps track of it. Optionally, the data itself can be retained, on the local filesystem.
+
+A deleted repository whose data still exists can be _imported_ back into the cluster, if required. Once imported, the repository can be _read_ from, but no longer receives data backups.
+
+## [](#avoiding-task-overlap)Avoiding Task Overlap
+
+Although the Backup Service allows automated tasks to be scheduled at intervals as small as one minute, administrators are recommended typically not to lower the interval below fifteen minutes; and always to ensure that the interval is large enough to allow each scheduled task ample time to complete before the next is due to commence; even in the event of unanticipated network latency.
+
+Each running task maintains a lock on its repository. Therefore, if, due to an interval-specification that is too small, one scheduled task attempts to start while another is still running, the new task cannot run.
+
+For example, given a repository whose plan defines two tasks, _TaskA_ and _TaskB_:
+
+* If a new instance of _TaskA_ is scheduled to start while a prior instance of _TaskA_ is still running, the new instance fails to start.
+* If, on a cluster with a single Backup-Service node, a new instance of _TaskB_ is scheduled to start while an instance of _TaskA_ is still running, _TaskB_ is placed in a queue, and starts when _TaskA_ ends.
+* If, on a cluster with multiple Backup-Service nodes, a new instance of _TaskB_ is scheduled to start while an instance of _TaskA_ is still running, _TaskB_ is passed to a different node from the one that is running _TaskA_, but then fails to start.
+
+In cases where data cannot be backed up due to a task failing to start, the data will be backed up by the next successful running of the task.
+
+## [](#specifying-merge-offsets)Specifying Merge Offsets
+
+As described in [Schedule Merges](../../../manage/manage-backup-and-restore/manage-backup-and-restore.md#schedule-merges), the Backup Service allows a schedule to be established for the automated merging of backups that have been previously accomplished. This involves specifying a _window of past time_. The backups that will be merged by the scheduled process are those that fall within the specified window.
+
+The window’s placement and duration are determined by the specifying of two offsets. Each offset is an integer that refers to a day. The **merge\_offset\_start** integer indicates the day that contains the _start_ of the window. The **merge\_offset\_end** integer indicates the day that contains the _end_ of the window. Note that these offsets are each measured from a different point:
+
+* The **merge\_offset\_start** integer is measured from the present day — the present day itself always being specified by the integer **0**.
+* The **merge\_offset\_end** is measured from the specified **merge\_offset\_start**.
+
+This is indicated by the following diagram, which includes two examples of how windows may be established:
+
+![mergeDiagram](../../_images/services-and-indexes/services/mergeDiagram.png) 
+
+The diagram represents eight days, which are numbered from right to left; with the present day specified by the integer **0**, yesterday by **1**, the day before yesterday by **2**, and so on. (Note that the choice of eight days for this diagram is arbitrary: the Backup Service places no limit on integer-size when establishing a window.)
+
+Two examples of window-definition are provided. The first, _Example A_, shows a value for **merge\_offset\_start** of **0** — the integer **0** indicating the present day. Additionally, it shows a value for **merge\_offset\_end** of **3**; indicating that 3 days should be counted back from the present day.
+
+Thus, if the present day is June 30th, the start of the window is on June 30th, and the end of the window on June 27th. Note that the end of the window occurs at the _start_ of the last day: this means that the whole of the last day is included in the window. Note also that when **0** is specified, the window starts on the present day at whatever time the scheduled merge process is run: therefore, if the process runs at 12:00 pm on the present day, only the first half of the present day is included in the window. All days that occur between the start day and the end day are wholly included.
+
+_Example B_ shows a value for **merge\_offset\_start** of **4**; which indicates 4 days before the present day. Additionally, it shows a value for **merge\_offset\_end** of **3**; indicating that 3 days should be counted back from the specified **merge\_offset\_start**. Thus, if the present day is March 15th, the start of the window is on March 11th, and the end of the window on March 8th. Note that when the start-day is _not_ the present day, the window starts at the end of that day: therefore, the whole of the start-day, the whole of the end-day, and the whole of each day in between are all included in the window.
+
+## [](#see-also)See Also
+
+For information on using the Backup Service by means of Couchbase Web Console, see [Manage Backup and Restore](../../../manage/manage-backup-and-restore/manage-backup-and-restore.md). For reference pages on the Backup Service REST API, see [Backup Service API](../../../rest-api/backup-rest-api.md). For information on the port numbers used by the Backup Service, see [Couchbase Server Ports](../../../install/install-ports.md). For a list of audit events used by the Backup Service, see [Audit Event Reference](../../../audit-event-reference/audit-event-reference.md).

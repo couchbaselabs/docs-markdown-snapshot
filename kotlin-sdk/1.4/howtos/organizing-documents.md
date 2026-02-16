@@ -1,0 +1,79 @@
+[View original HTML](/kotlin-sdk/1.4/howtos/organizing-documents.html)
+
+> Couchbase documents are organized into buckets, scopes, and collections. Let’s define those words. 
+
+## [](#document)Document
+
+A document is an entry in the database. Each document has key (sometimes called an "ID") and a value (sometimes called the "content").
+
+The document key can be any UTF-8 string not larger than 250 bytes.
+
+The document value can be any kind of data (text or binary) not larger than 20 [MiB](https://simple.wikipedia.org/wiki/Mebibyte). By default, the SDK assumes the document value is in JSON format.
+
+## [](#collection)Collection
+
+A collection is a place to put documents that belong together. You get to decide what it means to "belong." Developers usually put documents of the same type in the same collection.
+
+For example, imagine you have two types of documents: customers and invoices. You could put the customer documents in a collection called `customers`, and the invoice documents in a collection called `invoices`.
+
+Each document belongs to exactly one collection. A document’s ID is unique within the collection.
+
+## [](#scope)Scope
+
+A scope is a place to put collections that belong together. You get to decide what it means to "belong." If your application has multiple tenants, you could have one scope per tenant.
+
+Different scopes can hold collections with different names. There is no relationship between collections in different scopes.
+
+Each collection belongs to exactly one scope. A collection’s name is unique within the scope.
+
+## [](#bucket)Bucket
+
+A bucket holds scopes. Scopes in the same bucket share the same server resources, like the bucket’s RAM quota.
+
+Each scope belongs to exactly one bucket. A scope’s name is unique within the bucket.
+
+## [](#default-scope-and-collection)Default Scope and Collection
+
+When you create a bucket, Couchbase Server also creates a default scope (named `_default`) with a default collection (also named `_default`).
+
+Before Couchbase Server 7, you can use only the default scope and collection.
+
+If you’re using Couchbase Server 7 or later, you can add more scopes and collections to organize your documents.
+
+## [](#getting-a-collection)Getting a Collection
+
+Before you start, you’ll need to know [how to get a Cluster object](connecting.md).
+
+Use the `Cluster` object to get a `Collection`.
+
+There is an easy way to get a bucket’s default collection:
+
+Using Bucket.defaultCollection() to get the default collection
+
+```kotlin
+val bucket = cluster.bucket("myBucket")
+val defaultCollection = bucket.defaultCollection()
+```
+
+Get other collections using the scope name and collection name:
+
+Getting a collection by name
+
+```kotlin
+val bucket = cluster.bucket("myBucket")
+val myCollection = bucket
+    .scope("myScope")
+    .collection("myCollection")
+```
+
+`Cluster`, `Bucket`, `Scope`, and `Collection` objects are thread-safe. You can get them when the application starts, and share the same objects everywhere.
+
+|  | Avoiding class name conflicts The Couchbase SDK’s Collection class has the same short name as kotlin.collections.Collection. If you need to use both in the same file, an import alias can help avoid confusion. import com.couchbase.client.kotlin.Collection as CouchbaseCollection |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#summary)Summary
+
+* A bucket holds scopes.
+* A scope holds collections.
+* A collection holds documents.
+* A document holds data, usually in JSON format.

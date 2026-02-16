@@ -1,0 +1,137 @@
+[View original HTML](/server/7.2/cli/cbstats/cbstats-collections-details.html)
+
+> Provides low-level details on collections. 
+
+## [](#syntax)Syntax
+
+cbstats host:11210 [common options] collections-details [vbucket-reference]
+
+## [](#description)Description
+
+This command is used to provide low-level details on collections, for a specified bucket. This includes details identifying the existing collections; and vBucket-specific details, which include sequence numbers and item counts.
+
+## [](#options)Options
+
+The optional `vbucket-reference` parameter is an integer, in the range of `0` to `1023` inclusive, specifying a particular vBucket. If a vBucket is specified, the only details returned are the vBucket-specific details for that vBucket. If no vBucket is specified, vBucket-specific details for all vBuckets are returned, as well as details identifying the existing collections for the bucket.
+
+For information on returning a `vbucket-reference` that corresponds to a particular document id, see the section [Examples: Find vBucket IDs](cbstats-key.md#find-vbucket-ids), on the reference page for the `cbstats` command [key](cbstats-key.md). For common `cbstats` options, see [cbstats](../cbstats-intro.md).
+
+## [](#examples)Examples
+
+The following command retrieves collections-details on all vBuckets for the administrator-created bucket `testBucket`:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b testBucket collections-details
+
+The initial section of the output is as follows:
+
+0x0:0x0:history:                  true
+0x0:0x0:name:                     _default
+0x8:0x8:history:                  true
+0x8:0x8:name:                     MyFirstCollection
+0x8:0x9:history:                  true
+0x8:0x9:name:                     MySecondCollection
+manifest_uid:                     6
+vb_0:0x0:disk_size:               0
+vb_0:0x0:high_seqno:              0
+vb_0:0x0:history:                 true
+vb_0:0x0:items:                   0
+vb_0:0x0:name:                    _default
+vb_0:0x0:ops_delete:              0
+vb_0:0x0:ops_get:                 0
+vb_0:0x0:ops_store:               0
+vb_0:0x0:persisted_high_seqno:    0
+vb_0:0x0:scope:                   0x0
+vb_0:0x0:start_seqno:             0
+vb_0:0x8:disk_size:               118
+vb_0:0x8:high_seqno:              2
+vb_0:0x8:history:                 true
+vb_0:0x8:items:                   0
+vb_0:0x8:name:                    MyFirstCollection
+vb_0:0x8:ops_delete:              0
+vb_0:0x8:ops_get:                 0
+vb_0:0x8:ops_store:               0
+vb_0:0x8:persisted_high_seqno:    2
+vb_0:0x8:scope:                   0x8
+vb_0:0x8:start_seqno:             2
+vb_0:0x9:disk_size:               228
+vb_0:0x9:high_seqno:              6
+vb_0:0x9:history:                 true
+vb_0:0x9:items:                   0
+vb_0:0x9:name:                    MySecondCollection
+vb_0:0x9:ops_delete:              0
+vb_0:0x9:ops_get:                 0
+vb_0:0x9:ops_store:               0
+vb_0:0x9:persisted_high_seqno:    6
+vb_0:0x9:scope:                   0x8
+vb_0:0x9:start_seqno:             3
+vb_0:collections:                 3
+vb_0:manifest:uid:                6
+      .
+      .
+      .
+
+Each line of the output presents a data _key_. Each key is of the format `scopeID` : `collectionID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
+
+The initial six lines provide information that identifies existing collections. Three are listed, which are the `_default` collection, and the administrator-defined collections, `MyFirstCollection` and `MySecondCollection`. Each is identified with hexadecimal numbers: the `_default` collection is identified as `0x0` (residing within scope `0x0`); and the other two as `0x8` and `0x9` respectively (both residing within scope `0x8`).
+
+The line on which each collection is named is preceded by a line indicating whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not. (Note that the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket: see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).)
+
+The `manifest_uid` value (here, `6`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
+
+Subsequent information in the output relates to each vBucket corresponding to `testBucket`, on the current node. The vBuckets are numbered, from `vb_0` to `vb_1023`. For each vBucket, information is provided on sequence numbers and total items.
+
+The following command, which again refers to `testBucket`, specifies a `vbucket-reference`; thereby returning information on the specified vBucket only.
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b testBucket collections-details 8
+
+Details for vBucket `8` are duly returned:
+
+vb_8:0x0:disk_size:            0
+vb_8:0x0:high_seqno:           0
+vb_8:0x0:history:              true
+vb_8:0x0:items:                0
+vb_8:0x0:name:                 _default
+vb_8:0x0:ops_delete:           0
+vb_8:0x0:ops_get:              0
+vb_8:0x0:ops_store:            0
+vb_8:0x0:persisted_high_seqno: 0
+vb_8:0x0:scope:                0x0
+vb_8:0x0:start_seqno:          0
+vb_8:0x8:disk_size:            118
+vb_8:0x8:high_seqno:           2
+vb_8:0x8:history:              true
+vb_8:0x8:items:                0
+vb_8:0x8:name:                 MyFirstCollection
+vb_8:0x8:ops_delete:           0
+vb_8:0x8:ops_get:              0
+vb_8:0x8:ops_store:            0
+vb_8:0x8:persisted_high_seqno: 2
+vb_8:0x8:scope:                0x8
+vb_8:0x8:start_seqno:          2
+vb_8:0x9:disk_size:            228
+vb_8:0x9:high_seqno:           6
+vb_8:0x9:history:              true
+vb_8:0x9:items:                0
+vb_8:0x9:name:                 MySecondCollection
+vb_8:0x9:ops_delete:           0
+vb_8:0x9:ops_get:              0
+vb_8:0x9:ops_store:            0
+vb_8:0x9:persisted_high_seqno: 6
+vb_8:0x9:scope:                0x8
+vb_8:0x9:start_seqno:          3
+vb_8:collections:              3
+vb_8:manifest:uid:             6
+
+## [](#see-also)See Also
+
+For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+For a step-by-step explanation of creating scopes and collections with the CLI, see [Manage Scopes and Collections with the CLI](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-cli). For a comparable explanation with the REST API, see [Manage Scopes and Collections with the REST API](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-rest-api).
+
+To use `cbstats` to provide higher-level information on collections, see the reference page for the [collections](cbstats-collections.md) command.
+
+For information on establishing a change history for collections within a bucket, see see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).

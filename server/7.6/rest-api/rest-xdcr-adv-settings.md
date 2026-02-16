@@ -1,0 +1,397 @@
+[View original HTML](/server/7.6/rest-api/rest-xdcr-adv-settings.html)
+
+> XDCR advanced settings can be used to configure replications. 
+
+## [](#http-methods-and-uri)HTTP methods and URI
+
+POST /settings/replications/
+
+POST /settings/replications/<settings_URI>
+
+GET /settings/replications/
+
+GET /settings/replications/<settings_URI>
+
+## [](#description)Description
+
+Used with the `POST` method, the URIs respectively change global settings for _all_ replications; and for _a specific_ replication, which is referenced by its `settings_URI`. The `settings_URI` comprises the _id_ for the replication, and can be retrieved by means of the `GET /pools/default/tasks` method and URI: see [Getting Cluster Tasks](rest-get-cluster-tasks.md).
+
+The global settings are the default values used if settings are not specified during the creation of a particular replication. If settings are specified for a particular replication, the specified settings overwrite the global settings.
+
+If the global settings are themselves changed, existing replications are not affected: only replications created _after_ the change made to the global settings receive the updated global settings.
+
+Used with the `GET` method, the URIs respectively retrieve global settings for _all_ replications; and for _a specific_ replication, which is referenced by its `settings_URI`.
+
+Each command requires the Full Admin, Cluster Admin, ReadOnly Admin, External User Security Admin, Local User Security Admin, Backup Full Admin, or XDCR Admin role.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u <username>:<password> -X POST
+  http://<ip-address-or-domain-name>:8091/settings/replications
+  [ -d <xdcr-advanced-setting>=<value> ]*
+
+curl -u <username>:<password> -X POST \
+  http://<ip-address-or-domain-name>:8091/settings/replications/<settings_URI>
+  [ -d <xdcr-advanced-setting>=<value> ]*
+
+curl -u <username>:<password> -X GET \
+  http://<ip-address-or-domain-name>:8091/settings/replications
+
+curl -u <username>:<password> -X GET \
+  http://<ip-address-or-domain-name>:8091/settings/replications/<settings_URI>
+
+Each instance of the POST method allows one or more instances of the `xdcr-advanced-setting` flag to be specified, with an appropriate `value`. All flags are listed below, in the section [List of Advanced Settings](#xdcr-advanced-settings-rest).
+
+## [](#responses)Responses
+
+If successful, `GET` and `POST` commands return `200 OK`. Commands for establishing or retrieving either global settings or the settings for a specific replication return an object containing the settings.
+
+Failure to authenticate returns `401 Unauthorized`. A URI featuring an incorrect hostname or port returns a `failure to connect` message. An incorrect `settings_URI` returns `400 Bad Request`, and an object such as `{"errors":{"_":"requested resource not found"}}`.
+
+An attempt to set a global-only setting for a specific replication returns `400 Bad Request`, and an object indicating which submitted parameters were incorrect. For example, the attempted use of `POST /settings/replications/<settings_URI>` to establish values for `goGC` and `goMaxProcs` returns the following:
+
+{
+  "gogc": "Invalid settings key",
+  "gomaxprocs": "Invalid settings key"
+}
+
+A replication-specific parameter (such as `pauseRequested`) is ignored, if incorrectly specified in an attempt to modify global settings.
+
+## [](#examples)Examples
+
+The following examples show how settings can be established and retrieved.
+
+### [](#get-settings-for-all-replications)Get Settings for All Replications
+
+The following example retrieves settings for all replications. Note that the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate readability:
+
+curl -u Administrator:password -X GET http://localhost:8091/settings/replications | jq '.'
+
+If successful, the call returns an object similar to the following:
+
+{
+  "cLogConnPoolGCIntervalMs": 60000,
+  "cLogConnPoolLimit": 30,
+  "cLogConnPoolReapIntervalMs": 120000,
+  "cLogErrorTimeWindowMs": 120000,
+  "cLogMaxErrorCount": 10,
+  "cLogNetworkRetryCount": 5,
+  "cLogNetworkRetryIntervalMs": 2000,
+  "cLogPoolGetTimeoutMs": 5000,
+  "cLogQueueCapacity": 6000,
+  "cLogReattemptDurationMs": 600000,
+  "cLogSetTimeoutMs": 5000,
+  "cLogWorkerCount": 20,
+  "casDriftThresholdSecs": 3900,
+  "checkpointInterval": 600,
+  "ckptSvcCacheEnabled": true,
+  "collectionsOSOMode": true,
+  "compressionType": "Auto",
+  "conflictLogging": {},
+  "dcpEnablePurgeRollback": false,
+  "desiredLatency": 50,
+  "disableHlvBasedShortCircuit": false,
+  "docBatchSizeKb": 2048,
+  "failureRestartInterval": 10,
+  "filterBinary": false,
+  "filterBypassExpiry": false,
+  "filterBypassUncommittedTxn": false,
+  "filterDeletion": false,
+  "filterExpiration": false,
+  "genericServicesLogLevel": {
+    < ... diagnostic items cut out due to length ... >
+    },
+  "goGC": 100,
+  "goMaxProcs": 4,
+  "jsFunctionTimeoutMs": 20000,
+  "logLevel": "Info",
+  "mergeFunctionMapping": {},
+  "mobile": "Off",
+  "networkUsageLimit": 0,
+  "optimisticReplicationThreshold": 256,
+  "preCheckCasDriftThresholdHours": 8760,
+  "preReplicateVBMasterCheck": true,
+  "priority": "High",
+  "replicateCkptIntervalMin": 20,
+  "retryOnErrExceptAuthErrMaxWaitSec": 360,
+  "retryOnRemoteAuthErr": true,
+  "retryOnRemoteAuthErrMaxWaitSec": 360,
+  "skipReplSpecAutoGc": false,
+  "sourceNozzlePerNode": 2,
+  "targetTopologyLogFrequency": 1800,
+  "statsInterval": 1000,
+  "targetNozzlePerNode": 2,
+  "targetTopologyLogFrequency": 1800,
+  "workerBatchSize": 500
+}
+
+### [](#get-settings-for-a-specific-replication)Get Settings for a Specific Replication
+
+To reference a specific replication, the replication’s `settings_URI` must first be retrieved. Use the following call, which is explained in detail in [Getting Cluster Tasks](rest-get-cluster-tasks.md).
+
+curl -v -X GET http://localhost:8091/pools/default/tasks -u Administrator:password | jq '.'
+
+If successful, the call returns an array of ongoing cluster tasks, similar to the following:
+
+[
+  {
+    "statusId": "20caaa733e53b3ab3a370ce89de21cc0",
+    "type": "rebalance",
+    "subtype": "rebalance",
+    "status": "notRunning",
+    "statusIsStale": false,
+    "masterRequestTimedOut": false,
+    "lastReportURI": "/logs/rebalanceReport?reportID=57461c2db70751343a307fb91b8b242a"
+  },
+  {
+    "cancelURI": "/controller/cancelXDCR/0ad6c74d0f9fee5e447688933df6b281%2Ftravel-sample%2Fts2",
+    "settingsURI": "/settings/replications/0ad6c74d0f9fee5e447688933df6b281%2Ftravel-sample%2Fts2",
+    "status": "running",
+    "replicationType": "xmem",
+    "continuous": true,
+    "filterBypassExpiry": false,
+    "filterDeletion": false,
+    "filterExpiration": false,
+    "filterExpression": "",
+    "id": "0ad6c74d0f9fee5e447688933df6b281/travel-sample/ts2",
+    "pauseRequested": false,
+    "source": "travel-sample",
+    "target": "/remoteClusters/0ad6c74d0f9fee5e447688933df6b281/buckets/ts2",
+    "type": "xdcr",
+    "recommendedRefreshPeriod": 10,
+    "changesLeft": 0,
+    "docsChecked": 84792,
+    "docsWritten": 0,
+    "maxVBReps": null,
+    "errors": [
+    ]
+  },
+  {
+    "cancelURI": "/controller/cancelXDCR/2b5dcd1b0101a9d52f31a802d8c4231e%2Ftravel-sample%2Fts",
+    "settingsURI": "/settings/replications/2b5dcd1b0101a9d52f31a802d8c4231e%2Ftravel-sample%2Fts",
+    "status": "running",
+    "replicationType": "xmem",
+    "continuous": true,
+    "filterBypassExpiry": false,
+    "filterDeletion": false,
+    "filterExpiration": false,
+    "filterExpression": "",
+    "id": "2b5dcd1b0101a9d52f31a802d8c4231e/travel-sample/ts",
+    "pauseRequested": false,
+    "source": "travel-sample",
+    "target": "/remoteClusters/2b5dcd1b0101a9d52f31a802d8c4231e/buckets/ts",
+    "type": "xdcr",
+    "recommendedRefreshPeriod": 10,
+    "changesLeft": 0,
+    "docsChecked": 84792,
+    "docsWritten": 0,
+    "maxVBReps": null,
+    "errors": [
+    ]
+  }
+]
+
+A `settings_URI` is provided for each of the ongoing replications, within the second member of the array. The `settings_URI` can be used to retrieve information on the corresponding replication.
+
+For example, enter the following:
+
+curl -v -X GET http://localhost:8091/settings/replications/2b5dcd1b0101a9d52f31a802d8c4231e%2Ftravel-sample%2Fts \
+-u Administrator:password | jq '.'
+
+If the call is successful, an object containing the settings for the specified replication is returned:
+
+{
+  "casDriftThresholdSecs": 100,
+  "checkpointInterval": 600,
+  "ckptSvcCacheEnabled": true,
+  "colMappingRules": {},
+  "collectionsExplicitMapping": false,
+  "collectionsMigrationMode": false,
+  "collectionsMirroringMode": false,
+  "collectionsOSOMode": true,
+  "compressionType": "Auto",
+  "dcpEnablePurgeRollback": false,
+  "desiredLatency": 50,
+  "docBatchSizeKb": 2048,
+  "failureRestartInterval": 10,
+  "filterBinary": false,
+  "filterBypassExpiry": false,
+  "filterBypassUncommittedTxn": false,
+  "filterDeletion": false,
+  "filterExpiration": false,
+  "filterExpression": "",
+  "jsFunctionTimeoutMs": 20000,
+  "logLevel": "Info",
+  "mergeFunctionMapping": {},
+  "mobile": "Off",
+  "networkUsageLimit": 0,
+  "optimisticReplicationThreshold": 256,
+  "pauseRequested": false,
+  "preCheckCasDriftThresholdHours": 8760,
+  "preReplicateVBMasterCheck": true,
+  "priority": "High",
+  "replicateCkptIntervalMin": 20,
+  "retryOnErrExceptAuthErrMaxWaitSec": 360,
+  "retryOnRemoteAuthErr": true,
+  "retryOnRemoteAuthErrMaxWaitSec": 360,
+  "skipReplSpecAutoGc": false,
+  "sourceNozzlePerNode": 2,
+  "statsInterval": 1000,
+  "targetNozzlePerNode": 2,
+  "targetTopologyLogFrequency": 1800,
+  "type": "xmem",
+  "workerBatchSize": 500
+}
+
+### [](#change-a-setting-for-a-specific-replication)Change a Setting for a Specific Replication
+
+The following example modifies the value of `checkpointInterval`, for a specific replication:
+
+curl -v X POST \
+http://localhost:8091/settings/replications/2b5dcd1b0101a9d52f31a802d8c4231e%2Ftravel-sample%2Fts -d checkpointInterval=700 \
+-u Administrator:password | jq '.'
+
+If successful, the call returns an object containing all current settings for the replication, including what has been changed:
+
+{
+  "casDriftThresholdSecs": 100,
+  "checkpointInterval": 700,
+  "ckptSvcCacheEnabled": true,
+  "colMappingRules": {},
+  "collectionsExplicitMapping": false,
+  "collectionsMigrationMode": false,
+  "collectionsMirroringMode": false,
+  "collectionsOSOMode": true,
+  "compressionType": "Auto",
+  "dcpEnablePurgeRollback": false,
+  "desiredLatency": 50,
+  "docBatchSizeKb": 2048,
+  "failureRestartInterval": 10,
+  "filterBinary": false,
+  "filterBypassExpiry": false,
+  "filterBypassUncommittedTxn": false,
+  "filterDeletion": false,
+  "filterExpiration": false,
+  "filterExpression": "",
+  "jsFunctionTimeoutMs": 20000,
+  "logLevel": "Info",
+  "mergeFunctionMapping": {},
+  "mobile": "Off",
+  "networkUsageLimit": 0,
+  "optimisticReplicationThreshold": 256,
+  "pauseRequested": false,
+  "preCheckCasDriftThresholdHours": 8760,
+  "preReplicateVBMasterCheck": true,
+  "priority": "High",
+  "replicateCkptIntervalMin": 20,
+  "retryOnErrExceptAuthErrMaxWaitSec": 360,
+  "retryOnRemoteAuthErr": true,
+  "retryOnRemoteAuthErrMaxWaitSec": 360,
+  "skipReplSpecAutoGc": false,
+  "sourceNozzlePerNode": 2,
+  "statsInterval": 1000,
+  "targetNozzlePerNode": 2,
+  "targetTopologyLogFrequency": 1800,
+  "type": "xmem",
+  "workerBatchSize": 500
+}
+
+### [](#change-existing-replication-with-mobile-active)Change Settings for an Existing Replication to Set mobile=Active
+
+The following example modifies the value of `mobile` to `Active` for an existing replication:
+
+curl -X POST -u Administrator:password http://localhost:8091/<settings_URI> -d mobile=Active | jq '.'
+
+For information about _XDCR with Sync Gateway mobile clusters in a bi-directional, active-active replication_, see [XDCR Active-Active with Sync Gateway](../learn/clusters-and-availability/xdcr-active-active-sgw.md).
+
+##### [](#change-settings-for-xdcr-generic-services-log-levels)Change Settings for XDCR Generic Services Log Levels
+
+The following example modifies the log levels for XDCR Generic Services, for a specific replication. Usually, you modify the log levels only when requested by Couchbase Support.
+
+curl -X POST -u Administrator:password http://localhost:8091/settings/replications -d 'genericServicesLogLevel={"RemoteClusterService":"Debug","ReplicationSpecService":"Error","BucketTopologyService":"Debug","CheckpointService":"Error"}'
+
+If successful, the call returns an object containing all current Generic Services related log level settings for the replication, including what’s changed:
+
+{
+...
+"genericServicesLogLevel": {
+    "AdminPort": "Info",
+    "AuditService": "Info",
+    "BackfillManager": "Info",
+    "BackfillReplicationService": "Info",
+    "BucketTopologyService": "Debug",
+    "CapiService": "Info",
+    "CheckpointService": "Error",
+    "CollectionsManifestService": "Info",
+    "Default": "Info",
+    "GenericSupervisor": "Info",
+    "GlobalSettingsService": "Info",
+    "HttpServer": "Info",
+    "InternalSettingsService": "Info",
+    "ManifestService": "Info",
+    "MessageUtils": "Info",
+    "MetaKVMetadataService": "Info",
+    "MigrationService": "Info",
+    "P2PManagerService": "Info",
+    "PipelineManager": "Info",
+    "RemoteClusterService": "Debug",
+    "ReplicationSettingService": "Info",
+    "ReplicationSpecService": "Error",
+    "ResourceManager": "Info",
+    "SecurityService": "Info",
+    "ThroughputThrottlerService": "Info",
+    "TopologyService": "Info",
+    "UtilsService": "Info",
+    "XDCRFactory": "Info"
+  },
+...
+}
+
+To view the current log levels for XDCR Generic Services anytime, use the following command:
+
+curl -s -X GET  -u Administrator:password http://localhost:8091/settings/replications  | jq
+
+## [](#xdcr-advanced-settings-rest)List of Advanced Settings
+
+The advanced settings for XDCR are as follows. The subset of advanced settings that can be configured by means of Couchbase Web Console is provided at [XDCR Advanced Settings](../xdcr-reference/xdcr-advanced-settings.md).
+
+__Table 1\. XDCR Advanced Settings__
+| Parameter                      | Value                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------------ | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| checkpointInterval             | Integer (60 to 14400)                | Default: 600 The interval for checkpointing in seconds. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| colMappingRules                | JSON Object                          | Collection-related rules according to which explicit mapping or migration is defined for the replication. See [Rules for Explicit Mappings](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#rules-for-explicit-mappings) and [Rules for Migration](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#rules-for-migration). This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| collectionsExplicitMapping     | Boolean (true or false)              | Whether the replication uses explicit mapping: see [Rules for Explicit Mappings](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#rules-for-explicit-mappings). This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| collectionsMigrationMode       | Boolean (true or false)              | Whether the replication uses migration mode: see [Migration](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#migration). This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| collectionsOSOMode             | Boolean (true or false)              | Whether the replication optimizes performance; by streaming, from a source bucket, mutations that could be out of order, in terms of sequence-number. Default is true.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| compressionType                | String                               | Default: Auto. Specifies whether documents are to be compressed for XDCR, and if so, what compression type is to be used. For information, see the [Table of XDCR Advanced Settings](../xdcr-reference/xdcr-advanced-settings.md#table-of-xdcr-advanced-settings). This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| desiredLatency                 | Integer                              | Specifies the amount of time in milliseconds within which a high-priority replication’s currently remaining changes should be reduced in number to zero, by ongoing transmission of the changes from source to target bucket. If Couchbase Server estimates that the time required is greater than that specified by desiredLatency, the replication is considered to be backlogged: XDCR therefore attempts to communicate with the Data Service, to establish a higher DCP priority for the replication, and thereby ensure swifter transmission of data. This setting applies only to high-priority replications, or to medium-priority replications that achieve high-priority status (see [XDCR Priority](../learn/clusters-and-availability/xdcr-overview.md#xdcr-priority)). The default value is 50\. The lower the value, the higher (potentially) the transmission rate, and the greater the load on the target cluster. This setting can be established and retrieved either for an individual replication or globally. |
+| docBatchSizeKb                 | Integer (10 to 10000)                | Default: 2048\. The size of a batch in kilobytes. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| failureRestartInterval         | Integer (1 to 300)                   | Default: 10\. The number of seconds to wait after a failure before restarting replication. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| filterBypassExpiry             | Boolean (true or false)              | Default: false. Whether a document’s TTL should be replicated with the document or not. A value of true means that the TTL is removed from the document. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| filterBypassUncommittedTxn     | Boolean (true or false)              | Default: false. When false, the setting specifies that if a document contains uncommitted transactional metadata (_xattributes_), XDCR removes them, before replicating the document. The original document in the source bucket is unaffected. When true, the setting specifies that if the document contains uncommitted transactional metadata, XDCR does not replicate the document.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| filterDeletion                 | Boolean (true or false)              | Default: false. Whether mutations corresponding to the deletion of documents on the source cluster should be either _filtered out_ of the replication to the target cluster, or allowed to remain in. A value of true means that the mutation _is_ filtered out, ensuring that it is _not_ replicated to the target cluster; while a value of false means that the mutation is _not_ filtered out, ensuring that it _is_ replicated to the target cluster. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| filterExpiration               | Boolean (true or false)              | Default: false. Whether mutations corresponding to the expiration of documents on the source cluster should be either _filtered out_ of the replication to the target cluster, or allowed to remain in. A value of true means that the mutation _is_ filtered out, ensuring that it is _not_ replicated to the target cluster; while a value of false (the default) means that the mutation is _not_ filtered out, ensuring that it _is_ replicated to the target cluster. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| filterExpression               | String (a filter expression)         | Default: null. A filter expression to be matched against the ids, field-names, values, and extended attributes of documents in the source bucket. Each document that produces a successful match is replicated; other documents are not replicated. For supported expressions, see [XDCR Advanced Filtering Reference](../xdcr-reference/xdcr-filtering-reference-intro.md). This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| genericServicesLogLevel        | JSON Object                          | This is the Generic Services related log level settings for the replication. The keys represent service names and the associated values represent log levels. In the example, the log level for RemoteClusterService is set to Debug, and for ReplicationSpecService, it’s set to Error. By default, non-pipeline specific services use the Info log level. You can also set the log level to Error, Debug, or Trace. The Default key sets the log level for shared utilities like connection pools and data pools, which are used by multiple services. All these utilities use the same default logger, so changing the log level in Default affects all logger dependent utilities.                                                                                                                                                                                                                                                                                                                                             |
+| goGC                           | Integer (0 to 100) or String ("off") | Default: 100\. The initial garbage collection target percentage for the replication. A garbage collection is triggered when the ratio of freshly allocated data to live data remaining after the previous collection reaches this percentage. A value of "off" disables the garbage collector entirely. This setting is only returned when global settings are retrieved; and can only be set when global settings are set. It cannot be set when an individual replication is created, or when its settings are modified.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| goMaxProcs                     | Integer                              | Default: 4\. The maximum number of threads used per node, to support XDCR. A greater number of threads increases parallelism, and may thereby produce enhanced XDCR performance. This setting is only returned when global settings are retrieved; and can only be set when global settings are set. It cannot be set when an individual replication is created, or when its settings are modified.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| hlvPruningWindowSec            | Integer                              | Used in _custom conflict-resolution_. The integer specifies the duration, in seconds, of the time-window that starts when a remote cluster has modified the document that is currently being replicated. The remote cluster’s update is recorded in a _Hybrid Logical Vector_ (HLV). If the specified time-window expires without further modification being made by the remote cluster, information about the remote cluster’s update is removed from the HLV. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| jsFunctionTimeoutMs            | Integer                              | Used in _custom conflict-resolution_. Specifies the number of milliseconds that must elapse before the timeout of a JavaScript conflict-resolution function. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| logLevel                       | String                               | Default: Info. The level of logging, such as Error/Info/Debug/Trace. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| mergeFunctionMapping           | JSON Object                          | Each of the key-value pairs in the JSON object should map a collection-specifier (in the form scope.collection) to the name of a defined merge-function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| mobile                         | Active or Off                        | Default: Off. When set to Active, enables the setting _XDCR Active-Active with Sync Gateway 4.0+_ on the clusters of both sides of the replication. The default value Off indicates that the replication setup supports either _XDCR Active-Passive with Sync Gateway_ or _XDCR Active-Active without Sync Gateway_. For more information, see [XDCR Active-Active with Sync Gateway](../learn/clusters-and-availability/xdcr-active-active-sgw.md).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| networkUsageLimit              | Integer                              | Default: 0\. Specifies the upper limit for network usage during replication, for the entire cluster, in MB per second. The default is 0, meaning no limit is applied. For information, see the [Table of XDCR Advanced Settings](../xdcr-reference/xdcr-advanced-settings.md#table-of-xdcr-advanced-settings). This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| optimisticReplicationThreshold | Integer (0 to (20\*1024\*1024))      | Default: 256\. Documents with sizes less than this threshold (in bytes) will be replicated optimistically. This setting can be established and retrieved either for an individual replication or globally. XDCR optimistic replication is applicable only when the bucket property enableCrossClusterVersioning is disabled. For information about the property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#version-pruning-window-hrs).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| pauseRequested                 | Boolean (true or false)              | Default: false. Indicates whether the replication has been issued a pause request. This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| priority                       | High, Medium, or Low                 | Default: High. Resource-allocation for the replication. For information, see [XDCR Priority](../learn/clusters-and-availability/xdcr-overview.md#xdcr-priority). This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| retryOnRemoteAuthErr           | Boolean (true or false)              | Whether to retry connection for a replication that has failed due to a problem in authenticating with the target cluster. The default is true. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| retryOnRemoteAuthErrMaxWaitSec | Integer                              | The maximum number of seconds to wait before retrying a connection that failed due to a problem in authenticating with the target cluster. This only takes effect when retryOnRemoteAuthErr is true. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| sourceNozzlePerNode            | Integer (1 to 100)                   | The number of nozzles that can be used for this replication per source cluster node. This together with target\_nozzle\_per\_node controls the parallelism of the replication. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| statsInterval                  | Integer (200 to 600000)              | Default: 1000\. The interval (in milliseconds) for statistics updates. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| targetNozzlePerNode            | Integer (1 to 100)                   | The number of outgoing nozzles per target node. This together with source\_nozzle\_per\_node controls the parallelism of the replication. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| type                           | String "xmem"                        | The replication type, which must be "xmem". This setting can only be established for and retrieved from an individual replication: it cannot be established or retrieved as part of global settings.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| workerBatchSize                | Integer (500 to 10000)               | Default: 500\. The number of mutations in a batch. This setting can be established and retrieved either for an individual replication or globally.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+
+## [](#see-also)See Also
+
+The REST call for creating a replication and specifying parameters is described in [Creating a Replication](rest-xdcr-create-replication.md). An overview of XDCR is provided in [Cross Data Center Replication (XDCR)](../learn/clusters-and-availability/xdcr-overview.md). The subset of advanced settings that can be configured by means of Couchbase Web Console is provided at [XDCR Advanced Settings](../xdcr-reference/xdcr-advanced-settings.md).

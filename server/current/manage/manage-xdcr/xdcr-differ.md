@@ -1,0 +1,53 @@
+[View original HTML](/server/current/manage/manage-xdcr/xdcr-differ.html)
+
+> The `xdcrDiffer` utility helps you verify data consistency between XDCR clusters by comparing document metadata and values, and reporting missing or mismatched documents. 
+
+`xdcrDiffer` is a diagnostic utility included in the Server installation package for convenient access. Previously, you’d build this utility from source using the xdcrDiffer GitHub repository.
+
+## [](#what-is-xdcrdiffer)What is xdcrDiffer?
+
+`xdcrDiffer` is a Diff tool that helps you check data consistency between XDCR clusters. For full usage instructions and Q&A, see the [xdcrDiffer ReadMe](https://github.com/couchbase/xdcrDiffer?tab=readme-ov-file#readme).
+
+The output report from `xdcrDiffer` provides information such as:
+
+* A list of document IDs missing from the target cluster.
+* A list of documents with mismatched data.
+
+## [](#utility-files)Utility Files
+
+The utility includes these files:
+
+* `xdcrDiffer` (binary)
+* `runDiffer.sh` (shell script)
+
+To run the utility, use the `runDiffer.sh` script.
+
+|  | Run the xdcrDiffer utility on a cluster node that does not serve Data service, as the utility can consume significant resources. You can also run it on an arbiter node, which does not run any services. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#how-the-xdcrdiffer-utility-works)How the xdcrDiffer Utility Works
+
+`xdcrDiffer` acts as a Database Change Protocol (DCP) consumer and creates DCP streams from the Data nodes. Then it reads data from both the source and target clusters, and stores results in the directory you specify as `outputDir`.
+
+**Before you begin:**
+
+Estimate the required storage for utility output. Make sure the specified `outputDir` has enough space for collecting data.
+
+Each mutation from DCP is stored with its metadata. Each mutation typically uses about 102 bytes and the key size. Calculate the storage needed as follows:
+
+Storage needed = (102 bytes + key size) × number of documents in the source and target buckets being replicated
+
+|  | Ensure you check the details of usage, limitations, and information about how to read the output reports in the [xdcrDiffer ReadMe](https://github.com/couchbase/xdcrDiffer?tab=readme-ov-file#readme). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+The following is an example of running the `runDiffer.sh` file with an option to compare both metadata and body during the report generation portion of the utility run.
+
+runDiffer.sh --username=Administrator --password=password --hostname=localhost:8091 --sourceBucket=travel-sample --targetBucket=travel-sample --remoteClusterName=cluster2 --compareType=both --outputDir=/has_enough_space/xdcr_differ_outputdir
+
+## [](#comparison-process)Comparison Process
+
+* `xdcrDiffer` collects each document’s metadata and generates a SHA-512 digest of its value.
+* After capturing all data from both clusters, `xdcrDiffer` compares documents by using either document ID or key.
+
+  * If a document is missing in either cluster, the utility reports the missing document.
+  * If all documents are present, the utility compares metadata and the body hash to verify if they match.

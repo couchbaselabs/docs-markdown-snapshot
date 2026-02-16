@@ -1,0 +1,46 @@
+[View original HTML](/styleguide/alt-text.html)
+
+Alt text is a text description of an image, read by screen readers or users who have turned off images.
+
+You need to add alt text to all images in Couchbase documentation.
+
+Alt text must:
+
+* [Describe the Image](#describe)
+* [Be Concise](#concise)
+* [End with a Period](#period)
+
+To write effective alt text:
+
+* [Do Not Include "Image Of"](#image-of)
+* [Do Not Add Alt Text To Icons or Decorative Images](#icons)
+
+## [](#describe)Describe the Image
+
+Describe, plainly, the content of the image.
+
+Imagine that you were trying to describe it to someone who could not actually see the image for themselves. Write a meaningful description that suits the user’s context.
+
+## [](#concise)Be Concise
+
+You do not need to describe every detail - unless there’s important text that a user needs.
+
+Give the most relevant, important details that a sighted user would get at a glance. The alt text needs to provide this same information.
+
+## [](#period)End with a Period
+
+Make sure your alt text ends with a period after your last sentence.
+
+## [](#image-of)Do Not Include "Image Of"
+
+Do not start your alt text with the words `image of`.
+
+If you need to specify the type of image, such as a diagram or illustration, add that at the end of the alt text.
+
+Screen readers automatically add `image of`.
+
+## [](#icons)Do Not Add Alt Text To Icons or Decorative Images
+
+If the icon already has a text label, do not add alt text.
+
+If the image is purely decorative and does not need to convey anything important to the user, do not add alt text.

@@ -1,0 +1,371 @@
+[View original HTML](/couchbase-lite/current/objc/working-with-vector-search.html)
+
+> Use Vector Search with Full Text Search and Query. 
+
+## [](#use-vector-search)Use Vector Search
+
+To configure a project to use vector search, follow the [installation instructions](gs-install.md) to add the Vector Search extension.
+
+|  | You must install Couchbase Lite to use the Vector Search extension. |
+|  | ------------------------------------------------------------------- |
+
+## [](#create-a-vector-index)Create a Vector Index
+
+This method shows how you can create a vector index using the Couchbase Lite Vector Search extension.
+
+```objc
+    // Create a vector index configuration with a document property named "vector", 
+    // 3 dimensions, and 100 centroids. Customize the encoding, the distance metric,
+    // the number of probes, and the training size.
+    CBLVectorIndexConfiguration* config =
+        [[CBLVectorIndexConfiguration alloc] initWithExpression: @"vector"
+                                                     dimensions: 3 centroids: 100];
+    config.encoding = [CBLVectorEncoding none];
+    config.metric = kCBLDistanceMetricCosine;
+    config.numProbes = 8;
+    config.minTrainingSize = 2500;
+    config.maxTrainingSize = 5000;
+```
+
+First, initialize the `config` object with the `VectorIndexConfiguration()` method with the following parameters:
+
+* The expression of the data as a vector.
+* The width or `dimensions` of the vector index is set to `3`.
+* The amount of `centroids` is set to `100`. This means that there will be one hundred buckets with a single centroid each that gathers together similar vectors.
+
+You can also alter some optional config settings such as `encoding`. From there, you create an index within a given collection, in this case `colors_index`, using the previously generated `config` object.
+
+|  | The number of vectors, the width or dimensions of the vectors and the training size can incur high CPU and memory costs as the size of each variable increases. This is because the training vectors have to be resident on the machine. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#vector-index-configuration)Vector Index Configuration
+
+The table below displays the different configurations you can modify within your `VectorIndexConfiguration()` function. For more information on specific configurations, see [Vector Search.](vector-search.md)
+
+__Table 1\. Vector Index Configuration Options__
+| Configuration Name   | Is Required                | Default Configuration                                                                                                                                              | Further Information                                                                                                                                                                                                                                                     |
+| -------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Expression           | ![yes](../_images/yes.png) | No default                                                                                                                                                         | A SQL++ expression indicating where to get the vectors. A document property for embedded vectors or prediction() to call a registered Predictive model.                                                                                                                 |
+| Number of Dimensions | ![yes](../_images/yes.png) | No default                                                                                                                                                         | 2-4096                                                                                                                                                                                                                                                                  |
+| Number of Centroids  | ![yes](../_images/yes.png) | No default                                                                                                                                                         | 1-64000\. The general guideline is an approximate square root of the number of documents                                                                                                                                                                                |
+| Distance Metric      | ![no](../_images/no.png)   | Squared Euclidean Distance (euclideanSquared)                                                                                                                      | You can set the following alternates as your Distance Metric: cosine (1 - Cosine similarity) Euclidean dot (negated dot product)                                                                                                                                        |
+| Encoding             | ![no](../_images/no.png)   | Scalar Quantizer(SQ) or SQ-8 bits                                                                                                                                  | There are three possible configurations: None No compression, No data loss Scalar Quantizer (SQ) or SQ-8 bits (Default) Reduces the number of bits per dimension Product Quantizer (PQ) Reduces the number of dimensions and bits per dimension                         |
+| Training Size        | ![no](../_images/no.png)   | The default values for both the minimum and maximum training size is zero. The training size is calculated based on the number of Centroids and the encoding type. | The guidelines for the minimum and maximum training size are as follows: The minimum training size is set to 25x the number of Centroids or 2 PQ’s bits when PQ is used The maximum training size is set to 256x the number of Centroids or 2 PQ’s bits when PQ is used |
+| NumProbes            | ![no](../_images/no.png)   | The default value is 0\. The number of Probes is calculated based on the number of Centroids                                                                       | A guideline for setting a custom number of probes is at least 8 or 0.5% the number of Centroids                                                                                                                                                                         |
+| isLazy               | ![no](../_images/no.png)   | False                                                                                                                                                              | Setting the value to true will enable lazy mode for the vector index                                                                                                                                                                                                    |
+
+|  | Altering the default training sizes could be detrimental to the accuracy of returned results produced by the model and total computation time. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#generating-vectors)Generating Vectors
+
+You can use the following methods to generate vectors in Couchbase Lite:
+
+1. You can call a Machine Learning(ML) model, and embed the generated vectors inside the documents.
+2. You can use the `prediction()` function to generate vectors to be indexed for each document at the indexing time.
+3. You can use Lazy Vector Index (lazy index) to generate vectors asynchronously from remote ML models that may not always be reachable or functioning, skipping or scheduling retries for those specific cases.
+
+Below are example configurations of the previously mentioned methods.
+
+### [](#create-a-vector-index-with-embeddings)Create a Vector Index with Embeddings
+
+This method shows you how to create a Vector Index with embeddings.
+
+```objc
+    NSError* error;
+    // Get the collection named "colors" in the default scope.
+    CBLCollection* collection = [database collectionWithName: @"colors" scope: nil error: &error];
+    if (!collection) { return; }
+    
+    // Create a vector index configuration with a document property named "vector",
+    // 3 dimensions, and 100 centroids.
+    CBLVectorIndexConfiguration* config =
+        [[CBLVectorIndexConfiguration alloc] initWithExpression: @"vector"
+                                                     dimensions: 3 centroids: 100];
+    
+    // Create a vector index from the configuration with the name "colors_index".
+    [collection createIndexWithName: @"colors_index" config: config error: &error];
+```
+
+1. First, create the standard configuration, setting up an expression, number of dimensions and number of centroids for the vector embedding.
+2. Next, create a vector index, `colors_index`, on a collection and pass it the configuration.
+
+### [](#create-vector-index-embeddings-from-a-predictive-model)Create Vector Index Embeddings from a Predictive Model
+
+This method generates vectors to be indexed for each document at the index time by using the `prediction()` function. The key difference to note is that the `config` object uses the output of the `prediction()` function as the `expression` parameter to generate the vector index.
+
+```objc
+    NSError* error;
+    // Get the collection named "colors" in the default scope.
+    CBLCollection* collection = [database collectionWithName: @"colors" scope: nil error: &error];
+    if (!collection) { return; }
+    
+    // Register the predictive model named "ColorModel".
+    [[CBLDatabase prediction] registerModel: [[CBLColorModel alloc] init] withName: @"ColorModel"];
+    
+    // Create a vector index configuration with an expression using the prediction function
+    // to get the vectors from the registered predictive model.
+    NSString* expression = @"prediction(ColorModel, {\"colorInput\": color}).vector";
+    CBLVectorIndexConfiguration* config =
+        [[CBLVectorIndexConfiguration alloc] initWithExpression: expression
+                                                     dimensions: 3 centroids: 100];
+    
+    // Create a vector index from the configuration with the name "colors_index".
+    [collection createIndexWithName: @"colors_index" config: config error: &error];
+```
+
+|  | You can use less storage by using the prediction() function as the encoded vectors will only be stored in the index. However, the index time will be longer as vector embedding generation is occurring at run time. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#create-a-lazy-vector-index)Create a Lazy Vector Index
+
+Lazy indexing is an alternate approach to using the standard predictive model with regular vector indexes which handle the indexing process automatically. You can use lazy indexing to use a ML model that is not available locally on the device and to create vector indexes without having vector embeddings in the documents.
+
+```objc
+    // Creating a lazy vector index using the document's property named "color".
+    // The "color" property's value will be used to compute a vector when updating the index.
+    CBLVectorIndexConfiguration* config =
+        [[CBLVectorIndexConfiguration alloc] initWithExpression: @"color"
+                                                     dimensions: 3 centroids: 100];
+    config.isLazy = YES;
+```
+
+You can enable lazy vector indexing by setting the `isLazy` property to `YES` in your vector index configuration.
+
+|  | Lazy Vector Indexing is opt-in functionality, the isLazy property is set to NO by default. |
+|  | ------------------------------------------------------------------------------------------ |
+
+### [](#updating-the-lazy-index)Updating the Lazy Index
+
+Below is an example of how you can update your lazy index.
+
+```objc
+    CBLQueryIndex* index = [collection indexWithName: @"colors_index" error: outError];
+    if (!index) {
+        return NO;
+    }
+    
+    while (true) {
+        // Start an update on it (in this case, limit to 50 entries at a time)
+        NSError* error;
+        CBLIndexUpdater* updater = [index beginUpdateWithLimit: 50 error: &error];
+        if (!updater) {
+            // If updater is nil and no error, that means there are no more entries to process
+            if (outError) { *outError = error; }
+            return (error == nil);
+        }
+        
+        for (NSUInteger i = 0; i < updater.count; i++) {
+            NSString* color = [updater stringAtIndex: i];
+            assert(color);
+            
+            NSArray* vector = [CBLColor vectorForColor: color error: &error];
+            if (error) {
+                // Bad connection? Corrupted over the wire? Something bad happened
+                // and the vector cannot be generated at the moment. So skip
+                // this entry. The next time -beginUpdateWithLimit:error: is called,
+                // it will be considered again.
+                [updater skipVectorAtIndex: i];
+            }
+            
+            // Set the computed vector here. If vector is nil, calling setVector
+            // will cause the underlying document to NOT be indexed.
+            if (![updater setVector: vector atIndex: i error: outError]) {
+                return NO;
+            }
+        }
+        
+        if (![updater finishWithError: outError]) {
+            return NO;
+        }
+    }
+```
+
+You procedurally update the vectors in the index by looping through the vectors in batches until you reach the value of the `limit` parameter.
+
+The update process follows the following sequence:
+
+1. Get a value for the updater.
+
+  1. If the there is no value for the vector, handle it. In this case, the vector will be skipped and considered the next time `beginUpdate()` is called.
+
+|  | A key benefit of lazy indexing is that the indexing process continues if a vector fails to generate. For standard vector indexing, this will cause the affected documents to be dropped from the indexing process. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+2. Set the vector from the computed vector derived from the updater value and your ML model.
+
+  1. If there is no value for the vector, this will result in the underlying document to not be indexed.
+3. Once all vectors have completed the update loop, finish updating.
+
+|  | updater.finish() will throw an error if any values inside the updater have not been set or skipped. |
+|  | --------------------------------------------------------------------------------------------------- |
+
+## [](#vector-search-sql-support)Vector Search SQL++ Support
+
+Couchbase Lite currently supports Hybrid Vector Search and the `APPROX_VECTOR_DISTANCE()` function.
+
+|  | Similar to the [Full Text Search](fts.md) match() function, the APPROX\_VECTOR\_DISTANCE() function and Hybrid Vector Search cannot use the OR expression with the other expressions in the related WHERE clause. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#use-hybrid-vector-search)Use Hybrid Vector Search
+
+You can use Hybrid Vector Search (Hybrid Search) to perform vector search in conjunction with regular SQL++ queries. With Hybrid Search, you perform vector search on documents that have already been filtered based on criteria specified in the `WHERE` clause.
+
+|  | A LIMIT clause is required for non-hybrid Vector Search, this avoids a slow, exhaustive unlimited search of all possible vectors. |
+|  | --------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#hybrid-vector-search-with-full-text-match)Hybrid Vector Search with Full Text Match
+
+Below is an example of using Hybrid Search with the Full Text `match()` function.
+
+```objc
+    // Create a hybrid vector search query with full-text's match() that
+    // uses the the full-text index named "color_desc_index".
+    NSString* sql = @"SELECT meta().id, color "
+                     "FROM _default.colors "
+                     "WHERE MATCH(color_desc_index, $text) "
+                     "ORDER BY approx_vector_distance(vector, $vector) "
+                     "LIMIT 8";
+    NSError* error;
+    CBLQuery* query = [database createQuery: sql error: &error];
+    if (!query) { /* handle error */ return; }
+    
+    // Use ML model to get a vector (an array of numbers) for the input color.
+    NSArray<NSNumber*>* vector = [CBLColor vectorForColor: @"FF00AA" error: &error];
+    if (!vector) { /* handle error */ return; }
+    
+    CBLQueryParameters* parameters = [[CBLQueryParameters alloc] init];
+    // Set the vector array to the parameter "$vector".
+    [parameters setValue: vector forName: @"vector"];
+    // Set the vector array to the parameter "$text".
+    [parameters setString: @"vibrant" forName: @"text"];
+    [query setParameters: parameters];
+    
+    // Execute the query.
+    CBLQueryResultSet* results = [query execute: &error];
+    if (!results) { /* handle error */ return; }
+    
+    for (CBLQueryResult* r in results) {
+        // Process result
+    }
+```
+
+### [](#prediction-with-hybrid-vector-search)Prediction with Hybrid Vector Search
+
+Below is an example of using Hybrid Search with an array of vectors generated by the `Prediction()` function at index time.
+
+```objc
+    // Create a hybrid vector search query using ORDER BY and WHERE clause.
+    NSString* sql = 
+    @"SELECT meta().id, color "
+     "FROM _default.colors "
+     "WHERE saturation > 0.5 "
+     "ORDER BY approx_vector_distance(prediction(ColorModel, {\"colorInput\": color}).vector, $vector) "
+     "LIMIT 8";
+    
+    NSError* error;
+    CBLQuery* query = [database createQuery: sql error: &error];
+    if (!query) { /* handle error */ return; }
+    
+    // Use ML model to get a vector (an array of numbers) for the input color.
+    NSArray<NSNumber*>* vector = [CBLColor vectorForColor: @"FF00AA" error: &error];
+    if (!vector) { /* handle error */ return; }
+    
+    // Set the vector array to the parameter "$vector".
+    CBLQueryParameters* parameters = [[CBLQueryParameters alloc] init];
+    [parameters setValue: vector forName: @"vector"];
+    [query setParameters: parameters];
+    
+    // Execute the query.
+    CBLQueryResultSet* results = [query execute: &error];
+    if (!results) { /* handle error */ return; }
+    
+    for (CBLQueryResult* r in results) {
+        // Process result
+    }
+```
+
+## [](#approx%5Fvector%5Fdistancevector-expr-target-vector-metric-nprobes-accurate)`APPROX_VECTOR_DISTANCE(vector-expr, target-vector, [metric], [nprobes], [accurate])`
+
+|  | If you use a different distance metric in the APPROX\_VECTOR\_DISTANCE() function from the one configured in the index, you will receive an error when compiling the query. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+| Parameter     | Is Required                | Description                                                                                                                                                                                                                                                                                                                  |
+| ------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| vector-expr   | ![yes](../_images/yes.png) | The expression returning a vector (NOT Index Name). Must match the expression specified in the vector index exactly.                                                                                                                                                                                                         |
+| target-vector | ![yes](../_images/yes.png) | The target vector.                                                                                                                                                                                                                                                                                                           |
+| metric        | ![no](../_images/no.png)   | Values : "EUCLIDEAN\_SQUARED", “L2\_SQUARED”, “EUCLIDEAN”, “L2”, ”COSINE”, “DOT”. If not specified, the metric set in the vector index is used. If specified, the metric must match with the metric set in the vector index. This optional parameter allows multiple indexes to be attached to the same field in a document. |
+| nprobes       | ![no](../_images/no.png)   | Number of buckets to search for the nearby vectors. If not specified, the nprobes set in the vector index is used.                                                                                                                                                                                                           |
+| accurate      | ![no](../_images/no.png)   | If not present, false will be used, which means that the quantized/encoded vectors in the index will be used for calculating the distance. IMPORTANT: Only accurate = false is supported                                                                                                                                     |
+
+### [](#use-approx%5Fvector%5Fdistance)Use `APPROX_VECTOR_DISTANCE()`
+
+```objc
+    // Create a query by using the approx_vector_distance() in the WHERE clause.
+    NSString* sql = @"SELECT meta().id, color "
+                     "FROM _default.colors "
+                     "WHERE approx_vector_distance(vector, $vector) < 0.5 "
+                     "LIMIT 8";
+    
+    NSError* error;
+    CBLQuery* query = [database createQuery: sql error: &error];
+    if (!query) { /* handle error */ return; }
+    
+    // Use ML model to get a vector (an array of floats) for the input color.
+    NSArray<NSNumber*>* vector = [CBLColor vectorForColor: @"FF00AA" error: &error];
+    if (!vector) { /* handle error */ return; }
+    
+    // Set the vector array to the parameter "$vector".
+    CBLQueryParameters* parameters = [[CBLQueryParameters alloc] init];
+    [parameters setValue: vector forName: @"vector"];
+    [query setParameters: parameters];
+    
+    // Execute the query.
+    CBLQueryResultSet* results = [query execute: &error];
+    if (!results) { /* handle error */ return; }
+    
+    for (CBLQueryResult* r in results) {
+        // Process result
+    }
+```
+
+This function returns the approximate distance between a given vector, typically generated from your ML model, and an array of vectors with size equal to the `LIMIT` parameter, collected by a SQL++ query using `APPROX_VECTOR_DISTANCE()`.
+
+### [](#prediction-with-approx%5Fvector%5Fdistance)Prediction with `APPROX_VECTOR_DISTANCE()`
+
+Below is an example of using `APPROX_VECTOR_DISTANCE()` with an array of vectors generated by the `Prediction()` function at index time.
+
+```objc
+    // Create a vector search query that uses prediction() for computing vectors.
+    NSString* sql =
+    @"SELECT meta().id, color "
+    "FROM _default.colors "
+    "ORDER BY approx_vector_distance(prediction(ColorModel, {\"colorInput\": color}).vector, $vector) "
+    "LIMIT 8";
+    
+    NSError* error;
+    CBLQuery* query = [database createQuery: sql error: &error];
+    if (!query) { /* handle error */ return; }
+    
+    // Use ML model to get a vector (an array of floats) for the input color.
+    NSArray<NSNumber*>* vector = [CBLColor vectorForColor: @"FF00AA" error: &error];
+    if (!vector) { /* handle error */ return; }
+    
+    // Set the vector array to the parameter "$vector".
+    CBLQueryParameters* parameters = [[CBLQueryParameters alloc] init];
+    [parameters setValue: vector forName: @"vector"];
+    [query setParameters: parameters];
+    
+    // Execute the query.
+    CBLQueryResultSet* results = [query execute: &error];
+    if (!results) { /* handle error */ return; }
+    
+    for (CBLQueryResult* r in results) {
+        // Process result
+    }
+```
+
+## [](#see-also)See Also
+
+* [Installation Instructions](gs-install.md)
+* [Vector Search](vector-search.md)
+* [Full Text Search](fts.md)

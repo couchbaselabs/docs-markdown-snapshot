@@ -1,0 +1,79 @@
+[View original HTML](/server/7.2/learn/data/expiration.html)
+
+> The expiration setting for a document determines if and when it expires. When a document expires, Couchbase Server removes it. You can set a _maximum time to live_ (maxTTL) value on buckets and collections that imposes a default expiration on their documents. It also imposes an upper limit on explicitly-set expiration times. 
+
+## [](#bucket-data-expiration-overview)Overview
+
+You may want Couchbase Server to automatically delete some documents after a period of time. For example, you often want documents that contain user session data to expire some time after the user’s last interaction. Or you may use documents to store cached data. You can have these documents automatically expire so your application knows to refresh the data from its source.
+
+Couchbase Server Enterprise Edition lets you have documents expire after a period of time, called the document’s _Time To Live_ (TTL). This feature only works in Couchbase and Ephemeral buckets. It does not work in Memcached buckets.
+
+You can set an expiration value on an individual document either when you create it or when you mutate it. Set the expiration to the number of seconds the document should exist before Couchbase Server automatically removes it. You can change this value later in case you want extend the life of the document.
+
+You can also configure buckets and collections to automatically apply a default expiration on the documents they contain. The `maxTTL` parameter on collections and buckets sets the number of seconds a new or mutated document lasts before expiring. By default, `maxTTL` is 0 for both buckets and collections, meaning that their documents do not automatically expire. The `maxTTL` setting also imposes an upper limit on the expiration time you can explicitly set on an individual document in the bucket or collection. If you try to set a document’s expiration to a period longer than the non-zero `maxTTL` setting, Couchbase Server sets the expiration to `maxTTL`.
+
+You can change the `maxTTL` of a bucket at any time. You can only set the `maxTTL` of a collection when you create it. You cannot change it after creation.
+
+Scopes do not support the `maxTTL` setting.
+
+By Default, when you set `maxTTL` on a collection or bucket, it’s applied every time you create or mutate a document. This behavior means that Couchbase Server extends the document’s life every time you mutate it. For use cases such as maintaining user sessions, this works well. In this case, you want the document to exist for some period of time after the last change to it.
+
+You can have Couchbase Server preserve the original expiration of the document when you mutate it. See [Mutation’s Effect on Expiration](../../manage/manage-expiration.md#mutation-expiration) for an explanation.
+
+For details about setting expiration and `maxTTL` values, see [Manage Expiration](../../manage/manage-expiration.md).
+
+## [](#expiration-setting-priorities)Expiration Setting Priorities
+
+In general, non-zero expiration set at a lower level take precedence over settings at a higher level—​non-zero expiration times set at a document level override a collection’s non-zero `maxTTL` settings, which in turn override `maxTTL` settings at the bucket level. The three exceptions to this rule are:
+
+* As mentioned earlier, you cannot set a document’s expiration to be longer than a non-zero `maxTTL` setting of the document’s collection or bucket. If you try to set the document’s expiration to be longer than its collection or bucket’s `maxTTL` setting, Couchbase Server uses the `maxTTL` setting instead.
+* Setting a collection’s `maxTTL` to zero does not override the bucket’s `maxTTL` setting. Instead, setting the collection’s `maxTTL` to zero has it inherit the `maxTTL` setting from the bucket.
+* Setting a document’s expiration to 0 does not prevent it from expiring if its collection or bucket has a `maxTTL` setting that’s greater than zero. This behavior means you cannot prevent a document from expiring if its collection or bucket has a `maxTTL` setting that’s greater than zero.
+
+The following table summarizes the interaction between a document’s expiration setting and the `maxTTL` settings of the collection and bucket that contain it.
+
+| Document Expiration Setting   | Collection maxTTL                    | Bucket maxTTL                        | Effect                                                                                             |
+| ----------------------------- | ------------------------------------ | ------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| Unset or 0                    | Unset or 0                           | Unset or 0                           | Document does not expire.                                                                          |
+| Unset or 0                    | Unset or 0                           | maxTTL = z (where z \> 0)            | Document expires in z seconds.                                                                     |
+| Unset or 0                    | maxTTL = y (where y \> 0)            | maxTTL \= any value                  | Document expires in y seconds.                                                                     |
+| expiration = x (where x \> 0) | maxTTL \= unset, 0, or any value > x | maxTTL \= unset, 0, or any value > x | Document expires in x seconds.                                                                     |
+| expiration = x (where x \> 0) | maxTTL = y (where 0 < y < x)         | maxTTL \= any value                  | Document expires in y seconds because you cannot set document expiration to be longer than maxTTL. |
+| expiration = x (where x \> 0) | Unset or 0                           | maxTTL = z (where 0 < z < x)         | Document expires in z seconds because you cannot set document expiration to be longer than maxTTL. |
+
+## [](#when-maxttl-changes-take-effect)When maxTTL Changes Take Effect
+
+When you change the `maxTTL` setting of a bucket, the change does not have an immediate effect on the documents it contains. The `maxTTL` setting of a bucket only has an effect when you create or mutate a document they contain. Any existing expiration set on a document does not change, even if their duration is longer than the `maxTTL` setting. Also, documents that are not set to expire do not automatically start expiring after you have set a non-zero `maxTTL` setting on their bucket. To have the existing documents start expiring, you must mutate them.
+
+Because you can only set the `maxTTL` when creating a collection, it affects all of the documents you add to the collection after creation. The collection cannot contain documents when you initially create it.
+
+## [](#post-expiration-purging)Post-Expiration Purging
+
+The value you set a document’s expiration or a collection or bucket’s `maxTTL` is the number of seconds a document should exist. The actual expiration value in the document is saved as a timestamp. This timestamp is the time when you created or mutated the document plus the number of seconds it should exist. When the current time is later than the expiration timestamp, Couchbase Server deletes the document when one the following occurs:
+
+* A query attempts to access it.
+* The [expiry pager](../buckets-memory-and-storage/memory.md#expiry-pager) process runs.
+* The [auto-compaction](../../manage/manage-settings/configure-compact-settings.md) process runs. For information on performing compaction with the Couchbase CLI, see [bucket-compact](../../cli/cbcli/couchbase-cli-bucket-compact.md); with Couchbase REST APIs, see [Compaction API](#rest-api:compaction-rest-api.adoc); with the Couchbase Web Console (as _auto-compaction_), see [Auto-Compaction](../../manage/manage-settings/configure-compact-settings.md).
+
+As described in [Storage](../buckets-memory-and-storage/storage-settings.md), Couchbase Server maintains a _tombstone_ for a period of time afterwards for each collection or item that it deletes. The tombstone acts as a marker to indicate the item no longer exists. To make sure that no trace of deleted items remain, Couchbase Server removes tombstones during a _Metadata Purge_. This purge is an automatic, non-disruptive background-process. You can change the schedule of metadata purges using Couchbase Server Web Console. See [Auto-Compaction](../../manage/manage-settings/configure-compact-settings.md). The console lets you set the intervals between purges to be short so that Couchbase Server frequently removes tombstones.
+
+## [](#bucket-expiration-and-xdcr)Expiration and XDCR
+
+Cross Datacenter Replication (XDCR) does not replicate the bucket or collection `maxTTL` setting from the source to the target. However, by default XDCR replicates the individual document’s expirations (including expirations set by the containing bucket or collection’s `maxTTL` setting) to the target. Buckets and collections on the target cluster can have their own `maxTTL` settings that can differ from those of the buckets and collections in the source. When the target collection or bucket has a non-zero `maxTTL` setting, the target database applies it as described earlier. Couchbase Server treats the replicated expiration time as being explicitly set on the document when applying `maxTTL` settings even if it resulted from a `maxTTL` setting in the source.
+
+For example, suppose a document is in a bucket that has a `maxTTL` setting of 7200\. When you mutate this document in a source database, Couchbase Server applies the `maxTTL` value to the document. Couchbase Server then replicates this document to the target database. Suppose the bucket in the target database has a `maxTTL` setting of 3600\. In this case, the target database will apply its own bucket’s `maxTTL` setting to the document because the replicated document’s expiration is longer than allowed by the `maxTTL` setting.
+
+You can use [deletion filters](../../manage/manage-xdcr/filter-xdcr-replication.md#deletion-filters) to prevent XDCR from replicating expiration values.
+
+|  | For replicated documents to expire consistently in a source and target database, be sure to synchronize the system clocks of the two database clusters. Otherwise, replicated documents which should expire at the same time as their source documents may expire before or after the source. See [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md). |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#auditing)Auditing Expiration
+
+When you enable _auditing_, Couchbase Server logs changes to each bucket’s `maxTTL` setting. See [Auditing](../security/auditing.md) for more information.
+
+## [](#expiration-and-durability)Expiration and Durability
+
+Expiration is performed in a non-durable manner, even if a minimum level of durability is specified on the bucket. Using expirations in conjunction with durability settings may lead to data inconsistencies across nodes.
+
+For more information, see the page on [Durability](durability.md).

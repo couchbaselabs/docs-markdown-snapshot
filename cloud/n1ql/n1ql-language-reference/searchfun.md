@@ -1,0 +1,527 @@
+[View original HTML](/cloud/n1ql/n1ql-language-reference/searchfun.html)
+
+Search functions enable you to use [Full Text Search (FTS)](../../search/search.md) queries directly within a SQL++ query.
+
+### Prerequisites
+
+To use any of the search functions, the Search Service must be available on the cluster. It’s recommended that you create a suitable Search index for the searches that you want to run. For more information, refer to [Create a Search Index](../../search/create-search-indexes.md).
+
+|  | The examples in this page all assume that demonstration Search indexes have been created, as described in [Demonstration Indexes](#server:fts:fts-demonstration-indexes.adoc). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### Authorization
+
+You do not need credentials for the Search Service to be able to use the search functions in a query. The role **Data Admin** must be assigned to those who intend to create indexes; and the role **Data Reader** to those who intend to perform searches. For information on creating users and roles in Capella, see [Manage Organizations and Access](../../organizations/organization-projects-overview.md).
+
+### When to Use Search Functions
+
+The search functions are useful when you need to combine a Full Text Search with the power of a SQL++ query; for example, combining joins and natural-language search in the same query. If your cluster is running Couchbase Server version 7.6.2 and later, you can also use the search functions to use document metadata stored in Extended Attributes (XATTRs) inside a SQL++ query.
+
+If you only need to use the capabilities of a Full Text Search without any SQL++ features, consider making use of the Search Service directly, through the user interface, the REST API, or an SDK.
+
+## [](#search)SEARCH(`identifier`, `query`\[, `options`\])
+
+### [](#description)Description
+
+This function enables you to use a Full Text Search to filter a result set, or as a join predicate. It is only allowed in the [WHERE](where.md) clause or the [ON](join.md) clause.
+
+If a query contains a SEARCH function, the Query engine analyzes the entire query, including the search specification, to select the best index to use with this search, taking any index hints into account. The Query engine then passes the search specification over to the Search engine to perform the search.
+
+|  | If no suitable Search index can be selected, or no Search index exists, the Query engine falls back on a Primary index or qualified GSI index to produce document keys, and then fetches the documents. The Search Service then creates a temporary index in memory to perform the search. This process may be slower than using a suitable Search index. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+If your cluster is running Couchbase Server version 7.6.2 and there is no suitable Search index, but you want to return XATTRs data from your documents in another part of your SQL++ query, you must use the [META function](#metafun.adoc#meta) to select the XATTRs field you want to return. SQL++ cannot return XATTRs data without a specific field name.
+
+If you do have a Search index available for your query that includes XATTRs data, and you still want to use that data outside of the SEARCH function, you must use the [SEARCH\_META() function](#search%5Fmeta) to select the XATTRs field. You must also include the [fields property](../../search/search-request-params.md#fields) with the name of the XATTRs field in your Search request.
+
+|  | From Couchbase Server 7.6 and later, when you use the SEARCH function, you do not need to use the [keyword analyzer](../../search/default-analyzers-reference.md#keyword) in your Search index to run a non-analytic query. You also do not need to match the analyzer in a query to the analyzer in the Search index for an analytic query. For more information about how to set the analyzer for a Search index, see [Configure Global Search Index Settings](../../search/create-search-index-ui.md#default-analyzer) or the [Mapping Object](../../search/search-index-params.md#mapping). |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#search-function-arguments-section)Arguments
+
+identifier
+
+\[Required\] An expression in the form `_keyspaceAlias_[._path_]`, consisting of the keyspace or keyspace alias in which to search, followed by the path to a field in which to search, using dot notation.
+
+|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, and the identifier contains a path, the keyspace or keyspace alias may be omitted. However, if the path is omitted, the keyspace or keyspace alias is mandatory. When the identifier contains a path, it is used as the default field in the _query_ argument, as long as the _query_ argument is a query string. If the path is omitted, the default field is set to \_all. If the _query_ argument is a query string which specifies a field, this field takes priority, and the path in the identifier is ignored. Similarly, if the _query_ argument is a query object, the path is ignored. The path must use Search syntax rather than SQL++ syntax; in other words, you cannot specify array locations such as \[\*\] or \[3\] in the path. If the keyspace, keyspace alias, or path contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+The _identifier_ argument cannot be replaced by a SQL++ query parameter.
+
+query
+
+\[Required\] The Full Text Search query. This may be one of the following:
+
+| Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| string | A query string. For more information about how to format a query string, refer to [Query String Query](../../search/search-request-params.md#query-string-query-syntax).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| object | The query object within a Full Text Search request. For more information about how to format the query object, see [Query object](../../search/search-request-params.md#query-object).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| object | A complete Full Text Search request, including sort and pagination options, and so on. For more information about how to format a full search request object, refer to [Search Request JSON Properties](../../search/search-request-params.md). When specifying a complete Full Text Search request with the SQL++ SEARCH() function, if the value of the size parameter is greater than the maximum number of Full Text Search results, the query ignores the size parameter and returns all matching results. This is different to the behavior of a complete Full Text Search request in the Search Service, where the query returns an error if the value of the size parameter is greater than the maximum number of Full Text Search results. |
+
+The _query_ argument may be replaced by a SQL++ query parameter, as long as the query parameter resolves to a string or an object.
+
+options
+
+\[Optional\] A JSON object containing options for the search. The object may contain the following fields:
+
+| Name      | Type           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| index     | string, object | The index field can be a string, containing the name of a Search index in the keyspace. (This might be a Search index alias, but only if the Search index is in the same keyspace.) This provides an index hint to the Query engine. If the Search index does not exist, an error occurs. You can also provide an index hint to the Query engine with the [USE INDEX clause](hints.md#use-index-clause). This takes precedence over a hint provided by the index field. The index field may also be an object, containing an example of a Search index mapping. This is treated as an input to the index mapping. It overrides the default mapping and is used during index selection and filtering. The object must either have a default mapping with no type mapping, or a single type mapping with the default mapping disabled. For more information, refer to [Search Index Features](../../search/customize-index.md). |
+| indexUUID | string         | A string, containing the [UUID](../../search/search-index-params.md#uuid) of a Search index in the keyspace. This provides an index hint to the Query engine. If the Search index cannot be identified, an error occurs. You can use the indexUUID field alongside the index field to help identify a Search index. The indexUUID field and the index field must both identify the same Search index. If they identify different Search indexes, or if either of them does not identify a Search index, an error occurs. You can find the UUID of a Search index by viewing the index definition. Click a Search index name in the Capella UI to open the editor. Click **Index Definition** to view the index definition.                                                                                                                                                                                                    |
+| out       | string         | A name given to this Full Text Search operation in this keyspace. You can use this name to refer to this operation using the [SEARCH\_META()](#search%5Fmeta) and [SEARCH\_SCORE()](#search%5Fscore) functions. If this field is omitted, the name of this Full Text Search operation defaults to "out".                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| (other)   | (any)          | Other fields are ignored by the Query engine and are passed on to the Search engine as options. The values of these options may be replaced with SQL++ query parameters, such as "analyzer": $analyzer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+The _options_ argument cannot be replaced by a SQL++ query parameter, but it may contain SQL++ query parameters.
+
+### [](#return-value)Return Value
+
+A boolean, representing whether the search query is found within the input path.
+
+This returns `true` if the search query is found within the input path, or `false` otherwise.
+
+### [](#limitations)Limitations
+
+The Query service can select a Search index for efficient search in the following cases:
+
+* If the SEARCH() function is used in a WHERE clause or in an ANSI JOIN. The SEARCH() function must be on the leftmost (first) JOIN. It may be on the outer side of a nested-loop JOIN, or either side of a hash JOIN. RIGHT OUTER JOINs are rewritten as LEFT OUTER JOINs.
+* If the SEARCH() function is evaluated on the `true` condition in positive cases: for example, `SEARCH(_field_, _query_, _options_)`, `SEARCH(_field_, _query_, _options_) = true`, `SEARCH(_field_, _query_, _options_) IN [true, true, true]`, or a condition including one of these with `AND` or `OR`.
+
+The Query service cannot select a Search index for efficient search in the following cases:
+
+* If a USE KEYS hint is present; or if the SEARCH() function is used on the inner side of a nested-loop JOIN, a lookup JOIN or lookup NEST, an index JOIN or index NEST, an UNNEST clause, a subquery expression, a subquery result, or a correlated query.
+* If the SEARCH() function is evaluated on the `false` condition, or in negative cases: for example, `NOT SEARCH(_field_, _query_, _options_)`, `SEARCH(_field_, _query_, _options_) = false`, `SEARCH(_field_, _query_, _options_) != false`, `SEARCH(_field_, _query_, _options_) IN [false, true, 1, "a"]`, or in a condition using the relation operators `<`, `<=`, `>`, `>=`, `BETWEEN`, `NOT`, `LIKE`, or `NOT LIKE`.
+
+In these cases, the Query service must fetch the documents, and the Search service creates a temporary index in memory to perform the search. This may affect performance.
+
+If the SEARCH() function is present for a keyspace, no GSI covering scan is possible on that keyspace. If more than one FTS or GSI index are used in the plan, IntersectScan or Ordered IntersectScan is performed. To avoid this, use a USE INDEX hint.
+
+Order pushdown is possible only if query ORDER BY has only [SEARCH\_SCORE()](#search%5Fscore) on the leftmost keyspace. Offset and Limit pushdown is possible if the query only has a SEARCH() predicate, using a single search index — no IntersectScan or OrderIntersectScan. Group aggregates and projection are not pushed.
+
+### [](#examples)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+Search using a query string
+
+The following queries are equivalent:
+
+Query
+
+```sqlpp
+SELECT META(t1).id
+FROM airline AS t1
+WHERE SEARCH(t1.country, "+United +States");
+```
+
+Query
+
+```sqlpp
+SELECT META(t1).id
+FROM airline AS t1
+WHERE SEARCH(t1, "country:\"United States\"");
+```
+
+Results
+
+```json
+[
+
+  {
+    "id": "airline_10"
+  },
+  {
+    "id": "airline_10123"
+  },
+  {
+    "id": "airline_10226"
+  },
+  {
+    "id": "airline_10748"
+  },
+  // ...
+]
+```
+
+The results are unordered, so they may be returned in a different order each time.
+
+Search using a query object
+
+Query
+
+```sqlpp
+SELECT t1.name
+FROM hotel AS t1
+WHERE SEARCH(t1, {
+  "match": "bathrobes",
+  "field": "reviews.content",
+  "analyzer": "standard"
+});
+```
+
+Results
+
+```json
+[
+  {
+    "name": "Typoeth Cottage"
+  },
+  {
+    "name": "Great Orme Lighthouse"
+  },
+  {
+    "name": "New Road Guest House (B&B)"
+  },
+  // ...
+]
+```
+
+The results are unordered, so they may be returned in a different order each time.
+
+Search using a complete Full Text Search request
+
+Query
+
+```sqlpp
+SELECT t1.name
+FROM hotel AS t1
+WHERE SEARCH(t1, {
+  "explain": false,
+  "fields": [
+     "*"
+   ],
+   "highlight": {},
+   "query": {
+     "match": "bathrobes",
+     "field": "reviews.content",
+     "analyzer": "standard"
+   },
+   "size" : 5,
+   "sort": [
+      {
+       "by" : "field",
+       "field" : "reviews.ratings.Overall",
+       "mode" : "max",
+       "missing" : "last"
+      }
+   ]
+});
+```
+
+Results
+
+```json
+[
+  {
+    "name": "Waunifor"
+  },
+  {
+    "name": "Bistro Prego With Rooms"
+  },
+  {
+    "name": "Thornehill Broome Beach Campground"
+  },
+  // ...
+]
+```
+
+This query returns 5 results, and the results are ordered, as specified by the search options. As an alternative, you could limit the number of results and order them using the SQL++ [LIMIT](limit.md) and [ORDER BY](orderby.md) clauses.
+
+Search against a Full Text Search index that carries a custom type mapping
+
+Query
+
+```sqlpp
+SELECT META(t1).id
+FROM hotel AS t1
+WHERE t1.type = "hotel" AND SEARCH(t1.description, "amazing");
+```
+
+Results
+
+```json
+[
+  {
+    "id": "hotel_20422"
+  },
+  {
+    "id": "hotel_22096"
+  },
+  {
+    "id": "hotel_25243"
+  },
+  {
+    "id": "hotel_27741"
+  }
+]
+```
+
+If the Full Text Search index being queried has its default mapping disabled and has a custom type mapping defined, the query needs to specify the type explicitly. The above query uses the demonstration index [travel-sample-index-hotel-description](#server:fts:fts-demonstration-indexes.adoc#travel-sample-index-hotel-description), which has the custom type mapping "hotel".
+
+For more information about defining custom type mappings within a Search index, refer to [Create a Type Mapping](../../search/create-type-mapping.md). Note that for SQL++ queries, only Search indexes with one type mapping are searchable. Also the supported type identifiers at the moment are "type\_field" and "docid\_prefix"; "docid\_regexp" isn’t supported yet for SEARCH queries via SQL++.
+
+Search against a Vector Search index for the closest 2 vectors
+
+|  | This example does not use the travel sample data or query context mentioned before, as it requires documents that contain vector data. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+
+Query
+
+```sqlpp
+SELECT t1.color
+FROM rgb AS t1
+WHERE SEARCH(t1,
+  {
+    "fields": ["*"],
+    "knn": [
+      {
+        "k": 2,
+        "field": "colorvect_dot",
+        "vector": [ 0.707106781186548, 0, 0.707106781186548 ]
+      }
+    ]
+  }
+)
+```
+
+Results
+
+[
+  {
+    "color": "magenta / fuchsia"
+  },
+  {
+    "color": "dark lavender"
+  }
+]
+
+Using a Search index that contains vectors that describe colors, the query returns the color names of the closest `k` vectors to the vector in the `knn` object.
+
+For more information about Vector Search and the Search Services, see [Vector Search Using Search Vector Indexes](../../vector-search/vector-search.md).
+
+(Version 7.6.2) Search with XATTRs data and no suitable Search index
+
+If there is no suitable Search index, but you want to return XATTRs data from your documents in another part of your SQL++ query, you must use the [META function](#metafun.adoc#meta) to select the XATTRs field you want to return. SQL++ cannot return XATTRs data without a specific field name in your `SEARCH` function.
+
+Add `_$xattrs` with a period (.) to the start of the field name you want to return in the `SEARCH` function.
+
+|  | Documents in the travel-sample do not include any XATTRs data. You can add XATTRs to the travel-sample documents yourself to use with these queries. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Query
+
+```sqlpp
+SELECT META().xattrs.field
+FROM `travel-sample` T
+WHERE SEARCH(T, "_$xattrs.field:*");
+```
+
+Results
+
+[
+  {
+    "field": "field data"
+  }
+]
+
+(Version 7.6.2) Search with XATTRs data and a specific Search index
+
+If you have a Search index available for your query that includes XATTRs data, and you still want to use that data outside of the SEARCH function, you must use the [SEARCH\_META() function](#search%5Fmeta) to select the XATTRs field. You must also include the [fields property](../../search/search-request-params.md#fields) with the name of the XATTRs field in your Search request.
+
+Add `_$xattrs` with a period (.) to the start of the field name you want to return in the `SEARCH_META` and `SEARCH` functions.
+
+|  | Documents in the travel-sample do not include any XATTRs data. You can add XATTRs to the travel-sample documents yourself to use with these queries. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Query
+
+```sqlpp
+SELECT SMETA().fields.`_$xattrs.field`
+FROM `travel-sample` T
+LET SMETA = SEARCH_META()
+WHERE SEARCH(T,
+  { "query": {"query": "_$xattrs.field:*"}, "fields": ["_$xattrs.field"]},
+  {"index": "travel-sample._default.xattrsTest"});
+```
+
+Results
+
+[
+  {
+    "_$xattrs.field": "field data"
+  }
+]
+
+## [](#search%5Fmeta)SEARCH\_META(\[`identifier`\])
+
+### [](#description-2)Description
+
+This function is intended to be used in a query which contains a [SEARCH()](#search) function. It returns the metadata given by the Search engine for each document found by the [SEARCH()](#search) function. If there is no [SEARCH()](#search) function in the query, or if a Search index was not used to evaluate the search, the function returns MISSING.
+
+If your cluster is running Couchbase Server version 7.6.2 or later and you want to return XATTRs data from a Search index in a [SEARCH()](#search) function, you must use the `SEARCH_META()` function to select the XATTRs field you want.
+
+### [](#arguments)Arguments
+
+identifier
+
+\[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the Full Text Search operation was performed, followed by the outname of the Full Text Search operation, using dot notation.
+
+|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#return-value-2)Return Value
+
+A JSON object containing the metadata returned by the Search engine. By default, the metadata includes the score and ID of the search result. It may also include other metadata requested by advanced search options, such as the location of the search terms or an explanation of the search results.
+
+### [](#examples-2)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+Select search metadata
+
+Query
+
+```sqlpp
+SELECT SEARCH_META() AS meta (1)
+FROM hotel AS t1
+WHERE SEARCH(t1, {
+  "query": {
+    "match": "bathrobes",
+    "field": "reviews.content",
+    "analyzer": "standard"
+  },
+  "includeLocations": true
+}) (2)
+LIMIT 3;
+```
+
+| **1** | There is only one [SEARCH()](#search) function in this query, so the SEARCH\_META() function does not need to specify the outname. |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | The Full Text Search specifies that locations should be included in the search result metadata.                                    |
+
+Result
+
+```json
+[
+  {
+    "meta": {
+      "id": "hotel_12068", (1)
+      "locations": { (2)
+        "reviews.content": {
+          "bathrobes": [
+            {
+              "array_positions": [
+                8
+              ],
+              "end": 664,
+              "pos": 122,
+              "start": 655
+            }
+          ]
+        }
+      },
+      "score": 0.3471730605306995 (3)
+    }
+  },
+  // ...
+]
+```
+
+| **1** | The id is included in the search result metadata by default.                            |
+| ----- | --------------------------------------------------------------------------------------- |
+| **2** | The location of the search term is included in the search result metadata as requested. |
+| **3** | The score is included in the search result metadata by default.                         |
+
+Select the search metadata by outname
+
+Query
+
+```sqlpp
+SELECT t1.name, SEARCH_META(s1) AS meta (1)
+FROM hotel AS t1
+WHERE SEARCH(t1.description, "mountain", {"out": "s1"}) (2)
+AND SEARCH(t1, {
+  "query": {
+    "match": "bathrobes",
+    "field": "reviews.content",
+    "analyzer": "standard"
+  }
+});
+```
+
+| **1** | This query contains two [SEARCH()](#search) functions. The outname indicates which metadata we want.                                                                  |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | The outname is set by the _options_ argument in this [SEARCH()](#search) function. This query only uses one data source, so there is no need to specify the keyspace. |
+
+Results
+
+```json
+[
+  {
+    "name": "Marina del Rey Marriott"
+  }
+]
+```
+
+## [](#search%5Fscore)SEARCH\_SCORE(\[`identifier`\])
+
+### [](#description-3)Description
+
+This function is intended to be used in a query which contains a [SEARCH()](#search) function. It returns the score given by the Search engine for each document found by the [SEARCH()](#search) function. If there is no [SEARCH()](#search) function in the query, or if a Search index was not used to evaluate the search, the function returns MISSING.
+
+This function is the same as [SEARCH\_META().score](#search%5Fmeta).
+
+### [](#arguments-2)Arguments
+
+identifier
+
+\[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the Full Text Search operation was performed, followed by the outname of the Full Text Search operation, using dot notation.
+
+|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#return-value-3)Return Value
+
+A number reflecting the score of the result.
+
+### [](#examples-3)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+Select the search score
+
+Query
+
+```sqlpp
+SELECT name, description, SEARCH_SCORE() AS score (1)
+FROM hotel AS t1
+WHERE SEARCH(t1.description, "mountain")
+ORDER BY score DESC
+LIMIT 3;
+```
+
+| **1** | There is only one [SEARCH()](#search) function in this query, so the SEARCH\_SCORE() function does not need to specify the outname. |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------- |
+
+Results
+
+```json
+[
+  {
+    "description": "3 Star Hotel next to the Mountain Railway terminus and set in 30 acres of grounds which include Dolbadarn Castle",
+    "name": "The Royal Victoria Hotel"
+  },
+  {
+    "description": "370 guest rooms offering both water and mountain view.",
+    "name": "Marina del Rey Marriott"
+  },
+  {
+    "description": "This small family run hotel captures the spirit of Mull and is a perfect rural holiday retreat. The mountain and sea blend together to give fantastic, panoramic views from the hotel which is in an elevated position on the shoreline. Panoramic views are also available from the bar and restaurant which serves local produce 7 days a week.",
+    "name": "The Glenforsa Hotel"
+  }
+]
+```
+
+## [](#related-links)Related Links
+
+* [Add Search to Your Application](../../search/search.md)
+* [Vector Search Using Search Vector Indexes](../../vector-search/vector-search.md)

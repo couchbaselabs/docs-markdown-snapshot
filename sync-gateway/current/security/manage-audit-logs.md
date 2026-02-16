@@ -1,0 +1,242 @@
+[View original HTML](/sync-gateway/current/security/manage-audit-logs.html)
+
+> Administrators can manage audit logs to track operational irregularities and to support regulatory and security compliance standards. 
+
+## [](#audit-log-configuration)Audit Log Configuration
+
+|  | Audit Logging on Sync Gateway is opt-in functionality and is disabled by default. |
+|  | --------------------------------------------------------------------------------- |
+
+Admin users can configure audit logs using the following:
+
+* Via the bootstrap config (file based config). This will affect the global configuration of audit logging.
+* Via the database config using existing Admin REST API endpoints. This will affect per database configuration as part of the database config.
+* Via the audit-specific Admin REST API endpoint `config/audit`. This will affect the configuration on a per database basis.
+
+For more information, see:
+
+* [Bootstrap Configuration Schema](../configuration/configuration-schema-bootstrap.md).
+* [Database Configuration Schema](../configuration/configuration-schema-database.md).
+* [Admin REST API](../rest-api/rest%5Fapi%5Fadmin.md).
+
+## [](#global-configuration-with-the-bootstrap-config)Global Configuration with the Bootstrap Config
+
+Below you can find the minimal configuration required in your bootstrap config file to enable audit logging.
+
+```json
+"logging": {
+    "audit": {
+        "audit_log_file_path": "/path/to/file.log",
+        "enabled": true
+    }
+}
+```
+
+|  | Configuration via the bootstrap config will affect your configuration globally. |
+|  | ------------------------------------------------------------------------------- |
+
+To successfully configure audit logging, you must set a file path for your audit logs and set the `enabled` parameter to `true`. Enabling and disabling audit logging is handled by the Admin REST API at a cluster and Sync Gateway database level. Setting enabled to true without any specified enabled events will only enable events with `DefaultEnabled` set to `true`. To view the list of audit events, see [Audit Logging Events Reference](audit-log-events.md)
+
+To configure audit logs retention and rotation globally, you can use the following parameters below with your bootstrap configuration.
+
+| Name                   | Values                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Description      |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| enabled                | A boolean toggle for the audit logging format, if true, audit logging is enabled.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | The default value is false. |
+| rotation               | rotation is an object that contains the following properties: logging.audit.rotation.localtime \- If set to true, your log files will use the computer’s local time to format the backup timestamp. logging.audit.rotation.max\_age \- The maximum number of days to retain old log files. logging.audit.rotation.max\_size \- The maximum size in MB of the log file before it gets rotated. logging.audit.rotation.rotated\_logs\_size\_limit \- The maximum size in MB of log files before deletion. logging.audit.rotation.rotation\_interval \- If set, the interval at which log files are rotated, even if max\_size is not reached. |                             |
+| audit\_log\_file\_path | The path to write audit log files to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                             |
+| enabled\_events        | An object that contains the list of enabled global events.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                             |
+
+For further bootstrap configuration options, see [Bootstrap Configuration](../configuration/configuration-schema-bootstrap.md).
+
+## [](#database-configuration-with-the-admin-rest-api)Database Configuration with the Admin REST API
+
+Couchbase recommends you only use configuration at the database level if you wish to alter your settings per database.
+
+You can configure audit events at runtime without modifying the entire database configuration using the following HTTP request methods with the [Admin REST API](../rest-api/rest%5Fapi%5Fadmin.md):
+
+* [GET /{db}/\_config/audit](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/get%5Fdb-%5Fconfig-audit)
+* [PUT /{db}/\_config/audit (replace)](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fdb-%5Fconfig-audit)
+* [POST /{db}/\_config/audit (upsert)](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig-audit)
+
+These request methods apply changes at the database level. Below you can find examples demonstrating use of the above methods.
+
+|  | If you enable audit logging in your bootstrap config it is enabled globally. Conversely, it is important to note that if audit logging is enabled in your database config but **not** your bootstrap config, no audit logging will occur. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Example 1\. Get the database audit configuration
+
+In this example:
+
+* `$BASEURL` is the protocol and host for the Sync Gateway Admin API, for example `<http://localhost>`.
+* `$DB` is the name of the database.
+
+Request
+
+```shell
+curl "$BASEURL:4985/$DB/_config/audit"
+```
+
+Response
+
+```json
+{
+    "enabled": true,
+    "events": {
+        "53270": true,
+        "53271": true
+    },
+    "disabled_users": [
+        {
+            "domain": "cbs",
+            "name": "user1"
+        }
+    ],
+    "disabled_roles": [
+        {
+            "domain": "sgw",
+            "name": "role1"
+        }
+    ]
+}
+```
+
+The payload above displays the current audit configuration with non-default events `53270 - Public HTTP API request`, and `53271 - Admin HTTP API request` enabled, and `user1` and `role1` disabled.
+
+### [](#disabled-users-and-roles)Disabled Users and Roles
+
+You can filter audit events by specifying roles or users to be disabled. The example above shows disabling audit events for `user1` and `role1`.
+
+The `disabled_users` field will prevent all audit events generated by the specified users from being logged. The `disabled_roles` field will prevent all audit events generated by the specified roles from logged. A use case for these fields would be to exclude certain administrative users or roles that perform a large volume of automated processes to prevent bloat of trivial events causing early rotation of the log file.
+
+Users and roles are organised into the following domains:
+
+* `sgw` \- Users and Roles that are created by and operate solely within Sync Gateway. For more information, see [Sync Gateway defined Users and Roles](../access-control/access-control-concepts.md#lbl-sgw-users).
+* `cbs` \- Users that are are RBAC controlled. These are created on Couchbase Server. Sync Gateway’s Admin and Metrics REST APIs are authenticated using Couchbase Server users. For more information, see [RBAC Users](../access-control/access-control-concepts.md#lbl-rbac-users).
+
+Example 2\. Set the entire database audit configuration with simple schema
+
+In this example:
+
+* `$BASEURL` is the protocol and host for the Sync Gateway Admin API, for example `<http://localhost>`.
+* `$DB` is the name of the database.
+
+Request
+
+```shell
+curl -X PUT "$BASEURL:4985/$DB/_config/audit"
+   -H "Accept: application/json" \
+   -d '{
+  "enabled": true,
+  "events": {
+    "54001": true,
+    "54003": true
+  },
+  "disabled_users": [
+    {
+      "domain": "cbs",
+      "name": "user2"
+    }
+  ],
+  "disabled_roles": [
+    {
+      "domain": "cbs",
+      "name": "role2"
+    }
+  ]
+}'
+```
+
+Example 3\. Set the entire database audit configuration with verbose schema
+
+In this example:
+
+* `$BASEURL` is the protocol and host for the Sync Gateway Admin API, for example `<http://localhost>`.
+* `$DB` is the name of the database.
+
+Request
+
+```shell
+curl -X PUT "$BASEURL:4985/$DB/_config/audit"
+   -H "Accept: application/json" \
+   -d '{
+  "enabled": true,
+  "events": {
+    "54001": {
+      "enabled": true
+    },
+    "54003": {
+      "enabled": true
+    }
+  },
+  "disabled_users": [
+    {
+      "domain": "cbs",
+      "name": "user2"
+    }
+  ],
+  "disabled_roles": [
+    {
+      "domain": "cbs",
+      "name": "role2"
+    }
+  ]
+}'
+```
+
+The payloads above demonstrate that the request has overwritten the previous configuration shown in example one. Audit Events `54001 - Read database` and `54003 - Read all databases` will now be enabled with `user2` and `role2` disabled. Consequently, the non-default events `53270 - Public HTTP API request`, and `53271 - Admin HTTP API request` will now be disabled, and `user1` and `role1` are now enabled.
+
+Example 4\. Update specified settings in the database audit configuration with simple schema
+
+In this example:
+
+* `$BASEURL` is the protocol and host for the Sync Gateway Admin API, for example `<http://localhost>`.
+* `$DB` is the name of the database.
+
+Request
+
+```shell
+curl -X POST "$BASEURL:4985/$DB/_config/audit"
+   -H "Accept: application/json" \
+   -d '{
+  "events": {
+    "54020": false
+    }
+  }
+}'
+```
+
+The request above will prevent audit event `54020 - Database offline` events from being added to the log file.
+
+Example 5\. Update specified settings in the database audit configuration with verbose schema
+
+In this example:
+
+* `$BASEURL` is the protocol and host for the Sync Gateway Admin API, for example `<http://localhost>`.
+* `$DB` is the name of the database.
+
+Request
+
+```shell
+curl -X POST "$BASEURL:4985/$DB/_config/audit"
+   -H "Accept: application/json" \
+   -d '{
+  "events": {
+    "54000": {
+      "enabled": false
+    },
+    "54003": {
+      "enabled": true
+    }
+  }
+}'
+```
+
+The request above demonstrates simultaneous disabling of the default audit event `54000 - Create database` and enabling of the non-default audit event `54003 - Read all databases`.
+
+## [](#see-also)See Also
+
+* [Audit Logging](audit-logging.md)
+* [Audit Logging Events Reference](audit-log-events.md)
+* [SG Collect Info](../manage/sgcollect-info.md)
+* [Admin REST API Reference](../rest-api/rest%5Fapi%5Fadmin.md)
+* [Admin REST API Reference](../rest-api/rest%5Fapi%5Fadmin.md)

@@ -1,0 +1,192 @@
+[View original HTML](/server/current/rest-api/rest-xdcr-statistics.html)
+
+> XDCR replication-statistics can be returned by the REST API. 
+
+### [](#http-method-and-uri)HTTP method and URI
+
+GET /pools/default/buckets/<source_or_target_bucket>/stats/
+
+GET /pools/default/buckets/[source_bucket]/stats/[replications/<remote_UUID>/<source_bucket>/<target_bucket>/<statistic_name>]
+
+The endpoint `/pools/default/buckets/<source_or_target_bucket>/stats/` returns all statistical information for replications either _from_ or _to_ the specified bucket — depending on whether the replication’s source or target bucket is specified.
+
+Information on a statistic for a replication proceeding _from_ a specific source bucket _to_ a specific target bucket is returned by specifying the source bucket as the value of `source_or_target_bucket` and appending the replication-identifier `replications/<remote_UUID>/<source_bucket>/<target_bucket>/<statistic_name>` to the URI. Within the replication-identifier, `remote_UUID` is the universally unique identifier for the reference supporting the replication — this can be obtained by means of the `GET /pools/default/remoteClusters` method and URI — see [Getting a Reference](rest-xdcr-get-ref.md). The `source_bucket` and `target_bucket` are the source and target buckets for the replication, respectively. The `statistic_name` specifies the statistic to be returned.
+
+Note that all elements in the replication-identifier following `replications` must be _encoded_: thus, each forward-slash must be represented as `%2F`. A list of the values that can be specified as `statistic_name` is provided in [Curl Syntax](#curl-syntax), below.
+
+To return statistics for the source bucket (whether or not the replication-identifier is used), the source cluster’s Full Admin, Cluster Admin, XDCR Inbound, or XDCR Admin role is required. To return statistics for the target bucket, the target cluster’s Full Admin, XDCR Admin, or XDCR Inbound role is required.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u <source-or-target-username>:<source-or-target-password> \
+  -X GET http://[ <source-or-target-ip-address-or-domain-name>:8091\
+  /pools/default/buckets/<source_or_target_bucket>/stats
+
+curl -u <source-username>:<source-password> \
+  -X GET http://<source-ip-address-or-domain-name>:8091\
+  /pools/default/buckets/<source_bucket>/stats\
+  /replications%2F<remote_UUID>%2F<source_bucket>%2F<target_bucket>%2F<statistic_name>
+
+If the replication-identifier is _not_ used, and the _target_ cluster’s IP address or domain-name is applied, the target cluster’s username and password must be provided, and the target bucket must be specified.
+
+The `remote_UUID` is the universally unique identifier for the replication, which is obtained by means of the `GET /pools/default/remoteClusters` method and URI — see [Getting a Reference](rest-xdcr-get-ref.md).
+
+Possible values for `statistic_name` that correspond to the _source_ of a replication are as follows:
+
+| Statistic                 | Description                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bandwidth\_usage          | Bandwidth used during replication, measured in bytes per second.                                                                                                                                                                                                                                                                                                                                                  |
+| changes\_left             | Number of updates still pending replication.                                                                                                                                                                                                                                                                                                                                                                      |
+| data\_replicated          | Size of data replicated in bytes.                                                                                                                                                                                                                                                                                                                                                                                 |
+| docs\_checked             | The number of documents checked for changes.                                                                                                                                                                                                                                                                                                                                                                      |
+| docs\_failed\_cr\_source  | The number of documents that have failed conflict resolution on the source cluster and have not been replicated to the target cluster.                                                                                                                                                                                                                                                                            |
+| docs\_filtered            | The number of documents that have been filtered out and have not been replicated to the target cluster.                                                                                                                                                                                                                                                                                                           |
+| docs\_opt\_repd           | The number of documents sent optimistically.                                                                                                                                                                                                                                                                                                                                                                      |
+| docs\_received\_from\_dcp | The number of documents received from DCP.                                                                                                                                                                                                                                                                                                                                                                        |
+| docs\_rep\_queue          | The number of documents in the replication queue.                                                                                                                                                                                                                                                                                                                                                                 |
+| docs\_processed           | The number of documents processed by pipeline, since the start or resumption of the current replication.                                                                                                                                                                                                                                                                                                          |
+| docs\_written             | The number of documents written to the destination cluster, since the start or resumption of the current replication.                                                                                                                                                                                                                                                                                             |
+| meta\_latency\_wt         | The weighted average time for requesting document metadata. XDCR uses this for conflict resolution, prior to sending the document into the replication queue.                                                                                                                                                                                                                                                     |
+| num\_checkpoints          | The number of checkpoints issued in the replication queue.                                                                                                                                                                                                                                                                                                                                                        |
+| num\_failedckpts          | The number of checkpoints failed during replication.                                                                                                                                                                                                                                                                                                                                                              |
+| rate\_received\_from\_dcp | The number of documents received from DCP, per second.                                                                                                                                                                                                                                                                                                                                                            |
+| rate\_replicated          | The rate of documents being replicated, measured in documents per second.                                                                                                                                                                                                                                                                                                                                         |
+| size\_rep\_queue          | The size of the replication queue, in bytes.                                                                                                                                                                                                                                                                                                                                                                      |
+| time\_committing          | The seconds elapsed during replication.                                                                                                                                                                                                                                                                                                                                                                           |
+| wtavg\_docs\_latency      | The average time-period to elapse between the point at which a document is ready to be sent from the source to the target, and the point at which the source receives confirmation from the target that the document has been received and successfully written. The average is calculated continuously, from the sum of the elapsed time-periods for the last 1000 documents to have been sent and acknowledged. |
+| wtavg\_meta\_latency      | The weighted average time for requesting document metadata. XDCR uses this for conflict resolution prior to sending the document into the replication queue.                                                                                                                                                                                                                                                      |
+
+Note that when the target bucket is specified as the value of `source-or-target-bucket`, a variety of statistics for the target are returned. For XDCR, the most directly significant is `xdcr_ops`, which indicates numbers of write-operations performed. All the statistics for the target should be returned, and the values for `xdcr_ops` retrieved from that output.
+
+## [](#responses)Responses
+
+Success returns `200 OK` and an object containing information pertaining to the specified statistic, or to all statistics.
+
+Incorrect specification of any element of the replication-identifier returns `200 OK` and an object containing only metadata: no timestamp or node-statistical information is included. Incorrect specification of the URI returns `404 Object Not Found` and the message `Not found.`Failure to attempt authentication returns `401 Unauthorized`. Failure to authenticate correctly returns `403 Forbidden` and the message: `{"message":"Forbidden. User needs the following permissions","permissions":["cluster.bucket[travel-sample].stats!read"]}`.
+
+## [](#examples)Examples
+
+The following examples demonstrate how to return statistical information. All use source and target buckets named `travel_sample` and `ts` respectively.
+
+### [](#all-statistics)All Statistics
+
+The following example shows how to return all XDCR statistics for the source bucket.
+
+curl -u Administrator:password -X GET \
+http://10.144.220.101:8091/pools/default/buckets/travel-sample/stats/
+
+The IP address specifies the source cluster.
+
+If successful, execution returns an object containing all statistical information for the source bucket `travel_sample`. This can be represented in unformatted, truncated form, as follows:
+
+{"op":{"samples":{"couch_total_disk_size":[95122081,95122081,95122081,95122081,95122081,95122081,95122081,
+95122081,95122081,95122081,95122081,95122081,95122081,95122081,95122081,95122081,95122081,95122081,95122081,
+95122081.....],"couch_docs_fragmentation":[30,30,30,30,30,30.....30],"hit_ratio":[0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0.....100],"vb_avg_active_queue_age":[0,0,0,0,0,0,0....
+            .
+            .
+            .
+.....274350080]},"samplesCount":60,"isPersistent":true,"lastTStamp":1656087218437,"interval":1000}}
+
+### [](#docs%5Fwritten)`docs_written`
+
+The following example shows how to return information provided by the `docs_written` statistic.
+
+curl -u Administrator:password \
+http://10.5.2.54:8091/pools/default/buckets/default/stats\
+/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Ftravel_sample%2Fts%2Fdocs_written
+
+The IP address specifies the source cluster.
+
+If successful, execution returns output such as the following:
+
+{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685106753,"interval":1000,
+"timestamp":[1371685048753,1371685049754,1371685050753,1371685051753,1371685052753,1371685053753,1371685054753,
+1371685055753,1371685056753,1371685057753,1371685058752,1371685059753,1371685060753,1371685061753,1371685062753,
+1371685063753,1371685064753,1371685065753,1371685066753,1371685067753,1371685068753,1371685069753,1371685070753,
+1371685071753,1371685072753,1371685073753,1371685074753,1371685075753,1371685076753,1371685077753,1371685078753,
+1371685079753,1371685080753,1371685081753,1371685082753,1371685083753,1371685084753,1371685085753,1371685086753,
+1371685087753,1371685088753,1371685089753,1371685090753,1371685091754,1371685092753,1371685093753,1371685094753,
+1371685095753,1371685096753,1371685097753,1371685098753,1371685099753,1371685100753,1371685101753,1371685102753,
+1371685103753,1371685104753,1371685105753,1371685106753],
+"nodeStats":{"127.0.0.1:8091":[1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,1000000,
+1000000,1000000,1000000,1000000,1000000,1000000,1000000]}}
+
+The output shows that `60` samples were taken. A sample was taken every `1000` milliseconds, and each sample is represented by its `timestamp`. 1 million documents are shown already to have been written when the first sample was taken; and this number is shown to have remained consistent at the time of each successive sample.
+
+### [](#rate%5Freplicated)`rate_replicated`
+
+The following example returns information from the `rate_replicated` statistic.
+
+curl -u Administrator:password \
+http://10.5.2.54:8091/pools/default/buckets/default/stats\
+/replications%2F8ba6870d88cd72b3f1db113fc8aee675%2Fdefault%2Fdefault%2Frate_replicated
+
+The IP address specifies the source cluster.
+
+If successful, execution provides output such as the following:
+
+{"samplesCount":60,"isPersistent":true,"lastTStamp":1371685006753,"interval":1000,
+"timestamp":[1371684948753,1371684949753,1371684950753,1371684951753,1371684952753,1371684953753,1371684954753,
+1371684955754,1371684956753,1371684957753,1371684958753,1371684959753,1371684960753,1371684961753,1371684962753,
+1371684963753,1371684964753,1371684965753,1371684966753,1371684967753,1371684968752,1371684969753,1371684970753,
+1371684971753,1371684972753,1371684973753,1371684974753,1371684975753,1371684976753,1371684977753,1371684978753,
+1371684979753,1371684980753,1371684981753,1371684982753,1371684983753,1371684984753,1371684985754,1371684986753,
+1371684987754,1371684988753,1371684989753,1371684990753,1371684991753,1371684992753,1371684993753,1371684994753,
+1371684995753,1371684996753,1371684997753,1371684998776,1371684999753,1371685000753,1371685001753,1371685002753,
+1371685003753,1371685004753,1371685005753,1371685006753],
+"nodeStats":{"127.0.0.1:8091":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}}
+
+### [](#docs%5Fopt%5Frepd)`docs_opt_repd`
+
+The following example returns information from the `docs_opt_repd` statistic.
+
+curl -u Administrator:password \
+http://10.3.121.119:8091/pools/default/buckets/default/stats\
+/replications%2fdef03dbf5e968a47309194ebe052ed21%2ftravel_sample%2fts%2fdocs_opt_repd
+
+The IP address specifies the source cluster.
+
+If execution is successful, output such as the following is returned:
+
+{"samplesCount":60,"isPersistent":true,"lastTStamp":1656078113453,"interval":1000,"timestamp":[1656078054956,1656078055948,
+1656078056940,1656078057931,1656078058922,1656078059914,1656078060905,1656078061897,1656078062889,1656078063880,1656078064872,
+1656078065863,1656078066854,1656078067846,1656078068837,1656078069828,1656078070820,1656078071812,1656078072804,1656078073795,
+1656078074787,1656078075779,1656078076771,1656078077763,1656078078754,1656078079745,1656078080736,1656078081728,1656078082719,
+1656078083711,1656078084703,1656078085695,1656078086686,1656078087677,1656078088669,1656078089660,1656078090651,1656078091643,
+1656078092634,1656078093625,1656078094617,1656078095608,1656078096599,1656078097591,1656078098582,1656078099573,1656078100565,
+1656078101556,1656078102547,1656078103538,1656078104530,1656078105521,1656078106512,1656078107504,1656078108495,1656078109486,
+1656078110478,1656078111470,1656078112461,1656078113453],"nodeStats":{"10.144.220.101:8091":[1105,1105,1105,1105,1105,1105,1105,
+1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,
+1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,1105,
+1105,1105,1105]}
+
+### [](#retrieving-incoming-write-operations)Retrieving Incoming Write Operations
+
+The following example returns all the statistics for the target bucket `ts`.
+
+curl -u targetUsermane:targetPassword -X GET \
+http://10.5.2.117:8091/pools/default/buckets/ts/stats
+
+The IP address specifies the target cluster.
+
+Successful execution returns information on all statistics for `ts`. To retrieve information on incoming write operations, manually locate the array `xdc_ops`, within the JSON response. The value for this attribute is the last sampling of write operations on the target cluster.
+
+{
+          .
+          .
+          .
+"xdc_ops":[0.0,0.0,0.0,0.0,633.3666333666333,1687.6876876876877,
+2610.3896103896104,3254.254254254254,3861.138861138861,4420.420420420421,
+          .
+          .
+          .
+}
+
+## [](#see-also)See Also
+
+See [Getting a Reference](rest-xdcr-get-ref.md) for information on returning the uuid of a reference. See [Cross Data Center Replication (XDCR)](../learn/clusters-and-availability/xdcr-overview.md) for an overview of XDCR.

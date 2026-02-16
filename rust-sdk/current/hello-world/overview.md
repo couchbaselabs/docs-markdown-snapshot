@@ -1,0 +1,119 @@
+[View original HTML](/rust-sdk/current/hello-world/overview.html)
+
+# Couchbase Rust SDK 1.0
+
+The Couchbase Rust SDK allows Rust applications to access a Couchbase cluster — Capella or self-managed.
+
+|  | Developer Preview This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+[Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) | [Rust SDK source code](https://github.com/couchbaselabs/couchbase-rs/)
+
+What’s the point of a fast and scalable database if it’s not easy to develop for? Couchbase gives you the Rust APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
+
+* Data Ops (CRUD)
+* SQL++ Query (OLTP)
+* Vector Search
+
+```rust
+let doc = json!({
+        "foo": "bar",
+        "baz": "qux",
+});
+
+match collection.upsert("document-key", doc, None).await {
+    Ok(_result) => {
+        println!("Document upsert successful");
+    }
+    Err(e) => {
+        println!("Error: {e}");
+    }
+}
+```
+
+```rust
+let scope = cluster.bucket("travel-sample").scope("inventory");
+let statement = "SELECT * from `airline` LIMIT 10;";
+let mut result = scope.query(statement, None).await?;
+
+let mut rows = result.rows();
+while let Some(row) = rows.next().await {
+    let row: serde_json::Value = row?;
+    println!("Row: {}", row);
+}
+```
+
+```rust
+let request = SearchRequest::with_vector_search(VectorSearch::new(
+    vec![VectorQuery::with_vector("vector_field", vector_query)],
+    None,
+));
+
+let result = scope.search("vector-index", request, None).await?;
+```
+
+Couchbase is a large platform — covering many services — and Couchbase SDKs are not thin wrappers generated around a REST API, but well thought out interfaces to the platform that make it easier to design and maintain your client code, and work with Couchbase in more natural ways for your platform. Install the SDK, and explore in the way that works best for you.
+
+Installing the SDK via Rust Cargo
+
+```none
+cargo add couchbase
+```
+
+The links below will take you where you want to go — as will the navigation on the left-hand side of this page. But if you don’t know exactly where you need to go, try one of the following:
+
+* Our [Quickstart Guide](start-using-sdk.md) introduces the SDK with a quick install, and CRUD examples against the Data Service.
+* Couchbase’s familiar SQL-family query language and fuzzy search options (including vector search) are introduced on the [Querying Your Data](../concept-docs/querying-your-data.md) page.
+* The Rust SDK docs are, necessarily, just a sub-set [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) — and a complete reference of all APIs can be found there.
+* For a fuller orientation, there is a [guide to the Rust SDK docs](../project-docs/metadoc-about-these-sdk-docs.md)
+
+  
+##  Using Your Database
+
+How-to guides to help you start your development journey with Couchbase and the Rust SDK.
+
+Easy to Connect & Get Started
+
+* [Quickstart Guide](start-using-sdk.md)
+* [Managing Connections](../howtos/managing-connections.md)
+
+Search, Query, Analyze
+
+* [Query with a familiar, SQL-like language](../howtos/sqlpp-queries-with-sdk.md)
+* [Vector Search for your AI app](../howtos/vector-searching-with-sdk.md)
+* [Fuzzy Search with text and Geo data](../howtos/full-text-searching-with-sdk.md)
+
+Lightning Fast Data Service
+
+* [Data Operations](../howtos/kv-operations.md)
+* [Sub-Document Operations](../howtos/subdocument-operations.md)
+
+Observability & Error Handling
+
+* [Handling Errors](../howtos/error-handling.md)
+* [Logging](../howtos/collecting-information-and-logging.md)
+* [Health Check](../howtos/health-check.md)
+
+  
+##  Resources
+
+Useful resources to help support your development experience with Couchbase and the Rust SDK.
+
+Reference
+
+* [API Reference](https://docs.rs/couchbase/latest/couchbase/)
+* [Client Settings](../ref/client-settings.md)
+* [Error Messages](../ref/error-codes.md)
+* [SDK source code](https://github.com/couchbaselabs/couchbase-rs/)
+
+Deployment
+
+* [SDK Release Notes](../project-docs/sdk-release-notes.md)
+* [Compatibility](../project-docs/compatibility.md)
+* [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
+* [Couchbase Rust SDK Installation](../project-docs/sdk-full-installation.md)
+
+This page covers using our operational Rust SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
+
+|  | Analytics SDKs SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information. Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,0 +1,311 @@
+[View original HTML](/cloud/eventing/eventing-Terminologies.html)
+
+> The following terminology is used by the Eventing Service. 
+
+## [](#eventing-service)Eventing Service
+
+The Eventing Service executes user-defined code and responds in real time whenever applications interact and cause your data to change.
+
+The Eventing Service can run one or more Eventing Functions.
+
+## [](#eventing-functions)Eventing Functions
+
+Eventing Functions handle data changes in the Eventing Service. These are standalone JavaScript fragments that trigger in real time as a response to document mutations and must be executed from start to finish before the specified timeout.
+
+Eventing Functions allow you to:
+
+* Integrate with the Data Service to:
+
+  * Read, write, and delete documents
+  * Work with Atomic Counters, CAS, and TTLS
+* Integrate with the Query Service to use inline SQL++ queries or statements
+* Enable a Timer to schedule functions to run in the future
+* Interact with external REST endpoints through cURL capability
+* Route mutations to the entry points `OnUpdate` and `OnDelete`
+* Route fired timers to a user-defined Timer callback
+
+|  | The JavaScript code in an Eventing Function is compressed in Couchbase Server versions 6.5.0 and later. The compressed size is limited to 128KB. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#handlers)Handlers
+
+The Eventing Service calls the `OnUpdate`, `OnDelete`, and Timer Callback handlers on mutations and fired timers.
+
+#### [](#onupdate)`OnUpdate`
+
+The `OnUpdate` handler is called when you create or modify a document.
+
+The entry point `OnUpdate(doc,meta)` passes `doc`, the document, and `meta`, which contains additional data like the document ID, CAS, expiration date, and data type.
+
+Limitations of the `OnUpdate` handler:
+
+* If you modify a document several times in a short period of time, the handler calls can merge into a single event due to deduplication.
+* It is not possible to distinguish between Create and Update operations.
+
+|  | To prevent the suppression of binary documents, you must set the language compatibility of your Function to Couchbase Server version 6.6.2 or later. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#ondelete)`OnDelete`
+
+The `OnDelete` handler is called when you delete a document or when the document expires.
+
+The entry point `OnDelete(meta,options)` passes `meta`, which contains information like the `id` of the deleted document, and `options` containing the boolean parameter `options.expired` that indicates if the document was removed because of a deletion or an expiration.
+
+|  | It is not possible to retrieve a document that has been deleted or expired. |
+|  | --------------------------------------------------------------------------- |
+
+#### [](#ondeploy)`OnDeploy`
+
+Couchbase Server 8.0
+
+The `OnDeploy` handler runs once when an Eventing function is deployed or resumed, before any mutations are processed.
+
+The entry point `OnDeploy(action)` receives an `action` parameter, like `deploy` or `resume`, indicating the reason for invocation. It also includes a `delay` value (in milliseconds), showing the time since the function was paused. For deployment operations, this value is `0`.
+
+**Limitation**: Avoid long-running operations within the `OnDeploy` as they can delay function deployment.
+
+Use `OnDeploy` for one-time setup tasks such as:
+
+* Registering a Timer.
+* Initializing resources required by the function.
+
+If `OnDeploy` fails, no mutations are processed, and the function remains in its previous state.
+
+#### [](#timer-callback)Timer Callback
+
+Timer callbacks are user-defined JavaScript functions passed as the `callback` argument to the built-in function call `createTimer(callback,date,reference,context)`.
+
+When you create a Timer, the `callback` argument is executed at or close to the `date` argument. The `reference` argument works as an identifier for the Timer scoped to an Eventing Function and callback. When the Timer fires, the `context` argument data must be in serialized form and available to the callback.
+
+For more information about Timer callbacks, see [createTimer() and cancelTimer()](eventing-timers.md#createtimer-function).
+
+### [](#statelessness)Statelessness
+
+The persistent state of an Eventing Function is captured in the following external elements:
+
+* Documents or mutations and their extended attributes.
+* Listen to Location, or the Eventing source: a collection that’s the source of mutations sent to the Function through the Database Change Protocol (DCP).
+* Eventing Storage, or the Eventing metadata: a collection used as a scratchpad for the state of the Function.
+* Optional bindings for the Function:
+
+  * Bucket alias: an alias and access mode used by the Function to access a collection.
+  * URL alias: an alias and HTTP/S setting used by the Function to access external REST APIs.
+  * Constant alias: an alias to an integer, decimal number, string, boolean, or a JSON object used as a global variable within the Function.
+
+All states in the execution stack are short-lived.
+
+### [](#deduplication)Deduplication
+
+Couchbase does not store every version a document permanently. When a handler receives the mutation history of documents from Eventing, it sees a truncated history of each document.
+
+|  | Because the current state of a document is always available in the cluster, the final state of a document is always present in the mutation history. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To ensure high performance, the KV data engine deduplicates multiple mutations made to an individual document in succession. Handlers might not see all intermediate states of a document when it mutates quickly, but they do see its final state.
+
+### [](#recursive-mutation)Recursive Mutation
+
+A potentially recursive mutation happens when a handler manipulates documents in a keyspace that also serves as the mutation source for this or another handler. The write originated by the handler causes a mutation to be seen by itself or by another handler.
+
+### [](#json%5Fnumber%5Fprecision)JSON Number Precision
+
+JSON does not have specialized types for integral and floating-point numbers, so many JavaScript runtimes use floating-point numbers to hold JSON numbers. This means that JavaScript numbers have a large range but less precision when it comes to traditional integers of the same size.
+
+The JavaScript and WebAssembly engine V8 uses 64-bit floating-point numbers that yield a 53-bit precision. Eventing JavaScript can handle integers only up to +/- 253.
+
+To handle large integers of 15 or more digits, you can use JavaScript `BigInt` types. The constants `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTERGER` show the exact numbers where integral precision is defined and lost by JavaScript.
+
+Large integers are usually tokens that require equality comparisons. In Eventing, this can be seen in the CAS values generated by Advanced Keyspace Operations and in the results generated by the `crc64()` Function. In these cases, you can hold the large integers as strings. Using a string ensures that the integer does not lose precision and retains the ability to do equality comparisons.
+
+For more information about the `crc64()` Function, see [crc64() Function Call](eventing-language-constructs.md#crc64%5Fcall).
+
+### [](#function-scope)Function Scope
+
+You can use a `bucket.scope` to identify Functions that belong to the same group.
+
+As a best practice, you should set your Function scope to the `bucket.scope` that contains the collection that’s the source of your Eventing Function mutations. This makes sure that your Function does not undeploy by removing a scope that points to a resource that’s not required for the Function to run.
+
+|  | To set the bucket.scope to +.+, you must have the Eventing Full Admin or the Full Admin role. All other users must use a scope that references an existing resource of their bucket.scope. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#section%5Fmzd%5Fl1p%5Fm2b)Bindings
+
+A binding is a construct that lets you separate environment-specific variables, like keyspace names, external endpoint URLS and credentials, and global constrains, from the source code of the Eventing Function.
+
+A binding provides indirection between environment-specific artifacts and symbolic names, and helps move a Function definition from development to a production environment without changing your code. Binding names must be valid JavaScript identifiers, and cannot conflict with built-in types.
+
+Your Eventing Function can have no binding, one binding, or several bindings.
+
+#### [](#bucket-alias)Bucket alias
+
+A bucket alias binding gives the JavaScript of a Function access to the Couchbase KV collections from the Data Service or KV. The keyspaces `bucket.scope.collection` are accessible by the bound name as a JavaScript map in the global space of the Function.
+
+You can add bucket aliases by selecting **Bucket alias** and entering an alias-name, a keyspace, and the access level. This sequence of values does the following:
+
+* alias-name is the name you can use to refer to the keyspace or collection from your Eventing Function code.
+* keyspace is the full path to a collection in the cluster.
+* the access level provides access to the keyspace as `read only` or `read and write`.
+
+  * `read only` lets you read documents from the collection but not write (create, update, or delete) documents in the collection.
+  * `read and write` lets you read and write documents in the collection. NOTE: You must have one or more bucket alias bindings for your Eventing Function to perform operations directly against the Data Service.
+
+An Eventing Function can listen to multiple collections when you use the `*` wildcard in its scope or collection. You can also use the `*` wildcard in the scope or collection of the bucket alias code. If the bucket alias has a `*` wildcard, only the Advanced Keyspace Accessors can read or write the Data Service.
+
+#### [](#url-alias)URL alias
+
+A URL alias binding is used by the cURL language construct to access external resources. The URL alias specifies the endpoint, the HTTP/S protocol, and the credentials.
+
+You can enable cookie support through the binding when you access trusted remote nodes. The target of a URL alias should not be a node that belongs to the Couchbase cluster.
+
+You can add URL aliases by selecting **URL alias** and entering an alias-name, a URL, settings to allow cookies, security settings to validate SSL certificate, and an authorization type of `no auth`, `basic`, `bearer`, and `digest`.
+
+For more information about URL aliases, see [cURL Bindings](eventing-curl-spec.md#bindings).
+
+#### [](#constant-alias)Constant alias
+
+A constant alias is used by the JavaScript code of the Eventing Function as a global variable.
+
+You can add constant aliases by selecting **Constant alias** and entering an alias-name and a value. The valuje can be an integer, a decimal number, a string, a boolean, or a JSON object.
+
+For example, you can have an alias of `debug` with a value of `true` or `false` that controls logging. This alias acts in the same way as adding a `const debug = true` statement at the beginning of your JavaScript code.
+
+### [](#eventing-keyspaces)Eventing Keyspaces
+
+A keyspace is a path to a collection in the format `bucket-name.scope-name.collection-name`.
+
+For backward compatibility, you can also use the format `bucket-name._default._default`. This is the format of a bucket from Couchbase Server version 6.6 that has been upgraded to version 7.0.
+
+The two keyspaces used by Eventing Functions are:
+
+* [Listen to Location](#listen-to-location), which represents the Eventing source.
+* [Eventing Storage](#eventing-storage), which represents the Eventing metadata.
+
+#### [](#listen-to-location)Listen to Location
+
+Eventing Functions use a collection as the source for their data mutations. This collection is called the Eventing source, and can be made up of Couchbase or Ephemeral keyspace types. Memcached keyspace types are not supported.
+
+When you create an Eventing Function, you must specify a source collection. The `OnUpdate` and `OnDelete` handlers are the entry points for this collection; they receive events and receive and track data mutations.
+
+When you delete a source collection, all deployed and paused Functions associated with the collection are undeployed.
+
+While a Function is processing its JavaScript code, the Function’s documents can be mutated in different collections. You can set keyspaces as destination collections, which are then bound to the Function through bucket aliases.
+
+The Function’s JavaScript code triggers data mutations on documents through Basic Keyspace Accessors or Advanced Keyspace Accessors in the Data Service. If the code directly modifies documents in the source collection, the Eventing Service suppresses the mutation back to the Function performing the mutation.
+
+The Function’s JavaScript code can also trigger mutations on documents through inline SQL++ statements in the Query Service or `N1QL()` function calls. You might need to add additional business logic to terminate or protect the Function against possible recursion.
+
+|  | When you implement multiple Functions, you can create infinite recursions. The Eventing Service prevents the deployment of Functions that might result in recursion loops. For more information abotu cyclic generation of data changes, see [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To get the `Listen To` keyspace to listen to multiple collections, you can use a `*` wildcard for the scope or collection. If the bucket binding used by the JavaScript code also has a `*` wildcard for its scope or collection, you must use Advanced Keyspace Accessors to read or write the Data Service. For more information about Advanced Keyspace Accessors, see [Eventing Functions that Listen to Multiple Collections](eventing-advanced-keyspace-accessors.md#multiple-collection-functions).
+
+|  | You can have multiple Functions listening to the same collection while running different code. To use less resources, though, you can use only one Function and code an if-then-else or switch statement in your handler’s JavaScript. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#eventing-storage)Eventing Storage
+
+The Eventing Storage is the Eventing Function’s metadata bucket. The metadata bucket stores artifacts, or configuration documents, that contain information about DCP streams, worker allocations, Timer information and state, and internal checkpoints.
+
+When you create an Eventing Function, you must make sure that a separate collection has been designated as an Eventing metadata and reserved for the Eventing Service’s internal use. You can use a common Eventing metadata collection across multiple Eventing Functions for the same tenant.
+
+The Eventing Storage keyspace must be in a Couchbase-type bucket. If this keyspace is not persistent, the Data Service evicts Timer and checkpoint documents when it hits quota, and loses track of Timers and mutations that have been processed.
+
+|  | Do not delete the Eventing metadata collection. Make sure that your Function’s JavaScript code does not perform a write or delete operation on the Eventing metadata collection. If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#function-settings)Eventing Function Settings
+
+| Function setting         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Function Name            | A unique name for your Eventing Function. The Function name must: Start with an uppercase character (A-Z), lowercase character (a-z), or number (0-9) Contain only uppercase characters (A-Z), lowercase characters (a-z), numbers (0-9), underscores (\_), and hyphens (-)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Description              | An optional description that describes the purpose of your Eventing Function.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Deployment Feed Boundary | The Feed Boundary determines if the Eventing Function’s activities need to include documents that already exist. When you set the Feed Boundary to Everything, the Function processes all mutations available in your cluster. When you set the Feed Boundary to From Now, the Function only processes instances of data mutation that happen after the Function’s deployment. The Feed Boundary also works as a checkpoint for paused Functions. When you resume a paused Function, the Feed Boundary makes sure that no mutations are lost or processed again. You can only modify the Feed Boundary when you create a Function or when a Function is undeployed or paused.                                                                                                                                                                                                                                                                          |
+| System Log Level         | Determines the granularity of messages logged across the Eventing Function. Can be Info (the default), Error, Debug, Warning, or Trace.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Application Log Location | The directory path to the log file for the Eventing Function. The format is <function\_name>.log. The Function uses log() statements to write to this file. When you select the **Log** value on the UI, all log files are combined across Eventing nodes and displayed. The log value is read-only and cannot be changed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| SQL++ Consistency        | The default consistency level of SQL++ statements in the Eventing Function. You can set the consistency level by statement. Can be one of None (the default) or Request.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Workers                  | The number of worker threads per node to be allocated to the Eventing Function to process events. Allows the Function to scale up. The minimum number of workers is 1 (the default) and the maximum is 64.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Language Compatibility   | The language version of the Eventing Function for backward compatibility. If the semantics of a language construct change during a release, the Language Compatibility setting makes sure that an older Eventing Function continues to produce the runtime behavior from when the Function was initially created. The older Function only stops this behavior when the behavior is deprecated and removed. Couchbase versions 6.0.0, 6.5.0, and 6.6.2 are the only versions that are currently defined. New Functions default to the highest compatibility version available of 6.6.2. In version 6.5.0, trying to access a non-existing item from a keyspace returns an undefined value. In version 6.0.0, it throws an exception. Only a Function with a language compatibility setting of version 6.6.2 passes binary documents to Eventing Function handlers. Versions 6.0.0 and 6.5.0 filter all binary documents out of the DCP mutation stream. |
+| Script Timeout           | The number of seconds to elapse before the script times out and terminates. The entry points into the handler processing for each mutation must run from start to finish before the specified timeout duration. The default number of seconds is 60.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| OnDeploy Timeout         | The number of seconds to elapse before the OnDeploy entry point times out and terminates. The timeout is set to 60 seconds, by default. The OnDeploy Timeout defines the maximum duration allowed for an Eventing Function to complete its initialization during deployment or resumption.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Time Context Max Size    | The size limit of the context for any Timer created by the Eventing Function. A context can be any JSON document. Timers can store and access a context, which is then used to store the state of when a Timer is created and to retrieve the state of when a Timer is fired. The default is 1024.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+
+## [](#operations)Operations
+
+Operations exposed through the UI, couchbase-cli, and REST APIs.
+
+### [](#deploy)Deploy
+
+The deploy operation activates an Eventing Function in a cluster. It performs validations and allows only valid Eventing Functions to be deployed.
+
+Deploying an Eventing Function:
+
+* Creates necessary metadata
+* Spawns worker processes
+* Calculates initial partitions
+* Initiates check-pointing of DCP streams to process
+* Allows the Function to receive and process mutations and Timer callbacks
+
+You cannot edit the source code of a deployed Eventing Function.
+
+During deployment, you must choose one of the following **Deployment Feed Boundary** settings:
+
+* **Everything**, which provides the Eventing Function with a deduplicated history of all documents, ending with the current value of each document. This means the Function sees every document in the keyspace at least once.
+* **From now**, which provides the Eventing Function with mutations starting at deployment. This means the Function only sees documents that have mutated after the Function’s deployment.
+
+### [](#undeploy)Undeploy
+
+The undeploy operation causes the Eventing Function to stop processing events of all types. It also shuts down the worker processes associated with the Function.
+
+Undeploying an Eventing Function:
+
+* Deletes all Timers and context documents created by the Function
+* Releases any runtime resources acquired by the Function
+
+You can edit the code and change the settings of an undeployed Eventing Function.
+
+When you create a new Eventing Function, the Function’s state is undeployed.
+
+### [](#pause)Pause
+
+The pause operation causes the Eventing Function to pause all mutations and Timer callbacks. It also performs a checkpoint to be used for resuming the Function.
+
+You can edit the code and change the settings of a paused Eventing Function.
+
+A paused Function can be resumed or undeployed.
+
+### [](#resume)Resume
+
+The resume operation continues processing mutations and Timer callbacks of an Eventing Function that was previously paused.
+
+The resume operation is similar to the deploy operation, but it uses a progress checkpoint to restart the Function. This means no mutations are lost or processed again.
+
+When you resume a Function, the backlog of mutations that occurred when the Function was in a paused state is processed. The backlog of Timers also fires, even if the time of the Timers has already passed.
+
+Depending on the system capacity and on how long the Function was paused, clearing the backlog can take some time. After the backlog is cleared, the Function goes on to process current mutations and Timers.
+
+### [](#delete)Delete
+
+The delete operation deletes the following in the Eventing Function:
+
+* The source code implementing the Function
+* All Timers and Timer contexts
+* All processing checkpoints
+* Application logs
+* Any other artifacts in the metadata provider
+
+You can only delete an undeployed Eventing Function.
+
+### [](#debug)Debug
+
+The debug operation traps and sends the next event instance received by the Eventing Function to a separate v8 worker with debugging enabled. Debug is a special flag that can be attach to a Function.
+
+The debug operation pauses the trapped event, opens a TCP port, and generates a Chrome Developer Tools URL with a session cookie that can be used to control the debug worker. With the exception of the trapped event instance, all other Eventing Function events continue processing.
+
+When the trapped event finishes debugging, the debug operation traps another event instance. This continues until you stop the operation.
+
+## [](#see-also)See Also
+
+* [Advanced Keyspace Accessors](eventing-advanced-keyspace-accessors.md)
+* [Basic Keyspace Accessors](eventing-language-constructs.md#basic%5Fbucket%5Faccessors)
+* [cURL](eventing-curl-spec.md)
+* [Troubleshooting and Best Practices](troubleshooting-best-practices.md)

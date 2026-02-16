@@ -1,0 +1,46 @@
+[View original HTML](/server/current/manage/manage-xdcr/incoming-xdcr-replications.html)
+
+> Incoming replications details for a target cluster in XDCR are listed in the UI and can be retrieved using the REST API. 
+
+A cluster is identified as a target cluster in XDCR when it receives replicated data from a remote cluster. Then the replicating remote cluster is identified as a source cluster. When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication.
+
+|  | A replication is always created on a cluster that’s the source of data being replicated. |
+|  | ---------------------------------------------------------------------------------------- |
+
+## [](#view-incoming-replications)View Incoming Replications
+
+On the XDCR UI, if the cluster is a target for XDCR replications from remote clusters, the Incoming Replications section lists the incoming replications, grouped by the remote cluster name. Expand the source cluster information in the Incoming Replications section to see the details of replications created on the remote cluster.
+
+If the remote cluster has not yet created a replication, the replication count shows 0\. However, the remote cluster name is listed because the remote cluster has added this cluster’s connection details to its XDCR cluster references.
+
+In the illustration, the Incoming Replications section lists 2 remote clusters, East and South, replicating data to the North cluster. You can see 1 incoming replication from the East cluster and 2 incoming replications from the South cluster.
+
+![incoming replications on target](../_images/manage-xdcr/incoming-replications-on-target.png) 
+
+To view the illustrated Incoming Replications information using the REST API, see [Cluster with replication specifications - a full example](../../rest-api/rest-xdcr-list-incoming-replications.md#complete-response).
+
+To retrieve the incoming replications information using the REST API, see [Listing Incoming Replications](../../rest-api/rest-xdcr-list-incoming-replications.md).
+
+## [](#calculating-incoming-xdcr-connections)Calculating Incoming XDCR Connections
+
+You can calculate the number of incoming XDCR connections for a replication with the following formula.
+
+(target_nozzle_per_node) * 2 * (number of Data nodes on the source cluster) * (number of Data nodes on the target cluster)
+
+The formula details are as follows:
+
+* `target_nozzle_per_node` is the incoming replication’s target\_nozzle\_per\_node.
+* `number of Data nodes on the source cluster` is the number of Data nodes in the remote cluster that the replication is coming from (the number of SourceClusterNodes in the incoming replications information).
+* `number of Data nodes on the target cluster` is the number of Data nodes in the current cluster, the target of the incoming replication.
+
+## [](#source-cluster-heartbeat-interval)Source Cluster Heartbeat Interval
+
+Incoming replications information relies on heartbeats sent from the source cluster to the target cluster. For this reason, the source cluster heartbeats are also referred to as target awareness heartbeats.
+
+The source cluster controls the interval for sending source cluster heartbeats. By default, the heartbeat interval can range from one to five minutes, depending on replication activity. The heartbeat interval determines the refresh rate of the incoming replication information on the target cluster.
+
+The source cluster heartbeats are sent as soon as the target remote cluster reference is created on the source, even if no replications exist yet. In this scenario, the incoming replication view on the target cluster shows only the source cluster information. For the REST API example response, see [Cluster without replication specifications](../../rest-api/rest-xdcr-list-incoming-replications.md#example-source-without-replication-specs).
+
+When source replications exist, the incoming replication view on the target cluster shows the source cluster information and its replication specifications. For the REST API example response with a replication specification, see [Cluster with replication specifications](../../rest-api/rest-xdcr-list-incoming-replications.md#example-source-with-replication-specs).
+
+If the source and target clusters are the same, target awareness heartbeats are not sent, and incoming replication information for that cluster does not appear.

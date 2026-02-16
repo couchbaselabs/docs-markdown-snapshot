@@ -1,0 +1,83 @@
+[View original HTML](/cloud/eventing/eventing-handler-basicBucketOps.html)
+
+**Goal**: Perform the basic bucket operations where Eventing interacts with the Data service.
+
+* This function **basicBucketOps** merely demonstrates Eventing’s Basic Bucket Accessors or BucketOps.
+* Requires Eventing Storage (or metadata collection), a "source" collection, and a "destination" collection.
+* Needs a Binding of type Bucket Alias (as documented in the Scriptlet).
+* Will operate on any mutation where doc.type === "basic\_bkt\_ops".
+* The final document is deleted, as such the output is the Application log file.
+* For more detail refer to [Bucket Accessors](eventing-language-constructs.md#bucket%5Faccessors)
+
+* basicBucketOps
+* Input Data/Mutation
+* Output Data/Logged
+
+```javascript
+// To run configure the settings for this Function, basicBucketOps, as follows:
+//
+// Version 7.1+
+//   "Function Scope"
+//     *.* (or try bulk.data if non-privileged)
+// Version 7.0+
+//   "Listen to Location"
+//     bulk.data.source
+//   "Eventing Storage"
+//     rr100.eventing.metadata
+//   Binding(s)
+//    1. "binding type", "alias name...", "bucket.scope.collection", "Access"
+//       "bucket alias", "dst_col",       "bulk.data.destination",   "read and write"
+//
+// Version 6.X
+//   "Source Bucket"
+//     source
+//   "MetaData Bucket"
+//     metadata
+//   Binding(s)
+//    1. "binding type", "alias name...", "bucket",     "Access"
+//       "bucket alias", "dst_col",      "destination", "read and write"
+
+function OnUpdate(doc, meta) {
+  // filter out non-interesting docs
+  if (doc.type !== "basic_bkt_ops") return;
+  // Assuming 'dst_col' is a bucket alias binding in this case to a non source bucket
+  log("OnUpdate got mutation for id",meta.id,"doc",doc);
+
+  // make a key based on the meta.id of the input mutation
+  var dst_key = "dst_" + meta.id;
+  // make a document to write, include the input mutation's doc
+  var doc_to_wr = {"status":3, "mutation": doc};
+
+  // this is a bucket SET operation.
+  dst_col[dst_key] = doc_to_wr;
+  log("wrote DOC to dst_col with id",dst_key,doc_to_wr);
+
+  // this is a bucket GET operation.
+  var doc_read = dst_col[dst_key];
+  log("read DOC from dst_col with id",dst_key,doc_read);
+
+  // this is a bucket DEL operation.
+  delete dst_col[dst_key];
+  log("deleted "+dst_key+" from dst_col");
+}
+```
+
+```json
+INPUT: KEY basic_bkt_ops::1
+
+{
+  "type": "basic_bkt_ops",
+  "id": 1,
+  "test": true
+}
+```
+
+```json
+2021-07-18T17:56:56.021-07:00 [INFO] "read DOC from dst_col with id" "dst_basic_bkt_ops::1" {"status":3,"mutation":{"type":"basic_bkt_ops","id":1,"test":true}}
+
+2021-07-18T17:56:56.021-07:00 [INFO] "deleted dst_basic_bkt_ops::1 from dst_col"
+
+2021-07-18T17:56:56.020-07:00 [INFO] "wrote DOC to dst_col with id" "dst_basic_bkt_ops::1" {"status":3,"mutation":{"type":"basic_bkt_ops","id":1,"test":true}}
+
+2021-07-18T17:56:56.019-07:00 [INFO] "OnUpdate got mutation for id" "basic_bkt_ops::1" "doc" {"type":"basic_bkt_ops","id":1,"test":true}
+```

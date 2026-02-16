@@ -1,0 +1,141 @@
+[View original HTML](/server/current/rest-api/rest-get-internal-setting.html)
+
+> Couchbase-Server internal settings can be retrieved and modified.. 
+
+## [](#http-methods-and-uris)HTTP methods and URIs
+
+GET /internalSettings
+
+POST /internalSettings
+
+GET /settings/maxParallelIndexers
+
+POST /settings/maxParallelIndexers
+
+## [](#description)Description
+
+Couchbase-Server internal settings can be inspected and modified, in order to control cluster-performance.
+
+|  | The settings detailed on this page are meant for performance tuning. Rigorous and careful testing of any changes to these settings should be made in a non-production environment that is representative, in load and scale, of production data before implementing in production. Incorrect settings can cause severe impacts to cluster performance or operation due to resource consumption. Couchbase makes no recommendations for tuning beyond the default settings. Any changes to these settings not explicitly recommended by Couchbase Employees are not supported by Couchbase. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u <username>:<password> -X GET \
+  http://<ip-address-or-domain-name>:8091/internalSettings
+
+  curl -u <username>:<password> -X POST \
+    http://<ip-address-or-domain-name>:8091/internalSettings
+      [-d <internalSetting>=<value>]*
+
+curl -u <username>:<password> -X GET \
+  http://<ip-address-or-domain-name>:8091/internalSettings/maxParallelIndexers
+
+curl -u <username>:<password> -X POST \
+  http://<ip-address-or-domain-name>:8091/internalSettings/maxParallelIndexers
+    -d globalValue=<value>
+
+The `/internalSettings/maxParallelIndexers` URI relates to _View_ index configuration only. Note that it does _not_ apply to the _GSI_ indexes provided by the Index Service. When `POST` is used with this URI, the `integer-value` specified by means of the `globalValue` parameter must be between `1` and `1024`. The default is `4`.
+
+All commands require either the Full Admin or Cluster Admin role.
+
+## [](#responses)Responses
+
+If successful, `GET` and `POST` commands return `200 OK`; and a JSON object containing all current _general_ internal settings.
+
+Failure to authenticate returns `401 Unauthorized`. A URI featuring an incorrect hostname or port returns `404 Object Not Found` and an object containing an error message. For example:
+
+{
+  "error": "not_found",
+  "reason": "missing"
+}
+
+Incorrect specification of a setting-change returns `400 Bad Request` and an object containing an error message, such as the following:
+
+{"errors":["Unknown key rebalanceMovesPerNoede"]}
+
+If a cluster contains any node running a version of Couchbase Server less that 7.1, an attempt to change the `eventLogLimit` produces the following error message: `not supported in mixed version clusters`.
+
+## [](#examples)Examples
+
+The following example returns general internal settings for the cluster. Note that the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate readability.
+
+curl -u Administrator:password -X GET http://10.144.220.101:8091/internalSettings | jq '.'
+
+If successful, the command returns output such as the following:
+
+{
+  "enforceLimits": false,
+  "indexAwareRebalanceDisabled": false,
+  "rebalanceIndexWaitingDisabled": false,
+  "rebalanceIndexPausingDisabled": false,
+  "rebalanceIgnoreViewCompactions": false,
+  "rebalanceMovesPerNode": 4,
+  "rebalanceMovesBeforeCompaction": 64,
+  "maxParallelIndexers": 4,
+  "maxParallelReplicaIndexers": 2,
+  "maxBucketCount": 30,
+  "eventLogsLimit": 10000,
+  "gotraceback": "single",
+  "indexAutoFailoverDisabled": true,
+  "certUseSha1": false,
+  "httpNodeAddition": false
+}
+
+To change a setting, use the `POST` method, specifying the setting as an argument, and specifying its new value. For example:
+
+curl -u Administrator:password -X POST http://10.144.210.101:8091/internalSettings -d rebalanceMovesPerNode=4
+
+If successful, the command returns `200 OK`, and an empty array. To check the result, use the `GET` method again:
+
+curl -u Administrator:password -X GET http://10.144.210.101:8091/internalSettings | jq '.' | grep rebalanceMovesPer
+
+This returns the following output:
+
+  "rebalanceMovesPerNode": 4,
+
+This confirms that the change was successful.
+
+To inspect the current setting for `maxParallelIndexers`, enter the following:
+
+curl -u Administrator:password -X GET http://10.144.210.101:8091/settings/maxParallelIndexers
+
+If successful, this returns output such as the following:
+
+{"globalValue":4,"nodes":{"ns_1@10.144.210.101":4}}
+
+To change the value, specify the new value by means of the `globalValue` argument:
+
+curl -u Administrator:password -X POST http://10.144.210.101:8091/settings/maxParallelIndexers -d globalValue=3
+
+The output displays that the value has been successfully changed:
+
+{"globalValue":3,"nodes":{"ns_1@10.144.210.101":3}}
+
+Note that the value is thus established cluster-wide.
+
+To change the current size for the _system log_ (which is described in [System Events](../learn/clusters-and-availability/system-events.md)), use the `eventLogsLimit` argument. The value should be an integer, specifying the number of logs. The smallest acceptable value is `3000`, and the highest `20000`. Note that this value can only be changed when every node in the cluster is running Couchbase Server Version 7.1 or higher.
+
+curl -u Administrator:password -X POST http://10.144.220.101:8091/internalSettings -d eventLogsLimit=15000
+
+If successful, the call returns an empty array. The modified value can be checked by means of the `GET` method, which returns output such as the following:
+
+{
+  "enforceLimits": false,
+  "indexAwareRebalanceDisabled": false,
+  "rebalanceIndexWaitingDisabled": false,
+  "rebalanceIndexPausingDisabled": false,
+  "rebalanceIgnoreViewCompactions": false,
+  "rebalanceMovesPerNode": 4,
+  "rebalanceMovesBeforeCompaction": 64,
+  "maxParallelIndexers": 4,
+  "maxParallelReplicaIndexers": 2,
+  "maxBucketCount": 30,
+  "eventLogsLimit": 15000,
+  "gotraceback": "single",
+  "indexAutoFailoverDisabled": true,
+  "certUseSha1": false,
+  "httpNodeAddition": false
+}
+
+This confirms that the current size of the `eventLogsLimit` is now 15k.

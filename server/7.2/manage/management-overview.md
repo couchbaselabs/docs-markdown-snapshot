@@ -1,0 +1,23 @@
+[View original HTML](/server/7.2/manage/management-overview.html)
+
+> A Couchbase Cluster can be created and managed by means of the Couchbase Web Console, the CLI, and the REST API. 
+
+## [](#cluster-management)Cluster Management
+
+A Couchbase _cluster_ consists of one or more _nodes_, which are network-accessible systems each running an instance of Couchbase Server. The nodes are _added_ to the cluster, one by one. From this point, _buckets_ can be defined on the cluster, to store data items. _Logs_ can be maintained, _settings_ adjusted, _backups_ scheduled, _security_ measures applied, and _Cross Data Center Replication_ (XDCR) performed, to ensure availability of data.
+
+The pages in this section provide examples of how to perform all key Couchbase Server management tasks, using all available tools.
+
+## [](#couchbase-server-tools)Couchbase Server Tools
+
+Couchbase Server can be managed by means of _Couchbase Web Console_, the _Command-Line Interface_ (CLI), and the _REST API_.
+
+The CLI and REST API both allow the IP address or domain-name of a Couchbase Server-node to be specified, so that the target server is identified on the network. Both the CLI and REST API can be used in administrator-created scripts and programs, as well as on the command-line.
+
+Couchbase Web Console is browser-based, and allows administrator-authentication at a login screen. Once granted access, the Full Administrator can view all nodes in the cluster; including details of assigned services, memory quotas, statistics, and more. (Such information can also be returned by specific CLI and REST calls.)
+
+Couchbase Server enforces _Role-Based Access Control_ (RBAC), whereby all users are assigned _roles_ that correspond to _privileges_ on system-resources. Credentials must therefore be passed with each CLI or REST call. Within Couchbase Web Console, features are made available based on the assigned roles of the authenticated user. See [Roles](../learn/security/roles.md) for detailed information.
+
+Note that Couchbase Web Console and CLI are themselves based on the REST API. By using the CLI with the `-d` (debug) option, the underlying REST method can be revealed in standard output. _Developer Tools_ provided by a browser such as _Chrome_ likewise show ongoing REST calls, while Couchbase Web Console is in use.
+
+For a complete list of CLI commands, see the [CLI Reference](../cli/cli-intro.md). For a complete list of REST API methods, see the [REST API Reference](../rest-api/rest-intro.md). For an introduction to Couchbase Web Console, see [Couchbase Web Console](manage-ui/manage-ui.md).

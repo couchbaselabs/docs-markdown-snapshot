@@ -1,0 +1,268 @@
+[View original HTML](/server/current/rest-api/backup-create-and-edit-plans.html)
+
+> The Backup Service REST API allows _plans_ to be created and edited. A plan specifies one or more _tasks_. Once created, a plan can be used in the creation of a _repository_. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+POST /plan/<new-plan-id>
+
+PUT /plan/<existing-plan-id>
+
+The `new-plan-id` must be a plan-name that is unique across the cluster. The POST method creates a new plan, so named. The PUT method edits an existing plan of the name specified by `existing-plan-id`.
+
+## [](#description)Description
+
+A _plan_, once defined, is used in the creation of a _repository_; thereby allowing data from the cluster to be regularly backed up and, if appropriate, allowing existing backups to be periodically merged.
+
+Note that merges are supported for filesystem-based repositories, but are _not_ supported for cloud-based repositories. If a merge is scheduled for a cloud-based repository, the Backup Service skips the task.
+
+A pruning task is supported to delete old backups manually or automatically. When a pruning task is run, all backups older than the specified retention period are deleted. The backups that are either within the retention period or do not have a retention period, are not deleted.
+
+A plan is defined by being specified as the JSON payload to the `POST /plan/<new-plan-id>` http method and URI. An existing plan can be edited by means of the `PUT /plan/<existing-plan-id>` http method and URI: the complete, new specification for the plan being specified as the JSON payload.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST http://<backup-node-ip-address-or-domain-name>:8097/plan/<new-plan-id>
+  -u <username>:<password>
+  -d <plan-description>
+
+curl -X PUT http://<backup-node-ip-address-or-domain-name>:8097/plan/<existing-plan-id>
+  -u <username>:<password>
+  -d <plan-description>
+
+The `username` and `password` must be those of a user with the `Full Admin` role.
+
+The `plan-description` contains the following:
+
+* A plan-name that is unique across the cluster.
+* An optional _description_ of the plan.
+* An array containing the Couchbase Services whose data is to be backed up.
+* An array containing one or more backup tasks. Each specified task contains the following:
+
+  * A task-name that is unique across the plan.
+  * The _type_ of the task, which can be `BACKUP` or `MERGE` or `PRUNE`.
+  * Whether the task should be a _full backup_ or not: a full backup (rather than an incremental backup), can only be specified as `true` when the task-type is `BACKUP` or `PRUNE`; otherwise, a full backup must be specified as `null`.
+  * The _schedule_ for the task, containing the following:
+
+    * The type of job, which must correspond to the task-type, `BACKUP` or `MERGE` or `PRUNE`.
+    * The _period_ of the task, which can be either of the following:
+
+      * One of the following time-units: `MINUTES`, `HOURS`, `DAYS`, `WEEKS`.
+      * A weekday, such as `MONDAY`, `TUESDAY`, `WEDNESDAY`, etc.
+    * The _frequency_ of the task, which can be an integer between `1` and `200`, inclusive. If the task specifies a time-unit, the frequency indicates the number of time-units that must elapse between each repetition of the task: for example, `20` and `MINUTES` means that the task is to be performed once every twenty minutes. If the task specifies a weekday, the frequency indicates for how many instances of the weekday the task should continue to be performed, once per day: for example, `20` and `TUESDAY` means that the task is to be performed once every Tuesday for the next twenty Tuesdays.
+    * A _time_ at which the task is to be performed, each day. This is only to be specified when a weekday is used: in such cases, the task will be performed once on the specified weekday, at the specified time.
+  * Additional _options_ for the task. If the task is a backup, the value must be `null`. If the task is a merge, the value must be an object, featuring an _offset start_ and _offset end_, specified as integers. The _start_ indicates the most recent, and the _end_ indicates the least recent day whose backups are to be merged: therefore `0` and `2` indicate that the backups to be merged are those for today, yesterday, and the day before yesterday.
+
+Syntactically therefore, the `plan-description` is as follows:
+
+{
+  "name": <test-plan-name>,
+  "description": <test-plan-description>,
+  "services": [ < "data" | "gsi" | "views" | "ft" | "eventing" | "cbas" > ],
+  "tasks": [
+    {
+      "name": <task-name>,
+      "task_type": < "BACKUP" | "MERGE" | "PRUNE" >,
+      "full_backup": < "null" | "true" >,
+      "schedule": {
+        "job_type": < "BACKUP" | "MERGE" | "PRUNE" >,
+        "frequency": <integer-from-1-to-200-inclusive>,
+        "period":
+          < "MINUTES" | "HOURS" | "DAYS" | "WEEKS" > |
+            < "MONDAY" | "TUESDAY" | "WEDNESDAY" | "THURSDAY" |
+              "FRIDAY" | "SATURDAY" | "SUNDAY" >
+      }
+      "options": < "null" | "true" >
+    }
+  ]
+}
+
+## [](#responses)Responses
+
+| Value                                                                   | Description                                                            |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 200 OK and JSON array containing the expired backups and their details. | Successful call.                                                       |
+| 400                                                                     | Invalid parameter.                                                     |
+| 400 Object Not found                                                    | The repository in the endpoint URI does not exist.                     |
+| 401 Unauthorized                                                        | Authorization failure due to incorrect username or password.           |
+| 403 Forbidden, plus a JSON message explaining the minimum permissions.  | The provided username has insufficient privileges to call this method. |
+| 404 Object Not Found                                                    | Error in the URI path.                                                 |
+| 500 Internal Server Error                                               | Error in Couchbase Server.                                             |
+
+## [](#examples)Examples
+
+The following example creates a plan for performing weekly full backups, and monthly merges, for one year. Formatted, the plan is as follows:
+
+{
+  "name": "BackupMergePrunePlan",
+  "description": "A plan for backing up, merging, and pruning.",
+  "services": [
+    "data"
+  ],
+  "tasks": [
+    {
+      "name": "BackupEveryTuesdayForOneYear",
+      "task_type": "BACKUP",
+      "schedule": {
+        "job_type": "BACKUP",
+        "frequency": 1,
+        "period": "TUESDAY",
+        "time": "20:00"
+      },
+      "options": null,
+      "full_backup": true
+    },
+    {
+      "name": "MergeOncePerMonth",
+      "task_type": "MERGE",
+      "full_backup": null,
+      "schedule": {
+        "job_type": "MERGE",
+        "frequency": 4,
+        "period": "WEEKS",
+        "time": "21:00"
+      },
+      "options": {
+        "offset_start": 0,
+        "offset_end": 28
+      }
+    },
+    {
+      "name": "PruneEveryWeek",
+      "task_type": "PRUNE",
+      "schedule": {
+        "job_type": "PRUNE",
+        "frequency": 1,
+        "period": "WEEKS",
+        "time": "22:00"
+      },
+      "options": null,
+      "full_backup": true
+    }
+  ]
+}
+
+The plan is named `BackupMergePrunePlan` and specifies that data from the Data Service alone be handled. The plan has the following tasks.
+
+* The first, `BackupEveryTuesdayForOneYear` specifies that a full backup be perfomed every Tuesday, at `22:00`.
+* The second, `MergeOncePerMonth`, specifies that a merge occurs every 4 weeks, and that all backups that have occurred from the current day back to 28 days ago be included.
+* The third, `PruneEveryWeek`, specifies that a prune occurs every week, and that all backups that have occurred from the current day back to 7 days ago be included.
+
+The call is executed as follows:
+
+curl -v -X POST http://127.0.0.1:8097/api/v1/plan/BackupMergePrunePlan \
+-u Administrator:password \
+-d '{
+  "name": "BackupMergePrunePlan",
+  "description": "A plan for backing up and merging.",
+  "services": [
+    "data"
+  ],
+  "tasks": [
+    {
+      "name": "BackupEveryTuesdayForOneYear",
+      "task_type": "BACKUP",
+      "schedule": {
+        "job_type": "BACKUP",
+        "frequency": 1,
+        "period": "TUESDAY",
+        "time": "22:00"
+      },
+      "options": null,
+      "full_backup": true
+    },
+    {
+      "name": "testTask3",
+      "task_type": "MERGE",
+      "full_backup": null,
+      "schedule": {
+        "job_type": "MERGE",
+        "frequency": 4,
+        "period": "WEEKS",
+        "time": "22:00"
+      },
+      "options": {
+        "offset_start": 0,
+        "offset_end": 28
+      }
+    }
+    {
+      "name": "PruneEveryWeek",
+      "task_type": "PRUNE",
+      "schedule": {
+        "job_type": "PRUNE",
+        "frequency": 1,
+        "period": "WEEKS",
+        "time": "22:00"
+      },
+      "options": null,
+      "full_backup": true
+    }
+  ]
+}'
+
+If the call is successful, `200 OK` is returned.
+
+The following use of the `PUT` method modifies the existing plan, specifying a backup time of `21:00` and a pruning time of `23:00`.
+
+curl -v -X PUT http://127.0.0.1:8097/api/v1/plan/BackupMergePrunePlan \
+-u Administrator:password \
+-d '{
+  "name": "BackupMergePrunePlan",
+  "description": "A plan for backing up and merging.",
+  "services": [
+    "data"
+  ],
+  "tasks": [
+    {
+      "name": "BackupEveryTuesdayForOneYear",
+      "task_type": "BACKUP",
+      "schedule": {
+        "job_type": "BACKUP",
+        "frequency": 1,
+        "period": "TUESDAY",
+        "time": "21:00"
+      },
+      "options": null,
+      "full_backup": true
+    },
+    {
+      "name": "testTask3",
+      "task_type": "MERGE",
+      "full_backup": null,
+      "schedule": {
+        "job_type": "MERGE",
+        "frequency": 4,
+        "period": "WEEKS",
+        "time": "22:00"
+      },
+      "options": {
+        "offset_start": 0,
+        "offset_end": 28
+      }
+    }
+    {
+      "name": "PruneEveryWeek",
+      "task_type": "PRUNE",
+      "schedule": {
+        "job_type": "PRUNE",
+        "frequency": 1,
+        "period": "WEEKS",
+        "time": "23:00"
+      },
+      "options": null,
+      "full_backup": true
+    }
+  ]
+}'
+
+Again, if the call is successful, `200 OK` is returned.
+
+## [](#see-also)See Also
+
+* An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md).
+* A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
+* Information on using the Backup Service REST API to include a defined plan in a repository-definition is provided in [Create a Repository](backup-create-repository.md).
+* For information on deleting plans, see [Delete a Plan](backup-delete-plan.md).
+* For information on scheduling pruning tasks, see [Schedule Pruning](../manage/manage-backup-and-restore/manage-backup-and-restore.md#schedule-backup-pruning).
+* For information on backup retention, see [Retain Backups](../manage/manage-backup-and-restore/manage-backup-and-restore.md#retain-backups).

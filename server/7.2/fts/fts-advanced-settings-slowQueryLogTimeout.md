@@ -1,0 +1,15 @@
+[View original HTML](/server/7.2/fts/fts-advanced-settings-slowQueryLogTimeout.html)
+
+The `slowQueryLogTimeout` setting controls the logging of the queries in the FTS server logs.
+
+The default value for the `slowQueryLogTimeout` setting is **5 seconds**.
+
+Every query for which the execution time is more than the value set in the `slowQueryLogTimeout` setting,will be logged in the FTS server logs and the slow-query server stats.
+
+## [](#example)Example
+
+```console
+curl -XPUT -H "Content-type:application/json" http://username:password@<ip>:8094/api/managerOptions \-d '{
+    "slowQueryLogTimeout": "10"
+}
+```

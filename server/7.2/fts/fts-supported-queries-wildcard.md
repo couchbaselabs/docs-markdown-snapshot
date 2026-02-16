@@ -1,0 +1,12 @@
+[View original HTML](/server/7.2/fts/fts-supported-queries-wildcard.html)
+
+A _wildcard_ query uses a wildcard expression, to search within individual terms for matches. Wildcard expressions can be any single character (`?`) or zero to many characters (`*`). Wildcard expressions can appear in the middle or end of a term, but not at the beginning. Please note that the wildcard query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
+
+```json
+{
+ "wildcard": "inter*",
+ "field": "reviews.content"
+}
+```
+
+A demonstration of a wildcard query using the Java SDK can be found in [Searching from the SDK](#3.2@java-sdk::full-text-searching-with-sdk.adoc).

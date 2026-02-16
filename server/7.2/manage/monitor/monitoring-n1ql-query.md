@@ -1,0 +1,2057 @@
+[View original HTML](/server/7.2/manage/monitor/monitoring-n1ql-query.html)
+
+> Monitoring and profiling SQL++ queries, query service engines, and corresponding system resources is very important for smoother operational performance and efficiency of the system. In fact, often it is vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
+
+System keyspaces provide various monitoring details and statistics about individual queries and query service. When running on a cluster with multiple query nodes, stats about all queries on all query nodes are collected in these system keyspaces.
+
+For example, this can help identify:
+
+* The top 10 slow or fast queries running on a particular query engine or the cluster.
+* Resource usage statistics of the query service, or resources used for a particular query.
+* Details about the active, completed, and prepared queries.
+* Find long running queries that are running for more than 2 minutes.
+
+These system keyspaces are like virtual keyspaces that are transient in nature, and are not persisted to disk or permanent storage. Hence, the information in the keyspaces pertains to the current instantiation of the query service. You can access the keyspaces using any of the following:
+
+* SQL++ language (from the cbq shell or Query Workbench)
+* REST API
+* Monitoring SDK
+
+|  | All the power of the SQL++ query language can be applied on the keyspaces to obtain various insights. |
+|  | ----------------------------------------------------------------------------------------------------- |
+
+The following diagnostics are provided:
+
+| System Catalogs     | [system:datastores](../../n1ql/n1ql-intro/sysinfo.md#querying-datastores) [system:namespaces](../../n1ql/n1ql-intro/sysinfo.md#querying-namespaces) [system:buckets](../../n1ql/n1ql-intro/sysinfo.md#querying-buckets) [system:scopes](../../n1ql/n1ql-intro/sysinfo.md#querying-scopes) [system:keyspaces](../../n1ql/n1ql-intro/sysinfo.md#querying-keyspaces) [system:indexes](../../n1ql/n1ql-intro/sysinfo.md#querying-indexes) [system:dual](../../n1ql/n1ql-intro/sysinfo.md#querying-dual) |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Monitoring Catalogs | [system:prepareds](#sys-prepared) [system:completed\_requests](#sys-completed-req) [system:active\_requests](#sys-active-req) [system:dictionary](#sys-dictionary) [system:dictionary\_cache](#sys-dictionary-cache) [system:functions](#sys-functions) [system:functions\_cache](#sys-functions-cache) [system:tasks\_cache](#sys-tasks-cache) [system:transactions](#sys-transactions)                                                                                                            |
+| Security Catalogs   | [system:my\_user\_info](#sys%5Fmy-user-info) [system:user\_info](#sys-user-info) [system:nodes](#sys-nodes) [system:applicable\_roles](#sys-app-roles)                                                                                                                                                                                                                                                                                                                                              |
+| Other               | [Vitals](#vitals) These are only available using REST APIs.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+
+## [](#authentication-and-client-privileges)Authentication and Client Privileges
+
+Client applications must be authenticated with sufficient privileges to access system keyspaces.
+
+* An Administrator user can access all system keyspaces, and can grant or revoke privileges to and from other users.
+* Other non-Administrator users must have explicitly granted privilege called **Query System Catalog** to access the restricted system keyspaces. For querying details of system keyspaces, see [Getting System Information](../../n1ql/n1ql-intro/sysinfo.md).
+* The following system keyspaces are considered _open_, that is, all users can access them without any special privileges:
+
+  * `system:dual`
+  * `system:datastores`
+  * `system:namespaces`
+
+## [](#query-monitoring-settings)Query Monitoring Settings
+
+The monitoring settings can be set for each query engine (using the REST API) or for each query statement (using the cbq command line tool). Both settings are actually set via REST endpoints: using the [Admin REST API](../../n1ql/n1ql-rest-api/admin.md) (`/admin/settings` endpoint) and the [Query REST API](../../n1ql/n1ql-rest-api/index.md) (`/query/service` endpoint).
+
+The cbq shell and Query Workbench use the Query REST API to set monitoring at the request level. The Query Workbench automatically enables the profiling and timings. It can be disabled using the **Preferences** option. For more information refer to the [Query Workbench](../../tools/query-workbench.md) section.
+
+Use the following query parameters to enable, disable, and control the monitoring capabilities, and the level of monitoring and profiling details for each query or globally at a query engine level:
+
+* profile
+* controls
+
+For more details and examples, refer to the [Query Settings](../../settings/query-settings.md) section.
+
+### [](#enabling-settings-for-a-query-engine)Enabling Settings for a Query Engine
+
+You can enable profile settings for each query engine. These examples use local host IP address and default port numbers. You need to provide correct credentials, IP address, and port details of your setup.
+
+1. Get the current query settings:  
+```sh  
+curl http://localhost:8093/admin/settings -u user:pword -o ./query_settings.json  
+```  
+```sh  
+cat  ./query_settings.json  
+```  
+```json  
+{  
+  "atrcollection": "",  
+  "auto-prepare": false,  
+  "cleanupclientattempts": true,  
+  "cleanuplostattempts": true,  
+  "cleanupwindow": "1m0s",  
+  "completed": {  
+    "aborted": null,  
+    "threshold": 1000  
+  },  
+  "completed-limit": 4000,  
+  "completed-threshold": 1000,  
+  "controls": false,  
+  "cpuprofile": "",  
+  "debug": false,  
+  "functions-limit": 16384,  
+  "keep-alive-length": 16384,  
+  "loglevel": "INFO",  
+  "max-index-api": 4,  
+  "max-parallelism": 1,  
+  "memory-quota": 0,  
+  "memprofile": "",  
+  "mutexprofile": false,  
+  "n1ql-feat-ctrl": 76,  
+  "numatrs": 1024,  
+  "pipeline-batch": 16,  
+  "pipeline-cap": 512,  
+  "plus-servicers": 16,  
+  "prepared-limit": 16384,  
+  "pretty": false,  
+  "profile": "off",  
+  "request-size-cap": 67108864,  
+  "scan-cap": 512,  
+  "servicers": 4,  
+  "timeout": 0,  
+  "txtimeout": "0s",  
+  "use-cbo": true  
+}  
+```
+2. Set current query settings profile:
+
+  1. To set the query settings saved in a file _./query\_settings.json_, enter the following query:  
+  ```sh  
+  curl http://localhost:8093/admin/settings -u user:pword \
+  -X POST \
+  -d@./query_settings.json  
+  ```
+  2. To explicitly specify the settings, enter the following query:  
+  ```sh  
+  curl http://localhost:8093/admin/settings -u user:pword \
+  -H 'Content-Type: application/json' \
+  -d '{"profile": "phases"}'  
+  ```
+3. Verify the settings are changed as specified:  
+```sh  
+curl http://localhost:8093/admin/settings -u user:pword  
+```  
+```json  
+{  
+  // ...  
+  "profile":"phases",  
+  "request-size-cap": 67108864,  
+  "scan-cap": 512,  
+  "servicers": 4,  
+  "timeout": 0,  
+  "txtimeout": "0s",  
+  "use-cbo": true  
+}  
+```
+
+### [](#enabling-settings-per-session-or-per-query)Enabling Settings per Session or per Query
+
+You can enable monitoring and profiling settings for each query statement. To set query settings using the cbq shell, use the `\SET` command:
+
+```sqlpp
+\set -profile "timings";
+\set;
+```
+
+```none
+ Query Parameters :
+ Parameter name : profile
+ Value : ["timings"]
+ ...
+```
+
+To set query settings using the REST API, specify the parameters in the request body:
+
+```sh
+curl http://localhost:8093/query/service -u user:pword \
+  -d 'profile=timings&statement=SELECT * FROM "world" AS hello'
+```
+
+## [](#monitor-profile-details)Monitoring and Profiling Details
+
+Couchbase Server provides detailed query monitoring and profiling information. The profiling and finer query execution timing details can be obtained for any query.
+
+### [](#profile)Attribute Profile in Query Response
+
+When profiling is enabled, a query response includes the profile attribute. The attribute details are as follows:
+
+__Table 1\. Attribute Details__
+| Attribute                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| phaseTimes — Cumulative execution times for various phases involved in the query execution, such as authorize, indexscan, fetch, parse, plan, run, etc. This value will be dynamic, depending on the documents processed by various phases up to this moment in time. A new query on system:active\_requests will return different values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | "phaseTimes": {   "authorize": "823.631µs",   "fetch": "656.873µs",   "indexScan": "29.146543ms",   "instantiate": "236.221µs",   "parse": "826.382µs",   "plan": "11.831101ms",   "run": "16.892181ms" }                                                                                                                                                                                                                                                                                                                                                           |
+| phaseCounts — Count of documents processed at selective phases involved in the query execution, such as authorize, indexscan, fetch, parse, plan, run, etc. This value will be dynamic, depending on the documents processed by various phases up to this moment in time. A new query on system:active\_requests will return different values.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | "phaseCounts": {   "fetch": 16,   "indexScan": 187 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| phaseOperators — Indicates the number of each kind of query operators involved in different phases of the query processing. For instance, this example, one non covering index path was taken, which involves 1 indexScan and 1 fetch operator. A join would have probably involved 2 fetches (1 per keyspace) A union select would have twice as many operator counts (1 per each branch of the union). This is in essence the count of all the operators in the executionTimings field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | "phaseOperators": {   "authorize": 1,   "fetch": 1,   "indexScan": 2 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| executionTimings — The execution details such as kernel and service execution times, number of documents processed at each query operator in each phase, and number of phase switches, for various phases involved in the query execution. The following statistics are collected for each operator: #operator Name of the operator. #stats These values will be dynamic, depending on the documents processed by various phases up to this moment in time. A new query on system:active\_requests will return different values. #itemsIn Number of input documents to the operator. #itemsOut Number of output documents after the operator processing. #phaseSwitches Number of switches between executing, waiting for services, or waiting for the goroutine scheduler. execTime Time spent executing the operator code inside SQL++ query engine. kernTime Time spent waiting to be scheduled for CPU time. servTime Time spent waiting for another service, such as index or data. For index scan, it is time spent waiting for GSI/indexer. For fetch, it is time spent waiting on the KV store. | "executionTimings": {   // …   \[{     "#operator": "Fetch",     "#stats": {       "#itemsIn": 187,       "#itemsOut": 16,       "#phaseSwitches": 413,       "execTime": "128.434µs",       "kernTime": "15.027879ms",       "servTime": "1.590934ms",       "state": "services"     },     "keyspace": "travel-sample",     "namespace": "default"   },   {     "#operator": "IntersectScan",     "#stats": {     "#itemsIn": 187,     "#itemsOut": 187,     "#phaseSwitches": 749,     "execTime": "449.944µs",     "kernTime": "14.625524ms"     }   // …   \]} |
+
+These statistics (`kernTime`, `servTime`, and `execTime`) can be very helpful in troubleshooting query performance issues, such as:
+
+* A high `servTime` for a low number of items processed is an indication that the indexer or KV store is stressed.
+* A high `kernTime` means there is a downstream issue in the query plan or the query server having many requests to process (so the scheduled waiting time will be more for CPU time).
+
+Example 1\. Phases Profile
+
+The cbq engine must be started with authorization, for example:
+
+```sh
+./cbq -engine=http://localhost:8091/ -u Administrator -p pword
+```
+
+Using the cbq shell, show the statistics collected when the `profile` is set to `phases`:
+
+```sqlpp
+\set -profile "phases";
+SELECT * FROM `travel-sample`.inventory.airline LIMIT 1;
+```
+
+```json
+{
+  "requestID": "06d6c1c2-1a8a-4989-a856-7314f9eddee5",
+  "signature": {
+    "*": "*"
+  },
+  "results": [
+    {
+      "airline": {
+        "callsign": "MILE-AIR",
+        "country": "United States",
+        "iata": "Q5",
+        "icao": "MLA",
+        "id": 10,
+        "name": "40-Mile Air",
+        "type": "airline"
+      }
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "12.77927ms",
+    "executionTime": "12.570648ms",
+    "resultCount": 1,
+    "resultSize": 254,
+    "serviceLoad": 12
+  },
+  "profile": {
+    "phaseTimes": {
+      "authorize": "19.629µs",
+      "fetch": "401.997µs",
+      "instantiate": "147.686µs",
+      "parse": "4.545234ms",
+      "plan": "409.364µs",
+      "primaryScan": "6.103775ms",
+      "run": "6.699056ms"
+    },
+    "phaseCounts": {
+      "fetch": 1,
+      "primaryScan": 1
+    },
+    "phaseOperators": {
+      "authorize": 1,
+      "fetch": 1,
+      "primaryScan": 1
+    },
+    "requestTime": "2021-04-30T18:37:56.394Z",
+    "servicingHost": "127.0.0.1:8091"
+  }
+}
+```
+
+Example 2\. Timings Profile
+
+Using the cbq shell, show the statistics collected when `profile` is set to `timings`:
+
+```sqlpp
+\set -profile "timings";
+SELECT * FROM `travel-sample`.inventory.airline LIMIT 1;
+```
+
+```json
+{
+  "requestID": "268a1240-6864-43a2-af13-ccb8d1e50abf",
+  "signature": {
+    "*": "*"
+  },
+  "results": [
+    {
+      "airline": {
+        "callsign": "MILE-AIR",
+        "country": "United States",
+        "iata": "Q5",
+        "icao": "MLA",
+        "id": 10,
+        "name": "40-Mile Air",
+        "type": "airline"
+      }
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "2.915245ms",
+    "executionTime": "2.755355ms",
+    "resultCount": 1,
+    "resultSize": 254,
+    "serviceLoad": 12
+  },
+  "profile": {
+    "phaseTimes": {
+      "authorize": "18.096µs",
+      "fetch": "388.122µs",
+      "instantiate": "31.702µs",
+      "parse": "646.157µs",
+      "plan": "120.427µs",
+      "primaryScan": "1.402918ms",
+      "run": "1.936852ms"
+    },
+    "phaseCounts": {
+      "fetch": 1,
+      "primaryScan": 1
+    },
+    "phaseOperators": {
+      "authorize": 1,
+      "fetch": 1,
+      "primaryScan": 1
+    },
+    "requestTime": "2021-04-30T18:40:13.239Z",
+    "servicingHost": "127.0.0.1:8091",
+    "executionTimings": {
+      "#operator": "Authorize",
+      "#stats": {
+        "#phaseSwitches": 4,
+        "execTime": "1.084µs",
+        "servTime": "17.012µs"
+      },
+      "privileges": {
+        "List": [
+          {
+            "Target": "default:travel-sample.inventory.airline",
+            "Priv": 7,
+            "Props": 0
+          }
+        ]
+      },
+      "~child": {
+        "#operator": "Sequence",
+        "#stats": {
+          "#phaseSwitches": 1,
+          "execTime": "2.474µs"
+        },
+        "~children": [
+          {
+            "#operator": "PrimaryScan3",
+            "#stats": {
+              "#itemsOut": 1,
+              "#phaseSwitches": 7,
+              "execTime": "18.584µs",
+              "kernTime": "8.869µs",
+              "servTime": "1.384334ms"
+            },
+            "bucket": "travel-sample",
+            "index": "def_inventory_airline_primary",
+            "index_projection": {
+              "primary_key": true
+            },
+            "keyspace": "airline",
+            "limit": "1",
+            "namespace": "default",
+            "scope": "inventory",
+            "using": "gsi"
+          },
+          {
+            "#operator": "Fetch",
+            "#stats": {
+              "#itemsIn": 1,
+              "#itemsOut": 1,
+              "#phaseSwitches": 10,
+              "execTime": "25.64µs",
+              "kernTime": "1.427752ms",
+              "servTime": "362.482µs"
+            },
+            "bucket": "travel-sample",
+            "keyspace": "airline",
+            "namespace": "default",
+            "scope": "inventory"
+          },
+          {
+            "#operator": "InitialProject",
+            "#stats": {
+              "#itemsIn": 1,
+              "#itemsOut": 1,
+              "#phaseSwitches": 9,
+              "execTime": "6.006µs",
+              "kernTime": "1.825917ms"
+            },
+            "result_terms": [
+              {
+                "expr": "self",
+                "star": true
+              }
+            ]
+          },
+          {
+            "#operator": "Limit",
+            "#stats": {
+              "#itemsIn": 1,
+              "#itemsOut": 1,
+              "#phaseSwitches": 4,
+              "execTime": "2.409µs",
+              "kernTime": "2.094µs"
+            },
+            "expr": "1"
+          },
+          {
+            "#operator": "Stream",
+            "#stats": {
+              "#itemsIn": 1,
+              "#itemsOut": 1,
+              "#phaseSwitches": 6,
+              "execTime": "46.964µs",
+              "kernTime": "1.844828ms"
+            }
+          }
+        ]
+      },
+      "~versions": [
+        "7.0.0-N1QL",
+        "7.0.0-4960-enterprise"
+      ]
+    }
+  }
+}
+```
+
+### [](#plan)Attribute Meta in System Keyspaces
+
+The `meta().plan` virtual attribute captures the whole query plan, and monitoring stats of various phases and involved query operators. The `meta().plan` must be explicitly called in the SELECT query projection list.
+
+The `meta().plan` attribute is enabled only for individual requests that are running (`active_requests`) or completed (`completed_requests`) when the profile is set to timings (`profile ="timings"`) for each individual request. If at the engine level, the profile is set to off and individual requests have been run with `profile ="timings"`, then the system keyspaces will return the plan only for those requests.
+
+Since there may be a combination of profile settings for all of the requests reported by the system keyspaces, not all requests returned will have a `meta().plan` attachment.
+
+|  | For the system:prepareds requests, the meta().plan is available at all times since the PREPARE statement is not dependant on the profile setting. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This attribute is enabled for the following system keyspaces:
+
+* [system:active\_requests](#sys-active-req)
+* [system:prepareds](#sys-prepared)
+* [system:completed\_requests](#sys-completed-req)
+
+For a detailed example, see [Example 5](#example-2).
+
+## [](#sql-cluster-monitoring)SQL++ Cluster Monitoring
+
+### [](#description)Description
+
+Couchbase Server allows you to monitor many aspects of an active cluster: cluster-aware operations, diagnostics, and more system keyspaces features that cover multiple nodes. Functionalities include:
+
+* Ability to access active / completed / prepared requests across all SQL++ nodes from SQL++.
+* Ability to list nodes by type and with status from SQL++.
+* Ability to list system keyspaces from `system:keyspaces`.
+* Extra fields in `system:active_requests` and `system:completed_requests`.
+* Counters to keep track of specific requests, such as cancelled requests.
+* Killing request for CREATE INDEX.
+
+### [](#system-keyspaces)System Keyspaces
+
+* The `system:keyspaces` keyspace can be augmented to list system keyspaces with a static map. The small disadvantage of this is that it has to be maintained as new system keyspaces are added.
+* The `system:active_requests` and `system:completed_requests` keyspaces can report scan consistency.
+* The `system:prepareds` keyspace can list min and max execution and service times, as well as average times.
+
+### [](#cbq-engine-cbauth)cbq-engine-cbauth
+
+`cbq-engine-cbauth` is an internal user that the query service uses to allow Query Workbench clients to query across multiple query nodes.
+
+Since Query Workbench can connect to the same node only when cbq-engine is running, Query Workbench cannot do any query-clustered operations.
+
+To get around this block, once the Query Workbench clients connect to a query node, this internal user (cbq-engine-cbauth) will be used to do any further inter-node user verification.
+
+## [](#vitals)Vitals
+
+The `Vitals` API provides data about the running state and health of the query engine, such as number of logical cores, active threads, queued threads, CPU utilization, memory usage, network utilization, garbage collection percentage, and so on. This information can be very useful to assess the current workload and performance characteristics of a query engine, and hence load-balance the requests being sent to various query engines.
+
+For field names and meanings, refer to [Vitals](../../n1ql/n1ql-rest-api/admin.md#%5Fvitals).
+
+### [](#get-system-vitals)Get System Vitals
+
+```sh
+curl -u Administrator:pword http://localhost:8093/admin/vitals
+```
+
+```json
+{
+  "uptime": "7h39m32.668577197s",
+  "local.time": "2021-04-30 18:42:39.517208807 +0000 UTC m=+27573.945319668",
+  "version": "7.0.0-N1QL",
+  "total.threads": 191,
+  "cores": 2,
+  "gc.num": 669810600,
+  "gc.pause.time": "57.586373ms",
+  "gc.pause.percent": 0,
+  "memory.usage": 247985184,
+  "memory.total": 11132383704,
+  "memory.system": 495554808,
+  "cpu.user.percent": 0,
+  "cpu.sys.percent": 0,
+  "request.completed.count": 140,
+  "request.active.count": 0,
+  "request.per.sec.1min": 0.0018,
+  "request.per.sec.5min": 0.0055,
+  "request.per.sec.15min": 0.0033,
+  "request_time.mean": "536.348163ms",
+  "request_time.median": "54.065567ms",
+  "request_time.80percentile": "981.869933ms",
+  "request_time.95percentile": "2.543128455s",
+  "request_time.99percentile": "4.627922799s",
+  "request.prepared.percent": 0
+}
+```
+
+## [](#sys-active-req)system:active\_requests
+
+This catalog lists all currently executing active requests or queries.
+
+For field names and meanings, refer to [Requests](../../n1ql/n1ql-rest-api/admin.md#%5Frequests). The profile related attributes are described in the section [Attribute profile in Query Response.](#profile)
+
+### [](#sys-active-get)Get Active Requests
+
+To view active requests with Admin REST API:
+
+```sh
+curl -u Administrator:pword http://localhost:8093/admin/active_requests
+```
+
+To view active requests with SQL++, including the query plan:
+
+```sqlpp
+SELECT *, meta().plan FROM system:active_requests;
+```
+
+### [](#sys-active-delete)Terminate an Active Request
+
+The DELETE command can be used to terminate an active request, for instance, a non-responding or a long-running query.
+
+To terminate an active request `uuid` with the Admin REST API:
+
+```sh
+curl -u Administrator:pword -X DELETE http://localhost:8093/admin/active_requests/uuid
+```
+
+To terminate an active request `uuid` with SQL++:
+
+```sqlpp
+DELETE FROM system:active_requests WHERE requestId = "uuid";
+```
+
+### [](#sys-active-examples)Examples
+
+Example 3\. Get Active
+
+```sqlpp
+SELECT *, meta().plan FROM system:active_requests;
+```
+
+```json
+[
+  {
+    "active_requests": {
+      "clientContextID": "81984707-a9cd-4b78-9110-d130eb580d7f",
+      "elapsedTime": "65.543946ms",
+      "executionTime": "65.507111ms",
+      "node": "127.0.0.1:8091",
+      "phaseCounts": {
+        "primaryScan": 1
+      },
+      "phaseOperators": {
+        "authorize": 1,
+        "fetch": 1,
+        "primaryScan": 1
+      },
+      "phaseTimes": {
+        "authorize": "2.361862ms",
+        "fetch": "7.222µs",
+        "instantiate": "13.233µs",
+        "parse": "660.048µs",
+        "plan": "52.877µs",
+        "primaryScan": "41.125271ms"
+      },
+      "remoteAddr": "127.0.0.1:57065",
+      "requestId": "27e73286-c6cc-4c26-8977-ef8d68e91c8f",
+      "requestTime": "2019-05-06 09:08:42.431161361 -0700 PDT m=+6976.301141271",
+      "scanConsistency": "unbounded",
+      "state": "running",
+      "statement": "SELECT *, meta().plan FROM system:active_requests;",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:66.0) Gecko/20100101 Firefox/66.0 (Couchbase Query Workbench (6.5.0-2859-enterprise))",
+      "users": "Administrator"
+    },
+    "plan": { (1)
+      "#operator": "Sequence",
+      "#stats": {
+        "#phaseSwitches": 1,
+        "execTime": "1.661µs"
+      },
+      "~children": [
+        {
+          "#operator": "Authorize",
+          "#stats": {
+            "#phaseSwitches": 3,
+            "execTime": "4.844µs",
+            "servTime": "2.357018ms"
+          },
+          // ...
+        }
+      ]
+    },
+    "plan": {
+      "#operator": "Sequence",
+      "#stats": {
+        "#phaseSwitches": 1,
+        "execTime": "1.661µs"
+      },
+      "~children": [
+        {
+          "#operator": "Authorize",
+          "#stats": {
+            "#phaseSwitches": 3,
+            "execTime": "4.844µs",
+            "servTime": "2.357018ms"
+          },
+          "privileges": {
+            "List": [
+              {
+                "Priv": 4,
+                "Target": "#system:active_requests"
+              }
+            ]
+          },
+          "~child": {
+            "#operator": "Sequence",
+            "#stats": {
+              "#phaseSwitches": 1,
+              "execTime": "2.71µs"
+            },
+            "~children": [
+              {
+                "#operator": "PrimaryScan",
+                "#stats": {
+                  "#itemsOut": 1,
+                  "#phaseSwitches": 7,
+                  "execTime": "22.314µs",
+                  "kernTime": "2.13µs",
+                  "servTime": "41.102957ms"
+                },
+                "index": "#primary",
+                "keyspace": "active_requests",
+                "namespace": "#system",
+                "using": "system"
+              },
+              {
+                "#operator": "Fetch",
+                "#stats": {
+                  "#itemsIn": 1,
+                  "#phaseSwitches": 5,
+                  "execTime": "7.222µs",
+                  "kernTime": "41.130913ms",
+                  "servTime": "22.888285ms",
+                  "state": "services"
+                },
+                "keyspace": "active_requests",
+                "namespace": "#system"
+              },
+              {
+                "#operator": "Sequence",
+                "#stats": {
+                  "#phaseSwitches": 1,
+                  "execTime": "1.544µs"
+                },
+                "~children": [
+                  {
+                    "#operator": "InitialProject",
+                    "#stats": {
+                      "#phaseSwitches": 1,
+                      "execTime": "980ns",
+                      "kernTime": "64.066618ms",
+                      "state": "kernel"
+                    },
+                    "result_terms": [
+                      {
+                        "expr": "self",
+                        "star": true
+                      },
+                      {
+                        "expr": "(meta(`active_requests`).`plan`)"
+                      }
+                    ]
+                  },
+                  {
+                    "#operator": "FinalProject",
+                    "#stats": {
+                      "#phaseSwitches": 1,
+                      "execTime": "827ns"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "#operator": "Stream",
+          "#stats": {
+            "#phaseSwitches": 1,
+            "execTime": "1.29µs",
+            "kernTime": "66.511806ms",
+            "state": "kernel"
+          }
+        }
+      ],
+      "~versions": [
+        "2.0.0-N1QL",
+        "6.5.0-2859-enterprise"
+      ]
+    }
+  }
+]
+```
+
+| **1** | The **plan** section contains a tree of operators that combine to execute the SQL++ query. The root operator is a Sequence, which itself has a collection of child operators like Authorize, PrimaryScan, Fetch, and possibly even more Sequences. |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#sys-prepared)system:prepareds
+
+This catalog provides data about the known prepared statements and their state in a query engine’s prepared statement cache. For each prepared statement, this catalog provides information such as name, statement, query plan, last use time, number of uses, and so on.
+
+For field names and meanings, refer to [Statements](../../n1ql/n1ql-rest-api/admin.md#%5Fstatements). The `system:prepareds` catalog returns all the properties that the SQL++ Admin REST API would return for a specific prepared statement. In addition, the `system:prepareds` catalog also returns the following properties.
+
+| Name                     | Description                                                                                                  | Schema |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------ | ------ |
+| **node** _required_      | The node on which the prepared statement is stored.                                                          | string |
+| **namespace** _required_ | The namespace in which the prepared statement is stored. Currently, only the default namespace is available. | string |
+
+A prepared statement is created and stored relative to the current [query context](../../n1ql/n1ql-intro/queriesandresults.md#query-context). You can create multiple prepared statements with the same name, each stored relative to a different query context. This enables you to run multiple instances of the same application against different datasets.
+
+When there are multiple prepared statements with the same name in different query contexts, the name of the prepared statement in the `system:prepareds` catalog includes the associated query context in brackets.
+
+### [](#sys-prepared-get)Get Prepared Statements
+
+To get a list of all known prepared statements, you can use the Admin REST API or a SQL++ query:
+
+```sh
+curl -u Administrator:pword http://localhost:8093/admin/prepareds
+```
+
+```sqlpp
+SELECT * FROM system:prepareds;
+```
+
+To get information about a specific prepared statement `example1`, you can use the Admin REST API or a SQL++ query:
+
+```sh
+curl -u Administrator:pword http://localhost:8093/admin/prepareds/example1
+```
+
+```sqlpp
+SELECT * FROM system:prepareds WHERE name = "example1";
+```
+
+### [](#sys-prepared-delete)Delete Prepared Statements
+
+To delete a specific prepared statement `p1`, you can use the Admin REST API or a SQL++ query:
+
+```sh
+curl -u Administrator:pword -X DELETE http://localhost:8093/admin/prepareds/p1
+```
+
+```sqlpp
+DELETE FROM system:prepareds WHERE name = "p1";
+```
+
+To delete all the known prepared statements, you must use a SQL++ query:
+
+```sqlpp
+DELETE FROM system:prepareds;
+```
+
+### [](#sys-prepared-examples)Examples
+
+Example 4\. Get Prepared
+
+Prepared statement with default query context — using cbq
+
+```sqlpp
+\UNSET -query_context;
+PREPARE p1 AS SELECT * FROM `travel-sample`.inventory.airline WHERE iata = "U2";
+```
+
+```json
+{
+  "requestID": "64069886-eb17-4fa6-8cc8-e60ebe93d97c",
+  "signature": "json",
+  "results": [
+    {
+      "encoded_plan": "H4sIAAAAAAAA/wEAAP//AAAAAAAAAAA=",
+      "featureControls": 76,
+      "indexApiVersion": 4,
+      "indexScanKeyspaces": {
+        "default:travel-sample.inventory.airline": false
+      },
+      "name": "[127.0.0.1:8091]p1",
+      "namespace": "default",
+      "operator": {
+        "#operator": "Authorize",
+        "privileges": {
+          "List": [
+            {
+              "Priv": 7,
+              "Props": 0,
+              "Target": "default:travel-sample.inventory.airline"
+            }
+          ]
+        },
+        "~child": {
+          "#operator": "Sequence",
+          "~children": [
+            {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "PrimaryScan3",
+                  "bucket": "travel-sample",
+                  "index": "def_inventory_airline_primary",
+                  "index_projection": {
+                    "primary_key": true
+                  },
+                  "keyspace": "airline",
+                  "namespace": "default",
+                  "scope": "inventory",
+                  "using": "gsi"
+                },
+                {
+                  "#operator": "Fetch",
+                  "bucket": "travel-sample",
+                  "keyspace": "airline",
+                  "namespace": "default",
+                  "scope": "inventory"
+                },
+                {
+                  "#operator": "Parallel",
+                  "~child": {
+                    "#operator": "Sequence",
+                    "~children": [
+                      {
+                        "#operator": "Filter",
+                        "condition": "((`airline`.`iata`) = \"U2\")"
+                      },
+                      {
+                        "#operator": "InitialProject",
+                        "result_terms": [
+                          {
+                            "expr": "self",
+                            "star": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "#operator": "Stream"
+            }
+          ]
+        }
+      },
+      "queryContext": "",
+      "reqType": "SELECT",
+      "signature": {
+        "*": "*"
+      },
+      "text": "PREPARE p1 AS SELECT * FROM `travel-sample`.inventory.airline WHERE iata = \"U2\";",
+      "useCBO": true
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "105.814848ms",
+    "executionTime": "105.648798ms",
+    "resultCount": 1,
+    "resultSize": 3301,
+    "serviceLoad": 12
+  }
+}
+```
+
+Prepared statement with specified query context — using cbq
+
+```sqlpp
+\SET -query_context travel-sample.inventory;
+PREPARE p1 AS SELECT * FROM airline WHERE iata = "U2";
+```
+
+```json
+{
+  "requestID": "1c90603e-5e42-42b4-9362-4fc96bf895ac",
+  "signature": "json",
+  "results": [
+    {
+      "encoded_plan": "H4sIAAAAAAAA/wEAAP//AAAAAAAAAAA=",
+      "featureControls": 76,
+      "indexApiVersion": 4,
+      "indexScanKeyspaces": {
+        "default:travel-sample.inventory.airline": false
+      },
+      "name": "[127.0.0.1:8091]p1",
+      "namespace": "default",
+      "operator": {
+        "#operator": "Authorize",
+        "privileges": {
+          "List": [
+            {
+              "Priv": 7,
+              "Props": 0,
+              "Target": "default:travel-sample.inventory.airline"
+            }
+          ]
+        },
+        "~child": {
+          "#operator": "Sequence",
+          "~children": [
+            {
+              "#operator": "Sequence",
+              "~children": [
+                {
+                  "#operator": "PrimaryScan3",
+                  "bucket": "travel-sample",
+                  "index": "def_inventory_airline_primary",
+                  "index_projection": {
+                    "primary_key": true
+                  },
+                  "keyspace": "airline",
+                  "namespace": "default",
+                  "scope": "inventory",
+                  "using": "gsi"
+                },
+                {
+                  "#operator": "Fetch",
+                  "bucket": "travel-sample",
+                  "keyspace": "airline",
+                  "namespace": "default",
+                  "scope": "inventory"
+                },
+                {
+                  "#operator": "Parallel",
+                  "~child": {
+                    "#operator": "Sequence",
+                    "~children": [
+                      {
+                        "#operator": "Filter",
+                        "condition": "((`airline`.`iata`) = \"U2\")"
+                      },
+                      {
+                        "#operator": "InitialProject",
+                        "result_terms": [
+                          {
+                            "expr": "self",
+                            "star": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "#operator": "Stream"
+            }
+          ]
+        }
+      },
+      "queryContext": "travel-sample.inventory",
+      "reqType": "SELECT",
+      "signature": {
+        "*": "*"
+      },
+      "text": "PREPARE p1 AS SELECT * FROM airline WHERE iata = \"U2\";",
+      "useCBO": true
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "17.476424ms",
+    "executionTime": "17.187836ms",
+    "resultCount": 1,
+    "resultSize": 3298,
+    "serviceLoad": 12
+  }
+}
+```
+
+List prepared statements
+
+```sqlpp
+SELECT *, meta().plan FROM system:prepareds;
+```
+
+```json
+{
+  "requestID": "d976e59a-d74e-4350-b0df-fa137099d594",
+  "signature": {
+    "*": "*",
+    "plan": "json"
+  },
+  "results": [
+    {
+      "plan": {
+        // ...
+      },
+      "prepareds": {
+        "encoded_plan": "H4sIAAAAAAAA/6RTUW/TPBT9K9H5XrbJ30QBMcmIhzJ1AjG0qh3wwKbEJLedmWt71061UIXfjpxkndYhENpbYt97z7nn+GxAtnQVVbk3ykICAgtSsWY6djayMwHy6JWAthXdjr3+TBy0s5Avh7N5qewHaoJXJQXIDSpaqNpEGVmtyfwf1MobOtR2TTY6bg6VZqMtQS6UCdQKWLUiSPgR+u9uFOTdIAg4T6yi4zT+v/sfjOt45Vj/IAh41mttaNmTONUhQn7d4FzxkuL9tL/SEpiyXkMepQ/nA+Sz9rIV+FleaVPtMpjTTU22TG19AZPtcP+5aMp6pbhJcr6AwLe6vO54P+CLQfR+n3zLPh/Y576fcleXe3bfqYydYxsMt/k1NZCR66T+9eAdJO4l+L0NoXQ+nWxhIVAHbZeQWAaNVjxc6YRiefWnXZ6EvYs2VayMIYMneXWiTSSGQOlspXvhsLdXDPyKw0KrqIr97E12gU/PL7D/iMh7q6NWZtpLDwGmUJuYR+JV6ADp1qfCQGaRVouKBzsu28s2vbYd4pFJrZDuBFJOtyE8Go0EbmriJqWVbmOfYKab86aTaz45nRyfJxC9tF2skyoHkDhAKzC0TGeT6Xg2yfwoG8+zvic7yE5mZx+z4oFpxePEZF/eTWaTLMmyFeV19zLo+O3ZsNivAAAA//+q+jhuaAQAAA==",
+        "featuresControl": 76,
+        "indexApiVersion": 4,
+        "indexScanKeyspaces": {
+          "default:travel-sample.inventory.airline": false
+        },
+        "name": "p1", (1)
+        "namespace": "default",
+        "node": "127.0.0.1:8091",
+        "statement": "PREPARE p1 AS SELECT * FROM `travel-sample`.inventory.airline WHERE iata = \"U2\";",
+        "uses": 0
+      }
+    },
+    {
+      "plan": {
+        // ...
+      },
+      "prepareds": {
+        "encoded_plan": "H4sIAAAAAAAA/6STT28TMRDFv8rqcWkrExFAVDLiEKpUIIoaJQUOtNqY3Ulq6tju2Bt1iZbPjry7TWmKQKg3/xnPvPk9zwZkC1dSmXujLCQgsCAVK6YjZyM7EyAPXwloW9LNyOvPxEE7C/myP5sVyn6gOnhVUIDcoKSFqkyUkdWazNOgVt7QQNs12ei4HijNRluCXCgTqBGwakWQ8EN06zYV5G0iCDhPrKLjlP7J3QajKl461j8IAp71WhtadiJOdIiQXzc4U7ykeJftn7IEJqzXkIdp4XyAfNZcNAI/i0ttyl0FM7quyBbpWRfAZNu6/x00Yb1SXCecLyDwrSquWt339KKH3vWTb9Xnvfrcd1lu43LP7jsVsXVsg/42v6IaMnKV6F/13kHiDsGfbQiF8+lkWxYCVdB2CYll0GjE/ZaOKRaXf+vlUbV3q00UK2PI4FFeHWsTiSFQOFvqDhz29ua9vvlgrlVU8/3sTXaOT8/Psf9AyHuro1Zm0qGHAFOoTMwj8Sq0BenGp8BAZpFai4p7Oy6aiyb9th3hkUmtkO4E0pxuh/BwOBS4rojrNK108wDy4HevmK7P6pbibHwyPjpLtfXSttOeYB1A4gCNQJ9pMh1PRtNx5ofZaJZ1b7KD7Hh6+jHreWRf3o2n4ywx2RJ53X4LOnp72nf1KwAA////9+bsZQQAAA==",
+        "featuresControl": 76,
+        "indexApiVersion": 4,
+        "indexScanKeyspaces": {
+          "default:travel-sample.inventory.airline": false
+        },
+        "name": "p1(travel-sample.inventory)", (2)
+        "namespace": "default",
+        "node": "127.0.0.1:8091",
+        "statement": "PREPARE p1 AS SELECT * FROM airline WHERE iata = \"U2\";",
+        "uses": 0
+      }
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "25.323496ms",
+    "executionTime": "25.173646ms",
+    "resultCount": 2,
+    "resultSize": 7891,
+    "serviceLoad": 12
+  }
+}
+```
+
+Note that the names of the prepared statements are identical, but they are associated with different query contexts.
+
+| **1** | The name of the prepared statement for the default query context        |
+| ----- | ----------------------------------------------------------------------- |
+| **2** | The name of the prepared statement showing the associated query context |
+
+## [](#sys-completed-req)system:completed\_requests
+
+By default, this catalog maintains a list of the most recent completed requests that have run longer than a predefined threshold of time. (You can also log completed requests that meet other conditions that you define.)
+
+For each completed request, this catalog maintains information such as requestId, statement text, prepared name (if prepared statement), request time, service time, and so on. This information provides a general insight into the health and performance of the query engine and the cluster.
+
+For field names and meanings, refer to [Requests](../../n1ql/n1ql-rest-api/admin.md#%5Frequests). Most field names and meanings match exactly those of `system:active_requests`.
+
+Note that the `completed` state means that the request was started and completed by the Query service, but it does not mean that it was necessarily successful. The request could have been successful, or completed with errors.
+
+To find requests that completed successfully, search for completed requests whose `state` is `completed` and whose `errorCount` field has the value `0`.
+
+|  | Request profiling affects the system:completed\_requests keyspace in the following ways: When the feature is turned on, completed requests are stored with their execution plan. Profiling information is likely to use 100KB+ per entry. Due to the added overhead of running both profiling and logging, we recommend turning on both of them only when needed. Running only one of them continuously has no noticeable affect on performance. Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#sys-completed-get)Get Completed Requests
+
+To get a list of all logged completed requests using the Admin REST API:
+
+```sh
+curl -u Administrator:pword http://localhost:8093/admin/completed_requests
+```
+
+To get a list of all logged completed requests using SQL++, including the query plan:
+
+```sqlpp
+SELECT *, meta().plan FROM system:completed_requests;
+```
+
+To get a list of all logged completed requests using SQL++, including only successful requests:
+
+```sqlpp
+SELECT * FROM system:completed_requests
+WHERE state = "completed" AND errorCount = 0;
+```
+
+### [](#sys-completed-delete)Purge the Completed Requests
+
+To purge a completed request `uuid` with the Admin REST API:
+
+```sh
+curl -u Administrator:pword -X DELETE http://localhost:8093/admin/completed_requests/uuid
+```
+
+To purge a completed request `uuid` with SQL++:
+
+```sqlpp
+DELETE FROM system:completed_requests WHERE requestId = "uuid";
+```
+
+To purge the completed requests for a given time period, use:
+
+```sqlpp
+DELETE FROM system:completed_requests WHERE requestTime LIKE "2015-09-09%";
+```
+
+### [](#sys-completed-config)Configure the Completed Requests
+
+You can configure the `system:completed_requests` keyspace by specifying parameters through the Admin API settings endpoint.
+
+In Couchbase Server 6.5 and later, you can specify the conditions for completed request logging using the `completed` field.
+
+This field takes a JSON object containing the names and values of logging qualifiers. Completed requests that meet the defined qualifiers are logged.
+
+```sh
+curl http://localhost:8093/admin/settings -u Administrator:password \
+  -H 'Content-Type: application/json' \
+  -d '{"completed": {"user": "marco", "error": 12003}}'
+```
+
+#### [](#logging-qualifiers)Logging Qualifiers
+
+You can specify the following logging qualifiers. A completed request is logged if _any_ of the qualifiers are met (logical OR).
+
+| threshold | The execution time threshold in milliseconds.  |
+| --------- | ---------------------------------------------- |
+| aborted   | Whether to log requests that generate a panic. |
+| error     | Log requests returning this error number.      |
+| client    | Log requests from this IP address.             |
+| user      | Log requests with this user name.              |
+| context   | Log requests with this client context ID.      |
+
+For full details, refer to [Logging parameters](../../n1ql/n1ql-rest-api/admin.md#%5Flogging%5Fparameters).
+
+The basic syntax adds a qualifier to the logging parameters, i.e. any existing qualifiers are not removed. You can change the value of a logging qualifier by specifying the same qualifier again with a new value.
+
+To add a new instance of an existing qualifier, use a plus sign (`+`) before the qualifier name, e.g. `+user`. To remove a qualifier, use a minus sign (`-`) before the qualifier name, e.g. `-user`.
+
+For example, the following request will add user `simon` to those tracked, and remove error `12003`.
+
+```sh
+curl http://localhost:8093/admin/settings -u Administrator:password \
+  -H 'Content-Type: application/json' \
+  -d '{"completed": {"+user": "simon", "-error": 12003}}'
+```
+
+Similarly, you could remove all logging by execution time with the following request, as long as the value matches the existing threshold.
+
+```sh
+curl http://localhost:8093/admin/settings -u Administrator:password \
+  -H 'Content-Type: application/json' \
+  -d '{"completed": {"-threshold": 1000}}'
+```
+
+#### [](#tagged-sets)Tagged Sets
+
+You can also specify qualifiers that have to be met as a group for the completed request to be logged (logical AND).
+
+To do this, specify the `tag` field along with a set of qualifiers, like so:
+
+```sh
+curl http://localhost:8093/admin/settings -u Administrator:password \
+  -H 'Content-Type: application/json' \
+  -d '{"completed": {"user": "marco", "error": 12003, "tag": "both_user_and_error"}}'
+```
+
+In this case, the request will be logged when both user and error match.
+
+The tag name can be any string that is meaningful and unique. Requests that match a tagged set of conditions are logged with a field `~tag`, which is set to the name of the tag.
+
+To add a qualifier to a tagged set, specify the tag name again along with the new qualifier:
+
+```sh
+curl http://localhost:8093/admin/settings -u Administrator:password \
+  -H 'Content-Type: application/json' \
+  -d '{"completed": {"client": "172.1.2.3", "tag": "both_user_and_error"}}'
+```
+
+You cannot add a new instance of an existing qualifier to a tagged set using a plus sign (`+`) before the qualifier name. For example, you cannot add a `user` qualifier to a tagged set that already contains a `user` qualifier. If you need to track two users with the same error, create two tagged sets, one per user.
+
+You can remove a qualifier from a tagged set using a minus sign (`-`) before the qualifier name, e.g. `-user`. When you remove the last qualifier from a tagged set, the tagged set is removed.
+
+|  | You can specify multiple tagged sets. In this case, completed requests are logged if they match all of the qualifiers in any of the tagged sets. You can also specify a mixture of tagged sets and individual qualifiers. In this case, completed requests are logged if they match any of the individual qualifiers, or all of the qualifiers in any of the tagged sets. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#completed-threshold)Completed Threshold
+
+The `completed-threshold` field provides another way of specifying the `threshold` qualifier within the `completed` field.
+
+This field sets the minimum request duration after which requests are added to the `system:completed_requests` catalog. The default value is 1000ms. Specify `0` to log all requests and `-1` to not log any requests to the keyspace.
+
+To specify a different value, use:
+
+```sh
+curl http://localhost:port/admin/settings -u user:pword \
+  -H 'Content-Type: application/json' \
+  -d '{"completed-threshold":0}'
+```
+
+#### [](#completed-limit)Completed Limit
+
+The `completed-limit` field sets the number of most recent requests to be tracked in the `system:completed_requests` catalog. The default value is 4000\. Specify `0` to not track any requests and `-1` to set no limit.
+
+To specify a different value, use:
+
+```sh
+curl http://localhost:port/admin/settings -u user:pword \
+  -H 'Content-Type: application/json' \
+  -d '{"completed-limit":1000}'
+```
+
+### [](#sys-completed-examples)Examples
+
+Example 5\. Completed Request
+
+First, using the cbq shell, we set `profile = "timings"` and run a long query which takes at least 1000ms (the default value of the `completed-threshold` query setting) to get registered in the `system:completed_requests` keyspace:
+
+Query 1
+
+```sqlpp
+\set -profile "timings";
+SELECT * FROM `travel-sample`.inventory.route ORDER BY sourceairport;
+```
+
+Now, using the cbq shell, we change the profile setting to "phases" and rerun another long query:
+
+Query 2
+
+```sqlpp
+\set -profile "phases";
+SELECT * FROM `travel-sample`.inventory.route ORDER BY destinationairport;
+```
+
+Run a query `system:completed_requests` keyspace with `meta().plan`.
+
+Query 3
+
+```sqlpp
+SELECT meta().plan, * from system:completed_requests;
+```
+
+Result
+
+```json
+{
+  "requestID": "4a36e1dc-cea0-4ba2-a428-258511d50582",
+  "signature": {
+    "*": "*",
+    "plan": "json"
+  },
+  "results": [
+    // ...
+    { (1)
+      "completed_requests": {
+        "elapsedTime": "15.641879295s",
+        "errorCount": 0,
+        "node": "127.0.0.1:8091",
+        "phaseCounts": {
+          "fetch": 24024,
+          "primaryScan": 24024,
+          "sort": 24024
+        },
+        "phaseOperators": {
+          "authorize": 1,
+          "fetch": 1,
+          "primaryScan": 1,
+          "sort": 1
+        },
+        "phaseTimes": {
+          "authorize": "51.305µs",
+          "fetch": "3.27276723s",
+          "instantiate": "60.662µs",
+          "parse": "66.701943ms",
+          "plan": "15.12951ms",
+          "primaryScan": "171.439769ms",
+          "run": "15.548781894s",
+          "sort": "153.767638ms"
+        },
+        "remoteAddr": "172.17.0.1:56962",
+        "requestId": "08445bae-66ef-4ccd-8b2d-ea899b453a1b",
+        "requestTime": "2021-04-30T21:14:57.576Z",
+        "resultCount": 24024,
+        "resultSize": 81821919,
+        "scanConsistency": "unbounded",
+        "serviceTime": "15.630714144s",
+        "state": "completed",
+        "statement": "SELECT * FROM `travel-sample`.inventory.route ORDER BY destinationairport;",
+        "useCBO": true,
+        "userAgent": "Go-http-client/1.1 (CBQ/2.0)",
+        "users": "Administrator"
+      }
+    },
+    // ...
+    { (2)
+      "completed_requests": {
+        "elapsedTime": "15.321128463s",
+        "errorCount": 0,
+        "node": "127.0.0.1:8091",
+        "phaseCounts": {
+          "fetch": 24024,
+          "primaryScan": 24024,
+          "sort": 24024
+        },
+        "phaseOperators": {
+          "authorize": 1,
+          "fetch": 1,
+          "primaryScan": 1,
+          "sort": 1
+        },
+        "phaseTimes": {
+          "authorize": "23.037µs",
+          "fetch": "3.092306635s",
+          "instantiate": "7.313569ms",
+          "parse": "579.368µs",
+          "plan": "2.449143ms",
+          "primaryScan": "153.686873ms",
+          "run": "15.29433203s",
+          "sort": "147.889352ms"
+        },
+        "remoteAddr": "172.17.0.1:56900",
+        "requestId": "5eefc9e5-bdaa-4824-bcd7-47977eb1f08a",
+        "requestTime": "2021-04-30T21:13:58.707Z",
+        "resultCount": 24024,
+        "resultSize": 81821919,
+        "scanConsistency": "unbounded",
+        "serviceTime": "15.30510306s",
+        "state": "completed",
+        "statement": "SELECT * FROM `travel-sample`.inventory.route ORDER BY sourceairport;",
+        "useCBO": true,
+        "userAgent": "Go-http-client/1.1 (CBQ/2.0)",
+        "users": "Administrator"
+      },
+      "plan": {
+        "#operator": "Authorize",
+        "#stats": {
+          "#phaseSwitches": 4,
+          "execTime": "1.725µs",
+          "servTime": "21.312µs"
+        },
+        "privileges": {
+          "List": [
+            {
+              "Priv": 7,
+              "Props": 0,
+              "Target": "default:travel-sample.inventory.route"
+            }
+          ]
+        },
+        "~child": {
+          "#operator": "Sequence",
+          "#stats": {
+            "#phaseSwitches": 2,
+            "execTime": "1.499µs"
+          },
+          "~children": [
+            {
+              "#operator": "PrimaryScan3",
+              "#stats": {
+                "#heartbeatYields": 6,
+                "#itemsOut": 24024,
+                "#phaseSwitches": 96099,
+                "execTime": "84.366121ms",
+                "kernTime": "3.021901421s",
+                "servTime": "69.320752ms"
+              },
+              "bucket": "travel-sample",
+              "index": "def_inventory_route_primary",
+              "index_projection": {
+                "primary_key": true
+              },
+              "keyspace": "route",
+              "namespace": "default",
+              "scope": "inventory",
+              "using": "gsi"
+            },
+            {
+              "#operator": "Fetch",
+              "#stats": {
+                "#heartbeatYields": 7258,
+                "#itemsIn": 24024,
+                "#itemsOut": 24024,
+                "#phaseSwitches": 99104,
+                "execTime": "70.34694ms",
+                "kernTime": "142.630196ms",
+                "servTime": "3.021959695s"
+              },
+              "bucket": "travel-sample",
+              "keyspace": "route",
+              "namespace": "default",
+              "scope": "inventory"
+            },
+            {
+              "#operator": "InitialProject",
+              "#stats": {
+                "#itemsIn": 24024,
+                "#itemsOut": 24024,
+                "#phaseSwitches": 96100,
+                "execTime": "15.331951ms",
+                "kernTime": "3.219612458s"
+              },
+              "result_terms": [
+                {
+                  "expr": "self",
+                  "star": true
+                }
+              ]
+            },
+            {
+              "#operator": "Order",
+              "#stats": {
+                "#itemsIn": 24024,
+                "#itemsOut": 24024,
+                "#phaseSwitches": 72078,
+                "execTime": "147.889352ms",
+                "kernTime": "3.229055752s"
+              },
+              "sort_terms": [
+                {
+                  "expr": "(`route`.`sourceairport`)"
+                }
+              ]
+            },
+            {
+              "#operator": "Stream",
+              "#stats": {
+                "#itemsIn": 24024,
+                "#itemsOut": 24024,
+                "#phaseSwitches": 24025,
+                "execTime": "11.851634134s"
+              }
+            }
+          ]
+        },
+        "~versions": [
+          "7.0.0-N1QL",
+          "7.0.0-4960-enterprise"
+        ]
+      }
+    }
+  ],
+  "status": "success",
+  "metrics": {
+    "elapsedTime": "172.831251ms",
+    "executionTime": "172.586836ms",
+    "resultCount": 40,
+    "resultSize": 65181,
+    "serviceLoad": 12
+  },
+  "profile": { (3)
+    "phaseTimes": {
+      "authorize": "19.912µs",
+      "fetch": "123.022426ms",
+      "instantiate": "29.424µs",
+      "parse": "6.414711ms",
+      "plan": "3.19076ms",
+      "primaryScan": "55.521683ms",
+      "run": "158.514001ms"
+    },
+    "phaseCounts": {
+      "fetch": 40,
+      "primaryScan": 40
+    },
+    "phaseOperators": {
+      "authorize": 1,
+      "fetch": 1,
+      "primaryScan": 1
+    },
+    "requestTime": "2021-04-30T21:15:18.104Z",
+    "servicingHost": "127.0.0.1:8091"
+  }
+}
+```
+
+This example shows:
+
+| **1** | The profile attribute with all phases-related statistics for Query 2.                                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **2** | The meta().plan with all detailed statistics collected for Query 1.                                                                        |
+| **3** | The profile attribute with all phases-related statistics for this query itself (which is querying the system:completed\_requests keyspace) |
+
+## [](#sys%5Fmy-user-info)system:my\_user\_info
+
+This catalog maintains a list of all information of your profile.
+
+To see your current information, use:
+
+```sqlpp
+SELECT * FROM system:my_user_info;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "my_user_info": {
+      "domain": "local",
+      "external_groups": [],
+      "groups": [],
+      "id": "jane",
+      "name": "Jane Doe",
+      "password_change_date": "2019-05-07T02:31:53.000Z",
+      "roles": [
+        {
+          "origins": [
+            {
+              "type": "user"
+            }
+          ],
+          "role": "admin"
+        }
+      ]
+    }
+  }
+]
+```
+
+## [](#sys-user-info)system:user\_info
+
+This catalog maintains a list of all current users in your bucket and their information.
+
+To see the list of all current users, use:
+
+```sqlpp
+SELECT * FROM system:user_info;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "user_info": {
+      "domain": "local",
+      "external_groups": [],
+      "groups": [],
+      "id": "jane",
+      "name": "Jane Doe",
+      "password_change_date": "2019-05-07T02:31:53.000Z",
+      "roles": [
+        {
+          "origins": [
+            {
+              "type": "user"
+            }
+          ],
+          "role": "admin"
+        }
+      ]
+    }
+  },
+  {
+    "user_info": {
+      "domain": "ns_server",
+      "id": "Administrator",
+      "name": "Administrator",
+      "roles": [
+        {
+          "role": "admin"
+        }
+      ]
+    }
+  }
+]
+```
+
+## [](#sys-nodes)system:nodes
+
+This catalog shows the datastore topology information. This is separate from the SQL++ clustering view, in that SQL++ clustering shows a map of the SQL++ cluster, as provided by the cluster manager, while `system:nodes` shows a view of the nodes and services that make up the actual datastore, which may or may not include SQL++ nodes.
+
+* The dichotomy is important in that SQL++ could be clustered by one entity (e.g. Zookeeper) and be connected to a clustered datastore (e.g. Couchbase) such that each does not have visibility of the other.
+* Should SQL++ be extended to be able to concurrently connect to multiple datastores, each datastore will report its own topology, so that `system:nodes` offers a complete view of all the storage nodes, whatever those may be.
+* The `system:nodes` keyspace provides a way to report services advertised by each node as well as services that are actually running. This is datastore dependent.
+* SQL++ clustering is still reported by the `/admin` endpoints.
+
+To see the list of all current node information, use:
+
+```sqlpp
+SELECT * FROM system:nodes;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "nodes": {
+      "name": "127.0.0.1:8091",
+      "ports": {
+        "cbas": 8095,
+        "cbasAdmin": 9110,
+        "cbasCc": 9111,
+        "cbasSSL": 18095,
+        "eventingAdminPort": 8096,
+        "eventingSSL": 18096,
+        "fts": 8094,
+        "ftsSSL": 18094,
+        "indexAdmin": 9100,
+        "indexHttp": 9102,
+        "indexHttps": 19102,
+        "indexScan": 9101,
+        "indexStreamCatchup": 9104,
+        "indexStreamInit": 9103,
+        "indexStreamMaint": 9105,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "n1ql": 8093,
+        "n1qlSSL": 18093
+      },
+      "services": [
+        "cbas",
+        "eventing",
+        "fts",
+        "index",
+        "kv",
+        "n1ql"
+      ]
+    }
+  }
+]
+```
+
+## [](#sys-app-roles)system:applicable\_roles
+
+This catalog maintains a list of all applicable roles and grantee of each bucket.
+
+To see the list of all current applicable role information, use:
+
+```sqlpp
+SELECT * FROM system:applicable_roles;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "applicable_roles": {
+      "grantee": "anil",
+      "role": "replication_admin"
+    }
+  },
+  {
+    "applicable_roles": {
+      "bucket_name": "travel-sample",
+      "grantee": "anil",
+      "role": "select"
+    }
+  },
+  {
+    "applicable_roles": {
+      "bucket_name": "*",
+      "grantee": "anil",
+      "role": "select"
+    }
+  }
+]
+```
+
+For more examples, take a look at the blog: [Optimize SQL++ performance using request profiling](https://blog.couchbase.com/optimize-n1ql-performance-using-request-profiling/).
+
+## [](#sys-dictionary)system:dictionary
+
+This catalog maintains a list of the on-disk optimizer statistics stored in the `N1QL_CBO_STATS` collection.
+
+If you have multiple query nodes, the data retrieved from this catalog will be the same, regardless of the node on which you run the query.
+
+To see the list of on-disk optimizer statistics, use:
+
+```sqlpp
+SELECT * FROM system:dictionary;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "dictionary": {
+      "avgDocKeySize": 12,
+      "avgDocSize": 278,
+      "bucket": "travel-sample", (1)
+      "distributionKeys": [ (2)
+        "airportname",
+        "faa",
+        "city"
+      ],
+      "docCount": 1968,
+      "indexes": [ (3)
+        {
+          "indexId": "bc3048e87bf84828",
+          "indexName": "def_inventory_airport_primary",
+          "indexStats": [ (4)
+            {
+              "avgItemSize": 24,
+              "avgPageSize": 11760,
+              "numItems": 1968,
+              "numPages": 4,
+              "resRatio": 1
+            }
+          ]
+        },
+        // ...
+      ],
+      "keyspace": "airport",
+      "namespace": "default",
+      "scope": "inventory"
+    }
+  },
+  // ...
+]
+```
+
+This query returns an array of dictionaries, one for each keyspace for which optimizer statistics are available. Each dictionary gives the following information:
+
+| **1** | Basic information about the keyspace                                             |
+| ----- | -------------------------------------------------------------------------------- |
+| **2** | Distribution keys for which histograms are available                             |
+| **3** | An array of indexes in this keyspace for which statistics are available          |
+| **4** | An array of statistics for each index, with one element for each index partition |
+
+For further details, refer to [UPDATE STATISTICS](../../n1ql/n1ql-language-reference/updatestatistics.md).
+
+## [](#sys-dictionary-cache)system:dictionary\_cache
+
+This catalog maintains a list of the in-memory cached subset of the optimizer statistics.
+
+If you have multiple query nodes, the data retrieved from this node shows cached optimizer statistics from all nodes. Individual nodes may have a different subset of cached information.
+
+To see the list of in-memory optimizer statistics, use:
+
+```sqlpp
+SELECT * FROM system:dictionary_cache;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "dictionary_cache": {
+      "avgDocKeySize": 12,
+      "avgDocSize": 278,
+      "bucket": "travel-sample", (1)
+      "distributionKeys": [ (2)
+        "airportname",
+        "faa",
+        "city"
+      ],
+      "docCount": 1968,
+      "indexes": [ (3)
+        {
+          "indexId": "bc3048e87bf84828",
+          "indexName": "def_inventory_airport_primary",
+          "indexStats": [ (4)
+            {
+              "avgItemSize": 24,
+              "avgPageSize": 11760,
+              "numItems": 1968,
+              "numPages": 4,
+              "resRatio": 1
+            }
+          ]
+        },
+        // ...
+      ],
+      "keyspace": "airport",
+      "namespace": "default",
+      "node": "172.23.0.3:8091", (5)
+      "scope": "inventory"
+    }
+  },
+  // ...
+]
+```
+
+This query returns an array of dictionary caches, one for each keyspace for which optimizer statistics are available. Each dictionary cache gives the following information:
+
+| **1** | Basic information about the keyspace                                             |
+| ----- | -------------------------------------------------------------------------------- |
+| **2** | Distribution keys for which histograms are available                             |
+| **3** | An array of indexes in this keyspace for which statistics are available          |
+| **4** | An array of statistics for each index, with one element for each index partition |
+| **5** | The query node where this dictionary cache is resident                           |
+
+For further details, refer to [UPDATE STATISTICS](../../n1ql/n1ql-language-reference/updatestatistics.md).
+
+## [](#sys-functions)system:functions
+
+This catalog maintains a list of all user-defined functions across all nodes. To see the list of all user-defined functions, use:
+
+```sqlpp
+SELECT * FROM system:functions;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "functions": {
+      "definition": {
+        "#language": "inline", (1)
+        "expression": "(((`fahrenheit` - 32) * 5) / 9)", (2)
+        "parameters": [ (3)
+          "fahrenheit"
+        ],
+        "text": "((fahrenheit - 32) * 5/9)" (4)
+      },
+      "identity": {
+        "bucket": "travel-sample", (5)
+        "name": "celsius", (6)
+        "namespace": "default", (7)
+        "scope": "inventory", (8)
+        "type": "scope" (9)
+      }
+    }
+  },
+  {
+    "functions": {
+      "definition": {
+        "#language": "javascript",
+        "library": "geohash-js", (10)
+        "name": "geohash-js", (11)
+        "object": "calculateAdjacent", (12)
+        "parameters": [
+          "src",
+          "dir"
+        ]
+      },
+      "identity": {
+        "name": "adjacent",
+        "namespace": "default",
+        "type": "global"
+      }
+    }
+  },
+  // ...
+]
+```
+
+This query returns the following attributes:
+
+| **1**  | definition.#language: string (the language of the function, for example, inline)                |
+| ------ | ----------------------------------------------------------------------------------------------- |
+| **2**  | definition.expression: string (for inline functions only: the expression defining the function) |
+| **3**  | definition.parameters: array of strings (the parameters required by the function)               |
+| **4**  | definition.text: string (for inline functions only: the verbatim text of the function)          |
+| **5**  | identity.bucket: string (for scoped functions only: the bucket containing the function)         |
+| **6**  | identity.name: string (the name of the function)                                                |
+| **7**  | identity.namespace: string (the namespace of the function, for example, default)                |
+| **8**  | identity.scope: string (for scoped functions only: the scope containing the function)           |
+| **9**  | identity.type: string (the type of the function, for example, global)                           |
+| **10** | definition.library: string (for JavaScript functions only: the library containing the function) |
+| **11** | definition.name: string (for JavaScript functions only: the relative name of the library)       |
+| **12** | definition.object: string (for JavaScript functions only: the object defining the function)     |
+
+## [](#sys-functions-cache)system:functions\_cache
+
+This catalog maintains a list of recently-used user-defined functions across all nodes. The catalog also lists user-defined functions that have been called recently, but do not exist. To see the list of recently-used user-defined functions, use:
+
+```sqlpp
+SELECT * FROM system:functions_cache;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "functions_cache": {
+      "#language": "inline", (1)
+      "avgServiceTime": "3.066847ms",
+      "expression": "(((`fahrenheit` - 32) * 5) / 9)", (2)
+      "lastUse": "2022-03-09 00:17:59.60659793 +0000 UTC m=+35951.429537902",
+      "maxServiceTime": "3.066847ms",
+      "minServiceTime": "0s",
+      "name": "celsius", (3)
+      "namespace": "default", (4)
+      "node": "127.0.0.1:8091",
+      "parameters": [ (5)
+        "fahrenheit"
+      ],
+      "scope": "inventory", (6)
+      "text": "((fahrenheit - 32) * 5/9)", (7)
+      "type": "scope",
+      "uses": 1
+    }
+  },
+  {
+    "functions_cache": {
+      "#language": "javascript",
+      "avgServiceTime": "56.892636ms",
+      "lastUse": "2022-03-09 00:15:46.289934029 +0000 UTC m=+35818.007560703",
+      "library": "geohash-js", (8)
+      "maxServiceTime": "146.025426ms",
+      "minServiceTime": "0s",
+      "name": "geohash-js",
+      "namespace": "default",
+      "node": "127.0.0.1:8091",
+      "object": "calculateAdjacent", (9)
+      "parameters": [
+        "src",
+        "dir"
+      ],
+      "type": "global", (10)
+      "uses": 4
+    }
+  },
+  {
+    "functions_cache": {
+      "avgServiceTime": "3.057421ms", (11)
+      "lastUse": "2022-03-09 00:17:25.396840275 +0000 UTC m=+35917.199008929", (12)
+      "maxServiceTime": "3.057421ms", (13)
+      "minServiceTime": "0s", (14)
+      "name": "notFound",
+      "namespace": "default",
+      "node": "127.0.0.1:8091", (15)
+      "type": "global",
+      "undefined_function": true, (16)
+      "uses": 1 (17)
+    }
+  }
+]
+```
+
+This query returns the following attributes:
+
+| **1**  | #language: string (the language of the function, for example, inline)                |
+| ------ | ------------------------------------------------------------------------------------ |
+| **2**  | expression: string (for inline functions only: the expression defining the function) |
+| **3**  | name: string (the name of the function)                                              |
+| **4**  | namespace: string (the namespace of the function, for example, default)              |
+| **5**  | parameters: array of strings (the parameters required by the function)               |
+| **6**  | scope: string (for scoped functions only: the scope containing the function)         |
+| **7**  | text: string (for inline functions only: the verbatim text of the function)          |
+| **8**  | library: string (for JavaScript functions only: the library containing the function) |
+| **9**  | object: string (for JavaScript functions only: the object defining the function)     |
+| **10** | type: string (the type of the function, for example, global)                         |
+| **11** | avgServiceTime: string (the mean service time for the function)                      |
+| **12** | lastUse: string (the date and time when the function was last used)                  |
+| **13** | maxServiceTime: string (the maximum service time for the function)                   |
+| **14** | minServiceTime: string (the minimum service time for the function)                   |
+| **15** | node: string (the query node where the function is cached)                           |
+| **16** | undefined\_function: boolean (whether the function exists or is undefined)           |
+| **17** | uses: number (the number of uses of the function)                                    |
+
+Each query node keeps its own cache of recently-used user-defined functions, so you may see the same function listed for multiple nodes.
+
+## [](#sys-tasks-cache)system:tasks\_cache
+
+This catalog maintains a list of recently-used scheduled tasks, such as index advisor sessions. To see the list of recently-used scheduled tasks, use:
+
+```sqlpp
+SELECT * FROM system:tasks_cache;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "tasks_cache": {
+      "class": "advisor", (1)
+      "delay": "1h0m0s", (2)
+      "id": "bcd9f8e4-b324-504c-a98b-ace90dba869f", (3)
+      "name": "aa7f688a-bf29-438f-888f-eeaead87ca40", (4)
+      "node": "10.143.192.101:8091", (5)
+      "state": "scheduled", (6)
+      "subClass": "analyze", (7)
+      "submitTime": "2019-09-17 05:18:12.903122381 -0700 PDT m=+8460.550715992" (8)
+    }
+  },
+  {
+    "tasks_cache": {
+      "class": "advisor",
+      "delay": "5m0s",
+      "id": "254abec5-5782-543e-9ee0-d07da146b94e",
+      "name": "ca2cfe56-01fa-4563-8eb0-a753af76d865",
+      "node": "10.143.192.101:8091",
+      "results": [ (9)
+        // ...
+      ],
+      "startTime": "2019-09-17 05:03:31.821597725 -0700 PDT m=+7579.469191487", (10)
+      "state": "completed",
+      "stopTime": "2019-09-17 05:03:31.963133954 -0700 PDT m=+7579.610727539", (11)
+      "subClass": "analyze",
+      "submitTime": "2019-09-17 04:58:31.821230131 -0700 PDT m=+7279.468823737"
+    }
+  }
+]
+```
+
+This query returns the following attributes:
+
+| **1**  | class: string (the class of the task; for example, advisor)                      |
+| ------ | -------------------------------------------------------------------------------- |
+| **2**  | delay: string (the scheduled duration of the task)                               |
+| **3**  | id: string (the internal ID of the task)                                         |
+| **4**  | name: string (the name of the task)                                              |
+| **5**  | node: string (the node where the task was started)                               |
+| **6**  | state: string (the class of the task — scheduled, cancelled, completed)          |
+| **7**  | subClass: string (the subclass of the task; for example, analyze)                |
+| **8**  | submitTime: string (the date and time when the task was submitted)               |
+| **9**  | results: array (not scheduled tasks: the results of the task)                    |
+| **10** | startTime: string (not scheduled tasks: the date and time when the task started) |
+| **11** | stopTime: string (not scheduled tasks: the date and time when the task stopped)  |
+
+Refer to [ADVISOR Function](../../n1ql/n1ql-language-reference/advisor.md) for more information on index advisor sessions.
+
+## [](#sys-transactions)system:transactions
+
+This catalog maintains a list of active Couchbase transactions. To see the list of active transactions, use:
+
+```sqlpp
+SELECT * FROM system:transactions;
+```
+
+This will result in a list similar to:
+
+```json
+[
+  {
+    "transactions": {
+      "durabilityLevel": "majority", (1)
+      "durabilityTimeout": "2.5s", (2)
+      "expiryTime": "2021-04-21T12:53:48.598+01:00",
+      "id": "85aea637-2288-434b-b7c5-413ad8e7c175", (3)
+      "isolationLevel": "READ COMMITED", (4)
+      "lastUse": "2021-04-21T12:51:48.598+01:00",
+      "node": "127.0.0.1:8091", (5)
+      "numAtrs": 1024, (6)
+      "scanConsistency": "unbounded", (7)
+      "status": 0,
+      "timeout": "2m0s", (8)
+      "usedMemory": 960,
+      "uses": 1
+    }
+  // ...
+  }
+]
+```
+
+This query returns the following attributes:
+
+| **1** | durabilityLevel: string (durability level for all mutations within a transaction)    |
+| ----- | ------------------------------------------------------------------------------------ |
+| **2** | durabilityTimeout: duration (durability timeout per mutation within the transaction) |
+| **3** | id: string (the transaction ID)                                                      |
+| **4** | isolationLevel: string (the isolation level of the transaction)                      |
+| **5** | node: string (the node where the transaction was started)                            |
+| **6** | numAtrs: integer (the total number of active transaction records)                    |
+| **7** | scanConsistency: string (the transactional scan consistency)                         |
+| **8** | timeout: duration (the transaction timeout duration)                                 |
+
+Refer to [SQL++ Support for Couchbase Transactions](../../n1ql/n1ql-language-reference/transactions.md) for more information.
+
+## [](#related-links)Related Links
+
+* Refer to [Getting System Information](../../n1ql/n1ql-intro/sysinfo.md) for more information on the system namespace.

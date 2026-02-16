@@ -1,0 +1,5 @@
+[View original HTML](/styleguide/slashes.html)
+
+Avoid the use of forward and backward slashes outside of inline code, code blocks or file paths.
+
+Do not write `and/or`. Choose whether the options are mutually exclusive (or) or interchangeable (and).

@@ -1,0 +1,15 @@
+[View original HTML](/quarkus-extension/current/compatibility.html)
+
+Each Quarkus Couchbase release is built for a specific Quarkus and Couchbase Java SDK version, and the version is preset for you (see the [release notes](release-notes.md)):
+
+__Compatibility Matrix__
+| Quarkus Couchbase | 1.0.0  | 1.1.0  | 1.2.0  |
+| ----------------- | ------ | ------ | ------ |
+| Java SDK          | 3.7.7  | 3.8.0  | 3.9.2  |
+| Quarkus version   | 3.17.5 | 3.20.0 | 3.28.4 |
+
+## [](#platform-compatibility)Platform Compatibility
+
+Quarkus Couchbase requires JDK 17 or newer. See the [JDK Version Compatibility listing](../../java-sdk/current/project-docs/compatibility.md#jdk-version-compatibility) in the Java SDK docs for specific LTS implementations supported.
+
+See the [Java SDK Compatibility Guide](../../java-sdk/current/project-docs/compatibility.md) for wider compatibility of the Java SDK. We recommend using SDKMAN to manage versions of JVM and associated tools during development.

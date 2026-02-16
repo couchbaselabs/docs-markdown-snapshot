@@ -1,0 +1,66 @@
+[View original HTML](/server/7.6/install/pre-install.html)
+
+> Although resource requirements will largely depend on the size and resource demands of your Couchbase deployment, there are some minimum and recommended specifications that you should follow. 
+
+## [](#cpu-requirements)CPU Requirements
+
+Couchbase Server can run on x86 and ARM processors (including Apple Silicon processors). This section explains the minimum requirements for of these platforms.
+
+### [](#x86-processors)x86 Processors
+
+|  | deprecation notice The use of older x86 processors that do not implement the [Advanced Vector Extensions 2 (AVX2)](https://en.wikipedia.org/wiki/Advanced%5FVector%5FExtensions#AVX2) instruction set are deprecated in Couchbase Server 7.6.x. Future versions will require processors that have AVX2 support. This requirement is only for x86 processors—​ARM processors have a separate set of vector instructions. The earliest processors that support AVX2 instructions include: Intel 4th generation (Haswell) Core processors released in 2013. Intel 11th generation (Tiger Lake) Celeron and Pentium processors released in 2020. AMD Excavator processors released in 2015. Processors from these or later generations will be required to run Couchbase Server in the future. On Linux, you can tell if your processor has the AVX2 instructions by executing the following command: grep -q -i 'avx2' /proc/cpuinfo && \\      echo "Processor has AVX2" \|| echo "AVX2 not found" If the command returns the text Processor has AVX2, your processor is supported in future Couchbase Server releases. If the command returns AVX2 not found, your processor does not have AVX2 instructions and will not be supported in future Couchbase Server versions. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Couchbase Server has the following requirements when running on x86 processors.
+
+|                                                                                                                                                                                                                                                                    | Minimum Specifications[\*](#note1)                                                                     | Recommended Specifications[\*\*](#note2)                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CPU**                                                                                                                                                                                                                                                            | 2 GHz dual-core x86\_64 CPU supporting SSE4.2                                                          | 3 GHz quad-core x86\_64 CPU supporting SSE4.2 and above 3 GHz six core x86\_64 CPU supporting SSE4.2 when using Cross Datacenter Replication (XDCR) and Views |
+| **RAM**                                                                                                                                                                                                                                                            | 4 GiB (physical)                                                                                       | 16 GiB (physical) and above                                                                                                                                   |
+| **Storage (disk space)**                                                                                                                                                                                                                                           | 8 GiB (block-based; HDD, SSD, EBS, iSCSI) Network file systems such as CIFS and NFS are not supported. | 16 GiB and above (SSD) Network file systems such as CIFS and NFS are not supported.                                                                           |
+| Backup Nodes If the node is used for administering backups, then be aware that the resource requirements will be higher. The minimum hardware requirement is four CPU cores and 8GiB RAM. The recommended hardware is sixteen CPU cores, 16GiB RAM, and SSD disks. |                                                                                                        |                                                                                                                                                               |
+
+### [](#arm-processors)ARM Processors
+
+Couchbase Server has the following requirements when running on ARM-based platforms.
+
+|                                                                                                                                                                                                                                                                    | Minimum Specifications[\*](#note1)                                                                     | Recommended Specifications[\*\*](#note2)                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| **CPU**                                                                                                                                                                                                                                                            | 2 Ghz dual core 64bit ARM v8 CPU                                                                       | 2.5 Ghz quad core 64bit ARM v8 CPU                                                  |
+| **RAM**                                                                                                                                                                                                                                                            | 4 GiB (physical)                                                                                       | 16 GiB (physical) and above                                                         |
+| **Storage (disk space)**                                                                                                                                                                                                                                           | 8 GiB (block-based; HDD, SSD, EBS, iSCSI) Network file systems such as CIFS and NFS are not supported. | 16 GiB and above (SSD) Network file systems such as CIFS and NFS are not supported. |
+| Backup Nodes If the node is used for administering backups, then be aware that the resource requirements will be higher. The minimum hardware requirement is four CPU cores and 8GiB RAM. The recommended hardware is sixteen CPU cores, 16GiB RAM, and SSD disks. |                                                                                                        |                                                                                     |
+
+\*You can reduce the CPU and RAM resources below the Minimum Specifications for development and testing purposes. Resources can be as low as 1 GB of free RAM beyond operating system requirements, and a single CPU core. However, you must adhere to the Minimum Specifications for production.\_
+
+\*\*The Recommended Specifications do not take into account your intended workload. You should follow the [sizing guidelines](sizing-general.md) when determining system specifications for your Couchbase Server deployment.
+
+## [](#clock-source-linux)Clock Source on Linux
+
+The Query Service relies on the Linux operating system’s monotonic clock when profiling and managing network timeouts.
+
+The Linux kernel uses a clock source to track elapsed time, handle scheduling and timers, and to get the current time. It can use one of several possible sources, such as Time Stamp Counter (TSC), the XEN build into the Xen virtualization framework, and others. See [Clock sources, Clock events, sched\_clock() and delay timers](https://docs.kernel.org/timers/timekeeping.html) for more information about clock sources. Which source the kernel uses depends on the hardware clock capabilities and Linux configuration settings.
+
+Some virtualization environments, such as older AWS EC2 clusters, use the XEN clock source. This source can cause performance issues because reading it requires an expensive system call to the hypervisor. In some cases, a XEN clock source has used up to 25% of CPU time when timers are in heavy use.
+
+The TSC clock source incurs little CPU cost because it’s a CPU instruction instead of a kernel or hypervisor call. If your platform has a reliable and invariant implementation of TSC, use it as the clock source. Consult the documentation for your platform for more information about its TSC implementation.
+
+Use the following command to see which clock source Linux is using:
+
+```bash
+cat /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+You can change the clock source to TSC by running the following command as root:
+
+```bash
+echo tsc > /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+Verify the current setting of the clock source, read the `current_clocksource` again:
+
+```bash
+cat /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+The output should read `tsc`.

@@ -1,0 +1,215 @@
+[View original HTML](/server/7.2/rest-api/rest-buckets-streamingURI.html)
+
+> To retrieve the streaming URI, use `GET /pools/default/buckets/default` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+GET /pools/default/buckets/default
+
+The individual bucket request is exactly the same as what would be obtained from the item in the array for the entire buckets list. The streamingUri is exactly the same except it streams HTTP chunks using chunked encoding. A response of "\\n\\n\\n\\n" delimits chunks which may be converted to a "zero chunk" in a future release. The behavior of the streamingUri should be considered evolving.
+
+## [](#syntax)Syntax
+
+Curl request syntax:
+
+curl -u [admin]:[password] -X GET
+  http://[localhost]:8091/pools/default/buckets/<bucket-name>
+
+Raw HTTP request syntax:
+
+GET /pools/default/buckets/default
+Host: localhost:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+
+## [](#example)Example
+
+Curl request example
+
+curl -v -X GET -u Administrator:password \
+http://10.144.210.101:8091/pools/default/buckets/travel-sample
+
+Raw HTTP request example:
+
+GET /pools/default/buckets/default
+Host: 10.5.2.117:8091
+Authorization: Basic xxxxxxxxxxxxxxxxxxx
+Accept: application/json
+X-memcachekv-Store-Client-Specification-Version: 0.1
+
+## [](#response)Response
+
+{
+  "name": "travel-sample",
+  "nodeLocator": "vbucket",
+  "uuid": "dbca445dfc82a0f68c98485b2166853b",
+  "uri": "/pools/default/buckets/travel-sample?bucket_uuid=dbca445dfc82a0f68c98485b2166853b",
+  "streamingUri": "/pools/default/bucketsStreaming/travel-sample?bucket_uuid=dbca445dfc82a0f68c98485b2166853b",
+  "bucketCapabilitiesVer": "",
+  "bucketCapabilities": [
+    "collections",
+    "durableWrite",
+    "tombstonedUserXAttrs",
+    "couchapi",
+    "subdoc.ReplaceBodyWithXattr",
+    "subdoc.DocumentMacroSupport",
+    "dcp",
+    "cbhello",
+    "touch",
+    "cccp",
+    "xdcrCheckpointing",
+    "nodesExt",
+    "xattr"
+  ],
+  "collectionsManifestUid": "1",
+  "ddocs": {
+    "uri": "/pools/default/buckets/travel-sample/ddocs"
+  },
+  "vBucketServerMap": {
+    "hashAlgorithm": "CRC",
+    "numReplicas": 1,
+    "serverList": [
+      "127.0.0.1:11210"
+    ],
+    "vBucketMap": [ ...
+    ]
+},
+"bucketType": "membase",
+"authType": "sasl",
+"localRandomKeyUri": "/pools/default/buckets/travel-sample/localRandomKey",
+"controllers": {
+  "compactAll": "/pools/default/buckets/travel-sample/controller/compactBucket",
+  "compactDB": "/pools/default/buckets/travel-sample/controller/compactDatabases",
+  "purgeDeletes": "/pools/default/buckets/travel-sample/controller/unsafePurgeBucket",
+  "startRecovery": "/pools/default/buckets/travel-sample/controller/startRecovery"
+},
+"nodes": [
+  {
+    "couchApiBaseHTTPS": "https://127.0.0.1:18092/travel-sample%2Bdbca445dfc82a0f68c98485b2166853b",
+    "couchApiBase": "http://127.0.0.1:8092/travel-sample%2Bdbca445dfc82a0f68c98485b2166853b",
+    "clusterMembership": "active",
+    "recoveryType": "none",
+    "status": "healthy",
+    "otpNode": "ns_1@127.0.0.1",
+    "thisNode": true,
+    "hostname": "127.0.0.1:8091",
+    "nodeUUID": "a31c47ef63657f4bbda848c003710167",
+    "clusterCompatibility": 458752,
+    "version": "7.0.0-4953-enterprise",
+    "os": "x86_64-unknown-linux-gnu",
+    "cpuCount": 1,
+    "ports": {
+      "direct": 11210,
+      "httpsCAPI": 18092,
+      "httpsMgmt": 18091,
+      "distTCP": 21100,
+      "distTLS": 21150
+    },
+    "services": [
+      "backup",
+      "index",
+      "kv",
+      "n1ql"
+    ],
+    "nodeEncryption": false,
+    "addressFamilyOnly": false,
+    "configuredHostname": "127.0.0.1:8091",
+    "addressFamily": "inet",
+    "externalListeners": [
+      {
+        "afamily": "inet",
+        "nodeEncryption": false
+      }
+    ],
+    "replication": 0,
+    "systemStats": {
+      "cpu_utilization_rate": 3.11377245508982,
+      "cpu_stolen_rate": 0,
+      "swap_total": 2047864832,
+      "swap_used": 295174144,
+      "mem_total": 1032990720,
+      "mem_free": 250286080,
+      "mem_limit": 1032990720,
+      "cpu_cores_available": 1,
+      "allocstall": 0
+    },
+    "interestingStats": {
+      "couch_docs_actual_disk_size": 63246179,
+      "couch_views_actual_disk_size": 0,
+      "curr_items": 63288,
+      "curr_items_tot": 63288,
+      "ep_bg_fetched": 0,
+      "couch_docs_data_size": 48389603,
+      "mem_used": 80286320,
+      "vb_replica_curr_items": 0,
+      "vb_active_num_non_resident": 2584,
+      "cmd_get": 0,
+      "get_hits": 0,
+      "ops": 0,
+      "index_data_size": 66109176,
+      "index_disk_size": 39211409,
+      "couch_spatial_disk_size": 0,
+      "couch_views_data_size": 0,
+      "couch_spatial_data_size": 0
+    },
+    "uptime": "16575",
+    "memoryTotal": 1032990720,
+    "memoryFree": 250286080,
+    "mcdMemoryReserved": 788,
+    "mcdMemoryAllocated": 788
+  }
+],
+"stats": {
+  "uri": "/pools/default/buckets/travel-sample/stats",
+  "directoryURI": "/pools/default/buckets/travel-sample/stats/Directory",
+  "nodeStatsListURI": "/pools/default/buckets/travel-sample/nodes"
+},
+"autoCompactionSettings": {
+  "parallelDBAndViewCompaction": false,
+  "allowedTimePeriod": {
+    "fromHour": 0,
+    "toHour": 6,
+    "fromMinute": 0,
+    "toMinute": 0,
+    "abortOutside": true
+  },
+  "databaseFragmentationThreshold": {
+    "percentage": 30,
+    "size": 1073741824
+  },
+  "viewFragmentationThreshold": {
+    "percentage": 30,
+    "size": 1073741824
+  }
+},
+"purgeInterval": 3,
+"replicaIndex": false,
+"replicaNumber": 1,
+"threadsNumber": 3,
+"quota": {
+  "ram": 209715200,
+  "rawRAM": 209715200
+},
+"basicStats": {
+  "quotaPercentUsed": 38.28350067138672,
+  "opsPerSec": 0,
+  "diskFetches": 0,
+  "itemCount": 63288,
+  "diskUsed": 63246179,
+  "dataUsed": 48389603,
+  "memUsed": 80286320,
+  "vbActiveNumNonResident": 2584
+},
+"evictionPolicy": "valueOnly",
+"storageBackend": "couchstore",
+"durabilityMinLevel": "none",
+"pitrEnabled": false,
+"pitrGranularity": 600,
+"pitrMaxHistoryAge": 86400,
+"fragmentationPercentage": 50,
+"conflictResolutionType": "seqno",
+"maxTTL": 0,
+"compressionMode": "passive",
+"saslPassword": ""
+}

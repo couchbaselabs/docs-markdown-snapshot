@@ -1,0 +1,172 @@
+[View original HTML](/efcore-provider/current/entity-framework-core-modeling.html)
+
+> Modeling a document database. 
+
+## [](#buckets-scopes-collections-and-entity-types)Buckets, Scopes, Collections, and Entity Types
+
+In a Couchbase Cluster, a Bucket is the fundamental place for storing documents. Within a Bucket, documents can be categorized hierarchically into Scopes and Collections. Scopes are a unit of tenancy, and collections are analogous to RDBMS tables. The unique combination of Bucket, Scope, and Collection is referred to as a Keyspace.
+
+When modeling for Couchbase EF Core DB Provider, we must map entities to a Keyspace. The provider allows you to do this via attributes on an entity or by using `DbContext.OnModelCreated`.
+
+|  | EF Core allows for default modeling where the name of the entity class will be used as the table name explicity if the class is part of a DbSet<T>. This will work for the Couchbase EF Core DB Provider as well, however, the default Scope \_default will be used if not provided during configuration, and the Collection with the same name will have to be created on the server which will match the class name as well. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+Assuming we have configured a `DbContext` for an application such as the Contoso University Sample as follows:
+
+```csharp
+builder.Services.AddDbContext<SchoolContext>(options=>
+    options.UseCouchbase(new ClusterOptions()
+    .WithCredentials("Administrator", "password")
+    .WithConnectionString("couchbase://localhost"),
+        couchbaseDbContextOptions =>
+        {
+            couchbaseDbContextOptions.Bucket = "universities";
+            couchbaseDbContextOptions.Scope = "contoso";
+        }));
+```
+
+If the Scope has been defined in the initial configuration of the Provider, then only the Collection name is required when modeling:
+
+```csharp
+modelBuilder.Entity<Course>().ToCouchbaseCollection(this, "course");
+```
+
+In this case "course" is a Collection that has been created on the Couchbase Server. This will map the Course entity to the following Keyspace:
+
+```csharp
+`universities`.`contoso`.`course`
+```
+
+In this case the Scope is "contoso" and the Collection is "course".
+
+image::img\_11.png
+
+## [](#modeling-more-than-one-tenant-scope)Modeling More Than One Tenant (Scope)
+
+Alternatively, the Scope and Collection can be defined when modeling which will override the default Scope. Assume a `DbContext` is configured as follows:
+
+```csharp
+builder.Services.AddDbContext<SchoolContext>(options=>
+    options.UseCouchbase(new ClusterOptions()
+    .WithCredentials("Administrator", "password")
+    .WithConnectionString("couchbase://localhost"),
+        couchbaseDbContextOptions =>
+        {
+            couchbaseDbContextOptions.Bucket = "universities";
+        }));
+```
+
+```csharp
+modelBuilder.Entity<Course>().ToCouchbaseCollection(this, "oxbridge", "course");
+```
+
+This will create a Keyspace that looks like this:
+
+```csharp
+`universities`.`oxbridge`.`course`
+```
+
+In this case the Bucket is "universities", the Scope is "oxbridge", and the Collection is "source".
+
+image::img\_12.png
+
+This is an example of using more than one tenant (Scope) with a single `DbContext`. Your use cases will dictate whether you use a single Keyspace per `DbContext` or multiple Keyspaces per `DbContext`.
+
+|  | Within an application you can achieve that same multi-tenancy model by configuring more than one DbContext with different Keyspaces globally at the application level. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#supported-entity-modeling-features)Supported Entity Modeling features
+
+For the most part, [the EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/entity-types?tabs=data-annotations) applies to EF Core Couchbase DB provider. Exceptions include Migrations, [Table Schema](https://learn.microsoft.com/en-us/ef/core/modeling/entity-types?tabs=data-annotations#table-schema), [View mapping](https://learn.microsoft.com/en-us/ef/core/modeling/entity-types?tabs=data-annotations#view-mapping), and other features realated to RDBMS and that do not have an equivalent in Couchbase DB.
+
+## [](#inheritance)Inheritance
+
+Inheritance is supported by the EF Core Couchbase DB Provider. The Contoso University has an example of inheritance where there is an abstract Person class and then concrete Instructor and Student classes, which both are stored in the `universities`.`contoso`.`person` collection and differentiated via a [Discriminator](https://learn.microsoft.com/en-us/ef/core/modeling/inheritance#table-per-hierarchy-and-discriminator-configuration) generated by the EF Core framework.
+
+For example:
+
+```csharp
+public abstract class Person
+{
+    public int ID { get; set; }
+    public string LastName { get; set; }
+    public string FirstMidName { get; set; }
+    public string FullName => LastName + ", " + FirstMidName;
+}
+
+public class Student : Person
+{
+    public DateTime EnrollmentDate { get; set; }
+    public ICollection<Enrollment> Enrollments { get; set; }
+}
+
+public class Instructor : Person
+{
+    public DateTime HireDate { get; set; }
+    public ICollection<CourseAssignment> CourseAssignments { get; set; }
+    public OfficeAssignment OfficeAssignment { get; set; }
+}
+```
+
+Are mapped to `universities.contoso.person` collection in `OnModelCreating` method:
+
+```csharp
+public class SchoolContext : DbContext
+{
+    ...
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Instructor> Instructors { get; set; }
+    ...
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        ...
+        modelBuilder.Entity<Student>().ToCouchbaseCollection(this, "person");
+        modelBuilder.Entity<Instructor>().ToCouchbaseCollection(this, "person");
+        modelBuilder.Entity<Person>().ToCouchbaseCollection(this, "person");
+        ...
+    }
+}
+```
+
+When the entity is saved to the database, a special discriminator will also be stored within the JSON document. EF Core knows how map the documents based upon this descriptor to the appropriate entity types. For example, here is a document representing a `Student`:
+
+```csharp
+{
+  "ID": 1,
+  "Discriminator": "Student",
+  "FirstName": "Carson",
+  "LastName": "Alexander",
+  "EnrollmentDate": "2010-09-01T00:00:00"
+}
+```
+For the `Instructor` we have a different discriminator value:
+```
+{
+  "ID": 10,
+  "Discriminator": "Instructor",
+  "FirstName": "Fadi",
+  "LastName": "Fakhouri",
+  "HireDate": "2002-07-06T00:00:00"
+}
+```
+
+## [](#keys)Keys
+
+The EF Core Couchbase DB Provider supports most of the standard EF Core key functionality. Please refer to the [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/keys?tabs=data-annotations) for details.
+
+## [](#entity-properties)Entity Properties
+
+The EF Core Couchbase DB Provider supports some of the functionality provided by EF Core Relational, however, since Couchbase Server is not a RDBMS, any EF Core feature that is dependent upon a RDBMS feature is not supported unless it exists in Couchbase. Please refer to the [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt) for details.
+
+## [](#generated-values)Generated Values
+
+Generated values are partially supported for GUID primary keys. Please refer to the [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/generated-properties?tabs=data-annotations) for details.
+
+## [](#relationships)Relationships
+
+Relationships are supported via EF Core implementations. Please refer to the [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/relationships) for details.
+
+## [](#owned-entity-types)Owned Entity Types
+
+Owned Entity Types are supported. Please refer to the [EF Core documentation](https://learn.microsoft.com/en-us/ef/core/modeling/owned-entities) for details.

@@ -1,0 +1,140 @@
+[View original HTML](/server/7.6/cli/cbstats/cbstats-collections-details.html)
+
+> Provides low-level details on collections. 
+
+## [](#syntax)Syntax
+
+cbstats host:11210 [common options] collections-details [vbucket-reference]
+
+## [](#description)Description
+
+This command is used to provide low-level details on collections, for a specified bucket. This includes details identifying the existing collections; and vBucket-specific details, which include sequence numbers and item counts.
+
+## [](#options)Options
+
+The optional `vbucket-reference` parameter is an integer, in the range of `0` to `1023` inclusive, specifying a particular vBucket. If a vBucket is specified, the only details returned are the vBucket-specific details for that vBucket. If no vBucket is specified, vBucket-specific details for all vBuckets are returned, as well as details identifying the existing collections for the bucket.
+
+For information on returning a `vbucket-reference` that corresponds to a particular document id, see the section [Examples: Find vBucket IDs](cbstats-key.md#find-vbucket-ids), on the reference page for the `cbstats` command [key](cbstats-key.md). For common `cbstats` options, see [cbstats](../cbstats-intro.md).
+
+## [](#examples)Examples
+
+The following command retrieves collections-details on all vBuckets for the administrator-created bucket `testBucket`:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b testBucket collections-details
+
+The initial section of the output is as follows:
+
+0x0:0x0:history:                                                             false
+ 0x0:0x0:metered:                                                             no
+ 0x0:0x0:name:                                                                _default
+ 0x0:0xa:history:                                                             false
+ 0x0:0xa:maxTTL:                                                              0
+ 0x0:0xa:metered:                                                             no
+ 0x0:0xa:name:                                                                MyFirstCollection
+ 0x0:0xb:history:                                                             false
+ 0x0:0xb:maxTTL:                                                              0
+ 0x0:0xb:metered:                                                             no
+ 0x0:0xb:name:                                                                MySecondCollection
+ 0x8:0x8:history:                                                             false
+ 0x8:0x8:maxTTL:                                                              0
+ 0x8:0x8:metered:                                                             no
+ 0x8:0x8:name:                                                                _mobile
+ 0x8:0x9:history:                                                             false
+ 0x8:0x9:maxTTL:                                                              0
+ 0x8:0x9:metered:                                                             no
+ 0x8:0x9:name:                                                                _query
+ manifest_uid:                                                                3
+ vb_0:0x0:disk_size:                                                          0
+ vb_0:0x0:high_seqno:                                                         0
+ vb_0:0x0:history:                                                            false
+ vb_0:0x0:items:                                                              0
+ vb_0:0x0:name:                                                               _default
+ vb_0:0x0:persisted_high_seqno:                                               0
+      .
+      .
+      .
+
+Each line of the output presents a data _key_. Each key is of the format `scopeID` : `collectionID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
+
+Existing collections are identified by `name`. Each is identified with hexadecimal numbers: the `_default` collection is identified as `0x0` (residing within scope `0x0`); and the other two as `0x8` and `0x9` respectively (both residing within scope `0x8`).
+
+The collection’s `history` line indicates whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not. (Note that the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket: see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).)
+
+The `maxTTL` line indicates whether a _Time To Live_ has been specified for the collection, and if so, its value. For information, see [Expiration](../../learn/data/expiration.md).
+
+The `metered` line is not used in Couchbase Server Version 7.6, and always has the value `0`.
+
+The `manifest_uid` value is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
+
+Subsequent information in the output relates to each vBucket corresponding to `testBucket`, on the current node. The vBuckets are numbered, from `vb_0` to `vb_1023`. For each vBucket, information is provided on sequence numbers and total items.
+
+The following command, which again refers to `testBucket`, specifies a `vbucket-reference`; thereby returning information on the specified vBucket only.
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b testBucket collections-details 8
+
+Details for vBucket `8` are duly returned:
+
+vb_8:0x0:disk_size:                                                 0
+ vb_8:0x0:high_seqno:                                                0
+ vb_8:0x0:history:                                                   false
+ vb_8:0x0:items:                                                     0
+ vb_8:0x0:name:                                                      _default
+ vb_8:0x0:persisted_high_seqno:                                      0
+ vb_8:0x0:scope:                                                     0x0
+ vb_8:0x0:start_seqno:                                               0
+ vb_8:0x8:disk_size:                                                 92
+ vb_8:0x8:high_seqno:                                                3
+ vb_8:0x8:history:                                                   false
+ vb_8:0x8:items:                                                     0
+ vb_8:0x8:maxTTL:                                                    0
+ vb_8:0x8:name:                                                      _mobile
+ vb_8:0x8:persisted_high_seqno:                                      3
+ vb_8:0x8:scope:                                                     0x8
+ vb_8:0x8:start_seqno:                                               3
+ vb_8:0x9:disk_size:                                                 89
+ vb_8:0x9:high_seqno:                                                2
+ vb_8:0x9:history:                                                   false
+ vb_8:0x9:items:                                                     0
+ vb_8:0x9:maxTTL:                                                    0
+ vb_8:0x9:name:                                                      _query
+ vb_8:0x9:persisted_high_seqno:                                      2
+ vb_8:0x9:scope:                                                     0x8
+ vb_8:0x9:start_seqno:                                               2
+ vb_8:0xa:disk_size:                                                 105
+ vb_8:0xa:high_seqno:                                                4
+ vb_8:0xa:history:                                                   false
+ vb_8:0xa:items:                                                     0
+ vb_8:0xa:maxTTL:                                                    0
+ vb_8:0xa:name:                                                      MyFirstCollection
+ vb_8:0xa:persisted_high_seqno:                                      4
+ vb_8:0xa:scope:                                                     0x0
+ vb_8:0xa:start_seqno:                                               4
+ vb_8:0xb:disk_size:                                                 105
+ vb_8:0xb:high_seqno:                                                5
+ vb_8:0xb:history:                                                   false
+ vb_8:0xb:items:                                                     0
+ vb_8:0xb:maxTTL:                                                    0
+ vb_8:0xb:name:                                                      MySecondCollection
+ vb_8:0xb:persisted_high_seqno:                                      5
+ vb_8:0xb:scope:                                                     0x0
+ vb_8:0xb:start_seqno:                                               5
+ vb_8:collections:                                                   5
+ vb_8:manifest:uid:                                                  3
+ vb_8:manifest:uidvb_8:default_mvs:                                  0
+ vb_8:manifest:uidvb_8:default_mvsvb_8:default_legacy_max_dcp_seqno: 0
+
+## [](#see-also)See Also
+
+For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+For a step-by-step explanation of creating scopes and collections with the CLI, see [Manage Scopes and Collections with the CLI](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-cli). For a comparable explanation with the REST API, see [Manage Scopes and Collections with the REST API](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-rest-api).
+
+For information on _Time To Live_, see [Expiration](../../learn/data/expiration.md).
+
+To use `cbstats` to provide higher-level information on collections, see the reference page for the [collections](cbstats-collections.md) command.
+
+For information on establishing a change history for collections within a bucket, see see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).

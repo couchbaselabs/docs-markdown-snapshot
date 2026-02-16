@@ -1,0 +1,31 @@
+[View original HTML](/styleguide/less-fewer.html)
+
+Use **less** for uncountable or mass nouns.
+
+Use **fewer** for nouns that you can count.
+
+## [](#less)Less
+
+Use **less** for quantities that are measured rather than counted:
+
+* Less time
+* Less effort
+
+You cannot count effort or time (without using units like minutes or hours), so use **less**.
+
+However, there are exceptions:
+
+* Use less for distances (less than 3 kilometers)
+* Use less for sums of money (less than 50 dollars)
+* Use less for units of time and weight (less than 7 years, less than 10 pounds)
+* Use less for statistics (less than 2,000 people)
+
+## [](#fewer)Fewer
+
+Use **fewer** for things that can be counted or have a number attached to them:
+
+* Fewer databases
+* Fewer indexes
+* Fewer status updates
+
+You can count the number of databases, indexes, or status updates, so use **fewer**.

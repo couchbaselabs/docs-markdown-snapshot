@@ -1,0 +1,13 @@
+[View original HTML](/server/7.6/learn/buckets-memory-and-storage/buckets-memory-and-storage.html)
+
+> Couchbase Server saves data within _Buckets_. 
+
+## [](#creating-maintaining-and-accessing-data)Creating, Maintaining, and Accessing Data
+
+Couchbase Server keeps data within _Buckets_. Before you add any data, you must create a bucket within which to store it. Buckets can be created by means of the _Couchbase Web Console_, the _REST API_, or the _CLI_. Each bucket is assigned a name at its creation: this name is referenced by the application or user wishing to save or access items within it.
+
+The types of bucket most frequently used are _Couchbase_ and _Ephemeral_ buckets. _Couchbase_ buckets exist both in memory and on disk. _Ephemeral_ buckets exist only in memory. Buckets can be configured to maintain data in compressed format, so as to maximize resource-effectiveness. Documents within a bucket can be assigned a _Time To Live_, to ensure that they expire after a specified time-period, and that their data is thus made permanently inaccessible.
+
+Couchbase Server manages memory to ensure high performance and scalability: memory quotas are established, and data not recently used can be _ejected_, to make room for data more frequently requested. Multi-threaded readers and writers provide simultaneous read and write operations for data on disk, ensuring high throughput.
+
+The pages in this section provide detailed descriptions of buckets, memory, and storage.

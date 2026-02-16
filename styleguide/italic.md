@@ -1,0 +1,3 @@
+[View original HTML](/styleguide/italic.html)
+
+Do not use italics to format text in the Couchbase documentation. Do not surround any text with underscores (\_) to add emphasis.

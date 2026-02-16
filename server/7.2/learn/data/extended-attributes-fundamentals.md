@@ -1,0 +1,64 @@
+[View original HTML](/server/7.2/learn/data/extended-attributes-fundamentals.html)
+
+> Couchbase Server permits the definition of _extended attributes_. These allow developers to define application-specific metadata visible only to those applications that request it or attempt to modify it. This might be, for example, metadata specific to a programming framework that should be hidden by default from other frameworks, or possibly from other versions of the same framework. 
+
+## [](#definition-access-and-discovery)Definition, Access, and Discovery
+
+The Couchbase SDK supports applications' creation and modification of [extended attributes](#3.4@java-sdk:concept-docs:xattr.adoc) (sometimes referred to as _XATTRs_). This is achieved by extensions to the _Sub-Document_ API (see [Sub-Documents](data.md#sub-documents-overview)). Extended attributes can be formed only as JSON, but can be applied to both JSON and binary items.
+
+The creator-application can subsequently access and modify the extended attributes it has created within a document. However, no other application has knowledge of the extended attributes within a document other than their creator; unless such knowledge is shared explicitly between applications by some mechanism external to Couchbase Server.
+
+XATTRs are intended for use in libraries and frameworks, storing meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework. They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.
+
+## [](#implications-for-sizing)Implications for Sizing
+
+Within Couchbase Server, the maximum size for each document is 20 megabytes (see the section [Size Limits](data.md#size-limits), on the page [Data](data.md)). Extended attributes count against this size-limit: consequently, the size of a document may reflect the presence of data inaccessible to some applications.
+
+## [](#virtual-extended-attributes)Virtual Extended Attributes
+
+A _virtual_ extended attribute is server-defined, and exposes additional information about a document. Virtual extended attributes are sometimes referred to as _VXATTRs_. Couchbase Server provides the virtual extended attribute, `$document`, which, when specified as a search-path, returns metadata on the document. Output might appear as follows:
+
+```javascript
+DocumentFragment
+    {
+      id='hotel_10138',
+      cas=1504782798402879488,
+      mutationToken=null
+    }
+    [
+      GET($document)
+        {
+          value=
+            {
+              "exptime":0,
+              "deleted":false,
+              "CAS":"0x14e20ffb82ec0000",
+              "seqno":"0x00000000000001fb",
+              "datatype":["json","xattr"],
+              "vbucket_uuid":"0x000060329233c341",
+              "value_bytes":1504,
+              "last_modified":"1504782798"
+             }
+         }
+    ]
+```
+
+Couchbase Server also provides the virtual extended attribute, `$XTOC`, which, when specified as a search-path, returns a list of the extended attributes for the document. For a document with a single extended attribute, output might appear as follows:
+
+```javascript
+DocumentFragment
+    {
+      id='hotel_10142',
+      cas=1555331697987289088,
+      mutationToken=null
+    }
+    [
+      GET($XTOC)
+        {
+          value=
+            [
+              "discounts"
+            ]
+         }
+    ]
+```

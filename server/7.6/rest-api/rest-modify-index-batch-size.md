@@ -1,0 +1,43 @@
+[View original HTML](/server/7.6/rest-api/rest-modify-index-batch-size.html)
+
+> Couchbase Server breaks the rebuilding of indexes during a rebalance into batches to limit the performance impact. You can use the REST API to change the size of these batches. 
+
+|  | Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance. |
+|  | ------------------------------------------------------------------------------------------------- |
+
+## [](#http-method-and-uri)HTTP Method and URI
+
+POST /settings
+
+## [](#description)Description
+
+Sets the _batch size_ Couchbase Server uses when rebuilding index files during rebalance. This setting has no effect on file-based rebalance. This setting controls the maximum number of indexes that a rebalance rebuilds concurrently. You must have either Full Admin or the Cluster Admin role to set this value.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST http://<node-ip-address-or-domain-name>:<port-number>/settings
+  -u <username>:<password>
+  -d '{"indexer.rebalance.transferBatchSize":<integer>}'
+
+The port number must be either `9102` or `19102`, which are those of the `indexer_http_port` and `indexer_https_port` respectively. The `integer` should be a small integer that corresponds to the batch size to be established. The default is `3`.
+
+The change automatically propagates to all Index-Service nodes, and will be remembered across node and cluster restarts.
+
+## [](#responses)Responses
+
+Success returns `200 OK`. Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI returns `404 Object Not Found`.
+
+Failure correctly to specify the key `"indexer.rebalance.transferBatchSize"` generates no error, and returns `200 OK`.
+
+## [](#example)Example
+
+The following call establishes the batch size as `7`:
+
+curl -v -X POST http://localhost:9102/settings -u Administrator:password \
+-d '{"indexer.rebalance.transferBatchSize":7}'
+
+If successful, the call returns `200 OK` and no object.
+
+## [](#see-also)See Also
+
+An overview of rebalance as it affects the Index Service, including an overview of _smart batching_, is provided in [Index Rebalance](../learn/clusters-and-availability/rebalance-and-index-service.md). For information on Couchbase-Server ports, see [Couchbase Server Ports](../install/install-ports.md).

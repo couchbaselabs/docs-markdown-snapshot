@@ -1,0 +1,54 @@
+[View original HTML](/server/7.6/developer-preview/preview-mode.html)
+
+> Developer Preview mode (“Preview Mode”), provides early access to features which may become generally available (“GA”) in future releases and enables you to play with these features to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only. 
+
+The Developer Preview Mode is disabled by default. You can enable it using the CLI or REST API.
+
+It is important to note that when Preview Mode is enabled, the cluster is converted to a Developer Preview cluster and cannot be switched back. Preview Mode features are under development and as such Couchbase cannot guarantee the stability of these features. Additionally, clusters in Preview Mode cannot be upgraded to subsequent releases.
+
+Developer Preview Mode can be enabled using the CLI or REST API, however, as noted above, once enabled, it cannot be disabled.
+
+Note that the commands on this page assume a Ubuntu Linux environment. For the appropriate command-paths, see [CLI Reference](../cli/cli-intro.md).
+
+## [](#how-do-i-know-if-my-cluster-is-in-developer-preview-mode)How do I know if my cluster is in Developer Preview Mode?
+
+If your cluster is in Developer Preview Mode, the Web Console displays the following banner:
+
+![preview mode verify ui](_images/preview-mode-verify-ui.png) 
+
+You can also verify whether Preview Mode has been enabled on your cluster by running the `couchbase-cli enable-developer-preview` command with the `--list` flag, and specifying the cluster-address, and the Full Administrator username and password as shown:
+
+/opt/couchbase/bin/couchbase-cli enable-developer-preview \
+--list -c localhost:8091 -u Administrator -p password
+
+If the cluster is not in Preview Mode, the following output is displayed:
+
+Cluster is NOT in developer preview mode
+
+If the cluster _is_ in Preview Mode, the output is as follows:
+
+Cluster is in developer preview mode
+
+## [](#how-do-i-enable-the-developer-preview-mode)How do I enable the Developer Preview Mode?
+
+To enable the Developer Preview Mode, run the `couchbase-cli enable-developer-preview` command with the `--enable` flag, and specify the cluster-address, and the Full Administrator username and password as shown below.
+
+/opt/couchbase/bin/couchbase-cli enable-developer-preview \
+--enable -c localhost:8091 -u Administrator -p password
+
+The following notification and prompt are provided:
+
+Developer preview cannot be disabled once it is enabled. If you enter developer preview mode you will not be able to upgrade. DO NOT USE IN PRODUCTION.
+Are you sure [y/n]:
+
+To enter Developer Preview Mode, enter `y` against the prompt, and hit return:
+
+Are you sure [y/n]: y
+
+The following confirmation is now displayed:
+
+SUCCESS: Cluster is in developer preview mode
+
+## [](#developer-preview-features)Developer Preview Features
+
+The following features are provided as part of the _Developer Preview_ for this release.

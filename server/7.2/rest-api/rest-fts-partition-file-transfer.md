@@ -1,0 +1,64 @@
+[View original HTML](/server/7.2/rest-api/rest-fts-partition-file-transfer.html)
+
+> The Search-Service REST API configures rebalance based on file transfer. 
+
+## [](#http-methods-and-uris)HTTP Method and URI
+
+PUT /api/managerOptions
+
+## [](#description)Description
+
+The Search Service automatically partitions its indexes across all Search nodes in the cluster, ensuring optimal distribution, following rebalance.
+
+To achieve this, in versions of Couchbase Server prior to 7.1, by default, partitions needing to be newly created were entirely _built_, on their newly assigned nodes. In 7.1+, by default, new partitions are created by the _transfer_ of partition files from old nodes to new nodes: this significantly enhances performance. This is an Enterprise-only feature, which requires all Search Service nodes _either_ to be running 7.1 or later; _or_ to be running 7.0.2, with the feature explicitly switched on by means of this endpoint. Note that users of 7.1+ can explicitly switch the feature _off_ by means of this endpoint; in which case _partition build_ is used to establish new partitions, rather than file transfer.
+
+During file transfer, should an unresolvable error occur, file transfer is automatically abandoned, and partition build is used instead.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X PUT http://<ip-address-or-domain-name>:8094/api/managerOptions
+  -u <username>:<password>
+  -H "Content-type:application/json"
+  -d '{"disableFileTransferRebalance": [ "true" | "false" ]}'
+  -d '{"enableReplicaCatchupOnRebalance": [ "true" | "false" ]}'
+
+If the value specified for the key `disableFileTransferRebalance` is `false` (which is the default in 7.1+), new Search-Service partitions are created during rebalance by means of partition-file transfer. If the value is `true`, partitions are created by means of partition build, from scratch; over DCP connections from the Data Service.
+
+If you set `enableReplicaCatchupOnRebalance` to `true`, Couchbase Server tracks its progress when copying FTS replica index partitions during a rebalance. This option only has an effect when `disableFileTransferRebalance` is false. It tracks its progress by comparing the sequence numbers of the partitions it has copied with the partition sequence numbers on the node containing the original partitions. Having Couchbase Server track its progress helps prevent problems such as rollbacks in later rebalance operations. Couchbase Server automatically tracks its progress using this method when copying active partitions. When `enableReplicaCatchupOnRebalance` is the default value of `false`, Couchbase Server does not monitor its progress when copying replica partitions. This setting reduces the overhead of a rebalance. However it can result in some replica partitions being only partially rebuilt.
+
+|  | Enabling enableReplicaCatchupOnRebalance impacts performance due to the added overhead of monitoring the progress of copying replica partitions. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#responses)Responses
+
+Success returns `200 OK`, and the message `{"status":"ok"}`. If the URI is incorrectly specified, `404 Object Not Found` is returned. If the method is incorrectly specified, `405 Method Not Allowed` is returned, with the message `{"error":"Method not allowed for endpoint","status":"fail"}`.
+
+Failure to authenticate returns `401 Unauthorized`.
+
+## [](#examples)Examples
+
+The following example _disables_ the creation of new partitions by means of file-transfer:
+
+curl -X PUT http://localhost:8094/api/managerOptions \
+-u Administrator:password \
+-H "Content-type:application/json" \
+-d '{"disableFileTransferRebalance": "true" }'
+
+From this point, Search-Service index-partitions are _built_ on the new nodes assigned to them during rebalance.
+
+The following example _re-enables_ the creation of new partitions by means of file-transfer:
+
+curl -X PUT http://localhost:8094/api/managerOptions \
+-u Administrator:password \
+-H "Content-type:application/json" \
+-d '{"disableFileTransferRebalance": "false" }'
+
+From this point, Search-Service index-partitions are again created by _file transfer_, on the new nodes assigned to them during rebalance.
+
+In each case, successful execution returns the following:
+
+{"status":"ok"}
+
+## [](#see-also)See Also
+
+An overview of rebalance for all services is provided at [Rebalance](../learn/clusters-and-availability/rebalance.md). An overview of the REST API for the Search Service is provided at [Search API](rest-fts.md). An architectural summary of the Search Service is provided at [Search Service Architecture](../learn/services-and-indexes/services/search-service.md#search-service-architecture).

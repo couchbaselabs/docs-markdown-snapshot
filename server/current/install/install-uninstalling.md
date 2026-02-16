@@ -1,0 +1,81 @@
+[View original HTML](/server/current/install/install-uninstalling.html)
+
+> The Couchbase Server application and its associated data can be removed from supported systems. 
+
+Uninstalling Couchbase Server from a system involves removing the Couchbase Server application along with any directories containing Couchbase configuration files, data, and logs.
+
+This page describes how to uninstall Couchbase Server from Linux, Windows, and MacOS systems; and assumes that a standard _package-based_ install has previously been performed. For information on uninstalling Couchbase Server after a _non-root_ install has been performed, see the non-root [Uninstall](non-root.md#uninstall-non-root-couchbase-server) information.
+
+## [](#before-you-uninstall)Before You Uninstall
+
+If the system is a part of an active Couchbase cluster, you’ll need to [remove it and rebalance the cluster](../manage/manage-nodes/remove-node-and-rebalance.md) to take the node out of the configuration. You’ll also need to update Couchbase clients to point to an available node within the active cluster.
+
+|  | The instructions on this page will completely remove Couchbase Server, and all configuration and database files. Ensure that your configuration and data are backed up before proceeding, as this process cannot be undone. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#linux)Linux
+
+1. Stop the Couchbase Server process if it’s running.  
+```console  
+sudo systemctl stop couchbase-server  
+```  
+Refer to [Start and Stop Couchbase Server](startup-shutdown.md#start-stop-linux) for more information.
+2. Remove the application and packages.
+
+  * RHEL, Red Hat-based distributions, SUSE, Oracle, and Amazon Linux
+  * Ubuntu and Debian  
+```console  
+sudo rpm -e couchbase-server  
+```  
+```console  
+sudo dpkg -r couchbase-server  
+```
+3. Remove the data and log directories.  
+```console  
+sudo rm -rf /opt/couchbase  
+```  
+If, during initial setup of the node, you specified non-default locations for Couchbase data, indexes, etc., then you’ll need to locate those files as well and delete them in order to complete the uninstall process.
+
+## [](#windows)Windows
+
+To uninstall Couchbase Server on Windows, you must have Administrator or Power User privileges.
+
+1. Remove the application.  
+Go to **Start** **Settings** and click on **Apps**. From the list of applications, click on Couchbase Server, and then click **Uninstall**.  
+A dialogue window may appear asking for your permission to run the uninstall utility. If this is the case, click **Yes** to continue.
+2. Remove the data and log directories.  
+Open File Explorer and go to `C:\Program Files\`. Drag the `Couchbase` folder to the Recycle Bin.  
+If, during initial setup of the node, you specified non-default locations for Couchbase data, indexes, etc., then you’ll need to locate those files as well and delete them in order to complete the uninstall process.
+
+## [](#macos)macOS
+
+* UI
+* Terminal
+
+1. Quit Couchbase Server if it’s running.  
+Click ![Couchbase Server menu bar icon](_images/macos-menu-bar-icon-light.png) and select **Quit Couchbase Server**. The menu bar icon will disappear when Couchbase Server shuts down.  
+Refer to [Start and Stop Couchbase Server](startup-shutdown.md#start-stop-macos) for more information.
+2. Remove the application.  
+Go to the `Applications` folder and drag `Couchbase Server.app` to the Trash.
+3. Remove the data and log directories.  
+Open Finder and go to `~/Library/Application Support/`, and drag both the `Couchbase` and `Membase` folders (if present) to the Trash.  
+Next, go to `~/Library/Python/`, and drag the `couchbase-py` folder to the Trash.
+
+|  | If you don’t see the Library folder in your home folder, you can choose to follow the Terminal instructions instead, or you can toggle-on the Library folder. To toggle-on the Library folder, first click on Finder, then click on **View,Show View Options** in the menu bar, then check the checkbox next to **Show Library Folder**. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+1. Quit Couchbase Server if it’s running.  
+```console  
+osascript -e 'quit app "Couchbase Server"'  
+```  
+You may receive the following error: `0:27: execution error: Couchbase Server got an error: User canceled. (-128)`. You can ignore this error. Refer to [Start and Stop Couchbase Server](startup-shutdown.md#start-stop-macos) for more information.
+2. Remove the application.  
+```console  
+rm -rf /Applications/Couchbase\ Server.app  
+```
+3. Remove the data and log directories.  
+```console  
+rm -rf ~/Library/Application\ Support/Couchbase && rm -rf ~/Library/Application\ Support/membase && rm -rf ~/Library/Python/couchbase-py  
+```
+
+If, during initial setup of the node, you specified non-default locations for Couchbase data, indexes, etc., then you’ll need to locate those files as well and delete them in order to complete the uninstall process.

@@ -1,0 +1,56 @@
+[View original HTML](/cloud/indexes/index-lifecycle.html)
+
+> An overview of the lifecycle of a Global Secondary Index, from creation and building to updates and scans. 
+
+A Global Secondary Index is created on a single collection — not on an entire bucket. (A collection may, of course, have multiple indexes.) By carefully planning the structure of your data, and storing documents of different types in separate collections, you can improve performance at every stage in the lifecycle of an index.
+
+## [](#index-creation)Index Creation
+
+Index creation happens in 2 phases: the creation phase and the build phase. During the creation phase, the Index Service validates the user input, decides the host node for the index, and creates the index metadata on the host node. The build phase cannot start until the creation phase is complete.
+
+|  | When migrating data using XDCR, avoid creating any indexes before the migration to achieve higher throughput. You can create the indexes after the migration to assist with query performance. For more information, see [Cross Data Center Replication (XDCR)](../clusters/xdcr/xdcr.md). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#index-building)Index Building
+
+During the build phase, the Index Service reads the documents from the Data Service and builds the index.
+
+![index lifecycle build](_images/index-lifecycle-build.png) 
+
+1. The projector requests a DCP stream on the specified collection.
+2. DCP streams only the documents in the collection.
+3. The projector evaluates each document and extracts the indexed fields.
+4. The indexed fields are forwarded to the indexer.
+
+Creating and building indexes can take a long time on keyspaces with lots of existing documents. When you create an index, you can choose to defer the build phase, and then build the deferred index later. This allows multiple indexes to be built at once rather than having to re-scan the entire keyspace for each index.
+
+For more information and examples, see [CREATE PRIMARY INDEX](../n1ql/n1ql-language-reference/createprimaryindex.md), [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md), and [BUILD INDEX](../n1ql/n1ql-language-reference/build-index.md).
+
+## [](#index-updates)Index Updates
+
+When a Global Secondary Index has been created on a collection, the index is updated when documents within the collection are updated.
+
+![index lifecycle update 1](_images/index-lifecycle-update-1.png) 
+
+![index lifecycle update 2](_images/index-lifecycle-update-2.png) 
+
+1. The projector keeps a bucket-level DCP stream open for updates — this limits the number of DCP connections.
+2. When a document within the collection is updated, the projector utilizes the collection ID available with each mutation, and only evaluates the indexes defined for that collection.
+3. The projector only sends updated indexed fields for the qualified indexes within the collection.
+
+Indexes on unrelated collections have no additional processing or disk overhead.
+
+For more information, see [Database Change Protocol (DCP)](../../server/current/learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol).
+
+## [](#index-scans)Index Scans
+
+When a query needs to make use of a Global Secondary Index, the index is scanned.
+
+![index lifecycle scan](_images/index-lifecycle-scan.png) 
+
+* If the index consistency is `not_bounded`, the scan proceeds without waiting for the index to be updated.
+* If the scan consistency is `at_plus` or `request_plus`, the scan coordinator waits for the index to be updated for that collection only, and then performs the scan.
+
+The scan coordinator does not need to wait for indexes on other collections to be updated, even if documents in other collections are being mutated.
+
+For more information, see [Index Scans](index-scans.md) and [Index Consistency](index-replication.md#index-consistency).

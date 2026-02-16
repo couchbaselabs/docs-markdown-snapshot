@@ -1,0 +1,99 @@
+[View original HTML](/server/current/learn/security/authentication-overview.html)
+
+> To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined. 
+
+## [](#authentication-for-administrators)Authentication for Administrators
+
+Administrators log into Couchbase Server Web Console either by providing their username and password to the administrative UI, or by selecting the _Single Sign-On_ option, at `<https://hostname:18091>`.
+
+Optionally, the _unencrypted_ port, 8091 can be used: specified as `<http://hostname:8091>`. Note this is _not_ recommended, as username and password are passed in the clear, from the browser to the console.
+
+The best practice for administrator-authentication is to use _single sign-on_, with a provider that is configured to require _Multi-Factor Authentication_ (MFA). For more information about securing the network with encryption, see [On-the-Wire Security](on-the-wire-security.md). For more information about single sign-on, see [SAML Authentication](authentication-domains.md#saml-authentication).
+
+## [](#authentication-for-applications)Authentication for Applications
+
+The recommended method for application-authentication when connecting to Couchbase Server is to use x.509 _certificate-based_ authentication. This ensures that only approved users, machines, or endpoints are authenticated, and provides what is known as _mutual authentication_.
+
+Mutual-TLS (mTLS) certificate-based authentication relies on a _Certificate Authority_ (CA) to validate identities and issue certificates. When using this method, no sensitive credentials are shared over the network; and all communication between application and server is performed over an _encrypted channel_, to prevent eavesdropping and impersonation.
+
+For a complete overview of Couchbase Server’s certificate-handling mechanisms, see [Certificates](certificates.md). For practical steps required to set up client and server certificates, see [Manage Certificates](../../manage/manage-security/manage-certificates.md).
+
+### [](#authentication-with-username-and-password)Authentication with Username and Password
+
+In cases where x.509 certificate-based authentication cannot be used, a _username and password_ combination must be provided in the application, to authenticate to Couchbase Server. When an application authenticates to the Data Service, one of four mechanisms provided by the Simple Authentication and Security Layer (SASL) framework are used. All other Couchbase services use _HTTP Basic Authentication_.
+
+It is strongly recommended to always deploy TLS network encryption and use the defined TLS ports when connecting an application to Couchbase Server.
+
+#### [](#data-service-username-password-authentication)Data-Service Authentication with Username and Password
+
+During initial client-server negotiation with the Data Service, when utilizing TLS network encryption, the SASL PLAIN method is always used, with the credentials being secured inside the encrypted network connection. For cases where TLS network-encryption is not in use, the strongest authentication protocol supported by both Couchbase Server and the client application is selected for authentication. This is either PLAIN or one of the revisions of SCRAM-SHA challenge-response mechanisms for authenticating. In ascending order of strength, the Couchbase password-authentication mechanisms are as follows:
+
+* PLAIN: The client sends the password in plaintext-form.
+* SCRAM-SHA1: 160-bit credential.
+* SCRAM-SHA256: 256-bit credential.
+* SCRAM-SHA512: 512-bit credential.
+
+Instead of the client sending the password directly to Couchbase Server, SCRAM uses a challenge-response mechanism, to exchange derived cryptographic credentials using a combination of PBKDF2, HMAC and SHA, so that the application-credential is not exposed to eavesdroppers on the network. Note that other communication-data, including queries and database-values, are _not_ encrypted with the SCRAM mechanism: therefore, the SCRAM mechanism should only be used where TLS network-encryption is not an option.
+
+#### [](#other-service-username-password-authentication)Authenticating with Other Services, with Username and Password
+
+Application-authentication for all services other than the Data Service uses the HTTP Basic Authentication mechanism, with username and password. In consequence, it is essential that TLS network encryption _always_ be deployed, so as to avoid credentials being sent over the network insecurely.
+
+## [](#secure-credential-storage)Secure Credential Storage
+
+Locally managed user-account credentials are stored in Couchbase Server using both the _Argon2ID_ and _PBKDF2_ algorithms.
+
+_Argon2ID_ is a state of the art password hashing function, designed to be resistant to various password-cracking attacks: including both time-memory trade-off attacks, and side-channel attacks. _PBKDF2_ is another powerful password hashing function; and is required to allow SCRAM-SHA capabilities. By default, the PBKDF2 credentials are stored with 5,000 iterations: this can be configured with the `POST settings/security/scramShaIterations` REST API method and URI, with a higher specified number increasing the security of the credentials, with the trade-off of higher resource requirements when authentication is performed. Following guidance from NIST, it is recommended to disable SCRAM-SHA1 unless it is absolutely required.
+
+|  | By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+The various levels of SCRAM SHA can be disabled with `POST /settings/security/scramSha1Enabled`, `POST /settings/security/scramSha256Enabled` and `POST /settings/security/scramSha512Enabled`. For more information on the using the REST API to configure security settings, see [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md).
+
+For cases that do not use SCRAM-SHA, such as those that implement TLS network encryption, it is recommended to _disable_ all variations of SCRAM-SHA; as this will prevent the SCRAM-SHA PBKDF2 hashes from being generated, when Argon2ID provides stronger security for those credentials.
+
+### [](#password-hash-migration)Automatic Password Hash Migration
+
+You can select which algorithm Couchbase Server uses to hash locally stored passwords by setting `passwordHashAlg` using the `/settings/security` REST API. When you change the hash algorithm Couchbase Server uses, it does not update all of the stored passwords using the new algorithm. It cannot rehash the existing passwords as it does not have access to the original, unhashed password. Instead, existing passwords remain hashed using the previous hashing algorithm. Couchbase Server uses the newly-set hashing algorithm for passwords when you create new accounts or when an existing account changes its password. Users can authenticate using passwords hashed with any hashing algorithm Couchbase Server supports.
+
+You can enable Couchbase Server’s password hash migration feature that automatically rehashes user’s password when they authenticate. Couchbase Server is able to hash the user’s password with the currently enabled hashing algorithm because it has access to the unhashed password during authentication. This rehashing is transparent to users—​they do not have to change their password to have it hashed with the more new hashing algorithm.
+
+You enable automatic password hash by calling the `/settings/security` endpoint to set the `allowHashMigrationDuringAuth` setting to `true`. See [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md) for more information.
+
+## [](#authorization)Authorization
+
+Couchbase-Server features — including data, settings, and statistics — can be accessed only by users who have been assigned the appropriate _privileges_. Privileges include _read_, _read-write_, _execute_, and _manage_. Privileges are assigned by _Full_ and _Security_ Administrators, in correspondence with _roles_. When a user successfully authenticates, their assigned roles are examined, and access is granted or denied by Couchbase Server.
+
+Roles can be assigned to a user in either or both of two ways:
+
+* _Directly_. The user is associated directly with one or more Couchbase-Server roles.
+* _By Group_. A Couchbase-Server _user-group_ is defined, and roles are assigned to the user-group. The user is made a member of the user-group, and thereby inherits all the roles of the group. A user can be a member of any number of groups.
+
+Note that by means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Couchbase Server; as described in [Authentication Domains](authentication-domains.md).
+
+See [Manage Users, Groups, and Roles](../../manage/manage-security/manage-users-and-roles.md), for details on creating users and groups, and assigning roles.
+
+## [](#authentication-domains)Authentication Domains
+
+Couchbase Server assigns each user to one of two _authentication domains_; which are _local_ and _external_. The _local_ domain contains users defined locally, on Couchbase Server. The _external_ domain contains users defined externally on an LDAP server, a SAML IdP provider, or Linux systems that are accessed by means of _PAM_. For a complete overview, see [Authentication Domains](authentication-domains.md).
+
+In addition to a username and password requirement, SAML can require _Two-Factor Authentication_ (TFA) such as a one-time code sent via text message or a code generated by an authentication module or app. SAML can also provide _Single Sign On_ (SSO), where a user that has already authenticated with another application is automatically authenticated to use.
+
+## [](#blocking-user-authentication)Blocking User Authentication
+
+[ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
+
+Administrators can lock user accounts by blocking their authentication. This is enforced through account locking. After an account is marked as locked, it prevents the user from logging in or from continuing the existing sessions. Locking an account terminates all active UI sessions and long-running connections such as Memcached or streaming connections.
+
+|  | This feature is only available after the entire cluster is upgraded to version 8.0 or later. Only local domain user accounts can be locked or unlocked. External domain user accounts cannot be locked or unlocked. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This feature is useful for preventing users from connecting to the database during maintenance.
+
+Administrators can block authentication manually through the UI, REST API, or CLI, or automatically through inactivity-based locking after a defined idle period (using TTL). TTL based locking also allows accounts to be blocked temporarily, with automatic unlocking after the configured duration. By default, automatic blocking rules can exclude System Administrators and other critical roles, to maintain uninterrupted operations.
+
+From the authentication flow perspective, any login attempt against a blocked account is denied, and the login screen displays a clear error message indicating that the account has been locked. The server communicates this state consistently across interfaces; UI responses, CLI status, REST API outputs, and SDK error codes all reflect the locked status.
+
+For auditing and compliance, every lock event is logged with details of who performed the action and under what conditions. This ensures that blocking user authentication is both transparent and reversible while maintaining strong security boundaries.
+
+For more information about locking or unlocking user accounts from the UI, see [Lock and Unlock User Accounts](../../manage/manage-security/manage-users-and-roles.md#lock-and-unlock-user-accounts).

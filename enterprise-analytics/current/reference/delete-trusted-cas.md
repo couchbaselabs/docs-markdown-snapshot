@@ -1,0 +1,44 @@
+[View original HTML](/enterprise-analytics/current/reference/delete-trusted-cas.html)
+
+> Trusted CA (or 'root') certificates previously loaded into the Couchbase-Server cluster can be deleted. 
+
+## [](#http-method-and-uri)Http Method and URI
+
+DELETE /pools/default/trustedCAs/<id>
+
+## [](#description)Description
+
+Removes from the list of trusted CA certificates for the cluster the certificate with the specified id. The id can be retrieved by means of the `GET /node/controller/trustedCAs` method and URI: for information, see [Get Root Certificates](get-trusted-cas.md).
+
+Removal fails if there is on the cluster at least one node certificate that is directly or indirectly (that is, by means of one or more intermediate certificates) signed by the specified certificate. Removal is idempotent.
+
+Either the Full Admin or the Security Admin role is required.
+
+## [](#curl-syntax)Curl Syntax
+
+The curl syntax is as follows:
+
+curl -X DELETE http://<ip-address-or-domain-name>:8091/pools/default/trustedCAs/<id>
+ -u <username>:<password>
+
+The `id` must be an integer that is the id of the certificate that is to be deleted: this can be retrieved as the value of the `id` key, in the array returned by `GET /node/controller/trustedCAs`. See [Get Root Certificates](get-trusted-cas.md).
+
+## [](#responses)Responses
+
+Success returns `200 OK`. If no root certificate corresponding to the specified id can be found, deletion fails with `404 Object Not Found`; and the message `Not found` is displayed.
+
+If an attempt is made to delete a root certificate that has signed a node-certificate that is currently in use, deletion fails with `400 Bad Request`, and an error message such as: `{"errors":{"_":"The CA certificate is in use by the following nodes: 10.144.220.102"}}`.
+
+Failure to authenticate returns `HTTP/1.1 401 Unauthorized`. Authentication with inadequate credentials returns `403 Forbidden`, and an error message such as: `{"message":"Forbidden. User needs the following permissions","permissions":["cluster.admin.security!write"]}`.
+
+A malformed URI returns `HTTP/1.1 404 Object Not Found`. An incorrect method returns `HTTP/1.1 405 Method Not Allowed`.
+
+## [](#example)Example
+
+The following call removes from the list of trusted CA certificates for the cluster the certificate whose id is `3` :
+
+curl -X DELETE http://10.144.220.101:8091/pools/default/trustedCAs/3 -u Administrator:password
+
+## [](#see-also)See Also
+
+An overview of certificate management is provided in [Certificates](#learn:security/certificates.adoc). Steps for certificate creation are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md).

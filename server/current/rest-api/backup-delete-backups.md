@@ -1,0 +1,57 @@
+[View original HTML](/server/current/rest-api/backup-delete-backups.html)
+
+> The Backup Service REST API supports the deletion of backups, from a specified, active repository. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+DELETE /cluster/self/repository/active/<repository-id>/backups/<backup-id>
+
+## [](#description)Description
+
+Deletes a specified backup, within a specified, active repository.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X DELETE http://<backup-node-ip-address-or-domain-name>:8097/\
+  cluster/self/repository/active/<repository-id>/backups/<backup-id>
+  -u <username>:<password>
+  -d '{"disable_safe_remove_check": <true|false>}'
+
+The `username` and `password` must identify an administrator with the Full Admin role. The `repository-id` and `backup-id` arguments must respectively specify the name of an active repository defined on the cluster, and the name of a backup within that repository.
+
+The `disable_safe_remove_check` parameter is optional. It allows you to delete a backup that has incremental backups depending on it.
+
+* If set to `true`, the Backup Service won’t check if the backup is safe to delete. If the selected backup has dependent incremental backups, the Backup Service will delete the backup without warning.
+* If set to `false`, the Backup Service checks if the backup is safe to delete before proceeding. The Backup Service checks if the selected backup has dependent incremental backups. The default value is `false`.
+
+|  | Setting disable\_safe\_remove\_check to true can break backup cycles and make dependent backups invalid. |
+|  | -------------------------------------------------------------------------------------------------------- |
+
+## [](#responses)Responses
+
+| Value                                                                   | Description                                                            |
+| ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 200 OK and JSON array containing the expired backups and their details. | Successful call.                                                       |
+| 400                                                                     | Invalid parameter.                                                     |
+| 400 Object Not found                                                    | The repository in the endpoint URI does not exist.                     |
+| 401 Unauthorized                                                        | Authorization failure due to incorrect username or password.           |
+| 403 Forbidden, plus a JSON message explaining the minimum permissions.  | The provided username has insufficient privileges to call this method. |
+| 404 Object Not Found                                                    | Error in the URI path.                                                 |
+| 500 Internal Server Error                                               | Error in Couchbase Server.                                             |
+
+## [](#examples)Examples
+
+The following call deletes a specified backup within the active repository `testRepo`:
+
+curl -v -X DELETE http://127.0.0.1:8097/api/v1/cluster/self/\
+repository/active/testRepo/backups/2020-09-29T21_00_36.511305+01_00 \
+-u Administrator:password
+-d '{"disable_safe_remove_check": true}'
+
+If successful, the call returns `200 OK`, and the specified backup is deleted.
+
+## [](#see-also)See Also
+
+* For information about deleting backups from the UI, see [Delete Backups](../manage/manage-backup-and-restore/manage-backup-and-restore.md#delete-backups).
+* An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md).
+* A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md).

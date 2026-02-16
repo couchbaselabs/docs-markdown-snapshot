@@ -1,0 +1,62 @@
+[View original HTML](/operator/current/reference-admission-rbac.html)
+
+The admission controller requires read-only access to several resource types in order to function.
+
+## [](#required-permissions)Required Permissions
+
+couchbase.com/couchbaseclusters
+
+couchbase.com/couchbasebuckets
+
+couchbase.com/couchbaseephemeralbuckets
+
+couchbase.com/couchbasememcachedbuckets
+
+couchbase.com/couchbasereplications
+
+couchbase.com/couchbaseusers
+
+couchbase.com/couchbasegroups
+
+couchbase.com/couchbaserolebindings
+
+couchbase.com/couchbasebackups
+
+couchbase.com/couchbasebackuprestores
+
+couchbase.com/couchbaseautoscalers
+
+couchbase.com/couchbasecollections
+
+couchbase.com/couchbasecollectiongroups
+
+couchbase.com/couchbasescopes
+
+couchbase.com/couchbasescopegroups
+
+couchbase.com/couchbasemigrationreplications
+
+Used by the DAC to collect resources associated with a `CouchbaseCluster`. The DAC ensures — when considered as a whole — the configuration is valid for the Couchbase cluster.
+
+_Required Permissions_: `list`
+
+## [](#optional-permissions)Optional Permissions
+
+secrets
+
+Used by the DAC to look for secrets references in the `CouchbaseCluster` specification. It will ensure that the username and password secrets exist. It will ensure that, if specified, the TLS secrets are present and correct, and are valid for the cluster.
+
+You can opt out of this requirement with the [\--validate-secrets cao flag](tools/cao.md).
+
+_Required Permissions_: `get`
+
+storage.k8s.io/storageclasses
+
+Used by the DAC to look for storage class references in the `CouchbaseCluster` specification. It will ensure that, if present, any storage class templates reference existing storage classes.
+
+You can opt out of this requirement with the [\--validate-storage-classes cao flag](tools/cao.md).
+
+_Required Permissions_: `get`, `list`
+
+|  | Secret and StorageClass resources are only interrogated — as described — for existence and correctness. The admission controller only performs get operations based on the names specified in the CouchbaseCluster specification. The list operation is only used by the admission controller to validate, if applicable, that a default storage class exists. These resources will never be leaked through logs and are never persisted by the admission controller. If, however, your security policies declare that such permissions cannot be granted to an application, then they can be safely removed from the admission controller’s role. You will then no longer be informed about missing secrets and storage classes, incorrectly formatted secrets, and invalid TLS configurations. For further information on opting out of these checks, see the documentation for the [cao generate admission](tools/cao.md) command. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

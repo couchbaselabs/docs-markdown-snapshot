@@ -1,0 +1,131 @@
+[View original HTML](/server/7.6/cli/cbstats/cbstats-scopes.html)
+
+> Provides information on scopes. 
+
+## [](#syntax)Syntax
+
+cbstats host:11210 [common options] scopes [ <scope> | id <scopeID> ]
+
+## [](#description)Description
+
+This command returns information on scopes.
+
+## [](#options)Options
+
+If no command-specific option is used, the `scopes` command returns information on all scopes defined for the specified bucket, on the specified node. If either of the command-specific options is used, the command returns information on the specified scope only. The `scope` argument should be the name of a scope. The `scopeID` argument should be the id of a scope.
+
+For common `cbstats` options, see [cbstats](../cbstats-intro.md).
+
+## [](#examples)Examples
+
+The following command retrieves all scope-related information for the bucket `travel-sample`:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample scopes
+
+The output is as follows:
+
+0x0:0x0:name:    _default
+0x0:collections: 1
+0x0:data_size:   19827828
+0x0:items:       31592
+0x0:mem_used:    21760360
+0x0:name:        _default
+0x0:ops_delete:  0
+0x0:ops_get:     0
+0x0:ops_store:   1
+0x8:0x9:name:    MyCollection
+0x8:collections: 1
+0x8:data_size:   68762
+0x8:items:       2
+0x8:mem_used:    291
+0x8:name:        MyScope
+0x8:ops_delete:  0
+0x8:ops_get:     2
+0x8:ops_store:   2
+0x9:0xa:name:    MySecondCollection
+0x9:0xb:name:    MyThirdCollection
+0x9:collections: 2
+0x9:data_size:   153600
+0x9:items:       0
+0x9:mem_used:    0
+0x9:name:        MySecondScope
+0x9:ops_delete:  0
+0x9:ops_get:     0
+0x9:ops_store:   0
+manifest_uid:    7
+
+Each line of the output presents a data _key_. Each key is either of the format `scopeID` : `collectionID` : `datumLabel`; or of the format `scopeID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
+
+Within the output, each group of lines presents information on one of the scopes for the specified bucket, on the specified node. This includes information on each of the collections the scope contains.
+
+By means of the data key, the first line of the output declares that the scope whose ID is `0x0` contains a collection whose id is `0x0`, and whose name is `_default`. The second line of the output declares that `0x0` contains `1` collection. Subsequent lines describe the disk and memory occupancy of this scope; the deletes, gets, and writes performed on its documents; and the `name` of scope `0x0`; which is `_default`.
+
+The next group of lines starts with the declaration that a scope whose id is `0x8` contains a collection whose id is `0x9`, and whose name is `MyCollection`. This collection is declared (by means of the integer `1`) to be the only collection in scope `0x8`. Subsequent lines provide additional details on this scope; and declare it to have the name `MyScope`.
+
+(Note that the `_default` collection is indeed provided by default, within the `_default` scope, for every Couchbase or Ephemeral bucket. Other scopes and collections used in this example — such as `MyScope` and `MyCollection` — are ones that have been custom-created by the administrator, and do not appear in the sample bucket `travel-sample` by default.)
+
+The third group of lines starts with successive lines that declare the scope whose id is `0x9` to contain two collections, whose ids are `0xa` and `0xb` respectively, and whose names are `MySecondCollection` and `MyThirdCollection` respectively. Subsequent lines provide additional details on this scope; and declare the scope to have the name `MySecondScope`.
+
+The `manifest_uid` value (here, `7`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
+
+The following command returns information on the scope `MyScope`, using the `scope` option:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample scopes MyScope
+
+The output is as follows:
+
+0x8:0x9:data_size:  68762
+0x8:0x9:items:      2
+0x8:0x9:mem_used:   291
+0x8:0x9:name:       MyCollection
+0x8:0x9:ops_delete: 0
+0x8:0x9:ops_get:    2
+0x8:0x9:ops_store:  2
+0x8:0x9:scope_name: MyScope
+0x8:collections:    1
+0x8:data_size:      68762
+0x8:items:          2
+0x8:mem_used:       291
+0x8:name:           MyScope
+0x8:ops_delete:     0
+0x8:ops_get:        2
+0x8:ops_store:      2
+
+The output, for `MyScope`, is thus a subset of that which was returned above, for _all_ scopes.
+
+The following command returns information on the same scope, specified by means of the `id scopeID` option:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample scopes id 0x8
+
+The `id` specified is thus `0x8`, already identified in the output for _all_ scopes as the id for `MyScope`. The output is again as follows:
+
+0x8:0x9:data_size:  68762
+0x8:0x9:items:      2
+0x8:0x9:mem_used:   291
+0x8:0x9:name:       MyCollection
+0x8:0x9:ops_delete: 0
+0x8:0x9:ops_get:    2
+0x8:0x9:ops_store:  2
+0x8:0x9:scope_name: MyScope
+0x8:collections:    1
+0x8:data_size:      68762
+0x8:items:          2
+0x8:mem_used:       291
+0x8:name:           MyScope
+0x8:ops_delete:     0
+0x8:ops_get:        2
+0x8:ops_store:      2
+
+## [](#see-also)See Also
+
+For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+For a step-by-step explanation of creating scopes and collections with the CLI, see [Manage Scopes and Collections with the CLI](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-cli). For a comparable explanation with the REST API, see [Manage Scopes and Collections with the REST API](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-rest-api).
+
+To use `cbstats` to provide further details on scopes, see the reference page for the [scopes-details](cbstats-scopes-details.md) command.

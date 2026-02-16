@@ -1,0 +1,16 @@
+[View original HTML](/server/7.6/learn/security/security-overview.html)
+
+> Couchbase Server can be rendered highly secure. 
+
+## [](#security-overview)Security Overview
+
+Couchbase Server can be rendered highly secure, so as to preserve the privacy and integrity of data, and account for access-attempts. The security facilities provided cover:
+
+* _Authentication_: All administrators, users, and applications (all formally considered _users_) must authenticate, in order to gain server-access. Users can be authenticated by means of either the _local_ or an _external_ password-registry. Authentication can be achieved by either passing credentials directly to the server, or by using a client certificate, in which the credentials are embedded. Connections can be secured by means of _SCRAM_ and _TLS_. See [Authentication](authentication.md).
+* _Authorization_: Couchbase Server uses _Role-Based Access Control_ (RBAC), to associate users with specifically assigned _roles_, these themselves corresponding to system-defined _privileges_, which allow degrees of access to specific system-resources. On authentication, a user’s roles are determined: if they allow the form of system-access the user is attempting, access is granted; otherwise, it is denied. See [Authorization](authorization-overview.md).
+* _Auditing_: Actions performed on Couchbase Server can be _audited_. This allows administrators to ensure that system-management tasks are being appropriately performed. See [Auditing](auditing.md).
+* _Encryption_: Data is encoded such that it is non-readable, other than by authorized parties who possess the appropriate means of _decryption_. Prior to decryption, therefore, encrypted data can be securely saved or transmitted. This ensures the privacy of user-data, and the integrity of servers and their clients. See [Encryption](encryption-overview.md).
+
+## [](#how-to-use-this-section-security)How to Use This Section
+
+This section provides a conceptual and architectural overview of Couchbase Server security: this includes a list of _roles_ and _resources_; an account of available auditing options and audit-file contents; and a description of required keys, best practices, supported identity encodings, and other details related to certificates. For practical steps whereby Couchbase Server can be secured, see the section [Security Management Overview](../../manage/manage-security/security-management-overview.md).

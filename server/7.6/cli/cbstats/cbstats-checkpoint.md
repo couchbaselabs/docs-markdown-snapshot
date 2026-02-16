@@ -1,0 +1,52 @@
+[View original HTML](/server/7.6/cli/cbstats/cbstats-checkpoint.html)
+
+> The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket. 
+
+## [](#description)Description
+
+The `checkpoint` command, used by `cbstats`, provides information on the _checkpoint_ data structure for a specified bucket, on a specified node. The same statistics are returned for each vBucket, each statistic beginning with `vb_`, followed by the vBucket’s ID and a colon.
+
+Note that running this command impacts performance.
+
+## [](#syntax)Syntax
+
+cbstats <host>:<port> [common options] checkpoint
+
+The `host` must be the hostname or IP address of a node within the cluster. The port must be `11210`. The `common options` must include a username and password, and a reference to a bucket defined on the cluster. For a complete list of `common options`, see the table provided on the introductory page for [cbstats](../cbstats-intro.md#common-options).
+
+The `checkpoint` command takes no `command options`.
+
+## [](#example)Example
+
+The following call returns statistics for the vBuckets on the specified node that correspond to the `travel-sample` bucket.
+
+/opt/couchbase/bin/cbstats -u Administrator -p password \
+-b travel-sample 10.143.194.101:11210 \
+checkpoint
+
+If successful, the command returns the following information for each vBucket on the specified node.
+
+ vb_0:id_1:key_index_allocator_bytes:      272
+ vb_0:id_1:queued_items_mem_usage:         556
+ vb_0:id_1:snap_end:                       38
+ vb_0:id_1:snap_start:                     38
+ vb_0:id_1:state:                          CHECKPOINT_OPEN
+ vb_0:id_1:to_write_allocator_bytes:       72
+ vb_0:id_1:type:                           Memory
+ vb_0:id_1:visible_snap_end:               38
+ vb_0:last_closed_checkpoint_id:           0
+ vb_0:mem_usage:                           1268
+ vb_0:num_checkpoint_items:                2
+ vb_0:num_checkpoints:                     1
+ vb_0:num_conn_cursors:                    1
+ vb_0:num_items_for_persistence:           0
+ vb_0:num_open_checkpoint_items:           0
+ vb_0:open_checkpoint_id:                  1
+ vb_0:persisted_checkpoint_id:             0
+ vb_0:persistence:cursor_checkpoint_id:    1
+ vb_0:persistence:cursor_seqno:            39
+ vb_0:persistence:num_visits:              1
+ vb_0:state:                               active
+          .
+          .
+          .

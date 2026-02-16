@@ -1,0 +1,201 @@
+[View original HTML](/server/7.2/rest-api/rest-setting-security.html)
+
+> Establish and retrieve cluster-wide settings for the use of encryption and cipher-suites. 
+
+## [](#http-method-and-uri)HTTP Method and URI
+
+GET /settings/security/[service-name]
+
+POST /settings/security/[service-name]
+
+## [](#description)Description
+
+Allows settings to be established for the use of encryption. This includes the encryption _level_, for node-to-node encryption within the cluster; UI disablement over insecure connections; TLS minimum version; and a list of accepted cipher suites. Additionally, secure communication by means of TLS can be _enforced_ across the cluster.
+
+Note that information on setting an HTTP Secure Transport Header with the REST API is provided in [Configure HSTS](rest-setting-hsts.md).
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET -u <administrator>:<password>
+  http://<ip-address-or-domain-name>:8091/settings/security/[service-name]
+
+curl -X POST -u <administrator>:<password>
+  http://<ip-address-or-domain-name>:8091/settings/security/[service-name]
+  -d disableUIOverHttp=<true|false>
+  -d disableUIOverHttps=<true|false>
+  -d disableWWWAuthenticate=<true|false>
+  -d responseHeaders=<list-of-response-headers>
+  -d allowedHosts=<list-of-naming-conventions>
+  -d allowNonLocalCACertUpload=<true|false>
+  -d clusterEncryptionLevel=<all|control|strict>
+  -d tlsMinVersion=<tlsv1|tlsv1.1|tlsv1.2|tlsv1.3>
+  -d honorCipherOrder=<true|false>
+  -d cipherSuites=<list-of-accepted-cipher-suites>
+
+The syntax for the `GET` and `POST` methods includes the following:
+
+* `service-name`. If provided, determines the service to which settings are either written with `POST`, or read with `GET`. The value of `service-name` can be any one of the following: `data` (Data Service), `fullTextSearch` (Search Service), `index` (Index Service), `eventing` (Eventing Service), `query` (Query Service), `analytics` (Analytics Service), `backup` (Backup Service), `clusterManager` (Cluster Manager). If no `service-name` is provided, _global_ settings are written or read.
+* `disableUIOverHttp`. Whether access to Couchbase Web Console should be disabled over http. Default is `false`, meaning that the console can be accessed over http. This parameter can only be set globally.
+* `disableUIOverHttps`. Whether access to Couchbase Web Console should be disabled over https. Default is `false`, meaning that the console can be accessed over https. This parameter can only be set globally.
+* `disableWWWAuthenticate`. Whether to disable Couchbase Server’s responding to unauthenticated requests with _WWW-Authenticate_. Default is `false`, meaning that Couchbase Server responds to unauthenticated requests with _WWW-Authenticate_. This parameter can only be set globally.
+* `responseHeaders`. A list of response headers.
+* `allowedHosts`. Specifies a list of naming conventions that must be met by the name of any node that is to be added or joined to the cluster. This parameter, which is available only in 7.1.1+, is described separately, in [Restrict Node-Addition](rest-specify-node-addition-conventions.md). This parameter can only be set globally.
+* `allowNonLocalCACertUpload`. Whether the `POST` method and `/controller/uploadClusterCA` URI (which are deprecated in 7.1) can be used to upload CA certificates from a node other than localhost. Value can be `true` or `false` (the default). For information, see [Upload and Retrieve the Root Certificate](deprecated-security-apis/upload-retrieve-root-cert.md). This parameter can only be set globally.
+* `clusterEncryptionLevel`. Controls the level of encryption imposed on cluster-communications. This can only be set after cluster encryption has been enabled (see [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md)) and can only be set globally. Its value can be any of the following:
+
+  * `control`, meaning that server-management information passed between nodes is passed in encrypted form.
+  * `all`, meaning that all information passed between nodes, including data handled by services, is passed in encrypted form.
+  * `strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients. Note that after `strict` has been specified, communication that occurs entirely on a single node using the _loopback_ interface (whereby the machine is identified as either `::1` or `127.0.0.1`) is still permitted in non-encrypted form.  
+  Before applying `strict`, see [Enforcing TLS](#enforcing-tls), below.
+* `tlsMinVersion`. Specifies the minimum TLS version accepted by the cluster. Can be `tlsv1`, `tlsv1.1`, `tlsv1.2`, or `tlsv1.3`. Note, however, that `tlsv1` and `tlsv1.1` are _deprecated_ in Couchbase Server Version 7.2\. The default is `tlsv1.2`.  
+This parameter can be set either globally or per service.
+* `honorCipherOrder`. Specifies whether the server uses its own cipher-suite preference, rather than the client’s. The cluster’s list of accepted cipher-suites can be defined with the `cipherSuites` flag (see below). The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure. This parameter can be set either globally, or per service.
+* `cipherSuites`. Specifies a list of the cipher suites to be used, in order of preference. The argument must be a list of cipher-suites.  
+This parameter can be set either globally, or per service. If the parameter is set for a given service, each listed cipher-suite must appear as a member of the array that is the value of the non-configurable **supportedCipherSuites** setting for the service. If the parameter is set globally, each listed cipher-suite can be used by a given service only if it appears as a member of **supportedCipherSuites** for that service.
+
+For an explanation of the relationships between per service and global settings, see [On-the-Wire Security](../learn/security/on-the-wire-security.md).
+
+### [](#enforcing-tls)Enforcing TLS
+
+Before applying the `strict` value to the `clusterEncryptionLevel` parameter:
+
+* Pause all Eventing functions on the cluster. (Resume them only after changes to node-to-node encryption and encryption-level been applied.) See [eventing-function-setup](../cli/cbcli/couchbase-cli-eventing-function-setup.md).
+* Ensure all client applications and scripts are able to connect with TLS.
+* Ensure node-to-node encryption is enabled (see [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md)).
+* Ensure all XDCR replications are configured as fully secure (see [Enable Fully Secure Replications](../manage/manage-xdcr/enable-full-secure-replication.md)).
+
+Once `strict` has been applied to all nodes:
+
+* Previously paused Eventing functions can be resumed.
+* The Eventing Service debugger port (9140) is not available (since non-TLS only). See [Couchbase Server Ports](../install/install-ports.md).
+* The node cannot be added to a Version 6.0.x cluster. See [TLS, Address-Family Restriction, and Node Addition](../install/upgrade-cluster-online.md#tls-address-family-restriction-and-node-addition).
+
+## [](#responses)Responses
+
+The `GET` method, if successful, gives `200 OK`, and returns an object containing each configured parameter, with its current value. The `POST` method, if successful, gives `200 OK`, and returns an empty array.
+
+For both methods, an incorrect URI gives `404 Object Not Found`, with a `Not found` error message. Use of improper credentials gives `401 Unauthorized`. An improper port number returns an error message such as `Failed to connect`, or `Port number out of range`.
+
+For the `POST` method, incorrectly specified parameters fail with `404 Bad Request`, and return an `error` object that lists the errors in an array. For example, a call that incorrectly specifies every significant parameter-value returns an object such as the following:
+
+{
+  "errors": [
+    "honorCipherOrder - Accepted values are 'true' and 'false'.",
+    "cipherSuites - Invalid format. Expecting a list of ciphers.",
+    "tlsMinVersion - Supported TLS versions are tlsv1.3, tlsv1.2, tlsv1.1, tlsv1",
+    "clusterEncryptionLevel - Cluster encryption level must be one of [\"control\",\"all\",\"strict\"]",,
+    "disableUIOverHttps - Accepted values are 'true' and 'false'.",
+    "disableUIOverHttp - Accepted values are 'true' and 'false'.",
+    "disableWWWAuthenticate - Accepted values are 'true' and 'false'."
+  ]
+}
+
+Note additionally that an attempt to establish a value for `clusterEncryptionLevel` prior to the enablement of node-to-node encryption returns the following error-message: `clusterEncryptionLevel - Can’t set cluster encryption level when cluster encryption is disabled.`See [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md), for details on how to enable.
+
+## [](#examples)Examples
+
+The methods and the URI can be used as shown below.
+
+### [](#establish-on-the-wire-settings-globally)Establish On-the-Wire Settings, Globally
+
+The following establishes a subset of on-the-wire settings globally:
+
+curl  -u Administrator:password -v -X POST \
+http://10.144.210.101:8091/settings/security \
+-d disableUIOverHttp=true \
+-d clusterEncryptionLevel=control \
+-d tlsMinVersion=tlsv1.2 \
+-d 'cipherSuites=["TLS_RSA_WITH_AES_128_CBC_SHA", "TLS_RSA_WITH_AES_256_CBC_SHA"]'
+
+The `disableUIOverHttp` flag is given a value of `true`, indicating that access to Couchbase Web Console will be disabled over http. The `disableUIOverHttps` flag is _not_ specified, meaning that access to Couchbase Web Console will _not_ be disabled over https, by default. The `clusterEncryptionLevel` is specified as `control`, indicating that only server-management information is passed in encrypted form between cluster-nodes: note that this parameter can only be set after the `node-to-node-encryption` CLI command has been used to enable internal network-security for the cluster, as described in [Manage Node-to-Node Encryption](../manage/manage-nodes/apply-node-to-node-encryption.md). The `tlsMinVersion` is specified as version 1.2\. The `honorCipherOrder` parameter is _not_ specified, meaning that it retains its default value of `true`; which ensures that the cluster’s own cipher-suites preference is used, rather than the client’s. The `cipherSuites` parameter is assigned a value that is a list of two cipher suites.
+
+If successful, the call returns an empty array:
+
+[]
+
+### [](#retrieve-cluster-wide-settings)Retrieve Cluster-Wide Settings
+
+The `GET /settings/security` method and URI retrieve cluster-wide settings for on-the-wire security, as shown below. Note that the output is piped to the [jq](https://stedolan.github.io/jq/) program, to enhance readability:
+
+curl  -u Administrator:password -v -GET \
+http://10.144.210.101:8091/settings/security | jq '.'
+
+If the call is successful, and some explicit settings have been made by the administrator, the output might appear as follows:
+
+{
+  "disableUIOverHttp": false,
+  "disableUIOverHttps": false,
+  "disableWWWAuthenticate": false,
+  "responseHeaders": [],
+  "tlsMinVersion": "tlsv1",
+  "cipherSuites": [
+    "TLS_RSA_WITH_AES_128_CBC_SHA",
+    "TLS_RSA_WITH_AES_256_CBC_SHA"
+  ],
+  "honorCipherOrder": true,
+  "allowNonLocalCACertUpload": false,
+  "allowedHosts": [
+    "*.test.ubuntu",
+    "127.0.0.1"
+  ],
+  "data": {
+    "cipherSuites": [
+      "TLS_RSA_WITH_AES_128_CBC_SHA",
+      "TLS_RSA_WITH_AES_256_CBC_SHA",
+      "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+    ],
+    "tlsMinVersion": "tlsv1.2",
+    "honorCipherOrder": true,
+    "supportedCipherSuites": [
+      "TLS_AES_256_GCM_SHA384",
+      "TLS_CHACHA20_POLY1305_SHA256",
+      "TLS_AES_128_GCM_SHA256",
+      "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+              .
+              .
+              .
+
+The global values of `disableUIOverHttp`, `disableUIOverHttps`, `tlsMinVersion`, and `honorCipherOrder` are thus displayed. Note also that a global value for `cipherSuites` has also been established.
+
+The return object contains, in addition to global settings, a subdocument for each service. The truncated output shown here features values from the subdocument for the Data Service; which is shown to have its own values established for `cipherSuites`, `tlsMinVersion`, and `honorCipherOrder`. The read-only value for `supportedCipherSuites` for the service is also displayed.
+
+### [](#establish-per-service-settings)Establish Per Service On-the-Wire Settings
+
+The following call establishes global settings for `tlsMinVersion` and `supportedCipherSuites`, for the Data Service only:
+
+curl  -u Administrator:password -v -X POST \
+http://10.144.210.101:8091/settings/security/data \
+-d tlsMinVersion=tlsv1.3 \
+-d 'cipherSuites=["TLS_RSA_WITH_AES_128_CBC_SHA","TLS_RSA_WITH_AES_256_CBC_SHA","TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"]'
+
+Note that the `data` path-parameter has been added to the URI, as the value of `service-name`, in order to specify the Data Service. If the call is successful, an empty array is returned.
+
+To verify the new settings for the Data Service, use the `GET` method, again adding `data` to the URI:
+
+curl  -u Administrator:password -v -X GET \
+http://10.144.210.101:8091/settings/security/data | jq '.'
+
+The returned output shows that the new settings have been successfully established:
+
+{
+  "cipherSuites": [
+    "TLS_RSA_WITH_AES_128_CBC_SHA",
+    "TLS_RSA_WITH_AES_256_CBC_SHA",
+    "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
+  ],
+  "tlsMinVersion": "tlsv1.3",
+  "honorCipherOrder": true,
+  "supportedCipherSuites": [
+    "TLS_AES_256_GCM_SHA384",
+    "TLS_CHACHA20_POLY1305_SHA256",
+              .
+              .
+              .
+
+## [](#see-also)See Also
+
+For more information on managing on-the-wire security-settings with the CLI, see the reference page for the [setting-security](../cli/cbcli/couchbase-cli-setting-security.md) command.
+
+Information on setting an HTTP Secure Transport Header with the REST API is provided in [Configure HSTS](rest-setting-hsts.md).
+
+A conceptual overview of on-the-wire security is provided in [On-the-Wire Security](../learn/security/on-the-wire-security.md).

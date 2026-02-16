@@ -1,0 +1,63 @@
+[View original HTML](/server/7.2/rest-api/rest-cluster-addnodes.html)
+
+> Nodes are added to clusters with the `POST /controller/addNode` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /controller/addNode
+
+## [](#description)Description
+
+This adds a server node to the cluster. One or more services can be specified to run on the added node. These are `kv` (data), `index` (index), `n1ql` (query), `eventing` (eventing), `fts` (search), `cbas` (analytics), and `backup` (backup). If no services are specified, the Data Service is enabled by default.
+
+In 7.1+, heightened security is provided for adding nodes to clusters: a node that is to be added must itself be provisioned with conformant certificates before addition can be successfully performed. The new node is now always added over an encrypted connection. See [Adding and Joining New Nodes](../manage/manage-security/configure-server-certificates.md#adding-new-nodes).
+
+In consequence, a server to be added can be prefixed with the scheme `https://`, and/or can be suffixed with the port `18091`): if no scheme or port is specified, `https://` and `18091` are used as defaults. The scheme `http://` cannot be used; nor can the port `8091`, since in 7.1+, addition takes place only over a secure connection.
+
+Further to ensure cluster-security, in Couchbase Server Version 7.1.1+, restrictions can be placed on node-addition, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be added. For information, see [Restrict Node-Addition](rest-specify-node-addition-conventions.md).
+
+### [](#node-certificate-validation)Validating Node Certificates
+
+In Couchbase Enterprise Server Version 7.2 or later, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when attempting to add or join the node to a cluster. For information, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u [admin]:[password]
+  http://[localhost]:8091/controller/addNode
+  -d hostname=[IPaddress]
+  -d user=[username]
+  -d password=[password]
+  -d services=[kv|index|n1ql|fts|cbas|eventing|backup]
+
+Note that the administrative username and password must be specified. If the new node has not yet been provisioned, placeholder names must be provided.
+
+## [](#responses)Responses
+
+Success gives `200 OK`, and returns an object of the form `{"otpNode":"ns_1@ip-address-of-added-node"}`, to confirm that the node has been added. Specifying an unknown service gives `400 Bad Request`, and an object of the form `["Unknown services: [\"unknown-service-name\"]"]`. If the node to be added has already been provisioned, and its administrative credentials are not properly specified, `400 Bad Request` is given, and an object is returned of the form `["Prepare join failed. Authentication failed. Verify username and password."]`
+
+If the IP address of the new node cannot be reached, `400 Bad Request` is given, and an object is returned of the form `["Failed to reach erlang port mapper at node \"ip-address-of-new-node\". Error: ehostunreach"]`. If the IP address of the host cluster is not accurately specified, or otherwise cannot be reached, the request times out, giving `Empty reply from server`. Failure to authenticate with the cluster gives `401 Unauthorized`.
+
+If an attempt is made to specify a node to be added with the scheme `http://` and/or the suffix `8091`, the request fails with `400 Bad Request`, and the error-message `http is prohibited due to security reasons, please use https`.
+
+When failure results from [Certificate Checking](../learn/security/certificates.md#certificate-checking), a message of the following form is provided: `Attention: Prepare join failed. Unable to validate certificate on host: 127.0.0.1. Please make sure the certificate on this host contains host name '127.0.0.1' in Subject Alternative Name. Refer to Couchbase docs for more info on how to create node certificates.`
+
+## [](#example)Example
+
+The following example adds a server node, `10.143.190.103`, to the cluster at `10.143.190.101:8091`, establishing the Data, Query, and Index Services on the new node. The IP address for the new server and its administrative credentials are provided.
+
+curl -v -X POST -u Administrator:password \
+http://10.143.190.101:8091/controller/addNode \
+-d 'hostname=https://10.143.190.103' \
+-d 'user=Administrator' \
+-d 'password=password' \
+-d 'services=kv,n1ql,index'
+
+If successful, Couchbase Server responds as follows, identifying the node that has been added:
+
+{"otpNode":"ns_1@10.143.190.103"}
+
+Subsequent to addition, the node must be rebalanced into the cluster. See [Rebalancing the Cluster](rest-cluster-rebalance.md).
+
+## [](#see-also)See Also
+
+For a conceptual overview of nodes, including options for adding nodes to clusters, see [Nodes](../learn/clusters-and-availability/nodes.md). For information on rebalancing, see [Rebalancing the Cluster](rest-cluster-rebalance.md). For information on adding nodes and rebalancing by means of Couchbase Web Console and the CLI, see [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md). For information on correctly specifying the node-name on its certificate, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).

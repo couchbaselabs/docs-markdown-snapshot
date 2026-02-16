@@ -1,0 +1,98 @@
+[View original HTML](/server/current/rest-api/rest-list-node-services.html)
+
+> The services running on a specific node can be listed, with their respective port numbers, by means of the `GET /pools/default/nodeServices` method and URI. 
+
+## [](#http-method-and-uri)HTTP methods and URI
+
+GET /pools/default/nodeServices
+
+## [](#rest-listing-node-services-description)Description
+
+Couchbase Services (Data, Query, Index, Search, Analytics, Eventing, and Backup) and other essential processes are associated with specific port numbers. A complete list of the associations is provided in [Couchbase Server Ports](../install/install-ports.md).
+
+The services and processes currently occupying these port numbers on a given node are listed by means of the `GET /pools/default/nodeServices` method and URI.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -X GET -u [admin]:[password]
+http://[ip-address]:8091/pools/default/nodeServices
+
+## [](#responses)Responses
+
+Success gives the status `200 OK`, and returns an object containing a list that includes all services and their port numbers, plus any alternate addresses and port numbers that may have been configured.
+
+If an incorrect primary address is specified, a `Could not resolve host: <host-number>` error message is displayed.
+
+If the URI is incorrectly specified, a `404 Object Not Found` error is flagged.
+
+## [](#example)Example
+
+The following example pipes the returned object to the `jq` command, to facilitate readability:
+
+curl -v -X GET -u Administrator:password \
+http://10.143.192.101:8091/pools/default/nodeServices | jq
+
+The displayed output is as follows:
+
+{
+  "rev": 2142,
+  "nodesExt": [
+    {
+      "services": {
+        "mgmt": 8091,
+        "mgmtSSL": 18091,
+        "eventingAdminPort": 8096,
+        "eventingDebug": 9140,
+        "eventingSSL": 18096,
+        "indexAdmin": 9100,
+        "indexScan": 9101,
+        "indexHttp": 9102,
+        "indexStreamInit": 9103,
+        "indexStreamCatchup": 9104,
+        "indexStreamMaint": 9105,
+        "indexHttps": 19102,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "capi": 8092,
+        "capiSSL": 18092,
+        "projector": 9999,
+        "n1ql": 8093,
+        "n1qlSSL": 18093
+      },
+      "thisNode": true,
+      "hostname": "10.143.192.101",
+      "alternateAddresses": {
+        "external": {
+          "hostname": "10.10.10.11",
+          "ports": {
+            "kv": 9000,
+            "n1ql": 9050
+          }
+        }
+      }
+    }
+  ],
+  "clusterCapabilitiesVer": [
+    1,
+    0
+  ],
+  "clusterCapabilities": {
+    "n1ql": [
+      "enhancedPreparedStatements"
+    ]
+  }
+}
+
+The output may include information on ports used by:
+
+* REST and HTTP-based management, including Couchbase Web Console (`8091` and `18091`).
+* The Eventing Service (`8096`, `9140`, and `18096`).
+* The Index Service (`9100`, `9101`, `9102`, `9103`, `9104`, `9105`, `19102`, and `9999`).
+* The Data Service (`11210` and `11207`).
+* XDCR and Views (`8092` and `18092`).
+* The Query Service (`8093` and `18093`).
+* The Backup Service (`8097`, `18097`, and `9124`).
+
+## [](#see-also)See Also
+
+A complete list of Couchbase Services and the ports they occupy, along with information on custom port mapping, is provided in [Couchbase Server Ports](../install/install-ports.md).

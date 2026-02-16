@@ -1,0 +1,77 @@
+[View original HTML](/server/7.6/learn/clusters-and-availability/cluster-manager.html)
+
+> The Couchbase _Cluster Manager_ runs on all the nodes of a cluster, maintaining essential per-node processes, and coordinating cluster-wide operations. 
+
+## [](#cluster-manager-architecture)Cluster Manager Architecture
+
+The architecture of the Cluster Manager is as follows:
+
+![clusterManagerArchitecture2](../_images/clusters-and-availability/clusterManagerArchitecture2.png) 
+
+As shown, the Cluster Manager consists of two processes. The first, the _babysitter_, is responsible for maintaining a variety of Couchbase Server-processes, which indeed include the second Cluster Manager process, _ns-server_. The _babysitter_ starts and monitors all of these processes, logging their output to the file `babysitter.log` (see [Manage Logging](../../manage/manage-logging/manage-logging.md), for information on logfile-locations). If any of the processes dies, the _babysitter_ restarts it. The _babysitter_ is not cluster-aware.
+
+The processes for which the _babysitter_ is responsible are:
+
+* _ns-server_: Manages the node’s participation in the cluster, as described in [ns-server](#ns-server), below.
+* _kv engine_: Runs as part of the [Data Service](../services-and-indexes/services/data-service.md), which must be installed on at least one cluster-node. Provides access to [Data](../data/data.md).
+* _services_: One or more Couchbase [Services](../services-and-indexes/services/services.md) that optionally run on the node.
+* _xdcr_: The program for handling _Cross Data-Center Replication_ (XDCR). This is installed with the Data Service, but runs as an independent OS-level process, separate from the Cluster Manager itself. See [Availability](replication-architecture.md), for information.
+* _view engine_: The program for handling _Views_. This is installed with the Data Service, but runs as an independent OS-level process, separate from the Cluster Manager itself. See [Views](../views/views-intro.md), for more information.
+* _other_: Various ancillary programs.
+
+## [](#ns-server)ns-server
+
+The principal Cluster-Manager process is _ns-server_, whose architecture is as follows:
+
+![nsServerArchitecture2](../_images/clusters-and-availability/nsServerArchitecture2.png) 
+
+The modules are:
+
+* _REST Administration (UI and CLI)_: Supports administration of Couchbase Server, by means of a REST API; which itself underlies both the user interface provided by _Couchbase Web Console_, and the _Couchbase Command-Line Interface_.
+* _Authentication_: Protects node-resources with _Role-Based Access Control_. This is based on _credentials_ (usernames and passwords) associated with system-defined _roles_, each of which is associated with a range of _privileges_. For detailed information, see [Authorization](../security/authorization-overview.md).
+
+* _Master Services_: Manage operations with cluster-wide impact; such as failover, rebalance, and adding and deleting buckets. Note that at any given time, only one of the instances of _Master Services_ on a multi-node cluster is in charge: the instances having negotiated among themselves, to identify and elect the instance. Should the elected instance subsequently become unavailable, another takes over. The _Master Services_ are sometimes referred to as the _Orchestrator_.
+* _Per Node Services_: Manages the health of the current node, and handles the monitoring and restart of its processes and services.
+* _Per Node Bucket Services_: Manages bucket-level operations for the current node; supporting replication, fail-over, restart, and statistics-collection.
+* _Generic Distributed Facilities_: Supports node-discovery, configuration-messaging and alerts, replication, and heartbeat-transmission.
+* _Generic Local Facilities_: Provides local configuration-management, libraries, workqueues, logging, clocks, ids, and events.
+
+## [](#adding-and-removing-nodes)Adding and Removing Nodes
+
+The elected _Master Services_ of the Cluster Manager are responsible for cluster membership. When topology changes, a set of operations is executed, to accomplish redistribution while continuing to handle existing workloads. This is as follows:
+
+1. The _Master Services_ update the new nodes with the existing cluster configuration.
+2. The _Master Services_ initiate rebalance, and recalculate the vBucket map.
+3. The nodes that are to receive data initiate DCP replication-streams from the existing nodes for each vBucket, and begin building new copies of those vBuckets. This occurs for both active and replica vBuckets, depending on the new vBucket map layout.
+4. Incrementally — as each new vBucket is populated, the data is replicated, and indexes are updated — an _atomic switchover_ takes place, from the old vBucket to the new vBucket.
+5. As new vBuckets on new nodes become active, the _Master Services_ ensure that the new vBucket map and cluster topology are communicated to all nodes and clients. This process is repeated until rebalance is complete.
+
+The process of _removing_ one or more Data-Service nodes is similar to that of _adding_: vBuckets are created on nodes that are to be maintained, and data is copied to them from vBuckets resident on nodes that are to be removed. When no more vBuckets remain on a node, the node is removed from the cluster.
+
+When adding or removing nodes that do not host the Data Service, no data is moved: therefore, nodes are added or removed from the cluster map without data-transition.
+
+Once the process of adding or removing is complete, and a new cluster map has been made available by the _Master Services_, client SDKs automatically begin load-balancing across those services, using the new cluster map.
+
+For the practical steps to be following in adding and removing nodes, see [Add a Node and Rebalance](../../manage/manage-nodes/add-node-and-rebalance.md) and [Remove a Node and Rebalance](../../manage/manage-nodes/remove-node-and-rebalance.md).
+
+## [](#node-failure-detection)Node-Failure Detection
+
+Nodes within a Couchbase Server-cluster provide status on their health by means of a _heartbeat_ mechanism. Heartbeats are provided by all instances of the Cluster Manager, at regular intervals. Each heartbeat contains basic statistics on the node, which are used to assess the node’s condition.
+
+The _Master Services_ keep track of heartbeats received from all other nodes. If automatic failover is enabled, and no heartbeats are received from a node for longer than the default timeout period, the _Master Services_ may automatically fail the node over.
+
+For detailed information on failover options, see [Fail a Node over and Rebalance](../../manage/manage-nodes/fail-nodes-over.md).
+
+## [](#vbucket-distribution)vBucket Distribution
+
+Couchbase Server buckets physically contain 1024 active and 0 or more replica vBuckets. The _Master Services_ govern the placement of these vBuckets, to maximize availability to and rebalance performance. The vBucket map is recalculated whenever the cluster topology changes, by means of the following rules:
+
+* Active and replica vBuckets are placed on separate nodes.
+* If a bucket is configured with more than one replica, each additional replica vBucket is placed on a separate node.
+* If _Server Groups_ are defined for active vBuckets, the replica vBuckets are placed in a separate groups. See [Server Group Awareness](groups.md), for more information.
+
+## [](#centralized-management-statistics-and-logging)Centralized Management, Statistics, and Logging
+
+The Cluster Manager simplifies centralized management with centralized configuration-management, statistics-gathering, and logging services. All configuration-changes are managed by the _Master Services_, and are pushed out from the _Master Services_ node to the other nodes.
+
+Statistics are accessible through all the Couchbase administration interfaces: The CLI, the REST API, and Couchbase Web Console. See [Management Tools](../../manage/management-overview.md).

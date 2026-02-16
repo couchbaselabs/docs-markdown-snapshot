@@ -1,0 +1,894 @@
+[View original HTML](/server/7.6/rest-api/rest-bucket-stats.html)
+
+Deprecated
+
+> See the IMPORTANT note. 
+
+|  | As of Couchbase Server 8.0, the REST API endpoint GET /pools/default/buckets/<bucket-name>/stats is deprecated. For retrieving bucket statistics details, use [Getting a Single Statistic](rest-statistics-single.md) or [Getting Multiple Statistics](rest-statistics-multiple.md) instead. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#http-method-and-uri)HTTP method and URI
+
+Statistics can be retrieved at the bucket level. The request URL should be taken from stats.uri property of a bucket response.
+
+GET /pools/default/buckets/<bucket-name>/stats
+
+Parameters:
+
+zoom
+
+Provides a statistical sampling for that bucket stats at a particular interval (minute | hour | day | week | month | year). For example, a `zoom` level of minute provides bucket statistics from the past minute, a `zoom` level of day provides bucket statistics for the past day, and so on. If no `zoom` level is provided, the server returns statistics from the past minute.
+
+haveTStamp
+
+Requests statistics from this timestamp until the current time. The timestamp is specified as UNIX epoch time.
+
+The `zoom` parameter provides the following granularity:
+
+* `zoom=minute` \- Every second for the last minute (60 samples).
+* `zoom=hour` \- Every four (4) seconds for the last hour (900 samples).
+* `zoom=day` \- Every minute for the last day (1440 samples).
+* `zoom=week` \- Every ten (10) minutes for the last week, actually, eight (8) days (1152 samples).
+* `zoom=month` \- Every thirty (30) minutes for the last thirty-one (31) days (1488 samples).
+* `zoom=year` \- Every six (6) hours for the last year (1464 samples).
+
+|  | Due to sample frequency, the number of samples returned are plus or minus one (+-1). |
+|  | ------------------------------------------------------------------------------------ |
+
+To limit the results when using the `zoom` parameter, post-process the results. For example, if you need samples from the last five (5) minutes, set the `zoom` parameter to one hour and retrieve the last 75 entries from the JSON list.
+
+## [](#curl-syntax)Curl Syntax
+
+Bucket statistics can be retrieved directly from a specified node:
+
+curl -u <username>:<password> \
+http://<node-ip-address-or-hostname>:8091/pools/default/buckets/<bucket-name>/stats
+
+Alternatively, bucket statistics can be retrieved from the cluster, by specifying the node containing the bucket:
+
+curl -u <username>:<password> http://<cluster-ip-address>:8091/pools/default/buckets/<bucket-name>/nodes/<node-ip-address>:8091/stats
+
+For information on how to list cluster-nodes per bucket, see [Listing Bucket Nodes](rest-retrieve-bucket-nodes.md).
+
+## [](#example)Example
+
+The following example uses the `zoom` parameter with the value `month`:
+
+curl -X GET -u Administrator:password http://<ip-address-or-hostname>:8091/pools/default/buckets/<bucket-name>/stats?zoom=month
+
+Edited, the output is as follows:
+
+{
+  "op": {
+    "samples": {
+      "couch_total_disk_size": [
+        null,
+        null,
+        60662150,
+        60662150, ..
+      ],
+      "couch_docs_fragmentation": [
+        null,
+        null,
+        20,
+        20, ..
+      ],
+      "hit_ratio": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_cache_miss_rate": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_resident_items_rate": [
+        null,
+        null,
+        100,
+        100, ..
+      ],
+      "vb_avg_active_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_avg_replica_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_avg_pending_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_avg_total_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_active_resident_items_ratio": [
+        null,
+        null,
+        100,
+        100, ..
+      ],
+      "vb_replica_resident_items_ratio": [
+        null,
+        null,
+        100,
+        100, ..
+      ],
+      "vb_pending_resident_items_ratio": [
+        null,
+        null,
+        100,
+        100, ..
+      ],
+      "avg_disk_update_time": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "avg_disk_commit_time": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "avg_bg_wait_time": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "avg_active_timestamp_drift": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "avg_replica_timestamp_drift": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "bg_wait_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "bg_wait_total": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "bytes_read": [
+        125.2,
+        0.5621269669017905,
+        100.8,
+        92, ..
+      ],
+      "bytes_written": [
+        56847.4,
+        302.8513293543136,
+        55301.1,
+        54256.2, ..
+      ],
+      "cas_badval": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "cas_hits": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "cas_misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "couch_docs_actual_disk_size": [
+        null,
+        null,
+        60662150,
+        60662150, ..
+      ],
+      "couch_docs_data_size": [
+        null,
+        null,
+        48457850,
+        48457850, ..
+      ],
+      "couch_docs_disk_size": [
+        null,
+        null,
+        60627968,
+        60627968, ..
+      ],
+      "couch_views_actual_disk_size": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "curr_connections": [
+        null,
+        null,
+        65,
+        65, ..
+      ],
+      "curr_items": [
+        null,
+        null,
+        31679,
+        31679, ..
+      ],
+      "decr_misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "delete_hits": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "delete_misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "disk_commit_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "disk_commit_total": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "disk_update_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "disk_update_total": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "disk_write_queue": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_active_ahead_exceptions": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_active_hlc_drift": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_active_hlc_drift_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_bg_fetched": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_clock_cas_drift_threshold_exceeded": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_data_read_failed": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_data_write_failed": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_dcp_other_items_remaining": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_dcp_other_items_sent": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_dcp_other_total_bytes": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_diskqueue_drain": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_diskqueue_fill": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_diskqueue_items": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_flusher_todo": [
+        null,
+        null,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_item_commit_failed": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_kv_size": [
+        null,
+        null,
+        49949902,
+        49949902, ..
+      ],
+      "ep_max_size": [
+        null,
+        null,
+        209715200,
+        209715200, ..
+      ],
+      "ep_mem_high_wat": [
+        null,
+        null,
+        178257920,
+        178257920, ..
+      ],
+      "ep_mem_low_wat": [
+        null,
+        null,
+        157286400,
+        157286400, ..
+      ],
+      "ep_meta_data_memory": [
+        null,
+        null,
+        4385342,
+        4385342, ..
+      ],
+      "ep_num_non_resident": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_num_ops_del_meta": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_num_ops_del_ret_meta": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_num_ops_get_meta": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_num_ops_set_meta": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_num_ops_set_ret_meta": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_num_value_ejects": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_oom_errors": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_ops_create": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_ops_update": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_overhead": [
+        null,
+        null,
+        11335229,
+        11335229, ..
+      ],
+      "ep_queue_size": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "ep_replica_ahead_exceptions": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_replica_hlc_drift": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_replica_hlc_drift_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_tmp_oom_errors": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ep_vb_total": [
+        null,
+        null,
+        1024,
+        1024, ..
+      ],
+      "get_hits": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "get_misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "incr_hits": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "incr_misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "mem_used": [
+        null,
+        null,
+        89634800,
+        89634800, ..
+      ],
+      "misses": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "ops": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "timestamp": [
+        1670922000000,
+        1670923800000,
+        1670925600000,
+        1670927400000, ..
+      ],
+      "vb_active_eject": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_meta_data_memory": [
+        null,
+        null,
+        2195233,
+        2195233, ..
+      ],
+      "vb_active_num": [
+        null,
+        null,
+        512,
+        512, ..
+      ],
+      "vb_active_num_non_resident": [
+        null,
+        null,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_ops_create": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_ops_update": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_active_queue_drain": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_queue_fill": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_queue_size": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_active_sync_write_aborted_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_sync_write_accepted_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_active_sync_write_committed_count": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_pending_curr_items": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_pending_eject": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_pending_meta_data_memory": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_pending_num": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_pending_num_non_resident": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_pending_ops_create": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_pending_ops_update": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_pending_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_pending_queue_drain": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_pending_queue_fill": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_curr_items": [
+        null,
+        null,
+        31609,
+        31609, ..
+      ],
+      "vb_replica_eject": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_meta_data_memory": [
+        null,
+        null,
+        2190109,
+        2190109, ..
+      ],
+      "vb_replica_num": [
+        null,
+        null,
+        512,
+        512, ..
+      ],
+      "vb_replica_num_non_resident": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_replica_ops_create": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_ops_update": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_queue_drain": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_queue_fill": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "vb_replica_queue_size": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_total_queue_age": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "vb_total_queue_size": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "xdc_ops": [
+        0,
+        0,
+        0,
+        0, ..
+      ],
+      "allocstall": [
+        null,
+        null,
+        135,
+        135, ..
+      ],
+      "cpu_cores_available": [
+        null,
+        null,
+        1,
+        1, ..
+      ],
+      "cpu_irq_rate": [
+        null,
+        null,
+        0.2068252326783868,
+        0, ..
+      ],
+      "cpu_stolen_rate": [
+        null,
+        null,
+        0,
+        0, ..
+      ],
+      "cpu_sys_rate": [
+        null,
+        null,
+        0.396161511879101,
+        0.2971271959928238, ..
+      ],
+      "cpu_user_rate": [
+        null,
+        null,
+        2.079847937365281,
+        1.584678378628394, ..
+      ],
+      "cpu_utilization_rate": [
+        null,
+        null,
+        4.715124218422857,
+        4.982020833370474, ..
+      ],
+      "hibernated_requests": [
+        null,
+        null,
+        null,
+        null, ..
+      ],
+      "hibernated_waked": [
+        null,
+        null,
+        null,
+        null, ..
+      ],
+      "mem_actual_free": [
+        null,
+        null,
+        379289600,
+        378224640, ..
+      ],
+      "mem_actual_used": [
+        null,
+        null,
+        653651968,
+        654716928, ..
+      ],
+      "mem_free": [
+        null,
+        null,
+        379289600,
+        378224640, ..
+      ],
+      "mem_limit": [
+        null,
+        null,
+        1032941568,
+        1032941568, ..
+      ],
+      "mem_total": [
+        null,
+        null,
+        1032941568,
+        1032941568, ..
+      ],
+      "mem_used_sys": [
+        null,
+        null,
+        929857536,
+        931094528, ..
+      ],
+      "rest_requests": [
+        0.7999200079992002,
+        0.003798853940035633,
+        2.6,
+        0.8, ..
+      ],
+      "swap_total": [
+        null,
+        null,
+        2047864832,
+        2047864832, ..
+      ],
+      "swap_used": [
+        null,
+        null,
+        397672448,
+        397672448, ..
+      ]
+    },
+    "samplesCount": 1488,
+    "isPersistent": true,
+    "lastTStamp": 1673602200000,
+    "interval": 1000
+  }
+}

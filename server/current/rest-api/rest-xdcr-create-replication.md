@@ -1,0 +1,190 @@
+[View original HTML](/server/current/rest-api/rest-xdcr-create-replication.html)
+
+> To create an XDCR replication, use the `POST /controller/createReplication` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /controller/createReplication
+
+## [](#description)Description
+
+Data replication occurs from a source bucket to a target bucket. Once a replication is defined, it automatically begins.
+
+The Full Admin, Cluster Admin, or XDCR Admin role is required.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -X POST -u [admin]:[password]
+  http://[localhost]:[port]/controller/createReplication
+  -d fromBucket=[bucket-name]
+  -d toCluster=[cluster-name]
+  -d toBucket=[bucket-name]
+  -d conflictLogging=[JSON-Document]
+  -d collectionsExplicitMapping=[true | false]
+  -d collectionsMigrationMode=[true | false]
+  -d colMappingRules=[JSON-Document]
+  -d replicationType="continuous"
+  -d type="xmem"
+  -d compressionType=["None" | "Auto"]
+  -d desiredLatency=[Integer]
+  -d filterExpression=[Expression]
+  -d filterDeletion=[true | false]
+  -d filterExpiration=[true | false]
+  -d filterBypassExpiry=[true | false]
+  -d filterSkipRestream=[true | false]
+  -d filterBinary=[true | false]
+  -d priority=["Low" | "Medium" | "High"]
+  -d optimisticReplicationThreshold=[Integer]
+  -d failureRestartInterval=[Integer]
+  -d docBatchSizeKb=[Integer]
+  -d workerBatchSize=[Integer]
+  -d checkpointInterval=[Integer]
+  -d sourceNozzlePerNode=[Integer]
+  -d targetNozzlePerNode=[Integer]
+  -d statsInterval=[Integer]
+  -d logLevel=[String]
+  -d networkUsageLimit=[Integer]
+  -d mobile=[Off | Active]
+
+The `type` value must be `xmem`; which is sometimes referred to as **Version 2**, and corresponds to the _Memcached Binary_ protocol, used in XDCR communications.
+
+The `replicationType` value is always `continuous`. This value must be specified.
+
+The `conflictLogging` setting is used to configure and enable or disable logging conflicts for the replication. For configuration information and examples, see [Enabling and Configuring Conflict Logging](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#configure-conflictlogging-settings).
+
+|  | To configure and enable Conflict Logging, you must enable the bucket property enableCrossClusterVersioning on all buckets of the XDCR topology. This bucket property cannot be disabled after it is enabled. For information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+If the optional parameters `collectionsExplicitMapping`, `colMappingRules`, and `collectionsMigrationMode` are all _unspecified_, replication occurs between the specified `fromBucket` and `toBucket` according to whatever _implicit mappings_ can be determined at bucket-level: that is, if a collection in the source bucket has the same _keyspace_ as a collection in the target bucket (i.e., the name of a collection and the name of the scope within which it is located form the identical _scope-name.collection-name_ pattern, on both source and target), data is replicated between those collections; with the optional application of a filter expression. At a minimum, this ensures that data is replicated between the default collections.
+
+The `collectionsExplicitMapping` parameter, whose default value is `false`, can be specified with a value of `true`, to switch on replication based on _explicit_ mapping: this means that _implicit_ mapping at bucket-level does not occur. Instead, replication occurs between collections determined by the _mapping rules_ provided in the JSON document that is the value of `colMappingRules`.
+
+The `collectionsMigrationMode` parameter, whose default value is `false`, can be specified with a value of `true`, to switch on _migration mode_. This ensures that documents from the default collection of the source bucket are replicated to the collection determined by the mapping rules provided in the JSON document that is the value of `colMappingRules`. Optionally, a filter expression may also be provided in this JSON document.
+
+If the `collectionsExplicitMapping` parameter is specified, the `collectionsMigrationMode` parameter cannot be specified; and vice versa.
+
+The value of `compressionType`, which determines whether data is replicated in compressed form, can be either `Auto` or `None`:
+
+* If `Auto` is specified, data compression _is_ provided during replication, provided that the target cluster is running Couchbase Server 5.5 or later. If the target cluster is _not_ running Couchbase Server 5.5 or later, data compression is _not_ provided during replication. (Note that the consequences of specifying `Auto` as the value of `compressionType` are thereby determined irrespective of whether the data resides in the source bucket in compressed or uncompressed form.)
+* If `None` is specified, data compression is not provided during replication if the target cluster is not running Couchbase Server 5.5 or later. If the target cluster _is_ running Couchbase Server 5.5 or later:
+
+  * If the data resides in the source bucket in uncompressed form, data compression is _not_ provided.
+  * If the data resides in the source bucket in _compressed_ form, data compression _is_ provided.
+
+The optional `filterExpression` is matched against the ids, field-names, values, and extended attributes of documents in the source bucket. Each document that produces a successful match is replicated; other documents are not replicated. Only one filter can be applied per replication; and, once applied, affects all mappings. For supported expressions, see [XDCR Advanced Filtering Reference](../xdcr-reference/xdcr-filtering-reference-intro.md).
+
+The `filterDeletion` and `filterExpiration` flags indicate whether mutations corresponding respectively to the deletion and expiration of documents on the source cluster should be either _filtered out_ of the replication to the target cluster, or allowed to remain in. For each flag, a value of `true` means that the mutation _is_ filtered out, ensuring that it is _not_ replicated to the target cluster; while a value of `false` (the default) means that the mutation is _not_ filtered out, ensuring that it _is_ replicated to the target cluster. The default value for both flags is `false`.
+
+The `filterBypassExpiry` flag indicates whether a document’s TTL should be replicated with the document or not. A value of `true` means that the TTL is removed from the document. The default value is `false`.
+
+The `filterSkipRestream` flag indicates whether the replication should be either restarted or allowed to continue without restarting, following modification of the value of `filterExpression`. A value of `true` means that the replication should be allowed to continue without restarting. A value of `false` (the default) means that the replication should be restarted. For more information, see [Filter-Expression Editing](../learn/clusters-and-availability/xdcr-filtering.md#filter-expression-editing).
+
+The `filterBinary` flag specifies whether binary documents should be replicated. The value can be `true` or `false` (the default). If the value is `true`, binary documents are _not_ replicated, regardless of whether a `filterExpression` is applied. If the value is `false`:
+
+* The behavior is identical to that of all Couchbase-Server versions prior to 7.2.1 (with the exception of 7.1.5), where the `filterBinary` flag did not exist.
+* If a filter expression is not provided, binary documents _are_ replicated.
+* If a filter expression _is_ provided, and the expression refers only to either the document’s _key_, or its _xattr_, or to both, the expression is applied, and the document is replicated if the expression permits.
+* If a filter expression is provided, and the expression refers only to the document’s body, the document _is_ replicated.
+* If a filter expression is provided, and the expression refers to the document’s _key_, or its _xattr_, or to both; and also refers to the document’s body; the document is _not_ replicated (regardless of whether the key or xattr might appear to permit replication).
+
+The `priority` flag controls resource-allocation to the replication. The value can be `High`, `Medium`, or `Low`. The default value is `High`. For information, see [XDCR Priority](../learn/clusters-and-availability/xdcr-overview.md#xdcr-priority).
+
+Use the `mobile=[Off | Active]` flag to enable the setting _XDCR Active-Active with Sync Gateway 4.0 or a later version_ by changing the value to `Active` on the clusters of both sides of the replication. The default value is `Off` , which indicates that the setup supports either _XDCR Active-Passive with Sync Gateway_ or _XDCR Active-Active without Sync Gateway_.
+
+|  | To enable the setting mobile=\[Off \| Active\], ensure you have enabled the property enableCrossClusterVersioning on all the participating buckets, which is a prerequisite. For information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+For information on all other flags, see [Managing Advanced XDCR Settings](rest-xdcr-adv-settings.md).
+
+## [](#responses)Responses
+
+If successful, the command returns `200 OK`, and an object containing an `id` for the new replication: this can be used, when appropriate, to delete the replication.
+
+Failure to authenticate returns `401 Unauthorized`. A URI featuring an incorrect hostname or port returns a `failure to connect` message. Referencing an unknown source bucket returns `400 Bad Request`, and an object referencing the unknown bucket-name. For example:
+
+{
+  "errors": {
+    "fromBucket": "Error validating source bucket 'source'. err=BucketValidationInfo Operation failed after max retries.  Last error: Bucket doesn't exist"
+  }
+}
+
+Referencing an unknown cluster returns `400 Bad Request`, and an object referencing the unknown cluster-name:
+
+{
+  "errors": {
+    "toCluster": "cannot find remote cluster\n err = unknown remote cluster : refName - 10.143.191.102"
+  }
+}
+
+Referencing an unknown target bucket returns `400 Bad Request`, and an object referencing the unknown bucket-name:
+
+{
+  "errors": {
+    "toBucket": "Error validating target bucket 'remote'. err=BucketValidationInfo Operation failed after max retries.  Last error: Bucket doesn't exist"
+  }
+}
+
+## [](#examples)Examples
+
+The following examples show how replication can be defined to use either _implicit_ or _explicit_ mappings; and how _migration mode_ can be employed.
+
+### [](#implicit-mapping)Implicit Mapping
+
+To replicate data according to the implicit mapping of scopes and collections withing the source bucket `travel-sample` and the target bucket `ts`, enter the following:
+
+curl -v -X POST -u Administrator:password \
+http://localhost:8091/controller/createReplication \
+-d replicationType=continuous \
+-d fromBucket=travel-sample \
+-d toCluster=10.144.210.102 \
+-d toBucket=ts
+
+If the command succeeds, a response similar to the following is printed to the console:
+
+{"id":"ac41764b9e261725e874dbd34c7eda6b/travel-sample/ts"}
+
+The `id` returned in the document can be used to delete the replication, when appropriate.
+
+### [](#explicit-mapping)Explicit Mapping
+
+The following example demonstrates creation of a new replication from the source cluster `10.144.210.101` to the target cluster `10.144.210.102`; specifying the explicit mapping of the source collection `airline` to the target collection `MyAirline`:
+
+curl -v -X POST -u Administrator:password \
+http://localhost:8091/controller/createReplication \
+-d replicationType=continuous \
+-d toBucket=ts \
+-d toCluster=10.144.210.102 \
+-d fromBucket=travel-sample \
+-d collectionsExplicitMapping=true \
+-d colMappingRules=%7B%22inventory.airline%22%3A%22inventory.MyAirline%22%7D
+
+Note that the `collectionsExplicitMapping` flag has been specified, with a value of `true`. The value of `colMappingRules` is a JSON object whose key is the source collection, and whose target is the target collection. If the call is successful, the following output is displayed:
+
+SUCCESS: XDCR replication created
+
+### [](#migration-mode)Migration Mode
+
+The following example migrates to the target collection `California.SanFrancisco`, within the target bucket `beerSampleByLocation`, all documents from the source bucket `beer-sample` whose `city` value is `"San Francisco"`:
+
+curl -v -X POST http://10.144.210.101:8091/controller/createReplication \
+-u Administrator:password \
+-d replicationType=continuous \
+-d toBucket=beerSampleByLocation \
+-d toCluster=10.144.210.102 \
+-d fromBucket=beer-sample \
+-d collectionsMigrationMode=true \
+-d colMappingRules='{"city=\"San Francisco\"":"California.SanFrancisco"}'
+
+The `collectionsMigrationMode` flag is specified, with a value of `true`. Note the format required for the specifying of `colMappingRules`: the regular expression `"city=\"San Francisco\"` is provided as the key of a key-value pair, whose value is the destination collection, `"California.SanFrancisco"`. (Note also that, in cases where _all_ data from the source bucket is to be migrated, and no regular expression is therefore required, the key of the key-value pair should be specified as the keyspace of the default bucket: i.e. `"_default._default"`.)
+
+If the command is successful, output containing the id of the replication is displayed:
+
+{"id":"ac41764b9e261725e874dbd34c7eda6b/beer-sample/beerSampleByLocation"}
+
+## [](#see-also)See Also
+
+The REST procedures for establishing and retrieving advanced settings are described in [Managing Advanced XDCR Settings](rest-xdcr-adv-settings.md). See [Create a Replication](../manage/manage-xdcr/create-xdcr-replication.md) for additional examples of creating a replication, including by means of Couchbase Web Console and the CLI. For a conceptual overview of XDCR, see [Cross Data Center Replication (XDCR)](../learn/clusters-and-availability/xdcr-overview.md).
+
+For an overview of scopes and collections, see [Scopes and Collections](../learn/data/scopes-and-collections.md). For an overview of how XDCR can be used to replicate between scopes and collections — and a description of the syntactic requirements of _mapping rules_ — see [XDCR with Scopes and Collections](../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md). For specific examples of using XDCR to replicate between scopes and collections, see [Replicate Using Scopes and Collections](../manage/manage-xdcr/replicate-using-scopes-and-collections.md).
+
+For an overview of XDCR filtering, see [XDCR Advanced Filtering](../learn/clusters-and-availability/xdcr-filtering.md). Information on how alternate addresses may be used is provided in [Alternate Addresses](../learn/clusters-and-availability/connectivity.md#alternate-addresses).

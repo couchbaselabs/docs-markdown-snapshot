@@ -1,0 +1,37 @@
+[View original HTML](/server/7.2/manage/manage-buckets/delete-bucket.html)
+
+> Full, Cluster, and Bucket Administrators can drop a bucket. 
+
+## [](#dropping-a-bucket)Dropping a Bucket
+
+Dropping a bucket may be appropriate either when an existing bucket is no longer needed; or when all items within an existing bucket need to be replaced — and the dropping of the bucket (followed by bucket-recreation) is determined to constitute a faster process than the deletion of each individual item.
+
+Note that _dropping_ a bucket means deleting the bucket, all its documents, and all the scopes and collections into which the documents were organized.
+
+To drop a bucket using Couchbase Web Console: access the console, and left-click on the **Buckets** tab, in the vertical navigation-bar at the left-hand side.
+
+![accessBucketTab](../_images/manage-buckets/accessBucketTab.png) 
+
+The **Buckets** screen now appears, showing the buckets that have already been defined for your system:
+
+![bucketsViewInitialEdit](../_images/manage-buckets/bucketsViewInitialEdit.png) 
+
+To delete a particular bucket, left-click on the bucket’s row in the UI; then, when the **Drop** button appears, left-click on it:
+
+![accessDropButton](../_images/manage-buckets/accessDropButton.png) 
+
+A confirmation-dialog is now provided, by means of which you can now either cancel the dropping of the bucket, or elect to proceed:
+
+![dropBucketWarning](../_images/manage-buckets/dropBucketWarning.png) 
+
+If you elect to proceed, by left-clicking on the **Drop Bucket** button, the bucket and all its data, scopes, and collections are deleted from the system; and the bucket is no longer represented within the **Buckets** screen of Couchbase Web Console.
+
+## [](#using-the-cli-and-rest-api)Using the CLI and REST API
+
+You can also delete a bucket by using the CLI command [bucket-delete](../../cli/cbcli/couchbase-cli-bucket-delete.md), or the REST API method [rest-bucket-delete](../../rest-api/rest-bucket-delete.md).
+
+## [](#bucket-deletion-and-rbac)Bucket-Deletion and RBAC
+
+User-access to buckets is controlled by _Role-Based Access Control_ (RBAC). See [Authorization](../../learn/security/authorization-overview.md) for details.
+
+Note that roles assigned to users may contain privileges for accessing specfic buckets by name. If such a bucket is deleted, all role-assignments to that resource are deleted from the cluster. If a user whose sole permission is **Bucket Admin** on a single bucket uses Couchbase Web Console to delete that bucket, the user is logged out of the console on bucket-deletion, and cannot log back in.

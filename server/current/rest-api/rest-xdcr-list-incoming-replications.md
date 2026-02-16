@@ -1,0 +1,458 @@
+[View original HTML](/server/current/rest-api/rest-xdcr-list-incoming-replications.html)
+
+> Incoming replications details for a target cluster in XDCR can be retrieved using the REST API. 
+
+## [](#http-method-and-uri)HTTP Method and URI
+
+GET /xdcr/sourceClusters
+
+## [](#description)Description
+
+Using the REST API, you can:
+
+* Retrieve the list of remote clusters that replicate to the current cluster.
+* Inspect the incoming XDCR replication specifications.
+
+## [](#required-permissions)Required Permissions
+
+You must have Full Admin, Cluster Admin, or XDCR Admin role to call this API.
+
+## [](#curl-syntax)curl Syntax
+
+This API call retrieves information about all source clusters that are replicating to the current cluster (target cluster).
+
+Run the following command on the target cluster.
+
+curl -X GET -u <user-name>:<password> http://<ip-address-or-domain-name>:<port-number>/xdcr/sourceClusters | jq
+
+### [](#response)Response
+
+For each source cluster, the API returns replication specifications, current settings, source nodes, and heartbeat status as a JSON array, if the call is successful.
+
+```json
+[
+  {
+    "SourceClusterNodes": [
+      "http://<ip-address-or-domain-name-or-node-name>:<port-number>",
+    ],
+    "SourceClusterReplSpecs": "<list-of-replication-specifications-from-source-cluster-to-this-target>",
+    "SourceClusterUUID": "<source-cluster-UUID>",
+    "SourceClusterName": "<source-cluster-name>",
+    "SourceClusterHBReceiveTime": "<time-of-last-received-heartbeat>",
+    "SourceClusterHBExpiryTime": "<heartbeat-expiry-time>"
+  }
+]
+```
+
+### [](#responses)Other Responses
+
+| Value                                                                                       | Description                                                            |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 200 OK and JSON array containing repository information depending on the specific endpoint. | Successful call.                                                       |
+| 400                                                                                         | Invalid parameter.                                                     |
+| 400 Object Not found                                                                        | The repository in the endpoint URI does not exist.                     |
+| 401 Unauthorized                                                                            | Authorization failure due to incorrect username or password.           |
+| 403 Forbidden, plus a JSON message explaining the minimum permissions.                      | The provided username has insufficient privileges to call this method. |
+| 404 Object Not Found                                                                        | Error in the URI path.                                                 |
+| 500 Could not retrieve the requested repository                                             | Error in Couchbase Server.                                             |
+
+## [](#examples)Examples
+
+The following examples show how to use the `GET /xdcr/sourceClusters` API to view incoming replications information.
+
+### [](#example-source-without-replication-specs)Cluster without replication specifications
+
+curl -X GET -u Administrator:pw http://127.0.0.1:8091/xdcr/sourceClusters | jq
+
+This call retrieves the following details of a source cluster with one node. This source cluster has created a remote cluster reference to a target cluster but has not yet created a replication specification.
+
+[
+  {
+    "SourceClusterNodes": [
+      "127.0.0.1:8091"
+    ],
+    "SourceClusterReplSpecs": null,
+    "SourceClusterUUID": "d4b15b1069e4aaac1d6d0cb7d15b1dde",
+    "SourceClusterName": "m1",
+    "SourceClusterHBReceiveTime": "2024-10-24T20:52:21.902848+05:30",
+    "SourceClusterHBExpiryTime": "2024-10-24T21:02:21.902848+05:30"
+  }
+]
+
+### [](#example-source-with-replication-specs)Cluster with replication specifications
+
+curl -X GET -u Administrator:pw http://127.0.0.1:8091/xdcr/sourceClusters | jq
+
+This source cluster has two nodes, has a reference established with the target cluster, and is replicating to the target cluster. This call retrieves source cluster information and its replication specifications to the target cluster.
+
+[
+  {
+    "SourceClusterNodes": [
+      "10.100.172.24:8091",
+      "127.0.0.1:8091"
+    ],
+    "SourceClusterReplSpecs": [
+      {
+        "id": "d4b15b1069e4aaac1d6d0cb7d15b1dde/B0/B1",
+        "internalId": "ZsrIjhmEaf9232WGyoSexg==",
+        "sourceBucketName": "B0",
+        "sourceBucketUUID": "64b784ca2b3e8df7ab1cbf70ab89772f",
+        "targetClusterUUID": "d4b15b1069e4aaac1d6d0cb7d15b1dde",
+        "targetBucketName": "B1",
+        "targetBucketUUID": "1d86409fe13ffbeb36ba3bf382005480",
+        "replicationSettings": {
+          "values": {
+            "CollectionsMgtMulti": 8,
+            "active": true,
+          ....
+          "Revision": null
+        },
+        "Revision": "g2gCYQBsAAAAAWgCbQAAACA2OGRiNmU0ZDE0YWQwNTFlODM3ZDM1N2FjYTYxMGIzZWgCYQNuBQAUvLneDmo="
+      }
+    ],
+    "SourceClusterUUID": "6aa2a7cc7d9a42c253e76f832055ccea",
+    "SourceClusterName": "m2",
+    "SourceClusterHBReceiveTime": "2024-10-24T20:52:21.902848+05:30",
+    "SourceClusterHBExpiryTime": "2024-10-24T21:02:21.902848+05:30"
+  }
+]
+
+### [](#complete-response)Cluster with replication specifications - a full example
+
+curl -s -X GET -u Administrator:password http://localhost:8091/xdcr/sourceClusters | jq
+
+This call retrieves information for all incoming replications into the cluster. The example output shows that there are two different remote clusters, _South_ and _East_, replicating data to this cluster. The _South_ cluster is replicating data from two different buckets, and _East_ cluster is replicating data from one bucket. The information from this REST API call is the same information displayed in the UI for XDCR [Incoming Replications](../manage/manage-xdcr/incoming-xdcr-replications.md).
+
+The output of the call is piped to [jq](https://stedolan.github.io/jq/) to improve readability.
+
+```json
+[
+  {
+    "SourceClusterHBExpiryTime": "2025-07-24T09:43:46.938958054Z",
+    "SourceClusterHBReceiveTime": "2025-07-24T09:33:46.938958054Z",
+    "SourceClusterName": "South",
+    "SourceClusterNodes": [
+      "172.31.32.111:8091",
+      "172.31.34.51:8091",
+      "172.31.38.93:8091",
+      "172.31.43.209:8091"
+    ],
+    "SourceClusterReplSpecs": [
+      {
+        "id": "f6f3a51e988f305b16433237d02bec7d/bucket2/bucket2",
+        "internalId": "UpOt-tAgy80Rjg0Fjm4WOA==",
+        "sourceBucketName": "bucket2",
+        "sourceBucketUUID": "cac7a5e898267a5c7a4656043484fe32",
+        "targetClusterUUID": "f6f3a51e988f305b16433237d02bec7d",
+        "targetBucketName": "bucket2",
+        "targetBucketUUID": "c5bfa3043579b1480cf865efa0156372",
+        "replicationSettings": {
+          "values": {
+            "CollectionsMgtMulti": 8,
+            "active": true,
+            "backlogThreshold": 50,
+            "bandwidth_limit": 0,
+            "cLogErrorTimeWindowMs": 120000,
+            "cLogMaxErrorCount": 10,
+            "cLogNetworkRetryCount": 5,
+            "cLogNetworkRetryIntervalMs": 2000,
+            "cLogPoolGetTimeoutMs": 5000,
+            "cLogQueueCapacity": 6000,
+            "cLogReattemptDurationMs": 600000,
+            "cLogSetTimeoutMs": 5000,
+            "cLogWorkerCount": 20,
+            "casDriftThresholdSecs": 3900,
+            "checkpoint_interval": 600,
+            "ckptSvcCacheEnabled": true,
+            "colMappingRules": {},
+            "collectionsSkipSrcValidation": false,
+            "compression_type": 3,
+            "conflictLogging": {},
+            "dcpEnablePurgeRollback": false,
+            "delAllBackfills": false,
+            "delSpecificBackfillForVb": -1,
+            "disableHlvBasedShortCircuit": false,
+            "dismissEvent": -1,
+            "doc_batch_size_kb": 2048,
+            "failure_restart_interval": 10,
+            "filterSystemScope": true,
+            "filter_exp_del": 0,
+            "filter_expression": "",
+            "filter_expression_version": 0,
+            "filter_skip_restream": false,
+            "jsFunctionTimeoutMs": 20000,
+            "log_level": 13,
+            "manualBackfill": "",
+            "mergeFunctionMapping": {},
+            "mobile": 1,
+            "optimistic_replication_threshold": 256,
+            "pipelineReinitHash": "aX9ngksywy0=",
+            "preCheckCasDriftThresholdHours": 8760,
+            "preReplicateVBMasterCheck": true,
+            "priority": 0,
+            "replicateCkptIntervalMin": 20,
+            "replication_type": "xmem",
+            "retryOnErrExceptAuthErrMaxWaitSec": 360,
+            "retryOnRemoteAuthErr": true,
+            "retryOnRemoteAuthErrMaxWaitSec": 360,
+            "skipReplSpecAutoGc": false,
+            "source_nozzle_per_node": 2,
+            "stats_interval": 1000,
+            "targetTopologyLogFrequency": 1800,
+            "target_nozzle_per_node": 2,
+            "worker_batch_size": 500,
+            "xdcrDevBackfillMgrVbsTasksDoneNotifierDelay": false,
+            "xdcrDevBackfillReplUpdateDelayMs": 0,
+            "xdcrDevBackfillReqHandlerHandleVBTaskDoneHang": false,
+            "xdcrDevBackfillReqHandlerStartOnceDelaySec": 0,
+            "xdcrDevBackfillRollbackTo0VB": -1,
+            "xdcrDevBackfillSendDelayMs": 0,
+            "xdcrDevBackfillUnrecoverableErrorInj": false,
+            "xdcrDevCasDriftInjectDocKey": "",
+            "xdcrDevCkptMgrForceGCWaitSec": 0,
+            "xdcrDevColManifestSvcDelaySec": 0,
+            "xdcrDevMainRollbackTo0VB": -1,
+            "xdcrDevMainSendDelayMs": 0,
+            "xdcrDevNsServerPort": 0,
+            "xdcrDevPreCheckCasDriftInjectVb": -1,
+            "xdcrDevPreCheckMaxCasErrorInjection": false
+          },
+          "type": "xmem",
+          "filter_exp": "",
+          "active": true,
+          "checkpoint_interval": 600,
+          "batch_count": 500,
+          "batch_size": 2048,
+          "failure_restart_interval": 10,
+          "optimistic_replication_threshold": 256,
+          "source_nozzle_per_node": 2,
+          "target_nozzle_per_node": 2,
+          "max_expected_replication_lag": 0,
+          "timeout_percentage_cap": 0,
+          "log_level": 13,
+          "stats_interval": 1000,
+          "bandwidth_limit": 0,
+          "compression_type": 3,
+          "Revision": null
+        },
+        "Revision": "g2gCbgUAwXD24Q5sAAAAAWgCbQAAACAwYzMwMTAwYzkxYzUzYzIxM2E4ODUzNDBiMTYzOGJhN2gCYQFuBQDIcvbhDmo="
+      },
+      {
+        "id": "f6f3a51e988f305b16433237d02bec7d/bucket3/bucket3",
+        "internalId": "Je_06FAjxs4ecQLceIO2WQ==",
+        "sourceBucketName": "bucket3",
+        "sourceBucketUUID": "8e29ae17bff14bd01f7bded1851a41d3",
+        "targetClusterUUID": "f6f3a51e988f305b16433237d02bec7d",
+        "targetBucketName": "bucket3",
+        "targetBucketUUID": "1a93d775f2ac2b0cf3449ac5d9579939",
+        "replicationSettings": {
+          "values": {
+            "CollectionsMgtMulti": 8,
+            "active": true,
+            "backlogThreshold": 50,
+            "bandwidth_limit": 0,
+            "cLogErrorTimeWindowMs": 120000,
+            "cLogMaxErrorCount": 10,
+            "cLogNetworkRetryCount": 5,
+            "cLogNetworkRetryIntervalMs": 2000,
+            "cLogPoolGetTimeoutMs": 5000,
+            "cLogQueueCapacity": 6000,
+            "cLogReattemptDurationMs": 600000,
+            "cLogSetTimeoutMs": 5000,
+            "cLogWorkerCount": 20,
+            "casDriftThresholdSecs": 3900,
+            "checkpoint_interval": 600,
+            "ckptSvcCacheEnabled": true,
+            "colMappingRules": {},
+            "collectionsSkipSrcValidation": false,
+            "compression_type": 3,
+            "conflictLogging": {},
+            "dcpEnablePurgeRollback": false,
+            "delAllBackfills": false,
+            "delSpecificBackfillForVb": -1,
+            "disableHlvBasedShortCircuit": false,
+            "dismissEvent": -1,
+            "doc_batch_size_kb": 2048,
+            "failure_restart_interval": 10,
+            "filterSystemScope": true,
+            "filter_exp_del": 0,
+            "filter_expression": "",
+            "filter_expression_version": 0,
+            "filter_skip_restream": false,
+            "jsFunctionTimeoutMs": 20000,
+            "log_level": 13,
+            "manualBackfill": "",
+            "mergeFunctionMapping": {},
+            "mobile": 1,
+            "optimistic_replication_threshold": 256,
+            "pipelineReinitHash": "24w8fKhLt0c=",
+            "preCheckCasDriftThresholdHours": 8760,
+            "preReplicateVBMasterCheck": true,
+            "priority": 0,
+            "replicateCkptIntervalMin": 20,
+            "replication_type": "xmem",
+            "retryOnErrExceptAuthErrMaxWaitSec": 360,
+            "retryOnRemoteAuthErr": true,
+            "retryOnRemoteAuthErrMaxWaitSec": 360,
+            "skipReplSpecAutoGc": false,
+            "source_nozzle_per_node": 2,
+            "stats_interval": 1000,
+            "targetTopologyLogFrequency": 1800,
+            "target_nozzle_per_node": 2,
+            "worker_batch_size": 500,
+            "xdcrDevBackfillMgrVbsTasksDoneNotifierDelay": false,
+            "xdcrDevBackfillReplUpdateDelayMs": 0,
+            "xdcrDevBackfillReqHandlerHandleVBTaskDoneHang": false,
+            "xdcrDevBackfillReqHandlerStartOnceDelaySec": 0,
+            "xdcrDevBackfillRollbackTo0VB": -1,
+            "xdcrDevBackfillSendDelayMs": 0,
+            "xdcrDevBackfillUnrecoverableErrorInj": false,
+            "xdcrDevCasDriftInjectDocKey": "",
+            "xdcrDevCkptMgrForceGCWaitSec": 0,
+            "xdcrDevColManifestSvcDelaySec": 0,
+            "xdcrDevMainRollbackTo0VB": -1,
+            "xdcrDevMainSendDelayMs": 0,
+            "xdcrDevNsServerPort": 0,
+            "xdcrDevPreCheckCasDriftInjectVb": -1,
+            "xdcrDevPreCheckMaxCasErrorInjection": false
+          },
+          "type": "xmem",
+          "filter_exp": "",
+          "active": true,
+          "checkpoint_interval": 600,
+          "batch_count": 500,
+          "batch_size": 2048,
+          "failure_restart_interval": 10,
+          "optimistic_replication_threshold": 256,
+          "source_nozzle_per_node": 2,
+          "target_nozzle_per_node": 2,
+          "max_expected_replication_lag": 0,
+          "timeout_percentage_cap": 0,
+          "log_level": 13,
+          "stats_interval": 1000,
+          "bandwidth_limit": 0,
+          "compression_type": 3,
+          "Revision": null
+        },
+        "Revision": "g2gCbgUAwXD24Q5sAAAAAWgCbQAAACAwYzMwMTAwYzkxYzUzYzIxM2E4ODUzNDBiMTYzOGJhN2gCYQFuBQDoc/bhDmo="
+      }
+    ],
+    "SourceClusterUUID": "a1a803920ba54e0fd6e2d60ea98a295a"
+  },
+  {
+    "SourceClusterHBExpiryTime": "2025-07-24T09:43:33.429011256Z",
+    "SourceClusterHBReceiveTime": "2025-07-24T09:33:33.429011256Z",
+    "SourceClusterName": "East",
+    "SourceClusterNodes": [
+      "127.0.0.1:8091"
+    ],
+    "SourceClusterReplSpecs": [
+      {
+        "id": "f6f3a51e988f305b16433237d02bec7d/bucket1/bucket1",
+        "internalId": "SWCVA9Urkx4AuP_HQ0AFdg==",
+        "sourceBucketName": "bucket1",
+        "sourceBucketUUID": "78fa53dff1b94ff0ebc07168f1ae3661",
+        "targetClusterUUID": "f6f3a51e988f305b16433237d02bec7d",
+        "targetBucketName": "bucket1",
+        "targetBucketUUID": "f45b22138f03ed2a7c107c8ca668aa78",
+        "replicationSettings": {
+          "values": {
+            "CollectionsMgtMulti": 8,
+            "active": true,
+            "backlogThreshold": 50,
+            "bandwidth_limit": 0,
+            "cLogErrorTimeWindowMs": 120000,
+            "cLogMaxErrorCount": 10,
+            "cLogNetworkRetryCount": 5,
+            "cLogNetworkRetryIntervalMs": 2000,
+            "cLogPoolGetTimeoutMs": 5000,
+            "cLogQueueCapacity": 6000,
+            "cLogReattemptDurationMs": 600000,
+            "cLogSetTimeoutMs": 5000,
+            "cLogWorkerCount": 20,
+            "casDriftThresholdSecs": 3900,
+            "checkpoint_interval": 600,
+            "ckptSvcCacheEnabled": true,
+            "colMappingRules": {},
+            "collectionsSkipSrcValidation": false,
+            "compression_type": 3,
+            "conflictLogging": {},
+            "dcpEnablePurgeRollback": false,
+            "delAllBackfills": false,
+            "delSpecificBackfillForVb": -1,
+            "disableHlvBasedShortCircuit": false,
+            "dismissEvent": -1,
+            "doc_batch_size_kb": 2048,
+            "failure_restart_interval": 10,
+            "filterSystemScope": true,
+            "filter_exp_del": 0,
+            "filter_expression": "",
+            "filter_expression_version": 0,
+            "filter_skip_restream": false,
+            "jsFunctionTimeoutMs": 20000,
+            "log_level": 13,
+            "manualBackfill": "",
+            "mergeFunctionMapping": {},
+            "mobile": 1,
+            "optimistic_replication_threshold": 256,
+            "pipelineReinitHash": "mPc--XTLDhk=",
+            "preCheckCasDriftThresholdHours": 8760,
+            "preReplicateVBMasterCheck": true,
+            "priority": 0,
+            "replicateCkptIntervalMin": 20,
+            "replication_type": "xmem",
+            "retryOnErrExceptAuthErrMaxWaitSec": 360,
+            "retryOnRemoteAuthErr": true,
+            "retryOnRemoteAuthErrMaxWaitSec": 360,
+            "skipReplSpecAutoGc": false,
+            "source_nozzle_per_node": 2,
+            "stats_interval": 1000,
+            "targetTopologyLogFrequency": 1800,
+            "target_nozzle_per_node": 2,
+            "worker_batch_size": 500,
+            "xdcrDevBackfillMgrVbsTasksDoneNotifierDelay": false,
+            "xdcrDevBackfillReplUpdateDelayMs": 0,
+            "xdcrDevBackfillReqHandlerHandleVBTaskDoneHang": false,
+            "xdcrDevBackfillReqHandlerStartOnceDelaySec": 0,
+            "xdcrDevBackfillRollbackTo0VB": -1,
+            "xdcrDevBackfillSendDelayMs": 0,
+            "xdcrDevBackfillUnrecoverableErrorInj": false,
+            "xdcrDevCasDriftInjectDocKey": "",
+            "xdcrDevCkptMgrForceGCWaitSec": 0,
+            "xdcrDevColManifestSvcDelaySec": 0,
+            "xdcrDevMainRollbackTo0VB": -1,
+            "xdcrDevMainSendDelayMs": 0,
+            "xdcrDevNsServerPort": 0,
+            "xdcrDevPreCheckCasDriftInjectVb": -1,
+            "xdcrDevPreCheckMaxCasErrorInjection": false
+          },
+          "type": "xmem",
+          "filter_exp": "",
+          "active": true,
+          "checkpoint_interval": 600,
+          "batch_count": 500,
+          "batch_size": 2048,
+          "failure_restart_interval": 10,
+          "optimistic_replication_threshold": 256,
+          "source_nozzle_per_node": 2,
+          "target_nozzle_per_node": 2,
+          "max_expected_replication_lag": 0,
+          "timeout_percentage_cap": 0,
+          "log_level": 13,
+          "stats_interval": 1000,
+          "bandwidth_limit": 0,
+          "compression_type": 3,
+          "Revision": null
+        },
+        "Revision": "g2gCbgUAA0f24Q5sAAAAAWgCbQAAACA0MzgwZmE0Y2JmYzc1OTk0MTUxNTMzZjc4NDEyY2E1NGgCYQFuBQC6cvbhDmo="
+      }
+    ],
+    "SourceClusterUUID": "a0ae463081304db791b54c95a7956856"
+  }
+]
+```
+
+## [](#see-also)See Also
+
+* From the UI, to view incoming replications information, see [View Incoming Replications](../manage/manage-xdcr/incoming-xdcr-replications.md#view-incoming-replications) in [Incoming Replications](../manage/manage-xdcr/incoming-xdcr-replications.md).
+* To learn about using REST API to create or edit an XDCR reference to a target cluster, see [Creating or Editing a Reference](rest-xdcr-create-ref.md).

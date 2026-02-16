@@ -1,0 +1,110 @@
+[View original HTML](/server/current/rest-api/creating-a-collection.html)
+
+> Collections can be created by means of the REST API. 
+
+## [](#description)Description
+
+Collections are created by means of the `POST /pools/default/buckets/<bucket_name>_/scopes/_<scopename>_/collections` HTTP method and URI. Collections are edited by means of the `PATCH /pools/default/buckets/_<bucketname>_/scopes/_<scopename>_/collections/_<collectionname>_` HTTP method and URI.
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+POST /pools/default/buckets/<bucket_name>/scopes/<scope_name>/collections
+
+PATCH /pools/default/buckets/\
+    <bucket_name>/scopes/<scope_name>/collections/<collection_name>
+
+## [](#curl-syntax)Curl Syntax
+
+The curl syntax is as follows:
+
+curl -X POST -u [admin]:[password]
+  http://<hostname-or-ip>:8091/pools/default/buckets/\
+    <bucket_name>/scopes/<scope_name>/collections
+  -d name=<collection-name>
+  -d maxTTL=[integer]
+  -d history=[ true | false ]
+
+curl -X PATCH -u [admin]:[password]
+  http://<hostname-or-ip>:8091/pools/default/buckets/\
+    <bucket_name>/scopes/<scope_name>/collections/<collection_name>
+  -d history=[ true | false ]
+  -d maxTTL=[integer]
+
+## [](#parameters)Parameters
+
+bucket-name
+
+Specifies the name of the bucket within which the new collection is to reside.
+
+scope-name
+
+Provides the name of the scope within which the new collection is to reside.
+
+name
+
+Specifies the name of the collection to be created: this name cannot subsequently be changed.
+
+maxTTL
+
+Optional parameter is a period of time in seconds or -1\. It defaults to 0.
+
+When you set `maxTTL` to 0, the collection inherits the `maxTTL` setting of the bucket. If the bucket has a `maxTTL` setting greater than 0, documents created or mutated in the collection default to expiring after `maxTTL` seconds.
+
+When you set `maxTTL` to value greater than zero (but less than its maximum value of 2147483647), it has the following effects:
+
+* It sets a default expiration time for documents you create or mutate in the collection.
+* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds.
+
+When you set `maxTTL` to -1, it overrides the bucket’s `maxTTL` setting. By default, when the bucket has a `maxTTL` setting greater than zero, Couchbase Server sets new and mutated documents in the bucket to expire in `maxTTL` seconds. Setting the collection’s `maxTTL` to -1 blocks this behavior so that Couchbase Server does not set a default expiration for documents in the collection.
+
+For more information, see [Expiration](../learn/data/expiration.md).
+
+history
+
+If the value of the optional `history` parameter is:
+
+* Not explicitly set by the administrator, the parameter inherits the value of the `historyRetentionCollectionDefault` parameter, used in the creating and editing of buckets.
+* Explicitly set by the administrator to `true` or `false`, it potentially overrides, for the current collection, the bucket-wide default established by `historyRetentionCollectionDefault`.
+
+If the value of `history` is `true`, change history is recorded for the collection. If the value is `false`, change history is _not_ recorded.
+
+This parameter is ignored unless the following settings have been made _at bucket level_:
+
+* The value of `storageBackend` is `magma`.
+* A positive value is established for `historyRetentionSeconds` or `historyRetentionBytes`, or both.
+
+See [Creating and Editing Buckets](rest-bucket-create.md), for information about bucket parameters. For an overview of change history, see [Change History](../learn/data/change-history.md).
+
+|  | history and maxTTL are the only parameters that you can edit after you create the collection. |
+|  | --------------------------------------------------------------------------------------------- |
+
+## [](#responses)Responses
+
+Success returns `200 OK`, for each call. Failure to authenticate gives `401 Unauthorized`. A malformed URI fails with `404 Object Not Found`. If the collection-name is improperly specified, a notification such as `"name":"Length must be in range from 1 to 30"` or `"name":"Can only contain characters A-Z, a-z, 0-9 and the following symbols _ - %"` is displayed. See [Naming for Scopes and Collections](../learn/data/scopes-and-collections.md#naming-for-scopes-and-collections), for an account of naming conventions.
+
+## [](#examples)Examples
+
+The following call creates a collection named `my_collection_in_my_scope`, within an existing scope named `my_scope`. It specifies the default expiration for documents in the collection that’s equivalent to two years. It also specifies that no change history should be maintained for the collection.
+
+curl -X POST -v -u Administrator:password \
+http://10.143.210.101:8091/pools/default/buckets/\
+testBucket/scopes/my_scope/collections \
+-d name=my_collection_in_my_scope \
+-d maxTTL=63113904 \
+-d history=false
+
+If successful, the call returns a `uid`, such as the following:
+
+{"uid":18}
+
+The following call modifies the definition of the collection `my_collection_in_my_scope`; specifying that deduplication should not be applied to the change history for the collection:
+
+curl -X PATCH http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope/collections/my_collection_in_my_scope \
+-u Administrator:password \
+-d history=true
+
+## [](#see-also)See Also
+
+An overview of scopes and collections is provided in [Scopes and Collections](../learn/data/scopes-and-collections.md). Step-by-step procedures for management are provided in [Manage Scopes and Collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md). See also the CLI reference page for the [collection-manage](../cli/cbcli/couchbase-cli-collection-manage.md) command.
+
+For an overview of change history, see [Change History](../learn/data/change-history.md). For information on establishing change history defaults for collections within a bucket, see [Creating and Editing Buckets](rest-bucket-create.md).

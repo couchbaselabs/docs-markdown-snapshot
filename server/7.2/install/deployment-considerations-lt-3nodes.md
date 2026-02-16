@@ -1,0 +1,45 @@
+[View original HTML](/server/7.2/install/deployment-considerations-lt-3nodes.html)
+
+> The number of nodes in a Couchbase-Server deployment may impact both maintenance-requirements and feature-availability. 
+
+When setting up a Couchbase Server deployment, the number of nodes in that deployment impact the features that are available. The number of nodes also heavily impact how the deployment is maintained in production. For these reasons, we do not recommend running a Couchbase Server deployment of less than three nodes in production. Support for specific use cases that require a one-node or two-node clusters may be granted by Couchbase after an evaluation of the use case. This topic highlights some of the feature differences and considerations that need to be taken into account when setting up and running a small deployment.
+
+## [](#two-node-deployments)Two-Node Deployments
+
+The following limitations apply to deployments with two nodes:
+
+* **No auto-failover functionality**  
+When a deployment of Couchbase Server has fewer than three nodes, auto-failover is disabled. This is because with fewer than three nodes in the deployment, it’s not easy to determine which node is having an issue and thus avoid a split-brain configuration.
+* **Maximum number of replicas is 1**  
+A Couchbase Server deployment can have multiple replicas. However, when a deployment has only two nodes, you can only have a maximum of one replica since the Active and Replica of a vBucket cannot exist on the same server.
+* **Run the cluster at < 50% load capacity**  
+When running a Couchbase deployment with two nodes, we recommend running the cluster at 50% capacity. In the event of a failure, running the cluster at this level ensures that the remaining node is not overloaded.
+
+### [](#metadata-management)Metadata Management
+
+In Couchbase Server 7.0+, metadata is managed by means of _Chronicle_; which is a _consensus-based_ system, based on the [Raft](https://raft.github.io/) algorithm. Due to the strong consistency with which topology-related metadata is thus managed, in the event of a _quorum failure_ (meaning, the unresponsiveness of at least half of the cluster’s nodes — for example, the unresponsiveness of one node in a two-node cluster), no modification of nodes, buckets, scopes, and collections can take place until the quorum failure is resolved.
+
+Note that optionally, the quorum failure can be resolved by means of _unsafe failover_. However, that the consequences of unsafe failover in 7.0 are different from those in previous versions; and the new consequences should be fully understood before unsafe failover is attempted.
+
+For a complete overview of how all metadata is managed by Couchbase Server, see [Metadata Management](../learn/clusters-and-availability/metadata-management.md). For information on _unsafe failover_ and its consequences, see [Performing an Unsafe Failover](../learn/clusters-and-availability/hard-failover.md#performing-an-unsafe-failover).
+
+## [](#single-node-deployments)Single-Node Deployments
+
+Many features of Couchbase Server do not work in a single-node deployment. All of the limitations that apply to deployments with two nodes also hold true for single node deployments, including no auto-failover functionality.
+
+* **Node failure means recreating the cluster and restoring data**  
+In a single-node deployment, any failure of the node implies downtime and possible recovery from a backup.
+* **Failure creates a high likelihood of irrecoverable data loss (no in-memory replicas)**  
+When a node fails or restarts, there is 100% downtime until it is recovered. In a single-node cluster, there is no replica that can take over the traffic when the node is not responding.
+* **Constant warning in the user interface reminding you that you have no replicas**  
+The Couchbase Server Web Console will tell you that your data is not replicated and that you are running in an unsafe configuration. This is how the cluster manager alerts the administrator if there are not enough replicas to protect your data.
+* **No failover (in addition to no auto-failover)**  
+When running a single node-cluster, a node cannot failover if there are issues.
+* **No ability to add services dynamically**  
+With multidimensional scaling, each node in a deployment can have multiple roles. However, to be able to change these roles, the node must be removed from the deployment first. With a single-node deployment, the only option is to take the deployment offline, add the service, and restore the deployment.
+* **No rolling upgrade (offline only)**  
+To upgrade a single node deployment, the node must be offline as an upgrade using a rebalance is not an option with a single server.
+* **No rolling restart (offline only)**  
+Any restart of the single node for maintenance reasons results in 100% downtime as there are no other nodes to take over this work.
+* **Host name or IP address must be set explicitly**  
+When creating a single-node deployment, set the host name and IP address at the time of creation.

@@ -1,0 +1,34 @@
+[View original HTML](/server/7.2/search/quick-index-supported-languages.html)
+
+> When you create an index and add a text field with the Quick Index editor, you need to specify a language for the text. 
+
+For more information about how to create a Search index with the Quick Index editor, see [Create a Search Index with the Quick Editor](create-quick-index.md).
+
+The following language options are available for Quick Index text fields:
+
+| Language Option               | Description                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Unknown/Various               | Select this option if the text in the field contains multiple languages, or doesn’t match another language option.       |
+| English                       | Select this option if the text in the field is in English.                                                               |
+| Arabic                        | Select this option if the text in the field is in Arabic.                                                                |
+| Chinese, Japanese, and Korean | Select this option if the text in the field is in Chinese, Japanese, or Korean.                                          |
+| Croatian                      | Select this option if the text in the field is in Croatian.                                                              |
+| Danish                        | Select this option if the text in the field is in Danish.                                                                |
+| Dutch                         | Select this option if the text in the field is in Dutch.                                                                 |
+| Finnish                       | Select this option if the text in the field is in Finnish.                                                               |
+| French                        | Select this option if the text in the field is in French.                                                                |
+| German                        | Select this option if the text in the field is in German.                                                                |
+| Hebrew                        | Select this option if the text in the field is in Hebrew.                                                                |
+| Hindi                         | Select this option if the text in the field is in Hindi.                                                                 |
+| Hungarian                     | Select this option if the text in the field is in Hungarian.                                                             |
+| Italian                       | Select this option if the text in the field is in Italian.                                                               |
+| Norwegian                     | Select this option if the text in the field is in Norwegian.                                                             |
+| Persian                       | Select this option if the text in the field is in Persian.                                                               |
+| Portuguese                    | Select this option if the text in the field is in Portuguese.                                                            |
+| Romanian                      | Select this option if the text in the field is in Romanian.                                                              |
+| Russian                       | Select this option if the text in the field is in Russian.                                                               |
+| Sorani Kurdish                | Select this option if the text in the field is in Sorani.                                                                |
+| Spanish                       | Select this option if the text in the field is in Spanish.                                                               |
+| Swedish                       | Select this option if the text in the field is in Swedish.                                                               |
+| Turkish                       | Select this option if the text in the field is in Turkish.                                                               |
+| Web                           | Select this option if the text in the field contains content like URLs, email addresses, Twitter usernames, or hashtags. |

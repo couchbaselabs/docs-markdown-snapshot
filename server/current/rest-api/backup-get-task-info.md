@@ -1,0 +1,344 @@
+[View original HTML](/server/current/rest-api/backup-get-task-info.html)
+
+## [](#description)Description
+
+> This HTTP method and URI return an array containing the entire task history for the repository specified by the `REPO_NAME` path-parameter. 
+
+The optional `TASK_SUBSET_PARAMETERS` lets you select a subset of the tasks that you want the method to return.
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory
+
+GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory?{TASK_SUBSET_PARAMETERS}
+
+|  | These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service. |
+|  | ----------------------------------------------------------------------------------------------------------------- |
+
+__Table 1\. Path Parameters__
+| Name                     | Description                                                                              | Schema                                       |
+| ------------------------ | ---------------------------------------------------------------------------------------- | -------------------------------------------- |
+| REPO\_STATUS             | The status of the backup repository.                                                     | Must be one of: active imported archived     |
+| REPO\_NAME               | The name of the repository                                                               | String                                       |
+| TASK\_SUBSET\_PARAMETERS | One or more optional query parameters that filter the list of tasks this method returns. | [Task Subset Parameter String](#subset-spec) |
+
+### [](#subset-spec)Task Subset Parameter String
+
+You can filter the list of tasks this method returns using the optional task subset specification query string. You can supply one or more of the following parameters:
+
+first={DATE}&limit={COUNT}&taskName={TASK_NAME}
+
+__Table 2\. Task Subset Query String Parameters__
+| Placeholder Name | Description                                                                                                                                                                         | Value                                                                          |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| DATE             | The parameter first returns only those tasks that started after the supplied date.                                                                                                  | A datetime string in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format |
+| COUNT            | The parameter limit returns the number of most recent tasks to return.                                                                                                              | Integer                                                                        |
+| TASK\_NAME       | The parameter taskName returns only those tasks where the name matches TASK\_NAME including case. Use this option to filter when multiple tasks are writing to the same repository. | String                                                                         |
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/cluster/self\
+     /repository/$REPO_STATUS/$REPOSITORY_NAME/taskHistory \
+     -u $USERNAME:$PASSWORD
+
+curl -G -X GET http://$BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/cluster/self\
+     /repository/$REPO_STATUS/$REPOSITORY_NAME/taskHistory
+     [-d 'first=$DATE'] [-d 'limit=$COUNT'] [-d 'taskName=$TASK_NAME']
+     -u $USERNAME:$PASSWORD
+
+## [](#required-permissions)Required Permissions
+
+Full Admin, Backup Full Admin, or Read-Only Admin roles.
+
+## [](#responses)Responses
+
+| Value                                                                  | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 200 OK and JSON array containing the tasks                             | Successful call.                                                       |
+| 400                                                                    | Invalid parameter.                                                     |
+| 400 Object Not found                                                   | The repository in the endpoint URI does not exist.                     |
+| 401 Unauthorized                                                       | Authorization failure due to incorrect username or password.           |
+| 403 Forbidden, plus a JSON message explaining the minimum permissions. | The provided username has insufficient privileges to call this method. |
+| 404 Object Not Found                                                   | Error in the URI path.                                                 |
+| 500 Internal Server Error                                              | Error in Couchbase Server.                                             |
+
+## [](#example)Examples
+
+|  | The following examples assume you are running the curl command from a node that is running the Backup Service. |
+|  | -------------------------------------------------------------------------------------------------------------- |
+
+The following call returns the entire task history for the active repository `quarterHourBackups`:
+
+```console
+curl -v -X GET http://127.0.0.1:8097/api/v1/cluster/self/\
+     repository/active/quarterHourBackups/taskHistory \
+     -u Administrator:password
+```
+
+If the call is successful, the first part of the potentially extensive output may appear as follows:
+
+```json
+[
+  {
+    "task_name": "MERGE-ce1055b8-b683-4460-880f-513ac271d15b",
+    "status": "done",
+    "start": "2025-07-28T12:31:34.342818+05:30",
+    "end": "2025-07-28T12:31:36.345602+05:30",
+    "node_runs": [
+      {
+        "node_id": "0b52711a01c3236e06a5eda64c3953b3",
+        "status": "done",
+        "start": "2025-07-28T12:31:34.343368+05:30",
+        "end": "2025-07-28T12:31:36.342261+05:30",
+        "progress": 100,
+        "stats": {
+          "id": "d0a17bb8-f2d6-4cbe-a6c4-c440a2ad0b26",
+          "current_transfer": 7,
+          "total_transfers": 7,
+          "transfers": [
+            {
+              "description": "(1/7) Merging backup 2025-07-27T17_00_54.361492+05_30",
+              "stats": {
+                "started_at": 1753686094568578000,
+                "finished_at": 1753686094648488000,
+                "buckets": {
+                  "travel-sample": {
+                    "total_items": 63288,
+                    "started_at": 1753686094640274000,
+                    "finished_at": 1753686094645640000,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2025-07-28T12:31:34.651966+05:30"
+            }
+            {...}
+          ],
+          "progress": 100,
+          "eta": "2025-07-28T12:31:35.970544+05:30"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "MERGE"
+  },
+  {
+    "task_name": "BackupTask",
+    "status": "done",
+    "start": "2025-07-28T11:26:59.031467+05:30",
+    "end": "2025-07-28T11:27:03.547466+05:30",
+    "node_runs": [
+      {
+        "node_id": "0b52711a01c3236e06a5eda64c3953b3",
+        "status": "done",
+        "start": "2025-07-28T11:27:01.585152+05:30",
+        "end": "2025-07-28T11:27:03.540761+05:30",
+        "progress": 100,
+        "stats": {
+          "id": "dbde385b-8590-4619-89a3-573d7c77c18e",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Backing up to 2025-07-28T11_27_01.697005+05_30",
+              "stats": {
+                "started_at": 1753682221679622000,
+                "finished_at": 1753682223496495000,
+                "buckets": {
+                  "travel-sample": {
+                    "estimated_total_items": 65440,
+                    "total_items": 63340,
+                    "total_vbuckets": 64,
+                    "vbuckets_complete": 64,
+                    "bytes_received": 43436850,
+                    "snapshot_markers_received": 64,
+                    "failover_logs_received": 64,
+                    "mutations_received": 63288,
+                    "started_at": 1753682222107937000,
+                    "finished_at": 1753682223488742000,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2025-07-28T11:27:03.503045+05:30"
+            }
+          ],
+          "progress": 100,
+          "eta": "2025-07-28T11:27:03.503045+05:30"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "BACKUP"
+  },
+    {
+    "task_name": "PRUNE-975564a7-f6c2-491e-8488-ef2cdcffb0a6",
+    "status": "done",
+    "start": "2025-07-28T11:59:11.513695+05:30",
+    "end": "2025-07-28T11:59:11.762125+05:30",
+    "node_runs": [
+      {
+        "node_id": "0b52711a01c3236e06a5eda64c3953b3",
+        "status": "done",
+        "start": "2025-07-28T11:59:11.5143+05:30",
+        "end": "2025-07-28T11:59:11.759062+05:30",
+        "progress": 100,
+        "stats": {
+          "id": "87f0c774-59e3-4e4b-a365-43dac12e881f",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Deleting backup 2025-07-27T10_01_47.657575+05_30",
+              "stats": {
+                "started_at": 1753684151701263000,
+                "finished_at": 1753684151756283000,
+                "users": {},
+                "complete": true
+              },
+              "progress": 100
+            }
+          ],
+          "progress": 100
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "PRUNE"
+  },
+  {...}
+]
+```
+
+The array includes objects for specific runs of the task `fifteenMinuteBackup`. Each object incudes the `start` and `end` time of the task; and lists specific `node_runs`, with details on buckets whose data was backed up.
+
+The following example demonstrates using the `first` and `limit` query parameters to limit the results to two tasks that started after 14:24:22 on May 5th, 2024 GMT.
+
+```console
+curl -G -s -X GET http://127.0.0.1:8097/api/v1/cluster/self/repository/active/quarterHourBackups/taskHistory \
+     -d 'first=2024-05-06T14:24:22Z'
+     -d 'limit=2'
+     -u Administrator:password | jq
+```
+
+A successful call returns a task list resembling the following:
+
+```json
+[
+  {
+    "task_name": "fifteenMinuteBackup",
+    "status": "done",
+    "start": "2024-05-06T17:24:22.471826882Z",
+    "end": "2024-05-06T17:24:28.901488385Z",
+    "node_runs": [
+      {
+        "node_id": "1a41682a59f40d3932d2cf7b131a2312",
+        "status": "done",
+        "start": "2024-05-06T17:24:22.483698673Z",
+        "end": "2024-05-06T17:24:28.889650843Z",
+        "progress": 100,
+        "stats": {
+          "id": "36dfeb46-78b0-428a-b9d6-36b0169ac685",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Backing up to 2024-05-06T17_24_22.886394673Z",
+              "stats": {
+                "started_at": 1715016262871131000,
+                "finished_at": 1715016268874403800,
+                "buckets": {
+                  "travel-sample": {
+                    "total_items": 63344,
+                    "total_vbuckets": 1024,
+                    "vbuckets_complete": 1024,
+                    "bytes_received": 28672,
+                    "failover_logs_received": 1024,
+                    "started_at": 1715016266774038500,
+                    "finished_at": 1715016268870321400,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2024-05-06T17:24:28.878288801Z"
+            }
+          ],
+          "progress": 100,
+          "eta": "2024-05-06T17:24:28.878288801Z"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "BACKUP"
+  },
+  {
+    "task_name": "fifteenMinuteBackup",
+    "status": "done",
+    "start": "2024-05-06T17:09:22.279129423Z",
+    "end": "2024-05-06T17:09:28.677706343Z",
+    "node_runs": [
+      {
+        "node_id": "1a41682a59f40d3932d2cf7b131a2312",
+        "status": "done",
+        "start": "2024-05-06T17:09:22.291632632Z",
+        "end": "2024-05-06T17:09:28.667370885Z",
+        "progress": 100,
+        "stats": {
+          "id": "7dabe789-0413-4ef2-b7d9-e942cab1da75",
+          "current_transfer": 1,
+          "total_transfers": 1,
+          "transfers": [
+            {
+              "description": "Backing up to 2024-05-06T17_09_22.690112298Z",
+              "stats": {
+                "started_at": 1715015362678973000,
+                "finished_at": 1715015368655166200,
+                "buckets": {
+                  "travel-sample": {
+                    "total_items": 63344,
+                    "total_vbuckets": 1024,
+                    "vbuckets_complete": 1024,
+                    "bytes_received": 28672,
+                    "failover_logs_received": 1024,
+                    "started_at": 1715015366548654800,
+                    "finished_at": 1715015368651093200,
+                    "complete": true
+                  }
+                },
+                "users": {},
+                "complete": true
+              },
+              "progress": 100,
+              "eta": "2024-05-06T17:09:28.658444968Z"
+            }
+          ],
+          "progress": 100,
+          "eta": "2024-05-06T17:09:28.658444968Z"
+        },
+        "error_code": 0
+      }
+    ],
+    "error_code": 0,
+    "type": "BACKUP"
+  }
+]
+```
+
+## [](#see-also)See Also
+
+* For a an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md).
+* For a step-by-step guide to configure and use the Backup Service using the Couchbase Server Web Console, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
+* For information about using the Backup Service REST API to create a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md).

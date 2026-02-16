@@ -1,0 +1,15 @@
+[View original HTML](/styleguide/latin-abbreviations.html)
+
+Do not use the following Latin abbreviations in Couchbase documentation:
+
+* e.g.
+* i.e.
+* etc.
+
+If you feel you need to use these Latin abbreviations, try 1 of the following alternatives:
+
+| Instead of…​ | Try…​        |
+| ------------ | ------------ |
+| e.g.         | for example  |
+| i.e.         | specifically |
+| etc.         | and so on    |

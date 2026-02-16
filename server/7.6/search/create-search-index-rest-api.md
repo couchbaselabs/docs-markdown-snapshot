@@ -1,0 +1,137 @@
+[View original HTML](/server/7.6/search/create-search-index-rest-api.html)
+
+> You can create a Search index with the Search Service API. 
+
+You must create a Search index before you can [run a search](simple-search-rest-api.md) with the Search Service.
+
+## [](#prerequisites)Prerequisites
+
+* You have the Search Service enabled on a node in your cluster. For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../../current/manage/manage-nodes/node-management-overview.md).
+* You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../../current/manage/manage-buckets/create-bucket.md).
+* Your user account has the **Search Admin** role for the bucket where you want to create the index.
+* You have installed the Couchbase command-line tool (CLI).
+* You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
+
+## [](#procedure)Procedure
+
+To create a Search index with the REST API:
+
+1. In your command-line tool, enter a `curl` command with the `XPUT` verb.
+2. Set your header content to include `"Content-Type: application/json"`.
+3. Enter your username, password, and the Search Service endpoint on port `8094` with the name of the index you want to create:  
+```console  
+curl -s -XPUT -H "Content-Type: application/json" \
+    -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/travel-sample/scope/inventory/index/landmark-content-index  
+    -d \  
+```  
+To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
+
+|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+4. Enter the JSON payload for the settings you want in your index.  
+Do not include the [uuid](search-index-params.md#uuid) or [sourceUUID](search-index-params.md#sourceuuid) parameters.
+
+|  | If you remove the [uuid](search-index-params.md#uuid) and [sourceUUID](search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in your REST API call. For more information about how to create an index with the UI, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#example)Example
+
+In the following example, the JSON payload creates a simple index named `landmark-content-index` on the `travel-sample` bucket. It creates a type mapping for the `inventory.landmark` collection, with a child field, `content`, and adds a dynamic Extended Attributes (XATTRs) mapping for any available document metadata fields in the collection:
+
+```console
+curl -s -XPUT -H "Content-Type: application/json" \
+  -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/travel-sample/scope/inventory/index/landmark-content-index 
+  -d \
+  '{
+      "type": "fulltext-index",
+      "name": "landmark-content-index",
+      "sourceType": "gocbcore",
+      "sourceName": "travel-sample",
+      "planParams": {
+        "maxPartitionsPerPIndex": 1024,
+        "indexPartitions": 1
+      },
+      "params": {
+        "doc_config": {
+          "docid_prefix_delim": "",
+          "docid_regexp": "",
+          "mode": "scope.collection.type_field",
+          "type_field": "type"
+        },
+        "mapping": {
+          "analysis": {},
+          "default_analyzer": "standard",
+          "default_datetime_parser": "dateTimeOptional",
+          "default_field": "_all",
+          "default_mapping": {
+            "dynamic": true,
+            "enabled": false
+          },
+          "default_type": "_default",
+          "docvalues_dynamic": false,
+          "index_dynamic": true,
+          "store_dynamic": false,
+          "type_field": "_type",
+          "types": {
+            "inventory.landmark": {
+              "dynamic": false,
+              "enabled": true,
+                "properties": {
+                  "_$xattrs": {
+                  "dynamic": true,
+                  "enabled": true
+                },
+                "content": {
+                  "dynamic": false,
+                  "enabled": true,
+                  "fields": [
+                    {
+                      "docvalues": true,
+                      "include_in_all": true,
+                      "include_term_vectors": true,
+                      "index": true,
+                      "name": "content",
+                      "store": true,
+                      "type": "text"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "store": {
+          "indexType": "scorch",
+          "segmentVersion": 15
+        }
+      },
+      "sourceParams": {}
+    }'
+```
+
+|  | XATTRs mappings are only available in Couchbase Server version 7.6.2 and later. |
+|  | ------------------------------------------------------------------------------- |
+
+For more information about the available JSON properties for a Search index, see [Search Index JSON Properties](search-index-params.md).
+
+If the REST API call is successful, the Search Service returns a `200 OK` and the following JSON response:
+
+```json
+{
+    "status": "ok",
+    "name": "travel-sample.inventory.landmark-content-index",
+    "uuid": "49563a96ea6d3686"
+}
+```
+
+The `"uuid"` is randomly generated for each Search index you create. Your own UUID might not match the value shown in the example.
+
+## [](#next-steps)Next Steps
+
+After you create a Search index, you can [Run a Simple Search with the REST API and curl/HTTP](simple-search-rest-api.md) to test your Search index.
+
+If you want to edit your index with another REST API call, include the [uuid](search-index-params.md#uuid) parameter with the UUID the Search Service assigned to your Search index.
+
+You can also [Run A Simple Search with the Web Console](simple-search-ui.md) or with one of the Couchbase SDKs:
+
+[.NET](../../../dotnet-sdk/current/howtos/full-text-searching-with-sdk.md)| [Go](../../../go-sdk/current/howtos/full-text-searching-with-sdk.md)| [Java](../../../java-sdk/current/howtos/full-text-searching-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/full-text-search.md)| [Node.js](../../../nodejs-sdk/current/howtos/full-text-searching-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/full-text-searching-with-sdk.md)| [Python](../../../python-sdk/current/howtos/full-text-searching-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/full-text-searching-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/full-text-searching-with-sdk.md)

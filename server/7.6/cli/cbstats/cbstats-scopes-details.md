@@ -1,0 +1,87 @@
+[View original HTML](/server/7.6/cli/cbstats/cbstats-scopes-details.html)
+
+> Provides low-level details on scopes. 
+
+## [](#syntax)Syntax
+
+cbstats host:11210 [common options] scopes-details [vbucket-reference]
+
+## [](#description)Description
+
+This command is used to provide low-level details on scopes, for a specified bucket. This includes details identifying the existing scopes; and vBucket-specific details, which include sequence numbers and item counts.
+
+## [](#options)Options
+
+The optional `vbucket-reference` parameter is an integer, in the range of `0` to `1023` inclusive, specifying a particular vBucket. If a vBucket is specified, the only details returned are the vBucket-specific details for that vBucket. If no vBucket is specified, vBucket-specific details for all vBuckets are returned, as well as details identifying the existing scopes for the bucket.
+
+For information on returning a `vbucket-reference` that corresponds to a particular document id, see the section [Examples: Find vBucket IDs](cbstats-key.md#find-vbucket-ids), on the reference page for the `cbstats` command [key](cbstats-key.md). For common `cbstats` options, see [cbstats](../cbstats-intro.md).
+
+## [](#examples)Examples
+
+The following command retrieves scopes-details on all vBuckets for `travel-sample`, for the specified node:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample scopes-details
+
+The initial section of the output is as follows:
+
+0x0:0x0:name:          _default
+0x0:collections:       1
+0x0:name:              _default
+0x8:0x9:name:          MyCollection
+0x8:collections:       1
+0x8:name:              MyScope
+0x9:0xa:name:          MySecondCollection
+0x9:0xb:name:          MyThirdCollection
+0x9:collections:       2
+0x9:name:              MySecondScope
+manifest_uid:          7
+vb_0:0x0:              2
+vb_0:0x0:0x0:items:    38
+vb_0:0x8:              1
+vb_0:0x8:0x9:items:    0
+vb_0:0x9:              0
+vb_0:0x9:0xa:items:    0
+vb_0:0x9:0xb:items:    0
+vb_0:manifest_uid:     7
+vb_0:scopes:           3
+vb_1:0x0:              2
+vb_1:0x0:0x0:items:    29
+      .
+      .
+      .
+
+Each line of the output presents a data _key_. Each key is either of the format `scopeID` : `collectionID` : `datumLabel`; or of the format `scopeID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
+
+The output’s initial lines describe the scopes and collections in the bucket on the specified node.
+
+The `manifest_uid` value (here, `7`) is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
+
+Subsequent information in the output relates to each vBucket corresponding to `travel-sample`. The vBuckets are numbered, from `0` to `1023`. For each vBucket, information is provided on sequence numbers and total items.
+
+The following command specifies a `vbucket-reference`, thereby returning information on the specified vBucket only:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample scopes-details 8
+
+Details for vBucket `8` are duly returned:
+
+vb_8:0x0:           2
+vb_8:0x0:0x0:items: 26
+vb_8:0x8:           1
+vb_8:0x8:0x9:items: 0
+vb_8:0x9:           0
+vb_8:0x9:0xa:items: 0
+vb_8:0x9:0xb:items: 0
+vb_8:manifest_uid:  7
+vb_8:scopes:        3
+
+## [](#see-also)See Also
+
+For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+For a step-by-step explanation of creating scopes and collections with the CLI, see [Manage Scopes and Collections with the CLI](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-cli). For a comparable explanation with the REST API, see [Manage Scopes and Collections with the REST API](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-rest-api).
+
+To use `cbstats` to provide higher-level information on scopes, see the reference page for the `cbstats` [scopes](cbstats-scopes.md) command.

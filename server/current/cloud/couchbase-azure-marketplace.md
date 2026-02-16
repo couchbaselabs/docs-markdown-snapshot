@@ -1,0 +1,112 @@
+[View original HTML](/server/current/cloud/couchbase-azure-marketplace.html)
+
+> Couchbase partners with Microsoft to provide a packaged solution on Azure Marketplace. This solution is based on Azure Resource Manager templates that incorporate the latest features and best practices for deploying Couchbase Server on Microsoft Azure. 
+
+Couchbase Server on Azure Marketplace provides one of the fastest and easiest ways to get up and running on Azure virtual machines. At the core of this experience are Azure Resource Manager templates that are developed in close collaboration with Microsoft in order to adopt the latest features and best practices.
+
+Couchbase is available through Azure Marketplace with hourly pricing, or through a Bring Your Own License (BYOL) model.
+
+## [](#before-you-begin)Before You Begin
+
+* You need a Microsoft Azure account. If you don’t have one, [sign up](https://azure.microsoft.com/en-us/free/) for one before proceeding.
+* You should review the [best practices](couchbase-cloud-deployment.md#azure-best-practices) for deploying Couchbase Server on Azure.
+
+|  | The free trial version of Azure has limits on the number of resources that can be be deployed. Upgrading to a Pay-As-You-Go subscription will increase resource quotas, and it also allows you to open a support ticket in the Azure portal to request even higher quotas should you need them. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#deploying-couchbase-enterprise)Deploying Couchbase Enterprise
+
+|  | The templates are provided as a starting point and may be customized as needed. Note that additional post deployment setup may be required. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+
+1. Log in to your account on the Microsoft Azure Marketplace.
+2. Search for `Couchbase` in the Marketplace and select the Couchbase Enterprise app.  
+![azure marketplace](_images/azure/deploying/azure-marketplace.png)  
+The Couchbase Enterprise product page provides a quick overview of the product offering and useful links.  
+![azure marketplace couchbase enterprise](_images/azure/deploying/azure-marketplace-couchbase-enterprise.png)
+3. To deploy Couchbase Enterprise on Microsoft Azure, click **Get it Now**.  
+There are two [plans](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase-enterprise?tab=PlansAndPrice) that you can choose from: BYOL and Hourly Pricing.
+4. Once you select a plan (we’ve selected Hourly Pricing for this example), you are redirected to portal.azure.com. If you’re not already logged in to Azure Portal, you will need to authenticate yourself before proceeding to the next step.  
+![azure portal cb home](_images/azure/deploying/azure-portal-cb-home.png)  
+
+|  | You can also land on this page directly if you have access to Azure Portal and need not go through the initial steps of navigating to this page from the Azure Marketplace. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+5. Click **Create** to deploy and load your first blade.
+6. Configure the basic settings for your Couchbase Enterprise.  
+![azure portal cb configure basic settings](_images/azure/deploying/azure-portal-cb-configure-basic-settings.png)  
+
+| Field Name     | Description                                                                                                                                                                                                                                                                                                          |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Admin Username | The Admin user name and password you provide on this screen will be used to log in to Couchbase and also to SSH into your machines. Microsoft blacklists a number of user names including 'Administrator', so you’ll need to provide a different user name.                                                          |
+| Admin Password | The Admin user name and password you provide on this screen will be used to log in to Couchbase and also to SSH into your machines. The password must satisfy at least three of the following four conditions: Contains a lower case letter Contains an upper case letter Contains a numeric value Contains a symbol |
+| Subscription   |                                                                                                                                                                                                                                                                                                                      |
+| Resource Group | The resource group is a logical container for all the things you’ll be deploying such as VM scale sets, disks, etc. Provide a name for the resource group if you choose to create a new one, or select an existing one from the drop-down.                                                                           |
+| Location       | Microsoft Azure has a wide range of locations available. Pick a location where you want your cluster to be deployed.                                                                                                                                                                                                 |
+7. Configure the Couchbase Cluster.  
+![azure portal cb configure cluster](_images/azure/deploying/azure-portal-cb-configure-cluster.png)  
+
+| Field Name              | Description                                                                                                                                                                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Virtual Machine Size    |                                                                                                                                                                                                                                                           |
+| Server Node Count       | Select the number of server nodes to deploy.                                                                                                                                                                                                              |
+| Server Disk Size        | Select the disk size for each of the server nodes.                                                                                                                                                                                                        |
+| Server Version          | Choose the Couchbase Server version to deploy. The [Compatibility Matrix](https://developer.couchbase.com/documentation/mobile/current/installation/index.html#story-h2-1) summarizes the compatible versions of Sync Gateway and Couchbase Server.       |
+| Sync Gateway Node Count | Select the number of Sync Gateway nodes to deploy.                                                                                                                                                                                                        |
+| Sync Gateway Version    | Choose the Couchbase Sync Gateway version to deploy. The [Compatibility Matrix](https://developer.couchbase.com/documentation/mobile/current/installation/index.html#story-h2-1) summarizes the compatible versions of Sync Gateway and Couchbase Server. |
+8. Review the summary and click **OK** to proceed to buy.  
+You can also choose to **Download the templates and parameters** to deploy later with a script.
+
+|  | Take a look at the sample templates and instructions to deploy the templates that are available [here](https://github.com/couchbase-partners/azure-resource-manager-couchbase). Note that these templates are provided as a starting point for and may be customized as needed. Note that additional post deployment setup may be required. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+![azure portal cb summary](_images/azure/deploying/azure-portal-cb-summary.png)
+9. On the final screen, you’re presented with the Microsoft Azure and Couchbase End User License Agreements (EULA). Review the license agreements and click **Purchase** if you agree to the terms and conditions.  
+![azure portal cb buy hourly](_images/azure/deploying/azure-portal-cb-buy-hourly.png)
+10. Deployment begins right after you click Purchase and is indicated by the blue **Deploying Couchbase** tile on your screen. You can click on the **Deploying Couchbase** tile to examine the progress closely.  
+![azure portal cb deploying](_images/azure/deploying/azure-portal-cb-deploying.png)  
+Note that it takes a few minutes for deployment to complete. You will receive a notification once deployment is completed.  
+![azure deployment successful](_images/azure/logging-in/azure-deployment-successful.png)
+
+## [](#logging-in)Logging in to Your Couchbase Cluster
+
+After the deployment is completed, you can drill-down into the resource group and explore the items created. The newly created resource group contains four items: network security groups, Couchbase Server VM scale sets, Couchbase Sync Gateway VM scale sets, and a virtual network that contains all these objects.
+
+![azure cb rg cluster overview](_images/azure/logging-in/azure-cb-rg-cluster-overview.png) 
+
+Navigate to the newly created resource group > **Deployments** and select the deployment. (For example, `couchbase.couchbase-enterprisecouchbase-enterpris-timestamp`). You can see that there are two outputs created: Server Admin URL and Sync Gateway Admin URL which can be used to access the Couchbase Server Web Console and Couchbase Sync Gateway Admin Portal respectively.
+
+![azure cb cluster deployed](_images/azure/logging-in/azure-cb-cluster-deployed.png) 
+
+1. This step describes how to log in to the Couchbase Server Web Console.
+
+  1. Copy the Server Admin URL.  
+  ![azure cb cluster output serveradminurl](_images/azure/logging-in/azure-cb-cluster-output-serveradminurl.png)
+  2. Paste the Server Admin URL on a browser tab to open the Couchbase Server Web Console.
+  3. Enter the Admin user name and password that you configured when creating the deployment to sign in.  
+  ![azure cb web console login](_images/azure/logging-in/azure-cb-web-console-login.png)
+  4. Once you log in successfully, you can see the status of your Couchbase Server cluster on the dashboard.  
+  ![azure cb web console dashboard](_images/azure/logging-in/azure-cb-web-console-dashboard.png)  
+  Click the **Servers** tab to explore the sever nodes that have been created.  
+  ![azure cb web console servers](_images/azure/logging-in/azure-cb-web-console-servers.png)
+2. This step describes how to log in to the Sync Gateway Admin portal.
+
+  1. Copy the Sync Gateway Admin URL.  
+  ![azure cb cluster output syncgatewayurl](_images/azure/logging-in/azure-cb-cluster-output-syncgatewayurl.png)
+  2. Paste the Sync Gateway Admin URL on a browser tab to open the Couchbase Sync Gateway Admin portal.  
+  ![azure cb syncgateway portal](_images/azure/logging-in/azure-cb-syncgateway-portal.png)
+
+## [](#scaling)Scaling Your Couchbase Cluster
+
+Couchbase simplifies scaling on Microsoft Azure by using virtual machine scale sets. This section describes how to scale up your cluster in three simple steps.
+
+1. Log in to the Microsoft Azure Portal and navigate to your deployed Couchbase cluster > your Couchbase resource group > server VM scale set.  
+![azure cb cluster vm server](_images/azure/scaling/azure-cb-cluster-vm-server.png)
+2. Click **Scaling** under Settings and move the slider on the instance count up (or down) as needed.  
+![azure cb vm server scaling save new config](_images/azure/scaling/azure-cb-vm-server-scaling-save-new-config.png)
+3. Click **Save**. You’ll see a notification that the autoscale configuration is being updated.
+
+|  | Do not enable autoscale. |
+|  | ------------------------ |  
+Go to Instances to see the updated instance count. In a few minutes, the additional instances will be up and running.  
+![azure cb vm server instances](_images/azure/scaling/azure-cb-vm-server-instances.png)  
+On a different browser tab, you can log in to the Couchbase Server Web Console to see the additional server nodes that were added to your cluster.  
+![azure cb web console servers](_images/azure/scaling/azure-cb-web-console-servers.png)

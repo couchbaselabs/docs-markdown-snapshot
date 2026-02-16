@@ -1,0 +1,93 @@
+[View original HTML](/tutorials/mobile-travel-tutorial/csharp/develop/full-text-search.html)
+
+## [](#full-text-search)Full Text Search
+
+_Couchbase Lite_ \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] supports Full Text Search (FTS). FTS is accomplished using the `match` query. FTS matches are case-insensitive. In the Travel App, the FTS query is against local pre-built "travel-sample" database.
+
+In order to do FTS queries, an FTS index must be created.
+
+**Open the file**`LoginModel.cs`. We will review the method `CreateDatabaseIndexes`. This code snippet creates an FTS index on the property named `description`.
+
+[LoginModel.cs](https://github.com/couchbaselabs/mobile-travel-sample/blob/master/dotnet/TravelSample/TravelSample.Core/Models/LoginModel.cs#L88-L101)
+
+```csharp
+private void CreateDatabaseIndexes(Database db)
+{
+    ...
+
+    db.CreateIndex("description",
+             IndexBuilder.FullTextIndex(FullTextIndexItem.Property("description")));
+
+    ...
+}
+```
+
+Next you will write an FTS query that uses the index.
+
+**Open the file**`HotelListModel.cs`. You will review the `FetchHotelsFromLocalAsync` method.
+
+[HotelListModel.cs](https://github.com/couchbaselabs/mobile-travel-sample/blob/master/dotnet/TravelSample/TravelSample.Core/Models/HotelListModel.cs#L133)
+
+```csharp
+private Task<Hotels> FetchHotelsFromLocalAsync(string description, string location) {
+  ...
+}
+```
+
+First, you will create an FTS `Expressions` using the `Match()` operator. In this particular example, the `match` expression looks for the `desciptionStr` value in the `description` property. This `Match` expression is logically ANDed with an `EqualTo` comparison expression which looks for the `location` in the `country`,`city`,`state` or `address` properties. This expression is then used in the `Where` clause of the query the usual way.
+
+```csharp
+IExpression descExp = null;
+if (!String.IsNullOrWhiteSpace(description)) {
+    descExp = DescriptionProperty.Match(description);
+}
+
+
+var locationExp = CountryProperty.Like(Expression.String($"%{location}%"))
+                      .Or(CityProperty.Like(Expression.String($"%{location}%")))
+                      .Or(StateProperty.Like(Expression.String($"%{location}%")))
+                      .Or(AddressProperty.Like(Expression.String($"%{location}%")));
+
+
+var searchExp = locationExp;
+if (descExp != null) {
+    searchExp = descExp.And(locationExp);
+}
+
+
+using (var hotelSearchQuery = QueryBuilder
+  .Select(SelectResult.All())
+  .From(DataSource.Database(UserSession.Database))
+     .Where(TypeProperty.EqualTo(Expression.String("hotel")).And(searchExp))) {
+      ...
+
+}
+```
+
+We build the query using the different expressions from above and transform the `ResultSet` object into a `List` object that is passed to the `ListView`.
+
+```csharp
+var results = hotelSearchQuery.Execute().ToList();
+
+      var hotels = results.Select(x => x.GetDictionary(0).ToDictionary(y => y.Key, y => y.Value) as Hotel).ToList();
+      return Task.FromResult(hotels);
+}
+```
+
+Try it out
+
+1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
+2. Tap on "hotels" button
+3. In the description text field enter "\`Pets.
+4. In the Location text field enter "London"
+5. Verify that you see one hotel listed named "Novotel London West"
+
+The screen recording is for UWP version of the app
+
+![uwp fts query](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/uwp_fts_query.gif) 
+
+Figure 1\. FTS Query
+
+---
+
+[1](#%5Ffootnoteref%5F1). From 2.0

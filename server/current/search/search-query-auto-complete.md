@@ -1,0 +1,16 @@
+[View original HTML](/server/current/search/search-query-auto-complete.html)
+
+> Add autocomplete to your application to provide a search engine-like experience for your cluster. 
+
+Also known as auto suggest or type-ahead, autocomplete guesses potential matches for a user’s search input as they type.
+
+Autocomplete can provide a better user experience with search in your application.
+
+## [](#set-up-autocomplete)Set Up Autocomplete
+
+To use autocomplete with the Search Service and your Couchbase Server cluster:
+
+1. Create a compatible Search index. You can create the index [with the UI](search-query-auto-complete-ui.md#ui) or [with the REST API](search-query-auto-complete-ui.md#api).
+2. Configure your application to return autocomplete search results from the Search Service. For example code that you can use with your application, see [Add Autocomplete to Your Application](search-query-auto-complete-code.md).
+
+You can use the `travel-sample` dataset to test and configure autocomplete, or use your own data.

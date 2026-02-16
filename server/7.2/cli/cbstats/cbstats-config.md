@@ -1,0 +1,172 @@
+[View original HTML](/server/7.2/cli/cbstats/cbstats-config.html)
+
+> The `config` command, used by `cbstats`, returns configuration statistics on a specified bucket, on a specified node. 
+
+## [](#description)Description
+
+The `config` command, used by `cbstats`, returns configuration statistics on a specified bucket, on a specified node.
+
+## [](#syntax)Syntax
+
+cbstats <host>:<port> [common options] config
+
+The `host` must be the hostname or IP address of a node within the cluster. The port must be `11210`. The `common options` must include a username and password, and a reference to a bucket defined on the cluster. For a complete list of `common options`, see the table provided on the introductory page for [cbstats](../cbstats-intro.md#common-options).
+
+The `config` command takes no `command options`.
+
+## [](#example)Example
+
+The following call returns configuration statistics on the `travel-sample` bucket, for the specified node.
+
+10.142.181.101:11210 -b travel-sample \
+-u Administrator -p password \
+config
+
+If successful, the command returns the following output. (Note that the `ep_magma` statistics are returned on Couchbase Server Enterprise Edition only.)
+
+ep_access_scanner_enabled:                             true
+ep_allow_del_with_meta_prune_user_data:                false
+ep_alog_block_size:                                    4096
+ep_alog_max_stored_items:                              1024
+ep_alog_path:                                          /opt/couchbase/var/lib/couchbase/data/travel-sample/access.log
+ep_alog_resident_ratio_threshold:                      95
+ep_alog_sleep_time:                                    1440
+ep_alog_task_time:                                     2
+ep_backend:                                            couchdb
+ep_backfill_mem_threshold:                             96
+ep_bfilter_enabled:                                    true
+ep_bfilter_fp_prob:                                    0.01
+ep_bfilter_key_count:                                  10000
+ep_bfilter_residency_threshold:                        0.1
+ep_bucket_type:                                        persistent
+ep_cache_size:                                         104857600
+ep_chk_expel_enabled:                                  true
+ep_chk_max_items:                                      10000
+ep_chk_period:                                         5
+ep_chk_remover_stime:                                  5
+ep_collections_enabled:                                true
+ep_collections_max_size:                               1000
+ep_compaction_exp_mem_threshold:                       85
+ep_compaction_write_queue_cap:                         10000
+ep_compression_mode:                                   passive
+ep_conflict_resolution_type:                           seqno
+ep_connection_manager_interval:                        1
+ep_couch_bucket:                                       travel-sample
+ep_couchstore_mprotect:                                false
+ep_couchstore_tracing:                                 false
+ep_couchstore_write_validation:                        false
+ep_cursor_dropping_checkpoint_mem_lower_mark:          30
+ep_cursor_dropping_checkpoint_mem_upper_mark:          50
+ep_cursor_dropping_lower_mark:                         80
+ep_cursor_dropping_upper_mark:                         95
+ep_data_traffic_enabled:                               false
+ep_dbname:                                             /opt/couchbase/var/lib/couchbase/data/travel-sample
+ep_dcp_backfill_byte_limit:                            20972856
+ep_dcp_conn_buffer_size:                               10485760
+ep_dcp_conn_buffer_size_aggr_mem_threshold:            10
+ep_dcp_conn_buffer_size_aggressive_perc:               5
+ep_dcp_conn_buffer_size_max:                           52428800
+ep_dcp_conn_buffer_size_perc:                          1
+ep_dcp_consumer_process_buffered_messages_batch_size:  10
+ep_dcp_consumer_process_buffered_messages_yield_limit: 10
+ep_dcp_enable_noop:                                    true
+ep_dcp_flow_control_policy:                            aggressive
+ep_dcp_idle_timeout:                                   360
+ep_dcp_min_compression_ratio:                          0.85
+ep_dcp_noop_mandatory_for_v5_features:                 true
+ep_dcp_noop_tx_interval:                               1
+ep_dcp_producer_snapshot_marker_yield_limit:           10
+ep_dcp_scan_byte_limit:                                4194304
+ep_dcp_scan_item_limit:                                4096
+ep_dcp_takeover_max_time:                              60
+ep_defragmenter_age_threshold:                         10
+ep_defragmenter_chunk_duration:                        20
+ep_defragmenter_enabled:                               true
+ep_defragmenter_interval:                              10
+ep_defragmenter_stored_value_age_threshold:            10
+ep_durability_timeout_task_interval:                   25
+ep_exp_pager_enabled:                                  true
+ep_exp_pager_initial_run_time:                         -1
+ep_exp_pager_stime:                                    3600
+ep_failpartialwarmup:                                  false
+ep_flusher_batch_split_trigger:                        1000000
+ep_fsync_after_every_n_bytes_written:                  16777216
+ep_getl_default_timeout:                               15
+ep_getl_max_timeout:                                   30
+ep_hlc_drift_ahead_threshold_us:                       5000000
+ep_hlc_drift_behind_threshold_us:                      5000000
+ep_ht_locks:                                           47
+ep_ht_resize_interval:                                 1
+ep_ht_size:                                            47
+ep_item_compressor_chunk_duration:                     20
+ep_item_compressor_interval:                           250
+ep_item_eviction_age_percentage:                       30
+ep_item_eviction_freq_counter_age_threshold:           1
+ep_item_eviction_policy:                               value_only
+ep_item_freq_decayer_chunk_duration:                   20
+ep_item_freq_decayer_percent:                          50
+ep_item_num_based_new_chk:                             true
+ep_keep_closed_chks:                                   false
+ep_magma_commit_point_every_batch:                     false
+ep_magma_commit_point_interval:                        2
+ep_magma_delete_frag_ratio:                            0.5
+ep_magma_delete_memtable_writecache:                   8192
+ep_magma_enable_upsert:                                false
+ep_magma_expiry_frag_threshold:                        0.25
+ep_magma_max_commit_points:                            5
+ep_magma_max_write_cache:                              134217728
+ep_magma_mem_quota_ratio:                              0.1
+ep_magma_min_write_cache:                              8388608
+ep_magma_num_compactors:                               4
+ep_magma_num_flushers:                                 1
+ep_magma_tombstone_frag_threshold:                     0.25
+ep_magma_value_separation_size:                        32
+ep_magma_wal_buffer_size:                              2097152
+ep_magma_wal_num_buffers:                              1
+ep_max_checkpoints:                                    2
+ep_max_failover_entries:                               25
+ep_max_item_privileged_bytes:                          1048576
+ep_max_item_size:                                      20971520
+ep_max_num_shards:                                     0
+ep_max_num_workers:                                    3
+ep_max_size:                                           104857600
+ep_max_threads:                                        0
+ep_max_ttl:                                            0
+ep_max_vbuckets:                                       1024
+ep_mem_high_wat:                                       89128960
+ep_mem_low_wat:                                        78643200
+ep_mem_used_merge_threshold_percent:                   0.5
+ep_min_compression_ratio:                              1.2
+ep_mutation_mem_threshold:                             93
+ep_num_auxio_threads:                                  1
+ep_num_nonio_threads:                                  2
+ep_num_reader_threads:                                 4
+ep_num_writer_threads:                                 4
+ep_pager_active_vb_pcnt:                               40
+ep_pager_sleep_time_ms:                                5000
+ep_replication_throttle_cap_pcnt:                      10
+ep_replication_throttle_queue_cap:                     -1
+ep_replication_throttle_threshold:                     99
+ep_retain_erroneous_tombstones:                        true
+ep_rocksdb_bbt_options:                                block_size=16384,cache_index_and_filter_blocks=true,pin_l0_filter_and_index_blocks_in_cache=true,cache_index_and_filter_blocks_with_high_priority=true,index_type=kTwoLevelIndexSearch,partition_filters=true
+ep_rocksdb_block_cache_high_pri_pool_ratio:            0.9
+ep_rocksdb_block_cache_ratio:                          0.1
+ep_rocksdb_cf_options:
+ep_rocksdb_default_cf_optimize_compaction:             none
+ep_rocksdb_high_pri_background_threads:                0
+ep_rocksdb_low_pri_background_threads:                 0
+ep_rocksdb_memtables_ratio:                            0.1
+ep_rocksdb_options:                                    bytes_per_sync=1048576,stats_dump_period_sec=600
+ep_rocksdb_seqno_cf_optimize_compaction:               none
+ep_rocksdb_stats_level:                                kExceptTimeForMutex
+ep_rocksdb_uc_max_size_amplification_percent:          200
+ep_rocksdb_write_rate_limit:                           0
+ep_scopes_max_size:                                    100
+ep_sync_writes_max_allowed_replicas:                   2
+ep_time_synchronization:                               disabled
+ep_uuid:                                               a989a6fa0da5fa5e51c07f0dcf3ad357
+ep_warmup:                                             true
+ep_warmup_batch_size:                                  10000
+ep_warmup_min_items_threshold:                         100
+ep_warmup_min_memory_threshold:                        100
+ep_xattr_enabled:                                      true

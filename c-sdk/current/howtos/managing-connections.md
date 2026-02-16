@@ -1,0 +1,274 @@
+[View original HTML](/c-sdk/current/howtos/managing-connections.html)
+
+> This section describes how to connect the C SDK (libcouchbase) to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
+
+## [](#connecting-to-a-cluster)Connecting to a Cluster
+
+A connection to a Couchbase Server cluster is represented by a `lcb_INSTANCE` object. The set of allowed operations depends on the type of this object, and whether the bucket is associated with it. In `LCB_TYPE_CLUSTER` mode, the application can use management commands and most of the queries (except View queries). In `LCB_TYPE_BUCKET` mode, all data operations become available.
+
+The simplest way to create a cluster object is to call `lcb_create` and pass `LCB_TYPE_CLUSTER` with a connection string, username, and password:
+
+```c++
+const char *connection_string = "couchbase://localhost";
+const char *username = "username";
+const char *password = "password";
+
+lcb_CREATEOPTS *options = NULL;
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string, strlen(connection_string));
+lcb_createopts_credentials(options, username, strlen(username), password, strlen(password));
+
+lcb_STATUS rc = lcb_create(&instance, options);
+lcb_createopts_destroy(options);
+if (rc != LCB_SUCCESS) {
+    fprintf(stderr, "failed to create connection object: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+
+rc = lcb_connect(instance);
+if (rc != LCB_SUCCESS) {
+    lcb_destroy(instance);
+    fprintf(stderr, "failed to schedule connection object: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+
+rc = lcb_wait(instance, LCB_WAIT_DEFAULT);
+if (rc != LCB_SUCCESS) {
+    lcb_destroy(instance);
+    fprintf(stderr, "failed to wait for connection: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+
+rc = lcb_get_bootstrap_status(instance);
+if (rc != LCB_SUCCESS) {
+    lcb_destroy(instance);
+    fprintf(stderr, "failed to bootstrap cluster connection: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+```
+
+Each connection with `LCB_TYPE_CLUSTER` can be associated with the bucket by calling `lcb_open` call:
+
+```c++
+const char *bucket_name = "travel-sample";
+
+lcb_set_open_callback(instance, open_callback);
+LCB_STATUS rc = lcb_open(instance, bucket_name, strlen(bucket_name));
+if (rc != LCB_SUCCESS) {
+    fprintf(stderr, "failed to schedule open bucket operation: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+
+rc = lcb_wait(instance, LCB_WAIT_DEFAULT);
+if (rc != LCB_SUCCESS) {
+    fprintf(stderr, "failed to wait for open bucket operation: %s\n", lcb_sterror_short(rc));
+    exit(EXIT_FAILURE);
+}
+```
+
+Where `open_callback` is defined like:
+
+```c++
+static void open_callback(lcb_INSTANCE *instance, lcb_STATUS rc)
+{
+    if (rc != LCB_SUCCESS) {
+        fprintf(stderr, "failed to open bucket connection: %s\n", lcb_strerror_short(rc));
+        exit(EXIT_FAILURE);
+    }
+}
+```
+
+|  | If you are connecting to a version of Couchbase Server earlier than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open an LCB\_TYPE\_BUCKET instance before connecting to any other HTTP services (such as _Query_ or _Search_). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+```c++
+const char *connection_string = "couchbase://localhost";
+const char *bucket_name = "travel-sample";
+
+lcb_CREATEOPTS *options = NULL;
+lcb_createopts_create(&options, LCB_TYPE_BUCKET);
+lcb_createopts_connstr(options, connection_string, strlen(connection_string));
+lcb_createopts_bucket(options, bucket_name, strlen(bucket_name));
+```
+
+In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
+
+```c++
+const char *connection_string = "couchbase://192.168.56.101,192.168.56.102";
+
+lcb_CREATEOPTS *options = NULL;
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string, strlen(connection_string));
+```
+
+|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#connection-strings)Connection Strings
+
+A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list of parameters.
+
+The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the name and value, with an ampersand (`&`) between each pair. Just as in a URI, the first parameter is prefixed by a question mark (`?`).
+
+Simple connection string with one seed node
+
+couchbase://127.0.0.1
+
+Connection string with two seed nodes
+
+couchbase://nodeA.example.com,nodeB.example.com
+
+Connection string with two parameter
+
+couchbase://127.0.0.1?network=external&operation_timeout=10.0
+
+The full list of recognized parameters is documented in the [Client Settings](../ref/client-settings.md) reference.
+
+A connection string may optionally be prefixed by either `"couchbase://"` or `"couchbases://"`. If you wish to use TLS, the connection string must be configured as described in [Secure Connections](#ssl).
+
+## [](#connection-lifecycle)Connection Lifecycle
+
+We recommend creating a single Cluster instance of type `LCB_TYPE_BUCKET` per bucket, or just one `LCB_TYPE_CLUSTER` if the application is only going to use queries or management APIs. Neither `lcb_INSTANCE` nor IO primitives and plugins contain internal locks for performance reasons — therefore the connection instance and the operation callbacks should be used from a single thread.
+
+Before your application stops, gracefully shut down the client by calling the `lcb_destroy` function for each object you created.
+
+## [](#connecting-to-multiple-clusters)Connecting to Multiple Clusters
+
+If a single application needs to connect to multiple Couchbase Server clusters, the process does not change. The connection objects must be initialized using their respective connections strings.
+
+## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
+
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect to the cluster. Both the client and server require special configuration in this case.
+
+On the server side, each server node must be configured to advertize its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
+
+On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports by explicitly specifying them in the connection string:
+
+```c++
+const char *connection_string = "couchbase://localhost:1234,localhost:2345=http?network=external&timeout=10.0";
+
+lcb_CREATEOPTS *options = NULL;
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string, strlen(connection_string));
+```
+
+To verify how the connection string is being deconstructed by the library, `cbc connstr` may also be used:
+
+$ cbc connstr 'couchbase://localhost:1234,localhost:2345=http?network=external&timeout=10.0'
+Bucket:
+Implicit port: 11210
+SSL: DISABLED
+Boostrap Protocols: CCCP,HTTP
+Hosts:
+  [memcached]         localhost:1234
+  [restapi]           localhost:2345
+Options:
+  network=external
+  timeout=10.0
+
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.
+
+If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
+
+|  | Any TLS certificates must be set up at the point where the connections are being made. |
+|  | -------------------------------------------------------------------------------------- |
+
+## [](#ssl)Secure Connections
+
+Couchbase Server Enterprise Edition supports full encryption of client-side traffic using Transport Layer Security (TLS). This includes key-value type operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server before proceeding with configuring encryption on the client side.
+
+To configure encryption for the C SDK (libcouchbase):
+
+1. Get the CA certificate from the cluster and save it in a text file.
+2. Enable encryption on the client side and point it to the file containing the certificate.
+
+It is important to make sure you are transferring the certificate in an encrypted manner from the server to the client side, so either copy it through SSH, or through a similar secure mechanism.
+
+If you are running on `localhost` and just want to enable TLS for a development machine, just copying and pasting it suffices — _so long as you use `127.0.0.1` rather than `localhost` in the connection string_. This is because the certificate will not match the name _localhost_. Setting `TLSSkipVerify` is a workaround if you need to use \` couchbases://localhost\`.
+
+Navigate in the admin UI to **Settings** **Cluster** and copy the input box of the TLS certificate into a file on your machine (which we will refer to as `cluster.cert`). It looks similar to this:
+
+-----BEGIN CERTIFICATE-----
+MIICmDCCAYKgAwIBAgIIE4FSjsc3nyIwCwYJKoZIhvcNAQEFMAwxCjAIBgNVBAMT
+ASowHhcNMTMwMTAxMDAwMDAwWhcNNDkxMjMxMjM1OTU5WjAMMQowCAYDVQQDEwEq
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzz2I3Gi1XcOCNRVYwY5R
+................................................................
+mgDnQI8nw2arBRoseLpF6WNw22CawxHVOlMceQaGOW9gqKNBN948EvJJ55Dhl7qG
+BQp8sR0J6BsSc86jItQtK9eQWRg62+/XsgVCmDjrB5owHPz+vZPYhsMWixVhLjPJ
+mkzeUUj/kschgQ0BWT+N+pyKAFFafjwFYtD0e5NwFUUBfsOyQtYV9xu3fw+T2N8S
+itfGtmmlEfaplVGzGPaG0Eyr53g5g2BgQbi5l5Tt2awqhd22WOVbCalABd9t2IoI
+F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
+-----END CERTIFICATE-----
+
+The next step is to enable encryption and pass it the path to the certificate file (note the connection string scheme: `couchbases://`:
+
+```c++
+const char *connection_string = "couchbases://localhost?certpath=/path/to/cluster.cert";
+lcb_CREATEOPTS *options = NULL;
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string, strlen(connection_string));
+```
+
+If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
+
+E..e..@.@.............+......q{...#..Y.....
+.E...Ey........9........................id{"key":"value"}
+
+After enabling encryption, you cannot inspect the traffic in cleartext (same upsert request, but watched on port 11207 which is the default encrypted port):
+
+E.....@.@.............+....Z.'yZ..#........
+..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.     ...W.....U..
+.%v.....4....m*...A.2I.1.&.*,6+..#..#.5
+
+## [](#using-dns-srv-records)Using DNS SRV records
+
+As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
+
+The following steps are necessary to make it work:
+
+1. Set up your DNS server to respond properly from a DNS SRV request.
+2. Enable it on the SDK and point it towards the DNS SRV entry.
+
+### [](#setting-up-the-dns-server)Setting up the DNS Server
+
+Capella gives you DNS-SRV by default — these instructions are for self-managed clusters, where you are responsible for your own DNS records.
+
+Your DNS server zone file should be set up like this, with one row for each bootstrap (KV, a.k.a. Data Service) node:
+
+; Service.Protocol.Domain	TTL	Class	Type	Priority	Weight	 Port	Target
+_couchbases._tcp.example.com.	3600	IN	SRV	0		0	 11207	node1.example.com.
+_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node2.example.com.
+_couchbases._tcp.example.com.	3600	IN 	SRV	0		0	 11207	node3.example.com.
+
+The first line comment is not needed in the record, we are showing the column headers here for illustration purposes. The myriad complexities of DNS are beyond the scope of this document, but note that SRV records must point to an A record, not a `CNAME`.
+
+The order in which you list the nodes — and any value entered for `Priority` or `Weight` — will be ignored by the SDK. Nevertheless, best practice here is to set them to `0`, avoiding ambiguity.
+
+Also note, the above is for connections using TLS. Should you be using an insecure connection (in testing or development, or totally within a firewalled environment), then your records would look like:
+
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node1.example.com.
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node2.example.com.
+_couchbase._tcp.example.com.  3600  IN  SRV  0  0  11210  node3.example.com.
+
+### [](#specifying-dns-srv-for-the-sdk)Specifying DNS-SRV for the SDK
+
+* The connection string must be to a single hostname, with no explicit port specifier, pointing to the DNS SRV entry — `couchbases://example.com`.
+* DNS-SRV must be enabled in the [client settings](../ref/client-settings.md).
+
+The C SDK always tries to use the SRV records, if the connection string contains a single hostname and the feature is not disabled explicitly with connection string option `dnssrv=off`.
+
+In case of successful resolution a message like this will be written at `INFO` level:
+
+44ms [I4ebdb48d23db23b6] {10474} [INFO] (instance - L:219) Found host node.example.com:11210 via DNS SRV
+
+If the DNS SRV records could not be loaded properly you’ll get an exception logged and the given hostname will be used as an A record lookup.
+
+81ms [If1e0caf208c1ff41] {11763} [INFO] (instance - L:202) DNS SRV lookup failed: LCB_ERR_UNKNOWN_HOST (1049). Ignore this if not relying on DNS SRV records
+
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](#cloud:ROOT:index.adoc) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+
+We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
+
+### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
+
+Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.

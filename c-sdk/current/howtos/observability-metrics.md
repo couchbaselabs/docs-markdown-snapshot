@@ -1,0 +1,157 @@
+[View original HTML](/c-sdk/current/howtos/observability-metrics.html)
+
+> Individual request tracing presents a very specific (though isolated) view of the system. In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization). 
+
+The deployment situation itself is similar to the request tracer: either applications already have a metrics infrastructure in place or they don’t. The difference is that exposing some kind of metrics is much more common than request based tracing, because most production deployments at least monitor CPU and memory usage (e.g. through JMX).
+
+Metrics broadly fall into the following categories:
+
+* Request/Response Metrics (such as requests per second).
+* SDK Metrics (such as how many open collections, various queue lengths).
+* System Metrics (such as cpu usage or garbage collection performance).
+
+Right now only the first category is implemented by the SDK, more are planned.
+
+## [](#the-default-metrics-reporting)The Default Metrics Reporting
+
+The default implementation aggregates and logs request and response metrics.
+
+By default the metrics will be emitted every 10 minutes, but you can customize the emit interval. See the [metrics reporting options](../ref/client-settings.md#metrics-reporting-options) for details.
+
+Once enabled, there is no further configuration needed. The request statistics will be collected and logged. A possible report looks like this (prettified for better readability):
+
+```json
+{
+   "meta":{
+      "emit_interval_s":10
+   },
+   "query":{
+      "127.0.0.1":{
+         "total_count":9411,
+         "percentiles_us":{
+            "50.0":544.767,
+            "90.0":905.215,
+            "99.0":1589.247,
+            "99.9":4095.999,
+            "100.0":100663.295
+         }
+      }
+   },
+   "kv":{
+      "127.0.0.1":{
+         "total_count":9414,
+         "percentiles_us":{
+            "50.0":155.647,
+            "90.0":274.431,
+            "99.0":544.767,
+            "99.9":1867.775,
+            "100.0":574619.647
+         }
+      }
+   }
+}
+```
+
+Each report contains one object for each service that got used, with each operation called on that service listed.
+
+For each operation, a total amount of recorded requests is reported, as well as percentiles from a histogram in microseconds. The meta section on top contains information such as the emit interval in seconds so tooling can later calculate numbers like requests per second.
+
+## [](#custom-metrics-reporting)Custom Metrics Reporting
+
+The SDK supports integrating custom metrics reporting, such as OpenTelemetry, rather than using the default aggregation and logging.
+
+To do this, libcouchbase defines an opaque `lcbmetrics_METER`, which is responsible for creating `lcbmetrics_VALUERECORDER` which are associated with a name and set of tags. The `lcbmetrics_VALUERECORDER` is responsible for actually recording a value for the given metric. This corresponds to the role that OpenTelemetry uses for `opentelemetry::metrics::Meter` and `opentelemetry::metrics::ValueRecorder` respectively.
+
+### [](#using-opentelemetry-metrics-reporting)Using OpenTelemetry Metrics reporting
+
+There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/metrics/otel%5Fmetrics.cc). Let’s go through the steps involved.
+
+We will want to use an `opentelemetry::metrics::Meter`. To do that, we will need a provider and a controller, which will also require an exporter and processor.
+
+```cpp
+// Initialize and set the global MeterProvider
+auto provider = opentelemetry::nostd::shared_ptr<opentelemetry::metrics::MeterProvider>(new opentelemetry::sdk::metrics::MeterProvider());
+
+// Create a new Meter from the MeterProvider
+auto ot_meter = provider->GetMeter("Test", "0.1.0");
+
+// Create the controller with Stateless Metrics Processor, outputting to stdout every 5 seconds
+opentelemetry::sdk::metrics::PushController controller(
+  ot_meter,
+  std::unique_ptr<opentelemetry::sdk::metrics::MetricsExporter>(new opentelemetry::exporter::metrics::OStreamMetricsExporter()),
+  std::shared_ptr<opentelemetry::sdk::metrics::MetricsProcessor>(new opentelemetry::sdk::metrics::UngroupedMetricsProcessor(true)),
+  5);
+```
+
+Next, you need to define the required callbacks that create a recorder, destroy it, and record values:
+
+```cpp
+struct otel_recorder {
+    nostd::shared_ptr<apimetrics::BoundValueRecorder<int>> recorder;
+};
+
+void record_callback(const lcbmetrics_VALUERECORDER *recorder, uint64_t val)
+{
+    otel_recorder *ot = nullptr;
+    lcbmetrics_valuerecorder_cookie(recorder, reinterpret_cast<void **>(&ot));
+    // the value is the latency, in ns.  Lets report in us throughout.
+    ot->recorder->record(val / 1000);
+}
+
+void record_dtor(const lcbmetrics_VALUERECORDER *recorder)
+{
+    otel_recorder *ot = nullptr;
+    lcbmetrics_valuerecorder_cookie(recorder, reinterpret_cast<void **>(&ot));
+    delete ot;
+}
+
+static const lcbmetrics_VALUERECORDER *new_recorder(const lcbmetrics_METER *meter, const char *name,
+                                                    const lcbmetrics_TAG *tags, size_t ntags)
+{
+    nostd::shared_ptr<metrics_api::Meter> *ot_meter = nullptr;
+
+    lcbmetrics_meter_cookie(meter, reinterpret_cast<void **>(&ot_meter));
+
+    // convert the tags array to a map for the KeyValueIterableView
+    std::map<std::string, std::string> keys;
+    for (int i = 0; i < ntags; i++) {
+        keys[tags[i].key] = tags[i].value;
+    }
+    auto *ot = new otel_recorder();
+    if (!counter) {
+        counter = (*ot_meter)->NewIntValueRecorder(name, "oltp_metrics example", "us", true);
+    }
+    ot->recorder = counter->bindValueRecorder(opentelemetry::common::KeyValueIterableView<decltype(keys)>{keys});
+
+    lcbmetrics_VALUERECORDER *recorder;
+    lcbmetrics_valuerecorder_create(&recorder, static_cast<void *>(ot));
+    lcbmetrics_valuerecorder_record_value_callback(recorder, record_callback);
+    lcbmetrics_valuerecorder_dtor_callback(recorder, record_dtor);
+    return recorder;
+}
+```
+
+Now you need to create an `lcbmetrics_METER` and pass it into the connection options:
+
+```cpp
+lcb_CREATEOPTS *options;
+lcbmetrics_METER *meter = nullptr;
+std::string connection_string = "couchbase://127.0.0.1";
+std::string username = "Administrator";
+std::string password = "password";
+
+// create meter
+lcbmetrics_meter_create(&meter, &ot_meter);
+lcbmetrics_meter_value_recorder_callback(meter, new_recorder);
+controller.start();
+
+// put meter in create options, create instance.
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string.data(), connection_string.size());
+lcb_createopts_credentials(options, username.data(), username.size(), password.data(), password.size());
+lcb_createopts_meter(options, meter);
+lcb_create(&instance, options);
+lcb_createopts_destroy(options);
+```
+
+At this point the SDK is using OpenTelemetry metrics and will emit them to the exporter.

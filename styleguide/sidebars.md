@@ -1,0 +1,7 @@
+[View original HTML](/styleguide/sidebars.html)
+
+Avoid the use of sidebars in your documentation.
+
+A sidebar is any text surrounded by a line of 4 asterixes (\*) or given the attribute `[sidebar]`.
+
+Do not use a sidebar to format the See Also section on a page.

@@ -1,0 +1,146 @@
+[View original HTML](/nodejs-sdk/current/concept-docs/health-check.html)
+
+> Health Check provides ping() and diagnostics() tests for the health of the network and the cluster. 
+
+Working in distributed environments is _hard_. Latencies come and go, so do connections in their entirety. Is it a network glitch, or is the remote cluster down? Sometimes just knowing the likely cause is enough to get a good start on a workaround, or at least avoid hours wasted on an inappropriate solution.
+
+Health Check enables useful diagnostics on the state of Couchbase Clusters across networks. `Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections.
+
+## [](#uses)Uses
+
+'Ping\` provides a raw JSON payload suitable for feeding into reactive log and aggregation components, including monitoring systems like _Splunk_, _ElasticSearch_, and _Nagios_. It can also help keep connections alive if you are operating across an environment which aggressively closes down unused connections.
+
+`Diagnostics` provides a strongly typed API for proactive, pull-based monitoring systems, such as:
+
+* [Kubernetes Liveness and Readiness Probes via HTTP or CLI commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
+* [Docker Health Check with CLI commands](https://docs.docker.com/engine/reference/builder/#healthcheck).
+* [AWS ELB through HTTP](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html).
+
+This API does not provide binary yes/no answers about the health of the cluster; rather it summarizes as much information as possible, for the application developer to assemble a complete, contextual view and come to a conclusion.
+
+Note: `Ping` may reopen a connection, so is not without side-effects. `Diagnostics` shows what the SDK _perceives_ as the current state of the network and services — it is without side-effects, but may not be up to date.
+
+## [](#ping)Ping
+
+At its simplest, `ping` provides information about the current state of the connections in the Couchbase Cluster, by actively polling:
+
+```javascript
+const result = await cluster.ping();
+console.log(result);
+/*
+{
+  config_rev: 3,
+  id: '0x103828d70/41115255fb1e3c76',
+  sdk: 'libcouchbase/3.0.6-njs couchnode/3.0.7 (node/12.18.2; v8/7.8.279.23-node.39; ssl/1.1.1g)',
+  services: {
+    kv: [
+        {
+            id: '0x10410c8d0',
+            latency_us: 5577,
+            local: '127.0.0.1:54985',
+            namespace: 'default',
+            remote: 'localhost:54979',
+            status: 'ok'
+        },
+        ...
+    ],
+    n1ql: [ ... ],
+    views: [ ... ]
+  },
+  version: 1
+}
+*/
+```
+
+This will print the latency for each socket (endpoint) connected per service. More information is available on the classes.
+
+By default the SDK will ping all services available on the target cluster. You can customize the type of services to ping through the `PingOptions`:
+
+```javascript
+const result = await cluster.ping({
+    serviceTypes: [
+        couchbase.ServiceType.Query,
+    ]
+});
+```
+
+In this example, only the Query Service is included in the ping report.
+
+Note that `ping` is available both on the `Cluster` and the `Bucket` level. The difference is that at the cluster level, the key-value service might not be included based on the Couchbase Server version in use. If you want to make sure the key-value service is included, perform it at the bucket level.
+
+## [](#diagnostics)Diagnostics
+
+`Diagnostics` returns a list of the nodes that the SDK currently has (or had) a connection to, and the current status of the connection. However this call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node. If you want the _current_ status, then use [Ping](#ping).
+
+```javascript
+const result = await cluster.diagnostics()
+```
+
+Typically, you’d pass the result through `JSON.stringify(diagResult.toJSON())` and get something like:
+
+```json
+{
+  "version": 2,
+  "id": "19a90f-256e-7d48-d2d3-8e1aaaf1e47456",
+  "sdk": "cxx/1.2.0/b2a579c;Darwin/arm64",
+  "services": {
+    "kv": [
+      {
+        "last_activity_us": 5000000,
+        "remote": "192.168.107.128:11210",
+        "local": "192.168.107.1:57594",
+        "id": "9fb695-28a8-6a40-8930-1d946d62b113b5",
+        "state": 2
+      }
+    ],
+    "query": [
+      {
+        "last_activity_us": 4000000,
+        "remote": "192.168.107.128:8093",
+        "local": "192.168.107.1:57595",
+        "id": "9d2875-338d-0c4d-3dfb-58a074fc25599f",
+        "state": 2
+      },
+      {
+        "last_activity_us": 3000000,
+        "remote": "192.168.107.129:8093",
+        "local": "192.168.107.1:57598",
+        "id": "3daded-fc26-4345-676b-850ccd205af9ae",
+        "state": 2
+      },
+      {
+        "last_activity_us": 1000000,
+        "remote": "192.168.107.130:8093",
+        "local": "192.168.107.1:57601",
+        "id": "e2aedf-2a71-734a-1380-a74eb44a79801c",
+        "state": 2
+      }
+    ],
+    "mgmt": [
+      {
+        "last_activity_us": 3000000,
+        "remote": "192.168.107.128:8091",
+        "local": "192.168.107.1:57597",
+        "id": "894c93-8e44-3a4f-76a3-72d02be22826fd",
+        "state": 2
+      },
+      {
+        "last_activity_us": 2000000,
+        "remote": "192.168.107.129:8091",
+        "local": "192.168.107.1:57600",
+        "id": "7b0943-0a09-084f-0ec7-27849c68d9c5d7",
+        "state": 2
+      },
+      {
+        "last_activity_us": 0,
+        "remote": "192.168.107.130:8091",
+        "local": "192.168.107.1:57603",
+        "id": "65d68e-bf66-6d4c-b28a-220007fed194ff",
+        "state": 2
+      }
+    ]
+  }
+}
+```
+
+For more information see [the API reference](https://docs.couchbase.com/sdk-api/couchbase-node-client/classes/Cluster.html#diagnostics).

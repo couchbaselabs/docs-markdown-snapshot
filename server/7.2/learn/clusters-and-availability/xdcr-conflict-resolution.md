@@ -1,0 +1,95 @@
+[View original HTML](/server/7.2/learn/clusters-and-availability/xdcr-conflict-resolution.html)
+
+> _XDCR Conflict Resolution_ automatically synchronizes document-copies that have been modified in different ways at different locations. 
+
+## [](#conflicts%5Fand%5Ftheir%5Fresolution)Conflicts and Their Resolution
+
+A _conflict_ is caused when the source and target copies of an XDCR-replicated document are updated independently of and dissimilarly to one another, each by a local application. The conflict must be _resolved_, by determining which of the variants should prevail; and then correspondingly saving both documents in identical form. XDCR provides an automated _conflict resolution_ process.
+
+Two, alternative conflict resolution policies are supported: _sequence-number-based_ (which is the default), and _timestamp-based_. Note that _timestamp-based_ conflict resolution is only available in the Enterprise Edition of Couchbase Server.
+
+## [](#the%5Fconflict%5Fresolution%5Fprocess)The Conflict Resolution Process
+
+When a source document is modified, XDCR determines whether this revision of the document should be applied to the target. For documents above 256 bytes in size, XDCR fetches metadata from the target cluster before replicating. The target metadata for the document is compared with the source metadata for the document, in order to choose which document should prevail (the exact subset of metadata used in this comparison depends on the source bucket’s _conflict resolution policy_). If the source document prevails, it is replicated to the target; if the target document prevails, the source document is not replicated.
+
+Once a replicated document reaches the target, the target cluster also performs a metadata comparison as described, in order to confirm that the document from the source cluster should indeed prevail. If this is confirmed, the document from the source cluster is applied to the target cluster, and the target cluster’s previous version of the document is discarded.
+
+As a performance optimization, XDCR makes no metadata comparison on the source for documents of 256 bytes or less, thus making unnecessary a metadata fetch from the target cluster: instead, the document is replicated immediately to the target, and metadata comparison is performed there.
+
+If a document is deleted on the source, XDCR makes no metadata comparison on the source before replication.
+
+Once configured, conflict resolution is a fully automated process, requiring no manual intervention.
+
+## [](#revision-id-based-conflict-resolution)Conflict Resolution Based on Sequence Number
+
+Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document’s sequence number is stored as part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+
+1. CAS value
+2. Expiration (TTL) value
+3. Document flags
+
+## [](#timestamp-based-conflict-resolution)Timestamp-Based Conflict Resolution
+
+Timestamp-based conflict resolution (often referred to as _Last Write Wins_, or _LWW_) uses the document _timestamp_ (stored in the CAS) to resolve conflicts. The timestamps associated with the most recent updates of source and target documents are compared. The document whose update has the more recent timestamp prevails.
+
+If both document-versions have the same timestamp-value, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+
+1. Sequence number
+2. Expiration (TTL) value
+3. Document flags
+
+### [](#time-synchronization)Time Synchronization
+
+Timestamp-based conflict resolution requires the use of _synchronized clocks_ across all nodes, in all clusters intended to participate in XDCR. If clocks are not so synchronized, conflict resolution may produce unexpected results. To achieve synchronicity, an external entity such as NTP (Network Time Protocol) is required. For information, see [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md).
+
+Even with optimal clock synchronicity, small differences may persist between the clock-settings on different nodes and clusters: this is known as _clock drift_; or more simply, _drift_. Drift between nodes and clusters should be closely monitored, to ensure that timestamp-based conflict resolution produces the intended results. For more details, see [Monitor Clock Drift](../../manage/monitor/xdcr-monitor-timestamp-conflict-resolution.md).
+
+To compensate for drift, Couchbase Server records timestamps using a _Hybrid Logical Clock_ (HLC). This is a combination of a physical and a logical clock: the physical clock is the time returned by the system, in nanoseconds; the logical clock is a counter, which is incremented when the physical clock yields a value either smaller than or equal to the currently stored, physical clock-value. The HLC:
+
+* Is monotonic through its use of a logical clock; and therefore does not suffer from the potential leap-back of a purely physical clock.
+* Captures the ordering of mutations.
+* Is close to physical time.
+
+The CAS of a document is used to store the HLC timestamp. It is a 64-bit value, with the most significant 48 bits representing the physical clock, and the least significant 16 bits representing the logical clock. Each mutation has its own HLC timestamp.
+
+### [](#ensuring%5Fsafe%5Ffailover)Ensuring Safe Failover
+
+When failover (say, from data center A to data center B) is required, timestamp-based conflict resolution requires that applications redirect traffic to data center B only after the greater of the following two time-periods has elapsed:
+
+* The replication latency between data centers A and B. This provides sufficient time for any _in-flight_ mutations to be received by data center B prior to traffic redirection.
+* The absolute time skew between data centers A and B. This ensures that writes to data center B commence only after the last write to data center A.
+
+When availability is restored to data center A, applications must wait for the same time period to elapse, before again redirecting their traffic.
+
+## [](#choosing%5Fa%5Fconflict%5Fresolution%5Fpolicy)Choosing a Conflict Resolution Policy
+
+Conflict resolution policy is configured on a per-bucket basis at bucket creation time, it cannot be changed later. For more information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md). Choosing a conflict resolution method requires consideration of the logic of the applications that require the data. This is illustrated by the following examples:
+
+* _Sequence-Number-based_, whereby the document with the higher number of updates wins. A hit-counter, for a website, is stored as a document within Couchbase Server: a value within the document is incremented each time the website is accessed. In the event of conflict, the document-version that contains the higher count is the more useful, since it is more closely reflective of the actual count. Therefore, in this instance, conflict resolution based on _sequence numbers_ should be used, since it ensures that the more mutated document prevails.
+* _Timestamp-based_, whereby the document that is the more recently updated wins. A thermometer device stores the current temperature as a document within Couchbase Server, writing new values continuously to the same key. In the event of conflict, the document-version more recently updated is the more useful, since it is more closely reflective of the current temperature. Therefore, in this instance, timestamp-based conflict resolution should be used, since it ensures that the more recent version of the document prevails.
+
+## [](#aligning%5Fsource%5Fand%5Ftarget%5Fpolicies)Aligning Source and Target Policies
+
+XDCR replications cannot be created between buckets with different conflict resolution policies: source and target buckets must always be configured with the same policy.
+
+When using XDCR with a source cluster running a pre-4.6 version of Couchbase Server, only conflict resolution based on _sequence numbers_ can be used.
+
+## [](#monitoring-conflict-resolution)Monitoring Conflict Resolution on the Target Cluster
+
+Conflict resolution can be _monitored_, on the target cluster, by means of statistics provided for the REST API and _Prometheus_.
+
+Statistics are provided to cover three scenarios: for each, two statistics are provided; corresponding to attempts respectively to modify and to delete a local document through conflict resolution. The statistics are provided below, according to scenario: note that whereas conflict resolution is performed both on the _target_ and on the _source_, these statistics only apply to conflict resolution that is performed on the _target_. They do _not_ provide information on conflict resolution that is performed on the source.
+
+* The incoming mutation was accepted.  
+kv_conflicts_resolved{bucket="default",op="set",result="accepted"}  
+kv_conflicts_resolved{bucket="default",op="del",result="accepted"}
+* The incoming modification was rejected, as it was determined to be either less recently updated than the local document, or to have a lower number of updates.  
+kv_conflicts_resolved{bucket="default",op="set",result="rejected_behind"}  
+kv_conflicts_resolved{bucket="default",op="del",result="rejected_behind"}
+* The incoming modification was rejected, as it was determined to be identical to the local document, based on comparisons of _cas_, _revSeqno_, _Expiry time_, _flags_, and _xattr datatype_.  
+kv_conflicts_resolved{bucket="default",op="set",result="rejected_identical"}  
+kv_conflicts_resolved{bucket="default",op="del",result="rejected_identical"}
+
+Note that the statistics `xdcr_docs_failed_cr_source_total` and `xdcr_docs_failed_cr_target_total` are also provided for monitoring conflict resolution; and are also available via REST API and Prometheus.
+
+For information on using statistics with the REST API, see [Statistics](../../rest-api/rest-statistics.md). For a complete list of statistics for XDCR, and other services, see [XDCR Metrics](../../metrics-reference/xdcr-metrics.md).

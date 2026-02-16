@@ -1,0 +1,88 @@
+[View original HTML](/server/7.6/vector-search/fine-tune-vector-search.html)
+
+> Add additional parameters to a Vector Search REST API call to tune the search for recall or accuracy. 
+
+|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+The Search Service automatically tunes your Vector Search indexes to achieve a balance between:
+
+* Recall, or the quality of your search results
+* Latency, or your search response time
+* Memory efficiency
+
+This tuning occurs during indexing and querying. You do not need to adjust these parameters manually.
+
+Specifically, the Search Service dynamically adjusts two critical vector parameters:
+
+`nlist`, also known as `Centroid` count
+
+The number of clusters used for indexing. Centroids are used to quickly find the surrounding closest matches in the Vector Search index. Increasing the number of centroids will increase accuracy but will decrease the speed of the search.
+
+The `nlist` is determined dynamically based on the size of the dataset, or the number of vectors in a partition:
+
+| Number of vectors in partition (nvec) | Centroid count (nlist calculation) | Notes                                                                                                                                                                                                                                                                      |
+| ------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \\$"nvec " ge " 200,000"\\$           | \\$4 xx sqrt("nvec")\\$            | This formula is designed to handle larger datasets where increasing the number of datasets does not yield significant improvements in recall.                                                                                                                              |
+| \\$"1000" le "nvec" le "200,000" \\$  | \\$"nvec" / 100\\$                 | This formula targets approximately 100 vectors per cluster, which balances between too few and too many clusters, ensuring efficient indexing.                                                                                                                             |
+| \\$"nvec" lt 1000\\$                  | N/A                                | For a number of vectors less than 1000, the Search Service will carry out a straight forward one-to-one mapping between IDs and vectors with an exact vector comparison. Vectors are directly stored without the need for additional processing for the nlist calculation. |
+
+`nprobes` (or `probes`)
+
+This is the number of `centroids` that a Search query will check for similar vectors. The `nprobe` value is only set when the Search Service is using an Inverted File Index. The Search Service will select the best index type and comparison method depending on the size of the dataset and your `vector_index_optimized_for` setting.
+
+For more information on the `vector_index_optimized_for` setting, see [Search Index JSON properties](../search/search-index-params.md#vector-index-optimized-param).
+
+| Query optimization                                                     | nprobe calculation      | Notes                                                                                                                   |
+| ---------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Default calculation                                                    | \\$sqrt("nlist")\\$     | This provides a balanced tradeoff between recall and latency by adjusting the number of clusters probed during queries. |
+| Latency-optimized calculation (vector\_index\_optimized\_for: latency) | \\$sqrt("nlist") / 2\\$ | A minimum value of 1 is enforced to avoid setting nprobe too low.                                                       |
+
+## [](#default-nlist-and-nprobe-calculations-on-a-vector-search-index)Default `nlist` and `nprobe` calculations on a Vector Search Index
+
+The cluster maintains two dynamically adjusted parameters that will affect the speed, accuracy, and resources used during a search:
+
+`ivf_nprobe_pct`
+
+The percentage of clusters searched during queries, allowing for fine-tuning of the balance between recall and performance. If the value of `nprobe` is 5% of `nlist` (the centroid count), then setting the value of `ivf_nprobe_pct` higher than 5% will have the search cover a higher percentage of clusters, which will improve the accuracy of the search.
+
+`ivf_max_codes_pct`
+
+The value represents the percentage of `centroids` that will be visited during a search. Reducing the value reduces the number of centroids visited, which will decrease accuracy and recall, but will result in faster compute times. The default value is 100 (i.e 100% of the centroids will be visited during the search).
+
+Example 1\. Default calculation
+
+If you have a Vector Search index with `vector_index_optimized_for` set to `"recall"` and `indexPartitions` set to `5`, then the `centroid count` (`nlist`) and `nprobe` are determined based on the current vector count in a given partition.
+
+| Total vectors in index (optimization = recall)                        | 10,000,000           |
+| --------------------------------------------------------------------- | -------------------- |
+| Average vectors in a partition for 5 partitions total                 | 2,000,000            |
+| centroid count (nlist) = \\$4 times sqrt("total vectors in index")\\$ | 5657                 |
+| nprobes = \\$sqrt(nlist)\\$                                           | 75                   |
+| Calculated default: ivf\_nprobe\_pct                                  | 1.325%               |
+| Calculated default: ivf\_max\_codes\_pct                              | 100% (default value) |
+
+## [](#fine-tuning-query-parameters)Fine-Tuning Query Parameters
+
+You can set the values of `ivf_nprobe_pct` and `ivf_max_codes_pct` in your Vector Search queries to tune the recall or accuracy of your search.
+
+You can add the following parameters to your query:
+
+Using tuning parameters
+
+```json
+{
+  "fields": ["*"],
+  "knn": [{
+    "k": 10,
+    "params": {
+      "ivf_nprobe_pct": 1,
+      "ivf_max_codes_pct": 0.2
+    },
+    "field": "embedding",
+    "vector": [0.024901132253900747, . . .]
+  }]
+}
+```
+
+In the preceding example, the Search request returns results from any available fields in the index, but specifically searches the `embedding` field for the `10` closest matches to the vector `[0.024901132253900747, . . .]`. The vector in the Search request has been truncated to reduce the display size of the example. The parameters have been set to search 1% of the clusters, and 0.2 per cent of the centroids.

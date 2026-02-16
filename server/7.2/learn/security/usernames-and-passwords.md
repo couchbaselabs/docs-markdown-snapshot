@@ -1,0 +1,42 @@
+[View original HTML](/server/7.2/learn/security/usernames-and-passwords.html)
+
+> Couchbase Server requires that administrators and applications _authenticate_, in order to gain access to data, settings, and statistics. Authentication typically requires that a _username_ and _password_ be provided. 
+
+## [](#introduction-to-usernames-and-passwords)Introduction to Usernames and Passwords
+
+_Users_ of Couchbase Server typically require a username and password. A user may be either an _administrator_ or an _application_. An application may be a program or server, or may be a simple, single command-line query. (Note that an application may be permitted to use a _client certificate_ for purposes of authentication, instead of a username-password combination: see [Certificates](certificates.md), for information.)
+
+The _Full Administrator_ who installs and configures Couchbase Server (and so has full read-write access to the whole system), defines their own username and password during the configuration-process: see [Create a Cluster](../../manage/manage-nodes/create-cluster.md), for details. Subsequently, this administrator can add additional administrators to the system; assigning a username and password to each. Whenever any needs to log into Couchbase Web Console in order to inspect data, statistics, and settings (and possibly make changes), they must specify their own unique username-password combination, at the authentication-prompt provided by the server.
+
+An application, if it is not using a client certificate for purposes of authentication, must pass its username and password as parameters. Therefore, Couchbase CLI commands, N1QL queries, and executables supported by the Couchbase SDK all provide syntax to allow the passing of a username and password.
+
+Additionally, a special _master password_ may be designed and used by the Full Administrator, in order to manage system secrets. See [Manage System Secrets](../../manage/manage-security/manage-system-secrets.md), for details.
+
+Note that a cluster running Couchbase Server _Enterprise Edition_ can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty users.
+
+## [](#password-strengthd)Password Strength
+
+Couchbase Server provides a default password-policy. This demands only that the password have a minimum of six characters.
+
+For pre-production purposes, it may be desirable to strengthen this default password-policy. For production purposes, it should be considered essential to do so. The password-policy can be set by the Full Administrator, by means either of the Couchbase CLI command [setting-password-policy](../../cli/cbcli/couchbase-cli-setting-password-policy.md), or of the REST API — as described in [Setting Password Policy](../../rest-api/rest-set-password-policy.md). This allows you to specify that every Couchbase Server-password should:
+
+* Contain a minimum-number of characters. If established with the CLI, this can be any number between 1 and 100\. If established with the REST API, this can be any number between 0 and 100\. (Note that if 0 is selected, the definition of password-free users is thereby enabled: this is highly insecure, and is _not_ recommended.)
+* Contain at least one uppercase character.
+* Contain at least one lowercase character.
+* Contain at least one special character.
+* Contain at least one digit.
+
+It is recommended that passwords be managed with a password manager, and that each password be designed as one of the following:
+
+* A password of at least 12 characters that includes letters, numbers, and special characters.
+* A unique passphrase of at least 15 characters, with individual words separated from one another by means of one or more special characters.
+
+## [](#usernames-and-roles)Usernames and Roles
+
+Couchbase Server-users can typically authenticate by means of a _username_, specified with a password. The restrictions on username-design are that each should be unique to the cluster; and that none of the following characters be used: `( ) < > , ; : \ " / [ ] ? = { }`. Note additionally that the `@` character cannot be used in a username on any Couchbase Server version before 6.5.1\. On versions 6.5.1 and beyond, a username may contain the `@` character, as long as it does not occur at the start: for example, `first.last@domain`.
+
+Usernames _cannot_ be more than 128 UTF-8 characters in length; and it is recommended that they be no more than 64 UTF-8 characters in length, in order to ensure successful onscreen display.
+
+Each user is associated with one or more _roles_, which permit limited access-privileges. Therefore, once a user has authenticated, their role-assignment is examined, and an appropriate degree of access is granted to them by Couchbase Server. See [Authorization](authorization-overview.md), for details.
+
+Note that usernames and role-names are _case sensitive_.

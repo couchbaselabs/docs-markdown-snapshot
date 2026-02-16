@@ -1,0 +1,391 @@
+[View original HTML](/server/7.2/manage/manage-security/configure-server-certificates.html)
+
+> Couchbase Server Enterprise Edition supports X.509 certificates, for the encryption of communications between the server and networked clients. 
+
+## [](#configure-server-side-certificates)Configure Server Certificates
+
+This section demonstrates how server certificates can be configured for Couchbase Server. Note that the procedures are provided only as _limited examples_, giving guidance as to the basic steps typically involved in certificate creation. Modification of the procedures will likely be required, for the preparation of certificates for different platforms and cluster-configurations.
+
+Two procedures are provided, each of which configures X.509 certificates on Ubuntu 18 for a one-node Couchbase Server-cluster. Before attempting to follow either procedure, see the conceptual and architectural information provided in [Certificates](../../learn/security/certificates.md).
+
+The first procedure, [Cluster Protection with Root and Node Certificates](#root-and-node-certificates), is the simpler: it shows how to create a root certificate that is a trusted, self-signed authority; and how to use this to sign individual, per node certificates.
+
+The second procedure, [Cluster Protection with Root, Intermediate, and Node Certificates](#root-intermediate-and-node-certificates), demonstrates how a created root certificate and its private key are used to sign one or more _intermediate_ certificates; which are then in turn used with their own private keys to sign individual, per node certificates: such use of intermediate certificates and their private keys increases security — in that it minimizes use of the private key associated with the root certificate, when the signing of many node-certificates or client-certificates is required.
+
+Although these procedures demonstrate certificate management and deployment on single-node clusters, the steps they contain can also be used on _multi-node_ clusters; with some of the steps being necessarily repeated, across the different nodes. See [Protection of Multi-Node Clusters](#protection-of-multi-node-clusters), below, for details.
+
+Note also that once a cluster has been protected with administrator-defined certificates in accordance with these procedures, any new nodes subsequently to be added to the cluster must be individually protected with conformant certificates, before addition can take place. See [Adding New Cluster-Nodes](#adding-new-cluster-nodes), below, for details.
+
+### [](#root-certificates-single-versus-multiple)Root Certificates: Single versus Multiple
+
+The examples in this section each feature creation and use of a single root certificate, which is used to provide its authority to a node certificate. Prior to Couchbase Server 7.1, a single root certificate was the maximum that could be used for a cluster. In Couchbase Server 7.1 and later, _multiple_ root certificates can be maintained in a _trust store_ for the cluster: this is described in [Using Multiple Root Certificates](../../learn/security/using-multiple-cas.md). Procedures for creating root certificates, and using these to sign node or intermediate certificates, are unaffected. However, procedures for _loading_ root and node certificates have changed in 7.1: details are provided below.
+
+### [](#using-an-externally-provided-root-certificate)Using an Externally Provided Root Certificate
+
+The examples below show how to _create_ a root certificate, and how to use that certificate’s _private key_ to _sign_ (and thereby confer limited authority to) other certificates. However, production deployments of Couchbase Server will frequently deploy an _externally provided_ root certificate for the cluster, this having been provided by a recognized certificate authority. Additionally, an _intermediate_ (sometimes referred to as a _subordinate_) certificate, defined by the system administrator for the production environment, is likely to have been signed by the external authority, using its root certificate’s private key: this allows the intermediate certificate and its private key to be used by the system administrator in creating additional certificates for deployment, each of these certificates thereby acquiring authority indirectly from the root.
+
+Therefore, to use the procedures provided below in the context of a root certificate having been provided by, and an intermediate certificate signed by, an external authority, substitute the externally provided root certificate for the generated `ca.pem`; use the externally signed intermediate in place of the generated intermediate; and use the private key of the externally signed intermediate to sign node and client certificates as appropriate.
+
+### [](#node-to-node-encryption-and-certificate-management)Node-to-Node Encryption and Certificate Management
+
+Couchbase Server supports [Node-to-Node Encryption](../../learn/clusters-and-availability/node-to-node-encryption.md), whereby network traffic between the individual nodes of a cluster is encrypted.
+
+Prior to Couchbase Server Version 7.1, node-to-node encryption, which is managed by means of the Couchbase CLI, needed to be _disabled_ before management of either _root_ or _intermediate_ certificates could be performed. This restriction is lifted in version 7.1: therefore, root and intermediate certificates _can_ now be managed while node-to-node encryption is enabled.
+
+## [](#root-and-node-certificates)Cluster Protection with Root and Node Certificates
+
+The following procedure shows how to create a root certificate that is the trusted, self-signed authority used to sign individual, per node certificates. Note that corresponding, subsequent procedures that create certificates for _client_\-authentication are provided in [Client Access: Root Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-a-root-certificate) and [Java Client Access: Root Certificate Authorization](configure-client-certificates.md#java-client-access-root-certificate-authorization).
+
+Proceed as follows:
+
+1. On the server to be certificate-protected, create working directories:  
+mkdir servercertfiles  
+cd servercertfiles  
+mkdir -p {public,private,requests}  
+The `public` directory will be used to store certificates, which contain _public_ keys. The `private` directory will contain _private_ keys. The `requests` directory will store certificate _signing requests_, which are files generated from private keys: when a signing request is granted the signature of an appropriate authority, a _signed certificate_ is produced.
+2. Create a _private key_ for the cluster.  
+A private key can be used to decrypt data previously encrypted by the corresponding _public_ key. It can also be used to sign a message that is then sent by the client to the server; allowing the client’s identity to be verified by the server, using the client’s public key. In the key-creation sequence, the private key is created first. Then, the public key is created, being _derived from_ the private key.  
+Enter the following:  
+openssl genrsa -out ca.key 2048  
+The output of this command, `ca.key`, is the private key for the cluster.
+3. Create the _certificate_ (that is, the file that will contain the public key) for the cluster. The certificate is intended to be _self-signed_, meaning that it will not be vouched for by any other authority. This means that it can be created directly, based on the existing private key `ca.key`, without assistance from a third party.  
+Enter the following:  
+openssl req -new -x509 -days 3650 -sha256 -key ca.key -out ca.pem \
+-subj "/CN=Couchbase Root CA"  
+The `x509` flag indicates that in this case, an x509 structure, rather than a _request_ is to be generated. (By contrast, a request _will_ need to be generated whenever the signature of a third-party authority is required: this is demonstrated below.) The `days` flag specifies the number of days for which the certificate should be active. The hashing algorithm to be used for digital-signature creation is specified as `sha256`. The private key file on which the certificate is to be based is specified as `ca.key`, and the output-certificate is named as `ca.pem`. The certificate’s _issuer_ is specified to have the `CN` (_Common Name_) of `Couchbase Root CA`: as this name indicates, the certificate will be the _root_ certificate for the Couchbase Server-cluster.  
+The output of the command is the certificate `ca.pem`; which contains the public key corresponding to the cluster’s private key, `ca.key`.  
+Optionally, the public key within the certificate can be displayed as follows:  
+openssl x509 -in ./ca.pem -noout -pubkey  
+The output has approximately the following appearance:
+
+-----BEGIN PUBLIC KEY-----  
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3HMfiSjCwakfMbA20HUd  
+V372JbQG9UGjf9V3xyMa90IHFD8cFjPYao7SZOpe0nkm2UmZRgQbTwWxC4CZqrYZ  
+pyrWLn9rjDFkzzbRjMRcZv2D0s0KkPrNYxfHj3cL/j5bpB4/hquvb4RglMkyyJo9  
+mVx19lF4mtEsBqPGZBGArbzeArn4c1e6I4mqIfb9Vne/7vhIzLLSXoT5FmifWyGQ  
+4B9BSIrE9Ildwhez699MGfj+N+0xg2wTOIUVNvS1c5gF/uDS6t9Aswb60W+hjtF4  
+d1ZBKBIVkmPGX0XOgGtdndXza4sjVkh3bB/ipWo9zUJYwFCWkofbqGeSnSz9n9o6  
+fwIDAQAB
+-----END PUBLIC KEY-----  
+Note that by substituting other flags for `-pubkey`, other characteristics of the certificate can be displayed. `-issuer` displays the certificate’s issuer, and `-subject` its subject (in both cases, `subject= /CN=Couchbase Root CA`). The `-version`, `-serial`, `-subject-hash`, and more can be displayed.  
+The _entire certificate_ can be displayed as text, by means of the following command:  
+openssl x509 -text -noout -in ./ca.pem  
+The initial part of the output, which is extensive, is as follows:  
+Certificate:  
+    Data:  
+        Version: 3 (0x2)  
+        Serial Number: 18276610881715621025 (0xfda390c366b2cca1)  
+    Signature Algorithm: sha256WithRSAEncryption  
+        Issuer: CN=Couchbase Root CA  
+        Validity  
+            Not Before: Sep  2 08:32:31 2019 GMT  
+            Not After : Aug 30 08:32:31 2029 GMT  
+        Subject: CN=Couchbase Root CA  
+        Subject Public Key Info:  
+            Public Key Algorithm: rsaEncryption  
+                Public-Key: (2048 bit)  
+                Modulus:  
+                    00:d7:a6:ba:5d:e2:e2:fd:6e:1b:33:9a:4b:bf:77:  
+                    6f:28:c3:37:60:33:da:09:b2:0b:73:1f:f9:65:2a:  
+                                  .  
+                                  .  
+The displayed text thus provides information including the `Version`, the `Serial Number`, and the `Signature Algorithm` of the certificate. The certificate’s `Issuer`, `Subject`, and period of `Validity` are also shown. The `Algorithm` and `Modulus` (and, further below, the `Exponent`) of the public key are shown.  
+For detailed information on keys and key-generation, see [RSA (cryptosystem)](https://en.wikipedia.org/wiki/RSA%5F%28cryptosystem%29).
+4. Create a private key for the individual node. In addition to the root certificate and private key for the entire cluster, which are `ca.pem` and `ca.key`, a _node_ certificate and private key must also be created. The node certificate, along with its corresponding node-private key, will reside on its own, corresponding node. When deployed, each node certificate must be named `chain.pem`, and each node private key `pkey.key`. Consequently, if the node certificates and private keys for multiple nodes are being prepared on a single system, the files should be given individual, distinctive names on creation; and then each deployed on its appropriate node as either `chain.pem` or `pkey.key`. This renaming procedure is indeed followed here for demonstration purposes, even though only a one-node cluster is involved.  
+Create the node private key as follows:  
+openssl genrsa -out private/couchbase.default.svc.key 2048  
+The output file is `couchbase.default.svc.key`, which is the private key for the node.
+5. Create a certificate signing request for the node certificate. This step allows the materials required for certificate-creation to be passed to a third-party, who will _digitally sign_ the certificate as part of its creation-process, and thereby confirm its validity. (In this demonstration, however, no actual third-party is involved: the certificate will be signed by means of the _root_ private key, which is owned by the current user.)  
+Enter the following command:  
+openssl req -new -key private/couchbase.default.svc.key \
+-out requests/couchbase.default.svc.csr -subj "/CN=Couchbase Server"  
+The `key` specified as the input for the request is `couchbase.default.svc.key`, which was created in the last step. The output request-file is specified as `couchbase.default.svc.csr`. Note that this can be inspected as text, by entering the following command:  
+openssl req -text -noout -verify -in ./requests/couchbase.default.svc.csr  
+The initial part of the displayed output, which is extensive, is as follows:  
+verify OK  
+Certificate Request:  
+    Data:  
+        Version: 0 (0x0)  
+        Subject: CN=Couchbase Server  
+        Subject Public Key Info:  
+            Public Key Algorithm: rsaEncryption  
+                Public-Key: (2048 bit)  
+                Modulus:  
+                    00:be:26:e5:06:c6:8e:43:bb:9d:bc:84:20:34:8e:  
+                    db:2f:d1:8b:b4:ff:c2:66:c0:61:70:8d:c3:8c:df:  
+                                      .  
+                                      .  
+The `Version` and `Subject` of the request are listed, along with information on the public key that is to be included in the certificate.
+6. Define _certificate extensions_ for the node. Certificate extensions specify constraints on how a certificate is to be used. Extensions are submitted to the signing authority, along with the certificate signing request.  
+For example, the certificate’s public key can be specified, by means of the `keyUsage` extension, to support _digital signatures_, but _not_ to support _key encipherment_ — or, _the opposite_ can be specified; or, support of _both_ digital signatures _and_ key encipherment can be specified. Meanwhile, the `subjectAltName` extension can be used to specify the _DNS name_ and _IP address_ of the server on which the certificate resides; so that if the certificate is deployed in any other context, it becomes invalid.  
+For detailed information on certificate extensions, see the [Standard Extensions](https://tools.ietf.org/html/rfc5280#section-4.2.1) section of the [Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL Profile)](https://tools.ietf.org/html/rfc5280).  
+Certificate extensions can be defined in a file, whose pathname is then provided as a parameter to the `openssl` command used to create the certificate. Thus, such server-certificate extensions as are intended to be generic across all cluster-nodes might be written as follows:  
+cat > server.ext <<EOF  
+basicConstraints=CA:FALSE  
+subjectKeyIdentifier = hash  
+authorityKeyIdentifier = keyid,issuer:always  
+extendedKeyUsage=serverAuth  
+keyUsage = digitalSignature,keyEncipherment  
+EOF  
+The value of `extendedKeyUsage` is specified as `serverAuth`, indicating that the certificate is to be used for server authentication. The values of `keyUsage` are `digitalSignature`, specifying that the certificate’s public key can be used in the verifying of information-origin; and `keyEncipherment`, specifying that the public key can be used in the encrypting of _symmetric keys_ (through the exchange and use of which symmetrically encrypted communications between server and client can occur).
+7. Create a customized certificate extensions file, which adds _per node_ constraints to the generic constraints already specified.  
+cp ./server.ext ./server.ext.tmp  
+echo "subjectAltName = IP:10.143.192.102" \  
+>> ./server.ext.tmp  
+This customized extensions file is to be used to authenticate a single node, whose IP address is `10.143.192.102`. Note that if the DNS naming-convention is used by the cluster, the node’s DNS name might be specified instead: for example, `DNS:node2.cb.com`.  
+Note that in Couchbase Enterprise Server Version 7.2+, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name — as is done here, with `subjectAltName = IP:10.143.192.102`. If such identification is not correctly configured, failure may occur when uploading the certificate, or when attempting to add or join the node to a cluster. For information, see [Node-Certificate Validation](../../learn/security/certificates.md#node-certificate-validation).  
+The creation of the customized extensions file should occur once for each node, with each customized extensions file containing only those extensions that apply to the current node.
+8. Create the node certificate, applying the certificate and digital signature of the appropriate authority, and the customized extensions file for the node, to the materials in the signing request.  
+Enter the following:  
+openssl x509 -CA ca.pem -CAkey ca.key -CAcreateserial -days 365 -req \
+-in requests/couchbase.default.svc.csr \
+-out public/couchbase.default.svc.pem \
+-extfile server.ext.tmp  
+The file generated by this command, `couchbase.default.svc.pem`, is the node certificate. The root certificate and private key, `ca.pem` and `ca.key`, are specified as input values to the certificate-creation command. This ensures that the new certificate’s chain of trust includes the root certificate, `ca.pem`, and is digitally signed by `ca.key`; allowing that signature to be verified by means of the public key.  
+The following confirmatory output is displayed:  
+Signature ok  
+subject=/CN=Couchbase Server  
+Getting CA Private Key  
+Note that if a node certificate were actually submitted to an external authority for signing, then the authority’s own `pem` and `key` would be specified as inputs, rather than `ca.pem` and `ca.key`: and in such a case, the authority’s `pem` would need to become the root certificate for the cluster.
+9. Rename the node certificate and node private key. For deployment on the node, the node certificate must be renamed `chain.pem`; and the node private key renamed `pkey.key`. Proceed as follows:  
+cd ./public  
+mv couchbase.default.svc.pem chain.pem  
+cd ../private  
+mv couchbase.default.svc.key pkey.key
+10. Deploy the node certificate and node private key. These are deployed by being moved to the `inbox` directory of the server, and made _executable_. The `inbox` directory must be created by the administrator. Proceed as follows:  
+cd ..  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/  
+sudo cp ./public/chain.pem /opt/couchbase/var/lib/couchbase/inbox/chain.pem  
+sudo cp ./private/pkey.key /opt/couchbase/var/lib/couchbase/inbox/pkey.key
+11. Ensure that all certificate and private key files in the `inbox` directory can be read by user `couchbase`. This can be achieved by changing ownership of the files to `couchbase`, and setting `0600` permissions.
+12. Deploy the root certificate. This is achieved by creating the directory `CA`, within the previously created `inbox` directory, and copying the root certificate into the `CA` directory. Proceed as follows:  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/CA  
+sudo cp ./ca.pem /opt/couchbase/var/lib/couchbase/inbox/CA/.
+13. _Upload_ the root certificate for the cluster. Use the following REST command:  
+curl -X POST http://10.143.192.102:8091/node/controller/loadTrustedCAs -u Administrator:password  
+All root certificates currently resident in the `CA` directory are now placed in the trust store, and are ready for use. This can be verified by means of Couchbase Web Console: access the **Security** screen, by means of the **Security** option in the left-hand navigation bar. Then, left-click on the **Certificates** tab, located on the upper, horizontal navigation bar.  
+The screen’s left-hand panel appears as follows:  
+![600](../_images/manage-security/rootCertificateWithSignedCert.png)  
+The original _generated_ root certificate appears at the top. A notification is now provided, to the effect that this `doesn’t seem to be used by any node anymore.`The new, _uploaded_ root certificate appears below. The text of each certificate appears in the panel to the right. Details on the certificate, and button for certificate-deletion, appear at the left. Note that a certificate cannot be deleted once it has provided its authority to one or more node certificates on the cluster.  
+For further information on the **Certificates** tab on the **Security** screen, see [Certificates](manage-security-settings.md#root-certificate-security-screen-display).
+14. _Load_ the node certificate that was copied into the `inbox`, with its private key:  
+curl -X POST http://10.143.192.102:8091/node/controller/reloadCertificate -u Administrator:password  
+The node certificate is now activated for the current node, bearing the authority of the root CA with which it was signed.
+
+Note that when, as is typical, the cluster contains more than one node, this step must be performed on _each node_ of the cluster, with each individual IP address thereby specified in turn.
+
+For more information using the REST API to manage certificates, see [Certificate Management API](../../rest-api/rest-certificate-management.md). This includes details on retrieving root and nodes certificates that have been uploaded, and on certificate deletion.
+
+### [](#configure-client-access-simple)Configuring Client Access
+
+Once the cluster has been protected by the deployment of root and node certificates described above, a _client_ certificate can be signed by the root certificate, to allow a client to access the cluster. Client-certificate preparation varies, depending on the type of client to be supported. For steps to prepare a certificate supportive of Couchbase Server, see [Client Access: Root-Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-a-root-certificate). For steps to prepare a certificate supportive of a Java client, see [Java Client Access: Root-Certificate Authorization](configure-client-certificates.md#java-client-access-root-certificate-authorization).
+
+Note that access by means of a client certificate must be specifically enabled, on the cluster that is to be accessed: see [Enable Client-Certificate Handling](enable-client-certificate-handling.md).
+
+## [](#root-intermediate-and-node-certificates)Cluster Protection with Root, Intermediate, and Node Certificates
+
+Optionally, a root certificate can be used to sign an _intermediate_ certificate, which is then itself used to sign node certificates. This increases security, since it minimizes use of the private key associated with the root certificate, when many node or client certificates are to be signed.
+
+When a client attempts to access the cluster securely, it must be able to build the certificate chain used to convey the authority of the cluster’s root CA (see [Intermediate Certificates](../../learn/security/certificates.md#intermediate-certificates)). In Couchbase Server Version 7.1+, the certificates can be prepared for client inspection in either of two ways, which are:
+
+* Concatenation of all intermediate and node certificates into a single _chain.pem_ file, which is uploaded from the node’s _inbox_.
+* Upload, from the node’s inbox, of a _chain.pem_ file containing only the unconcatenated node certificate; with the expectation that each intermediate certificate resides in the client’s _trust store_.
+
+Both procedures are shown below. For more information, see [Adding Intermediate Certificates to the Trust Store](../../learn/security/using-multiple-cas.md#adding-intermediate-certificates-to-the-trust-store).
+
+The steps and descriptions in the procedures below assume that the previous procedure, [Cluster Protection with Root and Node Certificates](#root-and-node-certificates), has already been successfully completed; and that familiarity with the basic certificate-related concepts explained there has been attained.
+
+Note that corresponding, subsequent procedures that create certificates for _client_\-authentication are provided in [Client Access: Intermediate Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate) and [Java Client Access: Intermediate Certificate Authorization](configure-client-certificates.md#java-client-access-intermediate-certificate-authorization)
+
+### [](#intermediate-concatenation)Deploying an Intermediate Certificate as Part of the Node’s Chain
+
+Proceed as follows:
+
+1. On the node to be certificate-protected, create working directories:  
+mkdir servercertfiles2  
+cd servercertfiles2  
+mkdir -p {root,servers,clients}/{issued,reqs,private}  
+The directories `root`, `servers`, and `clients` will contain the issued certificates, requests, and private keys generated for the root, the individual nodes, and clients wishing to access the nodes. Each directory therefore contains `issued`, `reqs`, and `private` subdirectories.  
+Note that this directory infrastructure will also be used in the subsequent process, [Client Access: Intermediate Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate); where the contents of the `clients` directory will be created.
+2. Change directory to `root`. Then, create a configuration file for the root certificate that is to be created.  
+cd root  
+cat > config <<EOF  
+[req]  
+distinguished_name = cn_only  
+x509_extensions = ca_ext  
+[ cn_only ]  
+commonName = Common Name (eg: your user, host, or server name)  
+commonName_max = 64  
+commonName_default = CA  
+[ca_ext]  
+basicConstraints = CA:TRUE  
+subjectKeyIdentifier = hash  
+authorityKeyIdentifier = keyid:always,issuer:always  
+keyUsage = cRLSign, keyCertSign  
+EOF  
+The `config` file has three sections. The first, `req`, specifies values to be passed to the `req` command, which is used to create and process certificate requests: use `man req` to obtain information on the values passed. The second section, `cn_only`, provides specifications for the Common Name to be used in the certificate, including the maximum number of characters and the default name. The third section, `ca_ext`, provides basic extensions that limit the capability of the certificate. These include a value of `TRUE` for `CA`, indicating that the certificate will be able to provide signing authority for other certificates. Additionally, the values for `keyUsage` are provided as `cRLSign`, indicating that the certificate’s public key will be usable to verify signatures on _Certificate Revocation Lists_; and `keyCertSign`, indicating that the certificate’s public key will be usable to verify signatures on other certificates.
+3. Create the root certificate, specifying the created `config` file.  
+openssl req -config config -new -x509 -days 3650 -sha256 -newkey rsa:2048 \
+-keyout ca.key -out ca.pem -subj '/C=UA/O=MyCompany/CN=RootCA'  
+This specifies that both the root certificate for the cluster and its private key be created. The key is additionally specified to be encrypted. In consequence, during execution, the following prompt is displayed:  
+Generating a 2048 bit RSA private key  
+....+++  
+...................+++  
+writing new private key to 'ca.key'  
+Enter PEM pass phrase:  
+This requires that a _pass phrase_ be entered, for inclusion of the key in command-line procedures, such as those used for certificate generation. The phrase will be stored in the certificate, and prompted for whenever administrative access is attempted. Enter an appropriate phrase: a second prompt then appears, requesting confirmation of the phrase. Enter the phrase again, and the operation completes.  
+The output file, `ca.pem` is the root certificate for the cluster, and is saved in the `root` folder. (Note that in the steps that follow, other certificates named `ca.pem` are created in additional folders: these should not be confused with the certificate of the same name in `root`.)
+4. Create an extensions file that will limit the capabilities of the _intermediate_ certificate that is to be created.  
+Enter the following:  
+cat > int.ext <<EOF  
+basicConstraints = CA:TRUE  
+subjectKeyIdentifier = hash  
+authorityKeyIdentifier = keyid:always,issuer:always  
+keyUsage = cRLSign, keyCertSign  
+EOF  
+Here, `CA` is set to `TRUE`, meaning that the intermediate certificate will be able to act as an authority for other certificates (specifically, for the individual, per node certificates used by the cluster). The specified `keyUsage` includes the value `keyCertSign`, meaning that the intermediate certificate’s public key will be used to verify signatures that appear on other certificates.
+5. Create a private key and corresponding certificate signing request for the intermediate certificate.  
+openssl req -new -sha256 -newkey rsa:2048 -keyout ../servers/int.key \
+-out reqs/server-signing.csr \
+-subj '/C=UA/O=MyCompany/OU=Servers/CN=ServerSigningCA'  
+Again, the key is specified to be encrypted. Therefore, prompts appear, asking for a pass phrase for the certificate. Enter an appropriate phrase in response to the prompts.  
+The output from the request consists of the encrypted private key `../servers/int.key` and the signing-request `req/server-signing.csr`.
+6. Create the intermediate certificate, specifying the root certificate `ca.pem` and its key `ca.key`, to establish the root certificate’s authority.  
+openssl x509 -CA ca.pem -CAkey ca.key -CAcreateserial \
+-CAserial serial.srl -days 3650 -req -in reqs/server-signing.csr \
+-out issued/server-signing.pem -extfile int.ext  
+Since this specifies that the encrypted key `ca.key` be used to sign the intermediate certificate, the user is prompted for the appropriate pass phrase. Enter the phrase against the prompt.  
+The extension file `int.ext` is thus applied to the certificate, so as to limit the certificate’s capabilities. The certificate is generated and saved in the `reqs` folder as `server-signing.pem`.
+7. Save the intermediate certificate as the authority for the node certificates that are to be created.  
+cp issued/server-signing.pem ../servers/int.pem
+8. Within the `../servers` directory, create an extension file containing the information that will be generic across all the individual nodes of the cluster.  
+cd ../servers  
+cat > server.ext <<EOF  
+basicConstraints = CA:FALSE  
+subjectKeyIdentifier = hash  
+authorityKeyIdentifier = keyid,issuer:always  
+extendedKeyUsage = serverAuth  
+keyUsage = digitalSignature,keyEncipherment  
+EOF  
+The `extendedKeyUsage` value `serverAuth` indicates that the certificate will be used for server authentication. The `keyUsage` value `digitalSignature` specifies that the certificate’s public key can be used in the verifying of information-origin; while `keyEncipherment` allows the public key to be used in the encrypting of symmetric keys.
+9. Generate the private key to be used for the individual cluster-node.  
+openssl genrsa -out private/couchbase.node.svc.key 2048  
+The private key `couchbase.node.svc.key` is thus saved in the `private` folder, as the private key for the node.
+10. Generate the certificate signing request for the node certificate.  
+openssl req -new -key private/couchbase.node.svc.key \
+-out reqs/couchbase.node.svc.csr \
+-subj "/C=UA/O=MyCompany/OU=Servers/CN=couchbase.node.svc"  
+The signing-request file `couchbase.node.svc.csr` is thus saved in the `reqs` folder.
+11. Add node-specific information for each node, in turn. Although the current example features a single-node cluster, this step would be repeated for each node in the cluster, if the cluster contained multiple nodes: in each case, the node-specific information (here, the node’s IP address) being different.  
+cp server.ext temp.ext  
+echo 'subjectAltName = IP:10.143.192.102' >> temp.ext  
+This creates `temp.ext` as an extension file that will be used for one node only. The file specifies the IP address specific to the node. Note that in Couchbase Enterprise Server Version 7.2+, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. For information and options, see [Server Certificate Validation](../../learn/security/certificates.md#server-certificate-validation).
+12. Create the node certificate for an individual node, specifying the unique extension file for the node, and specifying the intermediate certificate and key as the signing authority.  
+openssl x509 -CA int.pem -CAkey int.key -CAcreateserial \
+-CAserial serial.srl -days 365 -req -in reqs/couchbase.node.svc.csr \
+-out issued/couchbase.node.svc.pem -extfile temp.ext  
+Since this specifies that the certificate should be signed by the encrypted intermediate key, `int.key`, a prompt appears, requesting the appropriate pass phrase. Enter the phrase against the prompt.  
+The node-certificate file `couchbase.node.svc.pem` is hereby saved in the `issued` folder. The certificate bears the constraints specified in `temp.ext`, and is granted the authority of the intermediate certificate and key, which are `int.pem` and `int.key` respectively.
+13. Check that the node certificate is valid. The following use of the `openssl` command verifies the relationship between the root certificate, the intermediate certificate, and the node certificate.  
+openssl verify -trusted ../root/ca.pem -untrusted int.pem \  
+issued/couchbase.node.svc.pem  
+If the certificate is valid, the following output is displayed:  
+issued/couchbase.node.svc.pem: OK
+14. Prepare to deploy the certificate and private key for the node. First, concatenate the node certificate and the intermediate certificate, to establish the chain of authority. Then, rename the private key for the node.  
+cat issued/couchbase.node.svc.pem int.pem > chain.pem  
+cp private/couchbase.node.svc.key pkey.key
+15. Move the node certificate and node private key into the `inbox` for the current node.  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/  # if needed  
+sudo cp ./chain.pem /opt/couchbase/var/lib/couchbase/inbox/chain.pem  
+sudo cp ./pkey.key /opt/couchbase/var/lib/couchbase/inbox/pkey.key
+16. Ensure that all certificate and private key files in the `inbox` directory can be read by user `couchbase`. This can be achieved by changing ownership of the files to `couchbase`, and setting `0600` permissions.
+17. Move the root certificate into the `inbox/CA` directory for the current node.  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/CA/  # if needed  
+cd ../root  
+sudo cp ca.pem /opt/couchbase/var/lib/couchbase/inbox/CA/.
+18. Upload the root certificate, thereby activating it for the entire cluster.  
+curl -X POST http://10.143.192.102:8091/node/controller/loadTrustedCAs -u Administrator:password
+19. Upload the node certificate, specifying the established password for the private key.  
+curl -X POST http://10.143.192.102:8091/node/controller/reloadCertificate -u Administrator:password  
+Note that when, as is typical, the cluster contains more than one node, the `/node/controller/reloadCertificate` command must be executed on each node, specifying the IP address of the node on which execution is occurring.
+
+This concludes the certificate-deployment process. The root certificate can be examined by means of Couchbase Web Console, as shown in [Step 13](#see-root-certificate-with-couchbase-web-console) of the previous example on this page.
+
+For more information using the REST API to manage certificates, see [Certificate Management API](../../rest-api/rest-certificate-management.md).
+
+### [](#intermediate-upload)Deploying an Intermediate Certificate via Trust Store
+
+Proceed as follows:
+
+1. Perform all steps listed in the section [Representing Intermediate Certificates through Concatenation](#intermediate-concatenation), above; up to and including the step [Check that the node certificate is valid](#check-validity).
+2. Prepare to deploy the certificate and private key for the node, by renaming both:  
+cp issued/couchbase.node.svc.pem chain.pem  
+cp private/couchbase.node.svc.key pkey.key
+3. Move the renamed node certificate and private key into the `inbox` for the current node.  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/  # if needed  
+sudo cp ./chain.pem /opt/couchbase/var/lib/couchbase/inbox/chain.pem  
+sudo cp ./pkey.key /opt/couchbase/var/lib/couchbase/inbox/pkey.key
+4. Ensure that all certificate and private key files in the `inbox` directory can be read by user `couchbase`. This can be achieved by changing ownership of the files to `couchbase`, and setting `0600` permissions.
+5. Move the root certificate and the intermediate certificate into the `inbox/CA` directory for the current node.  
+sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/CA/  # if needed  
+sudo cp int.pem /opt/couchbase/var/lib/couchbase/inbox/CA/.  
+cd ../root  
+sudo cp ca.pem /opt/couchbase/var/lib/couchbase/inbox/CA/.
+6. Upload the root and intermediate certificates.  
+curl -X POST http://10.143.192.102:8091/node/controller/loadTrustedCAs -u Administrator:password
+7. Upload the node certificate, specifying the established password for the private key.  
+curl -X POST http://10.143.192.102:8091/node/controller/reloadCertificate -u Administrator:password
+
+Note that when, as is typical, the cluster contains more than one node, the `/node/controller/reloadCertificate` command must be executed on each node, specifying the IP address of the node on which execution is occurring.
+
+This concludes the certificate-deployment process. The root certificate can be examined by means of Couchbase Web Console, as shown in [Step 13](#see-root-certificate-with-couchbase-web-console) of the previous example on this page.
+
+For more information using the REST API to manage certificates, see [Certificate Management API](../../rest-api/rest-certificate-management.md).
+
+### [](#using-an-encrypted-private-node-key)Using an Encrypted, Private Node-Key
+
+The above examples use an _unencrypted_ private key, for the node. If an _encrypted_ private node-key is used, a passphrase must be registered for it, so that the key can be securely retrieved and used when required. See the reference page [Upload and Retrieve a Node Certificate](#rest-api/upload-retrieve-node-cert.adoc).
+
+### [](#configure-client-access-advanced)Configuring Client Access
+
+Once the cluster has been protected by the deployment of root, intermediate, and node certificates described above, a _client_ certificate can be signed by a _client-intermediate_ certificate that itself inherits the authority of the root: this allows the client certificate to access the cluster. Client-certificate preparation varies, depending on the type of client to be supported. For steps to prepare a certificate supportive of Couchbase Server, see [Client Access: Intermediate-Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate). For steps to prepare a certificate supportive of a Java client, see [Java Client Access: Intermediate-Certificate Authorization](configure-client-certificates.md#java-client-access-intermediate-certificate-authorization).
+
+Note that access by means of a client certificate must be specifically enabled, on the cluster that is to be accessed: see [Enable Client-Certificate Handling](enable-client-certificate-handling.md).
+
+## [](#protection-of-multi-node-clusters)Protection of Multi-Node Clusters
+
+When the certificate-management procedures described above are used, as intended, for multi-node clusters, the following should be observed:
+
+* Each CA certificate to be used by the cluster must be copied into an appropriately located `inbox/CA` directory on a cluster node, and must be loaded from there, using the call demonstrated above, and fully described in [Load Root Certificates](#rest-api:load-trusted.cas.adoc).
+* A separate `chain.pem` must be prepared for each node. Each `chain.pem` should be generated from a new, unique private key (`pkey.key`); must be an appropriate concatenation of the node certificate with whatever intermediate certificates have formed its chain; and must have its own node’s IP address specified as a `subjectAltName`.
+* If created on the same system as all other keys and certificates, the `chain.pem` and `pkey.key` for each node must be independently transferred onto the node they are intended to protect. An inbox must be created on that node, and the `chain.pem` and `pkey.key` files then moved there.
+* The node certificate must be reloaded individually for each node in the cluster, after the `chain.pem` and `pkey.key` file have been moved into the node’s inbox. Each reload command must therefore specify the node’s own IP address.
+
+## [](#adding-new-nodes)Adding and Joining New Nodes
+
+If a cluster uses _system-generated_ certificates, which Couchbase Server provides by default, no certificate-related work needs to be performed in order to add or join a new node to the cluster. However, once a cluster is using _uploaded_ certificates, a node that is to be added or joined must itself be provisioned with conformant certificates, before addition or joining can be successfully performed: this means that the appropriate _chain_ file (containing the node certificate) and _private key_ must have been placed in the node’s `inbox`, and the appropriate REST API then called. From Couchbase Server Version 7.1, the new node is now always added or joined over an _encrypted_ connection.
+
+Note also that when a cluster is using uploaded certificates, and a new node is added or joined to a cluster, the operation is performed with reference to a particular node that is already a member of the cluster. Since this _cluster node_ and this _new node_ must be able to connect with one another, each must trust the CA of the other. Therefore:
+
+* If the two nodes already have the same CA, connection and node-addition (or node-joining) can occur.
+* If the two nodes do _not_ have the same CA, the CA of each must be loaded onto the other; after which, connection and node-addition (or node-joining) can occur.
+
+### [](#readding-a-previously-removed-node)Re-Adding a Previously Removed Node
+
+When a node is removed from a cluster, its configuration is deleted. If the removed node is subsequently re-added to the cluster, it is added as a new node, with a new definition of its configuration. Consequently, the appropriate root certificate and chain certificate for the node must again be loaded.
+
+For more information on node removal, see [Removal](../../learn/clusters-and-availability/removal.md).
+
+## [](#regenerating-default-certificates)Regenerating Default Certificates
+
+_Default_ certificates provided automatically by Couchbase Server — including the _root_ certificate and each of the _node_ certificates for the cluster — can be _regenerated_ at any time, by means of the REST API. This means that the current node certificates and (if they have been uploaded) intermediate certificates are removed; and new, system-generated root and node certificates are made active for the node.
+
+Note that previously system-generated and uploaded root certificates remain in the trust store of the cluster, unless explicitly deleted. For information on regenerating certificates, see [Regenerate All Certificates](../../rest-api/rest-regenerate-all-certs.md). For information on deleting root certifictes, see [Delete Root Certificates](../../rest-api/delete-trusted-cas.md).
+
+## [](#further-information)Further Information
+
+For information on certificate-management by means of the REST API, see [ssl-manage](../../cli/cbcli/couchbase-cli-ssl-manage.md) and [Certificate Management API](../../rest-api/rest-certificate-management.md).
+
+For step-by-step instructions on creating _client_ certificates, see [Configure Client Certificates](configure-client-certificates.md).
+
+For an example of using the certificates and keys created on the current page and on [Configure Client Certificates](configure-client-certificates.md) to secure an _XDCR replication_, see [Specify Root and Client Certificates, and Client Private Key](../manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates).

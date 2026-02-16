@@ -1,0 +1,41 @@
+[View original HTML](/server/current/learn/buckets-memory-and-storage/vbuckets.html)
+
+> vBuckets are virtual buckets that break bucket data into smaller pieces to make distributing and replicating data across multiple nodes easier. 
+
+## [](#understanding-vbuckets)Understanding vBuckets
+
+Couchbase Server lets users and applications save data in binary or JSON format in named buckets. Each bucket contains keys and their associated values. See [Buckets](buckets.md) for detailed information about buckets.
+
+Couchbase Server breaks the data in buckets into smaller units called vBuckets (short for virtual buckets). Some people refer to vBuckets as shards. The vBuckets let Couchbase Server work with smaller chunks of data to ease distributing work around the cluster and maintaining data availability through replication.
+
+When it creates the bucket, Couchbase Server breaks it into a fixed number of vBuckets . Once created, the number of vBuckets in a bucket does not change. The number of vBuckets depends on the bucket’s storage backend (the system that manages the data storage) and the operating system running Couchbase Server:
+
+* On MacOS, Couchbase Server creates 64 vBuckets for each bucket, no matter what the storage engine is.
+* Buckets that use the Couchstore storage engine use 1024 vBuckets on Linux and Windows.
+* Buckets that use Magma storage engine can use either 128 or 1024 vBuckets on Linux and Windows. You choose the number of vBuckets when you create the bucket. If you’re using XDCR, review the [XDCR Compatibility](../clusters-and-availability/xdcr-overview.md#xdcr-compatibility) information on vBuckets for Server versions earlier than 8.0.
+
+The system distributes vBuckets evenly across the memory and storage resources of nodes that run the [Data Service](../services-and-indexes/services/data-service.md). The bucket’s data is distributed evenly across its vBuckets. This even distribution balances the workload of processing and maintaining data across all of the Data Service instances in the cluster.
+
+### [](#accessing-data-in-vbuckets)Accessing Data in vBuckets
+
+When reading or writing data, Couchbase Server uses a CRC32 hashing algorithm to map items to vBuckets. It hashes the item’s key, to determine which vBucket stores the item.
+
+The Cluster Manager tracks which nodes contain each vBucket. It also determines which vBuckets are active vs which are replicas (see [Active and Replica vBuckets](#active-vs-replica)). When the mapping changes, the Cluster Manager updates the vBucket map and notifies clients of the change.
+
+The following diagram shows the relationships between a bucket, its keys and values, the hashing algorithm, vBuckets, server mappings, and servers:
+
+![vbucketToNodeMapping](../_images/buckets-memory-and-storage/vbucketToNodeMapping.png) 
+
+When accessing data via keys, a client hashes the key to calculate which vBucket contains the data. It checks the vBucket map it got from the Cluster Manager to find the node containing the active vBucket. Then the client directly connects to the node to read or modify the data.
+
+Buckets organize their documents into [Scopes and Collections](../data/scopes-and-collections.md). Scopes and collections do not affect the way in which keys are allocated to vBuckets. However, each vBucket is aware of the scope and collection containing each of its keys.
+
+### [](#active-vs-replica)Active and Replica vBuckets
+
+The vBuckets that Couchbase Server uses to access and store data in a bucket are called active vBuckets. If you enable replicas for a bucket, each replica uses another set of vBuckets, called replica vBuckets. These replicas are stored across the cluster, similar to active vBuckets. The active vBucket and its replicas are always on different nodes in the cluster to protect against data loss from node failovers.
+
+For example, suppose you have a Magma bucket configured with 1024 vBuckets and two replicas on Linux. Then, Couchbase Server has a total of 3072 vBuckets distributed across the cluster for the bucket. In most cases, replica vBuckets are not actively used for data access. Most data read operations use active vBuckets, but the system can read items from replica vBuckets when needed. Data write operations write only to active vBuckets. However, durable writes can require that data be replicated from an active vBucket to a replica vBucket before Couchbase Server considers the write operation a success. See [Durability](../data/durability.md) for more information about durable writes.
+
+When the configuration of the cluster changes due to rebalance, failover, or node-addition, Couchbase Server promotes replica buckets to active if necessary. For example, if a node fails over, any active vBuckets on it becomes unavailable. Couchbase Server promotes replicas of the lost vBuckets to active to maintain data availability.
+
+During a rebalance, Couchbase Server redistributes active and replica vBuckets across the available nodes. For additional information about the distribution of vBuckets across the cluster, see [Availability](../clusters-and-availability/replication-architecture.md).

@@ -1,0 +1,235 @@
+[View original HTML](/server/7.6/n1ql/n1ql-language-reference/execute.html)
+
+> The EXECUTE statement executes a prepared statement. 
+
+## [](#prerequisites)Prerequisites
+
+### [](#query-context)Query Context
+
+A prepared statement is created and stored relative to the current _query context_. You can create multiple prepared statements with the same name, each stored relative to a different query context. This enables you to run multiple instances of the same application against different datasets.
+
+To execute a prepared statement, the query context must be the same as it was when the prepared statement was created; otherwise the prepared statement will not be found.
+
+You must therefore set the required query context, or unset the query context if necessary, before executing the prepared statement. If you do not set the query context, it defaults to the empty string.
+
+For further information, refer to [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+## [](#syntax)Syntax
+
+```ebnf
+execute ::= 'EXECUTE' name ( 'USING' parameters )?
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/execute.png) 
+
+name
+
+The name of the prepared statement. This has the format `[host:port]local-name-or-UUID`, and may consist of:
+
+* Optionally, the host and port of the node where the prepared statement was created, in square brackets, followed by
+* The local name that you specified for the prepared statement, or a UUID that was assigned automatically.
+
+If present, the host and port are used for [Statement Retrieval](#statement-retrieval).
+
+|  | If the name of the prepared statement contains hyphens, wrap the entire name in backticks (\`) or double quotation marks ("). |
+|  | ----------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#using-clause)USING Clause
+
+\[Optional\] The USING clause enables you to specify parameter values to use in the prepared statement.
+
+parameters
+
+The parameter values to use in the prepared statement. This may be:
+
+* An array of values, for positional parameters, or
+* An object containing name / value properties, for named parameters.
+
+For more details, refer to [Parameters](#parameters) below.
+
+## [](#statement-retrieval)Statement Retrieval
+
+The query engine first looks for the prepared statement on the currently connected node, using the local name or UUID. If the prepared statement is not found on the currently connected node, the query engine attempts to retrieve it from the node specified in the prepared statement name. Once retrieved, the query engine creates a local cached copy of the prepared statement, and executes it.
+
+An error is returned if the name does not identify a prepared statement.
+
+## [](#auto-reprepare)Auto-Reprepare
+
+Before execution, the query engine checks whether the statement plan is still valid — i.e. that all the indexes and keyspaces to which the plan refers are unchanged. If any indexes or keyspaces have changed, the statement is automatically prepared again, so that the plan matches the new set of resources.
+
+If this automatic reprepare succeeds, the statement simply executes as expected. However, if any required resources are found to be missing, execution of the affected prepared statement fails until those resources are created again. Once the resources are available again, execution proceeds without any further intervention.
+
+## [](#parameters)Parameters
+
+A prepared statement may contain parameters. These are replaced by a supplied value when the statement is executed. Parameters may be _named parameters_ or _positional parameters_.
+
+Named parameters are specified by name when the prepared statement is executed. In SQL++, named parameters are specified using an object containing name / value properties.
+
+```sqlpp
+EXECUTE NameParam
+USING {"city": "Paris", "country": "France"};
+```
+
+Positional parameters are specified by the position of each supplied parameter when the statement is executed. In SQL++, positional parameters are specified using an array of values.
+
+```sqlpp
+EXECUTE NumParam
+USING ["Paris", "France"];
+```
+
+|  | Alternatively, you can specify named parameters and positional parameters using the SQL++ REST API (/query/service endpoint), the cbq command line tool, or a software development kit (SDK). Named parameters can be specified as request-level parameters, and positional parameters can be specified using the args parameter. See [Configure Queries](../n1ql-manage/query-settings.md) for more information. When you specify parameters with the USING clause, you cannot also specify parameters at the same time using the SQL++ REST API, the cbq command line tool, or an SDK. When you do this, the query service returns error 5003: "cannot have both USING clause and request parameters". |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#examples)Examples
+
+Example 1\. Executing a prepared statement in SQL++
+
+The following example shows how to execute a prepared statement in SQL++.
+
+Request
+
+```sqlpp
+EXECUTE `[127.0.0.1:8091]24734829-c793-4b90-b8bd-74ff788be493`;
+```
+
+Example 2\. Executing a prepared statement without a name using the REST API
+
+The following example shows how to prepare the statement without specifying a name.
+
+Request
+
+```sh
+curl -v http://localhost:8093/query/service \
+     -d 'statement=PREPARE SELECT text FROM tweets
+                           WHERE rating > $r AND created_at > $date'
+```
+
+Response
+
+```json
+{
+  "requestID": "a339a496-7ed5-4625-9c64-0d7bf584a1bd",
+  "signature": "json",
+  "results": [
+  {  "encoded_plan": "H4sIAAAJbogA/5yRQU/6QBDFvwpZ/gdIIAAA==",
+    "name": "a1355198-2576-4e3d-af04-5acc77d8a681",
+     "operator": {
+            "#operator": "Sequence",
+            "~children": [
+            // Content redacted
+            ]
+            },
+     "signature": {
+     "text": "json"
+  },
+  "text": "PREPARE SELECT text FROM tweets WHERE rating > $r AND created_at > $date"
+  }
+  ],
+  "status": "success",
+  "metrics": {
+  "elapsedTime": "1.970679ms",
+  "executionTime": "1.889351ms",
+  "resultCount": 1,
+  "resultSize": 2261
+ }
+}
+```
+
+The following example uses the server-generated name of the prepared statement to execute the statement.
+
+Request:
+
+```sh
+curl -v http://localhost:8093/query/service \
+     -d 'prepared="a1355198-2576-4e3d-af04-5acc77d8a681"&$r=9.5&$date="1-1-2014"'
+```
+
+Response:
+
+```json
+{
+ "requestID": "1bd9956b-bc8e-478a-bd84-3955fe2db047",
+ "signature": {
+ "text": "json"
+ },
+ "results": [
+ {
+  "text": "Couchbase is my favorite database"
+ }
+ ],
+ "status": "success",
+ "metrics": {
+ "elapsedTime": "1.527795ms",
+ "executionTime": "1.443748ms",
+ "resultCount": 0,
+ "resultSize": 0
+ }
+}
+```
+
+Example 3\. Executing a prepared statement with a name using the REST API
+
+The following example specifies a `name` for the prepared statement.
+
+Request:
+
+```sh
+curl -v http://localhost:8093/query/service \
+     -d 'statement=PREPARE fave_tweets FROM SELECT text FROM tweets WHERE rating >= $r'
+```
+
+Response:
+
+```json
+{
+  "requestID": "a339a496-7ed5-4625-9c64-0d7bf584a1bd",
+  "signature": "json",
+  "results": [
+    {
+      "encoded_plan": "H4sIAAAJbogA/5yRQU/6QBDFvwpZ/gdIIAAA==",
+      "name": "fave_tweets",
+      "operator": {
+      // ...
+      }
+    }
+  ]
+}
+```
+
+The following example uses the `name` specified in the example above to run the prepared statement.
+
+Request:
+
+```sh
+curl -v http://localhost:8093/query/service -d 'prepared="fave_tweets"&$r=9.5'
+```
+
+Response
+
+```json
+{
+ "requestID": "1bd9956b-bc8e-478a-bd84-3955fe2db047",
+ "signature": {
+ "text": "json"
+ },
+ "results": [
+ {
+   "text": "Couchbase is my favorite database"
+  }
+  ],
+ "status": "success",
+ "metrics": {
+ "elapsedTime": "1.527795ms",
+ "executionTime": "1.443748ms",
+ "resultCount": 0,
+ "resultSize": 0
+ }
+ }
+```
+
+## [](#related)Related
+
+* For information on preparing a statement for execution, refer to [PREPARE](prepare.md).
+* For information on using prepared statements with the `cbq` command line shell, refer to [cbq: The Command Line Shell for SQL++](../n1ql-intro/cbq.md).
+* For information on using prepared statements with the Query REST API (`/query/service` endpoint), refer to [Query Service REST API](../../n1ql-rest-query/index.md).
+* For information on using prepared statements with an SDK, refer to [Prepared Statements for Query Optimization](../../../../java-sdk/current/concept-docs/n1ql-query.md#prepared-statements-for-query-optimization) and [Parameterized Queries](../../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md#parameterized-queries).

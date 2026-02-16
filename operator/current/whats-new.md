@@ -1,0 +1,56 @@
+[View original HTML](/operator/current/whats-new.html)
+
+Couchbase Kubernetes Operator 2.9 was released in December 2025\. New features and improvements are described below.
+
+For information about fixed and known issues, see the [Release Notes](release-notes.md).
+
+## [](#whats-new-290)New Features and Enhancements in 2.9
+
+Couchbase Kubernetes Operator 2.9 adds support for Couchbase Server 8.0 features and introduces a circuit breaker called Manual Intervention Required (MIR) mode. This release also improves the upgrade process by introducing a new upgrade object that enables more resilient automated upgrades.
+
+### [](#support-for-couchbase-server-8-0-features)Support for Couchbase Server 8.0 Features
+
+Couchbase Server 8.0 introduces several key features, listed in [What’s New in Version 8.0](../../server/current/introduction/whats-new.md), which are now configurable through Couchbase Kubernetes Operator 2.9\. These are the highlights:
+
+* **Encryption at Rest:** Added support for a new `CouchbaseEncryptionKey` custom resource to manage encryption keys and to specify which keys are used for each unit, such as buckets, configuration data, and logs.
+* **Magma as the Default Storage Engine:** In Couchbase Server 8.0, Magma with 128 vBuckets is the default storage engine for new buckets. Therefore, for CouchbaseBuckets, now the default storage engine is `magma` and the vBucketCount is `128`. Couchbase recommends setting the vBucket count to `1024` for high-throughput workloads.
+* **XDCR Conflict Logging for Active-Active Setups:** Added multiple settings to the CouchbaseBucket resource to set up XDCR Conflict Logging.
+* Other features such as enabling and disabling user accounts, and new bucket settings such as for warmup.
+
+### [](#manual-intervention-required-mir-mode)Manual Intervention Required (MIR) Mode
+
+The MirWatchdog is an out-of-band check that provides additional alerting. It’s used when the Operator cannot reconcile a cluster due to reasons outside its control and requires manual user intervention. Scenarios include TLS expiration, Couchbase authentication errors, and rebalance failures.
+
+This feature is disabled by default but can be enabled and configured by using the `mirWatchdog` field in the CouchbaseCluster CRD.
+
+For more information, see [Monitor for Manual Intervention Scenarios](tutorial-mirwatchdog.md).
+
+### [](#upgrade-process-improvements)Upgrade Process Improvements
+
+Autonomous upgrades now provide improved user input and control through a new `upgrade` object in the CouchbaseCluster specification, which contains all configurations for upgrading a cluster. The previous ServerClass image-based approach is now hard deprecated.
+
+This consolidation clarifies how to control and manage future upgrades. All existing upgrade fields `upgradeProcess`, `upgradeStrategy`, and `rollingUpgrade` are deprecated, and moved under the `upgrade` object.
+
+The new `upgrade` object has the following new fields:
+
+* `UpgradeOrderType`: The unit of upgrade that can be a Node, ServerGroup, ServerClass, or Service.
+* `UpgradeOrder`: The upgrade order of specified upgrade units.
+* `stabilizationPeriod`: The wait time in seconds before upgrading the next unit.
+* `previousVersionPodCount`: The number of pods to keep running on the previous version at the end of upgrade.
+
+For more information, see [Upgrade Couchbase Server](concept-upgrade.md) and [Upgrade a Couchbase Deployment](howto-couchbase-upgrade.md).
+
+### [](#other-improvements)Other Improvements
+
+The following are additional important improvements:
+
+* Support for changing the bucket eviction policy online without requiring a bucket restart.
+* The ability to disable DNS resolution verification when creating pods before activating them in the cluster.
+* Support for specifying `overheadMemory` for `autoResourceAllocation` to define a static overhead amount.
+* Operator-backup now supports Periodic Merge in addition to Full Only and Full Incremental. This strategy is better suited for some larger clusters. You can specify a merge schedule on the CouchbaseBackup resource.
+* Support for specifying the `cao.couchbase.com/additionalArgs` annotation on CouchbaseBackup and CouchbaseRestore resources to pass additional `cbbackupmgr` arguments to the container.
+
+## [](#more-information)More Information
+
+* [What’s New in Couchbase Server Version 8.0](../../server/current/introduction/whats-new.md)
+* [Couchbase Server Release Notes Version 8.0](../../server/current/release-notes/relnotes.md)

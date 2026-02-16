@@ -1,0 +1,158 @@
+[View original HTML](/server/7.2/rest-api/rest-statistics-multiple.html)
+
+> The REST API allows cluster-statistics to be retrieved for multiple metrics, in a single call. 
+
+## [](#http-methods-and-uris)HTTP Method and URI
+
+POST /pools/default/stats/range
+
+## [](#description)Description
+
+This method and URI allow cluster-statistics to be retrieved, based on the specification of one or more _metrics_. Statistics can be further defined through the specifying of _functions_; and/or _labels_ with values. Metrics, functions, labels, and values are expressed as an array of JSON objects; which is provided as data accompanying the call.
+
+An instance of _Prometheus_ runs on each node of the cluster; and the metrics for each node are duly stored in that node’s instance of Prometheus.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST /pools/default/stats/range
+ -d [ <data> ]
+
+Each `data` object within the array can contain the following parameters:
+
+{
+  "metric": [
+      [ <metric-specification> ],
+      "applyFunctions": [ <function> ],
+      "nodes": [ <node> ],
+      "nodesAggregation": <function>,
+      "start": <start_timestamp>,
+      "end":  <end_timestmamp>,
+      "step": <step>,
+      "timeout": <timeout>,
+      "alignTimestamps": true | false
+  ]
+}
+
+The parameters are as follows:
+
+* One or more `metric-specification` objects must be provided as an array. Each object takes the following form:
+
+{
+  "label": <label_name>,
+  "value": <label_val>,
+  "operator": "=" | "!=" | "=~" | "!~" | "any" | "not_any"
+}
+
+The value of the key `label`, `label_name`, must be a string that specifies how the metric is identified: for example, `name`, or `proc`. The value of the key `value`, `label_val`, must be a string that is the actual name used to identify the metric: for example, `sys_cpu_utilization_rate`. The value of the key `"operator"` must be `=` | `!=` | `=~` | `!~` | `any` | `not_any`.
+
+* `applyFunctions.`Can be any of the functions described in the section [function](rest-statistics-single.md#function), on the page [Getting a Single Statistic](rest-statistics-single.md).
+* `nodes`. An array each of whose elements is a string whose value is the IP address or domain name of a node in the cluster. If this is not specified, the default is that all nodes are inferred.
+* `nodesAggregation`. Whether and how aggregation of retrieved statistics is to be performed. Possible values are `max`, `min`, `sum`, and `avg`. The default is that no aggregation is performed.
+* `start`. The point at which the gathering of metrics commences, specified in seconds as a negative integer. The negative integer-value is added to the current time when execution occurs, so as to derive a historic timestamp. Metrics are then gathered for the time-period that starts at the historic timestamp. If no `start` value is specified, it defaults to `-60`. If no `end` value is specified, it defaults to the time of execution.
+* `end`. The point at which the gathering of metrics concludes, specified in seconds as a negative integer. The negative integer-value is added to the current time when execution occurs, so as to derive a historic timestamp. Metrics are then gathered for the time-period that starts at the historic timestamp specified for `start`, and ends at the historic timestamp specified for `end`. If no `end` value is specified, it defaults to the time of execution.
+* `step`. The length of the interval that occurs between each statistic-retrieval during the time-period that commences with `start` and concludes with `end`, specified as a positive integer. For example, if `start` is `-100`, `end` is `-40`, and `step` is `15`, a statistic is gathered at `-100`. `-85`, `-70`, `-55`, and `-40`. If no value is specified for `step`, it defaults to `10`.
+* `timeout`. The period after which execution times out, in milliseconds. The default is `5` minutes.
+* `alignTimestamps`. Whether to align timestamps so that each is a multiple of `10` milliseconds. The value can be `true` or `false` (which is the default). For example, if the value is `false`, consecutive timestamps might be `1617274978`, `1617274988`, and `1617274998`; whereas if the value is `true`, they might be `1617275000`, `1617275010`, and `1617275020`.
+
+## [](#responses)Responses
+
+A malformed URI returns `404 Object Not Found`. Failure to authenticate returns `401 Unauthorized`. If an internal error causes the call the fail, `500` is returned.
+
+If the URI is correct, and authentication succeeds, the operation is deemd successful. Success returns `200 OK`, and an object of the following kind. Note that incorrect specification of `metric-name` or `function-expression` does not produce execution-failure: indications of errors appear in the returned object.
+
+## [](#examples)Examples
+
+The following example returns information on the metrics `sysproc_cpu_utilization` (specifying the `indexer` process) and `kv_disk_write_queue` (specifying the `travel-sample` bucket). Note that the example uses [jq](https://stedolan.github.io/jq/), to format the output for readability:
+
+curl -u Administrator:password -X POST http://10.144.210.101:8091/pools/default/stats/range \
+-d '[
+  {
+    "metric": [
+      {"label": "name", "value": "sysproc_cpu_utilization"},
+      {"label": "proc", "value": "indexer"}
+    ],
+    "applyFunctions": ["avg"],
+    "alignTimestamps": true,
+    "step": 15,
+    "start": -60
+  },
+  {
+    "metric": [
+      {"label": "name", "value": "kv_disk_write_queue"},
+      {"label": "bucket", "value": "travel-sample"}
+    ],
+    "applyFunctions": ["sum"],
+    "step": 60,
+    "start": -300
+  }
+]' | jq '.'
+
+If successful, this call returns a JSON array such as the following:
+
+[
+  {
+    "data": [
+      {
+        "metric": {
+          "nodes": [
+            "10.144.210.101:8091"
+          ]
+        },
+        "values": [
+          [
+            1623745200,
+            "3"
+          ],
+          [
+            1623745215,
+            "3"
+          ],
+          [
+            1623745230,
+            "3"
+          ],
+          [
+            1623745245,
+            "4"
+          ],
+          [
+            1623745260,
+            "3"
+          ]
+        ]
+      }
+    ],
+    "errors": [],
+    "startTimestamp": 1623745200,
+    "endTimestamp": 1623745260
+  },
+  {
+    "data": [
+      {
+        "metric": {
+          "nodes": [
+            "10.144.210.101:8091"
+          ],
+          "name": "kv_disk_write_queue"
+        },
+        "values": [
+          [
+            1623745200,
+            "0"
+          ],
+          [
+            1623745260,
+            "0"
+          ]
+        ]
+      }
+    ],
+    "errors": [],
+    "startTimestamp": 1623744960,
+    "endTimestamp": 1623745260
+  }
+]
+
+## [](#see-also)See Also
+
+A single statistic can be returned by means of a single call. See [Getting a Single Statistic](rest-statistics-single.md). For a complete list of available metrics that can be queried, see the [Metrics Reference](../metrics-reference/metrics-reference.md).

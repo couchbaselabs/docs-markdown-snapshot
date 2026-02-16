@@ -1,0 +1,699 @@
+[View original HTML](/enterprise-analytics/2.0/reference/rbac.html)
+
+> Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
+
+## [](#description)Description
+
+|  | The resulting list of this API also include roles that are not applicable to Enterprise Analytics. For more information about roles specific to Enterprise Analytics, see [Role-Based Access Control (RBAC)](#manage:rbac.adoc). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+An Enterprise Analytics _role_ permits one or more _resources_ to be accessed according to defined _privileges_. Roles can be assigned to individual users, and to groups, by means of the REST API.
+
+## [](#get-information-on-users-and-groups)Retrieve information about Roles, Permissions, Users, and Groups
+
+The REST API allows information to be retrieved on available roles and permissions; and on the cluster’s currently defined users and groups. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
+
+### [](#list-roles)List Roles
+
+To list roles, use the `GET` method with the `/settings/rbac/roles` URI. The curl syntax is as follows:
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/rbac/roles
+  -u <username:password>
+
+If successful, this returns `200 OK`, and an array that contains a description of every available role.
+
+#### [](#example-list-roles)Example: List Roles
+
+The following example lists the roles for the current cluster.
+
+|  | In this example (as in others, below) the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate readability. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+
+curl -v -X GET http://10.143.201.101:8091/settings/rbac/roles \
+-u Administrator:password | jq
+
+If successful, the call returns an array, containing information about every role:
+
+[
+  {
+    "role": "admin",
+    "name": "Full Admin",
+    "desc": "Can manage all cluster features (including security). This user can access the web console. This user can read and write all data.",
+    "ce": true
+  },
+  {
+    "role": "ro_admin",
+    "name": "Read-Only Admin",
+    "desc": "Can view all cluster statistics. This user can access the web console. This user can read some data.",
+    "ce": true
+  },
+  {
+    "role": "security_admin",
+    "name": "Security Admin",
+    "desc": "Can view all cluster statistics and manage user roles, but not grant Full Admin or Security Admin roles to other users or alter their own role. This user can access the web console. This user cannot read data."
+  },
+            .
+            .
+
+### [](#list-current-users-and-their-roles)List Current Users and Their Roles
+
+To list current users, use the `GET` method with the `/settings/rbac/users` URI. The curl syntax is as follows:
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/rbac/users
+  -u <username:password>
+
+This returns an array, each of whose members is an object containing information about a currently defined user.
+
+#### [](#example-list-current-users)Example: List Current Users
+
+The following example lists the users currently defined on the cluster:
+
+curl -v -X GET http://10.144.210.101:8091/settings/rbac/users \
+-u Administrator:password | jq
+
+If successful, the call returns `200 OK`, and an array such as the following:
+
+[[
+  {
+    "id": "externalUser",
+    "domain": "local",
+    "roles": [
+      {
+        "role": "scope_admin",
+        "bucket_name": "demoBucket",
+        "scope_name": "demoScope",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      },
+      {
+        "role": "ro_admin",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      }
+    ],
+    "groups": [],
+    "external_groups": [],
+    "name": "",
+    "password_change_date": "2021-02-01T09:46:04.000Z"
+  },
+  {
+    "id": "testUser",
+    "domain": "local",
+    "roles": [
+      {
+        "role": "data_reader",
+        "bucket_name": "testBucket",
+        "scope_name": "MyScope",
+        "collection_name": "MyCollection",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      }
+    ],
+    "groups": [],
+    "external_groups": [],
+    "name": "",
+    "password_change_date": "2021-02-01T09:40:23.000Z"
+  },
+  {
+    "id": "dgreen",
+    "domain": "local",
+    "roles": [
+      {
+        "role": "data_reader",
+        "bucket_name": "testBucket",
+        "scope_name": "MyScope",
+        "collection_name": "MyCollection",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      },
+      {
+        "role": "query_external_access",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      },
+      {
+        "role": "analytics_reader",
+        "origins": [
+          {
+            "type": "user"
+          }
+        ]
+      }
+    ],
+    "groups": [],
+    "external_groups": [],
+    "password_change_date": "2021-02-01T09:56:29.000Z"
+  }
+]
+
+In this example, each array-member contains values that specify the `domain`, the `role(s)`, the `groups`, the `external_groups`, the `name`, and the last `password_change_date` for a defined user. Where roles are not global, the bucket, scope, and collection to which permissions are restricted are specified, as appropriate.
+
+### [](#check-permissions)Check Permissions
+
+The REST API allows the permissions of the authenticating administrator to be confirmed, by means of the `POST` method and the `/pools/default/checkPermissions` URI. The curl syntax is as follows:
+
+curl -X POST
+  http://<ip-address-or-domain-name>:8091/pools/default/checkPermissions
+  -u <username>:<password>
+  -d <permissions-check-specification>
+
+The `permissions-check-specification` must indicate whether the check is to be made at the level of the cluster (for permissions associated with global roles), or at the level of a bucket within the cluster (for permissions associated with bucket-specific roles); or at the level of a specific data-set associated with the buckets (such as `stats` or `views`); and must specify the permission (such as `read` or `write`) for which the check is to be made. Cluster, bucket, and data-set, if specified, must be separated from one another with a period. The permission to be checked for must be preceded by the `!` character.
+
+A successful call returns `200 OK`, plus an object indicating whether the authenticating administrator’s possession of the specified permission is `true` or `false`.
+
+For an alternative procedure whereby the authenticating administrator can retrieve information about their assigned roles, see [Who Am I?](rest-whoami.md).
+
+#### [](#examples-check-permissions)Examples: Check Permissions
+
+The following example checks whether the authenticating administrator has `admin` permissions on the cluster (which is to say, the permission associated with the `cluster_admin` role):
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/checkPermissions \
+-u gsanderson:gsanderson \
+-d 'cluster!admin'
+
+If the call is successful, and the authenticating administrator does has the specified permission, the following object is returned:
+
+{"cluster!admin":true}
+
+The following example checks whether the authenticating administrator has `read` permission on `stats` for the `travel-sample` bucket, and `write` permission on `travel-sample` data:
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/checkPermissions \
+-u Administrator:password \
+-d 'cluster.bucket[travel-sample].stats!read,cluster.bucket[travel-sample]!write' | jq
+
+An object such as the following is returned:
+
+{
+  "cluster.bucket[travel-sample].stats!read": true,
+  "cluster.bucket[travel-sample]!write": true
+}
+
+### [](#list-currently-defined-groups)List Currently Defined Groups
+
+To list currently defined user-groups, use the `GET` method with the `/settings/rbac/groups/`URI. The curl syntax is as follows:
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/rbac/groups
+  -u <username:password>
+
+If successful, the call returns `200 OK`, and an array each of whose members is an object containing information about one of the user-groups currently defined on the cluster.
+
+#### [](#example-list-currently-defined-groups)Example: List Currently Defined Groups
+
+The following example lists all user-groups currently defined on the cluster:
+
+curl -v -X GET http://10.143.201.101:8091/settings/rbac/groups \
+-u Administrator:password | jq
+
+If successful, the call returns an array such as the following:
+
+[
+  {
+    "id": "ClusterAdmins",
+    "roles": [
+      {
+        "role": "cluster_admin"
+      }
+    ],
+    "ldap_group_ref": "uid=cbadmins,ou=groups,dc=example,dc=com",
+    "description": "Enterprise Analytics Cluster Administrators"
+  },
+  {
+    "id": "DataReaderGroup",
+    "roles": [
+      {
+        "role": "data_reader",
+        "bucket_name": "testBucket",
+        "scope_name": "MyScope",
+        "collection_name": "MyCollection"
+      },
+      {
+        "role": "data_reader",
+        "bucket_name": "demoBucket",
+        "scope_name": "demoScope",
+        "collection_name": "demoCollection"
+      }
+    ],
+    "ldap_group_ref": "",
+    "description": ""
+  }
+]
+
+Thus, the array contains two members, which respectively contain information about the `ClusterAdmins`, and the `DataReaderGroup` groups.
+
+|  | The ClusterAdmins group is shown to have an ldap\_group\_ref: meaning that it corresponds to an LDAP group, defined on the LDAP server. For information, see [Native LDAP Support](#learn:security/authentication-domains.adoc#native-ldap-support). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#create-users-and-groups)Create Users and Groups
+
+The REST API allows users and groups to be created, and roles thereby assigned. Curl syntax, parameter-descriptions, examples, and call-specific responses are described in the subsections below. See the section [Responses](#responses), for further descriptions of error and other notifications.
+
+Users can be either _local_ or _external_. A local user may have the same username as an external user.
+
+|  | A cluster running Enterprise Analytics _Enterprise Edition_ can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty, local users. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Groups can optionally be mapped to _external groups_, defined on an LDAP server. For information, see [Authentication Domains](#learn:security/authentication-domains.adoc).
+
+### [](#create-a-local-user-and-assign-roles)Create a Local User, and Assign Roles
+
+To create a local user, and assign them one or more roles, use the `PUT` method with the `/settings/rbac/users/local` URI. The curl syntax is as follows:
+
+curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/users/local/<new-username>
+  -u <username>:<password>
+  -d password=<password>
+  -d roles=[ <role> ]*
+
+The specified `password` must conform to the settings established as described in [Setting Password Policy](rest-set-password-policy.md). _Either_ the `roles` flag _or_ the `groups` flag may be specified. If multiple instances of `role` are specified, these must be comma-separated. Roles that permit data-access can be assigned with reference to a bucket, to a scope within a bucket, or to a collection within a scope. Syntactically, the assignment should be specified in square brackets, immediately after the role-name; with the bucket-name preceding (if one is specified) the scope-name; and the scope-name preceding (if one is specified) the collection-name. The names of bucket, scope, and collection must be separated by colons.
+
+If successful, the call returns `200 OK`. No object is returned.
+
+|  | In Enterprise Analytics, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the /settings/rbac/users/local URI can be used with the PATCH method: this allows the password parameter to be used, specifying a new password; and the username and roles parameters to be omitted. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#example-create-local-users)Examples: Create Local Users, Assigning Roles
+
+The following example creates a local user, assigning a single role.
+
+curl -v -X PUT http://10.143.201.101:8091/settings/rbac/users/local/dgreen \
+-u Administrator:password \
+-d password=pwdpwd \
+-d roles=ro_admin
+
+This assigns user `dgreen` the `ro_admin` role.
+
+To change the password-assignment for `dgreen`, while leaving their role-assignment as `ro_admin`, use the `/settings/rbac/users/local` URI with the `PATCH` method, as follows:
+
+curl -v -X PATCH http://localhost:8091/settings/rbac/users/local/dgreen \
+-u Administrator:password \
+-d password=pwdpwdpwd
+
+Following this use of the `PATCH`, method, `dgreen` continues to have the same role-assignments as before, but has been assigned a new password.
+
+Note that whenever a new user is to be assigned multiple roles, the roles must be comma-separated. If a role is to be limited to a specific bucket, the bucket-name must follow the name of the role, without a separator, enclosed in square-brackets. This is demonstrated by the following example:
+
+curl -v -X PUT http://10.143.201.101:8091/settings/rbac/users/local/rbrown \
+-u Administrator:password \
+-d password=rbrownpassword \
+-d roles=bucket_admin[travel-sample],data_reader[beer-sample:my_scope:my_collection]
+
+Thus, the new user `rbrown` is assigned the `bucket_admin` role on the `travel-sample` bucket, and is assigned the `data_reader` role on the `my_collection` collection; which resides in the `my_scope` scope, in the `beer-sample` bucket.
+
+The following example assigns one global role, and one bucket-specific:
+
+curl -v -X PUT http://10.143.201.101:8091/settings/rbac/users/local/krichards \
+-u Administrator:password \
+-d password=krpassword \
+-d roles=cluster_admin,bucket_admin[travel-sample]
+
+Thus, the new user `krichards` is assigned the `cluster_admin` role (this being a global role), and the `bucket_admin` role for the `travel-sample` bucket only.
+
+### [](#create-a-local-user-and-assign-to-a-group)Create a Local User, and Assign to a Group
+
+To create a local user, and assign them to a group — thereby ensuring that they inherit the role or roles already assigned to the specified group — again use the `PUT` method with the `/settings/rbac/users/local/<new-username>` URI; this time, using the `groups` flag, instead of the `roles` flag. The curl syntax is as follows:
+
+curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/users/local/<new-username>
+  -u <username>:<password>
+  -d password=<password>
+  -d groups=[ <groupname> ]*
+
+If multiple instances of `groupname` are specified, each should be separated from the next with a comma. Each `groupname` must be the name of an existing group.
+
+If successful, the call returns `200 OK`.
+
+#### [](#example-create-user-and-assign-to-a-group)Example: Create a Local User, and Assign to a Group
+
+The following example creates a local user named `sdavis`, and assigns them to two existing groups:
+
+curl -v -X  PUT http://10.143.201.101:8091/settings/rbac/users/local/sdavis \
+-u Administrator:password \
+-d groups=ClusterAdmins,XDCRAdmins \
+-d password=Sd4v1s938
+
+If successful, the call creates local user `sdavis` and adds them to the `ClusterAdmins` group and to the `XDCRAdmins` group.
+
+### [](#create-an-external-user-and-assign-roles)Create an External User, and Assign Roles
+
+To create an external user, and assign them one or more roles, use the `PUT` method with the `/settings/rbac/users/external/<new-username>` URI. The curl syntax is as follows:
+
+curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/users/external/<new-username>
+  -u <username:password>
+  -d roles=[ <role> ]*
+
+|  | No password needs to be specified, since this is expected to have been defined on an external server: the external server will be contacted by Enterprise Analytics, as part of the user-authentication procedure. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+Roles that permit data-access can be assigned with reference to a bucket, to a scope within a bucket, or to a collection within a scope. Syntactically, the assignment should be specified in square brackets, immediately after the role-name; with the bucket-name preceding (if one is specified) the scope-name; and the scope-name preceding (if one is specified) the collection-name. The names of bucket, scope, and collection must be separated by colons.
+
+If successful, the call returns `200 OK`.
+
+#### [](#example-create-an-external-user-and-assign-roles)Example: Create an External User, Assigning Roles
+
+The following example creates an external user named `wgrey`:
+
+curl -v -X PUT -u Administrator:password \
+http://10.143.201.101:8091/settings/rbac/users/external/wgrey \
+-d roles=cluster_admin,data_reader[beer-sample:my_scope:my_collection]
+
+The new, external user is thus assigned the `cluster_admin` role; and is assigned the `data_reader` role on the collection `my_collection`, which resides in the `my_scope` scope, in the `beer-sample` bucket.
+
+### [](#create-an-external-user-and-assign-to-a-group)Create an External User, and Assign to a Group
+
+To create an external user, and assign them to one or more groups, use the `PUT` method with the `/settings/rbac/users/external/<new-username>` URI. The curl syntax is as follows:
+
+curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/users/external/<new-username>
+  -u <username:password>
+  -d groups=[ <group> ]*
+
+Each specified `group` must be the name of a Couchbase-Server user-group, defined on the cluster. The external user, when authenticated on the external server, will be granted the roles associated with each of the specified groups.
+
+Note that if the external user has been defined on the LDAP server as belonging to a particular LDAP group, and this LDAP group has been previously _mapped_ to an existing Couchbase-Server group, the user is granted the roles associated with the existing Couchbase-Server group, even if this Couchbase-Server group is not specified by means of the `groups` flag.
+
+For information about mapping LDAP groups to Couchbase-Server groups, see [Create a Group and Assign it Roles](#create-a-group-and-assign-it-roles), below.
+
+#### [](#create-an-external-user-assigning-to-a-group)Example: Create an External User, Assigning to a Group
+
+The following example creates an external user named `rjones` and assigns them to two groups:
+
+curl -v -X PUT -u Administrator:password \
+http://10.143.201.101:8091/settings/rbac/users/external/rjones \
+-d groups=ClusterAdmins,XDCRAdmins
+
+The new user `rjones` is thus assigned to the `ClusterAdmins` and `XDCRAdmins` groups. The user, once authenticated on an external server, inherits the roles associated with these Couchbase-Server groups.
+
+### [](#create-a-group-and-assign-it-roles)Create a Group, and Assign it Roles
+
+Enterprise Analytics allows the creation of local user-groups, to which roles can be assigned. Each user, local or external, who is a member of such a group inherits the roles that have been assigned to the group. Optionally, a local group can be _mapped_ to an external, LDAP group: this means that successfully authenticated external users who are a member of one or more LDAP groups can inherit, on Enterprise Analytics, the roles assigned to the corresponding local user-groups.
+
+All these actions can be performed by means of the REST API, using the `PUT` method and the `/settings/rbac/groups/<new-groupname>` URI. The curl syntax is as follows:
+
+curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/groups/<new-groupname>
+  -u <username>:<password>
+  -d roles=[ <role> ]*
+  -d description=<description>
+  --data-urlencode ldap_group_ref=<ldap-group-reference>
+
+Each specified `role` must be a Couchbase-Server role: each will be assigned to the new group, whose name is specified by `new-groupname`. Multiple roles must be separated by commas. The optional `description` can be multiple words, which must be separated from each other by the `+` character. The optional `ldap_group_ref`, which must be specified as URL-encoded, specifies an existing LDAP group to which the new, local Couchbase-Server group will be mapped.
+
+If successful, the call returns `200 OK`.
+
+#### [](#examples-create-groups)Examples: Create Groups
+
+The following example creates a local group, and assigns it roles:
+
+curl -v -X PUT -u Administrator:password \
+http://10.143.201.101:8091/settings/rbac/groups/roAdminGroup \
+-d roles=ro_admin
+
+The example thus creates a new group named `roAdminGroup`, assigning the group the `ro_admin` role. All users who become members of `roAdminGroup` will thereby inherit the `ro_admin` role.
+
+The following example creates a new local group, mapping it to an external, LDAP group.
+
+curl -v -X PUT http://10.143.201.101:8091/settings/rbac/groups/admins \
+-u Administrator:password \
+-d roles=cluster_admin \
+-d description=Couchbase+Server+Cluster+Administrators \
+--data-urlencode ldap_group_ref='uid=cbadmins,ou=groups,dc=example,dc=com'
+
+The new, local group `admins` is thus created, and is assigned the `cluster_admin` role. The `description` _Couchbase Server Cluster Administrators_ is provided. The `ldap_group_ref` specifies that the new, local group be mapped to an existing LDAP group named `cbadmins`: therefore, users who successfully authenticate via LDAP, and are members of `cbadmins`, automatically inherit the roles assigned locally to the Couchbase-Server `admins` group. NOTE: In consequence, that the _username_ of such users may not be registered at all on Enterprise Analytics: since their authentication occurs on the LDAP server; and the roles they require for Enterprise Analytics-access may be acquired entirely through one or more mappings between Enterprise Analytics and LDAP user-groups.
+
+## [](#delete-users-and-groups)Delete Users and Groups
+
+Users and groups can be deleted by means of the `DELETE` method and appropriate URI. The curl syntax is as follows:
+
+curl -X DELETE
+  http://<ip-address-or-hostname>:8091/settings/rbac/users/local/<local-username>
+  -u <username>:<password>
+
+curl -X DELETE
+  http://<ip-address-or-hostname>:8091/settings/rbac/users/external/<external-username>
+  -u <username>:<password>
+
+curl -X DELETE
+  http://<ip-address-or-hostname>:8091/settings/rbac/groups/<groupname>
+  -u <username>:<password>
+
+The `DELETE` method, used with the `/settings/rbac/users/local/<local-username>` URI, deletes a local user; used with the `/settings/rbac/users/external/<external-username>` URI, deletes and external user; and used with the `/settings/rbac/groups/<groupname>` URI, deletes a local group.
+
+In each case, if the call is successful, `200 OK` is returned.
+
+#### [](#examples-delete-users-and-groups)Examples: Delete Users and Groups
+
+The following example deletes a local user:
+
+curl -X DELETE  http://10.143.201.101:8091/settings/rbac/users/local/dgreen \
+-u Administrator:password
+
+The local user `dgreen` is thus deleted from the Couchbase-Server cluster.
+
+The following example deletes an external user:
+
+curl -X DELETE  http://10.143.201.101:8091/settings/rbac/users/external/wgrey \
+-u Administrator:password
+
+The external user `wgrey` is thus deleted from the Couchbase-Server cluster. The user continues to exist on the external server on which their authentication is performed.
+
+The following example deletes a group:
+
+curl -v -X DELETE http://10.143.201.101:8091/settings/rbac/groups/ClusterAdmins \
+-u Administrator:password
+
+The local group `ClusterAdmins` is thus deleted. Users defined on the Couchbase-Server cluster as either local or external, whose roles were derived entirely from their membership of the `ClusterAdmins` group, henceforth continue to be registered as local users, but are assigned no roles; and therefore no longer have access to the Couchbase-Server cluster. If the `ClusterAdmins` group was mapped to an LDAP group, LDAP-authenticated users whose Couchbase-Server roles were derived entirely from that mapping are henceforth assigned no roles; and therefore no longer have access to the Couchbase-Server cluster.
+
+## [](#responses)Responses
+
+If successful, `200 OK` is given.
+
+A malformed URI gives `405 Method Not Allowed`. Failure to authenticate gives `401 Unauthorized`. An improperly specified role fails with `400 Bad Request` and the message `{"errors":{"roles":"Cannot assign roles to user because the following roles are unknown, malformed or role parameters are undefined: [ro_admine]"}}`. An attempt to delete an already deleted user or group fails with `404 Object not found`, and a message such as `"User was not found."` or `"Group was not found."`. An attempt to add a user to one or more non-existent groups fails with `400 Bad Request` and an error notification such as `"groups":"Groups do not exist: ClusterAdmins,XDCRAdmins"`.
+
+The creation of an already existing group or local or external user succeeds with `200 OK`: the user is recreated with the newly specified role-assignments and group-memberships; and the group is recreated with the newly specified role-assignments and, optionally, a newly specified mapping.
+
+## [](#backup-and-restore-users-and-groups)Backup and Restore Users and Groups
+
+Use the `/settings/rbac/backup` endpoint to back up and restore users and groups. It’s useful if you want to transfer or synchronize users between different database clusters.
+
+### [](#backup-users-and-user-groups)Backup Users and User Groups
+
+Use the `GET` method with the `/settings/rbac/backup` endpoint to back up users and user groups in the database, including the Full Administrator account.
+
+Syntax
+
+```console
+ curl -X GET -u <administrator>:<password>
+    http://<host>:<port>/settings/rbac/backup
+    --data-urlencode 'exclude=<filterExression>'
+    --data-urlencode 'include=<filterExression>'
+```
+
+When called without parameters, the backup endpoint returns all of the users and groups defined in the database in an opaque string. The format and content of the string returned by this call are not guaranteed and may change over time.
+
+Example
+
+The following example backs up all users and groups to a file named `full.backup`.
+
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+
+|  | The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Parameters
+
+exclude=<filterExpression>
+
+Excludes users and user groups from the backup. The backup skips any user or group that matches the `filterExpression`. The `filterExpression` can be one of the following:
+
+* `*`: excludes everything.
+* `admin`: excludes the Full Administrator
+* `group:<groupWildcard>`: excludes user group definitions whose name matches the `groupWildcard` wildcard expression. For example, `exclude=group:admin*` excludes any groups whose name starts with the string `admin`.
+* `user:<local|external|*>:<userWildcard>`: excludes users. The `local`, `external`, or `*` expression sets the authentication domain to which the argument applies. The `userWildcard` wildcard expression determines which usernames the backup excludes. For example, `exclude=user:*:john*` excludes any user whose username starts with the string `john` in both the internal and external authentication domain.
+* `permission:<permissionExpression>`: excludes user groups and users who have the permission matching `permissionExpression`. For example, `exclude=permission:cluster!backup_admin` excludes any user or group that has the backup admin permission at the database level.
+
+include=<filterExression>
+
+Includes matching users and groups in the backup. The backup only includes users or groups that match the `filterExpression`. It excludes all users and groups that do not match the expression. The `filterExpression` can be one of the following:
+
+* `*`: includes everything.
+* `admin`: includes only the Full Administrator
+* `group:<groupWildcard>`: includes only group definitions whose name matches the `groupWildcard` wildcard expression. For example, `include=group:analyst*` includes only groups whose name starts with the string `analyst`.
+* `user:<local|external|*>:<userWildcard>`: includes users. The `local`, `external`, or `*` expression sets the authentication domain to which the argument applies. The `userWildcard` wildcard expression determines which usernames the backup includes. For example, `include=user:local:tom` includes just the user named `tom` defined in the local authentication domain.
+* `permission:<permissionExpression>`: includes groups and users who have the permission in the `permissionExpression`. For example, `include=cluster.collection[travel-sample:*:*].data.docs!any` includes any user or group that has permissions for the documents in the `travel-sample` bucket.
+
+The `exclude` and `include` parameters are mutually exclusive. You cannot use both in the same method call. However, you can have multiple instances of one of the parameters in the method. For example, you can use two instances of the `include` parameter in a single method call. The resulting backup contains the users and groups that match either `include` parameter.
+
+The following example backs up all users defined in the local authentication domain and all user groups to a file named `local-users-and-groups.backup`. It does not include the Full Administrator, as that account is treated differently than locally defined users.
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+The following example backs up all users and user groups except the Full Administrator.
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+This example backs up just user groups:
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+This example backs up all local users plus the Full Administrator:
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+### [](#restore-users-and-groups)Restore Users and Groups
+
+Use the `PUT` method with the `/settings/rbac/backup` endpoint to restore users and groups from a backup. If the call is successful, it returns a JSON report indicating what it restored and what it skipped.
+
+Syntax
+
+```console
+ curl -X PUT -u <administrator>:<password>
+    http://<host>:<port>/settings/rbac/backup
+    --data-urlencode 'backup=<backupData>''
+    -d canOverwrite=<true|false>
+```
+
+Parameters
+
+backup=<backupData>
+
+Required parameter containing the URL encoded backup data returned by a previous GET call.
+
+canOverwrite=<true|false>
+
+Boolean value that controls whether the restore overwrites any existing users or groups in the database that also exist in the backup. Defaults to false, which means the restore does not overwrite any already-existing users or user groups in the database.
+
+Example
+
+The following example backs up all users and groups by calling the `GET` method on the `/settings/rbac/backup` endpoint and saving them to a file. Then it deletes the user with the username `user2` by calling the DELETE method (see [Delete Users and Groups](#delete-users-and-groups)). Finally, it restores `user2` by calling the `PUT` method on the `/settings/rbac/backup`, passing it the backup file.
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+The output of running these commands:
+
+```json
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+The following example demonstrates overwriting user accounts and groups in the database that are also in the backup.
+
+```console
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+The output from running the previous command is:
+
+```json
+Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
+```
+
+## [](#audit-the-management-of-users-and-roles)Audit the Management of Users and Roles
+
+Enterprise Analytics allows the management of users and roles to be _audited_. For a conceptual overview of auditing, see [Auditing](#learn:security/auditing.adoc). For instructions on the management and configuration of auditing, see [Manage Auditing](../manage/manage-security/manage-auditing.md). Note that the auditing facility is _off_ by default: therefore it must be explicitly enabled, in order to be used; and the scope of events to be audited may need to be explicitly specified.
+
+Once auditing is enabled, the file `audit.log` is written to an _audit log directory_, whose location is configurable. Details of actions taken in the management of users and groups are recorded in this file.
+
+For example, if the following call is used to create a user:
+
+curl -v -X PUT http://10.143.201.101:8091/settings/rbac/users/local/dgreen \
+-u Administrator:password \
+-d password=pwdpwd \
+-d roles=ro_admin
+
+The file `audit.log` might be examined as follows:
+
+sudo more audit.log | grep dgreen | jq '.'
+
+This produces output such as the following:
+
+{
+  "description": "User was added or updated",
+  "groups": [],
+  "id": 8232,
+  "identity": {
+    "domain": "local",
+    "user": "dgreen"
+  },
+  "name": "set user",
+  "real_userid": {
+    "domain": "builtin",
+    "user": "Administrator"
+  },
+  "reason": "added",
+  "remote": {
+    "ip": "10.143.201.101",
+    "port": 36328
+  },
+  "roles": [
+    "ro_admin"
+  ],
+  "timestamp": "2020-08-19T03:25:27.513-07:00"
+}
+
+This confirms that the user was created, with the specified roles; and provides additional contextual information.
+
+Likewise, if the following statement is used to create a group:
+
+curl -v -X PUT -u Administrator:password \
+http://10.143.201.101:8091/settings/rbac/groups/roAdminGroup \
+-d roles=ro_admin
+
+The file `audit.log` might be examined as follows:
+
+sudo more audit.log | grep roAdminGroup | jq '.'
+
+This produces output such as the following:
+
+{
+  "description": "User group was added or updated",
+  "group_name": "roAdminGroup",
+  "id": 8244,
+  "name": "set user group",
+  "real_userid": {
+    "domain": "builtin",
+    "user": "Administrator"
+  },
+  "reason": "updated",
+  "remote": {
+    "ip": "10.143.201.101",
+    "port": 36334
+  },
+  "roles": [
+    "ro_admin"
+  ],
+  "timestamp": "2020-08-19T03:26:40.125-07:00"
+}
+
+This confirms that the group `roAdminGroup` was created, with the specified roles, and provides additional contextual information.
+
+## [](#see-also)See Also
+
+See [Authentication Domains](#learn:security/authentication-domains.adoc), for an overview of local and external domains, and how to define users. See [Authorization](#learn:security/authorization-overview.adoc), for an introduction to the principles of Couchbase authorization, including Role-Based Access Control. All roles defined by Enterprise Analytics are listed and explained in [System-Defined Roles](../manage/manage-security/system-defined-roles.md).
+
+[Manage Users, Groups, and Roles](../manage/manage-security/manage-users-and-roles.md) provides step-by-step examples using the UI, CLI, and REST API. See [Configure LDAP](../manage/manage-security/configure-ldap.md) For information about all aspects of LDAP-authentication configuration, including the mapping of groups.
+
+Information about configuring LDAP with the REST API is provided in [Configure LDAP](#reference/rest-configure-ldap.adoc).
+
+Comprehensive information about managing users, groups, and roles with the CLI is provided on the reference page for [user-manage](#cli/couchbase-cli-user-manage.adoc).
+
+For a conceptual overview of auditing, see [Auditing](#learn:security/auditing.adoc). For instructions on the management and configuration of auditing, see [Manage Auditing](../manage/manage-security/manage-auditing.md).

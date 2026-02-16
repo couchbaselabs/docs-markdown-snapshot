@@ -1,0 +1,435 @@
+[View original HTML](/server/7.2/learn/views/views-query-samples.html)
+
+> This section provides general information and query examples. 
+
+Building views and querying the indexes they generate is a combined process based both on the document structure and the view definition. Writing an effective view to query your data may require changing or altering your document structure, or creating a more complex view in order to allow the specific selection of the data through the querying mechanism.
+
+For background and examples, the following selections provide a number of different scenarios and examples have been built to demonstrate the document structures, views and querying parameters required for different situations.
+
+## [](#general-advice)General advice
+
+There are some general points and advice for writing all views that apply irrespective of the document structure, query format, or view content.
+
+* Do not assume the field exists in all documents.  
+Fields may be missing from your document, or may only be supported in specific document types. Use an `if` test to identify problems. For example:  
+if (document.firstname)...
+* View output is case sensitive.  
+The value emitted by the `emit()` function is case sensitive. Emitting a field value of ‘Martin’ but specifying a `key` value of ‘martin’ will not match the data. Emitted data, and the key selection values, should be normalized to eliminate potential problems. For example:  
+emit(doc.firstname.toLowerCase(),null);
+* Number formatting  
+Numbers within JavaScript may inadvertently be converted and output as strings. To ensure that data is correctly formatted, the value should be explicitly converted. For example:  
+emit(parseInt(doc.value,10),null);  
+The `parseInt()` built-in function will convert a supplied value to an integer. The `parseFloat()` function can be used for floating-point numbers.
+
+## [](#validating-document-type)Validating document type
+
+If your data set includes documents that may be either JSON or binary, then you do not want to create a view that outputs individual fields for non-JSON documents. You can fix this by using a view that checks the metadata `type` field before outputting the JSON view information:
+
+function(doc,meta) {
+    if (meta.type == "json") {
+        emit(doc.firstname.toLowerCase(),null);
+    }
+}
+
+In the above example, the `emit()` function will only be called on a valid JSON document. Non-JSON documents will be ignored and not included in the view output.
+
+## [](#document-id-primary-index)Document ID (primary) index
+
+To create a ‘primary key’ index, i.e. an index that contains a list of every document within the database, with the document ID as the key, you can create a simple view:
+
+function(doc,meta)
+{
+  emit(meta.id,null);
+}
+
+This enables you to iterate over the documents stored in the database.
+
+This will provide you with a view that outputs the document ID of every document in the bucket using the document ID as the key.
+
+The view can be useful for obtaining groups or ranges of documents based on the document ID, for example to get documents with a specific ID prefix:
+
+?startkey="object"&endkey="object\u0000"
+
+Or to obtain a list of objects within a given range:
+
+?startkey="object100"&endkey="object199"
+
+For all views, the document ID is automatically included as part of the view response. But without including the document ID within the key emitted by the view, it cannot be used as a search or querying mechanism.
+
+## [](#secondary-index)Secondary index
+
+The simplest form of view is to create an index against a single field from the documents stored in your database.
+
+For example, given the document structure:
+
+{
+    "firstname": "Martin",
+    "lastname": "Brown"
+}
+
+A view to support queries on the `firstname` field could be defined as follows:
+
+function(doc, meta)
+{
+  if (doc.firstname)
+  {
+     emit(doc.firstname.toLowerCase(),null);
+  }
+}
+
+The view works as follows for each document:
+
+* Only outputs a record if the document contains a `firstname` field.
+* Converts the content of the `firstname` field to lowercase.
+
+Queries can now be specified by supplying a string converted to lowercase. For example:
+
+?key="martin"
+
+Will return all documents where the `firstname` field contains ‘Martin’, regardless of the document field capitalization.
+
+## [](#using-expiration-metadata)Using expiration metadata
+
+The metadata object makes it very easy to create and update different views on your data using information outside of the main document data. For example, you can use the expiration field within a view to get the list of recently active sessions in a system.
+
+Using the following `map()` function, which uses the expiration as part of the emitted data.
+
+function(doc, meta)
+{
+  if (doc.type && doc.type == "session")
+  {
+    emit(meta.expiration, doc.nickname)
+  }
+}
+
+If you have sessions which are saved with a TTL, this will allow you to give a view of who was recently active on the service.
+
+## [](#emitting-multiple-rows)Emitting multiple rows
+
+The `emit()` function is used to create a record of information for the view during the map phase, but it can be called multiple times within that map phase to allowing querying over more than one source of information from each stored document.
+
+An example of this is when the source documents contain an array of information. For example, within a recipe document, the list of ingredients is exposed as an array of objects. By iterating over the ingredients, an index of ingredients can be created and then used to find recipes by ingredient.
+
+{
+    "title": "Fried chilli potatoes",
+    "preptime": "5"
+    "servings": "4",
+    "totaltime": "10",
+    "subtitle": "A new way with chips.",
+    "cooktime": "5",
+    "ingredients": [
+        {
+            "ingredtext": "chilli powder",
+            "ingredient": "chilli powder",
+            "meastext": "3-6 tsp"
+        },
+        {
+            "ingredtext": "potatoes, peeled and cut into wedges",
+            "ingredient": "potatoes",
+            "meastext": "900 g"
+        },
+        {
+            "ingredtext": "vegetable oil for deep frying",
+            "ingredient": "vegetable oil for deep frying",
+            "meastext": ""
+        }
+    ],
+}
+
+The view can be created using the following `map()` function:
+
+function(doc, meta)
+{
+  if (doc.ingredients)
+  {
+    for (i=0; i < doc.ingredients.length; i++)
+    {
+        emit(doc.ingredients[i].ingredient, null);
+    }
+  }
+}
+
+To query for a specific ingredient, specify the ingredient as a key:
+
+?key="carrot"
+
+The `keys` parameter can also be used in this situation to look for recipes that contain multiple ingredients. For example, to look for recipes that contain either "potatoes" or "chilli powder" you would use:
+
+?keys=["potatoes","chilli powder"]
+
+This will produce a list of any document containing either ingredient. A simple count of the document IDs by the client can determine which recipes contain all three.
+
+The output can also be combined. For example, to look for recipes that contain carrots and can be cooked in less than 20 minutes, the view can be rewritten as:
+
+function(doc, meta)
+{
+  if (doc.ingredients)
+  {
+    for (i=0; i < doc.ingredients.length; i++)
+    {
+      if (doc.ingredients[i].ingredtext && doc.totaltime)
+      {
+        emit([doc.ingredients[i].ingredtext, parseInt(doc.totaltime,10)], null);
+      }
+    }
+  }
+}
+
+In this map function, an array is output that generates both the ingredient name, and the total cooking time for the recipe. To perform the original query, carrot recipes requiring less than 20 minutes to cook:
+
+?startkey=["carrot",0]&endkey=["carrot",20]
+
+This generates the following view:
+
+{"total_rows":26471,"rows":[
+{"id":"Mangoandcarrotsmoothie","key":["carrot",5],"value":null},
+{"id":"Cheeseandapplecoleslaw","key":["carrot",15],"value":null}
+]
+}
+
+## [](#time-stamp-patterns)Date and time selection
+
+For date and time selection, consideration must be given to how the data will need to be selected when retrieving the information. This is particularly true when you want to perform log roll-up or statistical collection by using a reduce function to count or quantify instances of a particular event over time.
+
+Examples of this in action include querying data over a specific range, on specific day or date combinations, or specific time periods. Within a traditional relational database it is possible to perform an extraction of a specific date or date range by storing the information in the table as a date type.
+
+Within a map/reduce, the effect can be simulated by exposing the date into the individual components at the level of detail that you require. For example, to obtain a report that counts individual log types over a period identifiable to individual days, you can use the following `map()` function:
+
+function(doc, meta) {
+    emit([doc.year, doc.mon, doc.day, doc.logtype], null);
+}
+
+By incorporating the full date into the key, the view provides the ability to search for specific dates and specific ranges. By modifying the view content you can simplify this process further. For example, if only searches by year/month are required for a specific application, the day can be omitted.
+
+And with the corresponding `reduce()` built-in of `_count`, you can perform a number of different queries. Without any form of data selection, for example, you can use the `group_level` parameter to summarize down as far as individual day, month, and year. Additionally, because the date is explicitly output, information can be selected over a specific range, such as a specific month:
+
+endkey=[2010,9,30]&group_level=4&startkey=[2010,9,0]
+
+Here the explicit date has been specified as the start and end key. The `group_level` is required to specify roll-up by the date and log type.
+
+This will generate information similar to this:
+
+{"rows":[
+{"key":[2010,9,1,"error"],"value":5},
+{"key":[2010,9,1,"warning"],"value":10},
+{"key":[2010,9,2,"error"],"value":8},
+{"key":[2010,9,2,"warning"],"value":9},
+{"key":[2010,9,3,"error"],"value":16},
+{"key":[2010,9,3,"warning"],"value":8},
+{"key":[2010,9,4,"error"],"value":15},
+{"key":[2010,9,4,"warning"],"value":11},
+{"key":[2010,9,5,"error"],"value":6},
+{"key":[2010,9,5,"warning"],"value":12}
+]
+}
+
+Additional granularity, for example down to minutes or seconds, can be achieved by adding those as further arguments to the map function:
+
+function(doc, meta)
+{
+    emit([doc.year, doc.mon, doc.day, doc.hour, doc.min, doc.logtype], null);
+}
+
+The same trick can also be used to output based on other criteria. For example, by day of the week, week number of the year or even by period:
+
+function(doc, meta) {
+  if (doc.mon)
+  {
+    var quarter = parseInt((doc.mon - 1)/3,10)+1;
+
+    emit([doc.year, quarter, doc.logtype], null);
+  }
+}
+
+To get more complex information, for example a count of individual log types for a given date, you can combine the `map()` and `reduce()` stages to provide the collation.
+
+For example, by using the following `map()` function we can output and collate by day, month, or year as before, and with data selection at the date level.
+
+function(doc, meta) {
+    emit([doc.year, doc.mon, doc.day], doc.logtype);
+}
+
+For convenience, you may wish to use the `dateToArray()` function, which converts a date object or string into an array. For example, if the date has been stored within the document as a single field:
+
+function(doc, meta) {
+    emit(dateToArray(doc.date), doc.logtype);
+}
+
+For more information, see `dateToArray()`.
+
+Using the following `reduce()` function, data can be collated for each individual logtype for each day within a single record of output.
+
+function(key, values, rereduce)
+{
+  var response = {"warning" : 0, "error": 0, "fatal" : 0 };
+  for(i=0; i<values.length; i++)
+  {
+    if (rereduce)
+    {
+      response.warning = response.warning + values[i].warning;
+      response.error = response.error + values[i].error;
+      response.fatal = response.fatal + values[i].fatal;
+    }
+    else
+    {
+      if (values[i] == "warning")
+      {
+        response.warning++;
+      }
+      if (values[i] == "error" )
+      {
+        response.error++;
+      }
+      if (values[i] == "fatal" )
+      {
+        response.fatal++;
+      }
+    }
+  }
+  return response;
+}
+
+When queried using a `group_level` of two (by month), the following output is produced:
+
+{"rows":[
+{"key":[2010,7], "value":{"warning":4,"error":2,"fatal":0}},
+{"key":[2010,8], "value":{"warning":4,"error":3,"fatal":0}},
+{"key":[2010,9], "value":{"warning":4,"error":6,"fatal":0}},
+{"key":[2010,10],"value":{"warning":7,"error":6,"fatal":0}},
+{"key":[2010,11],"value":{"warning":5,"error":8,"fatal":0}},
+{"key":[2010,12],"value":{"warning":2,"error":2,"fatal":0}},
+{"key":[2011,1], "value":{"warning":5,"error":1,"fatal":0}},
+{"key":[2011,2], "value":{"warning":3,"error":5,"fatal":0}},
+{"key":[2011,3], "value":{"warning":4,"error":4,"fatal":0}},
+{"key":[2011,4], "value":{"warning":3,"error":6,"fatal":0}}
+]
+}
+
+The input includes a count for each of the error types for each month. Note that because the key output includes the year, month and date, the view also supports explicit querying while still supporting grouping and roll-up across the specified group. For example, to show information from 15th November 2010 to 30th April 2011 using the following query:
+
+?endkey=[2011,4,30]&group_level=2&startkey=[2010,11,15]
+
+Which generates the following output:
+
+{"rows":[
+{"key":[2010,11],"value":{"warning":1,"error":8,"fatal":0}},
+{"key":[2010,12],"value":{"warning":3,"error":4,"fatal":0}},
+{"key":[2011,1],"value":{"warning":8,"error":2,"fatal":0}},
+{"key":[2011,2],"value":{"warning":4,"error":7,"fatal":0}},
+{"key":[2011,3],"value":{"warning":4,"error":4,"fatal":0}},
+{"key":[2011,4],"value":{"warning":5,"error":7,"fatal":0}}
+]
+}
+
+Keep in mind that you can create multiple views to provide different views and queries on your document data. In the above example, you could create individual views for the limited datatypes of logtype to create a `warningsbydate` view.
+
+## [](#selective-record-output)Selective record output
+
+If you are storing different document types within the same bucket, then you may want to ensure that you generate views only on a specific record type within the `map()` phase. This can be achieved by using an `if` statement to select the record.
+
+For example, if you are storing blog ‘posts’ and ‘comments’ within the same bucket, then a view on the blog posts could be created using the following map:
+
+function(doc, meta) {
+    if (doc.title && doc.type && doc.date &&
+        doc.author && doc.type == 'post')
+    {
+        emit(doc.title, [doc.date, doc.author]);
+    }
+}
+
+The same solution can also be used if you want to create a view over a specific range or value of documents while still allowing specific querying structures. For example, to filter all the records from the statistics logging system over a date range that are of the type error you could use the following `map()` function:
+
+function(doc, meta) {
+    if (doc.logtype == 'error')
+    {
+       emit([doc.year, doc.mon, doc.day],null);
+    }
+}
+
+The same solution can also be used for specific complex query types. For example, all the recipes that can be cooked in under 30 minutes, made with a specific ingredient:
+
+function(doc, meta)
+{
+  if (doc.totaltime &amp;&amp; doc.totaltime <= 20)
+  {
+    if (doc.ingredients) {
+      for (i=0; i < doc.ingredients.length; i++)
+      {
+        if (doc.ingredients[i].ingredtext)
+        {
+          emit(doc.ingredients[i].ingredtext, null);
+        }
+      }
+    }
+  }
+}
+
+The above function provides for much quicker and simpler selection of recipes by using a query and the `key` parameter, instead of having to work out the range that may be required to select recipes when the cooking time and ingredients are generated by the view.
+
+These selections are application specific, but by producing different views for a range of appropriate values, for example 30, 60, or 90 minutes, recipe selection can be much easier at the expense of updating additional view indexes.
+
+## [](#sorting-on-reduce-values)Sorting on reduce values
+
+The sorting algorithm within the view system outputs information ordered by the generated key within the view, and therefore it operates before any reduction takes place. Unfortunately, it is not possible to sort the output order of the view on computed reduce values, as there is no post-processing on the generated view information.
+
+To sort based on reduce values, you must access the view content with reduction enabled from a client, and perform the sorting within the client application.
+
+## [](#solutions-for-simulating-joins)Solutions for simulating joins
+
+Joins between data, even when the documents being examined are contained within the same bucket, are not possible directly within the view system. However, you can simulate this by making use of a common field used for linking when outputting the view information. For example, consider a blog post system that supports two different record types, ‘blogpost’ and ‘blogcomment’. The basic format for ‘blogpost’ is:
+
+{
+    "type" : "post",
+    "title" : "Blog post"
+    "categories" : [...],
+    "author" : "Blog author"
+    ...
+}
+
+The corresponding comment record includes the blog post ID within the document structure:
+
+{
+    "type" : "comment",
+    "post_id" : "post_3454"
+    "author" : "Comment author",
+    "created_at" : 123498235
+...
+}
+
+To output a blog post and all the comment records that relate to the blog post, you can use the following view:
+
+function(doc, meta)
+{
+    if (doc.post_id && doc.type && doc.type == "post")
+    {
+        emit([doc.post_id, null], null);
+    }
+    else if (doc.post_id && doc.created_at && doc.type && doc.type == "comment")
+    {
+        emit([doc.post_id, doc.created_at], null);
+    }
+}
+
+The view makes use of the sorting algorithm when using arrays as the view key. For a blog post record, the document ID will be output will a null second value in the array, and the blog post record will therefore appear first in the sorted output from the view. For a comment record, the first value will be the blog post ID, which will cause it to be sorted in line with the corresponding parent post record, while the second value of the array is the date the comment was created, allowing sorting of the child comments.
+
+For example:
+
+{"rows":[
+{"key":["post_219",null],       "value":{...}},
+{"key":["post_219",1239875435],"value":{...}},
+{"key":["post_219",1239875467],"value":{...}},
+]
+}
+
+Another alternative is to make use of a multi-get operation within your client through the main Couchbase SDK interface, which should load the data from cache. This lets you structure your data with the blog post containing an array of the of the child comment records. For example, the blog post structure might be:
+
+{
+    "type" : "post",
+    "title" : "Blog post"
+    "categories" : [...],
+    "author" : "Blog author",
+    "comments": ["comment_2298","comment_457","comment_4857"],
+    ...
+}
+
+To obtain the blog post information and the corresponding comments, create a view to find the blog post record, and then make a second call within your client SDK to get all the comment records from the Couchbase Server cache.

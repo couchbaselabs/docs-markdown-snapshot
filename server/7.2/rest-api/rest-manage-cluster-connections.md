@@ -1,0 +1,76 @@
+[View original HTML](/server/7.2/rest-api/rest-manage-cluster-connections.html)
+
+> By means of the REST API, the maximum permitted numbers of connections can be established and retrieved for memcached connections, and for system-user connections, for the cluster. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+POST /pools/default/settings/memcached/global
+
+GET /pools/default/settings/memcached/global
+
+## [](#description)Description
+
+A Couchbase-Server cluster allows connections to be established, both for memcached and for authenticated system-users. In each case, a maximum permitted number of connections can be established for the cluster, and can be retrieved.
+
+The Full Admin or Cluster Admin role is required.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -u <username>:<password> -X POST
+  <ip-address-or-domain-name>:8091/pools/default/settings/memcached/global
+  -d max_connections=<integer>
+  -d system_connections=<integer>
+
+curl -u <username>:<password> -X GET
+  <ip-address-or-domain-name>:8091/pools/default/settings/memcached/global
+
+The `integer` specified as the value for `max_connections` determines the maximum number of connections that can be established by memcached for the cluster. The `integer` specified as the value for `system_connections` determines the maximum number of connections that can be established by authenticated system-users for the cluster.
+
+## [](#responses)Responses
+
+Successful use of GET returns `200 OK`, and an object containing a key-value pair for each established setting.
+
+Successful use of POST returns `202 Accepted`, and an object containing a key-value pair for any established setting.
+
+A malformed URI returns `404 Object Not Found`.
+
+Failure to authenticate returns `401 Unauthorized`. Successful authentication with an inappropriate role returns `403 Forbidden`, and an object such as the following: `{"message":"Forbidden. User needs the following permissions","permissions":["cluster.admin.memcached!read"]}`.
+
+Specifying, in a POST, an `integer` whose size is excessive for the environment returns `400 Bad Request`, and an object such as the following: `{"system_connections":"too_large"}`.
+
+## [](#examples)Examples
+
+The following example sets the maximum number of connections for authenticated system-users to `50000`:
+
+curl -u Administrator:password -v -X POST \
+localhost:8091/pools/default/settings/memcached/global \
+-d system_connections=50000
+
+If successful, the call returns an object such as the following:
+
+{"system_connections":50000}
+
+The following example sets the maximum number of connections for memcached to `650000`:
+
+curl -u Administrator:password -X POST \
+localhost:8091/pools/default/settings/memcached/global \
+-d  max_connections=650000
+
+If successful, the call returns an object such as the following:
+
+{"max_connections":650000,"system_connections":50000}
+
+The returned object thus indicates that both `max_connections` and `system_connections` have now been set.
+
+The following example returns the current settings for the cluster:
+
+curl -u Administrator:password -v -X GET \
+localhost:8091/pools/default/settings/memcached/global
+
+If successful, the call returns an object such as the following:
+
+{"max_connections":650000,"system_connections":50000}
+
+## [](#see-also)See Also
+
+A summary of Couchbase-Server size limits is provided in [Size Limits](../learn/clusters-and-availability/size-limitations.md).

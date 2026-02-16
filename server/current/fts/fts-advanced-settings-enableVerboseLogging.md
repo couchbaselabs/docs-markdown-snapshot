@@ -1,0 +1,13 @@
+[View original HTML](/server/current/fts/fts-advanced-settings-enableVerboseLogging.html)
+
+The `enableVerboseLogging` setting enables collecting additional logs for debugging purpose.
+
+Enabling this setting periodically adds more statistics whenever user runs the `/api/stats` endpoint for periodic stats collection.
+
+## [](#example)Example
+
+```console
+curl -XPUT -H "Content-type:application/json" http://username:password@<ip>:8094/api/managerOptions \-d '{
+    "enableVerboseLogging": "true"
+}
+```

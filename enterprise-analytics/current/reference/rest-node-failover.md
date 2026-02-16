@@ -1,0 +1,68 @@
+[View original HTML](/enterprise-analytics/current/reference/rest-node-failover.html)
+
+> _Hard_ failover can be used to take a node out of a cluster, when the node has become unresponsive. 
+
+## [](#http-method-and-uri)HTTP Method and URI
+
+POST /controller/failOver
+
+## [](#description)Description
+
+When a node has become unresponsive, and active vBuckets have thereby become unavailable for the serving of data, hard failover should be used to take the unresponsive node out of the cluster.
+
+During hard failover, the Cluster Manager promotes replica vBuckets to active status on the remaining cluster-nodes. A revised cluster-map is then communicated to all clients. When hard failover is complete, no further attempts are made to access vBuckets on the failed-over node, but the node has not yet been fully taken out of the cluster. The cluster is at this point considered to be in a _degraded state_, in terms of availability; as it now contains a reduced number of replica vBuckets, and may lack resources for handling a further node-outage. Rebalance should therefore be performed.
+
+Hard failover should _not_ be used as part of regular, planned maintenance activities that can be conducted with all cluster-nodes available. For information, see [Failover](#learn:clusters-and-availability/failover.adoc).
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -X POST -u <username>:<password>
+  http://<ip-address-or-hostname>:<port>/controller/failOver
+  -d [otpNode=node_1@<hostname>]
+  -d allowUnsafe=< true | false >
+
+The value of each specified `otpNode` parameter must be the name of a node that will be hard-failed over.
+
+The value of `allowUnsafe` must be either `true` or `false` (which is the default); indicating whether or not hard failover should be attempted in _unsafe_ mode. For information, see [Hard Failover in Default and Unsafe Modes](#learn:clusters-and-availability/hard-failover.adoc#default-and-unsafe).
+
+## [](#responses)Responses
+
+Success returns `200 OK`.
+
+Incorrectly specifying the target cluster returns `Failed to connect`. Incorrectly specifying the URI returns a `404 Object Not Found` error, and a `Requested resource not found` notification.
+
+Specifying an unknown server to be failed over returns a `400 Bad Request` notification, and an error message such as the following: `Unknown server given: ["ns_1@10.143.201.106"]`.
+
+Failure to authenticate returns a `401 Unauthorized` notification.
+
+## [](#examples)Examples
+
+The following curl statement performs a hard failover of node `10.142.180.102` from a cluster identified as `10.142.180.1`.
+
+```bourne
+curl -v -X POST -u Administrator:password \
+http://10.142.180.1:8091/controller/failOver \
+-d 'otpNode=ns_1@10.142.180.102'
+```
+
+The following performs a hard failover of nodes `10.142.180.102` and `10.142.180.103` from a cluster identified as `10.142.180.1`. Note that multi-node failover is always _hard_ failover.
+
+```bourne
+curl -v -X POST -u Administrator:password \
+http://10.142.180.1:8091/controller/failOver \
+-d 'otpNode=ns_1@10.142.180.102' \
+-d 'otpNode=ns_1@10.142.180.103'
+```
+
+The following performs an _unsafe_, hard failover of nodes `10.142.180.102` and `10.142.180.103` from a cluster identified as `10.142.180.1`.
+
+```bourne
+curl -v -X POST -u Administrator:password \
+http://10.142.180.1:8091/controller/failOver \
+-d otpNode=ns_1%4010.142.180.102\&otpNode=ns_1%4010.142.180.103 \
+-d allowUnsafe=true
+```
+
+## [](#see-also)See Also
+
+For a general introduction to failover, see [Failover](#learn:clusters-and-availability/failover.adoc). For specifics related to hard failover, including _safe_ and _unsafe_ modes, see [Hard Failover](#learn:clusters-and-availability/hard-failover.adoc). For information about managing different kinds of failover with UI, CLI, and the REST API, see [Fail a Node Over and Rebalance](../manage/manage-nodes/fail-nodes-over.md). For information about _unsafe_ hard failover, see [Hard Failover in Default and Unsafe Modes](#learn:clusters-and-availability/hard-failover.adoc#default-and-unsafe).

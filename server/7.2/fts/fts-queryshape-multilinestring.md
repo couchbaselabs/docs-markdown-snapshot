@@ -1,0 +1,323 @@
+[View original HTML](/server/7.2/fts/fts-queryshape-multilinestring.html)
+
+> A GeoJSON MultiLineString Query against any GeoJSON type. 
+
+## [](#queryshape-for-a-multilinestring-query)QueryShape for a MultiLineString Query
+
+A GeoJSON query via a GeoShape of MultiLineString to find GeoJSON types in a Search index using the 3 relations intersects, contains, and within.
+
+### [](#multilinestring-intersects-query)MultiLineString `Intersects` Query
+
+An `intersect` query for multilinestring returns all the matched documents with shapes that overlap any of the multiple linestring in the multilinestring array within the query.
+
+A multilinestring `intersection` query sample is given below.
+
+```json
+{
+  "query": {
+    "field": "<<fieldName>>",
+    "geometry": {
+      "shape": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ [1.954764, 50.962097], [3.029578, 49.868547] ],
+          [ [3.029578, 49.868547], [-0.387444, 48.545836] ]
+        ]
+      },
+      "relation": "intersects"
+    }
+  }
+}
+```
+
+Intersection rules for the MultiLineString Query with other indexed GeoJSON shapes in the document set are given below.
+
+Intersection rules for the MultiLineString Query with other indexed GeoJSON shapes are similar to that of the LineString shape mentioned here. The only difference will be that intersection rules are applied on every LineString instance inside the MultiLineString array.
+
+### [](#multilinestring-contains-query)MultiLineString `Contains` Query
+
+A `contains` query for multilinestring returns all the matched documents with shapes that contain the multilinestring within the query.
+
+A multilinestring `contains` query sample is given below.
+
+```json
+{
+  "query": {
+    "field": "<<fieldName>>",
+    "geometry": {
+      "shape": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ [1.954764, 50.962097], [3.029578, 49.868547] ],
+          [ [3.029578, 49.868547], [-0.387444, 48.545836] ]
+        ]
+      },
+      "relation": "contains"
+    }
+  }
+}
+```
+
+Containment rules for the MultiLineString Query with other GeoJSON indexed shapes are similar to that of the LineString shape mentioned earlier. The only difference will be that to qualify a match operation, the containment rules have to be satisfied by every LineString instance inside the MultiLineString array.
+
+### [](#multilinestring-within-query)MultiLineString `WithIn` Query
+
+The Within query is not supported by line geometries.
+
+A `within` query for multilinestring returns all the matched documents with shapes that contain the multilinestring within the query.
+
+A multilinestring `contains` query sample is given below.
+
+```json
+{
+  "query": {
+    "field": "<<fieldName>>",
+    "geometry": {
+      "shape": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ [1.954764, 50.962097], [3.029578, 49.868547] ],
+          [ [3.029578, 49.868547], [-0.387444, 48.545836] ]
+        ]
+      },
+      "relation": "within"
+    }
+  }
+}
+```
+
+## [](#example-multilinestring-query-against-points)Example MultiLineString Query (against Points)
+
+|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Matches when the multilinestring in the query contains the point in the document including points on the edge or coinciding with the vertices of the multilinestring.
+
+The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
+
+```command
+curl -s -XPOST -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson/query \
+-d '{
+  "query": {
+    "field": "geojson",
+    "geometry": {
+      "shape": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ [1.954764, 50.962097], [3.029578, 49.868547] ],
+          [ [3.029578, 49.868547], [-0.387444, 48.545836] ]
+        ]      },
+      "relation": "intersects"
+    }
+  },
+  "size": 5,
+  "from": 0,
+  "sort": ["name"]
+}' |  jq .
+```
+
+The output of three (3) hits (from a total of 3 matching docs) is as follows
+
+```json
+{
+  "status": {
+    "total": 1,
+    "failed": 0,
+    "successful": 1
+  },
+  "request": {
+    "query": {
+      "geometry": {
+        "shape": {
+          "type": "MultiLineString",
+          "coordinates": [
+            [
+              [
+                1.954764,
+                50.962097
+              ],
+              [
+                3.029578,
+                49.868547
+              ]
+            ],
+            [
+              [
+                3.029578,
+                49.868547
+              ],
+              [
+                -0.387444,
+                48.545836
+              ]
+            ]
+          ]
+        },
+        "relation": "intersects"
+      },
+      "field": "geojson"
+    },
+    "size": 5,
+    "from": 0,
+    "highlight": null,
+    "fields": null,
+    "facets": null,
+    "explain": false,
+    "sort": [
+      "name"
+    ],
+    "includeLocations": false,
+    "search_after": null,
+    "search_before": null
+  },
+  "hits": [
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1254",
+      "score": 0.11785430845172559,
+      "sort": [
+        "Calais Dunkerque"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1257",
+      "score": 0.06113505132837742,
+      "sort": [
+        "Couterne"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1255",
+      "score": 0.33193447914716134,
+      "sort": [
+        "Peronne St Quentin"
+      ]
+    }
+  ],
+  "total_hits": 3,
+  "max_score": 0.33193447914716134,
+  "took": 26684141,
+  "facets": null
+}
+```
+
+## [](#example-multilinestring-query-against-circles)Example MultiLineString Query (against Circles)
+
+|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Intersects when the query multilinestring intersects the circular region in the document.
+
+The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
+
+```command
+curl -s -XPOST -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson/query \
+-d '{
+  "query": {
+    "field": "geoarea",
+    "geometry": {
+      "shape": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [ [1.954764, 50.962097], [3.029578, 49.868547] ],
+          [ [3.029578, 49.868547], [-0.387444, 48.545836] ]
+        ]      },
+      "relation": "intersects"
+    }
+  },
+  "size": 5,
+  "from": 0,
+  "sort": ["name"]
+}' |  jq .
+```
+
+The output of three (3) hits (from a total of 3 matching docs) is as follows
+
+```json
+{
+  "status": {
+    "total": 1,
+    "failed": 0,
+    "successful": 1
+  },
+  "request": {
+    "query": {
+      "geometry": {
+        "shape": {
+          "type": "MultiLineString",
+          "coordinates": [
+            [
+              [
+                1.954764,
+                50.962097
+              ],
+              [
+                3.029578,
+                49.868547
+              ]
+            ],
+            [
+              [
+                3.029578,
+                49.868547
+              ],
+              [
+                -0.387444,
+                48.545836
+              ]
+            ]
+          ]
+        },
+        "relation": "intersects"
+      },
+      "field": "geoarea"
+    },
+    "size": 5,
+    "from": 0,
+    "highlight": null,
+    "fields": null,
+    "facets": null,
+    "explain": false,
+    "sort": [
+      "name"
+    ],
+    "includeLocations": false,
+    "search_after": null,
+    "search_before": null
+  },
+  "hits": [
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1258",
+      "score": 0.592776664360894,
+      "sort": [
+        "Bray"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1254",
+      "score": 0.08583427853207237,
+      "sort": [
+        "Calais Dunkerque"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1255",
+      "score": 1.7695025992268105,
+      "sort": [
+        "Peronne St Quentin"
+      ]
+    }
+  ],
+  "total_hits": 3,
+  "max_score": 1.7695025992268105,
+  "took": 3894224,
+  "facets": null
+}
+```

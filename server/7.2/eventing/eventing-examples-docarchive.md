@@ -1,0 +1,135 @@
+[View original HTML](/server/7.2/eventing/eventing-examples-docarchive.html)
+
+**Goal**: Create a JavaScript Function that contains an **OnUpdate** handler, which when a document in an existing collection is about to expire, a perfect copy is created in a different collection.
+
+This example, **Document Archival** is very similar to the **Document Expiry** example. However the goal here is to create a robust archiving function and as such this example has a few important differences.
+
+* We will archive a perfect copy to the target collection.
+* The edge case ignored for brevity in **Document Expiry** for receiving a mutation a document within the 120 second window prior to expiration is covered (in this case we don’t need a timer).
+* The edge case ignored for brevity in **Document Expiry** for a missing source document when we trigger our callback is now caught and it is logged as an error.
+* No logging except for an error case of a missing document when we are archiving.
+* We will not rely on a Couchbase SDK, but rather on an expiry set on the source collection where all documents will have an expiration of 10 minutes from the time of their first mutation or creation.
+
+**Implementation**: Create a JavaScript Function that contains an **OnUpdate** handler, which runs whenever a document is created (or mutated). The Eventing Function calls a timer routine, which executes a callback function, two minutes prior to any document’s established expiration. This function will archive an identical document with the same key, in a specified target bucket. The original document in the source bucket is not changed (and will be deleted automatically according to the bucket’s expiration time).
+
+**Preparations**:
+
+For this example, two (2) buckets **'bulk'** and **'rr100'** are required where the latter is intended to be 100% resident. Create the buckets with a minimum size of 100MB. However the bucket **'bulk'** will need a "Bucket Max Time-To-Live" set to 600 (details below). For information on buckets, see [Create a Bucket](../manage/manage-buckets/create-bucket.md). Within the buckets we need three (3) keyspaces **'bulk.data.source'**, **'bulk.data.target'**, and **'rr100.eventing.metadata'**(we loosely follow this [organization](eventing-buckets-to-collections.md#single-tenancy)).
+
+For the Function Scope or RBAC grouping, we will use the **'bulk.data'**, assuming you have the role of either "Full Admin" or "Eventing Full Admin". For standard or non-privileged users refer to [Eventing Role-Based Access Control](eventing-rbac.md).
+
+The collection **'bulk.data.source'** will have a 'Bucket Max Time-To-Live' or TTL of 600 seconds. If this collection already exists drop the collection and recreate it with the needed TTL.
+
+_If you run a version of Couchbase prior to 7.0 you can just create the buckets **'source'**, **'target'**, and **'metadata'** and run this example. Furthermore if your cluster was subsequently upgraded from say 6.6.2 to 7.0 your data would be moved to **'source.\_default.\_default'**, **'target.\_default.\_default'**, and **'metadata.\_default.\_default'** and your Eventing Function would be seamlessly upgraded to use the new keyspaces and continue to run correctly._
+
+For complete details on how to set up your keyspaces refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
+
+|  | The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+**Procedure**:
+
+1. If you don’t already have the bucket **travel-sample**' listed in the **Couchbase Web Console** \> **Buckets** page you can load this document set as follows:
+
+  * Access the **Couchbase Web Console** \> **Settings** page
+  * Select the **Sample Buckets** in the upper right banner.
+  * Check **travel-sample** checkbox.
+  * Click **Load Sample Data**.
+2. Verify your Buckets you should have three (3) total and verify **'bulk.data.source'** has a TTL of 600 seconds.  
+![docarchive 00 bsettings](_images/docarchive_00_bsettings.png)  
+
+  * Click **Scopes & Collections** on the left, Click the scope **data** on the right to expand it to show the collections. When you created the collection **'bulk.data.source'** it should have had a 'Bucket Max Time-To-Live' or TTL of 600 seconds. If you didn’t then drop the collection and recreate it with the needed TTL of 600.  
+  ![docarchive 01 bsettings](_images/docarchive_01_bsettings.png)
+3. From the **Couchbase Web Console** \> **Eventing** page, click **ADD FUNCTION**, to add a new Function. The **ADD FUNCTION** dialog appears.
+4. In the **ADD FUNCTION** dialog, for individual Function elements provide the below information:
+
+  * For the **Function Scope** drop-down, select **'bulk.data'** as the RBAC grouping.
+  * For the **Listen To Location** drop-down, select **bulk**, **data**, **source** as the keyspace.
+  * For the **Eventing Storage** drop-down, select **rr100**, **eventing**, **metadata** as the keyspace.
+  * Enter **archive\_before\_expiry** as the name of the Function you are creating in the **Function Name** text-box.
+  * Leave the "Deployment Feed Boundary" as Everything.
+  * \[Optional Step\] Enter text **Function that archives all documents in a collection from a collection in a bucket with a TTL set**, in the **Description** text-box.
+  * For the **Settings** option, use the default values.
+  * For the **Bindings** option, add two bindings.
+
+    * For the first binding, select "bucket alias", specify **src** as the "alias name" of the collection, select **bulk**, **data**, **source** as the associated keyspace, and select "read only" for the access mode.
+    * For the second binding, select "bucket alias", specify **tgt** as the "alias name" of the collection, select **bulk**, **data**, **target** as the associated keyspace, and select "read and write" for the access mode.
+  * After configuring your settings the **ADD FUNCTION** dialog should look like this:  
+  ![docarchive 01 fsettings](_images/docarchive_01_fsettings.png)
+  * After providing all the required information in the **ADD FUNCTION** dialog, click **Next: Add Code**. The **archive\_before\_expiry** dialog appears.
+5. The **archive\_before\_expiry** dialog initially contains a placeholder code block. You will substitute your actual **archive\_before\_expiry code** in this block.  
+![docarchive 02 editor with default](_images/docarchive_02_editor_with_default.png)  
+
+  * Copy the following Function, and paste it in the placeholder code block of **archive\_before\_expiry** dialog.  
+  ```javascript  
+  function OnUpdate(doc, meta) {  
+      // Only process for those documents that have a non-zero TTL  
+      if (meta.expiration == 0 ) return;  
+      // Note JavaScript Data() is in ms. and meta.expiration is in sec.  
+      if (new Date().getTime()/1000 > (meta.expiration - 120)) {  
+          // We are within 120 seconds of expiry just copy it now  
+          // create a new document with the same ID but in the target collection  
+          // log('OnUpdate: copy src to tgt for DocId:', meta.id);  
+          tgt[meta.id] = doc;  
+      } else {  
+          // Compute 120 seconds prior from the TTL, note JavaScript Date() takes ms.  
+          var twoMinsPrior = new Date((meta.expiration - 120) * 1000);  
+          // Create a timer with a context to run in the future 120 before the expiry  
+          // log('OnUpdate: create Timer '+meta.expiration+' - 120, for  DocId:',  meta.id);  
+          createTimer(DocTimerCallback, twoMinsPrior , meta.id, meta.id);  
+      }  
+  }  
+  function DocTimerCallback(context) {  
+      // context is just our key to the document that will expire in 120 sec.  
+      var doc = src[context];  
+      if (doc) {  
+          // create a new document with the same ID but in the target collection  
+          // log('DocTimerCallback: copy src to tgt for DocId:', context);  
+          tgt[context] = doc;  
+      } else {  
+          log('DocTimerCallback: issue missing value for DocId:', context);  
+      }  
+  }  
+  ```  
+  After pasting, the screen appears as displayed below:  
+  ![docarchive 03 editor with code](_images/docarchive_03_editor_with_code.png)
+  * Click **Save and Return**.
+6. From the **Eventing** screen, click the **archive\_before\_expiry** function to select it, then click **Deploy**.  
+![docarchive 03a deploy](_images/docarchive_03a_deploy.png)  
+
+  * In the **Confirm Deploy Function** Click **Deploy Function**.
+7. The Eventing function is deployed and starts running within a few seconds. From this point, the defined Function is executed on all existing documents and on subsequent mutations.
+8. From the **Couchbase Web Console** \> **Query** page we will seed some data :
+
+  * We use the NIQL Query Editor locate a large set of data in `travel-sample`  
+  ```sqlpp  
+  SELECT COUNT(*) FROM `travel-sample`.`_default`.`_default` where type = 'airport'  
+  ```
+  * We use the NIQL Query Editor to insert 1,968 items from `travel-sample`.`_default`.`_default` of type = "airport" into our `bulk`.`data`.`source` collection.  
+  ```sqlpp  
+  INSERT INTO `bulk`.`data`.`source`(KEY _k, VALUE _v)  
+      SELECT META().id _k, _v FROM `travel-sample`.`_default`.`_default` _v WHERE type="airport";  
+  ```
+9. Now switch to the access the **Couchbase Web Console** \> **Eventing** page. Expand the function **archive\_before\_expiry** and not the count under successes (1,968)  
+![docarchive cnta](_images/docarchive_cnta.png)
+10. Now switch to the access the **Couchbase Web Console** \> **Buckets** page. The Buckets in the UI the `rr100`.`eventing`.`metadata`collection will have 1280 documents related to the Eventing function and an additional 2 x 1,968 (ctx+alm) + 256 (root) additional documents related to the active timers. The key thing is that you should see 1,968 documents in the `bulk`.`data`.`source` collection (inserted via our SQL++ query).  
+![docarchive 04 buckets](_images/docarchive_04_buckets.png)
+11. Now wait a bit over eight (8) minutes, look at the Buckets in the UI again you will see 1,968 documents in the 'source' bucket and 1,968 documents in the 'target bucket'.  
+![docarchive 05 buckets](_images/docarchive_05_buckets.png)  
+The details under Bucket "bulk" scope "data" show that we have archived the 1,968 documents from the "source" collection to the "target" collection:  
+![docarchive 07 preexpired](_images/docarchive_07_preexpired.png)
+12. Now switch to the access the **Couchbase Web Console** \> **Eventing** page. Expand the function **archive\_before\_expiry** and not the count under successes (3,936)  
+![docarchive cntb](_images/docarchive_cntb.png)
+13. Wait a few more minutes (a bit more than two minutes) past the 120 second window, then check the documents within the `bulk`.`data`.`source` collection, you will find that none of the documents will be accessible as they have expired due to the enclosing bucket’s defined TTL.
+
+|  | If you don’t actually try to access the documents in the bulk.data.source collection the UI may still indicate they still exist until the expiry pager removes the tombstone for the deleted or expired documents (or an attempt to access them is made). |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+![docarchive 06 buckets](_images/docarchive_06_buckets.png)  
+The details under Bucket "bulk" scope "data" show that the 1,968 archived documents remain in the "target" collection but the original documents in the "source" collection have expired:  
+![docarchive 08 expired](_images/docarchive_08_expired.png)
+
+**Cleanup**:
+
+Go to the Eventing portion of the UI and undeploy the Function **archive\_before\_expiry**, this will remove the 1280 documents for each function from the 'rr100.eventing.metadata' collection (in the Bucket view of the UI). Remember you may only delete the 'rr100.eventing.metadata' keyspace if there are no deployed Eventing Functions. The collection **'bulk.data.source'** has a 'Bucket Max Time-To-Live' or TTL of 600 seconds so drop this collection to prevent issues running other examples.
+
+Now flush the 'bulk' bucket if you plan to run other examples (you may need to Edit the bucket 'bulk' and enable the flush capability).
