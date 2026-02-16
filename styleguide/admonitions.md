@@ -1,0 +1,98 @@
+[View original HTML](/styleguide/admonitions.html)
+
+Antora has 5 admonition types:
+
+1. [Note](#notes)
+2. [Tip](#tips)
+3. [Warning](#warnings)
+4. [Caution](#cautions)
+5. [Important](#importants)
+
+Do not use more than 2 admonitions back-to-back on a page, and do not overuse them.
+
+Remember: if everything is important, nothing is.
+
+|  | If you need to add block or "compound" content to an admonition block, use a compound admonition, as described in the [Admonitions](#home:contribute:basics.adoc#admonitions). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#notes)Notes
+
+Use a note when you:
+
+* Want to tell the user something that’s not critical.
+* Want the user to keep something in mind while working through a procedure.
+* Want to highlight a specific point in a concept.
+
+For example:
+
+|  | If you used the default installation for Couchbase Server, you can find the command line clients inside your installation. |
+|  | -------------------------------------------------------------------------------------------------------------------------- |
+
+|  | The document key must be unique for each document you insert. |
+|  | ------------------------------------------------------------- |
+
+Use other admonition types, like [cautions](#cautions) and [warnings](#warnings) for critical information.
+
+## [](#tips)Tips
+
+Use a tip when you:
+
+* Want to tell the user about a shortcut or faster way of accomplishing a task.
+* Want to tell the user about something optional.
+* Want to let the user know something that’s useful, but is not considered that important.
+
+You should also use a tip to let a user know when they can also accomplish a task from the API as well as the UI. Make sure to provide a link to the API documentation as well as the specific method, call, or class the user should use.
+
+For example:
+
+|  | The maximum allowed value is 2147483648 seconds (68.096 years). |
+|  | --------------------------------------------------------------- |
+
+|  | You can also press ENTER to submit your query. |
+|  | ---------------------------------------------- |
+
+|  | You can also foo the bar from the [Public Management API](#tips): [FOO](#tips) |
+|  | ------------------------------------------------------------------------------ |
+
+## [](#warnings)Warnings
+
+Use a warning when you:
+
+* Need to tell the user about something that could cause data loss or irreversible damage.
+* Need to tell the user about an irreversible action or critical piece of information.
+
+For example:
+
+|  | Dropping a bucket is an irreversible action. You cannot recover the data from a dropped bucket. |
+|  | ----------------------------------------------------------------------------------------------- |
+
+|  | A deleted repository and its back-up data cannot be recovered. |
+|  | -------------------------------------------------------------- |
+
+## [](#cautions)Cautions
+
+Use a caution when you:
+
+* Need to tell the user that the code described or provided has not been extensively tested.
+* Need to tell the user about something that might cause an error.
+
+For example:
+
+|  | **Memcached** buckets are deprecated. Use a **Couchbase** or **Ephemeral** bucket, instead. |
+|  | ------------------------------------------------------------------------------------------- |
+
+|  | You must modify the default number of replicas for a bucket. Otherwise, all key-value writes with durability enabled will fail. |
+|  | ------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#importants)Important
+
+Use an important when you:
+
+* Need to tell the user about something that’s changed across versions and does not work the same way.
+
+Try to use an important at the top of a page or section.
+
+For example:
+
+|  | In version 3.3 of the .NET SDK, foo no longer requires the bar parameter. |
+|  | ------------------------------------------------------------------------- |

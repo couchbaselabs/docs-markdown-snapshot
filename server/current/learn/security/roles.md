@@ -1,0 +1,955 @@
+[View original HTML](/server/current/learn/security/roles.html)
+
+> Roles grant users access to one or more resources. Administrators assign roles to users to enable them to perform the tasks they need to carry out when using Couchbase Server. 
+
+## [](#roles-and-privileges)Roles and Privileges
+
+Roles provide a set of privileges for interacting with a resource. These privileges are often specific. For example, the Data Writer role lets a user write data using key-value operations. This role does not let the user read data. The Data Reader role grants that ability.
+
+Some roles let you limit the privileges a role grants to specific collections, scopes, or buckets. For example, when granting a user the Data Writer role, you can limit the user so they can only write to a specific collection. You can also enable the user to write data to multiple collections, multiple scopes, or even to all buckets. For detailed information about scopes and collections, see [Scopes and Collections](../data/scopes-and-collections.md).
+
+You can grant a user multiple roles to tailor their privileges for the tasks they need to perform. For example, you can grant a user the [Data Reader](#data-reader) role to let them read all data in a specific bucket. In addition, you can grant them the [Data Writer](#data-writer) role, but limit them to writing data into a specific collection within the bucket. Some roles, such as [Query List Index](#query-list-index), are so limited that they’re only useful when combined with other roles ([Query Select](#query-select), for example).
+
+### [](#roles-in-relation-to-buckets)Roles in Relation to Buckets
+
+Some roles provide privileges to resources across the entire cluster. For example, most administrator roles grant the user access to resources cluster wide. Other roles, such as those dealing with managing data, let the administrator granting the role limit its privileges to specific buckets, scopes, or collections.
+
+### [](#commonly-used-roles)User Categories
+
+Couchbase Server users fall into three categories: administrators, developers, and applications. Which roles you assign to a user often depend on which category they fall into:
+
+Administrators
+
+Users with any of the administrator roles can log into Couchbase Server Web Console and perform administrative tasks. Most of these roles do not grant the ability to read or write data.
+
+The administrative roles grant their users the ability to carry out specific tasks. For example, a user with the [Cluster Admin](#cluster-admin) role can manage all cluster features except for security. Users with the [Read-Only Admin](#read-only-admin) role can log into the Couchbase Server Web Console to read cluster settings, statistics, and backup plans, but not change them. The Bucket Admin role allows management only of one or more buckets. See [Administrative Roles](#admin-roles) for details.
+
+|  | The user interface of the Couchbase Web Console changes based on the role the user has. For example, Couchbase Server only displays the the entire **Security** page to a user with the Full Admin role. Users with either the Local User Admin or the External User Admin roles can only see the **Users & Groups** tab on this screen. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Applications
+
+An application needs to have a user account to authenticate with Couchbase Server. You often assign these users roles that let them read or write data or other limited privileges. Most of the roles you grant applications do not allow them to log into Couchbase Server Web Console or modify cluster settings. For example, the [Data Reader](#data-reader) and [Data Writer](#data-writer) roles let the user read and write data using key-value operations. You can limit these privileges to one or more collections, scopes, or buckets. Other roles appropriate for applications are [Manage Scopes](#manage-scopes), [Data DCP Reader](#data-dcp-reader), and [Data Backup & Restore](#data-backup-and-restore).
+
+Developers
+
+Developers require more privileges for greater access to data and to manage resources than do applications. However, they should not have the unrestricted privileges that most Administrator roles grant. These roles do let users log into the Couchbase Server Web Console, so they can perform tasks in a GUI environment. You can tailor the roles you grant to developers so they have just enough privileges to perform their tasks. For example, the [Analytics Admin](#analytics-admin) and [Manage Global External Functions](#manage-global-external-functions) roles were designed for interactive users. They let them maintain some parts of the database. However, they lack the ability to change cluster settings like most administrator roles.
+
+## [](#role-overviews)Role Overviews
+
+The following sections describe the roles defined by Couchbase Server. The list is broken into the same categories that appear within the Couchbase Server Web Console’s **Edit User** dialog. Each description has a table listing what resources a user with the role can access and any limitations on their access. If a resource does not appear in this table, the role does not grant the user any privileges for it.
+
+|  | The majority of roles are only available in Couchbase Server Enterprise Edition. The list indicates when a role is available in Couchbase Server Community Edition. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#admin-roles)Administrative Roles
+
+The following roles grant users the ability to administer some aspects of Couchbase Server.
+
+### [](#full-admin)Full Admin
+
+The Full Admin role (`admin`) grants full privileges to all Couchbase Server features and resources, including security. The role allows the user to log into the Couchbase Server Web Console.
+
+This role is also available in Couchbase Server Community Edition.
+
+### [](#read-only-admin)Read-Only Admin
+
+The Read-Only Admin role lets the user read Couchbase Server settings and statistics. Users with this role can also read Backup Service data to monitor backup plans and tasks.
+
+The role lets the user log into the Couchbase Server Web Console.
+
+This role is also available in Couchbase Server Community Edition.
+
+|  | Prior to Couchbase Server 8.0, this role allowed the user to read security information including listing users and groups. In 8.0, these permissions were split off into the [Read-Only Security Admin](#ro-security-admin) role. The Read-Only Admin role now does not allow access to any of the security information. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+\+ When you upgrade Couchbase Server from a version earlier than 8.0 to 8.0 or later, the upgrade process grants any user with this role the [Read-Only Security Admin](#ro-security-admin) role as well. Granting this role lets the user retain the privileges they had in prior versions.
+
+| Role: Read-Only Admin (ro\_admin) |                                                |                                                                 |
+| --------------------------------- | ---------------------------------------------- | --------------------------------------------------------------- |
+| Resource                          | Permissions                                    | Restrictions                                                    |
+| **Servers**                       | View configuration and statistics              | Cannot add, failover, remove, modify services, or rebalance     |
+| **Buckets**                       | List buckets, scopes, and collections          | Cannot create, drop, edit settings, read or write data          |
+| **Backup**                        | List repositories and plans                    | Cannot add or edit repositories or plans.                       |
+| **XDCR**                          | List remote clusters and outgoing replications | Cannot list incoming replications, or add or edit replications. |
+| **Security**                      | None.                                          | All.                                                            |
+| **Settings**                      | View all settings                              | Cannot edit settings                                            |
+| **Logs**                          | View logs                                      | Cannot collect information                                      |
+| **Indexes**                       | Can view index settings and stats              | Cannot add, edit, or drop indexes                               |
+| **Query**                         | None                                           | All                                                             |
+| **Search**                        | Can view Search indexes                        | Cannot edit or add Search indexes                               |
+| **Analytics**                     | None                                           | All                                                             |
+| **Eventing**                      | None                                           | All                                                             |
+| **Views**                         | Can list defined views                         | Cannot change views                                             |
+
+### [](#security-admin)Security Admin
+
+The Security Admin role allows the user to manage all security settings except for users and groups.
+
+This role lets the user log into the Couchbase Server Web Console.
+
+| Role: Security Admin (security\_admin) |                                                                                   |                                                              |
+| -------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Resource                               | Permissions                                                                       | Restrictions                                                 |
+| **Servers**                            | View configuration and statistics                                                 | Cannot add, failover, remove, modify services, or rebalance  |
+| **Buckets**                            | List buckets, scopes, and collections                                             | Cannot create, drop, or edit settings, or read or write data |
+| **Backup**                             | None                                                                              | All                                                          |
+| **XDCR**                               | List outgoing replications                                                        | Cannot create, start, alter connections                      |
+| **Security**                           | Manage LDAP, SAML, certificates, encryption at rest, audit, and logging settings. | Cannot view or change users or groups.                       |
+| **Settings**                           | View                                                                              | Change                                                       |
+| **Logs**                               | View                                                                              | Collect Information                                          |
+| **Query**                              | None                                                                              | All                                                          |
+| **Search**                             | None                                                                              | All                                                          |
+| **Analytics**                          | None                                                                              | All                                                          |
+| **Eventing**                           | None                                                                              | All                                                          |
+| **Views**                              | None                                                                              | All                                                          |
+
+### [](#ro-security-admin)Read-Only Security Admin
+
+The Read-Only Security Admin role lets the user view all security settings except for listing users and groups.
+
+This role lets the user log into the Couchbase Server Web Console.
+
+|  | This role is new in Couchbase Server 8.0\. It was created to separate security privileges from the Read-Only Admin role. The upgrade process from prior versions to Couchbase Server 8.0 or later grants this role to users that had the Read-Only Admin. This grant ensures the user retains the privileges they had in prior versions. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+| Role: Read-Only Security Admin (ro\_security\_admin) |                                                                                 |                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Resource                                             | Permissions                                                                     | Restrictions                                                                         |
+| **Servers**                                          | View configuration and statistics                                               | Cannot add, failover, remove, modify services, or rebalance                          |
+| **Buckets**                                          | List buckets, scopes, and collections                                           | Cannot create, drop, or edit settings, or read or write data                         |
+| **Backup**                                           | None                                                                            | All                                                                                  |
+| **XDCR**                                             | List outgoing replications                                                      | Cannot create, start, alter connections                                              |
+| **Security**                                         | View LDAP, SAML, certificates, encryption at rest, audit, and logging settings. | Cannot make any changes to security settings. Cannot view or change users or groups. |
+| **Settings**                                         | View                                                                            | Change                                                                               |
+| **Logs**                                             | View                                                                            | Collect Information                                                                  |
+| **Query**                                            | None                                                                            | All                                                                                  |
+| **Search**                                           | None                                                                            | All                                                                                  |
+| **Analytics**                                        | None                                                                            | All                                                                                  |
+| **Eventing**                                         | None                                                                            | All                                                                                  |
+| **Views**                                            | None                                                                            | All                                                                                  |
+
+### [](#local-user-security-admin)Local User Admin
+
+The Local User Admin role lets a user manage users defined in the [local authentication domain](authentication-domains.md#local-domain). It also grants the ability to read all cluster statistics such as the settings, logs, and buckets. It does not grant the ability to read data.
+
+|  | While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it’s intentional behavior. This role is intended to manage all non-administrator roles, including those that can read or write data. You can address any possible privilege escalation concerns by auditing the actions of users with this role to see if they create users to get around the data access limitations. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role allows users to edit local users, but they cannot grant these users the Full Admin, Read-Only Admin, Local User Admin, or External User Admin roles. They also cannot edit the accounts for any user with those roles (including their own account).
+
+|  | This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the Local User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+This role lets users log into the Couchbase Server Web Console.
+
+| Role: Local User Admin (user\_admin\_local) |                                                                      |                                                                                                                                                                          |
+| ------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Resource                                    | Permissions                                                          | Restrictions                                                                                                                                                             |
+| **Servers**                                 | View statistics                                                      | Add, failover, remove, modify services, rebalance                                                                                                                        |
+| **Buckets**                                 | List buckets, scopes, and collections                                | Create, drop, edit settings, read or write data                                                                                                                          |
+| **Backup**                                  | None                                                                 | All                                                                                                                                                                      |
+| **XDCR**                                    | View list of outgoing replications                                   | View incoming replications, remote clusters, add or edit connections                                                                                                     |
+| **Security**                                | Add, delete, and edit local users. Can add, delete, and edit groups. | Cannot grant Full Admin, Read-Only Admin, Local or External User Admin, or Security Admin roles to users or groups. Cannot access non-user and group security resources. |
+| **Settings**                                | View                                                                 | Change                                                                                                                                                                   |
+| **Logs**                                    | View                                                                 | Collect Information                                                                                                                                                      |
+| **Query**                                   | None                                                                 | All                                                                                                                                                                      |
+| **Search**                                  | None                                                                 | All                                                                                                                                                                      |
+| **Analytics**                               | None                                                                 | All                                                                                                                                                                      |
+| **Eventing**                                | None                                                                 | All                                                                                                                                                                      |
+| **Views**                                   | None                                                                 | All                                                                                                                                                                      |
+
+### [](#external-user-security-admin)External User Admin
+
+The External User Admin role lets users manage users defined in the [external authentication domain](authentication-domains.md#external%5Fdomain). It also lets the user manage groups and read all cluster statistics. Users with this role cannot grant external users or groups Full Admin, Read-Only Admin, Security Admin, or Local or External User Admin roles. They also cannot edit users with those roles.
+
+|  | This role replaced the External User Security Admin role available in Couchbase Server prior to version 8.0\. The External User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the External User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role lets the user log into the Couchbase Server Web Console.
+
+| Role: External User Admin (user\_admin\_external) |                                                                 |                                                                                                                                                                                         |
+| ------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                          | Permissions                                                     | Restrictions                                                                                                                                                                            |
+| **Servers**                                       | View statistics                                                 | Add, failover, remove, modify services, or rebalance servers                                                                                                                            |
+| **Buckets**                                       | List buckets, scopes, and collections                           | Create, drop, edit settings, read or write data                                                                                                                                         |
+| **Backup**                                        | None                                                            | All                                                                                                                                                                                     |
+| **XDCR**                                          | View list of outgoing replications                              | View incoming replications, remote clusters, add or edit connections                                                                                                                    |
+| **Security**                                      | Add, delete, edit external users. Add, delete, and edit groups. | Cannot grant Full Admin, Read-Only Admin, Local or External User Admin, or Security Admin roles to groups or external users. Cannot access security resources besides users and groups. |
+| **Settings**                                      | View                                                            | Change                                                                                                                                                                                  |
+| **Logs**                                          | View                                                            | Collect Information                                                                                                                                                                     |
+| **Query**                                         | None                                                            | All                                                                                                                                                                                     |
+| **Search**                                        | None                                                            | All                                                                                                                                                                                     |
+| **Analytics**                                     | None                                                            | All                                                                                                                                                                                     |
+| **Eventing**                                      | None                                                            | All                                                                                                                                                                                     |
+| **Views**                                         | None                                                            | All                                                                                                                                                                                     |
+
+### [](#cluster-admin)Cluster Admin
+
+The Cluster Admin role lets the user manage of all cluster features except security. Cluster Admins can create, edit, and drop buckets but cannot read or write data.
+
+This role lets users log into the Couchbase Server Web Console.
+
+| Role: Cluster Admin (cluster\_admin) |                             |                             |
+| ------------------------------------ | --------------------------- | --------------------------- |
+| Resource                             | Permissions                 | Restrictions                |
+| **Servers**                          | All                         | None                        |
+| **Buckets**                          | Create, drop, edit settings | Read or write data          |
+| **Backup**                           | None                        | All                         |
+| **XDCR**                             | All                         | None                        |
+| **Security**                         | None                        | All                         |
+| **Settings**                         | All                         | None                        |
+| **Logs**                             | All                         | None                        |
+| **Query**                            | None                        | All                         |
+| **Search**                           | None                        | All                         |
+| **Analytics**                        | None                        | All                         |
+| **Eventing**                         | Import, Change Settings     | Add, remove, edit functions |
+| **Views**                            | None                        | All                         |
+
+### [](#eventing-full-admin)Eventing Full Admin
+
+The Eventing Full Admin role lets a user create and manage eventing functions as well as other administration tasks.
+
+The role lets the user log into the Couchbase Server Web Console.
+
+| Role: Eventing Full Admin (eventing\_admin) |                                                                                                                                            |                                                                                        |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Resource                                    | Permissions                                                                                                                                | Restrictions                                                                           |
+| **Servers**                                 | View configuration and statistics                                                                                                          | Cannot add, failover, remove, modify services, rebalance                               |
+| **Buckets**                                 | List buckets, scopes, and collections. Can create, compact, and drop buckets, scopes, and collections. Can read and write data in buckets. | None                                                                                   |
+| **Backup**                                  | List repositories and plans                                                                                                                | Cannot add or edit repositories or plans                                               |
+| **XDCR**                                    | List outgoing replications                                                                                                                 | Cannot list incoming replications or remote clusters. Cannot add or edit replications. |
+| **Security**                                | None                                                                                                                                       | All                                                                                    |
+| **Settings**                                | View all settings and load sample buckets                                                                                                  | Cannot edit settings                                                                   |
+| **Logs**                                    | View logs                                                                                                                                  | Cannot collect information                                                             |
+| **Indexes**                                 | All                                                                                                                                        | None                                                                                   |
+| **Query**                                   | All                                                                                                                                        | None                                                                                   |
+| **Search**                                  | All                                                                                                                                        | None                                                                                   |
+| **Analytics**                               | All                                                                                                                                        | None                                                                                   |
+| **Eventing**                                | All                                                                                                                                        | None                                                                                   |
+| **Views**                                   | All                                                                                                                                        | None                                                                                   |
+
+### [](#backup-full-admin)Backup Full Admin
+
+The Backup Full Admin role lets the user administer backup-related tasks as well as other aspects of Couchbase Server.
+
+|  | This role does not grant the ability to back up or restore users. For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Backup Full Admin (backup\_admin) |                                                                       |                            |
+| --------------------------------------- | --------------------------------------------------------------------- | -------------------------- |
+| Resource                                | Permissions                                                           | Restrictions               |
+| **Servers**                             | All                                                                   | None                       |
+| **Buckets**                             | All, including add and drop buckets and edit, add, and drop documents | None                       |
+| **Backup**                              | All                                                                   | None                       |
+| **XDCR**                                | All                                                                   | None                       |
+| **Security**                            | None                                                                  | All                        |
+| **Settings**                            | All                                                                   | None                       |
+| **Logs**                                | View logs                                                             | Cannot collect information |
+| **Query**                               | All                                                                   | None                       |
+| **Indexes**                             | All                                                                   | None                       |
+| **Search**                              | All                                                                   | None                       |
+| **Analytics**                           | All                                                                   | None                       |
+| **Eventing**                            | All                                                                   | None                       |
+| **Views**                               | All                                                                   | None                       |
+
+### [](#views-admin)Views Admin
+
+The Views Admin role lets the user create, modify, and drop views in one or more buckets. When granting this role, you choose the buckets where the user can manage views.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Views Admin (views\_admin) |                                                                                                                                             |                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Resource                         | Permissions                                                                                                                                 | Restrictions                                                        |
+| **Servers**                      | View configuration and statistics                                                                                                           | Cannot add, failover, remove, modify services, or rebalance servers |
+| **Buckets**                      | Can read, write, and edit views for the buckets assigned to them. Can read data (via key-value), statistics, and settings in these buckets. | Cannot write data to buckets or alter bucket settings               |
+| **XDCR**                         | Can list outgoing replications                                                                                                              | Cannot view incoming replications or change XDCR settings           |
+| **Settings**                     | View all settings                                                                                                                           | Cannot edit settings                                                |
+| **Logs**                         | Can view logs                                                                                                                               | Cannot collect data                                                 |
+| **Query**                        | None                                                                                                                                        | Cannot execute queries                                              |
+| **Search**                       | Can view Search indexes                                                                                                                     | Cannot edit or add Search indexes                                   |
+| **Views**                        | Can create, drop, and edit views in buckets assigned to them.                                                                               | Cannot change views                                                 |
+
+### [](#external-stats-reader)External Stats Reader
+
+The External Stats Reader role grants only allows the user to call the `/metrics` and `/prometheus_sd_config` REST API endpoints. Assign this role to the user Prometheus uses when authenticating with Couchbase Server. See [Configure Prometheus to Collect Couchbase Metrics](../../manage/monitor/set-up-prometheus-for-monitoring.md) for more information.
+
+This role does not let the user log into the Couchbase Server Web Console.
+
+| Role: External Stats Reader (external\_stats\_reader) |                                                                      |              |
+| ----------------------------------------------------- | -------------------------------------------------------------------- | ------------ |
+| Resource                                              | Permissions                                                          | Restrictions |
+| **Metrics API**                                       | Able to call /metrics and /prometheus\_sd\_config REST API endpoints | None         |
+
+### [](#application%5Ftelemetry%5Fwriter)Application Telemetry Writer
+
+This role lets the user report application telemetry through SDK calls. Assign this role to application users that need to report telemetry information to Couchbase Server.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Application Telemetry Writer (application\_telemetry\_writer) |                                              |              |
+| ------------------------------------------------------------------- | -------------------------------------------- | ------------ |
+| Resource                                                            | Permissions                                  | Restrictions |
+| **Application Telemetry**                                           | Able to write to telemetry metric websockets | None         |
+
+## [](#bucket-roles)Bucket Roles
+
+The following roles give users privileges to manage or access buckets. See [Buckets](../buckets-memory-and-storage/buckets.md) for more information about buckets.
+
+### [](#bucket-admin)Bucket Admin
+
+The Bucket Admin role lets the user manage one or more buckets. These management abilities include stopping and starting XDCR for a bucket. When granting this role, you choose which buckets the user can manage.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Bucket Admin (bucket\_admin) |                                                                                                                     |                                                                                          |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Resource                           | Permissions                                                                                                         | Restrictions                                                                             |
+| **Servers**                        | List servers, view server configuration                                                                             | Cannot view configuration, add, failover, remove, modify services, or rebalance servers. |
+| **Buckets**                        | Can drop, compact and edit buckets assigned to them. Can add, edit, and drop scopes and collections in the buckets. | Cannot read, insert, or mutate documents.                                                |
+| **XDCR**                           | Can start and stop replications for buckets assigned to them.                                                       | Cannot add, remove, or edit XDCR connections.                                            |
+| **Settings**                       | View all cluster settings                                                                                           | Cannot change cluster settings.                                                          |
+| **Logs**                           | Can view logs.                                                                                                      | Cannot collect information                                                               |
+| **Search**                         | Can list Search indexes.                                                                                            | Cannot create, drop, or edit Search indexes.                                             |
+| **Eventing**                       | All                                                                                                                 | None                                                                                     |
+
+### [](#manage-scopes)Manage Scopes
+
+The Manage Scopes role lets a user create and delete scopes and collections within one or more buckets. When granting this role, you choose the buckets where the user can create scopes and collections. The user does not have the ability to read, write, or alter data. Use this role to allow applications to manage a bucket’s scopes and collections.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Manage Scopes (scope\_admin) |                                                                          |                                           |
+| ---------------------------------- | ------------------------------------------------------------------------ | ----------------------------------------- |
+| Resource                           | Permissions                                                              | Restrictions                              |
+| **Buckets**                        | Can add and drop scopes and collections in the buckets assigned to them. | Cannot read, insert, or mutate documents. |
+
+### [](#application-access)Application Access
+
+The Application Access role lets a user read and write data in one or more buckets. This role does not grant the ability to query data via SQL++—the user can only access data via keys. When granting this role, you choose the buckets where the user can read and write data. As its name implies, this role is intended for use by applications instead of interactive users.
+
+|  | This role is deprecated. Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets. To transition away from bucket passwords, the upgrade process to Couchbase Server 5.0 created new users with the bucket’s name and password and assigned this role. Do not grant this role to users. Instead, use one of the query or data roles. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Application Access (bucket\_full\_access) |                                                      |                                                     |
+| ----------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------- |
+| Resource                                        | Permissions                                          | Restrictions                                        |
+| **Buckets**                                     | Can read and write data in buckets assigned to them. | Cannot alter bucket, scope, or collection settings. |
+
+## [](#data-roles)Data Roles
+
+These roles give users the ability to read and write data in buckets via key-value operations. See [Work with Documents](../../guides/kv-operations.md) to learn about key-value operations.
+
+### [](#data-reader)Data Reader
+
+The Data Reader role lets the user read data from one or more collections via key-value retrieval. It does not grant the ability to run SQL++ queries (see [Query & Index Roles](#query-roles) for roles that do). When granting this role, you choose the collections where the user can read data. Grant this role to users for applications that need to read data via key-value operations.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Data Reader (data\_reader) |                                                                                                                                                         |                   |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Resource                         | Permissions                                                                                                                                             | Restrictions      |
+| **Buckets**                      | Read data from collections, scopes, and buckets assigned to them. Can read some bucket metadata, XATTR mappings, and pools on buckets assigned to them. | Cannot write data |
+| **Query**                        | None                                                                                                                                                    | All               |
+
+### [](#data-writer)Data Writer
+
+The Data Writer role lets the user write data to one or more collections via key-value operations. It does not grant the ability to run SQL++ queries (see [Query & Index Roles](#query-roles) for roles that do). When granting this role, you choose the collections where the user can write data. Grant this role to users for applications that need to write data via key-value operations.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Data Writer (data\_writer) |                                                                  |                  |
+| -------------------------------- | ---------------------------------------------------------------- | ---------------- |
+| Resource                         | Permissions                                                      | Restrictions     |
+| **Buckets**                      | Write data to collections, scopes, and buckets assigned to them. | Cannot read data |
+| **Query**                        | None                                                             | All              |
+
+### [](#data-dcp-reader)Data DCP Reader
+
+The Data DCP Reader role lets the user start a [Database Change Protocol (DCP)](../clusters-and-availability/intra-cluster-replication.md#database-change-protocol) stream for one or more collections, scopes, or buckets. When granting this role, you choose the collections, scopes, and buckets where the user can start DCP streams. Grant this role to users for applications that need to start DCP streams.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Data DCP Reader (data\_dcp\_reader) |                                                                                                                                                         |                   |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| Resource                                  | Permissions                                                                                                                                             | Restrictions      |
+| **Buckets**                               | Can start DCP streams for collections, scopes, and buckets assigned to them. Can also read data and XATTRs from these collections, scopes, and buckets. | Cannot write data |
+| **Query**                                 | None                                                                                                                                                    | All               |
+
+### [](#data-monitor)Data Monitor
+
+The Data Monitor role lets the user read statistics for a bucket, scope, or collection. When granting the role, you decide which statistics the user can read. Use this role for applications that need to read statistics.
+
+|  | In versions of Couchbase Server prior to 5.5, this role was called Data Monitoring. |
+|  | ----------------------------------------------------------------------------------- |
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Data Monitor (data\_monitoring) |                                                                            |              |
+| ------------------------------------- | -------------------------------------------------------------------------- | ------------ |
+| Resource                              | Permissions                                                                | Restrictions |
+| **Buckets**                           | Can read statistics for buckets, scopes, and collections assigned to them. | None         |
+
+## [](#views-roles)Views Roles
+
+The following roles grant users privileges with Views. Also see the related administrator role [Views Admin](#views-admin).
+
+|  | Views were deprecated in Couchbase Server 7.0\. See [Views Reference](../views/views-intro.md) for more information. |
+|  | -------------------------------------------------------------------------------------------------------------------- |
+
+### [](#views-reader)Views Reader
+
+The Views Reader role lets a user read data from views in one or more buckets. When granting this role, you choose which buckets contain views the user can read. Grant this role to users you create for applications that need to read data from views.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Views Reader (views\_reader) |                                                                                                              |                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| Resource                           | Permissions                                                                                                  | Restrictions                                                         |
+| **Buckets**                        | Can read data from views in the buckets they have access to. Can read data via key-value from these buckets. | Cannot write data to buckets, alter bucket settings, or alter views. |
+| **Views**                          | Can read data from views in buckets assigned to them.                                                        | Cannot change views                                                  |
+
+## [](#query-roles)Query & Index Roles
+
+These roles grant users the ability to perform queries and work with indexes.
+
+### [](#query-curl-access)Query CURL Access
+
+The Query CURL Access role lets the user call the SQL++ curl function in their queries.
+
+|  | The Query CURL Access role allows users to run GET and POST requests to any system on the network Couchbase Server uses for client connections. If your cluster is not configured to use a private network for internal communication, they also have access to the entire cluster. They can interact with any system on this network. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role only grants the user the ability to read data returned by the SQL++ curl function. Usually, you assign additional roles to the user to allow them to read and write data.
+
+For more information about the SQL++ curl function, see [CURL Function](../../n1ql/n1ql-language-reference/curl.md).
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Curl Access (query\_external\_access) |                                       |                                                                                                                                                                      |
+| ------------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                          | Permissions                           | Restrictions                                                                                                                                                         |
+| **Servers**                                       | List servers                          | Cannot view configuration or add, failover, remove, modify services, or rebalance servers                                                                            |
+| **Buckets**                                       | List buckets                          | Cannot list scopes or collections. Cannot create, drop, or edit buckets. Cannot read data other than the results of the SQL++ curl function call. Cannot write data. |
+| **Query**                                         | Can execute SQL++ curl function calls | Cannot execute any other queries. Cannot use the Query Workbench in Couchbase Server Web Console.                                                                    |
+
+### [](#query-system-catalog)Query System Catalog
+
+The Query System Catalog role lets the user query the system catalog using SQL++. This access include querying `system:indexes`, `system:prepareds`, and tables listing current and past queries. Assign this role to developers who need to query these tables when troubleshooting and debugging queries.
+
+The role grants Couchbase Server Web Console access.
+
+| Role: Query System Catalog (query\_system\_catalog) |                                       |                                                                                                         |
+| --------------------------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Resource                                            | Permissions                           | Restrictions                                                                                            |
+| **Servers**                                         | List servers.                         | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.         |
+| **Buckets**                                         | List buckets and view bucket settings | Cannot list scopes or collections, create, drop, edit settings, read or write data                      |
+| **Query**                                           | Can query system tables               | Cannot perform any other query actions. Cannot use the Query Workbench in Couchbase Server Web Console. |
+
+### [](#manage-global-functions)Manage Global Functions
+
+The Manage Global Functions role lets the user create and drop global user-defined SQL++ functions. See [CREATE FUNCTION](../../n1ql/n1ql-language-reference/createfunction.md).
+
+This role grants Couchbase Server Web Console access.
+
+| Role: Manage Global Functions (query\_manage\_global\_functions) |                                                          |                                                                                                                                       |
+| ---------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                                         | Permissions                                              | Restrictions                                                                                                                          |
+| **Servers**                                                      | List servers                                             | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.                                       |
+| **Buckets**                                                      | List buckets                                             | Cannot list scopes or collections, create, drop, edit settings, read or write data                                                    |
+| **Query**                                                        | Can execute CREATE FUNCTION and DROP FUNCTION statements | Cannot perform any other queries, including calling global functions. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                     | View cluster settings                                    | Cannot view any other settings or change settings                                                                                     |
+
+### [](#execute-global-functions)Execute Global Functions
+
+The Execute Global Functions role lets the user call global SQL++ user-defined functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Execute Global Functions (query\_execute\_global\_functions) |                                           |                                                                                                   |
+| ------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                           | Permissions                               | Restrictions                                                                                      |
+| **Servers**                                                        | List servers                              | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Buckets**                                                        | List buckets                              | Cannot list scopes or collections, create, drop, edit settings, read or write data                |
+| **Query**                                                          | Can execute global user-defined functions | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                       | View cluster settings                     | Cannot view any other settings or change settings                                                 |
+
+### [](#manage-scope-functions)Manage Scope Functions
+
+The Manage Scope Functions role lets the user create and drop user-defined SQL++ functions for one or more scopes. When granting this role, You select the scopes where the user can manage user-defined functions. See [CREATE FUNCTION](../../n1ql/n1ql-language-reference/createfunction.md).
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Manage Scope Functions (query\_manage\_functions) |                                                                                                              |                                                                                                                                    |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                                | Permissions                                                                                                  | Restrictions                                                                                                                       |
+| **Servers**                                             | List servers                                                                                                 | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.                                    |
+| **Buckets**                                             | List buckets                                                                                                 | Cannot list scopes or collections, create, drop, edit settings, read or write data                                                 |
+| **Query**                                               | Can execute CREATE FUNCTION and DROP FUNCTION statements to create user-defined functions in specific scopes | Cannot perform any other queries, including calling the functions. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                            | View cluster settings                                                                                        | Cannot view any other settings or change settings                                                                                  |
+
+### [](#query-select)Query Select
+
+The Query Select role lets the user execute `SELECT` statements on the data in one or more collections. See [Select Data with Queries](../../guides/query.md). When granting this role, you choose the collections where the user execute `SELECT` statements.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Select (query\_select) |                                                                                                               |                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                           | Permissions                                                                                                   | Restrictions                                                                                      |
+| **Servers**                        | List servers                                                                                                  | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Buckets**                        | Can list buckets. Can read data from specific collections.                                                    | Cannot list scopes or collections, create, drop, edit settings, read or write data                |
+| **Query**                          | Can execute SELECT statements on data in one or more collections. Can read data from one or more collections. | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                       | View cluster settings                                                                                         | Cannot view any other settings or change any settings                                             |
+
+### [](#query-update)Query Update
+
+The Query Update role lets the user execute `UPDATE` statements to mutate existing documents in specific collections. See [UPDATE](../../n1ql/n1ql-language-reference/update.md) for more information. When granting this role, you select which collections contain documents the user can mutate.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Update (query\_update) |                                                                       |                                                                                                                                |
+| ---------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Resource                           | Permissions                                                           | Restrictions                                                                                                                   |
+| **Servers**                        | List servers                                                          | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.                                |
+| **Buckets**                        | List buckets and view bucket settings                                 | Cannot list scopes or collections, create, drop, edit settings                                                                 |
+| **Query**                          | Can execute UPDATE statements on documents in one or more collections | Cannot perform any other queries. Cannot create new documents. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                       | View cluster settings                                                 | Cannot view any other settings or change settings                                                                              |
+
+### [](#query-insert)Query Insert
+
+The Query Insert role lets the user execute the SQL++ `INSERT` statement to add new documents to one or more collections. See [INSERT](../../n1ql/n1ql-language-reference/insert.md) for more information. When granting this role, you select the collections where the user can add documents.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Insert (query\_insert) |                                                                              |                                                                                                                                     |
+| ---------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                           | Permissions                                                                  | Restrictions                                                                                                                        |
+| **Servers**                        | List servers                                                                 | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.                                     |
+| **Buckets**                        | List buckets and view bucket settings                                        | Cannot list scopes or collections, create, drop, edit settings                                                                      |
+| **Query**                          | Can execute INSERT statements to create documents in one or more collections | Cannot perform any other queries. Cannot mutate existing documents. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                       | View cluster settings                                                        | Cannot view any other settings or change settings                                                                                   |
+
+### [](#query-delete)Query Delete
+
+The Query Delete role lets the user execute the SQL++ `DELETE` satatement to delete documents from one or more scopes. See [DELETE](../../n1ql/n1ql-language-reference/delete.md) for more information. When granting this role, you select the collections where the user can delete documents.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Delete (query\_delete) |                                                                                |                                                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Resource                           | Permissions                                                                    | Restrictions                                                                                      |
+| **Servers**                        | List servers                                                                   | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Buckets**                        | List buckets and view bucket settings                                          | Cannot list scopes or collections. Cannot edit bucket settings.                                   |
+| **Query**                          | Can execute DELETE statements to delete documents from one or more collections | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                       | View cluster settings                                                          | Cannot view any other settings or change settings                                                 |
+
+### [](#query-sequential-scan)Query Use Sequential Scans
+
+The Query Use Sequential Scan role allows users' queries to perform a sequential scan of a keyspace. The query planner only uses a sequential scan when no suitable index exists for the keyspace. Only queries by users with this role can use a sequential scan to query data because scanning a large unindexed keyspace can be expensive. See [Sequential Scans](../../indexes/query-without-index.md#sequential-scans) for more information.
+
+|  | Administrator roles automatically have permission to perform sequential scans when necessary. |
+|  | --------------------------------------------------------------------------------------------- |
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Query Use Sequential Scans (query\_use\_sequential\_scans) |                                                                              |                                  |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------- |
+| Resource                                                         | Permissions                                                                  | Restrictions                     |
+| **Query**                                                        | Can execute a query in a collection that lacks a primary and secondary index | Cannot perform any other queries |
+
+### [](#query-manage-index)Query Manage Index
+
+The Query Manage Index role allows the user to manage indexes for one or more collections. When granting this role, you select the collections where the user can manage indexes.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Manage Index (query\_manage\_index) |                                                                                                                |                                                                                                 |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Resource                                        | Permissions                                                                                                    | Restrictions                                                                                    |
+| **Servers**                                     | List servers                                                                                                   | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers. |
+| **Buckets**                                     | List buckets and view bucket settings                                                                          | Cannot list scopes or collections, create, drop, edit settings. Cannot read or write data.      |
+| **Index**                                       | Can create, drop, and view indexes for the collections whose indexes they have been given permission to manage | Cannot use the Query Workbench in Couchbase Server Web Console                                  |
+| **Settings**                                    | View cluster settings                                                                                          | Cannot view any other settings or change settings                                               |
+
+### [](#query-list-index)Query List Index
+
+This role lets the user list indexes defined for one or more buckets, scopes, or collections. When granting this role, you select the buckets, scopes, or collections where the user can list indexes.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query List Index (query\_list\_index) |                                                                                                                   |                                                                                                    |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Resource                                    | Permissions                                                                                                       | Restrictions                                                                                       |
+| **Servers**                                 | List servers and view statistics                                                                                  | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.    |
+| **Buckets**                                 | List and view statistics for buckets, scopes, and collections                                                     | Cannot create, drop, or edit bucket, scope, or collection settings. Cannot read or write data.     |
+| **Index**                                   | Can get list of indexes via the stats endpoint (see [Index Statistics REST API](../../index-rest-stats/index.md)) | Cannot add, drop, or edit indexes. Cannot use the Index Workbench in Couchbase Server Web Console. |
+| **Settings**                                | View cluster settings                                                                                             | Cannot view any other settings or change settings                                                  |
+
+### [](#execute-scope-functions)Execute Scope Functions
+
+The Execute Scope Functions role lets the user execute SQL++ user-defined functions defined within a scope. When you grant this role, you select the scopes where the user can call user-defined functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Execute Scope Functions (query\_execute\_functions) |                                                             |                                                                                                   |
+| --------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                  | Permissions                                                 | Restrictions                                                                                      |
+| **Servers**                                               | List servers                                                | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                 | Can execute scope user-defined functions in specific scopes | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                              | View cluster settings                                       | Cannot view any other settings or change settings                                                 |
+
+### [](#manage-global-external-functions)Manage Global External Functions
+
+The Manage Global External Functions role lets the user manage global external language functions. See [External Libraries](../../n1ql/n1ql-language-reference/createfunction.md#external-libraries) for more information about external functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Manage Global External Functions (query\_manage\_global\_external\_functions) |                                                                            |                                                                                                   |
+| ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                                            | Permissions                                                                | Restrictions                                                                                      |
+| **Servers**                                                                         | List servers                                                               | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                                           | Can execute CREATE FUNCTION statements to create global external functions | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                                        | View cluster settings                                                      | Cannot view any other settings or change settings                                                 |
+
+### [](#execute-global-external-functions)Execute Global External Functions
+
+The Execute Global External Functions role lets a user execute globally defined external functions. See [External Libraries](../../n1ql/n1ql-language-reference/createfunction.md#external-libraries) for more information about external functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Execute Global External Functions (query\_execute\_global\_external\_functions) |                                                 |                                                                                                   |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                                              | Permissions                                     | Restrictions                                                                                      |
+| **Servers**                                                                           | List servers                                    | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                                             | Can execute globally defined external functions | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                                          | View cluster settings                           | Cannot view any other settings or change settings                                                 |
+
+### [](#manage-scope-external-functions)Manage Scope External Functions
+
+The Manage Scope External Functions role lets the user create and drop external language functions defined at the scope level. When you grant this role, you choose the scopes where the user can manage external functions. See [External Libraries](../../n1ql/n1ql-language-reference/createfunction.md#external-libraries) for more information about external functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Manage Scope External Functions (query\_manage\_external\_functions) |                                              |                                                                                                   |
+| -------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                                   | Permissions                                  | Restrictions                                                                                      |
+| **Servers**                                                                | List servers                                 | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                                  | Can call globally defined external functions | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                               | View cluster settings                        | Cannot view any other settings or change settings                                                 |
+
+### [](#execute-scope-external-functions)Execute Scope External Functions
+
+The Execute Scope External Functions role lets the user call external functions defined in a scope. When you grant this role, you choose the scopes where the user can call external functions. See [External Libraries](../../n1ql/n1ql-language-reference/createfunction.md#external-libraries) for more information about external functions.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Execute Scope External Functions (query\_execute\_external\_functions) |                                              |                                                                                                   |
+| ---------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                                     | Permissions                                  | Restrictions                                                                                      |
+| **Servers**                                                                  | List servers                                 | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                                    | Can call globally defined external functions | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                                 | View cluster settings                        | Cannot view any other settings or change settings                                                 |
+
+### [](#query%5Fmanage%5Fsequences)Manage Sequences
+
+This role lets the user manage sequences for one or more scopes. See [Sequence Operators](../../n1ql/n1ql-language-reference/sequenceops.md) for more information about sequences. When you grant this role, you choose the scopes where the user can manage sequences.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Manage Sequences (query\_manage\_sequences) |                                                            |                                                                                                                                                                         |
+| ------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                          | Permissions                                                | Restrictions                                                                                                                                                            |
+| **Servers**                                       | List servers                                               | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.                                                                         |
+| **Query**                                         | Can create and alter sequences in buckets assigned to them | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. Cannot manage sequences in buckets they do have not assigned to them. |
+| **Settings**                                      | View cluster settings                                      | Cannot view any other settings or change settings                                                                                                                       |
+
+### [](#query%5Fuse%5Fsequences)Use Sequences
+
+This role lets the user incorporate sequences into their queries in one or more scopes. When you grant this role, you choose the scopes where the user can use sequences. See [Sequence Operators](../../n1ql/n1ql-language-reference/sequenceops.md) for more information about sequences.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Manage Sequences (query\_use\_sequences) |                                               |                                                                                                                            |
+| ---------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Resource                                       | Permissions                                   | Restrictions                                                                                                               |
+| **Servers**                                    | List servers                                  | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers                             |
+| **Query**                                      | Can use sequences in scopes assigned to them. | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. Cannot manage sequences. |
+| **Settings**                                   | View cluster settings                         | Cannot view any other settings or change settings                                                                          |
+
+### [](#query%5Fmanage%5Fsystem%5Fcatalog)Query Manage System Catalog
+
+This role lets a user manage all system catalogs for query automatic workload reports using SQL++ statements.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Query Manage System Catalog (query\_manage\_system\_catalog) |                                           |                                                                                                   |
+| ------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Resource                                                           | Permissions                               | Restrictions                                                                                      |
+| **Servers**                                                        | List servers                              | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers.   |
+| **Query**                                                          | Can manage query workload system catalogs | Cannot perform any other queries. Cannot use the Query Workbench in Couchbase Server Web Console. |
+| **Settings**                                                       | View cluster settings                     | Cannot view any other settings or change settings.                                                |
+
+## [](#search-roles)Search Roles
+
+The following roles give users privileges to the [Search Service](../services-and-indexes/services/search-service.md) features.
+
+### [](#search-admin)Search Admin
+
+The Search Admin role lets the user manage the Search Service in one or more buckets. When you grant this role, you choose the buckets where the user can manage search.
+
+|  | In versions of Couchbase Server earlier than 5.5, this role was named FTS Admin. |
+|  | -------------------------------------------------------------------------------- |
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Search Admin (fts\_admin) |                                                                            |                                                                                                             |
+| ------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Resource                        | Permissions                                                                | Restrictions                                                                                                |
+| **Servers**                     | Can list servers.                                                          | Cannot view or edit server configuration or statistics. Cannot rebalance, failover, add, or remove servers. |
+| **Buckets**                     | Can list buckets, scopes, and collections. Can view documents.             | Cannot edit documents or change bucket settings                                                             |
+| **Settings**                    | Can view cluster settings                                                  | Cannot view other settings nor change any settings                                                          |
+| **Query**                       | None                                                                       | All                                                                                                         |
+| **Search**                      | Can add, edit, and drop Search indexes on the buckets they have access to. | Cannot manage Search indexes of buckets they do not have access to.                                         |
+
+### [](#search-reader)Search Reader
+
+The Search Reader role lets the user execute searches using Full-Text Search indexes in one or more buckets. When you grant this role, you choose the buckets in which the user can execute searches.
+
+|  | In versions of Couchbase Server prior to 5.5, this role was referred to as FTS Searcher. |
+|  | ---------------------------------------------------------------------------------------- |
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Search Reader (fts\_searcher) |                                                           |                                                                                                             |
+| ----------------------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Resource                            | Permissions                                               | Restrictions                                                                                                |
+| **Servers**                         | Can list servers.                                         | Cannot view or edit server configuration or statistics. Cannot rebalance, failover, add, or remove servers. |
+| **Buckets**                         | Can list buckets                                          | Cannot read documents                                                                                       |
+| **Settings**                        | Can view cluster settings                                 | Cannot view other settings nor change any settings                                                          |
+| **Query**                           | None                                                      | All                                                                                                         |
+| **Search**                          | Can use Search indexes in the buckets they have access to | Cannot add, drop, or change settings for Search indexes                                                     |
+
+## [](#analytics-roles)Analytics Roles
+
+The following roles give uses privileges for the Analytics Service. See [Analytics Service](../services-and-indexes/services/analytics-service.md) for more information.
+
+### [](#analytics-reader)Analytics Reader
+
+The Analytics Reader role lets the user query all analytic datasets. For more information, see [Analyze Large Datasets](../../analytics/introduction.md).
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Analytics Reader (analytics\_reader) |                                                                                                |                                                                                                 |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Resource                                   | Permissions                                                                                    | Restrictions                                                                                    |
+| **Servers**                                | List servers                                                                                   | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers. |
+| **Settings**                               | View cluster settings                                                                          | Cannot view any other settings or change settings.                                              |
+| **Analytics**                              | Can read any analytic data. Can use the Couchbase Server Web Console’s Analytics query editor. | Cannot change analytic configuration.                                                           |
+
+### [](#analytics-admin)Analytics Admin
+
+The Analytics Admin role lets users manage Analytics Service links, scopes, and datasets for all buckets. For more information, see [Analyze Large Datasets](../../analytics/introduction.md).
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Analytics Admin (analytics\_admin) |                                                              |                                                                                                 |
+| ---------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| Resource                                 | Permissions                                                  | Restrictions                                                                                    |
+| **Servers**                              | List servers                                                 | Cannot view configuration. Cannot add, failover, remove, modify services, or rebalance servers. |
+| **Settings**                             | View cluster settings                                        | Cannot view any other settings or change settings                                               |
+| **Analytics**                            | Can add or drop Analytics Service links, scopes, and dataset | None                                                                                            |
+
+### [](#analytics-select)Analytics Select
+
+The Analytics Select role lets the user query analytic datasets for one or more buckets, scopes, or collections. When you grant this role, you choose the buckets, scopes, and collections where the user can execute queries.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Analytics Select (analytics\_select) |                                                             |                                                                                                             |
+| ------------------------------------------ | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Resource                                   | Permissions                                                 | Restrictions                                                                                                |
+| **Servers**                                | Can list servers.                                           | Cannot view or edit server configuration or statistics. Cannot rebalance, failover, add, or remove servers. |
+| **Settings**                               | Can view cluster settings                                   | Cannot view other settings nor change any settings                                                          |
+| **Analytics**                              | Can query analytics data in the buckets they have access to | Cannot add or drop Analytic scopes, links, or collections or change their settings                          |
+
+### [](#analytics-manager)Analytics Manager
+
+The Analytics Manager role lets the user manage and query the analytic datasets for one or more buckets. They can also manage [Analytics Service local links](../../analytics/manage-datasets.md#creating-a-collection-on-a-local-link). When you grant this role, you choose the buckets where the user can manage and query analytics.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Analytics Manager (analytics\_manager) |                                                                                                                                                                      |                                                                                                             |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Resource                                     | Permissions                                                                                                                                                          | Restrictions                                                                                                |
+| **Servers**                                  | Can list servers.                                                                                                                                                    | Cannot view or edit server configuration or statistics. Cannot rebalance, failover, add, or remove servers. |
+| **Settings**                                 | Can view cluster settings                                                                                                                                            | Cannot view other settings nor change any settings                                                          |
+| **Analytics**                                | Can query analytics data in the buckets they have access to. Can manage analytics in these buckets, including local links and adding/dropping analytics collections. | Cannot manage analytics in other buckets                                                                    |
+
+## [](#eventing-roles)Eventing Roles
+
+These roles control a user’s access to the Eventing Service. Also, see [Eventing Full Admin](#eventing-full-admin) for the Eventing-related administrator role. For more information about Eventing, see [Run a Function on Data Change](../../eventing/eventing-overview.md).
+
+### [](#eventing-manage-functions)Eventing Manage Scope Functions
+
+The Eventing Manage Scope Functions role lets the user manage the eventing functions in one or more scopes. When you grant this role, you choose the scopes where the user can manage eventing functions.
+
+|  | In addition to this role, the user must have the [Data DCP Reader](#data-dcp-reader) on the collections they want their functions to listen to. They must also have read and write permissions on one or more collections to store the function’s event data. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: Eventing Manage Scope Functions (eventing\_manage\_functions) |                                                                                                      |                                                                                                         |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Resource                                                            | Permissions                                                                                          | Restrictions                                                                                            |
+| **Server**                                                          | Can list servers                                                                                     | Cannot view server settings or statistics. Cannot edit server settings, failover, or rebalance servers. |
+| **Settings**                                                        | Can view cluster settings                                                                            | Cannot view other settings or change any settings                                                       |
+| **Eventing**                                                        | Can add Eventing functions to a scope assigned to them. Can change eventing settings for the scopes. | None                                                                                                    |
+
+## [](#xdcr-roles)XDCR Roles
+
+The following roles give users the ability to manage XDCR settings and features.
+
+### [](#xdcr-admin)XDCR Admin
+
+The XDCR Admin role grants the user the ability to manage XDCR connections.
+
+This role lets the user log into Couchbase Server Web Console.
+
+| Role: XDCR Admin (replication\_admin) |                                       |                                                                     |
+| ------------------------------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| Resource                              | Permissions                           | Restrictions                                                        |
+| **Servers**                           | View configuration and statistics     | Cannot add, failover, remove, modify services, or rebalance servers |
+| **Buckets**                           | List buckets, scopes, and collections | Cannot create, drop, edit settings, read or write data              |
+| **Backup**                            | None                                  | All                                                                 |
+| **XDCR**                              | All                                   | None                                                                |
+| **Security**                          | None                                  | All                                                                 |
+| **Settings**                          | View                                  | Change                                                              |
+| **Logs**                              | View                                  | Collect Information                                                 |
+| **Query**                             | None                                  | All                                                                 |
+| **Search**                            | None                                  | All                                                                 |
+| **Analytics**                         | None                                  | All                                                                 |
+| **Eventing**                          | None                                  | All                                                                 |
+| **Views**                             | None                                  | All                                                                 |
+
+### [](#xdcr-inbound)XDCR Inbound
+
+The XDCR Inbound role lets the user create inbound XDCR streams for one or more buckets. When granting this role, you choose the buckets where the user can create inbound XDCR connections. Assign this role to the user that you’ll specify when creating an XDCR reference. See [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md) for more information.
+
+|  | Versions of Couchbase Server prior to 5.5 called this role Replication Target. |
+|  | ------------------------------------------------------------------------------ |
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: XDCR Inbound (replication\_target) |                                                                                  |                                                                  |
+| ---------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Resource                                 | Permissions                                                                      | Restrictions                                                     |
+| **XDCR**                                 | Can create inbound connections on buckets they have been granted permissions on. | Cannot create outbound connections or alter other XDCR settings. |
+
+## [](#backup-roles)Backup Roles
+
+The following role gives users the ability to backup and restore data. Also see the Administrative role [Backup Full Admin](#backup-full-admin).
+
+### [](#data-backup-and-restore)Data Backup & Restore
+
+The Data Backup & Restore lets users back up and restore data in one or more buckets. When you grant this role, you choose the buckets the user can back up. This role is not intended for interactive users. Grant this role to users for applications that need to back up and restore data.
+
+|  | This role does not let the user access some important cluster-level data, so it cannot fully backup the cluster. See [Bucket Level](../../backup-restore/cbbackupmgr-backup.md#bucket-level) in the [cbbackupmgr backup](../../backup-restore/cbbackupmgr-backup.md) documentation for details. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Data Backup & Restore (data\_backup) |                                                                                          |                                |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------ |
+| Resource                                   | Permissions                                                                              | Restrictions                   |
+| **Buckets**                                | Can read, write, and manage buckets assigned to them.                                    | None                           |
+| **Backup**                                 | Can backup bucket data, bucket SQL++ metadata, and analytics                             | Cannot backup other data       |
+| **Security**                               | Can view settings for SAML, certificates, encryption at rest, audits, and other settings | Cannot change settings         |
+| **Indexes**                                | Can build, create, and list                                                              | Cannot backup, read, or manage |
+| **Bucket Analytics**                       | Can manage and select buvket analytics                                                   | Cannot read bucket analytics   |
+| **Analytics**                              | Can select and back up analytics                                                         | Cannot read analytics synonyms |
+
+## [](#mobile-roles)Mobile Roles
+
+The mobile roles support connections with the Sync Gateway and related features. See the [Sync Gateway Introduction](../../../../sync-gateway/current/introduction.md) for more information.
+
+### [](#sync-gateway)Sync Gateway
+
+The Sync Gateway role gives the user full access to the data Sync Gateway’s data stored in Couchbase Server. This role also lets the user manage indexes and read some cluster information. Only assign this role to the user that you create for the Sync Gateway to use when connecting to Couchbase Server. Choose one or more buckets that contain mobile data that you want this user to manage. See [Configure Server for Sync Gateway](#sync-gateway::get-started-prepare.adoc#configure-server) for more information.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway (mobile\_sync\_gateway) |                                                                                                                                                                                              |                                                   |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| Resource                                   | Permissions                                                                                                                                                                                  | Restrictions                                      |
+| **Sync Gateway Data**                      | Can perform all actions on data (including flushing) and views on the Sync Gateway data stored in the Couchbase Server buckets you grant them access to. Can view settings of these buckets. | Cannot change bucket settings                     |
+| **Query**                                  | Can execute queries on data in buckets containing Sync Gateway data                                                                                                                          | None                                              |
+| **Indexes**                                | Add and drop indexes and view index statistics in the buckets containing Sync Gateway data                                                                                                   | None.                                             |
+| **Settings**                               | View cluster settings                                                                                                                                                                        | Cannot view any other settings or change settings |
+
+### [](#sync-gateway-configurator)Sync Gateway Architect
+
+The Sync Gateway Architect role lets the user manage Sync Gateway databases, users, and roles. You choose one or more collections, scopes, or buckets where the user can manage Sync Gateway data. This role also grants access to the Sync Gateway’s metrics via the `/metrics` REST API endpoint. For information about Sync Gateway users and roles, see [Access Control Concepts](../../../../sync-gateway/current/access-control/access-control-concepts.md).
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway Architect (sync\_gateway\_configurator) |                                                        |                                                    |
+| ---------------------------------------------------------- | ------------------------------------------------------ | -------------------------------------------------- |
+| Resource                                                   | Permissions                                            | Restrictions                                       |
+| **Sync Gateway Data**                                      | None                                                   | Cannot read or write Sync Gateway application data |
+| **Sync Gateway Users & Roles**                             | Can add, remove, and edit Sync Gateway users and roles | None                                               |
+| **Sync Gateway Metrics**                                   | Can read metrics                                       | Cannot change metric settings                      |
+
+### [](#sync-gateway-app)Sync Gateway Application
+
+The Sync Gateway Application role lets the user manage Sync Gateway users, roles, and data. It also allows the user to read and write application data through the Sync Gateway. You choose one or more collections, scopes, or buckets where this user can manage mobile users and roles. For information about Sync Gateway users and roles, see [Access Control Concepts](../../../../sync-gateway/current/access-control/access-control-concepts.md).
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway Application (sync\_gateway\_app) |                                                        |              |
+| --------------------------------------------------- | ------------------------------------------------------ | ------------ |
+| Resource                                            | Permissions                                            | Restrictions |
+| **Collection: Data**                                | Can read and write application data                    | None         |
+| **Sync Gateway Users & Roles**                      | Can add, remove, and edit Sync Gateway users and roles | None         |
+
+### [](#sync-gateway-application-read-only)Sync Gateway Application Read Only
+
+The Sync Gateway Application Read Only role lets the user read Sync Gateway users and role settings. It also lets them read Sync Gateway data. For information about Sync Gateway users and roles, see [Access Control Concepts](../../../../sync-gateway/current/access-control/access-control-concepts.md).
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway Application Read Only (sync\_gateway\_app\_ro) |                                       |                                          |
+| ----------------------------------------------------------------- | ------------------------------------- | ---------------------------------------- |
+| Resource                                                          | Permissions                           | Restrictions                             |
+| **Collection: Data**                                              | Can read application data             | Cannot write application data            |
+| **Sync Gateway Users & Roles**                                    | Can read Sync Gateway users and roles | Cannot add, drop, or edit users or roles |
+
+### [](#sync-gateway-replicator)Sync Gateway Replicator
+
+The Sync Gateway Replicator role lets the user manage Sync Gateway replications.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway Replicator (sync\_gateway\_replicator) |                                         |              |
+| --------------------------------------------------------- | --------------------------------------- | ------------ |
+| Resource                                                  | Permissions                             | Restrictions |
+| **Sync Gateway Replication Collection**                   | Can read and write replication settings | None         |
+
+### [](#sync-gateway-dev-ops)Sync Gateway Dev Ops
+
+The Sync Gateway Dev Ops role lets the user manage the Sync Gateway’s node-level configuration. It also grants access to Sync Gateway’s `/metrics` endpoint for Prometheus integration.
+
+This role does not let the user log into Couchbase Server Web Console.
+
+| Role: Sync Gateway Dev Ops (sync\_gateway\_dev\_ops) |                                        |                               |
+| ---------------------------------------------------- | -------------------------------------- | ----------------------------- |
+| Resource                                             | Permissions                            | Restrictions                  |
+| **Sync Gateway Node Configuration**                  | Can read and write node-level settings | None                          |
+| **Sync Gateway Metrics**                             | Can read metrics                       | Cannot change metric settings |

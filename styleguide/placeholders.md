@@ -1,0 +1,32 @@
+[View original HTML](/styleguide/placeholders.html)
+
+The type of placeholder you add to code depends on the type of [code example](examples.md) you’re including.
+
+## [](#curl-and-shell-placeholders)curl and Shell Placeholders
+
+When you need to add a placeholder value to a curl or other shell code example:
+
+* Write the placeholder name in capital letters.
+* Use a `$` before the placeholder name.
+* Use underscores (`_`) to separate words.
+
+For example, `$DATABASE_NAME`.
+
+## [](#rest-api-path-attribute-placeholders)REST API Path Attribute Placeholders
+
+When you need to add a placeholder value to a path attribute for a REST API example:
+
+* Write the placeholder name in capital letters.
+* Surround the placeholder name in curly braces (`{}`).
+* If necessary, use underscores (`_`) to separate words.
+
+For example, `{PORT}`.
+
+## [](#other-placeholders)Other Placeholders
+
+If your code format does not support a value using curly braces (`{}`) or a `$` prefix, then you must:
+
+* Write the placeholder name in capital letters.
+* Surround the placeholder name in angled brackets (`<>`).
+
+For example, `<YOUR_ATTRIBUTE>`.

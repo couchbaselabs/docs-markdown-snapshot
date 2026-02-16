@@ -1,0 +1,20 @@
+[View original HTML](/ruby-sdk/3.5/project-docs/third-party-integrations.html)
+
+> The Couchbase Ruby SDK is often used with unofficial and third party tools and applications to integrate into broader language and platform ecosystems, and across data lakes in heterogeneous environments. 
+
+Unresolved include directive in modules/project-docs/pages/third-party-integrations.adoc - include::7.5@sdk:shared:partial$integrations.adoc\[\]
+
+Unresolved include directive in modules/project-docs/pages/third-party-integrations.adoc - include::7.5@sdk:shared:partial$integrations.adoc\[\]
+
+The Couchbase Ruby SDK integrates well with Ruby-on-Rails, particularly for use as a [Rails Cache Store](https://guides.rubyonrails.org/caching%5Fwith%5Frails.html#cache-stores). To do so, add the following to your Rails application config:
+
+```ruby
+config.cache_store = :couchbase_store, {
+  connection_string: "couchbase://localhost",
+  username: "app_cache_user",
+  password: "s3cret",
+  bucket: "app_cache"
+}
+```
+
+An implementation of the Cache Store for Rails can be found in our [Ruby client repo](https://github.com/couchbase/couchbase-ruby-client/blob/master/lib/active%5Fsupport/cache/couchbase%5Fstore.rb), and on the [Caching Example page](../howtos/caching-example.md).

@@ -1,0 +1,151 @@
+[View original HTML](/kotlin-sdk/1.5/howtos/secure-connections.html)
+
+> Learn how to enable client support for TLS and configure trusted certificates. 
+
+Couchbase Capella and Couchbase Server Enterprise Edition support secure connections with TLS.
+
+Each node in a Couchbase cluster has its own TLS certificate, issued by a Certificate Authority (CA). When using TLS to connect to a node, the SDK verifies the node’s certificate is signed by a trusted CA.
+
+In just a moment, you’ll learn how to configure the SDK to trust a CA certificate, but first…​
+
+## [](#prerequisites)Before You Start
+
+You’ll need the certificate of the Certificate Authority (CA) that issues certificates for nodes in the cluster.
+
+* Couchbase Capella
+* Couchbase Server
+
+|  | The Capella CA certificate is included in the SDK, and the SDK trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by using a connection string that starts with couchbases:// (note the final 's'). You can skip the rest of this chapter, or continue reading to learn how to trust a Capella CA certificate other than the one included in the SDK. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Log into the Capella admin website and navigate to your cluster. Click on the "Connect" tab and scroll down to "Security Certificates." Download the "Root Certificate."
+
+Log into the admin console and navigate to **Security** **Certificates**. Copy the "Trusted Root Certificates" (there might be only one). Create a new text file called `ca.pem` and paste the certificates into this file.
+
+|  | Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#connect-tls)Connecting to a Cluster Using TLS
+
+As of SDK 1.1, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `security` settings.
+
+The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
+
+|  | The JVM’s trust store is represented by a file named cacerts, which can be found inside your Java installation folder. |
+|  | ---------------------------------------------------------------------------------------------------------------------- |
+
+You can still provide a certificate explicitly if necessary:
+
+1. Set the `security.enableTls` client setting to true. Alternatively, use a connection string that starts with `couchbases://` (note the final 's').
+2. Specify a [TrustSource](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client/kotlin-client/com.couchbase.client.kotlin.env.dsl/-trust-source/) so the client knows which TLS certificates to trust.
+
+Here’s an example, suitable for most deployments:
+
+Enable TLS and trust certificates in a PEM file.
+
+```kotlin
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.certificate( (1)
+            Paths.get("/path/to/ca.pem") (2)
+        )
+    }
+}
+```
+
+| **1** | If you wish to specify the PEM file path using a connection string parameter or Java system property, the client setting name is security.trustCertificate. |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Change this to the location of the file containing the CA certificate(s). If you downloaded it from Couchbase Capella, it might have a different name.      |
+
+The `TrustSource` determines whether the client trusts the TLS certificate presented by the server. In this case, the client trusts a certificate if it is signed by any certificate in the given file.
+
+## [](#hostname-validation)Hostname Validation
+
+When the server presents a certificate to the client, the client checks whether the address encoded in the certificate matches the address the client is connecting to. If the address does not match, the client refuses to connect.
+
+|  | During development, when connecting to a local single-node cluster be sure to use "127.0.0.1" in the connection string instead of "localhost". Otherwise, hostname validation fails. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+If you must disable this check, and are sure you understand the consequences, set the `security.enableHostnameVerification` client setting to false. However, it’s almost always better to fix the problem that causes hostname validation to fail.
+
+## [](#other-trust-source)Other TrustSources
+
+You’re not limited to reading PEM files from the filesystem. Here are some alternate ways to create a `TrustSource`.
+
+### [](#parse-your-own)From X509Certificate objects
+
+You can create a `TrustSource` from a list of `java.security.cert.X509Certificate` objects. Here’s an example that uses `SecurityConfig.decodeCertificates` to convert a hardcoded string into a list of X.509 certificates to trust:
+
+Enable TLS and trust decoded X.509 certificates
+
+```kotlin
+val pemEncodedCertificates = """
+    -----BEGIN CERTIFICATE-----
+    MIIDAjCCAeqgAwIBAgIIFpZtHpcc9cgwDQYJKoZIhvcNAQELBQAwJDEiMCAGA1UE
+    ...
+    xFptQ/XVtEO/zh0gqSnUD/dROeUG28zbDKdP4Q1b70XE87HKnjYDcpfwfyJwo0Xg
+    -----END CERTIFICATE-----
+"""
+
+val decodedCertificates: List<X509Certificate> =
+    SecurityConfig.decodeCertificates(listOf(pemEncodedCertificates))
+
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.certificates(decodedCertificates)
+    }
+}
+```
+
+### [](#keystore)From a PKCS#12 archive or Java KeyStore
+
+Alternatively, you can store the certificates in a PKCS#12 archive or Java Key Store and read them like this:
+
+Enable TLS and trust certificates in a PKCS#12 archive or Java Key Store.
+
+```kotlin
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.trustStore(
+            path = Paths.get("/path/to/trust-store.p12"),
+            password = "password",
+        )
+    }
+}
+```
+
+|  | There’s an overload of TrustSource.trustStore that accepts an existing KeyStore object, for cases when you need more control over how the KeyStore is initialized. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#factory)From a custom TrustManagerFactory
+
+For ultimate control, you can use a custom `javax.net.ssl.TrustManagerFactory`.
+
+Enable TLS using an insecure trust manager factory.
+
+```kotlin
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.factory(
+            InsecureTrustManagerFactory.INSTANCE (1)
+        )
+    }
+}
+```
+
+| **1** | This example trusts any certificate, regardless of who issued it. This defeats the purpose of using a secure connection, and is not suitable for a production environment. |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#summary)Summary
+
+When TLS is enabled, the SDK only talks to nodes whose TLS certificates were signed by a trusted Certificate Authority (CA). Unless you are connecting to a Couchbase Capella cluster, it’s your responsibility to tell the SDK which CA certificates to trust.
+
+You can download the CA certificates from the Couchbase Capella admin website, or copy them from the Couchbase Server admin console.
+
+The simplest way to tell the SDK which CA certificates to trust is to point it at a PEM file containing the certificates. Alternatively, the SDK can read certificates from a PKCS#12 archive or a Java KeyStore, or you can give it pre-decoded X509Certificate objects.
+
+The SDK gives you the power to disable hostname verification, or even disable all security checks by using an insecure trust manager factory. It’s best to avoid those settings whenever possible.

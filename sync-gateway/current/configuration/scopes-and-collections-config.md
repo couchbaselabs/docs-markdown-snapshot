@@ -1,0 +1,149 @@
+[View original HTML](/sync-gateway/current/configuration/scopes-and-collections-config.html)
+
+This section explains how to configure Scopes and Collections for Sync Gateway. It describes configuration options and provides example configuration code.
+
+## [](#understanding-buckets-scopes-and-collections)Understanding Buckets, Scopes, and Collections
+
+You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create saves in the default scope and collection. For more information, examples and use cases, see [Scopes and Collections Support in Couchbase Mobile for Edge Applications](https://www.couchbase.com/blog/scopes-collections-couchbase-mobile/).
+
+## [](#configuration-options)Configuration Options
+
+When upgrading to Sync Gateway 3.1, it’s not necessary to include `scopes` and `collections` in the configuration. If you choose not to specify them, your previous dataset remains compatible. Keep in mind that the provided examples are optional.
+
+You have these options to configure Scopes and Collections Sync for Gateway:
+
+* **custom scope/custom collection (the option we cover here)**  
+You can define 1 custom scope per database with up to 1000 custom collections.  
+If you do not specify a custom scope and collection, any documents you create saves in the default scope and collection.
+* **default scope/custom collection**  
+You can choose the default scope with up to 1000 custom collections.  
+If you do not specify a custom scope and collection, any documents you create saves in the default scope and collection.
+* **default scope/default collection**  
+You can choose the default scope with default collection.  
+If you do not specify a custom scope and collection, any documents you create saves in the default scope and collection.  
+When you import a dataset created in previous versions of Couchbase Server, the documents automatically save in the `_default` scope and `_default` collection.
+
+## [](#configuration-example-custom-scopecustom-collection)Configuration Example: custom scope/custom collection
+
+This example covers a configuration with 1 custom Scope and 2 custom Collections:
+
+```javascript
+{
+  "name": "db",
+  "bucket": "bucket",
+  "scopes" : {
+    "scope1": {
+      "collections": {
+        "collection1" : {
+            "sync": `
+                function(doc, oldDoc, meta) {
+                    if (doc.type != "default") {
+                        throw({forbidden : "Rejected document"})
+                    }
+                    channel("legacy")
+                }
+            `,
+            "import_filter": `
+              function(doc) {
+                return doc.type == "mobile"
+              }
+            `
+        },
+        "collection2" : {
+          "sync": `
+            function(doc, oldDoc, meta) {
+              channel("collection1")
+            }
+          `,
+          "import_filter": `
+              function(doc) {
+                return doc.type == "mobile"
+              }
+          `
+        }
+      }
+    }
+  },
+  "index": {
+    "num_replicas": 0
+  }
+}
+```
+
+| Field               | Description                                                                                                                                                                                                                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name                | The name of the database.                                                                                                                                                                                                                                                                               |
+| bucket              | The name of the bucket associated with the database.                                                                                                                                                                                                                                                    |
+| scopes              | An object representing different scopes within the database. Each scope contains collections with their respective sync and import filter functions.                                                                                                                                                    |
+|                     |                                                                                                                                                                                                                                                                                                         |
+| scope1              | The name of the first scope in the database.                                                                                                                                                                                                                                                            |
+| collections         | An object representing collections within the scope1 scope. Each collection has its sync and import filter functions.                                                                                                                                                                                   |
+|                     |                                                                                                                                                                                                                                                                                                         |
+| collection1         | The name of the first collection within scope1.                                                                                                                                                                                                                                                         |
+| sync                | The sync function associated with collection1. {sgw} triggers this function when you create or update a document in the collection. This code example illustrates a specific use case for sync functions. For more information, see [Sync Functions](../access-control/sync-function/sync-function.md). |
+|                     | The sync function checks if the type field of the document is not default. If it’s not, it throws a forbidden error, rejecting the document.                                                                                                                                                            |
+|                     | After the rejection, it sends a message to the legacy channel.                                                                                                                                                                                                                                          |
+| import\_filter      | The import filter function associated with collection1. {sgw} uses this function when importing documents into the collection. For more information, see [Import Filters](../sync/import-processing.md).                                                                                                |
+|                     | The import filter checks if the type field of the document is mobile. If it is, {sgw} imports the document; otherwise, it’s skipped.                                                                                                                                                                    |
+|                     |                                                                                                                                                                                                                                                                                                         |
+| collection2         | The name of the second collection within scope1.                                                                                                                                                                                                                                                        |
+| sync                | The sync function associated with collection2. This function is triggered when a document is created or updated in the collection. For more information, see [Sync Functions](../access-control/sync-function/sync-function.md).                                                                        |
+|                     | The sync function sends a message to the collection1 channel.                                                                                                                                                                                                                                           |
+| import\_filter      | The import filter function associated with collection2. {sgw} uses this function when importing documents into the collection. For more information, see [Import Filters](../sync/import-processing.md).                                                                                                |
+|                     | The import filter checks if the type field of the document is mobile. If it’s, {sgw} imports the document; otherwise, it’s skipped.                                                                                                                                                                     |
+|                     |                                                                                                                                                                                                                                                                                                         |
+| index.num\_replicas | The number of index replicas. In this case, it’s set to 0, meaning {sgw} creates no replicas of indexes for this database.                                                                                                                                                                              |
+
+## [](#configuration-example-dynamic-access-grant)Configuration Example: Dynamic Access Grant
+
+```javascript
+function(doc, oldDoc, meta) {
+   if (doc.userId) {
+       channelId = "channel.profile:"+ doc.userId;
+       // Assign document to channel
+       channel(channelId);
+       // Grant user access to channel
+       access(doc.userId, channelId);
+   }
+   if (doc.providerId) {
+       // Grant provider user access to channel
+       access(doc.providerId, channelId);
+   }
+}
+```
+
+| Field          | Explanation                                                                        |
+| -------------- | ---------------------------------------------------------------------------------- |
+| doc            | The doc object contains the data for the current document being processed.         |
+| oldDoc         | The oldDoc object contains the previous version of the document (if available).    |
+| meta           | The meta object contains metadata about the document, such as its expiration time. |
+| doc.userId     | Checks if the doc object contains a field called userId.                           |
+| channelId      | The string that represents the channel where the document is assigned.             |
+| channel()      | A function used to assign the document to a channel represented by the channelId.  |
+| access()       | A function used to grant access to a user for a specific channel.                  |
+| doc.providerId | Checks if the doc object contains a field called providerId.                       |
+
+## [](#configuration-example-custom-sync-function)Configuration Example: Custom Sync Function
+
+```javascript
+function(doc, oldDoc, meta) {
+   // Only users with provider role can update document
+   requireRole("provider");
+   if (doc.userId) {
+       channelId = "channel.medication:"+ doc.userId;
+       // Assign document to channel
+       channel(channelId);
+       // Grant user access to channel
+       access(doc.userId, channelId);
+     }
+}
+```
+
+| Field                         | Explanation                                                                                                                                                                                                                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| function                      | The function starts with function(doc, oldDoc, meta). It takes three parameters: doc, oldDoc, and meta. These parameters represent the document being updated, the old version of the document, and metadata related to the update, respectively.                   |
+| requireRole                   | The requireRole("provider") function checks whether the user performing the update has the "provider" role. If not, the update is not allowed.                                                                                                                      |
+| if (doc.userId)               | A conditional check: if (doc.userId). This checks whether the doc object has a property called userId. If this property exists, the following code is executed.                                                                                                     |
+| channelId                     | If the doc.userId property exists, the channelId variable is assigned a value in the format "channel.medication:" + doc.userId. This creates a unique channel ID based on the userId of the document.                                                               |
+| channel(channelId)            | The channel(channelId) function is called, which associates the document with the channel specified by channelId. This is usually done in databases to organize and group documents based on certain criteria.                                                      |
+| access(doc.userId, channelId) | The access(doc.userId, channelId) function is called, which grants the user with doc.userId access to the channel identified by channelId. This access control mechanism ensures that only authorized users can view or interact with the documents in the channel. |

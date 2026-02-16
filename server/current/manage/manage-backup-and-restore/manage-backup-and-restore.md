@@ -1,0 +1,832 @@
+[View original HTML](/server/current/manage/manage-backup-and-restore/manage-backup-and-restore.html)
+
+> Couchbase Server allows one or more buckets, and selected subsets of their data, to be backed up, restored, and archived. 
+
+## [](#understanding-backup-and-restore)Understanding Backup and Restore
+
+The data on a Couchbase-Server cluster can be backed up, restored, and archived by means of either of the following:
+
+* The **Backup Service**. This can be configured by means of the **Backup** UI provided by Couchbase Server Web Console.
+* The [cbbackupmgr](../../backup-restore/cbbackupmgr.md) CLI utility.
+
+The technology that underlies the Backup Service includes that provided by `cbbackupmgr`: note, however, that `cbbackupmgr` and the Backup Service differ, in terms of the features they offer (as described below, in [The Backup Service and cbbackupmgr](#the-backup-service-and-cbbackupmgr)).
+
+Detailed information on `cbbackupmgr` is provided in [cbbackupmgr](../../backup-restore/cbbackupmgr.md). An overview of the Backup Service is provided in [Backup Service](../../learn/services-and-indexes/services/backup-service.md).
+
+### [](#the-backup-service-and-cbbackupmgr)The Backup Service and cbbackupmgr
+
+Both the Backup Service and `cbbackupmgr` are included in Couchbase Server Enterprise Edition. From version 7.0, `cbbackupmgr` is also available in Couchbase Server Community Edition, but without support for merge, cloud backup, or collection-level restore.
+
+The following paragraphs summarize the similarities and differences between the Backup Service and `cbbackupmgr` as provided by Enterprise Edition.
+
+For use of the Backup Service, the Full Admin role must have been assigned. For use of `cbbackupmgr`, the Full Admin or the Data Backup & Restore role must have been assigned.
+
+The Backup Service — which can be configured by means of the **Backup** facility of Couchbase Web Console, the Couchbase CLI, and the REST API — allows backup, restore, and archiving to be configured for the local cluster; and also permits restore to be configured for a remote cluster. By contrast, `cbbackupmgr` allows backup, restore, and archiving each to be configured either for the local or for a remote cluster: all available options are listed in [Version Compatibility](../../backup-restore/enterprise-backup-restore.md##version-compatibility).
+
+Whereas `cbbackupmgr` performs a specific backup or merge when executed, the Backup Service can be scheduled so that backups and periodic merges are ongoing. The Backup Service therefore supports additional and modified parameters, to allow scheduling to be configured.
+
+Both the Backup Service and `cbbackupmgr` allow full and incremental backups. Unlike the Backup Service, `cbbackupmgr` requires a new repository to be created for each new, full backup (successive `cbbackupmgr` backups to the same repository being incremental). Both allow incremental backups, once created, to be merged, and their data deduplicated. Both use the same backup archive structure; allow the contents of backups to be listed; and allow specific documents to be searched for.
+
+Both the Backup Service and `cbbackupmgr` support use of AWS S3 storage.
+
+The `cbbackupmgr` tool is available in both Couchbase Server 7.0 Enterprise Edition (EE) and Couchbase Server Community Edition (CE). However, whereas in EE, `cbbackupmgr` allows backup and restore to be performed with reference to buckets, scopes, and collections; in CE, `cbbackupmgr` allows backup and restore to be performed with reference to buckets only.
+
+For detailed information about how `cbbackupmgr` works (including a detailed description of incremental backup), see the [Discussion](../../backup-restore/cbbackupmgr.md#discussion) provided on the page for [cbbackupmgr](../../backup-restore/cbbackupmgr.md). The page for [cbbackupmgr](../../backup-restore/cbbackupmgr.md) also provides a synopsis of the command, and a description of its basic options.
+
+The remainder of the current page describes how to configure and use the Backup Service, using Couchbase Web Console.
+
+## [](#node-configuration)Assign and Run the Backup Service
+
+For backup, restore, and other related tasks to be scheduled and performed, the Backup Service must be running on an assigned node. The service (as is the case with all other Couchbase services) can be assigned either when a node is initially provisioned as a one-node cluster (as described in [Create a Cluster](../manage-nodes/create-cluster.md)), or when a node is added to an existing cluster (as described in [Add a Node and Rebalance](../manage-nodes/add-node-and-rebalance.md)). Provided that at least one node runs the Backup Service, data for the entire cluster can be backed up, restored, and archived. Locations to be used for saving data must be accessible to all cluster-nodes that are running the Backup Service. Note also that Couchbase Server must have read and write access to the location. On Linux, therefore, for a filesystem location, use the `chgrp` command to set the group ID of the folder to `couchbase`; unless a non-root installation has been performed, in which case set the group ID either to the username of the current user, or to a group of which the current user is a member — see [Non-Root Install and Upgrade](../../install/non-root.md), for more information.
+
+## [](#access-the-backup-service-ui)Access the Backup Service UI
+
+To access the Backup Service UI, proceed as follows:
+
+1. On Couchbase Web Console, click the **Backup** tab, in the vertical navigation bar to invoke the **Backup** screen.  
+The **Backup** screen features two tabs, located on the upper, horizontal navigation bar: these are **Repositories** and **Plans**. By default, the **Repositories** tab is selected: the corresponding **Repositories** view features three panels, for **Active**, **Imported**, and **Archived** repositories respectively. Currently, all panels are blank.
+
+## [](#schedule-backups)Schedule Backups
+
+The Backup Service allows backups (and merges) to be scheduled, as _tasks_. This section describes how task-definition and scheduling can be accomplished. For any given repository, the Backup Service performs one task at a time, with each task maintaining a lock on the repository. Therefore, the administrator-defined interval between tasks should always be enough to allow each task to run to completion. If a new task is scheduled to start while a previously started task is still running, the new task cannot run. For information, see [Avoiding Task Overlap](../../learn/services-and-indexes/services/backup-service.md#avoiding-task-overlap).
+
+To schedule one or more backups, proceed as follows:
+
+1. Choose to add a _repository_. When fully defined, the repository will combine the definitions of one or more backup and related activities, scheduled for one or more buckets, targeted at a storage location accessible to all nodes on the cluster. Each repository must have a name unique among repositories on the cluster.  
+To add a repository, click the **ADD REPOSITORY** tab, at the upper right of the screen. This opens the **Select Plan** dialog.
+2. Specify whether to use a default or a custom plan. A _plan_ determines what kind of backup is to occur, affecting what data, and on what schedule. Predefined plans are provided, named **\_hourly\_backups** and **\_daily\_backups**: as their names indicate, these provide backups that are respectively hourly and daily. The **\_hourly\_backups** plan appears as the default selection.  
+(For more information, see [Default Plans](#default-plans), below.)  
+Click the control that appears at the right-hand side of the **Select plan** dialog’s interactive text-field. A pull-down menu appears with the following options:
+
+  * **\_daily\_backups**
+  * **\_hourly\_backups**
+  * **\_daily\_full\_backups\_with\_incrementals**
+  * **\_weekly\_full\_backups\_with\_incrementals**  
+Along with an additional option to create a new plan.  
+Select **+Create new plan.**  
+This establishes the string **\+ Create new plan** within the interactive text field; and modifies the **Select Plan** dialog to create a new plan.
+3. Create a custom plan. In the **Name** field of the **Select Plan** dialog, enter a name for the plan that’s to be created. The name must be unique across the cluster, can only use the characters `[`, `]`, `A` to `Z`, `a` to `z`, `_` and `-`; and must not start with either `_` or `-`.  
+Then, optionally, add a description for the plan in the **Description** field.  
+Next, specify the services for which data will be backed up. Click **Services** to display the list of Couchbase Services.  
+To specify that only data for the Data and Index Services should be backed up, clear the boxes for all the other services.  
+Next, to specify precise details of what should occur when the backup is run, click the **Add Task** control. The dialog now expands to reveal the task options.  
+The fields permit the input of data to specify the details of a particular task. The dialog permits multiple tasks to be added by clicking the **Add Task** control. It also allows you to remove tasks by clicking the **Remove Task** control.  
+In the **Name** field, enter an appropriate name for the task: for example, **hourlyBackup**.  
+The **Period** field allows specification of the frequency of the task. If the default selection, **Weekly Calendar**, is chosen, this specifies a daily backup according to details added lower in the panel for the task. Alternatively, to choose a specific frequency, access the control at the right-hand of the **Period** field. A pull-down menu appears:  
+![periodPullDownMenu](../_images/manage-backup-restore/periodPullDownMenu.png)  
+From the pull-down menu, select **Hours**, to set the frequency is in units of hours. This removes from the dialog the day-specification controls associated with **Weekly Calendar**.  
+In the **Start Time** field, specify a time of day at which the task is to be run. The time of day must be specified as hours and minutes, separated by a colon. When the frequency-unit specified is **Minutes**, this field takes no input. When the frequency-unit specified is **Hours** (as is the case in the current example), only the numbers signifying minutes (those after the colon) are used. To make sure that the hourly task is performed on the hour, leave these numbers as **00**.  
+In the **Type** field, specify the task to be performed, by accessing the control at the right-hand side of the field. This displays the following pull-down menu:  
+Select **Backup**, from the pull-down menu. Then, in the **Frequency** field, specify the frequency with which the task should be performed. The field only accepts integers: these must be between 1 and 200 inclusive. To specify that the task be performed hourly, enter **1**.  
+See [Review Scheduling Options](#review-scheduling-options) for an overview of all task-scheduling options.  
+To complete specification of the task, determine whether the backup to be performed is **Full** or **Incremental**. If it’s to be **Full**, select **Full Backup**. If it’s to be **Incremental** (as should be the case in the current example), leave **Full Backup** cleared.  
+At this stage, if another task is to be specified, the **Add Task** control should be clicked on: this expands the dialog further, and provides another set of task-specification fields. If the task already added is to be removed, left-click on the **Cancel** button: this discards the data that has been added for the task, and closes the task-panel. If the specification of the plan is to be abandoned, left-click on the **Cancel** tab, at the lower right. If the specification for the task is to be retained and used, and no other task is to be specified (as is the case in the current example), left-click on the **Next** button:  
+This brings up the **Create Repository** dialog, which appears as follows:  
+![createRepositoryDialogInitial](../_images/manage-backup-restore/createRepositoryDialogInitial.png)
+4. Create a repository. Enter data into the **Create Repository** dialog.  
+The **ID** should be a name for the repository. The name must be unique across the cluster, can only use the characters `[`, `]`, `A` to `Z`, `a` to `z`, `_` and `-`; and must not start with either `_`, `-`, `[`, or `]`. For example, `hourlyBackupRepo`.  
+The **Bucket** should be the name of either a Couchbase or an Ephemeral bucket, whose data is to be backed up. Selection can be made with a pull-down menu, accessed by means of the control at the right of the field. If a bucket-name is selected, only data from this bucket is backed up. If the default selection, **All buckets**, is used, data from all buckets on the cluster (including all Couchbase and all Ephemeral buckets) is backed up.  
+Use the control at the right-hand side of the field, to select a bucket. For the current example, the sample bucket `travel-sample` is assumed to have been installed (see [Sample Buckets](../manage-settings/install-sample-buckets.md)); and will be specified in this field.  
+The value for **Storage Locations** can be specified as **Filesystem** (the default) or **Cloud**. For the current example, **Filesystem** will be used. If **Cloud** is selected, allowing AWS S3 storage to be used, the dialog expands, and displays additional options: these are described below, in [Use Cloud Storage](#use-cloud-storage).  
+The **Location** should be the location of the storage-based archive for the repository. If on the local filesystem, this location must be a pathname accessible to all nodes within the cluster that are running the Backup Service: which is to say, reads from and writes to the location are shared through an NFS mount (or through some other type of shared-folder technology, such as Samba). Couchbase Server must have read and write access to the location. On Linux, therefore, for a filesystem location, use the `chgrp` command to set the group ID of the folder to `couchbase`; unless a _non-root installation_ has been performed, in which case set the group ID either to the username of the current user, or to a group of which the current user is a member.  
+A location should be used for only one repository: when multiple repositories are to be archived, a different location should be used for each. If appropriate, locations may be specified as subdirectories, within a top-level directory.  
+To backup the cluster user groups and users, including roles, permissions, and hashed passwords to the repository, select **Backup Users and User Groups**.
+
+|  | You must have a Full Admin, a Local User Admin, and an External User Admin role to be able to backup users and user groups. |
+|  | --------------------------------------------------------------------------------------------------------------------------- |
+
+**Retention** is the period for which the backups are to be retained. When you enable **Retention**, the **Default Retention Period (days)** field appears. Each repository has a default retention period, measured in days. Retention period value can be set from 0 to 36,500, where 0 means backups are retained indefinitely. For more information, see [Retain Backups](#backup-retention).  
+You can use **Encryption Options** to encrypt the backup data.  
+To encrypt the backup data, select **Encrypted**.
+
+  * **KM Key URL** is the URL path to the key in the external key manager. The prefix defines what key manager system to use from awskms, gcpkms, azurekeyvault, hashivault, or hashivaults.
+  * **KM Region** (optional) is the region of the key manager, which is required only for AWS KMS.
+  * **KM Endpoint** (optional) is the endpoint of the key manager to override the default endpoint for KMS.
+  * **KMS Authentication Type** (optional) is the authentication type for the key manager with the options Environmental Auth, File Auth, and Access Key Auth.  
+For more information, see [Encryption](#backup-restore/ccbackupmgr-encryption.adoc).  
+To confirm, left-click on the **Add** button:  
+This concludes the process for creating repository and plan.  
+The newly created repository, **hourlyBackupRepo**, is displayed with its associated plan, `HourlyBackupPlan`, with the affected bucket (`travel-sample`) and the next scheduled backup displayed. Data Service and Index Service data for `travel-sample` will now be backed up to the specified location on the specified schedule.
+
+A repository whose plan is being executed (with data thereby backed up repeatedly, on schedule) is referred to as an _active_ repository.
+
+### [](#run-an-immediate-backup)Run an Immediate Backup
+
+By means of the Backup Service, an _immediate_ backup can be run: this eliminates the need to wait for a scheduled backup to run at an appointed time. To run an immediate backup, access the **Backup** screen, and left-click on the row for an already-defined, active repository.
+
+This causes the row to expand vertically, as follows:
+
+![activeRepositoryRowExpanded](../_images/manage-backup-restore/activeRepositoryRowExpanded.png) 
+
+A number of buttons now appear, arranged horizontally across the bottom of the row, permitting a variety of actions. To perform an immediate backup, left-click on the **Run Backup** button
+
+This displays the **Trigger Backup** dialog.
+
+The immediate backup to be performed will be _incremental_ by default. To perform a _full_ backup, select **Perform a full backup**.
+
+Click the **Backup** button, at the lower right of the dialog. The dialog disappears, and a notification is displayed, indicating that an immediate backup has been triggered.
+
+This indicates that an immediate backup has been triggered.
+
+## [](#inspect-backups)Inspect Backups
+
+Using Couchbase Web Console, the history of backups to a specified repository can be reviewed. Left-click on the row of a repository to expand it vertically. Then, left-click on the **Inspect Backups** button
+
+This displays the **Backup** facility’s **Repository** screen, which appears as follows:
+
+![inspectBackupsScreen](../_images/manage-backup-restore/inspectBackupsScreen.png) 
+
+The screen provides two possible views, which are **Inspect Backups** and **Task History** : these can be selected by means of the buttons at the upper right.
+
+The **Inspect Backups** view is selected by default. (Note the left-clicking the **Task History** button displays the **Tasks History** view: this is the same display as that accessed by means of the **Task History button, from the expanded row on the \*Repositories** view of the **Backup** screen; and is described in [Inspect Tasks](#inspect-tasks), below.)
+
+The main, lower panel of the **Backups** view provides the ID of the repository (in this case, `83f3b752-78e6-49f8-a527-2844c30fbc75`) and its size (here, `235.551MiB`); and also provides a vertically arranged list of all backups that have occurred, with the earliest at the top. Each backup has its own row; with its start-time, type (full or incremental), and size. To inspect a particular backup in detail, click the control at the left-hand side of the row. This causes the row to expand vertically.
+
+![examineBackupExpanded](../_images/manage-backup-restore/examineBackupExpanded.png) 
+
+The displayed data includes the UUID for the source cluster. Also specified are the numbers of **Eventing Functions** written for the Eventing Service, and the number of **Full Text Search Aliases** for the Search Service.
+
+Each backed-up bucket appears on a table showing its size and the number of items, mutations, and tombstones that have been included in the backup. The row also lists the numbers of backed-up indexes for the Index, Search, and Analytics Services plus the number of backed-up Views. A searchable sub-panel lists each scope that the bucket contains along with the number of mutations and tombstones they contain.
+
+To inspect the individual collections within a displayed scope, click the row for the scope.
+
+Clicking on the row for the `inventory` scope displays the individual collections within the scope with the mutations and tombstones for each collection. Collections can be searched for, based on strings entered into the **filter collections** field, which is located to the upper right of the collections panel.
+
+The upper panel of the **Data** screen provides interactive fields labelled **Key** and **Search Path**. These can be used to search for a specific document within the repository. Optionally, the subset of backups within the repository can be specified, by means of the **Start** and **End** fields. For example, by accessing the control at the left-hand side of the **Start** field, a pull-down menu is displayed: this lists backups any one of which can be used as the starting point for the search.
+
+For example, type a known document key into the **Key** field — such as `airline_10`. Then, enter the bucket name into the **Search Path** field. You must explicitly specify both the scope and collection unless you’re using the default scope and collection. In that case, explicit;y setting the defaults is optional. For example, `travel-sample._default._default`.
+
+When a search is expressed to include all backups of the bucket for the `inventory` scope and `airline` collection, the panels appear as follows:
+
+![searchPanelsForKeyAndBucket](../_images/manage-backup-restore/searchPanelsForKeyAndBucket.png) 
+
+To run the search, left-click on the **Examine** button. The **Examine** screen is now displayed:
+
+![examineScreen](../_images/manage-backup-restore/examineScreen.png) 
+
+The controls adjacent to the **Diff** button, near the top of the screen, allow different backups to be selected so that the differences between the document versions they contain can be individually examined.
+
+The specified document is thereby shown, in the left and right-hand panels of the main display, in versions that respectively correspond to the backups selected. When a field has changed, the earlier version appears shaded red, the later shaded green.
+
+By default, a **Side-by-Side Diff** view of the specified document is shown. To display an **Inline Diff** view, access the control at the upper right of the screen.
+
+The **Inline Diff** view is now provided.
+
+## [](#delete-backups)Delete Backups
+
+You can free up space in your repository by deleting backups you no longer need.
+
+You can delete individual backups that:
+
+* Do not have dependent incremental backups.
+* Have dependent incremental backups.
+
+|  | Deleting backups with dependent incremental backups can break backup cycles and make dependent backups invalid. |
+|  | --------------------------------------------------------------------------------------------------------------- |
+
+You can use either delete or prune to delete backups.
+
+|  | Using the delete backup method deletes only the expired backups in the repository, whether it has dependent incremental backups or not. To delete all expired backups in a repository, use the pruning method, which deletes all expired backups in the repository. For more information, see [Schedule Pruning](#schedule-backup-pruning). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To delete a backup, with or without dependent incremental backups, follow these steps:
+
+1. Go to the **Backup** screen and select the repository.
+2. Click **Inspect Backups**.
+3. Examine the backups in the repository. You can see a list of backups with expiry status.  
+You can choose to do one of the following:
+
+  * Delete a backup that has no dependent incremental backups, which has the status _Expired_.
+  * Delete a backup that has dependent incremental backups, which has the status _Expired, but has dependent incrementals_.  
+  ![backups listed for deletion](../_images/manage-backup-restore/backups-listed-for-deletion.png)
+4. Click the delete icon associated with the backup.  
+The **Delete Backup** dialog appears.
+5. Enter the name of the backup you want to delete in the **Backup Name** field.
+6. Select **Disable the Safe Remove Check** if you want to delete a backup that has incremental backups depending on it.
+
+|  | This can break backup cycles and make dependent backups invalid. |
+|  | ---------------------------------------------------------------- |
+7. Click **Delete Backup**.
+
+The backup is deleted.
+
+To set the Disable the Safe Remove Check or `disable_safe_remove_check` property in the API call, see [Delete a Backup](../../rest-api/backup-delete-backups.md).
+
+|  | If you try to delete a backup that has dependent incremental backups, without enabling the **Disable Safe Remove Check** option, you will see an alert telling you that the backup cannot be deleted. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#inspect-tasks)Inspect Tasks
+
+To inspect currently defined tasks, do _either_ of the following:
+
+* Left-click on the **Task History** button that appears on the expanded row for a repository, on the **Repositories** view of the **Backup** screen.
+* Left-click on the **Task History** tab that appears at the upper-right of the **Backup** screen, which has been accessed by means of the **Inspect Backups** button that appears on the expanded row for a repository, on the **Backup** screen.
+
+The **Tasks** screen appears as follows:
+
+![tasksScreen](../_images/manage-backup-restore/tasksScreen.png) 
+
+The **Get Tasks** button allows specific tasks to be identified by search, and displayed. The earliest date for the task can be specified in the **Since Day** field; and the name of the task in the **Task Name** field, so as to narrow the search. A limit on the number of tasks displayed can be specified as an integer, between 1 and 100 inclusive, in the **Limit** field.
+
+The **Refresh Tasks** button causes the main list of tasks, in the lower panel, to be refreshed. The list has an **Offset** figure displayed at its head: this indicates the position in the list of the first displayed task; and changes when the **prev batch** and **next batch** controls, at the right-hand side, are left-clicked on. The task list is presented as a table, which shows, for each task that has been executed, the **Task name**, **Task type** (such as **Backup** or **Merge**), status (such as **done** or **running**), the **Elapsed** time for the task, the number of **Items** and size of data that was **Transferred** by the task, and the **Start** and **End** times for the task.
+
+To inspect a particular task in detail, left-click on the row for the task.
+
+The selected row is expanded vertically, as follows:
+
+![expandedTaskRow](../_images/manage-backup-restore/expandedTaskRow.png) 
+
+The details of the task are displayed as a JSON document. The details include counts of items, vBuckets, and bytes received from the operation. The `node_runs` subdocument provides information specific to each node in the cluster.
+
+## [](#schedule-backup-pruning)Schedule Pruning
+
+You can retain backups in a repository for a specified period of time by setting a retention period. A Prune task allows the Backup Service to delete backups that have reached their retention period.
+
+The backups that meet both the following conditions, are successfully deleted through pruning:
+
+* That backup’s retention period is expired. Means, the number of days specified in its retention period have passed.
+* No incremental backups dependent on this backup.
+
+You can Prune backups in a repository in one of the following ways:
+
+* By scheduling a Prune task, which runs at regular intervals.
+
+  * Schedule a Prune task using default plans.
+  * Create and schedule a Prune task.
+* By running a Prune task on-demand or performing an immediate pruning, using the **Prune** button on a repository listed on the **Backup** screen.
+
+|  | The pruning method deletes _all_ the _expired_ backups in the repository. To delete an individual backup in a repository, whether it has dependent incremental backups or not, see [Delete Backups](#delete-backups). |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#using-default-pruning-plan)Schedule a Prune task using default plans
+
+During the creation of a repository or [Schedule Backups](#schedule-backups), you can select one of the following default pruning plans from the **Plan** list on the **Select Plan** dialog:
+
+* **\_daily\_full\_backups\_with\_incrementals**: This plan performs full backups for all services every day and incremental backups every hour, and runs a prune every day.
+* **\_weekly\_full\_backups\_with\_incrementals**: This plan performs full backups for all services every week and incremental backups every 6 hours, and runs a prune every day.
+
+### [](#creating-new-pruning-task)Create and schedule a Prune task
+
+To manually schedule a Prune task, do the following:
+
+1. Start creating a repository, as explained in [Schedule Backups](#schedule-backups).
+2. On the **Select Plan** dialog, from the **Plan** list, select **\+ Create new plan**.
+3. Create a **Backup** task, as explained in [Schedule Backups](#schedule-backups).
+
+|  | Every Prune task must be associated with a Backup task. Pruning won’t delete backups that have incremental backups depending on them. To delete such backups, use [Delete Backups](#delete-backups). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. To create a **Prune** task, click **Add Task**, and do the following:
+
+  * Enter a name for the pruning task in the **Task Name** field.
+  * Select a **Period** for this pruning task.
+  * Select a **Start Time** for this pruning task.
+  * Select **Prune** from the task **Type** field.
+  * Specify how often the pruning task must run in the **Frequency** field.  
+  ![add pruning task](../_images/manage-backup-restore/add-pruning-task.png)
+5. Click **Next**.
+6. Continue with the retention period configuration, as explained in [Retain Backups](#backup-retention).
+
+After the configuration is complete, the backups in the repository are pruned automatically according to the specified retention period.
+
+### [](#prune-on-demand)Perform an Immediate Pruning
+
+You can manually trigger a prune operation for a repository at any time. This is useful if you want to free up space instantly by removing old backups without waiting for the scheduled prune tasks.
+
+To prune backups on demand, follow these steps:
+
+1. Go to the **Backup** screen and select the repository.
+2. To examine the backups in the repository, click **Inspect Backups**.  
+Examine the expiry status of the backups in the repository. If the backups have reached their retention period, they’re marked as _Expired_.
+
+|  | Only expired backups can be pruned. |
+|  | ----------------------------------- |
+3. Go back to the **Backup** screen with repositories, select the repository, and click **Prune**.  
+The **Prune Expired Backups** dialog appears, listing the backups that are eligible for pruning.
+4. Type **permanently delete** in the **Type 'permanently delete' to confirm** field.
+5. Click **Prune** to delete the expired backups.
+
+The screen displays a notification that the pruning task has been successfully triggered on the selected backups.
+
+To run a pruning task on-demand using the REST API, see [Perform an Immediate Prune](../../rest-api/backup-trigger-prune.md).
+
+### [](#view-a-pruned-backup)View a pruned backup
+
+1. Go to **Backup** screen and select the repository. The repository details and backups are displayed.
+2. Select the **Task History** tab.  
+The Task History lists all the attempted pruning, removed backups, and the backups that were not removed due to a non-expired dependent backup.
+
+## [](#backup-retention)Retain Backups
+
+Backup retention lets you configure the Backup Service to automatically delete old backups. You can retain backups in a repository for a specified period of time by setting a retention period. When the retention period is reached, the Backup Service automatically deletes the backup through Prune tasks. The retention period is a value between 0 and 36500 (inclusive), in days, where 0 indicates an indefinite retention period.
+
+You can set a retention period for a repository when creating it or editing it later. After creating a repository, you can set a custom retention period for its individual backups.
+
+|  | If a retention period is not set for a backup, the repository’s default retention period applies automatically on all individual backups of that repository. By default, the retention period is set to 0, which is an indefinite period. As a result, Prune tasks do not automatically delete any backups. You need to configure a value greater than 0 for a retention period to enable automatic deletion. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+**Prerequisites:**
+
+* To delete backups automatically after the retention period is reached, a Prune task must be created for the repository. Otherwise, the backups are not deleted/pruned automatically and you need to use manual pruning.  
+For more information about pruning, see [Schedule Pruning](#schedule-backup-pruning).
+
+### [](#set-retention-period-repo-creation)Set Retention Period when Creating a Repository
+
+To set the retention period for a repository, follow these steps:
+
+1. Start creating a repository, as explained in [Schedule Backups](#schedule-backups).
+2. From the **Plan** list on the **Select Plan** dialog, continue with one of the following:
+
+  * [Schedule a Prune task using default plans](#using-default-pruning-plan).
+  * [Create and schedule a Prune task](#creating-new-pruning-task).
+
+|  | Pruning won’t delete backups that have incremental backups depending on them. |
+|  | ----------------------------------------------------------------------------- |
+3. Click **Next**.
+4. Select **Retention** on the **Create Repository** dialog.  
+![set retention period](../_images/manage-backup-restore/set-retention-period.png)
+5. Use **Default Retention Period (days)** to specify the necessary retention period, in days, for the repository.
+
+|  | This set period becomes the default retention period for all backups in the repository. A value of 0 means that backups are retained indefinitely. The retention period can be set from 1 to 36,500 days. The default value is 0. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+6. Click **Add** to save the changes.  
+The **Backup** screen lists the new repository with its default retention period.
+
+|  | When you have set the retention period for the repository but haven’t created a pruning task, the repository is listed with a warning icon. When you have not set the retention period for a repository, the repository indicates it. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#set-retention-period-after-repo-creation)Set Retention Period after Creating a Repository
+
+You can also set the retention period for a repository after it has been created.
+
+To set the retention period for an existing repository, follow these steps:
+
+1. On the Backup screen, in the **Repositories** list, click the repository for which you want to set the retention period.
+2. Click **Edit** associated with the label Default Retention Period. The **Edit Default Retention** dialog appears.
+3. Specify the new default retention period, in days, for the repository in the **New Retention** field.
+4. To apply the new retention value to the existing backups along with the repository, select **Retroactive**.  
+![edit default retention](../_images/manage-backup-restore/edit-default-retention.png)
+5. Click **Edit Retention** to save the changes.
+
+|  | The new retention value applies to existing backups at the time of the backup creation. If you set a retention value that’s shorter than the original value, existing backups may be pruned according to the new retention period. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#set-retention-period-for-a-backup)Set Retention Period for a Specific Backup
+
+To set a new retention period or edit a default retention period for a specific backup, in an existing repository, follow these steps:
+
+1. On the Backup screen, in the **Repositories** list, click the repository.
+2. Click **Inspect Backups**. The repository and its backups are displayed. Each backup has an associated **Edit** button, listed in the retention period column.
+3. Click **Edit** associated with the backup for which you want to set the retention period.  
+The **Edit Backup Retention** dialog appears.
+4. Specify the new retention period, in days, for the backup in the **New Retention** field.
+5. Click **Edit Retention** to save the changes.
+
+The backup’s retention period will now override the repository’s default retention period.
+
+To set the retention period for a backup using the REST API, see [Retain a Backup](../../rest-api/backup-retention.md).
+
+## [](#schedule-merges)Schedule Merges
+
+A merge allows multiple backups to be combined as one; with deduplication occurring.
+
+Merges are supported for filesystem-based repositories: however, merges are _not_ supported for cloud-based repositories. If a merge is scheduled for a cloud-based repository, the Backup Service skips the task. An immediate merge cannot be triggered for a cloud-based repository.
+
+Merges can be scheduled as _tasks_, to be applied to backed up data within a defined repository. This section describes how task-definition and scheduling for merges can be accomplished. For any given repository, the Backup Service performs one task at a time; with each task maintaining a lock on the repository. Therefore, the administrator-defined interval between tasks should always be sufficient to allow each task to run to completion. If a new task is scheduled to start while a previously started task is still running, the new task cannot run. For information, see [Avoiding Task Overlap](../../learn/services-and-indexes/services/backup-service.md#avoiding-task-overlap).
+
+Proceed as follows, noting that the initial steps (for adding a repository, creating a new plan, and adding a backup task to the plan) are the same as those described in [Schedule Backups](#schedule-backups), above.
+
+1. Access the **Backup** screen, and left-click on **ADD REPOSITORY**. When the **Select Plan** dialog is displayed, choose **\+ Create new plan**.
+2. In the redisplayed **Select Plan** dialog, specify a **Name** and a **Description** for the plan. Then, specify the **Services** whose data should be backed up.  
+A merge can only be scheduled as part of a plan that also schedules backup: the merge will be applied to backups within the defined repository.
+3. Left-click on **Add Task**, and add a **Backup** task. For example:  
+![backupTaskForMerging](../_images/manage-backup-restore/backupTaskForMerging.png)  
+This task calls for a backup to occur every hour. Next, left-click on the **Add Task** control. When the fields for defining an additional task appear, specify the task to be of type **Merge**, with a frequency of four hours; and to start on the half-hour (to allow time for each backup task, itself run on the hour, to complete). For example:  
+![mergeTask](../_images/manage-backup-restore/mergeTask.png)  
+The **Type** of the task **MergeTask** has been specified as **Merge**, with a frequency of four hours. Note the fields **Merge Offset Start** and **Merge Offset End**, which respectively specify the relative start and end points of each merge that will be performed. An offset start of **0** indicates that each merge will start with backups made on the current day, if such backups exist. An offset end of **2** indicates that each merge will end with backups that were made 2 days before the specified start-day, if such backups exist. If backups were not made every day during the specified period, as many as can be found will be merged.  
+A detailed, diagrammatic explanation of **Merge Offset Start** and **Merge Offset End** is provided in [Specifying Merge Offsets](../../learn/services-and-indexes/services/backup-service.md#specifying-merge-offsets).  
+Left-click on the **Next** button:
+4. When the **Create Repository** dialog appears, enter the **ID** of the repository you’re creating, the name of the **Bucket** that is being backed up, the appropriate value of **Storage Locations** (here, **Filesystem**), and the on-disk location of the repository-archive. (Note that this on-disk location must be accessible to _all_ Backup Service nodes in the cluster.) For example:  
+![createRepositoryForMerge](../_images/manage-backup-restore/createRepositoryForMerge.png)  
+Left-click on the **Add** button. The new repository now appears in the **Repositories** view of the **Backup** screen:
+
+The defined backups and merges will now occur, on the specified schedule. This can eventually be seen by left-clicking on the row for the new repository, and then left-clicking on **Inspect Backups**.
+
+## [](#perform-an-immediate-merge)Perform an Immediate Merge
+
+By accessing a vertically expanded repository-display in the **Repositories** view of the **Backup** screen, an _immediate merge_ can be manually triggered. The repository does not need to have scheduled merges in its plan; but must already contain multiple backups, so that some or all of these can be merged.
+
+Note that merges are supported for filesystem-based repositories only: they are _not_ supported for cloud-based repositories.
+
+Proceed as follows:
+
+1. In the **Repositories** view of the **Backup** screen, select a repository that contains multiple backups, by left-clicking on the row for the repository. When the row has expanded vertically, left-click on the **Merge** button:  
+The **Merge Backups** dialog is now displayed:  
+![mergeDialog](../_images/manage-backup-restore/mergeDialog.png)  
+The dialog allows determination of which backups should be merged, based on specification of the _first_ and the _last_: these backups, and all backups that occurred between them, will be merged.
+2. To specify the first backup, access the interactive control at the right-hand side of the **Start** field. This produces a pull-down menu that displays all available backups for this repository:
+3. Select a backup that will be the starting backup for the merge. Then, access the control at the right-hand side of the **End** field, and select, from its pull-down menu, a backup that will be the ending backup for the merge.
+4. Left-click on the **Merge Backups** button, at the lower right of the dialog. The dialog now disappears, and any you will receive a console notification stating that you have triggered a merge.
+5. To check the results, in the **Repositories** view of the **Backup** screen, left-click on the **Inspect Backups** button, on the expanded row for the selected repository. This displays the history of backups and merges for the repository. (It may be necessary to scroll through multiple screens of information, to find the merge that has been created.)  
+![dataScreenShowingMergedBackup](../_images/manage-backup-restore/dataScreenShowingMergedBackup.png)  
+Here, the merge of incremental builds just performed is clearly indicated; as `merge - full backup`. To obtain further specifics, left-click on the row for the merge. The row expands vertically, as follows:  
+![backupMergeConfirmation](../_images/manage-backup-restore/backupMergeConfirmation.png)  
+The details in the expanded row confirm that five backups were merged by the operation just performed.
+
+## [](#restore-backups)Restore Backups
+
+You can restore a backup to the same bucket or buckets that you originally backed up or to a different set of buckets. You can also restore a backup to a different cluster. The buckets you restore data to do not have to use the same [storage engine](../../learn/buckets-memory-and-storage/storage-engines.md) as the original buckets. You can restore a backup of data from a bucket using the Couchstore storage engine to one using Magma. You can also restore a Magma-backed bucket backup to a Couchstore bucket.
+
+|  | When restoring Vector Indexes, you must run the BUILD INDEX command only after the Key-Value Data restoration is complete. The sequence of stages in the restoration process is the same as that of the [backup](../../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process. Starting the build before all the data is restored can result in training failure or an inaccurate codebook. This can cause the build to either error-out or produce unreliable query results. Also, re-training the codebook after the build has started is not supported. Couchbase recommends waiting for the restoration of the full dataset. Only after the restoration is complete, run a build to make sure that the codebook generated out of build accurately represents the completely restored dataset. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To restore a backup:
+
+1. Select **Backup** **Repositories** then expand the repository containing the data you want to restore.
+2. Click **Restore**. The **Restore** dialog opens:  
+![restoreDialog](../_images/manage-backup-restore/restoreDialog.png)
+3. In the **Cluster** field, enter the URL of a node in the cluster where you want to restore the data. Include the REST API port—​by default, 8091 for unencrypted HTTP and 18901 for secure HTTPS connections.
+4. Choose the method you want to use to authenticate with the target cluster. You can use either Plain (a username and password) or a client certificate and key. After making your choice, supply the credentials for the target cluster.
+5. In the **Start** and **End** fields, choose the start and end range of backups you want to restore.
+6. If you want to restore users and groups, expand **Users** and click **Restore users and User Groups**. You can also choose whether the backed-up users and groups overwrite any identically named existing ones.
+7. If you want to select which service’s data gets restored, expand the **Services** section and select or clear services you want.
+8. Expand the **Advanced Restore Options** if you want to:
+
+  * Filter what data Couchbase Server restores.
+  * Restore a bucket’s data to a different bucket.
+  * Control how the restore handles [expiration](../../learn/data/expiration.md) TTL values.
+  * Configure details about the bucket and collections being restored.  
+All the fields in this section are optional. See [Advanced Restore Options](#advanced%5Frestore%5Foptions) for more information.
+9. Click **Restore** to start the restore process. A green pop-up briefly appears to verify that the restore task has started.
+
+To monitor an ongoing restore, click the **Task History** button in the repository’s entry in the **Repositories** tab. The active restore task appears under the **Tasks** section.
+
+![newBucketWithRestoredData](../_images/manage-backup-restore/newBucketWithRestoredData.png)
+
+After the restore tasks finishes, you can see whether it succeeded or failed under the **Results** section.
+
+|  | If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To learn how to restore a backup using the command line, see [cbbackupmgr restore](../../backup-restore/cbbackupmgr-restore.md).
+
+### [](#advanced%5Frestore%5Foptions)Advanced Restore Options
+
+Expanding the **Restore** dialog’s **Advanced Restore Options** section shows you fields where you can control:
+
+* Data filtering
+* How TTL values are interpreted
+* Whether the restore creates missing buckets or removes some scopes or collections.
+
+Once you expand the **Advanced Restore Options** section, a set of fields appears:
+
+![restoreAdvancedOptionsInitial](../_images/manage-backup-restore/restoreAdvancedOptionsInitial.png)
+
+The fields in this section are:
+
+Filter Keys
+
+Lets you enter a regular expression the restore task uses to filter the key values. The restore task only restores a document if its key matches the regular expression.
+
+For example, if you enter `^airline` in this field, then the restore task only restores documents whose key begins with the string `airline`.
+
+Filter Values
+
+Lets you enter a regular expression the restore task uses to filter documents based on their data. The restore task only restores a document if one of its values matches the regular expression.
+
+For example, if you enter `MIL*` in this field, the restore task only restores a document if has a value that contains the string `MIL` followed by zero of more characters.
+
+Map Data
+
+Lets you have the restore task restore a backed-up bucket’s data to a different bucket. If you leave this field blank, the restore task restores data into same bucket from which it was backed up.
+
+If you want a bucket’s data to be saved in a bucket of a different name, enter the original bucket’s name, an equal sign (`=`) and the target bucket’s name. For example to restore all data backed up from the `travel-sample` bucket into a bucket named `ts`, enter `travel-sample=ts` into the **Map Data** field.
+
+The target bucket must exist on the target cluster or you must enable [**Auto-create Buckets**](#auto-create-buckets).
+
+Include Data
+
+Exclude Data
+
+These fields let you limit the restoration to a subset of the buckets, scopes, and collections in the backup. The **Include Data** has the restore task restore just the buckets, collections, and scopes that you list in this field. The **Exclude Data** field restores all data in the backup except the buckets or collections you list in this field.
+
+To include or exclude buckets, add their names in a comma-separated list to the **Include Data** or **Exclude Data** fields. For example, suppose the backups you’re restoring contain four buckets named `bucket1`, `bucket2`, `bucket3`, and `bucket4`. Then entering `bucket1,bucket4` in the **Include Data** field has the restore task restore just the data from `bucket1` and `bucket4`. In this case, you could instead enter `bucket2,bucket3` in the **Exclude Data** field to get the same result.
+
+You can specify a scope to be included in or excluded from the restore by listing its bucket name, followed by a period, and then the scope name. Similarly, to include or exclude a collection, specify the name of its bucket, scope, and its collection name joined by periods. For example, to exclude the `route` collection in the `travel-sample` bucket’s `inventory` scope, enter `travel-sample.inventory.route` in **Exclude Data**.
+
+See [Scopes and Collections](../../learn/data/scopes-and-collections.md) for an overview of scopes and collections.
+
+Replace TTL
+
+Replace TTL with
+
+These fields let you choose how the restore task handles time to live (TTL) values in the documents it’s restoring. The **Replace TTL** list controls when the restore task applies the date you enter into the **Replace TTL with** field to the documents it’s restoring. The settings in this list are:
+
+* **none**: The restore task does not change the TTL value in the value in the backup. If the document’s expiration time is in the past, Couchbase Server marks it as deleted soon after the restore task restores it.
+* **expired**: If a document being restored has an expiration date in the past, the restore task sets its TTL to the value you supply in **Replace TTL with**.
+* **all**: The restore task applies the new TTL you supply in **Replace TTL with** to all documents it restores. It even applies the new value to restored documents that had a TTL of `0` (no expiration) in the backup.  
+The value you supply in **Replace TTL with** field must be either:
+* `0` : No TTL value is set for the document. The document does not expire unless the bucket or collection containing it has a non-zero `maxTTL` value. See [Expiration](../../learn/data/expiration.md).
+* A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.
+
+|  | The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+Force Updates
+
+By default, the restore task does not overwrite an existing document that has a more recent modification time than its backed up version. Select **Force Updates** to have the restore task always overwrite existing documents with the version in the backup even if the existing document is more recent.
+
+Auto-remove Collections
+
+When checked, the restore task drops scopes and collections that currently exist in buckets but had been dropped prior to the backup’s creation. The restore task knows which scopes and collections have been dropped because the backup contains the tombstones of these dropped objects. For a scope or collection to be dropped when you enable **Auto-remove Collections**, its ID must match the ID of a dropped scope or collection as well as matching its name. Just matching the name of a deleted scope or collection is not enough to have the restore task drop it.
+
+|  | This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Auto-create Buckets
+
+By default, the restore task exits with an error message if a bucket being restored from the backup does not currently exist in the cluster. Selecting **Auto-create Buckets** has the restore task create any missing buckets.
+
+## [](#pause-backups)Pause Backups
+
+The Backup Service allows scheduled backups to be _paused_, indefinitely. This may be useful when a cluster is undergoing maintenance, or when buckets are otherwise not available. Once a pause is executed by the administrator, no scheduled task for the repository is executed. Then, when a _resume_ is subsequently executed by the administrator, the task-schedule is resumed at the earliest, planned opportunity: thus, if backups are hourly, and a pause is executed at 9:50 am, if a resume occurs at 9:58 am, the next backup occurs at 10:00 am; but if the resume occurs at 10:02 am, then the next backup occurs at 11:00 am.
+
+To pause a backup, access the **Repositories** view of the **Backup** screen, and left-click on the row for the repository to be paused. This expands the row vertically, and displays the **Pause** button. Left-click on this, to pause backups.
+
+The button now changes into a **Resume** button. Left-click on this whenever backups are to be resumed:
+
+## [](#archive-repositories)Archive Repositories
+
+When a repository should no longer receive fresh backups, the repository can be _archived_. This means that it remains available, with all its data; but no longer receives modifications. To archive a repository, proceed as follows;
+
+1. Access the repository that is to be archived in the **Repositories** view of the **Backup** screen, and expand the row for the repository by left-clicking on the repository’s row. When the row has expanded, left-click on the **Archive** button:  
+The displayed dialog contains a notification, warning that no further backups or merges will be possible to the repository, once it has been archived.
+2. Confirm the repository to be archived. Enter its name into the **Confirm repository ID to archive** field. Then, enter the intended name of the _archived_ version of the repository into the **New ID** field. The dialog now appears as follows:  
+![archiveRepositoryDialogComplete](../_images/manage-backup-restore/archiveRepositoryDialogComplete.png)  
+Left-click on **Archive**, to confirm. The dialog now disappears.
+3. Check the archived repository, in the **Repositories** view of the **Backup** screen, in the **Archived** panel. Left-click on the row for the archived repository, to expand the row, and reveal details and options:  
+![archivedRepositoryExpandedRow](../_images/manage-backup-restore/archivedRepositoryExpandedRow.png)  
+The backups within and tasks used for the repository can be examined by means of the **Inspect Backups** and **Tasks** buttons. The **Restore** button brings up the same dialog as described above, in [Restore Backups](#restore-backups). The **Delete** button is described immediately below, in [Delete Repositories](#delete-repositories).
+
+## [](#delete-repositories)Delete Repositories
+
+Repositories can be deleted. However, no repository can be deleted until it has been archived, as described above, in [Archive Repositories](#archive-repositories).
+
+Therefore, to delete a repository, and the backups it contains, proceed as follows:
+
+1. Archive the repository, as described in [Archive Repositories](#archive-repositories).
+2. Access the archived repository, in the **Archived Repositories** panel that appears in the **Repositories** view of the **Backup** screen, and open the row for the repository, by left-clicking on it.
+3. Left-click on the **Delete** button. The **Delete Repositories** dialog now appears:  
+![deleteRepositories](../_images/manage-backup-restore/deleteRepositories.png)  
+The dialog provides two options for deletion. If the **Delete backup data files** checkbox is checked, the deletion is irreversible: the archived information no longer exists on disk. If the checkbox is unchecked (which is the default), the deleted archive’s contents continue to exist on disk, even though no longer explicitly tracked by the Backup Service, and so can be recovered subsequently; as described below, in [Import Repositories](#import-repositories).  
+To delete the archive while allowing the contents to continue to exist on disk, enter the name of the archive in the **Confirm Repository ID** field, leave the **Delete backup data files** checkbox unchecked, and left-click on **Delete**. Subsequently, the archived repository is no longer maintained by the Backup Service, and no longer appears in the **Archived Repositories** panel.
+
+## [](#import-repositories)Import Repositories
+
+A repository not currently managed by the Backup Service can be _imported_ into the service, by means of the **Backup** UI. For example, a repository that was archived and subsequently deleted can be imported back into the service, provided that its on-disk files were not explicitly deleted (see [Delete Repositories](#delete-repositories), above, for information on deleting repositories while preserving on-disk files).
+
+To import a repository, proceed as follows:
+
+1. Left-click on the **IMPORT** tab, at the upper right of the **Repositories** view of the **Backup** screen:  
+This brings up the **Import Repository** dialog, which appears as follows:  
+![importRepository](../_images/manage-backup-restore/importRepository.png)
+2. Enter appropriate details into the **Import Repository** dialog.  
+In the **ID** field, enter a name for the repository, which will be used once the repository has been imported. The name must be unique across the cluster, can only use the characters `[`, `]`, `A` to `Z`, `a` to `z`, `_` and `-`; and must not start with either `_` or `-`.  
+The **Storage Location** can be specified as **Filesystem** (the default) or **Cloud**. For the current example, **Filesystem** will be used. Note that if **Cloud** is selected, allowing AWS S3 storage to be used, the dialog expands, and displays additional options: these are described below, in [Use Cloud Storage](#use-cloud-storage).  
+In the **Cbbackupmgr Repository Path**, enter the path of the repository to be imported. If necessary, locate on disk the folder within which the repository resides:  
+![repoOnDisk1](../_images/manage-backup-restore/repoOnDisk1.png)  
+Locate the repository within its parent folder, and make a copy of the repository name:  
+![repoOnDisk2](../_images/manage-backup-restore/repoOnDisk2.png)  
+Then, specify the repository name as part of the full file path.
+3. Left-click on the **Import** button, at the lower right of the dialog. The dialog disappears, and the repository is imported.
+4. Check the results of the import operation. Access the **Repositories** view of the **Backup** screen, and observe the **Imported Repositories** panel:  
+![importedRepositoriesPanel](../_images/manage-backup-restore/importedRepositoriesPanel.png)  
+For further details, left-click on the row to make it expand vertically:  
+![importedRepositoriesPanelExpanded](../_images/manage-backup-restore/importedRepositoriesPanelExpanded.png)
+
+## [](#inspect-plans)Inspect Plans
+
+All plans created for the Backup Service can be reviewed, by left-clicking on the **Plans** tab, on the upper, horizontal navigation bar of the **Backup** screen:
+
+This displays the **Backup** screen’s **Plans** view:
+
+![plansScreen](../_images/manage-backup-restore/plansScreen.png)
+
+The plan displays, in the **name** column, the name of every current plan; under the **instances** column, an integer that represents the number of repositories maintained by means of the plan identified on the current row; and under **services**, the Couchbase Services whose data is handled by the plan.
+
+To inspect a plan in detail, left-click on its row, to make the row expand vertically. For example:
+
+![HourlyBackupPlanExpanded](../_images/manage-backup-restore/HourlyBackupPlanExpanded.png)
+
+The displayed details indicate that **HourlyBackupPlan** contains two tasks: the **HourlyBackupTask** performs a task of type **BACKUP** every hour; while the **FourthHourMergeTask** performs a task of type **MERGE** every 4 hours, merging all backups from the current day to two days ago..
+
+At the right-hand side of each row, a garbage-can icon is displayed. To delete a plan, left-click on the icon on the row of the plan to be deleted: the plan is deleted immediately, and no longer appears on the **Plans** screen. (Note that a plan cannot be deleted until all repositories using it are archived or themselves deleted.)
+
+### [](#default-plans)Default Plans
+
+The Backup Service provides the following default plans.
+
+* The **\_daily\_backups** plan backs up data for _all_ services, every day. A _full_ backup is performed on Monday, and an incremental on each other day. The previous weeks' backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
+* The **\_hourly\_backups** plan backs up data for _all_ services, ever hour. Every backup is incremental. Each day at midnight, all the previous days' backups are merged. The previous week’s backups are merged every Sunday, and the previous 28 days' backups are merged every 28 days.
+* The **\_daily\_full\_backups\_with\_incrementals** plan performs full backups for all services every day and incremental backups every hour, and runs a prune every day. You must set an appropriate retention period for backups of this plan.
+* The **\_weekly\_full\_backups\_with\_incrementals** plan performs full backups for all services every week and incremental backups every 6 hours, and runs a prune every day. You must set an appropriate retention period for backups of this plan.
+
+## [](#review-scheduling-options)Review Scheduling-Options
+
+Backup-Service scheduling options are provided _per task_, on the **Select Plan** dialog; which is provided as part of the sequence for repository-definition, after the administrator has left-clicked on the **ADD REPOSITORY** tab, at the upper right of the **Repositories** view of the **Backup** screen. See [Schedule Backups](#schedule-backups), for details.
+
+The task-definition panel provided for each task appears by default as follows:
+
+![taskScheduleInitial](../_images/manage-backup-restore/taskScheduleInitial.png)
+
+The default, **Weekly Calendar** option refers to use of the two, interactive, days-of-the-week selectors that appear under **Full Backups** and **Normal Backups** (a _normal_ backup being an _incremental_ backup). The day-by-day frequency of each kind of backup can thus be determined by left-clicking on the appropriate days. For example, the following selection would indicate that a full backup should occur on Saturday, every week; and an incremental build should occur every week on each of the following days: Monday, Wednesday, and Friday.
+
+![simplifiedSchedule](../_images/manage-backup-restore/simplifiedSchedule.png)
+
+A **Weekly Calendar** schedule means that one backup happens daily. The time of the daily backup can be specified by means of the **Time** panel. No merge can be scheduled, nor can backups be scheduled more frequently.
+
+Alternatively scheduled merges and backups can be configured by accessing the control at the left-hand side of the **Period** field:
+
+![scheduleOptionsMenu](../_images/manage-backup-restore/scheduleOptionsMenu.png)
+
+The pull-down menu thus displayed contains three kinds of scheduling option. One is the default, **Weekly Calendar**. Another is by means of _time-units_: which are **Minutes**, **Hours**, **Days**, and **Weeks**. If a unit is specified, an appropriate integer must be entered into the **Frequency** field, to indicate the number of time-units that must elapse between repetitions of the task. If **Minutes** are specified, only the minutes portion of the time entered into the **Time** field is used — as the starting point, every hour, for the task sequence; with the task being repeated throughout the hour as many times as specified in the **Frequency** field. If **Hours** are specified, the task is first performed at the time specified in the **Time** field, and then repeated as specified in the **Frequency** field. If **Days** or **Weeks** are specified, the task is performed as scheduled, at the time specified in the **Time** field. (A full example of using **Minutes** as time-units is provided above, in [Schedule Backups](#schedule-backups).)
+
+A third option is by means of _days_: such as **Monday**, **Tuesday**, and so on. If a day is selected, an appropriate integer must be entered into the **Frequency** field, to indicate the number of instances of the day’s occurrence that should elapse before the task is performed. For instance, if **Monday** and **3** are specified, the task is performed on the first Monday, then two Mondays elapse, and then the task is performed again on the fourth Monday; and so on. The time at which the task is commenced is that specified in the **Time** field.
+
+## [](#use-cloud-storage)Use Cloud Storage
+
+Cloud storage can be used for backups. However, cloud storage _cannot_ be used for merges. If a merge is scheduled for cloud storage, the Backup Service skips the task. An immediate merge cannot be triggered for cloud storage.
+
+During the input-sequence for repository-creation, storage for the repository can be specified. See [Schedule Backups](#schedule-backups), for an example of using the local filesystem. Alternatively, cloud storage can be selected, from the **Storage Locations** field of the **Select Plan** dialog. When the selection is made, press **Next**.
+
+1. Fill in a unique `ID` for the Repository ID.
+2. Select the `Bucket` for the backup.
+3. For the `Storage Locations`, select `Cloud` from the drop-down list. The dialog will expand to show the cloud options.
+4. Fill in the location of the `Staging Directory`. This is the local location that will be used to store temporary data whilst the backup is in operation. Generally, the staging area should be large enough to hold 10% of your dataset (the minimum amount should be 50 GB).
+5. Depending on the `Provider` you select from the drop-down list (`AWS`, `Azure`, or `GCP`), you will have a number of different option: with AWS and Azure, you can simply fill in the presented dialog box with the cloud service details; GCP will require you to obtain credentials from the Google service, which you then use to fill in the dialog. Both options are presented below.
+
+* AWS / Azure
+* GCP
+
+![cloudStorageOptions](../_images/manage-backup-restore/cloudStorageOptions.png) 
+
+The fields are as follows:
+
+Staging Directory
+
+A directory on the local file system that is large enough to accommodate approximately 10% of the data set that is to be backed up. A minimum of 50 GB is recommended. The pathname of the location must be accessible to all nodes in the cluster that are running the Backup Service, but the location itself must _not_ be shared by NFS or any equivalent protocol. Instead, the location must be a non-shared directory on the local file system for the node.
+
+Provider
+
+To use either S3 or S3-compatible storage, select **AWS**.
+
+Cloud Bucket
+
+The bucket in the cloud to which data will be backed up.
+
+Path Prefix
+
+The path of the archive, within the cloud bucket. This should take the form `/path/inside/the/bucket`.
+
+Cloud Auth Type
+
+The type of authentication to be used when communicating with the cloud provider. The options are **ID and key** (which means that an ID and key will indeed be required for communication to be successful) and **Instance metadata service** (which means that credentials will be sought from the metadata service running in the node’s virtual machine). Each option assumes that appropriate configuration procedures for the cloud environment have been followed.
+
+Credential ID
+
+The credential ID for the store. For AWS, this is the _access key id_. If **Instance metadata service** has been specified as the value for **Cloud Auth Type**, this field is inapplicable and is no longer displayed.
+
+Credential Key
+
+The secret key for the store. For AWS, this is the _AWS secret access key_. If **Instance metadata service** has been specified as the value for **Cloud Auth Type**, this field is inapplicable, and is no longer displayed.
+
+Region
+
+The AWS Region for the repository. For example, `us-east-1`, `us-west-2`.
+
+Under **Advanced cloud options**, the **Endpoint** field accepts an optional endpoint, used to connect to AWS; and overriding the endpoint used by the cloud-provider.
+
+If checked, the **S3 Force path style** checkbox ensures that the AWS path style used is the earlier (rather than the more recent, which is not supported by all S3 compatible object stores).
+
+Before setting up the GCP cloud backup, you will first need to get an Oauth token and a `refresh` token associated with your GCP service. To do this, follow these steps.
+
+1. **Retrieve the client id and the client secret.**
+
+  1. Access the console under your GCP account, select **API & Services** **Credentials**  
+  ![gcpCredentials](../_images/manage-backup-restore/gcpCredentials.png)
+  2. Create an\`Oauth\` token for use with the Couchbase backup service.
+  3. Create a service account for use with the Couchbase backup service.
+  4. Select the Oauth Client ID you wish to use and click the **Download** link. From the resulting dialog, download the JSON file which contains the client ID and the client secret. The file contains the client information you will need for the next step:  
+  ```json  
+  {  
+      "installed": {  
+          "client_id": "<client_id>",  
+          "project_id": "<project_id>",  
+          "auth_uri": "https://accounts.google.com/o/oauth2/auth",  
+          "token_uri": "https://oauth2.googleapis.com/token",  
+          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",  
+          "client_secret": "<client_secret>",  
+          "redirect_uris": [  
+              "http://localhost"  
+          ]  
+      }  
+  }  
+  ```
+2. **Retrieve the `OAUTH` credentials.**  
+Use the `client_id` and the `client_secret` obtained in the previous section as parameters in a shell command that will return the refresh token for the backup service. This involves interrogating the GCP service to extract a refresh token for your OAuth client ID.
+
+  1. Create a shell script containing the following commands:  
+  ```shell  
+  CLIENT_ID= "<client_id>"  
+  CLIENT_SECRET="<client_secret>"  
+  SCOPE="https://www.googleapis.com/auth/devstorage.read_write"  
+  ENDPOINT="https://accounts.google.com/o/oauth2/v2/auth"  
+  URL="$ENDPOINT?client_id=$CLIENT_ID&response_type=code&scope=$SCOPE&access_type=offline&redirect_uri=http://localhost:12345"  
+  open $URL  
+  ```
+  2. Save the script with a `.sh` extension (e.g., `oauth.sh`)
+  3. Execute the `chmod` command to make the script executable.  
+  ```console  
+  chmod u+x ./oauth.sh  
+  ```
+  4. Now execute the script.  
+  ```console  
+  ./oauth.sh  
+  ```  
+  The script will open your default browser; you can copy the `oauth` credential from the string in the browser URL input field.
+
+|  | You may need to click through a few pages, until you see https:localhost:12345 in the URL field. |
+|  | ------------------------------------------------------------------------------------------------ |  
+  ![getOauthCodefromURL](../_images/manage-backup-restore/getOauthCodefromURL.png)  
+  Copy the string denoted by the `code` field for use in the next section.
+3. **Generate the Refresh Token**  
+Now, you will create a short shell script, using te oauth credentials you retrieved in the [previous section](#retrieve-oauth-credentials).
+
+  1. Create a new shell script for generating the refresh token.  
+  ```shell  
+  CLIENT_ID= "<client_id>"  
+  CLIENT_SECRET= "<client_secret>"  
+  AUTH_CODE= "<oauth_code>"  
+  curl -s -X POST https://www.googleapis.com/oauth2/v4/token --data-urlencode "client_id=$CLIENT_ID" --data-urlencode "client_secret=$CLIENT_SECRET" --data-urlencode "code=$AUTH_CODE" --data-urlencode "redirect_uri=http://localhost:12345" --data-urlencode "grant_type=authorization_code"  
+  ```  
+  Fill in the `client_id` and the the `client_secret` you retrieved from [this section](#retrieve-client-id-and-client-secret), and the `oauth` token you generated [here](#retrieve-oauth-credentials).
+  2. Save the script with an `.sh` extension (e.g., `refresh.sh`).
+  3. Execute the `chmod` command to make the script executable.  
+  ```console  
+  chmod u+x ./refresh.sh  
+  ```
+  4. Execute the script.  
+  ```console  
+  ./refresh.sh  
+  ```  
+  You will receive a response written to the console that contains the refresh token. Make a note of the refresh token.  
+  ```json  
+  {  
+    "access_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",  
+    "expires_in": 3599,  
+    "refresh_token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",  
+    "scope": "https://www.googleapis.com/auth/devstorage.read_write",  
+    "token_type": "Bearer"  
+  }  
+  ```
+  5. Use the information gathered above to fill in the cloud service plan details.  
+  ![createRepositoryForGCP](../_images/manage-backup-restore/createRepositoryForGCP.png)  
+  ID  
+  A unique name assigned to the backup repository.  
+  Bucket  
+  The name of the bucket you wish to back up.  
+  Storage Location  
+  This should remain set to `cloud` for cloud storage.  
+  Staging Directory  
+  A directory on the local file system that is large enough to accommodate approximately 10% of the data set that is to be backed up. A minimum of 50 GB is recommended.  
+  Provider  
+  This should remain set as `GCP`.  
+  Cloud Bucket  
+  The name of the bucket on the `GCP` service you’re backing up to.  
+  Cloud Auth Type  
+  This can be either `ID and Key` or `Instance Metadata Service`.
+
+|  | For the Instance Metadata Service you will need to configure your GCP VM service account so that the VM instance can read and write to the cloud storage bucket. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  You will require a different set of options depending on which one cloud authentication type you choose:
+
+---  
+  `Id` and `Key`  
+
+    1. Use the ID you obtained [here](#retrieve-client-id-and-client-secret) for the `Credential ID`.
+    2. Enter the client secret key from the file you downloaded [here](#get-client-secret-key) as the `Credential Key`.
+    3. Use the token you obtained [here](#get-refresh-token) for the `Refresh Token`.
+
+---  
+  Metadata Service  
+  If you’re using a GCP virtual machine to hold your backup, then you can make use of the GCP VM service account with the `Metadata Service` authorization type.
+
+    1. Ensure that the service account that are using on [Google Cloud](https://cloud.google.com/) has `Access scopes` set to `Set access for each API`.  
+      ![gcpServiceAccountSetup](../_images/manage-backup-restore/gcpServiceAccountSetup.png)
+    2. When `Access scopes` set, you will be provided with a list of scopes which can be changed to set the value for each of the GCP scopes. Ensure that you have changed the `Storage` scope to `Read/Write`.  
+      ![gcpAccessScopes](../_images/manage-backup-restore/gcpAccessScopes.png)
+
+---
+
+## [](#using-the-rest-api)Using the REST API
+
+The Backup Service can be configured and used by means of the REST API. For reference pages on each supported endpoint, see [Backup Service API](../../rest-api/backup-rest-api.md).

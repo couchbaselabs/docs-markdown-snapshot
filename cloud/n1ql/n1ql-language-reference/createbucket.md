@@ -1,0 +1,76 @@
+[View original HTML](/cloud/n1ql/n1ql-language-reference/createbucket.html)
+
+> The CREATE BUCKET statement enables you to create a bucket. 
+
+## [](#purpose)Purpose
+
+Use the CREATE BUCKET statement to create a new bucket in your Couchbase cluster. A bucket is a top-level data container, similar to a database in relational database management systems. It stores documents and provides a logical grouping for data.
+
+When you create a new bucket, a `_default` scope and a `_default` collection are automatically created within it, providing a basic structure for your data right away. The name of the bucket must be unique within the cluster and you cannot change it once you create the bucket. You can have a maximum of 30 buckets per cluster.
+
+## [](#rbac-privileges)RBAC Privileges
+
+To execute the CREATE BUCKET statement, you must have either the Full Admin or the Cluster Admin role. For more information about roles and privileges, see [Roles](#learn:security/roles.adoc).
+
+## [](#syntax)Syntax
+
+```ebnf
+create-bucket ::= 'CREATE' ( 'BUCKET' | 'DATABASE' ) ( 'IF' 'NOT' 'EXISTS' )? name 
+                  ( 'WITH' with-fields )?
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/create-bucket.png) 
+
+The `BUCKET` and `DATABASE` keywords are synonyms. You can use either of them.
+
+| name | (Required) An [identifier](identifiers.md) that represents the name of the bucket that you want to create. It must be unique within the cluster and cannot be longer than 100 characters. Acceptable characters are A-Z, a-z, 0-9, and the special characters underscore, period, dash, and percent. |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#if-not-exists)IF NOT EXISTS Clause
+
+The optional `IF NOT EXISTS` clause enables the statement to complete successfully when the specified bucket already exists. If a bucket with the same name already exists, then:
+
+* If this clause is not present, an error is generated.
+* If this clause is present, the statement does nothing and completes without error.
+
+### [](#with)WITH Clause
+
+Use the optional `WITH` clause to specify additional options for the bucket.
+
+| with-fields | A JSON object containing a list of name-value pairs that define the additional options. For a list of valid fields names and values, see [Bucket Parameter Groups](#rest-api:rest-bucket-create.adoc#parameter-groups) in the REST API documentation. If you do not include with-fields, the statement creates the bucket with default values for all optional settings. Similarly, if you include with-fields but omit specific options, those options are also set to their default values. |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+|  | When using with-fields, if you set a value for ramQuota, the bucket’s configured with that value as its memory quota. However, if you do not specify a value for ramQuota, its value is determined as follows: If storageBackend is set to magma and numVBuckets is set to 1024, then ramQuota is set to 1024 MiB. In all other cases, ramQuota is set to 100 MiB. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#examples)Examples
+
+Example 1\. Create a bucket named `student-records` with default settings
+
+```sqlpp
+CREATE BUCKET `student-records`;
+```
+
+Example 2\. Create a bucket named `custom-bucket` with custom settings
+
+The bucket has a memory quota of `512 MiB`, bucket type as `couchbase`, and storage backend as `magma`.
+
+```sqlpp
+CREATE BUCKET `custom-bucket` WITH {
+    "ramQuota": 512,
+    "bucketType": "couchbase",
+    "storageBackend": "magma"
+};
+```
+
+Example 3\. Create a bucket named `data-sample` if it does not already exist
+
+```sqlpp
+CREATE BUCKET IF NOT EXISTS `data-sample`;
+```
+
+## [](#related-links)Related Links
+
+* For an overview of buckets, see [Buckets](#learn:buckets-memory-and-storage/buckets.adoc).
+* For step-by-step procedures for bucket management, see [Manage Buckets](#manage:manage-buckets/bucket-management-overview.adoc).
+* For managing buckets with the REST API, see [Buckets API](#rest-api:rest-bucket-intro.adoc).

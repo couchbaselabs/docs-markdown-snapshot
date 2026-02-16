@@ -1,0 +1,13 @@
+[View original HTML](/ui-ux/text-input-fields.html)
+
+A text input field is any field in the UI that a user can click into to enter text.
+
+* Put a clear label above all text fields.  
+For example, if a user needs to enter a database name, put a label of **Database Name** on the text field.
+* Keep the [Instruction Text](instruction-text.md), or any elaboration on what the user should input in the text field, below the field, not inside.  
+For example, put any text about special character limitations or whether the value can be changed later below the text field.
+* Put a character limit counter at the bottom-right of the text field, outside the field itself, to indicate a character limit.
+* Add useful hint text to show how a user should be inputting a value inside the text field. Have it disappear on its own when the user goes to type in the field.  
+For example, put an example database name inside the **Database Name** text field to show the user an example of what value they can enter.
+
+![A text field. It has a label of Database Name above the input area. It has hint text that says For example, My_database-Name-123%. A character counter displays below the bottom-right corner, and it shows 23/128. Instruction text below the text field says 'Database names can only contain upper or lowercase letters, numbers, underscores (_), periods (.), dashes (-), and percentages (%). You can change your database name later.'](_images/TextField.png)

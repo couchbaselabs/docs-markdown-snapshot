@@ -1,0 +1,123 @@
+[View original HTML](/server/7.6/learn/data/data.html)
+
+> Couchbase Server saves data as _items_, each of which has a _key_ and a _value_. 
+
+## [](#items-keys-and-values)Items, Keys, and Values
+
+Each item consists of a key and a value. Each key is unique within its bucket, and values can be either binary or JSON.
+
+All items are handled by Couchbase Server’s [Data Service](../services-and-indexes/services/data-service.md). All JSON items must be encoded as specified in [RFC 8259](https://tools.ietf.org/html/rfc8259). Binary items can have any encoding.
+
+## [](#keys)Keys
+
+Each value (binary or JSON) is identified by a unique key, defined by the user or application when the item is saved. The key is immutable: once the item is saved, the key cannot be changed.
+
+Note that Couchbase also refers to an item’s key as its _id_.
+
+Each key:
+
+* Can consist of any string of bytes — but is strongly recommended to consist of a UTF-8 string with no spaces (in order ensure the key’s acceptability to all Couchbase-Server services). Special characters, such as `(`, `%`, `/`, `"`, and `_`, are acceptable.
+* May be no longer than 246 bytes.
+
+|  | If a user accesses the **default** collection, for example by setting the query context to the default collection in the default scope, or by using a legacy SDK, then the key can be up to 250 bytes in length. This is to maintain compatibilitity with older versions of Couchbase. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* Must be unique within a collection.
+
+## [](#values)Values
+
+The maximum size of a value is 20 MiB. A value can be either:
+
+* **Binary**: Any form of binary is acceptable. Note that a binary value cannot be parsed, indexed, or queried: it can only be retrieved by key.
+* **JSON**: A JSON value, referred to as a _document_, can be parsed, indexed, and queried. Each document consists of one or more _attributes_, each of which has its own value. An attribute’s value can be a _basic_ type, such as a number, string, or Boolean; or a _complex_, such as an embedded document or an array.
+
+## [](#document-structure)Document Structure
+
+A sample JSON document is provided immediately below. Its contents are as follows:
+
+* `a1` and `a2` are attributes that respectively have a single number and a single string as their values.
+* `a3` is an attribute whose value is an embedded document consisting of a single attribute, `b1`, whose own value is an array of three numbers.
+* `a4` is an attribute whose value is an array of two documents, each document consisting an attribute (`c1` or `c2`) whose own values are respectively a string and a number.
+
+```json
+{
+  "a1" : number,
+  "a2" : "string",
+  "a3" : {
+    "b1" : [ number, number, number ]
+    },
+  "a4" : [
+    { "c1" : "string", "c2" : number },
+    { "c1" : "string", "c2" : number }
+  ]
+}
+```
+
+Note that the official JSON definition is provided at [RFC 7159](https://tools.ietf.org/html/rfc7159), and at [ECMA 404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+
+The benefits offered to application-programmers by JSON are considered in [The Couchbase Data Model](document-data-model.md).
+
+## [](#sub-documents-overview)Sub-Documents
+
+A _sub-document_ is an inner component of a JSON document. The sub-document is referred to by a _path_, which specifies attributes and array-positions.
+
+The example given above includes the following paths:
+
+* `a1`, whose value is a number.
+* `a3.b1`, whose value is an array of numbers.
+* `a3.b1[0]`, whose value is the first number in an array.
+* `a4[1].c2`, whose value is a number.
+
+The Couchbase SDK provides a _Sub-Document API_, which allows paths to be specified, and sub-documents thereby read and written to. This makes it unnecessary to transfer entire documents over the network when only partial modifications are required, potentially providing significant improvements in network-performance. For further information, see [Sub-Document Operations](../../../../java-sdk/current/howtos/subdocument-operations.md).
+
+## [](#metadata)Metadata
+
+_Metadata_ is automatically generated and stored for each item saved in Couchbase Server. For example, the following document, which contains airport-information, has been saved with the key `airport_1306`:
+
+```json
+{
+  "airportname": "Brienne Le Chateau",
+  "city": "Brienne-le Chateau",
+  "country": "France",
+  "faa": null,
+  "geo": {
+    "alt": 381,
+    "lat": 48.429764,
+    "lon": 4.482222
+  },
+  "icao": "LFFN",
+  "id": 1306,
+  "type": "airport",
+  "tz": "Europe/Paris"
+}
+```
+
+Couchbase Server generates metadata in association with the document, when the document is saved. The metadata might be as follows:
+
+```json
+{
+  "meta": {
+    "id": "airport_1306",
+    "rev": "1-1526338d1bbb00000000000002000000",
+    "expiration": 0,
+    "flags": 33554432,
+    "type": "json"
+  },
+  "xattrs": {}
+}
+```
+
+The attributes within the metadata are:
+
+* `meta`: The attribute whose value is the standard metadata for the saved document, `airport_1306`.
+* `id`: The _key_ of the saved document, which is `airport_1306`.
+* `rev`: The _revision_ or _sequence_ number. This value is for internal server-use only: it is used in the resolution of conflicts that occur when replicated documents are updated concurrently on different servers, representing the number of times the document has been mutated. For more information, see [XDCR Conflict Resolution](../clusters-and-availability/xdcr-conflict-resolution.md).
+* `expiration`: The expiration-time (or _Time To Live_) of the document. If non-zero, it determines when Couchbase Server removes the document. You can set the expiration explicitly on a document or automatically by using by the `maxTTL` setting on the collection or bucket containing it. See [Expiration](expiration.md) for more information.
+* `flags`: Couchbase SDK-specific values that may be used to identify the type of data saved, or to specify formatting.
+* `type`: The type of the saved value, which in this case is `json`.
+* `xattrs`: _Extended Attributes_, which constitute a special kind of metadata, some of which is system-internal, some of which can optionally be written and read by user-applications. See [Extended Attributes](extended-attributes-fundamentals.md) for more information.
+
+## [](#size-limits)Size Limits
+
+The following diagram indicates the respective maximum sizes of the components of a Couchbase Server data-item.
+
+![item maximum sizes](../_images/data/item-maximum-sizes.png)

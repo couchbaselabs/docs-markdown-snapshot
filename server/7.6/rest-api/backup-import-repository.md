@@ -1,0 +1,74 @@
+[View original HTML](/server/7.6/rest-api/backup-import-repository.html)
+
+> A repository that continues to exist on disk, but has been deleted from the Backup Service, can be imported back into the Backup Service. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+POST /cluster/self/repository/import
+
+## [](#description)Description
+
+Imports into the Backup Service of the host cluster a repository that was previously deleted, but which has continued to exist on disk, in a location accessible by the cluster’s Backup-Service nodes.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST http://<backup-node-ip-address-or-domain-name>:8097/cluster/self/repository/import
+  -u -u <username>:<password>
+  -d <repository-specification>
+
+The `username` and `password` must be those of a user with the `Full Admin` role. The `repository-specification` must be a JSON document that provides the following:
+
+* The id under which the repository was saved to disk. For example, `quarterHourBackups`.
+* The name of the repository. For example, `5efb4b57-b033-4e84-9671-a35a0ac6dace`.
+* The location of the repository. For example, `/Users/user/Documents/archives/quarterHourRepo`.
+
+Syntactically, the `repository-specification` is as follows:
+
+{
+  "id": <repository-id>,
+  "repo": <repository-name>,
+  "archive": <repository-location>
+}
+
+### [](#cloud-specific-parameters)Cloud-Specific Parameters
+
+The following, additional parameters are provided, for defining a repository that uses cloud-based storage:
+
+* `cloud_credential_name`. A string that is a set of registered credentials for the cloud. If this is not specified, and cloud-storage is to be accessed, either the `cloud_credentials_key` or the `cloud_credentials_id` must be specified instead.
+* `cloud_staging_dir`. The location to be used as a staging directory. This _must_ be specified, if cloud storage is to be used. The location must be directory on the local file system that is large enough to accommodate approximately 10% of the data set that is to be backed up. A minimum of 50 GB is recommended. The pathname of the location must be accessible to all nodes in the cluster that are running the Backup Service; but the location itself must be _not_ be shared by NFS or any equivalent protocol. Instead, the location must be a non-shared directory on the local file system for the node.
+* `cloud_credentials_id`. An ID used to connect to object store. For AWS, this is the _access key id_.
+* `cloud_credentials_key`. A secret key used to connect to object store. For AWS, this is the _AWS secret access key_.
+* `cloud_region`. The AWS Region for the repository. For example, `us-east-1`, `us-west-2`.
+* `cloud_endpoint`. If provided, this overrides the default endpoint used for the cloud provider.
+* `cloud_force_path_style`. When provided, and using S3 or S3 compatible storages, this enforces the _old_ S3 path style.
+
+## [](#responses)Responses
+
+Success returns `200 OK`. An improperly formatted `repository-specification` returns `400 Bad Request`, and a message such as the following: `{"status":400,"msg":"both archive and repository are required"}`. An otherwise malformed URI returns `404 Object Not Found`.
+
+Failure to authenticate returns `401 Unauthorized`. An internal error that prevents return or modification of the limits returns `500 Internal Server Error`.
+
+## [](#examples)Examples
+
+The following call imports into the Backup Service the repository located at `/Users/user/Documents/archives/quarterHourRepo`:
+
+curl -X POST http://127.0.0.1:8097/api/v1/cluster/self/repository/import \
+-u Administrator:password \
+-d '{"id":"quarterHourRepo","repo":"5efb4b57-b033-4e84-9671-a35a0ac6dace","archive":"/Users/user/Documents/archives/quarterHourRepo"}'
+
+Success returns `200 OK`, and the repository is imported into the Backup Service.
+
+The following call imports into the Backup Service the cloud-based repository located at `s3://my-example-bucket/test_backups`:
+
+curl -v -X POST http://127.0.0.1:8097/api/v1/cluster/self/repository/import \
+-u Administrator:password -d '{"id":"import_test_repository", "archive":"s3://my-example-bucket/test_backups", "repo":"43842820-7265-412c-aacd-9b8f209ff436", "cloud_staging_dir":"/backups_staging/test_backups_staging",
+"cloud_credentials_id":"AKxxx",
+"cloud_credentials_key":"sfxxx",
+"cloud_region":"us-west-2"
+}'
+
+Success returns `200 OK`, and the repository is imported into the Backup Service.
+
+## [](#see-also)See Also
+
+An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md). A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md). For information on archiving a repository, see [Archive a Repository](backup-archive-a-repository.md). For information on deleting a repository from the Backup Service, see [Delete a Repository](backup-delete-repository.md).

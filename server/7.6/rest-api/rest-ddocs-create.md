@@ -1,0 +1,92 @@
+[View original HTML](/server/7.6/rest-api/rest-ddocs-create.html)
+
+> To create a new design document, use the `PUT /[bucket-name]/_design/[ddoc-name]` HTTP method and URI on the `8092` port. 
+
+## [](#description)Description
+
+Design documents are used to store one or more view definitions. Views can be defined within a design document and uploaded to Couchbase Server.
+
+Design documents are validated before being created or updated in the system. The validation checks for valid JavaScript and for the use of valid built-in reduce functions. Any validation failure is reported as an error.
+
+The format of the design document should include all the views defined in the design document, incorporating both the map and reduce functions for each named view.
+
+|  | When creating a design document, first create a dev design document and views and then check the output of the configured views in your design document. To create a development view, you must explicitly use the dev\_ prefix for the design document name. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#http-method-and-uri)HTTP method and URI
+
+PUT /[bucket-name]/_design/[ddoc-name]
+
+| **Request data**            | Design document definition (JSON)     |
+| --------------------------- | ------------------------------------- |
+| **Response data**           | Success and stored design document ID |
+| **Authentication required** | Optional                              |
+
+## [](#syntax)Syntax
+
+Curl request syntax:
+
+curl -X PUT
+  -u [admin]:[password]
+  -H "Content-Type: application/json"
+  http://[localhost]:8092/[bucket-name]/_design/[ddoc-name]
+
+## [](#examples)Examples
+
+A design document, `byfield` can be created using a text file (`byfield.ddoc` ) with the design document content. In this example, the view is a development view. Development view names _must_ have the `dev_`.
+
+Curl request example:
+
+curl -X PUT
+  -H "Content-Type: application/json" \
+  http://Administrator:password@10.5.2.117:8092/sales/_design/dev_byfield \
+  -d @byfield.ddoc
+
+As a `PUT` command, the URL is also significant,since the location designates the name of the design document. In the example, the URL includes the name of the bucket ( `sales` ) and the name of the design document being created is `dev_byfield`.
+
+In the above example:
+
+* `-X PUT`  
+Indicates that an HTTP PUT operation is requested.
+* `-H "Content-Type: application/json"`  
+Specifies the HTTP header information. Couchbase Server requires the information to be sent and identified as the `application/json` datatype. Information not supplied with the content-type set in this manner is rejected.
+* `http://user:password@10.5.2.117:8092/sales/_design/dev_byfield`  
+Specifies the URL, including the authentication information of the bucket where you want the design document uploaded. The `user` and `password` are either the administration privileges or the bucket name and bucket password for SASL protected buckets. If the bucket does not have a password, then authentication information is not required.
+* `-d @byfield.ddoc`  
+Specifies that the data payload should be loaded from the file `byfield.ddoc`.
+
+Note that, using a bucket named `CRF_DATA`, the following call moves a view called `test` from development to production:
+
+curl -X PUT -H "Content-Type: application/json" \
+-u admin:password http://localhost:8091/couchBase/CRF_DATA/_design/test \
+-d @test.ddoc
+
+## [](#response)Response
+
+If successful, the HTTP response code is 201 OK (created) and the returned JSON fields are `ok` and `ID`.
+
+{
+    "ok":true,
+    "id":"_design/dev_byfield"
+}
+
+The top-level `views` field lists one or more view definitions, and for each view, a corresponding `map()` function. For example:
+
+{
+   "views" : {
+      "byfield" : {
+         "map" : "function (doc, meta) {\n  if (meta.type == \"json\")
+         	{\n    emit(doc.city, doc.sales);\n  } else
+         	{\n    emit([\"blob\"]);\n  }\n}"
+      }
+   }
+}
+
+## [](#response-codes)Response codes
+
+| Response codes | Description                                                                                      |
+| -------------- | ------------------------------------------------------------------------------------------------ |
+| 201            | Document created successfully.                                                                   |
+| 401            | The item requested not available using the supplied authorization or authorization not supplied. |
+
+In the event of an error, the returned JSON includes the field `error` with a short description and the field `reason` with a longer description of the problem.

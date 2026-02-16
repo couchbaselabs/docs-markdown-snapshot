@@ -1,0 +1,10 @@
+[View original HTML](/scala-sdk/3.9/howtos/encrypting-using-sdk.html)
+
+> The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
+
+|  | Native Encryption at Rest Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Client-side implementation of Field Level Encryption has not historically been a feature of the Couchbase Scala SDK, but it is hoped to introduce it eventually.
+
+Field Level Encryption _is_ available in most of the other SDKs, including the [Java SDK](../../../java-sdk/current/howtos/encrypting-using-sdk.md).

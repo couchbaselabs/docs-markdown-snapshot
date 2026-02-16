@@ -1,0 +1,67 @@
+[View original HTML](/server/7.2/rest-api/backup-create-repository.html)
+
+> The Backup Service REST API allows repositories to be created. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+POST /cluster/self/repository/active/<new-repository-name>
+
+## [](#description)Description
+
+The `POST` http method and `/cluster/self/repository/active/<new-repository-name>` create a new repository. The call must specify a _plan_, as a JSON payload: for information on defining a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md).
+
+Once a repository has been created, the tasks specified in its plan are executed on schedule. While in this stage of its lifecycle, the repository is referred to as an _active_ repository.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST <backup-node-ip-address-or-domain-name>:8097/cluster/self/\
+repository/active/<new-repository-name> \
+-u <username>:<password> \
+-d <repository-definition>
+
+The `new-repository-name` path-parameter must be a name for the new repository: this name must be unique for repositories across the cluster. The `username` and `password` must be those of a user with the Full Admin role.
+
+The `repository-definition` contains the following:
+
+* `plan`. A defined _plan_. For information, see [Create and Edit Plans](backup-create-and-edit-plans.md).
+* `archive`. A defined _archive_. This must be a location on a filesystem, or on a cloud, that is not used for any other repository. The location must be accessible from all cluster-nodes that run the Backup Service. Note also that Couchbase Server must have _read_ and _write_ access to the location. On Linux, therefore, for a filesystem location, use the `chgrp` command to set the group ID of the folder to `couchbase`; unless a _non-root installation_ has been performed, in which case set the group ID either to the username of the current user, or to a group of which the current user is a member — see [Non-Root Install and Upgrade](../install/non-root.md), for more information.
+* `bucket_name`. Optionally, the name of a specific bucket, defined on the cluster. The bucket can be either a _Couchbase_ or an _Ephemeral_ bucket. If the bucket-name is provided, only data for this bucket is backed up. If the bucket specified by the name does not exist, repository-creation fails. If no bucket-name is provided, data for all buckets on the cluster is backed up.
+
+Syntactically therefore, a filesystem-based `repository-definition` that specifies an individual bucket, is as follows:
+
+{
+  "plan": <existing-plan>,
+  "archive": <path-to-storage-location>,
+  "bucket_name": <individual-bucket-name>
+}
+
+### [](#cloud-specific-parameters)Cloud-Specific Parameters
+
+The following, additional parameters are provided, for defining a repository that uses cloud-based storage:
+
+* `cloud_credential_name`. A string that is a set of registered credentials for the cloud. If this is not specified, and cloud-storage is to be accessed, either the `cloud_credentials_key` or the `cloud_credentials_id` must be specified instead.
+* `cloud_staging_dir`. The location to be used as a staging directory. This _must_ be specified, if cloud storage is to be used. The location must be directory on the local file system that is large enough to accommodate approximately 10% of the data set that is to be backed up. A minimum of 50 GB is recommended. The pathname of the location must be accessible to all nodes in the cluster that are running the Backup Service; but the location itself must be _not_ be shared by NFS or any equivalent protocol. Instead, the location must be a non-shared directory on the local file system for the node.
+* `cloud_credentials_id`. An ID used to connect to object store. For AWS, this is the _access key id_.
+* `cloud_credentials_key`. A secret key used to connect to object store. For AWS, this is the _AWS secret access key_.
+* `cloud_region`. The AWS Region for the repository. For example, `us-east-1`, `us-west-2`.
+* `cloud_endpoint`. If provided, this overrides the default endpoint used for the cloud provider.
+* `cloud_force_path_style`. When provided, and using S3 or S3 compatible storages, this enforces the _old_ S3 path style.
+
+## [](#responses)Responses
+
+Successful repository-creation returns `200 OK`; with the message, `The repository was created`. If the repository is incorrectly specified, `400` is returned; with the message, `The request body is invalid`. If the specified plan is not located, `404` is returned; with the message, `The plan could not be found`. If an internal error causes the call the fail, `500` is returned; with the message `Failed to create repository due to internal error`.
+
+Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI returns `404 Object Not Found`. An incorrectly specified method returns `404 Object Not Found`, and returns the object `{"status":404,"msg":"requested plan not found"}`.
+
+## [](#examples)Examples
+
+The following call creates a new repository named `testRepo`. Its plan is to be the default, system-provided plan, `_hourly_backups`; and the data to be backed up is specified as from the `travel-sample` bucket only.
+
+curl -v -X POST http://127.0.0.1:8097/api/v1/cluster/self/repository/active/testRepo \
+-u Administrator:password -d '{"plan":"_hourly_backups","archive":"/Users/user/Documents/archives/testRepo","bucket_name":"travel-sample"}'
+
+If successful, the call returns `200 OK`.
+
+## [](#see-also)See Also
+
+An overview of the Backup Service is provided in [Backup Service](../learn/services-and-indexes/services/backup-service.md). A step-by-step guide to using Couchbase Web Console to configure and use the Backup Service is provided in [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md). Information on using the Backup Service REST API to create a plan is provided in [Create and Edit Plans](backup-create-and-edit-plans.md). Information on using the Backup Service REST API to return information on either all active repositories, or on a specified active repository, is provided in [Get Information on Active Repositories](backup-get-repository-info.md).

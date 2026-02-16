@@ -1,0 +1,168 @@
+[View original HTML](/server/7.6/cli/cbstats/cbstats-collections.html)
+
+> Provides information on collections. 
+
+## [](#syntax)Syntax
+
+cbstats host:11210 [common options] collections
+  [ <scope>.<collection> | id <collectionID> ]
+
+## [](#description)Description
+
+Displays information on collections.
+
+## [](#options)Options
+
+When used without a command-specific option, the `collections` command returns information on all collections for the specified bucket, on the specified node. If the `<scope>.<collection>` option is used, the command returns information on the collection so specified. If the `id <collectionID>` option is used, the command returns information on the collection whose id is passed as the `<collectionID>` argument.
+
+For common `cbstats` options, see [cbstats](../cbstats-intro.md).
+
+## [](#examples)Examples
+
+The following command retrieves all collections-related information for the bucket `travel-sample`, on the specified node:
+
+/opt/couchbase/bin/cbstats localhost:11210 \
+-u Administrator -p password \
+-b travel-sample collections
+
+The initial lines of the output are as follows:
+
+0x0:0x0:collections_mem_used:  22011592
+ 0x0:0x0:data_size:             20963445
+ 0x0:0x0:history:               false
+ 0x0:0x0:items:                 31591
+ 0x0:0x0:maxTTL:                0
+ 0x0:0x0:metered:               no
+ 0x0:0x0:name:                  _default
+ 0x0:0x0:ops_delete:            0
+ 0x0:0x0:ops_get:               20566
+ 0x0:0x0:ops_store:             31591
+ 0x0:0x0:scope_name:            _default
+ 0x8:0x8:collections_mem_used:  0
+ 0x8:0x8:data_size:             94208
+ 0x8:0x8:history:               false
+ 0x8:0x8:items:                 0
+ 0x8:0x8:maxTTL:                0
+ 0x8:0x8:metered:               no
+ 0x8:0x8:name:                  _mobile
+ 0x8:0x8:ops_delete:            0
+ 0x8:0x8:ops_get:               0
+ 0x8:0x8:ops_store:             0
+ 0x8:0x8:scope_name:            _system
+ 0x8:0x9:collections_mem_used:  251015
+ 0x8:0x9:data_size:             172594
+ 0x8:0x9:history:               false
+ 0x8:0x9:items:                 55
+ 0x8:0x9:maxTTL:                0
+ 0x8:0x9:metered:               no
+ 0x8:0x9:name:                  _query
+ 0x8:0x9:ops_delete:            0
+ 0x8:0x9:ops_get:               0
+ 0x8:0x9:ops_store:             55
+ 0x8:0x9:scope_name:            _system
+ 0x9:0xa:collections_mem_used:  0
+ 0x9:0xa:data_size:             101376
+ 0x9:0xa:history:               false
+ 0x9:0xa:items:                 0
+ 0x9:0xa:maxTTL:                0
+ 0x9:0xa:metered:               no
+ 0x9:0xa:name:                  bookings
+ 0x9:0xa:ops_delete:            0
+ 0x9:0xa:ops_get:               0
+ 0x9:0xa:ops_store:             0
+ 0x9:0xa:scope_name:            tenant_agent_04
+ 0x9:0xb:collections_mem_used:  23717
+ 0x9:0xb:data_size:             118893
+ 0x9:0xb:history:               false
+ 0x9:0xb:items:                 40
+ 0x9:0xb:maxTTL:                0
+ 0x9:0xb:metered:               no
+ 0x9:0xb:name:                  users
+ 0x9:0xb:ops_delete:            0
+ 0x9:0xb:ops_get:               0
+ 0x9:0xb:ops_store:             40
+ 0x9:0xb:scope_name:            tenant_agent_04
+ 0xa:0xc:collections_mem_used:  0
+ 0xa:0xc:data_size:             97280
+ 0xa:0xc:history:               false
+ 0xa:0xc:items:                 0
+ 0xa:0xc:maxTTL:                0
+ 0xa:0xc:metered:               no
+ 0xa:0xc:name:                  bookings
+ 0xa:0xc:ops_delete:            0
+ 0xa:0xc:ops_get:               0
+ 0xa:0xc:ops_store:             0
+ 0xa:0xc:scope_name:            tenant_agent_03
+    .
+    .
+    .
+
+Each line of the output presents a data _key_. Each key is of the format `scopeID` : `collectionID` : `datumLabel`. Each `scopeID` or `collectionID` is a hexadecimal number, prefixed by `0x`. Each `datumLabel` is a string. Each data key is concluded with a colon, and the associated value is presented to the right of the colon.
+
+Within the output, each successive group of lines presents information on one of the collections for the specified bucket, on the specified node.
+
+The first collection is identified by `name` as the `_default` collection.
+
+The `collections_mem_used` line displays, in _bytes_, the total memory (across active vBuckets) used by this collection. The `data_size` displays the total disk space occupied (across active vBuckets) by this collection for the specified bucket, on the specified node: this total is, again, expressed in _bytes_.
+
+The `history` line indicates whether a _change history_ is made for the collection: `true` indicates that a change history is being made, and `false` indicates that it is not. (Note that the value can only be `true` when _Magma_ has been configured as the storage engine for the bucket: see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).)
+
+The `items` line displays the number of items within the collection, across active vBuckets.
+
+The `maxTTL` line indicates whether a _Time To Live_ has been specified for the collection, and if so, its value. For information, see [Expiration](../../learn/data/expiration.md).
+
+The `metered` line is not used in Couchbase Server Version 7.6, and always has the value `0`.
+
+Additional lines display the numbers of deletions, gets, and writes for documents within this collection. The `scope_name` line identifies the scope within which this collection resides: in this case, the scope is the `_default` scope.
+
+Subsequent lines describe other scopes and collections within `travel-sample`.
+
+The `manifest_uid` value is associated with the current state of collections on the node; and will be incremented whenever a collections-related change is made.
+
+The following command returns information on a collection specified by means of the `<scope>.<collection>` option:
+
+/opt/couchbase/bin/cbstats 127.0.0.1:11210 \
+-u Administrator -p password \
+-b travel-sample collections inventory.airline
+
+The output is as follows:
+
+0xe:0x14:collections_mem_used: 35807
+0xe:0x14:data_size:            124394
+0xe:0x14:items:                187
+0xe:0x14:maxTTL:               0
+0xe:0x14:name:                 airline
+0xe:0x14:ops_delete:           0
+0xe:0x14:ops_get:              187
+0xe:0x14:ops_store:            187
+0xe:0x14:scope_name:           inventory
+
+The output, for the `airline` collection, within the `inventory` scope, is thus a subset of that which was returned above, for _all_ collections.
+
+The following command returns information on the same collection, specified by means of the `id <collectionID>` option:
+
+/opt/couchbase/bin/cbstats 127.0.0.1:11210 \
+-u Administrator -p password \
+-b travel-sample collections id 0x14
+
+The `id` here specified, `0x14`, was previously identified, in the output for _all_ collections, as that for `airline`. The output is again as follows:
+
+0xe:0x14:collections_mem_used: 35807
+0xe:0x14:data_size:            124394
+0xe:0x14:items:                187
+0xe:0x14:maxTTL:               0
+0xe:0x14:name:                 airline
+0xe:0x14:ops_delete:           0
+0xe:0x14:ops_get:              187
+0xe:0x14:ops_store:            187
+0xe:0x14:scope_name:           inventory
+
+## [](#see-also)See Also
+
+For an overview of scopes and collections, see [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+For a step-by-step explanation of creating scopes and collections with the CLI, see [Manage Scopes and Collections with the CLI](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-cli). For a comparable explanation with the REST API, see [Manage Scopes and Collections with the REST API](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md#manage-scopes-and-collections-with-the-rest-api).
+
+For information on _Time To Live_, see [Expiration](../../learn/data/expiration.md).
+
+To use `cbstats` to provide further details on collections, see the reference page for the [collections-details](cbstats-collections-details.md) command.

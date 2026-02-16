@@ -1,0 +1,111 @@
+[View original HTML](/operator/current/concept-upgrade.html)
+
+> The Operator allows a managed Couchbase cluster to be upgraded. This includes upgrading the Couchbase Server version and also related Kubernetes resources. 
+
+## [](#upgrading-couchbase-server)Upgrading Couchbase Server
+
+The Couchbase Server version can be [upgraded](howto-couchbase-upgrade.md) by the Operator. To upgrade a Couchbase Server cluster, in the CouchbaseCluster manifest, change the `couchbasecluster.spec.image` field to the upgrade version you want. The Operator upgrades the pods that run Couchbase Server in the Couchbase cluster. If necessary, you can roll back the cluster to the previous version by reverting changes made to the image field. The Operator then performs the rollback by reversing the upgrade process and applying the configured upgrade controls to the pods running the earlier cluster version.
+
+For more granular control, use `spec.upgrade` in the CouchbaseCluster manifest resource to manage the upgrade process.
+
+### [](#spec-upgrade-example)spec.upgrade Example
+
+The following is a `spec.upgrade` example in the CouchbaseCluster manifest for an upgrade process:
+
+```yaml
+upgrade:
+  upgradeProcess: SwapRebalance (1)
+  upgradeStrategy: RollingUpgrade (2)
+  rollingUpgrade:
+    maxUpgradable: 1
+    maxUpgradablePercent: 100%
+  stabilizationPeriod: 10s (3)
+  previousVersionPodCount: 0 (4)
+  upgradeOrderType: Nodes (5)
+  upgradeOrder:
+    - node-1
+    - node-2
+```
+
+The upgrade example explanation is as follows:
+
+| **1** | upgradeProcess supports SwapRebalance or InPlaceUpgrade, and defaults to SwapRebalance when you don’t specify a value. The selected upgradeStrategy determines how SwapRebalance creates pods running the upgraded version. To use InPlaceUpgrade, set the strategy to rollingUpgrade. During a SwapRebalance, the Operator selects one or more candidate pods and creates new pods for each candidate. The Operator rebalances data from the existing pods to the new pods and then deletes the candidate pods. During an InPlaceUpgrade, the Operator selects one or more candidate pods and fails them over. The Operator detaches the volumes from those pods, replaces them with pods running the new cluster version, and rebinds the existing volumes to the new pods. This process completes faster than a SwapRebalance, and the Operator retains the pod names and network settings for the updated pods. |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | upgradeStrategy determines how SwapRebalance creates new pods by using either RollingUpgrade or ImmediateUpgrade. To use InPlaceUpgrade, set the strategy to rollingUpgrade. rollingUpgrade upgrades a predetermined number of pods at a time, which limits risk and simplifies rollback. Because this strategy uses the least network and compute resources, it minimizes impact on client operations. ImmediateUpgrade increases risk and resource utilization during the upgrade but completes the operation faster. Because the strategy upgrades all pods at the same time, it can cause an adverse impact on client performance.                                                                                                                                                                                                                                                                              |
+| **3** | stabilizationPeriod lets you control how long the Operator waits between upgrade cycles and gives you time to check cluster health and service availability.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **4** | previousVersionPodCount instructs the Operator to keep a fixed number of pods running the previous cluster version. This setting supports rollbacks or an extended StabilizationPeriod for the final pods during a cluster upgrade. Couchbase Server considers the upgrade process complete only when all pods are running the new cluster version. During this time, the Operator marks the cluster as Mixed Mode, which may restrict some features.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **5** | upgradeOrderType defines the sequence the Operator uses to upgrade pods to the new cluster version. It determines how the Operator interprets upgradeOrder and must be set to Nodes, ServerGroups, ServerClasses, or Services. The Operator follows the sequence specified in upgradeOrder and applies the default ordering to any items not listed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+
+|  | InPlaceUpgrade can interrupt service and increase the risk of data loss. Use this process only when the cluster has at least two nodes running the Data Service. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#how-to-upgrade-a-cluster)How to Upgrade a Cluster
+
+To upgrade a cluster, modify the CouchbaseCluster manifest by setting the `spec.image` field to the Couchbase Server version you want.
+
+For example, if you are upgrading Couchbase Server version from 7.6.7 to 8.0.0, then update the manifest resource as follows:
+
+```yaml
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: my-couchbase-cluster
+spec:
+  image: couchbase/server:8.0.0
+---
+```
+
+During an upgrade or when the cluster runs in Mixed Mode through `PreviousVersionPodCount`, Couchbase Server disables bucket storage backend migrations. Couchbase Server also disables changes to sidecar containers such as Cloud Native Gateway and Fluent Bit.
+
+See [Upgrade Paths](#server:install/upgrade.adoc#supported-upgrade-paths) for more information about the permitted upgrade paths in Couchbase Server.
+
+|  | You can modify the Couchbase Server version during an upgrade only to roll back to the previous cluster version. |
+|  | ---------------------------------------------------------------------------------------------------------------- |
+
+### [](#rollback)Rollback
+
+The Operator supports rolling back an upgrade that’s in progress. You can perform a rollback only while some pods still run the previous cluster version, which occurs only during an upgrade or when the cluster runs in mixed mode. After the cluster upgrade to new version is complete, it cannot be rolled back to its old version. To roll back, the Operator replaces the newly created pods with pods running the previous version and follows the strategy, process, and ordering defined in the [spec.upgrade example](#spec-upgrade-example).
+
+#### [](#how-to-rollback-a-cluster)How to Rollback a Cluster
+
+To initiate a rollback, modify the CouchbaseCluster manifest by setting the `spec.image` field to the Couchbase Server version that was running before the upgrade started. For example, you were upgrading Couchbase Server version from 7.6.7 to 8.0.0, and encountered issues. If these issues require rollback, update the `spec.image` field to change the version back to 7.6.7 in the manifest as follows:
+
+```yaml
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: my-couchbase-cluster
+spec:
+  image: couchbase/server:7.6.7
+---
+```
+
+### [](#controlled-upgrades)Controlled Upgrades
+
+The Operator lets you control the upgrade process by using the fields in `couchbasecluster.spec.upgrade`. For example, as an Administrator, you can use these fields to upgrade pods based on their availability region or the Couchbase Server services they run. Also, you can upgrade pods running the Data Service before those running the Query Service, or upgrade specific pods in a defined order.
+
+|  | While the cluster runs pods on two versions, the Operator marks the cluster as Mixed Mode and restricts features such as bucket migration and sidecar changes. Keep the time spent in this mode to a minimum. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#upgrading-pods)Upgrading Pods
+
+Kubernetes pods are immutable. When you modify the CouchbaseCluster manifest in a way that requires pod replacement, the Operator creates new pods by using the same process as upgrading or rolling back pods to replace pods running the previous version. Upgrading Couchbase Server is only a subset of modifying any other pod specification parameter.
+
+The Operator builds pod specifications from the manifest and compares them with the existing pods in the cluster. The Operator selects candidate pods when their specifications differ and can then perform the following tasks:
+
+* Modification of scheduling constraints
+* Modification of environment variables
+* Modification of memory constraints
+* Modification of Couchbase services
+* Enabling and disabling of TLS
+* Enabling and disabling of persistent storage
+
+This mechanism lets you use a cluster from evaluation through production and enable features as needed without service disruption.
+
+### [](#upgrading-persistent-volumes)Upgrading Persistent Volumes
+
+The Operator supports volume modifications by using the same mechanism as pod upgrades. When you change the manifest in a way that requires updates to persistent volumes, the Operator upgrades the affected pods to apply those changes. If the storage class and Kubernetes cluster support persistent volume resizing, you can expand in-use persistent volumes in place by setting `couchbasecluster.spec.enableOnlineVolumeExpansion` without upgrading the pods.
+
+During an `InPlaceUpgrade`, the Operator updates the PVCs to reflect the new image and Couchbase Server version. The Operator changes the PVC size or stored data only when the cluster manifest requires those updates.

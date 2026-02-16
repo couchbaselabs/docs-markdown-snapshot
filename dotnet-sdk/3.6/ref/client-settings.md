@@ -1,0 +1,719 @@
+[View original HTML](/dotnet-sdk/3.6/ref/client-settings.html)
+
+> The `ClusterOptions` class enables you to configure .NET SDK options for bootstrapping, timeouts, reliability, and performance. 
+
+You can configure the client programmatically using JSON config files, Environmental variables settings, XML-based configuration such as `app.config`, or `web.config` files.
+
+## [](#configuration-basics)Configuration Basics
+
+Configuration is essentially the same as SDK 2.x retaining capabilites with less tunable properties. Instead of using a `ClientConfiguration` object, you would use a `ClusterOptions` object. For example, to use a custom timeout for Key/Value (K/V) operations you would do something like this:
+
+```csharp
+// SDK 3.0 custom k/v timeout
+var options = new ClusterOptions
+{
+    KvTimeout = TimeSpan.FromMilliseconds(5)
+};
+```
+
+### [](#fluent-configuration)Fluent Configuration
+
+You can also build the `Cluster Options` in a fluent way, for example:
+
+```csharp
+var options = new ClusterOptions()
+  .WithConnectionString("couchbase://locahost")
+  .WithCredentials(username: "user", password: "password")
+  .WithBuckets("travel-sample")
+  .WithLogging(LoggerFactory.Create(builder =>
+  {
+      builder.AddFilter("Couchbase", LogLevel.Debug)
+      .AddEventLog();
+  }));
+```
+
+The cluster options are passed into the `Cluster` object via a constructor:
+
+```csharp
+var cluster = new Cluster("couchbase://localhost", options);
+```
+
+Or by using one of the static `Cluster.Connect(…​)` methods:
+
+```csharp
+var cluster = Cluster.Connect("couchbase://localhost", options);
+```
+
+## [](#json-configuration)JSON Configuration
+
+In support of .NET Core, the client can now be configured using JSON config files.
+
+Below is an example of how `appsettings.json` can be coded for cluster options. Note, the key `ClusterOptions` is simply a name of an object and can be anything you may want it to be.
+
+```csharp
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "ClusterOptions": {
+    "ConnectionString": "couchbase://localhost",
+    "UserName": "user",
+    "Password": "password",
+    "BucketName" : "travel-sample"
+  }
+}
+```
+
+Here is an example of building the `options` from the JSON configuration above:
+
+```csharp
+var settings = Configuration.GetSection("ClusterOptions");
+services.Configure<ClusterOptions>(settings);
+```
+
+The options can now be made accessible through any services as below:
+
+```csharp
+public CustomService ( IOptions<ClusterOptions> clusterOptions)
+{
+    var bucketName = clusterOptions.BucketName;
+}
+```
+
+The "travel-sample" bucket is opened using any of the overridden defaults.
+
+## [](#configuration-options)Configuration Options
+
+The following listing covers all possible configuration options and explains their usage and default values. Options are categorized into groups by usage.
+
+## [](#security-options)Security Options
+
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS.
+
+Template for configuring security settings
+
+```csharp
+var options = new ClusterOptions()
+{
+    EnableTls = true
+};
+```
+
+|  | Unless you set EnableTls to true, none of the other security settings in this section have any effect. |
+|  | ------------------------------------------------------------------------------------------------------ |
+
+Name: **Enabling Secure Connections**
+
+Cluster Option: `EnableTls(boolean)`
+
+Default: `false`
+
+Set this to `true` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server 3.0 or later. If TLS is enabled you must also specify the trusted certificates by calling exactly one of `trustCertificate`, `trustCertificates`, or `trustManagerFactory`. Please see the [Managing Connections](../howtos/managing-connections.md) section for more details on how to set it up properly.
+
+Name: **Enable Certificate Based Authentication**
+
+Cluster Option: `EnableCertificateAuthentication(boolean)`
+
+EnableCertificateAuthentication is required to be set to `true` to use Certificate Authentication
+
+Name: **Ignore Remote Certificate Name Mismatch**
+
+Cluster Option: `IgnoreRemoteCertificateNameMismatch(boolean)`
+
+Default: `false`
+
+If TLS is enabled via `EnableTls`, setting this to true will disable hostname validation when authenticating connections to Couchbase Server. This is typically done in test or development environments where a domain name (FQDN) has not been specified for the bootstrap server’s URI, and the IP address is use to validate the certificate, which will fail with a `RemoteCertificateNameMismatch` error.
+
+Name: **Enable Certificate Revocation**
+
+Cluster Option: `EnableCertificateRevocation(boolean)`
+
+Default: `false`
+
+A Boolean value that specifies whether the certificate revocation list is checked during authentication.
+
+Name: **With Credentials**
+
+Cluster Option: `WithCredentials(string, string)`
+
+Default: none
+
+Applies the credentials for authentication. Note that this is the same as setting the `UserName` and `Password` properties.
+
+Name: **Enabled SSL Protocols**
+
+ClusterOption: `EnabledSslProtocols(SslProtocols)`
+
+Default: `TLS1.2` and `TLS1.3` for .NET6 and greater; `TLS1.2` for earlier .NET version.
+
+Defines the possible TLS protocols to use. The underlying OS will always pick the highest supported version.
+
+Name: **Enabled TLS Cipher Suites**
+
+Default: `EnabledTlsCipherSuites(TlsCipherSuite)`
+
+List of enabled TLS Cipher Suites. If not set, will use default .NET Cipher Suites defined by the OS. Supported by .NET 3.1 or greater.
+
+Name: **Force IP As Target Host**
+
+ClusterOption: `ForceIpAsTargetHost(boolean)`
+
+Default: true
+
+If `ForceIpAsTargetHost` is true, send the IP as the target host during TLS authentication. If `ForceIpAsTargetHost` is false, then mimic the default SDK2 behavior; the hostname or IP as defined by the server will be sent as the target host during TLS authentication.
+
+Name: **Key Value Remote Certificate Validation**
+
+ClusterOption: `KvCertificateCallbackValidation(RemoteCertificateValidationCallback)`
+
+Default: `null` \- if `null` and certificate authentication is enabled this value will be populated internally by the default callback validation.
+
+The default `RemoteCertificateValidationCallback` called by .NET to validate the TLS/SSL certificates being used for HTTP services (Query, FTS, Analytics, etc). If this method returns `true`, then the certificate will be accepted. While it can be handy to simply return `true` for development against self-signed certificates, such a shortcut should never be used against a public-facing or production system.
+
+Name: **HTTP Remote Certificate Validation**
+
+ClusterOption: `KvCertificateCallbackValidation(RemoteCertificateValidationCallback)`
+
+Default: `null` \- if `null` and certificate authentication is enabled this value will be populated internally by the default callback validation.
+
+The default `RemoteCertificateValidationCallback` called by .NET to validate the TLS/SSL certificates being used for Key/Value operations. If this method returns `true`, then the certificate will be accepted.
+
+Name: \*With X509 Certificate Factory
+
+ClusterOption: `WithX509CertificateFactory(ICertificateFactory)`
+
+Default: `null` \- if `null` it will be set internally by the default `CertificateFactory`.
+
+Gets or sets the `ICertificateFactory` to provide client certificates during TLS authentication. Will set the `TlsEnabled` flag to true if called.
+
+Name: \*X509 Certificate Factory
+
+ClusterOption: `X509CertificateFactory(ICertificateFactory)`
+
+Default: `null` \- if `null` it will be set internally by the default `CertificateFactory`.
+
+Gets or sets the `ICertificateFactory` to provide client certificates during TLS authentication.
+
+Name: **Key Value Ignore Remote Certificate Name Mismatch**
+
+ClusterOption: `KvIgnoreRemoteCertificateNameMismatch(boolean)`
+
+Default: `false`
+
+Ignore `CertificateNameMismatch` and `CertificateChainMismatch` for Key/Value operations, since they happen together. Intended for development purposes only. Does **NOT** affect anything other than the name mismatch, such as an untrusted root or an expired certificate.
+
+Name: **HTTP Ignore Remote Certificate Name Mismatch**
+
+ClusterOption: `HttpIgnoreRemoteCertificateNameMismatch(boolean)`
+
+Default: `false`
+
+Ignore `CertificateNameMismatch` and `CertificateChainMismatch` for HTTP services (Query, FTS, Analytics, etc), since they happen together. Intended for development purposes only. Does **NOT** affect anything other than the name mismatch, such as an untrusted root or an expired certificate.
+
+Name: **EnableCertificateRevocation**
+
+ClusterOption: `EnableCertificateRevocation`
+
+Default: `false`
+
+A `System.Boolean` value that specifies whether the certificate revocation list is checked during authentication.
+
+## [](#io-options)I/O Options
+
+This section provides basic settings that will come in handy while configuring network related operations.
+
+Template for configuring I/O settings
+
+```csharp
+var options = new ClusterOptions()
+{
+    EnableDnsSrvResolution = true
+};
+```
+
+Name: **DNS SRV Enabled**
+
+Cluster Option: `EnableDnsSrvResolution(boolean)`
+
+Default: `true`
+
+Gets the bootstrap node list from a DNS SRV record. See the [Connection Management](../howtos/managing-connections.md#using-dns-srv-records) section for more information on how to use it properly.
+
+Name: **Mutation Tokens Enabled**
+
+Cluster Options: `EnableMutationTokens(boolean)`
+
+Default: `true`
+
+Mutation tokens allow enhanced durability requirements as well as advanced SQL++ (formerly N1QL) querying capabilities. Set this to `false` if you do not require these features and wish to avoid the associated overhead.
+
+Name: **Socket Keepalive**
+
+Cluster Option: `EnableTcpKeepAlives(boolean)`
+
+Default: `true`
+
+If enabled, the client periodically sends a TCP keepalive to the server to prevent firewalls and other network equipment from dropping idle TCP connections.
+
+Name: **Socket Keepalive Interval**
+
+Cluster Option: `TcpKeepAliveTime(TimeSpan)`
+
+Default: `60s`
+
+The idle time after which a TCP keepalive gets fired. (This setting has no effect if `EnableTcpKeepAlives` is `false`.)
+
+|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Key/Value Endpoints per Node**
+
+Cluster Option: [NumKvConnections(int)](https://docs.couchbase.com/sdk-api/couchbase-net-client/html/P%5FCouchbase%5FClusterOptions%5FNumKvConnections.htm)
+
+Default: `2`
+
+The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it.
+
+|  | [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Max HTTP Endpoints per Service per Node**
+
+Cluster Option: `MaxHttpConnections(int)`
+
+Default: `5`
+
+Each service (except the Key/Value service) has a separate dynamically sized pool of HTTP connections for issuing requests. This setting puts an upper bound on the number of HTTP connections in each pool.
+
+Name: **Enable Config Poll**
+
+Cluster Option: `EnableConfigPolling(boolean)`
+
+Default: `true`
+
+Enables Configuration `heartbeat` checks.
+
+Name: **Config Poll Interval**
+
+Cluster Option: `ConfigPollInterval(TimeSpan)`
+
+Default: `2.5s`
+
+The interval at which the client fetches cluster topology information in order to proactively detect changes. `EnableConfigPolling` should be set to true to leverage this setting.
+
+Name: **Enable Expect 100-Continue**
+
+ClusterOption: `EnableExpect100Continue(boolean)`
+
+Default:\`false\`
+
+Gets or sets a value that indicates if the `Expect` header for an HTTP request contains `Continue`.
+
+Name: **DNS Revolver**
+
+Cluster Option: `DnsResolver(IDnsResolver)`
+
+Default: `DnsClientDnsResolver`
+
+Provide a custom `IDnsResolver` for DNS SRV resolution.
+
+### [](#bootstrapping-options)Bootstrapping Options
+
+Bootrapping is the initial process of the client connecting to a server cluster.
+
+Name: **Bootstrap Poll Interval**
+
+ClusterOption: `BootstrapPollInterval(TimeSpan)`
+
+Default: `2.5s`
+
+Used for checking that the SDK has bootstrapped and potentially retrying if not.
+
+Name: **Bootstrap HTTP TLS Port**
+
+ClusterOption: `BootstrapHttpPortTls(int)`
+
+Default: `18091`
+
+Port used for TLS HTTP bootstrapping fallback if other bootstrap methods are not available. Do not change unless the Couchbase server default ports have be changed.
+
+Name: **Bootstrap HTTP Port**
+
+ClusterOption: `BootstrapHttpPort(int)`
+
+Default: `8091`
+
+Port used for HTTP bootstrapping fallback if other bootstrap methods are not available. Do not change unless the Couchbase server default ports have be changed.
+
+### [](#compression-options)Compression Options
+
+Name: **With Compression Algorithm**
+
+Cluster Option:\`WithCompressionAlgorithm(ICompressionAlgorithm)\`
+
+Default: `null`
+
+Provide a custom `ICompressionAlgorithm` for key/value body compression.
+
+Name: **Compression**
+
+Cluster Option: Compression(boolean)
+
+Default: `true` \- Ignored if no compression is supplied via `WithCompressionAlogrithm`
+
+Enables compression for key/value operations.
+
+Name: **Compression Minimum Size**
+
+Cluster Option:\`CompressionMinSize(int)\`
+
+Default: 32
+
+If compression is enabled, the minimum document size considered for compression (in bytes). Documents smaller than this size are always sent to the server uncompressed.
+
+Name: **Compression Minimum Ratio**
+
+Cluster Option: `CompressionMinRatio(float)`
+
+Default: `0.83f`
+
+If compression is enabled, the minimum compression ratio to accept when sending documents to the server. Documents which don’t achieve this compression ratio are sent to the server uncompressed.
+
+1.0 means no compression was achieved. A value of 0.75 would result in documents which compress to at least 75% of their original size to be transmitted compressed. The default is 0.83 (83%).
+
+### [](#performance-tuning-options)Performance Tuning Options
+
+Performance tuning options under the `ClusterOptions.Tuning` property. This section is volatile and may change in future releases.
+
+Name: **Maximum Operation Builder Capacity**
+
+Cluster Option: `MaximumOperationBuilderCapacity(int)`
+
+Default: `1MB`
+
+Maximum size of a buffer used for building key/value operations to be sent to the server which will be retained for reuse. Buffers larger than this value will be disposed. If your application is consistently sending mutation operations larger than this value, increasing the value may improve performance at the cost of RAM utilization.
+
+Name: **Maximum Retained Operation Builders**
+
+Cluster Option: `MaximumRetainedOperationBuilders(int)`
+
+Default: `Processor Count * 4`
+
+Maximum number of buffers used for building key/value operations to be sent to the server which will be retained for reuse. If your application has a very high degree of parallelism (for example, a very large number of data nodes), increasing this number may improve performance at the cost of RAM utilization. Defaults to 4 times the number of logical CPUs.
+
+Name: **Maximum In Flight Operations Per Connection**
+
+Cluster Option: `MaximumInFlightOperationsPerConnection(int)`
+
+Default: `8`
+
+Maximum number of operations which may be sent and still awaiting a response from the server per connection. This value may need tuning on high latency connections or based on average operation response size. Defaults to 8 operations per connection.
+
+Note that this is not directly limiting the total number of in-flight operations, each bucket and each node gets a dedicated pool of connections that scale based on the minimum and maximum pool size. This limit is per connection.
+
+Name: **Stream HTTP Response Bodies**
+
+Cluster Option: `StreamHttpResponseBodies(boolean)`
+
+Default: `true` if .NET Standard 2.1 or .NET 6 or greater, otherwise `false`.
+
+If enabled, HTTP responses such as query responses will be streamed after response headers are received rather than waiting for the entire response body to be received. This default to `true` on modern .NET runtimes and `false` on .NET 4.x.
+
+When enabled it becomes more important to call `IDisposable.Dispose` on result objects such as `IQueryResult{T}` and `IAnalyticsResult{T}` to ensure the underlying HTTP connection is released. This is especially true on .NET 4.x where failure to dispose may cause issues with connection pool exhaustion.
+
+### [](#circuit-breaker-options)Circuit Breaker Options
+
+Circuit breakers are a tool for preventing cascading failures.
+
+When a circuit is closed, requests are sent to the server as normal. If too many requests fail within a certain time window, the breaker opens the circuit, preventing requests from going through.
+
+When a circuit is open, any requests to the service immediately fail without the client even talking to the server. After a "sleep delay" elapses, the next request is allowed to go through the to the server. This trial request is called a "canary."
+
+Each service has an associated circuit breaker which may be configured independently of the others. The `IoConfig` builder has methods for configuring the circuit breakers of each service.
+
+Template for configuring circuit breaker settings
+
+```csharp
+var options = new ClusterOptions()
+{
+    CircuitBreakerConfiguration =
+    new Couchbase.Core.CircuitBreakers.CircuitBreakerConfiguration
+    {
+        Enabled = true,
+        VolumeThreshold = 45,
+        ErrorThresholdPercentage = 25,
+        SleepWindow = TimeSpan.FromSeconds(1),
+        RollingWindow = TimeSpan.FromMinutes(2)
+
+    }
+}
+```
+
+The properties of a circuit breaker are described below.
+
+Enabled
+
+Default: `true`
+
+Enables or disables this circuit breaker.
+
+If this property is set to false, then the circuit breaker is not used and all other properties are ignored.
+
+VolumeThreshold
+
+Default: `20`
+
+The volume threshold defines how many operations must be in the window before the threshold percentage can be meaningfully calculated.
+
+ErrorThresholdPercentage
+
+Default: `50`
+
+The percentage of operations in a window that may fail before the circuit is opened. The value is an integer in the range \[0,100\].
+
+SleepWindow
+
+Default: `5s`
+
+The delay between when the circuit opens and when the canary is tried.
+
+RollingWindow
+
+Default: `1m`
+
+How long the window is in which the number of failed ops are tracked in a rolling fashion.
+
+## [](#timeout-options)Timeout Options
+
+The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment. If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.
+
+Most timeouts can be overridden on a per-operation basis (for example, by passing a custom options block to a "get" or "query" method). The values set here are used as the defaults when no per-operation timeout is specified.
+
+Template for configuring timeouts
+
+```csharp
+ var options = new ClusterOptions()
+{
+    KvTimeout = TimeSpan.FromSeconds(2.5),
+    KvDurabilityTimeout = TimeSpan.FromSeconds(10),
+    ViewTimeout = TimeSpan.FromSeconds(75),
+    QueryTimeout = TimeSpan.FromSeconds(75),
+    SearchTimeout = TimeSpan.FromSeconds(75),
+    AnalyticsTimeout = TimeSpan.FromSeconds(75),
+    ManagementTimeout = TimeSpan.FromSeconds(75)
+};
+```
+
+### [](#timeout-options-reference)Timeout Options Reference
+
+Name: **Key-Value Timeout**
+
+Cluster Option: `KvTimeout(TimeSpan)`
+
+Default: `2.5s` — _but see TIP, below_
+
+The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like Get(), GetFromReplica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
+
+|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, KvDurableTimeout, see below. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Key-Value Durable Operation Timeout**
+
+Cluster Option: `KvDurableTimeout(TimeSpan)`
+
+Default: `10s`
+
+Key/Value operations with enhanced durability requirements may take longer to complete, so they have a separate default timeout.
+
+**Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
+
+|  | The KvDurableTimeout property is not part of the stable API and may change or be removed at any time. |
+|  | ----------------------------------------------------------------------------------------------------- |
+
+Name: **View Timeout**
+
+Cluster Option: `ViewTimeout(TimeSpan)`
+
+Default: `75s`
+
+The View timeout is used on view operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows. Also, if there is a node failure during the request the internal cluster timeout is set to 60 seconds.
+
+Name: **Query Timeout**
+
+Cluster Option: `QueryTimeout(TimeSpan)`
+
+Default: `75s`
+
+The Query timeout is used on all SQL++ query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Search Timeout**
+
+Cluster Option: `SearchTimeout(TimeSpan)`
+
+Default: `75s`
+
+The Search timeout is used on all FTS operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Analytics Timeout**
+
+Cluster Option: `AnalyticsTimeout(TimeSpan)`
+
+Default: `75s`
+
+The Analytics timeout is used on all Analytics query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Management Timeout**
+
+Cluster Option: `ManagementTimeout(TimeSpan)`
+
+Default: `75s`
+
+The management timeout is used on all cluster management APIs (BucketManager, UserManager, CollectionManager, QueryIndexManager, etc.) if not overridden by a custom timeout. The default is quite high because some operations (such as flushing a bucket, for example) might take a long time.
+
+Name: **Config Updating Timeout**
+
+ClusterOption: `ConfigUpdatingTimeout(TimeSpan)`
+
+Default: `15s`
+
+The time to wait for a bucket re-configuration to take place after receiving a new cluster map config.
+
+Name: **Key Value Connect Timeout**
+
+ClusterOption: `KvConnectTimeout(TimeSpan)`
+
+Default: `10s`
+
+description
+
+The time to wait while attempting to connect to a node’s KV service via a socket. Initial connection, reconnecting, node added, etc.
+
+Name: **Key Value Range Scan Timeout**
+
+ClusterOption: `KvScanTimeout(TimeSpan)`
+
+Default: `75s`
+
+The time to wait before timing out a KV Range Scan.
+
+## [](#general-options)General Options
+
+Name: **Unordered Execution**
+
+Cluster Option: `UnorderedExecutionEnabled`
+
+Default: `true`
+
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions. This means that tuning the number of connections (KV endpoints) is no longer necessary as a workaround where data not available in the cache is causing timeouts.
+
+This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+Name: **Transcoder**
+
+Cluster Option: `Transcoder(Transcoder)`
+
+Default: `JsonTranscoder`
+
+The transcoder is responsible for converting KV binary packages to and from C# objects.
+
+The default transcoder assumes you are working with JSON documents. It uses the configured `jsonSerializer` to convert between JSON and C# objects. When writing documents it sets the appropriate flags to indicate the document content is JSON.
+
+The transcoder configured here is just the default; it can be overridden on a per-operation basis.
+
+Name: **Threshold Tracer**
+
+Cluster Option: `WithThresholdTracing(ThresholdOptions)`
+
+Default: `ThresholdLoggingTracer`
+
+The default tracer logs the slowest requests per service.
+
+```csharp
+var clusterOptions = new ClusterOptions();
+  clusterOptions.WithThresholdTracing(thresholdOptions =>
+  {
+      thresholdOptions.WithEmitInterval(TimeSpan.FromSeconds(10));
+      thresholdOptions.WithSampleSize(10);
+      thresholdOptions.WithKvThreshold(TimeSpan.FromMilliseconds(500));
+      thresholdOptions.WithQueryThreshold(TimeSpan.FromSeconds(1));
+      thresholdOptions.WithSearchThreshold(TimeSpan.FromSeconds(1));
+      thresholdOptions.WithViewThreshold(TimeSpan.FromSeconds(1));
+      thresholdOptions.WithAnalyticsThreshold(TimeSpan.FromSeconds(1));
+  });
+```
+
+Name: **Orphaned Response Tracer**
+
+Cluster Option: `WithOrphanTracing(OrphanOptions)`
+
+Default: `enabled`
+
+Orphaned Response Logger will log orphaned responses if a request fails to complete for some reason.
+
+```csharp
+var clusterOptions = new ClusterOptions();
+  clusterOptions.WithOrphanTracing(orphanOptions =>
+  {
+    orphanOptions.WithEnabled(true);
+    orphanOptions.WithEmitInterval(TimeSpan.FromSeconds(10));
+    orphanOptions.WithSampleSize(10);
+  });
+```
+
+Name: **Key Value Send Queue Capacity**
+
+Cluster Option: `KvSendQueueCapacity(uint)`
+
+Default: `1024`
+
+Gets or sets the maximum number of operations that will be queued for processing per node. If this value is exceeded, any additional operations will be put into the retry loop.
+
+## [](#commonly-used-options)Commonly Used Options
+
+The defaults above have been carefully considered and in general it is not recommended to make changes without expert guidance or careful testing of the change. Some options may be commonly used together in certain envionments or to achieve certain effects.
+
+### [](#constrained-network-environments)Constrained Network Environments
+
+Though [wide area network](../project-docs/compatibility.md#network-requirements) (WAN) connections are not directly supported, some development and non-critical operations activities across a WAN are convenient. Most likely for connecting to Couchbase Capella, or Server running in your own cloud account, whilst developing from a laptop or other machine not located in the same data center. These settings are some you may want to consider adjusting:
+
+* Connect Timeout to 30s
+* Key-Value Timeout to 5s
+* Config Poll Interval to 10s
+* Circuit Breaker ErrorThresholdPercentage to 75
+
+|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
+
+## [](#configuration-profiles)Configuration Profiles
+
+Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
+
+|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#wan-development)WAN Development
+
+**Cluster Option:** `ApplyProfile("wan-development")`
+
+A `wan-development` configuration profile can be used to modify client settings for development or high-latency environments. This profile changes the default timeouts.
+
+__Table 1\. Profile Settings__
+| Setting             | Default Value | WAN Profile Value |
+| ------------------- | ------------- | ----------------- |
+| KvConnectTimeout    | 10s           | 20s               |
+| kvTimeout           | 2.5s          | 20s               |
+| kvDurabilityTimeout | 10s           | 20s               |
+| ViewTimeout         | 75s           | 120s              |
+| QueryTimeout        | 75s           | 120s              |
+| AnalyticsTimeout    | 75s           | 120s              |
+| SearchTimeout       | 75s           | 120s              |
+| ManagementTimeout   | 75s           | 120s              |
+
+**Do not** set `kvDurabilityTimeout` above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.

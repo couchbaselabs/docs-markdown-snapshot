@@ -1,0 +1,487 @@
+[View original HTML](/server/7.6/learn/services-and-indexes/indexes/indexing-and-query-perf.html)
+
+Creating the right index — with the right keys, in the right order, and using the right expressions — is critical to query performance in any database system. This is true for Couchbase as well. This topic provides an overview of the types of index that you can create using the Index Service, and explains how they help to query for data efficiently and improve query performance.
+
+Examples on this Page
+
+The examples in this topic use the travel-sample dataset which is shipped with Couchbase Server. For instructions on how to install the sample bucket, see [Sample Buckets](../../../manage/manage-settings/install-sample-buckets.md).
+
+To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../../../n1ql/n1ql-intro/queriesandresults.md#query-context).
+
+## [](#introduction-document-keys)Introduction: Document Keys
+
+Couchbase Server is a distributed database that supports flexible data model using JSON. Each document in a keyspace has a user-generated unique document key and this uniqueness is enforced when inserting data into the keyspace. Consider the following sample document:
+
+```sqlpp
+SELECT meta().id, travel
+FROM airline travel
+LIMIT 1;
+```
+
+```json
+[
+    {
+        "id": "airline_10", (1)
+        "travel": {
+            "callsign": "MILE-AIR",
+            "country": "United States",
+            "iata": "Q5",
+            "icao": "MLA",
+            "id": 10,
+            "name": "40-Mile Air",
+            "type": "airline"
+        } (2)
+    }
+]
+```
+
+| **1** | The document key     |
+| ----- | -------------------- |
+| **2** | The document content |
+
+## [](#primary-index)Primary Index
+
+The primary index is an index on the document key for the entire keyspace.
+
+```sqlpp
+CREATE PRIMARY INDEX ON airline;
+```
+
+The Couchbase data layer enforces the uniqueness constraint on the document key. The primary index, like every other index, is maintained asynchronously. Use the primary index for full keyspace scans (primary scans) when the query does not have any filters (predicates) or when no other index or access path can be used.
+
+It’s not recommended to use primary keys for your production queries.
+
+|  | A primary index does not index any [transaction records](../../data/transactions.md#additional-storage-use) that may be stored in a keyspace. This means that if you’re counting the number of documents in a keyspace, you may see slightly different results, depending on whether you’re using a primary index or not. See [Aggregate Functions](../../../n1ql/n1ql-language-reference/aggregatefun.md) and [Viewing the Data Insights](../../../tools/query-workbench.md#bucket-analyzer). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Example 1\. Metadata for Primary Index
+
+```sqlpp
+SELECT * FROM system:indexes WHERE name = '#primary';
+```
+
+Results
+
+```json
+[
+  {
+    "indexes": {
+      "bucket_id": "travel-sample",
+      "datastore_id": "http://127.0.0.1:8091",
+      "id": "c6f4ec5d935e1626",
+      "index_key": [],
+      "is_primary": true,
+      "keyspace_id": "airline",
+      "name": "#primary",
+      "namespace_id": "default",
+      "scope_id": "inventory",
+      "state": "online",
+      "using": "gsi"
+    }
+  }
+]
+```
+
+The metadata provides additional information about the index, such as where the index resides (`datastore_id`), its state (`state`), and the indexing method used (`using`).
+
+## [](#named-primary-index)Named Primary Index
+
+You can name the primary index, as seen in the following example.
+
+```sqlpp
+CREATE PRIMARY INDEX travel_primary ON airline;
+```
+
+The rest of the features of the primary index are the same, except that this index is named. The advantage of naming a primary index is that you can have multiple primary indexes in the system. Duplicate indexes help with high availability and query load distribution between the indexes. This is true for both primary indexes and secondary indexes.
+
+## [](#secondary-index)Secondary Index
+
+The secondary index is an index on any field within the keyspace. The index key can be of any type: scalar, object, or array. The query has to use the same type of object for the query engine to use the index.
+
+Example 2\. Key is a Scalar Value
+
+```sqlpp
+CREATE INDEX `idx-name` ON airline(name);
+```
+
+In this keyspace, `name` is a scalar value such as `{ "name": "Air France" }`.
+
+Example 3\. Key is an Object Embedded Within the Document
+
+```sqlpp
+CREATE INDEX travel_geo on landmark(geo);
+```
+
+In this keyspace, `geo` is an object embedded within the document, such as:
+
+```json
+"geo": {
+   "alt": 12,
+   "lat": 50.962097,
+   "lon": 1.954764
+}
+```
+
+Example 4\. Keys from Nested Objects
+
+```sqlpp
+CREATE INDEX travel_geo_alt on landmark(geo.alt);
+
+CREATE INDEX travel_geo_lat on landmark(geo.lat);
+```
+
+Example 5\. Keys from an Array of Objects
+
+In the `route` keyspace, `schedule` is an array of objects with flight details.
+
+```json
+"schedule": [
+    {
+        "day": 0,
+        "flight": "AF198",
+        "utc": "10:13:00"
+    },
+    {
+        "day": 0,
+        "flight": "AF547",
+        "utc": "19:14:00"
+    },
+    {
+        "day": 0,
+        "flight": "AF943",
+        "utc": "01:31:00"
+    },
+    {
+        "day": 1,
+        "flight": "AF356",
+        "utc": "12:40:00"
+    },
+    {
+        "day": 1,
+        "flight": "AF480",
+        "utc": "08:58:00"
+    },
+    {
+        "day": 1,
+        "flight": "AF250",
+        "utc": "12:59:00"
+    }
+]
+```
+
+This command indexes the complete array and is useful only if you’re looking for the entire array.
+
+```sqlpp
+CREATE INDEX travel_schedule ON route(schedule);
+```
+
+## [](#composite-secondary-index)Composite Secondary Index
+
+It’s common to have queries with multiple filters (predicates). In such cases, you want to use indexes with multiple keys so the indexes can return only the qualified document keys. Additionally, if a query references only the keys in the index, the query engine can answer the query from the index scan result without having to fetch from the data nodes. This is commonly used for performance optimization.
+
+```sqlpp
+CREATE INDEX travel_info ON airline(name, id, icao, iata);
+```
+
+Each of the keys can be a scalar field, object, or an array. For the index filtering to be exploited, the filters have to use respective object type in the query filter.
+
+The keys to the secondary indexes can include document metadata (`meta().id`) explicitly if you need to filter on metadata in the index.
+
+## [](#functional-index)Functional Index
+
+It’s common to have names in the database with a mix of upper and lower cases. When you need to search, say for the city "Villeneuve-sur-lot", you want to search for all uppercase and lowercase possibilities of it. In order to do so, first create an index using an expression or a function as the key. For example:
+
+```sqlpp
+CREATE INDEX travel_cxname ON airport(LOWER(name));
+```
+
+If you provide the search string in lowercase, the index helps the query engine more efficiently search for already lowercase values in the index.
+
+```sqlpp
+EXPLAIN SELECT * FROM airport
+WHERE LOWER(name) = "villeneuve-sur-lot";
+```
+
+Results
+
+```json
+[
+  {
+    "plan": {
+      "#operator": "Sequence",
+      "~children": [
+        {
+          "#operator": "IndexScan3",
+          "bucket": "travel-sample",
+          "index": "travel_cxname",
+          "index_id": "97307509cbce54ca",
+          "index_projection": {
+            "primary_key": true
+          },
+          "keyspace": "airport",
+          "namespace": "default",
+          "scope": "inventory",
+          "spans": [
+            {
+              "exact": true,
+              "range": [
+                {
+                  "high": "\"villeneuve-sur-lot\"",
+                  "inclusion": 3,
+                  "low": "\"villeneuve-sur-lot\""
+                }
+              ]
+            }
+          ],
+          "using": "gsi"
+        },
+        {
+          "#operator": "Fetch",
+          "bucket": "travel-sample",
+          "keyspace": "airport",
+          "namespace": "default",
+          "scope": "inventory"
+        },
+        {
+          "#operator": "Parallel",
+          "~child": {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "Filter",
+                "condition": "(lower((`airport`.`name`)) = \"villeneuve-sur-lot\")"
+              },
+              {
+                "#operator": "InitialProject",
+                "result_terms": [
+                  {
+                    "expr": "self",
+                    "star": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "text": "SELECT * FROM airport WHERE LOWER(name) = \"villeneuve-sur-lot\";"
+  }
+]
+```
+
+You can also use complex expressions in the functional index. For example:
+
+```sqlpp
+CREATE INDEX travel_cx1 ON airport
+(LOWER(name), ROUND(geo.alt * 0.3048));
+```
+
+## [](#array-index)Array Index
+
+JSON is hierarchical. At the top level, it can have scalar fields, objects, or arrays. Each object can nest other objects and arrays; each array can have other objects and arrays, and the nesting can continue. Consider the following example array.
+
+```json
+"schedule": [
+    {
+        "day" : 0,
+        "special_flights" : [
+            {
+                "flight" : "AI111",
+                "utc" : "1:11:11"
+            },
+            {
+                "flight" : "AI222",
+                "utc" : "2:22:22"
+            }
+        ]
+    },
+    {
+        "day" : 1,
+        "flight" : "AF552",
+        "utc" : "14:41:00"
+    }
+]
+```
+
+With a rich structure as seen in the array schedule, here’s how you index a particular array or a field within the sub-object.
+
+```sqlpp
+CREATE INDEX travel_sched ON route
+(DISTINCT ARRAY v.day FOR v IN schedule END);
+```
+
+This index key is an expression on the array to clearly reference only the elements that need to be indexed.
+
+* `schedule` — the array you’re dereferencing into.
+* `v` — the variable implicitly declared to reference each element/object within the array `schedule`.
+* `v.day` — the element within each object of the array `schedule`.
+
+The following query uses the array index created above.
+
+```sqlpp
+EXPLAIN SELECT * FROM route
+WHERE ANY v IN schedule SATISFIES v.day = 2 END;
+```
+
+Results
+
+```json
+[
+  {
+    "plan": {
+      "#operator": "Sequence",
+      "~children": [
+        {
+          "#operator": "DistinctScan",
+          "scan": {
+            "#operator": "IndexScan3",
+            "bucket": "travel-sample",
+            "index": "travel_sched",
+            "index_id": "7cb7b03a5a2a7522",
+            "index_projection": {
+              "primary_key": true
+            },
+            "keyspace": "route",
+            "namespace": "default",
+            "scope": "inventory",
+            "spans": [
+              {
+                "exact": true,
+                "range": [
+                  {
+                    "high": "2",
+                    "inclusion": 3,
+                    "low": "2"
+                  }
+                ]
+              }
+            ],
+            "using": "gsi"
+          }
+        },
+        {
+          "#operator": "Fetch",
+          "bucket": "travel-sample",
+          "keyspace": "route",
+          "namespace": "default",
+          "scope": "inventory"
+        },
+        {
+          "#operator": "Parallel",
+          "~child": {
+            "#operator": "Sequence",
+            "~children": [
+              {
+                "#operator": "Filter",
+                "condition": "any `v` in (`route`.`schedule`) satisfies ((`v`.`day`) = 2) end"
+              },
+              {
+                "#operator": "InitialProject",
+                "result_terms": [
+                  {
+                    "expr": "self",
+                    "star": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "text": "SELECT * FROM route\nWHERE ANY v IN schedule SATISFIES v.day = 2 END;"
+  }
+]
+```
+
+The `scan` section shows that this query uses the index created above.
+
+Because the key is a generalized expression, it provides the flexibility to apply additional logic and processing on the data before indexing. For example, you can create functional indexing on elements of each array. As you’re referencing individual fields of the object or element within the array, the index creation, size, and search are efficient.
+
+The index `travel_sched` stores only the distinct values within an array. To store all elements of an array in an index, do not use the DISTINCT modifier to the expression.
+
+```sqlpp
+CREATE INDEX travel_sched ON route
+(ALL ARRAY v.day FOR v IN schedule END);
+```
+
+For further information and examples, see [Array Indexing](../../../n1ql/n1ql-language-reference/indexing-arrays.md).
+
+## [](#partial-index)Partial Index
+
+Unlike relational systems where each type of row is in a distinct table, Couchbase keyspaces can have documents of various types. You can include a distinguishing field in your document to differentiate distinct types.
+
+For example, the `landmark` keyspace distinguishes types of landmark using the `activity` field:
+
+```sqlpp
+SELECT DISTINCT activity FROM landmark;
+```
+
+Result
+
+```json
+[
+  {
+    "activity": "see"
+  },
+  {
+    "activity": "eat"
+  },
+  {
+    "activity": "do"
+  },
+  {
+    "activity": "drink"
+  },
+  {
+    "activity": "buy"
+  },
+  {
+    "activity": "listing"
+  }
+]
+```
+
+Since the Couchbase data model is JSON and the JSON schema is flexible, an index may not contain entries to documents with absent index keys.
+
+When you want to create an index of restaurants, you can simply add the distinguishing field for the WHERE clause of the index.
+
+```sqlpp
+CREATE INDEX travel_eat ON landmark(name, id, address)
+WHERE activity='eat';
+```
+
+This creates an index only on documents that have `activity='eat'`. The queries must include the filter `activity='eat'` in addition to other filters for this index to qualify.
+
+You can use complex predicates in the WHERE clause of the index. Here are some examples where you can use partial indexes:
+
+* Partitioning a large index into multiple indexes using the mod function.
+* Partitioning a large index into multiple indexes and placing each index into distinct indexer nodes.
+* Partitioning the index based on a list of values. For example, you can have an index for each state.
+* Simulating index range partitioning via a range filter in the WHERE clause. SQL++ queries use one partitioned index per query block. Use UNION ALL to have a query exploit multiple partitioned indexes in a single query.
+
+## [](#duplicate-index)Duplicate Index
+
+A duplicate index is not a special type of index, but a feature of Couchbase indexing. You can create duplicate indexes with distinct names.
+
+```sqlpp
+CREATE INDEX i1 ON airport(LOWER(name), id, icao)
+WHERE country = 'France';
+
+CREATE INDEX i2 ON airport(LOWER(name), id, icao)
+WHERE country = 'France';
+
+CREATE INDEX i3 ON airport(LOWER(name), id, icao)
+WHERE country = 'France';
+```
+
+All 3 indexes have identical keys and an identical WHERE clause; the only difference is the name of these indexes. You can choose their physical location using the WITH clause of the CREATE INDEX statement.
+
+During query optimization, the query engine chooses one of the index names as seen in the explain plan. During query execution, these indexes are used in a round-robin fashion to distribute the load. This provides scale-out, Multi-Dimensional Scaling, performance, and high availability.
+
+## [](#covering-index)Covering Index
+
+Index selection for a query solely depends on the filters in the WHERE clause of your query. After the index selection is made, the query engine analyzes the query to see if it can be answered using only the data in the index. If it does, the query engine skips retrieving the whole document from the data nodes. This is a performance optimization to keep in mind when designing your indexes.
+
+For further information and examples, see [Covering Indexes](../../../n1ql/n1ql-language-reference/covering-indexes.md).

@@ -1,0 +1,23 @@
+[View original HTML](/spark-connector/3.3/download-links.html)
+
+> All production-ready Couchbase Spark connector artifacts are downloadable through Maven Central. Prerelease versions are available through our Couchbase Maven repository for easy consumption. 
+
+## [](#current-release-3-3-5)Current Release 3.3.5
+
+The connector is currently compiled against Scala 2.12 to comply with Spark 3.3\. Here is the coordinate for the artifact:
+
+* **GroupId:** com.couchbase.client
+* **ArtifactId:** spark-connector\_2.12
+* **Version:** 3.3.5
+
+If you are using Scala, here is the snippet you can use:
+
+```scala
+libraryDependencies += "com.couchbase.client" %% "spark-connector" % "3.3.5"
+```
+
+This can also be used in a Java application and imported with Maven or Gradle.
+
+It can also be downloaded manually here: [Download (Scala 2.12 / Java)](http://packages.couchbase.com/clients/connectors/spark/3.3.5/Couchbase-Spark-Connector%5F2.12-3.3.5.zip) | [API Reference](http://docs.couchbase.com/sdk-api/couchbase-spark-connector-3.3.5/api)
+
+Note that the download contains an assembled jar, which means they contain all the dependencies in one "fat jar". This means that you don’t need to juggle multiple dependencies if you want to use the jar as part of Spark’s command line access tools (like the shell) or add it to the classpath of workers.

@@ -1,0 +1,184 @@
+[View original HTML](/dotnet-sdk/current/project-docs/performance.html)
+
+> Performance best practices for Couchbase .NET applications. Learn how to keep get the best performance from your application. 
+
+## [](#coding-best-practices)Coding Best Practices
+
+### [](#always-call-dispose-on-getasync-lookupinasync-etc)Always call Dispose on GetAsync, LookupInAsync, etc.
+
+`GetAsync` and other retrieval operations return a class the implements the `IDisposable` interface. It is important that on these result types, `Dispose()` is called so that the buffer that has between "rented" that handles the response is returned back to its pool.
+
+```csharp
+using var result = await collection.GetAsync("key1");
+```
+
+This applies to `GetAsync`, `LookupInAsync`, `GetAndLockAsync`, `GetAndTouchAsync`, `GetAnyReplicaAsync`, and `GetAllReplicasAsync`.
+
+### [](#avoid-running-tasks-on-the-captured-context)Avoid Running Tasks on the "Captured Context"
+
+When a Task is waited, the continuation may occur on the same thread which created the Task. This "captured context" requires a bit of overhead and may cause performance problems and even deadlocks. In order to disable this behavior, the `SynchronizationContext` can be avoided by calling `Task.ConfigurationAwait(false)`. This should be done for every `Task` within the application.
+
+```csharp
+// Disable the context when awaiting a Task
+var cluster = await Cluster.ConnectAsync(options).ConfigureAwait(false);
+var bucket = await cluster.BucketAsync(bucketName).ConfigureAwait(false);
+
+// Since we are not awaiting here, no need to disable the synchronization context
+var collection = bucket.DefaultCollection();
+
+// Again disable the context when awaiting the Task
+var result = await collection.GetAsync("key1").ConfigureAwait(false);
+```
+
+In the code above, we connect to the Couchbase server and then open a bucket. Both times we disable the sychcronization context by call `ConfigureAwait(false)`. Then a collection is opened using a non-async overload. Finally, we perform a CRUD operation, and again we disable the context. This pattern should be followed throughout your Couchbase application.
+
+|  | In modern ASP.NET (5+), the core lacks a default synchronization. With this core, usage of Task.ConfigureAwait(false) is debatable as it adds a small amount of overhead. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#avoid-synchronously-awaiting-foreach-loops)Avoid Synchronously Awaiting Foreach Loops
+
+A common antipattern is to await each item in a foreach or for loop:
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+foreach(var key in keys)
+{
+    var result = await collection.GetAsync(key).ConfigureAwait(false);
+}
+```
+
+This will end up sending each GetAsync to the server synchronously: "key1", "key2", "key3"…​
+
+A better way to do this is to fetch the entire list asynchronously as a batch:
+
+```csharp
+var tasks = Enumerable.Range(1, 100).Select(i => collection.GetAsync($"key{i}"));
+
+var results = await Task.WhenAll(tasks).ConfigureAwait(false);
+```
+
+When done in this manner, the keys and response will be sent and received out-of-order: "key2, "key10", "key3"…​
+
+### [](#do-not-use-parallel-foreach)Do Not Use Parallel.ForEach
+
+The Couchbase SDKs, being IO-bound, are intended to be used in an asynchronous fashion. On the other hand, `Parallel.ForEach` is intended for CPU-bound computations and maximizes the available cores in your CPU. Combining the IO-Bound SDK with CPU-Bound `Parallel.ForEach` is a bad choice. You are better off batching and awaiting `Task.WhenAll` so that blocking does not occur.
+
+### [](#do-use-parallel-foreachasync)Do Use Parallel.ForEachAsync
+
+In the latest .NET Framework Versions (6+), there is a [special method](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.parallel.foreachasync?view=net-6.0)that allows you to control the amount of parallelism for scheduled asynchronous work:
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+#if NET6_0_OR_GREATER
+await Parallel.ForEachAsync(keys, async (key, cancellationToken) => {
+
+    var result = await collection.GetAsync(key).ConfigureAwait(false);
+}).ConfigureAwait(false);
+#endif
+```
+
+You can tune this by changing the batch size and the [parallel options](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.paralleloptions?view=net-6.0); there is no universal best practice here as it depends on a number of factors.
+
+### [](#use-batching)Use Batching
+
+If you are processing large amounts of documents, you’ll most likely want to batch the requests into smaller subsets instead of creating a huge set in memory. In fact, if the list is unbound, you may run into an `OutOfMemoryException` as you have consumed all of the memory allocated by the process.
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+#if NET6_0_OR_GREATER
+
+var partions = keys.Chunk(10);
+
+foreach (var partition in partions)
+{
+    await Parallel.ForEachAsync(keys, async (key, cancellationToken) => {
+
+        var result = await collection.GetAsync(key).ConfigureAwait(false);
+        _outputHelper.WriteLine(key);
+    }).ConfigureAwait(false);
+}
+
+#endif
+```
+
+In this example, we are using the `Chunk` method in .NET 6 to partition the larger list of keys into smaller subsets and then fire them off asyncronously. This is a trival example as partitioning keys may be very domain specific, but it illustrates the idea.
+
+### [](#avoid-sync-over-async-antipattern)Avoid Sync over Async Antipattern
+
+The Couchbase .NET SDK was designed for asynchronous the entire way down; however, at the application layer you can still block and wait for each operation. Doing this is an antipattern and may cause deadlocks, and most definitly will degrade performance. Here is an example of _sync_ over _async_:
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+foreach (var key in keys)
+{
+    var result = collection.GetAsync(key).Wait();
+}
+```
+
+Another example using `GetAwaiter()`:
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+foreach (var key in keys)
+{
+    var result = collection.GetAsync(key).GetAwaiter().GetResult();
+}
+```
+
+Or using `Task.Result`:
+
+```csharp
+var keys = Enumerable.Range(1, 100).Select(i => $"key{i}");
+
+foreach (var key in keys)
+{
+    var result = collection.GetAsync(key).Result;
+}
+```
+
+In all cases this anti-pattern should be not be used and instead all Tasks should be awaited asynchronously. Note that this applies to `Task.WaitAll` as well — avoid doing this in your Couchbase application!
+
+### [](#not-caching-the-bucket-andor-cluster-objects)Not Caching the Bucket and/or Cluster Objects
+
+This is possibly the worst performance killer of all: failing to properly cache and reuse the `Bucket` or `Cluster` objects. When we open the Cluster and Bucket objects, we create long-lived socket connections between the client and the server. There is cost associated with creating these connections, so we want them to be reused over and over. If we’re opening and closing these objects, we’re creating and the tearing down these connections — which causes latency, and may cause memory pressure.
+
+The Couchbase SDK has a complementary [Dependency Injection (DI)](https://docs.couchbase.com/dotnet-sdk/current/howtos/managing-connections.html#connection-di)library that makes this trival to manage. Additionally, there are other ways of doing this manually in `Start.cs`, or for legacy applications, using `Application_Start` and `Application_End` handlers in the `Global.asax` file. We strongly recommend users of the SDK use the DI library approach as its the simplest and easiest to debug.
+
+## [](#configuration-best-practices)Configuration Best Practices
+
+The SDK comes with default values out of the box in the `ClusterOptions` class. These defaults are suitable for most situations. However, to get the very best performance out of your application, tuning may be required.
+
+### [](#connection-pools)Connection pools
+
+The current SDK comes with three different connection pools: The default `ChannelConnectionPool`, the older `DataFlowConnectionPool`, and the `SingleConnectionPool`.
+
+In general, the default `ChannelConnectionPool` should do everything you need. The pool will scale up and down depending upon the values found in `ClusterOptions.NumKvConnections` (which has a default value of 2) and `ClusterOptions.MaxKvConnections` (which has a default value of 5). If both values are set to a number less than or equal to `1`, a `SingleConnectionPool` will be used and scaling will be disabled. We DO NOT suggest changing these values most cases. However, if you do, then you should perform some benchmarking to determine the effects of the change on the client and on the server. More connections does not necessarily mean better performance overall!
+
+The `SingleConnectionPool` is a very simple pool that contains exactly one connection. It’s useful for debugging connection related problems as it is has very few features and allows you to quickly isolate problems. It may also be suitable for some applications or micro-services that need to constrain the number of active connections. However, in general, we suggest using the `ChannelConnectionPool`. As mentioned above, setting both `ClusterOptions.NumKvConnections` and `ClusterOptions.MaxKvConnections` to a number less than or equal to `1` will cause the `SingleConnectionPool` to be used.
+
+The `DataFlowConnectionPool` is a legacy pool and should not be used in new applications.
+
+### [](#operation-builder-pool-tuning)Operation Builder Pool Tuning
+
+The SDK uses an internal operation builder pool which reuses buffers when writing or reading Memcached packets while performing KV operations. There are advanced settings for this builder that can be tuned for specific circumstances. These settings are found in the `ClusterOptions.Tuning` property. Once again, the defaults are usually sufficient. If you do change these values make sure that you benchmark before and after as they may effect CPU and RAM usage, and possibly latency.
+
+#### [](#maximumoperationbuildercapacity)MaximumOperationBuilderCapacity
+
+The maximum size of a buffer used for building key-value operations to be sent to the server which will be retained for reuse. Buffers larger than this value will be disposed. If your application is consistently sending mutation operations larger than this value, increasing the value may improve performance at the cost of RAM utilization. Defaults to 1MiB.
+
+#### [](#maximumretainedoperationbuilders)MaximumRetainedOperationBuilders
+
+Maximum number of buffers used for building key-value operations to be sent to the server which will be retained for reuse. If your application has a very high degree of parallelism (for example, a very large number of data nodes), increasing this number may improve performance at the cost of RAM utilization. Defaults to the 4 times the number of logical CPUs.
+
+### [](#operation-tracing-and-metrics)Operation Tracing and Metrics
+
+The SDK by default enables operation tracing and metrics tracking. It is used to generate threshold and orphan response reports which are written to the log file. While these are useful tool for debugging, they do come at a cost of increased memory and CPU use. Operation tracing and metrics can be disabled by setting the `ClusterOptions.TracingOptions.Enabled` flag to `false`and/or by setting the `ClusterOptions.LoggingMeterOptions.Enabled` to `false`. Note, by doing so you will lose the ability to use these useful debugging tools.
+
+### [](#logging)Logging
+
+In production environments, using TRACE and DEBUG levels cause a lot of overhead. We suggest using a higher level for production (although DEBUG may be required temporarily if tracking a bug or performance issue).

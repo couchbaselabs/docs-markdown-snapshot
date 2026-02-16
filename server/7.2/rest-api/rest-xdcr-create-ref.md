@@ -1,0 +1,185 @@
+[View original HTML](/server/7.2/rest-api/rest-xdcr-create-ref.html)
+
+> The REST API can be used to create an XDCR reference to a destination cluster. 
+
+## [](#description)Description
+
+On the cluster that is intended to be a _source_ for XDCR, a _reference_ to an intended _target_ cluster must first be defined. The target cluster is typically a different cluster from the source cluster; but may be the same cluster.
+
+A source cluster’s references can be defined by means of the REST API.
+
+The Full Admin, Cluster Admin, or XDCR Admin role is required.
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /pools/default/remoteClusters
+
+POST /pools/default/remoteClusters/<target-cluster-local-name>
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -u <source-cluster-username>:<source-cluster-password>
+  http://<source-cluster-ip-address-or-domain-name>]:8091/pools/default/remoteClusters/[<target-cluster-local-name>]
+  -d name=<target-cluster-local-name>
+  -d hostname=<target-cluster-ip-address-or-domain-name][:<port-number>]
+  [-d network_type='external']
+  [-d username=<target-cluster-username>]
+  [-d password=<target-cluster-password>]
+  [-d demandEncryption=[ 0 | 1 ] ]
+  [-d secureType=[ 'none' | 'half' | 'full'] ]
+    [--data-urlencode "certificate=$(cat <local-pathname-to-target-root-certificate>)"]
+    [--data-urlencode "clientCertificate=$(cat /Users/username/clientcert/travel-sample.pem)"]
+    [--data-urlencode "clientKey=$(cat /Users/username/clientcert/travel-sample.key)"]
+
+The value of the `name` parameter (`target-cluster-local-name`) is for local reference only, and so need not correspond to any network-visible name established for the target cluster. If an existing reference is being edited, the existing value of `name` should be specified as a path-parameter that terminates the endpoint: in such cases, the `name` flag itself must still be included in the the payload, specifying either the existing or a new value.
+
+The value of the `hostname` parameter (`target-cluster-ip-address-or-domain-name`) determines the target cluster to which the connection will be made. This value can specify either the _internal_ or (if one has been configured) the _external_ address of the target cluster. For information on using DNS SRV in this context, see [XDCR Security and Networking](../xdcr-reference/xdcr-security-and-networking.md).
+
+The value of the optional `network_type` parameter must be `external`. If this is specified, and an external network has been configured for the target cluster, use of the target cluster’s external address is attempted. If no external network has been configured, and the hostname refers to a valid internal address for the cluster, the internal address is used.
+
+The values specified for the optional `username` and `password` parameters must be the username and password for the _target_ cluster, respectively. These values must be established if `none` or `half` is the value of the `secureType` parameter. These values must also be established if `full` is the value of the `secureType` parameter, and authentication with client certificates is not being attempted. However, if `full` is the value of `secureType`, and authentication with client certificates _is_ being attempted, these values must _not_ be established.
+
+The optional `secureType` parameter can be `none` (which is the default), `half`, or `full`; and thus specifies the type of security to be used for the connection. If the optional `demandEncryption` parameter is specified with a value of `1`, a secure connection is enforced: in such a case, if `secureType` is specified as `half` or `full`, the security of the connection is established according to the value of `secureType`; whereas if `secureType` is _not_ specified, the security of the connection is established as `full`. The default value of `demandEncryption` is `0`.
+
+If `secureType` is `full`, the local pathname of the target cluster’s root certificate must be specified, as the value of the `--data-urlencode` flag. Note that this additionally requires _either_ that values be established for the `username` and `password` parameters; _or_ that no values be established for the `username` and `password` parameters, and instead, local pathnames to a client certificate and corresponding client private key be established. Each certificate or key must be specified as the value of a separate `data-urlencode` flag.
+
+If `secureType` is `half`, and the target cluster is running a pre-5.5 version of Couchbase Server, the local pathname of the target cluster’s root certificate must be specified, as the value of the `--data-urlencode` flag. However, if the target cluster is running 5.5 or later, the pathname need not be specified.
+
+Note that Capella CAs are automatically trusted by XDCR when the REST API is used to enable fully secure replications from Couchbase Enterprise Server to Capella: in such cases, the option `--data-urlencode "certificate=$(cat <local-pathname-to-target-root-certificate>)"`, provided for specifying the CA, does not need to be used. See [Capella Trusted CAs](../manage/manage-xdcr/secure-xdcr-replication.md#capella-trusted-cas).
+
+## [](#responses)Responses
+
+Successful execution returns `200 OK`, establishes the reference, and returns an object whose key-value pairs provide details of the reference. The keys are as follows:
+
+* `certificate`. The root certificate for the target cluster, if one was used, in the creation of a `half` secure or `full` secure connection.
+* `clientCertificate`. The client certificate for the source cluster, if one was used, in the creation of a `full` secure connection.
+* `deleted`. Whether the reference has been deleted. The value can be one of the booleans `true` and `false`.
+* `hostname`. A string that contains the IP address (or domain name) and port number of the target cluster.
+* `name`. A string that is the locally defined reference to the target cluster.
+* `secureType`. A string that specifies the level of security required for connection. This can be `none`, `half`, or `full`.
+* `uri`. A string that is the URI of the locally named target cluster. For example, `"/pools/default/remoteClusters/FirstTarget"`.
+* `username`. A string that is the name of the current user.
+* `uuid`. A string that is the universally unique identifier for the reference. For example, `"5ccf771844cd32375df8c4de70e9d44e"`.
+* `validateURI.`A string that is the URI for internal validation of the reference. For example, `"/pools/default/remoteClusters/SecondTarget?just_validate=1"`.
+
+Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI returns `404 Object Not Found`. If `secureType` is `full`, and credentials _and_ client certificates are specified, connection fails with `400 Bad Request`, and an error message such as `{"_":"username and client certificate cannot both be given when secure type is full"}`.
+
+## [](#examples)Examples
+
+The following examples demonstrate how a reference can be established. All examples are piped to [jq](https://stedolan.github.io/jq/), and certificate output is truncated, in order to enhance the readability of output.
+
+## [](#create-a-fully-secure-reference-using-credentials)Create a Fully Secure Reference, Using Credentials
+
+To create a fully secure reference from `localhost` to `10.144.220.102` by means of the target cluster’s administrative credentials and root certificate, enter the following.
+
+curl -X POST -u Administrator:password \
+http://localhost:8091/pools/default/remoteClusters \
+-d name=TargetCluster \
+-d hostname=10.144.220.102 \
+-d username=targetAdministrator \
+-d password=targetPassword \
+-d secureType=full \
+--data-urlencode "certificate=$(cat ./ca.pem)" | jq '.'
+
+The `username` and `password` specified are those of the target cluster. Note that the `demandEncryption` flag is not specified; however, the `encryptionType` flag is set to `full`. The `--data-urlencode` flag specifies the local path to the root certificate for the target cluster.
+
+Formatted, the output from a successful execution is as follows:
+
+{
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIDJzCC
+          .
+          .
+          .
+  FHjm+ycdHyRyk5iAooXWXP5xnaBE9+Vig==\n-----END CERTIFICATE-----",
+  "deleted": false,
+  "demandEncryption": true,
+  "encryptionType": "full",
+  "hostname": "10.144.220.102:8091",
+  "name": "TargetCluster",
+  "secureType": "full",
+  "uri": "/pools/default/remoteClusters/TargetCluster",
+  "username": "targetAdministrator",
+  "uuid": "1ed664057cbaad1e283fe0e6dfa86506",
+  "validateURI": "/pools/default/remoteClusters/TargetCluster?just_validate=1"
+}
+
+## [](#create-a-half-secure-reference-using-credentials)Create a Half-Secure Reference, Using Credentials
+
+To create a half-secure reference from `localhost` to `10.142.180.102` by means of the remote cluster’s administrative credentials and its root certificate, enter the following. (Note that `10.144.220.102` is assumed to be running a pre-5.5 version of Couchbase Server.)
+
+curl -X POST -u Administrator:password \
+http://localhost:8091/pools/default/remoteClusters \
+-d name=TargetCluster \
+-d hostname=10.144.220.102 \
+-d username=targetAdministrator -d password=targetPassword \
+-d demandEncryption=1 \
+-d secureType=half \
+--data-urlencode "certificate=$(cat ./ca.pem)" | jq '.'
+
+The `username` and `password` specified are those of the remote cluster. Note that the `demandEncryption` flag is set to `1`, while, the `encryptionType` flag specifies `half`. The `--data-urlencode` flag specifies the local path to the root certificate for the (pre-5.5) target cluster.
+
+If connection is successful, the following is returned:
+
+{
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIDJzCCAg+gAwIBAgIUSaVkKhAwNl8aTxDkfyoeUiStp1cw/
+          .
+          .
+          .
+  FHjm+ycdHyRyk5iAooXWXP5xnaBE9+Vig==\n-----END CERTIFICATE-----",
+  "deleted": false,
+  "demandEncryption": true,
+  "encryptionType": "half",
+  "hostname": "10.144.220.102:8091",
+  "name": "TargetCluster",
+  "secureType": "half",
+  "uri": "/pools/default/remoteClusters/TargetCluster",
+  "username": "targetAdministrator",
+  "uuid": "1ed664057cbaad1e283fe0e6dfa86506",
+  "validateURI": "/pools/default/remoteClusters/TargetCluster?just_validate=1"
+}
+
+## [](#create-a-fully-secure-reference-using-certificates)Create a Fully Secure Reference, Using Certificates
+
+To create a fully secure reference from `localhost` to `target.en.cl`, specifying that connection should occur with an external network, demanding full encryption, and authenticating by means of the remote cluster’s root certificate, a client certificate, and a client private key, enter the following:
+
+curl -X POST -u Administrator:password http://localhost:8091/pools/default/remoteClusters \
+-d name=TargetCluster \
+-d hostname=target.en.cl \
+-d network_type=external \
+-d demandEncryption=1 \
+--data-urlencode "certificate=$(cat ./ca.pem)" \
+--data-urlencode "clientCertificate=$(cat ./travel-sample.pem)" \
+--data-urlencode "clientKey=$(cat ./travel-sample.key)"
+
+Note that the `demandEncryption` flag is set to `1`, and a fully encrypted connection is thus enforced. The `network_type=external` parameter is specified, indicating that the target’s external network should be connected to, if it has been configured; otherwise, connection to an internal network is attempted.
+
+If successful, the command returns the following:
+
+{
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIIDJzCCAg+gAwIBAgIUSaVkKh
+          .
+          .
+          .
+  /FHjm+ycdHyRyk5iAooXWXP5xnaBE9+Vig==\n-----END CERTIFICATE-----",
+  "clientCertificate": "-----BEGIN CERTIFICATE-----\nMIIDljCCAn6gAwIBAgI
+          .
+          .
+          .
+  cqHOcGj7RJE5SIwVZUPnSPeGHgLTTmijJhe15VFdA==\n-----END CERTIFICATE-----",
+  "deleted": false,
+  "demandEncryption": true,
+  "encryptionType": "full",
+  "hostname": "target.en.cl",
+  "name": "TargetCluster",
+  "secureType": "full",
+  "uri": "/pools/default/remoteClusters/TargetCluster",
+  "username": "",
+  "uuid": "1ed664057cbaad1e283fe0e6dfa86506",
+  "validateURI": "/pools/default/remoteClusters/TargetCluster?just_validate=1"
+}
+
+The `secureType` field specifies `full`: therefore, the reference and its associated replications have now been fully secured. Both the target cluster’s root certificate and the source cluster’s client certificate are included in the output.
+
+## [](#see-also)See Also
+
+For information on using the REST API to create secure connections, see [Secure a Replication](../manage/manage-xdcr/secure-xdcr-replication.md). Additional information is provided in [Certificates](../learn/security/certificates.md) and [XDCR Security and Networking](../xdcr-reference/xdcr-security-and-networking.md).

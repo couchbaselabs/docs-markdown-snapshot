@@ -1,0 +1,155 @@
+[View original HTML](/server/current/learn/clusters-and-availability/rebalance.html)
+
+> _Rebalance_ redistributes data, indexes, event processing, and query processing among available nodes. 
+
+## [](#understanding-rebalance)Understanding Rebalance
+
+When one or more nodes have been _brought into_ a cluster (either by [adding](nodes.md#node-addition) or [joining](nodes.md#node-joining)), or have been _taken out_ of a cluster (either through [Removal](removal.md) or [Failover](failover.md)), _rebalance_ redistributes data, indexes, event processing, and query processing among available nodes. The _cluster map_ is correspondingly updated and distributed to clients. The process occurs while the cluster continues to service requests for data.
+
+See [Cluster Manager](cluster-manager.md), for information on the cluster map. See [Manage Nodes and Clusters](../../manage/manage-nodes/node-management-overview.md), for practical examples of using rebalance.
+
+## [](#rebalance-bucket-rank)Bucket Rank
+
+In Couchbase Server Version 7.6 and later, each bucket on the cluster (Couchbase or Ephemeral) can be assigned a _rank_. The value is an integer from `0` (the default) to `1000`, inclusive. Buckets with higher ranks are handled by the rebalance process _before_ buckets with lower ranks. For example, if a cluster hosts four buckets, which are named _A_, _B_, _C_, and _D_; and bucket _A_ is explicitly assigned a rank of `10`, while buckets _B_, _C_, and _D_ are left with the default rank of `0`; when rebalance occurs, the vBuckets for bucket _A_ are addressed first; then, vBuckets for the other buckets are addressed, with the Cluster Manager making determinations as to the appropriate handling-order for those other buckets.
+
+This assignment of `rank` allows a cluster’s most mission-critical data to be rebalanced with top priority.
+
+Bucket _rank_ can be established with either the CLI (see [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md) and [bucket-edit](../../cli/cbcli/couchbase-cli-bucket-edit.md)) or the REST API (see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md)).
+
+## [](#rebalance-stages)Rebalance Stages
+
+Each rebalance proceeds in sequential _stages_. Each stage corresponds to a Couchbase Service, deployed on the cluster. Therefore, if all services have been deployed, there are _seven_ stages in all — one each for the _Data_, _Query_, _Index_, _Search_, _Eventing_, _Backup_, and _Analytics_ services. When all stages have been completed, the rebalance process itself is complete.
+
+## [](#rebalancing-the-data-service)Rebalance and the Data Service
+
+On rebalance, vBuckets are redistributed evenly among currently available Data Service nodes. After rebalance, operations are directed to active vBuckets in their updated locations. Rebalance does not interrupt applications' data-access. vBucket data-transfer occurs sequentially: therefore, if rebalance stops for any reason, it can be restarted from the point at which it was stopped.
+
+Note the special case provided by [Swap Rebalance](../../install/upgrade-procedure-selection.md#swap-rebalance), where the number of nodes coming into the cluster is equal to the number of nodes leaving the cluster, ensuring that data is only moved between these nodes.
+
+If nodes have been removed such that the desired number of replicas can no longer be supported, rebalance provides as many replicas as possible. For example, if four Data Service nodes previously supported one bucket with three replicas, and the Data Service node-count is reduced to three, rebalance provides two replicas only. If and when the missing Data Service node is restored or replaced, rebalance will provide three replicas again.
+
+See [Intra-Cluster Replication](intra-cluster-replication.md), for information on how data is distributed across nodes.
+
+### [](#data-service-rebalance-phases)Data-Service Rebalance Phases
+
+During the Data Service rebalance stage, vBuckets are moved in _phases_. The phases — which differ, depending on whether the vBucket is an _active_ or a _replica_ vBucket — are described below.
+
+#### [](#rebalance-phases-for-replica-vbuckets)Rebalance Phases for Replica vBuckets
+
+The phases through which rebalance moves a replica vBucket are shown by the following illustration.
+
+![replicaVbucketMove](../_images/clusters-and-availability/replicaVbucketMove.png) 
+
+The move has two principal phases. Phase 1 is _Backfill_. Phase 2 is _Book-keeping_.
+
+Phase 1, _Backfill_, itself consists of two subphases. The first subphase comprises the movement of the replica vBucket data from its node of origin to the memory of the destination node. The second subphase comprises the writing of the replica vBucket data from the memory to the disk of the destination node. The time required for this second subphase, which only applies to Couchbase Buckets, is termed _Persistence Time_. The time required for the entire _Backfill_ process, including _Persistence Time_, is termed _Backfill Time_.
+
+Phase 2, _Book-keeping_, comprises various ancillary tasks required for move-completion.
+
+The total time required for the move is calculated by adding _Backfill Time_ to the time required for Phase 2, _Book-keeping_; and is termed _Move Time_.
+
+#### [](#rebalance-phases-for-active-vbuckets)Rebalance Phases for Active vBuckets
+
+The phases in which rebalance moves an active vBucket are shown by the following illustration.
+
+![activeVbucketMove](../_images/clusters-and-availability/activeVbucketMove.png) 
+
+The move has four principal phases. Phase 1, _Backfill_, and Phase 2, _Book-keeping_, are identical to those required for replica vBuckets; except that the _Book-keeping_ phase includes additional _Persistence Time_.
+
+Phase 3, _Active Takeover_, comprises the operations required to establish the relocated vBucket as the new active copy. The time required for Phase 3 is termed _Takeover Time_.
+
+Phase 4, _Book-keeping_, comprises a final set of ancillary tasks, required for move-completion.
+
+The total time for the move is termed _Move Time_.
+
+### [](#limiting-concurrent-vbucket-moves)Limiting Concurrent vBucket Moves
+
+Since vBucket moves are highly resource-intensive, Couchbase Server allows the concurrency of such moves to be _limited_: a setting is provided that determines the maximum number of concurrent vBucket moves permitted on any node. The minimum value for the setting is `1`, the maximum `64`, the default `4`.
+
+A _move_ counts toward this restriction only when in the _backfill_ phase, as described above, in [Data Service Rebalance Phases](#data-service-rebalance-phases). The move may be of either an _active_ or a _replica_ vBucket. A node’s participation in the move may be as either a source or a target.
+
+For example, if a node is at a given time the source for two moves in backfill phase, and is the target for two additional moves in backfill phase, and the setting stands at `4`, the node may participate in the backfill phase of no additional moves, until at least one of its current moves has completed its backfill phase.
+
+The setting may be established by means of the [Couchbase Web Console](../../manage/manage-settings/general-settings.md#rebalance-settings), the [Couchbase CLI](../../manage/manage-settings/general-settings.md#rebalance-settings-via-cli), or the [REST API](../../manage/manage-settings/general-settings.md#rebalance-settings-via-rest).
+
+A higher setting may improve rebalance performance, at the cost of higher resource consumption; in terms of CPU, memory, disk, and bandwidth. Conversely, a lower setting may degrade rebalance performance, while freeing up such resources. Note, however, that rebalance performance can be affected by many additional factors; and that in consequence, changing this parameter may not always have the expected effects. Note also that a higher setting, due to its additional consumption of resources, may degrade the performance of other systems, including the Data Service.
+
+### [](#rebalance-reporting)Accessing Rebalance Reports
+
+Couchbase Server creates a _report_ on every rebalance that occurs. The report contains a JSON document, which can be inspected in any browser or editor. The document provides summaries of the concluded rebalance activity, as well as details for each of the vBuckets affected: in consequence, the report may be of considerable length.
+
+On conclusion of a rebalance, its report can be accessed in any of the following ways:
+
+* By means of Couchbase Web Console, as described in [Add a Node and Rebalance](../../manage/manage-nodes/add-node-and-rebalance.md).
+* By means of the REST API, as described in [Getting Cluster Tasks](../../rest-api/rest-get-cluster-tasks.md).
+* By accessing the directory `/opt/couchbase/var/lib/couchbase/logs/rebalance` on _any_ of the cluster nodes. A rebalance report is maintained here for (up to) the last _five_ rebalances performed. Each report is provided as a `*.json` file, whose name indicates the time at which the report was run — for example, `rebalance_report_2020-03-17T11:10:17Z.json`.
+
+A complete account of the report-content is provided in the [Rebalance Reference](../../rebalance-reference/rebalance-reference.md).
+
+## [](#rebalance-and-other-services)Rebalance and Other Services
+
+Rebalance affects each service differently. The following sections describe how rebalance affects non-Data Services.
+
+## [](#rebalancing-the-index-service)Index Service
+
+The Index Service maintains a cluster-wide set of index definitions and metadata, which allows the redistribution of indexes and index replicas during a rebalance.
+
+The rebalance process considers the node’s CPU, RAM, and disk bandwidth to limit its effect on database performance.
+
+Couchbase Server either rebuilds indexes (using DCP-based method) in their new locations or moves index files between nodes [File-Based Rebalance or Shard Based Rebalance](rebalance-and-index-service.md#file-based-rebalance-fbr) during a rebalance, depending on the cluster’s index storage mode and on configuration settings.
+
+For more information about the rebalance operation on Index Service, see [Index Rebalance](rebalance-and-index-service.md).
+
+### [](#rebalancing-the-search-service)Search Service
+
+The Search Service automatically partitions its indexes across all Search nodes in the cluster, ensuring optimal distribution, following rebalance.
+
+To achieve this, in versions of Couchbase Server prior to 7.1, by default, partitions needing to be newly created were entirely _built_, on their newly assigned nodes. In 7.1 and later versions, by default, new partitions are instead created by the _transfer_ of partition files from old nodes to new nodes: this significantly enhances performance. This is an Enterprise-only feature, which requires all Search Service nodes _either_ to be running 7.1 or later; _or_ to be running 7.0.2, with the feature explicitly switched on.
+
+Community Edition clusters that are upgraded to Enterprise Edition 7.1 and later versions thus gain this feature in its default setting. Community Edition clusters that are upgraded to Enterprise Edition 7.0.2 can have this feature switched on, subsequent to upgrade.
+
+During file transfer, should an unresolvable error occur, file transfer is automatically abandoned, and _partition build_ is used instead.
+
+The file-transfer feature can be enabled and disabled by means of the REST API. See [Search Manager Options](../../fts-rest-manage/index.md).
+
+### [](#rebalancing-the-query-service)Query Service
+
+When you remove a node from a cluster and rebalance it, the Query Service allows existing queries and transactions to complete before shutting down. This can increase the overall time required for the rebalance operation, depending on how long the active requests and transactions take to complete.
+
+To monitor the shutdown progress, you can check the Query Service diagnostic log on the node being removed. These logs contain messages that indicate the number of ongoing transactions and queries.
+
+At the start of the rebalance operation, the Query Service waits for in-flight transactions and requests to complete. Requests sent after the rebalance begins are accepted, but not waited on. They do not delay the rebalance and may be terminated abruptly once the initial in-flight requests are complete. For each such request, there will be a message in the Query Service diagnostic log indicating that the request was terminated as it was received after the rebalance started.
+
+For a brief period after all active requests and transactions are handled, and just before the service exits, requests may return error 1181 (`E_SERVICE_SHUT_DOWN`), indicating that the service has shut down.
+
+Rejected requests will have an HTTP status code 503 (`service unavailable`). If needed, you can retry these requests on another Query node that is still in the cluster.
+
+### [](#rebalancing-the-eventing-service)Eventing Service
+
+When an Eventing Service node has been added or removed, rebalance causes the mutation (_vBucket_ processing ownership) and timer event processing workload to be redistributed among available Eventing Service nodes. The Eventing Service continues to process mutations both during and after rebalance. Checkpoint information ensures that no mutations are lost.
+
+### [](#rebalancing-the-analytics-service)Analytics Service
+
+The Analytics Service uses _shadow data_, which is a copy of all or some of the data maintained by the Data Service. By default, the shadow data is not replicated; however, it may be partitioned across all cluster nodes that run the Analytics Service. Starting with Couchbase Server 7.1, the shadow data and its partitions may be replicated up to 3 times. Each replica resides on an Analytics node: a given Analytics node can host a replica partition, or the active partition on which replicas are based.
+
+If there are _no_ Analytics replicas, and an Analytics node fails over, the Analytics Service stops working cluster-wide: ingestion of shadow data stops and no Analytics operations can be run. In this case:
+
+* If the Analytics node is recovered, the Analytics Service is resumed and ingestion of shadow data resumes from the point before the node failed over.
+* If the Analytics node is removed, the Analytics Service becomes active again after rebalance, but ingestion of shadow data must begin again from scratch.
+
+If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn’t already ingested from the Data Service, depending on the state of the promoted replica. In this case:
+
+* If the Analytics node is recovered, the shadow data on the recovered node is updated from the promoted replica, and it becomes the active partition again.
+* If the Analytics node is removed, the shadow data is redistributed among the remaining Analytics nodes in the cluster.
+
+If no Analytics Service node has been removed or replaced, shadow data is not affected by rebalance. In consequence of rebalance, the Analytics Service receives an updated _cluster map_, and continues to work with the modified vBucket-topology.
+
+### [](#rebalancing-the-backup-service)Backup Service
+
+A rebalance causes the scheduler for the Backup Service to stop running. This means that no new backup tasks are triggered until the rebalance has concluded; at which point, the scheduler restarts, and reconstructs the task schedule. Then, the triggering of Backup Service tasks is resumed.
+
+Note that a rebalance has the effect of _restarting_ the Backup Service whenever the service has previously been stopped, due to loss of its _leader_: for information, see [Backup-Service Architecture](../services-and-indexes/services/backup-service.md#backup-service-architecture).
+
+## [](#rebalance-failure-handling)Rebalance Failure-Handling
+
+Rebalance failures can optionally be responded to automatically, with up to 3 _retries_. The number of seconds required to elapse between retries can also be configured. For information on configuration options, see [General Settings](../../manage/manage-settings/general-settings.md). For information on failure-notifications, and options for cancelling rebalance-retries, see [Automated Rebalance Failure Handling](../../manage/manage-nodes/add-node-and-rebalance.md#automated-rebalance-failure-handling).

@@ -1,0 +1,167 @@
+[View original HTML](/python-sdk/4.4/howtos/health-check.html)
+
+> In today’s distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces _Ping_ to check nodes are still healthy, and to force idle connections to be kept alive in environments with eager shutdowns of unused resources. _Diagnostics_ requests a report from a node, giving instant health check information. 
+
+Diagnosing problems in distributed environments is far from easy, so Couchbase provides a _Health Check API_ with `ping()` for active monitoring. and `diagnostics()` for a look at what the client believes is the current state of the cluster. More extensive discussion of the uses of Health Check can be found in the [Health Check Concept Guide](../concept-docs/health-check.md).
+
+## [](#ping)Ping
+
+At its simplest, `ping` provides information about the current state of the connections in the Couchbase Cluster, by actively polling:
+
+```python
+ping_result = cluster.ping()
+
+for endpoint, reports in ping_result.endpoints.items():
+    for report in reports:
+        print(
+            "{0}: {1} took {2}".format(
+                endpoint.value,
+                report.remote,
+                report.latency))
+```
+
+This will print latency for each socket (endpoint) connected per service. More information is available on the classess. Usually though, you want to regularly perform the ping and then print the results into the log. This is made easy by the `as_json` method:
+
+```python
+ping_result = cluster.ping()
+print(ping_result.as_json())
+```
+
+Which returns a `PingResult` object, encapsulating a payload similar to this:
+
+```json
+{
+    "version": 1,
+    "id": "0x7fecb15526d0/e9097b2135f47b2d",
+    "sdk": "libcouchbase/3.1.0_2_ga1e9e1ca91 PYCBC/3.1.0.dev5+g207fb829",
+    "services": {
+        "cbas": [
+            {
+                "id": "0x7fec91445c40",
+                "latency_us": 1583,
+                "local": "127.0.0.1:51749",
+                "remote": "127.0.0.1:8095",
+                "state": "ok"
+            }
+        ],
+        "fts": [
+            {
+                "id": "0x7feca14a60e0",
+                "latency_us": 1252,
+                "local": "127.0.0.1:51748",
+                "remote": "127.0.0.1:8094",
+                "state": "ok"
+            }
+        ],
+        "kv": [
+            {
+                "id": "0x7fec9152fe30",
+                "latency_us": 1554,
+                "local": "127.0.0.1:51745",
+                "namespace": "default",
+                "remote": "127.0.0.1:11210",
+                "state": "ok"
+            }
+        ],
+        "n1ql": [
+            {
+                "id": "0x7fecb1454090",
+                "latency_us": 1711,
+                "local": "127.0.0.1:51746",
+                "remote": "127.0.0.1:8093",
+                "state": "ok"
+            }
+        ],
+        "views": [
+            {
+                "id": "0x7fecb1443400",
+                "latency_us": 1829,
+                "local": "127.0.0.1:51747",
+                "remote": "127.0.0.1:8092",
+                "state": "ok"
+            }
+        ]
+    }
+}
+```
+
+If you only wish to know if there’s a connection that’s up, filter out the rest of the information:
+
+```python
+def ok(cluster):
+    result = cluster.ping()
+    for _, reports in result.endpoints.items():
+        for report in reports:
+            if not report.state == PingState.OK:
+                return False
+    return True
+```
+
+By default the SDK will ping all services available on the target cluster. You can customize the type of services to ping through the `PingOptions`:
+
+```python
+ping_result = cluster.ping(PingOptions(service_types=[ServiceType.Query]))
+print(ping_result.as_json())
+```
+
+In this example, on the Query service is included in the ping report.
+
+Note the ping is available both on the cluster and bucket level. The difference is that the cluster level, the key-value service might not be included based on the Couchbase Server version in use. If you want to make sure the key-value service is included, perform it at the bucket level.
+
+## [](#diagnostics)Diagnostics
+
+`Diagnostics` works in a similar fashion to `ping` in the sense that it returns a report of how all the sockets/endpoints are doing, but the main difference is that it is passive. While a ping proactively sends an operation across the network, a diagnostics report just returns whatever current state the client is in. This makes it much cheaper to call on a regular basis, but does not provide any live insight into the network slowness, etc.
+
+```python
+diag_result = cluster.diagnostics()
+print(diag_result.as_json())
+```
+
+Which will print the diagnostics result as a json string. For instance, on a single node cluster that has had SQL++ (formerly N1QL) queries and kv operations executed, you will see something like:
+
+```json
+{
+    "version": 1,
+    "id": "0x7f8e8d464350",
+    "sdk": "libcouchbase/3.1.0_2_ga1e9e1ca91 PYCBC/3.1.0.dev5+g207fb829",
+    "services": {
+        "kv": [
+            {
+                "id": "c89f4c25513f1fb3",
+                "last_activity_us": 3181,
+                "local": "127.0.0.1:60360",
+                "remote": "127.0.0.1:11210",
+                "state": "connected"
+            }
+        ],
+        "config": [
+            {
+                "id": "0x7f8e9d53e440",
+                "last_activity_us": 163988,
+                "local": "127.0.0.1:60148",
+                "remote": "127.0.0.1:11210",
+                "state": "connected"
+            }
+        ],
+        "n1ql": [
+            {
+                "id": "0x7f8e5d44d8e0",
+                "last_activity_us": 354,
+                "local": "127.0.0.1:60162",
+                "remote": "127.0.0.1:8093",
+                "state": "connected"
+            }
+        ]
+    }
+}
+```
+
+Because it is passive, diagnostics are only available at the `Cluster` level and cover everything in the current SDK state. Also, because it is not doing any I/O you cannot proactively filter the list of services that are returned, all you need to do is look only at the ones that are interesting to you.
+
+A `DiagnosticsResult` has one interesting property over a ping result: It provides a cumulative `ClusterState` through the `state` property. The state can be `ONLINE`, `DEGRADED` or `OFFLINE`. This allows to give a single, although simplistic, view on how your cluster is doing from a client point of view. The state is determined as follows:
+
+* If at least one socket is open and all of them are connected, it is `ONLINE`
+* If at least one is connected but not all are, it is `DEGRADED`
+* If none are connected, it is `OFFLINE`
+
+Of course you can iterate over the individual states and apply a different algorithm if needed.

@@ -1,0 +1,64 @@
+[View original HTML](/cloud/eventing/add-eventing-functions.html)
+
+> Use the Capella UI to add Eventing Functions to the Eventing Service in your cluster. 
+
+## [](#add-function-prerequisites)Prerequisites
+
+Before you add Eventing Functions to your Eventing Service, you must first deploy the Eventing Service. See [Add a Service](../clusters/modify-database.md#add-service) for more information.
+
+## [](#add-function)Add a New Eventing Function
+
+To add a new Eventing Function:
+
+1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
+
+  1. Click your organization name and go to **Operational**.
+  2. Click your current project name or search for a project and go to **Operational**.
+  3. Expand the cluster breadcrumb and search for a cluster.
+2. Select the cluster where you want to create a new Eventing Function.
+3. Go to **Data Tools** **Eventing**.
+4. Click **Add Function**.
+5. Configure the [Function settings](#function-settings).
+6. Click **Next**.
+7. To add a new binding, click **Add Binding**.
+8. Configure the [binding settings](#binding-settings).
+9. Click **Next** to save your binding.
+10. In the code editor, customize the provided `OnUpdate` and `OnDelete` JavaScript functions or enter your own JavaScript functions. You can also leave the provided code unchanged.
+11. Click **Create Function** to create your new Eventing Function in an undeployed state.
+
+## [](#function-settings)Function Settings
+
+| Field                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name                              | A unique name for your Eventing Function. The Function name must: Start with an uppercase character (A-Z), lowercase character (a-z), or number (0-9) Contain only uppercase characters (A-Z), lowercase characters (a-z), numbers (0-9), underscores (\_), and hyphens (-)                                                                                                                                                                                                |
+| Description                       | An optional description that describes the purpose of your Eventing Function.                                                                                                                                                                                                                                                                                                                                                                                              |
+| Listen to Location                | A bucket, scope, and collection currently defined on your cluster and where you want your Eventing Function to monitor document mutations.                                                                                                                                                                                                                                                                                                                                 |
+| Eventing Storage                  | A bucket, scope, and collection currently defined on your cluster and where you want to store system data for your Eventing Function. This is the Function’s metadata bucket. You must choose a bucket that’s not being used by any other application. You can choose to share this bucket across different Eventing Functions. You can also choose the same bucket and scope as your **Listen to Location** bucket and scope, but you must choose a different collection. |
+| Workers                           | The number of worker threads per node to be allocated to the Eventing Function to process events. The minimum number of workers is 1 and the maximum is 64. The default is 1.                                                                                                                                                                                                                                                                                              |
+| Script Timeout                    | The number of seconds to elapse before the script times out and is terminated. The default is 60.                                                                                                                                                                                                                                                                                                                                                                          |
+| Time Context Max Size             | The size limit of the context for any Timer created by the Eventing Function. The default is 1024.                                                                                                                                                                                                                                                                                                                                                                         |
+| SQL++ Consistency                 | The default consistency level of SQL++ statements in the handler.                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Deployment Feed Boundary          | The Feed Boundary determines if the Eventing Function’s activities need to include documents that already exist. When you set the Feed Boundary to Everything, the Function is invoked on all mutations available in your cluster. When you set the Feed Boundary to From Now, the Function is only invoked on future instances of data mutation after the Function’s deployment.                                                                                          |
+| Language Compatibility            | The language version of the handler for backward compatibility.                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Enable App Services Compatibility | Select this option only when using App Services with the same collection as this Eventing Function, as it prevents duplicate processing. This setting is selected by default and mandatory when an App Service already links to the Eventing Function’s chosen collection.                                                                                                                                                                                                 |
+
+For more information about terminology, see [Eventing terminology](#eventing-terminologies.adoc).
+
+## [](#binding-settings)Binding Settings
+
+Your Eventing Function can have no binding, one binding, or multiple bindings. A binding is a construct that lets you separate environment-specific variables, such as bucket names, external endpoints, and credentials, from the handler source code. It helps move a handler definition from development to production environments without changing the code.
+
+Binding names must be valid JavaScript identifiers and cannot conflict with any built-in types.
+
+| Bindings | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bucket   | Bucket bindings allow JavaScript handlers to access Couchbase buckets from the Data Service. These buckets are accessible by the bound name as a JavaScript map in the global space of the handler. To add a Bucket binding, select **Bucket**, enter an alias name, and choose an access level, a bucket, a scope, and a collection.                                                                                                                                                                                        |
+| URL      | URL bindings are used by the cURL language construct to access external resources. They specify the endpoint, the protocol (HTTP/HTTPS), and the credentials if necessary. You can enable cookie support through URL binding when accessing trusted remote nodes. The target of a URL binding should not be a node that belongs to the Couchbase cluster. To add a URL binding, select **URL**, enter an alias name and a URL, choose an authentication type, and select **Allow cookies** and **Validate SSL Certificate**. |
+| Constant | Constant bindings define global variables that you can use inside your Eventing Function. You can use the alias name inside your Function to use the set value of your Constant binding. To add a Constant binding, select **Constant** and enter an alias name and a value. Values can be integers, decimal numbers, strings, booleans, or JSON objects.                                                                                                                                                                    |
+
+## [](#next-steps)Next Steps
+
+After you add Eventing Functions, you can:
+
+* [Deploy the Eventing Functions](deploy-eventing-functions.md)
+* [Manage the Eventing Functions](manage-eventing-functions.md)

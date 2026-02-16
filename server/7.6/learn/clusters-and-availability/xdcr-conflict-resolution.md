@@ -1,0 +1,93 @@
+[View original HTML](/server/7.6/learn/clusters-and-availability/xdcr-conflict-resolution.html)
+
+> _XDCR Conflict Resolution_ automatically synchronizes document-copies that have been modified in different ways at different locations. 
+
+## [](#conflicts%5Fand%5Ftheir%5Fresolution)Conflict Resolution
+
+When a source document is modified, XDCR determines whether this revision of the document must be applied to the target. This process is called conflict resolution, which is a fully automated process. XDCR supports the following two alternative conflict resolution policies:
+
+* Sequence number-based conflict resolution (This is the default policy).
+* Timestamp-based conflict resolution.
+
+## [](#revision-id-based-conflict-resolution)Conflict Resolution Based on Sequence Number
+
+Conflicts can be resolved by referring to documents' _sequence numbers_. Sequence numbers are maintained per document, and are incremented on every document-update. A document’s sequence number is stored as a part of its _metadata_: specifically, as the value of the `rev` key (see [Documents](../../manage/manage-ui/manage-ui.md#console-documents), for details on how to inspect metadata). The sequence numbers of source and target documents are compared; and the document with the higher sequence number prevails. If both documents have the same sequence number, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+
+1. CAS value
+2. Expiration (TTL) value
+3. Document flags
+
+When Cross Cluster Versioning is enabled, the Hybrid Logical Vector (HLV) metadata in the source and target documents' xattrs is also used in the conflict resolution processing. For more information about the `enableCrossClusterVersioning` property and the HLV metadata, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md).
+
+## [](#timestamp-based-conflict-resolution)Timestamp-Based Conflict Resolution
+
+Timestamp-based conflict resolution (often referred to as _Last Write Wins_, or _LWW_) uses the document _timestamp_ (stored in the CAS) to resolve conflicts. The timestamps associated with the most recent updates of source and target documents are compared. The document whose update has the more recent timestamp prevails.
+
+If both document-versions have the same timestamp-value, the conflict is resolved by comparing the following metadata-elements, in the order shown:
+
+1. Sequence number
+2. Expiration (TTL) value
+3. Document flags
+
+When Cross Cluster Versioning is enabled, the Hybrid Logical Vector (HLV) metadata in the source and target documents' xattrs is also used in the conflict resolution processing. For more information about the `enableCrossClusterVersioning` property and the HLV metadata, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md).
+
+### [](#time-synchronization)Time Synchronization
+
+Timestamp-based conflict resolution requires the use of _synchronized clocks_ across all nodes, in all clusters intended to participate in XDCR. If clocks are not so synchronized, conflict resolution may produce unexpected results. To achieve synchronicity, an external entity such as NTP (Network Time Protocol) is required. For information, see [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md).
+
+Even with optimal clock synchronicity, small differences may persist between the clock-settings on different nodes and clusters: this is known as _clock drift_; or more simply, _drift_. Drift between nodes and clusters should be closely monitored, to ensure that timestamp-based conflict resolution produces the intended results. For more details, see [Monitor Clock Drift](../../manage/monitor/xdcr-monitor-timestamp-conflict-resolution.md).
+
+To compensate for drift, Couchbase Server records timestamps using a _Hybrid Logical Clock_ (HLC). This is a combination of a physical and a logical clock: the physical clock is the time returned by the system, in nanoseconds; the logical clock is a counter, which is incremented when the physical clock yields a value either smaller than or equal to the currently stored, physical clock-value. The HLC:
+
+* Is monotonic through its use of a logical clock; and therefore does not suffer from the potential leap-back of a purely physical clock.
+* Captures the ordering of mutations.
+* Is close to physical time.
+
+The CAS of a document is used to store the HLC timestamp. It is a 64-bit value, with the most significant 48 bits representing the physical clock, and the least significant 16 bits representing the logical clock. Each mutation has its own HLC timestamp.
+
+### [](#ensuring%5Fsafe%5Ffailover)Ensuring Safe Failover
+
+When failover of an application is required (say, from data center A to data center B), timestamp-based conflict resolution requires that applications redirect traffic to data center B only after the greater of the following two time-periods has elapsed:
+
+* The replication latency between data centers A and B. This provides sufficient time for any _in-flight_ mutations to be received by data center B prior to traffic redirection.
+* The absolute time skew between data centers A and B. This ensures that writes to data center B commence only after the last write to data center A.
+
+When availability is restored to data center A, applications must wait for the same time period to elapse, before again redirecting their traffic.
+
+## [](#choosing%5Fa%5Fconflict%5Fresolution%5Fpolicy)Choosing a Conflict Resolution Policy
+
+Conflict resolution policy is configured on a per-bucket basis at bucket creation time, it cannot be changed later. For more information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
+
+|  | You must select the same conflict resolution policy for all the buckets in the replication topology because you can create a replication between only those buckets that have the same conflict resolution policy. When creating a bucket, you must actively choose the conflict resolution policy. If you do not choose a policy, the Sequence number-based conflict resolution policy is set as default. After the bucket is created, you cannot change the conflict resolution policy for that bucket. In general, the Timestamp-based conflict resolution policy is preferred as the logic is easier to understand, feasible with general use cases, and also preferred for working with the latest Server features. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+The following examples illustrate how the two different conflict resolution policies apply:
+
+* _Sequence-Number-based_, whereby the document with the higher number of updates wins. A hit-counter, for a website, is stored as a document within Couchbase Server: a value within the document is incremented each time the website is accessed. In the event of conflict, the document-version that contains the higher count is the more useful, since it is more closely reflective of the actual count. Therefore, in this instance, conflict resolution based on _sequence numbers_ should be used, since it ensures that the more mutated document prevails.
+* _Timestamp-based_, whereby the document that is the more recently updated wins. A thermometer device stores the current temperature as a document within Couchbase Server, writing new values continuously to the same key. In the event of conflict, the document-version more recently updated is the more useful, since it is more closely reflective of the current temperature. Therefore, in this instance, timestamp-based conflict resolution should be used, since it ensures that the more recent version of the document prevails.
+
+## [](#aligning%5Fsource%5Fand%5Ftarget%5Fpolicies)Aligning Source and Target Policies
+
+XDCR replications cannot be created between buckets with different conflict resolution policies. The source and target buckets must always be configured with the same conflict resolution policy.
+
+When creating a bucket, you must actively choose the conflict resolution policy. If you do not choose a policy, the Sequence number-based conflict resolution policy is set as default. After the bucket is created, you cannot change the conflict resolution policy for that bucket. In general, the Timestamp-based conflict resolution policy is preferred as the logic is easier to understand.
+
+## [](#monitoring-conflict-resolution)Monitoring Conflict Resolution on the Target Cluster
+
+Conflict resolution can be _monitored_, on the target cluster, by means of statistics provided for the REST API and _Prometheus_.
+
+Statistics are provided to cover three scenarios: for each, two statistics are provided; corresponding to attempts respectively to modify and to delete a local document through conflict resolution. The statistics are provided below, according to scenario: note that whereas conflict resolution is performed both on the _target_ and on the _source_, these statistics only apply to conflict resolution that is performed on the _target_. They do _not_ provide information on conflict resolution that is performed on the source.
+
+* The incoming mutation was accepted.  
+kv_conflicts_resolved{bucket="default",op="set",result="accepted"}  
+kv_conflicts_resolved{bucket="default",op="del",result="accepted"}
+* The incoming modification was rejected, as it was determined to be either less recently updated than the local document, or to have a lower number of updates.  
+kv_conflicts_resolved{bucket="default",op="set",result="rejected_behind"}  
+kv_conflicts_resolved{bucket="default",op="del",result="rejected_behind"}
+* The incoming modification was rejected, as it was determined to be identical to the local document, based on comparisons of _cas_, _revSeqno_, _Expiry time_, _flags_, and _xattr datatype_.  
+kv_conflicts_resolved{bucket="default",op="set",result="rejected_identical"}  
+kv_conflicts_resolved{bucket="default",op="del",result="rejected_identical"}
+
+Note that the statistics `xdcr_docs_failed_cr_source_total` and `xdcr_docs_failed_cr_target_total` are also provided for monitoring conflict resolution; and are also available via REST API and Prometheus.
+
+For information on using statistics with the REST API, see [Statistics](../../rest-api/rest-statistics.md). For a complete list of statistics for XDCR, and other services, see [XDCR Metrics](../../metrics-reference/xdcr-metrics.md).

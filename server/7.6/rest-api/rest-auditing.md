@@ -1,0 +1,231 @@
+[View original HTML](/server/7.6/rest-api/rest-auditing.html)
+
+> Couchbase Server _event auditing_ can be configured, per node. 
+
+## [](#http-methods-and-uris)HTTP methods and URIs
+
+GET /settings/audit
+
+POST /settings/audit
+
+GET /settings/audit/descriptors
+
+GET /settings/audit/nonFilterableDescriptors
+
+## [](#description)Description
+
+The `GET` and `POST` methods used with the `/settings/audit` URI respectively read and write the configuration of Couchbase-Server _event auditing_. This includes the enablement and disablement of auditing, the establishment of an audit-log location, the specification of the time-period on completion of which the log file is to be rotated, the specification of the maximum size at which the log file is to be rotated, and the retrieval of current settings.
+
+The `GET` method used with the `/settings/audit/descriptors` URI returns a document that lists _filterable_ audit events; providing an _id_, _name_, _module_, and _description_ for each. The _id_ can be used in interpreting the output from `POST /settings/audit`, and in determining input-values for `GET /settings/audit`. A _filterable_ event is an event that can be individually disabled, even when event-auditing for the node is enabled. Events that are not filterable are not included in the list returned by `GET /settings/audit/descriptors`.  
+Events that are not filterable can be retrieved using the `GET` method `/settings/audit/nonFilterableDescriptors`
+
+Auditing can be configured by the **Full Admin** and the **Local User Security Admin** roles. The auditing configuration can be read by the **Full Admin**, the **Local User Security Admin**, and the **Read-Only Admin** roles.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET -u Administrator:password http://<host>:<port>/settings/audit
+
+curl -X POST -u Administrator:password http://<host>:<port>/settings/audit
+  -d auditdEnabled=[ true | false ]
+  -d logPath=[ pathname ]
+  -d pruneAge=[ integer ]
+  -d rotateInterval=[ integer ]
+  -d rotateSize=[ integer ]
+  -d disabled=[ *{ event-id }, ]
+  -d disabledusers=[ *{ local-user | external-user | internal-user }, ]
+
+curl -X GET -u Administrator:password
+  http://<host>:<port>/settings/audit/descriptors
+
+The parameters for the POST method are all optional, and are as follows:
+
+* The `auditdEnabled` parameter takes a value of `true` or `false`, and thereby either enables or disables auditing on the node. Other values can still be configured, even if `auditdEnabled` is set to `false`. When auditing is enabled, all _non-filterable_ events are audited; and none can be individually disabled.
+* The `logPath` parameter specifies the pathname of the directory to which the `audit.log` file is written.
+
+* The `pruneAge` parameter sets the number of seconds Couchbase Server keeps rotated audit logs. When set to the minimum value 0 (the default), Couchbase Server does not prune rotated audit logs. If set to a value greater than 0, Couchbase Server deletes rotated audit logs that are older than this value in seconds. The maximum value for this setting is 35791394 (1 year, 45 days, 15 hours, 29 minutes, and 54 seconds).
+* The `rotateInterval` parameter specifies the maximum time-period that is to elapse between log-rotations. Its value must be a number of seconds and must be a multiple of 60\. The value must also be in the range of 900 (15 minutes) to 604800 (7 days), inclusive.
+* The `rotateSize` parameter specifes the maximum size to which the `audit.log` file is permitted to grow, before being rotated. Its value must be a number of bytes, in the range of 11048576 to 524288000 (1 MiB to 500 MiB), inclusive. The default is 20971520 (20 MiB).
+* The `disabled` parameter indicates which individual _filterable_ events are disabled. Its value must be one or more filterable-event ids, specified as a comma-separated list, without spaces. Filterable-event ids can be retrieved by means of the `GET /settings/audit/descriptors` method and URI.
+* The `disabledUsers` parameter disables filterable-event auditing on a per user basis. Its value must be a list of users, specified as a comma-separated list, with no spaces. Each user may be:
+
+  * A local user, specified in the form `localusername/local`.
+  * An external user, specified in the form `externalusername/external`.
+  * An internal user, specified in the form `@internalusername/local`.  
+  Available internal users are `@eventing`, `@cbq-engine`, `@ns_server`, `@index`, `@projector`, `@goxdcr`, `@fts`, and `@cbas`.  
+If `auditdEnabled` is `true`, and one or more users are specified as the value of `disabledUsers`, only filterable events are ignored for those users: non-filterable events continue to be audited.
+
+## [](#responses)Responses
+
+For each method and URI, success gives `200 OK`. A malformed URI gives `400 Object Not Found`. Failure to authenticate gives `401 Unauthorized`.
+
+### [](#returned-object-contents)Returned-Object Contents
+
+The `GET /settings/audit/descriptors` method and URI return a document containing a list of filterable audit events. For each event, the following are provided:
+
+* _id_: An integer, such as `20489`, which is the identifier for the event.
+* _name_: A string, which is the name of the event. For example, `"document read"`.
+* _module_: A string, specifying the system-module within which the event was generated. For example, `"memcached"`.
+* _description_: A string, providing a description of the event. For example, `"Document was read"`.
+
+The `GET /settings/audit` method and URI return an object that contains the following:
+
+* _disabled_: An array of event-ids, each of which corresponds to an event currently disabled.
+* _uid_: An identifier for system use, corresponding to the current state of the audit-configuration.
+* _auditEnabled_: A boolean value, indicating whether or not auditing is enabled on the node.
+* _disabledusers_: An array, each of whose members is a currently disabled user. Each member is an object of two elements, which are the _name_ of the disabled user and their _domain_.
+* _logPath_: The current value of the pathname to which the `audit.log` file is being written.
+* _pruneAge_: The number of seconds Couchbase Server keeps rotated audit logs. The value `0` means Couchbase Server does not automatically prune these logs.
+* _rotateInterval_: An integer that is the number of seconds in the maximum time-period on whose elapse the log file is rotated.
+* _rotateSize_: An integer that is the number of bytes that is the maximum size to which the `audit.log` file can grow before being rotated.
+
+## [](#examples)Examples
+
+The following examples demonstrate how the auditing REST API can be used.
+
+### [](#list-auditable-events)List Auditable Events
+
+In the following example, the current list of filterable events is requested. Note that the output is piped to the [jq](http://stedolan.github.io/jq) program, to facilitate readability.
+
+curl -v -X GET -u Administrator:password http://10.143.192.101:8091/settings/audit/descriptors | jq
+
+If successful, the call returns an object the initial part of which appears as follows:
+
+[
+  {
+    "id": 8243,
+    "name": "mutate document",
+    "module": "ns_server",
+    "description": "Document was mutated via the REST API"
+  },
+  {
+    "id": 8255,
+    "name": "read document",
+    "module": "ns_server",
+    "description": "Document was read via the REST API"
+  },
+  {
+    "id": 8257,
+    "name": "alert email sent",
+    "module": "ns_server",
+    "description": "An alert email was successfully sent"
+  },
+          .
+          .
+          ,
+
+Each element in the array thus features the `id`, `name`, `module`, and `description` of a filterable event.
+
+### [](#return-the-current-event-auditing-configuration)Return the Current Event-Auditing Configuration
+
+The current event-auditing configuration can be returned as follows:
+
+curl -v -X GET -u Administrator:password \
+http://10.143.192.101:8091/settings/audit | jq
+
+If the call is successful, the output resembles the following:
+
+{
+  "disabled": [
+    8243,
+    8255,
+    8257,
+    32770,
+    32771,
+    32772,
+    32780,
+    32783,
+    32784,
+    32785,
+    32786,
+    40963
+  ],
+  "uid": "40580060",
+  "auditdEnabled": true,
+  "disabledUsers": [
+    {
+      "name": "testuser",
+      "domain": "local"
+    },
+    {
+      "name": "@eventing",
+      "domain": "local"
+    },
+    {
+      "name": "@cbq-engine",
+      "domain": "local"
+    }
+  ],
+  "logPath": "/opt/couchbase/var/lib/couchbase/logs",
+  "pruneAge": 0,
+  "rotateInterval": 7200,
+  "rotateSize": 524288000
+}
+
+The output thus provides a list of `disabled` filterable-event ids. It confirms that event auditing is enabled, and lists `disabledUsers`: the list shown contains one local user, and two internal. The current `logpath`, `rotateInterval`, and `rotateSize` are also provided.
+
+### [](#list-of-non-filterable-audit-events)List of Non-filterable Audit Events
+
+The next example uses the `nonFilterableDescriptors` to retrieve the list of non-filterable audit events.
+
+```shell
+curl -v -X GET -u Administrator:password \
+http://localhost:8091/settings/audit/nonFilterableDescriptors | jq
+```
+
+A successful call will return a JSON result string similar to the following, containing a list of the audit events that cannot be filtered.
+
+[
+  {
+    "id": 4096,
+    "name": "configured audit daemon",
+    "module": "auditd",
+    "description": "loaded configuration file for audit daemon"
+  },
+  {
+    "id": 4097,
+    "name": "shutting down audit daemon",
+    "module": "auditd",
+    "description": "The audit daemon is being shutdown"
+  },
+  {
+    "id": 8192,
+    "name": "login success",
+    "module": "ns_server",
+    "description": "Successful login to couchbase cluster"
+  },
+
+// Truncated . . .
+
+  {
+    "id": 8193,
+    "name": "login failure",
+    "module": "ns_server",
+    "description": "Unsuccessful attempt to login to couchbase cluster"
+  },
+  {
+    "id": 8194,
+    "name": "delete user",
+    "module": "ns_server",
+    "description": "User was deleted"
+  },
+]
+
+### [](#change-the-event-auditing-configuration)Change the Event-Auditing Configuration
+
+The following call can be used to modify the event-auditing configuration for the node:
+
+curl -v -X POST -u Administrator:password \
+http://10.143.192.101:8091/settings/audit \
+-d auditdEnabled=true \
+-d disabled=8243,8255,8257,32770,32771,32772,32780,32783,32784,32785,32786,40963 \
+-d disabledUsers=testuser/local,@eventing/local,@cbq-engine/local \
+-d rotateSize=524288000 \
+-d rotateInterval=7200 \
+-d logPath='/opt/couchbase/var/lib/couchbase/logs'
+-d pruneAge=10080
+
+This call enables event auditing for the current node, by setting `auditdEnabled` to `true`. It specifies a list of filterable-event ids as `disabled`; and specifies one local user and two internal users as `disabledUser`, ensuring filterable events from these users will not be audited. It also specifies values for `rotateSize`, `rotateInterval`, and `logPath`. It sets the period of time that Couchbase Server keeps audit logs to 1 week (60 minutes ⨯ 24 hours ⨯ 7 days = 10080).
+
+## [](#see-also)See Also
+
+A general overview of auditing is provided in [Auditing](../learn/security/auditing.md): this overview provides the full list of auditable events, in tabular form. Instructions on managing auditing from the UI of Couchbase Web Console is provided in [Managing Auditing](../manage/manage-security/manage-auditing.md). To manage the current auditing configuration with the Couchbase CLI, see [setting-audit](../cli/cbcli/couchbase-cli-setting-audit.md).

@@ -1,0 +1,40 @@
+[View original HTML](/ui-ux/action-buttons.html)
+
+An action button is anything the user clicks that causes something to happen in the UI.
+
+Never surprise the user with what happens after they click a button. The result should be obvious from the button’s text.
+
+![A blue button that says + Create Project](_images/CreateProjectButton.png) 
+
+## [](#start-with-an-action-verb)Start with an Action Verb
+
+Start button text with an action verb that clearly describes what happens after the user clicks the button.
+
+For example, the button to create a project could say **Create Project**.
+
+|  | This is unnecessary if the action button is a navigation button. Name the page that the user navigates to, instead, or use navigation words like Next or Back. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#align-the-button-text-to-the-surrounding-text)Align the Button Text to the Surrounding Text
+
+Make sure that the text you use on the button aligns to the surrounding text.
+
+For example, if the preceding text tells the user that they can delete their organization, the button should say **Delete Organization**, not **Remove Organization**.
+
+If the user is making a change that they need to save or cancel, the confirmation button should be **Save**, not **Apply** or **Update**. Try to make the action match the surrounding text.
+
+## [](#keep-it-between-3-5-words)Keep It Between 3-5 Words
+
+Do not add a lot of words to a single button, or it might not be obvious that it’s a button to the user.
+
+Try to stick to 3-5 words.
+
+## [](#write-buttons-in-title-case)Write Buttons in Title Case
+
+Use title case for all button text. Capitalize nouns and verbs, but not prepositions and conjunctions.
+
+## [](#close-vs-done)Close vs. Done
+
+Use **Done** when the user is finished with a process, and clicking **Done** will bring them back to another page.
+
+Use **Close** when the user is just dismissing a dialog or a side sheet, but not leaving their current page or process.

@@ -1,0 +1,42 @@
+[View original HTML](/nodejs-sdk/current/howtos/health-check.html)
+
+> In today’s distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces various diagnostics tools to request information regarding the state of the underlying connections from the SDK, giving instant health check information. 
+
+Diagnosing problems in distributed environments is far from easy, so Couchbase provides a _Health Check API_ with `Diagnostics()` for a look at what the client believes is the current state of the SDKs connection to the cluster. More extensive discussion of the uses of Health Check can be found in the [Health Check Concept Guide](../concept-docs/health-check.md).
+
+## [](#diagnostics)Diagnostics
+
+`Diagnostics` returns a list of the nodes that the SDK currently has (or had) a connection to, and the current status of the connection. This call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node.
+
+```javascript
+var report = await bucket.diagnostics()
+/*
+{
+    "id":"0x10290d100","kv":[
+        {
+            "id":"0000000072b21d66",
+            "last_activity_us":2363294,
+            "local":"10.112.195.1:51473",
+            "remote":"10.112.195.101:11210",
+            "status":"connected"
+        },
+        {
+            "id":"000000000ba84e5e",
+            "last_activity_us":7369021,
+            "local":"10.112.195.1:51486",
+            "remote":"10.112.195.102:11210",
+            "status":"connected"
+        },
+        {
+            "id":"0000000077689398",
+            "last_activity_us":4855640,
+            "local":"10.112.195.1:51409",
+            "remote":"10.112.195.103:11210",
+            "status":"connected"
+        }
+    ],
+    "sdk":"libcouchbase/2.9.5-njs couchnode/2.6.9 (node/10.16.0; v8/6.8.275.32-node.52; ssl/1.1.1b)",
+    "version":1
+}
+*/
+```

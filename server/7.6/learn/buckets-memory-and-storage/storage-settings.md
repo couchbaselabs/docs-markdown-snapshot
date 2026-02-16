@@ -1,0 +1,109 @@
+[View original HTML](/server/7.6/learn/buckets-memory-and-storage/storage-settings.html)
+
+> Couchbase Server provides persistence, whereby certain items are stored on disk as well as in memory; and reliability is thereby enhanced. 
+
+## [](#understanding-couchbase-storage)Understanding Couchbase Storage
+
+Couchbase Server stores certain items in compressed form on disk; and, whenever required, removes them. This allows data-sets to exceed the size permitted by existing memory resources, since undeleted items not currently in memory can be restored to memory from disk, as needed. It also facilitates backup-and-restore procedures.
+
+Generally, a client’s interactions with the server are not blocked during disk-access procedures. However, if a specific item is being restored from disk to memory, the item is not made available to the client until the item’s restoration is complete.
+
+Not all items are written to disk: _Ephemeral_ buckets and their items are maintained in memory only. See [Buckets](buckets.md) for information.
+
+Items written to disk are always written in compressed form. Based on bucket configuration, items may be maintained in compressed form in memory also. See [Compression](compression.md) for information.
+
+Items can be removed from the disk based on a configured point of expiration, referred to as _Time-To-Live_. See [Expiration](../data/expiration.md) for information.
+
+For illustrations of how Couchbase Server saves new and updates existing Couchbase-bucket items, thereby employing both memory and storage resources, see [Memory and Storage](memory-and-storage.md).
+
+## [](#threading)Threading
+
+Synchronized, multithreaded _readers_ and _writers_ provide simultaneous, high-performance operations for data on disk. Conflicts are avoided by assigning each thread (reader or writer) a specific subset of the 1024 vBuckets for each Couchbase bucket.
+
+Couchbase Server allows the number of threads allocated per node for reading and writing to be configured by the administrator. The maximum thread-allocation that can be specified for each is _64_, the minimum is _1_.
+
+A high thread-allocation may improve performance on systems whose hardware resources are commensurately supportive, (for example, where the number of CPU cores is high). In particular, a high number of _writer_ threads on such systems may significantly optimize the performance of _durable writes_: see [Durability](../data/durability.md), for information.
+
+A high number of reader and writer threads will benefit disk based workloads that require high throughput especially when using high end disk drives such as NVMe SSDs. This is likely to be the case when using Magma as the storage engine. In this case it is best to choose ['Disk i/o optimized'](../../manage/manage-settings/general-settings.md#data-settings) mode for Reader and Writer thread settings.
+
+Note, however, that a high thread-allocation might _impair_ some aspects of performance on less appropriately resourced nodes. Consequently, changes to the default thread-allocation should not be made to production systems without prior testing. A starting-point for experimentation is to establish the numbers for reader threads and writer threads as each equal to the _queue depth_ of the underlying I/O subsystem.
+
+See the _General-Settings_ information on [Data Settings](../../manage/manage-settings/general-settings.md#data-settings) for details on how to establish appropriate numbers of reader and writer threads.
+
+Note also that the number of threads can also be configured for the _NonIO_ and _AuxIO_ thread pools:
+
+* The _NonIO_ thread pool is used to run _in memory_ tasks — for example, the _durability timeout_ task.
+* The _AuxIO_ thread pool is used to run _auxiliary I/O_ tasks — for example, the _access log_ task.
+
+Again, the maximum thread-allocation that can be specified for each is _64_, the minimum is _1_.
+
+Thread-status can be viewed, by means of the `cbstats` command, specified with the `raw workload` option. See [cbstats](../../cli/cbstats-intro.md) for information.
+
+For information on using the REST API to manage thread counts, see [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+
+## [](#deletion)Deletion
+
+Items can be deleted by a client application: either by immediate action or by setting a _Time-To-Live_ (TTL) value: this value is established through accessing the `TTL` metadata field of the item, which establishes a future point-in-time for the item’s _expiration_. When the point-in-time is reached, Couchbase Server deletes the item.
+
+Following deletion by either method, a _tombstone_ is maintained by Couchbase Server, as a record (see below).
+
+An item’s TTL can be established either directly on the item itself or via the bucket that contains the item. For information, see [Expiration](../data/expiration.md).
+
+## [](#tombstones)Tombstones
+
+A _tombstone_ is a record of an item that has been removed. Tombstones are maintained to provide eventual consistency, between nodes and between clusters.
+
+Tombstones are created for the following:
+
+* _Individual documents_. The tombstone is created when the document is _deleted_; and contains the former document’s key and metadata.
+* _Collections_. The tombstone is created when the collection is _dropped_; and contains information that includes the collection-id, the collection’s scope-id, and a manifest-id that records the dropping of the collection.  
+All documents that were in the dropped collection are deleted when the collection is dropped. No tombstones are maintained for such documents: moreover, any tombstones for deleted documents that existed in the collection prior to its dropping are themselves removed when the collection is dropped; and consequently, only a collection-tombstone remains when a collection is dropped. The collection-tombstone is replicated via DCP as a single message (ordered with respect to mutations occurring in the vBucket), to replicas and other DCP clients, to notify such recipients that the collection has indeed been dropped. It is then the responsibility of each recipient to purge anything it still contains that belonged to the dropped collection.
+
+The _Metadata Purge Interval_ establishes the frequency with which Couchbase Server _purges_ itself of tombstones of both kinds: which means, removes them fully and finally. The Metadata Purge Interval setting runs as part of auto-compaction (see [Append-Only Writes and Auto-Compaction](#append-only-writes-and-auto-compaction), below).
+
+For more information, see [Post-Expiration Purging](../data/expiration.md#post-expiration-purging), in [Expiration](../data/expiration.md).
+
+## [](#disk-paths)Disk Paths
+
+At node-initialization, Couchbase Server allows up to four custom paths to be established for the saving of data to the filesystem: these are for the Data Service, the Index Service, the Analytics Service, and the Eventing Service. Note that the paths are node-specific: consequently, the data for any of these services may occupy a different filesystem-location, on each node.
+
+For information on setting data-paths, see [Initialize a Node](../../manage/manage-nodes/initialize-node.md).
+
+## [](#append-only-writes-and-auto-compaction)Append-Only Writes and Auto-Compaction
+
+Couchbase Server uses an _append-only_ file-write format, which helps to ensure the internal consistency of the files and reduces the risk of corruption. Necessarily, this means that every change made to a file — whether an addition, a modification, or a deletion — results in a new entry being created at the end of the file: therefore, a file whose user-data is diminished by deletion actually grows in size.
+
+File-sizes should be periodically reduced by means of _compaction_. This operation can be performed either manually, on a specified bucket; or on an automated, scheduled basis, either for specified buckets or for all buckets.
+
+For information on performing manual compaction with the CLI, see [bucket-compact](../../cli/cbcli/couchbase-cli-bucket-compact.md). For information on configuring auto-compaction with the CLI, see [setting-compaction](../../cli/cbcli/couchbase-cli-setting-compaction.md).
+
+For all information on using the REST API for compaction, see the [Global Compaction API](../../rest-api/rest-autocompact-global.md)or [Per-bucket Compaction API](../../rest-api/rest-autocompact-per-bucket.md).
+
+For information on configuring auto-compaction with Couchbase Web Console, see [Auto-Compaction](../../manage/manage-settings/configure-compact-settings.md).
+
+## [](#disk-io-priority)Disk I/O Priority
+
+_Disk I/O_ — reading items from and writing them to disk — does not block client-interactions: disk I/O is thus considered a _background task_. The priority of disk I/O (along with that of other background tasks, such as item-paging and DCP stream-processing) is configurable _per bucket_. This means, for example, that one bucket’s disk I/O can be granted priority over another. For further information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
+
+## [](#storage-settings-ejection-policy)Ejection Policy
+
+Ejection is the policy which Couchbase will adopt to prevent data loss due to memory exhaustion. The policies available depend on the type of bucket being created.
+
+Note that in _Capella_, Couchbase buckets are referred to as _Memory and Disk_ buckets; while Ephemeral buckets are referred to as _Memory Only_ buckets.
+
+__Table 1\. Ejection policies__
+| Policy                                                    | Bucket type | Description                                                                                                                                                               |
+| --------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No Ejection                                               | _Ephemeral_ | If memory is exhausted, then the buckets are set to read-only to prevent data loss. This is the default setting.                                                          |
+| NRU\[[1](#%5Ffootnotedef%5F1 "View footnote.")\] Ejection | _Ephemeral_ | The documents that have not been recently used are ejected from memory.                                                                                                   |
+| Value Only Ejection                                       | _Couchbase_ | In low-memory situations, this policy will eject values and data from memory, but keys and metadata will be retained. This is the default policy for _Couchbase_ buckets. |
+| Full Ejection                                             | _Couchbase_ | Under this policy, data, keys, and metadata are ejected from memory.                                                                                                      |
+
+The policy can be set using the [REST API](../../rest-api/rest-bucket-create.md#evictionpolicy) when the bucket is created. For more information on ejection policies, read <https://blog.couchbase.com/a-tale-of-two-ejection-methods-value-only-vs-full/>
+
+|  | Full Ejection is recommended when the [Magma storage engine](storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio). |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+[1](#%5Ffootnoteref%5F1). Not Recently Used

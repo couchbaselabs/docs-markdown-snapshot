@@ -1,0 +1,95 @@
+[View original HTML](/server/current/learn/clusters-and-availability/failover.html)
+
+> _Failover_ is a process whereby a node can be taken out of a Couchbase cluster with speed. 
+
+## [](#failover-types)Failover Types
+
+There are two basic types of failover: _graceful_ and _hard_.
+
+* _Graceful_: The ability to remove a Data Service node from the cluster proactively, in an orderly and controlled fashion. This involves no downtime, and allows continued application-access to data. The process promotes replica vBuckets on the remaining cluster-nodes to _active_ status, and the active vBuckets on the affected node to _dead_. Throughout the process, the cluster maintains all 1024 active vBuckets for each bucket.  
+Graceful failover can _only_ be used on nodes that run the Data Service. If controlled removal of a non-Data Service node is required, [Removal](removal.md) should be used.
+* _Hard_: The ability to drop a node from the cluster reactively, because the node has become unavailable. If the lost node was running the Data Service, active vBuckets have been lost: therefore the hard failover process promotes replica vBuckets on the remaining cluster-nodes to _active_ status, until 1024 active vBuckets again exist for each bucket.  
+Hard failover should _not_ be used on a responsive node, since this may disrupt ongoing operations (such as the writes and replications that occur on a Data Service node). Instead, available nodes should be taken out of the cluster by means of either graceful failover (if they are Data Service nodes) or [removal](removal.md) (if they are nodes of any kind).
+
+Graceful failover _must_ be manually initiated. Hard failover _can_ be manually initiated. Hard failover can also be initiated automatically by Couchbase Server: this is known as _automatic_ failover. The Cluster Manager detects the unavailability of a node, and duly initiates a _hard_ failover, without administrator intervention.
+
+|  | When a node is failed over, some replica vBuckets on the remaining nodes are promoted to active status but are not recreated as new replicas. As a result, the cluster temporarily loses those replica copies. In contrast, when a node is removed, the cluster automatically restores any replica vBuckets that would otherwise be lost during [removal](removal.md). This preserves the cluster’s data availability level, but increases memory resource usage on the surviving nodes. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Ideally, after any failover, [rebalance](rebalance.md) should be performed. This is especially important when a Data Service node has been failed over, since the rebalance will ensure an optimal ratio of active to replica vBuckets across all the remaining Data Service nodes.
+
+## [](#detecting-node-failure)Detecting Node-Failure
+
+Hard failover is performed after a node has failed. It can be initiated either by administrative intervention, or through _automatic_ failover.
+
+When _automatic_ failover is used, the Cluster Manager handles both the detection of failure, and the initiation of hard failover, without administrative intervention: however, the Cluster Manager does not identify the cause of failure. Following failover, administrator-intervention is required, to identify and fix problems, and to initiate _rebalance_, whereby the cluster is returned to a healthy state.
+
+If manual failover is to be used, administrative intervention is required to detect that a failure has occurred. This can be achieved either by assigning an administrator to monitor the cluster; or by creating an externally based monitoring system that uses the Couchbase REST API to monitor the cluster, detect problems, and either provide notifications, or itself trigger failover. Such a system might be designed to take into account system or network components beyond the scope of Couchbase Server.
+
+## [](#failover-and-replica-promotion)Failover and Replica Promotion
+
+When failover has occurred, and active vBuckets have thereby been replaced through the promotion of replicas, the resulting imbalance in the ratio of active to replica vBuckets on the surviving nodes should be corrected, by means of rebalance.
+
+The variations in vBucket numbers and ratios that occur due to outage, failover, and rebalance are demonstrated by the following tables.
+
+Table 1 shows the disposition of data across a cluster of four nodes. One bucket, of 31,591 items, has been configured with three replicas. The ratio of active to replica items is therefore _1:3_. (Note that some numbers in the table are approximated, and are therefore shown in italics.)
+
+__Table 1\. Four Data Service Nodes, One Bucket with 31,591 Items, Three Replicas__
+| Host   | Active Items | Replica Items |
+| ------ | ------------ | ------------- |
+| Node 1 | 7,932        | _23,600_      |
+| Node 2 | 7,895        | _23,600_      |
+| Node 3 | 7,876        | _23,700_      |
+| Node 4 | 7,888        | _23,700_      |
+| Total  | 31,591       | _94,600_      |
+
+Table 2 shows the result of failing over node 4.
+
+__Table 2\. Three Surviving Data Service Nodes, One Bucket with 31,591 Items, Three Replicas__
+| Host   | Active Items | Replica Items |
+| ------ | ------------ | ------------- |
+| Node 1 | _11,000_     | _20,500_      |
+| Node 2 | _10,200_     | _21,100_      |
+| Node 3 | _10,200_     | _21,300_      |
+| Node 4 | 7,888\*      | _23,700_\*    |
+| Total  | _39,288_     | _86,600_      |
+
+Active and replica vBuckets for the failed over node, 4, are still counted, but are not available (and so are marked here with asterisks). To compensate, replicas on nodes 1 to 3 have been promoted to active status; this being evident from their modified numbers and ratios. For example, on node 1, the number of active items is now raised (from its former total of 7,932) to 11,000; while the number of replica items is now lowered (from its former total of 23,600) to 20,500.
+
+Subsequent rebalance corrects the ratios, as shown by Table 3, below.
+
+__Table 3\. Three Surviving Data Service Nodes, One Bucket with 31,591 Items, Two Replicas (following Rebalance)__
+| Host   | Active Items | Replica Items |
+| ------ | ------------ | ------------- |
+| Node 1 | _10,500_     | _21,000_      |
+| Node 2 | _10,500_     | _21,000_      |
+| Node 3 | _10,500_     | _21,000_      |
+| Node 4 | NA           | NA            |
+| Total  | _31,500_     | _63,000_      |
+
+Ratios on nodes 1 to 3 are now _1:2_, indicating that rebalance has reduced the number of replicas for the bucket from 3 to 2, in correspondence with the reduced node-count.
+
+For further examples of rebalance in the context of _node removal_, see [Removal](removal.md).
+
+## [](#failover-efficiency)Failover Efficiency
+
+the cluster’s [Master Services](cluster-manager.md#master-services) determine how efficiently the cluster handles a failover. They manage operations with cluster-wide impact such as failover, rebalance, and adding and deleting buckets. The Master Services are also called the Orchestrator.
+
+At any given time, only one instance of the Master Services is in charge. The Master Service instances negotiate among themselves to identify and elect one of them to be the active Master Service. If the elected instance becomes unavailable, another instance takes over.
+
+Having the node that’s hosting the active Master Services fail over causes greater latency than usual. The remaining Master Service instances must renegotiate among themselves to determine which becomes the new active Master Service before handling the failover. Having the Master Services co-located with a highly subscribed services such as the Data Service can result in unnecessary latency when failing over the node and ensuring data availability.
+
+To limit failover latency, the Master Services should be co-located on a node with lowest overhead due to services. When choosing a node to host the active Master Service, Couchbase Server weighs the impact of each service running on each node. The services are broken into several tiers, listed here from least to greatest impact:
+
+1. Backup
+2. Eventing, Query
+3. Analytics, Indexing, Search
+4. Data
+
+Each tier is assigned a cost ten times higher than the previous tier. For example, Couchbase Server considers a node running Analytics, Indexing, and Search services more capable of handing the active Master Service role than a node running just the Data Service.
+
+If one is available, Couchbase Service always chooses an the cluster’s [Master Services](cluster-manager.md#master-services) to host the active Master Service. Arbiter nodes do not run any services, and are therefore perfect candidates for hosting the Master Service.
+
+## [](#node-removal)Node Removal
+
+_Node removal_ uses the _rebalance_ process to remove a node from a cluster in a controlled fashion. It creates on the remaining nodes new copies of replica vBuckets that would otherwise be lost when the selected node is taken offline. See [Removal](removal.md) for a conceptual description of node-removal. For practical steps, see [Remove a Node and Rebalance](../../manage/manage-nodes/remove-node-and-rebalance.md).

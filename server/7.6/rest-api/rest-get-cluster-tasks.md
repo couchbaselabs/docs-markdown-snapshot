@@ -1,0 +1,825 @@
+[View original HTML](/server/7.6/rest-api/rest-get-cluster-tasks.html)
+
+> You can list tasks running on the cluster using the `GET /pools/default/tasks` HTTP method and URI. In addition, a report on the last-completed rebalance can be returned with `GET /logs/rebalanceReport?reportID=REPORT_ID`. 
+
+## [](#http-method-and-uri)HTTP Methods and URIs
+
+GET /pools/default/tasks
+
+GET /pools/default/tasks?taskId=TASK_ID
+
+GET /logs/rebalanceReport?reportID=REPORT_ID
+
+## [](#rest-get-cluster-tasks-description)Description
+
+Calling `GET /pools/default/tasks` lists tasks running on the cluster. The list includes the task’s ID, status, and other relevant informaatiom. You can return information about sample bucket loading tasks by supplying its `taskId` as a parameter: `GET /pools/default/tasks?taskID=TASK_ID`.
+
+Calling `GET /logs/rebalanceReport?reportID=REPORT_ID`, a report can be returned, providing information on a completed _rebalance_. The required `report-id` is provided in the object returned by `GET /pools/default/tasks`.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -s -u USER_NAME:PASSWORD -G \
+     http://NODE_NAME_OR_ADDRESS:PORT/pools/default/tasks \
+     -d "taskId=TASK_ID"
+
+
+curl -s -u USER_NAME:PASSWORD -G
+     http://NODE_NAME_OR_ADDRESS:PORT/logs/rebalanceReport
+     -d "reportID=REPORT_ID"
+
+The arguments shown in the syntax are:
+
+* **`USER_NAME`**: the username to use when connecting to Couchbase Server.
+* **`PASSWORD`**: the password for the user.
+* **`NODE_NAME_OR_ADDRESS`**: the name or IP address of a node in the cluster.
+* **`TASK_ID`**: the optional ID of a sample bucket loading task whose status you want ot view. You can find the `taskId` for a sample bucket task from the return value of calls to either the `/sampleBuckets/install` or `/pools/default/tasks`If you do not provide a task ID, the call returns all tasks on the cluster.
+* **`REPORT_ID`**: the required rebalance report ID. You can find this ID from the rebalance task’s `lastReportURI` field in the task list returned by calling `GET /pools/default/tasks` without parameters.
+
+## [](#responses)Responses
+
+A successful call to `GET /pools/default/tasks` returns the response code `200 OK` and an object containing details about a specific task when you supply a `taskId` argument. If you do not supply the `taskId` argument, it returns an object containing information about all tasks.
+
+A successful call to `GET /logs/rebalanceReport?reportID=REPORT_ID` returns response code `200 OK` and an object containing a report on the rebalance whose `reportID` matches `REPORT_ID`. If you pass Couchbase Server a `reportID` that it cannot find, it returns the response code `200 OK` and an object containing the following error:
+
+{
+  "error": "enoent"
+}
+
+Passing a `reportID` of incorrect length returns `400 Bad Request` and an object with the following error message:
+
+{
+  "errors": {
+    "reportID": "Length must be in range from 32 to 32"
+  }
+}
+
+For both endpoints, failure to authenticate returns the response `401 Unauthorized`.
+
+## [](#examples)Examples: Retrieving Cluster Tasks
+
+The following examples demonstrate using the `/pools/default/tasks` and `/logs/rebalanceReport` endpoints.
+
+### [](#no-tasks-underway)No Tasks Running
+
+When the cluster has no tasks running, calling the `/pools/default/tasks` method returns just the most recent rebalance task:
+
+curl -u Administrator:password -v -X GET \
+     http://10.143.194.101:8091/pools/default/tasks | jq '.'
+
+Output is piped through the [jq](https://stedolan.github.io/jq) tool to enhance readability and appears as the following:
+
+[
+  {
+    "statusId": "28452d665fce646c98385fb590a30adc",
+    "type": "rebalance",
+    "status": "notRunning",
+    "statusIsStale": false,
+    "masterRequestTimedOut": false,
+    "lastReportURI": "/logs/rebalanceReport?reportID=0c41dba637a8971b1aa921a89e851d83"
+  }
+]
+
+The default output indicates that no rebalance is underway. A `statusId` and task `type` are provided. The `lastReportURI` specifies the location of the report of the last rebalance to have been performed. See the [Rebalance Reference](../rebalance-reference/rebalance-reference.md), for further information.
+
+### [](#loading-a-sample-bucket)Monitoring Sample Bucket Loading Tasks
+
+You can monitor the tasks Couchbase Server starts to load one or more samples buckets through the `/pools/default/tasks` method. The following example starts loading two sample buckets by calling the `/sampleBuckets/install` endpoint:
+
+```console
+curl -X POST -u Administrator:password \
+     http://localhost:8091/sampleBuckets/install \
+     -d '["travel-sample", "beer-sample"]' | jq .
+```
+
+The response lists the tasks the method call started to load the sample buckets:
+
+```json
+{
+  "tasks": [
+    {
+      "taskId": "439b29de-0018-46ba-83c3-d3f58be68b12",
+      "sample": "beer-sample",
+      "bucket": "beer-sample"
+    },
+    {
+      "taskId": "ed6cd88e-d704-4f91-8dd3-543e03669024",
+      "sample": "travel-sample",
+      "bucket": "travel-sample"
+    }
+  ]
+}
+```
+
+You can also list the tasks using the `/pools/default/tasks` method:
+
+```console
+curl -u Administrator:password -v -X GET \
+     http://localhost:8091/pools/default/tasks | jq '.'
+```
+
+The output of this call returns the active sample bucket task which is loading the `beer-sample` bucket:
+
+```json
+[
+    {
+      "statusId": "e36859e44fb7c226c180b4610313f074",
+      "type": "rebalance",
+      "subtype": "rebalance",
+      "status": "notRunning",
+      "statusIsStale": false,
+      "masterRequestTimedOut": false,
+      "lastReportURI": "/logs/rebalanceReport?reportID=af5b2ac96af031218bae6e3411b007b5"
+    },
+    {
+      "task_id": "439b29de-0018-46ba-83c3-d3f58be68b12",
+      "status": "running",
+      "type": "loadingSampleBucket",
+      "bucket": "beer-sample",
+      "bucket_uuid": "not_present"
+    }
+]
+```
+
+|  | The task for loading the travel-sample does not appear in the previous output because it is not currently running. Only one sample bucket task runs at a time. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+To monitor a sample bucket task specifically, you can call `/pools/default/tasks` with the `taskId` found in either the response from `/sampleBuckets/install` or the list of tasks from `/pools/default/tasks`. The following example demonstrates getting the status of the `travel-sample` bucket task:
+
+```console
+ curl -s -u Administrator:password  -G \
+      http://localhost:8091/pools/default/tasks \
+      -d "taskId=ed6cd88e-d704-4f91-8dd3-543e03669024" | jq '.'
+```
+
+The result shows that the task is queued:
+
+```json
+[
+  {
+    "task_id": "f1c55abe-926a-415d-bf36-f3d99c27016f",
+    "status": "queued",
+    "type": "loadingSampleBucket",
+    "bucket": "travel-sample",
+    "bucket_uuid": "not_present"
+  }
+]
+```
+
+Viewing the status of the `beer-sample` task shows that it’s running:
+
+```json
+[
+  {
+    "task_id": "e2a5e251-faee-415d-b146-d0891123075b",
+    "status": "running",
+    "type": "loadingSampleBucket",
+    "bucket": "beer-sample",
+    "bucket_uuid": "not_present"
+  }
+]
+```
+
+After the `beer-sample` tasks finishes, Coucbbase Server starts the `travel-sample` task. Calling `/pools/default/tasks` again without a `taskId` shows the `travel-sample` task as well as a number of indexing tasks, as shown in the following result:
+
+```json
+[
+  {
+    "statusId": "e36859e44fb7c226c180b4610313f074",
+    "type": "rebalance",
+    "subtype": "rebalance",
+    "status": "notRunning",
+    "statusIsStale": false,
+    "masterRequestTimedOut": false,
+    "lastReportURI": "/logs/rebalanceReport?reportID=af5b2ac96af031218bae6e3411b007b5"
+  },
+  {
+    "type": "global_indexes",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "travel-sample",
+    "index": "def_inventory_route_sourceairport",
+    "id": 5548520957444133000,
+    "progress": 0,
+    "statusIsStale": false
+  },
+  {
+    "type": "global_indexes",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "travel-sample",
+    "index": "def_inventory_route_schedule_utc",
+    "id": 7890207154426784000,
+    "progress": 19,
+    "statusIsStale": false
+  },
+    .
+    .
+    .
+  {
+    "type": "global_indexes",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "travel-sample",
+    "index": "def_inventory_airline_primary",
+    "id": 2691871325047162400,
+    "progress": 12,
+    "statusIsStale": false
+  },
+  {
+    "task_id": "f1c55abe-926a-415d-bf36-f3d99c27016f",
+    "status": "running",
+    "type": "loadingSampleBucket",
+    "bucket": "travel-sample",
+    "bucket_uuid": "not_present"
+  }
+]
+```
+
+### [](#compacting-a-bucket)Compacting a Bucket
+
+When a bucket (in this case, the sample bucket `beer-sample`) is being compacted, the method can be used to return status as follows:
+
+curl -u Administrator:password -v -X GET \
+http://localhost:8091/pools/default/tasks | jq '.'
+
+The following output is provided:
+
+[
+  {
+    "statusId": "28452d665fce646c98385fb590a30adc",
+    "type": "rebalance",
+    "status": "notRunning",
+    "statusIsStale": false,
+    "masterRequestTimedOut": false,
+    "lastReportURI": "/logs/rebalanceReport?reportID=0c41dba637a8971b1aa921a89e851d83"
+  },
+  {
+    "cancelURI": "/pools/default/buckets/beer-sample/controller/cancelBucketCompaction",
+    "type": "bucket_compaction",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "beer-sample",
+    "changesDone": 177,
+    "totalChanges": 682,
+    "progress": 25
+  }
+]
+
+The output indicates that the `beer-sample` bucket is being compacted. Progress is reported in terms of `changesDone`, `totalChanges`, and a `progress` figure that is a percentage of total completion. A URI is provided for cancelling compaction, if required.
+
+### [](#performing-xdcr)Performing XDCR
+
+You can monitor an ongoing XDCR task using the `/pools/default/tasks` method:
+
+curl -X GET http://localhost:8091/pools/default/tasks -u Administrator:password | jq '.'
+
+The output related to the ongoing replication appears as follows:
+
+{
+    "cancelURI": "/controller/cancelXDCR/e82ad198116fd9f9a369df37ab0819b2%2Ftravel-sample%2FtravelSampleBackup",
+    "settingsURI": "/settings/replications/e82ad198116fd9f9a369df37ab0819b2%2Ftravel-sample%2FtravelSampleBackup",
+    "status": "running",
+    "replicationType": "xmem",
+    "continuous": true,
+    "filterBypassExpiry": false,
+    "filterDeletion": false,
+    "filterExpiration": false,
+    "filterExpression": "",
+    "id": "e82ad198116fd9f9a369df37ab0819b2/travel-sample/travelSampleBackup",
+    "pauseRequested": false,
+    "source": "travel-sample",
+    "target": "/remoteClusters/e82ad198116fd9f9a369df37ab0819b2/buckets/travelSampleBackup",
+    "type": "xdcr",
+    "recommendedRefreshPeriod": 10,
+    "changesLeft": 0,
+    "docsChecked": 28255,
+    "docsWritten": 10518,
+    "maxVBReps": null,
+    "errors": [
+      "2022-10-25 13:40:26 Found following destination collection(s) missing (and will not get replicated to):\nSOURCE ||tenant_agent_04.users|| -> TARGET(s) |Scope: tenant_agent_04 Collection: users| \nSOURCE ||tenant_agent_03.users|| -> TARGET(s) |Scope: tenant_agent_03 Collection: users| \nSOURCE ||tenant_agent_00.users|| -> TARGET(s) |Scope: tenant_agent_00 Collection: users| \nSOURCE ||inventory.route|| -> TARGET(s) |Scope: inventory Collection: route| \nSOURCE ||inventory.landmark|| -> TARGET(s) |Scope: inventory Collection: landmark| \nSOURCE ||inventory.airline|| -> TARGET(s) |Scope: inventory Collection: airline| \nSOURCE ||tenant_agent_01.users|| -> TARGET(s) |Scope: tenant_agent_01 Collection: users| \nSOURCE ||inventory.hotel|| -> TARGET(s) |Scope: inventory Collection: hotel| \nSOURCE ||tenant_agent_02.users|| -> TARGET(s) |Scope: tenant_agent_02 Collection: users| \nSOURCE ||inventory.airport|| -> TARGET(s) |Scope: inventory Collection: airport| \n"
+    ]
+  }
+
+The output includes URIs for cancelling the replication, and for retrieving its settings. It also includes the `id` for the replication itself. The numbers of documents checked and written are provided, as is a list of errors that have been recorded.
+
+### [](#recovering-data-with-xdcr)Recovering Data with XDCR
+
+When data on the local cluster has been lost, the data can be recovered from a remote cluster to which data was previously replicated by means of XDCR. This is described and exemplified in [Recover Data with XDCR](../manage/manage-xdcr/recover-data-with-xdcr.md). Recovery is performed with the `cbrecovery` tool. During the recovery process, task-status can be returned by entering the method in the standard way, specifying the IP address of the cluster, or `localhost`, as appropriate:
+
+curl -X GET http://localhost:8091/pools/default/tasks -u Administrator:password | jq '.'
+
+The output related to the ongoing recovery process is as follows:
+
+{
+   "type": "recovery",
+   "bucket": "travel-sample",
+   "uuid": "1e9009c3e807060ea72a369342e6d025",
+   "recommendedRefreshPeriod": 10,
+   "stopURI": "/pools/default/buckets/travel-sample/controller/stopRecovery?recovery_uuid=1e9009c3e807060ea72a369342e6d025",
+   "commitVBucketURI": "/pools/default/buckets/travel-sample/controller/commitVBucket?recovery_uuid=1e9009c3e807060ea72a369342e6d025",
+   "recoveryStatusURI": "/pools/default/buckets/travel-sample/recoveryStatus?recovery_uuid=1e9009c3e807060ea72a369342e6d025"
+ },
+
+The output verifies that the `recovery` task is being performed, with data being restored to the `travel-sample` bucket. The operation is given a universally unique identifier. A URI is provided for stopping the recovery process, if necessary. This can be used as follows:
+
+curl -X POST http://localhost:8091/pools/default/buckets/travel-sample/controller/stopRecovery?recovery_uuid=1e9009c3e807060ea72a369342e6d025 -u Administrator:password
+
+If the process is successfully stopped, a message such as `{"code":"ok"}` is displayed.
+
+Additionally, a URI is provided for retrieving status on the recovery process. This can be used as follows:
+
+curl -X GET http://localhost:8091/pools/default/buckets/travel-sample/recoveryStatus?recovery_uuid=1e9009c3e807060ea72a369342e6d025 -u Administrator:password
+
+If successful, the call returns a status object, such as the following:
+
+{
+  "uuid": "1e9009c3e807060ea72a369342e6d025",
+  "code": "ok",
+  "recoveryMap": [
+    {
+      "node": "ns_1@10.144.231.101",
+      "vbuckets": [
+        826,
+        827,
+        828,
+        829,
+        830,
+        .
+        .
+        .
+
+### [](#creating-gsi)Creating Global Secondary Indexes
+
+When global secondary indexes are created, task-status can be returned, by entering the method in the standard way, specifying the IP address of the cluster, or `localhost`, as appropriate:
+
+curl -X GET http://localhost:8091/pools/default/tasks -u Administrator:password | jq '.'
+
+If the above expression is entered immediately subsequent to the loading of the `travel-sample` bucket, the output includes the following information on index-creation:
+
+{
+    "type": "global_indexes",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "travel-sample",
+    "index": "def_inventory_route_sourceairport",
+    "id": 194455929039766300,
+    "progress": 0,
+    "statusIsStale": false
+  },
+  {
+    "type": "global_indexes",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "travel-sample",
+    "index": "def_inventory_route_schedule_utc",
+    "id": 18302711027814693000,
+    "progress": 0,
+    "statusIsStale": false
+  },
+
+This provides status on two tasks, related to the creation of the indexes `def_inventory_route_sourceairport` and `def_inventory_route_schedule_utc`.
+
+### [](#rebalance-following-node-addition)Rebalance Following Node-Addition
+
+When rebalance is used to eject node `10.143.194.103` from a cluster of three nodes, which has included `10.143.194.101` and `10.143.194.102` in addition to itself, and which is hosting the `travel-sample` and `beer-sample` sample buckets, the progress of the task can be retrieved as follows:
+
+curl -u Administrator:password -v -X GET \
+http://10.143.194.101:8091/pools/default/tasks | jq '.'
+
+Depending on at what point in the rebalance the method is run, the output might be as follows:
+
+[
+  {
+    "statusId": "1a51786a937213ac456d2f066f65c08a",
+    "type": "rebalance",
+    "subtype": "rebalance",
+    "recommendedRefreshPeriod": 0.25,
+    "status": "running",
+    "progress": 1.531444089632196,
+    "perNode": {
+      "ns_1@10.143.194.101": {
+        "progress": 0.9765625
+      },
+      "ns_1@10.143.194.102": {
+        "progress": 0.9784735812133072
+      },
+      "ns_1@10.143.194.103": {
+        "progress": 2.639296187683282
+      }
+    },
+    "detailedProgress": {
+      "bucket": "beer-sample",
+      "bucketNumber": 1,
+      "bucketsCount": 2,
+      "perNode": {
+        "ns_1@10.143.194.103": {
+          "ingoing": {
+            "docsTotal": 0,
+            "docsTransferred": 0,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 0
+          },
+          "outgoing": {
+            "docsTotal": 2479,
+            "docsTransferred": 135,
+            "activeVBucketsLeft": 323,
+            "replicaVBucketsLeft": 340
+          }
+        },
+        "ns_1@10.143.194.102": {
+          "ingoing": {
+            "docsTotal": 2419,
+            "docsTransferred": 82,
+            "activeVBucketsLeft": 161,
+            "replicaVBucketsLeft": 332
+          },
+          "outgoing": {
+            "docsTotal": 1259,
+            "docsTransferred": 0,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 161
+          }
+        },
+        "ns_1@10.143.194.101": {
+          "ingoing": {
+            "docsTotal": 2495,
+            "docsTransferred": 61,
+            "activeVBucketsLeft": 162,
+            "replicaVBucketsLeft": 331
+          },
+          "outgoing": {
+            "docsTotal": 1176,
+            "docsTransferred": 8,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 162
+          }
+        }
+      }
+    },
+    "stageInfo": {
+      "data": {
+        "totalProgress": 1.531444089632196,
+        "perNodeProgress": {
+          "ns_1@10.143.194.101": 0.009765625,
+          "ns_1@10.143.194.102": 0.009784735812133072,
+          "ns_1@10.143.194.103": 0.02639296187683282
+        },
+        "startTime": "2020-03-16T04:49:22.624-07:00",
+        "completedTime": false,
+        "timeTaken": 6854,
+        "details": {
+          "beer-sample": {
+            "vbucketLevelInfo": {
+              "move": {
+                "averageTime": 3150.578947368421,
+                "totalCount": 682,
+                "remainingCount": 663
+              },
+              "backfill": {
+                "averageTime": 85.21875
+              },
+              "takeover": {
+                "averageTime": 67.2
+              },
+              "persistence": {
+                "averageTime": 57.01063829787234
+              }
+            },
+            "replicationInfo": {
+              "ns_1@10.143.194.101": {
+                "inDocsTotal": 2495,
+                "inDocsLeft": 2434,
+                "outDocsTotal": 1176,
+                "outDocsLeft": 1168
+              },
+              "ns_1@10.143.194.102": {
+                "inDocsTotal": 2419,
+                "inDocsLeft": 2337,
+                "outDocsTotal": 1259,
+                "outDocsLeft": 1259
+              },
+              "ns_1@10.143.194.103": {
+                "inDocsTotal": 0,
+                "inDocsLeft": 0,
+                "outDocsTotal": 2479,
+                "outDocsLeft": 2344
+              }
+            },
+            "startTime": "2020-03-16T04:49:23.148-07:00",
+            "completedTime": false,
+            "timeTaken": 6329
+          }
+        }
+      }
+    },
+    "rebalanceId": "b9a087fb3533d6ada22a1c43d8d09e24",
+    "nodesInfo": {
+      "active_nodes": [
+        "ns_1@10.143.194.101",
+        "ns_1@10.143.194.102",
+        "ns_1@10.143.194.103"
+      ],
+      "keep_nodes": [
+        "ns_1@10.143.194.101",
+        "ns_1@10.143.194.102"
+      ],
+      "eject_nodes": [
+        "ns_1@10.143.194.103"
+      ],
+      "delta_nodes": [],
+      "failed_nodes": []
+    },
+    "masterNode": "ns_1@10.143.194.102"
+  },
+  {
+    "type": "indexer",
+    "recommendedRefreshPeriod": 2,
+    "status": "running",
+    "bucket": "beer-sample",
+    "designDocument": "_design/beer",
+    "changesDone": 1,
+    "totalChanges": 7,
+    "progress": 14
+  }
+]
+
+Note that the contents of the object differ significantly, once rebalance is in progress.
+
+The response object provides a `statusId` that now corresponds to the ongoing `rebalance` operation. The value of `progress` is the value as it was at the time of running the method. A progress value is also given `perNode`: each value is a percentage — note that these percentages are displayed by Couchbase Web Console, when it is itself used to monitor rebalance. All progress values are represented as floating-point numbers with fourteen places. A `detailedProgress` object is also provided for each node, with indications of the status of documents and vBuckets: note that at any one time, this object indicates which of the buckets is currently being redistributed — in this case, it is `beer-sample`.
+
+The `stageInfo` object provides information on [Data-Service Rebalance Stages](../learn/clusters-and-availability/rebalance.md#data-service-rebalance-stages). A complete description of the fields is provided in the [Rebalance Reference](../rebalance-reference/rebalance-reference.md).
+
+Note that a `recommendedRefreshPeriod` of `2` seconds is given. If the same method is entered subsequently, output indicates that progress has continued:
+
+[
+  {
+    "statusId": "1a51786a937213ac456d2f066f65c08a",
+    "type": "rebalance",
+    "subtype": "rebalance",
+    "recommendedRefreshPeriod": 0.25,
+    "status": "running",
+    "progress": 60.58881772169409,
+    "perNode": {
+      "ns_1@10.143.194.101": {
+        "progress": 58.69140625
+      },
+      "ns_1@10.143.194.102": {
+        "progress": 55.77299412915851
+      },
+      "ns_1@10.143.194.103": {
+        "progress": 67.30205278592376
+      }
+    },
+    "detailedProgress": {
+      "bucket": "travel-sample",
+      "bucketNumber": 2,
+      "bucketsCount": 2,
+      "perNode": {
+        "ns_1@10.143.194.103": {
+          "ingoing": {
+            "docsTotal": 0,
+            "docsTransferred": 0,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 0
+          },
+          "outgoing": {
+            "docsTotal": 10517,
+            "docsTransferred": 3620,
+            "activeVBucketsLeft": 223,
+            "replicaVBucketsLeft": 326
+          }
+        },
+        "ns_1@10.143.194.102": {
+          "ingoing": {
+            "docsTotal": 10594,
+            "docsTransferred": 2301,
+            "activeVBucketsLeft": 112,
+            "replicaVBucketsLeft": 267
+          },
+          "outgoing": {
+            "docsTotal": 5236,
+            "docsTransferred": 0,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 112
+          }
+        },
+        "ns_1@10.143.194.101": {
+          "ingoing": {
+            "docsTotal": 10485,
+            "docsTransferred": 1782,
+            "activeVBucketsLeft": 111,
+            "replicaVBucketsLeft": 282
+          },
+          "outgoing": {
+            "docsTotal": 5326,
+            "docsTransferred": 463,
+            "activeVBucketsLeft": 0,
+            "replicaVBucketsLeft": 111
+          }
+        }
+      }
+    },
+    "stageInfo": {
+      "data": {
+        "totalProgress": 60.58881772169409,
+        "perNodeProgress": {
+          "ns_1@10.143.194.101": 0.5869140625,
+          "ns_1@10.143.194.102": 0.5577299412915852,
+          "ns_1@10.143.194.103": 0.6730205278592376
+        },
+        "startTime": "2020-03-16T04:49:22.624-07:00",
+        "completedTime": false,
+        "timeTaken": 119473,
+        "details": {
+          "beer-sample": {
+            "compactionInfo": {
+              "perNode": {
+                "ns_1@10.143.194.103": {
+                  "averageTime": 1883.333333333333
+                },
+                "ns_1@10.143.194.102": {
+                  "averageTime": 131.3333333333333
+                },
+                "ns_1@10.143.194.101": {
+                  "averageTime": 310
+                }
+              }
+            },
+            "vbucketLevelInfo": {
+              "move": {
+                "averageTime": 4294.907624633431,
+                "totalCount": 682,
+                "remainingCount": 0
+              },
+              "backfill": {
+                "averageTime": 54.17595307917889
+              },
+              "takeover": {
+                "averageTime": 78.80994152046783
+              },
+              "persistence": {
+                "averageTime": 42.66529894490035
+              }
+            },
+            "replicationInfo": {
+              "ns_1@10.143.194.101": {
+                "inDocsTotal": 2495,
+                "inDocsLeft": 0,
+                "outDocsTotal": 1176,
+                "outDocsLeft": 0
+              },
+              "ns_1@10.143.194.102": {
+                "inDocsTotal": 2419,
+                "inDocsLeft": 0,
+                "outDocsTotal": 1259,
+                "outDocsLeft": 0
+              },
+              "ns_1@10.143.194.103": {
+                "inDocsTotal": 0,
+                "inDocsLeft": 0,
+                "outDocsTotal": 2479,
+                "outDocsLeft": 0
+              }
+            },
+            "startTime": "2020-03-16T04:49:23.148-07:00",
+            "completedTime": "2020-03-16T04:51:08.273-07:00",
+            "timeTaken": 105125
+          },
+          "travel-sample": {
+            "compactionInfo": {
+              "perNode": {
+                "ns_1@10.143.194.103": {
+                  "averageTime": 0
+                }
+              }
+            },
+            "vbucketLevelInfo": {
+              "move": {
+                "averageTime": 1198.556390977444,
+                "totalCount": 682,
+                "remainingCount": 549
+              },
+              "backfill": {
+                "averageTime": 44.24113475177305
+              },
+              "takeover": {
+                "averageTime": 44.74015748031496
+              },
+              "persistence": {
+                "averageTime": 31.35452322738386
+              }
+            },
+            "replicationInfo": {
+              "ns_1@10.143.194.101": {
+                "inDocsTotal": 10485,
+                "inDocsLeft": 8703,
+                "outDocsTotal": 5326,
+                "outDocsLeft": 4863
+              },
+              "ns_1@10.143.194.102": {
+                "inDocsTotal": 10594,
+                "inDocsLeft": 8293,
+                "outDocsTotal": 5236,
+                "outDocsLeft": 5236
+              },
+              "ns_1@10.143.194.103": {
+                "inDocsTotal": 0,
+                "inDocsLeft": 0,
+                "outDocsTotal": 10517,
+                "outDocsLeft": 6897
+              }
+            },
+            "startTime": "2020-03-16T04:51:08.455-07:00",
+            "completedTime": false,
+            "timeTaken": 13641
+          }
+        }
+      }
+    },
+    "rebalanceId": "b9a087fb3533d6ada22a1c43d8d09e24",
+    "nodesInfo": {
+      "active_nodes": [
+        "ns_1@10.143.194.101",
+        "ns_1@10.143.194.102",
+        "ns_1@10.143.194.103"
+      ],
+      "keep_nodes": [
+        "ns_1@10.143.194.101",
+        "ns_1@10.143.194.102"
+      ],
+      "eject_nodes": [
+        "ns_1@10.143.194.103"
+      ],
+      "delta_nodes": [],
+      "failed_nodes": []
+    },
+    "masterNode": "ns_1@10.143.194.102"
+  }
+]
+
+Note that the output indicates that, at this point, the `travel-sample` bucket is being redistributed. This indicates that redistribution of the `beer-sample` bucket has concluded.
+
+The `lastReportURI` corresponding to the rebalance that has been performed must be retrieved by means of a subsequent call, once rebalance has concluded. This is described immediately below.
+
+## [](#getting-a-rebalance-report)Example: Getting a Rebalance Report
+
+A rebalance report can be retrieved by means of the URI specified as the value of `lastReportURI`. For example:
+
+curl -u Administrator:password -v -X \
+GET http://10.143.194.102:8091/logs/rebalanceReport?reportID=f95697f13542aaffb9058cb1920b13c7 | jq
+
+If successful, the content of the report is returned, and printed to standard output. The initial section might appear as follows:
+
+{
+  "stageInfo": {
+    "data": {
+      "totalProgress": 100,
+      "perNodeProgress": {
+        "ns_1@10.143.194.101": 1,
+        "ns_1@10.143.194.102": 1,
+        "ns_1@10.143.194.103": 1
+      },
+      "startTime": "2020-03-16T04:49:22.624-07:00",
+      "completedTime": "2020-03-16T04:52:13.380-07:00",
+      "timeTaken": 170757,
+      "details": {
+        "beer-sample": {
+          "compactionInfo": {
+            "perNode": {
+              "ns_1@10.143.194.103": {
+                "averageTime": 1883.333333333333
+              },
+              "ns_1@10.143.194.102": {
+                "averageTime": 131.3333333333333
+              },
+              "ns_1@10.143.194.101": {
+                "averageTime": 310
+              }
+            }
+          },
+          "vbucketLevelInfo": {
+            "move": {
+              "averageTime": 4294.907624633431,
+              "totalCount": 682,
+              "remainingCount": 0
+
+A complete description of the fields in the `stageInfo` object is provided the in [Rebalance Reference](../rebalance-reference/rebalance-reference.md).
+
+### [](#rebalance-failure)Rebalance Failure
+
+If rebalance fails, the method can be used to retrieve the following confirmation of failure:
+
+[
+  {
+    "statusId": "1f05321a7b359e1743ffc8b7ee69a8b9",
+    "type": "rebalance",
+    "status": "notRunning",
+    "errorMessage": "Rebalance failed. See logs for detailed reason. You can try rebalance again."
+  }
+]
+
+## [](#see-also)See Also
+
+Examples of adding a node and rebalancing by means of the UI, CLI, and REST API are provided in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md). The REST method and URI for rebalance is explained in [Rebalancing the Cluster](rest-cluster-rebalance.md). The REST method and URI for bucket-compaction is documented in [Performing Compaction Manually](rest-compact-post.md).
+
+For additional information on retrieving the progress of the rebalance operation, see [Getting Rebalance Progress](rest-get-rebalance-progress.md). See the [Rebalance Reference](../rebalance-reference/rebalance-reference.md), for detailed information on downloading and reading rebalance reports.

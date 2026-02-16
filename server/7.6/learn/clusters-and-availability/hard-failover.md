@@ -1,0 +1,163 @@
+[View original HTML](/server/7.6/learn/clusters-and-availability/hard-failover.html)
+
+> Hard failover takes an unresponsive node out of the cluster. 
+
+## [](#understanding-hard-)Understanding Hard Failover
+
+Hard failover takes an unresponsive node out of the cluster. Hard failover can be performed on any node in the cluster: slightly different actions are taken for each affected service, as described below.
+
+Hard failover should _only_ be used when a node has become unresponsive: it should not be used as part of regular, planned maintenance activities that can be conducted with all cluster-nodes available. For information on taking nodes out of the cluster in such circumstances, see [Removal](removal.md) and [Graceful Failover](graceful-failover.md).
+
+Hard failover can be initiated by means of:
+
+* Couchbase Web Console, manually.
+* The CLI or REST API; either manually, or from a _script/program/ops_ platform.
+* _Automatic Failover_, triggered by the Cluster Manager: see [Automatic Failover](automatic-failover.md).
+
+For further information on initiating hard failover, see [Perform Hard Failover](../../manage/manage-nodes/failover-hard.md).
+
+## [](#default-and-unsafe)Hard Failover in Default and Unsafe Modes
+
+In the event of a cluster’s [Master Services](cluster-manager.md#master-services) not being able to contact a majority of the cluster’s nodes (sometimes referred to as a _quorum failure_), an attempted failover will _not_ be executed. This protects the cluster from the situation where:
+
+1. The cluster’s nodes get divided into two separate sets, due to an unanticipated [network partition](https://en.wikipedia.org/wiki/Network%5Fpartition).
+2. Each of the separate sets is accessed by a different administrator — each administrator being unaware of the other’s access.
+3. Each administrator simultaneously performs a hard failover of the nodes they cannot contact (resulting in a corrupted cluster-configuration, once the network partition is healed).
+
+Note that this restriction also protects the cluster in situations where multiple [Server Groups](groups.md) are accidentally divided into separate sets, in the same way.
+
+### [](#performing-an-unsafe-failover)Performing an Unsafe Failover
+
+In Couchbase Server 7.0+, metadata is managed by a _consensus protocol_; which achieves strong consistency by _synchronously_ replicating metadata to a majority of the nodes before considering it committed. (This is described in [Metadata Management](metadata-management.md).) The metadata so managed includes _topology information_. Consequently, in the event of a quorum failure, no topology changes can be made on the cluster-nodes that remain responsive. Specifically, this means that:
+
+* Buckets, scopes, and collections can neither be created nor dropped.
+* Nodes cannot be added, joined, failed over safely, or removed.
+
+In order that users do not have to abandon a cluster in which a majority of nodes have failed or are unreachable, hard failover can be performed in _unsafe_ mode. Unsafe failovers override the consensus protocol; and may be performed even if a majority of nodes in the cluster cannot be contacted. No unsafe failover should be attempted without a full understanding of the consequences and requirements, which are listed immediately below.
+
+#### [](#consequences-of-unsafe-failover)Consequences of Unsafe Failover
+
+In Couchbase Server Version 7.0+, the consequences of unsafe failover are:
+
+* Strong consistency of metadata is no longer guaranteed.
+* Metadata may have been lost.
+* The nodes that have been failed over are also immediately _removed_ from the cluster. They are, however, not informed of their removal; and so may continue to attempt to behave as if members of the cluster.
+* The failed over nodes _cannot be recovered_; and will therefore need to be _re-initialized_, if they are to be re-introduced into the cluster. (Note that a REST API is provided specifically for this purpose: see [Reinitializing Nodes](../../rest-api/rest-reinitialize-node.md)).
+
+The consequences of unsafe failover in Couchbase Server Version 7.0+ are therefore significantly different from in previous versions: previously, the failed over nodes remained in the cluster, and could be recovered; but in 7.0+, they are removed from the cluster, are non-recoverable, and must be re-initialized before being added back to the cluster (see [Reinitializing Nodes](../../rest-api/rest-reinitialize-node.md)).
+
+#### [](#client-communications-following-unsafe-failover)Client Communications following Unsafe Failover
+
+Following unsafe failover, the cluster provides clients running the latest SDK with updated information on the buckets that exist on the surviving cluster. This prevents those clients from incorrectly acknowledging any subset of contactable, failed-over nodes as the real cluster.
+
+#### [](#requirements-for-unsafe-failover)Requirements for Unsafe Failover
+
+Prior to unsafe failover:
+
+* A _safe_ failover should be attempted; in order to verify that safe failover is indeed not possible; and that unsafe failover is the only viable option.
+* It should be ascertained that no other administrator will be attempting to perform a simultaneous, unsafe failover.
+* It should be ascertained that all nodes to be unsafely failed over are permanently down; and are thereby incapable of restarting and attempting to resume communication with the cluster.  
+As described above, in [Consequences of Unsafe Failover](#consequences-of-unsafe-failover), following unsafe failover, the failed-over nodes cannot be recovered; and will need to be entirely re-initialized, in order to be re-introduced into the cluster. Therefore, the administrator may wish to preserve the nodes' data; and, once the cluster is re-established, restore that data to the cluster manually (for example, by means of a tool such as [cbtransfer](../../cli/cbtools/cbtransfer.md)).
+
+Note that to have _survived_ the failover, a node must be up and reachable by the other nodes that have survived.
+
+For information on the practical steps required to perform hard failover in both default and unsafe mode, see [Perform Hard Failover](../../manage/manage-nodes/failover-hard.md). For information on the consensus methodology used to maintain topology information, see [Metadata Management](metadata-management.md).
+
+## [](#effect-of-hard-failover-on-services)Effect of Hard Failover on Services
+
+Hard failover has a different effect on each Couchbase Service.
+
+### [](#data-service)Data Service
+
+Since active vBuckets have become unavailable, the Cluster Manager promotes replica vBuckets to active status on the remaining cluster-nodes. A revised cluster-map is then communicated to all clients.
+
+When the process is complete, no further attempts will be made to access vBuckets on the failed-over node, but the node has not yet been fully taken out of the cluster. The cluster is at this point considered to be in a _degraded state_, in terms of availability; as it now contains a reduced number of replica vBuckets, and may lack resources for handling a further node-outage. Rebalance should be performed.
+
+### [](#index-service)Index Service
+
+When Global Secondary Indexes (GSIs) are defined, each is by default created on only one node, which is running the Index Service. If that node fails, the indexes therefore become unavailable. If the node is subsequently repaired and added back into the cluster by means of [Delta Recovery](recovery.md#delta-recovery), the indexes are updated, and become available again. If the node is replaced, the indexes need to be recreated: in this case, before rebalance of the new node into the cluster, the failed node must be taken out of the cluster by means of hard failover.
+
+### [](#query-service)Query Service
+
+Query Service nodes are stateless, and can be added to and removed from the cluster with no consequence to data. However, ongoing queries on those nodes are interrupted by hard failover, and therefore produce errors.
+
+As long as one Query Service node continues to be available, the cluster continues to support querying, although potentially with reduced performance.
+
+### [](#search-service)Search Service
+
+If multiple nodes run the Search Service, Full Text Indexes are partitioned, and are automatically distributed across those nodes. If a Search Service node is failed over, it stops taking traffic. If no other nodes run the Search Service, all building of Full Text Indexes stops, and searches fail. If at least one other node is running the Search Service, this continues to handle queries and return partial results. However, in the case where one other node is running the Search service _and_ a replica has been configured for the index, queries will continue to get full results as the replica will be promoted to active status immediately upon failover.
+
+When a rebalance occurs:
+
+* If replicas have been configured for Full Text Indexes, the Search Service will generate new replica index partitions if the cluster size permits it.
+* If replicas have _not_ been configured, the Search Service rebuilds the index partitions on the remaining nodes of the cluster, using stored index definitions.
+
+Note that the Search Service is not supported by Delta Recovery.
+
+### [](#eventing-service)Eventing Service
+
+If a cluster contains a single node that hosts the Eventing Service, and this node undergoes hard failover, the Eventing Service on the node stops, and mutation-processing on the node is interrupted: this results in a complete halt of Eventing-Service function-execution and mutation-processing. If the node is restored to the cluster, and the Eventing Service is restarted, Eventing-Service functions redeploy, and mutation-processing resumes: however, this may result in the processing of mutations that are duplicates of mutations made immediately prior to failover, and may result in inappropriate changes to data, if the business logic in function-code is not idempotent.
+
+If multiple cluster-nodes host the Eventing Service, responsibility for handling data-mutations is divided between these nodes; with each node handling the data-mutations for a defined subset of vBuckets. If a hard failover is performed on one of the Eventing-Service nodes, the failed-over node’s former responsibilities are assigned to the surviving Eventing-Service nodes as part of the hard-failover process — thereby ensuring continuity of mutation-processing, and avoiding the immediate need for a rebalance. If hard failover is, in these circumstances, selected by means of Couchbase Web Console, a notification such as the following is provided, when failover-confirmation is requested: _Failover of this node will trigger internal processing after failover for the following service: Eventing._ _This processing may take some time to complete._
+
+Note that vBucket reallocations that occur due to failover may themselves lead to the processing of mutations that are duplicates of mutations made prior to failover.
+
+The processing of duplicate mutations can happen only within a limited time-window, following the last completed DCP checkpoint.
+
+### [](#hard-failover-and-the-analytics-service)Analytics Service
+
+The Analytics Service uses _shadow data_, which is a copy of all or some of the data maintained by the Data Service. By default, the shadow data is not replicated; however, it may be partitioned across all cluster nodes that run the Analytics Service. Starting with Couchbase Server 7.1, the shadow data and its partitions may be replicated up to 3 times. Each replica resides on an Analytics node: a given Analytics node can host a replica partition, or the active partition on which replicas are based.
+
+If there are _no_ Analytics replicas, and an Analytics node fails over, the Analytics Service stops working cluster-wide: ingestion of shadow data stops and no Analytics operations can be run. In this case:
+
+* If the Analytics node is recovered, the Analytics Service is resumed and ingestion of shadow data resumes from the point before the node failed over.
+* If the Analytics node is removed, the Analytics Service becomes active again after rebalance, but ingestion of shadow data must begin again from scratch.
+
+If there _are_ Analytics replicas, and an Analytics node fails over, the Analytics Service continues to work: one of the replicas is promoted to serve the shadow data that was stored on the failed over node. The Analytics Service only needs to rebuild any shadow data that isn’t already ingested from the Data Service, depending on the state of the promoted replica. In this case:
+
+* If the Analytics node is recovered, the shadow data on the recovered node is updated from the promoted replica, and it becomes the active partition again.
+* If the Analytics node is removed, the shadow data is redistributed among the remaining Analytics nodes in the cluster.
+
+### [](#hard-failover-and-the-backup-service)Backup Service
+
+If data is not available, due to the unresponsiveness of a Data-Service node, or due to data-loss that occurs in consequence of a subsequent hard failover, a scheduled backup will fail. If data becomes accessible again, due to replica-promotions that occur in consequence of a hard failover, the Backup Service locates the data, and a scheduled backup will succeed.
+
+If a _follower_ Backup-Service node becomes unresponsive, or is lost due to a subsequent hard-failover, the Backup Service continues to operate; using the _leader_ Backup-Service node, and any surviving _follower_ nodes. If the _leader_ Backup-Service node becomes unresponsive, or is lost due to a subsequent hard-failover, the Backup Service ceases to operate; until a rebalance is performed. During this rebalance, ns\_server elects a new _leader_, and the Backup Service resumes operations.
+
+For information on the _leader-follower_ architecture, see [Backup-Service Architecture](../services-and-indexes/services/backup-service.md#backup-service-architecture).
+
+## [](#returning-the-cluster-to-a-stable-state)Returning the Cluster to a Stable State
+
+If or when the failed node is repaired and ready, it can be added back to the cluster via Delta or Full Recovery. Alternatively, an entirely new node can be added instead.
+
+* [Delta Recovery](recovery.md#delta-recovery) can be performed when the Cluster Manager recognizes the node as a previous member of the cluster. If Delta Recovery fails, Full Recovery must be performed.  
+When a node is added back to the cluster using Delta Recovery, the replica vBuckets on the failed-over node are considered to be _trusted_, but _behind on data_. The Cluster Manager therefore resynchronizes the vBuckets, so that their data becomes current. When this operation is complete, vBuckets are promoted to active status as appropriate, and the cluster map is updated.
+* If the node is added back using [Full Recovery](recovery.md#full-recovery), the node is treated as an entirely new node: it is reloaded with data, and requires rebalance.
+* If the node cannot be added back, a new node can be added, and the cluster rebalanced.
+
+Prior to rebalance, a cluster should always be restored to an appropriate size and topology. Note that a rebalance performed prior to the re-adding of a failed over node prevents Delta Recovery.
+
+## [](#hard-failover-example)Hard Failover Example
+
+Given:
+
+* A cluster containing four nodes, each of which runs the Data Service
+* A single replica configured per bucket, such that 256 active and 256 replica vBuckets therefore reside on each node
+* Node 4 of the cluster, on which vBucket #762 resides, offline and apparently unrecoverable
+
+The following occur:
+
+1. Clients attempting reads and writes on node 4 receive errors or timeouts.
+2. Hard failover is initiated, either manually or automatically, to remove node 4.
+3. The Cluster Manager promotes the replica vBucket 762 to active status, on node 2\. The cluster now has no replica for vBucket 762.
+4. The Cluster Map is updated, so that clients' subsequent reads and writes will go to the correct location for vBucket 762, now node #2.
+
+The same process is repeated for the remaining 255 vBuckets. It is then repeated for the remaining 255 vBuckets of the bucket, one bucket at a time.
+
+## [](#hard-failover-and-multiple-nodes)Hard Failover and Multiple Nodes
+
+Unless [Server Group Awareness](groups.md) is in operation, multiple nodes should not be failed over simultaneously; unless enough replica vBuckets exist on the remaining nodes to support required promotions to active status, and the number and capacity of the remaining nodes allow continued cluster-operation. If two nodes are to be failed over, two replicas per bucket are required, to prevent data-loss.
+
+## [](#unrecognized-non-availability)Unrecognized Non-Availability
+
+In rare cases, the Cluster Manager fails to recognize the unavailability of a node. In such cases, if graceful failover does not succeed, hard should be performed.

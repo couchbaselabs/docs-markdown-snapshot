@@ -1,0 +1,203 @@
+[View original HTML](/enterprise-analytics/2.0/reference/rest-set-up-alternate-address.html)
+
+> Alternate addresses and port-numbers can be established for and removed from nodes, by means of the `PUT` and `DELETE` HTTP methods, using the `/node/controller/setupAlternateAddresses/external` URI. 
+
+## [](#http-method-and-uri)HTTP methods and URI
+
+PUT /node/controller/setupAlternateAddresses/external
+
+DELETE /node/controller/setupAlternateAddresses/external
+
+## [](#rest-setup-alternate-address-description)Description
+
+A single, alternate address can be established for and removed from a node. Likewise, a single alternate port-number can be established for and removed from each node-service. This facilitates communication with external applications that are not permitted to contact nodes directly; but have access to a router or other networked entity that provides interfaces on the cluster’s behalf.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -X PUT -u [admin]:[password]
+  http://[ip-address]:8091/node/controller/setupAlternateAddresses/external
+  [-d hostname=<alternate-address> ]
+  [-d <service-name>=<alternate-port-number> ]
+
+curl -v -X DELETE -u [admin]:[password]
+  http://[ip-address]:8091/node/controller/setupAlternateAddresses/external
+
+The parameters are:
+
+* `localhost`. The address of the cluster-node to which an alternate address is to be assigned.
+* `hostname`. The alternate address to be assigned to the cluster-node. This can be either a _hostname_ or an _IP address_ (either V4 or V6).
+* `service`. Optionally, one or more service-names corresponding to services running on the node, each service-name being specified with an alternate port number. Possible service-names are `kv` (Data Service), `index` (Index Service), `n1ql` (Query Service), `fts` (Search Service), `cbas` (Analytics Service), `eventing` (Eventing Service) and `backup` (Backup Service). Each successive use of the `PUT` method entirely deletes all previous alternate settings (hostname and service) on the node. The `DELETE` method deletes all alternate settings (hostname and service).
+
+## [](#responses)Responses
+
+For both methods, success gives the status `200 OK`, with no object returned.
+
+If no hostname is specified, the message `hostname should be specified` is displayed.
+
+If either method is used to specify an unknown node, the message `No route to host` is given, and the call fails.
+
+Specifying an invalid service-name gives the status `400 Bad Request`, with the message `Invalid Port "<submitted-service-name>" : No such port.`
+
+## [](#examples)Examples
+
+The following examples demonstrate how to assign alternate addresses and port-numbers, and how to remove them.
+
+### [](#assign-alternate-address-and-port-numbers)Assign an Alternate Address and Port-Numbers
+
+To assign an alternate address and alternate port-numbers, use the `PUT /node/controller/setupAlternateAddresses/external` method and URI.
+
+curl -v -X PUT -u Administrator:password \
+http://10.143.192.101:8091/node/controller/setupAlternateAddresses/external \
+-d hostname=10.10.10.11 \
+-d kv=9000 \
+-d n1ql=9050
+
+This assigns the alternate address `10.10.10.11` to node `10.143.192.101`, and the alternate port-numbers `9000` and `9050` to the Data and Query Services, respectively. No object is returned.
+
+### [](#list-alternate-addresses-and-port-numbers)List Alternate Addresses and Port Numbers
+
+To list alternate addresses and port numbers, use the `GET /pools/default/nodeServices` method and URI. In the following example, the output is piped to the `jq` tool, to optimize readability.
+
+curl -v -X GET -u Administrator:password \
+http://localhost:8091/pools/default/nodeServices | jq
+
+The output is as follows:
+
+{
+  "rev": 603,
+  "nodesExt": [
+    {
+      "services": {
+        "backupAPI": 8097,
+        "backupAPIHTTPS": 18097,
+        "backupGRPC": 9124,
+        "capi": 8092,
+        "capiSSL": 18092,
+        "indexAdmin": 9100,
+        "indexHttp": 9102,
+        "indexHttps": 19102,
+        "indexScan": 9101,
+        "indexStreamCatchup": 9104,
+        "indexStreamInit": 9103,
+        "indexStreamMaint": 9105,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "mgmt": 8091,
+        "mgmtSSL": 18091,
+        "n1ql": 8093,
+        "n1qlSSL": 18093,
+        "projector": 9999
+      },
+      "thisNode": true,
+      "hostname": "10.144.210.101",
+      "alternateAddresses": {
+        "external": {
+          "hostname": "10.10.10.11",
+          "ports": {
+            "kv": 9000,
+            "n1ql": 9050
+          }
+        }
+      }
+    },
+    {
+      "services": {
+        "capi": 8092,
+        "capiSSL": 18092,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "mgmt": 8091,
+        "mgmtSSL": 18091,
+        "projector": 9999
+      },
+      "hostname": "10.144.210.102"
+    }
+  ],
+  "clusterCapabilitiesVer": [
+    1,
+    0
+  ],
+  "clusterCapabilities": {
+    "n1ql": [
+      "enhancedPreparedStatements"
+    ]
+  }
+}
+
+The output shows, in the internal `alternateAddresses` object, the specified alternate hostname, and the alternate port-numbers for the Data and Query Services.
+
+### [](#remove-alternate-addresses-and-port-numbers)Remove Alternate Addresses and Port Numbers
+
+The following example removes the alternate address and all alternate port numbers from the specified node.
+
+curl -v -X DELETE -u Administrator:password \
+http://localhost:8091/node/controller/setupAlternateAddresses/external
+
+If the call is successful, the status `200 OK` is provided. The results can be checked as before:
+
+curl -v -X GET -u Administrator:password \
+http://localhost:8091/pools/default/nodeServices | jq
+
+This now produces the following output:
+
+{
+  "rev": 604,
+  "nodesExt": [
+    {
+      "services": {
+        "backupAPI": 8097,
+        "backupAPIHTTPS": 18097,
+        "backupGRPC": 9124,
+        "capi": 8092,
+        "capiSSL": 18092,
+        "indexAdmin": 9100,
+        "indexHttp": 9102,
+        "indexHttps": 19102,
+        "indexScan": 9101,
+        "indexStreamCatchup": 9104,
+        "indexStreamInit": 9103,
+        "indexStreamMaint": 9105,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "mgmt": 8091,
+        "mgmtSSL": 18091,
+        "n1ql": 8093,
+        "n1qlSSL": 18093,
+        "projector": 9999
+      },
+      "thisNode": true,
+      "hostname": "10.144.210.101"
+    },
+    {
+      "services": {
+        "capi": 8092,
+        "capiSSL": 18092,
+        "kv": 11210,
+        "kvSSL": 11207,
+        "mgmt": 8091,
+        "mgmtSSL": 18091,
+        "projector": 9999
+      },
+      "hostname": "10.144.210.102"
+    }
+  ],
+  "clusterCapabilitiesVer": [
+    1,
+    0
+  ],
+  "clusterCapabilities": {
+    "n1ql": [
+      "enhancedPreparedStatements"
+    ]
+  }
+}
+
+The internal `alternateAddresses` object has been removed; indicating that the alternate address and port numbers no longer exist.
+
+## [](#see-also)See Also
+
+For an overview of alternate addresses, and examples of how they can be used, see [Alternate Addresses](#learn:clusters-and-availability/connectivity.adoc#alternate-addresses).
+
+A complete list of Couchbase Services and the ports they occupy, along with information about custom port mapping, is provided in [Enterprise Analytics Ports](../install/cb-enterprise-analytics-ports.md).
+
+Also see [Listing Node Services](rest-list-node-services.md).

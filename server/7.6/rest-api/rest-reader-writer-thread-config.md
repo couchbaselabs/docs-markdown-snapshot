@@ -1,0 +1,60 @@
+[View original HTML](/server/7.6/rest-api/rest-reader-writer-thread-config.html)
+
+> The number of threads allocated per node is configurable. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /pools/default/settings/memcached/global
+
+## [](#description)Description
+
+Couchbase Server allows the number of threads allocated per node for _reading_, _writing_, and for _NonIO_, and _AuxIO_ thread-pools to be configured by the administrator.
+
+A high thread-allocation may improve performance on systems whose hardware-resources are commensurately supportive (for example, where the number of CPU cores is high). In particular, a high number of _writer_ threads on such systems may significantly optimize the performance of _durable writes_: see [Durability](../learn/data/durability.md), for information.
+
+Note, however, that a high thread-allocation might _impair_ some aspects of performance on less appropriately resourced nodes. Consequently, changes to the default thread-allocation should not be made to production systems without prior testing.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST -d hostname=<ip-address-or-hostname>:8091
+  -d num_reader_threads=<int>
+  -d num_writer_threads=<int>
+  -d num_nonio_threads=<int>
+  -d num_auxio_threads=<int>
+  -d password=<password>
+  -u <administrator>:<password>
+  http://<host>:<port>/pools/default/settings/memcached/global
+
+Each key is specified optionally.
+
+The keys `num_reader_threads` and `num_writer_threads` specify the number of threads that are to be used for _reading_ and _writing_, respectively.
+
+The keys `num_nonio_threads` and `num_auxio_threads` specify the number of threads that are to be used for _NonIO_ and _AuxIO_ thread pools, respectively. Note that:
+
+* The _NonIO_ thread pool is used to run _in memory_ tasks — for example, the _durability timeout_ task.
+* The _AuxIO_ thread pool is used to run _auxiliary I/O_ tasks — for example, the _access log_ task.
+
+In all cases, the value of `int` should be an integer between `1` and `64`, inclusive. If in any case the value `default` is specified (for example, `-d num_reader_threads=default`), Couchbase Server itself calculates and applies an appropriate number of threads.
+
+## [](#responses)Responses
+
+Success returns an object whose values confirm the settings that have been made.
+
+## [](#examples)Examples
+
+To set the numbers of reader, writer, NonIO, and AuxIO threads for Couchbase Server, use the `POST /pools/default/settings/memcached/global` http method and endpoint as follows:
+
+curl -v -X POST -u Administrator:password \
+http://10.144.220.101:8091/pools/default/settings/memcached/global \
+-d num_reader_threads=12 \
+-d num_writer_threads=8 \
+-d num_nonio_threads=6 \
+-d num_auxio_threads=6
+
+This sets the number of _reader_ threads to `12`, the number of _writer_ threads to `8`, and the numbers of _NonIO_ and _AuxIO_ threads each to `6`. If successful, the call returns an object whose values confirm the settings that have been made:
+
+{"num_reader_threads":12,"num_writer_threads":8,"num_auxio_threads":6,"num_nonio_threads":6}
+
+## [](#see-also)See Also
+
+See [Durability](../learn/data/durability.md), for information on durable writes. See [Threading](../learn/buckets-memory-and-storage/storage-settings.md#threading) for an overview of threads.

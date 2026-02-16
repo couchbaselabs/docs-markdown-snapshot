@@ -1,0 +1,202 @@
+[View original HTML](/server/7.2/learn/security/certificates.html)
+
+> Couchbase Server supports x.509 certificates for client and server. 
+
+## [](#certificates-in-couchbase)Certificates and Couchbase Server
+
+Couchbase Server supports the use of x.509 certificates, for clients and servers. This ensures that:
+
+* Only approved users, applications, machines, and endpoints have access to system resources. Consequently, the mechanism can be used by Couchbase SDK clients, to access Couchbase Services; and by source clusters that use XDCR to replicate data to target clusters.
+* Clients can verify the identity of Couchbase Server, thereby ensuring that they are not exchanging data with a rogue entity.
+
+Full Admin, Local User Security Admin, or External User Security Admin privileges are required, for the management of certificates.
+
+This page provides a general overview of certificates, and of their management in the context of Couchbase Server. For step-by-step instructions on certificate creation and deployment, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md).
+
+## [](#certificate-content)Certificate Content
+
+Certificate-based authentication relies on a _Certificate Authority_ (CA), to validate identities and issue certificates. Each certificate includes:
+
+* The name of the entity it identifies.
+* An expiration date.
+* The name of the CA that issued the certificate.
+* The digital signature either of the issuing CA, or of an intermediate certificate through which the authority of the issuing CA can be traced.
+* A public key, which corresponds to the _private_ key that was used to generate the certificate; and which can therefore potentially be used in conjunction with that private key, so as to handle authentication and secure communication between client and server.
+
+This information associates the _identified entity_ (that is, the server-node or client bearing the certificate) with the issuing CA, such that third parties who know and trust the CA, but are unfamiliar with the identified entity, may elect to trust the identified entity on the basis of their trust in the CA. Note that all systems that use certificates for authentication maintain their own collection of trusted CA certificates: if, when an entity attempts to authenticate, the entity proves that it has itself been authorized by a CA whose certificate is included in the system’s collection, the entity may be trusted by the system.
+
+Additionally, certificates can each be configured to contain _extensions_, which are used to constrain the certificate’s capabilities (for example, by indicating the IP address of the server on which the certificate must reside; or by indicating the uses to which its public key must be restricted); or to identify a _username_, based on which client-authentication and authorization can proceed.
+
+## [](#certificate-hierarchies)Certificate Hierarchies
+
+On a Couchbase-Server cluster, certificates are managed and deployed _hierarchically_. The certificate with overall authority for the cluster is at the top of the hierarchy; and its authority is inherited by all certificates on lower tiers of the hierarchy. One certificate _issues_ another certificate — thereby letting the new certificate inherit its own authority and occupy the tier immediately below itself — by the process of _certificate signing_.
+
+A _two-tier_ certificate hierarchy is one where the CA certificate has itself issued a certificate directly for one or more _identified entities_ — each of which could be an individual node within a cluster, or a client application that wishes to interact with the cluster. If a third party trusts a CA, then it will also trust an identified entity whose own certificate has been issued by that CA. The CA, being at the top of the two-tier hierarchy, is often referred to as the _Root CA_.
+
+A _two-plus-tier_ certificate hierarchy is one where a Root CA has issued a certificate to an _intermediate authority_, which in turn has issued a certificate either to another intermediate authority, or directly to one or more entities that are to be identified. Use of a two-plus-tier hierarchy requires that all intermediate certificates, as well as a given entity’s certificate, be available for inspection when authentication is attempted; otherwise, the ultimate authority of the root will not be traced, and authentication will fail. All certificates, both on the server-side and on the client-side, should therefore be made available to the requesting party as a complete _trust chain_. In 7.1+, either of the following procedures can be used:
+
+* The entity’s own certificate, and all intermediate certificates, are provided directly to the requesting party. The requesting party is expected to find the CA — the last certificate in the chain — in its own trust store; and if it does, authentication may proceed.
+* The entity’s own certificate alone is provided directly to the requesting party. The requesting party is expected to find all associated intermediates, and the CA, in its own trust store; and if it does, authentication may proceed.
+
+## [](#server-certificates)Default Certificates and Certificate Substitution
+
+By default, Couchbase Server provides minimally defined _root_ and _entity_ certificates to protect cluster and individual nodes. Administrators can replace these, with customized or externally acquired certificates, and with corresponding certificate-chains. All certificates and certificate-chains for client-side use need to be explicitly created and/or deployed by administrators, as appropriate.
+
+### [](#cluster-certificate)Cluster Certificate
+
+The cluster certificate is the _root certificate_ issued for the cluster; and contains the public key of the corresponding Certificate Authority (CA). The certificate itself is often referred to as the _Root CA_. Programs that wish to interact securely with Couchbase Server must elect to trust this CA. By means of _certificate signing_, the cluster certificate grants its authority to other certificates: this includes both server-side and client-side certificates. Thus, if client and server share the same root certificate, they are likely to trust one another.
+
+Couchbase Server provides a default, self-signed cluster certificate, which is created and deployed when the first node in a cluster is created. A new, replacement cluster certificate can be deployed on the cluster by means of the Couchbase REST API or CLI. The current cluster certificate is always visible on the **Root Certificate** panel of the **Security** screen of Couchbase Web Console. See [Root Certificate](../../manage/manage-security/manage-security-settings.md#root-certificate-security-screen-display).
+
+The file for the cluster certificate (indeed, for any other server or client certificate) is required to be in _Privacy Enhanced Mail_ (or _PEM_) format, with a `.pem` extension. The file can have any name, although `ca.pem` is commonly used. On creation, the certificate is generated (indeed, all certificates, whether server-side or client-side are generated) from a corresponding, already created _private key_; whose file is in _PKCS #1_ or _PKCS #8_ format, with a `.key` extension. (For further information, see [Private Key Formats](#private-key-formats), below.) The name of the private key often corresponds to the name of the certificate it generates: for example, `ca.key` would be used to generate `ca.pem`. When an existing certificate is to be used to grant its authority to another, the existing certificate’s `.key` and `.pem` files are both specified in the creation-process for the new certificate.
+
+Note that the private key of the default, self-signed cluster certificate is _not_ made available. Consequently, custom certificate-chains based on the default certificate _cannot_ be created. To create custom certificate-chains, a custom cluster certificate and private key must be generated (or alternatively, a Root CA must be acquired from an external authority, and certificate-chains then created based on an authority-signed _intermediate certificate_, as described below).
+
+Examples of creating cluster and other certificates based on private keys are provided in [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md)
+
+#### [](#multiple-root-cas)Multiple Root CAs
+
+Couchbase Server allows multiple Root CA certificates to be loaded. Together, these constitute a _trust store_, whereby Couchbase Server is able to determine whether or not to trust a client that is attempting access: if the client’s Root CA, as identified through examination of the client-certificates’s trust chain, resides in the cluster’s trust store, the client may be trusted.
+
+The Couchbase-Server trust store includes one or more Root CAs that are used to provide authority to individual nodes: each node has at most one node certificate, potentially with a concatenated trust chain; and this points to a single Root CA in the cluster’s trust store. A single Root CA may be pointed to by the trust chains of multiple nodes. All Root CAs in the trust store are accessible to all nodes, and multiple Root CAs may therefore be used in facilitating encrypted node-to-node communication.
+
+For more information, see [Using Multiple Root Certificates](using-multiple-cas.md).
+
+### [](#intermediate-certificates)Intermediate Certificates
+
+An _intermediate certificate_ (sometimes referred to as a _subordinate certificate_, an _Intermediate CA_, or a _Signing CA_) can be either:
+
+* A certificate signed by the cluster certificate (the _Root CA_).
+* One of a chain of intermediate certificates, each of which has been signed by that preceding it in the chain; except the first, which has been signed by the cluster certificate.
+
+The main purpose of the intermediate certificate is to sign _node certificates_, _client certificates_, or other _intermediate certificates_; and thereby convey the authority of the cluster certificate to the node or client certificates _indirectly_. This allows the cluster certificate’s own private key to be only minimally used (and thereby more securely maintained) when multiple nodes or clients need to be signed — possibly across multiple clusters, subnets, or data centers.
+
+The default certificates provided by Couchbase Server do not include intermediates: entity certificates are all signed directly by the root (the _cluster_ certificate). However, if customized certificates and certificate-chains are substituted by the administrator, intermediate certificates can be defined and used.
+
+Intermediate certificates can be uploaded to the Couchbase-Server trust store. For information, see [Adding Intermediate Certificates to the Trust Store](using-multiple-cas.md#adding-intermediate-certificates-to-the-trust-store).
+
+### [](#node-certificate)Node Certificates
+
+A _node certificate_, signed directly by the _cluster_ certificate, is assigned to each node in a Couchbase Cluster by default. The process whereby default node certificates are generated (based on a new private key) and signed (by means of the current cluster certificate and cluster private key) is entirely automated; and occurs whenever a single-node cluster is created, and whenever additional nodes are added or joined. Certificate-based security for a Couchbase Server-cluster is thereby provided, in a limited form, _out-of-the-box_ (supporting, for example, all the standard Couchbase-Server secure ports — which are described in [Couchbase Server Ports](../../install/install-ports.md) — and [Node-to-Node Encryption](../clusters-and-availability/node-to-node-encryption.md)). However, broader security requirements may need to be supported by means of _customized_ certificates, configured to include special extensions and _Subject Alternative Names_, based on an administrator-selected root authority.
+
+When customized node certificates have been prepared for a cluster, the following elements must be deployed on each node of the cluster, for its node certificate to become active:
+
+* The node private key, which has been used to create the node certificate for the current node. On each node, this must be named `pkey.key`.
+* The node certificate chain-file. On each node, this must be named `chain.pem`. When the node certificate has been signed directly by the cluster certificate, `chain.pem` is nothing more than the node certificate file, renamed. However, when the node certificate has gained the CA’s authority by means of a sequence of one or more intermediate certificates, `chain.pem` may be a correspondingly ordered _concatenation_ of all the certificates in the chain, except the cluster certificate: access to this file allows the authority of the node certificate to be established by progressive examination of the signing authorities in its chain.  
+Alternatively, if indeed the node certificate has gained the CA’s authority by means of a sequence of one or more intermediate certificates, `chain.pem` may still be configured to contain only the node certificate; if it is assumed that all intermediates in the chain are already resident in the client’s _trust store_.
+
+Couchbase Server requires that these files, when newly created, be manually copied to a specific location in the filesystem: from this location, they are deployed by Couchbase Server. Examples are provided in [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md).
+
+In Couchbase Enterprise Server Version 7.2 and later, each node certificate must be configured with its node’s name correctly specified as a _Subject Alternative Name_. See [Server Certificate Validation](#server-certificate-validation), below for details.
+
+### [](#client-certificates)Client Certificates
+
+A Couchbase Server-client can use a _client certificate_ to identify itself to Couchbase Server: this allows the server to authenticate the client, and to authorize the client’s associated _user_. Information included in the certificate identifies the user by means of a _username_.
+
+Couchbase Server creates and uses client certificates by default, for inter-node communication; but these are not visible to the user. Client certificates required for XDCR or SDK-client access must be explicitly created by the administrator; based on a customized, replacement cluster certificate.
+
+When authenticating a client that uses certificate-based authentication, Couchbase Server asks the client to present the client certificate. Couchbase Server inspects the client certificate: if this is ascertained to be part of a chain that leads to a root authority that is recognized by Couchbase Server, the client may be trusted. The certificate’s time-validity and other details are checked. If the certificate has not expired and is valid in all other necessary respects, the _username_ provided by the certificate is determined, and this is checked by Couchbase Server against registered users and their roles. If the user exists, and the associated roles are appropriate, access is granted; otherwise, access is denied.
+
+Note that the private key used to create the client certificate is itself used in the process whereby the client authenticates itself against the server: the client digitally signs a message, using its private key, and sends this message to the server; allowing the client’s _public_ key then to be used by the server to verify that the message has indeed been sent by the client. An example of specifying the private key for this purpose, in the context of securing XDCR, is provided in [Specify Root and Client Certificates, and Client Private Key](../../manage/manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates). A further example, in the context of securing contact with an LDAP host, is provided in [Configure LDAP](../../manage/manage-security/configure-ldap.md#client-certificate).
+
+Note also that these steps, whereby the client authenticates with the server, are additionally followed to allow the server to authenticate with the client. The overall, two-way authentication process is referred to as _mutual TLS_ (_mTLS_) or [mutual authentication](https://en.wikipedia.org/wiki/Mutual%5Fauthentication).
+
+#### [](#identity-encoding-in-client-certificates)Specifying Usernames for Client-Certificate Authentication
+
+The _username_ to be authorized by Couchbase Server can be specified by means of several elements included in the client certificate. Couchbase Server can be configured to search for appropriate elements within the client certificate; and then attempt to authenticate and authorize, using each element as the basis for a Couchbase-Server username.
+
+If multiple elements within the client certificate are so used, the first to be successfully authenticated by Couchbase Server is the one used. The order in which the elements are examined is that configured on Couchbase Server, as described in [Enable Client Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md).
+
+##### [](#specifying-usernames-in-certificates)Embedding Usernames in Certificates
+
+Within a certificate presented for authentication, the elements that can be used to specify a username include the following:
+
+* The `Subject` for the certificate, featuring the _Common Name_. For example, on the command-line, during client-certificate preparation, `-subj "/CN=clientuser"` might be specified; to allow `clientuser` to be identified as the username.  
+Note that use of Subject Common Name is now deprecated (see [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4)); but continues to be supported by Couchbase Server. See also [Deprecation of Subject Common Name](#deprecation-of-subject-common-name), below.
+* The `DNS` name, provided as a _Subject Alternative Name_ for the certificate. For example, `subjectAltName = DNS:node2.cb.com` would, with no prefix or delimiter specified in the Couchbase Server handling-configuration, allow `node2.cb.com` to be identified as the username.  
+_Prefix_ and _delimiter_ are explained below, in [Identifying Certificate-Based Usernames on Couchbase Server](#identifying-certificate-based-usernames-on-couchbase-server).
+* The `email`, provided as a _Subject Alternative Name_ for the certificate. For example, `subjectAltName = email:john.smith@mail.com` would, with no prefix configured or delimiter specified, allow `john.smith@mail.com` to be extracted and identified as the username. Note, however, that since the character `@` is not permitted in Couchbase Server usernames, no such user could exist. Nevertheless, the user `john.smith` _could_ be defined on Couchbase Server; and this name could be extracted from `john.smith@mail.com`, given appropriate server-side configuration of a _delimiter_, as explained in [Identifying Certificate-Based Usernames on Couchbase Server](#identifying-certificate-based-usernames-on-couchbase-server), below.
+* The `URI` provided as a _Subject Alternative Name_ for the certificate. For example, `subjectAltName = URI:www.acme.com` would, with no prefix or delimiter specified, allow `www.acme.com` to be extracted and identified as the username.
+
+Examples of specifying _Subject Common Names_ and _Subject Alternative Names_ are provided in [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md).
+
+##### [](#identifying-certificate-based-usernames-on-couchbase-server)Identifying Certificate-Based Usernames on Couchbase Server
+
+Client-certificate handling is _disabled_ by default on Couchbase Server: it can optionally be _enabled_; and if required, specified as _mandatory_.
+
+When client-certificate handling has been enabled, _paths_ specified within the client certificate can be configured to be searched for, in order to retrieve _usernames_ for authentication.
+
+Each specified _path_ can be one of the following path-types:
+
+* `subject.cn`. The _Subject Common Name_ specified in the certificate will be extracted.
+* `san.dns`. The `DNS` _Subject Alternative Name_ for the certificate will be extracted.
+* `san.email`. The `email` _Subject Alternative Name_ for the certificate will be extracted.
+* `san.uri`. The `URI` _Subject Alternative Name_ for the certificate will be extracted.
+
+Any number of paths can be specified on Couchbase Server, with multiple instances of any path-type.
+
+The name retrieved by searching for a Couchbase Server-specified path can optionally be _parsed_, so that the symbols that constitute the username are isolated from extraneous characters. This is achieved by associating the path with a specified _prefix_ and/or _delimiter_:
+
+* If neither a prefix nor a delimiter is specified for a given path, no parsing of the corresponding name is attempted; and authentication is attempted with the unparsed name.
+* If only a prefix is specified for a given path, parsing is attempted in accordance with the specified prefix. If no instance of the prefix is located in the name, authentication is then attempted with the name unchanged.
+* If only a delimiter is specified for a given path, parsing is attempted in accordance with the specified delimiter. If no instance of the delimiter is located in the name, authentication is then attempted with the name unchanged.
+* If both a prefix and a delimiter are specified for a given path, parsing is attempted for each in turn — prefix first, then delimiter — as described above. Authentication is then attempted with the string produced by these sequential parsing-attempts.
+
+_Prefix_ and _delimiter_ are defined as follows:
+
+* _Prefix_: One or more characters that, if exactly matched with the substring that begins the string specified as the Subject Common Name or Subject Alternative Name, are removed from that string. For example, if a certificate-specified `san.uri` is `www.couchbase.com`, and the server-specified prefix is `www.`, then `www.` is removed from `www.couchbase.com`, leaving the string `couchbase.com`.  
+However, if a certificate-specified `san.uri` is `foo.bar.com`, and the server-specified prefix is `www.`, nothing is removed from `foo.bar.com`.
+* _Delimiter_: A single character that, if matched with a single instance in the string being parsed, causes both itself and all subsequent characters to be discarded from the string. For example, a delimiter of `.` causes the substring `.com` to be discarded from `couchbase.com`; and leaves `couchbase` as the username to be authenticated.  
+Note that if a string contains multiple instances of the character specified as the delimiter, the _first_ instance is the one used. For example, a delimiter of `.` causes the substring `.couchbase.com` to be discarded from `www.couchbase.com`, leaving `www` as the username to be authenticated.
+
+For step-by-step instructions, see [Enable Client Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md).
+
+## [](#deprecation-of-subject-common-name)Deprecation of Subject Common Name
+
+Use of the _Subject Common Name_ to identify either a server or a client is now deprecated (see [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4)). For Couchbase Enterprise Server Version 7.2 and later, this means that:
+
+* The node-certificate for each server in the cluster must specify its node-name as a _Subject Alternative Name_: see [Node-Certificate Validation](#node-certificate-validation), immediately below, for details. Subject Common Name may continue to be specified.
+* A client-certificate may continue to specify only a Subject Common Name.
+
+Examples of certificate-creation provided in [Manage Certificates](../../manage/manage-security/manage-certificates.md) continue to include definitions of Subject Common Name for both server and client.
+
+## [](#node-certificate-validation)Node-Certificate Validation
+
+In Couchbase Enterprise Server Version 7.2 and later, each _node certificate_ must be configured with the node-name correctly specified as a _Subject Alternative Name_ (SAN).
+
+The SAN must meet the following requirements. (Note that the wildcard character is permitted in all expressions.)
+
+* If the node-name is a _Fully Qualified Domain Name_ (FQDN), the SAN must specify this FQDN, using the `DNS:` prefix. For example, `DNS:*.localhost.com`. Note that when the node name is an FQDN, the SAN _cannot_ specify an IP address.
+* If the node-name is an _IPV4 IP Address_, the SAN must specify this IP address, using the `IP:` prefix. For example, `IP:127.0.0.1`. Note that when the node-name is an IP address, the SAN _cannot_ specify an FQDN.
+* If the node-name is an _IPV6 IP Address_, the SAN must specify this IP address, using the `IP:` prefix. For example: `IP:0:0:0:0:0:0:0:1`. Note that when the node-name is an IP address, the SAN _cannot_ specify an FQDN.
+
+For complete examples of server-certificate configuration, specifying the node-name as a SAN, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md).
+
+### [](#certificate-checking)Certificate Checking
+
+Certificate-checking occurs in the following situations:
+
+* A certificate is uploaded to a node. If the name of the node is not correctly specified as a SAN:
+
+  * If the name of the node itself can be changed, a warning is returned, and the upload succeeds.
+  * If the name of the node itself cannot be changed, an error is returned, and the upload fails.  
+For information on when the node itself can be renamed, see [Node Renaming](../clusters-and-availability/nodes.md#node-renaming).
+* A node is added or joined to a cluster. In this case, the certificate on the new node (always) and on the cluster node handling the join (sometimes, depending on the cluster’s configuration) is checked for a node-name correctly specified as a SAN:
+
+  * _New node_: If the node-name is not correctly specified as a SAN, an error is returned, and the add or join fails.
+  * _Cluster node_: If the cluster has two or more nodes prior to the add or join, the check is _not_ performed. Otherwise, the check is performed; and if the node-name is not correctly specified as a SAN, the add or join fails.
+
+## [](#private-key-formats)Private Key Formats
+
+In version 7.1 and later, Couchbase Server supports _PKCS #1_ and _PKCS #8_ — in each case, only for use with private keys:
+
+* _PKCS #1_ can be used for _unencrypted_ private keys only.
+* _PKCS #8_ can be used for both _unencrypted_ and _encrypted_ private keys: note that the user-specified `EncryptedPrivateKeyInfo` must use _PKCS #5 v2_ algorithms.
+
+## [](#json-passphrase-registration)JSON Passphrase Registration
+
+If a node-certificate is to be associated with an encrypted private key, a procedure can be defined to allow Couchbase Server to access and use the key’s passphrase, when use of the key is required: the passphrase can be _registered_, by specifying a JSON object with the REST API. For information, see [Upload and Retrieve a Node Certificate](../../rest-api/upload-retrieve-node-cert.md).
+
+## [](#examples)Examples
+
+Examples of file-types and their generation, of extension-definition, of intermediate-certificate use, and of Couchbase-Server specific deployment requirements are provided for the server-side in [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md), and for the client-side in [Configure Client Certificates](../../manage/manage-security/configure-client-certificates.md). The examples allow _Cross Data Center Replication_ to be secured with certificates only. They also support secure access to Couchbase Server from Java clients.

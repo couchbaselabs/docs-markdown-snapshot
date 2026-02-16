@@ -1,0 +1,48 @@
+[View original HTML](/server/current/learn/clusters-and-availability/graceful-failover.html)
+
+> Graceful failover takes a Data Service node out of a healthy cluster, in an orderly and controlled fashion. 
+
+## [](#understanding-graceful-failover)Understanding Graceful Failover
+
+Graceful failover allows a Data Service node to be safely taken out of a cluster. Note that graceful failover is _only_ used for Data Service nodes.
+
+For each active vBucket on the node to be failed over, graceful failover ensures that ongoing operations have been completed. Next, it synchronizes the active vBucket with a corresponding replica vBucket, located on a different Data Service node, so that the data of the replica becomes identical to that of the active vBucket. Finally, the replica is promoted to active status, and begins serving data; while the old active vBucket is demoted to _dead_ status. Throughout the entire procedure, all data continues to be available, and no application performance-loss is incurred.
+
+Graceful failover should be used only when all nodes in the cluster are responsive; and when each bucket in the cluster has all 1024 active vBuckets available, and also at least one full set of 1024 replica vBuckets. In consequence of these requirements, in a cluster where seven Data Service nodes host a single bucket, if that bucket is configured for:
+
+* One replica, one node can be gracefully failed over
+* Two replicas, two nodes can be gracefully failed over
+* Three replicas, three nodes can be gracefully failed over
+
+Graceful failover can be halted, mid-process. If it is subsequently restarted, it continues exactly from where it left off. If it is not subsequently restarted, the cluster should be rebalanced, in order to be restored to its former state.
+
+vBucket status can be ascertained by creating and observing a chart, on the main **Dashboard** screen of Couchbase Web Console; or by using equivalent procedures supported by the CLI and REST API. See [Manage Statistics](../../manage/manage-statistics/manage-statistics.md).
+
+For examples of managing graceful failover with the UI, the CLI, and the REST API, see [Perform Graceful Failover](../../manage/manage-nodes/failover-graceful.md).
+
+## [](#advantages-and-disadvantages)Advantages and Disadvantages
+
+If a Data Service node is to be removed from a cluster all of whose nodes are responsive, either graceful failover or [removal](removal.md) can be used. Graceful failover may be faster, since active vBuckets are assigned to alternative nodes merely by changing the status of existing replicas to _active_, with no network-intensive data-copying required.
+
+Graceful failover, however, entails subsequent loss of resiliency: promotion of replica vBuckets to _active_ status on the surviving nodes results in the cluster no longer having its intended, full complement of replica vBuckets. Following graceful failover, the imbalance should be addressed as soon as possible, by means of a _rebalance_.
+
+Note also that the performance of graceful failover is partially dependent on the location of the replica vBuckets that are to be promoted to _active_ status. These may not be in memory, since Couchbase Server ejects replica rather than active data, when memory-resources are constrained. In such cases, the replica vBuckets must be accessed from disk; and this may incur greater latency.
+
+## [](#graceful-failover-example)Graceful Failover Example
+
+Given:
+
+* A fully healthy cluster containing four nodes, each of which runs the Data Service.
+* One replica for each bucket, resulting in 256 active and 256 replica vBuckets for each bucket, on each of the four nodes.
+* The requirement to remove one of the Data Service nodes (node 4) on which active vBucket 762 resides.
+* Graceful failover.
+
+The following occur:
+
+1. The Cluster Manager take steps to ensure that active vBucket 762 is exactly in sync with replica vBucket 762, which resides on node 2.
+2. The Cluster Manager coordinates a takeover by node 2 of vBucket 762, promoting vBucket 762 to _active_, on node 2; and demoting the old active vBucket on node 4, to _dead_. Note that this leaves the cluster with no replica for vBucket 762, until the next rebalance or Delta Recovery.
+3. The cluster map is updated, so that subsequent reads and writes go to the correct location for vBucket 762, now on node 2.
+4. The same steps are repeated for the remaining 255 vBuckets of the bucket on this node, one at a time; and are likewise repeated for all remaining vBuckets of other buckets.
+
+|  | Any transactions and queries in progress will halt the failover process until they are completed. |
+|  | ------------------------------------------------------------------------------------------------- |

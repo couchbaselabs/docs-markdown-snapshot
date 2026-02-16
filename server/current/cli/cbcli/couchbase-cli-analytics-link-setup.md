@@ -1,0 +1,473 @@
+[View original HTML](/server/current/cli/cbcli/couchbase-cli-analytics-link-setup.html)
+
+Manage Analytics links
+
+## [](#synopsis)SYNOPSIS
+
+_couchbase-cli analytics-link-setup_ [--cluster <cluster>] [--username <username>]
+    [--password <password>] [--client-cert <path>] [--client-cert-password <password>]
+    [--client-key <path>] [--client-key-password <password>] [--create] [--delete]
+    [--edit] [--list] [--dataverse <name>] [--scope <name>] [--name <name>] [--type <type>]
+    [--hostname <hostname>] [--link-username <username>] [--link-password <password>]
+    [--user-certificate <path>] [--user-key <path>] [--user-key-passphrase <path>]
+    [--certificate <path>] [--encryption <type>] [--access-key-id <id>]
+    [--secret-access-key <key>] [--session-token <token>] [--region <region>]
+    [--service-endpoint <url>] [--account-name <id>] [--account-key <key>]
+    [--shared-access-signature <token>] [--managed-identity-id <id>] [--client-id <id>]
+    [--tenant-id <id>] [--client-secret <key>] [--client-certificate <key>]
+    [--client-certificate-password <key>] [--endpoint <url>] [--application-default-credentials]
+    [--json-credentials <key>]
+
+## [](#description)DESCRIPTION
+
+This command is used to manage links used by the external dataset and remote cluster capabilities of the Analytics Service.
+
+## [](#options)OPTIONS
+
+### [](#common-link-options)Common Link Options
+
+\-c
+
+\--cluster
+
+Specifies the hostname of a node in the cluster. See the HOST FORMATS section for more information on specifying a hostname.
+
+\-u
+
+\--username <username>
+
+Specifies the username of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error.
+
+\-p
+
+\--password <password>
+
+Specifies the password of the user executing the command. If you do not have a user account with permission to execute the command then it will fail with an unauthorized error. If this argument is specified, but no password is given then the command will prompt the user for a password through non-echoed stdin. You may also specify your password by using the environment variable CB\_REST\_PASSWORD.
+
+\--client-cert <path>
+
+The path to a client certificate used to authenticate when connecting to a cluster. May be supplied with `--client-key` as an alternative to the `--username` and `--password` flags. See the CERTIFICATE AUTHENTICATION section for more information.
+
+\--client-cert-password <password>
+
+The password for the certificate provided to the `--client-cert` flag, when using this flag, the certificate/key pair is expected to be in the PKCS#12 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+\--client-key <path>
+
+The path to the client private key whose public key is contained in the certificate provided to the `--client-cert` flag. May be supplied with `--client-cert` as an alternative to the `--username` and `--password`flags. See the CERTIFICATE AUTHENTICATION section for more information.
+
+\--client-key-password <password>
+
+The password for the key provided to the `--client-key` flag, when using this flag, the key is expected to be in the PKCS#8 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+\--create
+
+Creates a new link.
+
+\--delete
+
+Deletes a link.
+
+\--edit
+
+Edits a link.
+
+\--list
+
+List defined links.
+
+\--name <name>
+
+The name for the link.
+
+\--type <type>
+
+The type of the link. It can be 'couchbase', 's3', 'azureblob', 'azuredatalake' or 'gcs'.
+
+\--dataverse <name>
+
+(Deprecated) The dataverse of the link. Use --scope instead.
+
+\--scope <name>
+
+The scope of the link in its canonical form. The canonical form of a scope is each part of the form, joined with a '/' character. e.g. the canonical form of the scope '\`remote.links\`.s3' would be represented as 'remote.links/s3'
+
+### [](#couchbase-link-options)Couchbase Link Options
+
+Following are the options specific to **\--type couchbase**, i.e. Couchbase links
+
+\--hostname <hostname>
+
+The hostname of the link.
+
+\--encryption <type>
+
+Specifies the type of encryption to use. This flag may be set to 'half', 'full', or 'none'. Half encryption means that passwords are encrypted, but data is not. This results in faster data transfer, but less security. Full encryption means that all data and passwords are encrypted which increases security, but reduces overall data transfer speed. If no encryption is needed then "none" can be specified.
+
+\--link-username <username>
+
+The username of the link.
+
+\--link-password <password>
+
+The password of the link.
+
+\--user-certificate <path>
+
+The local path to the file containing the user certificate for authentication. This and **\--user-key** are used in place of **\--link-username** and **\--link-password** when utilizing certificate-based authentication. Certificate-based auth requires **\--encryption full**.
+
+\--user-key <path>
+
+The local path to the file containing the user key for authentication. This and **\--user-certificate** are used in place of **\--link-username** and **\--link-password** when utilizing certificate-based authentication. Certificate-based auth requires **\--encryption full**.
+
+\--user-key-passphrase <path>
+
+The local path to a JSON file containing the private key passphrase settings, see below for examples for the accepted configurations. Required when using **\--encryption full** with Certificate-based auth, where the specified **\--user-key** is encrypted.
+
+When sending a plain text password, the file may look something like the one below. Note that plain passphrases will be encrypted with secret management when arrives to the server, but will be transmitted unencrypted (unless HTTPS is used)
+
+{
+  "type": "plain",
+  "password": "asdasd"
+}
+
+When using a REST call to fetch the password, the file may look similar to the one below.
+
+{
+  "type": "rest",
+  "url": "<url to call>",
+  "httpsOpts": {
+    "verifyPeer": true
+  },
+  "timeout": 5000
+}
+
+\--certificate <path>
+
+The local path to the file containing the certificate used for encryption. Multiple certificates can be configured by specifying --certificate <path> for each certificate. At least one certificate required with **\--encryption full**.
+
+### [](#s3-link-options)S3 Link Options
+
+Following are the options specific to **\--type s3**, i.e. S3 links
+
+\--access-key-id <id>
+
+The access key ID of the s3 link.
+
+\--secret-access-key <key>
+
+The secret access key of the s3 link.
+
+\--session-token <token>
+
+The session token of the s3 link. This is used when Multi-Factor Authentication (MFA) temporary credentials are used.
+
+\--region <region>
+
+The region of the s3 link.
+
+\--service-endpoint <url>
+
+The service endpoint of the link (optional).
+
+### [](#azure-blob-link-options)Azure Blob Link Options
+
+Following are the options specific to **\--type azureblob**, i.e. Azure Blob links. Only a single authentication method is allowed to be provided at the same time. If anonymous authentication (no authentication) is desired, then none of the authentication parameters should be provided.
+
+\--account-name <id>
+
+The account name of the link. This property needs to be provided together with the --account-key.
+
+\--account-key <key>
+
+The account key of the link. This property needs to be provided together with the --account-name.
+
+\--shared-access-signature <token>
+
+The shared access signature of the link.
+
+\--managed-identity-id <id>
+
+The managed identity id of the link.
+
+\--client-id <id>
+
+The client id of the link. This property needs to be provided together with the --tenant-id and either the --client-secret or --client-certificate.
+
+\--client-secret <key>
+
+The client secret of the link. This property needs to be provided together with the --client-id and the --tenant-id.
+
+\--client-certificate <key>
+
+The client certificate of the link. This property needs to be provided together with the --client-id and the --tenant-id. If the client certificate is password protected, then the --client-certificate-password property needs to be provided as well.
+
+\--client-certificate-password <key>
+
+The client certificate password of the link. This property is provided if the provided --client-certificate is password protected.
+
+\--tenant-id <id>
+
+The tenant id of the link. This property is provided together with the --client-id.
+
+\--endpoint <url>
+
+The endpoint of the link (required).
+
+### [](#azure-data-lake-link-options-developer-preview)Azure Data Lake Link Options (Developer Preview)
+
+Note: Azure Data Lake links are available only in **Developer Preview** mode.
+
+Following are the options specific to **\--type azuredatalake**, i.e. Azure Data Lake links. Only a single authentication method is allowed to be provided at the same time. If anonymous authentication (no authentication) is desired, then none of the authentication parameters should be provided.
+
+\--account-name <id>
+
+The account name of the link. This property needs to be provided together with the --account-key.
+
+\--account-key <key>
+
+The account key of the link. This property needs to be provided together with the --account-name.
+
+\--shared-access-signature <token>
+
+The shared access signature of the link.
+
+\--managed-identity-id <id>
+
+The managed identity id of the link.
+
+\--client-id <id>
+
+The client id of the link. This property needs to be provided together with the --tenant-id and either the --client-secret or --client-certificate.
+
+\--client-secret <key>
+
+The client secret of the link. This property needs to be provided together with the --client-id and the --tenant-id.
+
+\--client-certificate <key>
+
+The client certificate of the link. This property needs to be provided together with the --client-id and the --tenant-id. If the client certificate is password protected, then the --client-certificate-password property needs to be provided as well.
+
+\--client-certificate-password <key>
+
+The client certificate password of the link. This property is provided if the provided --client-certificate is password protected.
+
+\--tenant-id <id>
+
+The tenant id of the link. This property is provided together with the --client-id.
+
+\--endpoint <url>
+
+The endpoint of the link (required).
+
+### [](#gcs-link-options)GCS Link Options
+
+Following are the options specific to **\--type gcs**, i.e. Google Cloud Storage links.
+
+\--application-default-credentials
+
+Indicates that the link should use the Google Application Default Credentials for authenticating (optional).
+
+\--json-credentials <key>
+
+The JSON credentials of the link (optional).
+
+\--endpoint <url>
+
+The endpoint of the link (optional).
+
+## [](#host-formats)HOST FORMATS
+
+When specifying a host for the couchbase-cli command the following formats are expected:
+
+* `couchbase://<addr>` or `couchbases://<addr>`
+* `http://<addr>:<port>` or `https://<addr>:<port>`
+* `<addr>:<port>`
+
+It is recommended to use the couchbase://<addr> or couchbases://<addr> format for standard installations. The other formats allow an option to take a port number which is needed for non-default installations where the admin port has been set up on a port other that 8091 (or 18091 for https).
+
+## [](#certificate-authentication-mtls-authentication)CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION)
+
+This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication). To use certificate based authentication a certificate/key must be supplied, there a currently multiple ways this may be done.
+
+### [](#pem-encoded-certificatekey)PEM ENCODED CERTIFICATE/KEY
+
+An unencrypted PEM encoded certificate/key may be supplied by using: - `--client-cert <path>`\- `--client-key <path>`
+
+The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
+
+The file passed to `--client-key` must contain at most one private key, the key can be in one of the following formats: - PKCS#1 - PKCS#8
+
+Currently, only the following key types are supported: - RSA - DSA
+
+### [](#pem-encoded-certificatepem-or-der-encrypted-pkcs8-key)PEM ENCODED CERTIFICATE/PEM OR DER ENCRYPTED PKCS#8 KEY
+
+An encrypted PKCS#8 formatted key may be provided using: - `--client-cert <path>`\- `--client-key <path>`\- `--client-key-password <password>`
+
+The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
+
+Currently, only the following key types are supported: - RSA - DSA
+
+### [](#encrypted-pkcs12-certificatekey)ENCRYPTED PKCS#12 CERTIFICATE/KEY
+
+An encrypted PKCS#12 certificate/key may be provided using: - `--client-cert <path>`\- `--client-cert-password <password>`
+
+The file passed to `--client-cert` must contain the client certificate and exactly one private key. It may also contain the chain required to authenticate the client certificate.
+
+Currently, only the following key types are supported: - RSA - DSA
+
+## [](#examples)EXAMPLES
+
+To create a new link to a Couchbase cluster named "east", run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope Default --name east --type couchbase \
+ --hostname 192.168.1.6 --link-username Administrator \
+ --link-password password --encryption none
+
+If the new remote reference should be fully encrypted then make sure to enable encryption. Two certificates are specified for the remote cluster in the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope Default --name east --type couchbase \
+ --hostname 192.168.1.6 --link-username Administrator \
+ --link-password password --encryption full \
+ --certificate /root/cert1.pem --certificate /root/cert2.pem
+
+To create an S3 link named `myAwsLink` in the "\`remote.links\`.s3" scope, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/s3 --name myAwsLink --type s3 \
+ --region us-west-2 --access-key-id LOREMIPSUMDOLORSITAMET123 \
+ --secret-access-key CoNSEcteTuRadipIsciNGelITSEDDoeiUSmODTEMpor456
+
+To create an S3 link named `myAwsLink` in the "\`remote.links\`.s3" scope, with temporary S3 credentials, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/s3 --name myAwsLink --type s3 \
+ --region us-west-2 --access-key-id myTemporaryAccessKeyId \
+ --secret-access-key myTemporarySecretAccessKey \
+ --session-token myTemporarySessionToken
+
+To create an AzureBlob link named `myAzureBlobLink` in the "\`remote.links\`.azure" scope, using **"account name and account key"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureBlobLink --type \
+ azureblob --account-name myAccountName --account-key myAccountKey --endpoint myendpoint.com
+
+To create an AzureBlob link named `myAzureBlobLink` in the "\`remote.links\`.azure" scope, using **"shared access signature"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureBlobLink --type \
+ azureblob --shared-access-signature mySharedAccessSignature --endpoint myendpoint.com
+
+To create an AzureBlob link named `myAzureBlobLink` in the "\`remote.links\`.azure" scope, using **"managed identity id"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureBlobLink --type \
+ azureblob --managed-identity-id myManagedIdentityId --endpoint myendpoint.com
+
+To create an AzureBlob link named `myAzureBlobLink` in the "\`remote.links\`.azure" scope, using **"client id and client secret"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+-p password --create --scope remote.links/azure --name myAzureBlobLink --type \
+azureblob --client-id myClientId --client-secret myClientSecret --endpoint myendpoint.com
+
+To create an AzureBlob link named `myAzureBlobLink` in the "\`remote.links\`.azure" scope, using **"client id and client certificate"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+-p password --create --scope remote.links/azure --name myAzureBlobLink --type \
+azureblob --client-id myClientId --client-certificate myClientCertificate --endpoint myendpoint.com
+
+to create an Azure Data Lake link named `myAzureDataLakeLink` in the "\`remote.links\`.azure" scope, using **"account name and account key"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureDataLakeLink --type \
+ azuredatalake --account-name myAccountName --account-key myAccountKey --endpoint myendpoint.com
+
+to create an Azure Data Lake link named `myAzureDataLakeLink` in the "\`remote.links\`.azure" scope, using **"shared access signature"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureDataLakeLink --type \
+ azuredatalake --shared-access-signature mySharedAccessSignature --endpoint myendpoint.com
+
+to create an Azure Data Lake link named `myAzureDataLakeLink` in the "\`remote.links\`.azure" scope, using **"managed identity id"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --create --scope remote.links/azure --name myAzureDataLakeLink --type \
+ azuredatalake --managed-identity-id myManagedIdentityId --endpoint myendpoint.com
+
+to create an Azure Data Lake link named `myAzureDataLakeLink` in the "\`remote.links\`.azure" scope, using **"client id and client secret"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+-p password --create --scope remote.links/azure --name myAzureDataLakeLink --type \
+azuredatalake --client-id myClientId --client-secret myClientSecret --endpoint myendpoint.com
+
+to create an Azure Data Lake link named `myAzureDataLakeLink` in the "\`remote.links\`.azure" scope, using **"client id and client certificate"** for authentication, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+-p password --create --scope remote.links/azure --name myAzureDataLakeLink --type \
+azuredatalake --client-id myClientId --client-certificate myClientCertificate --endpoint myendpoint.com
+
+To list all current links, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --list
+
+To list current S3 links, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --list --type s3
+
+To list current AzureBlob links, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --list --type azureblob
+
+To list current Azure Data Lake links, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+-p password --list --type azuredatalake
+
+If you need to edit a link named "east" and change the password, run the following command:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --edit --scope Default --name east --type couchbase \
+ --hostname 192.168.1.6 --link-username Administrator \
+ --link-password new_password --encryption half
+
+Note in the above example that you need to re-specify all of the current unchanging configuration parameters in addition to changing ones, except **\--type** which cannot change.
+
+If a link is no longer needed it can be deleted. The following example deletes the link named "east" in the "Default" scope:
+
+$ couchbase-cli analytics-link-setup -c 192.168.1.5 -u Administrator \
+ -p password --delete --scope Default --link east
+
+## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
+
+CB\_REST\_USERNAME
+
+Specifies the username to use when executing the command. This environment variable allows you to specify a default argument for the -u/--username argument on the command line.
+
+CB\_REST\_PASSWORD
+
+Specifies the password of the user executing the command. This environment variable allows you to specify a default argument for the -p/--password argument on the command line. It also allows the user to ensure that their password are not cached in their command line history.
+
+CB\_CLIENT\_CERT
+
+The path to a client certificate used to authenticate when connecting to a cluster. May be supplied with `CB_CLIENT_KEY` as an alternative to the `CB_USERNAME` and `CB_PASSWORD` variables. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_CERT\_PASSWORD
+
+The password for the certificate provided to the `CB_CLIENT_CERT` variable, when using this variable, the certificate/key pair is expected to be in the PKCS#12 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_KEY
+
+The path to the client private key whose public key is contained in the certificate provided to the `CB_CLIENT_CERT` variable. May be supplied with `CB_CLIENT_CERT` as an alternative to the `CB_USERNAME` and `CB_PASSWORD`variables. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_KEY\_PASSWORD
+
+The password for the key provided to the `CB_CLIENT_KEY` variable, when using this variable, the key is expected to be in the PKCS#8 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+## [](#couchbase-cli)COUCHBASE-CLI
+
+Part of the [couchbase-cli](couchbase-cli.md) suite

@@ -1,0 +1,859 @@
+[View original HTML](/server/7.2/n1ql/n1ql-language-reference/bitwisefun.html)
+
+All Bit/Binary functions can only operate on 64-bit signed integers.
+
+|  | All non-integer numbers and other data types result in null. |
+|  | ------------------------------------------------------------ |
+
+|  | Couchbase Server uses two’s complement representation. |
+|  | ------------------------------------------------------ |
+
+When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
+
+(MSB) Bit 32 → `0000 0000 0000 0000 0000 0000 0000 0000` ← Bit 1 (LSB)
+
+## [](#BitAND)BITAND (`int_value1`, `int_value2`, ...)
+
+### [](#description)Description
+
+Returns the result of a bitwise AND operation performed on all input integer values.
+
+The bitwise AND operation compares each bit of `int_value1` to the corresponding bit of every other `int_value`. If all bits are 1, then the corresponding result bit is set to 1; otherwise it is set to 0 (zero).
+
+### [](#arguments)Arguments
+
+int\_value1, int\_value2, ...
+
+Integers, or any valid [expressions](index.md) which evaluate to integers, that are used to compare.
+
+### [](#return-value)Return Value
+
+An integer, representing the bitwise AND between all of the input integers.
+
+### [](#limitations)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples)Examples
+
+AND-1
+
+Compare 3 (0011 in binary) and 6 (0110 in binary).
+
+```sqlpp
+SELECT BITAND(3,6) AS BitAND;
+```
+
+Results
+
+```json
+[
+  {
+    "BitAND": 2
+  }
+]
+```
+
+This results in 2 (0010 in binary) because only bit 2 is set in both 3 (00**1**1) and 6 (01**1**0).
+
+AND-2
+
+Compare 4.5 and 3 (0011 in binary).
+
+```sqlpp
+SELECT BITAND(4.5,3) AS BitAND;
+```
+
+Results
+
+```json
+[
+  {
+    "BitAND": null
+  }
+]
+```
+
+The result is null because 4.5 is not an integer.
+
+AND-3
+
+Compare 4.0 (0100 in binary) and 3 (0011 in binary).
+
+```sqlpp
+SELECT BITAND(4.0,3) AS BitAND;
+```
+
+Results
+
+```json
+[
+  {
+    "BitAND": 0
+  }
+]
+```
+
+This results in 0 (zero) because 4.0 (0100) and 3 (0011) do not share any bits that are both 1.
+
+AND-4
+
+Compare 3 (0011 in binary) and 6 (0110 in binary) and 15 (1111 in binary).
+
+```sqlpp
+SELECT BITAND(3,6,15) AS BitAND;
+```
+
+Results
+
+```json
+[
+  {
+    "BitAND": 2
+  }
+]
+```
+
+This results in 2 (0010 in binary) because only the 2nd bit from the right is 1 in all three numbers.
+
+## [](#BitCLEAR)BITCLEAR (`int_value`, `positions`)
+
+### [](#description-2)Description
+
+Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.
+
+|  | Specifying a negative or zero bit position makes the function return a null. |
+|  | ---------------------------------------------------------------------------- |
+
+### [](#arguments-2)Arguments
+
+int\_value
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the target bit or bits to clear.
+
+positions
+
+An integer or an array of integers specifying the position or positions to be cleared.
+
+### [](#return-value-2)Return Value
+
+An integer, representing the result after clearing the bit or bits specified.
+
+### [](#limitations-2)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-2)Examples
+
+CLEAR-1
+
+Clear bit 1 from 6 (0110 in binary).
+
+```sqlpp
+SELECT BITCLEAR(6,1) AS BitCLEAR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitCLEAR": 6
+  }
+]
+```
+
+This results in 6 (011**0** in binary) because bit 1 was already zero.
+
+CLEAR-2
+
+Clear bits 1 and 2 from 6 (01**10** in binary).
+
+```sqlpp
+SELECT BITCLEAR(6,[1,2]) AS BitCLEAR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitCLEAR": 4
+  }
+]
+```
+
+This results in 4 (01**0**0 in binary) because bit 2 changed to zero.
+
+CLEAR-3
+
+Clear bits 1, 2, 4, and 5 from 31 (0**11**1**11** in binary).
+
+```sqlpp
+SELECT BITCLEAR(31,[1,2,4,5]) AS BitCLEAR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitCLEAR": 4
+  }
+]
+```
+
+This results in 4 (0**00**1**00**) because bits 1, 2, 4, and 5 changed to zero.
+
+## [](#BitNOT)BITNOT (`int_value`)
+
+### [](#description-3)Description
+
+Returns the results of a bitwise logical NOT operation performed on an integer value.
+
+The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.
+
+|  | All bits of the integer will be altered by this operation. |
+|  | ---------------------------------------------------------- |
+
+### [](#arguments-3)Arguments
+
+int\_value
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the target bits to reverse.
+
+### [](#return-value-3)Return Value
+
+An integer, representing the result after performing the logical NOT operation.
+
+### [](#limitations-3)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-3)Examples
+
+NOT-1
+
+Perform the NOT operation on 3 (0000 0000 0000 0000 0000 0000 0000 0011 in binary).
+
+```sqlpp
+SELECT BITNOT(3) AS BitNOT;
+```
+
+Results
+
+```json
+[
+  {
+    "BitNOT": -4
+  }
+]
+```
+
+This results in -4 (**1111 1111 1111 1111 1111 1111 1111 1100** in binary) because all bits changed.
+
+## [](#BitOR)BITOR (`int_value1`, `int_value2`, ...)
+
+### [](#description-4)Description
+
+Returns the result of a bitwise inclusive OR operation performed on all input integer values.
+
+compares each bit of `int_value1` to the corresponding bit of every other `int_value`. If any bit is 1, the corresponding result bit is set to 1; otherwise, it is set to 0 (zero).
+
+### [](#arguments-4)Arguments
+
+int\_value1, int\_value2, ...
+
+Integers, or any valid [expressions](index.md) which evaluate to integers, that are used to compare.
+
+### [](#return-value-4)Return Value
+
+An integer, representing the bitwise OR between all of the input integers.
+
+### [](#limitations-4)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-4)Examples
+
+OR-1
+
+Perform OR on 3 (0011 in binary) and 6 (0110 in binary).
+
+```sqlpp
+SELECT BITOR(3,6) AS BitOR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitOR": 7
+  }
+]
+```
+
+This results in 7 (0**111** in binary) because at least 1 bit of each (00**11** and 0**11**0) is 1 in bits 1, 2, and 3.
+
+OR-2
+
+Perform OR on 3 (0011 in binary) and -4 (1000 0000 0000 ... 0000 1100 in binary).
+
+```sqlpp
+SELECT BITOR(3,-4) AS BitOR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitOR": -1
+  }
+]
+```
+
+This results in -1 (**1111 1111 1111 ... 1111 1111** in binary) because the two 1 bits in 3 fill in the two 0 bits in -4 to turn on all the bits.
+
+OR-3
+
+Perform OR on 3 (0011 in binary) and 6 (0110 in binary) and 15 (1111 in binary).
+
+```sqlpp
+SELECT BITOR(3,6,15) AS BitOR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitOR": 15
+  }
+]
+```
+
+This results in 15 (1111 in binary) because there is at least one 1 in each of the four rightmost bits.
+
+## [](#BitSET)BITSET (`int_value`, `positions`)
+
+### [](#description-5)Description
+
+Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.
+
+|  | Specifying a negative or zero position makes the function return a null. |
+|  | ------------------------------------------------------------------------ |
+
+### [](#arguments-5)Arguments
+
+int\_value
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the target bit or bits to set.
+
+positions
+
+An integer or an array of integers specifying the position or positions to be set.
+
+### [](#return-value-5)Return Value
+
+An integer, representing the result after setting the bit or bits specified. If the bit is already set, then it stays set.
+
+### [](#limitations-5)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-5)Examples
+
+SET-1
+
+Set bit 1 in the value 6 (011**0** in binary).
+
+```sqlpp
+SELECT BITSET(6,1) AS BitSET;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSET": 7
+  }
+]
+```
+
+This results in 7 (011**1** in binary) because bit 1 changed to 1.
+
+SET-2
+
+Set bits 1 and 2 in the value 6 (01**10** in binary).
+
+```sqlpp
+SELECT BITSET(6,[1,2]) AS BitSET;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSET": 7
+  }
+]
+```
+
+This also results in 7 (01**11** in binary) because bit 1 changed while bit 2 remained the same.
+
+SET-3
+
+Set bits 1 and 4 in the value 6 (**0**11**0** in binary).
+
+```sqlpp
+SELECT BITSET(6,[1,4]) AS BitSET;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSET": 15
+  }
+]
+```
+
+This results in 15 (**1**11**1** in binary) because bit 1 and 4 changed to ones.
+
+## [](#BitSHIFT)BITSHIFT (`int_value`, `shift_amount`, `rotate`)
+
+### [](#description-6)Description
+
+Returns the result of a bit shift operation performed on the integer value `int`. The `shift_amount` supports left and right shifts. These are logical shifts. The third parameter `rotate` supports circular shift. This is similar to the BitROTATE function in Oracle.
+
+### [](#arguments-6)Arguments
+
+int\_value
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the target bit or bits to shift.
+
+shift\_amount
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the number of bits to shift.
+
+A positive (+) number means this is a LEFT shift.
+
+A negative (-) number means this is a RIGHT shift.
+
+rotate
+
+\[Optional; FALSE by default\] A boolean, or any valid [expression](index.md) which evaluates to a boolean, where:
+
+* FALSE means this is a LOGICAL shift, where bits shifted off the end of a value are considered lost.
+* TRUE means this is a CIRCULAR shift (shift-and-rotate operation), where bits shifted off the end of a value are rotated back onto the value at the _other_ end. In other words, the bits rotate in what might be thought of as a circular pattern; therefore, these bits are not lost.
+
+For comparison, see the below table.
+
+| Input             | Shift | Result of Logical Shift(Rotate FALSE) | Result of Circular Shift(Rotate TRUE)           |
+| ----------------- | ----- | ------------------------------------- | ----------------------------------------------- |
+| 6 (0000 0110)     | 4     | 96 (0110 0000)                        | 96 (0110 0000)                                  |
+| 6 (0000 0110)     | 3     | 48 (0011 0000)                        | 48 (0011 0000)                                  |
+| 6 (0000 0110)     | 2     | 24 (0001 1000)                        | 24 (0001 1000)                                  |
+| 6 (0000 0110)     | 1     | 12 (0000 1100)                        | 12 (0000 1100)                                  |
+| **6 (0000 0110)** | **0** | **6 (0000 0110)**                     | **6 (0000 0110)**                               |
+| 6 (0000 0110)     | \-1   | 3 (0000 0011)                         | 3 (0000 0011)                                   |
+| 6 (0000 0110)     | \-2   | 1 (0000 0001)                         | \-9223372036854775807 (1000 0000 ... 0000 0001) |
+| 6 (0000 0110)     | \-3   | 0 (0000 0000)                         | \-4611686018427387904 (1100 0000 ... 0000 0000) |
+| 6 (0000 0110)     | \-4   | 0 (0000 0000)                         | 6917529027641081856 (0110 0000 ... 0000 0000)   |
+
+### [](#return-value-6)Return Value
+
+An integer, representing the result of either a logical or circular shift of the given integer.
+
+### [](#limitations-6)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-6)Examples
+
+SHIFT-1
+
+Logical left shift of the number 6 (0110 in binary) by one bit.
+
+```sqlpp
+SELECT BITSHIFT(6,1,FALSE) AS BitSHIFT;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSHIFT": 12
+  }
+]
+```
+
+This results in 12 (1100 in binary) because the 1-bits moved from positions 2 and 3 to positions 3 and 4.
+
+SHIFT-2
+
+Logical right shift of the number 6 (0110 in binary) by two bits.
+
+```sqlpp
+SELECT BITSHIFT(6,-2) AS BitSHIFT;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSHIFT": 1
+  }
+]
+```
+
+This results in 1 (0001 in binary) because the 1-bit in position 3 moved to position 1 and the 1-bit in position 2 was dropped.
+
+SHIFT-2b
+
+Circular right shift of the number 6 (0110 in binary) by two bits.
+
+```sqlpp
+SELECT BITSHIFT(6,-2,TRUE) AS BitSHIFT;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSHIFT": -9223372036854775807
+  }
+]
+```
+
+This results in -9223372036854775807 (1100 0000 0000 0000 0000 0000 0000 0000 in binary) because the two 1-bits wrapped right, around to the Most Significant Digit position and changed the integer’s sign to negative.
+
+SHIFT-3
+
+Circular left shift of the number 524288 (1000 0000 0000 0000 0000 in binary) by 45 bits.
+
+```sqlpp
+SELECT BITSHIFT(524288,45,TRUE) AS BitSHIFT;
+```
+
+Results
+
+```json
+[
+  {
+    "BitSHIFT": 1
+  }
+]
+```
+
+This results in 1 because the 1-bit wrapped left, around to the Least Significant Digit position.
+
+## [](#section%5Funf%5F2sv%5Fs1b)BITTEST (`int_value`, `positions [, all_set]`)
+
+This function has a synonym [ISBITSET()](#IsBitSET).
+
+### [](#description-7)Description
+
+Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).
+
+|  | Specifying a negative or zero bit position will result in NULL being returned. |
+|  | ------------------------------------------------------------------------------ |
+
+### [](#arguments-7)Arguments
+
+int\_value
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, that contains the target bit or bits to test.
+
+positions
+
+An integer or an array of integers specifying the position or positions to be tested.
+
+all\_set
+
+\[Optional; FALSE by default\] A boolean, or any valid [expression](index.md) which evaluates to a boolean.
+
+When `all_set` is FALSE, then it returns TRUE even if one bit in one of the positions is set.
+
+When `all_set` is TRUE, then it returns TRUE only if all input positions are set.
+
+### [](#return-value-7)Return Value
+
+A boolean, that follows the below table:
+
+| int\_value                     | all\_set | Return Value |
+| ------------------------------ | -------- | ------------ |
+| _all_ specified bits are TRUE  | FALSE    | TRUE         |
+| _all_ specified bits are TRUE  | TRUE     | TRUE         |
+| _some_ specified bits are TRUE | FALSE    | TRUE         |
+| _some_ specified bits are TRUE | TRUE     | FALSE        |
+
+### [](#limitations-7)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-7)Examples
+
+TEST-1
+
+In the number 6 (0110 in binary), is bit 1 set?
+
+```sqlpp
+SELECT ISBITSET(6,1) AS IsBitSET;
+```
+
+Results
+
+```json
+[
+  {
+    "IsBitSET": false
+  }
+]
+```
+
+This returns FALSE because bit 1 of 6 (011**0** in binary) is not set to 1.
+
+TEST-2
+
+In the number 1, is either bit 1 or bit 2 set?
+
+```sqlpp
+SELECT BITTEST(1,[1,2],FALSE) AS BitTEST;
+```
+
+Results
+
+```json
+[
+  {
+    "BitTEST": true
+  }
+]
+```
+
+This returns TRUE because bit 1 of the number 1 (000**1** in binary) is set to 1.
+
+TEST-3
+
+In the number 6 (0110 in binary), are both bits 2 and 3 set?
+
+```sqlpp
+SELECT ISBITSET(6,[2,3],TRUE) AS IsBitSET;
+```
+
+Results
+
+```json
+[
+  {
+    "IsBitSET": true
+  }
+]
+```
+
+This returns TRUE because both bits 2 and 3 in the number 6 (0**11**0 in binary) are set to 1.
+
+TEST-4
+
+In the number 6 (0110 in binary), are all the bits in positions 1 through 3 set?
+
+```sqlpp
+SELECT BITTEST(6,[1,3],TRUE) AS BitTEST;
+```
+
+Results
+
+```json
+[
+  {
+    "BitTEST": false
+  }
+]
+```
+
+This returns FALSE because bit 1 in the number 6 (011**0** in binary) is set to 0 (zero).
+
+TEST-5
+
+For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+Find only flights that have 1 layover (to rest and walk around). That is, flight stops of 1 (0001 in binary) only:
+
+```sqlpp
+SELECT airline, stops, schedule[0].day FROM `travel-sample`.inventory.route
+WHERE stops = 1;
+```
+
+Results
+
+```json
+[
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  }
+]
+```
+
+The above query returns the exact same results as the below query which uses a bit operation.
+
+```sqlpp
+SELECT airline, stops, schedule[0].day FROM `travel-sample`.inventory.route
+WHERE BITTEST(stops,1);
+```
+
+Results
+
+```json
+[
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "FL",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  },
+  {
+    "airline": "WN",
+    "day": 0,
+    "stops": 1
+  }
+]
+```
+
+## [](#BitXOR)BITXOR (`int_value1`, `int_value2`, ...)
+
+### [](#description-8)Description
+
+Returns the result of a bitwise Exclusive OR operation performed on two or more integer values.
+
+The bitwise Exclusive OR operation compares each bit of `int_value1` to the corresponding bit of `int_value2`.
+
+If there are more than two input values, the first two are compared; then their result is compared to the next input value; and so on.
+
+When the compared bits do not match, the result bit is 1; otherwise, the compared bits do match, and the result bit is 0 (zero), as summarized:
+
+| Bit 1 | Bit 2 | XOR Result Bit |
+| ----- | ----- | -------------- |
+| 0     | 0     | 0              |
+| 0     | 1     | 1              |
+| 1     | 0     | 1              |
+| 1     | 1     | 0              |
+
+### [](#arguments-8)Arguments
+
+int\_value1, int\_value2, ...
+
+Integers, or any valid [expressions](index.md) which evaluate to integers, that are used to compare.
+
+### [](#return-value-8)Return Value
+
+An integer, representing the bitwise XOR between the input integers.
+
+### [](#limitations-8)Limitations
+
+Input values must be integers (such as 1 or 1.0) and cannot contain decimals (such as 1.2).
+
+### [](#examples-8)Examples
+
+XOR-1
+
+Perform the XOR operation on 3 (0011 in binary) and 6 (0110 in binary).
+
+```sqlpp
+SELECT BITXOR(3,6) AS BitXOR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitXOR": 5
+  }
+]
+```
+
+This returns 5 (0101 in binary) because the 1st bit pair and 3rd bit pair are different (resulting in 1) while the 2nd bit pair and 4th bit pair are the same (resulting in 0):
+
+0011 (3)
+0110 (6)
+========
+0101 (5)
+
+XOR-2:
+
+Perform the XOR operation on 3 (0011 in binary) and 6 (0110 in binary) and 15 (1111 in binary).
+
+```sqlpp
+SELECT BITXOR(3,6,15) AS BitXOR;
+```
+
+Results
+
+```json
+[
+  {
+    "BitXOR": 10
+  }
+]
+```
+
+This returns 10 (1010 in binary) because 3 XOR 6 equals 5 (0101 in binary), and then 5 XOR 15 equals 10 (1010 in binary).
+
+## [](#IsBitSET)ISBITSET → see BITTEST
+
+Synonym of [BITTEST()](#section%5Funf%5F2sv%5Fs1b).

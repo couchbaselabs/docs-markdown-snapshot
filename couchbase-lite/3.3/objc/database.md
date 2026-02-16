@@ -1,0 +1,203 @@
+[View original HTML](/couchbase-lite/3.3/objc/database.html)
+
+> Description — _Working with Couchbase Lite Databases_  
+> Related Content — [Blobs](blob.md) | [Documents](document.md) | [Indexing](indexing.md)
+
+## [](#database-concepts)Database Concepts
+
+Databases created on Couchbase Lite can share the same hierarchical structure as Capella databases. This makes it easier to sync data between mobile applications and applications built using Capella.
+
+![Couchbase Lite Database Hierarchy](_images/diag-4f601aea7c3c7a95dfed50dc6cda87433165cb94.svg) 
+
+Figure 1\. Couchbase Lite Database Hierarchy
+
+Although the terminology is different, the structure can be mapped to relational database terms:
+
+__Table 1\. Relational Database → Couchbase__
+| Relational database | Couchbase  |
+| ------------------- | ---------- |
+| Database            | Database   |
+| Schema              | Scope      |
+| Table               | Collection |
+
+This structure gives you plenty of choices when it comes to partitioning your data. The most basic structure is to use the single default scope with a single default collection; or you could opt for a structure that allow you to split your collections into logical scopes.
+
+![Couchbase Lite Examples](_images/diag-9b99b7d1ca54ed2264d303108e1f8cf80af0988b.svg) 
+
+Figure 2\. Couchbase Lite Examples
+
+Storing local configuration
+
+You may not need to sync all the data related for a particular application. You can set up a scope that syncs data, and a second scope that doesn’t.
+
+One reason for doing this is to store local configuration data (such as the preferred screen orientation or keyboard layout). Since this information only relates to a particular device, there is no need to sync it:
+
+| local data scope   | Contains information pertaining to the device.                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| syncing data scope | Contains information pertaining to the user, which can be synced back to the cloud for use on the web or another device. |
+
+## [](#open-db)Create or Open Database
+
+You can create a new database and-or open an existing database, using the [CBLDatabase](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabase.html) class. Just pass in a database name and optionally a [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) — see [Example 1](#ex-dbopen).
+
+Things to watch for include:
+
+* If the named database does not exist in the specified, or default, location then a new one is created
+* The database is created in a default location unless you specify a directory for it — see: [CBLDatabaseConfiguration](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html) and [CBLDatabaseConfiguration.directory()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29directory)  
+Typically, the default location for Objective-C is the application sandbox .  
+See also [Finding a Database File](#lbl-find-db-loc).
+
+Example 1\. Open or create a database
+
+```objc
+NSError *error;
+CBLDatabase *database = [[CBLDatabase alloc] initWithName:@"my-database" error:&error];
+if (!database) {
+    NSLog(@"Cannot open the database:%@", error);
+}
+self.database = database;
+```
+
+## [](#close-database)Close Database
+
+You are advised to incorporate the closing of all open databases into your application workflow.
+
+To close a database, use [CBLDatabase.Close()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29close:) — see: [Example 2](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
+
+|  | Closing a database soon after starting a replication involving it can cause an exception as the asynchronous replicator (start) may not yet be connected. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+|  | Safely Closing a Database pre 2.8Before closing, check that any attached listeners (query/replication/change) indicate they are at least at connected status before closing — see for example: [Monitor Status](replication.md#lbl-repl-mon). |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Example 2\. Close a Database
+
+```objc
+if (![self.database close:&error])
+    NSLog(@"Error closing db:%@", error);
+```
+
+## [](#database-full-sync)Database Full Sync
+
+Database Full Sync will prevent the loss of transactional data due to an unexpected system crash or loss of power. This feature is not enabled by default and must be manually set in your database configuration.
+
+|  | Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance. |
+|  | ----------------------------------------------------------------------------------------------------------------- |
+
+Example 3\. Enable Database Full Sync
+
+```objc
+config.fullSync = true;
+```
+
+|  | It is not possible to change the configuration of a Database after instantiating the Database with the configuration by updating its DatabaseConfiguration property. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#database-encryption)Database Encryption
+
+|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
+|  | ------------------------------------------------------------------------------------- |
+
+_Couchbase Lite on Objective-C_ includes the ability to encrypt Couchbase Lite databases. This allows mobile applications to secure the data at rest, when it is being stored on the device. The algorithm used to encrypt the database is 256-bit AES.
+
+### [](#enabling)Enabling
+
+To enable encryption, use [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29encryptionKey) to set the encryption key of your choice. Provide this encryption key every time the database is opened — see [Example 4](#ex-sdb-encrypt).
+
+Example 4\. Configure Database Encryption
+
+```objc
+CBLDatabaseConfiguration *config = [[CBLDatabaseConfiguration alloc] init];
+config.encryptionKey = [[CBLEncryptionKey alloc] initWithPassword:@"secretpassword"];
+NSError *error;
+self.database = [[CBLDatabase alloc] initWithName:@"my-database" config:config error:&error];
+if (!self.database) {
+    NSLog(@"Cannot open the database:%@", error);
+}
+```
+
+### [](#persisting)Persisting
+
+Couchbase Lite does not persist the key. It is the application’s responsibility to manage the key and store it in a platform-specific secure store such Android’s [Keystore](https://developer.android.com/training/articles/keystore).
+
+### [](#opening)Opening
+
+An encrypted database can only be opened with the same platform that was used to encrypt it in the first place. So a database encrypted using the Objective-C SDK, and then exported, is readable only by the Objective-C SDK.
+
+### [](#changing)Changing
+
+To change an existing encryption key, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)to set the required new encryption-key value.
+
+### [](#removing)Removing
+
+To remove encryption, open the database using its existing encryption-key and use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:)with a null value as the encryption key.
+
+### [](#upgrading)Upgrading
+
+To upgrade an encrypted database see: [Upgrade 1.x databases](upgrade.md#lbl-db-upgrades)
+
+## [](#lbl-find-db-loc)Finding a Database File
+
+When the application is running on the iOS simulator, you can locate the application’s sandbox directory using the [SimPholders](https://simpholders.com/3/) utility.
+
+## [](#lbl-db-util)Database Maintenance
+
+From time to time it may be necessary to perform certain maintenance activities on your database, for example to compact the database file, removing unused documents and blobs no longer referenced by any documents.
+
+Couchbase Lite’s API provides the [CBLDatabase.performMaintenance()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29performMaintenance:error:) method. The available maintenance operations, including `compact` are as shown in the enum [CBLMaintenanceType](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-objc/Enums/CBLMaintenanceType.html) to accomplish this.
+
+This is a resource intensive operation and is not performed automatically. It should be run on-demand using the API. If in doubt, consult Couchbase support.
+
+## [](#cli-tool)Command Line Tool
+
+`cblite` is a command-line tool for inspecting and querying Couchbase Lite databases.
+
+You can download and build it from the couchbaselabs [GitHub repository](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md). Note that the `cblite` tool is not supported by the [Couchbase Support Policy](https://www.couchbase.com/support-policy).
+
+## [](#troubleshooting)Troubleshooting
+
+You should use console logs as your first source of diagnostic information. If the information in the default logging level is insufficient you can focus it on database errors and generate more verbose messages — see: [Example 5](#ex-logdb).
+
+For more on using Couchbase logs — see: [Using Logs](troubleshooting-logs.md).
+
+Example 5\. Increase Level of Database Log Messages
+
+```objc
+
+```
+
+## [](#related-content)Related Content
+
+### [](#)
+
+How to . . .
+
+* [Prerequisites](gs-prereqs.md)
+* [Install](gs-install.md)
+* [Build and Run](gs-build.md)
+
+.
+
+### [](#-2)
+
+Learn more . . .
+
+* [Databases](database.md)
+* [Documents](document.md)
+* [Blobs](blob.md)
+* [Remote Sync Gateway](replication.md)
+* [Handling Data Conflicts](conflict.md)
+
+.
+
+### [](#-3)
+
+Dive Deeper . . .
+
+[Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)
+
+.
+
+---
+
+[1](#%5Ffootnoteref%5F1). Commencing with Release 2.8

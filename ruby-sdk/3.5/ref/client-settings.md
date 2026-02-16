@@ -1,0 +1,166 @@
+[View original HTML](/ruby-sdk/3.5/ref/client-settings.html)
+
+> Client settings. 
+
+## [](#io-options)I/O Options
+
+This section provides basic settings that will come in handy while configuring network related operations.
+
+Name: **DNS SRV Timeout**
+
+Connection String Option: `enable_dns_srv`
+
+Default: `true`
+
+Gets the bootstrap node list from a DNS SRV record. See the Connection Management section for more information on how to use it properly.
+
+Name: **Mutation Tokens Enabled**
+
+Connection String Options: `enable_mutation_tokens`
+
+Default: `true`
+
+Mutation tokens allow enhanced durability requirements as well as advanced SQL++ (formerly N1QL) querying capabilities. Set this to `false` if you do not require these features and wish to avoid the associated overhead.
+
+Name: **Socket Keepalive**
+
+Connection String Option: `enable_tcp_keep_alive`
+
+Default: `true`
+
+If enabled, the client periodically sends a TCP keepalive to the server to prevent firewalls and other network equipment from dropping idle TCP connections.
+
+Name: **Socket Keepalive Interval**
+
+Connection String Option: `tcp_keep_alive_interval`
+
+Default: `60000ms`
+
+The idle time after which a TCP keepalive gets fired. (This setting has no effect if `enable_tcp_keep_alive` is `false`.)
+
+|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Config Poll Interval**
+
+Cluster Option: `config_poll_interval`
+
+Default: `2500ms`
+
+The interval at which the client fetches cluster topology information in order to proactively detect changes.
+
+## [](#timeout-options)Timeout Options
+
+The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment. If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.
+
+Most timeouts can be overridden on a per-operation basis (for example, by passing a custom options block to a "get" or "query" method). The values set here are used as the defaults when no per-operation timeout is specified.
+
+The cluster-wide timeouts might be changed using connection string in milliseconds.
+
+```ruby
+couchbase://localhost?query_timeout=10000
+```
+
+### [](#timeout-options-reference)Timeout Options Reference
+
+Name: **Key-Value Timeout**
+
+Connection String Option: `kv_timeout`
+
+Default: `2500ms` _but see TIP, below_
+
+The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like `get`, `lookup_in` and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
+
+|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes)have their own timeout setting, kv\_durable\_timeout, see below. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Key-Value Durable Operation Timeout**
+
+Connection String Option: `kv_durable_timeout`
+
+Default: `10000ms`
+
+Key/Value operations with enhanced durability requirements may take longer to complete, so they have a separate default timeout.
+
+**Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
+
+|  | The kv\_durable\_timeout property is not part of the stable API and may change or be removed at any time. |
+|  | --------------------------------------------------------------------------------------------------------- |
+
+Name: **View Timeout**
+
+Connection String Option: `view_timeout`
+
+Default: `75000ms`
+
+The View timeout is used on view operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows. Also, if there is a node failure during the request the internal cluster timeout is set to 60 seconds.
+
+Name: **Query Timeout**
+
+Connection String Option: `query_timeout`
+
+Default: `75000ms`
+
+The Query timeout is used on all SQL++ query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Search Timeout**
+
+Connection String Option: `search_timeout`
+
+Default: `75000ms`
+
+The Search timeout is used on all FTS operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Analytics Timeout**
+
+Connection String Option: `analytics_timeout`
+
+Default: `75000ms`
+
+The Analytics timeout is used on all Analytics query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Management Timeout**
+
+Connection String Option: `management_timeout`
+
+Default: `75000s`
+
+The management timeout is used on all cluster management APIs (BucketManager, UserManager, CollectionManager, QueryIndexManager, etc.) if not overridden by a custom timeout. The default is quite high because some operations (such as flushing a bucket, for example) might take a long time.
+
+## [](#general-options)General Options
+
+Name: **Unordered Execution**
+
+Cluster Option: `enable_unordered_execution`
+
+Default: `true`
+
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions. This means that tuning the number of connections (KV endpoints) is no longer necessary as a workaround where data not available in the cache is causing timeouts.
+
+This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+Unresolved include directive in modules/ref/pages/client-settings.adoc - include::7.5@sdk:shared:partial$client-settings-nowait.adoc\[\]
+
+## [](#configuration-profiles)Configuration Profiles
+
+Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
+
+|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#wan-development)WAN Development
+
+**Cluster Option:** `apply_profile("wan_development")`
+
+A `wan_development` configuration profile can be used to modify client settings for development or high-latency environments. This profile changes the default timeouts.
+
+__Table 1\. Profile Settings__
+| Setting             | Default Value | WAN Profile Value |
+| ------------------- | ------------- | ----------------- |
+| connect\_timeout    | 10s           | 20s               |
+| key\_value\_timeout | 2.5s          | 20s               |
+| view\_timeout       | 75s           | 120s              |
+| query\_timeout      | 75s           | 120s              |
+| analytics\_timeout  | 75s           | 120s              |
+| search\_timeout     | 75s           | 120s              |
+| management\_timeout | 75s           | 120s              |

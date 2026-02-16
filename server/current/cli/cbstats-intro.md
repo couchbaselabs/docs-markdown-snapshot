@@ -1,0 +1,65 @@
+[View original HTML](/server/current/cli/cbstats-intro.html)
+
+> The `cbstats` tool provides Data Service statistics, for an individual node. 
+
+## [](#description)Description
+
+The `cbstats` tool provides Data Service statistics, for an individual, specified node.
+
+The tool is located as follows:
+
+| Platform | Location                                                                           |
+| -------- | ---------------------------------------------------------------------------------- |
+| Linux    | _/opt/couchbase/bin/cbstats_                                                       |
+| Windows  | _C:\\Program Files\\Couchbase\\Server\\bin\\cbstats.exe_                           |
+| Mac OS X | _/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbstats_ |
+
+## [](#syntax)Syntax
+
+cbstats <host>:<port> [common options] command [command options]
+
+The `host` must be the hostname or IP address of a node within the cluster. The port must be `11210`.
+
+The options for the `command` parameter are each assigned a page in the current section. Use the navigation facility at the left, to access each page.
+
+The `common options` are as follows:
+
+| Options          | Description                                                    |
+| ---------------- | -------------------------------------------------------------- |
+| \-h, --help      | Show the help message and exit.                                |
+| \-a              | Iterate over all buckets.                                      |
+| \-j              | Output the result in JSON format.                              |
+| \-8              | Use UTF8 symbols in the output.                                |
+| \-b <bucketname> | The bucket whose corresponding statistics are to be retrieved. |
+| \-u <username>   | The user’s username.                                           |
+| \-p <password>   | The user’s password.                                           |
+| \-S              | Read the password from stdin.                                  |
+
+## [](#example)Example
+
+The following example retrieves Data Service statistics for `timings` related to the `travel-sample` bucket, on the current host.
+
+/opt/couchbase/bin/cbstats -u Administrator -p password \
+-b travel-sample \
+localhost:11210 timings
+
+If successful, the command returns (extensive) output, the opening section of which appears as follows:
+
+checkpoint_remover (13083 total)
+      0us -  206us : (  0.0917%)   12
+    206us -  270us : ( 11.7328%) 1523 ##############
+    270us -  302us : ( 22.2961%) 1382 ############
+    302us -  350us : ( 33.1652%) 1422 #############
+    350us -  366us : ( 40.5182%)  962 ########
+    366us -  382us : ( 53.8714%) 1747 ################
+    382us -  398us : ( 56.9136%)  398 ###
+    398us -  430us : ( 62.2869%)  703 ######
+    430us -  462us : ( 66.5444%)  557 #####
+    462us -  478us : ( 74.8987%) 1093 ##########
+    478us -  494us : ( 82.1371%)  947 ########
+    494us -  510us : ( 83.6582%)  199 #
+    510us -  542us : ( 86.2340%)  337 ###
+    542us -  574us : ( 88.6953%)  322 ###
+     .
+     .
+     .

@@ -1,0 +1,54 @@
+[View original HTML](/styleguide/contractions.html)
+
+Contractions are combinations of at least 2 words. A contraction is made by omitting 1 or more letters from 1 word and adding it to the end of another word.
+
+Many contractions combine a verb and a pronoun.
+
+## [](#do-not-use-negative-contractions)Do Not Use Negative Contractions
+
+Do not use negative contractions, especially in warnings to the user.
+
+Any `verb + not` combination should be written out in full.
+
+For example, do not shorten `could not` to `couldn’t`.
+
+## [](#do-not-use-informal-contractions)Do Not Use Informal Contractions
+
+Do not use informal contractions like `wanna` or `gonna`.
+
+## [](#do-not-use-complex-contractions)Do Not Use Complex Contractions
+
+Do not use complex contractions like:
+
+* could’ve
+* might’ve
+* must’ve
+* should’ve
+* what’ll
+* what’re
+* what’ve
+* we’ve
+* who’d
+* who’ll
+* who’ve
+* would’ve
+* you’ve
+
+## [](#acceptable-contractions)Acceptable Contractions
+
+When writing technical documentation for Couchbase, you can only use the following contractions:
+
+| Contraction | Short For…​           |
+| ----------- | --------------------- |
+| it’s        | it is; it has         |
+| that’s      | that is; that has     |
+| there’s     | there is; there has   |
+| they’d      | they had; they would  |
+| they’ll     | they will; they shall |
+| they’re     | they are              |
+| what’s      | what is; what has     |
+| where’s     | where is; where has   |
+| who’s       | who is; who has       |
+| you’d       | you had; you would    |
+| you’ll      | you will; you shall   |
+| you’re      | you are               |

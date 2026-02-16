@@ -1,0 +1,11 @@
+[View original HTML](/enterprise-analytics/2.0/install/introduction-linux-installation.html)
+
+> Follow this process to install Enterprise Analytics. 
+
+__Table 1\. Installing Enterprise Analytics__
+| Step       | Action                                                   | Description                                                                                                                                                                                                                                                                                |
+| ---------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Step 1** | Review the system requirements and deployment guidelines | Enterprise Analytics has a set of system requirements and deployment guidelines that vary depending on your deployment. Make sure that you plan your environment accordingly before installation. [System Requirements](sys-resource-req.md) [Deployment Guidelines](deploy-guidelines.md) |
+| **Step 2** | Install Enterprise Analytics on each node in the cluster | Couchbase is a clustered database and requires that you install Enterprise Analytics and run it on each node before joining them together into a cluster. [Installing on Linux](linux-installation.md)                                                                                     |
+| **Step 3** | Verify the installation and node availability            | After you install Enterprise Analytics on a node, you can verify the installation by opening the Enterprise Analytics Web Console. You can also do other advanced verifications, depending on your needs. [Verifying the Enterprise Analytics Installation](verify-installation.md)        |
+| **Step 4** | Initialize the Enterprise Analytics cluster              | After you install Enterprise Analytics on all of the nodes, you need to join them together into a cluster. [Create a Cluster](../manage/manage-nodes/create-cluster.md)                                                                                                                    |

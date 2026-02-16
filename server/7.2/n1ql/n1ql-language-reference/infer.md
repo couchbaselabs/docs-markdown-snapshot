@@ -1,0 +1,461 @@
+[View original HTML](/server/7.2/n1ql/n1ql-language-reference/infer.html)
+
+The INFER statement enables you to infer the metadata of documents in a keyspace, for example the structure of documents, data types of various attributes, sample values, and so on. Since a keyspace can contain documents with varying structures, the INFER statement is statistical in nature rather than deterministic. You can specify the sample size that must be used to analyze and identify the structure of documents in a keyspace.
+
+|  | The describe statement introduced in the Couchbase Server 4.1 release has been renamed to INFER. |
+|  | ------------------------------------------------------------------------------------------------ |
+
+The Query Workbench in the Couchbase Web console (available under the **Query** tab) uses the INFER statement to display the structure of documents in the [Data Insights](../../tools/query-workbench.md#bucket-analyzer) area when you expand the keyspace name.
+
+## [](#rbac-privileges)RBAC Privileges
+
+To execute the INFER statement, you must have the _Query Select_ privilege granted on the target keyspace. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
+
+For example, to execute [Example 1](#ex-1) below, you must have the _Query Select_ privilege on the `route` keyspace.
+
+## [](#syntax)Syntax
+
+```ebnf
+infer ::= 'INFER' ( 'COLLECTION' | 'KEYSPACE' )? keyspace-ref ( 'WITH' options )?
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/infer.png) 
+
+The `COLLECTION` or `KEYSPACE` keywords are optional. These keywords are purely a visual mnemonic; including either of them makes no difference to the operation of the INFER statement.
+
+| keyspace-ref | [Keyspace Reference](#keyspace-ref) |
+| ------------ | ----------------------------------- |
+| options      | [Options](#infer-parameters)        |
+
+### [](#keyspace-ref)Keyspace Reference
+
+```ebnf
+keyspace-ref ::= keyspace-path | keyspace-partial
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/keyspace-ref.png) 
+
+```ebnf
+keyspace-path ::= ( namespace ':' )? bucket ( '.' scope '.' collection )?
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/keyspace-path.png) 
+
+```ebnf
+keyspace-partial ::= collection
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/keyspace-partial.png) 
+
+The simple name or fully-qualified name of a keyspace. Refer to the [CREATE INDEX](createindex.md#keyspace-ref) statement for details of the syntax.
+
+### [](#infer-parameters)Options
+
+An object with one or more of the following properties to guide the INFER statement.
+
+`sample_size`
+
+Specifies the number of documents to randomly sample in the keyspace when inferring the schema. The default sample size is 1000 documents. If a keyspace contains fewer documents than the specified `sample_size`, then all the documents in the keyspace will be used.
+
+`num_sample_values`
+
+Specifies the number of sample values for each attributes to be returned. The sample values provide examples of the data format. The default value is 5.
+
+`similarity_metric`
+
+The schema inferencing process groups similar schemas into document flavors. The `similarity_metric` is the degree of similarity that two schemas must have to be considered part of the same flavor. You can specify a real number between 0 and 1 indicating the percentage match (of attributes) required to establish similarity between two documents. The default value is 0.6, which means two documents are considered similar if 60% of the top-level attributes are the same.
+
+`dictionary_threshold`
+
+Sometimes JSON documents follow the dictionary pattern, where a field has sub-fields that are key-value pairs, instead of general field-name and value pairs. For example, consider a sub-document called "ratings", where the name of each rating object is a user ID:
+
+```json
+   "ratings": {
+          "brambliertypo75631": {
+            "created": 1439939260000,
+            "rating": 1
+          },
+          "croakerraisiny16166": {
+            "created": 1440066307000,
+            "rating": 3
+          },
+          "libidinizeddepleting17126": {
+            "created": 1439991036000,
+            "rating": 1
+          },
+          "lightnots66650": {
+            "created": 1440204913000,
+            "rating": 1
+          },
+      },
+```
+
+While this pattern may not be ideal for a number of reasons, if your data follows this pattern it might seem that the data has a huge number of ‘fields’, since a data value is being used as a field name. When the schema inferencing process sees more than `dictionary_threshold` fields with different names, but the same sub-document schema, it collapses them into a single schema field marked as a dictionary.
+
+## [](#schema-output)Schema Output
+
+The statement returns the output in the [JSON Schema draft](http://json-schema.org/documentation.html) format as specified by [json-schema.org](http://json-schema.org/). It supports the following data types: array, boolean, null, number, and object.
+
+At the top level, the output contains an array of schemas. Each schema recursively describes the structure of a flavor of document. For each identified attribute, the schema may contain the following details:
+
+Common Details
+
+`#docs`
+
+Specifies the number of documents in the sample that contain this attribute.
+
+`%docs`
+
+Specifies the percentage of documents in the sample that contain this attribute.
+
+`samples`
+
+Contains sample values for the attribute found in the sample population.
+
+`type`
+
+Specifies specifying the identified data type of the attribute.
+
+Details for Array Data Type
+
+`items`
+
+Contains details of the elements in the array.
+
+`minItems`
+
+Specifies the minimum number of elements (array size).
+
+`maxItems`
+
+Specifies the maximum number of elements (array size).
+
+Details for Object Data Type
+
+`properties`
+
+Contains details of the properties of the object.
+
+Each property is described by a key-value pair, in which the key is the name of the property, and the value gives recursive details of that property.
+
+Details for Documents and Subdocuments
+
+`$schema`
+
+Specifies the version of the JSON Schema standard.
+
+`Flavor`
+
+Specifies the flavor of a document or sub-document.
+
+## [](#examples)Examples
+
+Example 1\. Infer metadata for a keyspace
+
+For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+```sqlpp
+INFER route
+WITH {"sample_size": 10000, "num_sample_values": 2, "similarity_metric": 0.1};
+```
+
+Results
+
+```json
+[
+  [
+    {
+      "#docs": 10000,
+      "$schema": "http://json-schema.org/draft-06/schema",
+      "Flavor": "`type` = \"route\"",
+      "properties": {
+        "airline": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            "DL",
+            "WS"
+          ],
+          "type": "string"
+        },
+        "airlineid": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            "airline_2009",
+            "airline_5416"
+          ],
+          "type": "string"
+        },
+        "destinationairport": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            "DFW",
+            "JFK"
+          ],
+          "type": "string"
+        },
+        "distance": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            682.2052742100271,
+            2819.371084516147
+          ],
+          "type": "number"
+        },
+        "equipment": {
+          "#docs": [
+            9,
+            9991
+          ],
+          "%docs": [
+            0.09,
+            99.91
+          ],
+          "samples": [
+            [
+              null
+            ],
+            [
+              "738",
+              "ERJ"
+            ]
+          ],
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "id": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            20436,
+            64755
+          ],
+          "type": "number"
+        },
+        "schedule": {
+          "#docs": 10000,
+          "%docs": 100,
+          "items": {
+            "#docs": 210598,
+            "$schema": "http://json-schema.org/draft-06/schema",
+            "properties": {
+              "day": {
+                "type": "number"
+              },
+              "flight": {
+                "type": "string"
+              },
+              "utc": {
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "maxItems": 34,
+          "minItems": 9,
+          "samples": [
+            [
+              {
+                "day": 0,
+                "flight": "DL070",
+                "utc": "07:46:00"
+              },
+              ...
+            ],
+            ...
+          ],
+          "type": "array"
+        },
+        "sourceairport": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            "CLE",
+            "YVR"
+          ],
+          "type": "string"
+        },
+        "stops": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            0,
+            1
+          ],
+          "type": "number"
+        },
+        "type": {
+          "#docs": 10000,
+          "%docs": 100,
+          "samples": [
+            "route"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  ]
+]
+```
+
+Example 2\. Infer metadata for a keyspace containing multiple document flavors
+
+For this example, unset the query context. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
+```sqlpp
+INFER `beer-sample`
+WITH {"sample_size": 10000, "num_sample_values": 5, "similarity_metric": 0.0};
+```
+
+Results
+
+```json
+[
+    [
+        {
+            "#docs": 823,
+            "$schema": "http://json-schema.org/draft-06/schema",
+            "Flavor": "type = \"beer\"",
+            "properties": {
+                "abv": {
+                    "#docs": 823,
+                    "%docs": 100,
+                    "samples": [
+                        0,
+                        9,
+                        9.5,
+                        8,
+                        7.7
+                    ],
+                    "type": "number"
+                },
+                "brewery_id": {
+                    "#docs": 823,
+                    "%docs": 100,
+                    "samples": [
+                        "san_diego_brewing",
+                        "drake_s_brewing",
+                        "brouwerij_de_achelse_kluis",
+                        "niagara_falls_brewing",
+                        "brasserie_des_cimes"
+                    ],
+                    "type": "string"
+                  },
+                  "category": {
+                      "#docs": 612,
+                      "%docs": 74.36,
+                      "samples": [
+                          "North American Ale",
+                          "British Ale",
+                          "German Lager",
+                          "Belgian and French Ale",
+                          "Irish Ale"
+                      ],
+                      "type": "string"
+                  },
+                  "description": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          "Robust, Dark and Smooth, ho...",
+                          "\"Pride of Milford\" is a very s...",
+                          "Mogul is a complex blend of 5 ...",
+                          "Just like our Porter but multi...",
+                          ""
+                      ],
+                      "type": "string"
+                  },
+                  "ibu": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          0,
+                          55,
+                          35,
+                          20
+                      ],
+                      "type": "number"
+                  },
+                  "name": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          "Old 395 Barleywine",
+                          "Jolly Roger",
+                          "Trappist Extra",
+                          "Maple Wheat",
+                          "Yeti"
+                      ],
+                      "type": "string"
+                  },
+                  "srm": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          0,
+                          6,
+                          45,
+                          30
+                      ],
+                      "type": "number"
+                  },
+                  "style": {
+                      "#docs": 612,
+                      "%docs": 74.36,
+                      "samples": [
+                          "American-Style Pale Ale",
+                          "Classic English-Style Pale Ale",
+                          "American-Style India Pale Ale",
+                          "German-Style Pilsener",
+                          "Other Belgian-Style Ales"
+                      ],
+                      "type": "string"
+                  },
+                  "type": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          "beer"
+                      ],
+                      "type": "string"
+                  },
+                  "upc": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          0,
+                          2147483647
+                      ],
+                      "type": "number"
+                  },
+                  "updated": {
+                      "#docs": 823,
+                      "%docs": 100,
+                      "samples": [
+                          "2010-07-22 20:00:20",
+                          "2010-12-13 19:33:36",
+                          "2011-05-17 03:27:08",
+                          "2011-04-17 12:25:31",
+                          "2011-04-17 12:33:50"
+                      ],
+                      "type": "string"
+                  }
+              }
+          },
+          {
+              "#docs": 177,
+              "$schema": "http://json-schema.org/draft-06/schema",
+              "Flavor": "type = \"brewery\"",
+              "properties": {
+                  ...
+              }
+          }
+      ]
+]
+```

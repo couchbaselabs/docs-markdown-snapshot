@@ -1,0 +1,725 @@
+[View original HTML](/server/7.6/eventing/eventing-advanced-keyspace-accessors.html)
+
+> Use Advanced Keyspace Accessors to access advanced Key Value functionality. 
+
+Advanced Keyspace Accessors use the same bucket bindings defined in the handler as [Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors), but they expose a larger set of options and operators. These operators can be used to:
+
+* Set or retrieve document expirations in the Data Service
+* Solve race conditions through CAS
+* Manipulate KV items under high contention using JavaScript inside Eventing Functions
+* Perform distributed atomic counter operations
+
+Couchbase supports the following:
+
+* [Advanced GET](#advanced-get-op)
+* [Advanced INSERT](#advanced-insert-op)
+* [Advanced UPSERT](#advanced-upsert-op)
+* [Advanced REPLACE](#advanced-replace-op)
+* [Advanced DELETE](#advanced-delete-op)
+* [Advanced INCREMENT](#advanced-increment-op)
+* [Advanced DECREMENT](#advanced-decrement-op)
+* [Advanced TOUCH](#advanced-touch-op)
+* [Sub-Document MUTATEIN Operation](#advanced-subdoc-array-op-mutatein)
+* [Sub-Document LOOKUPIN Operation](#advanced-subdoc-array-op-lookupin)
+* [Operations that Listen to Multiple Collections](#multiple-collection-functions)
+* [Optional Parameters](#optional-params)
+
+## [](#advanced-get-op)Advanced GET Operation
+
+`result = couchbase.get(binding, meta)`
+
+The GET operation lets you read a document with metadata from your bucket. It also allows any subsequent operations to use CAS and check or modify the expiration date of the document.
+
+#### [](#example)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input doc', doc);
+    log('input meta', meta);
+    // could be the same or different
+    var new_meta = {"id": "test_adv_get::1"};
+    var result = couchbase.get(src_col, new_meta);
+    if (result.success) {
+        log('success adv. get: result', result);
+    } else {
+        log('failure adv. get: id', new_meta.id, 'result',result);
+    }
+}
+```
+
+You can use the [optional parameter { "cache": true }](#optional-params-cache) with the GET operation.
+
+## [](#advanced-insert-op)Advanced INSERT Operation
+
+`result = couchbase.insert(binding, meta, doc)`
+
+The INSERT operation lets you create a new document in your bucket. It also lets you specify an expiration date (or TTL) for the document.
+
+The operation fails if the document with the key you specified already exists.
+
+#### [](#example-2)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+    // Can be the same or different
+    var new_meta = {"id": "test_adv_insert:1"};
+    // (Optional) Set an expiry time of 60 seconds in the future
+    // new_meta.expiry_date = new Date(Date.now() + 60 * 1000);
+    var new_doc = doc;
+    new_doc.random = Math.random();
+    var result = couchbase.insert(src_col, new_meta, new_doc);
+    if (result.success) {
+        log('success adv. insert: result', result);
+    } else {
+        log('failure adv. insert: id', new_meta.id, 'result', result);
+    }
+}
+```
+
+Results
+
+```javascript
+{
+    "meta": {
+        "id": "test_adv_insert:1",
+        "cas": "1610041053310025728"
+    },
+    "success": true
+}
+
+{
+    "error": {
+        "code": 272,
+        "name": "LCB_KEY_EEXISTS",
+        "desc": "The document key already exists in the server.",
+        "key_already_exists": true
+    },
+    "success": false
+}
+```
+
+You can use the [optional parameter { "self\_recursion": true }](#optional-params-recursion) with the INSERT operation.
+
+## [](#advanced-upsert-op)Advanced UPSERT Operation
+
+`result = couchbase.upsert(binding, meta, doc)`
+
+The UPSERT operation lets you update an existing document in your bucket. It also lets you specify an expiration date (or TTL) for the document.
+
+If no documents exist in your bucket, the operation creates a new document with the key you specified.
+
+The operation does not allow you to specify CAS.
+
+#### [](#example-3)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+    // Can be the same or different
+    var new_meta = {"id": "test_adv_upsert:1"}; // If supplied, the CAS is ignored
+    // (Optional) Set an expiry time of 60 seconds in the future
+    // new_meta.expiry_date = new Date(Date.now() + 60 * 1000);
+    var new_doc = doc;
+    new_doc.random = Math.random();
+    var result = couchbase.upsert(src_col, new_meta, new_doc);
+    if (result.success) {
+        log('success adv. upsert: result', result);
+    } else {
+        log('failure adv. upsert: id', new_meta.id, 'result', result);
+    }
+}
+```
+
+You can use the [optional parameter { "self\_recursion": true }](#optional-params-recursion) with the UPSERT operation.
+
+## [](#advanced-replace-op)Advanced REPLACE Operation
+
+`result = couchbase.replace(binding, meta, doc)`
+
+The REPLACE operation lets you replace an existing document in your bucket with a new document. It also lets you specify the following:
+
+* An expiration date (or TTL) for the document
+* A CAS value to be used as a pre-condition for the operation
+
+#### [](#example-4)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+
+    var mode = 3; // 1-> no CAS, 2-> mismatch in CAS, 3-> good CAS
+
+    // Set up the operation, make sure there is a document to be replaced, ignore any errors
+    couchbase.insert(src_col,{"id": "test_adv_replace:10"},{"a:": 1});
+
+    var new_meta;
+    if (mode === 1) {
+        // If no CAS is passed, the operation succeeds
+        new_meta = {"id": "test_adv_replace:10"};
+        // (Optional) Set an expiry time of 60 seconds in the future
+        // new_meta.expiry_date = new Date(Date.now() + 60 * 1000);
+    }
+    if (mode === 2) {
+        // If a non-matching CAS is passed, the operation fails
+        new_meta = {"id": "test_adv_replace:10", "cas": "1111111111111111111"};
+    }
+    if (mode === 3) {
+        // If the current or matching CAS is passed, the operation succeeds
+        var tmp_r = couchbase.get(src_col, {"id": "test_adv_replace:10"});
+        if (tmp_r.success) {
+            // Use the current CAS to read through the couchbase.get(...) operation
+            new_meta = {"id": "test_adv_replace:10", "cas": tmp_r.meta.cas};
+        } else {
+            log('Cannot replace a non-existing key. Recreate the key and rerun the operation.', "test_adv_replace:10");
+            return;
+        }
+    }
+    var new_doc = doc;
+    new_doc.random = Math.random();
+    var result = couchbase.replace(src_col, new_meta, new_doc);
+    if (result.success) {
+        log('success adv. replace: result', result);
+    } else {
+        log('failure adv. replace: id', new_meta.id, 'result', result);
+    }
+}
+```
+
+Results
+
+```javascript
+{
+    "meta": {
+        "id": "test_adv_replace:10",
+        "cas": "1610130177286144000"
+    },
+    "success": true
+}
+
+{
+    "error": {
+        "code": 272,
+        "name": "LCB_KEY_EEXISTS",
+        "desc": "The document key exists but it has a CAS value that is different from the specified value.",
+        "cas_mismatch": true
+    },
+    "success": false
+}
+```
+
+You can use the [optional parameter { "self\_recursion": true }](#optional-params-recursion) with the REPLACE operation.
+
+## [](#advanced-delete-op)Advanced DELETE Operation
+
+`result = couchbase.delete(binding, meta)`
+
+The DELETE operation lets you delete a document in your bucket. You can use the document key to specify the document you want to delete.
+
+This operation also lets you specify a CAS value to be matched as a pre-condition to proceed with the operation.
+
+#### [](#example-5)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+
+    var mode = 4; // 1-> no CAS, 2-> mismatch in CAS, 3-> good CAS, 4-> no CAS key
+
+    // Set up the operation, make sure there is a document to be deleted, ignore any errors
+    couchbase.insert(src_col,{"id": "test_adv_delete:10"},{"a:": 1});
+
+    var new_meta;
+    if (mode === 1) {
+        // If no CAS is passed, the operation succeeds
+        new_meta = {"id": "test_adv_delete:10"};
+        // (Optional) Set an expiry time of 60 seconds in the future
+        // new_meta.expiry_date = new Date(Date.now() + 60 * 1000);
+    }
+    if (mode === 2) {
+        // If a non-matching CAS is passed, the operation fails
+        new_meta = {"id": "test_adv_delete:10", "cas": "1111111111111111111"};
+    }
+    if (mode === 3) {
+        // If the current or matching CAS is passed, the operation succeeds
+        var tmp_r = couchbase.get(src_col,{"id": "test_adv_delete:10"});
+        if (tmp_r.success) {
+            // Use the current CAS to read through the couchbase.get(...) operation
+            new_meta = {"id": "test_adv_delete:10", "cas": tmp_r.meta.cas};
+        } else {
+            log('Cannot delete a non-existing key. Recreate the key and rerun the operation.',"test_adv_delete:10");
+            return;
+        }
+    }
+    if (mode === 4) {
+        // Remove so that we have: no such key
+        delete src_col["test_adv_delete: 10"]
+        new_meta = {"id": "test_adv_delete:10"};
+    }
+    var result = couchbase.delete(src_col, new_meta);
+    if (result.success) {
+        log('success adv. delete: result', result);
+    } else {
+        log('failure adv. delete: id', new_meta.id, 'result', result);
+    }
+}
+```
+
+Results
+
+```javascript
+{
+    "meta": {
+        "id": "key::10",
+        "cas": "1609374065129816064"
+    },
+    "success": true
+}
+
+{
+    "error": {
+        "code": 272,
+        "name": "LCB_KEY_EEXISTS",
+        "desc": "The document key exists with a CAS value different than the specified value",
+        "cas_mismatch": true
+    },
+    "success": false
+}
+
+{
+    "error": {
+        "code": 272,
+        "name": "LCB_KEY_ENOENT",
+        "desc": "The document key does not exist on the server",
+        "key_not_found": true
+    },
+    "success": false
+}
+```
+
+## [](#advanced-increment-op)Advanced INCREMENT Operation
+
+`result = couchbase.increment(binding, meta)`
+
+The INCREMENT operation lets you increment the `count` field in a specific document.
+
+For example, the document can have the structure `{ count: 23 }`, where 23 is the example counter value.
+
+If the specified counter document does not exist, the operation creates a new document with a `count` value of 0\. If the `count` value is 0, the first returned value is 1.
+
+The INCREMENT operation cannot manipulate full document counters because of limitations in the KV engine API.
+
+#### [](#example-6)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+
+    // The operation creates a doc.count if it does not already exist
+    var ctr_meta = {"id": "my_atomic_counter:1" };
+    var result = couchbase.increment(src_col, ctr_meta);
+    if (result.success) {
+        log('success adv. increment: result', result);
+    } else {
+        log('failure adv. increment: id', ctr_meta.id, 'result', result);
+    }
+}
+```
+
+## [](#advanced-decrement-op)Advanced DECREMENT Operation
+
+`result = couchbase.decrement(binding, meta)`
+
+The DECREMENT operation lets you decrement the `count` field in a specific document.
+
+For example, the document can have the structure `{ count: 23 }`, where 23 is the example counter value.
+
+If the specified counter document does not exist, the operation creates a new document with a `count` value of 0\. If the `count` value is 0, the first returned value is -1.
+
+The DECREMENT operation cannot manipulate full document counters because of limitations in the KV engine API.
+
+#### [](#example-7)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+
+    // The operation creates a doc.count if it does not already exist
+    var ctr_meta = {"id": "my_atomic_counter:1" };
+    var result = couchbase.decrement(src_col, ctr_meta);
+    if (result.success) {
+        log('success adv. decrement: result', result);
+    } else {
+        log('failure adv. decrement: id', ctr_meta.id, 'result', result);
+    }
+}
+```
+
+## [](#advanced-touch-op)Advanced TOUCH Operation
+
+Couchbase Server 7.6
+
+`result = couchbase.touch(binding, meta)`
+
+The TOUCH operation lets you modify the expiration time of a document without the need to access that document first.
+
+You can use this operation if your application does not need to access the database when handling a user session.
+
+#### [](#example-8)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input meta', meta);
+    log('input doc', doc);
+
+    var expiry = new Date();
+    expiry.setSeconds(expiry.getSeconds() + 10);
+
+    var req = {"id": "doc1", "expiry_date": expiry};
+    var result = couchbase.touch(dst_bucket, req);
+    if (result.success) {
+        log('success adv. touch: result', result);
+    } else {
+        log('failure adv. touch: id', req.id, 'result', result);
+    }
+}
+```
+
+Results
+
+```javascript
+{
+  "meta": {
+    "id": "doc1",
+    "cas": "1708978502129614848"
+  },
+  "success": true
+}
+
+{
+  "error": {
+    "code": 1,
+    "name": "LCB_KEY_ENOENT",
+    "desc": "The document key does not exist on the server",
+    "key_not_found": true
+  },
+  "success": false
+}
+```
+
+## [](#advanced-subdoc-array-op-mutatein)Sub-Document MUTATEIN Operation
+
+Couchbase Server 7.6
+
+`result = couchbase.mutateIn(binding, meta, subdoc_operation_array, options)`
+
+Sub-Document MUTATEIN operations let you modify only parts of a document instead of the entire document. This makes them faster and more efficient than full-document operations like REPLACE and UPSERT.
+
+By default, a MUTATEIN operation does not modify Extended Attributes (XATTRs). To modify a document’s XATTRs, you must:
+
+* Pass `xattrs` as the third argument of your OnUpdate function.
+* Pass `{ "xattrs": true }` in the `subdoc_operation_array` argument of your OnUpdate function.
+
+Sub-Document array operations do not have concurrency issues and can be performed without checking CAS.
+
+#### [](#examples)Examples
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    var meta = {"id": meta.id};
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.insert("testField", "insert")
+    ]);
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.replace("testField", "replace")
+    ]);
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.remove("testField")
+    ]);
+}
+```
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    var meta = {"id": meta.id};
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.upsert("arrayTest", []),
+        couchbase.MutateInSpec.arrayAppend("arrayTest", 2),
+        couchbase.MutateInSpec.arrayPrepend("arrayTest", 1),
+        couchbase.MutateInSpec.arrayInsert("arrayTest[0]", 0),
+        couchbase.MutateInSpec.arrayAddUnique("arrayTest", 3)
+    ]);
+};
+```
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta, xattrs) {
+    var meta = {"id": meta.id};
+
+    // INSERT XATTR
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.insert("testField", "insert", {"xattrs": true})
+    ]);
+
+    // UPSERT XATTR
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.upsert("testField", "upsert", {"xattrs": true})
+    ]);
+
+    // REPLACE XATTR
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.replace("testField", "replace", {"xattrs": true})
+    ]);
+
+    // REMOVE XATTR
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.remove("testField", {"xattrs": true})
+    ]);
+
+    // ARRAY OPERATIONS WITH XATTR
+    couchbase.mutateIn(dst_bucket, meta, [
+        couchbase.MutateInSpec.upsert("arrayTest", [], {"xattrs": true}),
+        couchbase.MutateInSpec.arrayAppend("arrayTest", 2, {"xattrs": true}),
+        couchbase.MutateInSpec.arrayPrepend("arrayTest", 1, {"xattrs": true}),
+        couchbase.MutateInSpec.arrayInsert("arrayTest[0]", 0, {"xattrs": true}),
+        couchbase.MutateInSpec.arrayAddUnique("arrayTest", 3, {"xattrs": true})
+    ]);
+};
+```
+
+## [](#advanced-subdoc-array-op-lookupin)Sub-Document LOOKUPIN Operation
+
+Couchbase Server 7.6.2
+
+`result = couchbase.lookupIn(binding, meta, subdoc_array, options)`
+
+Sub-Document LOOKUPIN operations let you search for a specific field in a document without having to search and retrieve the entire document.
+
+By default, a LOOKUPIN operation does not fetch Extended Attributes (XATTRs). To fetch a document’s XATTRs, you must:
+
+* Pass `xattrs` as the third argument of your OnUpdate function.
+* Pass `{ "xattrs": true }` in the `subdoc_array` argument of your OnUpdate function.
+
+The `subdoc_array` argument contains one or more of the following `couchbase.lookupIn.get` specs:
+
+* `<subdoc_path>`, which is the key of the subdocument you want to fetch.
+* `{ "xattrs": true }`, if you want to fetch a document’s XATTRs.
+* `{ "doc":[{ "value”: <subdoc_value_0>, ”success”: <bool> }, { "value”: <subdoc_value_1>, ”success”:<bool>} ], ”meta”: <meta>, ”success”: <overall fetch operation success bool> }`, which returns results.
+* `result.doc[i].value`, which gives you access to the i-th value of the subdocument. If there’s an error in fetching the i-th `subdoc_path`, the `result.doc[i].value` is undefined.
+
+#### [](#example-9)Example
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta, xattrs) {
+  var meta = {"id": meta.id};
+  var result = couchbase.lookupIn(dst_bucket, meta, [
+    couchbase.LookupInSpec.get("<subdoc_path_0>", {"xattrs": true}),
+    couchbase.LookupInSpec.get("<subdoc_path_1>", {"xattrs": true})
+  ]);
+  var value_0 = result.doc[0].value;
+  var value_1 = result.doc[1].value;
+}
+```
+
+## [](#multiple-collection-functions)Eventing Functions that Listen to Multiple Collections
+
+You can use the wildcard `*` in an Eventing Function’s scope or collection to listen to multiple collections.
+
+If the binding used by the Advanced Keyspace Accessor also contains a wildcard `*` for its scope or collection, you must use the additional `meta.keyspace` parameter.
+
+The following example includes a `meta.keyspace` parameter that specifies the keyspace in which the INSERT operation is to take place:
+
+#### [](#example-10)Example
+
+Operation
+
+```javascript
+couchbase.insert(
+    src_col, {
+        "id": id_str,
+        "keyspace": {
+            "bucket_name": "bkt01",
+            "scope_name": "scp01",
+            "collection_name": "col01"
+        }
+    },
+    some_doc
+)
+```
+
+See the [multiCollectionEventing example](eventing-examples.md#examples-scriptlets-advanced-accessors) for a detailed example of Eventing Functions that listen to multiple collections.
+
+## [](#optional-params)Optional Parameters
+
+### [](#optional-cache-true-parameter)Optional `{ "cache": true }` Parameter
+
+You can use an optional third parameter `{ "cache": true }` to enable a bucket backed cache to hold the documents for one second. This cache exists on each Eventing node and is shared across all Eventing Functions in the same node.
+
+The cache has "read your own write" (RYOW) semantics. Writing and then reading the same document with `{ "cache": true }` always retrieves the value that has just been written.
+
+This parameter loads near static data from the Data Service, where every mutation needs external data to drive the business logic of Eventing Functions. The performance of this operator is usually 18 to 25 times faster than reading data directly from the Data Service.
+
+This parameter can be used with the [GET](#advanced-get-op) advanced operation.
+
+#### [](#optional-params-cache)Example using the optional `{ "cache": true }` parameter
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    log('input doc', doc);
+    log('input meta', meta);
+    // Can be the same or different
+    var new_meta = { "id": "test_adv_get::1" };
+    var result = couchbase.get(src_col, new_meta, { "cache": true });
+    if (result.success) {
+        log('success adv. get: result', result);
+    } else {
+        log('failure adv. get: id', new_meta.id, 'result',result);
+    }
+}
+```
+
+Results
+
+```javascript
+{
+    "doc": {
+        "id": 1,
+        "type": "test_adv_get"
+    },
+    "meta": {
+        "id": "test_adv_get::1",
+        "cas": "1610034762747412480",
+        "datatype": "json"
+    },
+    "success": true
+}
+
+{
+    "doc": {
+        "a": 1,
+        "random": 0.09799092443129842
+    },
+    "meta": {
+        "id": "test_adv_insert:1",
+        "cas": "1610140272584884224",
+        "expiry_date": "2021-01-08T21:12:12.000Z",
+        "datatype": "json"
+    },
+    "success": true
+}
+
+{
+    "error": {
+        "code": 272,
+        "name": "LCB_KEY_ENOENT",
+        "desc": "The document key does not exist on the server",
+        "key_not_found": true
+    },
+    "success": false
+}
+```
+
+### [](#optional-params-recursion)Optional `{ "self_recursion": true }` Parameter
+
+Couchbase Server 7.6
+
+You can use the optional fourth parameter `{ "self_recursion": true }` to prevent the suppression of recursive source bucket mutations and to process the mutations that you have just created.
+
+If you do not add `{ "self_recursion": true }` to your operation, all source bucket mutations are suppressed.
+
+This parameter can be used with the [INSERT](#advanced-insert-op), [UPSERT](#advanced-upsert-op), and [REPLACE](#advanced-replace-op) advanced operations.
+
+#### [](#example-using-the-optional-parameter-self%5Frecursion-true)Example using the optional parameter `{ "self_recursion": true }`
+
+Operation
+
+```javascript
+function OnUpdate(doc, meta) {
+    if (!doc.count) {
+        doc = { "count": 1, "id": meta.id };
+        meta.id = meta.id + "_test";
+        couchbase.insert(src, meta, doc, { "self_recursion": true });
+        return;
+    }
+
+    if (doc.count < 3) {
+        doc.count++
+        couchbase.upsert(src, meta, doc, { "self_recursion": true });
+        return;
+    }
+
+    if (doc.count < 6) {
+        doc.count++;
+        couchbase.replace(src, meta, doc, { "self_recursion": true });
+        return;
+    }
+
+    couchbase.delete(src, { "id": meta.id });
+    couchbase.delete(src, { "id": doc.id });
+}
+```
+
+## [](#return-values)Return Values
+
+| Value                             | Type                                            | Description                                                                                                                                                                                                                                                             |
+| --------------------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| binding                           | string                                          | The name of the binding that references the target bucket. For the Advanced GET operation, the binding can have an access level of read or read/write. For all other operations, the binding must have an access level of read/write.                                   |
+| meta                              | Object                                          | The positional parameter that represents the metadata of the operation.                                                                                                                                                                                                 |
+| meta.id                           | string                                          | The key of the document to be used in the operation. This is a mandatory parameter that must be a JavaScript string.                                                                                                                                                    |
+| meta.keyspace                     | Object                                          | The keyspace of the document to be used for the operation. Must be in the JavaScript format "keyspace": { "bucket\_name": string, "scope\_name": string, "collection\_name": string }.                                                                                  |
+| meta.cas                          | string                                          | (Optional) Specifies the CAS value to be used as a pre-condition for the operation. If the CAS value of the document does not match the CAS value specified in this field, the operation fails and sets the parameter cas\_mismatch to true in the error return object. |
+| meta.expiry\_date                 | Date                                            | (Optional) Sets the expiry time for the document. If specified, must be in the JavaScript format Date.                                                                                                                                                                  |
+| doc                               | string, number, boolean, null, Object, or Array | The document content of the operation.                                                                                                                                                                                                                                  |
+| result                            | Object                                          | Indicates the success or failure of the operation. If the operation is successful, it returns the data that was fetched. If the operation fails, it returns the details of the error.                                                                                   |
+| result.success                    | boolean                                         | Indicates if the operation is successful or not. This field is always present in the return object.                                                                                                                                                                     |
+| result.meta                       | Object                                          | Contains metadata about the object that was fetched. This field is only present is the operation is successful. If the specified key is not present in the bucket, the operation fails and returns key\_not\_found in the error object.                                 |
+| result.meta.id                    | string                                          | The key of the document fetched by the operation.                                                                                                                                                                                                                       |
+| result.meta.cas                   | string                                          | The CAS value of the document fetched by the operation.                                                                                                                                                                                                                 |
+| result.meta.expiry\_date          | Date                                            | The expiration date of the document. This field is only present if an expiration is set on the document.                                                                                                                                                                |
+| result.meta.datatype              | string                                          | Indicates whether the document is json or binary.                                                                                                                                                                                                                       |
+| result.doc                        | string, number, boolean, null, Object, or Array | Returns the content of the requested document if the operation is successful.                                                                                                                                                                                           |
+| result.error                      | Object                                          | Returns an error if the operation fails.                                                                                                                                                                                                                                |
+| result.error.cas\_mismatch        | boolean                                         | If true, this field indicates that the operation failed because a CAS value was not specified or because the CAS value on the object did not match the CAS value in the request.                                                                                        |
+| result.error.key\_not\_found      | boolean                                         | If true, this field indicates that the operation failed because the specified key did not exist in the bucket.                                                                                                                                                          |
+| result.error.key\_already\_exists | boolean                                         | If true, this field indicates that the operation failed because the specified key already exists in the bucket.                                                                                                                                                         |
+| result.error.code                 | number                                          | Represents the SDK error code that triggered the operation to fail. Usually returns an internal numeric code.                                                                                                                                                           |
+| result.error.name                 | string                                          | Indicates the error that the SDK triggered and that caused the operation to fail.                                                                                                                                                                                       |
+| result.error.desc                 | string                                          | A description of the error. This description can be used for diagnostics and logging, and can change over time. Programming logic should not be tied to the specific contents of this field.                                                                            |
+| exceptions                        | \-                                              | Indicates errors through the error object in the return value. Exceptions are only thrown during system failure conditions.                                                                                                                                             |
+
+## [](#see-also)See Also
+
+* [Advanced Accessor Handler scriptlets](eventing-examples.md#examples-scriptlets-advanced-accessors) for complete examples of Advanced Keyspace Accessors, including JavaScript, input mutations, output mutations, and log messages
+* [Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors)

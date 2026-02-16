@@ -1,0 +1,95 @@
+[View original HTML](/server/7.6/learn/buckets-memory-and-storage/buckets.html)
+
+> A _bucket_ is the fundamental space for storing data in Couchbase Server. Each bucket contains a hierarchy of scopes and collections to group keys and values logically. 
+
+## [](#bucket-types)Bucket Types
+
+A maximum of 30 buckets can be created in a cluster. Each bucket must be specified as one of the following three _types_.
+
+* **Couchbase buckets**: These store data persistently, as well as in memory. They allow data to be automatically replicated for high availability, using the Database Change Protocol (DCP); and dynamically scaled across multiple clusters, by means of Cross Datacenter Replication (XDCR).  
+If a Couchbase bucket’s RAM-quota is exceeded, items are _ejected_. This means that data, which is resident both in memory and on disk, is removed from memory, but not from disk. Therefore, if removed data is subsequently needed, it is reloaded into memory from disk. For a Couchbase bucket, ejection can be either of the following, based on configuration performed at the time of bucket-creation:
+
+  * _Value-only_: Only key-values are removed. Generally, this favors performance at the expense of memory.
+  * _Full_: All data — including keys, key-values, and metadata — is removed. Generally, this favors memory at the expense of performance.
+* **Ephemeral buckets**: These are an alternative to Couchbase buckets, to be used whenever persistence is not required: for example, when repeated disk-access involves too much overhead. This allows highly consistent in-memory performance, without disk-based fluctuations. It also allows faster node rebalances and restarts.  
+If an Ephemeral bucket’s RAM-quota is exceeded, one of the following occurs, based on configuration performed at the time of bucket-creation:
+
+  * Resident data-items remain in RAM. No additional data can be added; and attempts to add data therefore fail.
+  * Resident data-items are _ejected_ from RAM, to make way for new data. For an Ephemeral bucket, this means that data, which is resident in memory (but, due to this type of bucket, can never be on disk), is removed from memory. Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server.  
+  For an Ephemeral bucket, ejection removes all of an item’s data: however, a _tombstone_ (a record of the ejected item, which includes keys and metadata) is retained until the next scheduled purge of metadata for the current node. See [Storage](storage-settings.md) for more information.
+* **Memcached buckets**: These are now _deprecated_. Memcached buckets are designed to be used alongside other database platforms, such as ones employing relational database technology. By caching frequently-used data, Memcached buckets reduce the number of queries a database-server must perform. Each Memcached bucket provides a directly addressable, distributed, in-memory key-value cache.  
+Memcached buckets are _not persistent on disk_: they only exist in RAM. If a Memcached bucket’s RAM-quota is exceeded, items are _ejected_. For a Memcached bucket, this means that data, which is resident in memory (but, due to this type of bucket, can never be on disk), is removed from memory. Therefore, if removed data is subsequently needed, it cannot be re-acquired from Couchbase Server. Ejection removes all of an item’s data.
+
+All bucket types are fully compatible with the Memcached open source distributed key-value cache.
+
+## [](#bucket-capabilities)Bucket Capabilities
+
+The Couchbase and Ephemeral bucket-types each support a slightly different set of capabilities; as shown by the following table.
+
+| Capability                                               | Couchbase buckets          | Ephemeral buckets                                                  |
+| -------------------------------------------------------- | -------------------------- | ------------------------------------------------------------------ |
+| Maximum number of buckets                                | 30                         | 30                                                                 |
+| Item size limit                                          | 20 MB                      | 20 MB                                                              |
+| Persistence                                              | Yes                        | No                                                                 |
+| Replication (DCP)                                        | Yes                        | Yes                                                                |
+| Cross Datacenter Replication (XDCR)                      | Yes                        | Yes                                                                |
+| Rebalance                                                | Yes                        | Yes                                                                |
+| Encrypted data access                                    | Yes                        | Yes                                                                |
+| Durability                                               | Yes, including persistence | Yes, excluding persistence                                         |
+| Scopes and Collections                                   | Yes                        | Yes                                                                |
+| TTL                                                      | Yes                        | Yes                                                                |
+| Bucket TTL                                               | Yes                        | Yes                                                                |
+| Data Compression                                         | Yes                        | Yes                                                                |
+| Statistics                                               | All                        | All except disk-related                                            |
+| Full client support                                      | Yes                        | Yes                                                                |
+| Backup                                                   | Yes                        | Yes                                                                |
+| Couchstore (standard data storage)                       | Yes                        | No                                                                 |
+| Magma (high-performance data storage)                    | Yes                        | No                                                                 |
+| Change History (for Magma only)                          | Yes                        | No                                                                 |
+| Standard index storage                                   | Yes                        | For versions prior to 7.0.2, No. For version 7.0.2 and after, Yes. |
+| Memory Optimized index storage                           | Yes                        | Yes                                                                |
+| Query                                                    | Yes                        | Yes                                                                |
+| Search                                                   | Yes                        | Yes                                                                |
+| Analytics                                                | Yes                        | Yes                                                                |
+| Eventing                                                 | Yes                        | Yes                                                                |
+| Backup                                                   | Yes                        | Yes                                                                |
+| External connectors                                      | Yes                        | Yes                                                                |
+| Bucket [rank](../../rest-api/rest-bucket-create.md#rank) | Yes                        | Yes                                                                |
+| Map-reduce views                                         | Yes                        | No                                                                 |
+
+## [](#replication-dcp-and-xdcr)Couchbase vs Ephemeral Buckets
+
+Couchbase and Ephemeral buckets both provide a highly available, dynamically reconfigurable, distributed data-store; which survives node failures, and allows cluster-reconfiguration to occur while service-requests continue to be handled. The following table provides further information on the principal capabilities shared by both bucket-types.
+
+| Capability                         | Couchbase Buckets                                                                                                                                                                                                                                                                                                                                                                             | Ephemeral Buckets                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Persistence                        | Couchbase buckets are persisted asynchronously, from memory to disk. This provides protection from server-restarts. You can set persistence-properties at the bucket level.                                                                                                                                                                                                                   | Ephemeral buckets are not persisted to disk: they are retained in RAM only.                                                                                                                                                                                                                                                                                                                                                                                         |
+| Replication (DCP and XDCR)         | Couchbase buckets can be replicated across a configurable number of servers. If the host machine fails, a replica server is promoted to be the host server, providing high availability cluster operations via failover. You can configure replication at the bucket level. Additionally, _Cross Datacenter Replication_ (XDCR) allows replication of Couchbase bucket-data between clusters. | Ephemeral buckets can be replicated across a configurable number of servers, exactly as can Couchbase buckets; but without being persisted to disk. Likewise, XDCR allows replication of Ephemeral bucket-data between clusters and without persistence: note however, that if an Ephemeral bucket configured to eject data when its RAM-quota is exceeded is used as a source for XDCR, not all data written to the bucket is guaranteed to be replicated by XDCR. |
+| Rebalance                          | By means of rebalancing, the load constituted by Couchbase buckets is distributed evenly across nodes within the cluster. Buckets and nodes can be dynamically added and removed.                                                                                                                                                                                                             | Rebalancing redistributes Ephemeral buckets, exactly as it does Couchbase buckets; but without the data being persisted to disk.                                                                                                                                                                                                                                                                                                                                    |
+| Auto-failover and auto-reprovision | By default, Auto-failover starts when a node has been inaccessible for 120 seconds. Auto-failover can happen only up to a specified maximum number of times, prior to manual reset. When a failed node becomes accessible again, delta-node recovery is used: re-using data on disk, and resynchronizing it.                                                                                  | Auto-reprovision starts as soon as a node is inaccessible. Auto-reprovision can happen multiple times, for multiple nodes. When a failed node becomes accessible again, no delta-node recovery is required, since no data resides on disk.                                                                                                                                                                                                                          |
+
+## [](#bucket-security)Bucket Security
+
+Buckets are protected by the Couchbase _Role-Based Access Control_ (RBAC) system. See [Authorization](../security/authorization-overview.md) and [Authentication](../security/authentication.md) for details.
+
+From release 7.6, Couchbase Server no longer supports SQL++ operations on buckets without password specification — for instance, legacy buckets which have been upgraded to use RBAC. Users must authenticate to connect to the Query service and execute a SQL++ statement, and must be authorized to access all required buckets and collections.
+
+## [](#bucket-storage)Bucket Storage
+
+Couchbase supports two different backends for the underlying storage of bucket data:
+
+| **Couchstore** | the traditional storage engine better suited to lower volumes of data.   |
+| -------------- | ------------------------------------------------------------------------ |
+| **Magma**      | the latest high performance storage engine for much higher data volumes. |
+
+See [Storage Engines](storage-engines.md) for more information.
+
+Note that the bucket storage backends apply only to Couchbase buckets: they do _not_ apply to Ephemeral buckets.
+
+## [](#using-buckets-in-administration-and-development)Using Buckets in Administration and Development
+
+For information on how to create, access, and manage buckets, see [Manage Buckets](../../manage/manage-buckets/bucket-management-overview.md).
+
+## [](#scopes-and-collections)Scopes and Collections
+
+Within each bucket, data is organized in a logical hierarchy of _scopes_ and _collections_. For more information, refer to [Scopes and Collections](../data/scopes-and-collections.md).

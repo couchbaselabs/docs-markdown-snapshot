@@ -1,0 +1,288 @@
+[View original HTML](/dotnet-sdk/3.7/howtos/error-handling.html)
+
+> Common errors and exceptions, and how to handle them. Learn how to keep your application available as best as possible even in the face of (transient) failures. 
+
+Unfortunately, the SDK alone cannot make all the decisions needed since it lacks the understanding of your application domain. In most cases transparent retry is the best choice, but maybe sometimes you need to fail quickly and switch over to an alternate data source. On this page you will learn about basic and advanced error handling mechanisms, as well as the fundamentals that hold them all together.
+
+## [](#error-handling-fundamentals)Error Handling Fundamentals
+
+The following fundamentals will help you understand how the SDK makes retry decisions and how errors are surfaced. Later sections will cover how you can influence this behavior.
+
+### [](#request-lifecycle)Request Lifecycle
+
+The image below shows the high-level phases during a request lifecycle:
+
+![Request Lifecycle](_images/request-lifecycle.png) 
+
+* **Pre-Dispatch:** The initial phase of the request lifecycle. When a request is created, the SDK tries to find the right socket/endpoint to dispatch the operation into.
+* **Dispatch:** The SDK puts the operation onto the network and waits for a response. This is a critical point in the lifecycle because the retryability depends on the idempotency of the request (discussed later).
+* **Response Arrived:** Once a response arrives from the server, the SDK decides what to do with it (in the best case, complete the operation successfully).
+
+All the specifics are discussed in the following sections, but a broad categorization of exceptions can be outlined already:
+
+1. If an unsuccessful response arrives and the SDK determines that it cannot be retried, the operation will fail with an explicit exception. For example, performing an `insert` operation when a document already exists will cause a `DocumentExistsException`.
+2. Failures in all other cases, especially during `pre-dispatch` and `dispatch`, will result in either a `TimeoutException` or a `RequestCanceledException`.
+
+### [](#timeoutexception)TimeoutException
+
+The one exception that you are inevitably going to hit is the `TimeoutException`, or more specifically its child implementations the `UnambiguousTimeoutException` and the `AmbiguousTimeoutException`.
+
+It is important to establish a mindset that a timeout is never the cause of a problem, but always the symptom. A timeout is your friend, because otherwise your thread will just end up being blocked for a long time instead. A timeout gives you control over what should happen when it occurs, and it provides a safety net and last resort if the operation cannot be completed for whatever reason.
+
+The SDK will raise an `AmbiguousTimeoutException` unless it can be sure that it did not cause any side effect on the server side (for example if an idempotent operation timed out, which is covered in the next section). Most of the time it is enough to just handle the generic `TimeoutException`.
+
+Since the timeout is never the cause, always the symptom, it is important to provide contextual information on what might have caused it in the first place. From .NET SDK 3.0 onwards, we introduced the concept of an `ErrorContext` which helps with exactly that.
+
+The `ErrorContext` is available as a method on the `TimeoutException` through the `context()` getter, but most importantly it is automatically attached to the exception output when printed in the logs. Here is an example output of such a `TimeoutException` with the attached context:
+
+```csharp
+Couchbase.Core.Exceptions.UnambiguousTimeoutException: The operation /26 timed out after 00:00:02.5689498. It was retried 1 times using Couchbase.Core.Retry.BestEffortRetryStrategy.
+   at Couchbase.Utils.ThrowHelper.ThrowTimeoutException(IOperation operation, IErrorContext context) in
+
+   //   ... (rest of stack omitted) ...
+
+-----------------------Context Info---------------------------
+{"dispatchedFrom":null,"dispatchedTo":null,"documentKey":"airline_10226","clientContextId":"26","cas":0,"status":"success","bucketName":"travel-sample","collectionName":_default,"scopeName":_default,"message":null,"opCode":"get","retryReasons":["SocketNotAvailable"]}
+```
+
+The full reference for the `ErrorContext` can be found [at the bottom of the page](#errorcontext), but just by looking at it we can observe the following information:
+
+* A `Get` timed out after `2500` ms.
+* The document in question had the ID `airline_10226` and we used the `travel-sample` bucket.
+* It has been retried 15 times and the reason was always `SocketNotAvailable`.
+
+We’ll discuss retry reasons later in this document, but `SocketNotAvailable` signals that we could not send the operation over the socket because it was not connected/available. Since we now know that the socket had issues, we can inspect the logs to see if we find anything related:
+
+```csharp
+2022-05-27T15:59:33.0328291-07:00  [ERR] Unhandled error in DefaultConnectionPoolScaleController (6ae53370)
+System.IO.IOException: The operation is not allowed on non-connected sockets.
+   at System.Net.Sockets.NetworkStream..ctor(Socket socket, FileAccess access, Boolean ownsSocket)
+   at System.Net.Sockets.NetworkStream..ctor(Socket socket, Boolean ownsSocket)
+   at Couchbase.Core.IO.Connections.MultiplexingConnection..ctor(Socket socket, ILogger`1 logger)
+//	... (rest of stack omitted) ...
+```
+
+Looks like we tried to connect to the server, but the connection was refused. The next step would be to triage the socket issue on the server side, but in this case it’s not needed since we just stopped the server for this experiment.
+
+Time to start it up again and jump to the next section!
+
+### [](#request-cancellations)Request Cancellations
+
+Since we’ve covered timeouts already, the other remaining special exception is the `RequestCanceledException`. It will be thrown in the following cases:
+
+* The `RetryStrategy` determined that the `RetryReason` must not be retried (covered later).
+* Too many requests are being stuck waiting to be retried (signaling backpressure).
+* The SDK is already shut down when an operation is performed.
+
+There are potentially other reasons as well, but where it originates is not as important as the information it conveys. If you get a `RequestCanceledException`, it means the SDK is not able to further retry the operation and it is terminated before the timeout interval.
+
+Transparently retrying should only be done if the `RetryStrategy` has been customized and you are sure that the retried operation hasn’t performed any side-effects on the server that can lead to data loss. Most of the time the logs need to be inspected after the fact to figure out what went wrong.
+
+To aid with debugging after the fact, the `RequestCanceledException` also contains an `ErrorContext`, very similar to what has been discussed in the [TimeoutException](#timeoutexception) section.
+
+### [](#idempotent-vs-non-idempotent-requests)Idempotent vs. Non-Idempotent Requests
+
+Operations flowing through the SDK are either idempotent or non-idempotent. If an operation is idempotent, it can be sent to the server multiple times without changing the result more than once.
+
+This distinction is important when the SDK sends the operation to the server and the socket gets closed before it receives a response. If it is not idempotent the SDK cannot be sure if it caused a side-effect on the server side and needs to cancel it. In this case, the application will receive a `RequestCanceledException`.
+
+If it is idempotent though, the SDK will transparently retry the operation since it has a chance of succeeding eventually. Depending on the type of request, it might be able to send it to another node or the socket connection re-established before the operation times out.
+
+If the operation needs to be retried before it is sent onto the network or after the SDK received a response, the idempotency doesn’t matter and other factors are taken into account. The following picture illustrates when idempotency is important in the request lifecycle:
+
+![Request Lifecycle With Idempotence](_images/request-lifecycle-idempotent.png) 
+
+The SDK is very conservative on which operations are considered idempotent, because it really wants to avoid accidental data loss. Imagine a situation where a mutating operation is applied twice by accident but another application server changed it in the meantime. That change is lost without a chance to potentially recover it.
+
+The following operations are considered idempotent out of the box (aside from specific internal requests that are not covered):
+
+* Cluster: `Search`, `Ping`, `WaitUntilReady`.
+* Bucket: `View`, `Ping`, `WaitUntilReady`.
+* Collection: `Get`, `LookupIn`, `GetAnyReplica`, `GetAllReplicas`, `Exists`.
+* Management commands that only retrieve information.
+
+Both `Query` and `AnalyticsQuery` commands are not in the list because the SDK does not inspect the `statement` string to check if you are actually performing a mutating operation or not. If you are certain that you are only selecting data, you can manually tell the client about it and benefit from idempotent retries:
+
+```csharp
+var queryResult = await cluster.QueryAsync<dynamic>("SELECT * FROM `travel-sample`", new QueryOptions().Readonly(true));
+
+var analyticsResult = await cluster.AnalyticsQueryAsync<dynamic>("SELECT * FROM `travel-sample`.inventory.airport",
+new AnalyticsOptions().Readonly(true));
+```
+
+### [](#retrystrategy-and-retryreasons)RetryStrategy and RetryReasons
+
+The `RetryStrategy` decides whether or not a request should be retried based on the `RetryReason`. By default, the SDK ships with a `BestEffortRetryStrategy` which, when faced with a retryable error, retries the request until it either succeeds or the timeout expires.
+
+|  | SDK 2 ships with a FailFastRetryStrategy which is intended to be used by an application. SDK 3 also ships with one, but it is marked as @Internal. We recommend extending and customizing the BestEffortRetryStrategy as described in [Customizing the RetryStrategy](#customizing-the-retrystrategy). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+The `RetryReasons` provide useful information that gives insight into why an operation was retried. The `ErrorContext` exposes the reasons as a list, since it is certainly possible that a request gets retried more than once because of different reasons. A request might be retried on one occasion because the socket went down during dispatch, and then on another because the response indicated a temporary failure.
+
+See [Customizing the RetryStrategy](#customizing-the-retrystrategy) for more information on how to tailor the default behavior to your needs.
+
+## [](#exception-handling)Exception Handling
+
+In .NET, all exceptions derive from a base `CouchbaseException`. It acts as both a grouping mechanism and as a "catch all" possibility in case you need one. It defines a `ErrorContext context()` getter, which in some exception cases might be null. If it is available, it will be automatically included in the exception log output as mentioned above. The `CouchbaseException` extends the `RuntimeException`, so no checked exceptions are defined throughout the SDK.
+
+With the SDK retrying all transparently retryable exceptions already (unless you tune the `RetryStrategy`), you are only left with terminal exceptions that are not retryable at all or where the SDK does not have enough context to decide on its own.
+
+### [](#handling-exceptions-in-the-blocking-api)Handling Exceptions in the blocking API
+
+Let’s consider one of the simpler examples - loading a document via Key/Value - to illustrate different `try/catch` strategies.
+
+First, if you do not anticipate the document to not be present, it is likely that you are treating a `DocumentNotFoundException` as an error that is fatal. In this case you can either propagate the `CouchbaseException` up your call stack, or rethrow it with a custom exception (here we define an arbitrary `DatabaseException`):
+
+```csharp
+// This will raise a `CouchbaseException` and propagate it
+using var result1 = await collection.GetAsync("my-document-id");
+
+// Rethrow with a custom exception type
+try {
+   using var result2 =  await collection.GetAsync("my-document-id");
+} catch (CouchbaseException ex) {
+    throw new Exception("Couchbase lookup failed", ex);
+}
+```
+
+A document not being present might be an indication that you need to create it. In this case you can catch it explicitly and handle it, while re-throwing all others:
+
+```csharp
+try {
+    using var result = await collection.GetAsync("my-document-id");
+} catch (DocumentNotFoundException) {
+    await collection.InsertAsync("my-document-id", new {my ="value"});
+} catch (CouchbaseException ex) {
+    throw new Exception("Couchbase lookup failed", ex);
+}
+```
+
+Please refer to each individual method ([API docs](https://docs.couchbase.com/sdk-api/couchbase-net-client/)) for more information about which exceptions are thrown on top of the `TimeoutException` and `RequestCanceledException`.
+
+Now that we’ve covered falling back to another method or propagating the error, we also need to touch on retrying. As mentioned previously, the SDK will retry as much as it can, but in some cases it cannot know if an operation is retryable or not without the additional context you have as an application developer.
+
+As an example, in your application you know that a particular document is only ever written by one app, so there is no harm in retrying an upsert operation in case of failure:
+
+```csharp
+for (int i = 0; i < 10; i++) {
+    try {
+        await collection.UpsertAsync("docid", new {my ="value"});
+    break;
+    } catch (TimeoutException) {
+        // propagate, since time budget's up
+    break;
+    } catch (CouchbaseException ex) {
+        Console.WriteLine($"Failed: {ex}, retrying.");
+        // don't break, so retry
+    }
+}
+```
+
+This code tries to upsert the document with a maximum of 10 attempts. While this code can be improved in various ways, it highlights an issue in general with blocking retries: usually you expect a single timeout for the operation which represents your upper limit. But in this case individual timeouts might add up to much more than a single operation timeout, since you are always issuing new timeouts.
+
+There are ways to keep track of the remaining timeout and set it to a lower value when you perform the retry, but if you have sophisticated retry needs we recommend looking at reactive retry instead which is covered in the next section.
+
+## [](#customizing-the-retrystrategy)Customizing the RetryStrategy
+
+A custom `RetryStrategy` can be provided both at the ClusterOptions level (so it will take effect globally):
+
+```csharp
+var clusterOptions = new ClusterOptions().WithRetryStrategy(myCustomStrategy);
+```
+
+Or it can be applied on a per-request basis:
+
+```csharp
+using var result = await collection.GetAsync("docid", new GetOptions().RetryStrategy(myCustomStrategy));
+```
+
+Both approaches are valid, although we recommend for most use cases to stick with the defaults and only to override it on a per requests basis.
+
+If you find yourself overriding every request with the same different strategy, it can make sense to apply it locally in order to DRY it up a bit. There are no performance differences with both approaches, but make sure that even if you pass in a custom one on every request that you do not create a new one each time but rather share it across calls.
+
+While it is possible to implement the `RetryStrategy` from scratch, we **strongly recommend** that instead the `BestEffortRetryStrategy` is extended and only the specifiy `RetryReasons` that need to be customized are handled. Note that for SDK version prior to 3.3.2, a custom implementation of IRequestStrategy must be used.
+
+In practice, it should look something like this:
+
+```csharp
+public class MyCustomRetryStrategy : IRetryStrategy {
+    public RetryAction RetryAfter(IRequest request, RetryReason reason) {
+        return RetryAction.Duration(null);
+    }
+}
+```
+
+Importantly, do not omit the `return base.RetryAfter(request, reason);` as a fallback so that all other cases are handled for you.
+
+Implementing a concrete example, there is a chance that you are using a `CircuitBreaker` configuration and want to fail-fast on an open circuit:
+
+```csharp
+public class MyCustomRetryStrategy2 : BestEffortRetryStrategy {
+    public new RetryAction RetryAfter(IRequest request, RetryReason reason){
+        if (reason == RetryReason.CircuitBreakerOpen) {
+            //passing null will ensure RetryAction.Retry is false
+            return RetryAction.Duration(null); 
+        }
+        return base.RetryAfter(request, reason);
+    }
+}
+```
+
+The `RetryAction` indicates what should be done with the request: if you return a `RetryAction.NoRetry()`, the orchestrator will cancel the request, resulting in a `RequestCanceledException`. The other option is to call it through `RetryAction withDuration(Duration duration)`, indicating the duration when the request should be retried next. This allows you to customize not only _if_ a request should be retried, but also _when_.
+
+|  | Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-vs-non-idempotent-requests) in mind. You can check if a request is idempotent through the Idempotent property, and also check if the RetryReason allows for non-idempotent retry through the AllowsNonIdempotentRetries() extension method. If in doubt, check the implementation of the BestEffortRetryStrategy for guidance. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#reference)Reference
+
+### [](#retryreasons)RetryReasons
+
+The following table describes the **user visible** `RetryReasons` and indicate when they might occur.
+
+The `Non-Idempotent Retry` gives an indication if non-idempotent operations also qualify for retry in this case.
+
+Please also note that at this point in time the `RetryReason` enum is marked as **volatile**, so we do not provide stability guarantees for it.
+
+__Table 1\. RetryReason Reference__
+| Name                          | Non-Idempotent Retry | Description                                                                            |
+| ----------------------------- | -------------------- | -------------------------------------------------------------------------------------- |
+| NodeNotAvailable              | true                 | At the time of dispatch there was no node available to dispatch to.                    |
+| ServiceNotAvailable           | true                 | At the time of dispatch there was no service available to dispatch to.                 |
+| SocketNotAvailable            | true                 | At the time of dispatch there was no endpoint available to dispatch to.                |
+| CircuitBreakerOpen            | true                 | The configured circuit breaker on the endpoint is open.                                |
+| KvLocked                      | true                 | The server response indicates a locked document.                                       |
+| KvTemporaryFailure            | true                 | The server response indicates a temporary failure.                                     |
+| KvSyncWriteInProgress         | true                 | The server response indicates a sync write is in progress on the document.             |
+| KvSyncWriteReCommitInProgress | true                 | The server response indicates a sync write re-commit is in progress on the document.   |
+| SocketClosedWhileInFlight     | false                | The underlying socket on the endpoint closed while this operation was still in-flight. |
+| ViewsTemporaryFailure         | true                 | The server view engine result indicates a temporary failure.                           |
+| SearchTooManyRequests         | true                 | The server search engine result indicates it needs to handle too many requests.        |
+| QueryPreparedStatementFailure | true                 | The server query engine indicates that the prepared statement failed and is retryable. |
+| QueryIndexNotFound            | true                 | The server query engine indicates that the query index has not been found.             |
+| AnalyticsTemporaryFailure     | true                 | The analytics query engine indicates that a temporary failure occured.                 |
+
+### [](#errorcontext)ErrorContext
+
+Depending on the operation the `ErrorContext` can be very different, and it also changes over time as we adjust settings to be more user-friendly and improve debugability.
+
+The following table provides best-effort guidance explanation to most of the fields you’ll find in practice. Please note that we do not provide any stability guarantees on the names and values at this point (consider it **volatile**):
+
+__Table 2\. ErrorContext Reference__
+| Name               | Description                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status             | The generic response status code which indicates success or why the operation failed (based on the server response). Correlates with the ResponseStatus enum usually. |
+| requestId          | A unique ID for each request which is assigned automatically.                                                                                                         |
+| idempotent         | If the request is considered idempotent.                                                                                                                              |
+| requestType        | The type of request, derived from the class name.                                                                                                                     |
+| retried            | The number of times the request has been retried already.                                                                                                             |
+| retryReasons       | Holds the different reasons why a request has been retried already (one entry per reason).                                                                            |
+| completed          | If the request is already completed (might be success or failure).                                                                                                    |
+| timeoutMs          | The timeout for this request, in milliseconds.                                                                                                                        |
+| cancelled          | Set to true if the operation is cancelled, why see reason                                                                                                             |
+| reason             | If the request is cancelled, contains the CancellationReason                                                                                                          |
+| clientContext      | Contains the clientContext set by the user in the request options.                                                                                                    |
+| service            | Contains a map of service-specific properties (i.e. the opaque for key value, the statement for a query etc)                                                          |
+| timings            | Contains information like how long encoding, dispatch, total time etc. took in microseconds.                                                                          |
+| lastDispatchedTo   | If already sent to a node contains the host and port where it got sent to.                                                                                            |
+| lastDispatchedFrom | If already sent to a node contains the host and port where it got sent from.                                                                                          |
+| lastChannelId      | If already sent to a node contains the channel ID that can be used to correlate with the server logs.                                                                 |

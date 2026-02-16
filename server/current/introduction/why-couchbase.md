@@ -1,0 +1,23 @@
+[View original HTML](/server/current/introduction/why-couchbase.html)
+
+Couchbase is the modern database for enterprise applications. Couchbase is a distributed, JSON document database, with all the desired capabilities of a relational DBMS. It is a robust database, built for microservices and serverless consumption-based computing on the cloud on one end, and edge computing for occasionally and locally connected edge Mobile/IoT devices on the other.
+
+Couchbase manages JSON documents, eliminating the need for a hard coded schema in the database. The application object definition, available within JSON, is the schema controlled by the developer.
+
+Developers write the JSON once into this database and apply multiple data processing capabilities on it. In addition to the SQL-like programmability, Couchbase offers caching, key- value store, full-text search (for information retrieval), analytics (for ad-hoc querying), and Event driven (reactive) programming on this single copy of data.
+
+Couchbase is designed to interleave transactions with these high-performance operations at large scale. Developers are offered the freedom to pay the price of a transaction only when needed. Consequently, Couchbase can serve as a reliable system of record, while concurrently handling key-value operations of microseconds latency, SQL queries and text searches in milliseconds, and ad-hoc analytical queries spanning tens of seconds, one not impeding the other.
+
+These unique design choices in Couchbase lead to reduced data sprawl, improved security, decreased administration, and lower cost. But most importantly, it enables developers to write applications once and deploy them at any scale.
+
+Couchbase’s distributed streaming architecture is designed for no single point of failure. This enables elastic scaling, resource fencing as well as instantaneous data replication for high- availability, global geo-distribution, and disaster-recovery. The result is a database that is resilient, cost-efficient, and built for metered usage. This cloud-native architecture combined with Kubernetes (K8s) delivers a self-managed autonomous database.
+
+Couchbase is:
+
+* A distributed database. No more scaling or availability issues.
+* A cache and a database. No more cache invalidation or coherency issues.
+* A database and a search engine. No more crawlers.
+* An operational and an analytical database. No more ETL.
+* A desktop, mobile, and clusterable database. No compromises between Server and Mobile.
+
+Couchbase is the modern database for Cloud and Edge.

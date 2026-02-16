@@ -1,0 +1,91 @@
+[View original HTML](/server/current/install/pre-install.html)
+
+> Although resource requirements depend on the size and resource demands of your Couchbase deployment, there are some minimum and recommended specifications that you should follow. 
+
+## [](#cpu-requirements)CPU Requirements
+
+Couchbase Server can run on x86 and ARM processors (including Apple Silicon processors). This section explains the minimum requirements for of these platforms.
+
+### [](#x86-processors)x86 Processors
+
+Couchbase Server has the following requirements when running on x86 processors:
+
+| Node Use                                        | CPU                                                                                                                                                         | RAM                                             | Storage                                   |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ----------------------------------------- |
+| **Minimum Production Use**                      | 2 GHz 2-core x86\_64 CPU supporting AVX2 (see [Instruction Set Requirements for x86 Processors](#avx2-requirement-for-x86-processors) for more information) | 4 GiB (physical)                                | 8 GiB (block-based; HDD, SSD, EBS, iSCSI) |
+| **Recommended Production Use**                  | 3 GHz 4-core x86\_64 CPU supporting AVX2                                                                                                                    | 16 GiB (physical) and above                     | 16 GiB and above (SSD)                    |
+| **Using XDCR and Views**                        | 3 GHz 6-core x86\_64 CPU supporting AVX2                                                                                                                    | 16 GiB (physical) and above                     | 16 GiB and above (SSD)                    |
+| **Minimum for Backup Administration Nodes**     | 3 GHz 4-core x86\_64 CPU supporting AVX2                                                                                                                    | 8GiB RAM                                        | 16 GiB and above (SSD)                    |
+| **Recommended for Backup Administration Nodes** | 3 GHz 16-core core x86\_64 CPU supporting AVX2                                                                                                              | 16GiB RAM                                       | 16 GiB and above (SSD)                    |
+| **Minimum for Development and Testing**         | 1 GHz single core x86\_64 CPU supporting AVX2                                                                                                               | 1 GiB free beyond operating system requirements | 8 GiB                                     |
+
+|  | For all storage configuration, network file systems such as CIFS and NFS are not supported. |
+|  | ------------------------------------------------------------------------------------------- |
+
+The recommendations in the table are a baseline that do not take into account the services you’ll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
+
+#### [](#avx2-requirement-for-x86-processors)Instruction Set Requirements for x86 Processors
+
+On x86 platforms, Couchbase Server requires processors that have AVX2 (Advanced Vector Extensions 2) support. Couchbase Server refuses to start on x86 that do not have AVX2 features. The earliest processors that support AVX2 instructions include:
+
+* Intel 4th generation (Haswell) Core processors released in 2013.
+* Intel 11th generation (Tiger Lake) Celeron and Pentium processors released in 2020.
+* AMD Excavator processors released in 2015.
+
+See the Wikipedia page [CPUs with AVX2](https://en.wikipedia.org/wiki/Advanced%5FVector%5FExtensions#CPUs%5Fwith%5FAVX2) for more detail about the processors that support this instruction set.
+
+On Linux, you can tell if your processor has the AVX2 instructions by executing the following command:
+
+```bash
+grep -q -i 'avx2' /proc/cpuinfo && \
+     echo "Processor has AVX2" || echo "AVX2 not found"
+```
+
+If the command returns the text `Processor has AVX2`, your processor meets Couchbase Server’s AVX2 requirement. If the command returns `AVX2 not found`, your processor does not have AVX2 instructions, so it is not supported.
+
+|  | The Rosetta feature of MacOS lets you run x86 binaries on Apple Silicon. Rosetta in versions of MacOS earlier than Sequoia (version 15, released in September of 2024) does not implement the AVX2 instructions. While Rosetta in MacOS Sequoia does support AVX2 instructions, running on this platform may result in slower performance because the instructions are emulated instead of being native. For the best performance on Apple Silicon systems, use the native Apple Silicon build of Couchbase Server instead of the x86 build running in Rosetta. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#arm-processors)ARM Processors
+
+Couchbase Server has the following requirements when running on ARM-based platforms:
+
+| Node Use                                        | CPU                                 | RAM                                             | Storage                                   |
+| ----------------------------------------------- | ----------------------------------- | ----------------------------------------------- | ----------------------------------------- |
+| **Minimum Production Use**                      | 2 Ghz dual core 64-bit ARM v8 CPU   | 4 GiB (physical)                                | 8 GiB (block-based; HDD, SSD, EBS, iSCSI) |
+| **Recommended Production Use**                  | 2.5 Ghz 4-core 64-bit ARM v8 CPU    | 16 GiB (physical) and above                     | 16 GiB and above (SSD)                    |
+| **Using XDCR and Views**                        | 2.5 Ghz 6-core 64-bit ARM v8 CPU    | 16 GiB (physical) and above                     | 16 GiB and above (SSD)                    |
+| **Minimum for Backup Administration Nodes**     | 2.5 Ghz 4-core 64-bit ARM v8 CPU    | 8GiB RAM                                        | 16 GiB and above (SSD)                    |
+| **Recommended for Backup Administration Nodes** | 2.5 Ghz 16-core 64-bit ARM v8 CPU   | 16GiB RAM                                       | 16 GiB and above (SSD)                    |
+| **Minimum for Development and Testing**         | 1 GHz single core 64-bit ARM v8 CPU | 1 GiB free beyond operating system requirements | 8 GiB                                     |
+
+|  | For all storage configuration, network file systems such as CIFS and NFS are not supported. |
+|  | ------------------------------------------------------------------------------------------- |
+
+The recommendations in the table ae a baseline that do not take into account the services you’ll run on your nodes. Each service adds its own requirements. See [Sizing Guidelines](sizing-general.md) to see the additional requirements for each service.
+
+## [](#clock-source-linux)Clock Source on Linux
+
+The Query Service uses the OS monotonic clock for profiling and network timeout purposes.
+
+The Linux kernel uses the Clock Source to obtain the current clock value. It stores this information in `/sys/devices/system/clocksource/clocksource0/current_clocksource`. Several clock sources exist (TSC, XEN, and others) which are used depending on the hardware clock capabilities and the OS installation. The XEN source, which is the default on AWS setups, can use up to 25% of all available CPU time to obtain the current timestamp. The TSC clock source, on the other hand, has a low CPU cost. Therefore, you should change the clock source to TSC if it’s set to anything else.
+
+Check the clock source on your Linux OS using the following command:
+
+```bash
+cat /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+Change the clock source using the following commands:
+
+```bash
+echo tsc > /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+To verify the current setting of the clock source, use:
+
+```bash
+cat /sys/devices/system/clocksource/clocksource0/current_clocksource
+```
+
+The output should read `tsc`.

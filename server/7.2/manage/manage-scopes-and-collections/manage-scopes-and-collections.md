@@ -1,0 +1,579 @@
+[View original HTML](/server/7.2/manage/manage-scopes-and-collections/manage-scopes-and-collections.html)
+
+> Scopes and collections can be managed by means of the UI, CLI, and REST API. 
+
+## [](#understanding-scopes-and-collections)Understanding Scopes and Collections
+
+_Scopes_ and _collections_ allow documents to be categorized and organized, within a bucket. A _collection_ is a data container, defined on Couchbase Server, within a bucket whose type is either _Couchbase_ or _Ephemeral_. A _scope_ is a mechanism for the grouping of multiple collections. A complete overview is provided in [Scopes and Collections](../../learn/data/scopes-and-collections.md).
+
+## [](#examples-on-this-page)Examples on This Page
+
+The examples on this page demonstrate how to manage scopes and collections with the [UI](#manage-scopes-and-collections-with-the-ui), the [CLI](#manage-scopes-and-collections-with-the-cli), and the [REST API](#manage-scopes-and-collections-with-the-rest-api).
+
+## [](#manage-scopes-and-collections-with-the-ui)Manage Scopes and Collections with the UI
+
+The following sequence demonstrates how to create, examine, and delete scopes and collections, using the UI of Couchbase Web Console. Proceed as follows:
+
+1. Access Couchbase Web Console, and left-click on the **Buckets** tab, in the vertical, left-hand navigation bar:  
+![leftClickOnBucketsTab](../_images/manage-scopes-and-collections/leftClickOnBucketsTab.png)  
+This brings up the **Buckets** screen.
+2. Add a new bucket, named **testBucket**. Left-click on the **ADD BUCKET** tab, at the upper right:  
+![addBucketTab](../_images/manage-scopes-and-collections/addBucketTab.png)  
+This brings up the **Add Data Bucket** dialog. Use this to create **testBucket** as a Couchbase bucket of 256 MB, as follows:  
+![createTestBucket](../_images/manage-scopes-and-collections/createTestBucket.png)  
+Left-click on the **Add Bucket** button, to create. The **Buckets** screen now displays the newly created bucket:  
+![bucketsScreenWithNewBucket](../_images/manage-scopes-and-collections/bucketsScreenWithNewBucket.png)
+3. Examine the new bucket’s _default collection_. At the right-hand side of the row that displays the new bucket, two options appear: **Documents** and **Scopes & Collections**. Left-click on the **Scopes & Collections** option:  
+![selectCollectionsOption](../_images/manage-scopes-and-collections/selectCollectionsOption.png)  
+This brings up the **Scopes & Collections** screen, which appears as follows:  
+![scopesAndCollectionsScreenInitial](../_images/manage-scopes-and-collections/scopesAndCollectionsScreenInitial.png)  
+The screen features a single row, which confirms the existence of the **\_default** scope. As its name indicates, this scope is created by default for each new bucket. Collections that are created without any administrator-defined scope specified as their destination are duly saved in the **\_default** scope.  
+To examine the contents of the **\_default** scope, left-click on the row. The row expands as follows:  
+![sACscreenWithDefaultSandC](../_images/manage-scopes-and-collections/sACscreenWithDefaultSandC.png)  
+This indicates that the **\_default** scope contains a single collection, which is the **\_default** collection. As its name indicates, this collection is created by default, within the **\_default** scope, for each new bucket. Documents that are created without any administrator-defined collection specified as their destination are duly saved in the **\_default** collection.
+4. Add a scope to the bucket. Left-click on the **ADD SCOPE** tab, at the upper right of the screen:  
+![addScope](../_images/manage-scopes-and-collections/addScope.png)  
+This brings up the **Add Scope** dialog, which appears as follows:  
+![addScopeDialog](../_images/manage-scopes-and-collections/addScopeDialog.png)  
+Enter the name of a new scope into the **New Scope Name** field: for example, **MyScope**. Then, left-click on the **Save** button.  
+The **Scopes & Collections** screen now appears as follows:  
+![sACscreenWithNewScope](../_images/manage-scopes-and-collections/sACscreenWithNewScope.png)  
+The new scope, **MyScope**, is now displayed.
+5. Add a new collection, within the new scope. At the extreme right of the row for **MyScope** are two options: **Drop** and **Add Collection**. Left-click on **Add Collection**:  
+![addCollection](../_images/manage-scopes-and-collections/addCollection.png)  
+This brings up a dialog entitled **Add Collection into MyScope scope**:  
+![addCollectionDialog](../_images/manage-scopes-and-collections/addCollectionDialog.png)  
+Enter the name of a new collection into the **Name** field: for example, **MyCollection**. Leave the **Collection Max Time-To-Live** field at its default value of `0`. This value means that new documents in the collection use the `maxTTL` value from the bucket (if set). For information, see [Expiration](../../learn/data/expiration.md). Click the **Save** button.  
+Next, left-click on the row for **MyScope**. The row expands, as follows:  
+![newCollectionInNewScope](../_images/manage-scopes-and-collections/newCollectionInNewScope.png)  
+The new collection, **MyCollection**, is thus shown to have been created within the scope **MyScope**.
+
+## [](#manage-scopes-and-collections-with-the-cli)Manage Scopes and Collections with the CLI
+
+The following sequence of CLI commands demonstrates how to create, examine, and delete scopes and collections.
+
+Note that the create bucket, scope, and collection commands are asynchronous by default. If you create a collection right after creating a scope, or create an index right after creating a collection, it is possible that you may encounter a failure if the cluster is still being updated. In this case, we recommend that the application wait for the cluster to be updated or retry the operation.
+
+Proceed as follows:
+
+At the command-line prompt, proceed as follows:
+
+1. Create a bucket, named `testBucket`, using the couchbase-cli `bucket-create` command.  
+/opt/couchbase/bin/couchbase-cli bucket-create \
+--cluster localhost:8091 --username Administrator \
+--password password --bucket testBucket --bucket-type couchbase \
+--bucket-ramsize 100  
+If the command is successful, the following output is displayed:  
+SUCCESS: Bucket created  
+For more information on this command, see [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md).
+2. Create a scope, using the couchbase-cli `collection-manage` command. The `--bucket` parameter specifies the name of the bucket within which the scope will be created; and the `--create-scope` parameter specifies the name of the scope.  
+/opt/couchbase/bin/couchbase-cli collection-manage \
+--cluster http://localhost:8091 \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--create-scope my_scope  
+If the command is successful, the following output is displayed:  
+SUCCESS: Scope created
+3. List the scopes now contained by the bucket `testBucket`.  
+/opt/couchbase/bin/couchbase-cli collection-manage \
+-c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--list-scopes  
+The following output is displayed:  
+my_scope  
+_default  
+This indicates that `testBucket` now contains two scopes. One is the `_default`, the other is the newly created scope `my_scope`.
+4. Use `collection-manage` successively, to create two collections within `my_scope`. The name of the collection to be created is specified with the `--create-collection` parameter, using a path in dot format (that is, in the form _scope-name.collection-name_) to specify the destination scope. Then, list the collections in the scope, using collection-manage with the `--list-collections` parameter.  
+Create the `my_scope.my_collection_in_my_scope_1` collection:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--create-collection my_scope.my_collection_in_my_scope_1 \
+--max-ttl 0  
+The example sets `max-ttl` to `0`. This value means that documents in the collection use the `maxTTL` setting from the bucket. See [Expiration](../../learn/data/expiration.md)) for more information about `maxTTL` and expiration.  
+On success, the output is as follows:  
+SUCCESS: Collection created  
+Create the `my_scope.my_collection_in_my_scope_2` collection:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--create-collection my_scope.my_collection_in_my_scope_2  
+On success, the output is as again follows:  
+SUCCESS: Collection created  
+Now, list all collections:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--list-collections my_scope  
+If the command is successful, the output features a list of all created collections within `my_scope`:  
+Scope my_scope:
+    - my_collection_in_my_scope_2
+    - my_collection_in_my_scope_1  
+The output indicates that `my_scope` now contains the collections `my_collection_in_my_scope_1` and `my_collection_in_my_scope_2`.
+5. Create a collection in the `_default` scope, and then list collections within that scope.  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--create-collection _default.my_collection_in_default_scope  
+The argument to the `create-collection` parameter thus specifies a new collection, `my_collection_in_default_scope`, to be created in the `_default` scope. (Note, however that, as a convenience for the CLI-user, this notation can be shortened; by simply omitting explicit reference to the `_default` scope, and preceding the name of the new collection with the dot alone: thus, the argument to `create-collection` is shortened to `.my_collection_in_default_scope`.)  
+On success, the following output is displayed:  
+SUCCESS: Collection created  
+Now, list collections within the scope:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--list-collections _default  
+On success, a list of the collections in the scope is displayed:  
+Scope _default:
+    - my_collection_in_default_scope
+    - _default  
+The output indicates that the `_default` scope now contains two collections, which are the `_default` collection, and the newly created collection `my_collection_in_default_scope`.
+6. Create two documents, within the collection `my_collection_in_my_scope_1`, using the `cbc create` command. Scope and collection are respectively specified with the `--scope` and `--collection` flags (note that if no scope or collection is explicitly specified, the default scope or collection is assumed).  
+/opt/couchbase/bin/cbc create \
+-u Administrator -P password testDocument1 \
+-U couchbase://localhost/testBucket \
+--scope='my_scope' \
+--collection='my_collection_in_my_scope_1' \
+-V '{"key1" : "value1"}'  
+On success, this produces output indicating that the named document has been saved, and providing its _CAS_ number.  
+testDocument1        Stored. CAS=0x1668d67ee31b0000  
+                     SYNCTOKEN=816,47341375326027,5  
+Now, create the second document:  
+/opt/couchbase/bin/cbc create -u Administrator -P password testDocument2 \
+-U couchbase://localhost/testBucket \
+--scope='my_scope' \
+--collection='my_collection_in_my_scope_1' \
+-V '{"key2" : "value2"}'  
+On success, the output is as follows:  
+testDocument2        Stored. CAS=0x1668d68983750000  
+                     SYNCTOKEN=569,122315102163226,5
+7. Display statistics on existing collections, using the `cbstats` command, specifying the collections parameter.  
+/opt/couchbase/bin/cbstats -u Administrator -p password \
+-b testBucket localhost:11210 collections  
+Statistics are displayed as follows:  
+0x0:0x0:collections_mem_used: 0  
+0x0:0x0:data_size:            0  
+0x0:0x0:history:              true  
+0x0:0x0:items:                0  
+0x0:0x0:name:                 _default  
+0x0:0x0:ops_delete:           0  
+0x0:0x0:ops_get:              0  
+0x0:0x0:ops_store:            0  
+0x0:0x0:scope_name:           _default  
+0x0:0xa:collections_mem_used: 0  
+0x0:0xa:data_size:            120832  
+0x0:0xa:history:              true  
+0x0:0xa:items:                0  
+0x0:0xa:name:                 my_collection_in_default_scope  
+0x0:0xa:ops_delete:           0  
+0x0:0xa:ops_get:              0  
+0x0:0xa:ops_store:            0  
+0x0:0xa:scope_name:           _default  
+0x8:0x8:collections_mem_used: 180  
+0x8:0x8:data_size:            117882  
+0x8:0x8:history:              true  
+0x8:0x8:items:                2  
+0x8:0x8:name:                 my_collection_in_my_scope_1  
+0x8:0x8:ops_delete:           0  
+0x8:0x8:ops_get:              0  
+0x8:0x8:ops_store:            2  
+0x8:0x8:scope_name:           my_scope  
+0x8:0x9:collections_mem_used: 0  
+0x8:0x9:data_size:            118784  
+0x8:0x9:history:              true  
+0x8:0x9:items:                0  
+0x8:0x9:name:                 my_collection_in_my_scope_2  
+0x8:0x9:ops_delete:           0  
+0x8:0x9:ops_get:              0  
+0x8:0x9:ops_store:            0  
+0x8:0x9:scope_name:           my_scope  
+manifest_uid:                 4  
+The output identifies all data associated with each collection using a pair of hexadecimal prefixes, these are the scope and collection unique identifiers. For example `0x8:0x9:name:` is the name of the collection with id `0x8` in the scope with id `0x9`.  
+The `history` listing indicates for each collection whether a change-history is currently active. For information, see [Collection Change-History](../../learn/data/scopes-and-collections.md#collection-change-history).  
+For more information on the listings in the above output, see the [collections](../../cli/cbstats/cbstats-collections.md) reference page for `cbstats`.  
+The identifier or name (with scope) of a collection can be used to return data about a single collection. Here `cbstats` can also select collections in the default scope using a single `.`.  
+/opt/couchbase/bin/cbstats -u Administrator -p password -b testBucket \  
+localhost:11210 collections my_scope.my_collection_in_my_scope_2  
+/opt/couchbase/bin/cbstats -u Administrator -p password -b testBucket \  
+localhost:11210 collections id 0x9  
+/opt/couchbase/bin/cbstats -u Administrator -p password -b testBucket \  
+localhost:11210 collections .my_collection_in_default_scope
+8. Again display statistics on existing collections using the `cbstats` command, this time specifying the `collections-details` parameter.  
+/opt/couchbase/bin/cbstats -u Administrator -p password -b testBucket \  
+localhost:11210 collections-details  
+Statistics are displayed as follows:  
+0x0:0x0:collections_mem_used: 0  
+0x0:0x0:data_size:            0  
+0x0:0x0:history:              true  
+0x0:0x0:items:                0  
+0x0:0x0:name:                 _default  
+0x0:0x0:ops_delete:           0  
+0x0:0x0:ops_get:              0  
+0x0:0x0:ops_store:            0  
+0x0:0x0:scope_name:           _default  
+0x0:0xa:collections_mem_used: 0  
+0x0:0xa:data_size:            120832  
+0x0:0xa:history:              true  
+0x0:0xa:items:                0  
+0x0:0xa:name:                 my_collection_in_default_scope  
+0x0:0xa:ops_delete:           0  
+0x0:0xa:ops_get:              0  
+0x0:0xa:ops_store:            0  
+0x0:0xa:scope_name:           _default  
+0x8:0x8:collections_mem_used: 180  
+0x8:0x8:data_size:            117882  
+0x8:0x8:history:              true  
+0x8:0x8:items:                2  
+0x8:0x8:name:                 my_collection_in_my_scope_1  
+0x8:0x8:ops_delete:           0  
+0x8:0x8:ops_get:              0  
+0x8:0x8:ops_store:            2  
+0x8:0x8:scope_name:           my_scope  
+0x8:0x9:collections_mem_used: 0  
+0x8:0x9:data_size:            118784  
+0x8:0x9:history:              true  
+0x8:0x9:items:                0  
+0x8:0x9:name:                 my_collection_in_my_scope_2  
+0x8:0x9:ops_delete:           0  
+0x8:0x9:ops_get:              0  
+0x8:0x9:ops_store:            0  
+0x8:0x9:scope_name:           my_scope  
+manifest_uid:                 4  
+The output, which is presented here in truncated form, provides additional details on scopes, collections, and their content; including sequence numbers, manifest uids, and per-vBucket information. Note that an identifying vBucket-number can be specified, to produce output for that vBucket alone:  
+/opt/couchbase/bin/cbstats -u Administrator -p password -b testBucket localhost:11210 collections-details 8  
+The number `8` having been specified, displayed statistics are for vBucket 8 only:  
+vb_8:0x0:disk_size:            0  
+vb_8:0x0:high_seqno:           0  
+vb_8:0x0:history:              true  
+vb_8:0x0:items:                0  
+vb_8:0x0:name:                 _default  
+vb_8:0x0:ops_delete:           0  
+vb_8:0x0:ops_get:              0  
+vb_8:0x0:ops_store:            0  
+vb_8:0x0:persisted_high_seqno: 0  
+vb_8:0x0:scope:                0x0  
+vb_8:0x0:start_seqno:          0  
+vb_8:0x8:disk_size:            115  
+vb_8:0x8:high_seqno:           2  
+vb_8:0x8:history:              true  
+vb_8:0x8:items:                0  
+vb_8:0x8:name:                 my_collection_in_my_scope_1  
+vb_8:0x8:ops_delete:           0  
+vb_8:0x8:ops_get:              0  
+vb_8:0x8:ops_store:            0  
+vb_8:0x8:persisted_high_seqno: 2  
+vb_8:0x8:scope:                0x8  
+vb_8:0x8:start_seqno:          2  
+vb_8:0x9:disk_size:            116  
+vb_8:0x9:high_seqno:           3  
+vb_8:0x9:history:              true  
+vb_8:0x9:items:                0  
+vb_8:0x9:name:                 my_collection_in_my_scope_2  
+vb_8:0x9:ops_delete:           0  
+vb_8:0x9:ops_get:              0  
+vb_8:0x9:ops_store:            0  
+vb_8:0x9:persisted_high_seqno: 3  
+vb_8:0x9:scope:                0x8  
+vb_8:0x9:start_seqno:          3  
+vb_8:0xa:disk_size:            118  
+vb_8:0xa:high_seqno:           4  
+vb_8:0xa:history:              true  
+vb_8:0xa:items:                0  
+vb_8:0xa:name:                 my_collection_in_default_scope  
+vb_8:0xa:ops_delete:           0  
+vb_8:0xa:ops_get:              0  
+vb_8:0xa:ops_store:            0  
+vb_8:0xa:persisted_high_seqno: 4  
+vb_8:0xa:scope:                0x0  
+vb_8:0xa:start_seqno:          4  
+vb_8:collections:              4  
+vb_8:manifest:uid:             4  
+For more information on the listings in the above output, see the [collections](../../cli/cbstats/cbstats-collections.md) and [collections-details](../../cli/cbstats/cbstats-collections-details.md) reference pages for `cbstats`.
+9. Drop a collection from the created scope, then list collections within that scope.  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--drop-collection my_scope.my_collection_in_my_scope_1  
+If the command is successful, the following is displayed:  
+SUCCESS: Collection dropped  
+Now, list collections in the scope:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--list-collections my_scope  
+Output features each collection in the specified scope:  
+Scope my_scope:
+    - my_collection_in_my_scope_2  
+The output indicates that the collection `my_collection_in_my_scope_1` has now been dropped from `my_scope`.
+10. Drop the created scope, then list scopes.  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--drop-scope my_scope  
+On success, the following output is displayed:  
+SUCCESS: Scope dropped  
+List all remaining scopes:  
+/opt/couchbase/bin/couchbase-cli collection-manage -c localhost \
+--username Administrator \
+--password password \
+--bucket testBucket \
+--list-scopes  
+The following output is displayed:  
+_default  
+This indicates that `my_scope`, and the collection it contained, `my_collection_in_my_scope_2`, have been dropped.
+
+This concludes the sequence of commands.
+
+## [](#manage-scopes-and-collections-with-the-rest-api)Manage Scopes and Collections with the REST API
+
+The following sequence of REST API commands demonstrates how to create, examine, and delete scopes and collections. Proceed as follows:
+
+At the command-line prompt, proceed as follows:
+
+1. Create a bucket, named `testBucket`, using the `/pools/default/buckets` REST method:  
+curl -X POST -u Administrator:password \  
+http://localhost:8091/pools/default/buckets \
+-d name=testBucket \
+-d ramQuotaMB=100  
+For information on this REST call and its parameters, see [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).
+2. Create a scope. This is a POST operation, using the `/pools/default/buckets/_<bucket>_/scopes` endpoint, and specifying the `-name` parameter.  
+curl -u Administrator:password -X POST \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes \
+-d name=my_scope  
+If successful, the command returns a _uid_ for the action (this is principally for internal use, and need not be tracked by the user):  
+{"uid":1}  
+Now, examine the collections _manifest_ for the specified bucket. This is a GET operation, using the `/pools/default/buckets/_<bucket>_/scopes` endpoint.  
+curl -u Administrator:password -X GET \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes  
+This returns the following output:  
+{"uid":"1","scopes":[{"name":"my_scope","uid":"8","collections":[]},{"name":"_default","uid":"0","collections":[{"name":"_default","uid":"0","maxTTL":0,"history":true}]}]}  
+Formatted, this output is as follows:  
+{  
+  "uid": "1",  
+  "scopes": [  
+    {  
+      "name": "my_scope",  
+      "uid": "8",  
+      "collections": []  
+    },  
+    {  
+      "name": "_default",  
+      "uid": "0",  
+      "collections": [  
+        {  
+          "name": "_default",  
+          "uid": "0",  
+          "maxTTL": 0,  
+          "history": true  
+        }  
+      ]  
+    }  
+  ]  
+}  
+This output shows that the bucket now contains two scopes, which are `my_scope` and `_default`. The `_default` scope contains a single collection, which is also named `_default`. The `maxTTL` for the collection is `0`, which means documents use the `maxTTL` setting from the bucket. For information about expiration, see [Expiration](../../learn/data/expiration.md).
+3. Create two collections, within the created scope. This requires a POST operation, specifying the created scope as a path parameter, and using the `name` parameter to specify the new collection-name. For the first collection, enter the following command:  
+curl -u Administrator:password -X POST \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope/collections \
+-d name=my_collection_in_my_scope_1 \
+-d maxTTL=0  
+Setting `maxTTL` parameter to `0` means that documents in the collection use the bucket’s `maxTTL` setting. If successful, the operation returns a uid.  
+{"uid":2}  
+Create the second collection as follows:  
+curl -u Administrator:password -X POST \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope/collections \
+-d name=my_collection_in_my_scope_2  
+Again, success returns a uid:  
+{"uid":3}  
+Now, re-examine the collections manifest for the bucket.  
+curl -u Administrator:password -X GET \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes  
+The unformatted output is as follows:  
+{"uid":"3","scopes":[{"name":"my_scope","uid":"8","collections":[{"name":"my_collection_in_my_scope_2","uid":"9","history":true,"maxTTL":0},{"name":"my_collection_in_my_scope_1","uid":"8","history":true,"maxTTL":0}]},{"name":"_default","uid":"0","collections":[{"name":"_default","uid":"0","maxTTL":0,"history":true}]}]}  
+When formatted, the output takes the following appearance:  
+{  
+  "uid": "3",  
+  "scopes": [  
+    {  
+      "name": "my_scope",  
+      "uid": "8",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_my_scope_2",  
+          "uid": "9",  
+          "history": true,  
+          "maxTTL": 0  
+        },  
+        {  
+          "name": "my_collection_in_my_scope_1",  
+          "uid": "8",  
+          "history": true,  
+          "maxTTL": 0  
+        }  
+      ]  
+    },  
+    {  
+      "name": "_default",  
+      "uid": "0",  
+      "collections": [  
+        {  
+          "name": "_default",  
+          "uid": "0",  
+          "maxTTL": 0,  
+          "history": true  
+        }  
+      ]  
+    }  
+  ]  
+}  
+This indicates that the collections `my_collection_in_my_scope_1` and `my_collection_in_my_scope_2` have been successfully created in `my_scope`.
+4. Create a collection in the default scope. This is a POST operation, specifying the `_default` scope as a path parameter, and the `name` parameter to specify the new collection-name.  
+curl -u Administrator:password -X POST \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes/_default/collections \
+-d name=my_collection_in_default_scope  
+A uid is returned:  
+{"uid":4}  
+Now, re-examine the collections manifest for the bucket.  
+curl -u Administrator:password -X GET \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes  
+This returns the following:  
+{"uid":"4","scopes":[{"name":"my_scope","uid":"8","collections":[{"name":"my_collection_in_my_scope_2","uid":"9","history":true,"maxTTL":0},{"name":"my_collection_in_my_scope_1","uid":"8","history":true,"maxTTL":0}]},{"name":"_default","uid":"0","collections":[{"name":"my_collection_in_default_scope","uid":"a","history":true,"maxTTL":0},{"name":"_default","uid":"0","maxTTL":0,"history":true}]}]}  
+When formatted the output is as follows:  
+{  
+  "uid": "4",  
+  "scopes": [  
+    {  
+      "name": "my_scope",  
+      "uid": "8",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_my_scope_2",  
+          "uid": "9",  
+          "history": true,  
+          "maxTTL": 0  
+        },  
+        {  
+          "name": "my_collection_in_my_scope_1",  
+          "uid": "8",  
+          "history": true,  
+          "maxTTL": 0  
+        }  
+      ]  
+    },  
+    {  
+      "name": "_default",  
+      "uid": "0",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_default_scope",  
+          "uid": "a",  
+          "history": true,  
+          "maxTTL": 0  
+        },  
+        {  
+          "name": "_default",  
+          "uid": "0",  
+          "maxTTL": 0,  
+          "history": true  
+        }  
+      ]  
+    }  
+  ]  
+}  
+This indicates that the collection `my_collection_in_default_scope` has been successfully created in the `_default` scope, and so appears alongside the `_default` collection.
+5. Drop a collection from the created scope. This requires a `DELETE` operation, and the endpoint that specifies the collection that is to be dropped.  
+curl -u Administrator:password -X DELETE \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope/\  
+collections/my_collection_in_my_scope_1  
+This returns a uid:  
+{"uid":5}  
+Now, re-examine the collections manifest for the bucket.  
+curl -u Administrator:password -X GET \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes  
+The output (here formatted) indicates that the collection `my_collection_in_my_scope_1` has successfully been dropped from `my_scope`:  
+{  
+  "uid": "5",  
+  "scopes": [  
+    {  
+      "name": "my_scope",  
+      "uid": "8",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_my_scope_2",  
+          "uid": "9",  
+          "history": true,  
+          "maxTTL": 0  
+        }  
+      ]  
+    },  
+    {  
+      "name": "_default",  
+      "uid": "0",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_default_scope",  
+          "uid": "a",  
+          "history": true,  
+          "maxTTL": 0  
+        },  
+        {  
+          "name": "_default",  
+          "uid": "0",  
+          "maxTTL": 0,  
+          "history": true  
+        }  
+      ]  
+    }  
+  ]  
+}
+6. Drop the created scope, and examine the manifest.  
+curl -u Administrator:password -X DELETE \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes/my_scope  
+This returns a uid:  
+{"uid":6}  
+Examine the manifest:  
+curl -u Administrator:password -X GET \  
+http://localhost:8091/pools/default/buckets/testBucket/scopes  
+The output (here formatted) is as follows:  
+{  
+  "uid": "6",  
+  "scopes": [  
+    {  
+      "name": "_default",  
+      "uid": "0",  
+      "collections": [  
+        {  
+          "name": "my_collection_in_default_scope",  
+          "uid": "a",  
+          "history": true,  
+          "maxTTL": 0  
+        },  
+        {  
+          "name": "_default",  
+          "uid": "0",  
+          "maxTTL": 0,  
+          "history": true  
+        }  
+      ]  
+    }  
+  ]  
+}  
+This indicates that `my_scope` has successfully been dropped; and with it, the collection `my_collection_in_my_scope_2`.
+
+This concludes the sequence of commands.
+
+## [](#see-also)See Also
+
+An overview of scopes and collections is provided in [Scopes and Collections](../../learn/data/scopes-and-collections.md). A reference page for each of the available REST methods is provided at [Scopes and Collections API](../../rest-api/scopes-and-collections-api.md). See also the CLI reference page for the [collection-manage](../../cli/cbcli/couchbase-cli-collection-manage.md) command. (Note that the REST and CLI pages include information on specifying an _expiration_ time for collections.)
+
+For information on assigning roles that permit access to scopes and collections, see [Manage Users, Groups, and Roles](../manage-security/manage-users-and-roles.md).

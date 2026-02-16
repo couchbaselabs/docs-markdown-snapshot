@@ -1,0 +1,40 @@
+[View original HTML](/server/7.6/learn/clusters-and-availability/intra-cluster-replication.html)
+
+> Intra-cluster replication replicates data across the nodes of a cluster, by means of the _Database Change Protocol_. 
+
+## [](#intra-cluster-replication)Intra-Cluster Replication
+
+Intra-cluster replication involves replicating data across the nodes of a cluster.
+
+Couchbase [Data](../data/data.md) is defined logically to reside in [Buckets](../buckets-memory-and-storage/buckets.md). Each bucket, when defined, is implemented by Couchbase Server as [vBuckets](../buckets-memory-and-storage/vbuckets.md), up to 1024 of which thereby exist in memory (and, in the case of Couchbase Buckets, on disk); the exact number at any given time depending on the number of items to be stored. Items are associated with vBuckets by means of a hashing algorithm, and buckets are assigned to nodes according to a fixed mapping, determined and updated by the _Master Services_ of the [ns-server](cluster-manager.md#ns-server) component of the _Cluster Manager_.
+
+Up to three _replica_ buckets can be defined for every bucket. Each replica itself is also implemented as 1024 vBuckets. A vBucket that is part of the original implementation of the defined bucket referred to as an _active_ vBucket. Therefore, a bucket defined with two replicas has 1024 active vBuckets and 2048 replica vBuckets. Typically, only active vBuckets are accessed for read and write operations: although replica vBuckets _are_ able to support _read_ requests. Nevertheless, vBuckets receive a continuous stream of mutations from the active vBucket by means of the _Database Change Protocol_ (DCP), and are thereby kept constantly up to date. To ensure maximum availability of data in case of node-failures, the _Master Services_ for the cluster calculate and implement the optimal [vBucket Distribution](cluster-manager.md#vbucket-distribution) across available nodes: consequently, the chance of data-loss through the failure of an individual node is minimized, since replicas are available on the nodes that remain. This is shown by the following illustration:
+
+![vBucketReplication](../_images/clusters-and-availability/vBucketReplication.png) 
+
+The illustration shows active and replica vBuckets that correspond to a single, user-defined bucket, for which a single replication-instance has been specified. The first nine active vBuckets are shown, along with their nine corresponding, replica vBuckets; distributed across three server-nodes. The distribution of vBuckets indicates a likely distribution calculated by Couchbase Server: no replica resides on the same node as its active equivalent: therefore, should any one of the three nodes fail, its data remains available.
+
+When a node becomes unavailable, _failover_ can be performed: meaning that the Cluster Manager is instructed to read and write data only on those cluster-nodes that are still available. Failover can be performed by manual intervention, or automatically: as part of this process, where required, replica vBuckets are promoted to active status. [Automatic Failover](automatic-failover.md) can be performed for one node at a time, up to a configurable number of times, the maximum being three. Automatic failover never occurs where data-loss might result.
+
+For information on configuring replicas, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md). As a rule, configure one replica for a cluster of up to five nodes; one or two replicas for from five to ten nodes; and one, two, or three replicas for over ten nodes.
+
+Note that intra-cluster availability can further be optimized by defining [Groups](groups.md).
+
+## [](#database-change-protocol)Database Change Protocol (DCP)
+
+_Database Change Protocol_ (DCP) is the protocol used to stream bucket-level mutations. DCP is used for high-speed replication of mutations; to maintain replica vBuckets, incremental MapReduce, Global Secondary Indexes (GSIs), XDCR, backups, and external connections.
+
+DCP is a memory-based replication protocol that is _ordering_, _resumable_, and _consistent_. DCP streams changes made in memory to items, by means of a _replication queue_.
+
+DCP involves the following concepts:
+
+* _Application client_: A client external to the cluster. Transmits _read_, _write_, _update_, _delete_, and _query_ requests to the server-cluster. See [Compression](../buckets-memory-and-storage/compression.md), for an illustration.
+* _DCP client_: A Couchbase client that is either internal or external to the cluster. Streams data from one or more Couchbase Server-nodes, in support of intra-cluster replication, indexing, XDCR, services, incremental backup, connectors, and mobile synchronicity. See [Compression](../buckets-memory-and-storage/compression.md), for an illustration.
+* _Failover log_: A list of previously known vBucket-versions, for a vBucket. If a client connects to a server, and was previously connected to a vBucket-version other than the current one, the failure log is used to find a rollback point.
+* _History branch_: If a replica vBucket does not contain the latest changes, but becomes active, its record of changes (referred to as a _history branch_) is recognized by DCP clients; and the vBucket duly re-versioned and updated. Such action, if required, must occur before any further major operation (such as a node addition or removal, or a swap-rebalance) can be performed.
+* _Mutation_: An event that deletes a key, or changes the value to which a key points. Mutations occur when transactions such as _create_, _update_, _delete_, or _expire_ are executed.
+* _Rollback point_: The commencement of a recognized history branch, indicating the point in the mutation-sequence from which a vBucket must be brought up to date.
+* _Sequence number_: Given to each mutation to a vBucket, so that the sequence of mutations is recorded, and can be referenced by interested processes. The later the mutation, the higher the number. The sequence is strictly relevant to the vBucket, and does not provide a cluster-wide ordering of events.
+* _Snapshot_: A representation of the exact state of mutations on either a write queue or in storage, provided by Couchbase Server to an interested client.
+* _vBucket stream_: A grouping of messages related to receiving mutations for a specific vBucket. This includes mutation, deletion, expiration, and snapshot-marker messages.
+* _vBucket version_: A _Universally unique identifier_ (UUID) and sequence-number pair associated with a vBucket. A new version is assigned to a vBucket by the new master-node whenever a history branch is recognized. The UUID is a randomly generated number; and the sequence number is the one last processed by the vBucket, at the time the version was created.

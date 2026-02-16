@@ -1,0 +1,167 @@
+[View original HTML](/server/7.6/learn/data/durability.html)
+
+> _Durability_ ensures the greatest likelihood of data-writes surviving unexpected anomalies, such as node-outages. 
+
+## [](#understanding-durability)Understanding Durability
+
+Writes to Couchbase-Server buckets can optionally be assigned _durability requirements_; which instruct Couchbase Server to update the specified document on multiple nodes in memory and/or disk locations across the cluster; before considering the write to be committed. The greater the number of memory and/or disk locations specified in the requirements, the greater the level of _durability_ achieved.
+
+Once the write has been committed as specified by the requirements, Couchbase Server notifies the client of success. If commitment was not possible, Couchbase Server notifies the client of failure; and the data retains its former value throughout the cluster.
+
+This form of write is referred to as a _durable_ or _synchronous_ write.
+
+Couchbase Server supports durability for up to _two_ replicas: it _does not_ support durability for _three_ replicas.
+
+Durability is used by [Transactions](transactions.md), which support the _atomicity_ of mutations across multiple documents.
+
+Durability requirements can be specified by a client, assigned to a bucket, or both. Both Couchbase and Ephemeral buckets are supported: however, Ephemeral buckets only support durability requirements that do not involve persistence to disk.
+
+## [](#durability-benefits-and-costs)Benefits and Costs
+
+Durability allows developers to distinguish between regular and durable writes.
+
+* A _regular_ write is _asynchronous_, and is not supported by durability. Such a write may be appropriate when writing data whose loss would produce only a minor inconvenience. For example, a single instance of sensor data, out of the tens of thousands of instances that are being continuously received.
+* A _durable_ write is _synchronous_, and is supported by durability. Such a write may be appropriate when saving data whose loss could have a considerable, negative impact. For example, data corresponding to a financial transaction.
+
+Note that in most cases, a durable write takes significantly longer than a regular write; due to the increased amount of either replication or persistence it demands from Couchbase Server, prior to completion. In considering whether to use durability, therefore, the application-designer must choose between the higher throughput (and lesser data-protection) provided by regular writes, and the greater data-protection (and lower throughput) provided by durable writes.
+
+## [](#majority)Majority
+
+Durability requirements use the concept of _majority_, to indicate the number of configured Data Service nodes to which commitment is required, based on the number of replicas defined for the bucket. The correspondences are as follows:
+
+| Number of Replicas | Number of Nodes Required for Majority |
+| ------------------ | ------------------------------------- |
+| 0                  | 1                                     |
+| 1                  | 2                                     |
+| 2                  | 2                                     |
+| 3                  | _Not supported_                       |
+
+|  | In consequence of the correspondences listed above, if a bucket is configured with one replica, and a node fails, durable writes are immediately unavailable for any vBucket whose data resides on the failed node. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#durability-requirements)Durability Requirements
+
+Durability requirements that can be specified are:
+
+* _Level_. The level of durability required. The possible values are:
+
+  * _majority_. The mutation must be replicated to (that is, held in the memory allocated to the bucket on) a majority of the Data Service nodes. Valid for both Couchbase and Ephemeral buckets.
+  * _majorityAndPersistActive_. The mutation must be replicated to a majority of the Data Service nodes. Additionally, it must be _persisted_ (that is, written and synchronised to disk) on the node hosting the active vBucket for the data. Valid for Couchbase buckets only.
+  * _persistToMajority_. The mutation must be persisted to a majority of the Data Service nodes. Accordingly, it will be written to disk on those nodes. Valid for Couchbase buckets only.
+* _Timeout_. The number of milliseconds within which the durability requirements must be met. The SDK specifies a default of 10000 (10 seconds).
+
+## [](#specifying-levels)Specifying Levels
+
+Durability _levels_ can be specified by a client, and can also be assigned to a bucket by an administrator. A level assigned to a bucket is subsequently enforced as the _minimum_ level at which _all_ writes to the bucket occur. Therefore:
+
+* If a level is specified by the client, and no level has been assigned to the bucket, the level specified by the client is enforced.
+* If no level is specified by the client (meaning that a non-durable write is being requested), but a level _has_ been assigned to the bucket, the level assigned to the bucket is enforced.
+* If a level is specified by the client, and a level has _also_ been assigned to the bucket, the higher level is enforced.
+
+## [](#process-and-communication)Process and Communication
+
+A durable write is atomic. Client-reads of the value undergoing a durable write return the value that precedes the durable write. Clients that attempt to write to a key whose value is undergoing a durable write receive an error message from the active node, and may retry.
+
+The lifecycle of a durable write is shown by the following, annotated diagram; which shows multiple clients' attempts to update and read a value, with the timeline moving from left to right.
+
+![durabilityDiagram](../_images/data/durabilityDiagram.png) 
+
+The annotations are as follows:
+
+1. Client 1 specifies durability requirements for a durable write, to change a key’s existing value from a to b.
+2. The Active Node receives the request, and the durable write process is initiated. Couchbase Server attempts to meet the client’s specified durability requirements.
+3. During the durable write process, Client 2 performs a read on the value undergoing the durable write. Couchbase Server returns the value, a, that preceded the durable-write request.
+4. During the durable-write process, Client 3 attempts either a durable write or a regular write on the value that is already undergoing a durable write. Couchbase Server returns a `SYNC_WRITE_IN_PROGRESS` message, to indicate that the new write cannot occur.
+5. At the point the mutation has met the specified durability requirements, the Active Node commits the durable write, and sends a status response of `SUCCESS` to Client 1.
+6. After the durable-write process, Client 2 performs a second read on the value. Couchbase Server returns the value, b, committed by the durable write. Indeed, from this point, all clients see the value b.  
+If Couchbase Server aborts a durable write, all mutations to active and replica vBuckets in memory and on disk are rolled back, and all copies of the data are reverted to their value from before the data-write. Couchbase Server duly informs the client. See [Failure Scenarios](#failure-scenarios), below.
+
+In some circumstances, rather than acknowledging to a client that the durable write has succeeded, Couchbase Server acknowledges an _ambiguous outcome_: for example, due to the client-specified timeout having elapsed. See [Handling Ambiguous Results](#handling-ambiguous-results), below.
+
+Subsequent to a durable write’s commitment and due acknowledgement, Couchbase Server continues the process of replication and persistence, until all active and replica vBuckets, both in memory and on disk, have been appropriately updated across all nodes.
+
+## [](#regular-writes)Regular Writes
+
+A write that occurs _without_ durability is considered a _regular_ (that is _asynchronous_) write. No durability requirement is imposed. Couchbase Server acknowledges success to the client as soon as the data is in the memory of the node hosting the active vBucket: Couchbase Server _does not_ confirm that the write has been propagated to any replica. A regular write therefore provides no guarantee of durability.
+
+## [](#failure-scenarios)Failure Scenarios
+
+A durable write fails in the following situations:
+
+1. _Server timeout exceeded_. The active node aborts the durable write, instructs all replica nodes also to abort the pending write, and informs the client that the durable write has had an ambiguous result. See [Handling Ambiguous Results](#handling-ambiguous-results), below.
+2. _Replica node fails while SyncWrite is pending (that is, before the active node can identify whether the node hosted a replica)_. If enough alternative replica nodes can be identified, the durable write can proceed. Otherwise, the active node waits until a server-side timeout has expired; then aborts the durable write, and duly informs the client that the durable write has had an ambiguous result.
+3. _Active node fails while SyncWrite is pending_. This disconnects the client, which must assume that the result of the durable write has proved ambiguous. If the active node is failed over, a replica is promoted from a replica node: depending on how advanced the durable write was at the time of active-node failure, the durable write may proceed.
+4. _Write while SyncWrite is pending_. A client that attempts a durable or an asynchronous write on a key whose value is currently undergoing a durable write receives a `SYNC_WRITE_IN_PROGRESS` message, to indicate that the new write cannot currently proceed. The client may retry.
+
+## [](#handling-ambiguous-results)Handling Ambiguous Results
+
+Couchbase Server informs the client of an ambiguous result whenever Couchbase Server cannot confirm that an intended commit was successful. This situation may be caused by node-failure, network-failure, or timeout.
+
+If a client receives notification of an ambiguous result, and the attempted durable write is _idempotent_, the durable write can be re-attempted. If the attempted durable write is _not_ idempotent, the options are:
+
+* Verify the current state of the saved data; and re-attempt the durable write if appropriate.
+* Return an error to the user.
+
+## [](#rebalance)Rebalance
+
+The _rebalance_ process moves active and replica vBuckets across nodes, to ensure optimal availability. During the process, clients’ access to data is uninterrupted. The durable-write process is likewise uninterrupted by rebalance, and continues throughout the rebalance process.
+
+## [](#performance)Performance
+
+The performance of durable writes may be optimized by the appropriate allocation of _writer_ threads. See [Threading](../buckets-memory-and-storage/storage-settings.md#threading) for conceptual information, and [Data Settings](../../manage/manage-settings/general-settings.md#data-settings) for practical steps.
+
+## [](#protection-guarantees-overview)Protection Guarantees: Overview
+
+When the durable-write process is complete, the application is notified that _commitment_ has occurred. During the time-period that starts at the point of commitment, and lasts until the point at which the new data has been fully propagated throughout the cluster (this being potentially but not necessarily later than the point of commitment), if an outage occurs, the new data is guaranteed to be protected from loss — _within certain constraints_. The constraints are related to the _level_ of durability specified, the nature of the outage, and the number of replicas. The guarantees and associated constraints are stated on this page, below.
+
+### [](#replica-count-restriction)Replica-Count Restriction
+
+Couchbase-Server durability supports buckets with up to _two_ replicas. It does _not_ support buckets with _three_ replicas. If a durable write is attempted on a bucket that has been configured with three replicas, the write fails with an `EDurabilityImpossible` message.
+
+### [](#protection-guarantees-and-automatic-failover)Protection Guarantees and Automatic Failover
+
+[Automatic Failover](../clusters-and-availability/automatic-failover.md) removes a non-responsive node from the cluster automatically, following an administrator-configured timeout. Active vBuckets thereby lost are replaced by the promotion of replica vBuckets, on the surviving nodes. The maximum number of sequential automatic failovers is configurable by the administrator.
+
+In cases where commitment based on _persistToMajority_ has occurred, but no further propagation of the new data across the cluster has yet occurred, automatic failover of the nodes containing the new data results in the data’s loss — since no updated replica vBucket yet exists elsewhere on the cluster.
+
+For example, if a bucket has two replicas, the total number of nodes on which the data resides is _three_; and the _majority_ of nodes, on which persistence must occur prior to commitment, is _two_. After commitment, if those two nodes become unresponsive, automatic failover, if configured to occur up to a maximum of two times, allows those two nodes to be failed over _before_ the durable write has been made persistent on the third node. In such a case, the durable write is lost, and the success message already delivered to the application rendered false.
+
+To prevent this, and thereby maintain guaranteed protection, at least one of the unresponsive nodes containing the new data should _not_ be failed over; and auto-failover should be allowed to occur sequentially only up to the number of times that supports this requirement. This may be best achieved as described immediately below, in [Preserving Durable Writes](#preserving-durable-writes).
+
+#### [](#preserving-durable-writes)Preserving Durable Writes
+
+In Couchbase Enterprise Server 7.2+, auto-failover can be configured _not_ to occur if a node’s failover might result in the loss of durably written data. This is a _global_ configuration that affects _all_ buckets, regardless of their durability settings. The configuration causes a check to be performed on the non-communicative node: if the node passes the check, the node continues to be a candidate for auto-failover. Note that for auto-failover actually to occur, the additional requirements listed in [Automatic Failover](../clusters-and-availability/automatic-failover.md) must also be met.
+
+If auto-failover is configured to preserve durable writes:
+
+* If a bucket has been configured with _one_ replica, and the Data Service runs on _two_ nodes, only _one_ of the nodes (either the active or the replica) can be a candidate for auto-failover.
+* If a bucket has been configured with _two_ replicas, and the Data Service runs on _three_ nodes, only _one_ of the nodes (either the active or one of the replicas) can be a candidate for auto-failover. (Note that in this case, _two_ candidates for auto-failover are not permitted; since data may have been written only to the required durability majority, which is _two_; and one of these two nodes must therefore be protected from auto-failover.)
+* If a bucket has been configured with _three_ replicas, and the Data Service runs on _four_ nodes, only _two_ of the nodes (either the active and a replica, or two of the replicas) can be candidates for auto-failover. (Note that this constraint is applied even though durability is not supported for buckets with three replicas.)
+
+For information on configuring auto-failover to preserve durable writes by means of:
+
+* Couchbase Web Console, see [Node Availability](../../manage/manage-settings/general-settings.md#node-availability).
+* The REST API, see [Enabling and Disabling Auto-Failover](../../rest-api/rest-cluster-autofailover-enable.md).
+
+## [](#protection-guarantees-1-replica)Protection Guarantees: One Replica
+
+When one replica has been defined, from the point of commitment until the new data has been fully propagated across the cluster, protection guarantees are as follows:
+
+| **Level**  | **Failure(s)**                                           | **Description**                                                                                                                                                                                                  |
+| ---------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _majority_ | The active node fails, and is automatically failed over. | The new data is lost from the memory of the active node; but exists in the memory of the replica node. The replica vBucket is promoted to active status on the replica node, and the new data is thus preserved. |
+
+| _majorityAndPersistActive_ | The active node fails, and is automatically failed over.         | The new data is lost from the memory and disk of the active node; but exists in the memory of the replica node. The replica vBucket is promoted to active status on the replica node, and the new data is thus preserved. |
+| -------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                            | The active node fails, but restarts before auto-failover occurs. | The new data is lost from the memory of the active node; but exists on the disk of the active node, and is thereby recovered when the active node has restarted.                                                          |
+
+| _persistToMajority_ | The active node fails, and is automatically failed over.                                                                  | The new data is lost from the memory and disk of the active node; but exists in the memory and disk of the replica node. The replica vBucket is promoted to active status on the replica node, and the new data is thus preserved.                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|                     | The active node fails, but restarts before auto-failover occurs.                                                          | The new data is lost from the memory of the active node; but exists on the disk of the active node, and is thereby recovered when the active node has restarted.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+|                     | The active node fails, and is automatically failed over. Then, the promoted replica node itself fails, and then restarts. | The new data is lost from the memory and disk of the active node, but exists in the memory and on the disk of the replica node; and is promoted there to active status. Then, the promoted replica node itself fails, and the new data is temporarily unavailable. However, when the promoted replica node has restarted, the new data again becomes available on disk. To ensure auto-failover does not conflict with guaranteed protection, when two replicas have been configured, establish 1 as the maximum number of sequential automatic failovers that can take place without administrator intervention. |
+
+## [](#protection-guarantees-2-replicas)Protection Guarantees: Two Replicas
+
+The durability protection guarantees for two replicas are identical to those described above, for [One Replica](#protection-guarantees-1-replica). This is because _majority_ is `2` for both cases: see the table in [Majority](#majority), above.
+
+Commitment therefore occurs without the second replica being guaranteed an update. To ensure auto-failover does not conflict with guaranteed protection, when two replicas have been configured, establish `1` as the maximum number of sequential automatic failovers that can take place without administrator intervention.

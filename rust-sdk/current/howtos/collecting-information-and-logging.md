@@ -1,0 +1,138 @@
+[View original HTML](/rust-sdk/current/howtos/collecting-information-and-logging.html)
+
+> The Rust SDK logs events. It has no hard dependency on a specific logger implementation, but you should add one you are comfortable with. 
+
+## [](#configuring-logging)Configuring Logging
+
+The Couchbase Rust SDK has no hard dependency on a specific logger implementation. It uses the Rust [log](https://docs.rs/log/latest/log/) facade and will use the logger that has been configured in the environment. If no logger is configured then no logging will occur.
+
+Rust has several logging implementations available including [env\_logger](https://docs.rs/env%5Flogger/latest/env%5Flogger/).
+
+### [](#logger-example-with-env%5Flogger)Logger example with env\_logger
+
+To enable logging you must add a logging crate to your `Cargo.toml` file:
+
+```toml
+[dependencies]
+env_logger = "0.11"
+```
+
+You must also then register a global logger to consume the log messages. The simplest example of using `env_logger` is simply to add the following before executing any Couchbase SDK code:
+
+```rust
+env_logger::init();
+```
+
+This will create a logger which logs at the level specified by the `RUST_LOG` environment variable, as an example:
+
+```console
+$ RUST_LOG='couchbase=trace' cargo run
+```
+
+You can also configure `env_logger` in a number of ways to customise the logger output, for example:
+
+```rust
+env_logger::Builder::new()
+    .format(|buf, record| {
+        writeln!(
+            buf,
+            "{}:{} {} [{}] - {}",
+            record.file().unwrap_or("unknown"),
+            record.line().unwrap_or(0),
+            chrono::Local::now().format("%Y-%m-%dT%H:%M:%S%.3f"),
+            record.level(),
+            record.args()
+        )
+    })
+    .filter(Some("rustls"), LevelFilter::Warn)
+    .init();
+```
+
+When `RUST_LOG` is set to `debug` and the following code is run then the SDK will generate a number of log messages:
+
+```rust
+let username = "<your-username>";
+let password = "<your-password>";
+
+let cluster = timeout(
+    Duration::from_secs(60),
+    Cluster::connect(
+        // For a secure cluster connection, use `couchbases://<your-cluster-ip>` instead.
+        "couchbase://localhost",
+        ClusterOptions::new(Authenticator::PasswordAuthenticator(
+            PasswordAuthenticator::new(username, password),
+        )),
+    ),
+)
+.await?;
+
+cluster
+    .wait_until_ready(WaitUntilReadyOptions::default())
+    .await?;
+```
+
+Logger output \[**Click to open or collapse the output**\] 
+
+.../couchbase-core-1.0.0-beta.1/src/agent.rs:466 2025-10-14T08:59:14.402 [INFO] - Creating new agent couchbase-rs-core 1.0.0-beta.1 couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.405 [DEBUG] - Kvclient 63cd285f-f1a9-4f76-bdd0-5fe917b49004 assigning client id e55cef70-f1aa-43c0-9374-c0e696e83ee8 for 192.168.107.128:11210 couchbase-core-1.0.0-beta.1/src/kvclient.rs:349 2025-10-14T08:59:14.718 [INFO] - Enabled hello features: [SeqNo, Xattr, Xerror, SelectBucket, Snappy, Json, Duplex, UnorderedExec, Durations, AltRequests, SyncReplication, Collections, SnappyEverywhere, PreserveExpiry, CreateAsDeleted, ReplaceBodyWithXattr, ClusterMapKnownVersion, DedupeNotMyVbucketClustermap, ClusterMapChangeNotificationBrief]
+.../couchbase-core-1.0.0-beta.1/src/memdx/client.rs:400 2025-10-14T08:59:14.719 [DEBUG] - Client e55cef70-f1aa-43c0-9374-c0e696e83ee8 closing couchbase-core-1.0.0-beta.1/src/memdx/client.rs:423 2025-10-14T08:59:14.719 [DEBUG] - Client e55cef70-f1aa-43c0-9374-c0e696e83ee8 exiting couchbase-core-1.0.0-beta.1/src/kvclientmanager.rs:190 2025-10-14T08:59:14.719 [DEBUG] - Reconfiguring client manager couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:670 2025-10-14T08:59:14.719 [DEBUG] - Creating new client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 for 192.168.107.129:11210 couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:615 2025-10-14T08:59:14.719 [DEBUG] - Client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 creating new client with id 00453726-ac2c-4da2-89ca-55ea4cf3040b couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:670 2025-10-14T08:59:14.719 [DEBUG] - Creating new client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b for 192.168.107.128:11210 couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:615 2025-10-14T08:59:14.719 [DEBUG] - Client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b creating new client with id a7f35a19-a61b-4b06-9408-acdc89ad59af couchbase-core-1.0.0-beta.1/src/agent.rs:678 2025-10-14T08:59:14.720 [DEBUG] - Agent created, 1 strong references couchbase-core-1.0.0-beta.1/src/agent.rs:739 2025-10-14T08:59:14.719 [DEBUG] - Bootstrap client 63cd285f-f1a9-4f76-bdd0-5fe917b49004 closed couchbase-core-1.0.0-beta.1/src/memdx/client.rs:162 2025-10-14T08:59:14.720 [DEBUG] - e55cef70-f1aa-43c0-9374-c0e696e83ee8 read loop shut down couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.720 [DEBUG] - Kvclient a7f35a19-a61b-4b06-9408-acdc89ad59af assigning client id 83de7fed-0a80-474f-b8a8-9cd98d0fbe1c for 192.168.107.128:11210 couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.720 [DEBUG] - Kvclient 00453726-ac2c-4da2-89ca-55ea4cf3040b assigning client id e8f44e82-85b2-4653-b99e-a073d6f3ac3c for 192.168.107.129:11210 reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.720 [DEBUG] - starting new connection: http://192.168.107.128:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.720 [DEBUG] - starting new connection: http://192.168.107.129:8093/
+.../couchbase-core-1.0.0-beta.1/src/agent.rs:466 2025-10-14T08:59:14.402 [INFO] - Creating new agent couchbase-rs-core 1.0.0-beta.1
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.405 [DEBUG] - Kvclient 63cd285f-f1a9-4f76-bdd0-5fe917b49004 assigning client id e55cef70-f1aa-43c0-9374-c0e696e83ee8 for 192.168.107.128:11210
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:349 2025-10-14T08:59:14.718 [INFO] - Enabled hello features: [SeqNo, Xattr, Xerror, SelectBucket, Snappy, Json, Duplex, UnorderedExec, Durations, AltRequests, SyncReplication, Collections, SnappyEverywhere, PreserveExpiry, CreateAsDeleted, ReplaceBodyWithXattr, ClusterMapKnownVersion, DedupeNotMyVbucketClustermap, ClusterMapChangeNotificationBrief]
+.../couchbase-core-1.0.0-beta.1/src/memdx/client.rs:400 2025-10-14T08:59:14.719 [DEBUG] - Client e55cef70-f1aa-43c0-9374-c0e696e83ee8 closing
+.../couchbase-core-1.0.0-beta.1/src/memdx/client.rs:423 2025-10-14T08:59:14.719 [DEBUG] - Client e55cef70-f1aa-43c0-9374-c0e696e83ee8 exiting
+.../couchbase-core-1.0.0-beta.1/src/kvclientmanager.rs:190 2025-10-14T08:59:14.719 [DEBUG] - Reconfiguring client manager
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:670 2025-10-14T08:59:14.719 [DEBUG] - Creating new client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 for 192.168.107.129:11210
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:615 2025-10-14T08:59:14.719 [DEBUG] - Client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 creating new client with id 00453726-ac2c-4da2-89ca-55ea4cf3040b
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:670 2025-10-14T08:59:14.719 [DEBUG] - Creating new client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b for 192.168.107.128:11210
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:615 2025-10-14T08:59:14.719 [DEBUG] - Client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b creating new client with id a7f35a19-a61b-4b06-9408-acdc89ad59af
+.../couchbase-core-1.0.0-beta.1/src/agent.rs:678 2025-10-14T08:59:14.720 [DEBUG] - Agent created, 1 strong references
+.../couchbase-core-1.0.0-beta.1/src/agent.rs:739 2025-10-14T08:59:14.719 [DEBUG] - Bootstrap client 63cd285f-f1a9-4f76-bdd0-5fe917b49004 closed
+.../couchbase-core-1.0.0-beta.1/src/memdx/client.rs:162 2025-10-14T08:59:14.720 [DEBUG] - e55cef70-f1aa-43c0-9374-c0e696e83ee8 read loop shut down
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.720 [DEBUG] - Kvclient a7f35a19-a61b-4b06-9408-acdc89ad59af assigning client id 83de7fed-0a80-474f-b8a8-9cd98d0fbe1c for 192.168.107.128:11210
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:233 2025-10-14T08:59:14.720 [DEBUG] - Kvclient 00453726-ac2c-4da2-89ca-55ea4cf3040b assigning client id e8f44e82-85b2-4653-b99e-a073d6f3ac3c for 192.168.107.129:11210
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.720 [DEBUG] - starting new connection: http://192.168.107.128:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.720 [DEBUG] - starting new connection: http://192.168.107.129:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.720 [DEBUG] - starting new connection: http://192.168.107.128:8094/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.721 [DEBUG] - starting new connection: http://192.168.107.129:8094/
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.721 [DEBUG] - Pinging pool kvep-192.168.107.129-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.721 [DEBUG] - Client 00453726-ac2c-4da2-89ca-55ea4cf3040b is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.721 [DEBUG] - Pinging pool kvep-192.168.107.128-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.721 [DEBUG] - Client a7f35a19-a61b-4b06-9408-acdc89ad59af is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:324 2025-10-14T08:59:14.721 [DEBUG] - Retrying { operation: wait_until_ready, id: , is_idempotent: true, retry_attempts: 1, retry_reasons: NOT_READY } after 1ms due to NOT_READY
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.722 [DEBUG] - starting new connection: http://192.168.107.129:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.723 [DEBUG] - starting new connection: http://192.168.107.128:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.723 [DEBUG] - starting new connection: http://192.168.107.128:8094/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.723 [DEBUG] - starting new connection: http://192.168.107.129:8094/
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.723 [DEBUG] - Pinging pool kvep-192.168.107.128-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.723 [DEBUG] - Client a7f35a19-a61b-4b06-9408-acdc89ad59af is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.723 [DEBUG] - Pinging pool kvep-192.168.107.129-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.723 [DEBUG] - Client 00453726-ac2c-4da2-89ca-55ea4cf3040b is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:324 2025-10-14T08:59:14.723 [DEBUG] - Retrying { operation: wait_until_ready, id: , is_idempotent: true, retry_attempts: 2, retry_reasons: NOT_READY } after 2ms due to NOT_READY
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.964 [DEBUG] - starting new connection: http://192.168.107.129:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.965 [DEBUG] - starting new connection: http://192.168.107.128:8093/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.965 [DEBUG] - starting new connection: http://192.168.107.128:8094/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:14.965 [DEBUG] - starting new connection: http://192.168.107.129:8094/
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.965 [DEBUG] - Pinging pool kvep-192.168.107.128-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.965 [DEBUG] - Client a7f35a19-a61b-4b06-9408-acdc89ad59af is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:14.965 [DEBUG] - Pinging pool kvep-192.168.107.129-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:14.965 [DEBUG] - Client 00453726-ac2c-4da2-89ca-55ea4cf3040b is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:324 2025-10-14T08:59:14.965 [DEBUG] - Retrying { operation: wait_until_ready, id: , is_idempotent: true, retry_attempts: 3, retry_reasons: NOT_READY } after 4ms due to NOT_READY
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:349 2025-10-14T08:59:15.194 [INFO] - Enabled hello features: [SeqNo, Xattr, Xerror, SelectBucket, Snappy, Json, Duplex, UnorderedExec, Durations, AltRequests, SyncReplication, Collections, SnappyEverywhere, PreserveExpiry, CreateAsDeleted, ReplaceBodyWithXattr, ClusterMapKnownVersion, DedupeNotMyVbucketClustermap, ClusterMapChangeNotificationBrief]
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.194 [DEBUG] - starting new connection: http://192.168.107.128:8093/
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:475 2025-10-14T08:59:15.194 [DEBUG] - Client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 created client successfully: 00453726-ac2c-4da2-89ca-55ea4cf3040b
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.194 [DEBUG] - starting new connection: http://192.168.107.129:8093/
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:487 2025-10-14T08:59:15.194 [DEBUG] - Client pool 6d28241a-f6f1-455c-a43a-c831d5e7e126 changing client 00453726-ac2c-4da2-89ca-55ea4cf3040b connection state to Connected
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.195 [DEBUG] - starting new connection: http://192.168.107.128:8094/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.195 [DEBUG] - starting new connection: http://192.168.107.129:8094/
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:15.195 [DEBUG] - Pinging pool kvep-192.168.107.128-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:441 2025-10-14T08:59:15.195 [DEBUG] - Client a7f35a19-a61b-4b06-9408-acdc89ad59af is not connected
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:15.195 [DEBUG] - Pinging pool kvep-192.168.107.129-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:324 2025-10-14T08:59:15.195 [DEBUG] - Retrying { operation: wait_until_ready, id: , is_idempotent: true, retry_attempts: 4, retry_reasons: NOT_READY } after 8ms due to NOT_READY
+.../couchbase-core-1.0.0-beta.1/src/kvclient.rs:349 2025-10-14T08:59:15.196 [INFO] - Enabled hello features: [SeqNo, Xattr, Xerror, SelectBucket, Snappy, Json, Duplex, UnorderedExec, Durations, AltRequests, SyncReplication, Collections, SnappyEverywhere, PreserveExpiry, CreateAsDeleted, ReplaceBodyWithXattr, ClusterMapKnownVersion, DedupeNotMyVbucketClustermap, ClusterMapChangeNotificationBrief]
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:475 2025-10-14T08:59:15.196 [DEBUG] - Client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b created client successfully: a7f35a19-a61b-4b06-9408-acdc89ad59af
+.../couchbase-core-1.0.0-beta.1/src/kvclientpool.rs:487 2025-10-14T08:59:15.196 [DEBUG] - Client pool 44ef4d63-d7d4-4985-8f61-a871c2617e6b changing client a7f35a19-a61b-4b06-9408-acdc89ad59af connection state to Connected
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.205 [DEBUG] - starting new connection: http://192.168.107.129:8094/
+.../reqwest-0.12.23/src/connect.rs:882 2025-10-14T08:59:15.206 [DEBUG] - starting new connection: http://192.168.107.128:8094/
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:15.206 [DEBUG] - Pinging pool kvep-192.168.107.128-8091 with 1 clients
+.../couchbase-core-1.0.0-beta.1/src/diagnosticscomponent.rs:395 2025-10-14T08:59:15.206 [DEBUG] - Pinging pool kvep-192.168.107.129-8091 with 1 clients

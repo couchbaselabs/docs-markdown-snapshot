@@ -1,0 +1,516 @@
+[View original HTML](/c-sdk/current/ref/client-settings.html)
+
+> Client settings 
+
+Refer to the [API doc on lcb\_cntl()](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-cntl.html)and the [settings list](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-cntl-settings.html).
+
+## [](#io-options)I/O Options
+
+This section provides basic settings that will come in handy while configuring network related operations.
+
+Name: **DNS SRV**
+
+Connection String Option: `dnssrv`
+
+Default: `true` (when only one node specified in server list) Possible values:
+
+* `on` or `true` — turn feature on
+* `off` or `false` — turn feature off  
+Gets the bootstrap node list from a DNS SRV record. See the Connection Management section for more information on how to use it properly.
+
+|  | This setting is only available on the connection string. |
+|  | -------------------------------------------------------- |  
+```c++  
+std::string connection_string { "couchbase://localhost?dnssrv=off" };  
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());  
+```
+
+Name: **Mutation Tokens Enabled**
+
+Connection String Options: `enable_mutation_tokens`Enumeration Symbol: `LCB_CNTL_ENABLE_MUTATION_TOKENS`
+
+Default: `true`
+
+Possible values:
+
+* `on` or `true` — turn feature on
+* `off` or `false` — turn feature off  
+Mutation tokens allow enhanced durability requirements as well as advanced SQL++ (formerly N1QL) querying capabilities. Set this to `false` if you do not require these features and wish to avoid the associated overhead.  
+```c++  
+std::string connection_string { "couchbase://localhost?enable_mutation_tokens=off" };  
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());  
+lcb_cntl_string(instance, "enable_mutation_tokens", "off");  
+int enable = 1;  
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_ENABLE_MUTATION_TOKENS, &enable);  
+lcb_cntl_set32(instance, LCB_CNTL_ENABLE_MUTATION_TOKENS, enable);  
+```
+
+Name: **Socket Keepalive**
+
+Connection String Option: `tcp_keepalive`Enumeration Symbol: `LCB_CNTL_TCP_KEEPALIVE`
+
+Default: `true`
+
+Possible values:
+
+* `on` or `true` — turn feature on
+* `off` or `false` — turn feature off  
+If enabled, the client periodically sends a TCP keepalive to the server to prevent firewalls and other network equipment from dropping idle TCP connections.  
+```c++  
+std::string connection_string { "couchbase://localhost?tcp_keepalive=on" };  
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());  
+lcb_cntl_string(instance, "tcp_keepalive", "on");  
+int enable = 1;  
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_TCP_KEEPALIVE, &enable);  
+lcb_cntl_set32(instance, LCB_CNTL_TCP_KEEPALIVE, enable);  
+```
+
+Name: **Config Poll Interval**
+
+Cluster Option: `config_poll_interval`Enumeration Symbol: `LCB_CNTL_CONFIG_POLL_INTERVAL`
+
+Default: `2.5` (2500 milliseconds)
+
+The interval at which the client fetches cluster topology information in order to proactively detect changes.
+
+```c++
+// all examples below set configuration poll to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?config_poll_interval=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "config_poll_interval", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_CONFIG_POLL_INTERVAL, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_CONFIG_POLL_INTERVAL, timeout);
+```
+
+## [](#timeout-options)Timeout Options
+
+The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment. If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.
+
+Most timeouts can be overridden on a per-operation basis (for example, by passing a custom options block to a "get" or "query" method). The values set here are used as the defaults when no per-operation timeout is specified.
+
+```c++
+// 5 seconds 200 milliseconds
+std::string connection_string { "couchbase://localhost?query_timeout=5.2" };
+```
+
+### [](#timeout-options-reference)Timeout Options Reference
+
+Name: **Key-Value Timeout**
+
+Connection String Option: `operation_timeout`Enumeration Symbol: `LCB_CNTL_OP_TIMEOUT`
+
+Default: `2.5` (2500 milliseconds), _but see TIP, below_
+
+The Key-Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like `get`, `lookup_in`, and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
+
+|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes)have their own timeout setting, persistence\_timeout\_floor, see below. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?operation_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "operation_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_OP_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_OP_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for GET command
+lcb_cmdget_timeout(cmd, timeout);
+```
+
+Name: **Key-Value Durable Operation Timeout**
+
+Connection String Option: `persistence_timeout_floor`Enumeration Symbol: `LCB_CNTL_PERSISTENCE_TIMEOUT_FLOOR`
+
+Default: `1.5` (1500 milliseconds)
+
+Generally the library derives persistence timeout from operation timeout, and the application should not care about this. This setting controls the minimum value for Key-Value operation with requested durability level. It is guaranteed that the library will not use timeout below this floor value.
+
+|  | The persistence\_timeout\_floor property is not part of the stable API and may change or be removed at any time. |
+|  | ---------------------------------------------------------------------------------------------------------------- |
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?persistence_timeout_floor=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "persistence_timeout_floor", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_PERSISTENCE_TIMEOUT_FLOOR, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_PERSISTENCE_TIMEOUT_FLOOR, timeout);
+```
+
+Name: **View Timeout**
+
+Connection String Option: `views_timeout`Enumeration Symbol: `LCB_CNTL_VIEW_TIMEOUT`
+
+Default: `75.0` (75000 milliseconds)
+
+The View timeout is used on view operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key-value since it can affect hundreds or thousands of rows. Also, if there is a node failure during the request the internal cluster timeout is set to 60 seconds.
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?views_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "views_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_VIEW_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_VIEW_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for VIEW command
+lcb_cmdview_timeout(cmd, timeout);
+```
+
+Name: **Query Timeout**
+
+Connection String Option: `query_timeout`Enumeration Symbol: `LCB_CNTL_QUERY_TIMEOUT`
+
+Default: `75.0` (75000 milliseconds)
+
+The Query timeout is used on all SQL++ query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key-value since it can affect hundreds or thousands of rows.
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?query_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "query_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_QUERY_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_QUERY_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for VIEW command
+lcb_cmdquery_timeout(cmd, timeout);
+```
+
+Name: **Analytics Timeout**
+
+Connection String Option: `analytics_timeout`Enumeration Symbol: `LCB_CNTL_ANALYTICS_TIMEOUT`
+
+Default: `75.0` (75000 milliseconds)
+
+The Analytics timeout is used on all Analytics query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key-value since it can affect hundreds or thousands of rows.
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?analytics_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "analytics_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_ANALYTICS_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_ANALYTICS_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for VIEW command
+lcb_cmdanalytics_timeout(cmd, timeout);
+```
+
+Name: **Search Timeout**
+
+Connection String Option: `search_timeout`Enumeration Symbol: `LCB_CNTL_SEARCH_TIMEOUT`
+
+Default: `75.0` (75000 milliseconds)
+
+The Search timeout is used on all FTS operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key-value since it can affect hundreds or thousands of rows.
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?search_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "search_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_SEARCH_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_SEARCH_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for VIEW command
+lcb_cmdsearch_timeout(cmd, timeout);
+```
+
+Name: **Management Timeout**
+
+Connection String Option: `http_timeout`Enumeration Symbol: `LCB_CNTL_HTTP_TIMEOUT`
+
+Default: `75.0` (75000 milliseconds)
+
+The default is quite high because some operations (such as flushing a bucket, for example) might take a long time.
+
+```c++
+// all examples below set operation timeout to 4.5 seconds
+
+std::string connection_string { "couchbase://localhost?http_timeout=4.5" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "http_timeout", "4.5");
+
+auto timeout_in_seconds = std::chrono::milliseconds(4500);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_HTTP_TIMEOUT, &timeout);
+
+std::uint32_t timeout = 4500000; // in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_HTTP_TIMEOUT, timeout);
+
+// also could be set per operation, for instance here we set timeout for VIEW command
+lcb_cmdhttp_timeout(cmd, timeout);
+```
+
+## [](#tracing-threshold-and-orphaned-logging-options)Tracing Threshold and Orphaned Logging Options
+
+Both threshold tracing and orphaned request logging can be enabled/disabled using:
+
+Name: **Enable Tracing**
+
+Connection String Option: `enable_tracing`
+
+Enumeration Symbol: `LCB_CNTL_ENABLE_TRACING`
+
+Default: `true`
+
+```cpp
+// boolean values can be represented in the connection string with 'on|off'
+// 'true|false', or '1|0'.  All the examples below enable tracing.
+
+std::string connection_string { "couchbase://localhost?tracing_enabled=true" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "tracing_enabled" "1");
+
+uint32_t enable = 1;
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_ENABLE_TRACING, &enable;
+
+lcb_cntl_set32(instance, LCB_CNTL_ENABLE_TRACING, enable);
+lcb_cntl_string(instance, "tracing_enabled", "1");
+```
+
+### [](#tracing-threshold-logging-options)Tracing Threshold Logging Options
+
+Any operations that take longer than the threshold for that service are logged at regular intervals. To keep memory usage in check, we only store the the first N slow operation traces (per service), and then flush that data to the log. The thresholds for the services can be set with:
+
+Name: **Tracing Threshold KV**
+
+Connection String Option: `tracing_threshold_kv`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_KV`
+
+Default: `0.5` (500 milliseconds)
+
+Name: **Tracing Threshold Query**
+
+Connection String Option: `tracing_threshold_query`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_QUERY`
+
+Default: `1.0` (1000 milliseconds)
+
+Name: **Tracing Threshold Search**
+
+Connection String Option: `tracing_threshold_search`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_SEARCH`
+
+Default: `1.0` (1000 milliseconds)
+
+Name: **Tracing Threshold Analytics**
+
+Connection String Option: `tracing_threshold_analytics`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_ANALYTICS`
+
+Default: `1.0` (1000 milliseconds)
+
+Name: **Tracing Threshold View**
+
+Connection String Option: `tracing_threshold_view`
+
+Enumeration Symbol: LCB\_CNTL\_TRACING\_THRESHOLD\_VIEW\`
+
+Default: 1.0 (1000 milliseconds)
+
+Name: **Tracing Threshold Queue Size**
+
+Connection String Option: `tracing_threshold_queue_size`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_QUEUE_SIZE`
+
+Default: `128`
+
+Name: **Tracing Threshold Queue Flush Interval**
+
+Connection String Option: `tracing_threshold_queue_flush_interval`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_THRESHOLD_QUEUE_FLUSH_INTERVAL`
+
+Default: `10.0` (10000 milliseconds)  
+
+```c++
+// all the thresholds/intervals can be set similarly.  These all set the kv threshold to 300ms
+
+std::string connection_string { "couchbase://localhost?tracing_threshold_kv=0.3" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "tracing_threshold_kv", "0.3");
+
+auto timeout_in_seconds = std::chrono::milliseconds(300);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_TRACING_THRESHOLD_KV, &timeout);
+
+std::uint32_t timeout = 300000; // 300 milliseconds in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_TRACING_THRESHOLD_KV, timeout);
+
+// the queue sizes can be set similarly as well.  These all just set the threshold queue size to 50
+
+std::string connection_string { "couchbase://localhost?tracing_threshold_queue_size=50"}
+
+lcb_cntl_string(instance, "tracing_threshold_queue_size", "50");
+std::uint32_t size = 50;
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_TRACING_THRESHOLD_QUEUE_SIZE, &size)
+
+lcb_cntl_set32(instance, LCB_CNTL_TRACING_THRESHOLD_KV, size);
+```
+
+### [](#tracing-orphaned-logging-options)Tracing Orphaned Logging Options
+
+Orphans responses are KV operations which have timed out after dispatch, and the callback is never called. These are stored in a queue, and logged at regular intervals. The size of the queue and the logging interval can be set with:
+
+Name: **Tracing Orphaned Queue Size**
+
+Connection String Option: `tracing_orphaned_queue_size`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_ORPHANED_QUEUE_SIZE`
+
+Default: `128`
+
+Name: **Tracing Orphaned Queue Flush Interval**
+
+Connection String Option: `tracing_orphaned_queue_flush_interval`
+
+Enumeration Symbol: `LCB_CNTL_TRACING_ORPHANED_QUEUE_FLUSH_INTERVAL`
+
+Default: `10.0` (10000 milliseconds)
+
+## [](#metrics-reporting-options)Metrics Reporting Options
+
+Metrics Reporting can be enabled/disabled using:
+
+Name: **Enable Operation Metrics**
+
+Connection String Option: `enable_operation_metrics`
+
+Enumeration Symbol: `LCB_CNTL_ENABLE_OP_METRICS`
+
+Default: `true`
+
+```cpp
+// boolean values can be represented in the connection string with 'on|off'
+// 'true|false', or '1|0'.  All the examples below enable metrics reporting.
+
+std::string connection_string { "couchbase://localhost?enable_operation_metrics=true" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "enable_operation_metrics" "1");
+
+uint32_t enable = 1;
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_ENABLE_OP_METRICS, &enable;
+
+lcb_cntl_set32(instance, LCB_CNTL_ENABLE_OP_METRICS, enable);
+lcb_cntl_string(instance, "operation_metrics_enabled", "1");
+```
+
+Similarly, the interval over which the metrics are collected and logged can be configured using:
+
+Name: **Operation Metrics Flush Interval**
+
+Connection String Option: `operation_metrics_flush_interval`
+
+Enumeration Symbol: `LCB_CNTL_OP_METRICS_FLUSH_INTERVAL`
+
+Default: `600` (600 seconds)
+
+```cpp
+std::string connection_string { "couchbase://localhost?operation_metrics_flush_interval=60.0" };
+lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());
+
+lcb_cntl_string(instance, "operation_metrics_flush_interval", "60.0");
+
+auto timeout_in_seconds = std::chrono::milliseconds(60000);
+auto timeout_in_microseconds = std::chrono::duration_cast<std::chrono::microseconds>(timeout_in_seconds);
+std::uint32_t timeout = std::static_cast<std::uint32_t>(timeout_in_microseconds.count());
+lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_OP_METRICS_FLUSH_INTERVAL, &timeout);
+
+std::uint32_t timeout = 60000000; // 60 seconds in microseconds
+lcb_cntl_set32(instance, LCB_CNTL_OP_METRICS_FLUSH_INTERVAL, timeout);
+```
+
+## [](#general-options)General Options
+
+Name: **Unordered Execution**
+
+Connection String Option: `LCB_CNTL_ENABLE_UNORDERED_EXECUTION`
+
+Default: `true`
+
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions. This means that tuning the number of connections (KV endpoints) is no longer necessary as a workaround where data not available in the cache is causing timeouts.
+
+This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+## [](#commonly-used-options)Commonly Used Options
+
+The defaults above have been carefully considered and in general it is not recommended to make changes without expert guidance or careful testing of the change. Some options may be commonly used together in certain envionments or to achieve certain effects.
+
+### [](#constrained-network-environments)Constrained Network Environments
+
+Though [wide area network](../project-docs/compatibility.md#network-requirements) (WAN) connections are not directly supported, some development and non-critical operations activities across a WAN are convenient. Most likely for connecting to Couchbase Capella, or Server running in your own cloud account, whilst developing from a laptop or other machine not located in the same data center. These settings are some you may want to consider adjusting:
+
+* Connect Timeout to 30s
+* Key-Value Timeout to 5s
+* Config Poll Interval to 10s
+* Circuit Breaker ErrorThresholdPercentage to 75

@@ -1,0 +1,199 @@
+[View original HTML](/enterprise-analytics/2.0/manage/manage-security/configure-saslauthd.html)
+
+> `saslauthd` is a daemon process that handles plaintext authentication requests on behalf of the SASL library. 
+
+## [](#ldap-and-legacy-sasl-authentication)LDAP and Legacy saslauthd Authentication
+
+Enterprise Analytics provides _Native LDAP_ support. This allows external users to be authenticated by LDAP, and provides support for _LDAP groups_. For details on using this recommended procedure, see [Configure LDAP](configure-ldap.md).
+
+The `saslauthd` process can still be used to support authentication on LDAP or other servers if required. In LDAP authentication, the `saslauthd` process handles authentication requests on behalf of Enterprise Analytics while the LDAP protocol is used to connect to the LDAP server. The `saslauthd` agent, which must be installed and configured on each Enterprise Analytics node.
+
+Note that _either_ Native LDAP Support _or_ `saslauthd` must be selected for the cluster. The two cannot be used simultaneously.
+
+Note also that _both_ Native LDAP Support _and_ `saslauthd` require clients to use the PLAIN authentication mechanism, ideally with TLS.
+
+For an overview of authentication options on Enterprise Analytics, see [Authentication](../../../../server/current/learn/security/authentication.md).
+
+### [](#migrating-from-saslauthd-to-native-ldap)Migrating from saslauthd to Native LDAP
+
+If you have been using `saslauthd` with previous versions of Enterprise Analytics, you are strongly recommended to migrate to _Native LDAP_. See [Authentication Domains](../../../../server/current/learn/security/authentication-domains.md) for a full account of the benefits.
+
+To migrate, proceed as follows:
+
+1. Configure Native LDAP. This is described in detail, in [Configure LDAP.](configure-ldap.md)  
+Note that the procedure provides two principal options, which are **Enable LDAP user authentication** and **Enable LDAP group authorization & sync**. During your configuration procedure:
+
+  * You _must_ select **Enable LDAP user authentication**, and then configure associated details.
+  * If LDAP group authorization is required, you _can_ select **Enable LDAP group authorization & sync**, and then configure associated details. Alternatively, you can leave this option disabled for now: it does not need to have been enabled, for migration to succeed. Instead, it can be enabled and configured later, after migration has been completed.
+2. Disable `saslauthd` authentication, as follows:  
+/opt/enterprise-analytics/bin/couchbase-cli
+3. Perform appropriate tests, to ensure that authentication with Native LDAP is working correctly.
+
+  * If you encounter any problems, you can re-enable `saslauthd`, and continue to rely on it while you troubleshoot your environment.
+  * If there are no problems, stop the `saslauthd` daemon. All authentication for external users is now handled by Native LDAP.
+
+This completes the migration process.
+
+## [](#supported-packages)Supported Packages
+
+If you have chosen to support external authentication by means of `saslauthd`, install your Unix operating system with the `saslauthd` package that is supported for LDAP integration.
+
+Make sure that you have the prerequisites for the LDAP software you are installing, such as OpenLDAP libraries. On RPM-based distros, installation packages are a part of `cyrus-sasl rpm`, so make sure that it is installed.
+
+CentOS 7
+
+`saslauthd 2.1.26` or higher
+
+Ubuntu
+
+`saslauthd 2.1.25` or higher
+
+SUSE
+
+`saslauthd 2.1.23` or higher
+
+## [](#preparation)Preparation
+
+Make sure your LDAP setup is working, by running a test `ldapsearch` as follows:
+
+```bash
+ldapsearch -LLL -H ldap://ldapserver:389 -D cn=someuser,ou=users,dc=mydomain,dc=com -w Passw0rd -x -bou=users,dc=mydomain,dc=com cn=someuser
+```
+
+## [](#install-saslauthd)Install `saslauthd`
+
+Install the saslauthd package on your operating system. On Ubuntu, install `saslauthd` with the following command:
+
+sudo apt-get install sasl2-bin
+
+## [](#determine-mux-file-location)Determine mux File Location
+
+To communicate with the LDAP server, Enterprise Analytics makes use of the mux file provided by the saslauthd package. The location of the mux file varies, according to distribution. Enterprise Analytics checks for the file at two locations, which are `/var/run/sasl2/mux` and `/var/run/saslauthd/mux`.
+
+* _Debian/Ubuntu_: By default, the file is located at `/var/run/sasl2/mux`.
+* _RHEL/CentOS 7_: By default, the file is located at `/run/saslauthd/mux`; but a symlink from `/var/run` to `/run/` allows Enterprise Analytics to access the file at `/var/run/saslauthd/mux`.
+
+If, on your system, the location of the mux file is neither `/var/run/sasl2/mux` nor `/var/run/saslauthd/mux`, set the `CBAUTH_SOCKPATH` environment variable to the mux file’s actual location. Enterprise Analytics will attempt to access the mux file there.
+
+## [](#getting-started-with-saslauthd-and-ldap)Getting Started with saslauthd and LDAP
+
+1. Ensure that the Couchbase Cluster is running. Then, enable external authentication on the cluster, using the Couchbase CLI `setting-saslauthd` command: specifying server IP-address and port number, username and password:  
+```bash  
+/opt/enterprise-analytics/bin/couchbase-cli
+-u Administrator \
+-p password \
+--enabled 1  
+```  
+Note that `--enabled 1` enables external authentication, and `--enabled 0` disables. See [setting-saslauthd](../../cli/couchbase-cli-setting-saslauthd.md) for further information. When successfully executed, the command provides the following notification: `SUCCESS: saslauthd settings modified`.
+2. Configure the `MECHANISMS` option for `ldap`.
+
+**Red Hat Enterprise Linux, CentOS, and Amazon Linux AMI** edit _/etc/sysconfig/saslauthd_ (`/etc/default/saslauthd` on Debian/Ubuntu) to set the mechanism `MECH` to `ldap`:  
+MECH=ldap
+
+**Ubuntu and Debian** edit _/etc/default/saslauthd_, setting `MECHANISMS` option to `ldap`:  
+MECHANISMS=ldap  
+On Debian and Ubuntu, you should also add Couchbase to the `sasl` group:  
+```bash  
+sudo adduser couchbase sasl  
+```
+3. The default configuration file used to obtain the LDAP configuration parameters is located at _/usr/local/etc/saslauthd.conf_. Open this in your editor of choice.
+4. Set up `ldap_servers`  
+Specify URIs of the LDAP servers used for authentication, such as `ldap:///10.1.1.11/`, `ldap://10.1.1.12/`. Multiple LDAP servers can be specified in the list, which is then tested to find out whether one of the servers is offline. If you install OpenLDAP on the local host machine, you can specify the value `ldap://localhost:389`.  
+If using LDAP over SSL, you can specify the value `ldaps://localhost:636`.  
+ldap_servers: ldaps://10.1.1.25 ldaps://10.1.1.15
+5. Set up `ldap_search_base`  
+Specify the distinguished name to which the search is relative. The search includes the base or objects below.  
+It also includes Domain Components (`dc`) such as in `dc=company` and `dc=com`.  
+The administrative users created in LDAP with the attribute `uid` are placed under the user’s organizational unit `ou` under the two domain components (`example` and `com`).  
+ldap_search_base: ou=Users,dc=company,dc=com
+6. Set up `ldap_filter`  
+Specify the search filter. The values for these configuration options correspond to the values specific to the test. For example, to filter on email specify `ldap_filter: (mail=%n)`.  
+ldap_filter: (uid=%u)  
+Configure LDAP options `/etc/saslauthd.conf`:  
+ldap_servers: ldaps://ad.example.net  
+ldap_search_base: ou=Users,dc=example,dc=com  
+ldap_filter: (uid=%u)
+7. Running automatically  
+For sasld to run automatically on start up, you’ll need to change the `START` value to `YES`.  
+START = yes
+8. Optionally, set up _TLS_.  
+_If_ you wish to use saslauthd with TLS, add the following to your `saslauthd.conf` file:  
+ldap_start_tls: yes  
+ldap_tls_cacert_dir: <your-cert-directory>  
+ldap_tls_cacert_file: <your-crt-file>  
+Note that once you have added these lines, your inclusion of `ldap_start_tls: yes` means that you may _not_ now use `ldaps:<ldap_server>` in your LDAP server configurations: therefore, if necessary, remove it.  
+Note also that you can use [TCPtrace](https://en.wikipedia.org/wiki/Tcptrace), to verify that TLS is enabled between saslauthd and LDAP.
+9. **Test your**`saslauthd`**set-up.**  
+If the connection is properly working, the user `couchbase` must have access to _/var/run/saslauthd/mux_ (or the appropriate alternate directory for SUSE), in order to communicate to `saslauthd`.
+
+  1. Start the saslauthd service (or set it to start automatically with `chkconfig`).  
+  ```bash  
+  service saslauthd restart  
+  Stopping saslauthd:                             [  OK  ]  
+  Starting saslauthd:                             [  OK  ]  
+  chkconfig  saslauthd on  
+  chkconfig --list saslauthd  
+  saslauthd   	0:off   1:off   2:on	3:on	4:on	5:on	6:off  
+  ```
+  2. Test `saslauthd` by using the `testsaslauth` script to test LDAP authentication:  
+  ```bash  
+  sudo -u couchbase /usr/sbin/testsaslauthd -u <username> \
+-p mypassword -f /var/run/saslauthd/mux  
+  0: OK "Success."  
+  ```
+10. Restart the Couchbase service, to allow authentication through the changed configuration.  
+```bash  
+$ sudo service couchbase-server restart  
+```
+
+## [](#example)Example
+
+Putting the above steps into typical configuration files:
+
+```bash
+cat /etc/saslauthd.conf
+# ldap_servers: ldap:<URI>:<PORT> or ldaps:<URI>:<PORT> for TLS protected connection
+ldap_servers: ldap://my.company.com:389
+# The administrative users created in LDAP with the attribute uid are placed under the user's
+# organizational unit ou under the two domain components (example and com).
+ldap_search_base: OU=InteractiveUsers,DC=my,DC=company,DC=com
+# Specifies the search filter. The values for these configuration options correspond to the
+# values specific to the test
+ldap_filter: uid=%u
+# Optional: specify a user to perform ldap queries
+ldap_bind_dn: CN=user_ldap,OU=Users,DC=my,DC=company,DC=com
+# Optional: specify ldap user’s password
+ldap_password: -sEcReTp#AssWoRd!
+```
+
+```bash
+cat /etc/sysconfig/saslauthd
+# Just keep the default
+SOCKETDIR=/var/run/saslauthd
+# Make sure MECH is set to ldap (pam is default)
+MECH=ldap
+# Include the config file described above
+FLAGS="-O /etc/saslauthd.conf"
+```
+
+## [](#configuring-saslauthd-with-windows-active-directory)Configuring `saslauthd` with Windows Active Directory
+
+A common requirement is to delegate some or all authentication to another LDAP server. Here is a sample `saslauthd` configuration that uses Microsoft Active Directory (AD) as the LDAP server:
+
+Here is a sample `saslauthd` configuration with Microsoft Active Directory (AD):
+
+ldap_servers: ldap://dc1.example.com:<port>
+ldap_search_base: cn=Users,DC=ad,DC=example,DC=com
+ldap_filter: sAMAccountName=%u
+ldap_bind_dn: cn=saslauthd,cn=Users,DC=ad,DC=example,DC=com
+ldap_password: secret
+
+## [](#troubleshooting-ldap-settings)Troubleshooting LDAP Settings
+
+After you set up the LDAP server, `saslauthd`, and LDAP administrators, likely causes of problems include:
+
+* Firewall ports are not open for LDAP.
+* The Proxy did not start or has started with an inappropriate protocol or hostname.
+* The configuration of saslauthd is incorrect (look at _/etc/sysconfig/saslauthd_ or _/etc/saslauthd.conf_)
+* The LDAP filters are not correct.
+* You can also encounter error messages from the system. These errors belong either to issues caused by `saslauthd` or the LDAP server.

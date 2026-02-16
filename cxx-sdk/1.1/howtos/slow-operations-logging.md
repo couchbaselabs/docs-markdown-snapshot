@@ -1,0 +1,77 @@
+[View original HTML](/cxx-sdk/1.1/howtos/slow-operations-logging.html)
+
+> Tracing information on slow operations can be found in the logs as threshold logging and orphan logging. Change the settings to alter how much information you collect 
+
+To improve debuggability certain metrics are automatically measured and logged. These include slow queries, responses taking beyond a certain threshold, and orphaned responses.
+
+## [](#threshold-logging-reporting)Threshold Logging Reporting
+
+Threshold logging is the recording of slow operations — useful for diagnosing when and where problems occur in a distributed environment.
+
+### [](#configuring-threshold-logging)Configuring Threshold Logging
+
+To configure threshold logging, adjust the [Tracing Options](../ref/client-settings.md). You should expect to see output in JSON format in the logs for the services encountering problems:
+
+```json
+{
+  "count": 1234,
+  "service": "<service>",
+  "top": [{<entry>}, {<entry>},...]
+}
+```
+
+The `count` represents the total amount of over-threshold recorded items in each interval per service. The number of entries in “top” is configured by the `sample_size`. The service placeholder is replaced with each service — “kv”, “query”, etc. Each entry looks like this, with all fields populated:
+
+```json
+{
+  "last_local_id": "01a657-d761-384d-25d7-0ca8c81ba9c2e7",
+  "last_local_socket": "192.168.106.1:50128",
+  "last_operation_id": "0x4b27",
+  "last_remote_socket": "192.168.106.129:11210",
+  "last_server_duration_us": 8,
+  "operation_name": "cb.get",
+  "total_duration_us": 1003,
+  "total_server_duration_us": 8
+}
+```
+
+If a field is not present (because for example dispatch did not happen), it will not be included.
+
+## [](#orphaned-response-reporting)Orphaned Response Reporting
+
+Orphan response reporting acts as an auxiliary tool to the tracing and metrics capabilities. It does not expose an external API to the application and is very focussed on its feature set.
+
+The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this “orphan” response to a reporting utility which then aggregates it and in regular intervals logs them in a specific format.
+
+When the user then sees timeouts in their logs, they can go look at the output of the orphan reporter and correlate certain properties that aid debugging in production. For example, if a single node is slow but the rest of the cluster is responsive, this would be visible from orphan reporting.
+
+### [](#configuring-orphan-logging)Configuring Orphan Logging
+
+The Orphan Reporter is very similar in principle to the Threshold Reporter, but instead of tracking responses which are over a specific threshold it tracks those responses which are “orphaned”.
+
+The `emit_interval` and `sample_size` can be adjusted (defaults are 10s and 64 samples per service, respectively). The overall structure looks like this (here prettified for readability):
+
+```json
+{
+  "count": 1234,
+  "service": "<service>",
+  "top": [{<entry>}, {<entry>},...]
+}
+```
+
+The total\_count represents the total amount of recorded items in each interval per service. The number of entries in “top” is configured by the sample size. The service placeholder is replaced with each service, i.e. “kv”, “query” etc. Each entry looks like this, with all fields populated:
+
+```json
+{
+  "last_local_id": "53289e-6237-ab40-0b9d-5c4acb44c60219",
+  "last_local_socket": "192.168.106.1:53554",
+  "last_operation_id": "0xa",
+  "last_remote_socket": "192.168.106.129:11210",
+  "last_server_duration_us": 0,
+  "operation_name": "cb.get",
+  "total_duration_us": 10307,
+  "total_server_duration_us": 0
+}
+```
+
+If a field is not present (because for example dispatch did not happen), it will not be included.

@@ -1,0 +1,49 @@
+[View original HTML](/cmos/current/deployment-onpremise.html)
+
+A working example is [provided](https://github.com/couchbaselabs/observability/tree/main/examples/containers/) based on a docker compose stack to run up a single node Couchbase cluster with the microlith all correctly configured.
+
+The basic steps are:
+
+1. Install a container runtime for your platform, for example on Ubuntu details are here: <https://docs.docker.com/engine/install/ubuntu/>
+2. Run the microlith container up: `docker run --name=couchbase-grafana --rm -d -P couchbase-observability`
+3. Configure the cluster to talk to it by providing credentials to Prometheus and cluster monitor tools.
+
+Prometheus end points and credentials can be added to the [config file](https://github.com/couchbaselabs/observability/tree/main/microlith/dynamic/prometheus/couchbase/targets.json) mounted into the container above. This is periodically rescanned and new end points added.
+
+```yaml
+[
+    {
+      "targets": [
+        "exporter:9091"
+      ],
+      "labels": {
+        "job": "db1",
+        "container": "exporter"
+      }
+    }
+]
+```
+
+The cluster monitor currently requires configuration via a bespoke REST API: `curl -u "${CLUSTER_MONITOR_USER}:${CLUSTER_MONITOR_PWD}" -X POST -d '{ "user": "'"${COUCHBASE_USER}"'", "password": "'"${COUCHBASE_PWD}"'", "host": "'"${COUCHBASE_ENDPOINT}"'" }' "${CLUSTER_MONITOR_ENDPOINT}/api/v1/clusters"`
+
+* COUCHBASE\_ENDPOINT should be set to a node that you want to monitor in a Couchbase cluster.
+* COUCHBASE\_USER & COUCHBASE\_PWD are the credentials for accesing that cluster.
+* CLUSTER\_MONITOR\_ENDPOINT is the mapping to port 7196 of the container we started, e.g. `<http://localhost:7196>`. In the container run line above we map to dynamic ports so grab them using `docker container port couchbase-grafana 7196` and use that value in the URL or alternatively use the Nginx reverse-proxy URL `<http://localhost:8080/couchbase>`.
+* CLUSTER\_MONITOR\_USER & CLUSTER\_MONITOR\_PWD are the credentials for the cluster monitor tool, defaults to a `admin:password` but can be set differently using these variables when launching the container.
+
+As an example to configure a new cluster node to be monitored:
+
+CLUSTER_MONITOR_USER=admin
+CLUSTER_MONITOR_PWD=password
+CLUSTER_MONITOR_ENDPOINT=http://localhost:$(docker container port couchbase-grafana 7196)
+COUCHBASE_USER=Administrator
+COUCHBASE_PWD=password
+COUCHBASE_ENDPOINT=http://db2:8091
+curl -u "${CLUSTER_MONITOR_USER}:${CLUSTER_MONITOR_PWD}" -X POST -d '{ "user": "'"${COUCHBASE_USER}"'", "password": "'"${COUCHBASE_PWD}"'", "host": "'"${COUCHBASE_ENDPOINT}"'" }' "${CLUSTER_MONITOR_ENDPOINT}/api/v1/clusters"
+
+We can also run with a directory containing shell scripts that do the above: `-v $PWD/microlith/dynamic/healthcheck/:/etc/healthcheck/`This will be re-scanned periodically and any scripts in it run.
+
+## [](#next-steps)Next steps
+
+* [Fluent Bit deployment](deployment-fluentbit.md)
+* [On-premise example](tutorial-onpremise.md)

@@ -1,0 +1,130 @@
+[View original HTML](/server/7.2/rest-api/upload-retrieve-node-cert.html)
+
+> The REST API can be used to upload and retrieve a node certificate. 
+
+## [](#http-method-and-uri)Http Methods and URIs
+
+POST /node/controller/reloadCertificate
+
+GET /pools/default/certificate/node/<ip-address-or-domain-name>
+
+## [](#description)Description
+
+The `POST` method and `/node/controller/reloadCertificate` URI allow an administrator-configured node-certificate to be _loaded_ and _reloaded_ onto its intended node. Prior to loading, the node-certificate must have been placed in an appropriately created `inbox` directory: see [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md), for information. If the node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined for Couchbase Server’s automatic access to and use of the passphrase for the key, when required.
+
+The `GET` method and `/pools/default/certificate/node/<ip-address-or-domain-name>` URI allow an administrator-configured node-certificate to be retrieved. Note that such retrieval can only be performed with an administrator-configured node-certificate: it cannot be performed with the default node-certificate that is automatically generated for a node by Couchbase Server on initial configuration.
+
+Note that the `POST` API _can_ be used on clusters one or more of whose nodes is running a version of Couchbase Server prior to 7.1\. The `GET` API can likewise be used: however, node-certificates for pre-7.1 nodes are not returned.
+
+Both calls require either the Full Admin or the Local User Security Admin role. For the loading of the node-certificate to succeed, the private key and chain file must both be readable by user `couchbase`.
+
+### [](#node-certificate-validation)Validating Node Certificates
+
+In Couchbase Enterprise Server Version 7.2+, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when uploading the certificate. For information, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).
+
+## [](#curl-syntax)Curl Syntax
+
+The curl syntax for these calls is as follows:
+
+curl -X POST http://<ip-address-or-domain-name>:8091/node/controller/reloadCertificate
+ -u <username>:<password>
+ -d <json-passphrase-registration>
+
+curl -X GET http://<ip-address-or-domain-name>:8091/pools/default/certificate/node/<ip-address-or-domain-name>
+  -u <username>:<password>
+
+### [](#json-passphrase-registration)JSON Passphrase Registration
+
+If a node-certificate to be loaded is associated with an encrypted private key, a procedure can be defined to allow Couchbase Server to access and use the key’s passphrase, when use of the key is required: the passphrase can be _registered_, by means of a JSON object, specified as the `json-passphrase-registration` argument.
+
+Note that if the node-certificate has already been loaded, in order to register the passphrase for its key, the certificate can be _reloaded_, with the `json-passphrase-registration` specified: for this to be successful, the corresponding `pem` and `key` files must both still be within the created `inbox`, or must be recopied into it.
+
+The following examples show how to register a passphrase in association with an encrypted private key.
+
+#### [](#script)Script
+
+A JSON object of the following kind can be used to register a passphrase of type `script`:
+
+{"privateKeyPassphrase": {"type": "script",
+                          "path": "<path to script>",
+                          "args": ["arg1", "arg2"],
+                          "trim": false,
+                          "timeout": 5000}}
+
+The specified `type` is `script`. The value of `path`, which is a _required_ argument, should be the path to the script on the current node: for security reasons, this must be in the `couchbase/scripts` directory. The value of `args`, which an _optional_ argument, should be an array containing one or more strings to be passed as arguments to the script: by default, the array is empty. The value of `trim`, which is an _optional_ argument, can be either `true` or `false`, and determines whether redundant characters are to be removed from the script: by default, the value is `true`. The value of `timeout`, which is an _optional_ argument, specifies the number of milliseconds that must elapse before the script is timed out: by default, the value is 5000.
+
+The endpoint verifies that the script is present on the node, and is located in the `couchbase/scripts` directory. (For example, on Linux, in `/opt/couchbase/var/lib/couchbase/scripts`.) When the private key is accessed, Couchbase Server executes the script, and treats the output as the passphrase for the private key. The script must return status `0` — any other returned value is considered an error.
+
+#### [](#rest-endpoint)REST Endpoint
+
+A JSON object of the following kind registers a passphrase of type `rest`:
+
+{"privateKeyPassphrase": {"type": "rest",
+                          "url": "<url to call>",
+                          "addressFamily": inet6,
+                          "httpsOpts": {"verifyPeer": true}
+                          "headers": {"key1": "value1", "key2": "value2"}
+                          "timeout": 5000}}
+
+The specified `type` is `rest`. The value of `url`, which is a _required_ argument, must be the endpoint to be called with `GET`: the endpoint can use either `http` or `https`. The `addressFamily`, which is an _optional_ argument, specifies the address family to be used, and can be either `inet` (meaning IPv4) or `inet6` (meaning IPv6): the default value is `inet`. The value of `httpsOpts`, which is an _optional_ argument that is valid only when `https` is used in the value specified for `url`, must be a JSON key-value pair: the key must be `verifyPeer`; the value can be either `true` or `false` — a value of `true` (which is the default value) determines that peer verification _is_ performed when Https is used. The value of `headers`, which is an _optional_ argument, should be an object containing one or more administrator-defined key-value pairs — each value specifying a header that is to be used in the communication: by default, no headers are passed. The value of `timeout`, which is an _optional_ argument, specifies the number of milliseconds that must elapse before the call is timed out: the default value is 5000.
+
+When the private key is accessed, Couchbase Server attempts to extract the password by means of the specified endpoint, using the `GET` method. If `200` is returned, the returned text is treated as the passphrase for the private key. If anything else is returned, this is considered an error.
+
+#### [](#plain)Plain
+
+A JSON object of the following kind can be used to register a passphrase of type `plain`:
+
+{"privateKeyPassphrase": {"type": "plain",
+                          "password": "124!*oU"}}
+
+The specified `type` is `plain`. The value of `password` is the passphrase established for the private key.
+
+The specified passphrase is stored on the node with the Couchbase-Server procedures for managing system secrets. See [Manage System Secrets](../manage/manage-security/manage-system-secrets.md). When the private key is accessed, the passphrase is transmitted in the clear (unless Https is used), and can be transmitted between nodes: this is insecure, and consequently, the `plain` option is recommended only for pre-production use.
+
+## [](#responses)Responses
+
+For both the `POST` and the `GET`, success returns `200 OK`. The `GET` also returns an object whose fields specify the details of the certificate. For both, a malformed URI fails, with `404 Object Not Found`; failure to authenticate gives `401 Unauthorized`; and insufficient privileges gives `403 Forbidden`, with a notification such as `"Forbidden. User needs one of the following permissions","permissions":["cluster.admin.security!read"]`. An incorrectly specified IP address or domain name causes the attempted connection to time out, with a `Failed to connect` notification.
+
+If the `POST` is called with either no node certificate or no node-private key in the `inbox` directory, the call fails with `400 Bad Request`, and either the notification `"Unable to read private key file /opt/couchbase/var/lib/couchbase/inbox/pkey.key. The file does not exist."`; or the notification `"Unable to read certificate chain file /opt/couchbase/var/lib/couchbase/inbox/chain.pem. The file does not exist."`.
+
+If the `POST` is called with either the private key for the node-certificate or the chain file not readable by user `couchbase`, the call fails with an error message such as the following: `"Unable to read private key file /opt/couchbase/var/lib/couchbase/inbox/pkey.key. Missing permission for reading the file, or for searching one of the parent directories."`In such a case, the private key and chain file should both be made readable by user `couchbase`.
+
+If the `GET` method is used with no administrator-configured node-certificate having been uploaded, the call returns the default, system-generated certificate.
+
+If the node-certificate does not correctly specify the node-name as a Subject Alternative Name, one of the following occurs:
+
+* A warning is flagged, and the operation succeeds. The warning takes the following form: `{"warnings":[{"name":"cert_san_invalid","message":"Address specified in cert SAN part can’t be verified.","severity":2,"severityName":"minimal"}]}`.
+* An error is flagged, and the operation fails. The error takes the following form: `Unable to validate certificate on host: 127.0.0.1. Please make sure the certificate on this host contains host name '127.0.0.1' in Subject Alternative Name. Refer to Couchbase docs for more info on how to create node certificates`.
+
+## [](#examples)Examples
+
+The following call uploads an appropriately configured node certificate from the node’s `inbox` directory:
+
+curl -X POST http://10.143.201.101:8091/node/controller/reloadCertificate \
+-u Administrator:password
+
+If successful, the call returns `200 OK`.
+
+The following call retrieves the node certificate that is currently uploaded:
+
+curl -v -X GET http://10.143.201.101:8091/pools/default/certificate/node/10.143.201.101:8091 \
+-u Administrator:password
+
+If successful, the call returns `200 OK`, and an object whose fields specify warnings, the Subject Common Name, the expiry date, the type (whether _generated_ by Couchbase Server, or _uploaded_ by the administrator), the pem-encoded contents of the node certificate, and, when the plain password-type has been used for an encrypted private key, the passphrase for the private key (securely displayed as asterisks):
+
+{
+  "warnings": [],
+  "subject": "CN=Couchbase Server",
+  "expires": "2022-11-24T10:59:14.000Z",
+  "type": "uploaded",
+  "pem": "-----BEGIN CERTIFICATE-----
+            .
+            .
+            .
+  -----END CERTIFICATE-----\n\n",
+  "privateKeyPassphrase": {}
+}
+
+## [](#see-also)See Also
+
+Information on uploading and retrieving the cluster’s root certificate with the REST API is provided in [Upload and Retrieve the Root Certificate](#rest-api:upload-retrieve-root-cert.adoc). Information on certificate regeneration is provided in [Regenerate All Certificates](rest-regenerate-all-certs.md). A general introduction to certificates is provided in [Certificates](../learn/security/certificates.md). Routines for generating and deploying server and client certificates are provided in [Configure Server Certificates](../manage/manage-security/configure-server-certificates.md) and [Configure Client Certificates](../manage/manage-security/configure-client-certificates.md), respectively. For information on correctly specifying the node-name on its certificate, see [Node-Certificate Validation](../learn/security/certificates.md#node-certificate-validation).

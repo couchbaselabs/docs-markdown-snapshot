@@ -1,0 +1,29 @@
+[View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_use.html)
+
+> This topic describes how a `USE` statement sets the database name, scope name, or both for the statement that follows. 
+
+When you provide a `USE` statement, you do not need to explicitly specify a database and a scope in the statement that follows it.
+
+For information about how Enterprise Analytics organizes entities into a `database.scope.database_object` hierarchy and resolves names, see [Entities in Enterprise Analytics](1a%5Fentities.md).
+
+## [](#syntax)Syntax
+
+**UseStmnt EBNF** 
+
+```EBNF
+UseStmnt ::= "USE" DatabaseAndScopeName
+```
+
+**UseStmnt Diagram** 
+
+!["USE" DatabaseAndScopeName](_images/UseStmnt.png) 
+
+The `USE` statement only works in a conjunction with another statement in a single request.
+
+## [](#example)Example
+
+This example sets `travel-sample` to be the database and `inventory` to be the scope for whatever statement follows if it omits that information.
+
+```SQL++
+ USE `travel-sample`.inventory;
+```

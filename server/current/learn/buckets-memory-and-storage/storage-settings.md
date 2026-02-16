@@ -1,0 +1,103 @@
+[View original HTML](/server/current/learn/buckets-memory-and-storage/storage-settings.html)
+
+> Couchbase Server stores certain items on disk as well as in memory to provide persistence and enhance reliability. 
+
+## [](#understanding-couchbase-storage)Understanding Couchbase Storage
+
+In addition to storing data in memory, Couchbase Server also stores data in Couchbase buckets on disk. Saving data to disk provides persistence so that data is not lost if a node restarts or fails. It also lets your data sets exceed the limits of the memory in your cluster. Couchbase Server restores data that’s not in memory from disk when needed.
+
+Ephemeral buckets and their items exist only in memory and are never written to disk. For more information, see [Buckets](buckets.md).
+
+Couchbase Server compresses the data it writes to disk. Compression reduces the amount of disk space used which can help reduce costs. In addition to compressing data written to disk, Couchbase Server can also compress data in memory. See [Compression](compression.md) for more information.
+
+You can remove items from disk based on a configured expiration time, called time to live. See [Expiration](../data/expiration.md) for details.
+
+See [Memory and Storage](memory-and-storage.md) for information about how Couchbase Server uses memory and storage to save new data.
+
+## [](#threading)Threading
+
+Couchbase Server uses synchronized, multi-threaded readers and writers to provide high-performance, simultaneous operations for data on disk. Readers and writers each have their own set of threads. To prevent conflicts, each thread is responsible for reading or writing a subset of the vBuckets in a Couchbase bucket.
+
+You can control the number of reader and writer threads. In the Couchbase Server Web Console, you can have Couchbase Server automatically choose a default value or a value that optimizes disk I/O. You can also manually set the number of threads per node to a value between 1 and 64\. Using a higher number of threads may improve performance if your hardware supports it, such as when your CPU has a larger of cores.
+
+You can optimize durable writes by increasing the number of writer threads. For more information, see [Durability](../data/durability.md).
+
+Setting the number of threads higher than your hardware supports can reduce performance. Test changes to the default thread allocation before applying them to production systems. As a starting point, set the number of reader and writer threads to match the queue depth of your I/O subsystem.
+
+For details on setting reader and writer thread counts, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings).
+
+You can also configure thread counts for the NonIO and AuxIO thread pools. The NonIO thread pool runs in-memory tasks, such as the durability timeout task. The AuxIO thread pool runs auxiliary I/O tasks, such as the access log task. Set the thread count for each between 1 and 64.
+
+Use `cbstats` command line tool with the `raw workload` option to view the thread status. See [cbstats](../../cli/cbstats-intro.md) for information.
+
+For information about using the REST API to manage thread counts, see [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+
+## [](#deletion)Deletion
+
+You can delete items either explicitly or by setting a time to live (TTL) value. When the TTL expires, Couchbase Server deletes the item.
+
+After deletion, Couchbase Server keeps a tombstone as a record (see the next section for more information).
+
+You can set an item’s TTL directly on the item or at the bucket level. For more information, see [Expiration](../data/expiration.md).
+
+## [](#tombstones)Tombstones
+
+A tombstone records an item removed from the database. Couchbase Server uses tombstones to maintain consistency between nodes and clusters. It creates tombstones when you:
+
+* Delete an individual document. Couchbase Server creates a tombstone that contains the document’s key and metadata.
+* Drop a collection. Couchbase Server creates a tombstone that includes the collection ID, scope ID, and a manifest ID that records the drop event.  
+When you drop a collection, Couchbase Server deletes all documents in it. It does not maintain tombstones for those deleted documents. Couchbase Server also deletes any document tombstones that were in the collection before you dropped it. After you drop a collection, only the collection tombstone remains. Couchbase Server replicates the collection tombstone as a single message (ordered with respect to mutations in the vBucket) to replicas and other DCP clients. This message notifies recipients that you dropped the collection. Each recipient is then responsible for purging anything it still contains from the dropped collection.
+
+The Metadata Purge Interval setting controls how often Couchbase Server purges tombstones of both kinds. When Couchbase Server purges a tombstone, it removes it completely. The Metadata Purge Interval runs as part of auto-compaction. See [Append-Only Writes and Auto-Compaction](#append-only-writes-and-auto-compaction) for more information.
+
+For more information, see [Post-Expiration Purging](../data/expiration.md#post-expiration-purging) in [Expiration](../data/expiration.md).
+
+## [](#disk-paths)Disk Paths
+
+When you initialize a node, you choose where Couchbase Server stores data for most services. You can specify the location where Couchbase Server stores data on a node for the following services:
+
+* Data Service
+* Index Service
+* Analytics Service
+* Eventing Service
+
+In addition, you can use local paths for backup repositories. See [Repositories](../services-and-indexes/services/backup-service.md#repositories) for more information.
+
+Couchbase Server has a default storage location for logs that’s platform-specific. For example, on Linux, the default location is `/opt/couchbase/var/lib/couchbase/logs`.
+
+For information about setting data paths, see [Initialize a Node](../../manage/manage-nodes/initialize-node.md).
+
+### [](#filesystem-free-space-and-usage-limits)Filesystem Free Space and Usage Limits
+
+Running out of disk space on any filesystem can cause errors. In particular, running out of disk space on the filesystem containing the Data Service storage path can make recovery difficult. Recovery problems could lead to data loss.
+
+By default, Couchbase Server alerts you if the filesystem containing the data service’s storage path becomes 75% full. It begin alerting you when disk containing this path reaches within 10% of the threshold set by the `maxDataDiskUsedPerc` setting, which defaults to 85%.
+
+See [Alerts](../../manage/manage-settings/configure-alerts.md) for more information about alerts. You can change how full the disk becomes before triggering this alert by changing the [maxDataDiskUsedPerc](../../rest-api/rest-cluster-email-notifications.md#maxdatadiskusedperc) alert limit.
+
+You can also have the Data Service stop writing to its storage path when it reaches a percentage of disk usage. The default (and recommended) limit is 85% full which means the Data Service stops writing data if the filesystem is 85% or more full. Enabling this limit helps avoid potential issues with recovery.
+
+When you set a data disk usage limit, Couchbase Server starts alerting you when the filesystem fills to within 10% of the threshold you set. For example, if you set the limit of 80%, Couchbase Server alerts you when the filesystem reaches 70% full. This threshold overrides the `maxDataDiskUsedPerc` alert limit.
+
+When the filesystem reaches the disk use limit, the Data Service stops writing to the Data Service storage path. Any attempts to write to the Data Service storage path results in an `EBucketDiskSpace` error. To re-enable writes, reduce the disk use on the filesystem to be less than the limit you set.
+
+To learn how to set the disk usage limit using the Couchbase Server Web Console, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings). To set the limits using the REST API, see [Set Data Disk Use Limits](../../rest-api/disk-usage-limits.md).
+
+|  | This limit applies only to the Data Service. If other service’s data paths share the same filesystem, they can continue to write to it even if the Data Service stops writing. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#append-only-writes-and-auto-compaction)Append-Only Writes and Auto-Compaction
+
+When mutating data, Couchbase Server only appends to data files, instead of rewriting them. This approach helps maintain file consistency and reduces the risk of file corruption. Every time you add, modify, or delete data, Couchbase Server creates a new entry at the end of the data files. As a result, files grow in size even when you delete data.
+
+To prevent data files from growing too large, Couchbase Server periodically compacts them. Compaction rewrites the file, applying additions, modifications, and deletions before saving a new version of the file. You can change the schedule Couchbase Server follows to compact data. See [Auto-Compaction](#manage:manage-settings/configure-compact-settings.asdoc) for more information. For information about configuring auto-compaction with the command line, see [setting-compaction](../../cli/cbcli/couchbase-cli-setting-compaction.md).
+
+You can also perform compaction manually on a specific bucket. For information about performing manual compaction with the command line, see [bucket-compact](../../cli/cbcli/couchbase-cli-bucket-compact.md).
+
+For all information about using the REST API for compaction, see the [Compaction API](#rest-api:compaction-rest-api.adoc).
+
+## [](#storage-settings-ejection-policy)Ejection Policy
+
+The ejection policy (also known as the eviction method) controls how Couchbase Server prevents data loss due to running out of memory to store data. It controls whether and how it ejects data from memory when the bucket’s memory quota is exhausted. The policies you can set depend on the type of the bucket. See [Ejection](memory.md#ejection) for more information.
+
+You set the policy when creating the bucket and can change it later using the REST API, command-line interface, or Couchbase Server Web Console. See [Create a Bucket](../../manage/manage-buckets/create-bucket.md) for more information.

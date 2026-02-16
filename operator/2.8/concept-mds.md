@@ -1,0 +1,38 @@
+[View original HTML](/operator/2.8/concept-mds.html)
+
+> Planning for and using multi-dimensional scaling for your cluster. 
+
+Couchbase uses [static configuration](concept-memory-allocation.md) to configure memory limits across the cluster. As such a basic cluster configuration may not be the most efficient use of resources. This may lead to excessive operating expenditure. Consider the following basic cluster topology:
+
+![mds homo](_images/mds-homo.png) 
+
+Figure 1\. Homogeneous cluster topology
+
+The data and index services are using all of their allotted memory. In order to continue operating, documents and indexes that cannot fit in memory will have to be served from disk. This leads to poor and unpredictable performance characteristics.
+
+In order to reduce memory pressure on the the data and index services we can horizontally scale the cluster to 6 nodes. This will reduce data and index memory usage to 50%, allowing full, in-memory performance, and also room for future expansion.
+
+The search and eventing service memory usages will reduce to 12%, and analytics to just 2%. This is a waste of memory, and this costs money to run. In order to make the best use of your resources you would have to continually tune memory allocations across the cluster to ensure high resource utilization and cost effectiveness.
+
+## [](#multi-dimensional-scaling)Multi-Dimensional Scaling
+
+These calculations are complex, so Couchbase server provides a simplified method of scaling efficiently. This is known as multi-dimensional scaling (MDS). Consider the following advanced cluster topology:
+
+![mds hetero](_images/mds-hetero.png) 
+
+Figure 2\. Heterogeneous cluster topology
+
+In this example we have noted that memory use of the data and index services tends to scale over time together. Likewise search and eventing, but to a lesser extent. Finally analytics scales at a much slower rate.
+
+MDS allows a service, or group of services to be horizontally scaled as needs dictate, without affecting the memory utilization of other services. If our data and index service memory utilization were to increase by four times, we’d again need to scale the cluster up to keep data in memory and high performance. To handle this now, we simply scale the MDS group of servers containing the data and index services. No other services are affected, their memory utilization remains constant.
+
+For further information see the [MDS configuration how-to](howto-mds.md).
+
+|  | Although the example depicts groups of services it is best to independently scale each on its own. By doing this there are now no assumptions that certain services will grow together. If our assumptions change in the future our cluster can be scaled with zero impact to any other service. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#running-different-services-on-different-hardware)Running Different Services on Different Hardware
+
+Using MDS also allows each class of server to have its own unique configuration. For example, if you wish to run data and index nodes where data is 50% in memory and 50% on disk you may want to use high performance NVMe storage. As this is expensive, your other services may want to use cheap, commodity storage. Server classes running the data and index services can set node selectors in their [couchbaseclusters.spec.servers.pod](resource/couchbasecluster.md#couchbaseclusters-spec-servers-pod) templates that select the high performance nodes, and use taints/tolerations to ensure other processes aren’t scheduled on to them.
+
+For further information see the [scheduling and isolation concepts](concept-scheduling.md) documentation.

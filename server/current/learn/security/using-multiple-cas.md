@@ -1,0 +1,71 @@
+[View original HTML](/server/current/learn/security/using-multiple-cas.html)
+
+> Couchbase Server supports use of multiple CA (or 'root') certificates, for a single cluster. 
+
+## [](#benefits)Benefits
+
+Prior to Couchbase Server Version 7.1, a Couchbase-Server cluster could maintain at most _one_ root certificate: all nodes and all clients were obliged to rely on this certificate’s authority. From version 7.1, Couchbase Server permits multiple root certificates to be maintained in a _trust store_ for the cluster. This allows an individual node either to use a CA that is also used by one or more other nodes; or to use a CA that is used by no other node. This may be used during CA certificate rotation: a new CA is uploaded, node certificates are changed one by one, and finally, the old CA is removed.
+
+Couchbase Server additionally uses its list of trusted certificates to verify:
+
+* Client certificates (when client certificate authentication is enabled: for information, see [Enable Client-Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md)).
+* The identities of cluster nodes (when node-to-node encryption is enabled: for information, see [Manage Node-to-Node Encryption](../../manage/manage-nodes/apply-node-to-node-encryption.md)).
+* The identities of nodes that join the cluster (when the server has been provisioned with certificates).
+* The identity of LDAP servers (when TLS has been turned on, in the LDAP settings: for information, see [LDAP Host Configuration](../../manage/manage-security/configure-ldap.md#ldap-host-configuration)).
+
+## [](#illustration)Illustration
+
+A cluster-configuration that uses multiple CAs is illustrated as follows:
+
+![clusterWithCerts](../_images/security/clusterWithCerts.png) 
+
+The diagram assumes that certificate-based client authentication has been activated.
+
+The annotations are as follows:
+
+1. A Couchbase-Server cluster is configured with four nodes, access to each of which is certificate-protected.
+2. The trust store for the cluster contains ten CAs, which are _CA a_ to _CA j_. Of these, three root CAs have been used in the signing of individual node-certificates: these are _CA a_, _CA e_, and _CA g_.
+3. The node-certificate for Node 1 is signed by an intermediate certificate, which has itself been signed by the root certificate _CA a_.
+4. The node-certificate for Node 2 is signed by an intermediate certificate, which, like the intermediate certificate used by Node 1, has itself been signed by the root certificate _CA a_.
+5. The node-certificate for Node 3 has been directly signed by the root certificate _CA e_.
+6. The node-certificate for Node 4 has been signed by a chain of two intermediate certificates, the highest in the chain having itself been signed by the root CA, _CA g_.
+7. The certificate for Client 1 has been signed by an intermediate certificate, which has been directly signed by the root certificate _CA a_: this is the CA providing authority to Node 1 and Node 2\. This allows mutual authentication to proceed between Node 1 and Client 1, since the certificate of each takes its authority from _CA a_. (Note that this is the only form of certificate-based authentication that was supported by Couchbase Server, prior to version 7.1.)
+8. The certificate for Client 2 has been directly signed by the root certificate _CA h_. Client 2 also maintains the root certificate _CA a_ in its trust store. This allows mutual authentication to proceed between Node 2 and Client 2; since Client 2 recognizes the authority of _CA a_, and Node 1 recognizes the authority of _CA h_. In each case, the recognized root CA exists in the entity’s trust store, but has not played a role in the signing of the entity’s own certificate.
+9. The certificate for Client 3 has been signed by an intermediate certificate, which has itself been signed by the root certificate _CA k_. Client 3 also maintains _CA e_ in its trust store. This prevents mutual authentication from occurring between Client 3 and Node 3: although the certificate for Node 3 acquires its authority from _CA e_, which is in the client’s trust store, and is thus recognized by the client; the client’s certificate is signed by _CA k_, which is not in the cluster’s trust store, and is therefore not recognized by the cluster.
+10. The certificate for Client 4 is directly signed by _CA c_. The client’s trust store also contains _CA e_ and _CA g_. This allows mutual authentication to succeed between Client 4 and Node 3, since the authority of each is derived from a root certificate in its opposite’s trust store. This also allows mutual authentication to succeed between Client 4 and Node 4, for the same reason.
+
+## [](#clusters-running-multiple-couchbase-server-versions)Clusters Running Multiple Couchbase-Server Versions
+
+Multiple CAs are supported by Couchbase Server Version 7.1 and later. Typically, when a cluster is upgraded, it temporarily includes nodes of two versions; one being the version _to_ which the cluster is being upgraded, the other the version _from_ which it is being upgraded.
+
+Once the cluster’s nodes are all upgraded to version 7.1 or later, multiple CAs are fully supported. During the upgrade period, only _some_ of the supportive APIs can be used: for information, see [Certificate Management API](../../rest-api/rest-certificate-management.md).
+
+## [](#adding-nodes)Adding Nodes
+
+When a new node is added to a Couchbase-Server cluster that is version 7.1 or later, the new node may be added with its existing root certificate and corresponding certificate chain, provided that the root certificate is already included in the cluster’s trust store: if the node’s certificate has not been added to the trust store, an error is flagged.
+
+The trust store of a new node is used when initial connection is being established with the cluster that is being joined: then, during the process whereby the new node is added to the cluster, the trust store of the new node is overwritten with the cluster’s trust store.
+
+For example, assume the existence of the following:
+
+* A cluster whose trust store contains _CA 1_, _CA 2_, and _CA 3_; and whose _node 1_ authenticates with _Cert 1_, which is signed by _CA 1_.
+* A separate, individual node, _node x_, whose trust store contains _CA 1_, _CA 2_, and _CA 4_; and which authenticates with _Cert 2_, which is signed by _CA 2_.
+
+After _node x_ has been added to the cluster, the trust store of _node x_ contains only the root certificates for the cluster (which are indeed _CA 1_, _CA 2_, and _CA 3_): it _no longer_ contains _CA 4_.
+
+Note also that if the node certificate for _node x_, _Cert 2_, had been signed by _CA 4_ (instead of _CA 2_), the addition of _node x_ would fail; because the cluster does not trust _CA 4_.
+
+## [](#adding-intermediate-certificates-to-the-trust-store)Adding Intermediate Certificates to the Trust Store
+
+[Intermediate Certificates](certificates.md#intermediate-certificates) can also be uploaded to the cluster’s trust store.
+
+In versions of Couchbase Server prior to 7.1, as described in [Intermediate Certificates](certificates.md#intermediate-certificates) and [Node Certificates](certificates.md#node-certificate) (and as exemplified in [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md)), a node certificate references its CA by presenting, to the client, as the file _chain.pem_, all certificates whose signature-chain leads to that CA. Likewise, a client references its own CA by presenting, to the server, all certificates whose signature-chain leads to its own CA.
+
+This way of mutually referencing CAs continues to be supported in 7.1 and later versions. Alternatively, however, the _intermediate_ certificates in the chain need _not_ be presented — their existing presence in the recipient’s _trust store_ being assumed instead. For example:
+
+* When the node’s chain contains one or more intermediate certificates, and the node presents only its node certificate (as the file _chain.pem_) to the client; if the client can locate those intermediate certificates and their corresponding CA in the client’s trust store, authentication of the node can proceed.
+* When the client’s chain contains one or more intermediate certificates, and the client presents only its client certificate to the node; if Couchbase Server can locate those intermediate certificates and their corresponding CA in the Couchbase-Server trust store, authentication of the client can proceed.
+
+Also supported are cases where _some_ but not _all_ of a chain’s intermediates are directly presented, and the rest are available in the trust store of the recipient.
+
+For an example, see [Deploying an Intermediate Certificate via Trust Store](../../manage/manage-security/configure-server-certificates.md#intermediate-upload).

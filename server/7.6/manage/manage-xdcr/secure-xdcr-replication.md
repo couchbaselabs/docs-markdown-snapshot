@@ -1,0 +1,41 @@
+[View original HTML](/server/7.6/manage/manage-xdcr/secure-xdcr-replication.html)
+
+> Securing a replication means that either the administrator password that is sent to the remote cluster, or both the password and the data itself, is transmitted securely. 
+
+## [](#xcdr%5Fsecurity%5Foverview)Overview
+
+By default, for inter-cluster communications, XDCR transmits both password and data in non-secure form. Optionally, a secure connection can be enabled between clusters, in order to secure either password alone, or both password and data.
+
+Note that if the password received by the destination cluster requires authentication by an LDAP server, the destination cluster communicates with the LDAP server according to the destination cluster’s prior configuration. For details on configuration options, see [Configure LDAP](../manage-security/configure-ldap.md).
+
+XDCR security is enabled either by SCRAM-SHA or by TLS — depending on the administrator-specified connection-type, and the server-version of the destination cluster. Use of TLS involves certificate management: for an overview of certificates, see [Certificates](../../learn/security/certificates.md). For specific details on how to prepare and handle certificates for servers and clients, see [Manage Certificates](../manage-security/manage-certificates.md).
+
+The following security-levels are supported:
+
+* _Half-secure_: Secures the specified password only: it does not secure data. The password is secured:
+
+  * By hashing with SCRAM-SHA, when the destination cluster is running Couchbase Enterprise Server 5.5 or later.
+  * By TLS encryption, when the destination cluster is running a pre-5.5 Couchbase Enterprise Server.  
+  The root certificate of the destination cluster must be provided, for a successful TLS connection to be achieved. If this certificate is provided and a SCRAM-SHA connection is achieved, the certificate is ignored. The root certificate can be obtained by accessing the **Root Certificate** tab, on the **Security** screen for the remote cluster: copy the certificate from the interactive panel in which it appears.  
+  Before using half-secure replication, see the important information provided in [SCRAM SHA and XDCR](#scram-sha-and-xdcr), below.  
+  For step-by-step instructions, see [Enable Half-Secure Replications](enable-half-secure-replication.md).
+* _Fully_ secure: Handles both authentication and data-transfer via TLS. For step-by-step instructions, see [Enable Fully Secure Replications](enable-full-secure-replication.md).
+
+### [](#scram-sha-and-xdcr)SCRAM SHA and XDCR
+
+SCRAM-SHA is a multi-request protocol. The first request from the client (XDCR source to XDCR target) is responded to with a 401; the subsequent request completes the protocol. Therefore, when using half-secure replication, external monitoring or firewall software should allow (which is to say, ignore) these 401 responses; since they are part of the normal SCRAM-SHA protocol.
+
+If the monitoring or firewall software acts on these 401 responses by resetting or killing connections, SCRAM-SHA errors are displayed on the XDCR source cluster: if this occurs, check with your network monitoring or firewall administrators.
+
+If the monitoring or firewall software interferes with the XDCR connections, even though the XDCR replication will attempt to reconnect and continue to work through the connection interruptions, various issues may arise due to the continued interruptions — including XDCR having to restart replications from sequence 0.
+
+Please note that because various XDCR processes make frequent calls to the target, in order to monitor for changes in topology and collection manifest, 401 responses associated with the SCRAM-SHA multi-request protocol will be seen by the external monitoring or firewall software continuously, while the replication is in progress.
+
+## [](#capella-trusted-cas)Capella Trusted CAs
+
+CAs used by the Couchbase cloud data-platform, _Capella_, are automatically trusted, when _fully secure_ XDCR connections are made to Capella databases from Couchbase Enterprise Server 7.2+, using Couchbase Web Console or the REST API. This means that when a reference is configured by means of:
+
+* Couchbase Web Console, the interactive pane, provided for specifying the CA, can be left blank. The **Enable Secure Connection** checkbox and the option for **Full (TLS encrypt password and data)** must still be selected.
+* The REST API `POST /pools/default/remoteClusters`, the option `--data-urlencode "certificate=$(cat <local-pathname-to-target-root-certificate>)"`, provided for specifying the CA, does not need to be used. The option `--xdcr-secure-connection full` must still be used.
+
+Note that when the reference is configured by means of the CLI, the `--xdcr-certificate` flag, provided for specifying the CA, _does_ still need to be used to specify the Capella CA.

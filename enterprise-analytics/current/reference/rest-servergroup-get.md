@@ -1,0 +1,235 @@
+[View original HTML](/enterprise-analytics/current/reference/rest-servergroup-get.html)
+
+> Group information can be retrieved with the `GET /pools/default/serverGroups` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+GET /pools/default/serverGroups
+
+## [](#description)Description
+
+This retrieves information about groups. The information includes statistics, for each node, on memory allocation, memory consumption, and cpu utilization. It also includes URIs and UUIDs whereby groups can be accessed and managed, and the overall configuration changed.
+
+See [Server Group Awareness](../../../server/current/learn/clusters-and-availability/groups.md), for a conceptual overview of groups.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET -u <administrator>:<password>
+   http://<host>:<port>/pools/default/serverGroups
+
+## [](#responses)Responses
+
+If successful, `200 OK` is given, and an object containing group-related information is returned.
+
+A malformed URI gives `400 Object Not Found`. Failure to authenticate gives `401 Unauthorized`.
+
+### [](#returned-object-contents)Returned-Object Contents
+
+The returned object contains a nested object for each group. Each group-object contains a nested object for each node. Each node-object includes the following:
+
+* `systemStats`. information about cpu-utilization, swap space, and total memory.
+* `interestingStats`. Data and disk sizes, and numbers of items in active and replica vBuckets.
+* `uptime`. The number of seconds elapsed since the server started.
+* `cpuCount`The number of cpu’s supporting the server.
+
+URIs and UUIDs are also provided, allowing the groups to be accessed and managed, and the overall configuration changed. See the example immediately below, for the complete output; and for additional information about URIs and UUIDs.
+
+## [](#example)Example
+
+In the following example, the command-line output is piped to `jq`, for formatting.
+
+curl -u Administrator:password -v -X GET \
+http://10.143.190.101:8091/pools/default/serverGroups | jq
+
+The output is as follows:
+
+{
+  "groups": [
+    {
+      "name": "Group 1",
+      "uri": "/pools/default/serverGroups/0",
+      "addNodeURI": "/pools/default/serverGroups/0/addNode",
+      "nodes": [
+        {
+          "systemStats": {
+            "cpu_utilization_rate": 23.71134020618557,
+            "swap_total": 536866816,
+            "swap_used": 165117952,
+            "mem_total": 1040723968,
+            "mem_free": 166445056
+          },
+          "interestingStats": {
+            "cmd_get": 0,
+            "couch_docs_actual_disk_size": 141769446,
+            "couch_docs_data_size": 130150089,
+            "couch_spatial_data_size": 0,
+            "couch_spatial_disk_size": 0,
+            "couch_views_actual_disk_size": 267024,
+            "couch_views_data_size": 267024,
+            "curr_items": 12948,
+            "curr_items_tot": 36389,
+            "ep_bg_fetched": 0,
+            "get_hits": 0,
+            "mem_used": 50137576,
+            "ops": 0,
+            "vb_active_num_non_resident": 0,
+            "vb_replica_curr_items": 23441
+          },
+          "uptime": "18261",
+          "memoryTotal": 1040723968,
+          "memoryFree": 166445056,
+          "mcdMemoryReserved": 794,
+          "mcdMemoryAllocated": 794,
+          "couchApiBase": "http://10.143.190.101:8092/",
+          "couchApiBaseHTTPS": "https://10.143.190.101:18092/",
+          "otpCookie": "27261cc14700dc3015c131a3eced0afbb0eac96e808541fd3375c777a959220a",
+          "clusterMembership": "active",
+          "recoveryType": "none",
+          "status": "healthy",
+          "otpNode": "ns_1@10.143.190.101",
+          "thisNode": true,
+          "hostname": "10.143.190.101:8091",
+          "clusterCompatibility": 393216,
+          "version": "6.0.0-1693-enterprise",
+          "os": "x86_64-unknown-linux-gnu",
+          "cpuCount": 1,
+          "ports": {
+            "httpsMgmt": 18091,
+            "httpsCAPI": 18092,
+            "proxy": 11211,
+            "direct": 11210
+          },
+          "services": [
+            "kv",
+            "n1ql"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Group 2",
+      "uri": "/pools/default/serverGroups/3b66b3c3177f44a3ffa6771ffeb31f36",
+      "addNodeURI": "/pools/default/serverGroups/3b66b3c3177f44a3ffa6771ffeb31f36/addNode",
+      "nodes": [
+        {
+          "systemStats": {
+            "cpu_utilization_rate": 6.185567010309279,
+            "swap_total": 536866816,
+            "swap_used": 29704192,
+            "mem_total": 1040723968,
+            "mem_free": 138309632
+          },
+          "interestingStats": {
+            "cmd_get": 0,
+            "couch_docs_actual_disk_size": 108280244,
+            "couch_docs_data_size": 95735497,
+            "couch_spatial_data_size": 0,
+            "couch_spatial_disk_size": 0,
+            "couch_views_actual_disk_size": 266812,
+            "couch_views_data_size": 266812,
+            "curr_items": 12948,
+            "curr_items_tot": 36485,
+            "ep_bg_fetched": 0,
+            "get_hits": 0,
+            "mem_used": 50453112,
+            "ops": 0,
+            "vb_active_num_non_resident": 0,
+            "vb_replica_curr_items": 23537
+          },
+          "uptime": "18219",
+          "memoryTotal": 1040723968,
+          "memoryFree": 138309632,
+          "mcdMemoryReserved": 794,
+          "mcdMemoryAllocated": 794,
+          "couchApiBase": "http://10.143.190.102:8092/",
+          "couchApiBaseHTTPS": "https://10.143.190.102:18092/",
+          "otpCookie": "27261cc14700dc3015c131a3eced0afbb0eac96e808541fd3375c777a959220a",
+          "clusterMembership": "active",
+          "recoveryType": "none",
+          "status": "healthy",
+          "otpNode": "ns_1@10.143.190.102",
+          "hostname": "10.143.190.102:8091",
+          "clusterCompatibility": 393216,
+          "version": "6.0.0-1693-enterprise",
+          "os": "x86_64-unknown-linux-gnu",
+          "cpuCount": 1,
+          "ports": {
+            "httpsMgmt": 18091,
+            "httpsCAPI": 18092,
+            "proxy": 11211,
+            "direct": 11210
+          },
+          "services": [
+            "kv"
+          ]
+        },
+        {
+          "systemStats": {
+            "cpu_utilization_rate": 7.142857142857143,
+            "swap_total": 536866816,
+            "swap_used": 158781440,
+            "mem_total": 1040723968,
+            "mem_free": 177274880
+          },
+          "interestingStats": {
+            "cmd_get": 0,
+            "couch_docs_actual_disk_size": 65310435,
+            "couch_docs_data_size": 53415534,
+            "couch_spatial_data_size": 0,
+            "couch_spatial_disk_size": 0,
+            "couch_views_actual_disk_size": 281091,
+            "couch_views_data_size": 281091,
+            "curr_items": 12998,
+            "curr_items_tot": 36505,
+            "ep_bg_fetched": 0,
+            "get_hits": 0,
+            "mem_used": 68983568,
+            "ops": 0,
+            "vb_active_num_non_resident": 0,
+            "vb_replica_curr_items": 23507
+          },
+          "uptime": "18102",
+          "memoryTotal": 1040723968,
+          "memoryFree": 177274880,
+          "mcdMemoryReserved": 794,
+          "mcdMemoryAllocated": 794,
+          "couchApiBase": "http://10.143.190.103:8092/",
+          "couchApiBaseHTTPS": "https://10.143.190.103:18092/",
+          "otpCookie": "27261cc14700dc3015c131a3eced0afbb0eac96e808541fd3375c777a959220a",
+          "clusterMembership": "active",
+          "recoveryType": "none",
+          "status": "healthy",
+          "otpNode": "ns_1@10.143.190.103",
+          "hostname": "10.143.190.103:8091",
+          "clusterCompatibility": 393216,
+          "version": "6.0.0-1693-enterprise",
+          "os": "x86_64-unknown-linux-gnu",
+          "cpuCount": 1,
+          "ports": {
+            "httpsMgmt": 18091,
+            "httpsCAPI": 18092,
+            "proxy": 11211,
+            "direct": 11210
+          },
+          "services": [
+            "kv",
+            "n1ql"
+          ]
+        }
+      ]
+    }
+  ],
+  "uri": "/pools/default/serverGroups?rev=93706877"
+}
+
+The output shows that two groups are defined: `Group 1` and `Group 2`. It also shows that `Group 1` contains a single node, which is `10.143.190.101`, while `Group 2` contains two nodes, which are `10.143.190.102` and `10.143.190.103`.
+
+The following, specific values within the returned object provide URIs and UUIDs for management purposes, and should be duly noted:
+
+* `"uri": "/pools/default/serverGroups?rev=93706877"`. Specifies the URI path and revision integer for the overall group-configuration. This integer changes whenever the group-configuration is changed. See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the configuration. Note that the configuration-change itself requires that this URI path and revision integer be specified, to identify the current group-configuration.
+* `"uri":"/pools/default/serverGroups/<:uuid>"`. Provided for each group, to specify the group’s URI path and UUID string. See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the configuration by means of a JSON document that identifies each group by this means.
+* `"addNodeURI":"/pools/default/serverGroups/<:uuid>/addNode"`. Provided for each group, to specify the URI path and UUID string for adding servers to the group. See [Adding Nodes to Groups](rest-servergroup-post-add.md) for an example of adding a node by this means.
+
+## [](#see-also)See Also
+
+See [Updating Server Group Memberships](rest-servergroup-put-membership.md) for an example of changing the node-to-group configuration.

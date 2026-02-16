@@ -1,0 +1,39 @@
+[View original HTML](/spark-connector/3.3/cloud.html)
+
+> Connecting to Couchbase Cloud is very similar to connecting to any Couchbase cluster over an encrypted connection. This section explains how. 
+
+|  | Since connector version 3.2.1, downloading the certificate is no longer needed since it comes bundled with the underlying SDK. As a result, the "Certificate Download" step can be skipped and only TLS needs to be enabled in the Spark configuration (no trustCertificate needs to be provided). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#certificate-download)Certificate Download
+
+Once you have created a Cluster in Couchbase Cloud, navigate to the `Connect` tab and download the security certificate.
+
+![Cloud UI](_images/cloud-ui.png) 
+
+## [](#spark-configuration)Spark Configuration
+
+Now that you downloaded the certificate to a file, through the Spark configuration properties we can instruct the SDK to enable the encrypted connection and point it to the correct file:
+
+```scala
+val spark = SparkSession
+  .builder()
+  .appName("CouchbaseCloudSample") // your app name
+  .master("local[*]") // your local or remote master node
+  .config("spark.couchbase.connectionString", "your-endpoint.cloud.couchbase.com")
+  .config("spark.couchbase.username", "Administrator")
+  .config("spark.couchbase.password", "password")
+  .config("spark.couchbase.implicitBucket", "yourbucketname")
+
+  // Security config goes down here
+  .config("spark.couchbase.security.enableTls", "true")
+  .config("spark.couchbase.security.trustCertificate", "/path/to/cert.pem")
+
+  .getOrCreate()
+```
+
+In a clustered spark environment, it is vital that the certificate is present on all of the spark worker nodes.
+
+See the configuration page on how to use the `spark.ssl` keystore instead of a certificate path.
+
+After everything is configured, you can use all the APIs like you would against a regular Couchbase Server installation.

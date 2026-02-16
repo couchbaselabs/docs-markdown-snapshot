@@ -1,0 +1,155 @@
+[View original HTML](/server/current/manage/manage-xdcr/create-xdcr-reference.html)
+
+> To perform Cross Datacenter Replication (XDCR), you start by creating a _reference_ to the target cluster and bucket that will receive the replicated data. 
+
+## [](#understanding-references)Understanding References
+
+A _reference_ is the registration, on the local cluster, of details that identify a target cluster for XDCR replication. The reference must contain the following details:
+
+* The name of the target cluster.
+* The IP address or hostname of a node within the target cluster. IPv4 and IPv6 both can be used: however, a valid IPv6 address must be enclosed within brackets (`[` and `]`). Note that if the target cluster has an _alternate address_, this address can be used to identify the target cluster. See [Alternate Addresses](../../learn/clusters-and-availability/connectivity.md#alternate-addresses).
+* A username and password, associated on the target cluster with a role that allows one or more buckets to receive documents from an XDCR replication. The possible roles are _Full_, and _XDCR Inbound_ (either for the individual bucket that will later be specified as the target bucket for the replication, or for all buckets on the target cluster).  
+Note that the administrator setting up XDCR must have the _Full Admin_, _Cluster Admin_ or _XDCR Admin_ role, on the source cluster.
+* Whether the the connection between source and target clusters will be managed securely, and if so, by what secure methodology. Corresponding TLS certificates may need to be provided. Securing a connection is described in detail in [Secure a Replication](secure-xdcr-replication.md).
+
+Once the reference has been saved, it can be used to specify a target cluster, when an XDCR replication is created.
+
+## [](#examples-on-this-page-create-reference)Examples on This Page
+
+The examples in the subsections below show how to create the same reference; using the [UI](#create-an-xdcr-reference-with-the-ui), the [CLI](#create-an-xdcr-reference-with-the-cli), and the [REST API](#create-an-xdcr-reference-with-the-rest-api) respectively. The examples assume:
+
+* Two clusters already exist; each containing a single node. These are named after their IP addresses: `10.144.210.101` and `10.144.210.102`.
+* Each cluster contains a single bucket, which is the `travel-sample` bucket. To access and install this, see [Sample Buckets](../manage-settings/install-sample-buckets.md).
+* Each cluster has the Full Administrator username of `Administrator`, and password of `password`.
+
+### [](#choosing-a-target-bucket)Choosing a Target Bucket
+
+Since XDCR requires specification of a bucket on the target cluster, to which data is to be replicated, prior to creating a reference to a target cluster, you must know either:
+
+* The name of the existing target bucket to which data will be replicated
+* That you have the ability to create a target bucket to which data will be replicated.
+
+The examples on this page use the `travel-sample` bucket, whose installation is described in [Sample Buckets](../manage-settings/install-sample-buckets.md). For information on listing and creating additional buckets, see [Manage Buckets](../manage-buckets/bucket-management-overview.md). For information on replicating between the _scopes_ and _collections_ within specified buckets, see [Replicate Using Scopes and Collections](replicate-using-scopes-and-collections.md).
+
+## [](#create-an-xdcr-reference-with-the-ui)Create an XDCR Reference with the UI
+
+Proceed as follows:
+
+1. Access Couchbase Web Console. Left-click on the **XDCR** tab, in the left-hand navigation menu.  
+![left click on xdcr tab](../_images/manage-xdcr/left-click-on-xdcr-tab.png)  
+This displays the **XDCR Replications** screen:  
+![xdcr replications screen initial](../_images/manage-xdcr/xdcr-replications-screen-initial.png)  
+The upper part of the main panel is entitled **Remote Clusters**. The list, which is designed to show the name and IP address or hostname of each registered remote cluster, is currently empty, and so bears the notification `No cluster references defined. Use ADD REMOTE to set one up.`
+2. Define a reference, by left-clicking on the **ADD REMOTE** button, at the upper right.  
+![xdcr add remote cluster button](../_images/manage-xdcr/xdcr-add-remote-cluster-button.png)  
+The **Add Remote Cluster** dialog is now displayed:  
+![xdcr add remote cluster dialog](../_images/manage-xdcr/xdcr-add-remote-cluster-dialog.png)  
+With the exception of **Check Connection**, the fields in this dialog are explained above, in [Understanding References](#understanding-references). **Check Connection** is described below.
+3. For **Cluster Name**, provide a name for the target cluster: this name is for use on the _source_ cluster only, and so need not be identical to any name defined on the _target_ cluster. For **IP/Hostname**, specify the IP address (if appropriate, the _alternate address_), the hostname, or the _fully qualified domain-name_ of the target cluster: in this case, the IP address `10.144.210.102` is to be used. (Note that if the IPv6 address family were being used, the IP address would need to be enclosed in square brackets.) For **Username** and **Password**, specify those stated above. Do not, for the current example, check the `Enable Secure Connection` checkbox. The complete dialog appears as follows:  
+![xdcr add remote cluster dialog complete](../_images/manage-xdcr/xdcr-add-remote-cluster-dialog-complete.png)
+4. Choose the **Network Type** for connecting to the target cluster.  
+You can use either an alternate or internal network address of the target cluster for data replication; or let XDCR decide based on the provided IP or hostname:
+
+  * **Auto**: Automatically selects the network address to use based on the specified hostname.
+  * **Force using alternate address**: Enforces the use of an alternate address, the external network address, of the target cluster.
+  * **Force using internal address**: Enforces the use of the default address, the internal network address, of the target cluster.  
+  For information about specifying internal and alternate addresses, see [Using Alternate Addresses](../../xdcr-reference/xdcr-security-and-networking.md#using-alternate-addresses) and [Specifying Addresses](../../xdcr-reference/xdcr-security-and-networking.md#specifying-addresses).  
+  ![network type add remote](../_images/manage-xdcr/network-type-add-remote.png)
+5. Optionally, to check the connection between the source and target clusters, click on the **Check Connection** button. The results of the check will appear (after an interval of up to a minute) in the adjacent read-only text field. For example, the output shown below indicates that the check has been successful:  
+If the check is not successful, the network-accessibility of the target cluster must be ensured, before continuing. For a list of possible status messages, see the [Responses](../../rest-api/rest-xdcr-connection-precheck.md#responses) section of the [Checking Connections](../../rest-api/rest-xdcr-connection-precheck.md) page, provided for the REST API.
+6. When you have entered the data, and optionally have made a successful connection-check, left-click on the **Save** button.  
+The **XDCR Replications** screen is again displayed:  
+![xdcr replications screen with reference](../_images/manage-xdcr/xdcr-replications-screen-with-reference.png)  
+The **Remote Clusters** panel now contains the reference you have defined. A new panel, entitled **Outgoing Replications**, appears immediately below the **Remote Clusters** panel. It is currently empty, except for a notification explaining that no replications are yet defined. Note that at the upper right of the **XDCR Replications** screen, a new tab has appeared, which is **ADD REPLICATION**.
+
+This concludes reference-definition.
+
+## [](#editing-and-deleting-references-with-the-ui)Editing and Deleting References with the UI
+
+By left-clicking on the row for a particular, defined reference, buttons for editing and deleting the reference are displayed:
+
+![deleteAndEditReferenceButtons](../_images/manage-xdcr/deleteAndEditReferenceButtons.png) 
+
+Now, by left-clicking on the **Edit** and **Delete** buttons themselves, you can respectively edit (by means of the **Edit Remote Cluster** dialog, which is identical to the **Add Remote Cluster** dialog) and delete defined references. Note that if a reference is already associated with a replication, you cannot delete the reference; nor can you modify its target IP address. However, you _can_ change the registered name of the target cluster, and you can change the security settings for the replication.
+
+## [](#create-an-xdcr-reference-with-the-cli)Create an XDCR Reference with the CLI
+
+Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-reference), use the CLI `xdcr-setup` command to create an XDCR reference, as follows:
+
+couchbase-cli xdcr-setup -c 10.144.210.101 -u Administrator \
+ -p password \
+--create \
+--xdcr-cluster-name 10.144.210.102 \
+--xdcr-hostname 10.144.210.102 \
+--xdcr-username Administrator \
+--xdcr-password password
+
+If successful, this provides the following response:
+
+SUCCESS: Cluster reference created
+
+Note that a complete list of references established for a cluster can be retrieved with the `xdcr-setup` command, used with the `list` option:
+
+couchbase-cli xdcr-setup -c 10.144.210.101 \
+-u Administrator -p password --list
+
+The following is returned. Note the `uuid` associated with the reference, which will be used later in the current section.
+
+cluster name: 10.144.210.102
+        uuid: 82026f90f5f573b5e50ec8b7a7012ab1
+   host name: 10.144.210.102:8091
+   user name: Administrator
+         uri: /pools/default/remoteClusters/10.144.210.102
+
+For more information, see the complete reference for the [xdcr-setup](../../cli/cbcli/couchbase-cli-xdcr-setup.md) command, which includes details on how to edit an existing reference.
+
+## [](#create-an-xdcr-reference-with-the-rest-api)Create an XDCR Reference with the REST API
+
+Starting from the scenario defined above, in [Examples on This Page](#examples-on-this-page-create-reference), the REST API’s `POST /pools/default/remoteClusters` HTTP method and URI can be used to create an XDCR reference. (Note that optionally, prior to creating the reference, connectivity between source and target clusters can be checked, by means of the methods and URI described in [Checking Connections](../../rest-api/rest-xdcr-connection-precheck.md).)
+
+The reference is created as follows:
+
+curl -X  POST -u Administrator:password \
+http://10.144.210.101:8091/pools/default/remoteClusters \
+-d username=Administrator \
+-d password=password \
+-d hostname=10.144.210.102 \
+-d name=10.144.210.102 \
+-d demandEncryption=0
+
+The output, if formatted, is as follows;
+
+{
+  "deleted": false,
+  "hostname": "10.144.210.102:8091",
+  "name": "10.144.210.102",
+  "secureType": "none",
+  "uri": "/pools/default/remoteClusters/10.144.210.102",
+  "username": "Administrator",
+  "uuid": "82026f90f5f573b5e50ec8b7a7012ab1",
+  "validateURI": "/pools/default/remoteClusters/10.144.210.102?just_validate=1"
+}
+
+To return a list of the cluster’s current references, use the method as follows:
+
+curl -i -X GET -u Administrator:password \
+http://10.144.210.101:8091/pools/default/remoteClusters
+
+Formatted, the output is as follows:
+
+{
+  "deleted": false,
+  "hostname": "10.144.210.102:8091",
+  "name": "10.144.210.102",
+  "secureType": "none",
+  "uri": "/pools/default/remoteClusters/10.144.210.102",
+  "username": "Administrator",
+  "uuid": "82026f90f5f573b5e50ec8b7a7012ab1",
+  "validateURI": "/pools/default/remoteClusters/10.144.210.102?just_validate=1"
+}
+
+For more information on the REST APIs `remoteClusters` method, see the detailed reference pages on [creating](../../rest-api/rest-xdcr-create-ref.md) and [getting](../../rest-api/rest-xdcr-get-ref.md) references.
+
+## [](#next-xdcr-steps-after-create-reference)Next Steps
+
+Once a reference to a target cluster has been defined, you can [Create a Replication](create-xdcr-replication.md).

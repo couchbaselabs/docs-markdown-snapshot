@@ -1,0 +1,520 @@
+[View original HTML](/server/current/cli/mctimings.html)
+
+> The `mctimings` tool displays timing information for Data Service operations. 
+
+## [](#syntax)Syntax
+
+The basic syntax is:
+
+mctimings [options] [operation-name]*
+
+## [](#description)Description
+
+The `mctimings` tool displays timing information for Data-Service operations. The sampling period, during which timings are taken, starts at whichever of the following points in time is the more recent:
+
+* The last reset of Data-Service statistics by means of [cbstats-reset](#cli/cbstats/cbstats-reset.adoc).
+* The last restart of the Data Service (which action itself resets Data-Service statistics).
+
+The sampling period ends when the Data Service receives the `mctimings` request.
+
+Note that timings taken by `mctimings` are more comprehensive than those taken by [cbstats timings](cbstats/cbstats-timing.md); which, unlike `mctimings`, only measures the time spent on a request by a front-end worker thread; and does not include time spent fetching items from disk.
+
+The `mctimings` tool resides in the following locations:
+
+| Platform | Location                                                                             |
+| -------- | ------------------------------------------------------------------------------------ |
+| Linux    | _/opt/couchbase/bin/mctimings_                                                       |
+| Windows  | _C:\\Program Files\\Couchbase\\Server\\bin\\mctimings.exe_                           |
+| Mac OS X | _/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/mctimings_ |
+
+## [](#options)Options
+
+The `mctimings` tool provides `-v` and `-j` options, which respectively print output in histogram and in JSON format. If run without either of these options, `mctimings` returns timing information for all operations performed during the sampling period in the form of a total figure for each operation.
+
+If both the `-v` and the `-j` options are specified, the `-j` option returns JSON output, and the `-v` option formats that output for readability.
+
+If run with the `-v` option (without the `-j` option), and with no operations explicitly specified, `mctimings` returns a timing-histogram for all operations performed during the sampling period. If run with the `-v` option (without the `-j` option), and with one or more operations explicitly specified, `mctimings` returns a timing-histogram for each of the explicitly specified operations, as performed during the sampling period.
+
+If run with the `-j` option (without the `-v` option), and with no operations explicitly specified, `mctimings` returns JSON output for all operations performed during the sampling period. If run with the `-j` option (without the `-v` option), and with one or more operations explicitly specified, `mctimings` returns JSON output for each of the explicitly specified operations, as performed during the sampling period.
+
+Operations that can be explicitly specified include `GET` `SET`, `ADD`, `REPLACE`, `INCREMENT`, and `DECREMENT`. A comprehensive list can be found in the [memcached binary protocol reference](https://github.com/couchbase/memcached/blob/v4.5.1/docs/BinaryProtocol.md):
+
+The full list of command options is as follows:
+
+| Options                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \-h or \--host <hostname\[:port\]> | The hostname of the node with which a connection is made. If no hostname is specified, mctimings attempts to connect to _localhost_, by default. The hostname can optionally be specified with the port number, in the form hostname:port. For a non-secure connection, the port must be the memcached port, which is 11210. If no port is specified, 11210 is used by default. If a secure connection is to be made, the port must be specified as the TLS port, which is 11207; and the \--tls option must also be specified. Note that alternatively, the port can be specified by means of the \-p option.              |
+| \-p or --port <port>               | The port to which a connection is made. For a non-secure connection, this port must be specified as the memcached port, which is 11210. If a secure connection is to be made, the port must be specified as the TLS port, which is 11207; and the \--tls option must also be specified.                                                                                                                                                                                                                                                                                                                                     |
+| \-b or \--bucket <bucket\_name>    | Specifies a single bucket for which timings are displayed. Note that the \-a (or \--all-buckets) and \-b (or \--bucket) options may not be used at the same time.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \-a or \--all-buckets              | Specifies that timings are displayed for all buckets, per bucket. Note that the \-a (or \--all-buckets) and \-b (or \--bucket) options may not be used at the same time.                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| \-u or \--user <username>          | The username of the administrator who is authenticating.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| \-P or \--password <password>      | The password of the administrator who is authenticating. If the specified value is a hyphen (\-), the administrator is prompted for the password at standard input. If the \-P option is not used, and the \-S option is not used, mctimings uses the value of the CB\_PASSWORD environment variable, if set. If the \-P option is not used, and the \-S option _is_ used, the administrator is prompted for the password at standard input.                                                                                                                                                                                |
+| \-S                                | Read the password from standard input.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| \--tls\[=cert,key\]                | Use TLS, optionally authenticating by means of a specified certificate and private key.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| \-s or \--ssl                      | This option, which specifies that a secure connection is used, is _deprecated_ in Couchbase Server Version 7.1\. Use the \--tls option, instead.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| \-4 or \--ipv4.                    | Specifies that connection is made over IPv4\. (If neither IPv4 nor IPv6 is explicitly specified, mctimings attempts to use the protocol-version specified by the naming service.)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \-6 or \--ipv6                     | Specifies that connection is made over IPv6\. (If neither IPv4 nor IPv6 is explicitly specified, mctimings attempts to use the protocol-version specified by the naming service.)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \-v or \--verbose                  | If used without the \-j option, specifies that operation timings are displayed as histograms, each with an accompanying total. If specific operation names are provided, output is limited to these operations; otherwise, output covers all operations. If neither this option nor the \-j option used, the displayed output consists only of totals — one for each of all the operations performed during the sampling period. If the \-j (or \--json) option is used in addition to \-v, \-j causes the output to be provided as JSON, and \-v formats the JSON output, for readability.                                 |
+| \-j or \--json \[=pretty\]         | Specifies that JSON output should be displayed, in addition to totals. If specific operation names are provided, output is limited to these operations. Otherwise, output covers all operations. If neither this option nor the \-v option used, the displayed output consists only of totals — one for each of all the operations performed during the sampling period. If the \-j (or \--json) option is used in addition to \-v, \-j causes the output to be provided as JSON, and \-v formats the JSON output, for readability. The JSON output can also be formatted by means of the \=pretty argument to this option. |
+| \-f or \--file <path.json>         | Display as histograms and totals the contents of a JSON file created by prior use of the \-j (or \--json) option.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| \-h or \--help                     | Display help text.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+
+## [](#output)Output
+
+The `mctimings` tool provides output of three kinds.
+
+* Output that consists only of _totals_ is generated by non-use of the `-v` and `-j` options. This displays, on each output-row, the operation name to the left, and the number of operations performed during the sample period displayed to the right.
+* Output that consists of _histograms with totals_ is generated by use of the `-v` option (without the `-j` option). This displays a _legend_, which explains the histogram-format; and then, for each operation, a histogram, followed by a total. If no operation is explicitly specified, all operations are included in the output. If one or more operations are explicitly specified, only the explicitly specified operations are included in the output.
+* JSON output is generated by use of the `-j` option. If no operation is explicitly specified, all operations are included in the output. If one or more operations are explicitly specified, only the explicitly specified operations are included in the output. If the `-v` option is not also specified, the JSON output is unformatted. If the `-v` option _is_ also specified, the JSON output is formatted.
+
+### [](#output-in-histogram-format)Output in Histogram Format
+
+Each row of the histogram takes following format:
+
+[ <lower-bound> - <upper-bound> ] <units> <percentile> <number-of-operations> | <hash-signs>
+
+The elements are as follows:
+
+* `lower-bound`. The non-inclusive lower bound of the duration-window within which falls the operation-duration of each operation counted on the current row. For example, if the `lower-bound` is `13.00`, every operation counted on the current row took longer than `13.00` to complete.
+* `upper-bound`. The inclusive upper bound of the duration-window within which falls the operation-duration of each operation counted on the current row. For example, if the `upper-bound` is `14.00`, every operation counted on the current row took either `14.00` or less to complete.
+* `units`. The units used for `lower-bound` and `upper-bound` on the current row. The units can be `us` (microseconds), `ms` (milliseconds), or `s` (seconds).
+* `(percentile)`. The percentile, for the entire sampling period, of operations whose duration was at maximum the `upper-bound` for the current row. For example, if the `upper-bound` is `14.00`, the `units` are `us`, and the percentile is `(65.0000%)`, this means that sixty-five percent of all operations performed during the sampling period took fourteen microseconds or less to complete. Note that this includes operations whose duration was less than the `lower-bound` for the current row.
+* `number-of-operations`. The number of operations for the whole sampling period whose duration was within the duration-window specified on the current row.
+* `hash-signs`. A graphical representation of the number of operations counted on this row, relative to those counted on other rows.
+
+For example, an output-row might appear as follows:
+
+[ 13.00 -  14.00]us (65.0000%)	  4592| ###################
+
+### [](#output-in-json-format)Output in JSON Format
+
+If the `-j` or `--json[=pretty]` option is used, output is provided as JSON. This option may be used with or without the `-v` option.
+
+The initial section of JSON output might appear as follows:
+
+[
+    {
+        "memcachedBucket": "travel-sample",
+        "memcachedBucketData": [
+            {
+                "bucketsLow": 0,
+                "command": "GET",
+                "data": [
+                    [
+                        6,
+                        2,
+                        0.0
+                    ],
+                    [
+                        10,
+                        843,
+                        10.0
+                    ],
+                          .
+                          .
+                          .
+
+The `data` array contains timings for a specified command (here, `GET`) and bucket (here, `travel-sample`). Each element of the `data` array is itself an array, which has three members. The first member (in the first instance above, `6`) is an _upper-bound_; the second member (`2`) is the counted number of operations; and the third member (`0.0`) is the percentile. For the first element in the `data` array, the _lower-bound_ is inferred as `0`. For each successive element, the _lower-bound_ is inferred as the _upper-bound_ of the previous member.
+
+## [](#examples)Examples
+
+The following examples indicate how `mctimings` can be used with different options.
+
+### [](#get-timing-histograms-for-all-operations)Get Timing-Histograms for All Operations
+
+The following example displays timing-histograms for all operations on host _localhost_, for the bucket `travel-sample`:
+
+/opt/couchbase/bin/mctimings -h localhost:11210 -u Administrator -P password -b travel-sample -v
+
+The upper part of the output consists of an explanatory legend:
+
+Histogram Legend:
+[1. - 2.]3. (4.)    5.|
+    1. All values in this bucket were recorded for a higher value than this.
+    2. The maximum value inclusive that could have been recorded in this bucket.
+    3. The unit for the values of that (1.) and (2.) are in microseconds, milliseconds or seconds.
+    4. Percentile of recorded values to the histogram that has values <= the value at (2.).
+    5. The number of recorded values that were in the range (1.) to (2.) inclusive.
+
+******************************************************************************
+
+Following the explanatory legend, the first part of the (extensive) main output takes the following form:
+
+Bucket:'travel-sample'
+
+The following data is collected for "GET"
+[  0.00 -   6.00]us (0.0000%)	   2|
+[  6.00 -  10.00]us (10.0000%)	 547| ############################################
+[ 10.00 -  10.00]us (20.0000%)	   0|
+[ 10.00 -  11.00]us (30.0000%)	 303| ########################
+[ 11.00 -  12.00]us (40.0000%)	 233| ##################
+[ 12.00 -  14.00]us (50.0000%)	 279| ######################
+[ 14.00 -  15.00]us (55.0000%)	  91| #######
+[ 15.00 -  17.00]us (60.0000%)	 128| ##########
+[ 17.00 -  20.00]us (65.0000%)	 113| #########
+[ 20.00 -  23.00]us (70.0000%)	 160| ############
+[ 23.00 -  25.00]us (75.0000%)	 121| #########
+[ 25.00 -  26.00]us (77.5000%)	  80| ######
+[ 26.00 -  27.00]us (80.0000%)	  44| ###
+[ 27.00 -  28.00]us (82.5000%)	  49| ###
+[ 28.00 -  30.00]us (85.0000%)	  64| #####
+[ 30.00 -  33.00]us (87.5000%)	  71| #####
+[ 33.00 -  35.00]us (88.7500%)	  31| ##
+[ 35.00 -  39.00]us (90.0000%)	  26| ##
+[ 39.00 -  61.00]us (91.2500%)	  31| ##
+[ 61.00 - 119.00]us (92.5000%)	  32| ##
+[119.00 - 271.00]us (93.7500%)	  39| ###
+[271.00 - 319.00]us (94.3750%)	  12|
+[319.00 - 431.00]us (95.0000%)	  14| #
+[431.00 - 543.00]us (95.6250%)	  21| #
+[543.00 - 639.00]us (96.2500%)	  15| #
+[639.00 - 735.00]us (96.8750%)	  13| #
+[735.00 - 831.00]us (97.1875%)	   9|
+[831.00 - 927.00]us (97.5000%)	   7|
+[  0.93 -   1.02]ms (97.8125%)	  10|
+[  1.02 -   1.15]ms (98.1250%)	   7|
+[  1.15 -   1.41]ms (98.4375%)	   8|
+[  1.41 -   1.60]ms (98.5938%)	   5|
+[  1.60 -   1.92]ms (98.7500%)	   3|
+[  1.92 -   2.43]ms (98.9062%)	   5|
+[  2.43 -   2.94]ms (99.0625%)	   3|
+[  2.94 -   3.97]ms (99.2188%)	   5|
+[  3.97 -   4.35]ms (99.2969%)	   1|
+[  4.35 -   4.61]ms (99.3750%)	   2|
+[  4.61 -   5.12]ms (99.4531%)	   2|
+[  5.12 -   5.89]ms (99.5312%)	   2|
+[  5.89 -   7.17]ms (99.6094%)	   2|
+[  7.17 -   8.19]ms (99.6484%)	   1|
+[  8.19 -   8.70]ms (99.6875%)	   1|
+[  8.70 -   9.22]ms (99.7266%)	   1|
+[  9.22 -  10.75]ms (99.7656%)	   1|
+[ 10.75 -  11.26]ms (99.8047%)	   1|
+[ 11.26 -  11.77]ms (99.8242%)	   1|
+[ 11.77 -  11.77]ms (99.8438%)	   0|
+[ 11.77 -  22.53]ms (99.8633%)	   1|
+[ 22.53 -  22.53]ms (99.8828%)	   0|
+[ 22.53 -  29.69]ms (99.9023%)	   1|
+[ 29.69 -  29.69]ms (99.9121%)	   0|
+[ 29.69 -  29.69]ms (99.9219%)	   0|
+[ 29.69 -  31.74]ms (99.9316%)	   1|
+[ 31.74 -  31.74]ms (99.9414%)	   0|
+[ 31.74 -  31.74]ms (99.9512%)	   0|
+[ 31.74 -  31.74]ms (99.9561%)	   0|
+[ 31.74 -  31.74]ms (99.9609%)	   0|
+[ 31.74 -  86.01]ms (99.9658%)	   1|
+[ 86.01 -  86.01]ms (100.0000%)	   0|
+Total: 2600 operations
+The following data is collected for "SET"
+[  0.00 -   3.00]us (0.0000%)	     3|
+[  3.00 -   9.00]us (10.0000%)	 10444| ############################################
+[  9.00 -  10.00]us (20.0000%)	  7063| #############################
+[ 10.00 -  11.00]us (30.0000%)	  8428| ###################################
+[ 11.00 -  11.00]us (40.0000%)	     0|
+[ 11.00 -  12.00]us (50.0000%)	  8219| ##################################
+[ 12.00 -  13.00]us (55.0000%)	  6407| ##########################
+[ 13.00 -  13.00]us (60.0000%)	     0|
+[ 13.00 -  14.00]us (65.0000%)	  4592| ###################
+[ 14.00 -  14.00]us (70.0000%)	     0|
+[ 14.00 -  15.00]us (75.0000%)	  3302| #############
+[ 15.00 -  16.00]us (77.5000%)	  2325| #########
+[ 16.00 -  16.00]us (80.0000%)	     0|
+[ 16.00 -  17.00]us (82.5000%)	  1743| #######
+[ 17.00 -  19.00]us (85.0000%)	  2247| #########
+[ 19.00 -  20.00]us (87.5000%)	   818| ###
+[ 20.00 -  21.00]us (88.7500%)	   671| ##
+[ 21.00 -  23.00]us (90.0000%)	  1136| ####
+[ 23.00 -  24.00]us (91.2500%)	   494| ##
+[ 24.00 -  26.00]us (92.5000%)	   810| ###
+[ 26.00 -  28.00]us (93.7500%)	   665| ##
+[ 28.00 -  30.00]us (94.3750%)	   490| ##
+[ 30.00 -  33.00]us (95.0000%)	   482| ##
+[ 33.00 -  35.00]us (95.6250%)	   238| #
+[ 35.00 -  39.00]us (96.2500%)	   340| #
+[ 39.00 -  47.00]us (96.8750%)	   462| #
+[ 47.00 -  51.00]us (97.1875%)	   181|
+[ 51.00 -  55.00]us (97.5000%)	   148|
+[ 55.00 -  63.00]us (97.8125%)	   235|
+[ 63.00 -  79.00]us (98.1250%)	   187|
+[ 79.00 - 159.00]us (98.4375%)	   171|
+[159.00 - 191.00]us (98.5938%)	   116|
+[191.00 - 207.00]us (98.7500%)	    83|
+[207.00 - 247.00]us (98.9062%)	   105|
+[247.00 - 335.00]us (99.0625%)	    93|
+[335.00 - 607.00]us (99.2188%)	    98|
+[607.00 - 895.00]us (99.2969%)	    49|
+[  0.89 -   1.34]ms (99.3750%)	    51|
+[  1.34 -   1.98]ms (99.4531%)	    51|
+[  1.98 -   2.69]ms (99.5312%)	    52|
+[  2.69 -   4.09]ms (99.6094%)	    47|
+[  4.09 -   5.12]ms (99.6484%)	    22|
+[  5.12 -   6.14]ms (99.6875%)	    29|
+[  6.14 -   7.68]ms (99.7266%)	    24|
+[  7.68 -  10.24]ms (99.7656%)	    21|
+[ 10.24 -  12.80]ms (99.8047%)	    25|
+[ 12.80 -  14.34]ms (99.8242%)	    13|
+[ 14.34 -  16.38]ms (99.8438%)	    14|
+[ 16.38 -  17.41]ms (99.8633%)	    10|
+[ 17.41 -  20.48]ms (99.8828%)	    12|
+[ 20.48 -  23.55]ms (99.9023%)	    13|
+[ 23.55 -  25.60]ms (99.9121%)	     5|
+[ 25.60 -  28.67]ms (99.9219%)	     7|
+[ 28.67 -  31.74]ms (99.9316%)	     5|
+[ 31.74 -  34.81]ms (99.9414%)	     8|
+[ 34.81 -  38.91]ms (99.9512%)	     8|
+[ 38.91 -  38.91]ms (99.9561%)	     0|
+[ 38.91 -  40.96]ms (99.9609%)	     3|
+[ 40.96 -  45.06]ms (99.9658%)	     5|
+[ 45.06 -  47.10]ms (99.9707%)	     2|
+[ 47.10 -  51.20]ms (99.9756%)	     2|
+[ 51.20 -  55.29]ms (99.9780%)	     5|
+[ 55.29 -  55.29]ms (99.9805%)	     0|
+[ 55.29 -  55.29]ms (99.9829%)	     0|
+[ 55.29 -  57.34]ms (99.9854%)	     2|
+[ 57.34 -  65.54]ms (99.9878%)	     1|
+[ 65.54 -  73.73]ms (99.9890%)	     1|
+[ 73.73 -  73.73]ms (99.9902%)	     0|
+[ 73.73 -  90.11]ms (99.9915%)	     1|
+[ 90.11 -  98.30]ms (99.9927%)	     1|
+[ 98.30 - 106.50]ms (99.9939%)	     1|
+[106.50 - 106.50]ms (99.9945%)	     0|
+[106.50 - 106.50]ms (99.9951%)	     0|
+[106.50 - 114.69]ms (99.9957%)	     2|
+[114.69 - 114.69]ms (99.9963%)	     0|
+[114.69 - 114.69]ms (99.9969%)	     0|
+[114.69 - 114.69]ms (99.9973%)	     0|
+[114.69 - 114.69]ms (99.9976%)	     0|
+[114.69 - 114.69]ms (99.9979%)	     0|
+[114.69 - 114.69]ms (99.9982%)	     0|
+[114.69 - 122.88]ms (99.9985%)	     1|
+[122.88 - 122.88]ms (100.0000%)	     0|
+Total: 63289 operations
+The following data is collected for "STAT"
+[  0.00 -  15.00]us (0.0000%)	    2|
+[ 15.00 -  51.00]us (10.0000%)	 5751| #################################
+[ 51.00 -  55.00]us (20.0000%)	 3845| ######################
+[ 55.00 -  59.00]us (30.0000%)	 6022| ###################################
+[ 59.00 -  61.00]us (40.0000%)	 7505| ############################################
+[ 61.00 -  61.00]us (50.0000%)	    0|
+[ 61.00 -  61.00]us (55.0000%)	    0|
+[ 61.00 -  67.00]us (60.0000%)	 2751| ################
+[ 67.00 -  79.00]us (65.0000%)	 1548| #########
+[ 79.00 - 511.00]us (70.0000%)	 2021| ###########
+[511.00 - 607.00]us (75.0000%)	 2734| ################
+[607.00 - 639.00]us (77.5000%)	  330| #
+[  0.64 -   1.34]ms (80.0000%)	 1138| ######
+[  1.34 -   1.47]ms (82.5000%)	 1058| ######
+[  1.47 -   1.60]ms (85.0000%)	 1079| ######
+      .
+      .
+      .
+
+### [](#get-a-timing-histogram-for-a-single-operation)Get a Timing-Histogram for a Single Operation
+
+The following example gets a timing histogram for the `GET` operation, on _localhost_, for the bucket _travel-sample_:
+
+/opt/couchbase/bin/mctimings -h localhost:11210 -u Administrator -P password -b travel-sample -v GET
+
+Following the explanatory legend, the first part of the (extensive) main output takes the following form:
+
+The following data is collected for "GET"
+[  0.00 -   6.00]us (0.0000%)	   2|
+[  6.00 -  10.00]us (10.0000%)	 547| ############################################
+[ 10.00 -  10.00]us (20.0000%)	   0|
+[ 10.00 -  11.00]us (30.0000%)	 303| ########################
+[ 11.00 -  12.00]us (40.0000%)	 233| ##################
+[ 12.00 -  14.00]us (50.0000%)	 279| ######################
+[ 14.00 -  15.00]us (55.0000%)	  91| #######
+[ 15.00 -  17.00]us (60.0000%)	 128| ##########
+[ 17.00 -  20.00]us (65.0000%)	 113| #########
+[ 20.00 -  23.00]us (70.0000%)	 160| ############
+[ 23.00 -  25.00]us (75.0000%)	 121| #########
+[ 25.00 -  26.00]us (77.5000%)	  80| ######
+[ 26.00 -  27.00]us (80.0000%)	  44| ###
+[ 27.00 -  28.00]us (82.5000%)	  49| ###
+[ 28.00 -  30.00]us (85.0000%)	  64| #####
+[ 30.00 -  33.00]us (87.5000%)	  71| #####
+[ 33.00 -  35.00]us (88.7500%)	  31| ##
+    .
+    .
+    .
+
+### [](#get-timing-histograms-for-multiple-specified-operations)Get Timing-Histograms for Multiple, Specified Operations
+
+The following example returns timing-histograms for the `GET` and `SET` operations:
+
+/opt/couchbase/bin/mctimings -h localhost:11210 -u Administrator -P password -b travel-sample -v GET SET
+
+Exerpts from the (extensive) main output are as follows:
+
+The following data is collected for "GET"
+[  0.00 -   6.00]us (0.0000%)	   2|
+[  6.00 -  10.00]us (10.0000%)	 547| ############################################
+[ 10.00 -  10.00]us (20.0000%)	   0|
+[ 10.00 -  11.00]us (30.0000%)	 303| ########################
+[ 11.00 -  12.00]us (40.0000%)	 233| ##################
+[ 12.00 -  14.00]us (50.0000%)	 279| ######################
+[ 14.00 -  15.00]us (55.0000%)	  91| #######
+[ 15.00 -  17.00]us (60.0000%)	 128| ##########
+[ 17.00 -  20.00]us (65.0000%)	 113| #########
+[ 20.00 -  23.00]us (70.0000%)	 160| ############
+[ 23.00 -  25.00]us (75.0000%)	 121| #########
+[ 25.00 -  26.00]us (77.5000%)	  80| ######
+[ 26.00 -  27.00]us (80.0000%)	  44| ###
+[ 27.00 -  28.00]us (82.5000%)	  49| ###
+[ 28.00 -  30.00]us (85.0000%)	  64| #####
+[ 30.00 -  33.00]us (87.5000%)	  71| #####
+[ 33.00 -  35.00]us (88.7500%)	  31| ##
+[ 35.00 -  39.00]us (90.0000%)	  26| ##
+[ 39.00 -  61.00]us (91.2500%)	  31| ##
+[ 61.00 - 119.00]us (92.5000%)	  32| ##
+[119.00 - 271.00]us (93.7500%)	  39| ###
+[271.00 - 319.00]us (94.3750%)	  12|
+    .
+    .
+    .
+The following data is collected for "SET"
+[  0.00 -   3.00]us (0.0000%)	     3|
+[  3.00 -   9.00]us (10.0000%)	 10444| ############################################
+[  9.00 -  10.00]us (20.0000%)	  7063| #############################
+[ 10.00 -  11.00]us (30.0000%)	  8428| ###################################
+[ 11.00 -  11.00]us (40.0000%)	     0|
+[ 11.00 -  12.00]us (50.0000%)	  8219| ##################################
+[ 12.00 -  13.00]us (55.0000%)	  6407| ##########################
+[ 13.00 -  13.00]us (60.0000%)	     0|
+[ 13.00 -  14.00]us (65.0000%)	  4592| ###################
+[ 14.00 -  14.00]us (70.0000%)	     0|
+[ 14.00 -  15.00]us (75.0000%)	  3302| #############
+[ 15.00 -  16.00]us (77.5000%)	  2325| #########
+[ 16.00 -  16.00]us (80.0000%)	     0|
+[ 16.00 -  17.00]us (82.5000%)	  1743| #######
+[ 17.00 -  19.00]us (85.0000%)	  2247| #########
+[ 19.00 -  20.00]us (87.5000%)	   818| ###
+[ 20.00 -  21.00]us (88.7500%)	   671| ##
+[ 21.00 -  23.00]us (90.0000%)	  1136| ####
+[ 23.00 -  24.00]us (91.2500%)	   494| ##
+[ 24.00 -  26.00]us (92.5000%)	   810| ###
+[ 26.00 -  28.00]us (93.7500%)	   665| ##
+[ 28.00 -  30.00]us (94.3750%)	   490| ##
+[ 30.00 -  33.00]us (95.0000%)	   482| ##
+[ 33.00 -  35.00]us (95.6250%)	   238| #
+[ 35.00 -  39.00]us (96.2500%)	   340| #
+[ 39.00 -  47.00]us (96.8750%)	   462| #
+[ 47.00 -  51.00]us (97.1875%)	   181|
+  .
+  .
+  .
+
+### [](#get-timings-over-a-secure-connection)Get Timings Over a Secure Connection
+
+The following example establishes a secure connection, and returns a total for each operation performed during the sampling period:
+
+$ /opt/couchbase/bin/mctimings -h localhost:11207 -s -u Administrator -P password -b travel-sample
+
+If successful, the call returns the following:
+
+GET 2600 operations
+SET 63289 operations
+STAT 43196 operations
+HELLO 40 operations
+SET_VBUCKET 1024 operations
+GET_ALL_VB_SEQNOS 4922 operations
+DCP_OPEN 36 operations
+DCP_STREAM_REQ 7168 operations
+DCP_GET_FAILOVER_LOG 7168 operations
+DCP_BUFFER_ACKNOWLEDGEMENT 28 operations
+DCP_CONTROL 105 operations
+SELECT_BUCKET 9870 operations
+GET_META 2600 operations
+ENABLE_TRAFFIC 1 operations
+SET_CLUSTER_CONFIG 4 operations
+GET_CLUSTER_CONFIG 9038 operations
+COLLECTIONS_SET_MANIFEST 1 operations
+COLLECTIONS_GET_MANIFEST 4558 operations
+SUBDOC_MULTI_LOOKUP 2600 operations
+GET_CMD_TIMER 6663 operations
+
+### [](#write-json-output-to-a-file)Write JSON Output to a File
+
+The following example gets JSON output on uses of the `DCP_OPEN` command across all buckets; and writes the output to a file. Note that the output is formatted by means of the `-v` option:
+
+/opt/couchbase/bin/mctimings -h localhost:11210 -u Administrator -P password \
+-j -v -a DCP_OPEN > /home/vagrant/dcpopen.json
+
+The JSON contents of the file can now be inspected as follows.
+
+more /home/vagrant/dcpopen.json
+
+The appearance of the initial part of the file-content is as follows:
+
+[
+  {
+    "memcachedBucket": "travel-sample",
+    "memcachedBucketData": [
+      {
+        "bucketsLow": 0,
+        "command": "DCP_OPEN",
+        "data": [
+          [
+            25,
+            1,
+            0
+          ],
+          [
+            29,
+            3,
+            10
+          ],
+          [
+            35,
+            6,
+            20
+          ],
+            .
+            .
+            .
+
+### [](#display-json-file-content-as-histograms)Display JSON File-Content as Histograms
+
+The following example uses the `-f` option; to read the JSON timing-data from the previously created JSON file, and display it in histogram format:
+
+/opt/couchbase/bin/mctimings -h localhost:11210 -u Administrator -P password \
+-f /home/vagrant/test.json
+
+The initial part of the output appears as follows:
+
+The following data is collected for "GET"
+[  0.00 -   6.00]us (0.0000%)	   2|
+[  6.00 -  10.00]us (10.0000%)	 843| ############################################
+[ 10.00 -  10.00]us (20.0000%)	   0|
+[ 10.00 -  11.00]us (30.0000%)	 485| #########################
+[ 11.00 -  12.00]us (40.0000%)	 357| ##################
+[ 12.00 -  13.00]us (50.0000%)	 257| #############
+[ 13.00 -  14.00]us (55.0000%)	 176| #########
+[ 14.00 -  16.00]us (60.0000%)	 232| ############
+[ 16.00 -  18.00]us (65.0000%)	 128| ######
+[ 18.00 -  22.00]us (70.0000%)	 239| ############
+[ 22.00 -  24.00]us (75.0000%)	 201| ##########
+[ 24.00 -  25.00]us (77.5000%)	  83| ####
+[ 25.00 -  26.00]us (80.0000%)	  98| #####
+[ 26.00 -  27.00]us (82.5000%)	  68| ###
+[ 27.00 -  28.00]us (85.0000%)	  74| ###
+[ 28.00 -  30.00]us (87.5000%)	  90| ####
+[ 30.00 -  33.00]us (88.7500%)	 100| #####
+[ 33.00 -  33.00]us (90.0000%)	   0|
+[ 33.00 -  35.00]us (91.2500%)	  37| #
+[ 35.00 -  43.00]us (92.5000%)	  48| ##
+[ 43.00 -  79.00]us (93.7500%)	  47| ##
+[ 79.00 - 107.00]us (94.3750%)	  23| #
+[107.00 - 191.00]us (95.0000%)	  22| #
+[191.00 - 255.00]us (95.6250%)	  24| #
+[255.00 - 335.00]us (96.2500%)	  25| #
+[335.00 - 511.00]us (96.8750%)	  24| #
+[511.00 - 607.00]us (97.1875%)	  14|
+[607.00 - 671.00]us (97.5000%)	  14|
+          .
+          .
+          .
+
+## [](#see-also)See Also
+
+The tool [cbstats timings](cbstats/cbstats-timing.md) provides an alternative way of returning timing information.

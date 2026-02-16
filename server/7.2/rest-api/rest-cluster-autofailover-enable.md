@@ -1,0 +1,76 @@
+[View original HTML](/server/7.2/rest-api/rest-cluster-autofailover-enable.html)
+
+> Auto-failover is enabled and disabled by means of the `POST /settings/autoFailover` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+POST /settings/autoFailover
+
+## [](#description)Description
+
+The `POST /settings/autoFailover` HTTP method and URI can be used to enable and disable auto-failover.
+
+Auto-failover settings are global, and therefore apply to all nodes in the cluster. The Full Admin, Cluster Admin, or Backup Full Admin role is required, to establish the settings.
+
+## [](#curl-syntax)Curl Syntax
+
+```bourne
+curl -X POST http://<ip-address-or-hostname>:8091/settings/autoFailover
+  -u <username>:<password>
+  -d enabled=[true|false]
+  -d timeout=<number-of-seconds>
+  -d maxCount=<number-of-nodes>
+  -d failoverOnDataDiskIssues[enabled]=[true|false]
+  -d failoverOnDataDiskIssues[timePeriod]=<number-of-seconds>
+  -d canAbortRebalance=[true|false]
+  -d failoverPreserveDurabilityMajority=[true|false]
+```
+
+The parameters are as follows:
+
+* `enabled=[true|false]`. Enables or disables automatic failover. Default setting is `true`. Setting `enabled` to `false` automatically sets `failoverOnDataDiskIssues[enabled]` to `false`. Note that when `enabled` is set to `false`, the values supplied for any additional parameters (including `failoverOnDataDiskIssues[enabled]` and `canAbortRebalance`) are ignored. The `enabled` parameter is _required_. Setting `enabled` to `true` requires that the `timeout` parameter also be specified.
+* `timeout=<number-of-seconds>`. Integer between 5 and 3600\. Specifies the number of seconds that must elapse, with a node unavailable, before automatic failover is triggered. Default setting is 120\. The `timeout` parameter can only be specified when `enabled` is set to `true`. This parameter and its values are ignored if the value for the `enabled` parameter is `false`.
+* `maxCount=<number-of-nodes>`. Specifies the maximum number of nodes to be automatically failed over before administrator-intervention is required The maximum value can be up to the number of configured nodes. The default value is 1\. This parameter is optional, and is only supported by Couchbase Server Enterprise Edition. This parameter and its values are ignored if the value for the `enabled` parameter is `false`.
+* `failoverOnDataDiskIssues[enabled]=[true|false]`Allows the triggering of auto-failover when disk read-write attempts have failed continuously throughout at least 60% of the specified time-period. The default value for `failoverOnDataDiskIssues[enabled]` is `false`. A value for `failoverOnDataDiskIssues[timePeriod]` must be specified when `failoverOnDataDiskIssues[enabled]` is `true`.
+* `failoverOnDataDiskIssues[timePeriod]=<number-of-seconds>`. The specified value should be an integer between 5 and 3600\. The default value (which is maintained while `failoverOnDataDiskIssues[enabled]` is `false`) is 120; but if `failoverOnDataDiskIssues[enabled]` is set to `true`, a value for `failoverOnDataDiskIssues[timePeriod]` must nevertheless be explicitly specified.  
+If `failoverOnDataDiskIssues[enabled]` is _not_ specified, but `failoverOnDataDiskIssues[timePeriod]` _is_ specified, the following error message is generated: `The value of "failoverOnDataDiskIssues[enabled]" must be true or false`.  
+If `failoverOnDataDiskIssues[enabled]` is `false`, but `failoverOnDataDiskIssues[timePeriod]` is specified, the value specified for `failoverOnDataDiskIssues[timePeriod]` is ignored.  
+These parameters are _optional_, and are only supported by Couchbase Server Enterprise Edition. These parameters and their values are ignored, if `enabled` is set to `false`.
+* `canAbortRebalance`. Whether or not auto-failover can be triggered if a _rebalance_ is in progress. This parameter is optional, and is only available in Couchbase Enterprise Edition. The value can be either `true` (the default) or `false`. The parameter and its value are ignored, if `enabled` is set to `false`.
+* `failoverPreserveDurabilityMajority`. Can be `true` or `false` (the default). If this setting is `true`, a node is _not_ failed over if this might result in the loss of durably written data. For information, see [Preserving Durable Writes](../learn/data/durability.md#preserving-durable-writes).
+
+## [](#responses)Responses
+
+Success returns `200 OK`.
+
+Incorrectly specified values are handled as follows:
+
+* If the value of `enabled` is neither `true` nor `false`, `400 Bad Request` is returned, with the message `The value of "enabled" must be true or false`.
+* If the value of `timeout` is incorrectly specified, `400 Bad Request` is returned, with the message `The value of "timeout" must be a positive integer in a range from 5 to 3600`.
+* If the value of `timePeriod` is incorrectly specified, `400 Bad Request` is returned, with the message `The value of "failoverOnDataDiskIssues[timePeriod]" must be a positive integer in a range from 5 to 3600`.
+
+Failure to authenticate returns `401 Unauthorized`.
+
+## [](#example)Example
+
+The following example enables auto-failover for the cluster, with a `timeout` of 72 seconds, and a `maxCount` of `2`. It also enabled auto-failover on disk issues, and establishes the corresponding time period as `89` seconds.
+
+```javascript
+curl -X POST -u Administrator:password \
+http://10.144.231.101:8091/settings/autoFailover \
+-d 'enabled=true' \
+-d 'timeout=72' \
+-d 'maxCount=2' \
+-d 'failoverOnDataDiskIssues[enabled]=true' \
+-d 'failoverOnDataDiskIssues[timePeriod]=89'
+```
+
+## [](#see-also)See Also
+
+For information on retrieving the current auto-failover parameter-values with the REST API, see [Retrieving Auto-Failover Settings](rest-cluster-autofailover-settings.md).
+
+The Couchbase CLI allows auto-failover to be managed by means of the [setting-autofailover](../cli/cbcli/couchbase-cli-setting-autofailover.md) command. For information on managing auto-failover with Couchbase Web Console, see [Node Availability](../manage/manage-settings/general-settings.md#node-availability).
+
+A full description of auto-failover is provided in [Automatic Failover](../learn/clusters-and-availability/automatic-failover.md).
+
+An overview of durability is provided in [Durability](../learn/data/durability.md). For information on establishing durability settings for a bucket, see [Creating and Editing Buckets](rest-bucket-create.md).

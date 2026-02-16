@@ -1,0 +1,268 @@
+[View original HTML](/server/current/rest-api/backup-get-repository-info.html)
+
+## [](#description)Description
+
+The Backup Service REST API lets you list and get information about the active, imported, and archived backup repositories.
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+List all backup repositories with a specific status:
+
+GET /api/v1/cluster/self/repository/{REPO_STATUS}
+
+Get overview information about a specific backup repository:
+
+GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}
+
+Get detailed information about a specific backup repository including backup names and dates, buckets, items, and mutations:
+
+GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/info
+
+|  | These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service. |
+|  | ----------------------------------------------------------------------------------------------------------------- |
+
+__Table 1\. Path Parameters__
+| Name         | Description                           | Schema                                         |
+| ------------ | ------------------------------------- | ---------------------------------------------- |
+| REPO\_STATUS | The current status of the repository. | One of the following: active imported archived |
+| REPO\_NAME   | The name of the backup repository     | String                                         |
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET $BACKUP_SERVICE_NODE:$BACKUP_SERVICE_PORT/cluster/self/\
+repository/$REPO_STATUS
+-u $USERNAME:$PASSWORD
+
+curl -X GET <backup-node-ip-address-or-domain-name>:8097/cluster/self/\
+repository/$REPO_STATUS/$REPO_NAME
+-u $USERNAME:$PASSWORD
+
+curl -X GET <backup-node-ip-address-or-domain-name>:8097/cluster/self/\
+repository/$REPO_STATUS/$REPO_NAME/info
+-u $USERNAME:$PASSWORD
+
+## [](#required-permissions)Required Permissions
+
+Full Admin, Backup Full Admin, or Read-Only Admin roles.
+
+## [](#responses)Responses
+
+| Value                                                                                       | Description                                                            |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 200 OK and JSON array containing repository information depending on the specific endpoint. | Successful call.                                                       |
+| 400                                                                                         | Invalid parameter.                                                     |
+| 400 Object Not found                                                                        | The repository in the endpoint URI does not exist.                     |
+| 401 Unauthorized                                                                            | Authorization failure due to incorrect username or password.           |
+| 403 Forbidden, plus a JSON message explaining the minimum permissions.                      | The provided username has insufficient privileges to call this method. |
+| 404 Object Not Found                                                                        | Error in the URI path.                                                 |
+| 500 Could not retrieve the requested repository                                             | Error in Couchbase Server.                                             |
+
+## [](#examples)Examples
+
+The following `curl` command returns information about all active repositories. The command pipes the output to the [jq](https://stedolan.github.io/jq/) command for readability.
+
+```console
+curl -v -X GET \
+http://127.0.0.1:8097/api/v1/cluster/self/repository/active \
+-u Administrator:password  | jq
+```
+
+Successful execution returns a JSON array, each of whose members is an object containing information on an active repository. Information includes repository names, file or cluster paths, and plan details. The initial part of the potentially extensive output might appear as follows:
+
+```json
+[
+  {
+    "id": "HourlyBackupRepository1",
+    "plan_name": "HourlyBackupRepository",
+    "bucket": {
+      "name": "travel-sample",
+      "uuid": "d7d17aa7e2e901619561b57342b3c0e8"
+    },
+    "state": "active",
+    "archive": "/Users/username/Library/Application Support/Couchbase/var/lib/couchbase/HourlyBackupRepository",
+    "repo": "fa95a5a8-328c-4953-a067-58456915f74e",
+    "scheduled": {
+      "HourlyBackupTask": {
+        "name": "HourlyBackupTask",
+        "task_type": "BACKUP",
+        "next_run": "2025-07-28T10:45:45+05:30"
+      },
+      "HourlyMergeTask": {
+        "name": "HourlyMergeTask",
+        "task_type": "MERGE",
+        "next_run": "2025-07-28T10:45:45+05:30"
+      },
+      "HourlyPruneTask": {
+        "name": "HourlyPruneTask",
+        "task_type": "PRUNE",
+        "next_run": "2025-07-28T10:45:45+05:30"
+      }
+    },
+    "version": 1,
+    "health": {
+      "healthy": true
+    },
+    "creation_time": "2025-07-26T18:49:47.228212+05:30",
+    "update_time": "2025-07-26T18:49:47.228212+05:30"
+  },
+  {
+    "id": "testRepo",
+    "plan_name": "_hourly_backups",
+    "bucket": {
+      "name": "travel-sample",
+      "uuid": "15b15c78439db91ba73f27ac4d6ba116"
+    },
+      .
+      .
+      .
+  }
+]
+```
+
+Each object thus contains the `id` (name), `plan_name`, `state`, `repo` (unique identifier), and scheduled tasks for the repository. It also contains an account of the repository’s health, its creation time, and the time of its latest update.
+
+The following call returns information on a specific, named, active repository:
+
+```console
+curl -v -X GET \
+http://127.0.0.1:8091/_p/backup/api/v1/cluster/self/repository/active/repoDaily \
+-u Administrator:password  | jq
+```
+
+If successful, the call returns the following object:
+
+```json
+{
+  "id": "repoDaily",
+  "plan_name": "PlanDailyForPruning",
+  "bucket": {
+    "name": "travel-sample",
+    "uuid": "d7d17aa7e2e901619561b57342b3c0e8"
+  },
+  "state": "active",
+  "archive": "/Users/username/Library/Application Support/Couchbase/var/lib/couchbase/repoDaily",
+  "repo": "a3afd055-0095-4238-857f-3e10e326e477",
+  "scheduled": {
+    "BackupTask": {
+      "name": "BackupTask",
+      "task_type": "BACKUP",
+      "next_run": "2025-07-28T13:00:59+05:30"
+    },
+    "MergeTask": {
+      "name": "MergeTask",
+      "task_type": "MERGE",
+      "next_run": "2025-07-28T14:30:00+05:30"
+    },
+    "PruningTask": {
+      "name": "PruningTask",
+      "task_type": "PRUNE",
+      "next_run": "2025-07-28T16:30:00+05:30"
+    }
+  },
+  "version": 1,
+  "health": {
+    "healthy": true
+  },
+  "creation_time": "2025-07-27T15:44:50.540483+05:30",
+  "update_time": "2025-07-27T15:44:50.540483+05:30"
+}
+```
+
+The object thus contains information on the specified repository.
+
+The following call returns information including backup names and dates, buckets, items, and mutations; on an imported repository named `mergedRepo`:
+
+```console
+curl -v -X GET http://127.0.0.1:8097/api/v1/cluster/self/repository/imported/mergedRepo/info \
+-u Administrator:password  | jq
+```
+
+If successful, the initial part of the potentially extensive output is as follows:
+
+```json
+{
+  "name": "7509894b-7138-40fe-917e-9581d298482c",
+  "size": 23859762,
+  "count": 4,
+  "backups": [
+    {
+      "date": "2020-09-16T09_00_29.113465+01_00",
+      "type": "MERGE - FULL",
+      "source": "Merge",
+      "range": [
+        "2020-09-16T08_00_25.672063+01_00",
+        "2020-09-16T08_15_26.560952+01_00",
+        "2020-09-16T08_30_27.458006+01_00",
+        "2020-09-16T08_45_28.32018+01_00",
+        "2020-09-16T09_00_29.113465+01_00"
+      ],
+      "events": 0,
+      "fts_alias": 0,
+      "size": 23806455,
+      "buckets": [
+        {
+          "name": "travel-sample",
+          "size": 23806449,
+          "items": 31592,
+          "mutations": 31592,
+          "tombstones": 0,
+          "views_count": 0,
+          "fts_count": 0,
+          "index_count": 10,
+          "analytics_count": 0,
+          "scopes": {
+            "0": {
+              "uid": 0,
+              "name": "_default",
+              "mutations": 31592,
+              "tombstones": 0,
+              "collections": {
+                "0": {
+                  "id": 0,
+                  "name": "_default",
+                  "mutations": 31592,
+                  "tombstones": 0
+                }
+              }
+            },
+            "8": {
+              "uid": 8,
+              "name": "MyScope",
+              "mutations": 0,
+              "tombstones": 0,
+              "collections": {
+                "8": {
+                  "id": 8,
+                  "name": "MyCollection",
+                  "mutations": 0,
+                  "tombstones": 0
+                }
+              }
+            }
+          }
+        }
+      ],
+      "complete": true,
+      "source_cluster_uuid": "a7ec688d232620b2a9ea8c28ca68fd9a"
+    },
+    {
+      "date": "2020-09-16T09_15_29.826312+01_00",
+      "type": "INCR",
+      "source": "http://127.0.0.1:8091",
+      "events": 0,
+      "fts_alias": 0,
+      "size": 17769,
+        .
+        .
+        .
+    }
+  ]
+}
+```
+
+## [](#see-also)See Also
+
+* For an overview of the Backup Service, see [Backup Service](../learn/services-and-indexes/services/backup-service.md).
+* For a step-by-step guide to using Couchbase Server Web Console to configure and use the Backup Service, see [Manage Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
+* For Information about using the Backup Service REST API to create a plan, see [Create and Edit Plans](backup-create-and-edit-plans.md).
+* For information about using the Backup Service REST API to create a repository, see [Create a Repository](backup-create-repository.md).

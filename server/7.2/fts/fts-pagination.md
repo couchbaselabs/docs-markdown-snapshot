@@ -1,0 +1,90 @@
+[View original HTML](/server/7.2/fts/fts-pagination.html)
+
+The number of results obtained for a Full Text Search request can be large. Pagination of these results becomes essential for sorting and displaying a subset of these results.
+
+There are multiple ways to achieve pagination with settings within a search request. Pagination will fetch a deterministic set of results when the results are sorted in a certain fashion.
+
+Pagination provides the following options:
+
+## [](#sizefrom-or-offsetlimit)Size/from or offset/limit
+
+This pagination settings can be used to obtain a subset of results and works deterministically when combined with a certain sort order.
+
+Using `size/limit` and `offset/from` would fetch at least `size + from` ordered results from a partition and then return the `size` number of results starting at offset `from`.
+
+Deep pagination can therefore get pretty expensive when using `size + from` on a sharded index due to each shard having to possibly return large resultsets (at least `size + from`) over the network for merging at the coordinating node before returning the `size` number of results starting at offset `from`.
+
+The default sort order is based on _score_ (relevance) where the results are ordered from the highest to the lowest score.
+
+### [](#example)Example
+
+Here’s an example query that fetches results from the 11th onwards to the 15th that have been ordered by _score_.
+
+{
+  "query": {
+      "match": "California",
+      "field": "state"
+  },
+  "size": 5,
+  "from": 10
+}
+
+## [](#search%5Fafter-search%5Fbefore)search\_after, search\_before
+
+For an efficient pagination, you can use the `search_after/search_before` settings.
+
+`search_after` is designed to fetch the `size` number of results after the key specified and `search_before` is designed to fetch the `size` number of results before the key specified.
+
+These settings allow for the client to maintain state while paginating - the sort key of the last result (for search\_after) or the first result (for search\_before) in the current page.
+
+Both the attributes accept an array of strings (sort keys) - the length of this array will need to be the same length of the "sort" array within the search request.
+
+|  | You cannot use both search\_after and search\_before in the same search request. |
+|  | -------------------------------------------------------------------------------- |
+
+### [](#example-2)Example
+
+Here are some examples using `search_after/search_before` over sort key "\_id" (an internal field that carries the document ID).
+
+{
+  "query": {
+      "match": "California",
+      "field": "state"
+  },
+  "sort": ["_id"],
+  "search_after": ["hotel_10180"],
+  "size": 3
+}
+
+{
+  "query": {
+      "match": "California",
+      "field": "state"
+  },
+  "sort": ["_id"],
+  "search_before": ["hotel_17595"],
+  "size": 4
+}
+
+|  | A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results ("size: 10", "from": 0) ordered by _score_ sequentially from the highest to lowest. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#pagination-tips-and-recommendations)Pagination tips and recommendations
+
+The pagination of search results can be done using the 'from' and 'size' parameters in the search request. But as the search gets into deeper pages, it starts consuming more resources.
+
+To safeguard against any arbitrary higher memory requirements, FTS provides a configurable limit bleveMaxResultWindow (10000 default) on the maximum allowable page offsets. However, bumping this limit to higher levels is not a scalable solution.
+
+To circumvent this problem, the concept of key set pagination in FTS, is introduced.
+
+Instead of providing _from_ as a number of search results to skip, the user will provide the sort value of a previously seen search result (usually, the last result shown on the current page). The idea is that to show the next page of the results, we just want the top N results of that sort after the last result from the previous page.
+
+This solution requires a few preconditions be met:
+
+* The search request must specify a sort order. NOTE: The sort order must impose a total order on the results. Without this, any results which share the same sort value might be left out when handling the page navigation boundaries.
+
+A common solution to this is to always include the document ID as the final sort criteria.
+
+For example, if you want to sort by \[“name”, “-age”\], instead of sort by \[“name”, “-age”, “\_id”\].
+
+With `search_after`/`search_before` paginations, the heap memory requirement of deeper page searches is made proportional to the requested page size alone. So it reduces the heap memory requirement of deeper page searches significantly down from the offset+from values.

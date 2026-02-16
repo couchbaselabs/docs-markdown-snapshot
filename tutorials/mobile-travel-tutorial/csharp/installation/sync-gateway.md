@@ -1,0 +1,69 @@
+[View original HTML](/tutorials/mobile-travel-tutorial/csharp/installation/sync-gateway.html)
+
+## [](#manual)Manual
+
+In this lesson, you will install and launch version 2.1 of the Sync Gateway
+
+**If you would prefer to use a docker container instead, please proceed to the [docker](http://docs.couchbase.com/tutorials/travel-sample/develop/csharp/#/0/3/1)section**
+
+* Install Sync Gateway 2.1 following the instructions specified [here](https://developer.couchbase.com/documentation/mobile/2.1/installation/sync-gateway/index.html). Make sure you select "Windows" from the list of platform tabs to install on.
+* By default, the Sync Gateway service will install with _serviceconfig.json_ config file at this [location](C:\Program%20Files\Couchbase\Sync%20Gateway\serviceconfig.json)
+* The Sync Gateway will have to be launched with the config file named `sync-gateway-config-travelsample.json` that you should have downloaded as part of the [Travel Mobile App install](/develop/csharp#/0/1/0). The config file will be located in `c:/path/to/mobile-travel-sample`.
+* Open the sync-gateway-config-travelsample.json and confirm that the RBAC user credentials configured on the Couchbase Server are used by Sync Gateway for accessing the bucket  
+```json  
+"username": "admin",  
+"password": "password",  
+```
+* Stop the Sync Gateway service (since it was launched with the default version of config file). To stop the service, you can use the Services application (Control Panel -→ Admin Tools -→ Services).
+* Replace the _serviceconfig.json_ file located at C:FilesGateway with the sync-gateway-config-travelsample.json that you downloaded.  
+```bash  
+$ copy c:/path/to/mobile-travel-sample/sync-gateway-config-travelsample.json "C:\Program Files\Couchbase\Sync Gateway\serviceconfig.json"  
+```
+* Start the Sync Gateway service with the new version of _serviceconfig.json_ file. To start the service, you can use the Services application (Control Panel -→ Admin Tools -→ Services).
+
+### [](#%5Ftry%5Fit%5Fout)Try it out
+
+* Access this URL `<http://localhost:4984>` in your browser
+* Verify that you get back a JSON response similar to one below  
+```json  
+   {"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"2.1"},"version":"Couchbase Sync Gateway/2.1.0(775;9cc29c5)"}  
+```  
+\=
+
+## [](#docker-local)Docker (Local)
+
+_NOTE_ : If you are running the Sync Gateway in a docker container, please make sure that you have the Couchbase Server running in a container as well. If not, please follow instructions [here](/develop/csharp#/0/2/1) to install the server container.
+
+* Create a local docker network named "workshop" if one does not exist already. Open a terminal window and run the following command `bash $ docker network ls $ docker network create -d bridge workshop`
+* To run the application in a container, you will first get the docker image from Docker Cloud. `bash $ docker pull connectsv/sync-gateway:2.1.0-enterprise`
+* The Sync Gateway will be launched with the config file named `sync-gateway-config-travelsample.json` that you should have downloaded as part of the [Travel Mobile App install](/develop/csharp#/0/1/0). The config file is located in `/path/to/mobile-travel-sample`.
+* Open the `sync-gateway-config-travelsample.json` file
+* For the app to connect to the Couchbase Server, the address of the the server needs to be specified. Note that when you launched the Couchbase Server docker container, you gave it the `name` of "cb-server". Replace the `localhost` in the file with `cb-server` and save
+
+`json "server": "http://cb-server:8091"`
+
+* Launch the Sync Gateway with the `sync-gateway-config-travelsample.json` file. Once the command has completed you can start the application with the following.
+
+```bash
+$ docker run -p 4984-4985:4984-4985 --network workshop --name sync-gateway -d -v %cd%/sync-gateway-config-travelsample.json:/etc/sync_gateway/sync_gateway.json connectsv/sync-gateway:2.1.0-enterprise -adminInterface :4985 /etc/sync_gateway/sync_gateway.json ``` The first time you run this on Windows, you may see an alert pop up asking for permissions to share drive.
+Make sure you select "Share it" and proceed.
+You would need administrator privileges for this image:https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/docker_windows.png[]
+
+* You can view the logs at any time by running the following command `bash   $ docker logs sync-gateway`
+* Verify that the docker container named "sync-gateway" is running with the following command in the terminal window `bash   $ docker ps`
+
+
+[[_try_it_out]]
+=== Try it out
+
+* Access this URL `http://localhost:4984` in your browser
+* Verify that you get back a JSON response similar to one below
++
+
+[source,json]
+----
+
+{"couchdb":"Welcome","vendor":{"name":"Couchbase Sync Gateway","version":"2.1"},"version":"Couchbase Sync Gateway/2.1.0(775;9cc29c5)"}
+----
+=
+```

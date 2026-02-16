@@ -1,0 +1,1308 @@
+[View original HTML](/server/current/rest-api/rest-bucket-create.html)
+
+> Buckets can be created, and their configurations subsequently edited, with the REST API. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+Create a New Bucket
+
+POST /pools/default/buckets
+
+Edit an Existing Bucket
+
+POST /pools/default/buckets/{bucketName}
+
+## [](#description)Description
+
+These endpoints create a new bucket and edit an existing bucket. You can create two types of buckets: Couchbase or Ephemeral.
+
+When you create a bucket, you must assign it a name that is unique across all buckets on the cluster. You cannot change the name after creation. Bucket names must not exceed 100 bytes (100 characters in most cases).
+
+A single cluster can contain up to 30 buckets.
+
+Administrators with the Full Admin or Cluster Admin role can create and configure buckets. Administrators with the Bucket Admin role can also edit bucket configurations, as long as their privileges apply to all buckets or specifically to the target bucket. For details on roles and privileges, see [Roles](../learn/security/roles.md).
+
+|  | When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#curl-syntax)Curl Syntax
+
+The floats and integers fields in the following syntax must be non-negative values.
+
+```bash
+curl -X POST -u <administrator>:<password>
+  http://<ip-address-or-hostname>:<port>/pools/default/buckets
+  -d name=<bucketName>
+  -d bucketType=[ couchbase | ephemeral ]
+  -d ramQuota=<integer>
+  -d storageBackend=[ couchstore | magma ]
+  -d numVBuckets=[ 128 | 1024 ]
+  -d evictionPolicy=[
+          [ valueOnly | fullEviction ] |
+          [ noEviction | nruEviction ]
+        ]
+  -d noRestart=[true|false]
+  -d durabilityMinLevel=[
+          [ none | majority | majorityAndPersistActive | persistToMajority ] |
+          [ none | majority ]
+        ]
+  -d durabilityImpossibleFallback= [ disabled | fallbackToActiveAck ]
+  -d rank=<integer>
+  -d replicaNumber=[ 1 | 2 | 3 ]
+  -d compressionMode=[ off | passive | active ]
+  -d maxTTL=<integer>
+  -d replicaIndex=[ 0 | 1 ]
+  -d conflictResolutionType=[ seqno | lww ]
+  -d flushEnabled=[ 0 | 1 ]
+  -d magmaSeqTreeDataBlockSize=<integer>
+  -d historyRetentionCollectionDefault=[ true | false ]
+  -d historyRetentionBytes=<integer>
+  -d historyRetentionSeconds=<integer>
+  -d encryptionAtRestKeyId=<integer>
+  -d encryptionAtRestDekRotationInterval=<integer>
+  -d encryptionAtRestDekLifetime=<integer>
+  -d autoCompactionDefined=[ true | false ]
+  -d parallelDBAndViewCompaction=[ true | false ]
+  -d databaseFragmentationThreshold[percentage]=<integer>
+  -d databaseFragmentationThreshold[size]=<integer>
+  -d viewFragmentationThreshold[percentage]=<integer>
+  -d viewFragmentationThreshold[size]=<integer>
+  -d purgeInterval=[ <float> | <integer> ]
+  -d allowedTimePeriod[fromHour]=<integer>
+  -d allowedTimePeriod[fromMinute]=<integer>
+  -d allowedTimePeriod[toHour]=<integer>
+  -d allowedTimePeriod[toMinute]=<integer>
+  -d allowedTimePeriod[abortOutside]=[ true | false ]
+  -d accessScannerEnabled=[ true | false ]
+  -d expiryPagerSleepTime=<integer>
+  -d warmupBehavior=[ background | blocking | none ]
+  -d memoryLowWatermark=<integer>
+  -d memoryHighWatermark=<integer>
+```
+
+All parameters are described in the following subsections.
+
+|  | The threadsNumber parameter, which sets the number of threads for the bucket, has not had any effect since version Couchbase Server 7.0.0\. It’s deprecated and is no longer listed in the syntax. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#parameter-groups)Parameter Groups
+
+Parameters that support the creation and editing of buckets can be broken into two groups: General and Auto-compaction.
+
+### [](#general)General
+
+This section lists the general parameters for creating a bucket.
+
+* You must supply a value for the following parameters:
+
+  * [ramQuota](#ramQuota)
+  * [name](#name)  
+  All other parameters are optional and have a default value.
+* You can edit the following parameters after bucket creation:
+
+  * [evictionPolicy](#evictionpolicy)
+  * [durabilityMinLevel](#durabilityminlevel)
+  * [durabilityImpossibleFallback](#durabilityImpossibleFallback)
+  * [rank](#rank)
+  * [replicaNumber](#replicanumber)
+  * [compressionMode](#compressionmode)
+  * [maxTTL](#maxttl)
+  * [flushEnabled](#flushenabled)
+  * [magmaSeqTreeDataBlockSize](#magmaseqtreedatablocksize)
+  * [historyRetentionCollectionDefault](#historyretentioncollectiondefault)
+  * [historyRetentionBytes](#historyretentionbytes)
+  * [storageBackend](#storagebackend)
+  * [historyRetentionSeconds](#historyretentionseconds)
+  * [encryptionAtRestKeyId](#encryptionAtRestKeyId)
+  * [encryptionAtRestDekRotationInterval](#encryptionAtRestDekRotationInterval)
+  * [encryptionAtRestDekLifetime](#encryptionAtRestDekLifetime)
+  * [accessScannerEnabled](#accessscannerenabled)
+  * [expiryPagerSleepTime](#expirypagersleeptime)
+  * [warmupBehavior](#warmupbehavior)
+  * [memoryLowWatermark](#memorylowwatermark)
+  * [memoryHighWatermark](#memoryhighwatermark)
+
+|  | When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You cannot edit the following parameters after bucket creation:
+
+  * [bucketType](#buckettype)
+  * [replicaIndex](#replicaindex)
+  * [conflictResolutionType](#conflictresolutiontype)
+
+For full details and examples, see [General Parameters](#general-parameters).
+
+### [](#auto-compaction)Auto-Compaction
+
+You can edit all auto-compaction parameters after bucket creation.
+
+The Auto-compaction parameter group contains the following:
+
+* [autoCompactionDefined](#autocompactiondefined)
+* [parallelDBAndViewCompaction](#paralleldbandviewcompaction)
+* [databaseFragmentationThreshold\[percentage\]](#databasefragmentationthresholdpercentage)
+* [databaseFragmentationThreshold\[size\]](#databasefragmentationthresholdsize)
+* [viewFragmentationThreshold\[percentage\]](#viewfragmentationthresholdpercentage)
+* [viewFragmentationThreshold\[size\]](#viewfragmentationthresholdsize)
+* [purgeInterval](#purgeinterval)
+* [allowedTimePeriod\[fromHour\]](#allowedtimeperiodfromhour)
+* [allowedTimePeriod\[fromMinute\]](#allowedtimeperiodfromminute)
+* [allowedTimePeriod\[toHour\]](#allowedtimeperiodtohour)
+* [allowedTimePeriod\[toMinute\]](#allowedtimeperiodtominute)
+* [allowedTimePeriod\[abortOutside\]](#allowedtimeperiodabortoutside)
+
+|  | Auto-compaction parameters take effect only if both of the following are true: Auto-compaction is enabled, by means of the [autoCompactionDefined](#autocompactiondefined) parameter. An explicit setting is made to the [parallelDBAndViewCompaction](#paralleldbandviewcompaction) parameter. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+|  | In Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage. There are no settings necessary for configuring the auto-compaction of Global Secondary Indexes using standard index storage. For information about storage, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md). For full details and examples, see [Auto-Compaction Parameters](#auto-compaction-parameters). |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#general-parameters)General Parameters
+
+The parameters listed in the following subsections are all included in the General group, and therefore apply equally to Couchbase Server Enterprise and Community Editions.
+
+### [](#name)name
+
+Provide a name for the bucket you want to create. The name must be unique among the bucket names defined for the cluster and cannot exceed 100 characters. Acceptable characters include `A-Z`, `a-z`, `0-9`, `_`, `.`, `-`, and `%`.
+
+You must specify the name parameter when creating a bucket. If you do not provide it or if the name is invalid, the system returns an error notification. For example:
+
+```json
+{"name":"Bucket name needs to be specified"}
+```
+
+You cannot change the bucket name after creating the bucket. If you try to specify this parameter while editing the bucket configuration,Couchbase Server ignores it. To edit an existing bucket’s configuration, specify the bucket name as the `{bucketName}` path parameter. Refer to [HTTP Methods and URIs](#http-methods-and-uris) for more details.
+
+#### [](#example-name-create)Example: Defining a New Name, When Creating
+
+In the following example, a bucket named `testBucket` is created, with a RAM-size of `256` MiB. The bucket name is specified by means of the `name` parameter, with a value of `testBucket`.
+
+```bash
+curl -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256
+```
+
+If successful, the call returns a `202 Accepted` notification, with empty content.
+
+#### [](#example-name-edit)Example: Referencing the Existing Name, When Editing
+
+To edit the bucket, the same endpoint is used, but with the bucket name specified as a concluding path-parameter, as follows:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d ramQuota=512
+```
+
+The value of the `ramQuota` parameter (described below), is hereby increased to `512` MiB.
+
+### [](#buckettype)bucketType
+
+Specifies the type of the bucket. This can be `couchbase` (which is the default) or `ephemeral`.
+
+For a detailed explanation of bucket types, see [Buckets](../learn/buckets-memory-and-storage/buckets.md).
+
+If an invalid bucket type is specified, the error-notification `{"bucketType":"invalid bucket type"}` is returned.
+
+This parameter cannot be modified, following bucket-creation. If an attempt at modification is made, the parameter is ignored.
+
+#### [](#example-buckettype-create)Example: Defining a Bucket Type, When Creating
+
+A bucket type can only be specified when the bucket is created: the specified type cannot be changed subsequently.
+
+The following example creates a bucket, named `testBucket`, whose type is ephemeral:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d bucketType=ephemeral
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+### [](#ramQuota)ramQuota
+
+The amount of memory to be allocated to the bucket, per node, in MiB. The minimum amount is 100 MiB. The maximum amount is the total Data Service memory quota configured per node, minus the amount already assigned to other buckets. For information on per node memory configuration, see the page for [General](../manage/manage-settings/general-settings.md) Settings.
+
+A value for `ramQuota` must be specified: the value can be modified, following bucket-creation.
+
+An incorrect memory-specification returns a notification such as `{"ramQuota":"RAM quota cannot be less than 100 MiB"}`.
+
+#### [](#example-ramQuota-create)Example: Specifying a Memory Quota, when Creating
+
+The following example creates a Couchbase bucket, named `testBucket` and assigns it `256` MiB of memory.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256
+```
+
+Note that the bucket is of type `couchbase` by default.
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-ramQuota-edit)Example: Specifying a New Memory Quota, when Editing
+
+The following example assigns a new memory quota, of `512` MiB, to the existing bucket `testBucket`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d ramQuota=512
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#storagebackend)storageBackend
+
+The storage backend to use for the new bucket. In Enterprise Edition, this value can be set to either `couchstore` or `magma` (the default). In Couchbase Server Community Edition, the default and only valid value is `couchstore`. For more information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
+
+|  | You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+#### [](#example-storage-backend)Example: Specifying the Storage Backend
+
+The following example creates a new bucket, named `testBucket`, with the Magma storage backend.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d ramQuota=300 \
+-d storageBackend=magma \
+-d name=testBucket
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+### [](#numvbuckets)numVBuckets
+
+Sets the number of vBuckets for a Magma bucket. The possible values are `128` or `1024`. If you do not supply this value (or if you supply a value other than `128` or `1024`), Couchbase Server uses the default value of `128`.
+
+If you set `storageBackend` to `couchstore`, the number of vBuckets is always 1024, and Couchbase Server ignores this parameter if you provide it.
+
+|  | You cannot change the number of vBuckets for a bucket after creating it. If you need a bucket with a different number of vBuckets, you must create a new bucket with the desired number of vBuckets and then migrate your data to it. See [XDCR Storage Backend Migration](../manage/manage-buckets/migrate-bucket.md#xdcr-migration) for more information. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#example-numvbuckets-create)Example: Setting the Number of vBuckets
+
+The following example creates a new bucket named `testBucket` with the Magma stage backend assigns it `1024` vBuckets. It also sets the `ramQuota` to `1024`, which is the minimum value allowed for a Magma bucket with 1024 vBuckets.
+
+```console
+curl -X POST http://127.0.0.1:8091/pools/default/buckets \
+     -u Administrator:password \
+     -d name=testBucket \
+     -d storageBackend=magma \
+     -d numVBuckets=1024 \
+     -d ramQuota=1024
+```
+
+This example returns the status code `202 Accepted` and no additional output.
+
+### [](#evictionpolicy)evictionPolicy
+
+Sets the ejection policy for the bucket. You can change the eviction policy after bucket creation. See [Ejection](../learn/buckets-memory-and-storage/memory.md#ejection) for more information about ejection policies.
+
+Each type of bucket has its own set of ejection policies:
+
+* Couchbase bucket: `valueOnly` (the default for buckets using the [Couchstore](../learn/buckets-memory-and-storage/storage-engines.md#couchstore) storage engine) or `fullEviction` (the default for buckets using [Magma](../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma)).
+* Ephemeral bucket: `noEviction` (which is the default) or `nruEviction`.
+
+Changes to the ejection policy of an ephemeral bucket take effect without requiring any further steps. Before the change takes effect on a Couchbase bucket, you must perform 1 of the following actions:
+
+* Allow Couchbase Server to restart the bucket automatically. It does so automatically unless you set [noRestart](#norestart) to `true`. When Couchbase Server restarts the bucket, it closes connections and makes the bucket unavailable temporarily.
+* Perform a [swap rebalance](../install/upgrade-procedure-selection.md#swap-rebalance) on all nodes in the cluster running the data service.
+* Perform a [graceful failover](../learn/clusters-and-availability/graceful-failover.md) followed by a [delta recovery](../learn/clusters-and-availability/recovery.md#delta-recovery) and [rebalance](../learn/clusters-and-availability/rebalance.md) for all nodes running the data service in the cluster.
+
+|  | If you’re performing a storage backend migration (see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md)) while you’re changing the ejection policy, you must set noRestart to true. You must also perform a full recovery instead of a delta recovery after the graceful failover because the migration process requires it. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+For more information about changing the ejection policy of a bucket, including the steps to take to change the policy without downtime, see [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md).
+
+#### [](#example-evictionpolicy-create)Example: Specifying an Ejection Policy, when Creating
+
+The following example creates a new bucket named `testBucket` which is a Couchbase bucket and assigns it the `fullEviction` policy.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket -d ramQuota=256 \
+-d evictionPolicy=fullEviction
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-evictionpolicy-edit)Example: Specifying a New Ejection Policy, when Editing
+
+The following example modifies the eviction policy of the existing bucket `testBucket`, specifying that it should be `valueOnly`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d evictionPolicy=valueOnly
+```
+
+If successful, the call returns a `200 OK` notification with no other value returned. Couchbase Server also starts the process of restarting the bucket.
+
+### [](#norestart)noRestart
+
+Set this parameter to `true` to prevent Couchbase Server from automatically restarting the bucket when you change the ejection policy using [evictionPolicy](#evictionpolicy). It only has an effect if you’ve also set a value in the `evictionPolicy` parameter.
+
+This parameter defaults to `false`, meaning Couchbase Server automatically restarts the bucket after you change the ejection policy.
+
+When set to `true`, the new ejection policy does not take effect until you perform further steps (see [evictionPolicy](#evictionpolicy) for details).
+
+#### [](#example-evictionpolicy-edit)Example: Set a New Ejection Policy Without Bucket Restart
+
+The following example set the eviction policy of the bucket `travel-sample` to `fullEviction` and prevents the restart of the bucket:
+
+```console
+curl -v -X POST http://localhost:8091/pools/default/buckets/travel-sample \
+     -u Administrator:password \
+     -d evictionPolicy="fullEviction" \
+     -d noRestart=true
+```
+
+If successful, the call returns a `200 OK` notification with no other value returned. Couchbase Server does not restart the bucket. The new ejection policy does not take effect until you perform one of the procedures described in [evictionPolicy](#evictionpolicy).
+
+### [](#durabilityminlevel)durabilityMinLevel
+
+A durability level to be assigned to the bucket, as the minimum level at which all writes to the bucket must occur. Level-assignment depends on bucket type. For a Couchbase bucket, the level can be `none`, `majority`, `majorityAndPersistActive`, or `persistToMajority`. For an Ephemeral bucket, the level can be `none` or `majority`.
+
+You can modify this parameter for existing buckets.
+
+For information about durability and levels, see [Durability](../learn/data/durability.md).
+
+#### [](#example-durabilityminlevel-create)Example: Specifying a Minimum Durability Level, when Creating
+
+The following example creates a new bucket, named `testBucket`, which is a Couchbase bucket by default; and assigns it the minimum durability level of `majorityAndPersistActive`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d durabilityMinLevel=majorityAndPersistActive
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-durabilityminlevel-edit)Example: Specifying a New Minimum Durability Level, when Editing
+
+The following example modifies the minimum durability level of the existing bucket `testBucket`, changing the level to `persistToMajority`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d durabilityMinLevel=persistToMajority
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#durabilityImpossibleFallback)durabilityImpossibleFallback
+
+Overrides Couchbase Server’s default behavior when it cannot meet a durable write’s majority requirement. When set to the default `disabled` setting, Couchbase Server reports to clients that a durable write that cannot meet its majority requirement has failed.
+
+If you set this value to `fallbackToActiveAck`, Couchbase Server reports the write as successful if the write succeeds to the active vBucket. It reports it as a successful durable write even if it could not meet the majority requirement.
+
+|  | Potential Data Loss Enabling durabilityImpossibleFallback degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when durabilityImpossibleFallback is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Use this setting only in special cases. For example, use it when you’re performing a graceful failover and you still want durable writes to succeed for a bucket with a single replica.
+
+For information about the `durabilityImpossibleFallback` setting, see [Maintaining Durable Writes During Single Replica Failovers](../learn/data/durability.md#maintaining-durable-writes).
+
+You can modify this parameter for existing buckets.
+
+|  | Each time Couchbase Server reports success for a durable write that does meet its majority requirement, it increments the stat named sync\_write\_committed\_not\_durable\_count on the vBucket. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+#### [](#example-allow-durable-writes-to-succeed-during-a-node-failover)Example: Allow Durable Writes to Succeed During a Node Failover
+
+This example enables `durabilityImpossibleFallback` for the single-replica bucket named `testBucket` allowing durable writes to succeed even if there are not enough nodes for a majority.
+
+```bash
+curl -X POST -u Administrator:password \
+       http://localhost:8091/pools/default/buckets/testBucket \
+       -d "durabilityImpossibleFallback=fallbackToActiveAck"
+```
+
+If successful, the call returns a `200 OK` notification.
+
+#### [](#example-restore-default-durable-write-behavior)Example: Restore Default Durable Write Behavior
+
+This example restores the default behavior for the bucket `testBucket` so that durable writes fail if Couchbase Server cannot fulfill the majority requirement.
+
+```bash
+curl -v -X POST -u Administrator:password \
+       http://localhost:8091/pools/default/buckets/testBucket \
+       -d "durabilityImpossibleFallback=disabled"
+```
+
+If successful, the call returns a `200 OK` notification.
+
+### [](#rank)rank
+
+The rank for the bucket: this determines the bucket’s place in the order in which the rebalance process handles the buckets on the cluster. The bucket can be either a Couchbase or an Ephemeral bucket. Rank can be established as an integer, from `0` (the default) to `1000`. The higher a bucket’s assigned integer (in relation to the integers assigned other buckets), the sooner in the rebalance process the bucket is handled. For example, if on a cluster that hosts multiple buckets, one bucket is assigned a rank of `25` and all others remain with the default assignment of `0`, the bucket assigned `25` is handled before any other bucket, when rebalance occurs.
+
+This assignment of `rank` allows a cluster’s most mission-critical data to be rebalanced with top priority.
+
+#### [](#example-rank-create)Example: Specifying a Bucket’s Rank, when Creating
+
+The following establishes a new bucket named `testBucket`, and assigns it a `rank` of 100.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets -u Administrator:password -d name=testBucket -d ramQuota=125 -d rank=100
+```
+
+If the call is successful, `202 Accepted` is returned. Assigned the rank of `100`, `testBucket` will be handled by the rebalance process before any bucket whose assignment is less than `100`, and after and bucket whose assignment is greater.
+
+#### [](#example-rank-edit)Example: Specifying a Bucket’s Rank, when Editing
+
+The following edits the previously established value of `rank` for `testBucket`:
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket /
+-u Administrator:password /
+-d rank=200
+```
+
+Success returns `200 OK`, and changes the `rank` of `testBucket` to `200`.
+
+### [](#replicanumber)replicaNumber
+
+The number of replicas for the bucket. For information on replicas and replication, see [Intra-Cluster Replication](../learn/clusters-and-availability/intra-cluster-replication.md) and [vBuckets](../learn/buckets-memory-and-storage/vbuckets.md). The possible values are `0` (which disables replication, and therefore ensures that no replicas will be maintained), `1` (which is the default), `2`, and `3`. If a number greater than `3` is specified, the following error-notification is returned: `{"replicaNumber":"Replica number larger than 3 is not supported."}`.
+
+If more replicas are requested than can be assigned to the cluster, due to an insufficient number of nodes, no notification is returned. Instead, the maximum possible number of replicas is created: additional replicas will be added subsequently, if more nodes become available.
+
+This parameter can be modified, following bucket-creation. Such modification may require a rebalance: for information, see [Rebalance](../learn/clusters-and-availability/rebalance.md).
+
+#### [](#example-replicanumber-create)Example: Specifying a Number of Replicas, when Creating
+
+The following example creates a new bucket, named `testBucket`, and specifies that it should have `3` replicas.
+
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d replicaNumber=3
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-replicanumber-edit)Example: Specifying a Modified Number of Replicas, when Editing
+
+The following example changes the replica-number of the existing bucket `testBucket`, specifying that the number be `2`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d replicaNumber=2
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#compressionmode)compressionMode
+
+The compression mode for the bucket. The possible values are `off`, `passive` (which is the default), and `active`. If the value is incorrectly specified, the following error-notification is returned: `{"compressionMode":"compressionMode can be set to 'off', 'passive' or 'active'"}`.
+
+This parameter can be modified following bucket-creation.
+
+For information on compression and compression modes, see [Compression](../learn/buckets-memory-and-storage/compression.md).
+
+#### [](#example-compressionmode-creating)Example: Specifying a Compression Mode, when Creating
+
+The following example creates a new bucket, named `testBucket`, and assigns it the `active` compression mode:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d compressionMode=active
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-compressionmode-editing)Example: Specifying a New Compression Mode, when Editing
+
+The following example changes the compression mode of the existing bucket `testBucket`, specifying that the mode now be `off`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d compressionMode=off
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#maxttl)maxTTL
+
+Sets the bucket’s maximum time to live. The default value is `0`, which does not automatically expire documents. It also does not affect expiration values you directly set on a document.
+
+Setting this parameter to a non-zero value has two effects:
+
+* It sets a default expiration time for documents you create or mutate in the bucket. The bucket’s `maxTTL` value can be overridden by a `maxTTL` parameter set on the collection containing a document, or by directly setting an expiration on the document itself (except as explained in the next point).
+* It sets the maximum time in seconds a document can exist before it expires. You can explicitly set a document to expire before this time. Attempting to set a document to expire after this time has Couchbase Server set the document to expire in `maxTTL` seconds. As with setting a default expiration, a non-zero `maxTTL` setting on a document’s collection overrides the bucket’s `maxTTL` setting.
+
+The maximum value is MAX32INT (`2147483647` seconds, or `68.096` years). Attempting to set `maxTTL` value greater than MAX32INT returns an the error: `{"maxTTL":"Max TTL must be an integer between 0 and 2147483647"}`.
+
+You can modify this value after creating the bucket. Changing the `maxTTL` on the bucket only affects documents when you create or mutate them. Setting or changing the `maxTTL` does not cause existing documents to start expiring.
+
+For more information, see [Expiration](../learn/data/expiration.md).
+
+#### [](#example-maxttl-create)Example: Specifying a Time-to-Live Value, when Creating
+
+The following example creates a new bucket, named `testBucket`, and assigns it a time-to-live of 500,000 seconds:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d maxTTL=500000
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-maxttl-edit)Example: Specifying a New Time-to-Live value, when Editing
+
+The following example modifies the time-to-live setting of the existing bucket `testBucket`, reducing it to `0`, and thereby disabling expiration.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d maxTTL=0
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#replicaindex)replicaIndex
+
+Specifies whether View Indexes are to be replicated. The value can be either `0` (which is the default), specifying that they are not to be replicated; or `1`, specifying that they are to be replicated. Specifying any other value returns an error-notification such as the following: `{"replicaIndex":"replicaIndex can only be 1 or 0"}`.
+
+This option is valid for Couchbase buckets only. Note that there may be, at most, one replica view index.
+
+This parameter cannot be modified, following bucket-creation.
+
+#### [](#example-replicaindex-create)Example: Specifying View Index Replication, when Creating
+
+View index replication can only be specified when a bucket is created. Attempts to change the value subsequently are ignored.
+
+The following example creates a new bucket, named `testBucket`, and specifies that View indexes are to be replicated:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d replicaIndex=1
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+### [](#conflictresolutiontype)conflictResolutionType
+
+Specifies the conflict resolution type for the bucket. The value can be `seqno` (which is the default), specifying sequence-number based resolution; or `lww` (last write wins), specifying timestamp-based resolution This parameter cannot be modified, following bucket-creation. If modification is attempted, the following error-notification is returned: `{"conflictResolutionType":"Conflict resolution type not allowed in update bucket"}`.
+
+For information on conflict resolution, see [XDCR Conflict Resolution](../learn/clusters-and-availability/xdcr-conflict-resolution.md).
+
+#### [](#example-conflictresolutiontype-create)Example: Specifying a Conflict Resolution Policy, when Creating
+
+A bucket’s conflict resolution policy can only be specified when the bucket is created: attempts to change the setting subsequently are ignored.
+
+The following example creates a new bucket, named `testBucket`, specifying the `lww` conflict resolution policy.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d conflictResolutionType=lww
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+### [](#flushenabled)flushEnabled
+
+Whether flushing is enabled for the bucket. The value can be either `1`, which enables flushing; or `0`, which is the default, and disables flushing.
+
+Flushing deletes every document in the bucket, and therefore should not be enabled unless absolutely necessary.
+
+This parameter can be modified, following bucket-creation.
+
+#### [](#example-flush-check)Example: Check whether flushing is enabled
+
+You can check the `flush` status of all your buckets by using the following command:
+
+```bash
+curl -s -X GET -u Administrator:password http://127.0.0.1:8091/pools/default/buckets| jq . | egrep '"name"|flush'
+```
+
+If flushing is enabled for a bucket, then the result will include a `doFlush` statement for that bucket:
+
+```text
+ "name": "bucket1",
+ "flush": "/pools/default/buckets/bucket1/controller/doFlush"
+ "name": "bucket2",
+ "flush": "/pools/default/buckets/bucket2/controller/doFlush"
+ "name": "travel-sample",
+ "flush": "/pools/default/buckets/travel-sample/controller/doFlush"
+```
+
+The `doflush` statement is excluded for buckets that don’t have flushing enabled.
+
+```text
+ "name": "bucket1",
+ "name": "bucket2",
+ "flush": "/pools/default/buckets/bucket2/controller/doFlush"
+ "name": "travel-sample",
+ "flush": "/pools/default/buckets/travel-sample/controller/doFlush"
+```
+
+#### [](#example-create)Example: Enable Flushing, when Creating
+
+The following example creates a new bucket, named `testBucket`, and enables flushing:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d flushEnabled=1
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-edit)Example: Modify Flushing Enablement-Status, when Editing
+
+The following example modifies the flushing enablement-status of the existing bucket, `testBucket`, switching it to disabled, by specifying the value `0` for the parameter `flushEnabled`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d flushEnabled=0
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#magmaseqtreedatablocksize)magmaSeqTreeDataBlockSize
+
+The block size, in bytes, for Magma seqIndex blocks. The minimum block size that can be specified is 4096; and the maximum is 131072\. The default size is 4096\. The larger the specified block size, the better may be the block compression; potentially at the cost of greater consumption of memory, CPU, and I/O bandwidth. Note that `storageBackend` must be `magma`.
+
+This setting cannot be established or retrieved until the entire cluster is running 7.2 or higher.
+
+#### [](#example-magmaseqtreedatablocksize-create)Example: Set magmaSeqTreeDataBlockSize, when Creating
+
+The following example creates the bucket `testBucket`, establishing the value of `magmaSeqTreeDataBlockSize` as `7000`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d magmaSeqTreeDataBlockSize=7000
+```
+
+If successful, the call returns `202 Accepted`.
+
+### [](#historyretentioncollectiondefault)historyRetentionCollectionDefault
+
+Whether a change history is made for the bucket. The value can be either `true` (the default) or `false`. If the value is `true`, the change history records changes made to all collections within the bucket, unless this setting is overridden for one or more individual collections. (For details on per collection overriding, see [Creating and Editing a Collection](creating-a-collection.md)).
+
+If the value of `storageBackend` is not specified as `magma`, the request for a change history is rejected. Enabling change history has no effect unless a positive value is specified for either historyRetentionSeconds or historyRetentionBytes, or both.
+
+For an overview of change history, see [Change History](../learn/data/change-history.md).
+
+#### [](#example-retention-collection-create)Example: Disable historyRetentionCollectionDefault, when Creating
+
+The following example creates a bucket, specifies its storage as magma, and specifies that a record of changes made to collections within the bucket should not be made.
+
+```bash
+curl -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d historyRetentionCollectionDefault=false
+```
+
+Success returns `202 Accepted`.
+
+#### [](#example-retention-collection-edit)Example: Modify historyRetentionCollectionDefault, when Editing
+
+The following example modifies the value of `historyRetentionCollectionDefault` for the existing bucket `testBucket`.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d historyRetentionCollectionDefault=true
+```
+
+Success returns `200 OK`. Note, however, that this call only results in a change history being written to disk if `storageBackend` was specified as `magma` at bucket-creation, and if a positive value is specified (either prior to or after this call) for either `historyRetentionSeconds` or `historyRetentionBytes`, or for both.
+
+### [](#historyretentionbytes)historyRetentionBytes
+
+Specifies the maximum size, in bytes, of the change history that is written to disk for all collections in this bucket when the value of `historyRetentionCollectionDefault` is `true`.
+
+The minimum size for the change history is 2 GiB (which would be specified as `2147483648`). The maximum is 1.8 PiB (which would be specified as `18446744073709551615`). If a positive integer outside this range is specified, an error is flagged, no file-size is established, and change history remains disabled for the bucket.
+
+Each replica configured for the bucket maintains a copy of the change history. Therefore, if two replicas are configured, and the specified maximum size is 2 GiB, the total size used for the change history across the cluster becomes 6 GiB.
+
+Note that for a change history to be written to disk, a positive value must be specified either for this parameter or for `historyRetentionSeconds`, or both. Additionally, `storageBackend` must be specified as `magma`.
+
+For an overview of change history, see [Change History](../learn/data/change-history.md).
+
+#### [](#example-retention-bytes-create)Example: Set historyRetentionBytes, when Creating
+
+The following example creates a bucket, specifies its storage as magma, accepts the default value of `true` for `historyRetentionCollectionDefault`, and specifies the maximum disk-size of the change-record as 2 GiB. Thus, when this size-limit is reached, the oldest key-value pairs in the current record will be successively removed, by means of compaction.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d historyRetentionBytes=2147483648
+```
+
+Success returns `202 Accepted`.
+
+#### [](#example-retention-bytes-edit)Example: Modify historyRetentionBytes, when Editing
+
+The following example modifies the value of `historyRetentionBytes` to 4 GiB, for the existing bucket `testBucket`.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d historyRetentionBytes=4294967296
+```
+
+Success returns `200 OK`.
+
+### [](#historyretentionseconds)historyRetentionSeconds
+
+Specifies the maximum number of seconds to be covered by the change history that is written to disk for all collections in this bucket when the value of `historyRetentionCollectionDefault` is `true`.
+
+Note that for a change history to be written to disk, a positive value must be specified either for this parameter or for `historyRetentionBytes`, or both.
+
+For an overview of change history, see [Change History](../learn/data/change-history.md).
+
+#### [](#example-retention-seconds-create)Example: Set historyRetentionSeconds, when Creating
+
+The following example creates a bucket, specifies its storage as magma, accepts the default value of `true` for `historyRetentionCollectionDefault`, and specifies the maximum number of seconds for the change-record as 13,600\. Thus, key-value pairs that have been recorded prior to 13,600 seconds before the current time will be removed, by means of compaction.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d historyRetentionSeconds=13600
+```
+
+Success returns `202 Accepted`.
+
+#### [](#example-retention-seconds-edit)Example: Modify historyRetentionSeconds, when Editing
+
+The following example modifies the number of seconds to be covered by the change history for the existing bucket `testBucket` to 11,000.
+
+```bash
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d historyRetentionSeconds=11000
+```
+
+Success returns `200 OK`.
+
+### [](#accessscannerenabled)accessScannerEnabled
+
+Specifies whether the Access Scanner is enabled for the bucket. The value can be either `true` (which is the default) or `false`.
+
+The access scanner periodically logs the most frequently used keys, allowing the Server to prioritize loading these documents into memory during warmup.
+
+For information on the Access Scanner, see [Initialization and Warmup](../learn/buckets-memory-and-storage/memory.md#initialization-and-warmup).
+
+This parameter can be modified after a bucket is created.
+
+#### [](#example-accessscannerenabled-create)Example: Enable Access Scanner, when Creating
+
+The following example creates a new bucket, named `testBucket`, and enables the Access Scanner.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d accessScannerEnabled=true
+
+Success returns `202 Accepted`.
+
+#### [](#example-accessscannerenabled-edit)Example: Modify Access Scanner Enablement, when Editing
+
+The following example changes the Access Scanner setting for the existing bucket `testBucket`. It sets `accessScannerEnabled` to `false`, which disables the Access Scanner.
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d accessScannerEnabled=false
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#expirypagersleeptime)expiryPagerSleepTime
+
+Specifies the sleep time for the expiry pager in seconds. The default value is `600` (10 minutes).
+
+For information about the Expiry Pager, see [Expiry Pager](../learn/buckets-memory-and-storage/memory.md#expiry-pager).
+
+This parameter can be modified after a bucket is created.
+
+#### [](#example-expirypagersleeptime-create)Example: Set Expiry Pager Sleep Time, when Creating
+
+The following example creates a new bucket, named `testBucket`, and sets the expiry pager sleep time to `300` seconds (5 minutes).
+
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d expiryPagerSleepTime=300
+
+Success returns `202 Accepted`.
+
+#### [](#example-expirypagersleeptime-edit)Example: Modify Expiry Pager Sleep Time, when Editing
+
+The following example changes the expiry pager sleep time for the existing bucket `testBucket`. It sets `expiryPagerSleepTime` to `360` seconds (6 minutes).
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d expiryPagerSleepTime=360
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#warmupbehavior)warmupBehavior
+
+Specifies the warmup behavior for the bucket.
+
+Warmup behavior in Server is the process that loads data from disk into memory when a bucket or node starts up. For more information, see [Initialization and Warmup](../learn/buckets-memory-and-storage/memory.md#initialization-and-warmup).
+
+The values can be:
+
+* `background` (default, Warmup now loads items in the background, allowing the bucket to have write availability much quicker than blocking.)
+* `blocking` (to block all operations and load all data until warmup is complete, before the bucket becomes available)
+* `none` (to disable completely)
+
+#### [](#example-warmupbehavior-create)Example: Set Warmup Behavior, when Creating
+
+The following example creates a new bucket, named `testBucket`, and sets the warmup behavior to `blocking`.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d warmupBehavior=blocking
+
+If successful, the call returns `202 Accepted`.
+
+#### [](#example-warmupbehavior-edit)Example: Modify Warmup Behavior, when Editing
+
+The following example changes the warmup behavior for the existing bucket `testBucket`. It sets `warmupBehavior` to `none`.
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d warmupBehavior=none
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#memorylowwatermark)memoryLowWatermark
+
+If a bucket’s memory quota is exceeded, items may be ejected from the bucket by the Data Service.
+
+The `memoryLowWatermark` value defines the low memory watermark for a bucket. When item ejection is triggered by reaching the high watermark, data is removed until the memory usage falls back to the `memoryLowWatermark` threshold, ensuring efficient memory management. For more information, see [Ejection](../learn/buckets-memory-and-storage/memory.md#ejection).
+
+The value is an integer between `50` to `89`. `75` is the default value.
+
+This parameter can be modified after a bucket is created.
+
+#### [](#example-memorylowwatermark-create)Example: Set Memory Low Watermark, when Creating
+
+The following example creates a new bucket, named `testBucket`, and sets the memory low watermark to `60`.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d memoryLowWatermark=60
+
+Success returns `202 Accepted`.
+
+#### [](#example-memorylowwatermark-edit)Example: Modify Memory Low Watermark, when Editing
+
+The following example changes the memory low watermark for the existing bucket `testBucket`. It sets `memoryLowWatermark` to `70`.
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d memoryLowWatermark=70
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#memoryhighwatermark)memoryHighWatermark
+
+If a bucket’s memory quota is exceeded, items may be ejected from the bucket by the Data Service.
+
+The `mem_high_wat` value defines the high memory watermark for a Couchbase bucket. When memory usage reaches this threshold, the Data Service begins ejecting items to reduce memory consumption, or stops ingesting data if enough space cannot be freed. For more information, see [Ejection](../learn/buckets-memory-and-storage/memory.md#ejection).
+
+The value is an integer between `51` to `90`. `85` is the default value.
+
+This parameter can be modified after a bucket is created.
+
+#### [](#example-memoryhighwatermark-create)Example: Set Memory High Watermark, when Creating
+
+The following example creates a new bucket, named `testBucket`, and sets the memory high watermark to `80`.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=1100 \
+-d storageBackend=magma \
+-d memoryHighWatermark=80
+
+If successful, the call returns `202 Accepted`.
+
+#### [](#example-memoryhighwatermark-edit)Example: Modify Memory High Watermark, when Editing
+
+The following example changes the memory high watermark for the existing bucket `testBucket`. It sets `memoryHighWatermark` to `75`.
+
+curl -v -X POST http://10.143.201.101:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d memoryHighWatermark=75
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#encryptionAtRestKeyId)encryptionAtRestKeyId
+
+Sets the encryption-at-rest key ID for the bucket. The default value, `-1`, indicates that the bucket is not encrypted. When you set this value to the `id` for an encrytion-at-rest-key, Couchbase Server encrypts the the bucket’s data at rest. The key ID must be for an existing key and the key must be configured to encrypt either all buckets or for this bucket specifically.
+
+For more information about encryption at rest, see [Native Encryption at Rest](../learn/security/native-encryption-at-rest-overview.md).
+
+#### [](#example-create-bucket-with-native-encryption-at-rest-enabled)Example: Create Bucket With Native Encryption-at-Rest Enabled
+
+The following example creates a new bucket, named `testBucket`, and enables encryption-at-rest for the bucket by setting `encryptionAtRestKeyId` to `0`.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=100 \
+-d encryptionAtRestKeyId=0
+```
+
+#### [](#example-change-encryption-at-rest-key-used-to-encrypt-bucket)Example: Change Encryption-at-Rest Key Used to Encrypt Bucket
+
+The following example changes the existing `testBucket` to use the encryption-at-rest key whose `id` is `18`. If this bucket was already encrypted using a different key, Couchbase Server re-encrypts the data with the new key. If the bucket was not encrypted, Couchbase Server encrypts the data.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d encryptionAtRestKeyId=18
+```
+
+### [](#encryptionAtRestDekRotationInterval)encryptionAtRestDekRotationInterval
+
+Sets how often in seconds Couchbase Server rotates the bucket’s data encryption keys (DEKs). After this period elapses, Couchbase Server marks the DEK inactive and creates a new active DEK. It keeps the inactive DEK to decrypt data that’s still encrypted with it until its lifetime elapses (see [encryptionAtRestDekLifetime](#encryptionAtRestDekLifetime)).
+
+The default value is `2592000`, which means Couchbase Server rotates the DEKs every 30 days. Set this value to 0 to turn off DEK rotation.
+
+For more information about key rotation, see [Encryption Key Rotation and Expiration](../learn/security/native-encryption-at-rest-overview.md#rotation-expiration).
+
+The following example sets the DEK rotation interval to 15 days (1,296,000 seconds):
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d encryptionAtRestDekRotationInterval=1296000
+```
+
+### [](#encryptionAtRestDekLifetime)encryptionAtRestDekLifetime
+
+Sets the lifetime of the bucket’s data encryption keys (DEKs) in seconds from the moment it was created. Once this period passes, Couchbase Server uses the active DEK to re-encrypts any data that’s still encrypted using the expired DEK. It then deletes the expired DEK.
+
+This value defaults to `31536000`, which means Couchbase Server keeps expired DEKs for 365 days. Setting this value to 0 means Couchbase Server never deletes expired DEKs.
+
+If you set `encryptionAtRestDekRotationInterval` to a non-zero value and `encryptionAtRestDekLifetime` to 0, Couchbase Server keeps old DEKs forever. Depending on how often you rotate the DEKs, this can lead to a Couchbase Server keeping a large number of DEKs. Couchbase Server limits the number of DEKs to 50 per node. When this limit is reached, Couchbase Server refuses to rotate the DEKs until you adjust the DEK lifetime so some DEKs can expire.
+
+|  | Setting this value too low can cause performance issues because Couchbase Server may need to re-encrypt large amounts of data. |
+|  | ------------------------------------------------------------------------------------------------------------------------------ |
+
+For more information about key lifetime, see [Encryption Key Rotation and Expiration](../learn/security/native-encryption-at-rest-overview.md##rotation-expiration).
+
+The following example sets the DEK lifetime to 90 days (7,776,000 seconds):
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d encryptionAtRestDekLifetime=7776000
+```
+
+## [](#auto-compaction-parameters)Auto-Compaction Parameters
+
+The parameters listed in the following subsections are all included in the Auto-compaction group
+
+### [](#autocompactiondefined)autoCompactionDefined
+
+Specifies whether the default auto-compaction settings are to be modified for this bucket. The value specified can be either `true` or `false` (which is the default). If the value is `false`, any parameter-values specified to modify the default auto-compaction settings are ignored. If the value is incorrectly specified, an error-notification such as the following is returned: `{"autoCompactionDefined":"autoCompactionDefined is invalid"}`.
+
+If you set `autoCompactionDefined` to `true`:
+
+* All other auto-compaction-related parameters that need to be established should themselves be explicitly specified in the current call.
+* The parameter `parallelDBAndViewCompaction` must be defined. If it is not defined, an error-notification such as the following is returned: `{"parallelDBAndViewCompaction":"parallelDBAndViewCompaction is missing"}`.
+
+Auto-compaction settings are unnecessary for memory-optimized indexes. For information about index storage, see [Index Storage Settings](../indexes/storage-modes.md).
+
+For further information about auto-compaction settings, see [Auto-Compaction](../manage/manage-settings/configure-compact-settings.md).
+
+#### [](#example-autocompactiondefined-create)Example: Enabling Auto-Compaction, when Creating
+
+The following example creates a new bucket, named `testBucket`, and enables auto-compaction for the bucket. Necessarily, a setting is also explicitly made for `parallelDBAndViewCompaction`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d autoCompactionDefined=true \
+-d parallelDBAndViewCompaction=false
+```
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-autocompactiondefined-edit)Example: Modifying Auto-Compaction Enablement, when Editing
+
+The following example changes the auto-compaction enablement of the existing bucket `testBucket`, disabling auto-compaction, by specifying the value `false` to the `autoCompactionDefined` parameter:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d autoCompactionDefined=false
+```
+
+This disables auto-compaction for the bucket, and removes all auto-compaction-related settings. If the call is successful, a `200 OK` notification is returned, with no object.
+
+To enable auto-compaction after bucket creation, the `parallelDBAndViewCompaction` parameter must also be specified; as in the following example, which sets `parallelDBAndViewCompaction` to `false`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d autoCompactionDefined=true \
+-d parallelDBAndViewCompaction=false
+```
+
+If successful, the call returns a `200 OK` notification. No object is returned.
+
+### [](#paralleldbandviewcompaction)parallelDBAndViewCompaction
+
+Specifies whether compaction should occur to documents and view indexes in parallel. This is a global setting, which therefore affects all buckets on the cluster. The value can either be `true` or `false`: one value or the other must be specified. If the value is incorrectly specified, the following error-notification is returned: `{"parallelDBAndViewCompaction":"parallelDBAndViewCompaction is invalid"}`.
+
+This parameter-value is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+For examples, see [autoCompactionDefined](#autocompactiondefined), above.
+
+### [](#databasefragmentationthresholdpercentage)databaseFragmentationThreshold\[percentage\]
+
+Specifies, as a percentage, the level of database fragmentation that must be reached for data compaction to be automatically triggered. The assigned value must be an integer from `0` to `100`. The default value is `"undefined"`.
+
+If a value for `databaseFragmentationThreshold[size]` is also specified, data compaction is automatically triggered as soon as the threshold specified by one parameter or the other is reached.
+
+If this parameter is incorrectly specified, an error-notification such as the following is returned: `"databaseFragmentationThreshold[percentage]":"database fragmentation must be an integer"`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+#### [](#example-databasefragmentationthresholdpercentage-create)Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating
+
+The following example establishes a value for `databaseFragmentationThreshold[percentage]`, and for all other auto-compaction-related parameters, in its creation of a new bucket, named `testBucket`:
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets \
+-u Administrator:password \
+-d name=testBucket \
+-d ramQuota=256 \
+-d autoCompactionDefined=true \
+-d parallelDBAndViewCompaction=false \
+-d databaseFragmentationThreshold[percentage]=30 \
+-d databaseFragmentationThreshold[size]=1073741824 \
+-d viewFragmentationThreshold[percentage]=30 \
+-d viewFragmentationThreshold[size]=1073741824 \
+-d allowedTimePeriod[fromHour]=0 \
+-d allowedTimePeriod[fromMinute]=0 \
+-d allowedTimePeriod[toHour]=6 \
+-d allowedTimePeriod[toMinute]=0 \
+-d allowedTimePeriod[abortOutside]=true \
+-d purgeInterval=3.0
+```
+
+The data fragmentation threshold percentage is hereby specified as `30`.
+
+If successful, the call returns a `202 Accepted` notification. No object is returned.
+
+#### [](#example-databasefragmentationthresholdpercentage-edit)Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing
+
+The following example modifies the `databaseFragmentationThreshold[percentage]` setting for the existing bucket `testBucket`; establishing a new value of `47`. Note that although other auto-compaction settings are intended to be unchanged from their previous, explicit settings, all must be respecified correspondingly in the new call: otherwise, all revert to their default values.
+
+```bash
+curl -v -X POST http://127.0.0.1:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d autoCompactionDefined=true \
+-d parallelDBAndViewCompaction=false \
+-d databaseFragmentationThreshold[percentage]=47 \
+-d databaseFragmentationThreshold[size]=1073741824 \
+-d viewFragmentationThreshold[percentage]=30 \
+-d viewFragmentationThreshold[size]=1073741824 \
+-d allowedTimePeriod[fromHour]=0 \
+-d allowedTimePeriod[fromMinute]=0 \
+-d allowedTimePeriod[toHour]=6 \
+-d allowedTimePeriod[toMinute]=0 \
+-d allowedTimePeriod[abortOutside]=true \
+-d purgeInterval=3.0
+```
+
+### [](#databasefragmentationthresholdsize)databaseFragmentationThreshold\[size\]
+
+Specifies, as a size in MiB, the level of database fragmentation that must be reached for data compaction to be automatically triggered. The assigned value must be a positive integer. The default value is `"undefined"`.
+
+If a value for `databaseFragmentationThreshold[percentage]` is also specified, data compaction is automatically triggered as soon as the threshold specified by one parameter or the other is reached.
+
+If this parameter is incorrectly specified, an error-notification such as the following is returned: `"databaseFragmentationThreshold[size]":"database fragmentation must be an integer"`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#viewfragmentationthresholdpercentage)viewFragmentationThreshold\[percentage\]
+
+Specifies, as a percentage, the level of View fragmentation that must be reached for View compaction to be automatically triggered. The assigned value must be an integer from `0` to `100`. The default value is `"undefined"`.
+
+If a value for `viewFragmentationThreshold[size]` is also specified, View compaction is automatically triggered as soon as the threshold specified by one parameter or the other is reached.
+
+If this parameter is incorrectly specified, an error-notification such as the following is returned: `"viewFragmentationThreshold[percentage]":"view fragmentation must be an integer"`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#viewfragmentationthresholdsize)viewFragmentationThreshold\[size\]
+
+Specifies, as a size in MiB, the level of View fragmentation that must be reached for View compaction to be automatically triggered. The assigned value must be a positive integer. The default value is `"undefined"`.
+
+If a value for `viewFragmentationThreshold[percentage]` is also specified, View compaction is automatically triggered as soon as the threshold specified by one parameter or the other is reached.
+
+If this parameter is incorrectly specified, an error-notification such as the following is returned: `"viewFragmentationThreshold[size]":"view fragmentation size must be an integer"`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#purgeinterval)purgeInterval
+
+Specifies the tombstone (or metadata) purge interval. The value can be either an integer (indicating a number of days), or a float (indicating an interval that may be greater or less than one day, and entails a number of hours, with `0.04` indicating one hour). The default value is three days.
+
+If this parameter is incorrectly specified, an error-notification such as the following is returned: `{"purgeInterval":"metadata purge interval must be a number"}`.
+
+For more information see [Tombstone Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval) and [Storage](../learn/buckets-memory-and-storage/storage-settings.md).
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#allowedtimeperiodfromhour)allowedTimePeriod\[fromHour\]
+
+The starting hour of the time-period during which auto-compaction is permitted to run. The value must be an integer. The default value is `0`. If the value is incorrectly specified, an error-notification such as either of the following is returned: `{"allowedTimePeriod[fromHour]":"from hour must be an integer"}` , `{"allowedTimePeriod[fromHour]":"from hour is too large. Allowed range is 0 - 59"}`..
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+### [](#allowedtimeperiodfromminute)allowedTimePeriod\[fromMinute\]
+
+The starting minute of the time-period during which auto-compaction is permitted to run. The value must be an integer. The default value is `0`. If the value is incorrectly specified, an error-notification such as either of the following is returned: `{"allowedTimePeriod[fromMinute]":"from minute must be an integer"}`, `{"allowedTimePeriod[fromMinute]":"from minute is too large. Allowed range is 0 - 59"}`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#allowedtimeperiodtohour)allowedTimePeriod\[toHour\]
+
+The ending hour of the time-period during which auto-compaction is permitted to run. The value must be an integer. The default value is `0`. If the value is incorrectly specified, an error-notification such as either of the following is returned: `{"allowedTimePeriod[fromHour]":"to hour must be an integer"}`, `{"allowedTimePeriod[toHour]":"to hour is too large. Allowed range is 0 - 59"}`.
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#allowedtimeperiodtominute)allowedTimePeriod\[toMinute\]
+
+The ending minute of the time-period during which auto-compaction is permitted to run. The value must be an integer. The default value is `0`. If the value is incorrectly specified, an error-notification such as either of the following is returned: `{"allowedTimePeriod[toMinute]":"to minute must be an integer"}`, `{"allowedTimePeriod[toMinute]":"to minute is too large. Allowed range is 0 - 59"}`.
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#allowedtimeperiodabortoutside)allowedTimePeriod\[abortOutside\]
+
+Specifies whether compaction can be aborted if the specified time-period is exceeded. The value must be either `true` or `false` (which is the default).
+
+This parameter is ignored if `autoCompactionDefined` is `false` (which is its default value).
+
+See the examples provided above, in [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Creating](#example-databasefragmentationthresholdpercentage-create) and [Example: Specifying a Data Fragmentation Threshold as a Percentage, when Editing](#example-databasefragmentationthresholdpercentage-edit).
+
+### [](#enablecrossclusterversioning)enableCrossClusterVersioning
+
+Enabling Cross Cluster Versioning is a pre-requisite to a few XDCR features. The bucket property `enableCrossClusterVersioning` can only be set to true after a bucket has been created. When enabled, for each document processed by XDCR, XDCR stores additional metadata, called the Hybrid Logical Vector (HLV), in the document extended attributes (xattrs). For more information, see [XDCR enableCrossClusterVersioning](#clusters-and-availability/xdcr-enable-crossclusterversioning.adoc).
+
+See the example provided in [Example: Turning on enableCrossClusterVersioning, when Editing](#example-enablecrossclusterversioning-edit)
+
+|  | The default value is false. Do not change the value of this property unless instructed by a feature configuration. Once enabled, you cannot turn off the enableCrossClusterVersioning property. The only way for you to undo setting this value to true is to backup your data, create a new bucket, and restore the data, using the option cbbackupmgr restore --disable-hlv to remove the HLV info in the xattrs. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#example-enablecrossclusterversioning-edit)Example: Turning on enableCrossClusterVersioning, when Editing
+
+The following example modifies the value of the bucket property `enableCrossClusterVersioning` to `true`.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d enableCrossClusterVersioning=true
+
+### [](#version-pruning-window-hrs-property)versionPruningWindowHrs
+
+Controls the pruning frequency of the Hybrid Logical Vector (HLV) metadata. The default value of versionPruningWindowHrs is 720 hours (30 days), which means that any HLV data older than 720 hours is pruned to remove the outdated entries. For more information, see [versionPruningWindowHrs](#clusters-and-availability/xdcr-enable-crossclusterversioning.adoc) in [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#version-pruning-window-hrs).
+
+See the example provided in [Example: Specifying time value for versionPruningWindowHrs, when Editing](#example-versionpruningwindowhrs-edit)
+
+|  | versionPruningWindowHrs must be set to the same value for all buckets in an XDCR replication topology. |
+|  | ------------------------------------------------------------------------------------------------------ |
+
+#### [](#example-versionpruningwindowhrs-edit)Example: Specifying time value for versionPruningWindowHrs, when Editing
+
+The following example sets the time duration value for the bucket property `versionPruningWindowHrs`.
+
+curl -v -X POST http://localhost:8091/pools/default/buckets/testBucket \
+-u Administrator:password \
+-d versionPruningWindowHrs=120
+
+## [](#responses)Responses
+
+If bucket-creation is successful, HTTP response `202 Accepted` is returned, with empty content. If bucket-editing is successful, HTTP response `200 OK` is returned, with empty content. If the bucket cannot created due to a missing or incorrect parameter, a `400` response is returned, with a JSON payload containing the reason for the error (errors are described per parameter, in the sections above).
+
+If the URL is incorrectly specified a `404 (Object Not Found)` error is returned. Failure to authenticate gives `401 Unauthorized`.
+
+## [](#see-also)See Also
+
+A conceptual description of buckets is provided in [Buckets](../learn/buckets-memory-and-storage/buckets.md). Options for managing buckets with Couchbase Web Console are provided in [Manage Buckets](../manage/manage-buckets/bucket-management-overview.md). For information on the Couchbase CLI command `bucket-create`, see the reference page for [bucket-create](../cli/cbcli/couchbase-cli-bucket-create.md).
+
+Information on memory-management options for Couchbase Server is provided in For information on index storage, see [Index Storage Settings](../indexes/storage-modes.md). Information on auto-compaction settings is provided in [Auto-Compaction](../manage/manage-settings/configure-compact-settings.md).
+
+For an overview of change history, see [Change History](../learn/data/change-history.md). Information on other, Couchbase-Server key concepts can be found as follows: for durability, in [Durability](../learn/data/durability.md); for expiration (time-to-live), in [Expiration](../learn/data/expiration.md); for ejection, in [Memory](../learn/buckets-memory-and-storage/memory.md); for replication, in [Intra-Cluster Replication](../learn/clusters-and-availability/intra-cluster-replication.md); for compression, in [Compression](../learn/buckets-memory-and-storage/compression.md); for conflict resolution, in [XDCR Conflict Resolution](../learn/clusters-and-availability/xdcr-conflict-resolution.md); for purging, in [Tombstone Purge Interval](../manage/manage-settings/configure-compact-settings.md#tombstone-purge-interval).
+
+See [Roles](../learn/security/roles.md), for information on roles and privileges.
+
+For information on how to inspect a bucket’s current configuration, see [Getting All Bucket Information](rest-buckets-summary.md).

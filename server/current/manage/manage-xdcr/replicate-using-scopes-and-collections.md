@@ -1,0 +1,339 @@
+[View original HTML](/server/current/manage/manage-xdcr/replicate-using-scopes-and-collections.html)
+
+> XDCR can be performed with reference to scopes and collections within source and target buckets. 
+
+## [](#understanding-scopes-collections-and-replication)Understanding Scopes, Collections, and Replication
+
+As described in [Scopes and Collections](../../learn/data/scopes-and-collections.md), scopes and collections are containers for data within a bucket. A cluster can contain up to 1000 scopes; and it can contain 1000 collections.
+
+As well as specifying a source bucket and a target bucket, XDCR can specify scopes and collections within those buckets. This allows data to be replicated from one collection to another. For an overview, see [XDCR Using Scopes and Collections](../../learn/clusters-and-availability/xdcr-overview.md#xdcr-using-scopes-and-collections).
+
+## [](#applying-filters)Applying Filters
+
+Data replicated between collections can be _filtered_. An overview is provided in [XDCR Advanced Filtering](../../learn/clusters-and-availability/xdcr-filtering.md); and examples of filtering are provided in [Filter a Replication](filter-xdcr-replication.md).
+
+Note in particular that settings for _deletion filters_ must be appropriately determined before replication or migration is performed: failure to establish the correct settings for deletion filters may, in certain circumstances, lead to data loss. For information, see [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters).
+
+## [](#examples-on-this-page)Examples on this Page
+
+The first set of examples provided on this page — [Replicate Data Between Collections Implicitly, with the UI](#replicate-data-between-collections-implicitly-with-the-ui), [Replicate Data Between Collections Explicitly, with the UI](#replicate-data-between-collections-explicitly-with-the-ui) and [Migrate Data to a Collection, with the UI](#migrate-data-to-a-collection-with-the-ui)— demonstrate how XDCR can be performed with reference to scopes and collections within source and target buckets, using Couchbase Web Console. The examples assume the following:
+
+A single-node cluster named `10.144.210.101` has been created, and features the `travel-sample` and `beer-sample` buckets. See [Install Sample Buckets](../manage-settings/install-sample-buckets.md), for information on installing these buckets. Note that the `travel-sample` bucket contains multiple scopes and collections, from which replications to the target cluster can be immediately established. The `beer-sample` contains only the _default scope and collection, within which all data is contained: the \_migration_ process will be used to separate data into scopes and collections on the target cluster. 
+* A single-node cluster named `10.144.210.102` has been created, and features no buckets. Note that during the course of the examples on this page, buckets, scopes, and collections will need to be created on the `10.144.210.102` cluster: therefore, knowledge of how to create buckets, scopes, and collections must first be attained. For comprehensive instructions, see [Create a Bucket](../manage-buckets/create-bucket.md) and [Manage Scopes and Collections](../manage-scopes-and-collections/manage-scopes-and-collections.md).
+* The cluster `10.144.210.101` has defined `10.144.210.102` as a remote cluster for XDCR: this will permit replications to be established between the two clusters.
+
+Before following the examples, familiarity should be gained with all XDCR management-basics explained on other pages. In particular, see [Prepare for XDCR](prepare-for-xdcr.md), [Create a Reference](create-xdcr-reference.md), and [Create a Replication](create-xdcr-replication.md).
+
+The subsequent examples provided on this page — in [CLI Procedures](#manage:manage-xdcr/replicate-using-scopes-andcollections.adoc#cli-procedures) and [REST API Procedures](#manage:manage-xdcr/replicate-using-scopes-andcollections.adoc#rest-api-procedures) — assume the same starting-points as those for the UI; and achieve the same goals, by means of the Couchbase CLI and REST API respectively.
+
+## [](#replicate-data-between-collections-implicitly-with-the-ui)Replicate Data Between Collections Implicitly, with the UI
+
+XDCR allows data to be replicated between collections _implicitly_.
+
+An _implicit_ mapping is one supported by XDCR whenever the same _keyspace_ exists within both the source and the target buckets. The _keyspace_ is formed with a _scope-name_ and the _collection-name_. Therefore, if a source bucket contains the keyspace `scope1.collection1`, and the target bucket also contains the keyspace `scope1.collection1`, once a replication has been established from the source bucket to the target cluster and bucket, data will be automatically replicated from the source collection to the target collection. This is demonstrated in the following example.
+
+Proceed as follows.
+
+1. On cluster `101.144.210.101`, access the **Buckets** screen:  
+![access buckets screen](../_images/manage-xdcr/access-buckets-screen.png)
+2. When the screen appears, vertically expand the row for the `travel-sample` bucket; then, by means of the **Scopes and Collections** tab at the right-hand side of the row, examine the scopes already defined for the bucket. Then, vertically expand the row for the scope `inventory`. The screen now appears as follows:  
+![source bucket screen](../_images/manage-xdcr/source-bucket-screen.png)  
+The screen shows that the scope `inventory` contains five collections; which are named `airport`, `airline`, `route`, `landmark`, and `hotel`. In this example, the scope `inventory` and all five collections within it will be replicated to the target cluster.  
+The screen also shows that the `travel-sample` bucket contains, as well as its `_default` and `_system` scopes, five additional scopes: which are named `tenant_agent_00` to `tenant_agent_04`. These scopes will _not_ be replicated in this example.
+3. On cluster `101.144.210.102`, access the **Buckets** screen.
+4. Using the procedure described in [Create a Bucket](../manage-buckets/create-bucket.md), create a Couchbase bucket namd `ts`.
+5. Using the procedures described in [Manage Scopes and Collections](../manage-scopes-and-collections/manage-scopes-and-collections.md), create, within `ts`, a scope named `inventory`; and within `inventory`, five collections; named `airport`, `airline`, `route`, `landmark`, and `hotel`. (The **Time-to-Live** for each of these collections can be left at the default of `0`.)  
+With the row for `inventory` vertically expanded, the **Scopes and Collections** screen for the bucket `ts` now appears as follows:  
+![target bucket screen](../_images/manage-xdcr/target-bucket-screen.png)  
+This indicates that the scope and collections have been successfully created, and contain no data. The keyspaces thus formed — _inventory.airline_, _inventory.airport_, etc — are identical to ones that already exist on the source cluster, `10.144.210.101`. The `_default` scope for `ts` is also displayed. Note that the other scopes on the target cluster — named `tenant_agent_00` to `tenant_agent_03` — have _not_ been created here, and will not be used for replication in the current example.
+6. On cluster `101.144.210.101`, access the **XDCR Replications** screen.  
+![access xdcr screen](../_images/manage-xdcr/access-xdcr-screen.png)  
+Currently, this has a remote reference to cluster `101.144.210.102` defined; but no replications have yet been defined.
+7. Left-click on the **ADD REPLICATION** button, at the upper right, to begin the process of defining a replication.
+8. When the **XDCR Add Replication** screen is displayed, use the fields in the upper part of the screen to specify a replication from the bucket `travel-sample` to the bucket `ts`, on cluster `101.144.210.102`. The fields now appear as follows;  
+![xdcr replicate to 102](../_images/manage-xdcr/xdcr-replicate-to-102.png)
+9. Save the replication, by left-clicking on the **Save Replication** button.  
+![saveReplicationButton](../_images/manage-xdcr/saveReplicationButton.png)  
+The replication is now started.
+10. Examine the **XDCR Replications** screen.  
+![outgoingReplicationImplicit](../_images/manage-xdcr/outgoingReplicationImplicit.png)  
+This confirms that replication is underway.
+11. On cluster `10.144.210.102`, access the **Buckets** screen; and access the **Scopes and Collections** screen for the bucket `ts`. By successively left-clicking, open the row for `ts`, for the scope `inventory`; and then left-click on the **Documents** tab for any of the five collections previously created — for example, `airline`. The **Documents** screen appears as follows:  
+![targetCollectionAfterImplicit](../_images/manage-xdcr/targetCollectionAfterImplicit.png)  
+The presence of these documents verifies that replication has occurred from `travel-sample` on the source, to `ts` on the target; with replication occurring according to the implicit mappings discovered by XDCR. Note that those scopes within `travel-sample` that did _not_ have an implicit mapping created have not been replicated.
+
+## [](#replicate-data-between-collections-explicitly-with-the-ui)Replicate Data Between Collections Explicitly, with the UI
+
+An _explicit_ mapping between collections is one established by an administrator, so as to allow replication to occur between different keyspaces. This is demonstrated in the following example; which assumes, as its starting point, that the previous example, [Replicate Data Between Collections Implicitly, with the UI](#replicate-data-between-collections-implicitly-with-the-ui), has been completed, and the resulting state has not been modified.
+
+Proceed as follows:
+
+1. On cluster `10.144.210.102`, access the **Scopes & Collections** screen for the bucket `ts`. Left-click on the **Add Collection** tab, at the left-hand side of the row for the `inventory` scope:  
+![add collection tab](../_images/manage-xdcr/add-collection-tab.png)  
+When the **Add Collection** dialog appears, specify the name `MyAirport`, and leave Time-to-Live at `0`:  
+![add collection dialog](../_images/manage-xdcr/add-collection-dialog.png)  
+Left-click on the **Save** button. The **Scopes & Collections** screen now confirms that the collection `MyAirport` has been added to the scope `inventory`:  
+![scope with new collection](../_images/manage-xdcr/scope-with-new-collection.png)
+2. On cluster `10.144.210.101`, access the **XDCR Replications** screen. Currently, a remote reference to `10.144.210.102` is defined; and a single replication exists.
+3. Delete the existing replication: this is because we now intend to create another replication to the same bucket, `ts`; and XDCR only permits one replication to be defined, for a given target-bucket.  
+Vertically expand the row for the existing replication, by left-clicking. Then, left-click on the **Delete** button, and confirm deletion of the replication:  
+![confirm deletion of replication](../_images/manage-xdcr/confirm-deletion-of-replication.png)
+4. Left-click on the **ADD REPLICATION** button, at the upper right of the screen, to begin creating a new replication. When the **XDCR Add Replication** screen is displayed, in the **Replicate From Bucket** field, specify `travel-sample`; in the **Remote Bucket** field, specify `ts`; and in the **Remote Cluster** field, specify `10.144.210.102`.
+5. Left-click on the **Specify Scopes, Collections, and Mappings** toggle:  
+![xdcr collections mapping toggle](../_images/manage-xdcr/xdcr-collections-mapping-toggle.png)  
+This expands the panel, as follows:  
+![xdcr collections mapping panel](../_images/manage-xdcr/xdcr-collections-mapping-panel.png)  
+The principal element is a list of scopes that are defined within the specified source bucket, `ts`. Note that a **filter scopes** field is provided; which permits strings to be entered, such that only those scopes whose names include matches to the strings are displayed in the list.  
+Note the information that is displayed immediately above the list. This relates to the presentation of scope-names, in the list’s **scope** column. Each scope-name is preceded by a checked checkbox; and is succeeded by the **\>** symbol, after which is displayed a remote scope-name — which is by default assumed to be the name of the scope on the target system, to which replication will occur. If this assumption is correct, the assumed name need not be modified. However, if a remote scope to which replication is to occur has a different name from the one represented by default in the list, the remote-scope name must be changed: by left-clicking directly on the scope name, and editing as appropriate. (Note that this requirement will also apply to the specification of collection-names, demonstrated in the next step of this procedure.)  
+In the list currently presented, five scopes appear: which are the `inventory` scope, and the scopes `tenant_agent_00` to `tenant_agent_03`.
+6. Left-click on the list-row for `inventory`. The row expands, and appears as follows:  
+![xdcr scope row expansion](../_images/manage-xdcr/xdcr-scope-row-expansion.png)  
+The expanded row displays a field whereby collections in the scope can be filtered, based on a string-match. It also features a **check all** checkbox, which allows all collections to be checked and thereby included in the intended replication.
+7. Uncheck all collection checkboxes except the checkbox for `airline`.
+8. Access the remote-collection-name field for `airline`; and change the name of the remote collection from `airline` to `MyAirline`.
+9. Uncheck the checkboxes for the scopes `tenant_agent_00` to `tenant_agent_03`. The rows for `ts` scopes now appear as follows:  
+![xdcr modified remote scope name](../_images/manage-xdcr/xdcr-modified-remote-scope-name.png)
+10. Observe the **Mapping Rules** panel, at the upper right of the screen:  
+![mapping rules](../_images/manage-xdcr/mapping-rules.png)  
+These rules are for informational purposes only: they are generated by the UI in conformance with the interactive selections that you make; and are used by the underlying processes that establish explicit mappings and due replications. Note that you will make use of these rules, in JSON format, when establishing explicit mappings by means of the CLI or REST API. The rules confirm that replication will occur between `inventory.airport` and `inventory.MyAirport`.
+11. Save the replication, by left-clicking on the **Save Replication** button, in the lower part of the screen. The **XDCR Replications** screen is now displayed, with the **Outgoing Replications** panel indicating that replication is occurring as required between `10.144.210.101` and `10.144.210.102`.
+12. On cluster `10.144.210.102`, access the **Scopes & Collections** screen for the bucket `ts`. Left-click on the **Documents** tab, at the right-hand side of the row for the `MyAirport` collection, within the `inventory` scope. The **Documents** screen is displayed, as follows:  
+![documents after explicit](../_images/manage-xdcr/documents-after-explicit.png)  
+The displayed contents confirm that the explicit-mapping-based replication was successfully created, and is ongoing.
+
+## [](#migrate-data-to-a-collection-with-the-ui)Migrate Data to a Collection, with the UI
+
+By specifying a scope and collection within a target bucket, XDCR can be used to replicate data selectively from the `_default` collection within one bucket to the purpose-created collection within another. Once such migration is complete, all future replications between collections should be performed with _implicit_ or _explicit_ mapping, as described in the examples provided on this page, above.
+
+Before migrating data in a production context, note the following:
+
+* Each established migration rule is CPU-intensive, and may lower XDCR replication performance. The more migration rules are added, the slower each migration replication will be. Therefore, the total number of simultaneous migration-rule-based replications per source cluster should be no greater than 2.
+* Correspondingly, if migration is to be performed with many rules; the replications should be performed 2 at a time. On conclusion of those replications, applications intended to use the migrated data should be appropriately switched over. Then, the next two migration rules should be configured, and the process repeated. Continue in this way until the overall migration is complete.
+
+Note that prior to attempting migration, appropriate settings for _deletion filters_ should be determined. These are individually described in [Deletion Filters](filter-xdcr-replication.md#deletion-filters). However, the significance of deletion-filter settings for replication and migration is explained in detail in [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters): this information should be fully understood before migration is performed.
+
+Migration can now be exemplified as follows. Note that this example assumes the existence of the clusters already used to demonstrate implicit and explicit mapping, which are `10.144.210.101` and `10.144.210.102`. The source cluster, `101.144.210.101`, is assumed to contain the sample bucket `beer-sample`: note that `beer-sample` features only the `_default` and `_system` scopes and collections: therefore, all user-intended documents are within the `_default` collection. By means of migration, this example separates the document progressively into different keyspaces.
+
+1. Access the **Buckets** screen of the target cluster, `10.144.210.102`.
+2. Using the procedure described in [Create a Bucket](../manage-buckets/create-bucket.md), create a Couchbase bucket named `beerSampleByLocation`.
+3. Within `beerSampleByLocation`, using the procedures described in [Manage Scopes and Collections](../manage-scopes-and-collections/manage-scopes-and-collections.md), create a scope named `California`; and within `California`, three collections, respectively named `SanFrancisco`, `SanJose`, and `Sacramento`. Leave **Time-to-Live** at its default value of `0` for each collection.  
+The **Scopes & Collections** screen should now look as follows:  
+![new beer sample collections](../_images/manage-xdcr/new-beer-sample-collections.png)  
+A subset of the data in the source bucket `beer-sample` will now be replicated and sorted into the above keyspaces.
+4. Access the **XDCR Replications** screen of cluster `101.144.210.101`. Currently, a remote reference to `10.144.210.102` is defined.
+5. Create a replication from `101.144.210.101` to `101.144.210.102`. Left-click on the **ADD REPLICATION** button, at the upper right of the screen. The **XDCR Add Replication** screen is now displayed:  
+![xdcr add replication screen](../_images/manage-xdcr/xdcr-add-replication-screen.png)
+6. Using the three upper fields — **Replicate From Bucket**, **Remote Cluster**, and **Remote Bucket** — define a replication from `beer-sample` on `101` to the bucket `beerSampleByLocation` on `102`:  
+![beer sample replication definition](../_images/manage-xdcr/beer-sample-replication-definition.png)  
+Note the confirmatory notification that appears underneath the replication-definition. As this indicates, if a replication is defined to include any destination-entity — bucket, scope, or collection — that does not exist, the entity will be ignored, and no attempt will be made to replicate data to it. However, if other specified entities are valid, replication to them will proceed.
+7. Establish appropriate settings for _deletion filters_. These filters are individually described in [Deletion Filters](filter-xdcr-replication.md#deletion-filters). Detailed information on their significance for migration is provided in [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters).  
+Left-click on the **Filter Replication** toggle:  
+![filter replication toggle](../_images/manage-xdcr/filter-replication-toggle.png)  
+When the **Filter Replication** panel opens, access the **Deletion Filters**:  
+![filter xdcr deletion filters](../_images/manage-xdcr/filter-xdcr-deletion-filters.png)  
+For each filter, to ensure that deletions, expirations, and/or TTLs are replicated, leave the settings at their defaults (in each case, with the checkbox unchecked); and to ensure that deletions, expirations, and/or TTLs are _not_ replicated, modify the settings, by checking each checkbox.
+8. To migrate data, switch on the **Migrate collections** toggle, in the middle of the screen:  
+![xdcr migrate collections toggle](../_images/manage-xdcr/xdcr-migrate-collections-toggle.png)  
+Three new fields thus appear, which allow migration to be defined. **Replication Filter for Source** allows a _regular expression_ to be specified, whereby only a subset of documents within `travel-sample` are replicated. **Replicate to Collection** allows specification of a collection on the target cluster: the collection must be preceded by the name of the scope that contains it, with scope-name and collection-name comma-separated. The **Save Mapping** button allows the migration-definition to be saved.
+9. Specify that documents from `beer-sample` be migrated to the collection `California.SanFrancisco` in the bucket `beerSampleByLocation`; using the filter expression `city="San Francisco"` — thereby ensuring that only documents that contain the key-value pair `"city": "San Francisco"` are included in the migration. The fields now appear as follows:  
+![xdcr migrate collections definition](../_images/manage-xdcr/xdcr-migrate-collections-definition.png)  
+Left-click on the **Save Mapping** button, to save the mapping:  
+![xdcr save mapping button](../_images/manage-xdcr/xdcr-save-mapping-button.png)  
+Note that the saved rule now appears in the **Mapping Rules** column, at the upper right of the screen:  
+![mapping rules migration definition](../_images/manage-xdcr/mapping-rules-migration-definition.png)
+10. Save the replication, by left-clicking on the **Save Replication** button, at the bottom of the screen:  
+![saveReplicationButton](../_images/manage-xdcr/saveReplicationButton.png)  
+The **XDCR Replications** screen now returns, with the **Outgoing Replications** panel appearing as follows:  
+![xdcr outgoing replication migration](../_images/manage-xdcr/xdcr-outgoing-replication-migration.png)  
+As this indicates, the defined replication is now proceeding from `travel-sample` on the source cluster, to `beerSampleByLocation` on the remote.
+11. On cluster `10.144.210.102`, access the **Buckets** screen, and examine the collection `San Francisco` within the scope `California`, in the bucket `beerSampleByLocation`:  
+![scopes in bsbl](../_images/manage-xdcr/scopes-in-bsbl.png)  
+The non-zero figures for **memory used** and **disk used** for the collection `SanFrancisco` within the scope `California` indicate that migration of documents into the collection has occurred.
+12. Left-click on the **Documents** tab, at the right-hand side of the row for the collection `SanFrancisco`:  
+![documents tab](../_images/manage-xdcr/documents-tab.png)  
+The documents within the collection are now displayed:  
+![xdcr target collection filled](../_images/manage-xdcr/xdcr-target-collection-filled.png)  
+This indicates that those documents from `beer-sample` whose `city` value is `"San Francisco"` have been successfully filtered and replicated to the `California` collection, within the remote bucket `beerSampleByLocation`.
+13. Having determined that migration has been successfully completed, delete the migration. Return to the **XDCR Replications** screen, and inspect the row for the replication:  
+![xdcr outgoing replication migration complete](../_images/manage-xdcr/xdcr-outgoing-replication-migration-complete.png)  
+Left-click on the row, in order to display the controls:  
+![replication controls](../_images/manage-xdcr/replication-controls.png)  
+Left-click on the **Delete** button, to delete the migration.  
+Note that in cases where, following migration, source data is to be deleted, it is essential to delete the migration _prior_ to deletion of the source data, if all data is intended to continue to exist on the targets, and _deletion filters_ have been left at their default values. For detailed information, see [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters)
+14. Repeating the procedure so far demonstrated, create new, successive migrations for the `SanJose` and `Sacramento` collections; specifying the appropriate `city` value for each collection.
+
+In this way, all documents within the source `travel-sample` bucket can be migrated to appropriate collections on the target cluster.
+
+## [](#cli-procedures)CLI Procedures
+
+The procedures described above for the UI — covering XDCR replication between scopes and collections, based on implicit and explicit mapping; and migration — can also be effected by means of the Couchbase CLI. The required steps are provided below.
+
+For detailed information on all CLI options for XDCR replication, see the reference page for [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md). For more information on creating buckets, scopes, and collections with the CLI, see the reference pages for [bucket-create](../../cli/cbcli/couchbase-cli-bucket-create.md) and [collection-manage](../../cli/cbcli/couchbase-cli-collection-manage.md).
+
+### [](#replicate-data-implicitly-with-the-cli)Replicate Data Implicitly, with the CLI
+
+Proceed as follows:
+
+1. Establish two one-node clusters, `10.144.210.101` and `10.144.210.102`, according to the description provided above, in [Examples on this Page](#examples-on-this-page).
+2. To replicate data according to the implicit mapping of scopes and collections within the source bucket `travel-sample` and the target bucket `ts`, enter the following:  
+/opt/couchbase/bin/couchbase-cli xdcr-replicate \
+-c 10.144.210.101:8091 \
+-u Administrator \
+-p password \
+--create \
+--xdcr-cluster-name 10.144.210.102 \
+--xdcr-from-bucket travel-sample \
+--xdcr-to-bucket ts  
+If the command succeeds, the following response is printed to the console:  
+SUCCESS: XDCR replication created
+
+Inspection of the collections within the `inventory` scope on `ts` now confirms that replication has occurred, according to the implicit mapping established between identically named keyspaces.
+
+### [](#replicate-data-explicitly-with-the-cli)Replicate Data Explicitly, with the CLI
+
+Proceed as follows:
+
+1. On the target cluster, `10.144.210.102`, within the scope `inventory`, establish a new collection named `MyAirport`.
+2. On the source cluster, `10.144.210.101`, delete the replication created above in [Replicate Data Explicitly with the CLI](#replicat-data-implicitly-with-the-cli).  
+To do this, first, obtain the id of the existing replication, by means of the `list` flag to `xdcr-replicate`:  
+/opt/couchbase/bin/couchbase-cli xdcr-replicate \
+-c 10.144.210.101:8091 \
+-u Administrator \
+-p password \
+--list  
+If the command is successful, the following output is provided:  
+stream id: ac41764b9e261725e874dbd34c7eda6b/travel-sample/ts  
+   status: running  
+   source: travel-sample  
+   target: /remoteClusters/ac41764b9e261725e874dbd34c7eda6b/buckets/ts  
+Then, delete the replication, using the `delete` flag, and specifying the replication’s id:  
+/opt/couchbase/bin/couchbase-cli xdcr-replicate \
+-c l10.144.210.101:8091 \
+-u Administrator \
+-p password \
+--delete \
+--xdcr-replicator ac41764b9e261725e874dbd34c7eda6b/travel-sample/ts  
+If the command is successful, the following output is provided:  
+SUCCESS: XDCR replication deleted
+3. On the source cluster, `10.144.210.101`, create a new replication to the target cluster `10.144.210.102`, specifying the explicit mapping of the source collection `airline` to the target collection `MyAirline`:  
+/opt/couchbase/bin/couchbase-cli xdcr-replicate \
+-c 10.144.210.101:8091 \
+-u Administrator \
+-p password \
+--create \
+--xdcr-cluster-name 10.144.210.102 \
+--xdcr-from-bucket travel-sample \
+--xdcr-to-bucket ts \
+--collection-explicit-mappings 1 \
+--collection-mapping-rules  '{"inventory.airline":"inventory.MyAirline"}'  
+Note that the `collection-explicit-mappings` flag has been specified, with a value of `1`; indicating that an explicit-mapping rule is being provided. The rule itself is specified as the value for the `collection-mapping-rules` flag; and affirms that the documents in the source collection `inventory.airline` are to be replicated to the target collection `inventory.MyAirline`.
+
+Examination of the target collection `inventory.MyAirline` will confirm that replication is occurring, due to the presence of replicated documents from the source collection `inventory.airline`.
+
+### [](#migrate-data-with-the-cli)Migrate Data, with the CLI
+
+Before migrating data with the CLI, read the information regarding the CPU-intensiveness of data migration, provided above in [Migrate Data to a Collection with the UI](#migrate-data-to-a-collection-with-the-ui). Then, proceed as follows:
+
+1. Ensure that the source cluster contains the sample bucket `beer-sample`; and that the target cluster contains a bucket named `beerSampleByLocation`, with a scope and collections as described above, in [Migrate Data, with the UI](#migrate-data-with-the-ui).
+2. Replicate to the target collection `California.SanFrancisco`, within the target bucket `beerSampleByLocation`, all documents from the source bucket `beer-sample` whose `city` value is `"San Francisco"`. Enter the following expression:  
+/opt/couchbase/bin/couchbase-cli xdcr-replicate \
+-c 10.144.210.101:8091 \
+-u Administrator \
+-p password \
+--create \
+--xdcr-cluster-name 10.144.210.102 \
+--xdcr-from-bucket beer-sample \
+--xdcr-to-bucket beerSampleByLocation \
+--collection-migration 1 \
+--collection-mapping-rules '{"city=\"San Francisco\"":"California.SanFrancisco"}'  
+The `collection-migration` flag is specified, with a value of `1`. Note the format required for the specifying of `collection-mapping-rules`: the regular expression `"city=\"San Francisco\"` is provided as the key of a key-value pair, whose value is the destination collection, `"California.SanFrancisco"`. Note also that, in cases where _all_ data from the source bucket is to be migrated, and no regular expression is therefore required, the key of the key-value pair should be specified as the keyspace of the default bucket: i.e. `"_default._default"`.  
+If the command is successful, the following output is displayed:  
+SUCCESS: XDCR replication created
+
+Documents are now replicated as specified by the explicit mapping and filter.
+
+See [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md) for information on setting _deletion filters_ with the CLI; and see [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters) for information on how to use deletion filters, in the context of migrating data.
+
+## [](#rest-api-procedures)REST API Procedures
+
+The procedures described above for the UI and CLI — covering XDCR replication between scopes and collections, based on implicit and explicit mapping; and migration — can also be effected by means of the Couchbase REST API. The required steps are provided below.
+
+For detailed information on all REST API options for XDCR replication, see the reference page for [xdcr-replicate](../../cli/cbcli/couchbase-cli-xdcr-replicate.md). For more information on creating buckets, scopes, and collections with the REST API, see the reference pages for [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md) and [Scopes and Collections REST API](#rest-api/scopes-and-collections-api.adoc).
+
+### [](#replicate-data-implicitly-with-the-rest-api)Replicate Data Implicitly, with the REST API
+
+1. Establish two one-node clusters, `10.144.210.101` and `10.144.210.102`, according to the description provided above, in [Examples on this Page](#examples-on-this-page).
+2. To replicate data according to the implicit mapping of scopes and collections within the source bucket `travel-sample` and the target bucket `ts`, enter the following:  
+curl -v -X POST -u Administrator:password \  
+http://localhost:8091/controller/createReplication \
+-d replicationType=continuous \
+-d fromBucket=travel-sample \
+-d toCluster=10.144.210.102 \
+-d toBucket=ts  
+If the command succeeds, a response similar to the following is printed to the console:  
+{"id":"ac41764b9e261725e874dbd34c7eda6b/travel-sample/ts"}
+
+Inspection of the collections within the `inventory` scope on `ts` now confirms that replication has occurred, according to the implicit mapping established between identically named keyspaces.
+
+### [](#replicate-data-explicitly-with-the-rest-api)Replicate Data Explicitly, with the REST API
+
+Proceed as follows:
+
+1. On the target cluster, `10.144.210.102`, within the scope `inventory`, establish a new collection named `MyAirport`.
+2. On the source cluster, `10.144.210.101`, delete the replication created above in [Replicate Data Explicitly with the CLI](#replicat-data-implicitly-with-the-cli).  
+To do this, first, obtain the id of the existing replication, by means of the following expression, which uses the `GET /pools/default/tasks` method and URL, as well as [jq](https://stedolan.github.io/jq/jq) and `grep`:  
+curl -v -u Administrator:password -X GET \  
+http://10.144.210.101:8091/pools/default/tasks | \  
+jq '.' |  \  
+grep "cancelURI"  
+If the command is successful, the following output is retrieved from the returned object:  
+"cancelURI": "/controller/cancelXDCR/ac41764b9e261725e874dbd34c7eda6b%2Ftravel-sample%2Fts",  
+The returned `cancelURI` references the id of the replication.  
+Now, delete the replication by means of the `DELETE /conroller/cancelXDCR/<replication-id>` method and URI:  
+curl -X DELETE -u Administrator:password  \  
+http://10.144.210.101:8091/controller/cancelXDCR/ac41764b9e261725e874dbd34c7eda6b%2Ftravel-sample%2Fts  
+If the command is successful, no output is provided.
+3. On the source cluster, `10.144.210.101`, create a new replication to the target cluster `10.144.210.102`, specifying the explicit mapping of the source collection `airline` to the target collection `MyAirline`:  
+curl -v -X POST -u Administrator:password \  
+http://localhost:8091/controller/createReplication \
+-d replicationType=continuous \
+-d toBucket=ts \
+-d toCluster=10.144.210.102 \
+-d fromBucket=travel-sample \
+-d collectionsExplicitMapping=true \
+-d colMappingRules=%7B%22inventory.airline%22%3A%22inventory.MyAirline%22%7D  
+Note that the `collectionsExplicitMapping` flag has been specified, with a value of `true`. The value of `colMappingRules` is an encoded JSON object whose key is the source collection, and whose target is the target collection. If the call is successful, the following output is displayed:  
+SUCCESS: XDCR replication created  
+Examination of the target collection `inventory.MyAirline` will confirm that replication is occurring, due to the presence of replicated documents from the source collection `inventory.airline`.
+
+### [](#migrate-data-with-the-rest-api)Migrate Data, with the REST API
+
+Before migrating data with the REST API, read the information regarding the CPU-intensiveness of data migration, provided above in [Migrate Data to a Collection with the UI](#migrate-data-to-a-collection-with-the-ui). Then, proceed as follows:
+
+1. Ensure that the source cluster contains the sample bucket `beer-sample`; and that the target cluster contains a bucket named `beerSampleByLocation`, with a scope and collections as described above, in [Migrate Data, with the UI](#migrate-data-with-the-ui).
+2. Replicate to the target collection `California.SanFrancisco`, within the target bucket `beerSampleByLocation`, all documents from the source bucket `beer-sample` whose `city` value is `"San Francisco"`. Enter the following expression:  
+curl -v -X POST http://10.144.210.101:8091/controller/createReplication \
+-u Administrator:password \
+-d replicationType=continuous \
+-d toBucket=beerSampleByLocation \
+-d toCluster=10.144.210.102 \
+-d fromBucket=beer-sample \
+-d collectionsMigrationMode=true \
+-d colMappingRules='{"city=\"San Francisco\"":"California.SanFrancisco"}'  
+The `collectionsMigrationMode` flag is specified, with a value of `true`. Note the format required for the specifying of `colMappingRules`: the regular expression `"city=\"San Francisco\"` is provided as the key of a key-value pair, whose value is the destination collection, `"California.SanFrancisco"`. (Note also that, in cases where _all_ data from the source bucket is to be migrated, and no regular expression is therefore required, the key of the key-value pair should be specified as the keyspace of the default bucket: i.e. `"_default._default"`.)  
+If the command is successful, output containing the id of the replication is displayed:  
+{"id":"ac41764b9e261725e874dbd34c7eda6b/beer-sample/beerSampleByLocation"}
+
+Documents are now migrated as specified by the explicit mapping and filter.
+
+See [Creating XDCR Replications](../../rest-api/rest-xdcr-create-replication.md) for information on setting _deletion filters_ with the REST API; and see [Using Deletion Filters](../../learn/clusters-and-availability/xdcr-filtering.md#using-deletion-filters) for information on how to use deletion filters, in the context of migrating data.
+
+## [](#rules-for-explicit-mapping)Rules for Explicit Mapping and Migration
+
+Explicit mapping and migration must be specified according to _rules_. Use of Couchbase Web Console generates mappings that automatically conform with these rules: however, use of the CLI and REST API requires creation of a JSON payload, in which rules are correctly expressed by the administrator.
+
+All rules are listed in [Rules for Explicit Mappings](../../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#rules-for-explicit-mappings) and [Rules for Migration](../../learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#rules-for-migration).
+
+## [](#next-steps-after-replicate-between-scopes-and-collections)Next Steps
+
+An XDCR replication can be _filtered_, by means of _regular expressions_; so that only selected documents are replicated from the source to the target cluster. See [Filter a Replication](filter-xdcr-replication.md).

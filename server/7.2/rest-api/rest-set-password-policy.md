@@ -1,0 +1,72 @@
+[View original HTML](/server/7.2/rest-api/rest-set-password-policy.html)
+
+> The REST API allows the _password policy_ for a cluster to be established and retrieved by means of the `POST` and `GET` methods respectively, using the `/settings/passwordPolicy` URI. 
+
+## [](#http-method-and-uri)HTTP methods and URI
+
+GET /settings/passwordPolicy
+POST /settings/passwordPolicy
+
+## [](#rest-password-policy-description)Description
+
+A cluster’s _password policy_ specifies a set of character-related requirements that must be met by all passwords whose definition occurs subsequent to the establishing of the policy. Previously defined passwords continue to be valid, even if they do not meet the requirements specified in the most recent policy.
+
+To establish the cluster’s password policy, the user must have been assigned the Full Admin, the Local User Security Admin, or the External User Security Admin role.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X POST http://<ip-address-or-domain-name>:8091/settings/passwordPolicy
+  -u <username>:<password>
+  -d minLength=<integer>
+  -d enforceUppercase=[ true | false ]
+  -d enforceLowercase=[ true | false ]
+  -d enforceDigits=[ true | false ]
+  -d enforceSpecialChars=[ true | false ]
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/passwordPolicy
+  -u <username>:<password>
+
+The `minLength` parameter establishes a minimum length for the password: this must be an integer between `0` and `100`, inclusive. Note that specifying `0` permits the definition of zero-length passwords — which in practical terms, means the enablement of password-free authentication. This is highly insecure, and therefore _not_ recommended.
+
+The `enforceUppercase` and `enforceLowercase` flags establish whether the password must contain at least one uppercase or lowercase character, respectively: the value of each must be either `true` or `false`. The `enforceDigits` and `enforceSpecialChars` flags establish whether the password must contain at least one digit or special character, respectively: the value of each must be either `true` or `false`. Acceptable special characters are the following: `@`, `%`, `+`, `/`, `'`, `\`, `"`, `!`, `#`, `$`, `^`, `?`, `:`, `,`, `(`, `)`, `{`, `}`, `[`, `]`, `~`, `` ` ``, `-`, and `_`.
+
+## [](#responses)Responses
+
+For both methods, success gives the status `200 OK`. The `GET` method returns an object, containing a key-value pair for each current, password-policy setting.
+
+If the `minLength` parameter is specified with a value that is outside the permitted range, the call fails, returning the following error notification: `"minLength":"The value must be in range from 0 to 100"`. If any other parameter (for example, `enforceDigits`) is specified with a value other than `true` or `false`, the call fails, with the following notification: `"enforceDigits":"The value must be one of the following: [true,false]"`.
+
+If no hostname is specified, the attempt to connect fails, with a `Failed to connect` notification. If an incorrect username or password is specified, the call fails, giving the status `401 Unauthorized`. If the URL is incorrectly specified, the call fails, giving the status `404 Object Not Found`.
+
+## [](#examples)Examples
+
+The following example sets all password-policy parameters:
+
+curl -v -X POST -u Administrator:password \
+http://10.143.201.101:8091/settings/passwordPolicy \
+-d minLength=8 \
+-d enforceUppercase=true \
+-d enforceLowercase=true \
+-d enforceDigits=true \
+-d enforceSpecialChars=true
+
+Following the call’s success, all newly defined passwords thus require a minimum length of eight characters; including one uppercase character, one lowercase character, one digit, and one special character.
+
+The established settings can be retrieved as follows. Note that here, the call is piped to the [jq](https://stedolan.github.io/jq/) command, to enhance readability.
+
+curl -X GET -u Administrator:password \
+http://10.143.201.101:8091/settings/passwordPolicy | jq '.'
+
+If successful, the call returns the following:
+
+{
+  "minLength": 8,
+  "enforceUppercase": true,
+  "enforceLowercase": true,
+  "enforceDigits": true,
+  "enforceSpecialChars": true
+}
+
+## [](#see-also)See Also
+
+An overview of usernames and passwords is provided in [Usernames and Passwords](../learn/security/usernames-and-passwords.md). Establishing password policy by means of the CLI is described in [setting-password-policy](../cli/cbcli/couchbase-cli-setting-password-policy.md). See [Manage Users, Groups, and Roles](../manage/manage-security/manage-users-and-roles.md), for step-by-step procedures that feature the UI, CLI, and REST API.

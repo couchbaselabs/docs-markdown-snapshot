@@ -1,0 +1,55 @@
+[View original HTML](/server/7.6/rest-api/rest-get-rebalance-progress.html)
+
+> The progress of rebalance can be ascertained with the `GET /pools/default/rebalanceProgress` HTTP method and URI. 
+
+## [](#http-method-and-uri)HTTP method and URI
+
+GET /pools/default/rebalanceProgress
+
+## [](#rest-cluster-rebalance-description)Description
+
+When one or more nodes have been brought into a cluster, or have been taken out of a cluster, _rebalance_ is used to redistribute data, indexes, event processing, and query processing among available nodes. The ongoing progress of the rebalance operation can be retrieved.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -v -X GET -u [admin]:[password]
+  http://[localhost]:8091/pools/default/rebalanceProgress
+
+## [](#response)Response
+
+Success gives the response code `200 OK`, and returns an object containing information on the current status of the ongoing rebalance. See the examples provided below.
+
+## [](#examples)Examples
+
+In the following example, node `10.143.190.103` has been added to a cluster of two nodes, which are `10.143.190.101` and `10.143.190.102`. Rebalance is then initiated. During rebalance, progress is ascertained by means of the `GET /pools/default/rebalanceProgress` HTTP method and URI, with output being piped to the tool `jq`, to ensure readability.
+
+curl -u Administrator:password -v -X GET 10.143.190.101:8091/pools/default/rebalanceProgress | jq '.'
+
+On success, the response code `200 OK` is given, and the following object is returned:
+
+{
+  "status": "running",
+  "ns_1@10.143.190.101": {
+    "progress": 0.1103515625
+  },
+  "ns_1@10.143.190.102": {
+    "progress": 0.1095890410958904
+  },
+  "ns_1@10.143.190.103": {
+    "progress": 0.3299120234604106
+  }
+}
+
+The output thus features `progress`, specified as a ten-place floating-point number, for each of the three nodes. (Note that if Couchbase Web Console is simultaneously used to monitor the rebalance, these decimals are represented as _11.0%_, _10.9%_, and _32.9%_ respectively. See the example provided in [Add a Node with the UI](../manage/manage-nodes/add-node-and-rebalance.md#rebalance-progress-add-node).)
+
+When rebalance has concluded, re-running the method returns the response code `200 OK`, and the following object:
+
+{
+  "status": "none"
+}
+
+## [](#see-also)See Also
+
+Examples of adding a node and rebalancing by means of the UI, CLI, and REST API are provided in [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md). A conceptual introduction to nodes is provided in [Nodes](../learn/clusters-and-availability/nodes.md). The REST method and URI for node-addition is provided in [Adding Nodes to Clusters](rest-cluster-addnodes.md). The REST method and URI for rebalance is explained in [Rebalancing Nodes](rest-cluster-rebalance.md).
+
+For additional information on retrieving status on ongoing cluster-tasks, including rebalance, see [Getting Cluster Tasks](rest-get-cluster-tasks.md). For information on obtaining and reading _rebalance reports_, see the [Rebalance Reference](../rebalance-reference/rebalance-reference.md).

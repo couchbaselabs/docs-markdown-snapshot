@@ -1,0 +1,310 @@
+[View original HTML](/server/7.2/fts/fts-queryshape-linestring.html)
+
+> A GeoJSON LineString Query against any GeoJSON type. 
+
+## [](#queryshape-for-a-linestring-query)QueryShape for a LineString Query
+
+A GeoJSON query via a GeoShape of LineString to find GeoJSON types in a Search index using the 3 relations intersects, contains, and within.
+
+### [](#linestring-intersects-query)LineString `Intersects` Query
+
+A `contains` query for linestring returns all the matched documents with shapes that intersect the linestring within the query.
+
+A linestring `intersection` query sample is given below.
+
+```json
+{
+  "query": {
+    "field": "<<fieldName>>",
+    "geometry": {
+      "shape": {
+        "type": "linestring",
+        "coordinates": [
+          [1.954764, 50.962097],
+          [3.029578, 49.868547]
+        ]
+      },
+      "relation": "intersects"
+    }
+  }
+}
+```
+
+Intersection rules for the LineString Query with other indexed GeoJSON shapes in the document set are given below.
+
+| Intersects (relation)Document Shape | LineString (GeoShape)                                                                                                                     |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Point                               | Intersects when any of the line endpoints overlap the point in the document.                                                              |
+| LineString                          | Intersects when the linestring in the query intersects the linestring in the document.                                                    |
+| Polygon                             | Intersects when the linestring in the query intersects any of the edges of the polygon in the document.                                   |
+| MultiPoint                          | Intersects when any of the line endpoints overlap any of the points in the multipoint array in the document.                              |
+| MultiLineString                     | Intersects when the linestring in the query intersects any of the linestring in the multilinestring array in the document.                |
+| MultiPolygon                        | Intersects when the linestring in the query intersects any of the edges of any of the polygons in the multipolygon array in the document. |
+| GeometryCollection                  | Matches when the query point overlaps with any of the heterogeneous (above 6) shapes in the geometrycollection array in the document.     |
+| Circle                              | Intersects when the query point lies within the area of the circular region in the document.                                              |
+| Envelope                            | Intersects when the query point lies within the area of the rectangular/bounded box region in the document.                               |
+
+### [](#linestring-contains-query)LineString `Contains` Query
+
+A `contains` query for linestring returns all the matched documents with shapes that contain the linestring within the query.
+
+A linestring `contains` query sample is given below.
+
+```json
+{
+  "query": {
+    "field": "<<fieldName>>",
+    "geometry": {
+      "shape": {
+        "type": "linestring",
+        "coordinates": [
+          [1.954764, 50.962097],
+          [3.029578, 49.868547]
+        ]
+      },
+      "relation": "contains"
+    }
+  }
+}
+```
+
+Containment rules for the LineString Query with other indexed GeoJSON shapes in the document set are given below.
+
+| Contains (relation)Document Shape | LineString (GeoShape)                                                                                                                                                           |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Point (document shape)            | NA. As the point is a non-closed shape.                                                                                                                                         |
+| LineString                        | NA. As a linestring is a non-closed shape.                                                                                                                                      |
+| Polygon                           | Contains when both the endpoints(start, end) of the linestring in the query are within the area of the polygon in the document.                                                 |
+| MultiPoint                        | NA. As the multipoint is a non-closed shape.                                                                                                                                    |
+| MultiLineString                   | NA. As the multilinestring is a non-closed shape.                                                                                                                               |
+| MultiPolygon                      | Contains when both the endpoints(start, end) of the linestring in the query are within the area of any of the polygons in the multipolygon array in the document.               |
+| GeometryCollection                | Matches when both the endpoints(start, end) of the linestring in query overlaps with any of the heterogeneous (above 6) shapes in the geometrycollection array in the document. |
+| Circle                            | Contains when both the endpoints(start, end) of the linestring in the query are within the area of the circular shape in the document.                                          |
+| Envelope                          | Contains when both the endpoints(start, end) of the linestring in the query are within the area of the rectangle in the document.                                               |
+
+### [](#linestring-within-query)LineString `WithIn` Query
+
+The Within query is not supported by line geometries.
+
+## [](#example-linestring-query-against-points)Example LineString Query (against Points)
+
+|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Intersects when any of the line endpoints overlap the point in the document.
+
+The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
+
+```command
+curl -s -XPOST -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson/query \
+-d '{
+  "fields": ["name"],
+  "query": {
+    "field": "geojson",
+    "geometry": {
+      "shape": {
+        "type": "linestring",
+        "coordinates": [
+          [1.954764, 50.962097],
+          [3.029578, 49.868547]
+        ]
+      },
+      "relation": "intersects"
+    }
+  },
+  "sort": ["name"]
+}' |  jq .
+```
+
+The output of two (2) hits (from a total of 2 matching docs) is as follows
+
+```json
+{
+  "status": {
+    "total": 1,
+    "failed": 0,
+    "successful": 1
+  },
+  "request": {
+    "query": {
+      "geometry": {
+        "shape": {
+          "type": "linestring",
+          "coordinates": [
+            [
+              1.954764,
+              50.962097
+            ],
+            [
+              3.029578,
+              49.868547
+            ]
+          ]
+        },
+        "relation": "intersects"
+      },
+      "field": "geojson"
+    },
+    "size": 10,
+    "from": 0,
+    "highlight": null,
+    "fields": [
+      "name"
+    ],
+    "facets": null,
+    "explain": false,
+    "sort": [
+      "name"
+    ],
+    "includeLocations": false,
+    "search_after": null,
+    "search_before": null
+  },
+  "hits": [
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1254",
+      "score": 0.28065220923315787,
+      "sort": [
+        "Calais Dunkerque"
+      ],
+      "fields": {
+        "name": "Calais Dunkerque"
+      }
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1255",
+      "score": 0.7904517545191571,
+      "sort": [
+        "Peronne St Quentin"
+      ],
+      "fields": {
+        "name": "Peronne St Quentin"
+      }
+    }
+  ],
+  "total_hits": 2,
+  "max_score": 0.7904517545191571,
+  "took": 13592354,
+  "facets": null
+}
+```
+
+## [](#example-linestring-query-against-circles)Example LineString Query (against Circles)
+
+|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Intersects when the query point lies within the area of the circular region in the document.
+
+The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
+
+```command
+curl -s -XPOST -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson/query \
+-d '{
+  "fields": ["name"],
+  "query": {
+    "field": "geoarea",
+    "geometry": {
+      "shape": {
+        "type": "linestring",
+        "coordinates": [
+          [1.954764, 50.962097],
+          [3.029578, 49.868547]
+        ]
+      },
+      "relation": "intersects"
+    }
+  },
+  "sort": ["name"]
+}' |  jq .
+```
+
+The output of three (3) hits (from a total of 3 matching docs) is as follows
+
+```json
+{
+  "status": {
+    "total": 1,
+    "failed": 0,
+    "successful": 1
+  },
+  "request": {
+    "query": {
+      "geometry": {
+        "shape": {
+          "type": "linestring",
+          "coordinates": [
+            [
+              1.954764,
+              50.962097
+            ],
+            [
+              3.029578,
+              49.868547
+            ]
+          ]
+        },
+        "relation": "intersects"
+      },
+      "field": "geoarea"
+    },
+    "size": 10,
+    "from": 0,
+    "highlight": null,
+    "fields": [
+      "name"
+    ],
+    "facets": null,
+    "explain": false,
+    "sort": [
+      "name"
+    ],
+    "includeLocations": false,
+    "search_after": null,
+    "search_before": null
+  },
+  "hits": [
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1258",
+      "score": 1.4305136320748595,
+      "sort": [
+        "Bray"
+      ],
+      "fields": {
+        "name": "Bray"
+      }
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1254",
+      "score": 0.20713889888331502,
+      "sort": [
+        "Calais Dunkerque"
+      ],
+      "fields": {
+        "name": "Calais Dunkerque"
+      }
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_1255",
+      "score": 2.905133945992968,
+      "sort": [
+        "Peronne St Quentin"
+      ],
+      "fields": {
+        "name": "Peronne St Quentin"
+      }
+    }
+  ],
+  "total_hits": 3,
+  "max_score": 2.905133945992968,
+  "took": 6943298,
+  "facets": null
+}
+```

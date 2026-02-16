@@ -1,0 +1,176 @@
+[View original HTML](/operator/current/concept-migration.html)
+
+> The Operator can manage the migration of an unmanaged Couchbase cluster to an Operator managed cluster running on Kubernetes. 
+
+To perform a migration of an unmanaged Couchbase cluster to a managed Couchbase cluster, the main requirement is that there must be network access between the nodes of the source cluster and the nodes in the managed cluster. If a cluster is being migrated from EC2 to EKS then this can be achieved using External DNS and AWS Load Balancers.
+
+To migrate an existing cluster a Couchbase Cluster spec describing the state of the existing cluster needs to be created. This spec should contain the configuration of the existing cluster, most importantly the nodes that make up the existing cluster and the services that they run. The Operator will then recreate each of these nodes in Kubernetes and swap-rebalance them into the cluster while simultaneously removing their counterparts in the source cluster.
+
+## [](#migration-example)Migration Example
+
+### [](#create-a-source-cluster)Create a source cluster
+
+To perform the migration we need a cluster to migrate. For this example, the cluster will be created by the Operator. This cluster can then be paused once created to stop any management actions on it.
+
+Source Cluster Spec:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cb-example-auth
+type: Opaque
+data:
+  username: QWRtaW5pc3RyYXRvcg==
+  password: cGFzc3dvcmQ=
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-example
+spec:
+  image: couchbase/server:7.6.0
+  security:
+    adminSecret: cb-example-auth
+    rbac:
+      managed: true
+  buckets:
+    managed: true
+  upgradeProcess: InPlaceUpgrade
+  servers:
+    - size: 3
+      name: data
+      services:
+        - data
+```
+
+Once the Operator has finished creating the cluster it can be paused with the `spec.paused` field. For example:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-example
+spec:
+  paused: true
+  ...
+```
+
+### [](#migrating-the-cluster)Migrating the Cluster
+
+To migrate the cluster a new `CouchbaseCluster` resource needs to be created. This spec needs three things to migrate the cluster:
+
+* The server classes in the original cluster to be migrated over
+* The `spec.migration.unmanagedClusterHost` field which points the Operator at the source cluster
+* The credentials to get admin access to the cluster supplied through a secret referenced in the `spec.security.adminSecret` field
+
+To migrate the source cluster described above the following `CouchbaseCluster` spec can be used:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-migrating
+spec:
+  image: couchbase/server:7.6.0
+  security:
+    adminSecret: cb-example-auth
+    rbac:
+      managed: true
+  migration:
+    unmanagedClusterHost: cb-example.default.svc.cluster.local
+  servers:
+    - size: 3
+      name: data
+      services:
+        - data
+```
+
+Once this resource is created the Operator will begin the migration of the cluster.
+
+## [](#migration-control)Migration Control
+
+### [](#migration-parameters)Migration Parameters
+
+The migration field supports additional parameters to control the migration of the cluster.
+
+```yaml
+  migration:
+    unmanagedClusterHost: cb-example.default.svc.cluster.local
+    stabilizationPeriod:  30s
+    numUnmanagedNodes: 2
+    maxConcurrentMigrations: 2
+```
+
+`stabilizationPeriod`: The time the Operator will wait after a migration before starting the next migration. If not specified the Operator will start the next migration immediately.
+
+`numUnmanagedNodes`: The number of nodes the Operator will leave in the cluster unmigrated. This is useful for controlling how much of the cluster to migrate over at a time. If not specified the Operator will migrate all nodes. For example, if the unmanaged cluster has 10 nodes and `numUnmanagedNodes` is set to 2, then the Operator will migrate 8 nodes to Kubernetes and leave 2 nodes.
+
+`maxConcurrentMigrations`: The maximum number of nodes migrations the Operator will run concurrently.
+
+#### [](#migration-order)Migration Order
+
+By default the Operator will randomly select nodes for migration, this can be controlled with the `spec.migration.migrationOrderOverride` field.
+
+There are three possible override strategies:
+
+* `ByServerGroup`: The Operator will migrate nodes in the order of server groups defined in `spec.migration.migrationOrderOverride.serverGroupOrder`. If no server group order is specified, groups will be migrated in alphabetical order.
+* `ByServerClass`: The Operator will migrate nodes in the order of server classes defined in `spec.migration.migrationOrderOverride.serverClassOrder`. If no server class order is specified, classes will be migrated in the order they appear in `spec.servers`.
+* `ByNode`: The Operator will migrate individual nodes in the order defined in `spec.migration.migrationOrderOverride.nodeOrder`. If no node order is specified, nodes will be migrated in alphabetical order.
+
+Here is an example of overriding the migration order by server class:
+
+```yaml
+  migration:
+    unmanagedClusterHost: cb-example.default.svc.cluster.local
+    migrationOrderOverride:
+      migrationOrderOverrideStrategy: ByServerClass
+      serverClassOrder:
+        - data
+        - query
+        - index
+```
+
+### [](#pre-migration-nodes)Pre-migration Nodes
+
+To add nodes to the source cluster before performing any migration pre-migration nodes can be defined. These nodes will be added before any migration happens. Pre-migration nodes are simply defined by adding a Server Class for nodes that don’t exist on the source cluster. Using the examples above two single pre-migration nodes can be added by modifying the spec like:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-migrating
+spec:
+  image: couchbase/server:7.6.0
+  security:
+    adminSecret: cb-example-auth
+    rbac:
+      managed: true
+  migration:
+    unmanagedClusterHost: cb-example.default.svc.cluster.local
+  servers:
+    - size: 3
+      name: data
+      services:
+        - data
+    - size: 2
+      name: pre_migration
+      services:
+        - data
+```
+
+To migrate an existing cluster a Couchbase Cluster spec describing the state of the existing cluster needs to be created. This spec should contain the configuration of the existing cluster, most importantly the nodes that make up the existing cluster and the services they run. The Operator will then recreate each of these nodes in Kubernetes and swap-rebalance them into the cluster whilst simultaneously removing their counterparts in the source cluster.
+
+## [](#limitations)Limitations
+
+### [](#backup-service)Backup Service
+
+Currently, the Operator does not support running nodes with the Backup Service. This means that if the source cluster has nodes with the Backup Service then these nodes will need to be removed or replaced with nodes that aren’t running the Backup Service. Backup is still supported by the Operator
+
+### [](#buckets)Buckets
+
+Buckets that are not defined as kubernetes objects will be deleted if the cluster spec enables operator managed buckets. The Admission Controller will warn when the cluster spec has this setting enabled and will not allow the migration spec to be deleted if there are no buckets detected in the migrated cluster.
+
+### [](#users-roles-and-groups)Users, Roles and Groups
+
+Users that are not defined as a kubernetes object will be deleted if the cluster spec enables operator managed rbac. The Admission Controller will warn when the cluster spec has this setting enabled and will not allow the migration spec to be deleted if there are no users detected in the migrated cluster.

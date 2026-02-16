@@ -1,0 +1,77 @@
+[View original HTML](/ruby-sdk/current/howtos/collecting-information-and-logging.html)
+
+> Setting log levels. 
+
+## [](#logging)Logging
+
+The Couchbase Ruby SDK has no hard dependency on a specific logger implementation. By default it uses built-in means to report events. The default log level is `warning`.
+
+The following log levels are supported (in order of increasing amount of information logged):
+
+1. off
+2. critical
+3. error
+4. warning
+5. info
+6. debug
+7. trace
+
+The Ruby SDK is configured to send logs to standard output. The logging level can be changed using the environment variable `COUCHBASE_BACKEND_LOG_LEVEL`.
+
+```ruby
+require 'couchbase'
+cluster = Couchbase::Cluster.connect('couchbase://localhost', 'Administrator', 'password')
+cluster.bucket('travel-sample')
+       .scope('inventory')
+       .collection('airport')
+       .upsert('foo', { 'bar' => 42 })
+```
+
+…​when executed like this:
+
+```console
+$ COUCHBASE_BACKEND_LOG_LEVEL=debug ruby script.rb
+```
+
+```console
+[2020-09-07 14:30:26.311] [186383,186383] [info] 0ms, couchbase backend has been initialized: {:sdk=>"3.0.0.snapshot", :backend=>"0.5.0", :build_timestamp=>"2020-09-07 11:24:46", :revision=>"fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55", :platform=>"Linux-5.7.10-201.fc32.x86_64", :cpu=>"x86_64", :cc=>"GNU 10.2.1", :cxx=>"GNU 10.2.1", :ruby=>"2.7.0", :spdlog=>"1.6.0", :asio=>"1.16.1", :snappy=>"1.1.8", :http_parser=>"2.9.4", :openssl_headers=>"OpenSSL 1.1.1g FIPS  21 Apr 2020", :openssl_runtime=>"OpenSSL 1.1.1g FIPS  21 Apr 2020"}
+[2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
+[2020-09-07 14:30:26.358] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> attempt to establish MCBP connection
+[2020-09-07 14:30:26.359] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> connecting to ::1:11210
+[2020-09-07 14:30:26.360] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> connected to ::1:11210
+[2020-09-07 14:30:26.360] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> user_agent={"a":"ruby/0.5.0/fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55","i":"8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb"}, requested_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, alt_request_support, tracing, sync_replication, vattr, collections]
+[2020-09-07 14:30:26.361] [186383,186390] [debug] 1ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> supported_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, tracing, alt_request_support, sync_replication, collections, vattr]
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 10ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> received new configuration: #<config:fd801dc8-1b1c-4790-a6de-0830a705bede rev=35, nodes(1)=[#<node:0 hostname="localhost", plain=(kv=11210, mgmt=8091, cbas=8095, fts=8094, n1ql=8093, capi=8092), tls=(kv=11207, mgmt=18091, cbas=18095, fts=18094, n1ql=18093, capi=18092), alt=[]>]>
+[2020-09-07 14:30:26.372] [186383,186390] [info] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> detected network is "default"
+[2020-09-07 14:30:26.372] [186383,186383] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> attempt to establish MCBP connection
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> connecting to ::1:11210
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> connected to ::1:11210
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> user_agent={"a":"ruby/0.5.0/fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55","i":"8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c"}, requested_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, alt_request_support, tracing, sync_replication, vattr, collections]
+[2020-09-07 14:30:26.373] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> supported_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, tracing, alt_request_support, sync_replication, collections, vattr]
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 3ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> selected bucket: default
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> received new configuration: #<config:e5a3bdf4-179c-4f80-7c49-1f121de9f3a7 rev=35, uuid=4772d383f8170ac18f3878a6a9b97c90, bucket=default, replicas=0, partitions=1024, nodes(1)=[#<node:0 hostname="localhost", plain=(kv=11210, mgmt=8091, cbas=8095, fts=8094, n1ql=8093, capi=8092), tls=(kv=11207, mgmt=18091, cbas=18095, fts=18094, n1ql=18093, capi=18092), alt=[]>]>
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [8447ccca-720c-4fd0-c49f-359487f4fbab/default] initialize configuration rev=35
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [8447ccca-720c-4fd0-c49f-359487f4fbab/default] rev=35, preserve session="9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c", address="localhost:11210"
+[2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
+[2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
+```
+
+## [](#sdk-telemetry-from-the-server)SDK Telemetry from the Server
+
+In addition to Tracing and other metrics, and client logging, SDK telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI.
+
+For self-managed Server, collection can be disabled and enabled through the REST API:
+
+```console
+curl --user Administrator:password http://172.17.0.2:8091/settings/appTelemetry -d enabled=true
+```
+
+And the Prometheus-format metrics fetched with:
+
+```console
+curl --user Administrator:password http://172.17.0.2:8091/metrics
+```
+
+There may be advantages to collecting information this way, but note that metrics are collected per node, and a central Prometheus instance should be set to collect all metrics so that information is not lost in case of a sudden failover.
+
+Also note that if the cluster is behind a load balancer, the collected metrics may not accurately record the actual correct node with which the SDK interacts.

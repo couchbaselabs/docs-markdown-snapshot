@@ -1,0 +1,182 @@
+[View original HTML](/server/current/learn/clusters-and-availability/nodes.html)
+
+> A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Couchbase Server. 
+
+## [](#nodes-and-their-creation)Nodes and their Creation
+
+A Couchbase Server _node_ is a physical or virtual machine that hosts a single instance of Couchbase Server. The establishment of the server on the node entails four stages:
+
+1. _Installed_. Couchbase Server has been fully installed on the node, but not yet started.
+2. _Started_. Couchbase Server has been started. Set-up can now be performed, using Couchbase Web Console, the CLI, or the REST API.
+3. _Initialized_. Optionally, up to four custom paths have been specified on the current node, respectively corresponding to the locations at which data for the Data, Index, Analytics, and Eventing Services are to be saved. Note that if this stage is skipped, and initialization therefore not explicitly performed, path-setting may occur during subsequent provisioning.
+4. _Provisioned_. The username and password for the Full Administrator must have been specified. Additionally, services, service memory-quotas, and buckets may have been specified.
+
+When any variant of stage 4 has been achieved, the node is considered to be provisioned, and thereby, to be a cluster of one server; and re-initialization is not permitted.
+
+Note that running multiple instances of Couchbase Server on a single node is not supported.
+
+### [](#paths-for-data-indexes-and-analytics)Paths for Data, Indexes, Analytics, and Eventing
+
+The full, default path for each supported platform is shown in the following table:
+
+__Table 1\. Default paths for data-files__
+| Platform | Default directory                                                 |
+| -------- | ----------------------------------------------------------------- |
+| Linux    | _/opt/couchbase/var/lib/couchbase/data_                           |
+| Windows  | _C:\\Program Files\\couchbase\\server\\var\\lib\\couchbase\\data_ |
+| Mac OS X | _\~/Library/Application Support/Couchbase/var/lib/couchbase/data_ |
+
+Note that once it has been specified, the data-file path location should not be used to store any data other than that allocated by Couchbase Server; since all such additional data will be deleted.
+
+The data-file path cannot be spontaneously changed on a node that is active within a cluster: therefore, you should apply the correct, permanent data-file path at initialization, prior to provisioning. If a new path is required for a node that has already been provisioned, the node must be reinitialized; which means that all results of prior provisioning are erased.
+
+## [](#clusters)Clusters
+
+A Couchbase _cluster_ consists of one or more systems, each running Couchbase Server. An existing cluster can be incremented with additional nodes.
+
+Note that Couchbase has modified the license restrictions to its Community Edition package for Couchbase Server Version 7.0 and higher. In consequence, the size of an individual cluster running Community Edition is restricted to _five_ nodes. See [Couchbase Modifies License of Free Community Edition Package](https://blog.couchbase.com/couchbase-modifies-license-free-community-edition-package/), for further information on the new restrictions; and see [Node Management and Community Edition](../../manage/manage-nodes/node-management-overview.md#node-management-and-community-edition), for information on how this affects the experience of Community-Edition administrators.
+
+Incrementing a cluster with additional nodes can be accomplished in either of the following ways:
+
+* The routine for _adding_ a new node to the existing cluster is executed on the existing cluster.  
+An instance of Couchbase Server must have been installed on the available node, and must be at stage 2, 3, or 4: that is, must itself be started and uninitialized; or started and initialized; or started, initialized, and provisioned (which means, itself a cluster of one node). Adding the available node means that:
+
+  * Any custom paths already established on the available node are kept unchanged on the available node. This allows each individual node within a cluster to maintain disk-space for data, index, analytics, and eventing in its own, node-specific location. If the node is being added by means of Couchbase Web Console, the paths can be modified further, or reverted to the defaults, as part of the addition process.
+  * If the node is at stage 4, all the results of its prior provisioning are deleted. This includes services, memory-quotas, buckets, bucket-data, and Full Administrator username and password.
+  * The services and memory-quotas that are currently the default for the cluster can be optionally assigned to the node that is being added. However, an error occurs if the node does not have sufficient memory. Services and memory-quotas for the node can be configured to be other than the default. Alternatively, the default itself can be changed, provided that it does not require more of a given resource than is available on every node currently in the cluster.
+
+* The routine for _joining_ an existing cluster is executed on the new node.  
+The available node must be at stage 2 or 3: that is, it must have been started, and may have had its data, index, analytics, and eventing paths configured. However, it cannot have been provisioned in any way: if the routine for joining is executed on a provisioned node, an error is flagged, and the operation fails.
+
+|  | Services can be assigned to the new node during the join operation or on-demand. The memory quota for each service defaults to the setting for the existing cluster. An error occurs if the new node does not have sufficient memory. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+If Couchbase Web Console is used to perform the join, the data, index, analytics, and eventing paths can be modified as part of the join operations.
+
+Once a cluster has been created, any of the IP addresses of the cluster-nodes can be used to access data and services. Therefore, provided that one node in the cluster is running the Data Service, the IP address of another node - one that is not running the Data Service - can be specified, in order to access the Data Service: the Cluster Manager ensures that all requests are appropriately routed across the cluster.
+
+### [](#restricting-the-addition-and-joining-of-nodes)Restricting the Addition and Joining of Nodes
+
+To ensure cluster-security, in Couchbase Server 7.1.1 and later versions, restrictions can be placed on addition and joining, based on the establishment of _node-naming conventions_. Only nodes whose names correspond to at least one of the stipulated conventions can be added or joined. For information, see [Restrict Node-Addition](../../rest-api/rest-specify-node-addition-conventions.md).
+
+### [](#adding-multiple-nodes)Adding Multiple Nodes
+
+When the routine for _adding_ nodes is used to increment a cluster with multiple nodes simultaneously, the additions should all be executed on a _single node_ of the cluster: this simplifies the reconfiguration process, and so protects against error.
+
+### [](#adding-arbiter-nodes)Adding Arbiter Nodes
+
+In Couchbase Server 7.6 and later, you can deploy arbiter nodes. These nodes do not run any services. Remember that at least one node in the cluster must run the Data Service.
+
+An arbiter node helps your cluster in two ways:
+
+* It provides [fast failover](#fast-failover) which helps decrease the cluster’s latency when reacting to a failover.
+* It provides [quorum arbitration](../../install/deployment-considerations-lt-3nodes.md#quorum-arbitration) that helps avoid contention issues if the nodes in the cluster become partitioned.
+
+## [](#rebalance-and-fail-over)Rebalance, Removal, Failover, and Recovery
+
+_Rebalance_ is a process of re-distributing data, indexes, event processing, and query processing among available nodes. This process should be run whenever a node is added to or removed from an existing cluster as part of a scheduled or pre-planned maintenance activity. It can also be run after a node has been taken out of the cluster by means of _failover_, described below. Rebalance takes place while the cluster is running and servicing requests: clients continue to read and write to existing structures, while the data is being moved between Data Service nodes. Once data-movement has completed, the updated distribution is communicated to all applications and other relevant consumers. See [Rebalance](rebalance.md), for more information.
+
+Node _removal_ allows a node to be taken out of a cluster in a highly controlled fashion, using _rebalance_ to redistribute data, indexes, event processing, and query processing among remaining nodes. It is to be used only when are nodes in the cluster are responsive. It can be used on any node. See [Removal](removal.md), for more information.
+
+_Failover_ is the process by which a cluster-node can be removed; either _proactively_, to support required maintenance, or _reactively_, in the event of an outage. Two types of failover are supported, which are _graceful_ (for Data Service nodes only) and _hard_ (for nodes of any kind). Both types can be applied manually when needed. _Hard_ can also be applied automatically, by means of prior configuration: in which case it becomes known as _automatic_ failover. See [Failover](failover.md), for more information.
+
+_Recovery_ allows a previously failed-over node to be added back into its original cluster, by means of the _rebalance_ operation. _Full_ recovery involves removing all pre-existing data from, and assigning new data to, the node that is being recovered. _Delta_ recovery maintains and resynchronizes a node’s pre-existing data. See [Recovery](recovery.md), for more information.
+
+### [](#fast-failover)Fast Failover
+
+Fast failover can be achieved by deploying an arbiter node, which is a node that hosts no Couchbase service. Such a deployment ensures that the Cluster Manager automatically deploys critical system infrastructure on the arbiter node, rather than on any other, so as to avoid clashes. This may lead to several seconds of latency reduction, when a busy cluster undergoes failover.
+
+### [](#deploying-services-on-a-node)Deploying Services on a Node
+
+You can add services to a new node when adding the node to a cluster.
+
+You can also add or remove non-Data Services on an existing node in a cluster, without adding or removing nodes.
+
+For information about the deployment of services on a new node using:
+
+* The REST API, see [Assigning Services to a New Single Node](../../rest-api/rest-set-up-services.md), [Adding Nodes to Clusters](../../rest-api/rest-cluster-addnodes.md), and [Joining Nodes into Clusters](../../rest-api/rest-cluster-joinnode.md).
+* The Couchbase Server Web Console during node-addition and node-joining, see [Add a Node and Rebalance](../../manage/manage-nodes/add-node-and-rebalance.md#arbiter-node-addition) and in [Join a Cluster and Rebalance](../../manage/manage-nodes/join-cluster-and-rebalance.md#arbiter-node-join).
+* The CLI during node-addition, see [server-add](#cli:cbcli/couchbase-cli-server-add).
+
+You can add or remove non-Data Services on an existing node in a cluster using the following methods:
+
+* From the [UI](../../manage/manage-nodes/modify-services-and-rebalance.md#modify-mds-services-from-ui) or [CLI](../../manage/manage-nodes/modify-services-and-rebalance.md#modify-mds-services-using-cli). For more information, see [Modify Services and Rebalance](../../manage/manage-nodes/modify-services-and-rebalance.md).
+* Using the REST API. For more information, see [Assigning Services to an Existing Node](../../rest-api/rest-set-up-services-existing-nodes.md).
+
+## [](#node-quantity)Node Quantity
+
+For production purposes, clusters of less than three nodes are not recommended. For information, see [About Deploying Clusters with Less than Three Nodes](../../install/deployment-considerations-lt-3nodes.md).
+
+## [](#naming-clusters-and-nodes)Naming Clusters and Nodes
+
+Clusters and the individual nodes they contain must be _named_. Names can always be specified when a cluster is first created, and when nodes are added to it. In some cases, names can be modified subsequently. All associated conventions and constraints are described below.
+
+### [](#naming-when-creating-a-single-node-cluster)Naming when Creating a Single-Node Cluster
+
+When a cluster is first created, it is necessarily a single-node cluster. The new cluster requires _two_ names:
+
+* A _cluster_ name. Once defined, this provides a convenient, verbal reference, which will never be used in programmatic or networked access. The name can be of any length, can make use of any symbols (for example: `%`, `$`, `!`, `#`), and can include spaces. The name can be changed at any time during the life of the cluster, irrespective of the cluster’s configuration.
+* A _node_ name. This will be used in programmatic and networked access: indeed, all the other nodes in the cluster will access this node by means of this name; which must be one of the following:
+
+  * The IP address of the underlying host. This can be of either the IPv4 or IPv6 family.
+  * A fully qualified hostname that corresponds, in the appropriate network maps, to the IP address of the underlying host.
+  * The _loopback address_, `127.0.0.1`. This is the default.  
+Whichever kind of node name is specified for the single-node cluster, if calls are made to the cluster by means of the Couchbase CLI or the REST API, those made from the underlying host can use the loopback address, the IP address of the underlying host, or the hostname of the underlying host, if one has been assigned. Calls made from other hosts on the network must use either the IP address or the hostname. In all cases, the appropriate port number must also be specified, following the name, separated by a colon.
+
+|  | In Couchbase Enterprise Server 7.2 and later versions, when certificates are used for cluster authentication, each node certificate must be configured with the node-name correctly specified as a Subject Alternative Name (SAN). For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation). |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+#### [](#specifying-the-cluster-name)Specifying the Cluster Name
+
+The _cluster name_ can be specified by means of:
+
+* _Couchbase Web Console_: either during the configuration of the single-node cluster, by means of the **New Cluster** dialog, as described in [Create a Cluster](../../manage/manage-nodes/create-cluster.md); or subsequent to cluster-creation, by means of the [General](../../manage/manage-settings/general-settings.md) Settings screen.
+* _The Couchbase CLI_: either during configuration, by means of the command [cluster-init](../../cli/cbcli/couchbase-cli-cluster-init.md); or subsequently, by means of the command [setting-cluster](../../cli/cbcli/couchbase-cli-setting-cluster.md).
+* _The Couchbase REST API_: either during configuration or subsequently. See [Creating a New Cluster](../../rest-api/rest-intro.md).
+
+#### [](#specifying-the-node-name)Specifying the Node Name
+
+The _node name_ can be specified for a single-node cluster by means of:
+
+* _Couchbase Web Console_: during configuration, by means of the **Configure** screen, as described in [Create a Cluster](../../manage/manage-nodes/create-cluster.md). No subsequent, direct change to the node-name can be made by means of Couchbase Web Console: although the default loopback address can be indirectly changed, through node-addition; as described below.
+* _The Couchbase CLI_: during configuration or subsequently (provided that the cluster is still a single-node cluster), by means of the `--node-init-hostname` parameter to the command [node-init](../../cli/cbcli/couchbase-cli-node-init.md). See [Node-Renaming](#node-renaming), below.
+* _The Couchbase REST API_: either during configuration or subsequently (provided that the cluster is still a single-node cluster). See both [Creating a New Cluster](../../rest-api/rest-intro.md) and [Node-Renaming](#node-renaming), immediately below.
+
+### [](#node-renaming)Node Renaming
+
+Node-renaming is permitted only for single-node clusters. A node-name cannot be changed after the node has become a member of a multi-node cluster. Therefore, if it becomes necessary to change the name of such a node, the node must be removed from the cluster; and then re-added to the cluster, following its name-change.
+
+### [](#node-naming-when-creating-a-multi-node-cluster)Node-Naming when Creating a Multi-Node Cluster
+
+When an already provisioned node is to be added to an existing, single-node cluster, the new node must be referenced by means of either the IP address or the hostname of the underlying host. Once added, the new node is named in accordance with that reference. For information on node-addition by means of the UI, the CLI, and the REST API, see [Add a Node and Rebalance](../../manage/manage-nodes/add-node-and-rebalance.md).
+
+When a new node, prior to its provisioning, is to be joined to the existing, single-node cluster, it must reference the single-node cluster by means of either the IP address or the hostname of the single-node cluster’s underlying host. The new node gets automatically named with the IP address of its own underlying host. For information on joining a cluster, see [Join a Cluster and Rebalance](../../manage/manage-nodes/join-cluster-and-rebalance.md).
+
+When a new node is either added or joined to an existing, single-node cluster, and the original node was named with the default, loopback address, the original node is automatically renamed with the IP address of its underlying host. (Specifically, the original node opens a connection to the new node, determines the interface it is using for the source port, and adopts the name that corresponds to that interface.) This name-change persists even in the event that the addition of the second node, when initiated by means of Couchbase Web Console, is subsequently cancelled prior to the required, concluding rebalance.
+
+### [](#node-naming-with-hostnames)Node-Naming with Hostnames
+
+In consequence of the procedures and constraints described above, should it be necessary to ensure that each node in a cluster is named with the hostname (rather than the IP address) of its underlying host:
+
+* The original node should be named with the hostname of its underlying host while still a single-node cluster: this being the only time that the hostname can be specified as its name.
+* Nodes should never be joined to the cluster: they should only be added; with the hostname of their underlying host being used as their reference.
+
+### [](#restarting-nodes)Restarting Nodes
+
+If a node is restarted, Couchbase Server continues to use the specified hostname. Note, however, that if the node is failed over or removed, Couchbase Server will no longer use the specified hostname: therefore, in such circumstances, the node must be reconfigured, and the hostname re-specified.
+
+## [](#node-certificates)Node Certificates
+
+As described in [Certificates](../security/certificates.md), Couchbase Server can be protected by means of x.509 certificates; ensuring that only approved users, applications, machines, and endpoints have access to system resources; and that clients can verify the identity of Couchbase Server.
+
+Certificate deployment for a cluster requires that the chain certificate _chain.pem_ and the private node key _pkey.key_ be placed in an administrator-created _inbox_ folder, for each cluster-node. It subsequently requires that the root certificate for the cluster be uploaded, and then activated by means of reloading, for each node. If an attempt is made to incorporate a new node into the certificate-protected cluster without the new node itself already having been certificate-protected in this way, the attempt fails.
+
+Therefore, a new node should be appropriately certificate-protected, before any attempt is made to incorporate it into a certificate-protected cluster.
+
+|  | In Couchbase Enterprise Server 7.2 and later versions, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when uploading the certificate, or when attempting to add or join the node to a cluster. For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation). |
+|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+See [Certificates](../security/certificates.md) for an overview of certificates in the context of Couchbase Server. For information on configuring server certificates, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md); and in particular, the section [Adding New Nodes](../../manage/manage-security/configure-server-certificates.md#adding-new-nodes).
+
+## [](#node-to-node-encryption)Node-to-Node Encryption
+
+Couchbase Server supports _node-to-node encryption_, whereby network traffic between the individual nodes of a cluster is encrypted, in order to optimize cluster-internal security. For an overview, see [Node-to-Node Encryption](node-to-node-encryption.md). For practical steps towards set-up, see [Manage Node-to-Node Encryption](../../manage/manage-nodes/apply-node-to-node-encryption.md).

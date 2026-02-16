@@ -1,0 +1,20 @@
+[View original HTML](/server/7.2/learn/clusters-and-availability/replication-architecture.html)
+
+> Couchbase Server ensures the availability of data across the nodes of a cluster; across groups of nodes within the cluster; and across separate clusters, potentially located in different data-centers. 
+
+## [](#local-and-remote-replication)Local and Remote Replication
+
+Couchbase Server supports two forms of replication.
+
+* _Local_, or _intra-cluster_ replication involves replicating data across the nodes of a cluster. When a bucket is defined, it can be specified to have up to 3 _replicas_ (the number actually implemented by Couchbase Server may be less, if there are too few nodes in the cluster). This allows data to be maintained and updated in replica copies, which can be made active in the event of node-failure rendering _active_ data inaccessible. Intra-cluster replication is supported by the _Data Change Protocol_.
+* _Remote_, or _Cross Data Center Replication (XDCR)_ is typically used to replicate data across different clusters, each of which may occupy a different data center. XDCR is configured _after_ the creation of a suitable bucket on the local cluster, which will be the replication _source_, and another bucket on the remote cluster, which will be the replication _target_. Changes made to data within the source bucket are automatically replicated to the target bucket. Both source and target buckets can be accessed directly by applications: if both are indeed so accessed, XDCR replication is typically configured between them in both directions, so that each bucket is both a source and a target, and updated made on either cluster are replicated to the other.
+
+For more information on intra-cluster replication, see [Intra-Cluster Replication](intra-cluster-replication.md).
+
+For more information on XDCR, see [Cross Data Center Replication (XDCR)](xdcr-overview.md).
+
+## [](#server-group-awareness)Server Group Awareness
+
+Individual server-nodes can be assigned to specific _groups_, within a Couchbase Cluster. This allows both _active vBuckets_ and GSI _indexes_ to be maintained on groups different from those of their corresponding _replica vBuckets_ and _index replicas_; so that if a group goes offline, and active vBuckets and indexes are thereby lost, replicas remain available on one or more other groups.
+
+For more information, see [Server Group Awareness](groups.md).

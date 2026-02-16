@@ -1,0 +1,2105 @@
+[View original HTML](/server/7.6/n1ql/n1ql-language-reference/datefun.html)
+
+> SQL++ date functions return the system clock value or manipulate the datetime values, which are represented as a string or an integer. These functions are very useful for manipulating dates in datasets with various date formats and timezones. 
+
+## [](#date-timezone)Timezones
+
+Datetime values are always tied to a specific timezone, either explicitly in the date value, or implicitly in the application. The date functions in SQL++ therefore support multiple different timezones.
+
+### [](#utc)UTC
+
+UTC, The Coordinated Universal Time is the primary time standard by which the world regulates clocks and time. It is defined as the time at 0° longitude and is consistent, as it does not take into account daylight savings time. You can read further about UTC at <https://www.timeanddate.com/time/aboututc.html>.
+
+All SQL++ functions which accept a timezone as an argument also accept `UTC`.
+
+### [](#iana-timezones)IANA Timezones
+
+Many applications operate across multiple different time zones and may not necessarily use `UTC`. Therefore, it is important for the database to be able to handle and manipulate dates in these time zones in a consistent manner. Many date functions take the time zone as an additional argument.
+
+|  | Timezones are case sensitive, Europe/London is not the same as europe/london. |
+|  | ----------------------------------------------------------------------------- |
+
+It is important to note that many time zones change their UTC offset based on daylight savings time, as a result the UTC offset of times may change based on the time of year. SQL++ take this into account when converting dates.
+
+Below are a few examples of commonly used timezones and their offsets:
+
+__Table 1\. Common Timezones__
+| Timezone          | UTC Offset (without daylight savings time) | UTC Offset (during daylight savings time) |
+| ----------------- | ------------------------------------------ | ----------------------------------------- |
+| America/New\_York | \-05:00                                    | \-04:00                                   |
+| America/Tijuana   | \-08:00                                    | \-07:00                                   |
+| Europe/Paris      | +01:00                                     | +02:00                                    |
+| Europe/London     | +00:00                                     | +01:00                                    |
+| Asia/Tel\_Aviv    | +02:00                                     | +03:00                                    |
+| Asia/Kolkata      | +05:30                                     | +05:30                                    |
+
+For a complete list of supported timezones, see [the Timezone Database](https://www.iana.org/time-zones)
+
+### [](#local-system-timezone)Local System Timezone
+
+Many functions default to using the local timezone of the system, which will be one of the IANA timezones.
+
+## [](#date-formats)Date Formats
+
+SQL++ date functions accept dates in either Epoch/UNIX timestamp format or string date format. SQL++ is then able to represent the passed date as a standardized date object internally. In general, functions whose name contains the word `STR` are designed to use string formats while `MILLIS` functions are designed to use Epoch/UNIX timestamps.
+
+### [](#unix-time)Epoch/UNIX Timestamps
+
+Epoch/UNIX time is the number of seconds (or milliseconds) that have elapsed since `1970-01-01T00:00:00.000Z` (Thursday, 1 January 1970 at midnight), not including leap seconds. This can be useful for numeric and timezone agnostic representations of dates. While Epoch/UNIX time can be represented in either seconds or milliseconds, _all SQL++ date functions specifically treat Epoch/UNIX timestamps as milliseconds_. For example, the date `2017-01-31T10:02:07Z` would equate to an Epoch/UNIX timestamp of `1485856927000`.
+
+### [](#date-string)Date String Formats
+
+In many cases, dates are not stored as Epoch/UNIX timestamp but instead as more human-readable formats, such as `2006-01-02T15:04:05.567+08:00`. Therefore, SQL++ also provides convenience methods to allow you to manipulate and convert dates in string format.
+
+SQL++ accepts format strings following several conventions:
+
+* **ISO-8601 example dates**, e.g. `1111-11-11`.
+* **Date string component codes**, e.g. `YYYY-MM-DD`.
+* **Go language native dates**, e.g. specifically `2006-01-02` for year, month, and day.
+* **Percent-style date format specifiers**, e.g. `%Y-%m-%d`.
+
+Only a single style can be used at a time in a specified format string.
+
+* ISO-8601 Dates
+* Date String Codes
+* Go Reference Dates
+* Percent-Style Dates
+
+[ISO-8601](https://www.w3.org/TR/NOTE-datetime) example dates are composed of the following date components.
+
+| Component                                              | Code | Value                                    |
+| ------------------------------------------------------ | ---- | ---------------------------------------- |
+| Year                                                   | YYYY | Any four-digit integer from 1111 to 9999 |
+| Month (of the year)                                    | MM   | Any two digit integer from 01 to 12      |
+| Day (of the month)                                     | DD   | Any two digit integer from 01 to 31      |
+| Hour (of the day)                                      | hh   | Any two-digit integer from 00 to 23      |
+| Minute (of the hour)                                   | mm   | Any two-digit integer from 00 to 59      |
+| Second (of the minute)                                 | ss   | Any two-digit integer from 00 to 59      |
+| Millisecond (of the second) — output only              | s    | Any three-digit integer from 000 to 999  |
+| Time Zone (as UTC offset)                              | TZD  | UTC offset in the format ±hh:mm          |
+| A UTC offset of 0 (+00:00) can just be specified as Z. |      |                                          |
+
+To specify a date format, you must put together example component values, as specified above, to create one of the following date formats. ISO-8601 date formats are very specific; they must contain the correct components in the correct order, with punctuation exactly as shown.
+
+| Format                   | Example                                                   |
+| ------------------------ | --------------------------------------------------------- |
+| YYYY-MM-DDThh:mm:ss.sTZD | 1111-12-31T23:00:59.999+00:00 or 1111-12-31T23:00:59.999Z |
+| YYYY-MM-DDThh:mm:ssTZD   | 1111-12-31T23:00:59+00:00 or 1111-12-31T23:00:59Z         |
+| YYYY-MM-DDThh:mm:ss.s    | 1111-12-31T23:00:59.999                                   |
+| YYYY-MM-DDThh:mm:ss      | 1111-12-31T23:00:59                                       |
+| YYYY-MM-DD hh:mm:ss.sTZD | 1111-12-31 23:00:59.999+00:00 or 1111-12-31 23:00:59.999Z |
+| YYYY-MM-DD hh:mm:ssTZD   | 1111-12-31 23:00:59+00:00 or 1111-12-31 23:00:59Z         |
+| YYYY-MM-DD hh:mm:ss.s    | 1111-12-31 23:00:59.999                                   |
+| YYYY-MM-DD hh:mm:ss      | 1111-12-31 23:00:59                                       |
+| YYYY-MM-DD               | 1111-12-31                                                |
+| hh:mm:ss.sTZD            | 23:00:59.999+00:00 or 23:00:59.999Z                       |
+| hh:mm:ssTZD              | 23:00:59+00:00 or 23:00:59Z                               |
+| hh:mm:ss.s               | 23:00:59.999                                              |
+| hh:mm:ss                 | 23:00:59                                                  |
+
+The examples above use arbitrary values for the date components. You can use any valid values in your date components, as long as the date format contains the correct combination of components and punctuation.
+
+Note, however, that if you use Go reference date values as the date components, the example date is interpreted as a [Go reference date](#date-string), rather than an ISO-8601 example date. This may cause some date formats to be interpreted differently to what you expect. For example, the date format `2006-02-01` is interpreted as a Go reference date, where `02` is the day and `01` is the month.
+
+For greater flexibility, you can specify a date format using date string codes. These are based on the alphabetic format codes from the [ISO-8601](https://www.w3.org/TR/NOTE-datetime) standard, with some extensions. The date string codes are given below.
+
+| Code | Component                                                |
+| ---- | -------------------------------------------------------- |
+| CC   | 2-digit century                                          |
+| YYYY | 4-digit century and year                                 |
+| YY   | 2-digit year \[[note](#default-values)\]                 |
+| MM   | 2-digit month                                            |
+| DD   | 2-digit day                                              |
+| hh   | 2-digit hour, 00-23                                      |
+| HH   | 2-digit hour, 00-23                                      |
+| mm   | 2-digit minute, 00-59                                    |
+| ss   | 2-digit second, 00-59                                    |
+| s    | Fraction of a second (down to millisecond) — output only |
+| TZD  | Time Zone (as UTC offset)                                |
+
+To specify a date format, you can put the date string components together in any order, along with any other characters as required.
+
+Characters which are not part of the format specification are matched literally and produced unaltered, with the exception of Unicode U+0020, i.e. space `" "`, which matches any single character when parsing, and is produced unaltered on output. For example, `YYYY MM DD` parses `2021-06-28`, `2021/06/28`, `2021.06.28`, etc.
+
+You can specify a date format using [Go language date components](https://golang.org/pkg/time/#pkg-constants). The available reference date components are given below.
+
+| Component                     | Reference Date                                                                           | Meaning                                                     |
+| ----------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Year                          | 2006                                                                                     | 4-digit century and year                                    |
+| 06                            | 2-digit year \[[note](#default-values)\]                                                 |                                                             |
+| Month                         | 1                                                                                        | Unpadded month                                              |
+| 01                            | Zero-padded 2-digit month                                                                |                                                             |
+| January                       | Full English month name                                                                  |                                                             |
+| Jan                           | Abbreviated English month name                                                           |                                                             |
+| Day                           | 2                                                                                        | Unpadded day of the month                                   |
+| \_2                           | Space-padded 2-digit day of the month                                                    |                                                             |
+| 02                            | Zero-padded 2-digit day of the month                                                     |                                                             |
+| Monday                        | Full English day name                                                                    |                                                             |
+| Mon                           | Abbreviated English day name                                                             |                                                             |
+| \_\_2                         | Space-padded 3-digit day of the year                                                     |                                                             |
+| 002                           | Zero-padded 3-digit day of the year                                                      |                                                             |
+| Hour                          | 3                                                                                        | Unpadded hour, 1-12                                         |
+| 03                            | Zero-padded 2-digit hour, 01-12                                                          |                                                             |
+| 15                            | Zero-padded 2-digit hour, 00-23                                                          |                                                             |
+| AM or PM                      | PM                                                                                       | AM or PM (upper case)                                       |
+| pm                            | am or pm (lower case)                                                                    |                                                             |
+| Minute                        | 4                                                                                        | Unpadded minute, 0-59                                       |
+| 04                            | Zero-padded minute, 00-59                                                                |                                                             |
+| Second                        | 5                                                                                        | Unpadded second, 0-59                                       |
+| 05                            | Zero-padded second, 00-59                                                                |                                                             |
+| Fraction of a second          | ,000 (one or .000 more zeros)                                                            | Fraction of a second, to the given number of decimal places |
+| ,999 (one or .999 more nines) | Fraction of a second, to the given number of decimal places, with trailing zeros removed |                                                             |
+| Time zone                     | \-07 \-0700 \-07:00                                                                      | Time Zone (as UTC offset)                                   |
+| Z07 Z0700 Z07:00              | Time Zone (as UTC offset);a UTC offset of 0 (+00:00) is output as Z                      |                                                             |
+
+To specify a date format, you can put the reference date components together in any order, along with any other characters as required.
+
+Characters which are not part of the format specification are matched literally and produced unaltered, with the exception of Unicode U+0020, i.e. space `" "`, which matches any single character when parsing, and is produced unaltered on output. For example, `2006 01 02` parses `2021-06-28`, `2021/06/28`, `2021.06.28`, etc.
+
+Date and time functions also accept `printf`\-style format specifiers for date formats, based on the Unix [date](https://man7.org/linux/man-pages/man1/date.1.html) command. Format specifiers begin with a percent character `%` and take the following form:
+
+```ebnf
+format-specifier ::= '%' ( '%' | ( '-' | '_' | '0' | '^' )? width? element)
+```
+
+![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/format-specifier.png) 
+
+The optional hyphen (`-`), underscore (`_`), or zero (`0`) characters specify the padding for number fields.
+
+| hyphen \-     | No padding for numeric date components.                       |
+| ------------- | ------------------------------------------------------------- |
+| underscore \_ | Padding with spaces for numeric date components.              |
+| zero 0        | Padding with zeros for numeric date components — the default. |
+
+The optional circumflex (`^`) character specifies case insensitivity when parsing text date components, or a preference for upper case when outputting text date components.
+
+The _width_ is accepted but ignored for parsing, and is used for output. However, it should rarely be needed, as elements have common or expected default widths.
+
+The _element_ is a single character which specifies a date component or an entire date format. The elements are given in the table below.
+
+| Element                                         | Meaning                                                                                   | Example                       |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------- |
+| D                                               | Short form date, YYYY-MM-DD                                                               | 2021-06-28                    |
+| F                                               | Long form date, YYYY-MM-DDThh:mm:ss.sTZD                                                  | 2021-06-28T19:22:59.123+01:00 |
+| Y                                               | 4-digit century and year                                                                  | 2021                          |
+| C                                               | 2-digit century                                                                           | 20                            |
+| y                                               | 2-digit year \[[note](#default-values)\]                                                  | 21                            |
+| m                                               | 2-digit month                                                                             | 01                            |
+| B                                               | Full English month name                                                                   | January                       |
+| b                                               | Abbreviated English month name                                                            | Jan                           |
+| d                                               | 2-digit day                                                                               | 28                            |
+| A                                               | Full English day name                                                                     | Monday                        |
+| a                                               | Abbreviated English day name                                                              | Mon                           |
+| f                                               | English ordinal number suffix                                                             | st (as in 1st)                |
+| H                                               | 2-digit hour, 00-23                                                                       | 19                            |
+| I                                               | 2-digit hour, 01-12                                                                       | 07                            |
+| p                                               | AM or PM (upper case)                                                                     | PM                            |
+| P                                               | am or pm (lower case)                                                                     | pm                            |
+| M                                               | 2-digit minute, 00-59                                                                     | 22                            |
+| S                                               | 2-digit second, 00-59                                                                     | 59                            |
+| R                                               | 24-hour hour and minute (same as %H:%M)                                                   | 19:22                         |
+| T                                               | 24-hour time (same as %H:%M:%S)                                                           | 19:22:59                      |
+| N                                               | Fraction of a second (down to nanosecond)                                                 | 123                           |
+| z                                               | When parsing, matches a time zone in any supported format — ±hh, ±hhmm, ±hh:mm, zone name | +01 +0100 +01:00 Europe/Paris |
+| For output, produces time zone in ±hh:mm format | +01:00                                                                                    |                               |
+| Z                                               | When parsing, matches a time zone in any supported format — ±hh, ±hhmm, ±hh:mm, zone name | +01 +0100 +01:00 Europe/Paris |
+| For output, produces time zone name             | Europe/Paris                                                                              |                               |
+| s                                               | Seconds since 1970-01-01 00:00:00 UTC                                                     | 1624904579                    |
+| x                                               | Same as %D                                                                                | 2021-06-28                    |
+| r                                               | 12-hour time, hh:mm:ss AM/PM                                                              | 07:22:59 AM                   |
+| X                                               | Same as %T                                                                                | 19:22:59                      |
+| :z                                              | UTC offset in the format, +HH:MM                                                          | +05:30                        |
+| ::z                                             | UTC offset in the format, +HH:MM:SS                                                       | +05:30:00                     |
+| :::z                                            | UTC offset with minimum precision as required for the time zone                           | +05:30 or +05:30:00           |
+| V                                               | ISO week number                                                                           | 27                            |
+| G                                               | Year corresponding to the ISO week number                                                 | 2025                          |
+| j                                               | Day of the year                                                                           | 179                           |
+| q                                               | Quarter of the year, 1-4                                                                  | 2                             |
+| w                                               | Day of the week (Sunday=0)                                                                | 1                             |
+| u                                               | Day of the week (Monday=1, Sunday=7)                                                      | 2                             |
+| U                                               | Week number of year (Sunday is first day of the week)                                     | 27                            |
+| W                                               | Week number of year (Monday is first day of the week)                                     | 27                            |
+| #                                               | Time since Epoch in the format, \[total hours\]:mm:ss                                     | 406464:27:15                  |
+| @                                               | Time since Epoch in the format, \[total hours\]:mm:ss.fff                                 | 406464:27:15.123              |
+
+To specify a date format, you can put the format specifiers together in any order, along with any other characters as required. If you need to include a literal percent symbol in the date format, use the special format specifier `%%`.
+
+Characters which are not part of the format specification are matched literally and produced unaltered, with the exception of Unicode U+0020, i.e. space `" "`, which matches any single character when parsing, and is produced unaltered on output. For example, `%Y %m %d` parses `2021-06-28`, `2021/06/28`, `2021.06.28`, and so on.
+
+|  | Default Values If the date string does not explicitly declare the value of a component, then the following default values are assumed: The month and day default to 1. The century (when not specified by year) defaults to 19 if year is greater than or equal to 69, or 20 otherwise. All other numeric components default to 0. The time zone defaults to the local system time zone. In cases where the timezone is not specified, the local system time is assumed. For example, 2016-02-07 is equivalent to 2016-02-07T00:00:00 and parsing just 16 as the year is equivalent to 2016-01-01T00:00:00 in the local system time zone. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+|  | TZN Date Format In addition to the date formats listed [here](#date-string), SQL++ also supports the TZN (Time Zone Name) format. This format parses date strings in the same way as TZD but outputs the time zone name instead of the offset. For example, the TZN representation of the "Australia/Darwin" time zone is ACST. For an example of its usage, refer to the [STR\_TO\_TZ()](#ex-str-to-tz) function. |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+## [](#manipulating-components)Manipulating Date Components
+
+Dates are composed of multiple different components such as the day, year, month, etc. It is important for applications to be able to extract and manipulate particular components of a date, so that these can be used in SQL++ queries. Functions such as [DATE\_ADD\_STR()](#fn-date-add-str) accept a `part` argument, which is the component to adjust.
+
+The following are the supported date parts that can be passed to date manipulation functions. These date parts are expressed as strings and are not case-sensitive, so `year` is regarded the same as `YeAr`. For all examples, the date being used is `2006-01-02T15:04:05.999Z`.
+
+__Table 2\. Date and Time Components__
+| Component            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Lower Bound | Upper Bound | Example |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------- | ------- |
+| millennium           | The millennium (1000 year period), counting from the start of year 0, which is equivalent to 1 BCE.                                                                                                                                                                                                                                                                                                                                                                                                 | \-          | \-          | 3       |
+| century              | The century (100 year period), counting from the start of year 0, which is equivalent to 1 BCE.                                                                                                                                                                                                                                                                                                                                                                                                     | \-          | \-          | 21      |
+| decade               | The decade (10 year period), counting from the start of year 0, which is equivalent to 1 BCE. This is calculated as floor(year / 10).                                                                                                                                                                                                                                                                                                                                                               | \-          | \-          | 200     |
+| year                 | The proleptic Gregorian year. The year 0 is equivalent to 1 BCE.                                                                                                                                                                                                                                                                                                                                                                                                                                    | \-          | \-          | 2006    |
+| iso\_year            | The ISO-8601 year. Each ISO-8601 year begins with the Monday of the week containing the 4th of January, so in early January and late December the ISO year may differ from the Gregorian year. Should be used in conjunction with iso\_week to get consistent results.                                                                                                                                                                                                                              | \-          | \-          | 2006    |
+| quarter              | The number of the quarter (3 month period) of the year. January-March (inclusive) is 1 while October-December (inclusive) is 4.                                                                                                                                                                                                                                                                                                                                                                     | 1           | 4           | 1       |
+| month                | The number of the month of the year. January is 1 and December is 12.                                                                                                                                                                                                                                                                                                                                                                                                                               | 1           | 12          | 1       |
+| week                 | The number of the week of the year. This is the ceiling value of the day of the year divided by 7.                                                                                                                                                                                                                                                                                                                                                                                                  | 1           | 53          | 1       |
+| iso\_week            | The number of the week of the year, based on the ISO definition. ISO weeks start on Mondays and the first week of a year contains January 4 of that year. In other words, the first Thursday of a year will always be in week 1 of that year. This results in some different results between week and iso\_week, based on the input date. For example the iso\_week of 2006-01-08T15:04:05.999Z is 1, while the week is 2\. Should be used in conjunction with iso\_year to get consistent results. | 1           | 53          | 1       |
+| day                  | The day of the month.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 1           | 31          | 2       |
+| day\_of\_year or doy | The day of the year.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 1           | 366         | 2       |
+| day\_of\_week or dow | The day of the week.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 0           | 6           | 1       |
+| hour                 | The hour of the day.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 0           | 23          | 5       |
+| minute               | The minute of the hour.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 0           | 59          | 4       |
+| second               | The second of the minute.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 0           | 59          | 5       |
+| millisecond          | The millisecond of the second.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 0           | 999         | 999     |
+| timezone             | The offset from UTC in seconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | \-43200     | 43200       | 0       |
+| timezone\_hour       | The hour component of the offset from UTC.                                                                                                                                                                                                                                                                                                                                                                                                                                                          | \-12        | 12          | 0       |
+| timezone\_minute     | The minute component of the offset from UTC.                                                                                                                                                                                                                                                                                                                                                                                                                                                        | \-59        | 59          | 0       |
+
+## [](#date-functions)Date Functions
+
+Below is a list of all date functions that SQL++ provides.
+
+|  | Many date functions use the local system clock value and timezone of the query node to generate results. Therefore, if all nodes running the query service do not have their time appropriately synchronized then you may experience inconsistent behavior. It is recommended that all Couchbase Server nodes have their [time synchronized via NTP](../../install/synchronize-clocks-using-ntp.md). |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+|  | If any arguments to any of the following functions are MISSING then the result is also MISSING (i.e. no result is returned). Similarly, if any of the arguments are NULL then NULL is returned. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#fn-date-clock-local)CLOCK\_LOCAL(\[fmt\])
+
+### [](#description)Description
+
+The current time (at function evaluation time) of the machine that the query service is running on, in the specified string format.
+
+### [](#arguments)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value)Return Value
+
+A date string in the format specified representing the local system time.
+
+### [](#limitations)Limitations
+
+`CLOCK_LOCAL()` cannot be used as part of an index definition, this includes the indexed fields and the `WHERE` clause of the index.
+
+If this function is called multiple times within the same query then the values returned may differ, particularly if the query takes a long time to run. To avoid inconsistencies between multiple calls to `CLOCK_LOCAL()` within a single query, use [NOW\_LOCAL()](#fn-date-now-local) instead.
+
+### [](#examples)Examples
+
+```sqlpp
+SELECT CLOCK_LOCAL() as full_date,
+       CLOCK_LOCAL('invalid date') as invalid_date,
+       CLOCK_LOCAL('1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2018-01-23T13:57:29.847-08:00",
+    "invalid_date": "2018-01-23T13:57:29.847-08:00",
+    "short_date": "2018-01-23"
+  }
+]
+```
+
+## [](#fn-date-clock-millis)CLOCK\_MILLIS()
+
+### [](#description-2)Description
+
+The current time as an Epoch/UNIX timestamp. Its fractional part represents nanoseconds, but the additional precision beyond milliseconds may not be consistent or guaranteed on all platforms.
+
+### [](#arguments-2)Arguments
+
+This function accepts no arguments.
+
+### [](#return-value-2)Return Value
+
+A single float value (with 3 decimal places) representing the system time as Epoch/UNIX time.
+
+### [](#limitations-2)Limitations
+
+`CLOCK_MILLIS()` cannot be used as part of an index definition, this includes the indexed fields and the `WHERE` clause of the index.
+
+If this function is called multiple times within the same query then the values returned may differ, particularly if the query takes a long time to run. To avoid inconsistencies between multiple calls to `CLOCK_MILLIS()` within a single query, use [NOW\_MILLIS()](#fn-date-now-millis) instead.
+
+### [](#examples-2)Examples
+
+```sqlpp
+SELECT CLOCK_MILLIS() AS CurrentTime;
+```
+
+Results
+
+```json
+[
+  {
+    "CurrentTime": 1516744600430.677
+  }
+]
+```
+
+## [](#fn-date-clock-str)CLOCK\_STR(\[fmt\])
+
+### [](#description-3)Description
+
+The current time (at function evaluation time) of the machine that the query service is running on, in the specified string format.
+
+### [](#arguments-3)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as. .
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-3)Return Value
+
+A date string in the format specified representing the system time.
+
+### [](#limitations-3)Limitations
+
+`CLOCK_STR()` cannot be used as part of an index definition, this includes the indexed fields and the `WHERE` clause of the index.
+
+If this function is called multiple times within the same query then the values returned may differ, particularly if the query takes a long time to run. To avoid inconsistencies between multiple calls to `CLOCK_STR()` within a single query, use [NOW\_STR()](#fn-date-now-str) instead.
+
+### [](#examples-3)Examples
+
+```sqlpp
+SELECT CLOCK_STR() as full_date,
+       CLOCK_STR('invalid date') as invalid_date,
+       CLOCK_STR('1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2018-01-23T13:55:10.798-08:00",
+    "invalid_date": "2018-01-23T13:55:10.798-08:00",
+    "short_date": "2018-01-23"
+  }
+]
+```
+
+## [](#fn-date-clock-tz)CLOCK\_TZ(tz \[, fmt\])
+
+### [](#description-4)Description
+
+The current time (at function evaluation time) in the timezone given by the timezone argument passed to the function. This time is the local system time converted to the specified timezone.
+
+### [](#arguments-4)Arguments
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to convert the local time to.
+
+If this argument is not a valid timezone then `null` is returned as the result.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-4)Return Value
+
+An date string in the format specified representing the system time in the specified timezone.
+
+### [](#limitations-4)Limitations
+
+As this function converts the local time, it may not accurately represent the true time in that timezone.
+
+`CLOCK_TZ()` cannot be used as part of an index definition, this includes the indexed fields and the `WHERE` clause of the index.
+
+If this function is called multiple times within the same query then the values returned may differ, particularly if the query takes a long time to run. To avoid inconsistencies between multiple calls to `CLOCK_TZ()` within a single query, use [NOW\_TZ()](#fn-date-now-tz) instead.
+
+### [](#examples-4)Examples
+
+```sqlpp
+SELECT CLOCK_TZ('UTC') as UTC_full_date,
+       CLOCK_TZ('UTC', '1111-11-11') as UTC_short_date,
+       CLOCK_TZ('invalid timezone') as invalid_timezone,
+       CLOCK_TZ('US/Eastern') as us_east,
+       CLOCK_TZ('US/Pacific') as us_west;
+```
+
+Results
+
+```json
+[
+  {
+    "UTC_full_date": "2018-01-23T21:54:37.178Z",
+    "UTC_short_date": "2018-01-23",
+    "invalid_timezone": null,
+    "us_east": "2018-01-23T16:54:37.18-05:00",
+    "us_west": "2018-01-23T13:54:37.181-08:00"
+  }
+]
+```
+
+## [](#fn-date-clock-utc)CLOCK\_UTC(\[fmt\])
+
+### [](#description-5)Description
+
+The current time in UTC. This time is the local system time converted to UTC. This function is provided for convenience and is the same as `CLOCK_TZ('UTC')`.
+
+### [](#arguments-5)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-5)Return Value
+
+An date string in the format specified representing the system time in UTC.
+
+### [](#limitations-5)Limitations
+
+As this function converts the local time, it may not accurately represent the true time in UTC.
+
+`CLOCK_UTC()` cannot be used as part of an index definition, this includes the indexed fields and the `WHERE` clause of the index.
+
+If this function is called multiple times within the same query then the values returned may differ, particularly if the query takes a long time to run. To avoid inconsistencies between multiple calls to `CLOCK_UTC()` within a single query, use [NOW\_UTC()](#fn-date-now-utc) instead.
+
+### [](#examples-5)Examples
+
+```sqlpp
+SELECT CLOCK_UTC() as full_date, CLOCK_UTC('1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2018-01-23T21:54:03.593Z",
+    "short_date": "2018-01-23"
+  }
+]
+```
+
+## [](#fn-date-add-millis)DATE\_ADD\_MILLIS(date1, n, part)
+
+### [](#description-6)Description
+
+Performs date arithmetic on a particular component of an Epoch/UNIX timestamp value. This calculation is specified by the arguments `n` and `part`.
+
+\+ For example, a value of 3 for `n` and a value of `day` for `part` would add 3 days to the date specified by `date1`.
+
+### [](#arguments-6)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing an Epoch/UNIX timestamp in milliseconds.
+
+If this argument is not an integer then `null` is returned.
+
+n
+
+The value to increment the date component by. This value must be an integer, or any valid [expression](index.md) which evaluates to an integer, and may be negative to perform date subtraction.
+
+If a non-integer is passed to the function then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to increment.
+
+If an invalid part is passed to the function then `null` is returned.
+
+### [](#return-value-6)Return Value
+
+An integer, representing the result of the calculation as an Epoch/UNIX timestamp in milliseconds.
+
+### [](#examples-6)Examples
+
+```sqlpp
+SELECT DATE_ADD_MILLIS(1463284740000, 3, 'day') as add_3_days,
+       DATE_ADD_MILLIS(1463284740000, 3, 'year') as add_3_years,
+       DATE_ADD_MILLIS(1463284740000, -3, 'day') as sub_3_days,
+       DATE_ADD_MILLIS(1463284740000, -3, 'year') as sub_3_years;
+```
+
+Results
+
+```json
+[
+  {
+    "add_3_days": 1463543940000,
+    "add_3_years": 1557892740000,
+    "sub_3_days": 1463025540000,
+    "sub_3_years": 1368590340000
+  }
+]
+```
+
+## [](#fn-date-add-str)DATE\_ADD\_STR(date1, n, part)
+
+### [](#description-7)Description
+
+Performs date arithmetic on a date string. This calculation is specified by the arguments `n` and `part`. For example a value of 3 for `n` and a value of `day` for `part` would add 3 days to the date specified by `date1`.
+
+### [](#arguments-7)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the date in a [supported date format](#date-string).
+
+n
+
+The value to increment the date component by. This value must be an integer, or any valid [expression](index.md) which evaluates to an integer, and may be negative to perform date subtraction.
+
+If a non-integer is passed to the function then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to increment.
+
+If an invalid part is passed to the function then `null` is returned.
+
+### [](#return-value-7)Return Value
+
+An integer representing the result of the calculation as an Epoch/UNIX timestamp in milliseconds.
+
+### [](#examples-7)Examples
+
+```sqlpp
+SELECT DATE_ADD_STR('2016-05-15 03:59:00Z', 3, 'day') as add_3_days,
+       DATE_ADD_STR('2016-05-15 03:59:00Z', 3, 'year') as add_3_years,
+       DATE_ADD_STR('2016-05-15 03:59:00Z', -3, 'day') as sub_3_days,
+       DATE_ADD_STR('2016-05-15 03:59:00Z', -3, 'year') as sub_3_years;
+```
+
+Results
+
+```json
+[
+  {
+    "add_3_days": "2016-05-18T03:59:00Z",
+    "add_3_years": "2019-05-15T03:59:00Z",
+    "sub_3_days": "2016-05-12T03:59:00Z",
+    "sub_3_years": "2013-05-15T03:59:00Z"
+  }
+]
+```
+
+## [](#fn-date-diff-millis)DATE\_DIFF\_MILLIS(date1, date2, part)
+
+### [](#description-8)Description
+
+Finds the elapsed time between two Epoch/UNIX timestamps. This elapsed time is measured from the date specified by `date2` to the date specified by `date1`. If `date1` is greater than `date2`, then the value returned will be positive, otherwise the value returned will be negative.
+
+### [](#arguments-8)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+date2
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds.
+
+This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to return.
+
+For example, if `part` is `day`, the function returns the difference in days.
+
+The function returns `null` if you pass an invalid `part`.
+
+### [](#return-value-8)Return Value
+
+An integer representing the elapsed time (based on the specified `part`) between both dates.
+
+### [](#examples-8)Examples
+
+```sqlpp
+SELECT DATE_DIFF_MILLIS(1463543940000, 1463284740000, 'day') as add_3_days,
+       DATE_DIFF_MILLIS(1557892740000, 1463284740000, 'year') as add_3_years,
+       DATE_DIFF_MILLIS(1463025540000, 1463284740000, 'day') as sub_3_days,
+       DATE_DIFF_MILLIS(1368590340000, 1463284740000, 'year') as sub_3_years;
+```
+
+Results
+
+```json
+[
+  {
+    "add_3_days": 3,
+    "add_3_years": 3,
+    "sub_3_days": -3,
+    "sub_3_years": -3
+  }
+]
+```
+
+## [](#fn-date-diff-str)DATE\_DIFF\_STR(date1, date2, part)
+
+### [](#description-9)Description
+
+Finds the elapsed time between two dates specified as formatted strings. This elapsed time is measured from the date specified by `date2` to the date specified by `date1`. If `date1` is greater than `date2` then the value returned will be positive, otherwise the value returned will be negative.
+
+### [](#arguments-9)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+date2
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds.
+
+This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to return.
+
+For example, if `part` is `day`, the function returns the difference in days.
+
+The function returns `null` if you pass an invalid `part`.
+
+### [](#return-value-9)Return Value
+
+An integer representing the elapsed time (based on the specified `part`) between both dates.
+
+### [](#examples-9)Examples
+
+Example 1
+
+Find the day difference and year difference between two strings.
+
+```sqlpp
+SELECT DATE_DIFF_STR('2016-05-18T03:59:00Z', '2016-05-15 03:59:00Z', 'day') as add_3_days,
+       DATE_DIFF_STR('2019-05-15T03:59:00Z', '2016-05-15 03:59:00Z', 'year') as add_3_years,
+       DATE_DIFF_STR('2016-05-12T03:59:00Z', '2016-05-15 03:59:00Z', 'day') as sub_3_days,
+       DATE_DIFF_STR('2013-05-15T03:59:00Z', '2016-05-15 03:59:00Z', 'year') as sub_3_years;
+```
+
+Results
+
+```json
+[
+  {
+    "add_3_days": 3,
+    "add_3_years": 3,
+    "sub_3_days": -3,
+    "sub_3_years": -3
+  }
+]
+```
+
+## [](#fn-date-format-str)DATE\_FORMAT\_STR(date1, \[input-fmt,\] fmt)
+
+### [](#description-10)Description
+
+Converts datetime strings from one supported date string format to a different supported date string format.
+
+### [](#arguments-10)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string).
+
+If this argument is not a valid date string then `null` is returned.
+
+input-fmt
+
+The format of the input string, `date1`. This can be a string, or any valid [expression](index.md) which evaluates to a string.
+
+**Optional argument**. Only required if `date1` is not in a standard format or if the input and output formats are different.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+If an incorrect format is specified then this defaults to the combined full date and time.
+
+### [](#return-value-10)Return Value
+
+A date string in the format specified.
+
+### [](#examples-10)Examples
+
+```sqlpp
+SELECT DATE_FORMAT_STR('2016-05-15T00:00:23+00:00', '1111-11-11') as full_to_short,
+       DATE_FORMAT_STR('2016-05-15', '1111-11-11T00:00:00+00:00') as short_to_full,
+       DATE_FORMAT_STR('01:10:05', '1111-11-11T01:01:01Z') as time_to_full,
+       DATE_FORMAT_STR('15-MAY-2016', 'DD-MON-YYYY', 'YYYY-MM-DD') as month_to_numeric;
+```
+
+Results
+
+```json
+[
+  {
+    "full_to_short": "2016-05-15",
+    "short_to_full": "2016-05-15T00:00:00Z",
+    "time_to_full": "0000-01-01T01:10:05Z",
+    "month_to_numeric": "2016-05-15"
+  }
+]
+```
+
+## [](#fn-date-part-millis)DATE\_PART\_MILLIS(date1, part \[, tz\])
+
+### [](#description-11)Description
+
+Extracts the value of a given date component from an Epoch/UNIX timestamp value.
+
+### [](#arguments-11)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to extract.
+
+For example, if `part` is `day`, the function returns the day component of the date.
+
+The function returns `null` if you pass an invalid `part`.
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to convert the local time to.
+
+**Optional argument**. Defaults to the system timezone if not specified. If an incorrect time zone is provided, then `null` is returned.
+
+### [](#return-value-11)Return Value
+
+An integer representing the value of the component extracted from the timestamp.
+
+### [](#examples-11)Examples
+
+```sqlpp
+SELECT DATE_PART_MILLIS(1463284740000, 'day') as day_local,
+       DATE_PART_MILLIS(1463284740000, 'day', 'America/Tijuana') as day_pst,
+       DATE_PART_MILLIS(1463284740000, 'day', 'UTC') as day_utc,
+       DATE_PART_MILLIS(1463284740000, 'month') as month,
+       DATE_PART_MILLIS(1463284740000, 'week') as week,
+       DATE_PART_MILLIS(1463284740000, 'year') as year;
+```
+
+Results
+
+```json
+[
+  {
+    "day_local": 14,
+    "day_pst": 14,
+    "day_utc": 15,
+    "month": 5,
+    "week": 20,
+    "year": 2016
+  }
+]
+```
+
+## [](#fn-date-part-str)DATE\_PART\_STR(date1, part)
+
+### [](#description-12)Description
+
+Extracts the value of a given date component from a date string.
+
+### [](#arguments-12)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to extract.
+
+For example, if `part` is `day`, the function returns the day component of the date.
+
+The function returns `null` if you pass an invalid `part`.
+
+### [](#return-value-12)Return Value
+
+An integer representing the value of the component extracted from the timestamp.
+
+### [](#examples-12)Examples
+
+```sqlpp
+SELECT DATE_PART_STR('2016-05-15T03:59:00Z', 'day') as day,
+       DATE_PART_STR('2016-05-15T03:59:00Z', 'millisecond') as millisecond,
+       DATE_PART_STR('2016-05-15T03:59:00Z', 'month') as month,
+       DATE_PART_STR('2016-05-15T03:59:00Z', 'week') as week,
+       DATE_PART_STR('2016-05-15T03:59:00Z', 'year') as year;
+```
+
+Results
+
+```json
+[
+  {
+    "day": 15,
+    "millisecond": 0,
+    "month": 5,
+    "week": 20,
+    "year": 2016
+  }
+]
+```
+
+## [](#fn-date-range-millis)DATE\_RANGE\_MILLIS(date1, date2, part \[,n\])
+
+### [](#description-13)Description
+
+Generates an array of dates from the start date specified by `date1` and the end date specified by `date2`, as Epoch/UNIX timestamps. The difference between each subsequent generated date can be adjusted.
+
+### [](#arguments-13)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+date2
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds.
+
+This is the value that is subtracted from `date1`.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to increment.
+
+If an invalid part is passed to the function, then `null` is returned.
+
+n
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing the value by which to increment the part component for each generated date.
+
+**Optional argument**. If not specified, this defaults to 1\. If a value which is not an integer is specified, then `null` is returned.
+
+### [](#return-value-13)Return Value
+
+An array of integers representing the generated dates, as Epoch/UNIX timestamps, between `date1` and `date2`.
+
+### [](#limitations-6)Limitations
+
+It is possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It is therefore recommended that you first validate the inputs to this function to ensure that the generated result is a reasonable size.
+
+If the start date is greater than the end date passed to the function then an error will not be thrown, but the result array will be empty. An array of descending dates can be generated by setting the start date greater than the end date and specifying a negative value for `n`.
+
+### [](#examples-13)Examples
+
+Example 1
+
+Range of milliseconds by month.
+
+```sqlpp
+SELECT DATE_RANGE_MILLIS(1480752000000, 1475478000000, 'month', -1) as Milliseconds;
+```
+
+Results
+
+```json
+[
+  {
+    "Milliseconds": [
+      1480752000000,
+      1478156400000
+    ]
+  }
+]
+```
+
+Example 2
+
+Range of milliseconds by previous month.
+
+```sqlpp
+SELECT DATE_RANGE_MILLIS(1480752000000, 1449129600000, 'month', -1) as Months;
+```
+
+Results
+
+```json
+[
+  {
+    "Months": [
+      1480752000000,
+      1478156400000,
+      1475478000000,
+      1472886000000,
+      1470207600000,
+      1467529200000,
+      1464937200000,
+      1462258800000,
+      1459666800000,
+      1456992000000,
+      1454486400000,
+      1451808000000
+    ]
+  }
+]
+```
+
+## [](#fn-date-range-str)DATE\_RANGE\_STR(start\_date, end\_date, date\_interval \[, quantity\_int \])
+
+### [](#description-14)Description
+
+Generates an array of date strings between the start date and end date, calculated by the interval and quantity values. The input dates can be in any of the [supported date formats](#date-string).
+
+### [](#arguments-14)Arguments
+
+start\_date
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date used as the start date of the array generation.
+
+If this argument is not an integer, then `null` is returned.
+
+end\_date
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date used as the end date of the array generation, and this value is exclusive, that is, the end date will not be included in the result.
+
+If this argument is not an integer, then `null` is returned.
+
+date\_interval
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) of the date to increment.
+
+If an invalid part is passed to the function, then `null` is returned.
+
+quantity\_int
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing the value by which to increment the interval component for each generated date.
+
+**Optional argument**. If not specified, this defaults to 1\. If a value which is not an integer is specified, then `null` is returned.
+
+### [](#return-value-14)Return Value
+
+An array of strings representing the generated dates, as date strings, between `start_date` and `end_date`.
+
+### [](#limitations-7)Limitations
+
+* It is possible to generate very large arrays using this function. In some cases the query engine may be unable to process all of these and cause excessive resource consumption. It is therefore recommended that you first validate the inputs of this function to ensure that the generated result is a reasonable size.
+* If the `start_date` is greater than the `end_date`, then an error will not be thrown, but the result array will be empty. An array of descending dates can be generated by setting the `start_date` greater than the `end_date` and specifying a negative value for `quantity_number`.
+* From 4.6.2, both specified dates can be different acceptable date formats; but prior to 4.6.2, both specified dates must have the same string format, otherwise `null` will be returned. To ensure that both dates have the same format, you should use [DATE\_FORMAT\_STR()](#fn-date-format-str).
+
+### [](#examples-14)Examples
+
+Example 1
+
+Ranges by quarters.
+
+```sqlpp
+SELECT DATE_RANGE_STR('2015-11-30T15:04:05.999', '2017-04-14T15:04:06.998', 'quarter')
+AS Quarters;
+```
+
+Results
+
+```json
+[
+  {
+    "Quarters": [
+      "2015-11-30T15:04:05.999",
+      "2016-03-01T15:04:05.999",
+      "2016-06-01T15:04:05.999",
+      "2016-09-01T15:04:05.999",
+      "2016-12-01T15:04:05.999",
+      "2017-03-01T15:04:05.999"
+    ]
+  }
+]
+```
+
+Example 2
+
+Ranges by a single day.
+
+```sqlpp
+SELECT DATE_RANGE_STR('2016-01-01T15:04:05.999', '2016-01-05T15:04:05.998', 'day', 1)
+AS Days;
+```
+
+Results
+
+```json
+[
+  {
+    "Days": [
+      "2016-01-01T15:04:05.999",
+      "2016-01-02T15:04:05.999",
+      "2016-01-03T15:04:05.999",
+      "2016-01-04T15:04:05.999"
+    ]
+  }
+]
+```
+
+Example 3
+
+Ranges by four months.
+
+```sqlpp
+SELECT DATE_RANGE_STR('2018-01-01','2019-01-01', 'month', 4)
+AS Months;
+```
+
+Results
+
+```json
+[
+  {
+    "Months": [
+      "2018-01-01",
+      "2018-05-01",
+      "2018-09-01"
+    ]
+  }
+]
+```
+
+Example 4
+
+Ranges by previous days.
+
+```sqlpp
+SELECT DATE_RANGE_STR('2016-01-05T15:04:05.999', '2016-01-01T15:04:06.998', 'day', -1)
+AS Previous;
+```
+
+Results
+
+```json
+[
+  {
+    "Previous": [
+      "2016-01-05T15:04:05.999",
+      "2016-01-04T15:04:05.999",
+      "2016-01-03T15:04:05.999",
+      "2016-01-02T15:04:05.999"
+    ]
+  }
+]
+```
+
+Example 5
+
+Ranges by month.
+
+```sqlpp
+SELECT DATE_RANGE_STR('2015-01-01T01:01:01', '2015-12-11T00:00:00', 'month', 1)
+AS Months;
+```
+
+Results
+
+```json
+[
+  {
+    "Months": [
+      "2015-01-01T01:01:01",
+      "2015-02-01T01:01:01",
+      "2015-03-01T01:01:01",
+      "2015-04-01T01:01:01",
+      "2015-05-01T01:01:01",
+      "2015-06-01T01:01:01",
+      "2015-07-01T01:01:01",
+      "2015-08-01T01:01:01",
+      "2015-09-01T01:01:01",
+      "2015-10-01T01:01:01",
+      "2015-11-01T01:01:01",
+      "2015-12-01T01:01:01"
+    ]
+  }
+]
+```
+
+## [](#fn-date-trunc-millis)DATE\_TRUNC\_MILLIS(date1, part)
+
+### [](#description-15)Description
+
+Truncates an Epoch/UNIX timestamp up to the specified date component.
+
+### [](#arguments-15)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the date used as the date to truncate.
+
+If this argument is not an integer, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) to truncate to. This function accepts the components `millennium`, `century`, `decade`, `year`, `quarter`, `month`, `week`, and `iso_week`.
+
+If an invalid part is specified, then `null` is returned.
+
+### [](#return-value-15)Return Value
+
+An integer representing the truncated timestamp in Epoch/UNIX time.
+
+### [](#limitations-8)Limitations
+
+In some cases, where the timestamp is smaller than the duration of the provided part, this function returns the incorrect result. It is recommended that you do not use this function for very small Epoch/UNIX timestamps.
+
+### [](#examples-15)Examples
+
+```sqlpp
+SELECT DATE_TRUNC_MILLIS(1463284740000, 'day') as day,
+       DATE_TRUNC_MILLIS(1463284740000, 'month') as month,
+       DATE_TRUNC_MILLIS(1463284740000, 'year') as year;
+```
+
+Results
+
+```json
+[
+  {
+    "day": 1463270400000,
+    "month": 1462060800000,
+    "year": 1451606400000
+  }
+]
+```
+
+## [](#fn-date-trunc-str)DATE\_TRUNC\_STR(date1, part \[,fmt\])
+
+### [](#description-16)Description
+
+Truncates a date string up to the specified date component.
+
+### [](#arguments-16)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date that is truncated.
+
+If this argument is not a valid date format, then `null` is returned.
+
+part
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [component](#manipulating-components) to truncate to. This function accepts the components `millennium`, `century`, `decade`, `year`, `quarter`, `month`, `week`, and `iso_week`.
+
+If an invalid part is specified, then `null` is returned.
+
+fmt
+
+The format of the input string, `date1`. This can be a string, or any valid [expression](index.md) which evaluates to a string.
+
+**Optional argument**. Only required if `date1` is not in a standard format.
+
+### [](#return-value-16)Return Value
+
+A date string representing the truncated date.
+
+### [](#examples-16)Examples
+
+```sqlpp
+SELECT DATE_TRUNC_STR('2016-05-18T03:59:00Z', 'day') as day,
+       DATE_TRUNC_STR('2016-05-18T03:59:00Z', 'month') as month,
+       DATE_TRUNC_STR('2016-05-18T03:59:00Z', 'year') as year,
+       DATE_TRUNC_STR('05/18/2016 03:59:00', 'month', 'MM/DD/YYYY HH24:MI:SS') as month_custom;
+```
+
+Results
+
+```json
+[
+  {
+    "day": "2016-05-18T00:00:00Z",
+    "month": "2016-05-01T00:00:00Z",
+    "year": "2016-01-01T00:00:00Z",
+    "month_custom": "05/01/2016 00:00:00"
+  }
+]
+```
+
+## [](#fn-date-duration-to-str)DURATION\_TO\_STR(duration)
+
+### [](#description-17)Description
+
+Converts a number into a human-readable time duration with units.
+
+### [](#arguments-17)Arguments
+
+duration
+
+A number, or any valid [expression](index.md) which evaluates to a number, which represents the duration to convert to a string. This value is specified in nanoseconds (1×10\-9 seconds).
+
+If a value which is not a number is specified, then `null` is returned.
+
+### [](#return-value-17)Return Value
+
+A string representing the human-readable duration.
+
+### [](#examples-17)Examples
+
+```sqlpp
+SELECT DURATION_TO_STR(2000) as microsecs,
+       DURATION_TO_STR(2000000) as millisecs,
+       DURATION_TO_STR(2000000000) as secs;
+```
+
+Results
+
+```json
+[
+  {
+    "microsecs": "2µs",
+    "millisecs": "2ms",
+    "secs": "2s"
+  }
+]
+```
+
+## [](#fn-date-millis)MILLIS(date1)
+
+### [](#description-18)Description
+
+Converts a date string to Epoch/UNIX milliseconds.
+
+### [](#arguments-18)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date to convert to Epoch/UNIX milliseconds.
+
+If this argument is not a valid date format, then `null` is returned.
+
+### [](#return-value-18)Return Value
+
+An integer representing the date string converted to Epoch/UNIX milliseconds.
+
+### [](#examples-18)Examples
+
+```sqlpp
+SELECT MILLIS("2016-05-15T03:59:00Z") as DateStringInMilliseconds;
+```
+
+Results
+
+```json
+[
+  {
+    "DateStringInMilliseconds": 1463284740000
+  }
+]
+```
+
+## [](#fn-date-millis-to-local)MILLIS\_TO\_LOCAL(date1 \[, fmt\])
+
+Alias for [MILLIS\_TO\_STR()](#fn-date-millis-to-str).
+
+## [](#fn-date-millis-to-str)MILLIS\_TO\_STR(date1 \[, fmt \])
+
+### [](#description-19)Description
+
+Converts an Epoch/UNIX timestamp into the specified date string format.
+
+### [](#arguments-19)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the date to convert.
+
+If this argument is not an integer, then `null` is returned.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If unspecified or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-19)Return Value
+
+A date string representing the local date in the specified format.
+
+### [](#limitations-9)Limitations
+
+In some cases, where the timestamp is smaller than the duration of the provided part, this function returns the incorrect result. It is recommended that you do not use this function for very small Epoch/UNIX timestamps.
+
+### [](#examples-19)Examples
+
+```sqlpp
+SELECT MILLIS_TO_STR(1463284740000) as full_date,
+       MILLIS_TO_STR(1463284740000, 'invalid format') as invalid_format,
+       MILLIS_TO_STR(1463284740000, '1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2016-05-14T20:59:00-07:00",
+    "invalid_format": "2016-05-14T20:59:00-07:00",
+    "short_date": "2016-05-14"
+  }
+]
+```
+
+## [](#fn-date-millis-to-tz)MILLIS\_TO\_TZ(date1, tz \[, fmt\])
+
+### [](#description-20)Description
+
+Converts an Epoch/UNIX timestamp into the specified time zone in the specified date string format.
+
+### [](#arguments-20)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the date to convert.
+
+If this argument is not an integer, then `null` is returned.
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to convert the local time to. **Optional argument**. Defaults to the system timezone if not specified.
+
+If an incorrect time zone is provided, then `null` is returned.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-20)Return Value
+
+A date string representing the date in the specified timezone in the specified format..
+
+### [](#examples-20)Examples
+
+```sqlpp
+SELECT MILLIS_TO_TZ(1463284740000, 'America/New_York') as est,
+	   MILLIS_TO_TZ(1463284740000, 'Asia/Kolkata') as ist,
+	   MILLIS_TO_TZ(1463284740000, 'UTC') as utc;
+```
+
+Results
+
+```json
+[
+  {
+    "est": "2016-05-14T23:59:00-04:00",
+    "ist": "2016-05-15T09:29:00+05:30",
+    "utc": "2016-05-15T03:59:00Z"
+  }
+]
+```
+
+## [](#fn-date-millis-to-utc)MILLIS\_TO\_UTC(date1 \[, fmt\])
+
+### [](#description-21)Description
+
+Converts an Epoch/UNIX timestamp into local time in the specified date string format.
+
+### [](#arguments-21)Arguments
+
+date1
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing a Epoch/UNIX timestamp in milliseconds. This is the date to convert to UTC.
+
+If this argument is not an integer, then `null` is returned.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If unspecified or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-21)Return Value
+
+A date string representing the date in UTC in the specified format.
+
+### [](#examples-21)Examples
+
+```sqlpp
+SELECT MILLIS_TO_UTC(1463284740000) as full_date,
+       MILLIS_TO_UTC(1463284740000, 'invalid format') as invalid_format,
+       MILLIS_TO_UTC(1463284740000, '1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2016-05-15T03:59:00Z",
+    "invalid_format": "2016-05-15T03:59:00Z",
+    "short_date": "2016-05-15"
+  }
+]
+```
+
+## [](#fn-date-millis-to-zone-name)MILLIS\_TO\_ZONE\_NAME(date1, tz \[, fmt\])
+
+Alias for [MILLIS\_TO\_TZ()](#fn-date-millis-to-tz)
+
+## [](#fn-date-now-local)NOW\_LOCAL(\[fmt\])
+
+### [](#description-22)Description
+
+The timestamp of the query as date string in the system timezone. Will not vary during a query.
+
+### [](#arguments-22)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If no format or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-22)Return Value
+
+A date time string in the format specified.
+
+### [](#limitations-10)Limitations
+
+If this function is called multiple times within the same query it will always return the same time. If you wish to use the system time when the function is evaluated, use [CLOCK\_LOCAL()](#fn-date-clock-local) instead.
+
+### [](#examples-22)Examples
+
+Example 1
+
+Various arguments of NOW\_LOCAL().
+
+```sqlpp
+SELECT NOW_LOCAL() as full_date,
+       NOW_LOCAL('invalid date') as invalid_date,
+       NOW_LOCAL('1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2018-01-23T14:03:40.26-08:00",
+    "invalid_date": "2018-01-23T14:03:40.26-08:00",
+    "short_date": "2018-01-23"
+  }
+]
+```
+
+Example 2
+
+Difference between NOW\_LOCAL() and CLOCK\_LOCAL().
+
+```sqlpp
+SELECT NOW_LOCAL(), NOW_LOCAL(), NOW_LOCAL(), NOW_LOCAL(), NOW_LOCAL(), CLOCK_LOCAL();
+```
+
+Results
+
+```json
+[
+  {
+    "$1": "2018-01-23T14:06:20.254-08:00",
+    "$2": "2018-01-23T14:06:20.254-08:00",
+    "$3": "2018-01-23T14:06:20.254-08:00",
+    "$4": "2018-01-23T14:06:20.254-08:00",
+    "$5": "2018-01-23T14:06:20.254-08:00",
+    "$6": "2018-01-23T14:06:20.256-08:00"
+  }
+]
+```
+
+## [](#fn-date-now-millis)NOW\_MILLIS()
+
+### [](#description-23)Description
+
+The timestamp of the query as an Epoch/UNIX timestamp. Will not vary during a query.
+
+### [](#arguments-23)Arguments
+
+This function accepts no arguments.
+
+### [](#return-value-23)Return Value
+
+A floating point number representing the Epoch/UNIX timestamp of the query.
+
+### [](#limitations-11)Limitations
+
+If this function is called multiple times within the same query it will always return the same time. If you wish to use the system time when the function is evaluated, use [CLOCK\_MILLIS()](#fn-date-clock-millis) instead.
+
+### [](#examples-23)Examples
+
+Example 1
+
+The time now in milliseconds.
+
+```sqlpp
+SELECT NOW_MILLIS() as NowInMilliseconds;
+```
+
+Results
+
+```json
+[
+  {
+    "NowInMilliseconds": 1516745378065.12
+  }
+]
+```
+
+Example 2
+
+Difference between NOW\_MILLIS() and CLOCK\_MILLIS().
+
+```sqlpp
+SELECT NOW_MILLIS(), NOW_MILLIS(), NOW_MILLIS(), NOW_MILLIS(), CLOCK_MILLIS();
+```
+
+Results
+
+```json
+[
+  {
+    "$1": 1516745528579.607,
+    "$2": 1516745528579.607,
+    "$3": 1516745528579.607,
+    "$4": 1516745528580.29
+  }
+]
+```
+
+## [](#fn-date-now-tz)NOW\_TZ(tz \[, fmt\])
+
+### [](#description-24)Description
+
+The timestamp of the query as date string in the specified timezone. Will not vary during a query.
+
+### [](#arguments-24)Arguments
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to convert the query timestamp to.
+
+If an incorrect time zone is provided then `null` is returned.
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If unspecified or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-24)Return Value
+
+A date string in the format specified representing the timestamp of the query in the specified timezone.
+
+### [](#limitations-12)Limitations
+
+If this function is called multiple times within the same query it will always return the same time. If you wish to use the system time when the function is evaluated, use [CLOCK\_TZ()](#fn-date-clock-tz) instead.
+
+### [](#examples-24)Examples
+
+Example 1
+
+Various arguments for NOW\_TZ().
+
+```sqlpp
+SELECT NOW_TZ('invalid tz') as invalid_tz,
+       NOW_TZ('Asia/Kolkata') as ist,
+       NOW_TZ('UTC') as utc,
+       NOW_TZ('UTC', '1111-11-11') as utc_short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "invalid_tz": null,
+    "ist": "2018-01-24T03:43:36.457+05:30",
+    "utc": "2018-01-23T22:13:36.457Z",
+    "utc_short_date": "2018-01-23"
+  }
+]
+```
+
+Example 2
+
+Difference between NOW\_TZ() and CLOCK\_TZ().
+
+```sqlpp
+SELECT NOW_TZ('UTC'), NOW_TZ('UTC'), NOW_TZ('UTC'), CLOCK_TZ('UTC');
+```
+
+Results
+
+```json
+[
+  {
+    "$1": "2018-01-23T22:15:59.551Z",
+    "$2": "2018-01-23T22:15:59.551Z",
+    "$3": "2018-01-23T22:15:59.551Z",
+    "$4": "2018-01-23T22:15:59.552Z"
+  }
+]
+```
+
+## [](#fn-date-now-str)NOW\_STR(\[fmt\])
+
+### [](#description-25)Description
+
+The timestamp of the query as date string in the system timezone. Will not vary during a query.
+
+### [](#arguments-25)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If unspecified or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-25)Return Value
+
+A date string in the format specified representing the timestamp of the query.
+
+### [](#limitations-13)Limitations
+
+If this function is called multiple times within the same query it will always return the same time. If you wish to use the system time when the function is evaluated, use [CLOCK\_STR()](#fn-date-clock-str) instead.
+
+### [](#examples-25)Examples
+
+Example 1
+
+Various arguments for NOW\_STR().
+
+```sqlpp
+SELECT NOW_STR() as full_date,
+       NOW_STR('invalid date') as invalid_date,
+       NOW_STR('1111-11-11') as short_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "2018-01-23T14:16:58.075-08:00",
+    "invalid_date": "2018-01-23T14:16:58.075-08:00",
+    "short_date": "2018-01-23"
+  }
+]
+```
+
+Example 2
+
+Difference between NOW\_STR() and CLOCK\_STR().
+
+```sqlpp
+SELECT NOW_STR(), NOW_STR(), NOW_STR(), NOW_STR(), NOW_STR(), NOW_STR(), CLOCK_STR();
+```
+
+Results
+
+```json
+[
+  {
+    "$1": "2018-01-23T14:18:37.605-08:00",
+    "$2": "2018-01-23T14:18:37.605-08:00",
+    "$3": "2018-01-23T14:18:37.605-08:00",
+    "$4": "2018-01-23T14:18:37.605-08:00",
+    "$5": "2018-01-23T14:18:37.605-08:00",
+    "$6": "2018-01-23T14:18:37.605-08:00",
+    "$7": "2018-01-23T14:18:37.607-08:00"
+  }
+]
+```
+
+## [](#fn-date-now-utc)NOW\_UTC(\[fmt\])
+
+### [](#description-26)Description
+
+The timestamp of the query as date string in UTC. Will not vary during a query.
+
+### [](#arguments-26)Arguments
+
+fmt
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a [supported date format](#date-string) to output the result as.
+
+**Optional argument**. If unspecified or an incorrect format is specified, then this defaults to the combined full date and time.
+
+### [](#return-value-26)Return Value
+
+A date string in the format specified representing the timestamp of the query in UTC.
+
+### [](#limitations-14)Limitations
+
+If this function is called multiple times within the same query it will always return the same time. If you wish to use the system time when the function is evaluated, use [CLOCK\_MILLIS()](#fn-date-clock-utc) instead.
+
+### [](#examples-26)Examples
+
+Example 1
+
+The current UTC time.
+
+```sqlpp
+SELECT NOW_UTC() as CurrentUTC;
+```
+
+Results
+
+```json
+[
+  {
+    "CurrentUTC": "2018-01-23T22:20:43.971Z"
+  }
+]
+```
+
+Example 2
+
+Difference between NOW\_UTC() and CLOCK\_UTC().
+
+```sqlpp
+SELECT NOW_UTC(), NOW_UTC(), NOW_UTC(), NOW_UTC(), NOW_UTC(), NOW_UTC(), NOW_UTC(), CLOCK_UTC();
+```
+
+Results
+
+```json
+[
+  {
+    "$1": "2018-01-23T22:21:46.769Z",
+    "$2": "2018-01-23T22:21:46.769Z",
+    "$3": "2018-01-23T22:21:46.769Z",
+    "$4": "2018-01-23T22:21:46.769Z",
+    "$5": "2018-01-23T22:21:46.769Z",
+    "$6": "2018-01-23T22:21:46.769Z",
+    "$7": "2018-01-23T22:21:46.769Z",
+    "$8": "2018-01-23T22:21:46.77Z"
+  }
+]
+```
+
+## [](#fn-date-str-to-duration)STR\_TO\_DURATION(duration)
+
+### [](#description-27)Description
+
+Converts a string representation of a time duration into nanoseconds. This accepts the following units:
+
+* nanoseconds (`ns`)
+* microseconds (`us` or `µs`)
+* milliseconds (`ms`)
+* seconds (`s`)
+* minutes (`m`)
+* hours (`h`)
+
+### [](#arguments-27)Arguments
+
+duration
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the duration to convert.
+
+If an invalid duration string is specified, then `null` is returned.
+
+### [](#return-value-27)Return Value
+
+A single integer representing the duration in nanoseconds.
+
+### [](#examples-27)Examples
+
+```sqlpp
+SELECT STR_TO_DURATION('1h') as hour,
+STR_TO_DURATION('1us') as microsecond,
+STR_TO_DURATION('1ms') as millisecond,
+STR_TO_DURATION('1m') as minute,
+STR_TO_DURATION('1ns') as nanosecond,
+STR_TO_DURATION('1s') as second;
+```
+
+Results
+
+```json
+[
+  {
+    "hour": 3600000000000,
+    "microsecond": 1000,
+    "millisecond": 1000000,
+    "minute": 60000000000,
+    "nanosecond": 1,
+    "second": 1000000000
+  }
+]
+```
+
+## [](#fn-date-str-to-millis)STR\_TO\_MILLIS(date1 \[, format\])
+
+### [](#description-28)Description
+
+Converts a date string to Epoch/UNIX milliseconds.
+
+### [](#arguments-28)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the date to convert to Epoch/UNIX milliseconds.
+
+If this argument is not a valid date format, then `null` is returned.
+
+format
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the expected format of the input date string, using the [Go language reference date](https://golang.org/pkg/time/#pkg-constants).
+
+**Optional argument**. If not specified, the input date string must be in a [supported date format](#date-string). If an incorrect format is provided, then `null` is returned.
+
+### [](#return-value-28)Return Value
+
+An integer representing the date string converted to Epoch/UNIX milliseconds.
+
+### [](#examples-28)Examples
+
+Example 1
+
+```sqlpp
+SELECT STR_TO_MILLIS("2016-05-15T03:59:00Z") AS Milliseconds;
+```
+
+Results
+
+```json
+[
+  {
+    "Milliseconds": 1463284740000
+  }
+]
+```
+
+Example 2
+
+```sqlpp
+SELECT STR_TO_MILLIS("19/08/2011 6:33:23+0000", "02/01/2006 15:04:05Z0700")
+AS Milliseconds;
+```
+
+Results
+
+```json
+[
+  {
+    "Milliseconds": 1313735603000
+  }
+]
+```
+
+## [](#fn-date-str-to-utc)STR\_TO\_UTC(date1 \[, \[input-fmt,\] fmt\])
+
+### [](#description-29)Description
+
+Converts a date string into the equivalent date in UTC. By default, the output date format follows the date format of the date passed as input. However, you can specify a different output format if needed.
+
+### [](#arguments-29)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date to convert to UTC.
+
+If this argument is not a valid date format, then `null` is returned.
+
+input-fmt
+
+The format of the input string, `date1`. This can be a string, or any valid [expression](index.md) which evaluates to a string.
+
+**Optional argument**. Only required if `date1` is not in a standard format or if the input and output formats are different.
+
+fmt
+
+The format of the resulting UTC date. This can be a string, or any valid [expression](index.md) which evaluates to a string, and must be a [supported date format](#date-string).
+
+**Optional argument**. If not specified, the output date format follows the date format of the input string, `date1`.
+
+### [](#return-value-29)Return Value
+
+A single date string representing the date string converted to UTC.
+
+### [](#examples-29)Examples
+
+```sqlpp
+SELECT STR_TO_UTC('1111-11-11T00:00:00+08:00') as full_date,
+       STR_TO_UTC('1111-11-11') as short_date,
+       STR_TO_UTC('1111-11-11', 'YYYY-MM-DD', 'YYYY-MM-DD HH:MI:SS') as utc_date;
+```
+
+Results
+
+```json
+[
+  {
+    "full_date": "1111-11-10T16:00:00Z",
+    "short_date": "1111-11-11",
+    "utc_date": "1111-11-11 12:00:00"
+  }
+]
+```
+
+## [](#fn-date-str-to-tz)STR\_TO\_TZ(date1, tz \[, \[input-fmt,\] fmt\])
+
+### [](#description-30)Description
+
+Converts a date string to its equivalent in the specified timezone. By default, the output date format follows the date format of the date passed as input. However, you can specify a different output format if needed.
+
+### [](#arguments-30)Arguments
+
+date1
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date to convert to UTC.
+
+If this argument is not a valid date format then `null` is returned.
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to convert the local time to.
+
+If this argument is not a valid timezone, then `null` is returned.
+
+input-fmt
+
+The format of the input string, `date1`. This can be a string, or any valid [expression](index.md) which evaluates to a string.
+
+**Optional argument**. Only required if `date1` is not in a standard format or if the input and output formats are different.
+
+fmt
+
+The format of the output date. This can be a string, or any valid [expression](index.md) which evaluates to a string, and must be a [supported date format](#date-string).
+
+**Optional argument**. If not specified, the output date format follows the date format of the input string, `date1`.
+
+### [](#return-value-30)Return Value
+
+A single date string representing the date string converted to the specified timezone.
+
+### [](#ex-str-to-tz)Examples
+
+```sqlpp
+SELECT STR_TO_TZ('1111-11-11T00:00:00+08:00', 'America/New_York') as est,
+    STR_TO_TZ('1111-11-11T00:00:00+08:00', 'UTC') as utc,
+    STR_TO_TZ('1111-11-11', 'UTC') as utc_short,
+    STR_TO_TZ('1111-11-11', 'UTC', 'YYYY-MM-DD', 'YYYY-MM-DD HH:MI:SS') as utc_datetime,
+    STR_TO_TZ('1111-11-11T00:00:00+07:00', 'Europe/Paris',
+              "YYYY-MM-DDThh:mm:ssTZD", "YYYY-MM-DDThh:mm:ssTZN") as tzn;
+```
+
+Results
+
+```json
+[
+  {
+    "est": "1111-11-10T11:03:58-04:56",
+    "utc": "1111-11-10T16:00:00Z",
+    "utc_short": "1111-11-11",
+    "utc_datetime": "1111-11-11 12:00:00",
+    "tzn": "1111-11-10T17:09:21LMT"
+  }
+]
+```
+
+## [](#fn-date-str-to-zone-name)STR\_TO\_ZONE\_NAME(date1, tz)
+
+Alias for [STR\_TO\_TZ()](#fn-date-str-to-tz).
+
+## [](#weekday%5Fmillisexpr-tz)WEEKDAY\_MILLIS(expr \[, tz \])
+
+### [](#description-31)Description
+
+Converts a date string to its equivalent in the specified timezone. The output date format follows the date format of the date passed as input.
+
+### [](#arguments-31)Arguments
+
+expr
+
+An integer, or any valid [expression](index.md) which evaluates to an integer, representing an Epoch/UNIX timestamp in milliseconds.
+
+tz
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing the [timezone](#date-timezone) to for the expr argument.
+
+**Optional argument**. Defaults to the system timezone if not specified. If an incorrect time zone is provided then `null` is returned.
+
+### [](#return-value-31)Return Value
+
+A single date string representing the date string converted to the specified timezone.
+
+### [](#examples-30)Examples
+
+```sqlpp
+SELECT WEEKDAY_MILLIS(1486237655742, 'America/Tijuana') as Day;
+```
+
+Results
+
+```json
+[
+  {
+    "Day": "Saturday"
+  }
+]
+```
+
+## [](#weekday%5Fstrdate)WEEKDAY\_STR(date)
+
+### [](#description-32)Description
+
+Returns the day of the week string value from the input date string. Returns the weekday name from the input date in Unix timestamp. Note that his function returns the string value of the day of the week, where [DATE\_PART\_STR()](#fn-date-part-str) with part = "dow" returns an integer value of the weekday (0-6).
+
+### [](#arguments-32)Arguments
+
+date
+
+A string, or any valid [expression](index.md) which evaluates to a string, representing a date in a [supported date format](#date-string). This is the date to convert to UTC.
+
+If this argument is not a valid date format then `null` is returned.
+
+### [](#return-value-32)Return Value
+
+The text string name of the day of the week, such as "Monday" or "Friday".
+
+### [](#examples-31)Examples
+
+```sqlpp
+SELECT WEEKDAY_STR('2017-02-05') as Day;
+```
+
+Results
+
+```json
+[
+  {
+    "Day": "Sunday"
+  }
+]
+```

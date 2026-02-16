@@ -1,0 +1,327 @@
+[View original HTML](/server/7.2/fts/fts-creating-index-from-REST-geojson.html)
+
+This example quickly creates the final index (able to sort by keyword) as found in [Creating a Geospatial Index (type geojson)](fts-supported-queries-geojson-spatial.md#creating%5Fa%5Fgeojson%5Findex) in Geospatial GeoJSON Queries.
+
+|  | In order to run this example there is a required data modification for travel-sample refer to the "Prerequisites - Modify the travel-sample dataset" section in [Geospatial GeoJSON Queries](fts-supported-queries-geojson-spatial.md#prerequisites-dataset). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+The cURL command below was initially created via the Classic Editor in the UI, however the follwoing modifications were made.
+
+* The curl flag "**\-s**" to suppress some runtime output.
+* The credentials "**\-u <username>:<password>**" were altered to "**\-u** $**{CB\_USERNAME}**:$**{CB\_PASSWORD}**".
+* The hostname or IP address was replaced with $**{CB\_HOSTNAME}**.
+* The commands output is piped through the utility **[jq](http://stedolan.github.io/jq)** to enhance readability.
+* The two (2) UUIDs were removed (similar to the below) because we want to make a new index not modify an existing one.  
+```json  
+  "uuid": "273a60635f5248e5",  
+  "sourceUUID": "2b421d183cb76aebbffa45424736ec2e",  
+```
+
+## [](#the-creation-command)The Creation Command
+
+The full command to create the index is below and can be executed verbatim if you have the environment variable $**{CB\_USERNAME}**, $**{CB\_PASSWORD}** and $**{CB\_HOSTNAME}** set.
+
+```command
+curl -s -XPUT -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson -d \
+'{
+  "type": "fulltext-index",
+  "name": "test_geojson",
+  "sourceType": "gocbcore",
+  "sourceName": "travel-sample",
+  "planParams": {
+    "maxPartitionsPerPIndex": 1024,
+    "indexPartitions": 1
+  },
+  "params": {
+    "doc_config": {
+      "docid_prefix_delim": "",
+      "docid_regexp": "",
+      "mode": "scope.collection.type_field",
+      "type_field": "type"
+    },
+    "mapping": {
+      "analysis": {},
+      "default_analyzer": "standard",
+      "default_datetime_parser": "dateTimeOptional",
+      "default_field": "_all",
+      "default_mapping": {
+        "dynamic": true,
+        "enabled": false
+      },
+      "default_type": "_default",
+      "docvalues_dynamic": false,
+      "index_dynamic": true,
+      "store_dynamic": false,
+      "type_field": "_type",
+      "types": {
+        "_default._default": {
+          "dynamic": true,
+          "enabled": true,
+          "properties": {
+            "airportname": {
+              "dynamic": false,
+              "enabled": true,
+              "fields": [
+                {
+                  "analyzer": "keyword",
+                  "include_in_all": true,
+                  "index": true,
+                  "name": "name",
+                  "store": true,
+                  "type": "text"
+                }
+              ]
+            },
+            "geoarea": {
+              "dynamic": false,
+              "enabled": true,
+              "fields": [
+                {
+                  "include_in_all": true,
+                  "index": true,
+                  "name": "geoarea",
+                  "type": "geoshape"
+                }
+              ]
+            },
+            "geojson": {
+              "dynamic": false,
+              "enabled": true,
+              "fields": [
+                {
+                  "include_in_all": true,
+                  "index": true,
+                  "name": "geojson",
+                  "type": "geoshape"
+                }
+              ]
+            },
+            "name": {
+              "dynamic": false,
+              "enabled": true,
+              "fields": [
+                {
+                  "analyzer": "keyword",
+                  "include_in_all": true,
+                  "index": true,
+                  "name": "name",
+                  "store": true,
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "store": {
+      "indexType": "scorch",
+      "segmentVersion": 15
+    }
+  },
+  "sourceParams": {}
+}'  | jq .
+```
+
+If you successfully create the index you should a response liekt the follwoing
+
+```json
+{
+  "status": "ok",
+  "uuid": "690ac8f8179a4a86"
+}
+```
+
+## [](#test-the-geojson-index-with-a-simple-query)Test the GeoJSON Index with a simple query
+
+Request the first 10 items within the state of Utah (note the query body consistes of simple set of hand drawn set of corner points). The target-field `geojson` is specified, to be compared to the query Polygon the target-locations must reside for their documents to be returned. Don’t worry about newlines when you paste the text.
+
+The results are specified to be sorted on `name`. Note type hotel and landmark have a name field and type airport has an airportname field all these values are analyzed as a keyword (exposed as `name`).
+
+```command
+curl -s -XPOST -H "Content-Type: application/json" \
+-u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/index/test_geojson/query \
+-d '{
+  "query": {
+    "geometry": {
+      "shape": {
+        "coordinates": [
+          [
+            [-114.027099609375, 42.00848901572399],
+            [-114.04907226562499, 36.99377838872517],
+            [-109.05029296875, 36.99377838872517],
+            [-109.05029296875, 40.98819156349393],
+            [-111.060791015625, 40.98819156349393],
+            [-111.02783203125, 42.00848901572399],
+            [-114.027099609375, 42.00848901572399]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "relation": "within"
+    },
+    "field": "geojson"
+  },
+  "size": 10,
+  "from": 0,
+  "sort": ["name"]
+}' |  jq .
+```
+
+The output of ten (10) hits (from a total of 18 matching docs) is as follows
+
+```json
+{
+  "status": {
+    "total": 1,
+    "failed": 0,
+    "successful": 1
+  },
+  "request": {
+    "query": {
+      "geometry": {
+        "shape": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                -114.027099609375,
+                42.00848901572399
+              ],
+              [
+                -114.04907226562499,
+                36.99377838872517
+              ],
+              [
+                -109.05029296875,
+                36.99377838872517
+              ],
+              [
+                -109.05029296875,
+                40.98819156349393
+              ],
+              [
+                -111.060791015625,
+                40.98819156349393
+              ],
+              [
+                -111.02783203125,
+                42.00848901572399
+              ],
+              [
+                -114.027099609375,
+                42.00848901572399
+              ]
+            ]
+          ]
+        },
+        "relation": "within"
+      },
+      "field": "geojson"
+    },
+    "size": 10,
+    "from": 0,
+    "highlight": null,
+    "fields": null,
+    "facets": null,
+    "explain": false,
+    "sort": [
+      "name"
+    ],
+    "includeLocations": false,
+    "search_after": null,
+    "search_before": null
+  },
+  "hits": [
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_6999",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Brigham City"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_7857",
+      "score": 0.27669394470240527,
+      "sort": [
+        "Bryce Canyon"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_7074",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Canyonlands Field"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_7583",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Carbon County Regional-Buck Davis Field"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_3824",
+      "score": 0.24860341896785076,
+      "sort": [
+        "Cedar City Rgnl"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_7581",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Delta Municipal Airport"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_8803",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Heber City Municipal Airport"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_3614",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Hill Afb"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_9279",
+      "score": 0.27669394470240527,
+      "sort": [
+        "Hite Airport"
+      ]
+    },
+    {
+      "index": "test_geojson_3397081757afba65_4c1c5584",
+      "id": "airport_6998",
+      "score": 0.13231342774148913,
+      "sort": [
+        "Logan-Cache"
+      ]
+    }
+  ],
+  "total_hits": 18,
+  "max_score": 0.27669394470240527,
+  "took": 18446484,
+  "facets": null
+}
+```
+
+## [](#the-index-if-viewed-in-the-uis-classic-editor)The Index if viewed in the UI’s Classic Editor
+
+![fts geojson mod index full](_images/fts-geojson-mod-index-full.png)

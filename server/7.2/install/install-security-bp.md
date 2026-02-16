@@ -1,0 +1,41 @@
+[View original HTML](/server/7.2/install/install-security-bp.html)
+
+> Ensure that you follow security best best practices throughout the deployment lifecycle. 
+
+Security is important for every line of business. This topic summarizes some security best practices that you should consider both before and after you install Couchbase Server. You should also review the other topics under [Security](../learn/security/security-overview.md) before deploying Couchbase Server.
+
+While you are setting up your server environment, be sure to do the following:
+
+Use a firewall
+
+Firewalls offer a layer of defense against external threats and should be used to safeguard the perimeters of your deployment. It is a security best practice not to expose your Couchbase Server nodes to the Internet; instead, place your entire cluster behind a firewall.
+
+Below are some guidelines for using firewalls with Couchbase Server:
+
+* Enable a firewall between the Internet and your Couchbase Server cluster.
+* Use the least privilege access method when designing web applications with multi-tier architecture. Segment the cluster into defined network layers appropriately with firewalls in front of the application layer and between the application and data layers. Block all traffic through the firewall, and selectively permit traffic on only the required ports between the required hosts.
+
+Ensure operating system updates
+
+Make sure that you apply the latest patches to secure your operating system; a configuration management solution is good for helping with this.
+
+Secure in-transit data to and from the cluster
+
+Make sure that you use SSL for client-server communications, for XDCR, and to access the Couchbase Web Console.
+
+Secure the file system
+
+You might also consider encrypting your file system to ensure that only authorized processes and users can access it. Many third-party libraries are available for transparently encrypting Couchbase Server data without any application changes.
+
+Practice secure authentication procedures
+
+* Audit who has access to the system
+* Change passwords regularly and don’t reuse them
+* Use strong and unique passwords
+
+Enhance physical security
+
+To enhance physical security of your Couchbase Server clusters, consider the following points:
+
+* Ensure that only authorized personnel have physical access to the Couchbase Server cluster environment.
+* Regularly back up all data and secure backups in an off-site location.

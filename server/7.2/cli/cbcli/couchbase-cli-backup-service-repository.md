@@ -1,0 +1,293 @@
+[View original HTML](/server/7.2/cli/cbcli/couchbase-cli-backup-service-repository.html)
+
+Manage the backup service repositories.
+
+## [](#synopsis)SYNOPSIS
+
+_couchbase-cli backup-service [--cluster <url>] [--username <user>]
+    [--password <password>] [--client-cert <path>] [--client-cert-password <password>]
+    [--client-key <path>] [--client-key-password <password>]
+    [--output] repository [--list] [--get] [--archive]
+    [--add] [--remove] [--id <id>] [--new-id <id>] [--state <state>]
+    [--profile <name>] [--backup-archive <archive>] [--bucket-name <name>]
+    [--cloud-credentials-name <name>] [--cloud-staging-dir <path>]
+    [--cloud-credentials-id <id>] [--cloud-credentials-key <key>]
+    [--cloud-credentials-refresh-token <token>] [--cloud-credentials-region <region>]
+    [--cloud-endpoint <endpoint>] [--s3-force-path-style] [--remove-data]
+
+## [](#description)DESCRIPTION
+
+Manage backup service repositories
+
+## [](#action-options)ACTION OPTIONS
+
+\--list
+
+List the backup repositories.
+
+\--get
+
+Get a specific backup repository.
+
+\--archive
+
+Archives an active repository. This will move the repository into a read only mode. This operation cannot be undone.
+
+\--add
+
+Add a new active backup repository.
+
+\--remove
+
+Remove an archived or imported repository. This operation cannot be undone.
+
+## [](#options)OPTIONS
+
+\--id <id>
+
+Specify the repository id.
+
+\--new-id <id>
+
+Used together with the `--archive` action flag to specify the new id for the repository once it is archived.
+
+\--state <state>
+
+Specifies the repository state. Valid states are 'active', 'archived' or 'imported'
+
+\--profile <profile\_name>
+
+Specify the profile to use when adding a new repository.
+
+\--backup-archive <archive>
+
+The location to store backups in. This location should be accessible by all backup nodes. To use S3 or S3 compatible storages the archive must be in the format: `s3://<bucket>/<optional_prefix>/<archive>`.
+
+\--bucket-name <name>
+
+When adding a repository a bucket name can be supplied so that the repository only backups that bucket.
+
+\--remove-data
+
+When removing an archived repository this option can be given to also delete the underlying backup repository and all of its data. This cannot be undone.
+
+## [](#cloud-options)CLOUD OPTIONS
+
+\--cloud-credentials-name <name>
+
+The identifying name for a set of credentials already stored in the service.
+
+\--cloud-credentials-id <id>
+
+The id to use with the object store.
+
+\--cloud-credentials-key <key>
+
+The key to use with the object store.
+
+\--cloud-credentials-refresh-token <token>
+
+Used to refresh oauth2 tokens when accessing remote storage.
+
+\--cloud-credentials-region <region>
+
+The region for the object store.
+
+\--cloud-endpoint <endpoint>
+
+Overrides the default endpoint used to communicate with the cloud provider. Use for object store compatible third party solutions.
+
+\--s3-force-path-style
+
+When using S3 or S3 compatible storage it will use the old path style.
+
+## [](#host-formats)HOST FORMATS
+
+When specifying a host for the couchbase-cli command the following formats are expected:
+
+* `couchbase://<addr>` or `couchbases://<addr>`
+* `http://<addr>:<port>` or `https://<addr>:<port>`
+* `<addr>:<port>`
+
+It is recommended to use the couchbase://<addr> or couchbases://<addr> format for standard installations. The other formats allow an option to take a port number which is needed for non-default installations where the admin port has been set up on a port other that 8091 (or 18091 for https).
+
+## [](#certificate-authentication-mtls-authentication)CERTIFICATE AUTHENTICATION (MTLS AUTHENTICATION)
+
+This tool supports authenticating against a Couchbase Cluster by using certificate based authentication (mTLS authentication). To use certificate based authentication a certificate/key must be supplied, there a currently multiple ways this may be done.
+
+### [](#pem-encoded-certificatekey)PEM ENCODED CERTIFICATE/KEY
+
+An unencrypted PEM encoded certificate/key may be supplied by using: - `--client-cert <path>`\- `--client-key <path>`
+
+The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
+
+The file passed to `--client-key` must contain at most one private key, the key can be in one of the following formats: - PKCS#1 - PKCS#8
+
+Currently, only the following key types are supported: - RSA - DSA
+
+### [](#pem-encoded-certificatepem-or-der-encrypted-pkcs8-key)PEM ENCODED CERTIFICATE/PEM OR DER ENCRYPTED PKCS#8 KEY
+
+An encrypted PKCS#8 formatted key may be provided using: - `--client-cert <path>`\- `--client-key <path>`\- `--client-key-password <password>`
+
+The file passed to `--client-cert` must contain the client certificate, and an optional chain required to authenticate the client certificate.
+
+Currently, only the following key types are supported: - RSA - DSA
+
+### [](#encrypted-pkcs12-certificatekey)ENCRYPTED PKCS#12 CERTIFICATE/KEY
+
+An encrypted PKCS#12 certificate/key may be provided using: - `--client-cert <path>`\- `--client-cert-password <password>`
+
+The file passed to `--client-cert` must contain the client certificate and exactly one private key. It may also contain the chain required to authenticate the client certificate.
+
+Currently, only the following key types are supported: - RSA - DSA
+
+## [](#examples)EXAMPLES
+
+### [](#retrieving-repository-information)Retrieving repository information
+
+To retrieve a summary of all repositories run:
+
+$ couchbase-cli backup-service -c 127.0.0.1:8091 -u Administrator -p password \
+  repository --list
+ID            | State    | Profile | Healthy | Repository"
+----------------------------------------------------------
+weekly-all    | active   | _weekly |  True   | a8059549-7fc3-401a-8fb8-008d1e20f1b0
+old-data      | archived | _daily  |  True   | d6ccec04-6f03-4599-94c5-b95ac10a4f80
+test-data-set | imported | N/A     |  True   | provider
+
+You can also filter to only get repositories in certain state by using the `--state` flag. If you want more in-depth details for the repository use the JSON output as can be seen below:
+
+To set the backup service configuration use the `--set` flag and any of the configuration flags for example:
+
+$ couchbase-cli backup-service -c 127.0.0.1:8091 -u Administrator -p password  --output json \
+  repository --list --state active
+{
+  "active": [
+    {
+      "id": "weekly-all",
+      "profile_name": "_weekly",
+      "state": "active",
+      "archive": "/backup",
+      "repo": "a8059549-7fc3-401a-8fb8-008d1e20f1b0",
+      "scheduled": {
+        "backup_monday_full": {
+          "name": "backup_monday_full",
+          "task_type": "BACKUP",
+          "next_run": "2020-07-13T22:00:00+01:00"
+        },
+        "backup_wednesday": {
+          "name": "backup_wednesday",
+          "task_type": "BACKUP",
+          "next_run": "2020-07-15T22:00:00+01:00"
+        },
+        "merge_week": {
+          "name": "merge_week",
+          "task_type": "MERGE",
+          "next_run": "2020-07-12T23:20:00+01:00"
+        }
+      },
+      "version": 1,
+      "health": {
+        "healthy": true
+      },
+      "creation_time": "2020-07-10T07:44:18.826195+01:00",
+      "update_time": "2020-07-10T07:44:18.826195+01:00"
+    }
+  ]
+}
+
+To retrieve just the information for one repository used instead the `--get` action flag as illustrated below.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --get --id weekly-all --state active
+ID: weekly-all
+State: active
+Healthy: True
+Archive: /backup
+Repository: a8059549-7fc3-401a-8fb8-008d1e20f1b0
+Profile: _weekly
+Creation time: 2020-07-10T07:44:18.826195+01:00
+
+Scheduled tasks:
+Name               | Task type | Next run
+----------------------------------------------
+backup_monday_full | Backup    | 2020-07-13T22:00:00+01:00
+backup_wednesday   | Backup    | 2020-07-15T22:00:00+01:00
+merge_week         | Merge     | 2020-07-12T23:20:00+01:00
+
+As before you can retrieve all details in JSON format by using `--output json` before the repository subcommand.
+
+### [](#adding-and-modifying-repositories)Adding and modifying repositories
+
+To add an repository one can use the `--add action` flag as shown below.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --add --id new-repository --profile _weekly --backup-archive /backup/service
+
+In the command above we are adding a new repository with name `new-repository` that is using a base profile `_weekly`. The base profile defines the schedules of the tasks that the repository will run as well as what services it will backup. Finally the backup archive is the location where the backups will stored. This location is equivalent to a cbbackupmgr archive. Two repository should **not** use the same archive. Also `cbbackupmgr` should **not**be run on the archives managed by the service directly.
+
+If you want an repository that only backs up one bucket or want different backup schedules for each bucket this can be achieved by using the `--bucket-name` argument to specify which bucket the repository should backup. An example can be seen below.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --add --id new-repository --profile _weekly --backup-archive /backup/service \
+  --bucket-name beer-sample
+
+The service also supports creating cloud backup repositories. These are repositories that backup directly to object store. Currently, the only supported object store is S3 and S3 compatible stores. To create a cloud repository you will need to supply some more details, as illustrated in the example below.
+
+$ couchbase-cli -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --add --id cloud-repository --profile _daily --backup-archive s3://cloud-bucket/archive \
+  --cloud-staging-dir /backup/staging --cloud-credentials-id id --cloud-credentials-key key \
+  --cloud-credentials-region us-east-1
+
+In the command above we can see that the archive supplied for cloud must start with the schema `s3://` followed by the bucket name, after, the path to the archive in S3 must be given. A **staging directory** must also be supplied. This is a location where cbbackupmgr will temporarily store data whilst doing cloud backups. This path must be available in all backup nodes and should have space for roughly 10% of the data set size as reported by the UI. In the command above we have also supplied the cloud credential ID, key and region. This are the details that will be used to communicate with S3\. Note that credentials can be stored and reused in the backup service so if you already have the correct set of credentials stored you can replace the id, key and region flags by `--cloud-credential-name` and give the name of the credential set you want to re-use.
+
+Finally, for S3 compatible stores you can use the `--cloud-endpoint` argument to override the endpoint use to communicate with S3 and point it to your storage solution address. Some S3 compatible storages only support the old S3 path styles to use those supply the `s3-force-path-style` argument.
+
+To archive an repository you can use the command below. Archiving an repository moves the repository to read-only mode. This means that no more backup tasks will be run. The repository can still be restored and the data examined but not altered. This action is not reversible.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --archive --id active-repository --new-id deprecated
+
+The last way in which can modify an repository is by removing it. Only archived and imported repositories can be removed. If you want to remove an active repository you first have to archive it as explained above. To remove an repository use the command below. Note that this operation cannot be undone.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --remove --id repository --state imported
+
+Note that by default this command only removes the repository from the service but does **not** remove the backup repository. The flag `--remove-data` allows you to also delete the underlying data. This argument can only be used with archived repositories as imported ones could still be in use by another node. To remove the data as well follow the example below, note that once the data is deleted it cannot be recovered.
+
+$ couchbase-cli backup-service -c http://127.0.0.1:8091 -u Administrator -p password \
+  repository --remove --id other_repository --state archived --remove-data
+
+## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
+
+CB\_REST\_USERNAME
+
+Specifies the username to use when executing the command. This environment variable allows you to specify a default argument for the -u/--username argument on the command line.
+
+CB\_REST\_PASSWORD
+
+Specifies the password of the user executing the command. This environment variable allows you to specify a default argument for the -p/--password argument on the command line. It also allows the user to ensure that their password are not cached in their command line history.
+
+CB\_CLIENT\_CERT
+
+The path to a client certificate used to authenticate when connecting to a cluster. May be supplied with `CB_CLIENT_KEY` as an alternative to the `CB_USERNAME` and `CB_PASSWORD` variables. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_CERT\_PASSWORD
+
+The password for the certificate provided to the `CB_CLIENT_CERT` variable, when using this variable, the certificate/key pair is expected to be in the PKCS#12 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_KEY
+
+The path to the client private key whose public key is contained in the certificate provided to the `CB_CLIENT_CERT` variable. May be supplied with `CB_CLIENT_CERT` as an alternative to the `CB_USERNAME` and `CB_PASSWORD`variables. See the CERTIFICATE AUTHENTICATION section for more information.
+
+CB\_CLIENT\_KEY\_PASSWORD
+
+The password for the key provided to the `CB_CLIENT_KEY` variable, when using this variable, the key is expected to be in the PKCS#8 format. See the CERTIFICATE AUTHENTICATION section for more information.
+
+## [](#see-also)SEE ALSO
+
+[backup-service](couchbase-cli-backup-service.md)
+
+## [](#couchbase-cli)COUCHBASE-CLI
+
+Part of the [couchbase-cli](couchbase-cli.md) suite

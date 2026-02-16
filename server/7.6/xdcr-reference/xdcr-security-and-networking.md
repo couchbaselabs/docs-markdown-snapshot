@@ -1,0 +1,138 @@
+[View original HTML](/server/7.6/xdcr-reference/xdcr-security-and-networking.html)
+
+> Specific requirements must be satisfied in order to ensure the successful creation of XDCR replications over different network configurations. 
+
+## [](#security-and-networking-contexts)Security and Networking Contexts
+
+This page considers three, specific contexts in which XDCR replications must sometimes be established. These respectively involve:
+
+* Handling _Couchbase Schemes_, Using _DNS SRV_
+* Using _Alternate Addresses_
+* Using _Certificates_
+
+Each is explained below.
+
+## [](#dnssrv)Handling Couchbase Schemes, Using DNS SRV
+
+Targets for XDCR replication can be specified with the standard port number `8091` or `18091`, as applicable. Targets _cannot_ be specified with the _Couchbase_ schemes _couchbase://_ and _couchbases://_, which are, instead, used to support the memcached protocol on ports `11210` and `11207`, respectively.
+
+Targets _can_, however, be specified with a _Fully Qualified Domain Name_ (_FQDN_) that is either tagged with one of the standard port numbers, or is untagged. In such cases, XDCR performs a [LookupSRV](https://go.dev/src/net/lookup.go) on the FQDN, using the local machine’s _DNS resolver_. LookupSRV obtains the appropriate name from a local DNS [SRV record](https://en.wikipedia.org/wiki/SRV%5Frecord): which is a specification of data in the Domain Name System that defines the _location_ (the hostname and port number) of a server for a particular service. When LookupSRV has returned the name, XDCR concatenates a standard port number to the name, and uses the resulting concatenation as the target-reference.
+
+Consequently, resources named by means of the Couchbase schemes can be resolved to appropriate XDCR-target names: by first removing the _couchbase_ or _couchbases_ prefix, and then specifying the remaining symbol, which is the FQDN — so that LookupSRV resolves the FQDN to a name that XDCR can include in the ultimate target-reference. Note, however, that this does assume the target’s use of one of the standard port numbers — `8091` or `18091`.
+
+### [](#example)Example
+
+Suppose a resource is provided with the Couchbase scheme as follows: `couchbases://7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. The scheme’s prefix `couchbases://` can be removed, so as to leave an FQDN as follows: `7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com`. This FQDN can be specified by the administrator as the _hostname_ of the target cluster for XDCR replication.
+
+Note that the command `nslookup -type=srv` can be used manually to determine whether this hostname corresponds to one or more true, DNS SVR records. The format of an SRV record is as follows:
+
+_service._proto.name. ttl IN SRV priority weight port target
+
+See [SRV record](https://en.wikipedia.org/wiki/SRV%5Frecord), for a full explanation of this syntax.
+
+For manual lookup to be performed, values must be provided for the `_service._proto.name.` arguments. Thus, `couchbases` can be used for the `service` argument; `tcp` for the `proto` argument; and the hostname `7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com` for the `name` argument. The command therefore becomes as follows:
+
+nslookup -type=srv _couchbases._tcp.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com
+
+If execution is successful, output is similar to the following:
+
+Server:		176.103.130.130
+Address:	176.103.130.130#53
+
+Non-authoritative answer:
+_couchbases._tcp.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com	service = 0 0 11207 cb-0001.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com.
+_couchbases._tcp.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com	service = 0 0 11207 cb-0002.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com.
+_couchbases._tcp.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com	service = 0 0 11207 cb-0000.7cb51b5b-d9cd-410d-9cc7-1be93e2f31d9.dp.cloud.couchbase.com.
+
+This output shows that three SRV records have been found to correspond with the values specified. The final value of each displayed record is the `target` for the record: each is a name beginning with `cb-`; and each name corresponds to an individual, server node.
+
+The process shown manually above is essentially that followed programmatically by LookupSRV. Note that XDCR ignores the value of the `port` argument returned in the record (which is in each case the secure memcached port, `11207`).
+
+Using the target-reference derived from SRV, XDCR then performs its usual _cluster add_ procedure, to contact the other server nodes.
+
+## [](#using-alternate-addresses)Using Alternate Addresses
+
+_Alternate addresses_ are used to allow a cluster to keep its _internally visible_ addresses private, while using a router or other networked entity to provide _externally visible_ addresses that are to be used by networked clients of the cluster. Instances of _Kubernetes_ and _AWS_ frequently use alternate addresses for their connections with external entities.
+
+Alternate addresses used in this way are said to constitute an _external network_. Any cluster that is established within an external network must have its nodes configured to use the corresponding alternate addresses for external communications; and if the cluster is to be used as an XDCR target, these addresses must be referenced by the XDCR source. This involves, on the target, _port forwarding_, which is described in [Alternate Addresses](../learn/clusters-and-availability/connectivity.md#alternate-addresses). It also involves, on the source, specification of the external network interface, either as an FQDN, or an IP address.
+
+When a cluster has been configured in this way for external networking, and status on the cluster is returned by means of Couchbase Web Console, the CLI, or the REST API, both the internal and the external addresses are represented.
+
+The REST API reference page [Managing Alternate Addresses](../rest-api/rest-set-up-alternate-address.md) explains how alternate addresses can be established for and removed from nodes. The REST API reference page [Listing Node Services](../rest-api/rest-list-node-services.md) explains how to retrieve all internal and external address settings.
+
+### [](#kubernetes)Kubernetes
+
+_Kubernetes_ employs a dual network environment, where an external interface is established for the reception of externally generated network traffic. Such traffic includes inbound XDCR mutations: therefore, the source cluster must use the external interface established for Kubernetes.
+
+A diagram of dual-network setup is provided in [Dual Network](../learn/clusters-and-availability/connectivity.md#dual-network).
+
+### [](#aws-and-cloud)AWS and Cloud
+
+If a cluster is established on a public cloud such as AWS, or is a Kubernetes cluster, and is intended to become the target for XDCR, the cluster must be configured with alternate addresses, to support the source cluster’s access. A diagram is provided in [Internal Network or Cloud Access](../learn/clusters-and-availability/connectivity.md#internal-network-or-cloud-access).
+
+## [](#specifying-addresses)Specifying Addresses
+
+If a target cluster is configured with alternate addresses, the particular address to which a connection should be made can be specified on the source cluster. The following options are available for specifying the target-cluster address:
+
+* When using Couchbase Web Console, from the **XDCR Replications** screen, left-clicking the **ADD REMOTE** tab brings up the **Add Remote Cluster** dialog, which provides an **IP/Hostname** interactive field. (See [Create an XDCR Reference with the UI](../manage/manage-xdcr/create-xdcr-reference.md#create-an-xdcr-reference-with-the-ui).)
+* When using the CLI, the `xdcr-setup` command provides the `--xdcr-hostname` field. (See [xdcr-setup](../cli/cbcli/couchbase-cli-xdcr-setup.md).)
+* When using the REST API, the `POST /pools/default/remoteClusters` method and URI provide the `hostname` field. (See [Setting a Reference](../rest-api/rest-xdcr-create-ref.md).)
+
+In each case:
+
+* An IP address or a qualified domain name can be specified. The name can optionally be tagged with the port number `8091` or `18091`.
+* If a specified IP address corresponds to the external address of the target cluster, the external address is used for the connection. If a specified IP address corresponds to the internal address of the target cluster, the internal address is used for the connection.  
+In either case, if the name is not tagged with a port number, the connection defaults to `8091`; unless a secure connection is specified in another field, in which case `18091` is used. (Note that the REST API provides a `network_type` parameter, which can be set to `external`, so as to enforce a secure connection: see [Setting a Reference](../rest-api/rest-xdcr-create-ref.md).)
+* If an FQDN is specified without a port number, LookupSRV is invoked on the FQDN, to match the FQDN to an appropriate target-name. If an FQDN is specified with one of the standard port numbers, `8091` and `18091`, the port number is stripped from the FQDN, and LookupSRV is invoked on the resulting symbol, to match the FQDN to an appropriate target-name. In either case, if a match is found, a connection is attempted, using the corresponding target-name. If no match is found, a connection is attempted, using the FQDN’s standard mapping to the internal or external IP address of a non-SRV target cluster.  
+(See [Handling Couchbase Schemes, using DNS SRV](#dnssrv), above.)  
+Note that if LookupSRV is attempted and fails, XDCR retries the connection, using the FQDN’s standard mapping: if the retry succeeds, the standard mapping continues to be used. Note that connectivity status for all of a source cluster’s defined references can be retrieved by means of the REST API: see [Getting a Reference](../rest-api/rest-xdcr-get-ref.md).
+
+## [](#using-certificates)Using Certificates
+
+To be fully secure, XDCR requires _x.509 certificates_ to have been established on the target cluster. The source cluster can authenticate with the target by means _either_ of a username and password _or_ of its own x.509 certificates.
+
+### [](#preparing-to-configure-secure-replications)Preparing to Configure Secure Replications
+
+A complete overview of certificate management for Couchbase Server is provided in [Certificates](../learn/security/certificates.md); examples of establishing secure connections are provided in [Secure a Replication](../manage/manage-xdcr/secure-xdcr-replication.md). An overview of _Transport Layer Security_ is provided in [On-the-Wire Security](../learn/security/on-the-wire-security.md); and examples of configuring TLS are provided in [Manage On-the-Wire Security](../manage/manage-security/manage-tls.md). Detailed information on the communication _handshake_ implemented by _Transport Layer Security_ can be found in [TLS Handshake](https://en.wikipedia.org/wiki/Transport%5FLayer%5FSecurity#TLS%5Fhandshake).
+
+Administrators intending to establish secure replications should be familiar with all of the above content. A number of key issues are summarized below.
+
+### [](#defining-client-and-server)Defining Client and Server
+
+When a fully secure XDCR replication is configured, the source cluster should be considered the _client_, and the target cluster the _server_.
+
+### [](#understanding-root-intermediate-and-node-certificates)Understanding Root, Intermediate, and Node Certificates
+
+As described in [Certificates](../learn/security/certificates.md), the authority of a networked entity, such as a cluster or an application, is, in a typical production context, represented by a _root_ certificate that has been provided by a known _Certificate Authority_. This root certificate (or _CA_) must be included in the _trust store_ of the target cluster. See [Using Multiple Root Certificates](../learn/security/using-multiple-cas.md) for information on the trust store, and see [Load Root Certificates](../rest-api/load-trusted-cas.md) for information on loading a CA into a trust store.
+
+Note that when the known authority’s CA has been successfully loaded, it is visible by means of Couchbase Web Console, as shown in the documentation for the [Certificates](../manage/manage-security/manage-security-settings.md#root-certificate-security-screen-display) security screen. If, on the target cluster, the CA is not visible here, it has not been loaded, and no fully secure replication will be supported.
+
+Each node in the target cluster must be represented by its own _node_ certificate. The CA for the target cluster must have been used to _digitally sign_ each node certificate: either directly, or (more likely) _indirectly_, by means of an _intermediate_ certificate. When signing is complete, each node certificate must be _concatenated_ with however many intermediate certificates have been used, to form a _certificate chain_, and then appropriately posted on the node it is representing.
+
+To support fully secure XDCR, each node in a target cluster must be identified by its `subjectAlName` extension, in its node certificate.
+
+An overview of node-certificate preparation is provided in [Certificate Hierarchies](../learn/security/certificates.md#certificate-hierarchies), and examples (including use of `subjectAltName`) are provided in [Manage Certificates](../manage/manage-security/manage-certificates.md).
+
+### [](#performing-certificate-based-authentication)Performing Certificate-Based Authentication
+
+When the XDCR source cluster authenticates with the target cluster, the [TLS Handshake](https://en.wikipedia.org/wiki/Transport%5FLayer%5FSecurity#TLS%5Fhandshake) is performed. During the course of this, the _server_ (which is the target-cluster node) provides its certificate chain to the _client_ (which is the source cluster). The source cluster validates the chain, as described in [Node Certificates](../learn/security/certificates.md#node-certificate).
+
+### [](#recognizing-cas)Recognizing CAs
+
+The top certificate in the chain that is provided to the source cluster (the _client_) points to the CA for the target cluster (the _server_). As explained above, this CA must have been loaded into the trust store for the target cluster. Additionally, this CA must be recognizable to the source cluster: therefore, XDCR allows the CA to be passed to the source cluster during the set-up of the secure connection. See [Enable Fully Secure Replications](../manage/manage-xdcr/enable-full-secure-replication.md) for examples; covering the UI, the CLI, and the REST API.
+
+Note that, in Couchbase Server 7.1+, _multiple root certificates_ are supported (see [Using Multiple Root Certificates](../learn/security/using-multiple-cas.md)). Therefore, source and target clusters need not rely on the authority of the same CA: however, each must trust the CA of the other, if the client is to perform certificate-based authentication — and consequently, if the CAs are different, the CA of the client must have been loaded into the trust store of the server, for authentication to succeed.
+
+See [Load Root Certificates](../rest-api/load-trusted-cas.md), for further information.
+
+### [](#handling-client-certificates)Handling Client Certificates
+
+If the source cluster (the _client_) wishes to authenticate with the target cluster (the _server_) by means of _client certificates_, the administrator must first [Enable Client-Certificate Handling](../manage/manage-security/enable-client-certificate-handling.md), on the server.
+
+See [Specify Root and Client Certificates, and Client Private Key](../manage/manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates), for an example of making the subsequent connection, from the client.
+
+### [](#xdcr-certificates-and-containers)XDCR, Certificates, and Containers
+
+If either a source or a target cluster for an XDCR replication resides within a container, such as a Kubernetes pod, the container’s image must itself contain the trusted CA that is relied on for validating the cluster that is being connected to.
+
+Note that Couchbase _Operator_ has a _Dynamic Admissions Controller_ (DAC), which performs TLS certificate-generation and assignment, including rotation. Therefore, if DAC is being used, the Root Certificate referred to by the client when setting up a fully secure replication must be the one whose authority, on the server, is relied on for these DAC operations.

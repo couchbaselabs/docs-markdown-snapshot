@@ -1,0 +1,199 @@
+[View original HTML](/server/7.2/rest-api/rest-buckets-summary.html)
+
+> Information on buckets defined on the cluster can be retrieved, by means of the REST API. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+GET /pools/default/buckets
+
+GET /pools/default/buckets/<bucket-name>
+
+## [](#description)Description
+
+`GET /pools/default/buckets` retrieves information on all buckets defined on the cluster. If the `<bucket-name>` path-parameter is added, only information on the specified bucket is retrieved.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET http://<ip-address-or-domain-name>:8091/pools/default/buckets/<bucket-name>
+
+## [](#responses)Responses
+
+Successful execution returns `200 OK`, and either an object containing information on the individual bucket specified by the path-parameter; or an array of such objects, each containing information on one of the buckets defined on the cluster.
+
+Failure to authenticate returns `401 Unauthorized`. An incorrectly specified URI returns `404 Object Not Found`. If an internal error prevents successful execution, `500 Internal Server Error` is returned.
+
+## [](#example)Example
+
+The following example returns information on a single bucket, which is `testBucket`. The output of the call is piped to [jq](https://stedolan.github.io/jq/), to facilitate readability.
+
+curl -X GET -u Administrator:password \
+http://localhost:8091/pools/default/buckets/testBucket | jq '.'
+
+If successful, the call returns `200 OK`, and an object such as the following. (Note that actual console-output contains an extensive array of vBucket-information: this has been omitted from this example.)
+
+The fields `historyRetentionCollectionDefault`, `historyRetentionCollectionBytes`, and `historyRetentionCollectionSeconds` are specific to _Magma_ storage: if `magma` is not the value of `storageBackend`, these parameters are not displayed.
+
+{
+  "name": "testBucket",
+  "nodeLocator": "vbucket",
+  "bucketType": "membase",
+  "storageBackend": "magma",
+  "uuid": "d76bc79b761458f95d7dcf48bbe2fe92",
+  "uri": "/pools/default/buckets/testBucket?bucket_uuid=d76bc79b761458f95d7dcf48bbe2fe92",
+  "streamingUri": "/pools/default/bucketsStreaming/testBucket?bucket_uuid=d76bc79b761458f95d7dcf48bbe2fe92",
+  "bucketCapabilitiesVer": "",
+  "bucketCapabilities": [
+    "collections",
+    "durableWrite",
+    "tombstonedUserXAttrs",
+    "subdoc.ReplaceBodyWithXattr",
+    "subdoc.DocumentMacroSupport",
+    "subdoc.ReviveDocument",
+    "nonDedupedHistory",
+    "dcp",
+    "cbhello",
+    "touch",
+    "cccp",
+    "xdcrCheckpointing",
+    "nodesExt",
+    "xattr"
+  ],
+  "collectionsManifestUid": "2",
+  "vBucketServerMap": {
+    "hashAlgorithm": "CRC",
+    "numReplicas": 1,
+    "serverList": [
+      "127.0.0.1:11210"
+    ],
+    "vBucketMap": [
+      [
+        0,
+        -1
+      ],
+      .
+      .
+      .
+ },
+  "localRandomKeyUri": "/pools/default/buckets/testBucket/localRandomKey",
+  "controllers": {
+    "compactAll": "/pools/default/buckets/testBucket/controller/compactBucket",
+    "compactDB": "/pools/default/buckets/testBucket/controller/compactDatabases",
+    "purgeDeletes": "/pools/default/buckets/testBucket/controller/unsafePurgeBucket",
+    "startRecovery": "/pools/default/buckets/testBucket/controller/startRecovery"
+  },
+  "nodes": [
+    {
+      "couchApiBaseHTTPS": "https://127.0.0.1:18092/testBucket%2Bd76bc79b761458f95d7dcf48bbe2fe92",
+      "couchApiBase": "http://127.0.0.1:8092/testBucket%2Bd76bc79b761458f95d7dcf48bbe2fe92",
+      "clusterMembership": "active",
+      "recoveryType": "none",
+      "status": "healthy",
+      "otpNode": "ns_1@127.0.0.1",
+      "thisNode": true,
+      "hostname": "127.0.0.1:8091",
+      "nodeUUID": "fa173ccb5d6d48648ae79cbbd278dbb5",
+      "clusterCompatibility": 458754,
+      "version": "7.2.0-5127-enterprise",
+      "os": "x86_64-pc-linux-gnu",
+      "cpuCount": 1,
+      "ports": {
+        "direct": 11210,
+        "httpsCAPI": 18092,
+        "httpsMgmt": 18091,
+        "distTCP": 21100,
+        "distTLS": 21150
+      },
+      "services": [
+        "backup",
+        "index",
+        "kv",
+        "n1ql"
+      ],
+      "nodeEncryption": false,
+      "addressFamilyOnly": false,
+      "configuredHostname": "127.0.0.1:8091",
+      "addressFamily": "inet",
+      "externalListeners": [
+        {
+          "afamily": "inet",
+          "nodeEncryption": false
+        }
+      ],
+      "serverGroup": "Group 1",
+      "replication": 0,
+      "nodeHash": 47731734,
+      "systemStats": {
+        "cpu_utilization_rate": 11.40536280284413,
+        "cpu_stolen_rate": 0,
+        "swap_total": 2047864832,
+        "swap_used": 1323008,
+        "mem_total": 2039574528,
+        "mem_free": 1229828096,
+        "mem_limit": 2039574528,
+        "cpu_cores_available": 1,
+        "allocstall": 2
+      },
+      "interestingStats": {
+        "cmd_get": 0,
+        "couch_docs_actual_disk_size": 34,
+        "couch_docs_data_size": 0,
+        "couch_spatial_data_size": 0,
+        "couch_spatial_disk_size": 0,
+        "couch_views_actual_disk_size": 0,
+        "couch_views_data_size": 0,
+        "curr_items": 0,
+        "curr_items_tot": 0,
+        "ep_bg_fetched": 0,
+        "get_hits": 0,
+        "mem_used": 60589912,
+        "ops": 0,
+        "vb_active_num_non_resident": 0,
+        "vb_replica_curr_items": 0
+      },
+      "uptime": "1170",
+      "memoryTotal": 2039574528,
+      "memoryFree": 1229828096,
+      "mcdMemoryReserved": 1556,
+      "mcdMemoryAllocated": 1556
+    }
+  ],
+  "stats": {
+    "uri": "/pools/default/buckets/testBucket/stats",
+    "directoryURI": "/pools/default/buckets/testBucket/stats/Directory",
+    "nodeStatsListURI": "/pools/default/buckets/testBucket/nodes"
+  },
+  "authType": "sasl",
+  "autoCompactionSettings": false,
+  "replicaNumber": 1,
+  "threadsNumber": 3,
+  "quota": {
+    "ram": 1258291200,
+    "rawRAM": 1258291200
+  },
+  "basicStats": {
+    "quotaPercentUsed": 4.815253575642903,
+    "opsPerSec": 0,
+    "diskFetches": 0,
+    "itemCount": 0,
+    "diskUsed": 34,
+    "dataUsed": 0,
+    "memUsed": 60589912,
+    "vbActiveNumNonResident": 0
+  },
+  "evictionPolicy": "fullEviction",
+  "durabilityMinLevel": "none",
+  "pitrEnabled": false,
+  "pitrGranularity": 600,
+  "pitrMaxHistoryAge": 86400,
+  "storageQuotaPercentage": 50,
+  "historyRetentionSeconds": 0,
+  "historyRetentionBytes": 0,
+  "historyRetentionCollectionDefault": true,
+  "conflictResolutionType": "seqno",
+  "maxTTL": 0,
+  "compressionMode": "passive"
+}
+
+## [](#see-also)See Also
+
+An overview of buckets is provided in [Buckets](../learn/buckets-memory-and-storage/buckets.md). An introduction to scopes and collections is provided in [Scopes and Collections](../learn/data/scopes-and-collections.md).

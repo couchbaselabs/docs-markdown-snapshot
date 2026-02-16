@@ -1,0 +1,80 @@
+[View original HTML](/server/7.2/cli/cbstats/cbstats-memory.html)
+
+> Gets memory-related statistics. 
+
+## [](#syntax)Syntax
+
+Request syntax:
+
+cbstats [host]:11210 memory
+
+## [](#description)Description
+
+This command returns a number of memory-related statistics, some of which are for internal use only. Others are listed as follows:
+
+| Stat                     | Description                                                                                                                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bytes                    | Engine’s total memory usage.                                                                                                                                                                        |
+| ep\_kv\_size             | Memory used to store item metadata, keys, and values, no matter what the vbucket’s state may be. If an item’s value is ejected, this statistic will be decremented by the size of the item’s value. |
+| ep\_value\_size          | Memory used to store values for resident keys.                                                                                                                                                      |
+| ep\_overhead             | Extra memory used by transient data; such as persistence queue, replication queues, and checkpoints.                                                                                                |
+| ep\_mem\_used\_primary   | If this is a magma bucket, this statistic represents the memory usage of the bucket excluding magma. Otherwise, this statistic represents total memory used, in bytes.                              |
+| ep\_mem\_used\_secondary | If this is a magma bucket, this statistic is the memory usage of the storage layer. Otherwise, this statistic is unused, and is zero.                                                               |
+| ep\_max\_size            | Maximum amount of data allowed in memory.                                                                                                                                                           |
+| ep\_mem\_low\_wat        | Low water mark for auto-evictions.                                                                                                                                                                  |
+| ep\_mem\_high\_wat       | High water mark for auto-evictions.                                                                                                                                                                 |
+| ep\_oom\_errors          | Number of times unrecoverable _out of memory_ errors occurred, while processing operations.                                                                                                         |
+| ep\_tmp\_oom\_errors     | Number of times temporary _out of memory_ errors occurred, while processing operations.                                                                                                             |
+
+## [](#example)Example
+
+**Request**
+
+/opt/couchbase/bin/cbstats -u Administrator -p password -b travel-sample localhost:11210 memory
+
+**Response**
+
+bytes:                              68505152
+ ep_arena:allocated:                 69533504
+ ep_arena:arena:                     2
+ ep_arena:base:                      958544
+ ep_arena:fragmentation_size:        1798336
+ ep_arena:internal:                  0
+ ep_arena:large.allocated:           1146880
+ ep_arena:mapped:                    72466432
+ ep_arena:resident:                  71331840
+ ep_arena:retained:                  10371072
+ ep_arena:small.allocated:           68386624
+ ep_arena_global:allocated:          10353984
+ ep_arena_global:arena:              0
+ ep_arena_global:base:               4922096
+ ep_arena_global:fragmentation_size: 6808256
+ ep_arena_global:internal:           1153648
+ ep_arena_global:large.allocated:    5197824
+ ep_arena_global:mapped:             24813568
+ ep_arena_global:resident:           17162240
+ ep_arena_global:retained:           2973696
+ ep_arena_global:small.allocated:    5156160
+ ep_blob_num:                        64824
+ ep_blob_overhead:                   4247418
+ ep_item_num:                        3584
+ ep_kv_size:                         48627966
+ ep_max_size:                        209715200
+ ep_mem_high_wat:                    178257920
+ ep_mem_high_wat_percent:            0.85
+ ep_mem_low_wat:                     157286400
+ ep_mem_low_wat_percent:             0.75
+ ep_mem_used_primary:                68505152
+ ep_mem_used_secondary:              0
+ ep_oom_errors:                      0
+ ep_overhead:                        5057152
+ ep_storedval_num:                   63288
+ ep_storedval_overhead:              4247418
+ ep_storedval_size:                  5061344
+ ep_tmp_oom_errors:                  0
+ ep_value_size:                      44242624
+ ht_mem_used_replica:                0
+ mem_used:                           68505152
+ mem_used_estimate:                  68505152
+ mem_used_merge_threshold:           1048576
+ replica_checkpoint_memory_overhead: 0

@@ -1,0 +1,254 @@
+[View original HTML](/enterprise-analytics/2.0/reference/rest-cluster-email-notifications.html)
+
+> Alerts can be configured; to be dispatched or displayed automatically by Enterprise Analytics, in order to notify users of specific issues and problems. 
+
+## [](#http-methods-and-uris)HTTP Methods and URIs
+
+GET /settings/alerts
+
+POST /settings/alerts
+
+GET /settings/alerts/limits
+
+POST /settings/alerts/limits
+
+POST /settings/alerts/sendTestEmail
+
+## [](#description)Description
+
+Alerts can be dispatched or displayed automatically by Enterprise Analytics, in order to highlight specific issues and problems. When an issue arises, an alert is generated, and one or both of the following can be configured to occur:
+
+* The alert is sent as an email by Enterprise Analytics to a configured SMTP server. From there, the email is forwarded to a configured list of email recipients. All cluster-nodes must have network access to the configured SMTP server, for the system to be fully effective.
+* The alert appears as a pop-up, within Enterprise Analytics Web Console.
+
+To configure alerts, either the Full Admin or Cluster Admin role is required.
+
+The `GET /settings/alerts` method and URI return the current alert settings. The `POST /settings/alerts` method and URI establish the alert settings.
+
+The `GET /settings/alerts/limits` method and URI return the current memory-alert thresholds. The `POST /settings/alerts/limits` method and URI establish the thresholds at which memory-alerts are set, and can also be used to enable or disable individual thresholds.
+
+The `POST /settings/alerts/sendTestEmail` method and URI configure dispatch of a test email.
+
+## [](#curl-syntax)Curl Syntax
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/alerts
+  -u <username>:<password>
+
+curl -X POST http://<ip-address-or-domain-name>:8091/settings/alerts
+  -u <username>:<password>
+  -d emailPass=<email-password>
+  -d sender=<sender-email-address>
+  -d recipients=<list-of-recipient-email-addresses>
+  -d emailHost=<ip-address-or-domain-name>
+  -d emailPort=<email-server-port-number>
+  -d emailEncrypt=[ true | false ]
+  -d alerts=<[alert-name]*>
+  -d pop_up_alerts=<[alert-name]*>
+  -d enabled=[ true | false ]
+
+curl -X GET http://<ip-address-or-domain-name>:8091/settings/alerts/limits
+  -u <username>:<password>
+
+curl -X POST http://<ip-address-or-domain-name:8091>/settings/alerts/limits
+  -u <username>:<password>
+  -d certExpirationDays = <integer>
+  -d historyWarningThreshold=<integer>
+  -d lowIndexerResidentPerc=<integer>
+  -d maxDiskUsedPerc=<integer>
+  -d maxIndexerRamPerc=<integer>
+  -d maxOverheadPerc=<integer>
+  -d memoryNoticeThreshold=<integer>
+  -d memoryWarningThreshold=<integer>
+  -d memoryCriticalThreshold=<integer>
+  -d memcachedSystemConnectionWarningThreshold=<integer>
+  -d memcachedUserConnectionWarningThreshold=<integer>
+
+
+curl -X POST http://<ip-address-or-domain-name>:8091/settings/alert/sendTestEmail
+  -u <username>:<password>
+
+* `username` and `password`. The username and password of the administrator who is managing the settings. The Full Admin or Cluster Admin role is required. (See [Roles](#learn:security/roles.adoc).)
+* `emailPass`. The password of the email server that will dispatch the emails. This parameter is optional. The default is an empty string.
+* `sender`. The email address of the sender. This parameter is optional. The default value is `couchbase@localhost`.
+* `recipients`. A list of comma-separated email addresses of the intended recipients. This parameter is optional. The default value is `root@localhost`.
+* `emailHost`. The IP address or domain name of the email server to dispatch the alerts. This parameter is optional. The default value is `localhost`.
+* `emailPort`. The port that will be used by the email server. This parameter is optional. The default value is `25`.
+* `emailEncrypt`. Determines whether emails should be dispatched in encrypted form: the value must be `true` or `false` (the default). This parameter is optional.
+* `alerts`. A list of email-alert names. If the alert-name is included in the list, a corresponding email-alert will be sent as appropriate, when `enabled` is `true`. If the name of an alert is not included in the list, the email-alert is not dispatched. This parameter is optional. The default value contains all alerts: these are listed in [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts).
+* `pop_up_alerts`. A list of pop-up-alert names. If the alert-name is included in the list, a corresponding pop-up alert will be displayed as appropriate, when `enabled` is `true`. If the name of an alert is not included in the list, the corresponding pop-up alert is not displayed. This parameter is optional. The default value contains all alerts: these are listed in [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts).
+* `enabled`. Enables or disables alerts: the value can be `true` or `false` (the default). This parameter is optional. If alerts are enabled, any alert that appears in the list that is passed as the value of `alerts` or `pop_up_alerts` (see immediately below) will have an email and/or pop-up display generated as appropriate.
+* `certExpirationDays`. The number of days before a certificate’s expiration date that Enterprise Analytics sends an alert. Enterprise Analytics also sends an alert when a certificate expires. See [Certificate Expiration](#learn:security/certificates.adoc#certificate-expiration) for more information.
+* `historyWarningThreshold`. Warns that the change history for one of the buckets is becoming full, across one or more vBuckets. (The size of the change history is administrator-specified for the whole bucket.) The value of `historyWarningThreshold` must be an integer that represents a percentage: the default value is `90`. When the percentage is exceeded for one or more vBuckets, an alert is generated. See [Creating and Editing Buckets](#reference:rest-bucket-create.adoc), For information about establishing the size of the change history.
+* `lowIndexerResidentPerc`. Warns that the Index Service is, on a given node, occupying a percentage of available memory that is below an established threshold, which is the value of `lowIndexerResidentPerc`. The default value is `10`.
+* `maxDiskUsedPerc`, `maxIndexerRamPerc`, and `maxOverheadPerc`. The maximum percentages for disk usage, memory consumption by the Index Service, and overhead. Values must be between `0` and `100`.
+* `memoryNoticeThreshold`, `memoryWarningThreshold`, and `memoryCriticalThreshold`. Thresholds for memory-usage. These are all disabled until the `memory_threshold` alert is enabled — for email or for pop-up display, or for both — by means of `POST /settings/alerts` (see [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts) for the full list of alerts). Note that even when `memory_threshold` is enabled, any of these thresholds can be individually disabled, by setting its value to `-1`. When a threshold is fully enabled, its value is an integer between `1` and `100`: the integer specifies the percentage of total system memory that must have been consumed for an email and/or pop-up alert to be correspondingly generated. Thresholds are enabled, disabled, and configured by means of `POST /settings/alerts/limits`; and their values are retrieved by means of `GET /settings/alerts/limits`.  
+The thresholds are intended to be assigned values in ascending order; with `memoryNoticeThreshold` the lowest, and `memoryCriticalThreshold` the highest. The default values are, for `memoryNoticeThreshold` `-1` (meaning disabled), for `memoryWarningThreshold` `90`, and for `memoryCriticalThreshold` `95`.
+
+* `memcachedSystemConnectionWarningThreshold`. Trigger the `[memcached_connections](../manage/manage-settings/configure-alerts.md#memcached-alert )` alert if the number of `system` connections in use exceeds the given percentage of connections available. (E.g., set this value to `90` to trigger an alert if the system connections used by the data service exceed 90% of the connections available.)
+
+|  | If the node exceeds 90% of the available system connections, then please contact [Couchbase Support](#https://support.couchbase.com). |
+|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+* `memcachedUserConnectionWarningThreshold`. Trigger the `[memcached_connections](../manage/manage-settings/configure-alerts.md#memcached-alert)` alert if the number of `user` connections in use exceeds the given percentage of connections available. (E.g., if this value is set to `90`, the system will trigger an alert if the number of user connections used by the data service exceeds 90% of the available connections.)
+
+## [](#responses)Responses
+
+A successful call returns `200 OK`.
+
+Failure to authenticate returns `401 Unauthorized`. Incorrect specification of method or URI returns `404 Object Not Found`. Failures to specify parameters correctly return `400 Bad Request`, with error-messages such as the following:
+
+* Failure to specify `enabled`: `{"errors":{"enabled":"The value must be one of the following: [true,false]"}}`
+* Invalid key: `{"errors":{"enabled":"The value must be one of the following: [true,false]"}}`
+* Unsupported key: `{"errors":{"port":"Unsupported key"}}`
+* Incorrect specification of recipients list: `{"errors":{"recipients":"recipients must be a comma separated list of valid email addresses."}}`
+* Incorrect specification of `emailEncrypt`: `{"errors":{"emailEncrypt":"The value must be one of the following: [true,false]"}}`
+* Incorrect specification of `sender`: `{"errors":{"sender":"The value must be a valid email address"}}`
+* Incorrect specification of a memory threshold: `{"errors":{"memoryWarningThreshold":"The value must be in range from -1 to 100"}}`
+
+## [](#examples)Examples
+
+The following returns the default settings for all alerts. Note that the call is piped to the [jq](http://stedolan.github.io/jq) command, to facilitate readability.
+
+curl -v -X GET http://localhost:8091/settings/alerts -u Administrator:password | jq '.'
+
+If successful, the command returns `200 OK` and the following object, which contains all alerts at their default settings:
+
+{
+  "recipients": [
+    "root@localhost"
+  ],
+  "sender": "couchbase@localhost",
+  "enabled": false,
+  "emailServer": {
+    "user": "",
+    "pass": "",
+    "host": "localhost",
+    "port": 25,
+    "encrypt": false
+  },
+  "alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "auto_failover_maximum_reached",
+    "auto_failover_other_nodes_down",
+    "auto_failover_cluster_too_small",
+    "auto_failover_disabled",
+    "ip",
+    "disk",
+    "overhead",
+    "ep_oom_errors",
+    "ep_item_commit_failed",
+    "audit_dropped_events",
+    "indexer_ram_max_usage",
+    "ep_clock_cas_drift_threshold_exceeded",
+    "communication_issue",
+    "time_out_of_sync",
+    "disk_usage_analyzer_stuck",
+    "history_size_warning",
+    "indexer_low_resident_percentage"
+  ],
+  "pop_up_alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "auto_failover_maximum_reached",
+    "auto_failover_other_nodes_down",
+    "auto_failover_cluster_too_small",
+    "auto_failover_disabled",
+    "ip",
+    "disk",
+    "overhead",
+    "ep_oom_errors",
+    "ep_item_commit_failed",
+    "audit_dropped_events",
+    "indexer_ram_max_usage",
+    "ep_clock_cas_drift_threshold_exceeded",
+    "communication_issue",
+    "time_out_of_sync",
+    "disk_usage_analyzer_stuck",
+    "memcached_connections"
+  ]
+}
+
+Note that for security reasons, the `pass` field within the `emailServer` subdocument is always returned as blank, irrespective of its actual setting.
+
+The following example sets a shorter alert list for pop-up, and none for email:
+
+curl -v -X POST http://localhost:8091/settings/alerts -u Administrator:password \
+-d pop_up_alerts=auto_failover_node,memory_threshold,indexer_ram_max_usage \
+-d enabled=true
+
+The results of the modification can be examined by means of `GET /settings/alerts`.
+
+curl -v -X GET http://localhost:8091/settings/alerts -u Administrator:password | jq '.'
+
+This returns the following:
+
+{
+  "recipients": [],
+  "sender": "couchbase@localhost",
+  "enabled": true,
+  "emailServer": {
+    "user": "",
+    "pass": "",
+    "host": "localhost",
+    "port": 25,
+    "encrypt": false
+  },
+  "alerts": [],
+  "pop_up_alerts": [
+    "memory_threshold",
+    "auto_failover_node",
+    "indexer_ram_max_usage"
+  ]
+}
+
+This confirms that Enterprise Analytics is now configured to provide three pop-up alerts, and no email alerts.
+
+The current threshold for memory management can be returned as follows:
+
+curl -v -X GET http://localhost:8091/settings/alerts/limits -u Administrator:password | jq '.'
+
+If successful, this returns `200 OK` and an object such as the following:
+
+{
+  "certExpirationDays": 30,
+  "historyWarningThreshold": 90,
+  "lowIndexerResidentPerc": 10,
+  "maxDiskUsedPerc": 90,
+  "maxIndexerRamPerc": 75,
+  "maxOverheadPerc": 50,
+  "memcachedSystemConnectionWarningThreshold": 90,
+  "memcachedUserConnectionWarningThreshold": 90,
+  "memoryCriticalThreshold": 90,
+  "memoryNoticeThreshold": -1,
+  "memoryWarningThreshold": 85,
+  "stuckRebalanceThresholdKV": "undefined"
+}
+
+This shows that all parameters are at their default values. The `memoryWarningThreshold` can be reconfigured as follows:
+
+curl -v -X POST http://localhost:8091/settings/alerts/limits \
+-d "memoryWarningThreshold=89" \
+-u Administrator:password | jq '.'
+
+If the call is successful, the following output is returned:
+
+{
+  "certExpirationDays": 30,
+  "historyWarningThreshold": 90,
+  "lowIndexerResidentPerc": 10,
+  "maxDiskUsedPerc": 90,
+  "maxIndexerRamPerc": 75,
+  "maxOverheadPerc": 50,
+  "memcachedSystemConnectionWarningThreshold": 90,
+  "memcachedUserConnectionWarningThreshold": 90,
+  "memoryCriticalThreshold": 90,
+  "memoryNoticeThreshold": -1,
+  "memoryWarningThreshold": 89,
+  "stuckRebalanceThresholdKV": "undefined"
+}
+
+This confirms that the setting has been changed.
+
+## [](#see-also)See Also
+
+information about managing alerts by means of the UI and CLI is provided in [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts). An overview of memory management is provided in [Memory](#learn:buckets-memory-and-storage/memory.adoc).

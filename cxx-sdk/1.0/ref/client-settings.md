@@ -1,0 +1,327 @@
+[View original HTML](/cxx-sdk/1.0/ref/client-settings.html)
+
+> The `cluster_options` class enables you to configure C++ SDK options for bootstrapping, timeouts, reliability, and performance. 
+
+Almost all configuration for the SDK can be specified through the `cluster_options` which are passed to the `cluster::connect` call in the SDK. In addition to this, some of these options can also be specified through the connection string.
+
+Cluster options are grouped into categories. For example, timeout options are configured using an instance of the `timeout_options` class, accessed via the `cluster_options` instance’s `timeouts()` getter.
+
+Configuring timeout options
+
+```c++
+auto options = couchbase::cluster_options(username, password);
+options.timeouts()
+        .key_value_timeout(std::chrono::seconds(5))
+        .query_timeout(std::chrono::seconds(10));
+```
+
+## [](#general-options)General Options
+
+These options specify the general configuration options for the client.
+
+Name: **Authenticator**
+
+Options Method: `cluster_options` constructor parameter
+
+Set this to the authenticator you wish to use to authenticate with the server. Possible options which are included in the SDK include the `password_authenticator` and `certificate_authenticator`.
+
+Name: **Username / Password**
+
+Options Method: `cluster_options` constructor parameters
+
+Username and Password provide a shortcut to creating a `password_authenticator` which is then used as an Authenticator for connecting to the Cluster.
+
+Name: **Default Retry Strategy**
+
+Options Method: `default_retry_strategy(std::shared_ptr<retry_strategy>)`
+
+Default: `best_effort_retry_strategy{ controlled_backoff }`
+
+The retry strategy decides if an operation should be retried or canceled. While implementing a custom strategy is fairly advanced, the SDK ships with a best effort retry strategy out of the box (`best_effort_retry_strategy`). This default will retry the operation (when the error is retriable) until it either succeeds or the maximum request lifetime is reached.
+
+Name: **Preferred Server Group Replica Reads**
+
+Options Method: `cluster_options read_preference preference`
+
+By default it has no preference set, and will select any available replica. This can be set to prioritize or restrict reads to only nodes in a chosen server group, such as one in the local Availability Zone.
+
+## [](#security-options)Security Options
+
+By default, the client will connect to (self-managed) Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition of self-managed Couchbase Server, it’s possible to secure the connection using TLS.
+
+|  | Unless you use the couchbases:// connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option. |
+|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **TLS Certificate Location**
+
+Options Method: `security().trust_certificate(std::string)`
+
+Connection String Parameter: `trust_certificate=<value>`
+
+Default: N/A
+
+Path to a file containing a single X.509 certificate to trust as a Certificate Authority when establishing secure connections.
+
+See the [Connection Management](../howtos/managing-connections.md#ssl) section for more details on how to set it up properly.
+
+Name: **TLS Certificates**
+
+Options Method: `security().trust_certificate_value(std::string)`
+
+Connection String Parameter: N/A
+
+Default: N/A
+
+As an alternative to specifying a path to a file, you can call this method to specify the certificates to trust as Certificate Authorities when establishing secure connections.
+
+## [](#timeout-options)Timeout Options
+
+The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment. If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.
+
+Most timeouts can be overridden on a per-operation basis (for example, by passing a custom options block to a "get" or "query" method). The values set here are used as the defaults when no per-operation timeout is specified.
+
+Name: **Key-Value Timeout**
+
+Options Method: `timeouts().key_value_timeout(std::chrono::duration)`
+
+Connection String Parameter: `key_value_timeout=<duration>`
+
+Default: `2.5s` — _but see tip, below_
+
+The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like `get()`, `get_from_replica()` and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
+
+|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, key\_value\_durable\_timeout, see below. |
+|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Key-Value Durable Operation Timeout**
+
+Options Method: `timeouts().key_value_durable_timeout(std::chrono::duration)`
+
+Connection String Parameter: `key_value_durable_timeout=<duration>`
+
+Default: `10s`
+
+Key/Value operations with enhanced durability requirements may take longer to complete, so they have a separate default timeout.
+
+**Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
+
+|  | The key\_value\_durable\_timeout property is not part of the stable API and may change or be removed at any time. |
+|  | ----------------------------------------------------------------------------------------------------------------- |
+
+Name: **Query Timeout**
+
+Options Method: `timeouts().query_timeout(std::chrono::duration)`
+
+Connection String Parameter: `query_timeout=<duration>`
+
+Default: `75s`
+
+The Query timeout is used on all SQL++ (formerly N1QL) query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Search Timeout**
+
+Options Method: `timeouts().search_timeout(std::chrono::duration)`
+
+Connection String Parameter: `search_timeout=<duration>`
+
+Default: `75s`
+
+The Search timeout is used on all FTS operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Analytics Timeout**
+
+Options Method: `timeouts().analytics_timeout(std::chrono::duration)`
+
+Connection String Parameter: `analytics_timeout=<duration>`
+
+Default: `75s`
+
+The Analytics timeout is used on all Analytics query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Connect Timeout**
+
+Options Method: `timeouts().connect_timeout(std::chrono::duration)`
+
+Connection String Parameter: `connect_timeout=<duration>`
+
+Default: `10s`
+
+The connect timeout is used when a Bucket is opened and if not overridden by a custom timeout. If you feel the urge to change this value to something higher, there is a good chance that your network is not properly set up. Connecting to the server should in practice not take longer than a second on a reasonably fast network.
+
+Name: **Management Timeout**
+
+Options Method: `timeouts().management_timeout(std::chrono::duration)`
+
+Connection String Parameter: `management_timeout=<duration>`
+
+Default: `75s`
+
+The management timeout is used on all cluster management APIs (`bucket_manager`, `collection_manager`, `query_index_manager`, etc.) if not overridden by a custom timeout. The default is quite high because some operations (such as flushing a bucket, for example) might take a long time.
+
+## [](#behavior-options)Behavior Options
+
+These options affect cluster behavior.
+
+Name: **Enable Unordered Execution**
+
+Options Method: `behavior().enable_unordered_execution(bool)`
+
+Connection String Parameter: `enable_unordered_execution=<true|false>`
+
+Default: `true`
+
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions.
+
+This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+Name: **Enable Mutation Tokens**
+
+Options Method: `behavior().enable_mutation_tokens(bool)`
+
+Connection String Parameter: `enable_mutation_tokens=<true|false>`
+
+Default: `true`
+
+Mutation tokens allow enhanced durability requirements as well as advanced SQL++ querying capabilities. Set this to false if you do not require these features and wish to avoid the associated overhead.
+
+Name: **Network Resolution**
+
+Options Method: `behavior().network(std::string)`
+
+Connection String Parameter: `network=<value>`
+
+Default: `auto`
+
+|  | The system property value should be one of auto, default, or external (lower case). |
+|  | ----------------------------------------------------------------------------------- |
+
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+
+If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
+
+## [](#compression-options)Compression Options
+
+The client can optionally compress documents before sending them to Couchbase Server.
+
+Name: **Enabling Compression**
+
+Options Method: `compression().enable(bool)`
+
+Connection String Parameter: `enable_compression=<true|false>`
+
+Default: `true`
+
+If enabled, the client will compress documents before they are sent to Couchbase Server. If this is set to `false`, the other compression settings have no effect.
+
+Name: **Document Minimum Size**
+
+Options Method: `compression().min_size(std::size_t)`
+
+Connection String Parameter: N/A
+
+Default: `32`
+
+Size in bytes. Documents smaller than this size are never compressed.
+
+Name: **Document Minimum Compressibility**
+
+Options Method: `compression().min_ratio(double)`
+
+Connection String Parameter: N/A
+
+Default: `0.83`
+
+A floating point value between 0 and 1\. Specifies how "compressible" a document must be in order for the compressed form to be sent to the server.
+
+|  | Increasing the value allows compression to be used with less-compressible documents. |
+|  | ------------------------------------------------------------------------------------ |
+
+If the compressed document size divided by the uncompressed document size is greater than this value, then the uncompressed version of the document will be sent to Couchbase Server instead of the compressed version.
+
+For example, with a `min_ratio` of `0.83`, compression will only be used if the size of the compressed document is less than 83% of the uncompressed document size.
+
+## [](#tracing-options)Tracing Options
+
+These options affect the client’s tracing behaviour.
+
+Name: **Enabling Tracing**
+
+Options Method: `tracing().enable(bool)`
+
+Connection String Parameter: `enable_tracing=<true|false>`
+
+Default: `true`
+
+If enabled, the client will use the `treshold_logging_tracer` to log operations over threshold. If this is set to `false`, the SDK will use the `noop_tracer`.
+
+|  | Ensure you have [logging](../howtos/collecting-information-and-logging.md) enabled to at least warning level for tracing to be logged. |
+|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+
+Name: **Threshold Emit Interval**
+
+Options Method: `tracing().threshold_emit_interval(std::chrono::duration)`
+
+Connection String: N/A
+
+Default: `10s`
+
+The Threshold Emit Interval determines how often the operations-over-threshold report is emitted.
+
+Name: **Threshold Sample Size**
+
+Options Method: `tracing().threshold_sample_size(std::size_t)`
+
+Connection String: N/A
+
+Default: `64`
+
+The Threshold Sample Size defines the maximum number of items to log in the operations-over-threshold report.
+
+Name: **Orphaned Emit Interval**
+
+Options Method: `tracing().threshold_emit_interval(std::chrono::duration)`
+
+Connection String: N/A
+
+Default: `10s`
+
+The Orphaned Emit Interval determines how often the orphan report is emitted.
+
+Name: **Orphaned Sample Size**
+
+Options Method: `tracing().orphaned_sample_size(std::size_t)`
+
+Connection String: N/A
+
+Default: `64`
+
+The Orphaned Sample Size define the maximum number of items to log in the orphan report.
+
+## [](#configuration-profiles)Configuration Profiles
+
+Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
+
+|  | The Configuration Profiles feature is currently a [Volatile API](../../../java-sdk/current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
+|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#wan-development)WAN Development
+
+**Options Method:** `apply_profile("wan_development")`
+
+A `wan_development` configuration profile can be used to modify client settings for development or high-latency environments. This profile changes the default timeouts.
+
+__Table 1\. Profile Settings__
+| Setting             | Default Value | WAN Profile Value |
+| ------------------- | ------------- | ----------------- |
+| KvConnectTimeout    | 10s           | 20s               |
+| kvTimeout           | 2.5s          | 20s               |
+| kvDurabilityTimeout | 10s           | 20s               |
+| ViewTimeout         | 75s           | 120s              |
+| QueryTimeout        | 75s           | 120s              |
+| AnalyticsTimeout    | 75s           | 120s              |
+| SearchTimeout       | 75s           | 120s              |
+| ManagementTimeout   | 75s           | 120s              |
+
+**Do not** set `kvDurabilityTimeout` above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.

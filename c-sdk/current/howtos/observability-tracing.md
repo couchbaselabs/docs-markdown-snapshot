@@ -1,0 +1,200 @@
+[View original HTML](/c-sdk/current/howtos/observability-tracing.html)
+
+> Collecting information about an individual request and its response is an essential feature of every observability stack. 
+
+To give insight into a request/response flow, the SDK provides a `RequestTracer` interface and ships with both a default implementation as well as modules that can be plugged into feed the traces to external systems (including OpenTelemetry).
+
+## [](#threshold-logging)Threshold Logging
+
+By default, the SDK will log information about requests that are over a configurable threshold every 10 seconds. Note that if no requests are over the threshold no event / log will be emitted.
+
+It is possible to customize this behavior by modifying the connection string, or using `lcb_cntl`. See the [tracing threshold logging options](../ref/client-settings.md#tracing-threshold-logging-options) for details.
+
+In this case the emit interval is one minute and Key/Value requests will only be considered if their latency is greater or equal than two seconds.
+
+The JSON blob emitted looks similar to the following (prettified here for readability):
+
+```json
+[
+   {
+      "top":[
+         {
+            "operation_name":"get",
+            "server_us":2,
+            "last_local_id":"E64FED2600000001/00000000EA6B514E",
+            "last_local_address":"127.0.0.1:51807",
+            "last_remote_address":"127.0.0.1:11210",
+            "last_dispatch_us":2748,
+            "last_operation_id":"0x9",
+            "total_us":324653
+         },
+         {
+            "operation_name":"get",
+            "server_us":0,
+            "last_local_id":"E64FED2600000001/00000000EA6B514E",
+            "last_local_address":"127.0.0.1:51807",
+            "last_remote_address":"127.0.0.1:11210",
+            "last_dispatch_us":1916,
+            "last_operation_id":"0x1b692",
+            "total_us":2007
+         }
+      ],
+      "service":"kv",
+      "count":2
+   }
+]
+```
+
+For each service (e.g. Key/Value or Query) an entry exists in the outer JSON array. The top N (10 by default) slowest operations are collected and displayed, sorted by the total duration. This promotes quick visibility of the "worst offenders" and more efficient troubleshooting.
+
+Please note that in future releases this format is planned to change for easier readability, so we do not provide any stability guarantees on the logging output format and it might change between minor versions.
+
+## [](#using-an-external-tracer)Using an External Tracer
+
+The built-in tracer is great if you do not have a centralized monitoring system, but if you already use some external tracing mechanism, like OpenTelemetry, you can use it with libcouchbase. To do so, you will need to create an external tracer, and then tell libcouchbase to use it.
+
+The tracer interface looks like this:
+
+```cpp
+typedef struct lcbtrace_TRACER {
+  lcb_U16 version;                                    /**< version of the structure, current value is 0 */
+  lcb_U64 flags;                                      /**< tracer-specific flags */
+  void *cookie;                                       /**< opaque pointer (e.g. pointer to wrapper structure) */
+  void (*destructor)(struct lcbtrace_TRACER *tracer); /**< destructor function or NULL, if it is not necessary */
+  union {
+    struct {
+      void (*report)(struct lcbtrace_TRACER *tracer, lcbtrace_SPAN *span); /**< optional reporter function */
+    } v0;
+    struct {
+      void *(*start_span)(struct lcbtrace_TRACER *tracer, const char *name, void *parent);
+      void (*end_span)(void *span);
+      void (*destroy_span)(void *span);
+      void (*add_tag_string)(void *span, const char *name, const char *value, size_t value_len);
+      void (*add_tag_uint64)(void *span, const char *name, uint64_t value);
+    } v1;
+  } v;
+};
+```
+
+The tracer holds on to a pointer to your external tracer, and will callback to your code when spans need to be created, destroyed, or have tags added to them. You will want to define the v1 callbacks to call into the external tracer, then pass this into the options when creating a connection to libcouchbase.
+
+### [](#using-opentelemetry-tracing)Using OpenTelemetry tracing
+
+There is a full example for using OpenTelemetry [here](https://github.com/couchbase/libcouchbase/blob/master/example/tracing/otel%5Ftracing.cc). Let’s go through the steps involved. We will want to use an `opentelemetry::trace::Tracer`. To do that, we will need an exporter, a processor and a provider. Since the provider will return an `opentelemetry::nostd::shared_ptr<opentelemetry::trace::Tracer>`, we will need to wrap that in a simple struct so we can pass that struct into the lcb tracer as a void pointer.
+
+```cpp
+// wrap span and tracer in struct, so we can pass in void* to the lcbtrace_TRACER
+struct otel_span {
+    opentelemetry::nostd::shared_ptr<opentelemetry::trace::Span> span;
+};
+
+struct otel_tracer {
+    opentelemetry::nostd::shared_ptr<opentelemetry::trace::Tracer> tracer;
+};
+
+// create an exporter, processor, and provider
+auto exporter = std::unique_ptr<sdktrace::SpanExporter>(new opentelemetry::exporter::trace::OStreamSpanExporter);
+auto processor = std::unique_ptr<sdktrace::SpanProcessor>(new sdktrace::SimpleSpanProcessor(std::move(exporter)));
+auto provider =
+    nostd::shared_ptr<opentelemetry::trace::TracerProvider>(new sdktrace::TracerProvider(std::move(processor)));
+```
+
+Lets define the callback functions needed:
+
+```cpp
+static void *start_span(lcbtrace_TRACER *tracer, const char *name, void *parent)
+{
+    auto ot_tracer = static_cast<otel_tracer *>(tracer->cookie)->tracer;
+    auto ot_span = new otel_span();
+    opentelemetry::trace::StartSpanOptions opt;
+    if (nullptr != parent) {
+        opt.parent = static_cast<otel_span *>(parent)->span->GetContext();
+    }
+    ot_span->span = ot_tracer->StartSpan(name, opt);
+    return static_cast<void *>(ot_span);
+}
+
+// this just finishes the span
+static void end_span(void *span)
+{
+    static_cast<otel_span *>(span)->span->End();
+}
+
+// since we new'd the otel_span struct in start_span, delete it here.
+static void destroy_span(void *span)
+{
+    delete static_cast<otel_span *>(span);
+}
+
+static void add_tag_string(void *span, const char *name, const char *value, size_t value_len)
+{
+    std::string val;
+    val.assign(value, value_len);
+    static_cast<otel_span *>(span)->span->SetAttribute(name, val);
+}
+
+static void add_tag_uint64(void *span, const char *name, uint64_t value)
+{
+    static_cast<otel_span *>(span)->span->SetAttribute(name, value);
+}
+```
+
+Now, we can create the tracer, and make the connection to lcb:
+
+```cpp
+// ask lcb for a new tracer struct
+lcbtracer = lcbtrace_new(nullptr, LCBTRACE_F_EXTERNAL);
+// version must be 1
+lcbtracer->version = 1;
+
+// set the callbacks
+lcbtracer->v.v1.start_span = start_span;
+lcbtracer->v.v1.end_span = end_span;
+lcbtracer->v.v1.destroy_span = destroy_span;
+lcbtracer->v.v1.add_tag_string = add_tag_string;
+lcbtracer->v.v1.add_tag_uint64 = add_tag_uint64;
+lcbtracer->destructor = nullptr;
+
+// create a new tracer and wrapper, store in lcbtracer
+auto *ot_tracer = new otel_tracer();
+ot_tracer->tracer = provider->GetTracer("otel_tracing");
+lcbtracer->cookie = static_cast<void *>(ot_tracer);
+
+// now connect
+lcb_INSTANCE *instance;
+lcb_CREATEOPTS *options;
+std::string connection_string = "couchbase://127.0.0.1";
+std::string username = "Administrator";
+std::string password = "password";
+
+// fill in create options
+lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
+lcb_createopts_connstr(options, connection_string.data(), connection_string.size());
+lcb_createopts_credentials(options, username.data(), username.size(), password.data(), password.size());
+lcb_createopts_tracer(options, lcbtracer);
+
+// create instance and connect
+lcb_create(&instance, options);
+lcb_createopts_destroy(options);
+lcb_connect(instance);
+lcb_wait(instance, LCB_WAIT_DEFAULT);
+```
+
+Now, all operations on this instance will create spans using the OpenTelemetry C++ libs, exporting to stdout. If we have an OpenTelemetry span that we want to be the parent span of the libcouchbase spans, we can do the following:
+
+```cpp
+// create a wrapper
+auto wrapped_otel_span = new otel_span();
+
+// I'm creating a span here, but this is how you'd wrap one if it comes from the outside world.
+wrapped_otel_span->span = provider->GetTracer("otel_tracing")->StartSpan("query_external");
+lcbtrace_SPAN *lcb_wrapped_span = nullptr;
+lcbtrace_span_wrap(lcbtracer, "query_external", LCBTRACE_NOW, (void *)wrapped_otel_span, &lcb_wrapped_span);
+
+// now we can use that lcbtrace_SPAN as the parent in an lcb_get, for instance.
+lcb_CMDGET *gcmd;
+lcb_cmdget_create(&gcmd);
+lcb_cmdget_key(gcmd, "key", strlen("key"));
+lcb_cmdget_parent_span(gcmd, lcb_wrapped_span);
+auto rc = lcb_get(instance, nullptr, gcmd);
+```
