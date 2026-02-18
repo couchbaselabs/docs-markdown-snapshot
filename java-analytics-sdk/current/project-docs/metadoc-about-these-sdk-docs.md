@@ -1,4 +1,14 @@
+---
+title: About These Docs
+description: Meta documentation -- what you might need to know to get the best
+  from these docs, from their intent to their Information Architecture.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-analytics-sdk/current/project-docs/metadoc-about-these-sdk-docs.html)
+
+# About These Docs
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
@@ -46,8 +56,8 @@ A section on those non-programmatic considerations — [compatibility guides](co
 
 The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Java SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker — via the GitHub issues on <https://github.com/couchbase/couchbase-jvm-clients> — although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 
-|  | You can also file JIRA tickets against these docs by clicking the **Leave Additional Feedback?** link on most pages in the docs. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also file JIRA tickets against these docs by clicking the **Leave Additional Feedback?** link on most pages in the docs.
 
 The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](analytics-sdk-release-notes.md).
 

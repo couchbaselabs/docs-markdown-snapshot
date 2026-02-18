@@ -1,4 +1,13 @@
+---
+title: Logging
+description: Logging with the Python SDK.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > Logging with the Python SDK. 
 
@@ -48,8 +57,8 @@ except CouchbaseException:
 
 ### [](#environmental-settings)Environmental Settings
 
-|  | Only one logger can be created. Either use PYCBC\_LOG\_LEVEL to create a console logger or configure\_logging as mentioned above. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Only one logger can be created. Either use `PYCBC_LOG_LEVEL` to create a console logger or `configure_logging` as mentioned above.
 
 In the command line environment, the `PYCBC_LOG_LEVEL` variable is set as follows:
 

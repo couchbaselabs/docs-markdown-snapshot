@@ -1,4 +1,13 @@
+---
+title: "Appendix 1: Reserved Keywords"
+description: A list of Couchbase SQL++ for Analytics reserved keywords.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/appendix_1_keywords.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/appendix_1_keywords.html)
+
+# Appendix 1: Reserved Keywords
 
 All reserved keywords are listed in the following table:
 

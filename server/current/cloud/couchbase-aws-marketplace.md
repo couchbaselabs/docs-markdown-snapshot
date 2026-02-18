@@ -1,4 +1,14 @@
+---
+title: Deploy Couchbase Server Using AWS Marketplace
+description: Couchbase partners with Amazon to provide a packaged solution on
+  AWS Marketplace.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-aws-marketplace.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cloud/couchbase-aws-marketplace.html)
+
+# Deploy Couchbase Server Using AWS Marketplace
 
 > Couchbase partners with Amazon to provide a packaged solution on AWS Marketplace. This solution is based on Amazon CloudFormation templates that incorporate the latest features and best practices for deploying Couchbase Server on Amazon Web Services. 
 
@@ -13,8 +23,8 @@ Couchbase is available through AWS Marketplace with hourly pricing, or through a
 
 ## [](#deploying-couchbase-server)Deploying Couchbase Server
 
-|  | The CloudFormation templates are provided as a starting point and may be customized as needed. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The CloudFormation templates are provided as a starting point and may be customized as needed.
 
 1. Log in to your account on the [Amazon Web Services Marketplace](https://aws.amazon.com/marketplace/), search for `Couchbase` and select Couchbase Enterprise Edition. Alternately, you can click [here](https://aws.amazon.com/marketplace/pp/prodview-zy5g2wqmqdyzw) to go to the Couchbase Server product page directly.
 2. The Couchbase Server product page provides a quick overview of the product offering and useful links. Click **Continue to Subscribe**.  
@@ -35,10 +45,9 @@ Couchbase is available through AWS Marketplace with hourly pricing, or through a
   ![aws marketplace couchbase ee stack stackname](_images/aws/deploying/aws-marketplace-couchbase-ee-stack-stackname.png)
   3. Enter the **Network Configuration/Access** parameters, specifically the VPC where you would like to deploy the software, list of subnets, CIDR range to permit ssh access to the EC2 instances where the software is installed and the key-value pair to access the EC2 instances.  
   ![aws marketplace couchbase ee stack stack networkconfiguration](_images/aws/deploying/aws-marketplace-couchbase-ee-stack-stack-networkconfiguration.png)
-  4. Enter the **Core Server Configuration** parameters. Other than specifying the database user name and password, you can choose to use the default values defined in the AWS CloudFormation template or edit them.
-
-|  | The user name and password will be required to log in to the Couchbase Server Web Console later. |
-|  | ------------------------------------------------------------------------------------------------ |  
+  4. Enter the **Core Server Configuration** parameters. Other than specifying the database user name and password, you can choose to use the default values defined in the AWS CloudFormation template or edit them.  
+  > [!NOTE]  
+  > The user name and password will be required to log in to the Couchbase Server Web Console later.  
   ![aws marketplace couchbase ee stack stack coreinstanceconfiguration](_images/aws/deploying/aws-marketplace-couchbase-ee-stack-stack-coreinstanceconfiguration.png)
 8. Optionally, if you plan to set up Couchbase Multi-Dimensional Scaling, you can customize the parameters in the **Multi-Dimension Scaling Configuration** section.
 9. Then click **Next**.

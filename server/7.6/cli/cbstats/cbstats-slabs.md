@@ -1,4 +1,13 @@
+---
+title: slabs
+description: Gives statistics on current memory allocation.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-slabs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-slabs.html)
+
+# slabs
 
 > Gives statistics on current memory allocation. 
 

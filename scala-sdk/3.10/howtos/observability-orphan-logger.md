@@ -1,4 +1,15 @@
+---
+title: Orphaned Requests Logging
+description: In addition to request tracing and metrics reporting, logging
+  orphaned requests provides additional insight into why an operation might have
+  timed out (or got cancelled for a different reason).
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/observability-orphan-logger.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/howtos/observability-orphan-logger.html)
+
+# Orphaned Requests Logging
 
 > In addition to request tracing and metrics reporting, logging orphaned requests provides additional insight into why an operation might have timed out (or got cancelled for a different reason). 
 

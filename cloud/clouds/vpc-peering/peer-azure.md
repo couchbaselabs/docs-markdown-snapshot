@@ -1,4 +1,14 @@
+---
+title: Create a VNet Peering Connection with Azure
+description: Use this procedure to create a VNet Peering connection between
+  Capella hosted with Azure and your application's VNet on Azure.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-azure.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clouds/vpc-peering/peer-azure.html)
+
+# Create a VNet Peering Connection with Azure
 
 > Use this procedure to create a VNet Peering connection between Capella hosted with Azure and your application’s VNet on Azure. 
 
@@ -38,10 +48,9 @@ Enter the name of the virtual network in Azure.
 4. Click **Allow Peering Access**.  
 A new browser tab opens. Sign in to Azure if you have not already.
 5. In Azure, accept Capella’s permissions request:  
-The Azure permissions request page is open in the new browser tab. Make a note of the application name and consent to the new permissions request. Consenting to this permission request creates a service principal that grants Capella access to the Azure tenant to perform VNet peering.
-
-|  | If you previously set up VNet peering with the same Azure tenant, you wont see the permissions request page as you already granted permission. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |  
+The Azure permissions request page is open in the new browser tab. Make a note of the application name and consent to the new permissions request. Consenting to this permission request creates a service principal that grants Capella access to the Azure tenant to perform VNet peering.  
+> [!NOTE]  
+> If you previously set up VNet peering with the same Azure tenant, you wont see the permissions request page as you already granted permission.  
 On accepting the new permission, you automatically return to the Capella VNet peering page. The Capella VNet peering page shows a notice indicating that peering access is successful.
 6. In Capella, add the **Enterprise Application Object ID**:  
 With consent now granted, find and add the enterprise application object ID for the Capella service principal. You can find the enterprise application object ID in Azure by selecting **Azure Active Directory** **Enterprise applications**. Next, select the application name—​the same name shown when accepting the Azure permissions request. The object ID is in the **Object ID** box.
@@ -51,15 +60,13 @@ This command assigns a new network contributor role. It scopes only to your spec
 9. Provide network details:  
 VNet Peering Name  
 Enter a descriptive VNet peering name of your choice.  
-CIDR Block
-
-|  | The virtual network CIDR block cannot overlap the CIDR that the cluster uses. |
-|  | ----------------------------------------------------------------------------- |  
+CIDR Block  
+> [!CAUTION]  
+> The virtual network CIDR block cannot overlap the CIDR that the cluster uses.  
 Enter the CIDR block from the virtual network that you created in Azure. You can find the CIDR block in Azure by viewing the page for the virtual network and selecting **Subnets**.
-10. Click **Set Up VNet**.
-
-|  | Do not refresh the browser while Capella configures the peering connection. |
-|  | --------------------------------------------------------------------------- |  
+10. Click **Set Up VNet**.  
+> [!CAUTION]  
+> Do not refresh the browser while Capella configures the peering connection.  
 Capella sets up the VNet peering connection, which can take several minutes. When successful, the new VNet peering connection is on the VNet peering list.
 
 ## [](#next-steps)Next Steps

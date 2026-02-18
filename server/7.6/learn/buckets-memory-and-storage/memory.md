@@ -1,4 +1,13 @@
+---
+title: Memory
+description: Couchbase Server memory-management ensures high performance and scalability.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/memory.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/buckets-memory-and-storage/memory.html)
+
+# Memory
 
 > Couchbase Server memory-management ensures high performance and scalability. 
 
@@ -8,8 +17,8 @@ You must configure your memory quota allocations for each service in Couchbase S
 
 The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster’s five nodes, each instance of the service has 2048 MB of memory.
 
-|  | You can’t allocate different amounts of memory for different instances of the same service in a cluster. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can’t allocate different amounts of memory for different instances of the same service in a cluster.
 
 Couchbase recommends that you allocate no more than 90% of a node’s memory (80% on nodes with a small amount of total memory) to a server and its services.
 
@@ -50,8 +59,8 @@ Set the memory quota based on the expected size of your dataset. The memory quot
 
 For example, if you expect to have about 2TBs of data per node in your cluster and want to use the **Magma** engine, you could set the memory quota for a bucket to 20GB.
 
-|  | These values are recommendations only. The specific memory quota requirements for your bucket are dependent on access patterns, data density, and other factors. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These values are recommendations only. The specific memory quota requirements for your bucket are dependent on access patterns, data density, and other factors.
 
 For more information on how to create a bucket and configure its memory quota, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
 
@@ -86,8 +95,8 @@ For an Ephemeral bucket, you can choose between a **No ejection** or **Eject dat
 * **No ejection**: If the bucket reaches its memory quota, the bucket doesn’t eject any existing data and attempts to cache new data fail.
 * **Eject data when RAM is full**: If the bucket reaches its memory quota, the bucket ejects older documents from RAM to make space for new data.
 
-|  | Ejection from Ephemeral buckets removes data without persistence because Ephemeral buckets have no presence on disk. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Ejection from Ephemeral buckets removes data without persistence because Ephemeral buckets have no presence on disk.
 
 For more information about buckets and bucket types, see [Buckets](buckets.md).
 

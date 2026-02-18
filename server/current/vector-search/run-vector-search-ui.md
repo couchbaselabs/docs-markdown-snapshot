@@ -1,11 +1,23 @@
+---
+title: Run A Vector Search with the Server Web Console
+description: Run a Vector Search query from the Couchbase Server Web Console to
+  preview and test the search results from a Search Vector Index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/run-vector-search-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-search/run-vector-search-ui.html)
+
+# Run A Vector Search with the Server Web Console
 
 > Run a Vector Search query from the Couchbase Server Web Console to preview and test the search results from a Search Vector Index. 
 
 For more information about how the Search Service scores documents in search results, see [Scoring for Search Queries](#run-searches.adoc#scoring).
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -13,10 +25,20 @@ For more information about how the Search Service scores documents in search res
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../manage/manage-buckets/create-bucket.md).
 * Your user account has the **Search Admin** or **Search Reader** role.
 * You have created a Search Vector Index.  
-For more information about how to create a Search Vector Index, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md).
-
-|  | You can download a sample dataset to use with the procedure or examples on this page: [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip) To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/load.md) from the dataset into your database with the following settings: Use a bucket called vector-sample. Use a scope called color. Use a collection called rgb for rgb.json. To set your document keys, use the value of the id field from each JSON document. For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md#example) or [Create a Search Vector Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md#example). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+For more information about how to create a Search Vector Index, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md).  
+> [!TIP]  
+> You can download a sample dataset to use with the procedure or examples on this page:  
+>  
+> [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip)  
+>  
+> To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/load.md) from the dataset into your database with the following settings:  
+>  
+> * Use a bucket called `vector-sample`.  
+> * Use a scope called `color`.  
+> * Use a collection called `rgb` for `rgb.json`.  
+> * To set your document keys, use the value of the `id` field from each JSON document.  
+>  
+> For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md#example) or [Create a Search Vector Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md#example).
 * You have logged in to the Couchbase Server Web Console.
 
 ## [](#procedure)Procedure
@@ -79,15 +101,15 @@ The Search Service combines the Vector search results from a `knn` object with t
 
 The document for the color `navy` should be the first result, followed by colors that are similar and match the `brightness` field query.
 
-|  | If you want to run a hybrid Search query on a large, partitioned Search index and your cluster is on Couchbase Server version 8.0 or later, use the bm25 scoring model for your Search index. For more information, see [Set Search Index Advanced Settings](../search/set-advanced-settings.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you want to run a hybrid Search query on a large, partitioned Search index and your cluster is on Couchbase Server version 8.0 or later, use the `bm25` scoring model for your Search index. For more information, see [Set Search Index Advanced Settings](../search/set-advanced-settings.md).
 
 ### [](#large)Example: Running a Semantic Search Query with a Large Embedding Vector
 
 The following query searches for matches to a large embedding vector, generated by the [OpenAI embedding model](https://platform.openai.com/docs/guides/embeddings), `text-embedding-ada-002-v2`.
 
-|  | You can find generated embedding vectors for each color’s description field in rgb.json. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can find generated embedding vectors for each color’s `description` field in `rgb.json`.
 
 This query should return the document for the color `navy`, based on a generated embedding vector for:
 
@@ -130,8 +152,10 @@ The following shows part of the sample Search query:
           -0.02911485731601715,
 ```
 
-|  | Due to the size of the embedding vector, only part of the full query is being displayed in the documentation. Click **View** to view and copy the entire Vector Search query payload. Make sure you remove the lines for // tag::partial\[\] and // end::partial\[\]. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Due to the size of the embedding vector, only part of the full query is being displayed in the documentation.
+> 
+> Click **View** to view and copy the entire Vector Search query payload. Make sure you remove the lines for `// tag::partial[]` and `// end::partial[]`.
 
 ### [](#base64)Example: Running a Semantic Search Query with a base64 Encoded String
 
@@ -170,8 +194,8 @@ The following query uses a base64 encoded string for the same query as [Running 
 }
 ```
 
-|  | You can use base64 encoded strings in your Vector Search queries only if your documents use base64 encoded strings, indexed with the **vector\_base64** field data type. You cannot search for and return vectors you indexed as arrays with the **vector** field data type by using a Search query with a base64 encoded string. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can use base64 encoded strings in your Vector Search queries only if your documents use base64 encoded strings, indexed with the **vector\_base64** field data type. You cannot search for and return vectors you indexed as arrays with the **vector** field data type by using a Search query with a base64 encoded string.
 
 ## [](#next-steps)Next Steps
 

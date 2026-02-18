@@ -1,4 +1,14 @@
+---
+title: Create App Users
+description: Creating and editing App Users for a synchronized application using
+  the Capella UI
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-user.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/security/create-user.html)
+
+# Create App Users
 
 > Creating and editing App Users for a synchronized application using the Capella UI 
 
@@ -16,8 +26,8 @@ Users granted access to a [channel](channels.md) can access all documents assign
 
 Users can also be assigned to zero or more roles. A user inherits the channel access of all roles it belongs to. This is very much like Unix groups, except that roles do not form a hierarchy.
 
-|  | App Users are now organized at the collection level instead of at the bucket level. |
-|  | ----------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> App Users are now organized at the collection level instead of at the bucket level.
 
 In this section, we’ll show you how to create new users in App Services. Before you start, make sure you’re logged on to your Capella instance as an administrator.
 
@@ -52,15 +62,15 @@ From the Edit App User page, you can perform the following actions:
 * Changing the user’s password.
 * Enabling or disabling the App User.
 
-|  | Disabled App Users cannot access App Endpoints. |
-|  | ----------------------------------------------- |
+> [!NOTE]
+> Disabled App Users cannot access App Endpoints.
 
 * You can assign additional App Roles and Channels to the App User.
 * You can view non-admin channels assigned to the user per collection via existing user roles or the Access Control Function.
 * You can also view admin channels assigned by the Access Control Function per collection under the **Channels assigned by access control and data validation function** section.
 
-|  | App Roles and channels created by the Access Control Function and assigned to the App User cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function to apply any changes to these App Roles and channels. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> App Roles and channels created by the Access Control Function and assigned to the App User cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function to apply any changes to these App Roles and channels.
 
 ## [](#see-also)See Also
 

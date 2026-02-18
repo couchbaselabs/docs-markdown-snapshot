@@ -1,4 +1,15 @@
+---
+title: Links
+description: Use `GRANT` and `REVOKE` statements to manage link privileges
+  including CONNECT, DISCONNECT, COPY operations, and link creation/deletion
+  rights for users and roles.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_rbac_links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_rbac_links.html)
+
+# Links
 
 ## [](#grantrevoke-syntax-diagrams)Grant/Revoke Syntax Diagrams
 

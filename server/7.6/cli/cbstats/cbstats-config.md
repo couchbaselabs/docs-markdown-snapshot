@@ -1,4 +1,14 @@
+---
+title: config
+description: The <code>config</code> command, used by <code>cbstats</code>,
+  returns configuration statistics on a specified bucket, on a specified node.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-config.html)
+
+# config
 
 > The `config` command, used by `cbstats`, returns configuration statistics on a specified bucket, on a specified node. 
 

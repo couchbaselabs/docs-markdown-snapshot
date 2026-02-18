@@ -1,9 +1,19 @@
+---
+title: String Functions
+description: String functions perform operations on a string input value and
+  returns a string or other value.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/stringfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/stringfun.html)
+
+# String Functions
 
 String functions perform operations on a string input value and returns a string or other value.
 
-|  | If any arguments to any of the following functions are MISSING then the result is also MISSING — that is, no result is returned. Similarly, if any of the arguments passed to the functions are NULL or are of the wrong type, such as an integer instead of a string, then NULL is returned as the result. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If any arguments to any of the following functions are `MISSING` then the result is also `MISSING` — that is, no result is returned. Similarly, if any of the arguments passed to the functions are `NULL` or are of the wrong type, such as an integer instead of a string, then `NULL` is returned as the result.
 
 ## [](#fn-str-concat)CONCAT(`string1`, `string2`, …)
 
@@ -1546,8 +1556,8 @@ A JSON object indicating the options passed to the `TOKENS()` function. Options 
 
 **Optional**. Use this option to preserve strings with specials characters, such as email addresses, URLs, and hyphenated phone numbers. The default value is `false`.
 
-|  | The specials options preserves special characters except at the end of a word. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `specials` options preserves special characters except at the end of a word.
 
 ### [](#return-value-28)Return Value
 
@@ -1555,8 +1565,8 @@ An array of strings containing all of the tokens obtained from the input string.
 
 ### [](#examples-28)Examples
 
-|  | By default, for speed, the results are randomly ordered. To make the difference more clear between the first two example queries, the ARRAY\_SORT() function is used. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, for speed, the results are randomly ordered. To make the difference more clear between the first two example queries, the `ARRAY_SORT()` function is used.
 
 List the tokens of an array where `specials` is FALSE
 

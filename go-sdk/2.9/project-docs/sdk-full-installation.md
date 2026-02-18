@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase Go Client.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Couchbase Go Client. 
 
@@ -10,14 +19,14 @@ If you’re upgrading your application from Couchbase Go SDK 1.x, please read th
 
 Version 2 of the Go SDK has added support for [Go Modules](https://github.com/golang/go/wiki/Modules). You can use `go get` to download the SDK:
 
-|  | go get only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a go.mod file in your working directory. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> `go get` only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a `go.mod` file in your working directory.
 
 ```console
 $ go get github.com/couchbase/gocb/v2@v2.7.0
 ```
 
-|  | In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
 
 Information about new features, fixes, and known issues — as well as information about how to install earlier release versions — is in the [release notes](sdk-release-notes.md).

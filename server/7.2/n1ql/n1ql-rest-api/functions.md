@@ -1,4 +1,12 @@
+---
+title: Functions REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/functions.html)
+
+# Functions REST API
 
 ## [](#%5Foverview)Overview
 
@@ -54,8 +62,8 @@ By default, this operation returns all global libraries and functions, and all s
 | **Query** | **bucket** _optional_ | For scoped libraries only. The bucket from which to fetch libraries. | string |
 | **Query** | **scope** _optional_  | For scoped libraries only. The scope from which to fetch libraries.  | string |
 
-|  | To fetch libraries from a scope, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To fetch libraries from a scope, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#responses)Responses
 
@@ -149,8 +157,8 @@ By default, this operation returns a global library. For a scoped library, you m
 | **Query** | **bucket** _optional_  | For scoped libraries only. The bucket in which the library is stored. | string |
 | **Query** | **scope** _optional_   | For scoped libraries only. The scope in which the library is stored.  | string |
 
-|  | To read a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To read a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#responses-2)Responses
 
@@ -221,8 +229,10 @@ Creates the specified library and its associated functions. If the specified lib
 
 By default, this operation creates or updates a global library. For a scoped library, you must specify the bucket and scope.
 
-|  | To add a function to a library, update the library with all existing functions, plus the new function. To update a function, update the library with all existing functions, including the updated function definition. To delete a function from a library, update the library with all existing functions, without the deleted function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * To add a function to a library, update the library with all existing functions, plus the new function.
+> * To update a function, update the library with all existing functions, including the updated function definition.
+> * To delete a function from a library, update the library with all existing functions, without the deleted function.
 
 #### [](#parameters-3)Parameters
 
@@ -233,8 +243,8 @@ By default, this operation creates or updates a global library. For a scoped lib
 | **Query** | **scope** _optional_     | For scoped libraries only. The scope in which the library is stored.  | string |
 | **Body**  | **functions** _required_ | The JavaScript code for all functions in the library.                 | string |
 
-|  | To create or update a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To create or update a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#responses-3)Responses
 
@@ -330,8 +340,8 @@ Deletes the specified library entirely.
 
 By default, this operation deletes a global library. For a scoped library, you must specify the bucket and scope.
 
-|  | Before you can delete a library, you must first drop all SQL++ external user-defined functions which point to any of the JavaScript functions within that library. For further details, refer to [DROP FUNCTION](../n1ql-language-reference/dropfunction.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Before you can delete a library, you must first drop all SQL++ external user-defined functions which point to any of the JavaScript functions within that library. For further details, refer to [DROP FUNCTION](../n1ql-language-reference/dropfunction.md).
 
 #### [](#parameters-4)Parameters
 
@@ -341,8 +351,8 @@ By default, this operation deletes a global library. For a scoped library, you m
 | **Query** | **bucket** _optional_  | For scoped libraries only. The bucket in which the library is stored. | string |
 | **Query** | **scope** _optional_   | For scoped libraries only. The scope in which the library is stored.  | string |
 
-|  | To delete a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To delete a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#responses-4)Responses
 

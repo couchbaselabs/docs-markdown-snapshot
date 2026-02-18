@@ -1,4 +1,14 @@
+---
+title: Getting Storage Information
+description: Comprehensive information on cluster-node storage can be retrieved
+  with the <code>GET /nodes/self</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-getting-storage-information.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-getting-storage-information.html)
+
+# Getting Storage Information
 
 > Comprehensive information on cluster-node storage can be retrieved with the `GET /nodes/self` HTTP method and URI. 
 

@@ -1,9 +1,18 @@
+---
+title: Views Reference
+description: Couchbase views enable indexing and querying of data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/views/views-intro.html)
+
+# Views Reference
 
 > Couchbase views enable indexing and querying of data. 
 
-|  | Views are deprecated in Couchbase Server 7.0+. Views support in Couchbase Server will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../services-and-indexes/services/index-service.md) (GSI) and the [Query Service](../services-and-indexes/services/query-service.md) (SQL++). Views will not run on the newer [Magma storage engine](../buckets-memory-and-storage/storage-engines.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Views are deprecated in Couchbase Server 7.0+. Views support in Couchbase Server will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../services-and-indexes/services/index-service.md) (GSI) and the [Query Service](../services-and-indexes/services/query-service.md) (SQL++). Views will not run on the newer [Magma storage engine](../buckets-memory-and-storage/storage-engines.md).
 
 A view creates an index on the data according to the defined format and structure. The view consists of specific fields and information extracted from the objects in Couchbase.
 
@@ -25,5 +34,5 @@ Multiple views can be created which provides multiple indexes and routes into th
 
 The View Builder provides an interface for creating views within the web console. Views can be accessed by using a Couchbase client library to retrieve matching records.
 
-|  | In Couchbase Server 6.0+, Spatial Views are no longer supported. See the 5.5 documentation, [Writing Spatial Views](https://docs-archive.couchbase.com/server/5.5/understanding-couchbase/views/sv-writing-views.html). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Server 6.0+, Spatial Views are no longer supported. See the 5.5 documentation, [Writing Spatial Views](https://docs-archive.couchbase.com/server/5.5/understanding-couchbase/views/sv-writing-views.html).

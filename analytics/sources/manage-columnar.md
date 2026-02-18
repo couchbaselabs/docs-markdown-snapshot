@@ -1,9 +1,17 @@
+---
+title: Set Up a Standalone Collection
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-columnar.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/manage-columnar.html)
+
+# Set Up a Standalone Collection
 
 > You can gather documents from one or more existing Capella Analytics collections into a standalone collection. You customize the content of your standalone collections by querying other collections. 
 
-|  | For an example of creating standalone collections and populating them using a queries, see [Install the Commerce Dataset in Standalone Collections](../intro/examples.md#Install). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For an example of creating standalone collections and populating them using a queries, see [Install the Commerce Dataset in Standalone Collections](../intro/examples.md#Install).
 
 ## [](#prerequisites)Prerequisites
 

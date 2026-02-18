@@ -1,4 +1,13 @@
+---
+title: Monitor Clock Drift
+description: The progressive desynchronization of nodes can be monitored.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/monitor/xdcr-monitor-timestamp-conflict-resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/monitor/xdcr-monitor-timestamp-conflict-resolution.html)
+
+# Monitor Clock Drift
 
 The progressive desynchronization of nodes can be monitored.
 

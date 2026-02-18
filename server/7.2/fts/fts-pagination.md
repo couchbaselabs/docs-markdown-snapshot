@@ -1,4 +1,12 @@
+---
+title: Pagination
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-pagination.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-pagination.html)
+
+# Pagination
 
 The number of results obtained for a Full Text Search request can be large. Pagination of these results becomes essential for sorting and displaying a subset of these results.
 
@@ -39,8 +47,8 @@ These settings allow for the client to maintain state while paginating - the sor
 
 Both the attributes accept an array of strings (sort keys) - the length of this array will need to be the same length of the "sort" array within the search request.
 
-|  | You cannot use both search\_after and search\_before in the same search request. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use both `search_after` and `search_before` in the same search request.
 
 ### [](#example-2)Example
 
@@ -66,8 +74,8 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
   "size": 4
 }
 
-|  | A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results ("size: 10", "from": 0) ordered by _score_ sequentially from the highest to lowest. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ## [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 

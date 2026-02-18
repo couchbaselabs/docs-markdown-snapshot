@@ -1,4 +1,12 @@
+---
+title: Manage Index Lifecycle
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-manage-index-lifecycle.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-manage-index-lifecycle.html)
+
+# Manage Index Lifecycle
 
 Full Text Indexes, once created can be cloned, edited and/or deleted. They are accessed from the **Search** tab: left-click on this to display the **Full Text Search** panel, which contains a tabular presentation of currently existing indexes, with a row for each index.
 
@@ -14,8 +22,8 @@ To manage an index, left-click on its row. The row expands, as follows:
 
 "Quick Edit" that goes to the quick editor for an index definition also results in the same functionalities.
 
-|  | Both the **Edit Index** and **Clone Index** screens are in most respects the same as the **Add Index** screen, which was itself described in [Searching from the UI](fts-searching-from-the-UI.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Both the **Edit Index** and **Clone Index** screens are in most respects the same as the **Add Index** screen, which was itself described in [Searching from the UI](fts-searching-from-the-UI.md).
 
 ## [](#delete-index)Delete Index
 

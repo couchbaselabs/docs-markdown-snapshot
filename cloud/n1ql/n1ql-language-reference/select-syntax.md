@@ -1,4 +1,13 @@
+---
+title: SELECT Syntax
+description: This page enables you to drill down through the syntax of a SELECT query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/select-syntax.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/select-syntax.html)
+
+# SELECT Syntax
 
 > This page enables you to drill down through the syntax of a SELECT query. 
 

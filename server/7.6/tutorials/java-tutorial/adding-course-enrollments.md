@@ -1,4 +1,13 @@
+---
+title: Add Course Enrollments
+description: Add enrollment information to the student records using the Couchbase SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/java-tutorial/adding-course-enrollments.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tutorials/java-tutorial/adding-course-enrollments.html)
+
+# Add Course Enrollments
 
 > Add enrollment information to the student records using the Couchbase SDK. 
 
@@ -81,10 +90,9 @@ public class AddEnrollments {
         return result.rowsAsObject().get(0);  
     }  
 }  
-```
-
-|  | Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, though, error checks must be made to prevent errors and keep the application running. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, though, error checks must be made to prevent errors and keep the application running.
 3. Open a terminal window and navigate to your `student` directory.
 4. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 5. Run the following command to insert the student record into the collection:  

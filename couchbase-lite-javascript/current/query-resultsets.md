@@ -1,4 +1,13 @@
+---
+title: Query Resultsets
+description: Couchbase Lite JavaScript -- Working with Query Results
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-resultsets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/query-resultsets.html)
+
+# Query Resultsets
 
 > Description — _Couchbase Lite JavaScript — Working with Query Results_  
 > Related Content — [SQL++ for Mobile](query-n1ql-mobile.md) | [Live Queries](query-live.md) | [Indexing](indexing.md)
@@ -46,8 +55,8 @@ await query.execute<Task>(row => {
 console.log(`Processed ${count} tasks total`);
 ```
 
-|  | Use the callback pattern when processing large result sets to avoid loading all results into memory at once. |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Use the callback pattern when processing large result sets to avoid loading all results into memory at once.
 
 ## [](#result-structure)Result Structure
 
@@ -435,8 +444,8 @@ results.forEach(task => {
 });
 ```
 
-|  | TypeScript result types are not runtime-checked. It’s your responsibility to ensure the type matches the actual query results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> TypeScript result types are not runtime-checked. It’s your responsibility to ensure the type matches the actual query results.
 
 ## [](#processing-patterns)Result Processing Patterns
 
@@ -529,8 +538,8 @@ await Promise.all(asyncTasks);
 console.log('All results processed asynchronously');
 ```
 
-|  | With async callbacks, the execute() method waits for each callback to complete before processing the next result. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With async callbacks, the `execute()` method waits for each callback to complete before processing the next result.
 
 ## [](#error-handling)Error Handling
 

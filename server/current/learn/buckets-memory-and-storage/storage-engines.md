@@ -1,4 +1,14 @@
+---
+title: Storage Engines
+description: "Couchbase supports two different backend storage engines:
+  Couchstore and Magma."
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/storage-engines.html)
+
+# Storage Engines
 
 > Couchbase supports two different backend storage engines: Couchstore and Magma. These storage engines organize the data both on disk and in memory. This page explains how to choose a backend storage to suit your needs. 
 
@@ -10,8 +20,8 @@ Magma is designed for high performance with large datasets that do not fit in me
 
 When you create a bucket using the Magma storage engine, you choose the number of [vBuckets](vbuckets.md) a bucket uses. Magma supports two vBucket configurations: 128 or 1024\. This choice affects the minimum memory quota for the bucket. The 128 vBucket configuration is the default for new buckets in Couchbase Server Enterprise Edition 8.0 and later. It has a minimum memory quota of 100 MiB per node.
 
-|  | Magma buckets with 128 vBuckets are only available in clusters that have fully migrated to Couchbase Server 8.0 or later. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Magma buckets with 128 vBuckets are only available in clusters that have fully migrated to Couchbase Server 8.0 or later.
 
 Magma using 1024 vBuckets has a minimum memory quota of 1 GiB per node.
 

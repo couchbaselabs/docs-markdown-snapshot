@@ -1,4 +1,13 @@
+---
+title: Amazon Web Services (AWS)
+description: Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS).
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/aws.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/aws.html)
+
+# Amazon Web Services (AWS)
 
 > Couchbase Capella supports deploying clusters onto Amazon Web Services (AWS). 
 
@@ -62,8 +71,8 @@ Every AWS region includes a number of independent Availability Zones. These cons
 
 The **Multiple Availability Zones** option is the default when creating clusters using the Developer Pro or Enterprise [Support Plans](../billing/billing.md#support-plans).
 
-|  | The option to deploy across multiple AWS Availability Zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same Availability Zone. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The option to deploy across multiple AWS Availability Zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same Availability Zone.
 
 ## [](#configuration-options)Configuration Options
 
@@ -75,8 +84,8 @@ Clusters have a minimum of 3 nodes and a maximum of 27.
 
 Clusters consist of Service Groups that include the Couchbase services deployed and system resources. Each Service Group has a node quantity to represent the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes but cannot collectively exceed 27\. The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
 
-|  | As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node. For paid single-node clusters deployed under a Basic or Developer Pro plan, Couchbase does not offer SLAs. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node. For paid single-node clusters deployed under a Basic or Developer Pro plan, Couchbase does not offer SLAs.
 
 ### [](#compute-and-memory)Compute and Memory
 
@@ -110,8 +119,8 @@ Capella clusters deployed onto AWS use the SSDs in AWS EBS. You have the option 
 
 The amount of storage available per node in your cluster is configurable from a minimum of 50 GB to a maximum of 16 TB.
 
-|  | Free tier operational clusters only allow 10 GB of data storage. |
-|  | ---------------------------------------------------------------- |
+> [!NOTE]
+> Free tier operational clusters only allow 10 GB of data storage.
 
 Clusters deployed on AWS support disk auto-expansion. For details, see [Storage Auto-Expansion](../clusters/scale-database.md#Storage-Auto-Expansion).
 
@@ -122,8 +131,8 @@ Each Service Group has an input/output operations per second (IOPS) rate. This s
 * **gp3**: 3000 to 16000 IOPS
 * **io2**: 3000 to 64000 IOPS
 
-|  | Adjusting the IOPS rate affects performance and cost. When creating or modifying a cluster with gp3 or io2 volume types and choosing a storage option, Capella uses recommended defaults for the IOPS field. You can replace the default IOPS value with one higher than the default but not lower. For the recommended IOPS values for clusters using AWS gp3 or io2 volume types with typical enterprise workloads, see [IOPS Defaults](../clusters/scale-database.md#IOPS-Defaults). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Adjusting the IOPS rate affects performance and cost. When creating or modifying a cluster with gp3 or io2 volume types and choosing a storage option, Capella uses recommended defaults for the IOPS field. You can replace the default IOPS value with one higher than the default but not lower. For the recommended IOPS values for clusters using AWS gp3 or io2 volume types with typical enterprise workloads, see [IOPS Defaults](../clusters/scale-database.md#IOPS-Defaults).
 
 ## [](#see-also)See Also
 

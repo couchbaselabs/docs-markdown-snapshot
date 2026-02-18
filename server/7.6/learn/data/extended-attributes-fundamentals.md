@@ -1,4 +1,13 @@
+---
+title: Extended Attributes
+description: Couchbase Server permits the definition of <em>extended attributes</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/extended-attributes-fundamentals.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/data/extended-attributes-fundamentals.html)
+
+# Extended Attributes
 
 > Couchbase Server permits the definition of _extended attributes_. These allow developers to define application-specific metadata visible only to those applications that request it or attempt to modify it. This might be, for example, metadata specific to a programming framework that should be hidden by default from other frameworks, or possibly from other versions of the same framework. 
 

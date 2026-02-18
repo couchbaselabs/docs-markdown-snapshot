@@ -1,4 +1,13 @@
+---
+title: cbrestore
+description: Restores data backed up by cbbackup to a Couchbase cluster
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbrestore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbtools/cbrestore.html)
+
+# cbrestore
 
 (Deprecated) The `cbrestore` tool restores data backed up by `cbbackup` to a Couchbase cluster
 
@@ -186,5 +195,5 @@ cbrestore /path/to/backup -u [username] -p [password]
   --bucket-source [my_bucket]
   --bucket-destination [my_bucket]gen_docs couchbase-cli-backup-service.adoc 1
 
-|  | If you backed up multiple buckets from Mac OS X and are restoring to either Linux or Windows, each bucket must be restored individually. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you backed up multiple buckets from Mac OS X and are restoring to either Linux or Windows, each bucket must be restored individually.

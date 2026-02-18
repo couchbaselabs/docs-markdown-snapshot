@@ -1,4 +1,14 @@
+---
+title: CREATE SCOPE Statements
+description: This topic describes how you use the <code>CREATE</code> statement
+  to create Capella Analytics scopes.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_scope.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5_ddl_scope.html)
+
+# CREATE SCOPE Statements
 
 > This topic describes how you use the `CREATE` statement to create Capella Analytics scopes. 
 

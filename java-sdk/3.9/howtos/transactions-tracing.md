@@ -1,4 +1,13 @@
+---
+title: Tracing
+description: Tracing Couchbase Distributed ACID transactions.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/transactions-tracing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/howtos/transactions-tracing.html)
+
+# Tracing
 
 > Tracing Couchbase Distributed ACID transactions. 
 

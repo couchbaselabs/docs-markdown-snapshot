@@ -1,4 +1,12 @@
+---
+title: Contractions
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/contractions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/contractions.html)
+
+# Contractions
 
 Contractions are combinations of at least two words. A contraction is made by omitting one or more letters from one word and adding it to the end of another word.
 

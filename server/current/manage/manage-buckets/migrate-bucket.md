@@ -1,4 +1,15 @@
+---
+title: Migrate a Bucket&#8217;s Storage Backend
+description: Full and Cluster Administrators can migrate a bucket's storage
+  backend by calling the REST API and then performing full restores on the nodes
+  containing the bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/migrate-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-buckets/migrate-bucket.html)
+
+# Migrate a Bucket&#8217;s Storage Backend
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
@@ -6,13 +17,13 @@
 
 You can migrate a bucket’s storage backend if you find the bucket’s current performance is not meeting your needs. For example, you can migrate a bucket from Couchstore to Magma if the bucket’s working set grows beyond its memory quota. You can migrate from Couchstore to Magma, or from Magma to Couchstore. Migrating to a Magma bucket always results in a bucket with 1024 vBuckets, regardless of the number of vBuckets in the original bucket.
 
-|  | The backend migration described in this section does not support migrating between buckets with different numbers of vBuckets. You cannot migrate a Couchstore or Magma bucket with 1024 vBuckets to a Magma bucket with 128 vBuckets. Similarly, you cannot migrate from a Magma bucket with 128 vBuckets to a Couchstore or a Magma bucket with 1024 vBuckets. To migrate between buckets with different number of vBuckets, you can use a local cross datacenter replication (XDCR). See [XDCR Storage Backend Migration](#xdcr-migration) for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The backend migration described in this section does not support migrating between buckets with different numbers of vBuckets. You cannot migrate a Couchstore or Magma bucket with 1024 vBuckets to a Magma bucket with 128 vBuckets. Similarly, you cannot migrate from a Magma bucket with 128 vBuckets to a Couchstore or a Magma bucket with 1024 vBuckets. To migrate between buckets with different number of vBuckets, you can use a local cross datacenter replication (XDCR). See [XDCR Storage Backend Migration](#xdcr-migration) for more information.
 
 You start a bucket’s migration by calling the REST API to edit the bucket’s [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) setting. This call changes the bucket’s global storage backend parameter. However, it does not trigger an immediate conversion of the vBuckets to the new backend. Instead, Couchbase adds override settings to each node to indicate its vBuckets still use the old storage backend. To complete the migration, you must force the vBuckets to be rewritten. The two ways to trigger this rewrite are to perform a swap rebalance or a graceful failover followed by a full recovery. As Couchbase writes the vBuckets during these processes, it removes the storage override and saves the vBuckets using the new storage backend.
 
-|  | When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](../../rest-api/rest-bucket-create.md#ramQuota), [evictionPolicy](../../rest-api/rest-bucket-create.md#evictionpolicy), and [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) parameters. Couchbase Server prevents you from making changes to the other bucket parameters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](../../rest-api/rest-bucket-create.md#ramQuota), [evictionPolicy](../../rest-api/rest-bucket-create.md#evictionpolicy), and [storageBackend](../../rest-api/rest-bucket-create.md#storagebackend) parameters. Couchbase Server prevents you from making changes to the other bucket parameters.
 
 ## [](#prerequisites)Prerequisites
 
@@ -187,8 +198,8 @@ To roll back node3, follow these steps:
 
 You can use [Cross Data Center Replication (XDCR)](../../learn/clusters-and-availability/xdcr-overview.md) to migrate data between two buckets with different storage backends, including between Magma buckets using different numbers of vBuckets. You can perform this migration on the same cluster or between two clusters.
 
-|  | Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration.
 
 To perform an XDCR storage backed migration on the same cluster, it must have enough memory and storage for two copies of the bucket’s data. After the migration, you can drop the original bucket to free the resources it uses.
 
@@ -289,7 +300,6 @@ The result of the previous command looks like this:
 }  
 ```  
 The replication process starts.
-5. Monitor the replication process until it completes. You can monitor the replication process [via the Couchbase Server Web Console](../manage-xdcr/create-xdcr-replication.md#monitor-current-replications) or by [calling the REST API](../../rest-api/rest-xdcr-statistics.md). Once the replication has duplicated all of the documents in the original bucket without errors, you can stop and delete it. Then you can drop the original bucket.
-
-|  | Be sure to update all clients to use the new bucket before you stop the replication. |
-|  | ------------------------------------------------------------------------------------ |
+5. Monitor the replication process until it completes. You can monitor the replication process [via the Couchbase Server Web Console](../manage-xdcr/create-xdcr-replication.md#monitor-current-replications) or by [calling the REST API](../../rest-api/rest-xdcr-statistics.md). Once the replication has duplicated all of the documents in the original bucket without errors, you can stop and delete it. Then you can drop the original bucket.  
+> [!IMPORTANT]  
+> Be sure to update all clients to use the new bucket before you stop the replication.

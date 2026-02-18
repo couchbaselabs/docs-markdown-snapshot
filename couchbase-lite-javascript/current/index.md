@@ -1,4 +1,16 @@
+---
+title: Introducing Couchbase Lite JavaScript
+description: Couchbase Lite JavaScript is a lightweight offline-first embedded
+  NoSQL JSON document database for browser based frontend apps that provides
+  rich query, indexing and data synchronization capabilities with Capella App
+  Services or Sync Gateway.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/index.html)
+
+# Introducing Couchbase Lite JavaScript
 
 Couchbase Lite JavaScript is a lightweight offline-first embedded NoSQL JSON document database for browser based frontend apps that provides rich query, indexing and data synchronization capabilities with Capella App Services or Sync Gateway.
 
@@ -31,8 +43,8 @@ Couchbase Lite JavaScript runs entirely in the browser, storing data locally usi
 
 # 
 
-|  | For more information about what’s new in Couchbase Lite JavaScript, see [Release Notes](releasenotes.md). |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For more information about what’s new in Couchbase Lite JavaScript, see [Release Notes](releasenotes.md).
 
 ## Getting Started
 

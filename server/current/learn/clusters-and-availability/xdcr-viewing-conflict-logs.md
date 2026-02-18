@@ -1,4 +1,13 @@
+---
+title: Viewing Conflict Logs
+description: View and access conflict logs from the conflict collection.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-viewing-conflict-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-viewing-conflict-logs.html)
+
+# Viewing Conflict Logs
 
 > View and access conflict logs from the conflict collection. 
 
@@ -35,10 +44,10 @@ You can use the `WHERE` clause with `SUBSTR(META().id,0,3) = “crd”` by makin
 For example:  
 ```sqlpp  
 CREATE INDEX `idx_crd_timestamp_docId` ON `conflictlogs`.`bucket1`.`applogs`(SUBSTR(META().id,0,3), `timestamp`,`docId`)  
-```
-
-|  | When creating custom indexes, META().id is already a part of the index key. When querying, if you use underscore in comparison strings, make sure you use the escape character, so that it’s used as an exact comparison instead of a wildcard comparison. For example, WHERE META().id LIKE “crd\\\\\_%”. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> * When creating custom indexes, `META().id` is already a part of the index key.  
+> * When querying, if you use underscore in comparison strings, make sure you use the escape character, so that it’s used as an exact comparison instead of a wildcard comparison. For example, `WHERE META().id LIKE “crd\\_%”`.
 
 Query example 1: List all `docId` that had conflicts between 2 time periods
 
@@ -162,8 +171,8 @@ function OnUpdate(doc, meta, xattrs) {
 
 Resultant document example:
 
-|  | See [Conflict Record Document Format](xdcr-conflict-logging-feature.md#conflict-record-document-format) to understand the document format. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> See [Conflict Record Document Format](xdcr-conflict-logging-feature.md#conflict-record-document-format) to understand the document format.
 
 {
   "timestamp": "2025-05-20T19:25:55.308Z",

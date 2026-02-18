@@ -1,4 +1,14 @@
+---
+title: Async APIs
+description: The Couchbase Python SDK offers both asyncio and Twisted APIs for
+  async operation.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.3/howtos/concurrent-async-apis.html)
+
+# Async APIs
 
 > The Couchbase Python SDK offers both asyncio and Twisted APIs for async operation. 
 
@@ -128,8 +138,8 @@ async def analytics_query(cluster):
 
 To use the Python SDK with the ["Twisted"](https://twistedmatrix.com/trac/) framework, use the _txcouchbase_ module. As opposed to the synchronous SDK methods which wait for completion and return `Result` objects, the _txcouchbase_ methods return a Twisted `Deferred`. You may configure `Deferred` with callback and errback handlers. `Result` objects are propagated to the callback as seen in the examples below.
 
-|  | The txcouchbase package _must_ be imported prior to importing the Twisted reactor. |
-|  | ---------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The txcouchbase package _must_ be imported prior to importing the Twisted reactor.
 
 _txcouchbase_ imports
 

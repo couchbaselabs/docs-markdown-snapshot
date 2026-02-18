@@ -1,4 +1,14 @@
+---
+title: Deploy Couchbase Server Using Azure Marketplace
+description: Couchbase partners with Microsoft to provide a packaged solution on
+  Azure Marketplace.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-azure-marketplace.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cloud/couchbase-azure-marketplace.html)
+
+# Deploy Couchbase Server Using Azure Marketplace
 
 > Couchbase partners with Microsoft to provide a packaged solution on Azure Marketplace. This solution is based on Azure Resource Manager templates that incorporate the latest features and best practices for deploying Couchbase Server on Microsoft Azure. 
 
@@ -9,15 +19,14 @@ Couchbase is available through Azure Marketplace with hourly pricing, or through
 ## [](#before-you-begin)Before You Begin
 
 * You need a Microsoft Azure account. If you don’t have one, [sign up](https://azure.microsoft.com/en-us/free/) for one before proceeding.
-* You should review the [best practices](couchbase-cloud-deployment.md#azure-best-practices) for deploying Couchbase Server on Azure.
-
-|  | The free trial version of Azure has limits on the number of resources that can be be deployed. Upgrading to a Pay-As-You-Go subscription will increase resource quotas, and it also allows you to open a support ticket in the Azure portal to request even higher quotas should you need them. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You should review the [best practices](couchbase-cloud-deployment.md#azure-best-practices) for deploying Couchbase Server on Azure.  
+> [!NOTE]  
+> The free trial version of Azure has limits on the number of resources that can be be deployed. Upgrading to a Pay-As-You-Go subscription will increase resource quotas, and it also allows you to open a support ticket in the Azure portal to request even higher quotas should you need them.
 
 ## [](#deploying-couchbase-enterprise)Deploying Couchbase Enterprise
 
-|  | The templates are provided as a starting point and may be customized as needed. Note that additional post deployment setup may be required. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The templates are provided as a starting point and may be customized as needed. Note that additional post deployment setup may be required.
 
 1. Log in to your account on the Microsoft Azure Marketplace.
 2. Search for `Couchbase` in the Marketplace and select the Couchbase Enterprise app.  
@@ -28,9 +37,8 @@ The Couchbase Enterprise product page provides a quick overview of the product o
 There are two [plans](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/couchbase.couchbase-enterprise?tab=PlansAndPrice) that you can choose from: BYOL and Hourly Pricing.
 4. Once you select a plan (we’ve selected Hourly Pricing for this example), you are redirected to portal.azure.com. If you’re not already logged in to Azure Portal, you will need to authenticate yourself before proceeding to the next step.  
 ![azure portal cb home](_images/azure/deploying/azure-portal-cb-home.png)  
-
-|  | You can also land on this page directly if you have access to Azure Portal and need not go through the initial steps of navigating to this page from the Azure Marketplace. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]  
+> You can also land on this page directly if you have access to Azure Portal and need not go through the initial steps of navigating to this page from the Azure Marketplace.
 5. Click **Create** to deploy and load your first blade.
 6. Configure the basic settings for your Couchbase Enterprise.  
 ![azure portal cb configure basic settings](_images/azure/deploying/azure-portal-cb-configure-basic-settings.png)  
@@ -54,10 +62,9 @@ There are two [plans](https://azuremarketplace.microsoft.com/en-us/marketplace/a
 | Sync Gateway Node Count | Select the number of Sync Gateway nodes to deploy.                                                                                                                                                                                                        |
 | Sync Gateway Version    | Choose the Couchbase Sync Gateway version to deploy. The [Compatibility Matrix](https://developer.couchbase.com/documentation/mobile/current/installation/index.html#story-h2-1) summarizes the compatible versions of Sync Gateway and Couchbase Server. |
 8. Review the summary and click **OK** to proceed to buy.  
-You can also choose to **Download the templates and parameters** to deploy later with a script.
-
-|  | Take a look at the sample templates and instructions to deploy the templates that are available [here](https://github.com/couchbase-partners/azure-resource-manager-couchbase). Note that these templates are provided as a starting point for and may be customized as needed. Note that additional post deployment setup may be required. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+You can also choose to **Download the templates and parameters** to deploy later with a script.  
+> [!TIP]  
+> Take a look at the sample templates and instructions to deploy the templates that are available [here](https://github.com/couchbase-partners/azure-resource-manager-couchbase). Note that these templates are provided as a starting point for and may be customized as needed. Note that additional post deployment setup may be required.  
 ![azure portal cb summary](_images/azure/deploying/azure-portal-cb-summary.png)
 9. On the final screen, you’re presented with the Microsoft Azure and Couchbase End User License Agreements (EULA). Review the license agreements and click **Purchase** if you agree to the terms and conditions.  
 ![azure portal cb buy hourly](_images/azure/deploying/azure-portal-cb-buy-hourly.png)
@@ -102,10 +109,9 @@ Couchbase simplifies scaling on Microsoft Azure by using virtual machine scale s
 ![azure cb cluster vm server](_images/azure/scaling/azure-cb-cluster-vm-server.png)
 2. Click **Scaling** under Settings and move the slider on the instance count up (or down) as needed.  
 ![azure cb vm server scaling save new config](_images/azure/scaling/azure-cb-vm-server-scaling-save-new-config.png)
-3. Click **Save**. You’ll see a notification that the autoscale configuration is being updated.
-
-|  | Do not enable autoscale. |
-|  | ------------------------ |  
+3. Click **Save**. You’ll see a notification that the autoscale configuration is being updated.  
+> [!IMPORTANT]  
+> Do not enable autoscale.  
 Go to Instances to see the updated instance count. In a few minutes, the additional instances will be up and running.  
 ![azure cb vm server instances](_images/azure/scaling/azure-cb-vm-server-instances.png)  
 On a different browser tab, you can log in to the Couchbase Server Web Console to see the additional server nodes that were added to your cluster.  

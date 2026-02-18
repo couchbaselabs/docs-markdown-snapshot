@@ -1,4 +1,13 @@
+---
+title: Drop Indexes
+description: How to drop primary and secondary indexes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/drop-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/drop-index.html)
+
+# Drop Indexes
 
 > How to drop primary and secondary indexes. 
 
@@ -15,8 +24,8 @@ If you want to try out the examples in this section, follow the instructions giv
 
 You can drop a primary index using a SQL++ statement or an SDK call.
 
-|  | The SDK calls only enable you to drop indexes in the default collection and default scope within a bucket. A SQL++ statement enables you to drop indexes in _any_ collection and scope within a bucket. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SDK calls only enable you to drop indexes in the default collection and default scope within a bucket. A SQL++ statement enables you to drop indexes in _any_ collection and scope within a bucket.
 
 * SQL++
 * .NET
@@ -90,8 +99,8 @@ For more information, see [IQueryIndexManager()](https://docs.couchbase.com/sdk-
 
 To drop a primary index, use the `dropPrimaryIndex` method and specify the keyspace which contains the index.
 
-|  | The Java SDK does not provide a call for dropping a named primary index. To drop a named primary index, use a SQL++ query. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Java SDK does not provide a call for dropping a named primary index. To drop a named primary index, use a SQL++ query.
 
 ---
 
@@ -168,8 +177,8 @@ For more information, see [SQL++ Index Management](https://docs.couchbase.com/sd
 
 You can drop a secondary index using a SQL++ statement or an SDK call.
 
-|  | The SDK calls only enable you to drop indexes in the default collection and default scope within a bucket. A SQL++ statement enables you to drop indexes in _any_ collection and scope within a bucket. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SDK calls only enable you to drop indexes in the default collection and default scope within a bucket. A SQL++ statement enables you to drop indexes in _any_ collection and scope within a bucket.
 
 * SQL++
 * .NET

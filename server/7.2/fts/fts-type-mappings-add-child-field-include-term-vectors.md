@@ -1,4 +1,12 @@
+---
+title: Child Field - Include term vectors
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-field-include-term-vectors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings-add-child-field-include-term-vectors.html)
+
+# Child Field - Include term vectors
 
 When checked, term vectors are included. When unchecked, term vectors are not included.
 
@@ -8,5 +16,5 @@ Term vectors are the locations of terms in a particular field. Certain kinds of 
 
 ![fts type mappings child field termvectors](_images/fts-type-mappings-child-field-termvectors.png) 
 
-|  | "include term vectors" indexes the array positions (locations) of the terms within the field (needed for phrase searching and highlighting). When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> "include term vectors" indexes the array positions (locations) of the terms within the field (needed for phrase searching and highlighting). When this checkbox is checked, the resulting index will proportionately increase in size.

@@ -1,4 +1,12 @@
+---
+title: Microlith deployment
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/deployment-microlith.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/deployment-microlith.html)
+
+# Microlith deployment
 
 To support easy deployment across a variety of targets, we are providing a 'microlith' single container option. This is essentially the various scalable components of the Grafana stack (Loki, Prometheus, Grafana, Alert Manager) and Couchbase binaries for specific data extraction all runnable as a single multi-process container instance.
 

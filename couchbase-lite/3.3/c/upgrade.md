@@ -1,4 +1,12 @@
+---
+title: Upgrade
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/upgrade.html)
+
+# Upgrade
 
 ## [](#3-2-3-upgrade)3.3.0 Upgrade
 

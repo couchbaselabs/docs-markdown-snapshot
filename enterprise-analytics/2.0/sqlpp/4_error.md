@@ -1,4 +1,13 @@
+---
+title: Errors
+description: This topic describes SQL++ for Enterprise Analytics errors.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/4_error.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/4_error.html)
+
+# Errors
 
 > This topic describes SQL++ for Enterprise Analytics errors. 
 

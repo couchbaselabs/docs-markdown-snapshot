@@ -1,4 +1,13 @@
+---
+title: scopes-details
+description: Provides low-level details on scopes.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-scopes-details.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-scopes-details.html)
+
+# scopes-details
 
 > Provides low-level details on scopes. 
 

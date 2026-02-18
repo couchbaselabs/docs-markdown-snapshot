@@ -1,4 +1,14 @@
+---
+title: Supported Operating System Versions
+description: Couchbase Lite on C -- the OS and SDK versions on which this
+  framework is supported
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/supported-os.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/c/supported-os.html)
+
+# Supported Operating System Versions
 
 > Description — _Couchbase Lite on C — the OS and SDK versions on which this framework is supported_  
 > Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
@@ -7,8 +17,17 @@
 
 Couchbase Lite for C is available on the platforms shown in the tables below.
 
-|  | Deprecation Notice Support for the following will be deprecated in this release and will be removed in a future release: macOS 12 (Monterey) Ubuntu - 20.04 LTS Raspbian - 9 Debian 9, 10 Please plan to migrate your apps to use an appropriate alternative version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Deprecation Notice
+> 
+> Support for the following will be deprecated in this release and will be removed in a future release:
+> 
+> * macOS 12 (Monterey)
+> * Ubuntu - 20.04 LTS
+> * Raspbian - 9
+> * Debian 9, 10
+> 
+> Please plan to migrate your apps to use an appropriate alternative version.
 
 ### [](#android)Android
 

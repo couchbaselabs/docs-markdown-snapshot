@@ -1,4 +1,12 @@
+---
+title: Licensing
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/licensing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/licensing.html)
+
+# Licensing
 
 > CMOS is composed of primarily other OSS software, not linked but used directly. This page provides an overview of the relevant licensing. 
 

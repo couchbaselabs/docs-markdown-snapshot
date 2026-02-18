@@ -1,9 +1,20 @@
+---
+title: Clock Sync with NTP
+description: Network Time Protocol (NTP) is used to synchronize time across
+  multiple servers. The purpose of NTP is to keep an individual node's clock
+  'accurate'.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/synchronize-clocks-using-ntp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/synchronize-clocks-using-ntp.html)
+
+# Clock Sync with NTP
 
 Network Time Protocol (NTP) is used to synchronize time across multiple servers. The purpose of NTP is to keep an individual node’s clock 'accurate'. This is done by having the node periodically synchronize its clock with a reference server. You can specify multiple servers to provide redundancy in case one or more time servers are unavailable. Correct time synchronisation is important in Couchbase Server for Expiry behavior and to maintain accurate synchronicity in timestamp-based conflict resolution (see [Time Synchronization](../learn/clusters-and-availability/xdcr-conflict-resolution.md#time-synchronization)).
 
-|  | In a multi-cluster environment, it is important for all the nodes in the cluster to have the same time from a global perspective. In other words, all the nodes must synchronize with the same reference server and time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In a multi-cluster environment, it is important for all the nodes in the cluster to have the same time from a global perspective. In other words, all the nodes must synchronize with the same reference server and time.
 
 ## [](#time-sync-configuration)Time Sync Configuration
 
@@ -27,8 +38,9 @@ There are different NTP deployment models available for NTP clients installed on
 * Using a dedicated NTP server ( a core server, possibly running on a separate instance) within the Couchbase cluster. This server is synchronized with external NTP servers (over the Internet) while the rest of the cluster will synchronize with this one.
 * Using a dedicated pool of NTP servers within the Couchbase cluster. These NTP servers within a pool synchronize with external NTP servers (over the Internet) while the rest of the cluster will synchronize with this one.
 
-|  | In case of a bigger, scalable cluster, Couchbase recommends that you run your own NTP server pool that is externally synchronized. You should have at least two NTP sources on the same local network as each Couchbase server group. See [Manage Groups](../manage/manage-groups/manage-groups.md). This configuration will provide perfect relative and absolute clock synchronization, high availability, and easy maintenance. Couchbase recommends configuring NTP servers/pool as peers across clusters. This enables the NTP servers/pool on one cluster to have a relationship between the NTP servers/pool of the other cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * In case of a bigger, scalable cluster, Couchbase recommends that you run your own NTP server pool that is externally synchronized. You should have at least two NTP sources on the same local network as each Couchbase server group. See [Manage Groups](../manage/manage-groups/manage-groups.md). This configuration will provide perfect relative and absolute clock synchronization, high availability, and easy maintenance.
+> * Couchbase recommends configuring NTP servers/pool as peers across clusters. This enables the NTP servers/pool on one cluster to have a relationship between the NTP servers/pool of the other cluster.
 
 **NTP Client Configuration**
 
@@ -46,10 +58,9 @@ server ntp2.phx.xxx.com
 The configuration file is read when the NTP service starts. So, if you change the configuration file after NTP is running, stop and restart the service to have the new configuration options take effect.  
 Once _ntp.conf_ is configured with correct settings, start the `ntp` daemon.  
 /etc/init.d/ntp start  
-You will see the NTP will slowly start to synchronize the time of your Linux machine with the NTP Server.
-
-|  | As noted in the [NTP documentation](http://doc.ntp.org/4.1.1/ntpdate.htm), it is important to remember that ntpdate with contrived cron scripts is no substitute for the NTP daemon, which uses sophisticated algorithms to maximize accuracy and reliability while minimizing resource use. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+You will see the NTP will slowly start to synchronize the time of your Linux machine with the NTP Server.  
+> [!NOTE]  
+> As noted in the [NTP documentation](http://doc.ntp.org/4.1.1/ntpdate.htm), it is important to remember that `ntpdate` with contrived `cron` scripts is no substitute for the NTP daemon, which uses sophisticated algorithms to maximize accuracy and reliability while minimizing resource use.
 
 ## [](#verifying-your-ntp-configuration)Verifying Your NTP Configuration
 
@@ -61,10 +72,9 @@ If your output resembles the output below, then NTP is working properly on the i
 synchronised to NTP server (12.34.56.78) at stratum 3  
 time correct to within 399 ms  
 polling server every 64 s  
-If your output states "`unsynchronised`", wait for about a minute and try again. The first synchronization may take a minute to complete.
-
-|  | Do not start XDCR until every node in each cluster says synchronized. |
-|  | --------------------------------------------------------------------- |  
+If your output states "`unsynchronised`", wait for about a minute and try again. The first synchronization may take a minute to complete.  
+> [!NOTE]  
+> Do not start XDCR until every node in each cluster says synchronized.  
 If your output states "`Unable to talk to NTP daemon. Is it running?`", you probably need to start the NTP service and enable it to automatically start at boot time.
 2. (Optional) You can use the `ntpq -p` command to see a list of peers known to the NTP server and a summary of their state.  
 [ec2-user ~]$ ntpq -p  

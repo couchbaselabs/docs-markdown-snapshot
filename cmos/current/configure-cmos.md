@@ -1,4 +1,12 @@
+---
+title: Configuration Options
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/configure-cmos.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/configure-cmos.html)
+
+# Configuration Options
 
 ![microlith runtime](_images/microlith-runtime.png) 
 
@@ -18,8 +26,8 @@ If running on a subdomain, you do not need to change any CMOS configuration, jus
 
 If you are running on a sub-path, you will need to set the `CMOS_HTTP_PATH_PREFIX` environment variable to ensure all the services reflect this, for example `docker run -e "CMOS_HTTP_PATH_PREFIX=/cmos" …​`.
 
-|  | If using sub-paths, the CMOS\_HTTP\_PATH\_PREFIX variable **must not** have a trailing slash (e.g. /cmos rather than /cmos/), otherwise CMOS may fail to start. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If using sub-paths, the `CMOS_HTTP_PATH_PREFIX` variable **must not** have a trailing slash (e.g. `/cmos` rather than `/cmos/`), otherwise CMOS may fail to start.
 
 ## [](#logging)Logging
 
@@ -29,8 +37,8 @@ To mount files into a container, use the `docker -v <source>:<destination>` comm
 
 ## [](#cluster-monitor)Cluster Monitor
 
-|  | This is a legacy way of configuring Prometheus targets and we recommend not to use this approach. You can use CMOS UI to perform the same using the "Add Cluster" option present on the landing page. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is a legacy way of configuring Prometheus targets and we recommend not to use this approach. You can use CMOS UI to perform the same using the "Add Cluster" option present on the landing page.
 
 The cluster monitor exposes a REST API endpoint from the container so that it can be used externally to add/remove Couchbase clusters.
 
@@ -57,8 +65,8 @@ curl -u "${CLUSTER_MONITOR_USER}:${CLUSTER_MONITOR_PWD}" -X POST -d '{ "user": "
 
 Prometheus has various configuration options exposed to the user, almost entirely using files. You can mount these configuration files to the CMOS container using [docker volumes](https://docs.docker.com/storage/volumes/) or [bind mounts](https://docs.docker.com/storage/bind-mounts/).
 
-|  | To pick up any configuration changes after the Prometheus service has started, you may need to reload the config files using the reload endpoint. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To pick up any configuration changes after the Prometheus service has started, you may need to reload the config files using the `reload` endpoint.
 
 Below are the environment variables used for Prometheus configuration. To read more about Prometheus configuration, see the [official documentation website](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
 
@@ -132,8 +140,8 @@ Using alert rules, you can define alert conditions based on Prometheus language 
 
 The installation of CMOS comes with default alerting rules located in the `/etc/prometheus/alerting/couchbase/` directory.
 
-|  | The default rules are not intended to be modified by the user. Changing the default rules could result in unexpected and unwanted behavior, so it should be avoided. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The default rules are not intended to be modified by the user. Changing the default rules could result in unexpected and unwanted behavior, so it should be avoided.
 
 To add custom alerts, you can place your custom alert rules file to `/etc/prometheus/alerting/custom/` directory.
 

@@ -1,4 +1,13 @@
+---
+title: Couchbase Mobile
+description: Couchbase Mobile delivers the power of NoSQL to the Edge
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/couchbase-mobile-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/couchbase-mobile-index.html)
+
+# Couchbase Mobile
 
 > Couchbase Mobile delivers the power of NoSQL to the Edge 
 

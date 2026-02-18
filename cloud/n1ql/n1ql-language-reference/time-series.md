@@ -1,11 +1,20 @@
+---
+title: Store and Process Time Series Data
+description: Couchbase Capella can store and process time series data.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/time-series.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/time-series.html)
+
+# Store and Process Time Series Data
 
 > Couchbase Capella can store and process time series data. 
 
 Time series data is any data which changes over time. In the case of data management, it refers to data collected frequently, in regular or irregular intervals, from a device or a process. The changing data is typically numerical, and changes incrementally.
 
-|  | This feature is only available on clusters using Couchbase Server 7.2 or later. |
-|  | ------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This feature is only available on clusters using Couchbase Server 7.2 or later.
 
 ## [](#document-type)Types of Time Series
 
@@ -45,8 +54,8 @@ The document may contain any other fields you require.
 
 As `ts_data` is usually the largest field, you may consider storing it after other commonly-used fields in the document for faster access.
 
-|  | The date-time values in a time series document may represent values smaller than milliseconds, if required. You are recommended to use milliseconds for easy compatibility with SQL++ date and time functions. If you need to use date-time values smaller than milliseconds, you must use a multiplication factor to use the date-time values with date and time functions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The date-time values in a time series document may represent values smaller than milliseconds, if required. You are recommended to use milliseconds for easy compatibility with SQL++ date and time functions. If you need to use date-time values smaller than milliseconds, you must use a multiplication factor to use the date-time values with date and time functions.
 
 ### [](#examples-of-time-series-documents)Examples of Time Series Documents
 

@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr merge
+description: Merges two or more backups together
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-merge.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/backup-restore/cbbackupmgr-merge.html)
+
+# cbbackupmgr merge
 
 Merges two or more backups together
 

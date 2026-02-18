@@ -1,4 +1,13 @@
+---
+title: Logging Client-Side Errors
+description: Client-side errors can be written to a log file.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-client-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-client-logs.html)
+
+# Logging Client-Side Errors
 
 > Client-side errors can be written to a log file. 
 

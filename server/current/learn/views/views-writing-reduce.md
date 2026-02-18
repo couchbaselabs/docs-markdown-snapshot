@@ -1,4 +1,14 @@
+---
+title: Reduce Function
+description: Reduce functions are used to summarize the content generated during
+  the map phase.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-reduce.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/views/views-writing-reduce.html)
+
+# Reduce Function
 
 > Reduce functions are used to summarize the content generated during the map phase. 
 
@@ -78,8 +88,8 @@ Couchbase includes the following built-in reduce functions:
 * `_sum`
 * `_stats`.
 
-|  | You can also write your own custom reduction functions. |
-|  | ------------------------------------------------------- |
+> [!NOTE]
+> You can also write your own custom reduction functions.
 
 The reduce function also has a final additional benefit. The results of the computed reduction are stored in the index along with the rest of the view information. This means that when accessing a view with the reduce function enabled, the information comes directly from the index content. This results in a very low impact on the Couchbase Server to the query (the value is not computed at runtime), and results in very fast query times, even when accessing information based on a range-based query.
 

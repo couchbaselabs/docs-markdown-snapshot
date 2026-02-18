@@ -1,4 +1,12 @@
+---
+title: Rotate the Administrator Password
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-admin-password-rotation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-admin-password-rotation.html)
+
+# Rotate the Administrator Password
 
 > How to rotate the administrator password. 
 

@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Hibernation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-hibernation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-hibernation.html)
+
+# Couchbase Cluster Hibernation
 
 > The Operator allows a Couchbase cluster to be hibernated. This documents what hibernation means and the hibernation life-cycle. 
 
@@ -17,8 +25,8 @@ By hibernating a Couchbase cluster:
 
 When a cluster is hibernated, any persistent volumes associated with the cluster are retained. This allows the cluster to be recovered at the point of hibernation with existing data still intact.
 
-|  | The couchbase cluster spec cannot be changed while the cluster is hibernated. |
-|  | ----------------------------------------------------------------------------- |
+> [!WARNING]
+> The couchbase cluster spec cannot be changed while the cluster is hibernated.
 
 ### [](#hibernation-strategies)Hibernation Strategies
 
@@ -42,5 +50,5 @@ Supportable clusters, with both volume backed and ephemeral server classes, will
 
 The Operator updates the cluster conditions during the life cycle of a hibernation. This allows 3rd party observers to know when a cluster has hibernated fully. When completely hibernated all I/O to persistent volumes will have terminated and be in a stable state.
 
-|  | Currently, you must make sure that no rebalance is taking place before hibernating the cluster. This can be done by querying the couchbase server API to [ensure there are no running tasks.](https://docs.couchbase.com/server/current/rest-api/rest-get-cluster-tasks.html#no-tasks-underway) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Currently, you must make sure that no rebalance is taking place before hibernating the cluster. This can be done by querying the couchbase server API to [ensure there are no running tasks.](https://docs.couchbase.com/server/current/rest-api/rest-get-cluster-tasks.html#no-tasks-underway)

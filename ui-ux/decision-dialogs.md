@@ -1,4 +1,12 @@
+---
+title: Decision Dialogs
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/decision-dialogs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/decision-dialogs.html)
+
+# Decision Dialogs
 
 A decision dialog is a window that appears when a user needs to confirm an action in the UI. They’re given a choice to confirm or cancel that action.
 

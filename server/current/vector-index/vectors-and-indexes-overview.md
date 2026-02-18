@@ -1,4 +1,13 @@
+---
+title: Use Vector Indexes for AI Applications
+description: This page is a high-level overview of vectors and how they work in indexes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vectors-and-indexes-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-index/vectors-and-indexes-overview.html)
+
+# Use Vector Indexes for AI Applications
 
 > This page is a high-level overview of vectors and how they work in indexes. Couchbase Server supports several types of vector indexes. These indexes let you add similarity searches to your applications without relying on external services. If you’re already familiar with vectors, you can skip to the next page, [Choose the Right Vector Index](use-vector-indexes.md) for information about how to use vector indexes in your application. 
 
@@ -22,8 +31,8 @@ Vectors can be similar in a variety of ways. They may:
 
 Because the first two articles are about cats, their vectors point in a similar direction and are in a similar location in space. The third article, despite using the word "cat" as frequently as the two other articles, has a vector that has significant differences from the other two.
 
-|  | Some diagrams in this document (and in other discussions available on the web) show vectors in three dimensions. These diagrams are a simplification. The vectors used in AI applications have hundreds to thousands of dimensions. They’re easy for computers to handle but are rather difficult for humans to visualize. In addition, the vector dimension values in the diagrams show only 4 decimal places to conserve space. The floating point dimensional values of actual vectors often use 6 or 7 decimal places. When viewing these diagrams, remember that they only scratch the surface of the data encoded in a vector. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Some diagrams in this document (and in other discussions available on the web) show vectors in three dimensions. These diagrams are a simplification. The vectors used in AI applications have hundreds to thousands of dimensions. They’re easy for computers to handle but are rather difficult for humans to visualize. In addition, the vector dimension values in the diagrams show only 4 decimal places to conserve space. The floating point dimensional values of actual vectors often use 6 or 7 decimal places. When viewing these diagrams, remember that they only scratch the surface of the data encoded in a vector.
 
 ### [](#using-vectors-to-find-similar-complex-data)Using Vectors to Find Similar Complex Data
 
@@ -65,8 +74,8 @@ Euclidean Distance (also known as L2) calculates the geometric distance between 
 
 ![Three-dimensional plot showing two vectors with points along each vector joined by dotted lines, indicating the summing of corresponding points.](_images/euclidean-distance-example.svg) 
 
-|  | When you select Euclidean Distance or L2 as the metric for a vector index, Couchbase Server internally uses the [Euclidean Squared Distance](#euclidean-squared) metric (explained in the next section) to perform vector comparisons. This approach improves performance because it avoids performing a computationally expensive square root operation. Vector searches using the Euclidean Squared metric return the same relevant vectors and ranking of results as Euclidean Distance. If your query materializes or projects the actual distance between vectors, Couchbase Server calculates the actual Euclidean Distance. For example, if your query returns the distance between vectors as a column, Couchbase Server calculates the square root of the Euclidean Squared distance to return the actual Euclidean Distance. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you select Euclidean Distance or L2 as the metric for a vector index, Couchbase Server internally uses the [Euclidean Squared Distance](#euclidean-squared) metric (explained in the next section) to perform vector comparisons. This approach improves performance because it avoids performing a computationally expensive square root operation. Vector searches using the Euclidean Squared metric return the same relevant vectors and ranking of results as Euclidean Distance. If your query materializes or projects the actual distance between vectors, Couchbase Server calculates the actual Euclidean Distance. For example, if your query returns the distance between vectors as a column, Couchbase Server calculates the square root of the Euclidean Squared distance to return the actual Euclidean Distance.
 
 Euclidean Distance is useful for tasks such as:
 
@@ -74,8 +83,8 @@ Euclidean Distance is useful for tasks such as:
 * Geographic or spatial searches where you care about exact (and often real-world) distances.
 * Other cases where you use the results as filters in calculations that require the actual distance between the vectors.
 
-|  | Only Hyperscale Vector and Composite Vector indexes support this metric. Search Vector Indexes do not support it. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only Hyperscale Vector and Composite Vector indexes support this metric. Search Vector Indexes do not support it.
 
 ### [](#euclidean-squared)Euclidean Squared Distance
 
@@ -102,8 +111,8 @@ For example:
 * Audio recognition tasks such as identifying who’s speaking in a recording.
 * Locating similar genomic and biological sequences in a dataset, such as related gene profiles.
 
-|  | Only Hyperscale Vector and Composite Vector indexes support this metric. Search Vector Indexes do not support it. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only Hyperscale Vector and Composite Vector indexes support this metric. Search Vector Indexes do not support it.
 
 ### [](#dot)Dot Product
 
@@ -137,8 +146,8 @@ Couchbase Server supports two formats that the Vector indexes use when storing t
 
 This algorithm just stores the full vector value in the index without performing any sort of optimization. Searches using this index use a brute-force method to find similar vectors. Adding new vectors to a flat index is fast and the index does not need training. It also offers high precision because search compares the full vector values. However, searching a flat index is inefficient. The search must compare every vector in the index to find matches. You should only use it for small data sets or for testing.
 
-|  | Search Vector Indexes use a flat index when indexing datasets with 1000 or fewer vectors. Hyperscale Vector and Composite Vector indexes only support the next algorithm, IVF. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Search Vector Indexes use a flat index when indexing datasets with 1000 or fewer vectors. Hyperscale Vector and Composite Vector indexes only support the next algorithm, IVF.
 
 ### [](#IVF)Inverted File (IVF)
 

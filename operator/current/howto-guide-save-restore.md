@@ -1,4 +1,14 @@
+---
+title: "How-to Guide: Data Topology Save and Restore"
+description: A how-to guide on using the "Write Once and Create Anywhere"
+  capability of Kubernetes Operator.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-guide-save-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-guide-save-restore.html)
+
+# How-to Guide: Data Topology Save and Restore
 
 > A how-to guide on using the "Write Once and Create Anywhere" capability of Kubernetes Operator. 
 
@@ -14,8 +24,8 @@ This guide will show you how to save the configuration of one Couchbase cluster,
 
 Setup two Couchbase clusters. One with the sample bucket `travel-sample` configured, and a second cluster to restore the configuration of the first one. See [Load the Sample Dataset](../../server/current/getting-started/do-a-quick-install.md#load-the-sample-dataset) to learn how to load a sample bucket.
 
-|  | This requires the disableBucketManagement configuration in Couchbase to be set to false. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This requires the `disableBucketManagement` configuration in Couchbase to be set to `false`.
 
 In the images below, the `travel-sample` bucket is loaded along with its scopes and collections in the `first` cluster.
 

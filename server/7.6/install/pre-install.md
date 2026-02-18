@@ -1,4 +1,15 @@
+---
+title: System Resource Requirements
+description: Although resource requirements will largely depend on the size and
+  resource demands of your Couchbase deployment, there are some minimum and
+  recommended specifications that you should follow.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/pre-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/pre-install.html)
+
+# System Resource Requirements
 
 > Although resource requirements will largely depend on the size and resource demands of your Couchbase deployment, there are some minimum and recommended specifications that you should follow. 
 
@@ -8,8 +19,27 @@ Couchbase Server can run on x86 and ARM processors (including Apple Silicon proc
 
 ### [](#x86-processors)x86 Processors
 
-|  | deprecation notice The use of older x86 processors that do not implement the [Advanced Vector Extensions 2 (AVX2)](https://en.wikipedia.org/wiki/Advanced%5FVector%5FExtensions#AVX2) instruction set are deprecated in Couchbase Server 7.6.x. Future versions will require processors that have AVX2 support. This requirement is only for x86 processors—​ARM processors have a separate set of vector instructions. The earliest processors that support AVX2 instructions include: Intel 4th generation (Haswell) Core processors released in 2013. Intel 11th generation (Tiger Lake) Celeron and Pentium processors released in 2020. AMD Excavator processors released in 2015. Processors from these or later generations will be required to run Couchbase Server in the future. On Linux, you can tell if your processor has the AVX2 instructions by executing the following command: grep -q -i 'avx2' /proc/cpuinfo && \\      echo "Processor has AVX2" \|| echo "AVX2 not found" If the command returns the text Processor has AVX2, your processor is supported in future Couchbase Server releases. If the command returns AVX2 not found, your processor does not have AVX2 instructions and will not be supported in future Couchbase Server versions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> deprecation notice
+> 
+> The use of older x86 processors that do not implement the [Advanced Vector Extensions 2 (AVX2)](https://en.wikipedia.org/wiki/Advanced%5FVector%5FExtensions#AVX2) instruction set are deprecated in Couchbase Server 7.6.x. Future versions will require processors that have AVX2 support. This requirement is only for x86 processors—​ARM processors have a separate set of vector instructions.
+> 
+> The earliest processors that support AVX2 instructions include:
+> 
+> * Intel 4th generation (Haswell) Core processors released in 2013.
+> * Intel 11th generation (Tiger Lake) Celeron and Pentium processors released in 2020.
+> * AMD Excavator processors released in 2015.
+> 
+> Processors from these or later generations will be required to run Couchbase Server in the future.
+> 
+> On Linux, you can tell if your processor has the AVX2 instructions by executing the following command:
+> 
+> ```bash
+> grep -q -i 'avx2' /proc/cpuinfo && \
+>      echo "Processor has AVX2" || echo "AVX2 not found"
+> ```
+> 
+> If the command returns the text `Processor has AVX2`, your processor is supported in future Couchbase Server releases. If the command returns `AVX2 not found`, your processor does not have AVX2 instructions and will not be supported in future Couchbase Server versions.
 
 Couchbase Server has the following requirements when running on x86 processors.
 

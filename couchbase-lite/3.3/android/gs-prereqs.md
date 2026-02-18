@@ -1,4 +1,13 @@
+---
+title: Preparing for Couchbase Lite on Android
+description: Prerequisites for the installation of Couchbase Lite
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/android/gs-prereqs.html)
+
+# Preparing for Couchbase Lite on Android
 
 > Description — _Prerequisites for the installation of Couchbase Lite_  
 > _Abstract — Laying out some of the pre-requisites and preparatory steps to be considered before installing Couchbase Lite for android_  
@@ -16,8 +25,8 @@ The operating systems listed below refer to "Certified" versions of Android. We 
 
 ## [](#supported-versions-for-vector-search-3-3-0)Supported Versions for Vector Search 3.3.0
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 | Platform | Runtime architectures | Minimum API Level |
 | -------- | --------------------- | ----------------- |

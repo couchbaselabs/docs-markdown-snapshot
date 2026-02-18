@@ -1,4 +1,14 @@
+---
+title: Saving Data
+description: Entity Framework Core (EF Core) supports two fundamental approaches
+  for saving data to the database.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-crud-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-crud-data.html)
+
+# Saving Data
 
 > Entity Framework Core (EF Core) supports two fundamental approaches for saving data to the database. 
 
@@ -8,8 +18,8 @@ While querying allows you to read data from the database, saving data means addi
 
 In many scenarios, your program needs to query some data from the database, perform some modification on it, and save those modifications back; this is sometimes referred to as a ["Unit of Work"](https://en.wikipedia.org/wiki/Unit%5Fof%5Fwork). For example, let’s assume that you have a set of Blogs, and you’d like to change the Url property of one of them.
 
-|  | Like any EF Core Provider DbContext, lifetime, configuration, and initialization [best practices](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/) should be used with the DbContext. Always call [Dispose()](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#the-dbcontext-lifetime) when done using the DbContext. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Like any EF Core Provider `DbContext`, lifetime, configuration, and initialization [best practices](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/) should be used with the `DbContext`. Always call [Dispose()](https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration/#the-dbcontext-lifetime) when done using the `DbContext`.
 
 In EF, this is typically done as follows:
 
@@ -30,8 +40,8 @@ The code above performs the following steps:
 
 ## [](#approach-2-bulk-update-with-executeupdate-and-executedelete)Approach 2: Bulk Update with ExecuteUpdate and ExecuteDelete
 
-|  | ExecuteUpdate and ExecuteDelete are only minimally supported in the 1.0 release, for experimental usage only. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `ExecuteUpdate` and `ExecuteDelete` are only minimally supported in the 1.0 release, for experimental usage only.
 
 `SaveChanges` is a powerful model for persisting changes to the database, but has some limitations. The main limitation is that each entity must be tracked and when `SaveChanges` is called, each modified or added entity will be persisted to the database. This can be inefficient — a more efficient way of doing this is via an `UPDATE` or `DELETE` command.
 
@@ -126,8 +136,8 @@ using (var context = new BloggingContext())
 }
 ```
 
-|  | EF Core Couchbase DB Provider GA 1.0 uses the [Couchbase Key/Value store](https://docs.couchbase.com/dotnet-sdk/current/howtos/kv-operations.html) and not SQL++ for CRUD operations. This may change in later releases. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> EF Core Couchbase DB Provider GA 1.0 uses the [Couchbase Key/Value store](https://docs.couchbase.com/dotnet-sdk/current/howtos/kv-operations.html) and not SQL++ for CRUD operations. This may change in later releases.
 
 ## [](#saving-related-data)Saving Related Data
 
@@ -158,8 +168,8 @@ using (var context = new BloggingContext())
 }
 ```
 
-|  | If you attempt to delete the Blog after creating it, you will get a foriegn key constraint when you call SaveChanges again, unless you provide DeleteBehavior.Cascade to the entity during modeling. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you attempt to delete the Blog after creating it, you will get a foriegn key constraint when you call `SaveChanges` again, unless you provide `DeleteBehavior.Cascade` to the entity during modeling.
 
 ## [](#adding-a-related-entity)Adding a related entity
 
@@ -177,8 +187,8 @@ using (var context = new BloggingContext())
 }
 ```
 
-|  | Eager fetching via Include and/or ThenInclude is not supported in EF Core Couchbase DB Provider GA 1.0\. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Eager fetching via `Include` and/or `ThenInclude` is not supported in EF Core Couchbase DB Provider GA 1.0\.
 
 ## [](#changing-relationships)Changing relationships
 

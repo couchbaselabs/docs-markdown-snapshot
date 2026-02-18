@@ -1,4 +1,14 @@
+---
+title: Copy Results to External Storage
+description: In Capella Analytics, you can write query results or entire
+  collections to an external file system or data store.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/copy-to-external.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/query/copy-to-external.html)
+
+# Copy Results to External Storage
 
 > In Capella Analytics, you can write query results or entire collections to an external file system or data store. This feature supports exporting data to an external cloud data store in JSON format. 
 
@@ -16,8 +26,8 @@ When you write a collection or query results to an external data store, you spec
 
 Structuring the data on the external store is helpful in use cases where you plan to directly query the data there later, and to use [dynamic prefixes](../sources/dynamic-prefixes.md) to optimize those queries.
 
-|  | The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty.
 
 ## [](#copy-to-statements)COPY TO Statements
 

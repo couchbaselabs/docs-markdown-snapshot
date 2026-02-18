@@ -1,4 +1,13 @@
+---
+title: Services
+description: Couchbase <em>Services</em> support access to and maintenance of data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/services-and-indexes/services/services.html)
+
+# Services
 
 > Couchbase _Services_ support access to and maintenance of data. Services can be deployed with flexibility across available hardware-resources, providing _Multi-Dimensional Scaling_, whereby a cluster can be tuned for optimal handling of emergent workloads. 
 

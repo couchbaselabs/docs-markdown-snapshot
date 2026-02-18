@@ -1,4 +1,14 @@
+---
+title: Deployment
+description: When deploying your application for production use you will need to
+  use Sync Gateway and Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/deploy/pages/deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/deploy/deployment.html)
+
+# Deployment
 
 > When deploying your application for production use you will need to use Sync Gateway and Couchbase Server.  
 > This article covers different aspects of using Sync Gateway and Couchbase Server during production.
@@ -29,8 +39,11 @@ Sync Gateway nodes are "shared-nothing," so they don’t need to coordinate any 
 
 ## [](#channel-and-revision-caches)Channel and Revision Caches
 
-|  | Enterprise Edition onlyTuning the channel and revision cache is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.The Community Edition is configured with default values. Changing these values has no effect. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Enterprise Edition only
+> 
+> Tuning the channel and revision cache is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.  
+> The Community Edition is configured with default values. Changing these values has no effect.
 
 * _Channel_  
 Applies to cases where the number of channels can potentially grow unbounded — see: [database.cache.channel\_cache](../configuration/configuration-schema-database.md#database-cache-channel%5Fcache)The size of channel cache will grow unbounded with the number of channels, regardless of the number of active channels.  

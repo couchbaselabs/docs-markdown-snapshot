@@ -1,4 +1,13 @@
+---
+title: Performance Best Practices
+description: Performance best practices for Couchbase .NET applications.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/performance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/current/project-docs/performance.html)
+
+# Performance Best Practices
 
 > Performance best practices for Couchbase .NET applications. Learn how to keep get the best performance from your application. 
 
@@ -32,8 +41,8 @@ var result = await collection.GetAsync("key1").ConfigureAwait(false);
 
 In the code above, we connect to the Couchbase server and then open a bucket. Both times we disable the sychcronization context by call `ConfigureAwait(false)`. Then a collection is opened using a non-async overload. Finally, we perform a CRUD operation, and again we disable the context. This pattern should be followed throughout your Couchbase application.
 
-|  | In modern ASP.NET (5+), the core lacks a default synchronization. With this core, usage of Task.ConfigureAwait(false) is debatable as it adds a small amount of overhead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In modern ASP.NET (5+), the core lacks a default synchronization. With this core, usage of `Task.ConfigureAwait(false)` is debatable as it adds a small amount of overhead.
 
 ### [](#avoid-synchronously-awaiting-foreach-loops)Avoid Synchronously Awaiting Foreach Loops
 

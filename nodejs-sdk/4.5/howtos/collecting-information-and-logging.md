@@ -1,9 +1,18 @@
+---
+title: Logging
+description: Node.js SDK logging.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > Node.js SDK logging. 
 
-|  | the Logging implementation has changed substantially in 4.x. Customized logging is not yet implemented, this will be resolved in a future 4.x release. Use of the console logger (detailed below) is currently recommended. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> the Logging implementation has changed substantially in 4.x. Customized logging is not yet implemented, this will be resolved in a future 4.x release. Use of the console logger (detailed below) is currently recommended.
 
 ## [](#library-logging)Library logging
 

@@ -1,4 +1,14 @@
+---
+title: Graceful Failover
+description: Graceful failover takes a Data Service node out of a healthy
+  cluster, in an orderly and controlled fashion.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/graceful-failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/graceful-failover.html)
+
+# Graceful Failover
 
 > Graceful failover takes a Data Service node out of a healthy cluster, in an orderly and controlled fashion. 
 
@@ -44,5 +54,5 @@ The following occur:
 3. The cluster map is updated, so that subsequent reads and writes go to the correct location for vBucket 762, now on node 2.
 4. The same steps are repeated for the remaining 255 vBuckets of the bucket on this node, one at a time; and are likewise repeated for all remaining vBuckets of other buckets.
 
-|  | Any transactions and queries in progress will halt the failover process until they are completed. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Any transactions and queries in progress will halt the failover process until they are completed.

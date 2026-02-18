@@ -1,11 +1,20 @@
+---
+title: Language Constructs
+description: Language constructs are the fundamental units of a language.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-language-constructs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-language-constructs.html)
+
+# Language Constructs
 
 > Language constructs are the fundamental units of a language. 
 
 This page describes which JavaScript constructs Eventing Functions do and do not support.
 
-|  | Couchbase functions inherit support for most ECMAScript constructs by using Google v8 as the execution container. Certain capabilities have been removed and are not supported in order to handle the automatic sharding and scaling of functions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase functions inherit support for most ECMAScript constructs by using Google v8 as the execution container. Certain capabilities have been removed and are not supported in order to handle the automatic sharding and scaling of functions.
 
 ## [](#supported-lang-features)Supported Language Features
 
@@ -65,8 +74,8 @@ You can use top-level SQL++ keywords like SELECT, UPDATE, INSERT, and DELETE as 
 
 SQL++ Query results, through the SELECT operation, are streamed in batches to the iterable handle as the iteration progresses through the result set.
 
-|  | To avoid recursion, an Eventing Function can listen for mutations in a bucket. SQL++ DML statements cannot manipulate documents in that same bucket. To work around this, you can use the exposed data service KV map in your Eventing Function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> To avoid recursion, an Eventing Function can listen for mutations in a bucket. SQL++ DML statements cannot manipulate documents in that same bucket. To work around this, you can use the exposed data service KV map in your Eventing Function.
 
 The following Function has a feed boundary of **Everything**, which means the same SQL++ statement is executed 7,303 times. To execute only one query, you can configure your feed boundary to be **From now** and to mutate only one document in the keyspace `beer-sample`.`_default`.`_default`.
 
@@ -206,8 +215,8 @@ Eventing Functions support the following built-in functions:
 
 You cannot use the `N1QL()` function call directly because it bypasses the semantic and syntactic checks of the transpiler.
 
-|  | The N1QL() function has replaced the deprecated N1qlQuery(). |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> The `N1QL()` function has replaced the deprecated `N1qlQuery()`.
 
 The `N1QL()` function contains the following parameters:
 
@@ -290,8 +299,12 @@ function OnUpdate(doc, meta) {
 }
 ```
 
-|  | Translating strings Bear in mind that using crc64() to convert strings will include any quotation marks as part of the conversion. If you want to translate the string without including the enclosing quotes, then use the [crc\_64\_go\_iso()](#crc%5F64%5Fgo%5Fiso%5Fcall) instead. This does not apply to any other data type (e.g., numeric data or JSON data types). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Translating strings
+> 
+> Bear in mind that using `crc64()` to convert strings will include any quotation marks as part of the conversion. If you want to translate the string without including the enclosing quotes, then use the [crc\_64\_go\_iso()](#crc%5F64%5Fgo%5Fiso%5Fcall) instead.
+> 
+> This does not apply to any other data type (e.g., numeric data or JSON data types).
 
 ### [](#crc%5F64%5Fgo%5Fiso%5Fcall)`crc_64_go_iso()`
 

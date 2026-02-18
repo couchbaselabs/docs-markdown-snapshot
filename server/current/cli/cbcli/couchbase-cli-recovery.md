@@ -1,4 +1,13 @@
+---
+title: recovery
+description: Recovers a previously failed over node
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-recovery.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-recovery.html)
+
+# recovery
 
 Recovers a previously failed over node
 

@@ -1,4 +1,14 @@
+---
+title: Updating Group Membership
+description: Server group membership is changed by means of the <code>PUT
+  /pools/default/serverGroups</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-servergroup-put-membership.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-servergroup-put-membership.html)
+
+# Updating Group Membership
 
 > Server group membership is changed by means of the `PUT /pools/default/serverGroups` HTTP method and URI. 
 

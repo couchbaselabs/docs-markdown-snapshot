@@ -1,4 +1,13 @@
+---
+title: Certificate Management API
+description: The REST API can be used to manage the root and node certificates of a cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-certificate-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-certificate-management.html)
+
+# Certificate Management API
 
 > The REST API can be used to manage the root and node certificates of a cluster. 
 

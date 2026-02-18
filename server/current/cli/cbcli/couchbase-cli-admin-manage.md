@@ -1,4 +1,13 @@
+---
+title: admin-manage
+description: Manages the built-in Couchbase Server administrator
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-admin-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-admin-manage.html)
+
+# admin-manage
 
 Manages the built-in Couchbase Server administrator
 

@@ -1,4 +1,14 @@
+---
+title: Using the Command Line
+description: Start a Sync Gateway instance using command line options and
+  securely sync enterprise data from cloud to edge
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/command-line-options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/command-line-options.html)
+
+# Using the Command Line
 
 > Start a Sync Gateway instance using command line options and securely sync enterprise data from cloud to edge  
 > Introduces the options available when running Sync Gateway from the command line
@@ -15,8 +25,8 @@ For more comprehensive configuration options see: [Configuration Overview](confi
 
 Configuration determines the runtime behavior of Sync Gateway, including server configuration and the database or set of databases with which a Sync Gateway instance can interact.
 
-|  | Command-line options can only specify a sub-set of the available configuration properties, and cannot be used to configure multiple databases. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Command-line options can only specify a sub-set of the available configuration properties, and cannot be used to configure multiple databases.
 
 Two command-line options do not have corresponding configuration properties: `-help` and `-verbose`.
 

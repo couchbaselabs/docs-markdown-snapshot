@@ -1,4 +1,12 @@
+---
+title: Get Involved
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/project-docs/pages/get-involved.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/project-docs/get-involved.html)
+
+# Get Involved
 
 ## [](#contributing)Contributing
 

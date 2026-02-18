@@ -1,4 +1,13 @@
+---
+title: Logging
+description: Configuring logging with the Analytics Go SDK.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/howtos/pages/logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-analytics-sdk/current/howtos/logging.html)
+
+# Logging
 
 > Configuring logging with the Analytics Go SDK. 
 

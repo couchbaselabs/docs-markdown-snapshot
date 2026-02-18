@@ -1,4 +1,13 @@
+---
+title: "Function: Basic cURL POST"
+description: Perform a simple cURL POST using an external REST endpoint.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-curl-post.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-handler-curl-post.html)
+
+# Function: Basic cURL POST
 
 **Goal**: Perform a simple cURL POST using an external REST endpoint.
 

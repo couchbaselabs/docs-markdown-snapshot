@@ -1,4 +1,14 @@
+---
+title: GROUP BY Clause
+description: The GROUP BY clause arranges aggregate values into groups, based on
+  one or more fields.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/groupby.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/groupby.html)
+
+# GROUP BY Clause
 
 > The GROUP BY clause arranges aggregate values into groups, based on one or more fields. 
 
@@ -369,8 +379,8 @@ Results
 ]
 ```
 
-|  | The above HAVING clause must use the [aggregate function](aggregatefun.md) COUNT instead of its alias LandmarkCount. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The above `HAVING` clause must use the [aggregate function](aggregatefun.md) `COUNT` instead of its alias `LandmarkCount`.
 
 Example 6\. Use HAVING to specify landmarks that begin with an "S" or higher
 
@@ -442,8 +452,8 @@ Results
 
 (execution: 480.2ms docs: 138)
 
-|  | The WHERE clause is faster because WHERE gets processed _before_ any GROUP BY and doesn’t have access to aggregated values. HAVING gets processed _after_ GROUP BY and is used to constrain the resultset to only those with aggregated values. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `WHERE` clause is faster because `WHERE` gets processed _before_ any `GROUP BY` and doesn’t have access to aggregated values. `HAVING` gets processed _after_ `GROUP BY` and is used to constrain the resultset to only those with aggregated values.
 
 Example 8\. Using an alias for a group term
 
@@ -471,8 +481,8 @@ Results
 ]
 ```
 
-|  | The CASE expression categorizes each landmark into the Western hemisphere if its longitude is negative, or the Eastern hemisphere otherwise. The alias in the GROUP BY clause enables you to refer to the CASE expression in the SELECT clause. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `CASE` expression categorizes each landmark into the Western hemisphere if its longitude is negative, or the Eastern hemisphere otherwise. The alias in the `GROUP BY` clause enables you to refer to the `CASE` expression in the `SELECT` clause.
 
 ## [](#related-links)Related Links
 

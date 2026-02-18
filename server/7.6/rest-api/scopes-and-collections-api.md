@@ -1,4 +1,13 @@
+---
+title: Scopes and Collections API
+description: Scopes and collections can be managed with the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/scopes-and-collections-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/scopes-and-collections-api.html)
+
+# Scopes and Collections API
 
 > Scopes and collections can be managed with the REST API. 
 

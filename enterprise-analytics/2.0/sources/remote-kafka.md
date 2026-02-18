@@ -1,4 +1,12 @@
+---
+title: Create a Kafka Pipeline Link
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/remote-kafka.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/remote-kafka.html)
+
+# Create a Kafka Pipeline Link
 
 > To continuously update an Enterprise Analytics collection with a data stream from a Kafka pipeline, you create a remote link. 
 
@@ -49,14 +57,12 @@ To create a link to a Kafka pipeline:
 2. Click **\+ new link**.
 3. In the **Link Name** field, enter a name for the link.  
 The name must start with a letter (A-Z, a-z) and contain only upper- and lowercase letters, numbers (0-9), and underscore (\_) or dash (-) characters.
-4. In the **Link Type** field, select **Kafka**.
-
-|  | The **Vendor** field is populated with **Confluent** by default. |
-|  | ---------------------------------------------------------------- |
-5. In the **Bootstrap Servers** field, enter the URL of the bootstrap server.
-
-|  | If there are multiple URLs, separate them with commas. |
-|  | ------------------------------------------------------ |
+4. In the **Link Type** field, select **Kafka**.  
+> [!NOTE]  
+> The **Vendor** field is populated with **Confluent** by default.
+5. In the **Bootstrap Servers** field, enter the URL of the bootstrap server.  
+> [!NOTE]  
+> If there are multiple URLs, separate them with commas.
 6. In the **Authentication** field, select 1 of the options.
 7. TLS encryption is optional for some authentication types. To leave data unencrypted, clear TLS Enabled.
 8. Select **Custom Schema registry** so that collections associated with this link can handle schema types other than JSON.

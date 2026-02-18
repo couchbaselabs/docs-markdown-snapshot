@@ -1,4 +1,13 @@
+---
+title: "cbq: The Command Line Shell for SQL++"
+description: cbq is a comprehensive command line shell for SQL++.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-intro/cbq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-intro/cbq.html)
+
+# cbq: The Command Line Shell for SQL++
 
 > cbq is a comprehensive command line shell for SQL++. It is a powerful, developer friendly tool that enables you to query and update data from Couchbase Server. The cbq shell enables you to perform all the operations that are supported by the Query Workbench and more, such as additional scripting functionality. 
 
@@ -443,8 +452,8 @@ __Table 1\. Prefixes for Parameters__
 | $          | User defined session variable          |
 | No prefix  | Predefined (built-in) session variable |
 
-|  | Positional parameters are set using the \-args query parameter. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> Positional parameters are set using the `-args` query parameter.
 
 For more details about the available query parameters (prefixed by `-`), see [Request-Level Parameters](../n1ql-manage/query-settings.md#section%5Fnnj%5Fsjk%5Fk1b). As a best practice, save the initial set of basic parameters and their default values using the `\PUSH` command (with no arguments).
 
@@ -1078,8 +1087,8 @@ The cbq shell returns the exit status 0 for successful exit with no errors and 1
 
 ## [](#available-command-line-options-and-shell-commands)Available Command Line Options and Shell Commands
 
-|  | The [command line options](#table%5Fa3h%5Frhz%5Fdw) are case sensitive. The [cbq shell commands](#table%5Fhtk%5Fhgc%5Ffw) are case insensitive. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [command line options](#table%5Fa3h%5Frhz%5Fdw) are case sensitive. The [cbq shell commands](#table%5Fhtk%5Fhgc%5Ffw) are case insensitive.
 
 __Table 3\. Command Line Options for cbq Shell__
 | Option                            | Arguments                                                      | Description and Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |

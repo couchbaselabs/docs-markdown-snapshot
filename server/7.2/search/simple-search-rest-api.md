@@ -1,4 +1,14 @@
+---
+title: Run a Simple Search with the REST API and curl/HTTP
+description: You can use the REST API and a curl command to run a search against
+  a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/simple-search-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/simple-search-rest-api.html)
+
+# Run a Simple Search with the REST API and curl/HTTP
 
 > You can use the REST API and a curl command to run a search against a Search index. 
 
@@ -23,10 +33,9 @@ curl -s -XPUT -H "Content-Type: application/json" \
 -u $CB_USERNAME:$CB_PASSWORD http://$CB_HOSTNAME:8094/api/index/$INDEX-NAME/query -d \  
 ```  
 To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
-4. Enter the JSON payload for your query.
-
-|  | You can copy the JSON for a Query Request from the Couchbase Server Web Console to use in your REST API call. For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](simple-search-ui.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+4. Enter the JSON payload for your query.  
+> [!TIP]  
+> You can copy the JSON for a Query Request from the Couchbase Server Web Console to use in your REST API call. For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](simple-search-ui.md).  
 In the following example, the JSON payload queries an index named `landmark-content-index` for the strings `view`, `food`, and `beach`:  
 ```console  
 curl -XPOST -H "Content-Type: application/json" \

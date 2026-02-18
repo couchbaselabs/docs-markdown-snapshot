@@ -1,4 +1,14 @@
+---
+title: Edit a Bucket
+description: Full, Cluster, and Bucket Administrators can edit a subset of the
+  settings already established on an existing bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-buckets/edit-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-buckets/edit-bucket.html)
+
+# Edit a Bucket
 
 > Full, Cluster, and Bucket Administrators can edit a subset of the settings already established on an existing bucket. This section explains how to do so; and notes the possible consequences of such configuration-changes. 
 

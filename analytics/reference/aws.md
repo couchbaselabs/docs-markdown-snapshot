@@ -1,4 +1,13 @@
+---
+title: Amazon Web Services (AWS)
+description: Capella Analytics supports deploying clusters onto Amazon Web Services (AWS).
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/aws.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/reference/aws.html)
+
+# Amazon Web Services (AWS)
 
 > Capella Analytics supports deploying clusters onto Amazon Web Services (AWS). 
 
@@ -45,8 +54,8 @@ Clusters deployed onto AWS can be customized to suit your needs.
 
 Clusters can have a minimum of 1 node and a maximum of 32 nodes.
 
-|  | The option to deploy across multiple AWS availability zones is only available for clusters that deploy with a minimum of 2 nodes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The option to deploy across multiple AWS availability zones is only available for clusters that deploy with a minimum of 2 nodes.
 
 ### [](#compute-and-memory)Compute and Memory
 

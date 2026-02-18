@@ -1,4 +1,15 @@
+---
+title: Manage and Monitor Queries
+description: Monitoring and profiling SQL++ queries, Query Service nodes, and
+  corresponding system resources is important for smoother operational
+  performance and efficiency of the system.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-manage/monitoring-n1ql-query.html)
+
+# Manage and Monitor Queries
 
 > Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it’s vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 
@@ -613,8 +624,10 @@ You cannot add a new instance of an existing qualifier to a tagged set using a p
 
 You can remove a qualifier from a tagged set using a minus sign (`-`) before the qualifier name, such as `-user`. When you remove the last qualifier from a tagged set, the tagged set is removed.
 
-|  | You can specify multiple tagged sets. In this case, completed requests are logged if they match all of the qualifiers in any of the tagged sets. You can also specify a mixture of tagged sets and individual qualifiers. In this case, completed requests are logged if they match any of the individual qualifiers, or all of the qualifiers in any of the tagged sets. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can specify multiple tagged sets. In this case, completed requests are logged if they match all of the qualifiers in any of the tagged sets.
+> 
+> You can also specify a mixture of tagged sets and individual qualifiers. In this case, completed requests are logged if they match any of the individual qualifiers, or all of the qualifiers in any of the tagged sets.
 
 ### [](#completed-threshold)Completed Threshold
 
@@ -660,8 +673,8 @@ This property is a file size in MiB. When set to `0` (the default), completed re
 
 When set to any size greater than `0`, completed requests are streamed to archive files. The value of this property determines the size of the data to retain, per node. The configuration for completed requests determines which requests are saved.
 
-|  | The additional processing required to save completed requests to disk may limit overall request throughput on a Query node, but typically only when every completed request is being recorded, and requests are small or short-lived. The speed of the file system on which the server logs directory resides may affect the request throughput also. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The additional processing required to save completed requests to disk may limit overall request throughput on a Query node, but typically only when every completed request is being recorded, and requests are small or short-lived. The speed of the file system on which the server logs directory resides may affect the request throughput also.
 
 ### [](#sys-history-files)Archived Request Files
 
@@ -1108,8 +1121,11 @@ Within these system catalogs, not all statements have a `meta().plan` attribute.
 * With [system:active\_requests](#sys-active-req) and [system:completed\_requests](#sys-completed-req), the `meta().plan` attribute is only available for statements that you run when profile is set to `timings`.
 * With [system:prepareds](#sys-prepared), the `meta().plan` attribute is available for all statements.
 
-|  | When request profiling is set to timings, profiling information is likely to use 100KB+ per entry in the system:completed\_requests keyspace. Due to the added overhead of running both profiling and [logging](../../manage/manage-logging/manage-logging.md), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance. Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When request profiling is set to `timings`, profiling information is likely to use 100KB+ per entry in the `system:completed_requests` keyspace.
+> 
+> * Due to the added overhead of running both profiling and [logging](../../manage/manage-logging/manage-logging.md), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
 
 Plan Details
 

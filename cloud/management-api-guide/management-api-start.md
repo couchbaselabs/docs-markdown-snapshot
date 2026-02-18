@@ -1,4 +1,15 @@
+---
+title: Get Started with the Management API
+description: To get started with the Couchbase Capella Management API, you must
+  create an API key. An API key authenticates and authorizes you to access the
+  Management API.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-start.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/management-api-guide/management-api-start.html)
+
+# Get Started with the Management API
 
 > To get started with the Couchbase Capella Management API, you must create an API key. An API key authenticates and authorizes you to access the Management API. 
 
@@ -111,10 +122,9 @@ To specify other details and download the API key:
   3. To add your current IP address block, click **Add Current IP Address**.
   4. Click **Add**.
 3. When you’re ready, click **Generate Key**.  
-The Capella UI shows the new API key ID and the new API key secret. The API key secret is hidden to prevent others reading it.
-
-|  | You must copy or download the API key secret now. When you leave this page, you’ll not be able to copy or download the API key secret again. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+The Capella UI shows the new API key ID and the new API key secret. The API key secret is hidden to prevent others reading it.  
+> [!WARNING]  
+> You must copy or download the API key secret now. When you leave this page, you’ll not be able to copy or download the API key secret again.
 4. To download the API key secret, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 5. To copy either the API key ID or the API key secret to the clipboard, click the copy icon () next to the field.
 6. When you have copied or downloaded the API key secret, click **Back to API Keys list**.

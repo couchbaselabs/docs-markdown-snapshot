@@ -1,4 +1,14 @@
+---
+title: Status and Events
+description: Cluster status and important system events can be retrieved by
+  means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-status-and-events-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-status-and-events-overview.html)
+
+# Status and Events
 
 > Cluster status and important system events can be retrieved by means of the REST API. 
 

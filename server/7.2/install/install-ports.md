@@ -1,4 +1,14 @@
+---
+title: Couchbase Server Ports
+description: Couchbase Server uses multiple TCP ports to facilitate
+  communication between server components, as well as with Couchbase clients.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-ports.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/install-ports.html)
+
+# Couchbase Server Ports
 
 > Couchbase Server uses multiple TCP ports to facilitate communication between server components, as well as with Couchbase clients. These ports must be open for Couchbase Server to operate correctly. 
 
@@ -8,8 +18,8 @@ This page describes the TCP ports that are used by Couchbase Server for network 
 
 Couchbase Server uses a default set of port numbers for all ports that it requires. The [Couchbase Cluster Manager](../learn/clusters-and-availability/cluster-manager.md) on each node is responsible for port management, and will open and close these ports on the host as necessary, as well as automatically switch to using encrypted ports if the cluster is configured to use TLS. Most port numbers can be [remapped](#map-custom-ports) to fit the requirements of your network environment, but some port numbers cannot be changed.
 
-|  | If other software on the same host is using any of the ports that are required by Couchbase Server, then Couchbase Server will not function properly and may fail to start. Refer to [Port Availability](#port-availability) below. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If other software on the same host is using any of the ports that are required by Couchbase Server, then Couchbase Server will not function properly and may fail to start. Refer to [Port Availability](#port-availability) below.
 
 ### [](#ephemeral-ports)Ephemeral Ports
 
@@ -47,8 +57,8 @@ __Table 1\. All Couchbase Server Ports, Listed by Communication Path__
 | _XDCR (cluster-to-cluster)_           | Version 2 (XMEM) **Unencrypted**: 8091, 8092, 11210 **Encrypted**: 11207, 18091, 18092 If enforcing TLS encryption, these ports may be blocked outside of a Couchbase Server cluster but need to remain open between nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | _cbbackupmgr (backup/restore client)_ | **Unencrypted**: 8091-8096, 9102, 11210 **Encrypted**: 11207, 18091-18096, 19102 cbbackupmgr, the backup client, connects to the Couchbase Server using the ports listed above. You can find detailed information about the server ports in the [Detailed Port Description](#detailed-port-description). Below is a summary of the services cbbackupmgr is accessing via the ports. rest\_port / ssl\_rest\_port 8091 / 18091 (Cluster admin/management) cbas\_http\_port/ cbas\_ssl\_port 8095 / 18095 (Analytics service) memcached\_port / memcached\_ssl\_port 11210 / 11207 (Data service) eventing\_http\_port / eventing\_ssl\_port 8096/18096 (Eventing service) indexer\_http\_port / indexer\_https\_port 9102 / 19102 (GSI Indexes) query\_port / ssl\_query\_port 8093 / 18093 (Query) fts\_http\_port / fts\_ssl\_port 8094 / 18094 (Search) capi\_port / ssl\_capi\_port 8092 / 18092 (Views) |
 
-|  | Certain support and diagnostic requests may run against ports other than the administration port (8091). These are expected to execute locally on a node and so do not require external access. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Certain support and diagnostic requests may run against ports other than the administration port (8091). These are expected to execute locally on a node and so do not require external access.
 
 ## [](#detailed-port-description)Detailed Port Description
 
@@ -104,8 +114,8 @@ Most, but not all, port numbers used by Couchbase Server can be remapped from th
 
 Changing the port mappings will require a reset and reconfiguration of any Couchbase Server node.
 
-|  | Changing port mappings should only be done at the time of initial node/cluster setup as the required reset and reconfiguration will also purge all data on the node. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Changing port mappings should only be done at the time of initial node/cluster setup as the required reset and reconfiguration will also purge all data on the node.
 
 To Change Port Mapping
 

@@ -1,4 +1,15 @@
+---
+title: XDCR Security and Networking
+description: Specific requirements must be satisfied in order to ensure the
+  successful creation of XDCR replications over different network
+  configurations.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-security-and-networking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/xdcr-reference/xdcr-security-and-networking.html)
+
+# XDCR Security and Networking
 
 > Specific requirements must be satisfied in order to ensure the successful creation of XDCR replications over different network configurations. 
 
@@ -58,8 +69,8 @@ Alternate addresses used in this way are said to constitute an _external network
 
 When a cluster has been configured in this way for external networking, and status on the cluster is returned by means of Couchbase Web Console, the CLI, or the REST API, both the internal and the external addresses are represented.
 
-|  | Please note that the use of alternate addresses only applies to non-CAO managed environments. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Please note that the use of alternate addresses only applies to non-CAO managed environments.
 
 The REST API reference page [Managing Alternate Addresses](../rest-api/rest-set-up-alternate-address.md) explains how alternate addresses can be established for and removed from nodes. The REST API reference page [Listing Node Services](../rest-api/rest-list-node-services.md) explains how to retrieve all internal and external address settings.
 

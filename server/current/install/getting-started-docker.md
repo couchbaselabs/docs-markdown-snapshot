@@ -1,4 +1,14 @@
+---
+title: Install Couchbase Server Using Docker
+description: Couchbase Server can be installed using official Couchbase images
+  from Docker Hub.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/getting-started-docker.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/getting-started-docker.html)
+
+# Install Couchbase Server Using Docker
 
 > Couchbase Server can be installed using official Couchbase images from Docker Hub. 
 
@@ -16,8 +26,11 @@ For Couchbase Server image in Docker, see [couchbase/server](https://hub.docker.
 
 To run a single-node cluster, you will need to deploy a single container representing the single Couchbase Server node.
 
-|  | For detailed information about deploying Couchbase Server, make sure to review the Couchbase Server [system requirements](plan-for-production.md) and [deployment guidelines](install-production-deployment.md), paying particular attention to the following pages: [Deployment Considerations for Virtual Machines and Containers](best-practices-vm.md) [Two-Node and Single-Node Clusters](deployment-considerations-lt-3nodes.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For detailed information about deploying Couchbase Server, make sure to review the Couchbase Server [system requirements](plan-for-production.md) and [deployment guidelines](install-production-deployment.md), paying particular attention to the following pages:
+> 
+> * [Deployment Considerations for Virtual Machines and Containers](best-practices-vm.md)
+> * [Two-Node and Single-Node Clusters](deployment-considerations-lt-3nodes.md).
 
 1. Download and install Docker on the host computer.  
 To set up Docker on the host computer, refer to Docker’s [installation instructions](https://www.docker.com/get-started).
@@ -61,8 +74,8 @@ This model is commonly used for scale-minimized deployments that simulate produc
 
 This model is commonly used for production deployments.
 
-|  | For detailed information about deploying Couchbase Server, make sure to review the Couchbase Server [system requirements](plan-for-production.md) and [deployment guidelines](install-production-deployment.md), paying particular attention to [Deployment Considerations for Virtual Machines and Containers](best-practices-vm.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For detailed information about deploying Couchbase Server, make sure to review the Couchbase Server [system requirements](plan-for-production.md) and [deployment guidelines](install-production-deployment.md), paying particular attention to [Deployment Considerations for Virtual Machines and Containers](best-practices-vm.md).
 
 ### [](#multi-node-cluster-one-host)All Containers on One Host
 
@@ -85,10 +98,9 @@ $ docker run -d --name db3 -p 8091-8097:8091-8097 -p 11210-11211:11210-11211 cou
 ```  
 After running the above commands, three instances (`db1`, `db2`, `db3`) of the latest Couchbase Server image (see [couchbase/server](https://hub.docker.com/r/couchbase/server)) are downloaded and run on the host computer.  
 If a traditional installation of Couchbase Server is running locally on the host computer, the port mappings specified using the `-p` option may fail. Ensure that you stop any local instance of Couchbase Server before running these commands.  
-(For instructions on starting up or shutting down a standalone instance of Couchbase server, see [Starting and stopping the Couchbase Server](startup-shutdown.md)).
-
-|  | If you’re using encrypted communication for the Couchbase Web Console, client, and server, and using XDCR, you need to open up additional ports. For details, refer to [Couchbase Server Ports](install-ports.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |  
+(For instructions on starting up or shutting down a standalone instance of Couchbase server, see [Starting and stopping the Couchbase Server](startup-shutdown.md)).  
+> [!NOTE]  
+> If you’re using encrypted communication for the Couchbase Web Console, client, and server, and using XDCR, you need to open up additional ports. For details, refer to [Couchbase Server Ports](install-ports.md).  
 You can check the Docker logs to verify that each container has started:  
 ```console  
 $ docker logs db1  
@@ -190,10 +202,9 @@ $ docker run -d --name db1 -p 8091-8097:8091-8097 -p 11210-11211:11210-11211 cou
 $ docker run -d --name db2 -p 9091-9097:8091-8097 -p 21210-21211:11210-11211 couchbase/server  
 ```  
 After running the above commands, two instances (`db1` and `db2`) of the latest Couchbase Server image (see [couchbase/server](https://hub.docker.com/r/couchbase/server)) are downloaded and run on the host computer. If a traditional installation of Couchbase Server is running locally on the host computer, the port mappings specified using the `-p` option may fail. Ensure that you stop any local instance of Couchbase Server before running these commands.  
-(For instructions on starting up or shutting down a standalone instance of Couchbase server, see [Starting and stopping the Couchbase Server](startup-shutdown.md)).
-
-|  | If you’re using encrypted communication for the Couchbase Web Console, client, and server, and using XDCR, you need to open up additional ports. For details, refer to [Couchbase Server Ports](install-ports.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+(For instructions on starting up or shutting down a standalone instance of Couchbase server, see [Starting and stopping the Couchbase Server](startup-shutdown.md)).  
+> [!NOTE]  
+> If you’re using encrypted communication for the Couchbase Web Console, client, and server, and using XDCR, you need to open up additional ports. For details, refer to [Couchbase Server Ports](install-ports.md).
 3. You can check the Docker logs to verify that each container has started:  
 ```console  
 $ docker logs db1  

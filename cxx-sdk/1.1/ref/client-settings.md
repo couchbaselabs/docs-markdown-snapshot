@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>cluster_options</code> class enables you to configure C++
+  SDK options for bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.1/ref/client-settings.html)
+
+# Client Settings
 
 > The `cluster_options` class enables you to configure C++ SDK options for bootstrapping, timeouts, reliability, and performance. 
 
@@ -49,8 +59,8 @@ By default it has no preference set, and will select any available replica. This
 
 By default, the client will connect to (self-managed) Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition of self-managed Couchbase Server, it’s possible to secure the connection using TLS.
 
-|  | Unless you use the couchbases:// connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unless you use the `couchbases://` connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option.
 
 Name: **TLS Certificate Location**
 
@@ -90,8 +100,8 @@ Default: `2.5s` — _but see tip, below_
 
 The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like `get()`, `get_from_replica()` and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, key\_value\_durable\_timeout, see below. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, `key_value_durable_timeout`, see below.
 
 Name: **Key-Value Durable Operation Timeout**
 
@@ -105,8 +115,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The key\_value\_durable\_timeout property is not part of the stable API and may change or be removed at any time. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `key_value_durable_timeout` property is not part of the stable API and may change or be removed at any time.
 
 Name: **Query Timeout**
 
@@ -192,8 +202,8 @@ Connection String Parameter: `network=<value>`
 
 Default: `auto`
 
-|  | The system property value should be one of auto, default, or external (lower case). |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> The system property value should be one of `auto`, `default`, or `external` (lower case).
 
 Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
 
@@ -235,8 +245,8 @@ Default: `0.83`
 
 A floating point value between 0 and 1\. Specifies how "compressible" a document must be in order for the compressed form to be sent to the server.
 
-|  | Increasing the value allows compression to be used with less-compressible documents. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> Increasing the value allows compression to be used with less-compressible documents.
 
 If the compressed document size divided by the uncompressed document size is greater than this value, then the uncompressed version of the document will be sent to Couchbase Server instead of the compressed version.
 
@@ -256,8 +266,8 @@ Default: `true`
 
 If enabled, the client will use the `treshold_logging_tracer` to log operations over threshold. If this is set to `false`, the SDK will use the `noop_tracer`.
 
-|  | Ensure you have [logging](../howtos/collecting-information-and-logging.md) enabled to at least warning level for tracing to be logged. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Ensure you have [logging](../howtos/collecting-information-and-logging.md) enabled to at least `warning` level for tracing to be logged.
 
 Name: **Threshold Emit Interval**
 
@@ -303,8 +313,8 @@ The Orphaned Sample Size define the maximum number of items to log in the orphan
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../../java-sdk/current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../../java-sdk/current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

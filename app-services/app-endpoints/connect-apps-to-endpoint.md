@@ -1,4 +1,12 @@
+---
+title: Connect your Apps to an App Endpoint
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/connect-apps-to-endpoint.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/connect-apps-to-endpoint.html)
+
+# Connect your Apps to an App Endpoint
 
 Couchbase provides Couchbase Lite: an embedded, NoSQL JSON-document Style database for your mobile apps.
 
@@ -35,8 +43,16 @@ Public Certificate
 The public certificate is a trusted Certificate Authority (CA) signed certificate. You can copy or download the endpoint’s SSL public certificate to bundle into your mobile application.  
 You can download your public certificate, but Couchbase recommends against pinning your certificate to your App. Pinning your certificate can increase maintenance overhead and downtime risks.
 
-|  | Capella rotates the certificate yearly. If you have pinned the certificate, you’ll have to update your app to use the new certificate when the old one expires. If you have [email notifications turned on](../../cloud/clusters/monitoring/alerts.md#get-alerts-through-email), Capella sends you an email notification starting 1 month before the certficate expires. To update your app with the new certificate ahead of the scheduled expiration, contact Support. If however, you do not pin the certificate, your app continues to operate after certificate rotation with no downtime and no action required. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella rotates the certificate yearly.
+> 
+> If you have pinned the certificate, you’ll have to update your app to use the new certificate when the old one expires.
+> 
+> If you have [email notifications turned on](../../cloud/clusters/monitoring/alerts.md#get-alerts-through-email), Capella sends you an email notification starting 1 month before the certficate expires.
+> 
+> To update your app with the new certificate ahead of the scheduled expiration, contact Support.
+> 
+> If however, you do not pin the certificate, your app continues to operate after certificate rotation with no downtime and no action required.
 
 Endpoint for Admin Access to the database
 

@@ -1,4 +1,12 @@
+---
+title: Configure Multi-Dimensional Scaling
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-mds.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-mds.html)
+
+# Configure Multi-Dimensional Scaling
 
 > How-to independently scale cluster services. 
 

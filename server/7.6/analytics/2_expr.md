@@ -1,4 +1,13 @@
+---
+title: Expressions
+description: A description of Couchbase SQL++ for Analytics expressions.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/2_expr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/2_expr.html)
+
+# Expressions
 
 An expression is a language fragment that can be evaluated to return a value. For example, the expression 2 + 3 returns the value 5\. Expressions are the building blocks from which queries are constructed. SQL++ supports nearly all of the kinds of expressions in SQL, and adds some new kinds as well.
 

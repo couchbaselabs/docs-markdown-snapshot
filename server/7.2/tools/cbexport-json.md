@@ -1,4 +1,13 @@
+---
+title: cbexport json
+description: Exports JSON data from Couchbase
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbexport-json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/cbexport-json.html)
+
+# cbexport json
 
 Exports JSON data from Couchbase
 

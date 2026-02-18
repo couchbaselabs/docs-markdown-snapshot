@@ -1,4 +1,14 @@
+---
+title: Deploy Models with the Capella Model Service
+description: Deploy and manage Large Language Models (LLMs) and embedding models
+  in Capella to power your AI-driven applications.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/model-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/model-service/model-service.html)
+
+# Deploy Models with the Capella Model Service
 
 > Deploy and manage Large Language Models (LLMs) and embedding models in Capella to power your AI-driven applications. 
 

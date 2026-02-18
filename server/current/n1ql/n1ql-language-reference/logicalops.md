@@ -1,4 +1,13 @@
+---
+title: Logical Operators
+description: Logical terms let you combine other expressions using Boolean logic.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/logicalops.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/logicalops.html)
+
+# Logical Operators
 
 Logical terms let you combine other expressions using [Boolean logic](booleanlogic.md). SQL++ provides the following logical operators:
 

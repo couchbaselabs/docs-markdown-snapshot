@@ -1,4 +1,13 @@
+---
+title: Update Documents
+description: How to update documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/updating-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/updating-data.html)
+
+# Update Documents
 
 > How to update documents with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.
 
 ## [](#upserting-a-document)Upserting a Document
 
@@ -199,8 +208,8 @@ Result
 ╰───┴───────────┴─────────┴────────┴──────────┴─────────╯
 ```
 
-|  | If the document cannot be found, Couchbase Shell returns a Key not found error. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document cannot be found, Couchbase Shell returns a `Key not found` error.
 
 For more information, see [Mutating](https://couchbase.sh/docs/#%5Fmutating) in the Couchbase Shell documentation.
 
@@ -240,8 +249,8 @@ var replaceResult = await hotelCollection.ReplaceAsync("hotel-123", existingDoc,
 Console.WriteLine($"New Cas: {replaceResult.Cas}");
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -284,8 +293,8 @@ MutationResult replaceResult = hotelCollection.replace(
 System.out.println("New CAS:" + replaceResult.cas());
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -326,8 +335,8 @@ const replaceResult = await hotelCollection.replace(
 console.log('New CAS:', replaceResult.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundError error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -365,8 +374,8 @@ replace_result = hotel_collection.replace(
 print("New CAS:", replace_result.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 

@@ -1,4 +1,12 @@
+---
+title: Advanced Settings
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-advanced.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-advanced.html)
+
+# Advanced Settings
 
 Advanced settings can be specified in the **Advanced** panel. When opened, the Advanced panel appears as follows:
 

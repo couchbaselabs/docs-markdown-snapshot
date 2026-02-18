@@ -1,4 +1,14 @@
+---
+title: System Requirements
+description: Couchbase Server has a basic set of installation and networking
+  requirements that apply to nearly every deployment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/plan-for-production.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/plan-for-production.html)
+
+# System Requirements
 
 > Couchbase Server has a basic set of installation and networking requirements that apply to nearly every deployment. 
 

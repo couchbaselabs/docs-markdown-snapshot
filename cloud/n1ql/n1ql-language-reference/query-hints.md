@@ -1,4 +1,13 @@
+---
+title: Query Block Hints
+description: Query block hints are hints that apply to an entire query block.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/query-hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/query-hints.html)
+
+# Query Block Hints
 
 > Query block hints are hints that apply to an entire query block. 
 
@@ -10,8 +19,8 @@ There are two possible formats for each optimizer hint: simple syntax and JSON s
 
 If present, this hint directs the optimizer to order any joins just as they are ordered in the query. If not specified, the optimizer determines the optimal join order.
 
-|  | This hint is only available in the [SELECT Clause](selectclause.md). |
-|  | -------------------------------------------------------------------- |
+> [!NOTE]
+> This hint is only available in the [SELECT Clause](selectclause.md).
 
 ### [](#simple-syntax)Simple Syntax
 

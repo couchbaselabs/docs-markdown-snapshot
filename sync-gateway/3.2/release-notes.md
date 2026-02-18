@@ -1,4 +1,13 @@
+---
+title: Release Notes
+description: Couchbase Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/release-notes.html)
+
+# Release Notes
 
 Quicklinks
 
@@ -7,8 +16,10 @@ Quicklinks
 > Couchbase Sync Gateway  
 > This content describes the key features and changes implemented by release 3.2.6 of Couchbase Sync Gateway
 
-|  | One Way Upgrade The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](upgrading.md) for more. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> One Way Upgrade
+> 
+> The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](upgrading.md) for more.
 
 ## [](#maint-latest)3.2.7 — November 2025
 
@@ -29,8 +40,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-6july-2025)3.2.6 — July 2025
 
@@ -50,8 +61,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-5june-2025)3.2.5 — June 2025
 
@@ -74,8 +85,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-4april-2025)3.2.4 — April 2025
 
@@ -104,8 +115,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-3march-2025)3.2.3 — March 2025
 
@@ -139,8 +150,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-2february-2025)3.2.2 — February 2025
 
@@ -165,8 +176,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-1october-2024)3.2.1 — October 2024
 
@@ -198,13 +209,13 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#3-2-0september-2024)3.2.0 — September 2024
 
-|  | Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2\. For older Sync Gateway versions that do not write import XATTRs, Eventing functions may encounter infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen during a mixed mode of SGW with a 3.2 version and an older version during an upgrade and a new Eventing/Sync Gateway function is deployed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2\. For older Sync Gateway versions that do not write import XATTRs, Eventing functions may encounter infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen during a mixed mode of SGW with a 3.2 version and an older version during an upgrade and a new Eventing/Sync Gateway function is deployed.
 
 ### [](#audit-logging-for-sync-gateway)Audit Logging for Sync Gateway
 
@@ -322,8 +333,8 @@ None for this release.
 
 * [CBG-3795 - Deprecate enable\_star\_channel config option](https://jira.issues.couchbase.com/browse/CBG-3795)
 
-|  | For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md). |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.2, see [New in 3.2](whatsnew.md).
 
 ## [](#upgrading)Upgrading
 

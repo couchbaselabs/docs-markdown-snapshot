@@ -1,4 +1,14 @@
+---
+title: Add Synonyms to a Search Index
+description: Add synonyms to a Search index to return matches for words with
+  similar meanings when running a Search with the Search Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/synonyms-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/synonyms/synonyms-search.html)
+
+# Add Synonyms to a Search Index
 
 > Add synonyms to a Search index to return matches for words with similar meanings when running a Search with the Search Service. A synonym is a word or phrase that has an exact or near similar definition to another word or phrase in the same language. 
 
@@ -12,8 +22,8 @@ You can define synonyms for multiple languages in a single thesaurus, divided by
 
 If your Search index is partitioned, the Search Service distributes synonym collections across your index partitions. The synonym collections are gathered together to create a single thesaurus, which the Search Service uses in Search queries.
 
-|  | To use synonyms in a Search index, your synonym documents and collections must not be included as fields in your Search index definition. Synonym documents and indexed fields in a Search index must use the same analyzer to return the correct matches in search results. Synonym documents also must follow the correct syntax. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To use synonyms in a Search index, your synonym documents and collections must not be included as fields in your Search index definition. Synonym documents and indexed fields in a Search index must use the same analyzer to return the correct matches in search results. Synonym documents also must follow the correct syntax.
 
 For more information, see [Create a Synonym Collection and Documents](create-synonym-collection-docs.md).
 

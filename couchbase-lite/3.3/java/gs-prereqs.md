@@ -1,17 +1,29 @@
+---
+title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
+description: Couchbase Lite on Java -- a framework for developing offline-first
+  Java applications for mobile and edge
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/java/gs-prereqs.html)
+
+# Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 
 > Description — _Couchbase Lite on Java — a framework for developing offline-first Java applications for mobile and edge_  
 > _Abstract — This content identities the pre-requisites and preparatory steps to be considered before installing Couchbase Lite for java_  
 
-|  | Vector Search Prerequisites To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Vector Search Prerequisites
+> 
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 ## [](#introduction)Introduction
 
 Couchbase Lite enables development and deployment of Couchbase Lite applications to a JVM environment. You can deploy to a desktop or web server (for example, Tomcat), including embedded Tomcat deployments.
 
-|  | We use _Intellij IDEA_, _gradle_, _Maven_ and _Tomcat_ as tools to build and run the examples presented in this content. You are free to use the tools of your choice. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> We use _Intellij IDEA_, _gradle_, _Maven_ and _Tomcat_ as tools to build and run the examples presented in this content. You are free to use the tools of your choice.
 
 ## [](#bmkSetupSyncAndServer)Install Server Software
 
@@ -40,10 +52,9 @@ The simplest way to set this is through the shell variable `LD_LIBRARY_PATH`:
 ```bash  
 export LD_LIBRARY_PATH=<your_dir>/couchbase-lite-java-3.2.4/:$LD_LIBRARY_PATH  
 ```  
-Where `<your_dir>` is the path where you unpacked the support libraries in step 2.
-
-|  | This environment variable must be set before running your Java application that uses Couchbase Lite. |
-|  | ---------------------------------------------------------------------------------------------------- |
+Where `<your_dir>` is the path where you unpacked the support libraries in step 2.  
+> [!NOTE]  
+> This environment variable must be set before running your Java application that uses Couchbase Lite.
 
 * Web Service/Tomcat
 * Desktop

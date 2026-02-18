@@ -1,4 +1,14 @@
+---
+title: Set Up and Connect the Couchbase Java SDK
+description: Learn how to configure the cluster connection and set up the
+  Couchbase Java SDK to connect and interact with your student cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/tutorials/java-tutorial/install-couchbase-java-sdk.html)
+
+# Set Up and Connect the Couchbase Java SDK
 
 > Learn how to configure the cluster connection and set up the Couchbase Java SDK to connect and interact with your student cluster. 
 
@@ -11,8 +21,10 @@
   * The recommended version is the latest Java LTS release. Make sure to install the highest available patch for the LTS version.
 * You have installed [Apache Maven](https://maven.apache.org/) (version 3+).
 
-|  | The easiest way to install and manage Java SDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install). After following the instructions to install SDKMan, open a terminal window and run the commands sdk install java and sdk install maven to install the latest versions of Java and Maven. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The easiest way to install and manage Java SDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install).
+> 
+> After following the instructions to install SDKMan, open a terminal window and run the commands `sdk install java` and `sdk install maven` to install the latest versions of Java and Maven.
 
 For more information about the Java SDK installation, see the [full installation page](../../../java-sdk/current/project-docs/sdk-full-installation.md).
 
@@ -151,10 +163,9 @@ public class ConnectStudent {
     }  
 }  
 ```
-3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.
-
-|  | You must re-run mvn install in your student directory whenever you make a change to a Java file to rebuild your application. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with your cluster’s public connection string, and the username and password from your cluster access credentials.  
+> [!IMPORTANT]  
+> You must re-run `mvn install` in your `student` directory whenever you make a change to a Java file to rebuild your application.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to check that the connection works:  

@@ -1,4 +1,14 @@
+---
+title: Quickstart in Couchbase with Spring Boot and Java
+description: Quickstart app to build a REST API using Couchbase Capella in Java
+  using Spring Boot
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/hello-world/sample-application.html)
+
+# Quickstart in Couchbase with Spring Boot and Java
 
 > Quickstart app to build a REST API using Couchbase Capella in Java using Spring Boot Discover how to program interactions with Couchbase via the Data, Query, and Search services. 
 
@@ -17,10 +27,9 @@ To run this prebuilt project, you will need:
 
 * A [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster with the [travel-sample](../ref/travel-app-data-model.md) bucket loaded.  
 To run this tutorial using a self-managed Couchbase cluster, please refer to the [Running Self-Managed Couchbase Cluster](#running-self-managed-couchbase-cluster) section.
-* Java SDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).
-
-|  | The application is tested with Java 17 and 21\. If you are using a different version of Java, please update the pom.xml file accordingly. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+* Java SDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).  
+> [!NOTE]  
+> The application is tested with Java 17 and 21\. If you are using a different version of Java, please update the `pom.xml` file accordingly.
 * The Travel Sample Bucket — pre-loaded in Capella Free Tier, or see [cloud:clusters:data-service/import-data-documents.adoc#import-sample-data](../../../cloud/clusters/data-service/import-data-documents.md#import-sample-data).
 * [Maven 3.6.3+](https://maven.apache.org/install.html).
 
@@ -66,8 +75,10 @@ You can also use your system environment variables to set the properties.The pro
 
 You can add environment variables `DB_CONN_STR`, `DB_USERNAME`, and `DB_PASSWORD` to your system environment variables or you can update the `application.properties` file in the `src/main/resources` folder.
 
-|  | Running from a Development Machine Couchbase — including Capella — is designed to run in a LAN-like environment. For development, connecting to a remote cloud instance from a local laptop instead of an application server in the same region, may require you to adjust some timeouts. If you have problems, refer to the [constrained network environments](../ref/client-settings.md#constrained-network-environments) section of the docs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Running from a Development Machine
+> 
+> Couchbase — including Capella — is designed to run in a LAN-like environment. For development, connecting to a remote cloud instance from a local laptop instead of an application server in the same region, may require you to adjust some timeouts. If you have problems, refer to the [constrained network environments](../ref/client-settings.md#constrained-network-environments) section of the docs.
 
 ### [](#directly-on-machine)Directly on Machine
 
@@ -91,8 +102,8 @@ Run the Docker image
 $ docker run -d --name springboot-container -p 9440:8080 java-springboot-quickstart -e DB_CONN_STR=<connection_string> -e DB_USERNAME=<username> -e DB_PASSWORD=<password>
 ```
 
-|  | The application.properties file has the connection information to connect to your Capella cluster. You can also pass the connection information as environment variables to the Docker container. If you choose not to pass the environment variables, you can update the application.properties file in the src/main/resources folder. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `application.properties` file has the connection information to connect to your Capella cluster. You can also pass the connection information as environment variables to the Docker container. If you choose not to pass the environment variables, you can update the `application.properties` file in the `src/main/resources` folder.
 
 ### [](#verifying-the-application)Verifying the Application
 

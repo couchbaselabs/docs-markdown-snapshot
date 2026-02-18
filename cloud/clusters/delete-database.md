@@ -1,19 +1,31 @@
+---
+title: Delete a Cluster
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/delete-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/delete-database.html)
+
+# Delete a Cluster
 
 > Deleting a cluster securely deletes all data. 
 
-|  | You can turn on deletion protection for sensitive clusters to stop accidental deletion. A cluster cannot be deleted from the UI, the [Management API](../management-api-reference/index.md#tag/Clusters/operation/deleteCluster), or external tools like Terraform, when deletion protection is turned on. For more information about deletion protection, see [Change Your Deletion Protection](modify-database.md#deletion-protection). This setting also turns on deletion protection for [App Services](#app-services:deployment/creating-an-app-service.adoc#deletion-protection). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can turn on deletion protection for sensitive clusters to stop accidental deletion. A cluster cannot be deleted from the UI, the [Management API](../management-api-reference/index.md#tag/Clusters/operation/deleteCluster), or external tools like Terraform, when deletion protection is turned on. For more information about deletion protection, see [Change Your Deletion Protection](modify-database.md#deletion-protection). This setting also turns on deletion protection for [App Services](#app-services:deployment/creating-an-app-service.adoc#deletion-protection).
 
 ## [](#prerequisites)Prerequisites
 
-|  | Permissions RequiredYou need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you’re deleting. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Cluster Manager](../projects/project-roles.md#project-cluster-manager-role) role for the project containing the cluster you’re deleting.
 
 ## [](#procedure)Procedure
 
-|  | Deleting a cluster deletes all of its data. Deleting a cluster deletes its backups. Deleting a cluster is a permanent action which you cannot reverse. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> * Deleting a cluster deletes all of its data.
+> * Deleting a cluster deletes its backups.
+> * Deleting a cluster is a permanent action which you cannot reverse.
 
 To delete a Couchbase Capella cluster:
 

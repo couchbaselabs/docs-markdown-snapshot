@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-4-0-0)4.0.0 — October 2025
 
@@ -44,5 +53,5 @@ Version 4.0.0 for C delivers the following features and enhancements:
 
 * [CBL-7400 — Deprecate CBLReplicationCollection](https://issues.couchbase.com/browse/CBL-7400)
 
-|  | For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md)

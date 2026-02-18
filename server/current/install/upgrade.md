@@ -1,9 +1,23 @@
+---
+title: Upgrade
+description: To upgrade a Couchbase-Server cluster means to upgrade the version
+  of Couchbase Server that's running on every node.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/upgrade.html)
+
+# Upgrade
 
 > To upgrade a Couchbase-Server cluster means to upgrade the version of Couchbase Server that’s running on every node. 
 
-|  | Upgrading from Versions 7.1 or 7.2 to Versions 7.6.0 or 7.6.1 If there are index service nodes running in your cluster, you must use the swap rebalance method when upgrading from Couchbase Server 7.1 or 7.2 to Server 7.6.0 or 7.6.1. See [Swap Rebalance](upgrade-procedure-selection.md#swap-rebalance) for more information about the swap rebalance method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Upgrading from Versions 7.1 or 7.2 to Versions 7.6.0 or 7.6.1
+> 
+> If there are index service nodes running in your cluster, you must use the swap rebalance method when upgrading from Couchbase Server 7.1 or 7.2 to Server 7.6.0 or 7.6.1.
+> 
+> See [Swap Rebalance](upgrade-procedure-selection.md#swap-rebalance) for more information about the swap rebalance method.
 
 ## [](#before-you-upgrade)Before You Upgrade
 
@@ -22,8 +36,8 @@ These behavior changes could cause issues if you rely on the prior behavior, esp
 
 For example, suppose your deployment script does not specify the storage backend when it creates a bucket that you intend to use with the [views](../learn/views/views-intro.md) feature. On versions prior to Couchbase Server 8.0, your script created a Couchstore bucket with 1024 vBuckets, In version 8.0, due to change in the default backend, your script creates a bucket with the Magma storage backend with 128 vBuckets. Attempting to use MapReduce Views with this bucket results in errors, because Magma buckets do not support this feature.
 
-|  | Views are deprecated in Couchbase Server 7.0 and later versions. Views support in Couchbase Server will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../learn/services-and-indexes/services/index-service.md) (GSI) and the [Query Service](../learn/services-and-indexes/services/query-service.md) (SQL++). Views will not run on the newer [Magma storage engine](../learn/buckets-memory-and-storage/storage-engines.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Views are deprecated in Couchbase Server 7.0 and later versions. Views support in Couchbase Server will be removed in a future release. Instead of views, use indexes and queries using the [Index Service](../learn/services-and-indexes/services/index-service.md) (GSI) and the [Query Service](../learn/services-and-indexes/services/query-service.md) (SQL++). Views will not run on the newer [Magma storage engine](../learn/buckets-memory-and-storage/storage-engines.md).
 
 Another concern is that versions of Couchbase Server earlier than 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. Therefore, you cannot replicate to a bucket you create with the new default backend setting from buckets on an earlier server version. To replicate from a bucket on an earlier version of Couchbase Server, explicitly set the new bucket’s storage backend to Couchstore or to Magma with 1024 vBuckets during creation.
 
@@ -66,8 +80,8 @@ An upgrade _path_ declares that the upgrade of one Couchbase Server version to a
 
 All supported upgrades can be performed with the cluster either _offline_ or _online_.
 
-|  | As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server.
 
 ### [](#table-upgrade-enterprise)Enterprise Edition Upgrade Paths
 
@@ -109,15 +123,20 @@ Example 1\. Upgrading from version 6.6.x to 8.0.x
 | 1    | Upgrade all nodes from 6.6.x to 7.2.3 | **Node 1** ⇒ 6.6.x → 7.2.3 **Node 2** ⇒ 6.6.x → 7.2.3 **Node 3** ⇒ 6.6.x → 7.2.3 |
 | 2    | Upgrade all nodes from 7.2.3 to 8.0.x | **Node 1** ⇒ 7.2.3 → 8.0.x **Node 2** ⇒ 7.2.3 → 8.0.x **Node 3** ⇒ 7.2.3 → 8.0.x |
 
-|  | Upgrading between non-adjacent version numbers is usually _not_ supported. For example, to upgrade from **6.6.x** to **8.0.x**, then 2 upgrades must be performed (as shown in [Example 1](#upgrade-example)): First, from **6.6.x** to **7.2.3**. Then, from **7.2.3** to **8.0.x**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Upgrading between non-adjacent version numbers is usually _not_ supported.
+> 
+> For example, to upgrade from **6.6.x** to **8.0.x**, then 2 upgrades must be performed (as shown in [Example 1](#upgrade-example)):
+> 
+> 1. First, from **6.6.x** to **7.2.3**.
+> 2. Then, from **7.2.3** to **8.0.x**.
 
 ## [](#upgrade-community-enterprise)Upgrade from Community Edition to Enterprise
 
 If you’re currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both swap rebalance and remove and rebalance methods are supported. Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.
 
-|  | Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster.
 
 The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail. This means you can’t upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
 
@@ -140,8 +159,8 @@ Once you’ve upgraded one node to Enterprise Edition, you must upgrade all the 
 Users can create equivalent indexes (the same index with a different name) on different nodes to avoid loss of index functionality.
 * If a rolling online upgrade to Enterprise Edition isn’t possible in your environment, contact Couchbase for assistance.
 
-|  | Remember that Enterprise Edition is not free to run in production. If you’re interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Remember that Enterprise Edition is not free to run in production. If you’re interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions).
 
 See [Upgrade Procedure-Selection](upgrade-procedure-selection.md) for a list of procedures that can be used when upgrading from Community Edition to Enterprise. Note, however, that _Graceful Failover_ for Data Service nodes, with _Delta Recovery_, is _not_ supported for such upgrades: instead, _removal_, _addition_, and _swap rebalance_ should be used; for all nodes.
 

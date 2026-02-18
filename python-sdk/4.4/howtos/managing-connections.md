@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Python SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/howtos/managing-connections.html)
+
+# Managing Connections
 
 Please also refer to the [Server docs](../../../server/7.6/learn/security/authorization-overview.md).
 
@@ -22,8 +31,8 @@ customer_a = bucket.scope("customer-a")
 widgets = customer_a.collection("widgets")
 ```
 
-|  | If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a \`Bucket instance before connecting to any other HTTP services (such as _Query_ or _Search_). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `` `Bucket `` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -31,8 +40,8 @@ In a production environment, your connection string should include the addresses
 cluster = Cluster.connect("couchbase://node1.example.com,node2.example.com", ClusterOptions(PasswordAuthenticator("Administrator", "password")))
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -74,8 +83,8 @@ If your Couchbase Server cluster is running in a containerized, port mapped, or 
 
 On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
@@ -116,8 +125,8 @@ DNS SRV bootstrapping is enabled by default in the Python SDK. In order to make 
 
 ## [](#ssl)Secure Connections
 
-|  | If the client cannot load or was not built with OpenSSL, attempting a TLS connection will result in a 'FEATURE\_UNAVAILABLE'. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If the client cannot load or was not built with OpenSSL, attempting a TLS connection will result in a 'FEATURE\_UNAVAILABLE'.
 
 Couchbase Server Enterprise Edition and Couchbase Capella support full encryption of client-side traffic using Transport Layer Security (TLS). This includes key-value type operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
 
@@ -164,8 +173,8 @@ loading 137 CA certificates from Mozilla bundle. Update date: "Tue Jan 10 04:12:
 
 The Python SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 Certificates from the Mozilla Root CA store are now bundled with the SDK (as of version 4.1.5). If the server’s certificate is signed by a well-known CA (e.g., GoDaddy, Verisign, etc.), you don’t need to configure the `cert_path` property in the `PasswordAuthenticator` — simply use `couchbases://` in your connection string.
 

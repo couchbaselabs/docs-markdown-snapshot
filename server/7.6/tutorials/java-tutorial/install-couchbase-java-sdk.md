@@ -1,4 +1,14 @@
+---
+title: Set Up and Connect the Couchbase Java SDK
+description: Set up the Couchbase Java SDK to connect and interact with your
+  student cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tutorials/java-tutorial/install-couchbase-java-sdk.html)
+
+# Set Up and Connect the Couchbase Java SDK
 
 > Set up the Couchbase Java SDK to connect and interact with your student cluster. 
 
@@ -11,8 +21,10 @@ Before continuing this tutorial, you must first:
 * Install the Java Software Development Kit (version 8, 11, 17, or 21)
 * Install Apache Maven (version 3+)
 
-|  | The easiest way to install and manage Java SDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install). After following the instructions to install SDKMan, open a terminal window and run the commands sdk install java and sdk install maven to install the latest versions of Java and Maven. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The easiest way to install and manage Java SDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install).
+> 
+> After following the instructions to install SDKMan, open a terminal window and run the commands `sdk install java` and `sdk install maven` to install the latest versions of Java and Maven.
 
 For more information about the Java SDK installation, see the [full installation page](../../../../java-sdk/current/project-docs/sdk-full-installation.md).
 
@@ -114,10 +126,9 @@ public class ConnectStudent {
         cluster.disconnect();  
     }  
 }  
-```
-
-|  | You must re-run mvn install in your student directory whenever you make a change to a java file to rebuild your application. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!IMPORTANT]  
+> You must re-run `mvn install` in your `student` directory whenever you make a change to a java file to rebuild your application.
 3. Open a terminal window and navigate to your `student` directory.
 4. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 5. Run the following command to check that the connection works:  

@@ -1,4 +1,12 @@
+---
+title: Query Data
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/query_data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/query_data.html)
+
+# Query Data
 
 > To provide query access to OLAP data, you create an external link and associate it with an external collection. 
 

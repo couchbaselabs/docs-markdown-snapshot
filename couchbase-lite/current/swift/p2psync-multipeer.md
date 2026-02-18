@@ -1,4 +1,14 @@
+---
+title: Multipeer P2P Replicator
+description: The Multipeer Replicator enables lightweight, self-organizing mesh
+  networks for apps running on the same local Wi-Fi.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/p2psync-multipeer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/swift/p2psync-multipeer.html)
+
+# Multipeer P2P Replicator
 
 > The Multipeer Replicator enables lightweight, self-organizing mesh networks for apps running on the same local Wi-Fi. This approach requires minimal setup and automates peer discovery and connectivity management, making it simpler than [active-passive P2P configurations](p2psync-websocket.md). 
 
@@ -46,8 +56,8 @@ Add a usage description for local network access:
 <string>Used for discovering and connecting to peers for peer-to-peer sync.</string>
 ```
 
-|  | You can also configure these settings through Xcode’s Info configuration UI under "**Bonjour Services**" and "**Privacy – Local Network Usage Description**." |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also configure these settings through Xcode’s Info configuration UI under "**Bonjour Services**" and "**Privacy – Local Network Usage Description**."
 
 ### [](#supported-platforms)Supported Platforms
 
@@ -219,8 +229,8 @@ let config = MultipeerReplicatorConfiguration(
     collections: collections)
 ```
 
-|  | Performance may vary in mesh networks depending on your specific environment and number of peers. We recommend running tests with your network configuration to assess any effects on packet loss or latency. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Performance may vary in mesh networks depending on your specific environment and number of peers. We recommend running tests with your network configuration to assess any effects on packet loss or latency.
 
 ## [](#life-cycle)Life Cycle
 

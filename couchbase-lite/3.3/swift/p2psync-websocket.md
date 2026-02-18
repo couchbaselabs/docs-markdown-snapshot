@@ -1,10 +1,30 @@
+---
+title: Active-Passive Peer-to-Peer Sync
+description: Where MultiPeer Sync is not available, Couchbase Lite's
+  Active-Passive Peer-to-Peer Synchronization enables edge devices to
+  synchronize securely without consuming centralized cloud-server resources.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/p2psync-websocket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/swift/p2psync-websocket.html)
+
+# Active-Passive Peer-to-Peer Sync
 
 > Description — _Where MultiPeer Sync is not available, Couchbase Lite’s Active-Passive Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources._  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
-|  | Multipeer P2P Replicator [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Swift, offering: Auto-discovery over local Wi-Fi (via DNS-SD) Lightweight and low-maintenance configuration Dynamic mesh topology for optimal peer connectivity Secure communication via TLS and certificate-based authentication For many use cases, this will be quicker to develop for than Active-Passive peer-to-peer sync. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Multipeer P2P Replicator
+> 
+> [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Swift, offering:
+> 
+> * Auto-discovery over local Wi-Fi (via `DNS-SD`)
+> * Lightweight and low-maintenance configuration
+> * Dynamic mesh topology for optimal peer connectivity
+> * Secure communication via TLS and certificate-based authentication
+> 
+> For many use cases, this will be quicker to develop for than Active-Passive peer-to-peer sync.
 
 ## [](#introduction)Introduction
 
@@ -251,8 +271,8 @@ The URLEndpointListener uses a TLS identity to establish secure connections. (A 
 
 When replicating with a listener that uses a self-signed certificate, the replicator (client) can be configured to skip certificate validation. This option is useful for development or testing, but not recommended for production.
 
-|  | The minimum supported version of TLS is TLS 1.2\. |
-|  | ------------------------------------------------- |
+> [!NOTE]
+> The minimum supported version of TLS is TLS 1.2\.
 
 ### [](#authentication)Authentication Mechanisms
 

@@ -1,4 +1,13 @@
+---
+title: Errors and Diagnostics
+description: When the unexpected happens, take a step-by-step approach.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/errors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/concept-docs/errors.html)
+
+# Errors and Diagnostics
 
 > When the unexpected happens, take a step-by-step approach. 
 

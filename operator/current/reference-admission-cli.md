@@ -1,4 +1,12 @@
+---
+title: Dynamic Admission Controller Deployment Settings
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-admission-cli.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/reference-admission-cli.html)
+
+# Dynamic Admission Controller Deployment Settings
 
 > Command line options for the Kubernetes Operator Dynamic Admission Controller. 
 

@@ -1,4 +1,13 @@
+---
+title: Indexes and Indexing
+description: Couchbase mobile database indexing concepts
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/indexing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/objc/indexing.html)
+
+# Indexes and Indexing
 
 > Description — _Couchbase mobile database indexing concepts_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Indexing](indexing.md) |
@@ -14,8 +23,10 @@ When planning the indexes you need for your database, remember that while indexe
 
 Too many indexes may hurt performance. Optimal performance depends on designing and creating the _right_ indexes to go along with your queries.
 
-|  | ConstraintsCouchbase Lite for ios does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> Couchbase Lite for ios does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query.
 
 ## [](#creating-a-new-index)Creating a new index
 
@@ -51,8 +62,8 @@ CBLValueIndexConfiguration* config = [[CBLValueIndexConfiguration alloc]
 
 ### [](#querybuilder)QueryBuilder
 
-|  | See the [QueryBuilder](querybuilder.md) topic to learn more about QueryBuilder. |
-|  | ------------------------------------------------------------------------------- |
+> [!TIP]
+> See the [QueryBuilder](querybuilder.md) topic to learn more about QueryBuilder.
 
 The code to create the index will look something like this:
 
@@ -85,8 +96,8 @@ A query can use the Partial Index if the following two rules are satisfied:
 1. If `W` is AND-connected terms, and `X` is OR-connected terms and if any terms of `W` appears as a term of `X`, the partial index is allowed to be used.
 2. If a term in `X` is of the form `"z IS NOT MISSING"` and if a term in `W` is a comparison operator on `z` other than `"IS"`, the partial index is allowed to be used. The operators include `=`, `==`, `<`, `>`, `<=`, `>=`, `<>`, `IN`, `LIKE`, and `BETWEEN`.
 
-|  | If X is in the form of "z is NOT NULL" or "z is VALUED", the first rule must be satisfied. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> If `X` is in the form of `"z is NOT NULL"` or `"z is VALUED"`, the first rule must be satisfied.
 
 For example, let the partial index be `c IS NOT NULL` when creating a partial index on collection named `col1` in the default scope.
 
@@ -230,8 +241,8 @@ CBLArrayIndexConfiguration* config = [[CBLArrayIndexConfiguration alloc] initWit
 
 The above snippet creates an array index to allow you to iterate through `contacts[].phones[].type` in the document, namely `"home"` and `"mobile"`.
 
-|  | Array literals are not supported in CBL 3.3.0\. Attempting to create a query with array literals will return an error. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Array literals are not supported in CBL 3.3.0\. Attempting to create a query with array literals will return an error.
 
 ## [](#related-content)Related Content
 

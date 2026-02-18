@@ -1,4 +1,14 @@
+---
+title: Database Management
+description: Describes the various database management functions available to
+  maintain an efficient sync gateway database
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/database-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/database-management.html)
+
+# Database Management
 
 > Describes the various database management functions available to maintain an efficient sync gateway database  
 > Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
@@ -11,8 +21,8 @@ In the section
 
 Pruning is the process of removing obsolete revisions. It automatically runs whenever a new revision is generated.
 
-|  | Use the Admin Rest API endpoint for [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) or [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the Admin Rest API endpoint for [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) or [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content.
 
 ### [](#lbl-alg)Algorithm
 
@@ -87,8 +97,8 @@ To this end, the Admin REST API provides a `/{db}/_resync` endpoint that enables
 
 To update the Sync Function and fully `resync`, you’re recommended to follow the steps in [Steps to Update and Resync](#steps-to-resync).
 
-|  | This is an expensive operation because the new function must process every document in the database. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is an expensive operation because the new function must process every document in the database.
 
 The database cannot accept requests until this process completes because the database does not know any user’s full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime whilst the database is offline (that’s between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
 

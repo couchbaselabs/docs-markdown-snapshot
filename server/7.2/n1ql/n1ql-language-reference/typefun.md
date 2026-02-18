@@ -1,9 +1,18 @@
+---
+title: Type Functions
+description: Type functions perform operations that check or convert expressions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/typefun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/typefun.html)
+
+# Type Functions
 
 > Type functions perform operations that check or convert expressions. 
 
-|  | If any arguments to any of the following functions are MISSING then the result is also MISSING (i.e. no result is returned). Similarly, if any of the arguments passed to the functions are NULL or are of the wrong type (e.g. an integer instead of a string), then NULL is returned as the result. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If any arguments to any of the following functions are `MISSING` then the result is also `MISSING` (i.e. no result is returned). Similarly, if any of the arguments passed to the functions are `NULL` or are of the wrong type (e.g. an integer instead of a string), then `NULL` is returned as the result.
 
 ## [](#fn-type-isarray)ISARRAY(expression)
 

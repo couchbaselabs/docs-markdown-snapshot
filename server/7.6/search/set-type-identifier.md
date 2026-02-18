@@ -1,4 +1,14 @@
+---
+title: Set the Type Identifier for a Search Index
+description: Use a type identifier with a type mapping to add an extra filter to
+  the documents you want to include in a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/set-type-identifier.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/set-type-identifier.html)
+
+# Set the Type Identifier for a Search Index
 
 > Use a type identifier with a type mapping to add an extra filter to the documents you want to include in a Search index. 
 
@@ -32,10 +42,9 @@ To only add documents to your Search index that contain a specific field with a 
 
 1. Select **JSON type field**.
 2. In the **JSON Type Field** field, enter the name of the field in your documents that you want to use to filter documents in your Search index.  
-For example, if your documents include a `type` field, you could enter `type` in the **JSON Type Field** field.
-
-|  | You can’t use a field as a type identifier if the field name contains a period (.). |
-|  | ----------------------------------------------------------------------------------- |
+For example, if your documents include a `type` field, you could enter `type` in the **JSON Type Field** field.  
+> [!NOTE]  
+> You can’t use a field as a type identifier if the field name contains a period (.).
 3. Under **Type Mappings**, next to the type mapping where you want to add the type identifier, click **Edit**.
 4. In the **#** field, add a period (.) to the end of the current type mapping name.
 5. After the period, add the exact string from the document field that you want to use as a filter.  

@@ -1,4 +1,14 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Go Columnar SDK to a
+  Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-columnar-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Go Columnar SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL, advanced connection options, and troubleshooting Cloud connections. 
 
@@ -22,8 +32,8 @@ A connection to a Couchbase Server cluster is represented by a `Cluster` object.
 	handleErr(err)
 ```
 
-|  | Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ### [](#connection-strings)Connection Strings
 

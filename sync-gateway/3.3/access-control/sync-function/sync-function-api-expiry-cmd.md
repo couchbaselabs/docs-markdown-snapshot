@@ -1,4 +1,13 @@
+---
+title: expiry()
+description: Setting an expiry value on a document in a local database
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/sync-function/sync-function-api-expiry-cmd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/access-control/sync-function/sync-function-api-expiry-cmd.html)
+
+# expiry()
 
 > Setting an expiry value on a document in a local database  
 

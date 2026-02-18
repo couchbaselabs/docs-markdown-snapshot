@@ -1,4 +1,12 @@
+---
+title: Index Type
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-index-type.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-index-type.html)
+
+# Index Type
 
 The **Index Type** interface provides a drop-down menu from which the appropriate index type can be selected:
 
@@ -9,8 +17,8 @@ Following options are available:
 * **Version 5.0 (Moss)** is the standard form of index to be used in test, development, and production. This version is deprecated.
 * **Version 6.0 (Scorch)** reduces the size of the index-footprint on disk and provides enhanced performance for indexing and mutation-handling
 
-|  | The type of an index is saved in its JSON definition, which can be previewed in the _Index Definition Preview panel_, at the right-hand side. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The type of an index is saved in its JSON definition, which can be previewed in the _Index Definition Preview panel_, at the right-hand side.
 
 ## [](#example)Example
 

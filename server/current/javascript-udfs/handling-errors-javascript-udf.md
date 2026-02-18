@@ -1,4 +1,14 @@
+---
+title: Handling Errors in JavaScript Functions
+description: Error handling in JavaScript user-defined functions use the same
+  standard exception mechanism as part of the language standard.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/javascript-udfs/pages/handling-errors-javascript-udf.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/javascript-udfs/handling-errors-javascript-udf.html)
+
+# Handling Errors in JavaScript Functions
 
 > Error handling in JavaScript user-defined functions use the same standard exception mechanism as part of the language standard. 
 

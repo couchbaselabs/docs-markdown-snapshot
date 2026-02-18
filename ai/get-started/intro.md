@@ -1,4 +1,12 @@
+---
+title: Capella AI Services
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/get-started/pages/intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/get-started/intro.html)
+
+# Capella AI Services
 
 # Capella AI Services
 

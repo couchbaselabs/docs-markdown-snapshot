@@ -1,4 +1,12 @@
+---
+title: Add Child Mapping
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-mappings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings-add-child-mappings.html)
+
+# Add Child Mapping
 
 The option **insert child mapping** specifies a document-field whose value is a JSON object. Selecting this option displays the following:
 

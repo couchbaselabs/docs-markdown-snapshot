@@ -1,4 +1,13 @@
+---
+title: Couchbase EFCore Release Notes
+description: Release notes and download archive for `Couchbase.EntityFrameworkCore`.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-release-notes.html)
+
+# Couchbase EFCore Release Notes
 
 > Release notes and download archive for \`Couchbase.EntityFrameworkCore\`. 
 

@@ -1,4 +1,13 @@
+---
+title: Install and Verify
+description: Install Couchbase Edge Server for use in your applications.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/get-started/install.html)
+
+# Install and Verify
 
 > Install Couchbase Edge Server for use in your applications. 
 
@@ -78,8 +87,8 @@ To start Couchbase Edge Server you invoke the executable with the path to its co
 
 You can define a configuration file yourself or use this minimal configuration file as a starting point. Make sure you define the `path` variable as the file-path to your database file.
 
-|  | The configuration file is parsed as [JSON5 format](https://json5.org/). |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> The configuration file is parsed as [JSON5 format](https://json5.org/).
 
 ```json
 {
@@ -96,8 +105,8 @@ You can define a configuration file yourself or use this minimal configuration f
 }
 ```
 
-|  | Couchbase does not recommend setting enable\_adhoc\_queries to true for production environments. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Couchbase does not recommend setting `enable_adhoc_queries` to `true` for production environments.
 
 After creating your configuration file, you can run Couchbase Edge Server by invoking it at its file location.
 

@@ -1,4 +1,14 @@
+---
+title: Manage Sessions
+description: User-sessions with Couchbase Web Console can be timed out,
+  following a specified period of user-inactivity.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/manage-sessions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-security/manage-sessions.html)
+
+# Manage Sessions
 
 > User-sessions with Couchbase Web Console can be timed out, following a specified period of user-inactivity. 
 

@@ -1,4 +1,13 @@
+---
+title: User Management
+description: User Management
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/sdk-user-management-example.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/sdk-user-management-example.html)
+
+# User Management
 
 > User Management 
 

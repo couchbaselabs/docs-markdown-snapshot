@@ -1,4 +1,14 @@
+---
+title: "Function: Basic Bucket Ops"
+description: Perform the basic bucket operations where Eventing interacts with
+  the Data service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-basicBucketOps.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-basicBucketOps.html)
+
+# Function: Basic Bucket Ops
 
 **Goal**: Perform the basic bucket operations where Eventing interacts with the Data service.
 

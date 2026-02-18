@@ -1,4 +1,14 @@
+---
+title: Prepare for XDCR
+description: Before setting up a replication, make sure you have the appropriate
+  administrative roles.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/prepare-for-xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-xdcr/prepare-for-xdcr.html)
+
+# Prepare for XDCR
 
 > Before setting up a replication, make sure you have the appropriate administrative roles. Then, make sure your cluster is appropriately configured and provisioned. 
 
@@ -17,8 +27,8 @@ Before beginning XDCR management:
 * Confirm that your cluster is properly sized, and is able to handle new XDCR streams. For example, XDCR needs 1-2 additional CPU cores per stream; and in some cases, will require additional RAM and network resources as well. If a cluster is not sized to handle _both_ the existing workload _and_ the new XDCR streams, the performance of both XDCR and the cluster overall may be negatively impacted.
 * Couchbase Server uses TCP/IP port `8091` to exchange cluster configuration information. If you are communicating with a destination cluster over a dedicated connection, or over the Internet, ensure that all nodes in the destination and source clusters can communicate with each other over port `8091`.
 
-|  | Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration.
 
 ## [](#next-xdcr-steps-after-preparation)Next Steps
 

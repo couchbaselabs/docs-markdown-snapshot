@@ -1,4 +1,12 @@
+---
+title: Manage Expiration
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-expiration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-expiration.html)
+
+# Manage Expiration
 
 You can have documents in your Couchbase Server Enterprise Edition automatically expire after a period of time. See [Expiration](../learn/data/expiration.md) for an overview of this feature.
 

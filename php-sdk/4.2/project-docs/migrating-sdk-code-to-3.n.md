@@ -1,4 +1,15 @@
+---
+title: Migrating to SDK 3 API
+description: The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking
+  changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to
+  provide a number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating to SDK 3 API
 
 > The SDK API 3 (used in PHP SDK 3.x and 4.x) introduces breaking changes to the previous SDK API 2 APIs (used in PHP SDK 2.x) in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place. 
 
@@ -6,8 +17,8 @@ The current PHP SDK 4.2 is also based on the [SDK API 3.5 specification](#api-ve
 
 The intent of this migration guide is to provide detail information on the changes and what to look for while upgrading the SDK.
 
-|  | For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing PHP SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing PHP SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below.
 
 Unresolved include directive in modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc - include::7.5@sdk:shared:partial$api-version.adoc\[\]
 
@@ -77,8 +88,8 @@ try {
 
 SDK API 3.x still relies on native types and supports the `json_encode` API from the standard `json.so` module (therefore it still has to be loaded before `couchbase.so`). But the `igbinary.so` transcoder is no longer supported.
 
-|  | The json module is a core extension from PHP 8.0.0\. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> The `json` module is a core extension from PHP 8.0.0\.
 
 ### [](#migrating-services)Migrating Services
 
@@ -115,8 +126,8 @@ The `BinaryCollection` mentioned above could be retrieved from the regular colle
 
 In SDK 3.x, the API for Query was improved and now it is more consistent with other endpoints.
 
-|  | In particular, →rows() is now a method rather than a property, and returns an array of fields to index with \['field-name'\] instead of an object with custom property names for each field. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In particular, `→rows()` is now a method rather than a property, and returns an array of fields to index with `['field-name']` instead of an object with custom property names for each field.
 
 SDK API 2
 

@@ -1,4 +1,13 @@
+---
+title: Logging
+description: Couchbase Lite JavaScript -- Logging and Debugging
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/logging.html)
+
+# Logging
 
 > Description — _Couchbase Lite JavaScript — Logging and Debugging_
 
@@ -8,8 +17,8 @@ Couchbase Lite JavaScript uses [LogTape](https://logtape.org/) for logging, prov
 
 LogTape is easy to use, unobtrusive, and flexible. It’s designed to integrate with whatever logging system your application currently uses.
 
-|  | If you don’t configure logging, LogTape logs nothing by default. |
-|  | ---------------------------------------------------------------- |
+> [!NOTE]
+> If you don’t configure logging, LogTape logs nothing by default.
 
 Effective logging is essential for:
 
@@ -81,8 +90,15 @@ LogTape supports these log levels (from least to most verbose):
 * `info` \- Informational messages about normal operations
 * `debug` \- Detailed information for debugging
 
-|  | **Performance Consideration** LogTape at debug level can generate a lot of logs, especially for: Query plans Replication events **Recommend:** Use debug only during development or targeted troubleshooting. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> **Performance Consideration**
+> 
+> LogTape at debug level can generate a lot of logs, especially for:
+> 
+> * Query plans
+> * Replication events
+> 
+> **Recommend:** Use debug only during development or targeted troubleshooting.
 
 ## [](#configuring-logging)Configuring Logging
 
@@ -210,8 +226,8 @@ await configure({
 });
 ```
 
-|  | File sinks require Node.js and are not available in browser environments. |
-|  | ------------------------------------------------------------------------- |
+> [!NOTE]
+> File sinks require Node.js and are not available in browser environments.
 
 ### [](#multiple-sinks)Multiple Sinks
 
@@ -515,8 +531,8 @@ await configure({
 });
 ```
 
-|  | Enabling the meta logger produces a large amount of internal logging. Use only while troubleshooting LogTape configuration issues. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Enabling the meta logger produces a large amount of internal logging. Use only while troubleshooting LogTape configuration issues.
 
 ## [](#browser-devtools)Using Browser DevTools
 

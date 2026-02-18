@@ -1,10 +1,21 @@
+---
+title: SG Collect Info
+description: Using <em>sgcollect</em> to gather system information, diagnostics and metrics
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sgcollect-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/sgcollect-info.html)
+
+# SG Collect Info
 
 > Using _sgcollect_ to gather system information, diagnostics and metrics  
 > This topic describes the command line utility, _sgcollect_, its use and the output it collates.
 
-|  | Constraints Do not use the logs directory as a storage location for files that should not be there. Permission issues with those files can prevent Sync Gateway from starting. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Constraints
+> 
+> Do not use the `logs` directory as a storage location for files that should not be there. Permission issues with those files can prevent Sync Gateway from starting.
 
 ## [](#introduction)Introduction
 
@@ -73,8 +84,8 @@ Collect Sync Gateway diagnostics and upload them to Couchbase Support:
   /tmp/sgcollect_info.zip
 ```
 
-|  | When admin\_interface\_authentication is set to true in your Sync Gateway configuration, specify \--sync-gateway-username and \--sync-gateway-password. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When `admin_interface_authentication` is set to `true` in your Sync Gateway configuration, specify `--sync-gateway-username` and `--sync-gateway-password`.
 
 ## [](#zipfile-contents)Zipfile Contents
 

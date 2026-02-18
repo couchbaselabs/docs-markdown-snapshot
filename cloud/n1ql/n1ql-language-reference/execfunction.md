@@ -1,4 +1,13 @@
+---
+title: EXECUTE FUNCTION
+description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/execfunction.html)
+
+# EXECUTE FUNCTION
 
 > The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. 
 
@@ -38,8 +47,8 @@ To execute a global function in a particular namespace, the function name must b
 
 You cannot have 2 functions with the same name in the same scope. You can have 2 functions in the same name across different scopes.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
 
 ### [](#expression)Arguments
 

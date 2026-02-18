@@ -1,4 +1,13 @@
+---
+title: Build and Run
+description: Build and run a starter app to validate your install of Couchbase Lite on Java
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/gs-build.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/gs-build.html)
+
+# Build and Run
 
 > Description — _Build and run a starter app to validate your install of Couchbase Lite on Java_  
 > _Abstract — This content provides sample code and instructions that enable you to test your Couchbase Lite for java installation._  
@@ -14,8 +23,8 @@ Example 1\. Development-type Scenarios
 
 Desktop App
 
-|  | Ensure you added the Couchbase Lite dependency to your build.gradle file |
-|  | ------------------------------------------------------------------------ |
+> [!TIP]
+> Ensure you added the Couchbase Lite dependency to your `build.gradle` file
 
 Create, build and run a new project using the following `GettingStarted.java` code:
 
@@ -239,8 +248,8 @@ The GettingStarted app will:
 * Create a database  
 The app creates its database in the `/getting-started.cblite2` directory relative to its root location when run (See: [Finding a Database File](database.md#lbl-find-db-loc)).
 
-|  | Explicitly state your required database location when creating your database (see: [Finding a Database File](database.md#lbl-find-db-loc) for how to do this) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Explicitly state your required database location when creating your database (see: [Finding a Database File](database.md#lbl-find-db-loc) for how to do this)
 
 * Add content to the DB
 * Run a simple query counting the DB rows
@@ -248,5 +257,5 @@ The app creates its database in the `/getting-started.cblite2` directory relativ
 * Produce a simple report on the db Contents  
 ![cblOutput](_images/cblOutput.png)
 
-|  | Before starting your app ensure you have started both your _Couchbase Server_ and \_Sync Gateway instances. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Before starting your app ensure you have started both your _Couchbase Server_ and \_Sync Gateway instances.

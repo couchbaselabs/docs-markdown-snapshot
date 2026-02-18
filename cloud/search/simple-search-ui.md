@@ -1,4 +1,14 @@
+---
+title: Run A Simple Search with the Capella UI
+description: Run a Search query from the Couchbase Capella UI to preview the
+  search results from a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/simple-search-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/simple-search-ui.html)
+
+# Run A Simple Search with the Capella UI
 
 > Run a Search query from the Couchbase Capella UI to preview the search results from a Search index. 
 
@@ -48,8 +58,8 @@ For example, the following query searches for the strings `view`, `food`, and `b
 
 The query payload enables scoring explanations and term highlighting. It also returns all available fields in the index, and returns 10 results per page.
 
-|  | Use the [collections parameter](search-request-params.md#collections) in your request to specify an array of collections to search from the Search index. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the [collections parameter](search-request-params.md#collections) in your request to specify an array of collections to search from the Search index.
 
 ### [](#example-validate-a-search-query)Example: Validate a Search Query
 

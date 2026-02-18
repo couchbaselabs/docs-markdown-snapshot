@@ -1,4 +1,15 @@
+---
+title: Compatibility
+description: Platform compatibility, and features available in different SDK
+  versions, and compatibility between Server and SDK. Plus notes on Cloud,
+  networks, and AWS Lambda.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.5/project-docs/compatibility.html)
+
+# Compatibility
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
@@ -83,8 +94,8 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 Recent SDKs offer better resilience in handling errors that may occur when running your application in serverless environments, in particular when processes are frozen or thawed, and a rebalance is required. This means official support for AWS Lambda, Azure Functions, and GCP Functions.
 
-|  | When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly.
 
 ## [](#couchbase-server-compatibility)Couchbase Server Compatibility
 
@@ -136,8 +147,8 @@ __Recommended Spring Data Couchbase per Server Version Matrix__
 | _Status →_           | _Maintenance Support_ | _New Features, Active Development_ |
 | **Server 7.0 - 7.6** | **Compatible**        | **Recommended**                    |
 
-|  | Check the Spring Data Couchbase’s compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the updates. Please make sure that you are using a supported version of the Couchbase Scala SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Check the Spring Data Couchbase’s compile dependencies — older versions may link an out-of-date version of the SDK in their dependencies list, although a supported version should be in the `updates`. Please make sure that you are using a supported version of the Couchbase Scala SDK, prefereably the latest version, which will contain any available bug fixes. Using the latest Spring Data Couchbase should ensure that this is so.
 
 ### [](#api-version)API Version
 

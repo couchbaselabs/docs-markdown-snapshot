@@ -1,4 +1,13 @@
+---
+title: Non-JSON Documents
+description: Binary formats &amp; Transcoders.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/concept-docs/pages/nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/concept-docs/nonjson.html)
+
+# Non-JSON Documents
 
 > Binary formats & Transcoders. 
 

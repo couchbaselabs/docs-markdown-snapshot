@@ -1,4 +1,12 @@
+---
+title: Delete a Collection or Link
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/delete-entity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/delete-entity.html)
+
+# Delete a Collection or Link
 
 > This topic describes how you remove collections and links from Capella Analytics. 
 

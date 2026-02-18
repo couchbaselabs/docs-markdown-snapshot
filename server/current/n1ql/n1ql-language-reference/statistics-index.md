@@ -1,4 +1,14 @@
+---
+title: Update Statistics for a Single Index
+description: You can use the UPDATE STATISTICS statement to gather statistics on
+  a single index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/statistics-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/statistics-index.html)
+
+# Update Statistics for a Single Index
 
 > You can use the UPDATE STATISTICS statement to gather statistics on a single index. 
 

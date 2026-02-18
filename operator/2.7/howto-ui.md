@@ -1,11 +1,19 @@
+---
+title: Access the Couchbase Server User Interface
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-ui.html)
+
+# Access the Couchbase Server User Interface
 
 > Connect to the Couchbase Server user interface. 
 
 The Couchbase user interface (UI) provides a rich environment for cluster management, debugging and application development. Access to the UI varies based on your chosen [network architecture](concept-couchbase-networking.md).
 
-|  | Kubernetes ingress resources are not supported as they are neither fully featured nor generic across platforms. It is highly recommended that one of the methods outlined below be used for correct functionality as no technical support will be provided. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Kubernetes ingress resources are not supported as they are neither fully featured nor generic across platforms. It is highly recommended that one of the methods outlined below be used for correct functionality as no technical support will be provided.
 
 ## [](#port-forwarding)Port Forwarding
 
@@ -32,8 +40,8 @@ Forwarding from [::1]:8091 -> 8091
 
 You can then connect to http://localhost:8091 to access the UI.
 
-|  | If you must connect over TLS then forward port 18091 and use the address https://localhost:18091. Ensure your cluster administrator has provided a CA certificate to be installed into your browser’s trust store. If certificate-based authentication is used, then ensure you have installed your client certificate/key into your browser too. As you are connecting to localhost it is also important that your cluster administrator has added the localhost subject alternative address name into the cluster TLS certificate. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> If you must connect over TLS then forward port 18091 and use the address `https://localhost:18091`. Ensure your cluster administrator has provided a CA certificate to be installed into your browser’s trust store. If certificate-based authentication is used, then ensure you have installed your client certificate/key into your browser too. As you are connecting to `localhost` it is also important that your cluster administrator has added the `localhost` subject alternative address name into the cluster TLS certificate.
 
 ## [](#dns-based-addressing)DNS Based Addressing
 
@@ -79,8 +87,8 @@ spec:
 | **4** | The service name references a service within the namespace the ingress is created in. The Operator will create a headless service by default for every cluster — in order to create DNS entries — and can be used as the backend service for the ingress. The service will be named the same as a Couchbase cluster resource. |
 | **5** | The port is the backend port to connect to. In this instance, the ingress is plain text HTTP, so 8091.                                                                                                                                                                                                                        |
 
-|  | Use TLS to secure your ingresses on the public internet, otherwise your login credentials will be visible in plain text and can be snooped by an attacker. Your ingress provider may support backend TLS encryption, providing end-to-end security — use port 18091 on the backend. When using ingresses to access Couchbase, you cannot use client certificate authentication — use a load balancer service to expose the console instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use TLS to secure your ingresses on the public internet, otherwise your login credentials will be visible in plain text and can be snooped by an attacker. Your ingress provider may support backend TLS encryption, providing end-to-end security — use port 18091 on the backend. When using ingresses to access Couchbase, you cannot use client certificate authentication — use a load balancer service to expose the console instead.
 
 ## [](#configuring-an-istio-proxy)Configuring an Istio Proxy
 

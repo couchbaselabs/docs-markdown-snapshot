@@ -1,4 +1,12 @@
+---
+title: Less vs. Fewer
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/less-fewer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/less-fewer.html)
+
+# Less vs. Fewer
 
 Use **less** for uncountable or mass nouns.
 

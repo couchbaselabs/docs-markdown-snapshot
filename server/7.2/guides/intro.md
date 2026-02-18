@@ -1,4 +1,13 @@
+---
+title: Developer Guides
+description: This section contains how-to guides for developers.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/intro.html)
+
+# Developer Guides
 
 This section contains _how-to guides_ that walk you through common tasks for Couchbase Server development, such as storing, retrieving, and querying documents.
 

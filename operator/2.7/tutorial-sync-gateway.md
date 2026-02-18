@@ -1,9 +1,17 @@
+---
+title: Connecting Sync Gateway to a Couchbase Cluster
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-sync-gateway.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tutorial-sync-gateway.html)
+
+# Connecting Sync Gateway to a Couchbase Cluster
 
 > Connect the Couchbase Sync Gateway to a Couchbase cluster 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 Sync Gateway is a synchronization server that is responsible for secure data synchronization and routing between Couchbase Lite-enabled clients and Couchbase Server. It is an integral component of the [Couchbase Mobile](../../sync-gateway/current/index.md) platform.
 
@@ -139,8 +147,8 @@ security:
     managed: true
 ```
 
-|  | Enabling RBAC management by the Autonomous Operator will remove any RBAC users that were manually created on the cluster. Therefore, you will need to specify the relevant users and role bindings for those RBAC users if you want to continue using those identities after enabling RBAC management. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Enabling RBAC management by the Autonomous Operator will remove any RBAC users that were manually created on the cluster. Therefore, you will need to specify the relevant users and role bindings for those RBAC users if you want to continue using those identities after enabling RBAC management.
 
 #### [](#creating-a-sync-gateway-rbac-user)Creating a Sync Gateway RBAC User
 
@@ -339,13 +347,11 @@ At this stage, the Sync Gateway cluster is configured to communicate with Couchb
 Template files are provided in the Autonomous Operator binary distribution available at [couchbase.com/downloads](https://www.couchbase.com/downloads). These template files are provided as **evaluation examples** — they should be modified to suit production deployments.
 
 * `sync-gateway.yaml`: Sample Deployment Controller for Sync Gateway using RBAC for server connectivity. This template creates a sync gateway RBAC user per procedures outlined in the previous section [Configuring an RBAC User for Sync Gateway](#configure-an-rbac-user-for-sync-gateway).
-* `couchbase-custer.yaml`: Sample `CouchbaseCluster` custom resource deployment to be used with the Autonomous Operator.
-
-|  | The couchbase-custer.yaml template has RBAC management set to false by default. So before you deploy the Sync Gateway cluster using the sync-gateway.yaml template, you must enable RBAC management as specified in the previous section [Configuring an RBAC User for Sync Gateway](#configure-an-rbac-user-for-sync-gateway). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-|  | Red Hat OpenShift users will need to modify the provided template to reference an image pull secret. This must grant permission to pull container images from the Red Hat Container Registry. Refer to [Install the Operator on OpenShift](install-openshift.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* `couchbase-custer.yaml`: Sample `CouchbaseCluster` custom resource deployment to be used with the Autonomous Operator.  
+> [!NOTE]  
+> The `couchbase-custer.yaml` template has RBAC management set to `false` by default. So before you deploy the Sync Gateway cluster using the `sync-gateway.yaml` template, you must enable RBAC management as specified in the previous section [Configuring an RBAC User for Sync Gateway](#configure-an-rbac-user-for-sync-gateway).  
+> [!IMPORTANT]  
+> Red Hat OpenShift users will need to modify the provided template to reference an image pull secret. This must grant permission to pull container images from the Red Hat Container Registry. Refer to [Install the Operator on OpenShift](install-openshift.md) for details.
 
 ## [](#further-reading)Further Reading
 

@@ -1,4 +1,13 @@
+---
+title: Managing Advanced Settings
+description: XDCR advanced settings can be used to configure replications.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-adv-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-xdcr-adv-settings.html)
+
+# Managing Advanced Settings
 
 > XDCR advanced settings can be used to configure replications. 
 
@@ -285,8 +294,8 @@ curl -X GET -s -u Administrator:'password' http://localhost:8091/settings/replic
 
 If the call is successful, an object is returned, which contains the replication settings for the Conflict Logging feature:
 
-|  | For more information about the replication settings in the Conflict Logging feature, see [Conflict Log Settings](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#tunable-replication-settings) and [Enabling and Configuring Conflict Logging](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#configure-conflictlogging-settings). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For more information about the replication settings in the Conflict Logging feature, see [Conflict Log Settings](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#tunable-replication-settings) and [Enabling and Configuring Conflict Logging](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#configure-conflictlogging-settings).
 
 {
   "cLogErrorTimeWindowMs": 120000,

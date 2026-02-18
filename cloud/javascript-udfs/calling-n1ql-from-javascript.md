@@ -1,4 +1,14 @@
+---
+title: Calling SQL++ from JavaScript
+description: You can run SQL++ statements from inside the JavaScript code you
+  use for a user-defined function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/javascript-udfs/calling-n1ql-from-javascript.html)
+
+# Calling SQL++ from JavaScript
 
 > You can run SQL++ statements from inside the JavaScript code you use for a user-defined function. 
 
@@ -39,8 +49,8 @@ function addAirline() {
 }
 ```
 
-|  | The N1QL() function generates the equivalent SQL++ call. You can choose to use either method and get the same results. The N1QL() function changes your available parameter support. See [Passing Parameters to SQL++ Statements](#pass-parameters). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `N1QL()` function generates the equivalent SQL++ call. You can choose to use either method and get the same results. The `N1QL()` function changes your available parameter support. See [Passing Parameters to SQL++ Statements](#pass-parameters).
 
 ## [](#side-effects)Side Effects
 
@@ -52,8 +62,8 @@ For example, in this SQL++ statement, the `AddAirline()` function attempts to al
 SELECT "true" AS response WHERE AddAirline() = "missing";
 ```
 
-|  | Functions that change data must be called using the EXECUTE FUNCTION statement. |
-|  | ------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Functions that change data must be called using the `EXECUTE FUNCTION` statement.
 
 ## [](#returning-values-from-sql-statements)Returning Values from SQL++ Statements
 
@@ -80,8 +90,12 @@ function selectHotels() {
 }
 ```
 
-|  | If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. This means the runtime will wait until the statement completes before moving on to the next line of JavaScript. If the inline statement or SQL++ call returns a value, then it’s executed asynchronously. Execution of the JavaScript continues before the iterator is returned. Each document is fetched from the bucket as it’s requested by the iterator. ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. This means the runtime will wait until the statement completes before moving on to the next line of JavaScript.
+> 
+> If the inline statement or SQL++ call returns a value, then it’s executed asynchronously. Execution of the JavaScript continues before the iterator is returned. Each document is fetched from the bucket as it’s requested by the iterator.
+> 
+> ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg)
 
 ## [](#pass-parameters)Passing Parameters to SQL++ Statements
 
@@ -139,8 +153,10 @@ Functions can:
 * Run a statement that starts the transaction.
 * Run a statement that rolls back a transaction.
 
-|  | A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely. ![transactions-and-iterators](_images/transactions-and-iterators-e7a0ef29da863605ec653086aaa015f5fb6002f3.svg) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely.
+> 
+> ![transactions-and-iterators](_images/transactions-and-iterators-e7a0ef29da863605ec653086aaa015f5fb6002f3.svg)
 
 ## [](#role-based-access-control-and-functions)Role-Based Access Control and Functions
 
@@ -196,8 +212,12 @@ The function call would eventually return the following result, stopping the cal
 ]
 ```
 
-|  | JavaScript workers are created on your Capella operational cluster based on the following formula: \\$"Number of JavaScript Workers" = 4 xx "Number of CPUs"\\$ Capella will automatically prevent recursive calls if there are fewer than 50% of the total JavaScript workers available. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> JavaScript workers are created on your Capella operational cluster based on the following formula:
+> 
+> \\$"Number of JavaScript Workers" = 4 xx "Number of CPUs"\\$
+> 
+> Capella will automatically prevent recursive calls if there are fewer than 50% of the total JavaScript workers available.
 
 ## [](#see-also)See Also
 

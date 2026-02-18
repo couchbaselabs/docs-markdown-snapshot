@@ -1,4 +1,12 @@
+---
+title: Connecting to Tableau Cloud using the Tableau Bridge
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/connecting-to-tableau-cloud-using-tableau-bridge.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/current/connecting-to-tableau-cloud-using-tableau-bridge.html)
+
+# Connecting to Tableau Cloud using the Tableau Bridge
 
 > This guide will walk you through the steps for connecting to Tableau Cloud via the Tableau Bridge. The Tableau Bridge is currently available for Windows and Linux, so the following guide will show you how to run the Linux version in a Docker instance.
 > 
@@ -42,10 +50,9 @@ COPY TableauBridge-20243.24.1211.0901.x86_64.rpm /opt
 RUN ACCEPT_EULA=y yum install -y /opt/TableauBridge-20243.24.1211.0901.x86_64.rpm  
 COPY couchbase-jdbc-driver-1.0.5.jar /opt/tableau/tableau_driver/jdbc/  
 COPY couchbase-analytics-1.1.3.taco /root/Documents/My_Tableau_Bridge_Repository/Connectors/  
-```
-
-|  | Make sure the name of the .rpm file matches the file downloaded in the [Download the Tableau Bridge package](#download-the-tableau-bridge) section. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> Make sure the name of the `.rpm` file matches the file downloaded in the [Download the Tableau Bridge package](#download-the-tableau-bridge) section.
 
 ## [](#build-the-docker-image)Build the Docker image
 
@@ -69,17 +76,22 @@ This will create and run the container and open a command shell in the new conta
 
 ## [](#create-a-personal-access-token)Create a Personal Access Token
 
-|  | Creating personal access tokens on Tableau Cloud Before you can create a Personal Access Token, your Tableau Cloud service must be set up to allow you to do so. If you cannot create a PAT, ask your Tableau Cloud administrator to grant PAT permissions on your service instance |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Creating personal access tokens on Tableau Cloud
+> 
+> Before you can create a Personal Access Token, your Tableau Cloud service must be set up to allow you to do so.
+> 
+> If you cannot create a PAT, ask your Tableau Cloud administrator to grant PAT permissions on your service instance
 
 1. Log in to your Tableau Cloud instance and select **My Account Settings** from the drop-down menu on the top-right.
 2. Scroll down to the section named **Personal Access Tokens** and enter a **Token Name** in the field.
 3. Click the **Create Token** button.  
 ![create PAT](_images/create_PAT.png)
-4. Press **Copy Secret** to copy the PAT to the clipboard.
-
-|  | You should copy the PAT to a file immediately (as shown below). Tableau Cloud will not allow you to view or copy the token again after you have pressed **Done**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. Press **Copy Secret** to copy the PAT to the clipboard.  
+> [!WARNING]  
+> You should copy the PAT to a file immediately (as shown below).  
+>  
+> Tableau Cloud will not allow you to view or copy the token again after you have pressed **Done**.
 5. Create a new directory called `Documents` in your `bridge_base` container.
 6. Create a new `.txt` file in your `Documents` directory. You can call it `MyTokenFile.txt`, for example. The file should be in JSON format and take the form:  
 ```json  

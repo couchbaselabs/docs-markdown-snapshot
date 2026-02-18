@@ -1,9 +1,26 @@
+---
+title: Native Encryption at Rest
+description: Couchbase Server can encrypt data, configuration, logs, and audit
+  information it saves to disk. This encryption can help reduce the chances of
+  or severity of data breaches.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/native-encryption-at-rest-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/security/native-encryption-at-rest-overview.html)
+
+# Native Encryption at Rest
 
 > Couchbase Server can encrypt data, configuration, logs, and audit information it saves to disk. This encryption can help reduce the chances of or severity of data breaches. This feature is transparent to the database’s users. Couchbase Server automatically decrypts data when reading it from disk and encrypts it when writing it to disk. For steps to take when managing this feature, see [Manage Native Encryption at Rest](../../manage/manage-security/manage-native-encryption-at-rest.md). 
 
-|  | Field-Level Encryption in Applications Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example: Go SDK: [Encrypting Your Data](../../../../go-sdk/current/howtos/encrypting-using-sdk.md) Java SDK: [Encrypting Your Data](../../../../java-sdk/current/howtos/encrypting-using-sdk.md) Python SDK: [Encrypting Your Data](../../../../python-sdk/current/howtos/encrypting-using-sdk.md) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Field-Level Encryption in Applications
+> 
+> Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example:
+> 
+> * Go SDK: [Encrypting Your Data](../../../../go-sdk/current/howtos/encrypting-using-sdk.md)
+> * Java SDK: [Encrypting Your Data](../../../../java-sdk/current/howtos/encrypting-using-sdk.md)
+> * Python SDK: [Encrypting Your Data](../../../../python-sdk/current/howtos/encrypting-using-sdk.md)
 
 ## [](#keys)Encryption-at-Rest Keys
 
@@ -32,11 +49,16 @@ Each bucket can have its own encryption key. This configuration is useful in mul
 
 In addition to data, you can encrypt audit, logs, and most configuration data. You enable the encryption of each of these types of data separately. You can use either an encryption-at-rest key or the master password to encrypt data. By default, Couchbase Server uses the master password to encrypt configuration data. Couchbase Server does not set the master password by default. You must set it on each node in the cluster. See [Setting the Master Password](../../manage/manage-security/manage-system-secrets.md#setting-the-master-password) for more information about the master password.
 
-|  | You may notice that Couchbase Server reports that he the configuration data is partially encrypted using the master password, even if you have not set it. When you first create the Couchbase Cluster, the master password is set to the empty string (""). Couchbase Server uses this empty password to encrypt the configuration data. Because the password is known, the encryption does not provide any security. Be sure to set the master password on each node in the cluster to ensure that the configuration data is encrypted with a secure password. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You may notice that Couchbase Server reports that he the configuration data is partially encrypted using the master password, even if you have not set it. When you first create the Couchbase Cluster, the master password is set to the empty string (`""`). Couchbase Server uses this empty password to encrypt the configuration data. Because the password is known, the encryption does not provide any security. Be sure to set the master password on each node in the cluster to ensure that the configuration data is encrypted with a secure password.
 
-|  | Some configuration data cannot be encrypted. This includes: Bootstrap information. Node and internal client certificates. Prometheus configuration, metric data, and tokens used to gather metrics. Logs of some services are not encrypted by NS Server. For example, Analytics log files such as analytics\_debug.log and analytics\_periodic\_dump.log remain unencrypted even when encryption-at-rest for logs is enabled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * Some configuration data cannot be encrypted. This includes:
+> 
+>   * Bootstrap information.
+>   * Node and internal client certificates.
+>   * Prometheus configuration, metric data, and tokens used to gather metrics.
+> * Logs of some services are not encrypted by NS Server. For example, Analytics log files such as `analytics_debug.log` and `analytics_periodic_dump.log` remain unencrypted even when encryption-at-rest for logs is enabled.
 
 ## [](#when-data-is-encrypted)When Couchbase Server Encrypts Data
 
@@ -68,8 +90,14 @@ KMSs that support Key Management Interoperability Protocol (KMIP)
 
 [KMIP](https://en.wikipedia.org/wiki/Key%5FManagement%5FInteroperability%5FProtocol) is a standards protocol implemented by key management services. Couchbase Server can work with any KMS that implements this standard. As with AWS KMS, using a KMIP-compliant KMS enhances security by storing the encryption keys remotely instead of locally in the cluster. It also has the same downside—​Couchbase Server may report errors due to KMS downtime or network issues.
 
-|  | Remote KMS Best Practice Do not assign encryption keys managed by AWS KMS or a KMIP KMS to encrypt Couchbase Server data. When you assign an encryption key to encrypt a particular type of data, Couchbase Server uses the key to encrypt the DEKs each node uses to encrypt the data. If a DEK is encrypted with a key managed by an external KMS, Couchbase Server has to send a request to the KMS to decrypt the DEK. These requests to a remote KMS can take less than a second. However, a starting cluster needs to decrypt all of the DEKs on all nodes. The volume of these synchronous requests can result in a significant delay in starting the cluster. To avoid this issue, only use AWS KMS or a KMIP KMS encryption keys to encrypt encryption-at-rest keys managed by Couchbase Server. You then assign these Couchbase Server managed keys to encrypt data. This method reduces the number of requests to the remote KMS. Once Couchbase Server has the KMS decrypt its encryption keys, it can decrypt the DEKs locally. See [Using Multiple KMSs and Multiple Keys](#kms-and-keys) for more information about using multiple KMSs and multiple keys. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Remote KMS Best Practice
+> 
+> Do not assign encryption keys managed by AWS KMS or a KMIP KMS to encrypt Couchbase Server data. When you assign an encryption key to encrypt a particular type of data, Couchbase Server uses the key to encrypt the DEKs each node uses to encrypt the data. If a DEK is encrypted with a key managed by an external KMS, Couchbase Server has to send a request to the KMS to decrypt the DEK. These requests to a remote KMS can take less than a second. However, a starting cluster needs to decrypt all of the DEKs on all nodes. The volume of these synchronous requests can result in a significant delay in starting the cluster.
+> 
+> To avoid this issue, only use AWS KMS or a KMIP KMS encryption keys to encrypt encryption-at-rest keys managed by Couchbase Server. You then assign these Couchbase Server managed keys to encrypt data. This method reduces the number of requests to the remote KMS. Once Couchbase Server has the KMS decrypt its encryption keys, it can decrypt the DEKs locally.
+> 
+> See [Using Multiple KMSs and Multiple Keys](#kms-and-keys) for more information about using multiple KMSs and multiple keys.
 
 ## [](#kms-and-keys)Using Multiple KMSs and Multiple Keys
 

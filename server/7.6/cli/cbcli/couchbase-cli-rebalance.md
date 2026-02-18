@@ -1,4 +1,13 @@
+---
+title: rebalance
+description: Rebalances data and indexes across nodes in a cluster
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-rebalance.html)
+
+# rebalance
 
 Rebalances data and indexes across nodes in a cluster
 

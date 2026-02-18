@@ -1,4 +1,15 @@
+---
+title: Fail a Node Over and Rebalance
+description: Nodes can be <em>failed over</em>, and thereby removed safely from
+  a cluster in the event of unavoidable downtime, without any break in the
+  serving of data to applications.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-nodes/fail-nodes-over.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-nodes/fail-nodes-over.html)
+
+# Fail a Node Over and Rebalance
 
 > Nodes can be _failed over_, and thereby removed safely from a cluster in the event of unavoidable downtime, without any break in the serving of data to applications. 
 

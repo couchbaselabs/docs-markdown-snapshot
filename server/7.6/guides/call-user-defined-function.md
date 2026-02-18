@@ -1,4 +1,13 @@
+---
+title: Calling a User-Defined Function
+description: How to call a user-defined function from SQL++ statements.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/call-user-defined-function.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/call-user-defined-function.html)
+
+# Calling a User-Defined Function
 
 > How to call a user-defined function from SQL++ statements. 
 
@@ -37,8 +46,16 @@ Run the `EXECUTE FUNCTION` function in the CBQ Shell.
 EXECUTE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays("03/10/2022", "05/10.2022");
 ```
 
-|  | The SQL++ user-defined function can be used in any SQL++ statement in exactly the same way as a standard built-in function. SELECT CASE    WHEN  GetBusinessDays('02/14/2022', '4/16/2022') > 44 THEN "true"    ELSE "false"    END    AS response; |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SQL++ user-defined function can be used in any SQL++ statement in exactly the same way as a standard built-in function.
+> 
+> ```sqlpp
+> SELECT CASE 
+>   WHEN  GetBusinessDays('02/14/2022', '4/16/2022') > 44 THEN "true" 
+>   ELSE "false" 
+>   END 
+>   AS response;
+> ```
 
 ## [](#related-links)Related Links
 

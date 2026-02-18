@@ -1,4 +1,12 @@
+---
+title: How to mitigate Split Lock Issues
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-splitlock-mitigation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install-splitlock-mitigation.html)
+
+# How to mitigate Split Lock Issues
 
 > Disable Linux split lock mitigation on systems where it causes performance degradation with Couchbase Server. 
 
@@ -32,10 +40,9 @@ sudo update-grub
 1. Run the following command to disable mitigation via `/proc`:  
 ```bash  
 echo 0 | sudo tee /proc/sys/kernel/split_lock_mitigate  
-```
-
-|  | This change does not persist across reboots. To make it permanent, add this command to a startup script or use the kernel boot parameter method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+```  
+> [!NOTE]  
+> This change does not persist across reboots. To make it permanent, add this command to a startup script or use the kernel boot parameter method.
 2. Verify the setting was applied:  
 ```bash  
 cat /proc/sys/kernel/split_lock_mitigate  

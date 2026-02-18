@@ -1,4 +1,14 @@
+---
+title: Failover
+description: <em>Failover</em> is a process whereby a node can be taken out of a
+  Couchbase cluster with speed.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/failover.html)
+
+# Failover
 
 > _Failover_ is a process whereby a node can be taken out of a Couchbase cluster with speed. 
 
@@ -13,8 +23,10 @@ Hard failover should _not_ be used on a responsive node, since this may disrupt 
 
 Graceful failover _must_ be manually initiated. Hard failover _can_ be manually initiated. Hard failover can also be initiated automatically by Couchbase Server: this is known as _automatic_ failover. The Cluster Manager detects the unavailability of a node, and duly initiates a _hard_ failover, without administrator intervention.
 
-|  | When a node is failed over, some replica vBuckets on the remaining nodes are promoted to active status but are not recreated as new replicas. As a result, the cluster temporarily loses those replica copies. In contrast, when a node is removed, the cluster automatically restores any replica vBuckets that would otherwise be lost during [removal](removal.md). This preserves the cluster’s data availability level, but increases memory resource usage on the surviving nodes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When a node is failed over, some replica vBuckets on the remaining nodes are promoted to active status but are not recreated as new replicas. As a result, the cluster temporarily loses those replica copies.
+> 
+> In contrast, when a node is removed, the cluster automatically restores any replica vBuckets that would otherwise be lost during [removal](removal.md). This preserves the cluster’s data availability level, but increases memory resource usage on the surviving nodes.
 
 Ideally, after any failover, [rebalance](rebalance.md) should be performed. This is especially important when a Data Service node has been failed over, since the rebalance will ensure an optimal ratio of active to replica vBuckets across all the remaining Data Service nodes.
 

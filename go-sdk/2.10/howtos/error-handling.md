@@ -1,4 +1,14 @@
+---
+title: Handling Errors
+description: Errors are inevitable. The developer’s job is to be prepared for
+  whatever is likely to come up
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.10/howtos/error-handling.html)
+
+# Handling Errors
 
 > Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 

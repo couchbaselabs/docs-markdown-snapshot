@@ -1,4 +1,15 @@
+---
+title: Array Indexing
+description: Array Indexing adds the capability to create global indexes on
+  array elements and optimizes the execution of queries involving array
+  elements.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/indexing-arrays.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/indexing-arrays.html)
+
+# Array Indexing
 
 Array Indexing adds the capability to create global indexes on array elements and optimizes the execution of queries involving array elements.
 
@@ -28,8 +39,16 @@ array-expr
 
 An array expression. Refer to [Array Expression](#array-expr) below.
 
-|  | Array Index Key Currently, the index definition for an array index may only contain one array index key. However, the array index key may index more than one field or expression within the array, as described below. For an UNNEST scan to use an array index, the array index key containing the appropriate array expression must be the _leading key_ of the index definition. The UNNEST scan can generate index spans on other non-leading index keys when appropriate predicates exist. In order for the optimizer to select the correct array index for a SELECT, UPDATE, or DELETE statement, the query predicate which appears in the WHERE clause must be constructed to match the format of the array index key. See [Format of Query Predicate](#query-predicate-format) for details. You can add the INCLUDE MISSING modifier to a leading array index key, just as you can with any other leading index key, in order to index documents in which the specified array is missing. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Array Index Key
+> 
+> Currently, the index definition for an array index may only contain one array index key. However, the array index key may index more than one field or expression within the array, as described below.
+> 
+> For an UNNEST scan to use an array index, the array index key containing the appropriate array expression must be the _leading key_ of the index definition. The UNNEST scan can generate index spans on other non-leading index keys when appropriate predicates exist.
+> 
+> In order for the optimizer to select the correct array index for a SELECT, UPDATE, or DELETE statement, the query predicate which appears in the WHERE clause must be constructed to match the format of the array index key. See [Format of Query Predicate](#query-predicate-format) for details.
+> 
+> You can add the `INCLUDE MISSING` modifier to a leading array index key, just as you can with any other leading index key, in order to index documents in which the specified array is missing.
 
 ### [](#array-expr)Array Expression
 
@@ -69,8 +88,16 @@ cond
 
 Specifies predicates to qualify the subset of documents to include in the index array.
 
-|  | Variable Expression You can index one or more expressions _within_ the array (up to maximum of 32) by using the [FLATTEN\_KEYS()](metafun.md#flatten%5Fkeys) function in the var-expr. This function flattens expressions within the array, as if they were separate index keys; and all subsequent index keys are accordingly moved to the right. Queries will be [sargable](selectintro.md#index-selection) and will generate spans. Refer to [Format of Query Predicate](#query-predicate-format) below. The var-expr itself may be a nested [array expression](#array-expr). This enables creating array indexes on nested array fields. Refer to [Example 6](#example-5) below. To create an array index involving multiple array elements or multiple arrays, you may construct the var-expr as a compound object constituted with different elements of the same array or multiple arrays. Refer to [Example 7](#example-6) below. You can add the INCLUDE MISSING modifier to the first argument in the [FLATTEN\_KEYS()](metafun.md#flatten%5Fkeys) function, in order to index array elements in which the specified field is missing. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Variable Expression
+> 
+> You can index one or more expressions _within_ the array (up to maximum of 32) by using the [FLATTEN\_KEYS()](metafun.md#flatten%5Fkeys) function in the `var-expr`. This function flattens expressions within the array, as if they were separate index keys; and all subsequent index keys are accordingly moved to the right. Queries will be [sargable](selectintro.md#index-selection) and will generate spans. Refer to [Format of Query Predicate](#query-predicate-format) below.
+> 
+> The `var-expr` itself may be a nested [array expression](#array-expr). This enables creating array indexes on nested array fields. Refer to [Example 6](#example-5) below.
+> 
+> To create an array index involving multiple array elements or multiple arrays, you may construct the `var-expr` as a compound object constituted with different elements of the same array or multiple arrays. Refer to [Example 7](#example-6) below.
+> 
+> You can add the `INCLUDE MISSING` modifier to the first argument in the [FLATTEN\_KEYS()](metafun.md#flatten%5Fkeys) function, in order to index array elements in which the specified field is missing.
 
 #### [](#simple-array-expr)Simple Array Expression
 
@@ -297,8 +324,8 @@ AND ANY v IN schedule SATISFIES v.flight LIKE 'FL%' END;
 
 Example 6\. Nested array index
 
-|  | Please note that the example below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the example below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 Update: Create a nested array
 
@@ -584,8 +611,12 @@ Result
 ]
 ```
 
-|  | In this example, [Query A](#Q8A) has the following limitation: the collection operator EVERY cannot use array indexes or covering array indexes because the EVERY operator needs to apply the SATISFIES predicate to all elements in the array, including the case where an array has zero elements. As items cannot be indexed, it is not possible to index MISSING items, so the EVERY operator is evaluated in the SQL++ engine and cannot leverage the array index scan. For example, [Query D](#Q8D) below uses the primary index def\_inventory\_route\_primary ignoring the [USE INDEX](hints.md#use-index-clause) hint to use the array indexes. (Note that in this example, [Index I](#C8i) defines a DISTINCT array index while [Index II](#C8ii) defines an ALL array index, and both are ignored). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In this example, [Query A](#Q8A) has the following limitation: the collection operator EVERY cannot use array indexes or covering array indexes because the EVERY operator needs to apply the SATISFIES predicate to all elements in the array, including the case where an array has zero elements.
+> 
+> As items cannot be indexed, it is not possible to index MISSING items, so the EVERY operator is evaluated in the SQL++ engine and cannot leverage the array index scan.
+> 
+> For example, [Query D](#Q8D) below uses the primary index `def_inventory_route_primary` ignoring the [USE INDEX](hints.md#use-index-clause) hint to use the array indexes. (Note that in this example, [Index I](#C8i) defines a DISTINCT array index while [Index II](#C8ii) defines an ALL array index, and both are ignored).
 
 Index II: Non-array index with an ALL array index
 
@@ -814,5 +845,5 @@ __Table 1\. SQL++-supported collection operators__
 | **ANY AND EVERY**                       | ✓ (both ALL & DISTINCT)                       | ✓ (both ALL & DISTINCT)                              | ✘                                                                |
 | **EVERY**                               | ✘                                             | ✘                                                    | ✘                                                                |
 
-|  | In Couchbase Server 6.5 and later, you can use any arbitrary alias for the right side of an UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Server 6.5 and later, you can use any arbitrary alias for the right side of an UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index.

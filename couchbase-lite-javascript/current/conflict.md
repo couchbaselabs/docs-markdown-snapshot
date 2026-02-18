@@ -1,4 +1,13 @@
+---
+title: Handling Data Conflicts
+description: Couchbase Lite JavaScript -- Handling conflict between data changes
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/conflict.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/conflict.html)
+
+# Handling Data Conflicts
 
 > Description — _Couchbase Lite JavaScript — Handling conflict between data changes_  
 > Related Content — [Remote Sync Gateway](replication.md) | [CORS Configuration](cors-configuration.md)
@@ -12,13 +21,15 @@ Such conflicts can occur after either of the following events:
 * **A replication saves a document change** — in which case the change with the _most-revisions wins_ (unless one change is a delete). See [Case 1: Conflicts when a replication is in progress](#lbl-conflicts-when-replicating)
 * **An application saves a document change directly to a database instance** — in which case, _last write wins_, unless one change is a delete — see [Case 2: Conflicts when saving a document](#conflicts-when-saving)
 
-|  | **_Deletes_ always win.** So, in either of the above cases, if one of the changes was a _Delete_ then that change wins. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> **_Deletes_ always win.** So, in either of the above cases, if one of the changes was a _Delete_ then that change wins.
 
 The following sections discuss each scenario in more detail.
 
-|  | Dive deeper …​Read more about [Document Conflicts and Automatic Conflict Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Dive deeper …​
+> 
+> Read more about [Document Conflicts and Automatic Conflict Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile).
 
 ## [](#lbl-conflicts-when-replicating)Conflicts when Replicating
 
@@ -37,8 +48,8 @@ This device already has _ChangeY_ and now Bob’s local document is in conflict.
 
 ### [](#automatic-conflict-resolution)Automatic Conflict Resolution
 
-|  | The rules only apply to conflicts caused by replication. Conflict resolution takes place exclusively during pull replication, while push replication remains unaffected. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The rules only apply to conflicts caused by replication. Conflict resolution takes place exclusively during pull replication, while push replication remains unaffected.
 
 Couchbase Lite uses the following rules to handle conflicts such as those described in [Example 1](#typical-conflict-scenario):
 
@@ -55,8 +66,8 @@ Application developers who want more control over how document conflicts are han
 
 If a custom conflict resolver is not provided, the system will automatically resolve conflicts as discussed in [Automatic Conflict Resolution](#automatic-conflict-resolution).
 
-|  | Custom conflict handlers should be optimized and fast. Time-consuming conflict resolution can slow down the replication process significantly. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Custom conflict handlers should be optimized and fast. Time-consuming conflict resolution can slow down the replication process significantly.
 
 To implement custom conflict resolution during replication, you create a conflict resolver function and configure it on the replicator.
 

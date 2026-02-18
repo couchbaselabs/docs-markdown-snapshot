@@ -1,4 +1,12 @@
+---
+title: Geospatial Geopoint Queries
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-geopoint-spatial.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-geopoint-spatial.html)
+
+# Geospatial Geopoint Queries
 
 > _Geospatial_ geopoint queries return documents that contain location. Each document specifies a geographical location. 
 
@@ -221,8 +229,8 @@ This is all you need to specify in order to create a more advanced index for tes
 * If you subsequently Edit your Index it should look like the following:  
 ![fts edit index geopoint](_images/fts-edit-index-geopoint.png)
 
-|  | Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. However this index can be edited and optimized if you check **\[X\] only index specified fields** under the Type Mappings section. This will result in a much smaller index and a faster index build since only the field **geo** will be indexed in the set of documents. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. However this index can be edited and optimized if you check **\[X\] only index specified fields** under the Type Mappings section. This will result in a much smaller index and a faster index build since only the field **geo** will be indexed in the set of documents.
 
 The index once created can also be accessed by means of the Search REST API see [Searching with the REST API](fts-searching-with-curl-http-requests.md). Furthermore the index could have been created in the first place via the Search REST API see [Index Creation with REST API](fts-creating-index-with-rest-api.md) for more information on using the Search REST API syntax.
 
@@ -304,8 +312,8 @@ curl -XPOST -H "Content-Type: application/json" \
 
 If you copy and then run the above cURL command via the console the response from the Search service will report that there are 847 total\_hits but only return the first 10 hits. A subset of formatted console output might appear as follows:
 
-|  | To pretty print the response just pipe the output through the utility **[jq](http://stedolan.github.io/jq)** to enhance readability. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> To pretty print the response just pipe the output through the utility **[jq](http://stedolan.github.io/jq)** to enhance readability.
 
 ```json
 "hits": [
@@ -455,8 +463,8 @@ A subset of formatted output might appear as follows:
 ]
 ```
 
-|  | When we sort on a string that uses the default analyzer that string is tokenized and you may get unexpected results as you are sorting on the tokenized field. If you want to sort on the actual text in the field should use the **analyzer: "keyword"** to sort by the original text in the field. In addition if you want to include the keyword in the index itself you will need to check **\[X\] store** or check **\[X\] docvalues**. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When we sort on a string that uses the default analyzer that string is tokenized and you may get unexpected results as you are sorting on the tokenized field. If you want to sort on the actual text in the field should use the **analyzer: "keyword"** to sort by the original text in the field. In addition if you want to include the keyword in the index itself you will need to check **\[X\] store** or check **\[X\] docvalues**.
 
 ## [](#sorting-by-keywords)Sorting by Keywords
 

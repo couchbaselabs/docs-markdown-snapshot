@@ -1,4 +1,14 @@
+---
+title: Create a Synonym Collection and Documents
+description: Create a synonym collection and documents to define synonym
+  mappings for search terms in a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/create-synonym-collection-docs-quick.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/synonyms/create-synonym-collection-docs-quick.html)
+
+# Create a Synonym Collection and Documents
 
 > Create a synonym collection and documents to define synonym mappings for search terms in a Search index. 
 
@@ -22,8 +32,8 @@ To define the synonym mappings for a Search index, you must:
 
 You can create a synonym collection like any other collection in Couchbase Server. Create synonym collections to divide your synonyms based on language or other sorting criteria.
 
-|  | You must create your synonym collections in the same bucket and scope where you want to create your Search index. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must create your synonym collections in the same bucket and scope where you want to create your Search index.
 
 For more information about how to create a new collection, see [Manage Scopes and Collections](../../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
@@ -61,8 +71,8 @@ For example, a unidirectional synonym document for synonyms of the terms `happy`
 
 A search for `happy` could return results for `content`, `delighted`, `elated`, `glad`, or `pleased`. A search for `cheerful` would not return results for `happy`.
 
-|  | You can only include a single input and synonyms array per unidirectional synonym document. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only include a single `input` and `synonyms` array per unidirectional synonym document.
 
 To insert a new document into your cluster with a command line tool or SDK, see [Create Documents](../../guides/creating-data.md).
 
@@ -91,8 +101,8 @@ For example, a bidirectional synonym document for synonyms of the word `happy` c
 
 A search for `cheerful`, `happy`, or 1 of the other terms in the array could return results for any other term.
 
-|  | You can only include a single synonyms array per bidirectional synonym document. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only include a single `synonyms` array per bidirectional synonym document.
 
 To insert a new document into your cluster with a command line tool or SDK, see [Create Documents](../../guides/creating-data.md).
 

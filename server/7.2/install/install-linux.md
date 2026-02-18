@@ -1,4 +1,14 @@
+---
+title: Install Couchbase Server on Linux
+description: Couchbase Server can be installed and run on several different
+  versions of Linux.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-linux.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/install-linux.html)
+
+# Install Couchbase Server on Linux
 
 > Couchbase Server can be installed and run on several different versions of Linux. 
 

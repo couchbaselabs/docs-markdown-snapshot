@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/index.html). 
 
@@ -16,8 +26,8 @@ Management operations in the SDK may be performed through several interfaces dep
 * ICouchbaseCollectionManager — [Bucket.Collections](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.IBucket.html#Couchbase%5FIBucket%5FCollections)
 * IViewIndexManager — [Bucket.ViewIndexes](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.IBucket.html#Couchbase%5FIBucket%5FViewIndexes)
 
-|  | When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using Cluster.Bucket(name) before you can use cluster level managers. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster.Bucket(name)` before you can use cluster level managers.
 
 ## [](#bucket-management)Bucket Management
 
@@ -30,8 +40,8 @@ var bucketMgr = cluster.Buckets;
 
 The `BucketSettings` object is used for creating or updating buckets, and for exposing information about existing buckets.
 
-|  | Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 Here is the list of parameters available:
 
@@ -205,16 +215,16 @@ var collection = await scope.CollectionAsync("users");
 var queryIndexMgr = collection.QueryIndexes;
 ```
 
-|  | The ICollectionQueryIndexManager can only manage indexes in the keyspace it’s set on. You must create another Query Manager interface to manage indexes on a different keyspace. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `ICollectionQueryIndexManager` can only manage indexes in the keyspace it’s set on. You must create another Query Manager interface to manage indexes on a different keyspace.
 
 Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
 
 * A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
-|  | To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.
 
 The following example shows how to create a primary index, by calling the `CreatePrimaryIndexAsync()` method.
 
@@ -335,8 +345,12 @@ var designDocument = new DesignDocument { Name = "landmarks", Views = views };
 await viewMgr.UpsertDesignDocumentAsync(designDocument, DesignDocumentNamespace.Development);
 ```
 
-|  | When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the UpsertDesignDocumentAsync method. However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased! The solution is to perform a GetDesignDocumentAsync, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the map or reduce functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the `UpsertDesignDocumentAsync` method.
+> 
+> However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased!
+> 
+> The solution is to perform a `GetDesignDocumentAsync`, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
 
 Note the use of `DesignDocumentNamespace.Development`, the other option is `DesignDocumentNamespace.Production`. This parameter specifies whether the design document should be created as development, or as production — with the former running over only a small fraction of the documents.
 

@@ -1,4 +1,14 @@
+---
+title: Metrics Reporting
+description: Individual request tracing presents a very specific (though
+  isolated) view of the system.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/observability-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.1/howtos/observability-metrics.html)
+
+# Metrics Reporting
 
 > Individual request tracing presents a very specific (though isolated) view of the system. 
 

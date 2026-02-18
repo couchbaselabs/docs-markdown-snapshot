@@ -1,4 +1,12 @@
+---
+title: Couchbase Encryption At Rest
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-encryption-at-rest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-encryption-at-rest.html)
+
+# Couchbase Encryption At Rest
 
 > How to configure Couchbase Server with encryption at rest. This guide covers operator-managed keys, AWS KMS-backed keys, and KMIP-backed keys, 
 
@@ -381,8 +389,8 @@ spec:
 | **5** | Enable encryption for audit logs.                                                                                  |
 | **6** | Enable encryption for log files.                                                                                   |
 
-|  | Enabling encryption for log files will break fluent-bit log streaming, as the logs will be encrypted and unreadable by the log collector. Only enable log encryption if you don’t rely on log streaming. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Enabling encryption for log files will break fluent-bit log streaming, as the logs will be encrypted and unreadable by the log collector. Only enable log encryption if you don’t rely on log streaming.
 
 ### [](#using-default-encryption-master-password)Using Default Encryption (Master Password)
 

@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/current/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html). 
 
@@ -6,8 +16,12 @@ The primary means for managing clusters is through the Couchbase Web UI which pr
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
-|  | Managing Capella Clusters This part of the SDK API predates the Capella Management API, and is only intended to work with self-managed Couchbase Server clusters. Management of your Capella Operational cluster is available away from the Web UI with the [Capella Management API](../../../cloud/management-api-guide/management-api-intro.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Managing Capella Clusters
+> 
+> This part of the SDK API predates the Capella Management API, and is only intended to work with self-managed Couchbase Server clusters.
+> 
+> Management of your Capella Operational cluster is available away from the Web UI with the [Capella Management API](../../../cloud/management-api-guide/management-api-intro.md).
 
 Management operations in the SDK may be performed through several interfaces depending on the object:
 
@@ -19,15 +33,15 @@ Management operations in the SDK may be performed through several interfaces dep
 * CollectionManager — `Couchbase::Management::CollectionManager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html).
 * ViewIndexManager — `Couchbase::Management::ViewIndexManager` — see [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/ViewIndexManager.html).
 
-|  | When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using cluster.Bucket(name) before you can use cluster level managers. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use cluster level managers.
 
 ## [](#creating-and-removing-buckets)Creating and Removing Buckets
 
 The [BucketManager](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html) interface may be used to create and delete buckets from the Couchbase cluster. It is instantiated through the `#create_bucket()` method.
 
-|  | Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketSettings.html) for a full list of settings options.
 

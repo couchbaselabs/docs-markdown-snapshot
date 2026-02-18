@@ -1,4 +1,15 @@
+---
+title: Cross Data Center Replication (XDCR)
+description: <em>Cross Data Center Replication</em> (XDCR) allows data to be
+  replicated across clusters that are potentially located in different data
+  centers.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/xdcr-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/clusters-and-availability/xdcr-overview.html)
+
+# Cross Data Center Replication (XDCR)
 
 > _Cross Data Center Replication_ (XDCR) allows data to be replicated across clusters that are potentially located in different data centers. 
 
@@ -74,10 +85,11 @@ XDCR supports _scopes_ and _collections_, which are provided with Couchbase Serv
 
 * Replication based on _implicit mapping_. Whenever a _keyspace_ (i.e. a reference to the location of a collection within its scope, provided as _scope-name_._collection-name_) is identical on source and target clusters, XDCR replicates documents from the source collection to the target collection automatically, when the respective buckets are specified as source and target.
 * Replicaton based on _explicit_ mapping. The data in any source collection can be replicated to any target collection, as specified by the administrator.
-* _Migration_. Data in the _default_ collection of a source bucket can be replicated to an administrator-defined collection in the target bucket.
-
-|  | Be aware that performing data migration may result in data loss when using XDCR filters to delete data. If you are running filters that remove data, be sure to read [Configuring Deletion Filters to Prevent Data-Loss](xdcr-filtering.md#configuring-deletion-filters-to-prevent-data-loss) before attempting a migration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* _Migration_. Data in the _default_ collection of a source bucket can be replicated to an administrator-defined collection in the target bucket.  
+> [!WARNING]  
+> Be aware that performing data migration may result in data loss when using XDCR filters to delete data.  
+>  
+> If you are running filters that remove data, be sure to read [Configuring Deletion Filters to Prevent Data-Loss](xdcr-filtering.md#configuring-deletion-filters-to-prevent-data-loss) before attempting a migration.
 
 In each case, _filtering_ can be applied.
 

@@ -1,4 +1,13 @@
+---
+title: Extended Attributes (XATTRs)
+description: Use Extended Attributes (XATTRs) to manage access control in App Services.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/xattrs-for-app-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/xattrs-for-app-services.html)
+
+# Extended Attributes (XATTRs)
 
 > Use Extended Attributes (XATTRs) to manage access control in App Services. 
 
@@ -44,8 +53,8 @@ Assign values to your XATTR property, with the [Couchbase SDKs.](#cloud:home::sd
 
 * **SDK API**: The Couchbase Server SDK API provides the necessary functions to set XATTR values.
 
-|  | You can’t set XATTR values using the APP Services REST API. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> You can’t set XATTR values using the APP Services REST API.
 
 This example shows how XATTR values can be set and maintained using the Couchbase Server .Net SDK.
 
@@ -145,8 +154,8 @@ namespace examples
   * You can store channels you want to include as the XATTR value via a `String Array` as shown in `channelXattrValue`.
 * You can then get all documents that you want to set the XATTR on (type = 'hotel' in this instance).
 
-|  | It is best practice to check if the XATTR has been defined before performing operations on it. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is best practice to check if the XATTR has been defined before performing operations on it.
 
 * Once the documents have been retrieved, you can perform operations on them asynchronously.
 
@@ -202,10 +211,9 @@ You can navigate to the Access Control and Data Validation Function with the Cap
 Figure 1\. Select App Endpoint
 2. Go to **Security** **Access and Validation**.  
 ![Updating the Access Control and Data Validation function](../_images/app-endpoint/xattr-access-control-data-validation.png)  
-Figure 2\. Updating the Access Control and Data Validation Function
-
-|  | The Capella UI checks that the JavaScript function is valid when you click **Apply**. You can restore the function to its original default by clicking **Restore to Default**. The default function performs no validation. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Figure 2\. Updating the Access Control and Data Validation Function  
+> [!NOTE]  
+> The Capella UI checks that the JavaScript function is valid when you click **Apply**. You can restore the function to its original default by clicking **Restore to Default**. The default function performs no validation.
 
 ## [](#see-also)See Also
 

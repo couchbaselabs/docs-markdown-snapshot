@@ -1,4 +1,14 @@
+---
+title: Add a Capella Cluster to a Prometheus Server
+description: Connect a Prometheus server to your Couchbase Capella cluster and
+  collect metrics.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/prometheus.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/prometheus.html)
+
+# Add a Capella Cluster to a Prometheus Server
 
 > Connect a Prometheus server to your Couchbase Capella cluster and collect metrics. 
 
@@ -23,8 +33,8 @@ To define a collection metrics configuration:
 1. Create a collection [configuration file](#configuration-file) in your Prometheus directory.  
 For more information, see the [Collecting Cluster Metrics Blog](https://www.couchbase.com/blog/scraping-database-metrics-from-couchbase-capella-with-prometheus/) and [Configure Prometheus to Collect Couchbase Metrics](../../../server/current/manage/monitor/set-up-prometheus-for-monitoring.md).
 
-|  | To collect metrics over a private endpoint, see [Enable Metrics over Private Endpoints](#metrics-pe). |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To collect metrics over a private endpoint, see [Enable Metrics over Private Endpoints](#metrics-pe).
 
 ### [](#configuration-file)Use the Sample Configuration File
 
@@ -60,8 +70,8 @@ The sample configuration file contains the following information:
 
 ### [](#metrics-pe)Collect Metrics over Private Endpoints
 
-|  | Collecting Prometheus metrics over private endpoints is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Collecting Prometheus metrics over private endpoints is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket).
 
 To collect metrics over a private endpoint connection, your cluster’s configuration must meet specific requirements. If your configurations do not meet the requirements, use [VPC Peering](#vpc-peering).
 

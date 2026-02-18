@@ -1,4 +1,14 @@
+---
+title: Indexing Metadata Information
+description: Couchbase Server allows indexing on selected metadata fields, for
+  example the expiration and CAS properties.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/indexing-meta-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/indexing-meta-info.html)
+
+# Indexing Metadata Information
 
 Couchbase Server allows indexing on selected metadata fields, for example the expiration and CAS properties. This improves performance of queries involving predicates on the metadata fields, such as expired documents or recently modified documents.
 

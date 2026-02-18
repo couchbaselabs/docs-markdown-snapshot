@@ -1,4 +1,14 @@
+---
+title: Role-Based Access Control (RBAC)
+description: Full  and Security Administrators can manage the Couchbase
+  <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rbac.html)
+
+# Role-Based Access Control (RBAC)
 
 > Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
 

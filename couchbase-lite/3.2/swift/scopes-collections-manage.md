@@ -1,4 +1,13 @@
+---
+title: Manage Scopes and Collections
+description: Scopes and collections allow you to organize your documents within a database.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/scopes-collections-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/swift/scopes-collections-manage.html)
+
+# Manage Scopes and Collections
 
 > Scopes and collections allow you to organize your documents within a database. 
 
@@ -38,8 +47,8 @@ Naming conventions for collections and scopes:
 * Scope names must be unique in databases.
 * Collection names must be unique within a scope.
 
-|  | Scope and collection names are case sensitive. |
-|  | ---------------------------------------------- |
+> [!NOTE]
+> Scope and collection names are case sensitive.
 
 Example 1\. Create a scope and collection
 
@@ -51,8 +60,8 @@ In the example above, you can see that `db.createCollection()` can take two para
 
 The second parameter is the name of the collection you want to create, in this case `Verlaine`. In the second section of the example you can see `db.createCollection("Television", "Verlaine")`. This creates the collection `Verlaine` and then checks to see if the scope `Television` exists. If the scope `Television` exists, the collection `Verlaine` is assigned to the scope `Television`. If not, a new scope, `Television` is created and then the collection `Verlaine` is assigned to it.
 
-|  | You cannot create an empty user-defined scope. A scope is implicitly created in the db.createCollection() method. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot create an empty user-defined scope. A scope is implicitly created in the `db.createCollection()` method.
 
 ## [](#index-a-collection)Index a Collection
 
@@ -71,8 +80,8 @@ Example 3\. Drop a Collection
 try database.deleteCollection(name: "myCollectionName", scope: "myScopeName")
 ```
 
-|  | There is no need to drop a user-defined scope. User-defined scopes are dropped when the collections associated with them contain no documents. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There is no need to drop a user-defined scope. User-defined scopes are dropped when the collections associated with them contain no documents.
 
 ## [](#list-scopes-and-collections)List Scopes and Collections
 

@@ -1,4 +1,12 @@
+---
+title: Concepts
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/concepts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/concept-docs/concepts.html)
+
+# Concepts
 
 The Couchbase SDK docs aim to be practical, and example-led, to get you working with any of our features as quickly as possible. At some point during your journey through these Howto docs, you may feel the need for a deeper dive into certain topics. This section contains discussion-style expansions of key Couchbase features, which go beyond the dry, bare-bones reference of the API docs, and aim to give a clear understanding of the chosen topic.
 

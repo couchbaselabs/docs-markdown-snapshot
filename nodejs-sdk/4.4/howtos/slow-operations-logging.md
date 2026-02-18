@@ -1,9 +1,19 @@
+---
+title: Slow Operations Logging
+description: Tracing information on slow operations can be found in the logs as
+  threshold logging, orphan logging, and other span metrics.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/slow-operations-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/howtos/slow-operations-logging.html)
+
+# Slow Operations Logging
 
 > Tracing information on slow operations can be found in the logs as threshold logging, orphan logging, and other span metrics. 
 
-|  | The Logging implementation has changed substantially in 4.x. There are currently no options for configuring tracing thresholds or the logging meter emit interval — only the defaults from the underlying C++ SDK are available. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Logging implementation has changed substantially in 4.x. There are currently no options for configuring tracing thresholds or the logging meter emit interval — only the defaults from the underlying C++ SDK are available.
 
 ## [](#orphaned-response-reporting)Orphaned Response Reporting
 

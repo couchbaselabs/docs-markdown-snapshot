@@ -1,4 +1,15 @@
+---
+title: Access Control How-To
+description: How to implement Sync Gateway access controls using Configuration
+  File, Admin REST API and-or the Sync Function to manage documents, users,
+  roles and channels
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/access-control-how.html)
+
+# Access Control How-To
 
 > How to implement Sync Gateway access controls using Configuration File, Admin REST API and-or the Sync Function to manage documents, users, roles and channels  
 > The sync function API provides several methods that you can use to validate and control user access to databases and documents.
@@ -49,8 +60,8 @@ Example 2\. How to Create Users
 
 Admin REST API
 
-|  | This is the default recommended option starting 3.0\. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> This is the default recommended option starting 3.0\.
 
 Create a new user by sending a POST request to the Admin Rest Api `_user` endpoint ([{db}/\_user/{name}](rest-api-admin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name)). Update existing users by sending a PUT request ([/{db}/\_user/{name}](rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name)); in this case include the user name at the end of the url.
 
@@ -270,9 +281,10 @@ You can assign (or remove) users to (or from) roles using any of the following m
 Assign a user to a role via the [Admin REST API](rest-api-admin.md)
 * Configuration Properties file (Pre v3.x+)  
 Roles can be configured within using the DB section — see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md).  
-
-|  | Persistent Configuration is enabled by default from 3.0. To continue using legacy Pre-3.0 configuration you should start _Sync Gateway_ with [disable-persistent-config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set true either in the configuration file or in [Command Line Options](command-line-options.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]  
+> Persistent Configuration is enabled by default from 3.0.  
+>  
+> To continue using legacy Pre-3.0 configuration you should start _Sync Gateway_ with [disable-persistent-config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](command-line-options.md).
 * Sync Function  
 Programmatically assign users to roles.
 
@@ -282,8 +294,8 @@ Example 4\. Assign user to role
 
 Admin REST API
 
-|  | The recommended method from 3.0 |
-|  | ------------------------------- |
+> [!NOTE]
+> The recommended method from 3.0
 
 Assign a user to a role by sending a PUT request to the Admin REST API `_user` endpoint ([/{db}/\_user/{name}](rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name) ).
 

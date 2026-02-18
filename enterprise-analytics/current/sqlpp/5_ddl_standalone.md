@@ -1,4 +1,14 @@
+---
+title: CREATE a Standalone Collection
+description: This topic describes how you use the <code>CREATE</code> statement
+  to create a standalone collection in Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_standalone.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_standalone.html)
+
+# CREATE a Standalone Collection
 
 > This topic describes how you use the `CREATE` statement to create a standalone collection in Enterprise Analytics. 
 
@@ -74,5 +84,5 @@ After you create a standalone collection, you can use the following DML statemen
 * [UPSERT INTO Statements](5%5Fdml%5Fupsert.md)
 * [DELETE Statements](5%5Fdml%5Fdelete.md)
 
-|  | As an alternative to using a CREATE statements followed by a DML statement, you can both create a standalone collection and populate it with the results of a query by using [CREATE COLLECTION AS](5%5Fdml%5Fcreate%5Fas.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> As an alternative to using a `CREATE` statements followed by a DML statement, you can both create a standalone collection and populate it with the results of a query by using [CREATE COLLECTION AS](5%5Fdml%5Fcreate%5Fas.md).

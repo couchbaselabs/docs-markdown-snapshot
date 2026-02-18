@@ -1,4 +1,14 @@
+---
+title: Overview
+description: A Enterprise Analytics Cluster can be created and managed by means
+  of the Enterprise Analytics Web Console, the CLI, and the REST API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/management-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/management-overview.html)
+
+# Overview
 
 > A Enterprise Analytics Cluster can be created and managed by means of the Enterprise Analytics Web Console, the CLI, and the REST API. 
 
@@ -20,8 +30,8 @@ The Enterprise Analytics Web Console is browser-based and requires administrator
 
 Enterprise Analytics enforces _Role-Based Access Control_ (RBAC), where all users are assigned _roles_ that correspond to specific _privileges_ on system resources. Credentials must be provided with each CLI or REST API call. Within the Enterprise Analytics Web Console, features such as node management and cluster monitoring are made available based on the authenticated user’s assigned roles. For more details, see [RBAC](manage-security/rbac-overview.md).
 
-|  | Both the Enterprise Analytics Web Console and CLI rely on the REST API for their operations, providing consistency across tools. Using the CLI with the \-d (debug) option reveals the underlying REST methods in the standard output, which can be useful for troubleshooting or scripting. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Both the Enterprise Analytics Web Console and CLI rely on the REST API for their operations, providing consistency across tools. Using the CLI with the `-d` (debug) option reveals the underlying REST methods in the standard output, which can be useful for troubleshooting or scripting.
 
 Similarly, browser _Developer Tools_ (such as those in _Chrome_) allow you to observe ongoing REST API calls while using the Enterprise Analytics Web Console, providing insights into cluster management and monitoring operations.
 

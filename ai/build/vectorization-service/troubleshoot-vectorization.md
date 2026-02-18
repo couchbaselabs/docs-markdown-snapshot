@@ -1,4 +1,15 @@
+---
+title: Troubleshoot a Workflow
+description: If your Capella AI Services Workflows complete with errors or have
+  documents that cannot be processed, you can query a document's extended
+  attributes (XATTRs) data for more information.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/troubleshoot-vectorization.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/vectorization-service/troubleshoot-vectorization.html)
+
+# Troubleshoot a Workflow
 
 > If your Capella AI Services Workflows complete with errors or have documents that cannot be processed, you can query a document’s extended attributes (XATTRs) data for more information. 
 
@@ -8,8 +19,8 @@ If your Workflow returns a `LCB_ERR_DURABILITY_AMBIGUOUS` error, see [Resolve a 
 
 For more information about Workflows, see [Process Your Data For Capella AI Services](data-processing.md).
 
-|  | If you deleted or modified your Workflow’s metadata scope, collections, or Eventing functions, your Workflow might fail to run correctly. You must delete the Workflow and create a new one. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you deleted or modified your Workflow’s metadata scope, collections, or Eventing functions, your Workflow might fail to run correctly. You must delete the Workflow and create a new one.
 
 ## [](#prerequisites)Prerequisites
 

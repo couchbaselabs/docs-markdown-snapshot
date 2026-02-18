@@ -1,4 +1,12 @@
+---
+title: Create a Database
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/csharp/create-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/develop/csharp/create-database.html)
+
+# Create a Database
 
 In this lesson you’ll be introduced to Couchbase Lite, our embedded NoSQL database. You’ll learn how to create a new embedded database and optionally use databases pre-packaged in your application.
 
@@ -35,5 +43,5 @@ if(newKey != null) {
 
 Here you’re using the `openDatabaseNamed` method where the database is the user currently logged in and `options.create` is set to `true`.
 
-|  | You can ignore the encryption flag. Database encryption will be covered in the [Adding Security](#csharp/adding-security.adoc) lesson. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can ignore the encryption flag. Database encryption will be covered in the [Adding Security](#csharp/adding-security.adoc) lesson.

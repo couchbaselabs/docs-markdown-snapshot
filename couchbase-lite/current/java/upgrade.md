@@ -1,7 +1,17 @@
+---
+title: Upgrade
+description: ""
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/java/upgrade.html)
 
-|  | On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.This can result in a delay before the database is usable. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Upgrade
+
+> [!IMPORTANT]
+> On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.  
+> This can result in a delay before the database is usable.
 
 ## [](#4-0-0-upgrade)4.0.0 Upgrade
 

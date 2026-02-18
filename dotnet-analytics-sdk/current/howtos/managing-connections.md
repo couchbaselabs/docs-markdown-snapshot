@@ -1,4 +1,14 @@
+---
+title: Managing Connections
+description: This section describes how to connect the .NET Analytics SDK to an
+  Analytics cluster.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the .NET Analytics SDK to an Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting remote connections during devlopment. 
 
@@ -24,8 +34,8 @@ var cluster = Cluster.Create(
     credential: credential);
 ```
 
-|  | Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ## [](#connection-strings)Connection Strings
 

@@ -1,4 +1,13 @@
+---
+title: Document Expiry
+description: Setting an expiry lets you control how long Couchbase keeps a document.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/document-expiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/howtos/document-expiry.html)
+
+# Document Expiry
 
 > Setting an expiry lets you control how long Couchbase keeps a document. 
 
@@ -52,8 +61,8 @@ Unresolved include directive in modules/howtos/pages/document-expiry.adoc - incl
 
 To get a document’s expiry, call the `get` method and pass `withExpiry = true`. The `get` method returns a `GetResult` object. The result’s `expiry` property tells you when the document expires.
 
-|  | If you do not pass withExpiry = true, the result’s expiry is Expiry.Unknown. The SDK only gets the expiry if you ask for it, because it’s faster to not get the expiry. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you do not pass `withExpiry = true`, the result’s `expiry` is `Expiry.Unknown`. The SDK only gets the expiry if you ask for it, because it’s faster to not get the expiry.
 
 If the expiry is an instance of `Expiry.None`, the document does not expire. If the expiry is an instance of `Expiry.Absolute`, the expiry’s `instant` property is when the document expires.
 
@@ -79,13 +88,13 @@ If you use Couchbase 7 or newer, this is easy. If you use an older version of Co
 Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
 ```
 
-|  | This example just shows how to use the preserveExpiry parameter. When you replace a document, it’s usually good to use [optimistic locking](kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two threads or computers change the same document at the same time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This example just shows how to use the `preserveExpiry` parameter. When you replace a document, it’s usually good to use [optimistic locking](kv-operations.md#optimistic-locking). Otherwise, changes might get lost if two threads or computers change the same document at the same time.
 
 Copy the `Collection.mutate` extension function from the [optimistic locking](kv-operations.md#collection-mutate) section. This function has a `preserveExpiry` parameter that works with any version of Couchbase Server.
 
-|  | A query that changes a document also removes the document expiry. If you use Couchbase Server 7.1 or later, you can change this behavior by passing preserveExpiry = true when calling the query method. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> A query that changes a document also removes the document expiry. If you use Couchbase Server 7.1 or later, you can change this behavior by passing `preserveExpiry = true` when calling the `query` method.
 
 ## [](#bucket-and-collection-maximum-time-to-live-ttl)Bucket and Collection Maximum Time-To-Live (TTL)
 

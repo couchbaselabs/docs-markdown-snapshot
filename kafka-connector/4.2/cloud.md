@@ -1,9 +1,17 @@
+---
+title: Couchbase Capella Support
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/cloud.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/4.2/cloud.html)
+
+# Couchbase Capella Support
 
 > Connecting to Couchbase Capella is very similar to connecting to any Couchbase cluster over an encrypted connection. This section explains how. 
 
-|  | You must use a Kafka connector version of **4.0.1 or higher**. Earlier versions will not work. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You must use a Kafka connector version of **4.0.1 or higher**. Earlier versions will not work.
 
 ## [](#before-you-start)Before You Start
 
@@ -35,8 +43,8 @@ Set the `**couchbase.trust.certificate.path**` property to the absolute filesyst
 
 Now you’re ready to connect to your Couchbase Capella cluster.
 
-|  | Alternatively, you can put the certificate in a trust store as decribed in the next section. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Alternatively, you can put the certificate in a trust store as decribed in the next section.
 
 ## [](#trust-store)Configuring Earlier Versions
 

@@ -1,4 +1,13 @@
+---
+title: Error Handling
+description: Handling transaction errors with Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/concept-docs/pages/transactions-error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.9/concept-docs/transactions-error-handling.html)
+
+# Error Handling
 
 > Handling transaction errors with Couchbase. 
 

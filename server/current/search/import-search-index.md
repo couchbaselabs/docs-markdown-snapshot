@@ -1,4 +1,14 @@
+---
+title: Import a Search Index Definition with the Web Console
+description: Use the Couchbase Server Web Console to import a JSON Search index
+  definition or Search index alias.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/import-search-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/import-search-index.html)
+
+# Import a Search Index Definition with the Web Console
 
 > Use the Couchbase Server Web Console to import a JSON Search index definition or Search index alias. 
 

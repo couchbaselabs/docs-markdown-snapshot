@@ -1,4 +1,13 @@
+---
+title: Deployment
+description: Transition from dev environment to prod, and keep up with the latest fixes.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-columnar-sdk/current/project-docs/deployment.html)
+
+# Deployment
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 
@@ -20,5 +29,9 @@ The Node.js Columnar SDK docs note whenever a shortcut is being taken, but here 
 
 The best way to accommodate developing an application that is to be deployed to production is to use the platform’s default approach for configuration files.
 
-|  | Don’t Mix Columnar & Operational SDKs. Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs. Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Don’t Mix Columnar & Operational SDKs.
+> 
+> Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
+> 
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.

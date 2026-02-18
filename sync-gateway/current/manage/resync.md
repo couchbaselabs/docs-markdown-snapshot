@@ -1,4 +1,13 @@
+---
+title: Resync
+description: Recalculating routing and data access following Sync Function changes
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/resync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/resync.html)
+
+# Resync
 
 > Recalculating routing and data access following Sync Function changes  
 > This content explains the resync feature
@@ -30,18 +39,18 @@ The Admin REST API provides a [POST /{db}/\_resync](../rest-api/rest%5Fapi%5Fadm
 
 The resync operation runs asynchronously. Use [GET /{db}/\_resync](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/get%5Fdb-%5Fresync) to monitor the current status of a resync operation.
 
-|  | When using nonpersistent (legacy) configuration, the resync action is carried out **only** on the node that the POST is made to. It is not cross-node aware. In a multi-node cluster, the resync must only run on 1 node. Starting resync on more than 1 node results in multiple instances running, with undefined system behavior. When using persistent configuration (default since Sync Gateway 3.0), resync operations work across all nodes automatically. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When using nonpersistent (legacy) configuration, the resync action is carried out **only** on the node that the POST is made to. It is not cross-node aware. In a multi-node cluster, the resync must only run on 1 node. Starting resync on more than 1 node results in multiple instances running, with undefined system behavior. When using persistent configuration (default since Sync Gateway 3.0), resync operations work across all nodes automatically.
 
-|  | There’s also a 'support-only' option to regenerate sequences while resyncing. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> There’s also a 'support-only' option to regenerate sequences while resyncing.
 
 ## [](#update-sync-function-and-resync)Update Sync Function and Resync
 
 This section describes how to update your Sync Function and perform a full resync of your database.
 
-|  | This is an expensive operation because the new function must process every document in the database. The database cannot accept requests until resync is complete because Sync Gateway cannot determine any user’s full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime while the database is offline. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an expensive operation because the new function must process every document in the database. The database cannot accept requests until resync is complete because Sync Gateway cannot determine any user’s full access privileges until it scans all documents. Therefore, the Sync Function update results in application downtime while the database is offline.
 
 * Persistent Configuration
 * Non-Persistent Configuration

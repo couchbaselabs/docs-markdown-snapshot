@@ -1,11 +1,22 @@
+---
+title: Limiting Views Requests
+description: To limit the number of simultaneous view request on a server node,
+  use the <code>POST /internalSettings</code> HTTP method and URI and a
+  port-related request parameter.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-views-requests.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-views-requests.html)
+
+# Limiting Views Requests
 
 > To limit the number of simultaneous view request on a server node, use the `POST /internalSettings` HTTP method and URI and a port-related request parameter. 
 
 ## [](#description)Description
 
-|  | The settings detailed on this page are meant for performance tuning. Rigorous and careful testing of any changes to these settings should be made in a non-production environment that is representative, in load and scale, of production data before implementing in production. Incorrect settings can cause severe impacts to cluster performance or operation due to resource consumption. Couchbase makes no recommendations for tuning beyond the default settings. Any changes to these settings not explicitly recommended by Couchbase Employees are not supported by Couchbase. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> The settings detailed on this page are meant for performance tuning. Rigorous and careful testing of any changes to these settings should be made in a non-production environment that is representative, in load and scale, of production data before implementing in production. Incorrect settings can cause severe impacts to cluster performance or operation due to resource consumption. Couchbase makes no recommendations for tuning beyond the default settings. Any changes to these settings not explicitly recommended by Couchbase Employees are not supported by Couchbase.
 
 Couchbase Server provides limits to incoming connections on a server node. The limits are to prevent the server from becoming overwhelmed. When a limit is exceeded, the server rejects the incoming connection, responds with a 503 HTTP status code, and sets the HTTP Retry-After header.
 
@@ -29,8 +40,8 @@ Maximum number of simultaneous connections each server node accepts on a CAPI po
 * dropRequestMemoryThresholdMiB  
 Value in MB. The maximum amount of memory that is used by Erlang VM. If the amount is exceeded, the server starts dropping incoming connections.
 
-|  | Keep the default setting unless you experience issues with too many requests impacting a node. If these thresholds are set too low, too many requests are rejected by the server, including requests from the Couchbase web console. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Keep the default setting unless you experience issues with too many requests impacting a node. If these thresholds are set too low, too many requests are rejected by the server, including requests from the Couchbase web console.
 
 ## [](#syntax)Syntax
 

@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on Swift
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/swift/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-3-3-1)3.3.1 — December 2025
 
@@ -66,5 +75,5 @@ None for this release
 * [CBL-7238 — Deprecate: ReplicatorConfiguration API for managing collection configurations](https://jira.issues.couchbase.com/browse/CBL-7238)
 * [CBL-7240 — Deprecate: CollectionConfiguration constructor without collection](https://jira.issues.couchbase.com/browse/CBL-7240)
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.3.0, see [New in 3.3](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.3.0, see [New in 3.3](../cbl-whatsnew.md)

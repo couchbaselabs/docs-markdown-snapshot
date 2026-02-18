@@ -1,9 +1,17 @@
+---
+title: Set Up a Standalone Collection
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/manage-standalone-collection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/manage-standalone-collection.html)
+
+# Set Up a Standalone Collection
 
 > You can gather documents from one or more existing Enterprise Analytics collections into a standalone collection. You customize the content of your standalone collections by querying other collections. 
 
-|  | For an example of creating standalone collections and populating them using queries, see [Import the travel-sample Collections](../intro/connecting-to-data-sources.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> For an example of creating standalone collections and populating them using queries, see [Import the travel-sample Collections](../intro/connecting-to-data-sources.md).
 
 ## [](#prerequisites)Prerequisites
 

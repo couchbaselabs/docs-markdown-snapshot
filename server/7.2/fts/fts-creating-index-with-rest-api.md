@@ -1,4 +1,12 @@
+---
+title: Index Creation with REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-with-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-with-rest-api.html)
+
+# Index Creation with REST API
 
 > The REST API can be used to instantly create indexes or query indexes from JSON payloads. 
 
@@ -116,5 +124,5 @@ The newly created index can then be inspected in the Couchbase Web Console.
 
 Specifying the "uuid" parameter in the index definition is required for the index creation to be treated as a valid update.
 
-|  | This uuid in the JSON body of a valid index update request has to match that of the existing index definition. Upon successful creation/update of an index, the uuid will be re-initialized. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This uuid in the JSON body of a valid index update request has to match that of the existing index definition. Upon successful creation/update of an index, the uuid will be re-initialized.

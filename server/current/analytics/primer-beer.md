@@ -1,4 +1,14 @@
+---
+title: Analytics Tutorial
+description: This tutorial introduces the main features of Couchbase Analytics
+  through examples.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/primer-beer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/primer-beer.html)
+
+# Analytics Tutorial
 
 > This tutorial introduces the main features of Couchbase Analytics through examples. 
 
@@ -30,8 +40,8 @@ Like the rest of the Couchbase Server platform, Analytics does not prescribe a s
 
 From a data perspective, a newly created Analytics service instance starts out empty. That is, it contains no data other than the Analytics system catalogs. These system catalogs live in a special Analytics scope called the **Metadata** scope.
 
-|  | The current terminology in the system catalogs uses the terms dataverse and dataset, as you will see if you query them directly. Again, those are older synonyms for the terms Analytics scope and Analytics collection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The current terminology in the system catalogs uses the terms dataverse and dataset, as you will see if you query them directly. Again, those are older synonyms for the terms Analytics scope and Analytics collection.
 
 If you want to see what Analytics scopes have been defined so far for your user data, the simplest way is to look at the **Analytics Scopes, Links, & Collections** panel on the Analytics Workbench in the Couchbase Server Web Console. Initially you will see one Analytics scope, named **Default**, which has no collections yet but is available for holding user collections when no other scope has been specified. That panel is organized by scope; within each scope you will see one or more links — references to Couchbase Server clusters — and under each link is a list of the Analytics collections in this Analytics service instance that are coming from Data service collections in the referenced cluster. Initially there is just a Local link, referring to the cluster where this Analytics service instance is running.
 
@@ -79,8 +89,8 @@ You can then simply enter the following to obtain the same result as above:
 SELECT VALUE COUNT(*) FROM airline;
 ```
 
-|  | For the rest of this tutorial, it is assumed that the query context is set to travel-sample.inventory. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> For the rest of this tutorial, it is assumed that the query context is set to `travel-sample.inventory`.
 
 The next query retrieves a sample airline:
 
@@ -679,8 +689,8 @@ LIMIT 3;
 
 This SQL++ for Analytics query binds the variable `al` to the objects in airline; for each airline, it constructs a result object containing a `airline` field with the airline’s name, plus a `nonstops`field with a nested collection of objects containing the source and destination airports for the non-stop route. The nested collection field for each airline is created using a correlated subquery.
 
-|  | While it looks like nested loops could be involved in computing the result, Analytics recognizes the equivalence of such a query to an outer join, so it will use an efficient parallel join strategy when actually computing the query’s result. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While it looks like nested loops could be involved in computing the result, Analytics recognizes the equivalence of such a query to an outer join, so it will use an efficient parallel join strategy when actually computing the query’s result.
 
 Below is this example query’s expected output:
 
@@ -1373,8 +1383,8 @@ DELETE FROM hotel ht USE KEYS "hotel_7777";
 
 Finally, if you run the Buena Park hotel list query on Analytics once again, you will find that this deletion has been immediately shadowed in Analytics as well. Again, when you switch to the Analytics service, make sure the query context is still set to `travel-sample.inventory`.
 
-|  | Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check the progress of resynchronization. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check the progress of resynchronization.
 
 ## [](#Indexing)And of Course, Indexing
 

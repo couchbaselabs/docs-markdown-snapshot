@@ -1,4 +1,13 @@
+---
+title: Take Database Offline/Online
+description: How to take a <em>Sync&nbspGateway</em> database offline and bring back online.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/database-offline.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/database-offline.html)
+
+# Take Database Offline/Online
 
 > How to take a _Sync Gateway_ database offline and bring back online.  
 
@@ -43,8 +52,8 @@ The state transition is asynchronous. Database states transition through: Offlin
 
 You can use a Load Balancer for configuration changes in persistent configuration mode. For more information about Load Balancers, see [Load Balancer](../deploy/load-balancer.md).
 
-|  | With this configuration mode, you cannot use the /{db}/\_offline and /{db}/\_online endpoints as these are node-local only. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With this configuration mode, you cannot use the `/{db}/_offline` and `/{db}/_online` endpoints as these are node-local only.
 
 ### [](#non-persistent-configuration-legacy)Non-Persistent Configuration (Legacy)
 
@@ -65,10 +74,9 @@ Use this method when your Sync Gateway configuration is stored in Couchbase Serv
 
 1. Make a PUT request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": true}`.  
 This updates the database configuration persisted in the bucket, and all nodes goes offline.  
-You can use a Load Balancer for this operation.
-
-|  | The state transition is asynchronous. The database transitions from Online → Stopping → Offline, typically in less than 1 second. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+You can use a Load Balancer for this operation.  
+> [!NOTE]  
+> The state transition is asynchronous. The database transitions from Online → Stopping → Offline, typically in less than 1 second.
 
 Use this method when local config files store your Sync Gateway configuration (legacy mode).
 
@@ -87,10 +95,9 @@ Use this method when Couchbase Server stores your Sync Gateway configuration (de
 
 1. Make a PUT request to [/{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `{"offline": false}`.  
 This updates the database configuration persisted in the bucket, and all nodes will go online.  
-You can use a Load Balancer for this operation.
-
-|  | The state transition is asynchronous. The database transitions from Offline → Starting → Online, typically in less than 1 second unless Sync Gateway needs to build indexes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+You can use a Load Balancer for this operation.  
+> [!NOTE]  
+> The state transition is asynchronous. The database transitions from Offline → Starting → Online, typically in less than 1 second unless Sync Gateway needs to build indexes.
 
 Use this method when local config files store your Sync Gateway configuration (legacy mode).
 

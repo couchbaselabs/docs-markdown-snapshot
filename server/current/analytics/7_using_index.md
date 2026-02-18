@@ -1,4 +1,13 @@
+---
+title: Using Indexes
+description: Using indexes to speed up queries.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/7_using_index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/7_using_index.html)
+
+# Using Indexes
 
 Indexes can speed up Analytics queries if they are applied properly. The following sections describe scenarios in which indexes may be used to speed up query processing.
 
@@ -6,8 +15,8 @@ Indexes can speed up Analytics queries if they are applied properly. The followi
 
 This section contains observations about standard (non-array) Analytics indexes.
 
-|  | By default, standard indexes store NULL values. (This is to allow composite key secondary indexes to be used for prefix search.) However, when you create the index, you may specify that NULL and MISSING values should be excluded from the index. If this is the case, queries that select objects based on the existence of a NULL field will not be accelerated by the index. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, standard indexes store NULL values. (This is to allow composite key secondary indexes to be used for prefix search.) However, when you create the index, you may specify that NULL and MISSING values should be excluded from the index. If this is the case, queries that select objects based on the existence of a NULL field will not be accelerated by the index.
 
 ### [](#Selection%5Fqueries)Selection Queries
 

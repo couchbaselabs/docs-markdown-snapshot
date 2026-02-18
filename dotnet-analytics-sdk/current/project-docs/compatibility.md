@@ -1,4 +1,15 @@
+---
+title: Compatibility
+description: Platform compatibility, and features available in different SDK
+  versions, and compatibility between Server and SDK. Plus notes on Cloud,
+  networks, and AWS Lambda.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/project-docs/compatibility.html)
+
+# Compatibility
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
@@ -8,8 +19,8 @@
 
 The 1.0 .NET Analytics SDK requires .NET 8 to be installed. We recommend using the most recent long-term support (LTS) version of .NET.
 
-|  | Remember to keep your .NET installation up to date with the latest patches. |
-|  | --------------------------------------------------------------------------- |
+> [!TIP]
+> Remember to keep your .NET installation up to date with the latest patches.
 
 ### [](#os-compatibility)OS Compatibility
 

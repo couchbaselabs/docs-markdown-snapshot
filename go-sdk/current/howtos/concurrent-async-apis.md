@@ -1,4 +1,15 @@
+---
+title: Async and Batching APIs
+description: The Go SDK offers a synchronous blocking interface but this does
+  not stop you from using it asynchronously, or from performing bulk operations
+  concurrently.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/howtos/concurrent-async-apis.html)
+
+# Async and Batching APIs
 
 > The Go SDK offers a synchronous blocking interface but this does not stop you from using it asynchronously, or from performing bulk operations concurrently. By using goroutines you can call into the SDK aynchronously and by using the `BulkOp` API you can batch multiple operations into a single SDK call which executes concurrently behind the scenes. 
 

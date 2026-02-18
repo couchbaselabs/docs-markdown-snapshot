@@ -1,4 +1,14 @@
+---
+title: Create a Custom Date/Time Parser
+description: Create a custom date/time parser with the Couchbase Server Web
+  Console to tell the Search Service how to process a new date/time format.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-custom-date-time-parser.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/create-custom-date-time-parser.html)
+
+# Create a Custom Date/Time Parser
 
 > Create a custom date/time parser with the Couchbase Server Web Console to tell the Search Service how to process a new date/time format. 
 

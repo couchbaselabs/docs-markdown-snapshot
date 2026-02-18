@@ -1,4 +1,14 @@
+---
+title: ALTER VECTOR INDEX
+description: The ALTER VECTOR INDEX statement moves the placement of an existing
+  index or replica among different GSI nodes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/altervectorindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/altervectorindex.html)
+
+# ALTER VECTOR INDEX
 
 > The ALTER VECTOR INDEX statement moves the placement of an existing index or replica among different GSI nodes. 
 
@@ -16,13 +26,13 @@ You can use the `ALTER VECTOR INDEX` statement to change the placement of an exi
 
 For example, if a node fails, you can use the `ALTER VECTOR INDEX` statement to move an index to another node. See [Examples](#examples) below.
 
-|  | The ALTER VECTOR INDEX move operation is asynchronous. As soon as the move alter index command is executed, the command returns. If there is no error in the input, the move operation can be tracked through the console UI and any error can be found in the Console logs and Indexer logs. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The ALTER VECTOR INDEX move operation is asynchronous. As soon as the move alter index command is executed, the command returns. If there is no error in the input, the move operation can be tracked through the console UI and any error can be found in the Console logs and Indexer logs.
 
 If a node goes down while an ALTER VECTOR INDEX operation is happening, then the index would rollback to its original node (not affecting queries) and a notification would appear.
 
-|  | It’s not possible to move an index or index replica and change the number of index replicas at the same time. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> It’s not possible to move an index or index replica and change the number of index replicas at the same time.
 
 ## [](#prerequisites)Prerequisites
 
@@ -62,8 +72,8 @@ index-path ::= keyspace-full | keyspace-prefix | keyspace-partial
 
 You can use a dotted notation to specify the index and the keyspace on which the index is built. This syntax provides compatibility with legacy versions of Couchbase Server. The index path may be a [full keyspace path](#keyspace-full-index), a [keyspace prefix](#keyspace-prefix-index), or a [keyspace partial](#keyspace-partial-index).
 
-|  | If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-full-index)Index Path: Full Keyspace
 
@@ -124,8 +134,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 You can use the index name with the `ON` keyword and a keyspace reference to specify the keyspace on which the index is built. The keyspace reference may be a [keyspace path](#keyspace-path) or a [keyspace partial](#keyspace-partial).
 
-|  | If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-path)Keyspace Reference: Keyspace Path
 

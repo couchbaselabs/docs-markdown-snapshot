@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced DECREMENT Operation"
+description: Perform the Advanced DECREMENT operation where Eventing interacts
+  with the Data Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-advancedDecrementOp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-advancedDecrementOp.html)
+
+# Function: Advanced DECREMENT Operation
 
 Perform the Advanced DECREMENT operation where Eventing interacts with the Data Service.
 

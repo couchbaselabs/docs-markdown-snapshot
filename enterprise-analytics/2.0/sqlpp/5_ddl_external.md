@@ -1,4 +1,15 @@
+---
+title: CREATE an External Collection
+description: This topic describes how you use the <code>CREATE</code> statement
+  to create a collection so that you can query OLAP data on an external data
+  source.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_external.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_external.html)
+
+# CREATE an External Collection
 
 > This topic describes how you use the `CREATE` statement to create a collection so that you can query OLAP data on an external data source. 
 
@@ -6,8 +17,8 @@
 
 To create a link to an external data source, you use the Enterprise Analytics UI. See [Set Up an External Data Source](../sources/manage-external.md).
 
-|  | To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
 
 ## [](#syntax)Syntax
 
@@ -27,8 +38,8 @@ CreateExternalCollection ::= "CREATE" "EXTERNAL" "ANALYTICS"? "COLLECTION" ("IF"
 
 ![CREATE](_images/CreateExternalCollection.png) 
 
-|  | You must include the keyword EXTERNAL when creating this type of collection. |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> You must include the keyword `EXTERNAL` when creating this type of collection.
 
 **Show QualifiedName Diagram** 
 
@@ -52,8 +63,8 @@ CollectionFieldDef
 
 The following examples create external Enterprise Analytics collections for data stored in cloud object stores.
 
-|  | Use backtick characters (\`\`) to delimit identifiers that include the \- [operator](2%5Fexpr.md#Operator%5Fexpressions) symbol. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use backtick characters (``` `` ```) to delimit identifiers that include the `-` [operator](2%5Fexpr.md#Operator%5Fexpressions) symbol.
 
 ```SQL++
   CREATE EXTERNAL COLLECTION music.myPlaylist.countrySongs

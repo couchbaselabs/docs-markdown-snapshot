@@ -1,4 +1,13 @@
+---
+title: collect-logs-status
+description: Get log collection status
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-collect-logs-status.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-collect-logs-status.html)
+
+# collect-logs-status
 
 Get log collection status
 

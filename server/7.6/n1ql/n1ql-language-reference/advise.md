@@ -1,4 +1,14 @@
+---
+title: ADVISE
+description: The ADVISE statement provides index recommendations to optimize
+  query response time.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/advise.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/advise.html)
+
+# ADVISE
 
 > The ADVISE statement provides index recommendations to optimize query response time. 
 
@@ -122,8 +132,8 @@ The GROUP BY and aggregate pushdowns may be _full_ or _partial_. Full pushdown m
 
 The index advisor suggests a name for each index it recommends, starting with `adv_`, followed by the `DISTINCT` or `ALL` keyword for array indexes if applicable, and including the names of the fields referenced in the index definition, separated by underscores — for example, `adv_city_type_name`. Some field names may be truncated if they are too long.
 
-|  | The names that the index advisor suggests are not guaranteed to be unique. You should check the suggested index names and change any that are duplicates. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The names that the index advisor suggests are not guaranteed to be unique. You should check the suggested index names and change any that are duplicates.
 
 ## [](#examples)Examples
 

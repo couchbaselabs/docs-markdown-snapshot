@@ -1,4 +1,13 @@
+---
+title: Admin REST API
+description: Description of the Sync Gateway Admin REST API
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api-admin.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/rest-api/rest-api-admin.html)
+
+# Admin REST API
 
 > Description of the Sync Gateway Admin REST API  
 
@@ -12,8 +21,9 @@ To allow users to access the Admin API up you need to create a Couchbase Server-
 
 Couchbase recommends that you do not expose the Sync Gateway admin interface to the internet. Due to this, features such as CORS are not supported on the admin interface.
 
-|  | For document changes sent to Sync Gateway through the Admin REST API, the Sync Function executes with **admin** privileges.Calls to requireUser, requireAccess and requireRole will be no-ops, and will always appear successful. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For document changes sent to Sync Gateway through the Admin REST API, the Sync Function executes with **admin** privileges.  
+> Calls to `requireUser`, `requireAccess` and `requireRole` will be no-ops, and will always appear successful.
 
 ## [](#api-reference)API Reference
 

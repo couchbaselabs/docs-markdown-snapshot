@@ -1,4 +1,15 @@
+---
+title: User-Defined Functions
+description: In SQL++ for Capella Analytics, user-defined functions enable you
+  to name and reuse complex or repetitive expressions, including subqueries, in
+  order to simplify your queries.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/9_udf.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/9_udf.html)
+
+# User-Defined Functions
 
 > In SQL++ for Capella Analytics, user-defined functions enable you to name and reuse complex or repetitive expressions, including subqueries, in order to simplify your queries. 
 
@@ -6,8 +17,8 @@ Each user-defined function belongs to a scope. Within a scope, a function is uni
 
 You can query the `Function` collection within the `System.Metadata` scope to get metadata about all existing user-defined functions.
 
-|  | FUNCTION is a reserved keyword, so you need to delimit the identifier for the Function collection with backticks (\`\`). |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> FUNCTION is a reserved keyword, so you need to delimit the identifier for the `Function` collection with backticks (``` `` ```).
 
 ## [](#creating-a-function)Creating a Function
 
@@ -274,8 +285,8 @@ Example
 CREATE COLLECTION remote_hotel ON hotel AT my_remote_link APPLY FUNCTION project_fields;
 ```
 
-|  | You cannot modify or drop a TRANSFORM FUNCTION while it’s applied to any collection. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You cannot modify or drop a `TRANSFORM FUNCTION` while it’s applied to any collection.
 
 ## [](#calling-a-function)Calling a Function
 

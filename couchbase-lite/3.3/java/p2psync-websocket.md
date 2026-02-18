@@ -1,4 +1,13 @@
+---
+title: Data Sync Peer-to-Peer
+description: Couchbase Lite database peer-to-peer sync concepts using websockets
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/p2psync-websocket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/java/p2psync-websocket.html)
+
+# Data Sync Peer-to-Peer
 
 > Description — _Couchbase Lite database peer-to-peer sync concepts using websockets_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-java/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
@@ -246,8 +255,8 @@ The URLEndpointListener uses a TLS identity to establish secure connections. (A 
 
 When replicating with a listener that uses a self-signed certificate, the replicator (client) can be configured to skip certificate validation. This option is useful for development or testing, but not recommended for production.
 
-|  | The minimum supported version of TLS is TLS 1.2\. |
-|  | ------------------------------------------------- |
+> [!NOTE]
+> The minimum supported version of TLS is TLS 1.2\.
 
 ### [](#authentication)Authentication Mechanisms
 

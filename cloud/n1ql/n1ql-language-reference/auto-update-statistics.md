@@ -1,4 +1,14 @@
+---
+title: Auto Update Statistics
+description: Auto Update Statistics (AUS) automatically refreshes optimizer
+  statistics, ensuring accurate and cost-effective query plans.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/auto-update-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/auto-update-statistics.html)
+
+# Auto Update Statistics
 
 > Auto Update Statistics (AUS) automatically refreshes optimizer statistics, ensuring accurate and cost-effective query plans. 
 
@@ -10,8 +20,8 @@ Optimizer statistics are crucial as they help the [Cost Based Optimizer](cost-ba
 
 To handle this, AUS executes a scheduled task on each query node in the cluster. This task evaluates statistics based on expiration policies to identify outdated ones and then refreshes them by running the [UPDATE STATISTICS](updatestatistics.md) statement. AUS can also optionally generate statistics for indexed expressions that do not already have them.
 
-|  | AUS maintains statistics only for expressions on index keys, and only for those indexed using the Plasma storage engine. It does not support Memory-Optimized indexes. For more information about these index storage types, see [Index Storage Settings](../../indexes/storage-modes.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> AUS maintains statistics only for expressions on index keys, and only for those indexed using the Plasma storage engine. It does not support Memory-Optimized indexes. For more information about these index storage types, see [Index Storage Settings](../../indexes/storage-modes.md).
 
 ## [](#availability)Availability
 
@@ -49,8 +59,8 @@ After the evaluation, AUS executes [UPDATE STATISTICS](updatestatistics.md) stat
 
 Also, if the `create_missing_statistics` option is set to `true`, AUS creates new optimizer statistics for indexed expressions that were flagged as missing during the evaluation phase. The new statistics are created with the default [resolution](cost-based-optimizer.md#resolution).
 
-|  | When AUS is first enabled, the initial task run might update all existing optimizer statistics, regardless of the expiration policy evaluation. This is because the index change information might not have been recorded prior to this first run. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When AUS is first enabled, the initial task run might update all existing optimizer statistics, regardless of the expiration policy evaluation. This is because the index change information might not have been recorded prior to this first run.
 
 ### [](#expiration%5Fpolicy)Expiration Policy
 
@@ -72,8 +82,10 @@ For a historical record of recent AUS tasks across all query nodes, use the [sys
 
 The `system:aus` catalog contains a single document that holds all the global configurations of AUS. You can update this document to modify the settings.
 
-|  | Only SELECT and UPDATE DMLs are allowed on this keyspace. To execute SELECT on system:aus, you need the query\_system\_catalog role. To execute UPDATE on system:aus, you need the query\_manage\_system\_catalog role. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Only SELECT and UPDATE DMLs are allowed on this keyspace.
+> * To execute SELECT on `system:aus`, you need the `query_system_catalog` role.
+> * To execute UPDATE on `system:aus`, you need the `query_manage_system_catalog` role.
 
 Each attribute in the document represents a particular global configuration. The following are the attribute names and the configurations they represent:
 
@@ -131,8 +143,10 @@ Each attribute in the document represents a particular granular configuration. T
 | **change\_percentage** _optional_          | The percentage of change to items within an index that must be exceeded for the statistics to be refreshed. The value must be an integer between 0 and 100. If set at a bucket level, this value applies to all scopes and collections within the bucket, unless overridden at a lower level. If set at a scope level, this value applies to all collections within the scope, unless overridden at a lower level. **Example:** 30                                                                                                                                                                                                                                                                                                  | Integer |
 | **update\_statistics\_timeout** _optional_ | The timeout period for the [UPDATE STATISTICS](updatestatistics.md) command. It’s a number representing a duration in seconds. If the command does not complete within this duration, it times out. If omitted, a default timeout value is calculated based on the number of samples used. If set for a keyspace, this timeout applies to every [UPDATE STATISTICS](updatestatistics.md) statement that AUS executes for that keyspace. If set at a bucket level, this timeout applies to all scopes and collections within the bucket, unless a different value is set at a lower level. If set at a scope level, this timeout applies to all collections within the scope, unless a different value is set at a collection level. | Number  |
 
-|  | All SQL++ DMLs are allowed on this keyspace. To execute SELECT on system:aus\_settings, you need the query\_system\_catalog role. To execute UPDATE, DELETE, INSERT, and UPSERT on system:aus\_settings, you need the query\_manage\_system\_catalog role. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * All SQL++ DMLs are allowed on this keyspace.
+> * To execute SELECT on `system:aus_settings`, you need the `query_system_catalog` role.
+> * To execute UPDATE, DELETE, INSERT, and UPSERT on `system:aus_settings`, you need the `query_manage_system_catalog` role.
 
 #### [](#example-2)Example
 
@@ -223,8 +237,8 @@ In addition to the attributes listed there, the AUS task entries also include th
 * `keyspaces_updated`: A list of keyspaces that had their statistics updated during the AUS task execution.
 * `configuration`: The configuration with which the AUS task was executed.
 
-|  | You can also retrieve the AUS task history from the query.log. |
-|  | -------------------------------------------------------------- |
+> [!NOTE]
+> You can also retrieve the AUS task history from the `query.log`.
 
 ## [](#cancel-aus-tasks)Cancel AUS Tasks
 
@@ -233,8 +247,8 @@ You can cancel AUS tasks that are currently running or scheduled to run.
 * [Cancel Running AUS Tasks](#cancel%5Frunning%5Faus%5Ftasks)
 * [Cancel Next Scheduled AUS Tasks](#cancel%5Fnext%5Fscheduled%5Faus%5Ftasks)
 
-|  | When cancelling AUS tasks, it’s important to include appropriate WHERE clauses to specify exactly which tasks you want to cancel. Make sure your filters target only the intended tasks, otherwise they might inadvertently cancel other tasks or delete task history. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When cancelling AUS tasks, it’s important to include appropriate WHERE clauses to specify exactly which tasks you want to cancel. Make sure your filters target only the intended tasks, otherwise they might inadvertently cancel other tasks or delete task history.
 
 ### [](#cancel%5Frunning%5Faus%5Ftasks)Cancel Running AUS Tasks
 

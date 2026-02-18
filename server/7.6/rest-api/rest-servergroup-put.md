@@ -1,4 +1,14 @@
+---
+title: Renaming Groups
+description: Server groups can be renamed with the <code>PUT
+  /pools/default/serverGroups/<:uuid></code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-servergroup-put.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-servergroup-put.html)
+
+# Renaming Groups
 
 > Server groups can be renamed with the `PUT /pools/default/serverGroups/<:uuid>` HTTP method and URI. 
 

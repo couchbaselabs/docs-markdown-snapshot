@@ -1,4 +1,14 @@
+---
+title: Subqueries
+description: In SQL++, a subquery is a SELECT query that is a constituent part
+  of another SQL++ query or subquery.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/subqueries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/subqueries.html)
+
+# Subqueries
 
 > In SQL++, a subquery is a SELECT query that is a constituent part of another SQL++ query or subquery. 
 
@@ -389,8 +399,8 @@ Results
 
 As mentioned in the [FROM clause](from.md), the `from-term` of both parent and subqueries allow nested path expressions over constants and subqueries. However, only subqueries allow variable expressions (including paths), that are referenced through any [variables defined in scope](#section%5Fonz%5F3tj%5Fmz) of the subquery. This is very powerful for language expressibility, simplicity and flexibility to SQL++ queries. Especially, when combined with subqueries, nested path expressions over variables extend full power of SQL++ syntax to array attributes/sub-documents without losing the structure of the array elements in results, or requiring tricky processing (with UNNEST, GROUP BY, ORDER BY and so). See the [examples](#section%5Fcjh%5Fpck%5Fmz) below.
 
-|  | The usage of nested paths over keyspace identifiers is NOT allowed in the from-terms, and it results in a syntax error. Nested paths are always considered expressions in SQL++. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The usage of nested paths over keyspace identifiers is NOT allowed in the from-terms, and it results in a syntax error. Nested paths are always considered expressions in SQL++.
 
 ## [](#section%5Fcjh%5Fpck%5Fmz)Examples
 

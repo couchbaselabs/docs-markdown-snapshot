@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/index.html)
+
+# Introduction
 
 > The Couchbase Spark Connector provides first-class integration between your high performance Couchbase Server cluster and the Apache Spark data processing platform. 
 

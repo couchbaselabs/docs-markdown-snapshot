@@ -1,4 +1,14 @@
+---
+title: Assign Roles for UI Access
+description: Your level of access to the Capella UI is controlled using
+  organization and project roles.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/auth/auth-ui.html)
+
+# Assign Roles for UI Access
 
 > Your level of access to the Capella UI is controlled using organization and project roles. 
 

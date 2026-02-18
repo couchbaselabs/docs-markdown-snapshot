@@ -1,11 +1,21 @@
+---
+title: Environment and Identifier Functions
+description: This topic describes the builtin SQL++ for Capella Analytics
+  environment and identifier functions.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_env.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/8_builtin_env.html)
+
+# Environment and Identifier Functions
 
 > This topic describes the builtin SQL++ for Capella Analytics environment and identifier functions. 
 
 ## [](#meta)meta
 
-|  | The meta function applies only to remote Couchbase collections. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> The `meta` function applies only to remote Couchbase collections.
 
 * Syntax:  
 meta(expr)  

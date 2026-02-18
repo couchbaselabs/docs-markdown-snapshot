@@ -1,4 +1,13 @@
+---
+title: Work with Documents in Bulk
+description: How to perform bulk CRUD operations with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/bulk-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/guides/bulk-operations.html)
+
+# Work with Documents in Bulk
 
 > How to perform bulk CRUD operations with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#creating-multiple-documents)Creating Multiple Documents
 
@@ -93,8 +102,8 @@ for (MutationResult result : results) {
 }
 ```
 
-|  | A JsonDocument class is used to supplement the example. |
-|  | ------------------------------------------------------- |
+> [!NOTE]
+> A `JsonDocument` class is used to supplement the example.
 
 ```java
 class JsonDocument {
@@ -159,8 +168,8 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 
 A dictionary of `MutationResult` objects is returned.
 
-|  | CBCollection.insert\_multi is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `CBCollection.insert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
 
 ---
 
@@ -346,8 +355,8 @@ Pass some document IDs to fetch to the `get_multi()` function. This will fetch t
 
 A dictionary of `GetResult` objects is returned.
 
-|  | CBCollection.get\_multi is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `CBCollection.get_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
 
 ---
 
@@ -507,8 +516,8 @@ For more information, see [Collection](https://docs.couchbase.com/sdk-api/couchb
 
 A dictionary of `MutationResult` objects is returned.
 
-|  | CBCollection.upsert\_multi is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `CBCollection.upsert_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
 
 ---
 
@@ -642,8 +651,8 @@ Pass the document IDs to remove to the `remove_multi()` function. This will dele
 
 A dictionary of `MutationResult` objects is returned.
 
-|  | CBCollection.remove\_multi is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `CBCollection.remove_multi` is a [volatile](../../../python-sdk/current/project-docs/compatibility.md#interface-stability) API call that’s still in flux and may likely be changed.
 
 ---
 

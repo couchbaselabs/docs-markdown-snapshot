@@ -1,9 +1,20 @@
+---
+title: Add an Azure Private Link Connection
+description: Add an Azure Private Link connection that peers your Azure network
+  with a Capella cluster using Azure as its cloud provider. This connection can
+  reduce latency and egress costs for applications hosted in the same region.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-azure-private-link.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/add-azure-private-link.html)
+
+# Add an Azure Private Link Connection
 
 > Add an Azure Private Link connection that peers your Azure network with a Capella cluster using Azure as its cloud provider. This connection can reduce latency and egress costs for applications hosted in the same region. 
 
-|  | Azure Private Link connections do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Azure Private Link connections do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use [VPC Peering](../clouds/private-network.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -25,8 +36,8 @@ For more information about how to create a cluster, see [Create A Paid Cluster](
 * The [Azure Command-Line Interface (CLI)](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli) installed and configured.
 * When configuring firewalls for Couchbase Capella and an Azure Private Link connection, open and allow traffic through port ranges `18091-18203` and `11207-11308`. These port ranges are consistent across the cloud service providers that Capella supports.
 
-|  | The Microsoft Azure portal can also help you monitor your progress and find resource information. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The Microsoft Azure portal can also help you monitor your progress and find resource information.
 
 ## [](#procedure)Procedure
 
@@ -42,8 +53,8 @@ To get started, open the Capella UI and the Azure CLI.
 
 In Capella, enable Private Endpoints:
 
-|  | Enabling Private Endpoints bills your account hourly for Azure Private Link until you turn off this option. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Enabling Private Endpoints bills your account hourly for Azure Private Link until you turn off this option.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -66,10 +77,9 @@ To add a private endpoint:
 | Resource Group Name    | Enter your Azure resource group name                                                                         |
 | Virtual Network/Subnet | Enter your Azure virtual network and subnet in the following format: example-virtual-network/default-subnet. |
 3. Click **Next**.
-4. Download and run the shell script provided by Capella:
-
-|  | This script is only compatible with BASH-like shells. |
-|  | ----------------------------------------------------- |
+4. Download and run the shell script provided by Capella:  
+> [!NOTE]  
+> This script is only compatible with BASH-like shells.
 
   1. In the **Run the following script** area, click **Download Script**.
   2. With Azure CLI installed and signed in, run the downloaded script in your terminal.  

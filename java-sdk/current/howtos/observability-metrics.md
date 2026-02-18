@@ -1,4 +1,14 @@
+---
+title: Metrics Reporting
+description: Individual request tracing presents a very specific (though
+  isolated) view of the system.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/observability-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/howtos/observability-metrics.html)
+
+# Metrics Reporting
 
 > Individual request tracing presents a very specific (though isolated) view of the system. In addition, it also makes sense to capture information that aggregates request data (i.e. requests per second), but also data which is not tied to a specific request at all (i.e. resource utilization). 
 

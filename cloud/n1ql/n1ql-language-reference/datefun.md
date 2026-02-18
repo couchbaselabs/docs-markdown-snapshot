@@ -1,4 +1,14 @@
+---
+title: Date Functions
+description: SQL++ date functions return the system clock value or manipulate
+  the datetime values, which are represented as a string or an integer.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/datefun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/datefun.html)
+
+# Date Functions
 
 > SQL++ date functions return the system clock value or manipulate the datetime values, which are represented as a string or an integer. These functions are very useful for manipulating dates in datasets with various date formats and timezones. 
 
@@ -16,8 +26,8 @@ All SQL++ functions which accept a timezone as an argument also accept `UTC`.
 
 Many applications operate across multiple different time zones and may not necessarily use `UTC`. Therefore, it is important for the database to be able to handle and manipulate dates in these time zones in a consistent manner. Many date functions take the time zone as an additional argument.
 
-|  | Timezones are case sensitive, Europe/London is not the same as europe/london. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> Timezones are case sensitive, `Europe/London` is not the same as `europe/london`.
 
 It is important to note that many time zones change their UTC offset based on daylight savings time, as a result the UTC offset of times may change based on the time of year. SQL++ take this into account when converting dates.
 
@@ -234,11 +244,26 @@ To specify a date format, you can put the format specifiers together in any orde
 
 Characters which are not part of the format specification are matched literally and produced unaltered, with the exception of Unicode U+0020, i.e. space `" "`, which matches any single character when parsing, and is produced unaltered on output. For example, `%Y %m %d` parses `2021-06-28`, `2021/06/28`, `2021.06.28`, and so on.
 
-|  | Default Values If the date string does not explicitly declare the value of a component, then the following default values are assumed: The month and day default to 1. The century (when not specified by year) defaults to 19 if year is greater than or equal to 69, or 20 otherwise. All other numeric components default to 0. The time zone defaults to the local system time zone. In cases where the timezone is not specified, the local system time is assumed. For example, 2016-02-07 is equivalent to 2016-02-07T00:00:00 and parsing just 16 as the year is equivalent to 2016-01-01T00:00:00 in the local system time zone. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Default Values
+> 
+> If the date string does not explicitly declare the value of a component, then the following default values are assumed:
+> 
+> * The month and day default to 1.
+> * The century (when not specified by year) defaults to 19 if year is greater than or equal to 69, or 20 otherwise.
+> * All other numeric components default to 0.
+> * The time zone defaults to the local system time zone.
+> 
+> In cases where the timezone is not specified, the local system time is assumed.
+> 
+> For example, `2016-02-07` is equivalent to `2016-02-07T00:00:00` and parsing just `16` as the year is equivalent to `2016-01-01T00:00:00` in the local system time zone.
 
-|  | TZN Date Format In addition to the date formats listed [here](#date-string), Couchbase Server 8.0 and later also supports the TZN (Time Zone Name) format. This format parses date strings in the same way as TZD but outputs the time zone name instead of the offset. For example, the TZN representation of the "Australia/Darwin" time zone is ACST. For an example of its usage, refer to the [STR\_TO\_TZ()](#ex-str-to-tz) function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> TZN Date Format
+> 
+> In addition to the date formats listed [here](#date-string), Couchbase Server 8.0 and later also supports the `TZN` (Time Zone Name) format. This format parses date strings in the same way as `TZD` but outputs the time zone name instead of the offset. For example, the `TZN` representation of the "Australia/Darwin" time zone is `ACST`.
+> 
+> For an example of its usage, refer to the [STR\_TO\_TZ()](#ex-str-to-tz) function.
 
 ## [](#manipulating-components)Manipulating Date Components
 
@@ -273,8 +298,8 @@ __Table 2\. Date and Time Components__
 
 Below is a list of all date functions that SQL++ provides.
 
-|  | If any arguments to any of the following functions are MISSING then the result is also MISSING (i.e. no result is returned). Similarly, if any of the arguments are NULL then NULL is returned. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If any arguments to any of the following functions are `MISSING` then the result is also `MISSING` (i.e. no result is returned). Similarly, if any of the arguments are `NULL` then `NULL` is returned.
 
 ## [](#fn-date-clock-local)CLOCK\_LOCAL(\[fmt\])
 

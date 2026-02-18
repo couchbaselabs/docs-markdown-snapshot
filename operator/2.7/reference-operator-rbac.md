@@ -1,4 +1,12 @@
+---
+title: Operator RBAC Settings
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-operator-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/reference-operator-rbac.html)
+
+# Operator RBAC Settings
 
 Kubernetes supports role-based access control (RBAC), which allows containers to be bound to roles which give them permissions to operate on various resources. This topic aims to give a general overview of RBAC in the context of deploying the Operator and managing Couchbase Server clusters.
 
@@ -66,8 +74,10 @@ The Operator needs to be able to create and delete pods to deploy and scale the 
 
 _Required Permissions_: `get`, `list`, `watch`, `create`, `update`, `delete`, `patch`
 
-|  | The Operator does not need pods/exec permissions to run. However, the [cao](tools/cao.md) tool — specifically the [\--collectinfo](tools/cao.md#cao-collect-logs) option — _does_ require pods/exec permissions. It needs these permissions in order to execute log collection scripts and run the cbcollect\_info command locally on each pod belonging to a Couchbase cluster. If this is not acceptable, then please refer to [Couchbase Server Logging](concept-couchbase-logging.md) for additional options that ensure log availability (such as [log forwarding](concept-couchbase-logging.md#log-forwarding)). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Operator does not need `pods/exec` permissions to run. However, the [cao](tools/cao.md) tool — specifically the [\--collectinfo](tools/cao.md#cao-collect-logs) option — _does_ require `pods/exec` permissions. It needs these permissions in order to execute log collection scripts and run the `cbcollect_info` command locally on each pod belonging to a Couchbase cluster.
+> 
+> If this is not acceptable, then please refer to [Couchbase Server Logging](concept-couchbase-logging.md) for additional options that ensure log availability (such as [log forwarding](concept-couchbase-logging.md#log-forwarding)).
 
 services
 
@@ -119,5 +129,5 @@ The operator needs to be able to create, update, and delete these resources to p
 
 _Required Permissions_: `list`, `watch`, `create`, `update`, `delete`
 
-|  | You may improve security and resilience by running the Operator and a single Couchbase Server cluster in an isolated namespace. This will restrict the resources that the Operator and support tools have access to. The NetworkPolicy resource can also be used to further restrict access to the clusters at the network level. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You may improve security and resilience by running the Operator and a single Couchbase Server cluster in an isolated namespace. This will restrict the resources that the Operator and support tools have access to. The `NetworkPolicy` resource can also be used to further restrict access to the clusters at the network level.

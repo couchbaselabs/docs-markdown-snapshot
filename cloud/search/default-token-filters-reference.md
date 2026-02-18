@@ -1,4 +1,14 @@
+---
+title: Default Token Filters
+description: Use a token filter to filter a tokenizer's results and get better
+  search result matches.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/default-token-filters-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/default-token-filters-reference.html)
+
+# Default Token Filters
 
 > Use a token filter to filter a tokenizer’s results and get better search result matches. 
 

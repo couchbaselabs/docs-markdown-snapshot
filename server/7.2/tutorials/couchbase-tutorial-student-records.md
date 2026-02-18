@@ -1,4 +1,14 @@
+---
+title: "Couchbase Tutorial: A Student Record System"
+description: A short tutorial that will guide the developer in downloading and
+  installing Couchbase, then creating a database to store student records.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/couchbase-tutorial-student-records.html)
+
+# Couchbase Tutorial: A Student Record System
 
 > A short tutorial that will guide the developer in downloading and installing Couchbase, then creating a database to store student records. 
 
@@ -6,8 +16,8 @@
 
 Couchbase is a schema-less document database engine designed for high performance, scalability, and rapid development. During this tutorial, we’ll introduce you to some key concepts behind Couchbase and how they differ from traditional SQL database systems such as MySQL and Oracle. We’re going to examine the advantages of a schema-less engine by building a document database for storing student records.
 
-|  | This tutorial is designed for use with standalone or Docker installations of the Couchbase Server. If you wish to use [the Couchbase Capella cloud service](https://www.couchbase.com/products/capella) then you can run through the tutorials for [Getting Started with Couchbase Capella](https://docs.couchbase.com/cloud/get-started/get-started.html). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This tutorial is designed for use with standalone or Docker installations of the Couchbase Server. If you wish to use [the Couchbase Capella cloud service](https://www.couchbase.com/products/capella) then you can run through the tutorials for [Getting Started with Couchbase Capella](https://docs.couchbase.com/cloud/get-started/get-started.html).
 
 ## [](#database-design)The Data Model
 
@@ -58,8 +68,11 @@ student record
 
 The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let’s say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
 
-|  | It would be a very bad idea to store the course record with each student: It would lead to massive data duplication. It would make it very difficult to maintain the data. If the credit-points for a course needed to be changed, then you would need to access every student record to make the change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It would be a very bad idea to store the course record with each student:
+> 
+> 1. It would lead to massive data duplication.
+> 2. It would make it very difficult to maintain the data. If the `credit-points` for a course needed to be changed, then you would need to access every student record to make the change.
 
 art history course record
 
@@ -101,7 +114,7 @@ Okay, now that we’ve got the basic idea behind the document database model, le
 | Step 6 | [Retrieving documents](java-tutorial/retrieving-documents.md)                         |
 | Step 7 | [Adding Course Enrollments](java-tutorial/adding-course-enrollments.md)               |
 
-|  | It is **strongly** recommended that you follow the sections in order. |
-|  | --------------------------------------------------------------------- |
+> [!TIP]
+> It is **strongly** recommended that you follow the sections in order.
 
 In the next part of the tutorial, you’re going to begin your exploration of Couchbase by [installing the Couchbase Server: Community edition](install-couchbase-server.md).

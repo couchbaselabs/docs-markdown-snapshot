@@ -1,4 +1,14 @@
+---
+title: Configuring S3-Compatible Storage
+description: You can set up Couchbase Enterprise Analytics to use an
+  S3-Compatible storage solution.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/s3-compatible-storage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/s3-compatible-storage.html)
+
+# Configuring S3-Compatible Storage
 
 > You can set up Couchbase Enterprise Analytics to use an S3-Compatible storage solution. While AWS S3 is fully supported, third-party storage systems that implement the S3 API may also work with Enterprise Analytics. However, compatibility is not guaranteed for all S3-compatible solutions, as they must properly implement all required S3 operations. 
 
@@ -17,8 +27,8 @@ To be compatible with Enterprise Analytics, S3-compatible object storage must ha
 * [AbortMultipartUpload](https://docs.aws.amazon.com/AmazonS3/latest/API/API%5FAbortMultipartUpload.html)
 * [GetBucketLocation](https://docs.aws.amazon.com/AmazonS3/latest/API/API%5FGetBucketLocation.html)
 
-|  | Enterprise Analytics has been certified with NetApp StorageGRID v11.9.0.6 or later. Other S3-compatible storage has not yet been verified. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Enterprise Analytics has been certified with NetApp StorageGRID v11.9.0.6 or later. Other S3-compatible storage has not yet been verified.
 
 To use Enterprise Analytics with NetApp StorageGRID, you must:
 

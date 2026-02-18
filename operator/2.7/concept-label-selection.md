@@ -1,4 +1,12 @@
+---
+title: Couchbase Resource Label Selection
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-label-selection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-label-selection.html)
+
+# Couchbase Resource Label Selection
 
 > The Autonomous Operator manages a Couchbase deployment by aggregating many different types of Kubernetes custom resources. By labeling resources, the Autonomous Operator knows which resources to select and aggregate into a logical configuration. 
 
@@ -60,8 +68,8 @@ The reason for defining the label selector first is that without a label selecto
 
 Figure 3\. Label selection with multiple clusters
 
-|  | You might notice that in the above configuration examples, the cluster has the same name as the bucket label (my-cluster). This is not a requirement and has no bearing on label selection. Only what is specified in the selector and labels fields is used. However, using the cluster name as the resource label can be helpful when you need to identify which cluster a resource is aggregated to. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You might notice that in the above configuration examples, the cluster has the same name as the bucket label (`my-cluster`). This is not a requirement and has no bearing on label selection. Only what is specified in the `selector` and `labels` fields is used. However, using the cluster name as the resource label can be helpful when you need to identify which cluster a resource is aggregated to.
 
 ## [](#sharing-resources)Sharing Resources
 

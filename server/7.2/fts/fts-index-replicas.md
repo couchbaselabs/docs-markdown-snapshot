@@ -1,4 +1,12 @@
+---
+title: Index Replicas
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-index-replicas.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-index-replicas.html)
+
+# Index Replicas
 
 Index Replicas support availability: if an Index Service-node is lost from the cluster, its indexes may exist as replicas on another cluster-node that runs the Index Service.
 

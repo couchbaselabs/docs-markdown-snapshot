@@ -1,4 +1,14 @@
+---
+title: Rebalancing the Cluster
+description: A cluster is rebalanced with the <code>POST
+  /controller/rebalance</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-cluster-rebalance.html)
+
+# Rebalancing the Cluster
 
 > A cluster is rebalanced with the `POST /controller/rebalance` HTTP method and URI. 
 

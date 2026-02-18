@@ -1,4 +1,14 @@
+---
+title: Upgrading Sync Gateway
+description: This page documents various implementation details and
+  functionalities to consider when performing an upgrade to Sync Gateway 4.0.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/upgrading.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/upgrading.html)
+
+# Upgrading Sync Gateway
 
 > This page documents various implementation details and functionalities to consider when performing an upgrade to Sync Gateway 4.0.  
 
@@ -23,8 +33,8 @@ Those steps are then repeated for each node in the sync gateway cluster.
 3. `allow_conflicts=true` no longer supported - databases do not start with this setting.
 4. `enable_star_channel=false` is no longer supported - databases do not start with this setting.
 
-|  | As with all major version upgrades, downgrading from 4.0 to earlier versions is not supported. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As with all major version upgrades, downgrading from 4.0 to earlier versions is not supported.
 
 #### [](#process)Process
 
@@ -58,8 +68,10 @@ The use of 3.x’s Persistent Configuration feature is strongly recommended. It�
 
 The feature provides a smooth upgrade path for existing users by automatically converting their existing configuration files to the new persistent configuration format.
 
-|  | One Way Upgrade The migration to 3.x configuration is a ONE WAY process. You cannot downgrade to previous versions after upgrading to 3.1\. To continue using legacy-mode configuration see: [\[lbl-3-0-upgrade-opt-out\]](#lbl-3-0-upgrade-opt-out) |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> One Way Upgrade
+> 
+> The migration to 3.x configuration is a ONE WAY process. You cannot downgrade to previous versions after upgrading to 3.1\. To continue using legacy-mode configuration see: [\[lbl-3-0-upgrade-opt-out\]](#lbl-3-0-upgrade-opt-out)
 
 #### [](#considerations)Considerations
 
@@ -69,10 +81,9 @@ You should also:
 
 * Ensure Sync Gateway has write access to the directory containing the existing configuration (the one you want to convert). It backups the existing configuration and write the upgraded configuration.
 * Verify that, if your existing configuration has multiple databases, all of the **server** fields used to connect to **Couchbase Server** match.  
-Although the connection credentials used may differ between databases, Sync Gateway only uses the **first** set of credentials for the bootstrap configuration file.
-
-|  | Sync Gateway cannot automatically upgrade configurations that have multiple distinct server fields within the configuration file, and you’ll need to manually create their own bootstrap configuration. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Although the connection credentials used may differ between databases, Sync Gateway only uses the **first** set of credentials for the bootstrap configuration file.  
+> [!NOTE]  
+> Sync Gateway cannot automatically upgrade configurations that have multiple distinct server fields within the configuration file, and you’ll need to manually create their own bootstrap configuration.
 
 #### [](#process-2)Process
 
@@ -110,8 +121,8 @@ To opt-out of this, you can configure [api.api.admin\_interface\_authentication]
 
 ## [](#couchbase-server-upgrade-paths)Couchbase Server Upgrade Paths
 
-|  | When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](start-here/get-started-prepare.md#configure-server.html) — and to include the user’s credentials username/password in you Sync-Gateway-Config.json file. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When upgrading your Couchbase Server from 4.x to 5.x, remember to create a Sync Gateway RBAC user on the server — see: [Configure Server for Sync Gateway](start-here/get-started-prepare.md#configure-server.html) — and to include the user’s credentials username/password in you Sync-Gateway-Config.json file.
 
 All of the different upgrade paths mentioned above assume that you’re running a compatible Couchbase Server version — see [Compatibility Matrix](product-notes/compatibility.md).
 
@@ -154,8 +165,8 @@ You can access extended attributes via the SDKs using the sub-document API, via 
 
 They’re also accessible from SQL++ in Couchbase Server 5.5 or above with the `().xattrs` property. For example, `SELECT meta().xattrs._sync from travel-sample where Meta().id = "user::demo";`.
 
-|  | Sync Gateway maintains the sync metadata internally and its structure can change at any time. Applications should not use it to drive business logic. Sync Gateway does not support the direct SQL++ query in production environments. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Sync Gateway maintains the sync metadata internally and its structure can change at any time. Applications should not use it to drive business logic. Sync Gateway does not support the direct SQL++ query in production environments.
 
 The [raw](rest-api/rest%5Fapi%5Fadmin.md#tag/Document/operation/get%5Fkeyspace-%5Fraw-docid)endpoint on Sync Gateway’s Admin REST API returns both the document and its associated mobile metadata.
 

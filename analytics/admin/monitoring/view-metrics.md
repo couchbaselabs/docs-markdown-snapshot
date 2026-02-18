@@ -1,4 +1,13 @@
+---
+title: View Metrics for a Capella Analytics Cluster
+description: Capella Analytics provides metrics that allow you to monitor your clusters.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/view-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/monitoring/view-metrics.html)
+
+# View Metrics for a Capella Analytics Cluster
 
 > Capella Analytics provides metrics that allow you to monitor your clusters. 
 
@@ -31,8 +40,15 @@ After you have populated the dashboard with a metric tile, you can view details 
 * Hold the mouse pointer over a specific part of the metric chart to display information about its date, time, and resources.
 * Hold and drag the mouse pointer over a timeframe on the chart to zoom in on details about that specific timeframe. Doing this updates the timeframe for all metric tiles on your dashboard.
 
-|  | Capella Analytics draws metrics charts down to 60-second (1-minute) resolution. This resolution is available for charts using the **30m**, **1h**, and **2h** timeframes. When you select a longer timeframe, Capella Analytics automatically updates the chart data resolution to the following: **1d** down to 360 seconds (6 minutes) resolution **2d** down to 720 seconds (12 minutes) resolution **7d** down to 2520 seconds (42 minutes) resolution **30d** down to 10800 seconds (3 hours) resolution |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Capella Analytics draws metrics charts down to 60-second (1-minute) resolution. This resolution is available for charts using the **30m**, **1h**, and **2h** timeframes.
+> 
+> When you select a longer timeframe, Capella Analytics automatically updates the chart data resolution to the following:
+> 
+> * **1d** down to 360 seconds (6 minutes) resolution
+> * **2d** down to 720 seconds (12 minutes) resolution
+> * **7d** down to 2520 seconds (42 minutes) resolution
+> * **30d** down to 10800 seconds (3 hours) resolution
 
 ### [](#available-metrics)Available Metrics
 

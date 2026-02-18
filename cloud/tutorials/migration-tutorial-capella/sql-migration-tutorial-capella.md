@@ -1,4 +1,14 @@
+---
+title: "Migration Tutorial: Migrate your Data from MySQL to Couchbase Capella"
+description: Using MySQL as a starting point, this guide demonstrates how to
+  migrate your existing data from SQL tables to a Couchbase Capella instance.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/migration-tutorial-capella/sql-migration-tutorial-capella.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/tutorials/migration-tutorial-capella/sql-migration-tutorial-capella.html)
+
+# Migration Tutorial: Migrate your Data from MySQL to Couchbase Capella
 
 > Using MySQL as a starting point, this guide demonstrates how to migrate your existing data from SQL tables to a Couchbase Capella instance. 
 
@@ -14,8 +24,8 @@ You will also need to download and install the Server Development Tools package,
 
 If you’re running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
 
-|  | This tutorial makes use of the MySQL JSON functions that were introduced in version 5.7.22. Make sure you have installed MySQL version 5.7.22 or later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This tutorial makes use of the MySQL JSON functions that were introduced in version `5.7.22`. Make sure you have installed MySQL version `5.7.22` or later.
 
 ## [](#student-record-sql-database-section)Student Record database
 
@@ -60,8 +70,10 @@ SELECT JSON_OBJECT(
 INTO OUTFILE '/var/lib/mysql-files/courses.json'
 ```
 
-|  | for Windows users. When setting out the OUTFILE portion of the query, remember to use forward slashes (\\) in the file path name. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> for Windows users.
+> 
+> When setting out the `OUTFILE` portion of the query, remember to use forward slashes (\\) in the file path name.
 
 Using the `JSON_OBJECT` function, the command will `SELECT` every record in the table and output it to a file. Each line of the file will correspond to a single record:
 
@@ -72,8 +84,8 @@ Using the `JSON_OBJECT` function, the command will `SELECT` every record in the 
 {"faculty": "English", "course-id": 4, "course-name": "Creative Writing", "credit-points": 70}
 ```
 
-|  | Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, cbimport will read each line as a separate record. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
 
 ## [](#extract-your-student-data-from-mysql)Extract your Student data from MySQL
 
@@ -127,10 +139,9 @@ Create the cluster.
 3. Click **Create Project**. This will take you to a dialog from where you can fill in the name of your new project.  
 ![create project](../_images/create-project.png)
 4. Enter a name for your project, then press **Create Project**
-5. Capella will create a new project for you and then switch back to the Project List. You can navigate to your project by clicking on the link in the top left of the screen.
-
-|  | You can also navigate to your project by finding it in the Project List and clicking on its link. |
-|  | ------------------------------------------------------------------------------------------------- |
+5. Capella will create a new project for you and then switch back to the Project List. You can navigate to your project by clicking on the link in the top left of the screen.  
+> [!TIP]  
+> You can also navigate to your project by finding it in the Project List and clicking on its link.
 6. On your project page, click on **Create Cluster**  
 ![create cluster](../_images/create-cluster.png)
 7. Select your cluster options (you may use the _free_ option if it’s available), then press **Create Cluster**. After a short interval, your new cluster will be provisioned.  
@@ -195,10 +206,9 @@ To run `cbimport`, you will need to supply the security certificate for your Cap
 ![settings menu](../_images/settings-menu.png)
 2. Now, from the **Cluster Settings** screen, click on **Security** **Security Certificates** in the left-hand menu.  
 ![access security certificate](../_images/access-security-certificate.png)
-3. On the **Security Certificate** page, click on **Download** to download your security certificate for the local machine.
-
-|  | Make a note of the location where you stored it. |
-|  | ------------------------------------------------ |
+3. On the **Security Certificate** page, click on **Download** to download your security certificate for the local machine.  
+> [!TIP]  
+> Make a note of the location where you stored it.
 4. Return to the **Data Tools** page by clicking on the link in the top level menu.
 
 ## [](#generate-and-execute-your-cbimport-command)Generate and execute your `cbimport` command.
@@ -211,10 +221,9 @@ Create the `cbimport` command.
 
 1. From the **Data Tools** page, click on **Load with cbimport** in the central panel.  
 ![select cbimport](../_images/select-cbimport.png)
-2. Locate the `courses` JSON file you created in the [Extract your Course data from MySQL](#extract-sql-data) section, then drag it into the `Upload Sample File` section in the central panel.
-
-|  | Alternatively, you can click on Choose a file and load the file directly from the file chooser. |
-|  | ----------------------------------------------------------------------------------------------- |
+2. Locate the `courses` JSON file you created in the [Extract your Course data from MySQL](#extract-sql-data) section, then drag it into the `Upload Sample File` section in the central panel.  
+> [!TIP]  
+> Alternatively, you can click on `Choose a file` and load the file directly from the file chooser.
 3. In the `Choose your target` section, select the `student-bucket`, `art-school-scope`, and the `course-record-collection`.
 4. For `Document keys`, select `Field`, then pick the `course-id` field from the dropdown list.
 

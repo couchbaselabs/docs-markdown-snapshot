@@ -1,4 +1,14 @@
+---
+title: Request with Authentication&#8201;&#8212;&#8201;Request Parameter
+description: If a request requires more than one set of credentials, the creds
+  parameter must be used, as in this example.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exauthrequest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/exauthrequest.html)
+
+# Request with Authentication&#8201;&#8212;&#8201;Request Parameter
 
 If a request requires more than one set of credentials, the creds parameter must be used, as in this example.
 

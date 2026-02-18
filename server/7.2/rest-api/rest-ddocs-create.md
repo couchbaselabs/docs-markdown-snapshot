@@ -1,4 +1,15 @@
+---
+title: Creating Design Documents
+description: To create a new design document, use the <code>PUT
+  /[bucket-name]/_design/[ddoc-name]</code> HTTP method and URI on the
+  <code>8092</code> port.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-ddocs-create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-ddocs-create.html)
+
+# Creating Design Documents
 
 > To create a new design document, use the `PUT /[bucket-name]/_design/[ddoc-name]` HTTP method and URI on the `8092` port. 
 
@@ -10,8 +21,8 @@ Design documents are validated before being created or updated in the system. Th
 
 The format of the design document should include all the views defined in the design document, incorporating both the map and reduce functions for each named view.
 
-|  | When creating a design document, first create a dev design document and views and then check the output of the configured views in your design document. To create a development view, you must explicitly use the dev\_ prefix for the design document name. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When creating a design document, first create a dev design document and views and then check the output of the configured views in your design document. To create a development view, you must explicitly use the `dev_` prefix for the design document name.
 
 ## [](#http-method-and-uri)HTTP method and URI
 

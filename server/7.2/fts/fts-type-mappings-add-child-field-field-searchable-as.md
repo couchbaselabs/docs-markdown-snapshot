@@ -1,4 +1,12 @@
+---
+title: Child Field Searchable As
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-field-field-searchable-as.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings-add-child-field-field-searchable-as.html)
+
+# Child Field Searchable As
 
 Typically identical to the **field** (and dynamically supplied during text-input of the **field**\-value). This can be modified, to indicate an alternative field-name, whose associated value thereby becomes included in the indexed content, rather than that associated with the field-name specified in **field**.
 

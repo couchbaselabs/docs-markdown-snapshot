@@ -1,4 +1,13 @@
+---
+title: Manage Scopes and Collections
+description: Scopes and collections can be managed by means of the UI, CLI, and REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-scopes-and-collections/manage-scopes-and-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-scopes-and-collections/manage-scopes-and-collections.html)
+
+# Manage Scopes and Collections
 
 > Scopes and collections can be managed by means of the UI, CLI, and REST API. 
 

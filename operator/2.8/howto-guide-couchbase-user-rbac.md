@@ -1,4 +1,14 @@
+---
+title: "How-to Guide: Couchbase User RBAC"
+description: A how-to guide on configuring Couchbase user authentication and
+  authorization using the Kubernetes Operator.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-guide-couchbase-user-rbac.html)
+
+# How-to Guide: Couchbase User RBAC
 
 > A how-to guide on configuring Couchbase user authentication and authorization using the Kubernetes Operator. 
 
@@ -23,8 +33,8 @@ We’ll create two users named Alice and Bob in the next steps, but we won’t a
 
 In order to create a user, we need to create a password first, in the form of a [Kubernetes secret](https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-file/).
 
-|  | The local Couchbase domain performs internal password management and requires a password to be provided during user creation. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `local` Couchbase domain performs internal password management and requires a password to be provided during user creation.
 
 The below command creates the password for users "Alice" and "Bob":
 

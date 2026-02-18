@@ -1,4 +1,13 @@
+---
+title: Join a Cluster and Rebalance
+description: An independent Enterprise Analytics-node can be joined to an existing cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/join-cluster-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/join-cluster-and-rebalance.html)
+
+# Join a Cluster and Rebalance
 
 > An independent Enterprise Analytics-node can be joined to an existing cluster. 
 
@@ -28,8 +37,8 @@ For more information, see [Adding and Joining New Nodes](../manage-security/conf
 
 In Couchbase Enterprise Server, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when uploading the certificate, or when attempting to add or join the node to a cluster. For information, see [Node-Certificate Validation](../../../../server/current/learn/security/certificates.md#node-certificate-validation).
 
-|  | This requirement is automatically handled by the default, _system-generated_ certificates provided by Enterprise Analytics. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This requirement is automatically handled by the default, _system-generated_ certificates provided by Enterprise Analytics.
 
 ## [](#examples-on-this-page-node-addition)Examples on This Page
 
@@ -52,10 +61,9 @@ Proceed as follows:
 The expanded interface includes:
 
   * **Metadata Disk Path**: Field to specify the disk path for metadata storage
-  * **Cache Disk Path(s)**: Field to specify the disk path(s) for cache storage
-
-|  | If you do not specify any services, the node joins the cluster as an [arbiter node](../../../../server/current/learn/clusters-and-availability/nodes.md#adding-arbiter-nodes). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  * **Cache Disk Path(s)**: Field to specify the disk path(s) for cache storage  
+  > [!NOTE]  
+  > If you do not specify any services, the node joins the cluster as an [arbiter node](../../../../server/current/learn/clusters-and-availability/nodes.md#adding-arbiter-nodes).
 4. Enter the cluster’s IP address (in this case, `127.0.0.1`) in the appropriate field, provide the administrator credentials, and uncheck all **Services** fields except **Data**. Leave all other details unchanged. Then, click on the **Join Cluster** button at the lower right.  
 The dashboard for the cluster now appears, indicating successful connection to the cluster. A notification appears at the lower left of the screen confirming that the server association has been completed successfully.
 5. Access the **Servers** screen by clicking on the **Servers** tab on the left-hand navigation bar. The display shows that the new node `10.142.181.102` has successfully joined the cluster. However, it is not yet taking traffic, and will be activated following a _rebalance_. The display shows the figure under the **Items** column for `127.0.0.1` indicating items in _active_ vBuckets and 0 items in _replica_ vBuckets. Meanwhile, the **Items** figure for `10.142.181.102` is 0/0, indicating that no items are yet distributed onto that node in either active or replica form.  
@@ -66,8 +74,8 @@ To access information about buckets, vBuckets, and intra-cluster replication, se
   * Estimated time remaining for completion  
 Following rebalance, the **Servers** display reflects the successful outcome, showing that cluster `127.0.0.1` now contains two fully functioning nodes: `127.0.0.1` and `10.142.181.102`.
 
-|  | If rebalance fails, notifications are duly provided. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> If rebalance fails, notifications are duly provided.
 
 These are described in [Rebalance Failure Notification](add-node-and-rebalance.md#rebalance-failure-notification).
 

@@ -1,4 +1,14 @@
+---
+title: Create a Recurring Timer with a REST API
+description: Create a recurring Timer that fetches documents from an external
+  REST endpoint until you manually cancel it.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-rest-via-curl-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-rest-via-curl-get.html)
+
+# Create a Recurring Timer with a REST API
 
 > Create a recurring Timer that fetches documents from an external REST endpoint until you manually cancel it. 
 
@@ -129,8 +139,8 @@ curl -q -X GET 'https://localhost:8001/api/latest'
 }
 ```
 
-|  | You must use a real IP address if you’re not on the Couchbase Server. |
-|  | --------------------------------------------------------------------- |
+> [!NOTE]
+> You must use a real IP address if you’re not on the Couchbase Server.
 
 ### [](#create-keyspaces)Create Keyspaces
 
@@ -142,8 +152,8 @@ Create the following keyspaces:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#setup)Setup
 

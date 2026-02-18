@@ -1,19 +1,31 @@
+---
+title: Platform Introduction
+description: Discover how to get up and running developing applications with the
+  Couchbase .NET SDK 3.0+ using <code>Visual Studio Code</code>.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/hello-world/pages/platform-help.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/current/hello-world/platform-help.html)
+
+# Platform Introduction
 
 > Discover how to get up and running developing applications with the Couchbase .NET SDK 3.0+ using `Visual Studio Code`. 
 
 A simple .NET orientation intro for _non-_.NET folk who are evaluating the Couchbase .NET SDK.
 
-|  | Is This Page for You? This page is to help evaluate the Couchbase .NET SDK, if .NET is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the .NET SDK without necessarily being comfortable with C# and the .NET environment. If this is not you, head back to the [rest of the Couchbase .NET SDK documentation](overview.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Is This Page for You?
+> 
+> This page is to help evaluate the Couchbase .NET SDK, if .NET is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the .NET SDK without necessarily being comfortable with C# and the .NET environment. If this is not you, head back to the [rest of the Couchbase .NET SDK documentation](overview.md).
 
 ## [](#installing-net-sdk-core)Installing .NET SDK Core
 
-|  | VSCode requires installing the .NET SDK Core. Full IDEs like Visual Studio or Jetbrains Rider instead install a .NET SDK by default. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> VSCode requires installing the .NET SDK Core. Full IDEs like Visual Studio or Jetbrains Rider instead install a .NET SDK by default.
 
-|  | The latest Short Term Support (STS) version, .NET 7, isn’t tested against version 3.4.0 of the Couchbase .NET SDK. If you have any issues with this version, switch to a supported version. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The latest Short Term Support (STS) version, .NET 7, isn’t tested against version 3.4.0 of the Couchbase .NET SDK. If you have any issues with this version, switch to a supported version.
 
 * Start at the .NET [download page](https://dotnet.microsoft.com/download)
 * Windows and Mac run an installer, for Linux you have to navigate to the specific instructions for your distribution.
@@ -40,8 +52,8 @@ Visual Studio Code is a free code editor which runs on Windows, Linux, and MacOS
 
 * <https://code.visualstudio.com/docs/setup/setup-overview>
 
-|  | We’ve given instructions for VS Code as it’s a currently popular, cross-platform, multi-language editor that’s seeing widespread use, and is easy to set up and get started. If you’re planning to primarily develop in C#, you may prefer to look into using a full IDE like [Visual Studio](https://visualstudio.microsoft.com/) (the 2019 Community edition and the Mac edition are both free) or [JetBrains Rider](https://www.jetbrains.com/rider/). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> We’ve given instructions for VS Code as it’s a currently popular, cross-platform, multi-language editor that’s seeing widespread use, and is easy to set up and get started. If you’re planning to primarily develop in C#, you may prefer to look into using a full IDE like [Visual Studio](https://visualstudio.microsoft.com/) (the 2019 Community edition and the Mac edition are both free) or [JetBrains Rider](https://www.jetbrains.com/rider/).
 
 ### [](#adding-c-development-support)Adding C# Development Support
 

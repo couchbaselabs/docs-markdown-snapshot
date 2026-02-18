@@ -1,4 +1,15 @@
+---
+title: Configure LDAP
+description: Couchbase Server can be configured to authenticate the user by
+  means of an LDAP server; and to recognize the LDAP <em>groups</em> of which
+  the user is a member.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-configure-ldap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-configure-ldap.html)
+
+# Configure LDAP
 
 > Couchbase Server can be configured to authenticate the user by means of an LDAP server; and to recognize the LDAP _groups_ of which the user is a member. 
 

@@ -1,4 +1,14 @@
+---
+title: Query Agent Catalog Traces with SQL++
+description: You can also use SQL++ through the Query Service or Capella
+  Analytics to query your Agent Catalog activity logs.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/query-traces.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/agent-tracer/query-traces.html)
+
+# Query Agent Catalog Traces with SQL++
 
 > You can also use SQL++ through the Query Service or Capella Analytics to query your Agent Catalog activity logs. 
 

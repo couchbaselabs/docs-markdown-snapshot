@@ -1,4 +1,14 @@
+---
+title: Upgrading a Cluster
+description: Maintenance jobs are scheduled to run upgrades on your cluster.
+  Capella upgrades help provide a reliable service with the latest features.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/upgrade-database.html)
+
+# Upgrading a Cluster
 
 > Maintenance jobs are scheduled to run upgrades on your cluster. Capella upgrades help provide a reliable service with the latest features. 
 
@@ -26,8 +36,10 @@ Couchbase Capella supports the following Couchbase Server versions for new clust
 | -------------- | ---------------------------------------------------------------------- |
 | Latest release | [Couchbase Server 8.0](../../server/current/release-notes/relnotes.md) |
 
-|  | Maintenance Best Practice Before running any patch, minor, or major cluster upgrades, review the [Upgrade Best Practices](upgrade-best-practices.md). Use this page to review the best practice recommendations for your cluster upgrades. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Maintenance Best Practice
+> 
+> Before running any patch, minor, or major cluster upgrades, review the [Upgrade Best Practices](upgrade-best-practices.md). Use this page to review the best practice recommendations for your cluster upgrades.
 
 In addition to Couchbase Server upgrades, Capella may schedule routine maintenance jobs that do not upgrade the Couchbase Server version, but apply essential updates to the systems your cluster runs on.
 
@@ -38,8 +50,8 @@ When planning for cluster upgrades, it’s important to understand the upgrade t
 * **Notice period**: the timeframe between when the maintenance job is scheduled (and maintenance notifications are sent) and the scheduled upgrade date (target start time). You receive notification emails when Capella schedules a maintenance job. For more information, see [Manage Maintenance Email Notifications](#upgrade-email-notifications).
 * **Upgrade window**: the timeframe during which the maintenance job can begin. This time is dependent on the upgrade type and begins after the notice period ends, allowing you to adjust the maintenance schedule as needed. For more information, see [Reschedule a Maintenance Job](#reschedule-maintenance-job).
 
-|  | You can click the maintenance job name in the Capella UI to see the full details of the upgrade and set a preferred time and day of the week for these maintenance jobs. You can also see options that allow you to change when the upgrade maintenance job runs. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can click the maintenance job name in the Capella UI to see the full details of the upgrade and set a preferred time and day of the week for these maintenance jobs. You can also see options that allow you to change when the upgrade maintenance job runs.
 
 For more details about the different types of maintenance jobs and the timeframes to complete the upgrade, see the following table:
 
@@ -56,8 +68,8 @@ All maintenance jobs have a target start time. Capella aims to start your cluste
 
 When a maintenance job runs, the cluster is moved to a redeploying state while nodes are rebalanced to apply the maintenance changes. Maintenance redeployments are not time-bound, and the time taken varies depending on the size of the cluster, volume of data, and load. Couchbase Capella clusters are designed to remain available throughout the upgrade. Cluster reconfiguration options are not available during an upgrade, though data tools remain accessible in the Capella UI.
 
-|  | Single Node clusters may experience downtime during upgrades. Since there are no data replicas, any failure during the upgrade process can lead to service disruption. It’s recommended to use Single Node clusters for prototyping or learning purposes. For production use cases, configure a Multi-Node cluster. To scale out your Single Node cluster, see [Modify a Paid Cluster](modify-database.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Single Node clusters may experience downtime during upgrades. Since there are no data replicas, any failure during the upgrade process can lead to service disruption. It’s recommended to use Single Node clusters for prototyping or learning purposes. For production use cases, configure a Multi-Node cluster. To scale out your Single Node cluster, see [Modify a Paid Cluster](modify-database.md).
 
 For each individual maintenance job, you can:
 
@@ -67,8 +79,16 @@ For each individual maintenance job, you can:
 
 You can review all scheduled maintenance jobs that have run on the cluster. For more information, see [Activity Log](monitoring/activity-log.md).
 
-|  | Maintenance and Cluster Status Keep the following in mind while using scheduled or on-demand on/off operations on your cluster: Your cluster must have a [Healthy](scale-database.md#cluster-status) scaling status and be [turned on](off-on-database.md#turn-cluster-onoff) to run an upgrade. If your cluster is turned off or in an unhealthy state when a maintenance job is set to run an upgrade, Capella automatically reschedules the maintenance job for an hour later. The maintenance is repeatedly rescheduled until the cluster is on and healthy. Even when your cluster is turned off, you can schedule a maintenance job to run an upgrade once the cluster is turned on. [Manually turn your cluster back on](off-on-database.md#turn-cluster-onoff) if you want to **Upgrade Now**. If you have [scheduled your cluster to turn off](off-on-schedule.md) and the cluster is running or due to run an upgrade within the next hour, Capella does not turn off the cluster. The cluster will not turn off until the next scheduled off event in your schedule. If you try to [turn your cluster off on-demand](off-on-database.md#turn-cluster-onoff) and the cluster is running or due to run an upgrade within the next hour, Capella returns an error and the cluster does not turn off. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Maintenance and Cluster Status
+> 
+> Keep the following in mind while using scheduled or on-demand on/off operations on your cluster:
+> 
+> * Your cluster must have a [Healthy](scale-database.md#cluster-status) scaling status and be [turned on](off-on-database.md#turn-cluster-onoff) to run an upgrade.
+> * If your cluster is turned off or in an unhealthy state when a maintenance job is set to run an upgrade, Capella automatically reschedules the maintenance job for an hour later. The maintenance is repeatedly rescheduled until the cluster is on and healthy.
+> * Even when your cluster is turned off, you can schedule a maintenance job to run an upgrade once the cluster is turned on. [Manually turn your cluster back on](off-on-database.md#turn-cluster-onoff) if you want to **Upgrade Now**.
+> * If you have [scheduled your cluster to turn off](off-on-schedule.md) and the cluster is running or due to run an upgrade within the next hour, Capella does not turn off the cluster. The cluster will not turn off until the next scheduled off event in your schedule.
+> * If you try to [turn your cluster off on-demand](off-on-database.md#turn-cluster-onoff) and the cluster is running or due to run an upgrade within the next hour, Capella returns an error and the cluster does not turn off.
 
 ### [](#view-individual-maintenance-jobs)View Individual Maintenance Jobs
 
@@ -91,8 +111,15 @@ The **Created By** field indicates whether the maintenance job was scheduled by 
 
 When certain upgrade maintenance jobs become available, if you have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../projects/project-roles.md#project-owner-role) role, you can schedule these jobs for your cluster.
 
-|  | Scheduling Upgrades You cannot self-schedule all maintenance jobs for your operational cluster. Some maintenance jobs can only be scheduled by Capella Support. To see if a maintenance job is available for you to schedule: Go to **Operational Clusters** and find the name of the cluster you’re working with. In the **Cluster Activity** column, look for the upgrade icon ![arrow circle up](_images/arrow_circle_up.png). This indicates an upgrade is available. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Scheduling Upgrades
+> 
+> You cannot self-schedule all maintenance jobs for your operational cluster. Some maintenance jobs can only be scheduled by Capella Support.
+> 
+> To see if a maintenance job is available for you to schedule:
+> 
+> 1. Go to **Operational Clusters** and find the name of the cluster you’re working with.
+> 2. In the **Cluster Activity** column, look for the upgrade icon ![arrow circle up](_images/arrow_circle_up.png). This indicates an upgrade is available.
 
 Prior to any maintenance job, follow maintenance best practices for a safe and effective cluster upgrade. This may include backing up your cluster and verifying SDK compatibility. For more information, see [Upgrading Best Practices](upgrade-best-practices.md).
 
@@ -118,8 +145,8 @@ Depending on the type of upgrade and the target start time, you can schedule a n
 
 You cannot reschedule a maintenance job while it’s **Running**.
 
-|  | You can create a support ticket to ask for an extension if there are exceptional circumstances. Extensions are not guaranteed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can create a support ticket to ask for an extension if there are exceptional circumstances. Extensions are not guaranteed.
 
 To reschedule your maintenance job:
 
@@ -132,8 +159,8 @@ To reschedule your maintenance job:
   Enter a new date and time and click **Save**.  
   If another job is in progress, then the selected job will be queued to run at a later time.
 
-|  | When you create a new upgrade schedule for your cluster, you’re overriding the existing one. This cancels the previous upgrade and applies the new schedule you set. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create a new upgrade schedule for your cluster, you’re overriding the existing one. This cancels the previous upgrade and applies the new schedule you set.
 
 ### [](#cancelled-maintenance-job)Cancel a Maintenance Job
 
@@ -178,8 +205,8 @@ When a maintenance job is scheduled, email notifications are sent to:
 
 Capella sends these emails when the maintenance job is scheduled and, when applicable, 1 week, 24 hours, and 1 hour prior to the target start time. These notifications include details about the cluster, the upgrade, and the upgrade schedule.
 
-|  | Those with notifications turned off will not receive these emails. For more information about how to turn your email notifications on or off, see [Get Alerts through Email](monitoring/alerts.md#get-alerts-through-email). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Those with notifications turned off will not receive these emails. For more information about how to turn your email notifications on or off, see [Get Alerts through Email](monitoring/alerts.md#get-alerts-through-email).
 
 ## [](#see-also)See Also
 

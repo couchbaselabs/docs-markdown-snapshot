@@ -1,4 +1,12 @@
+---
+title: Wildcard Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-wildcard.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-wildcard.html)
+
+# Wildcard Query
 
 A _wildcard_ query uses a wildcard expression, to search within individual terms for matches. Wildcard expressions can be any single character (`?`) or zero to many characters (`*`). Wildcard expressions can appear in the middle or end of a term, but not at the beginning. Please note that the wildcard query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
 

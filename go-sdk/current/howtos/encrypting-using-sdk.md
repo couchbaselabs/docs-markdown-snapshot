@@ -1,18 +1,30 @@
+---
+title: Encrypting Your Data
+description: A practical guide for getting started with Field-Level Encryption,
+  showing how to encrypt and decrypt JSON fields using the Go SDK.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/howtos/encrypting-using-sdk.html)
+
+# Encrypting Your Data
 
 > A practical guide for getting started with Field-Level Encryption, showing how to encrypt and decrypt JSON fields using the Go SDK. 
 
 For a high-level overview of this feature, see [Field Level Encryption](../concept-docs/encryption.md).
 
-|  | Native Encryption at Rest Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#package)Packaging
 
 The Go SDK works together with the [Go Couchbase Encryption](https://github.com/couchbase/gocbencryption) library to provide support for encryption and decryption of JSON fields. This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration.
 
 To get started with the Go encryption library you can fetch it using:
 
@@ -221,5 +233,5 @@ The output is now:
 
 SDK 1.x reached end-of-life long ago, but should you have fields encrypted by SDK 1.x, and the need to read them from SDK 2.x, then follow the steps in the [archived documents](https://docs-archive.couchbase.com/go-sdk/2.6/howtos/encrypting-using-sdk.html#migration-from-sdk1).
 
-|  | The encryption algorithms used by SDK 1 are deprecated, and are no longer used for encrypting new data. Do not rely on the security of outdated encryption algorithms. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The encryption algorithms used by SDK 1 are deprecated, and are no longer used for encrypting new data. Do not rely on the security of outdated encryption algorithms.

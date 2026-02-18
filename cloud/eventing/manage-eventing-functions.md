@@ -1,4 +1,13 @@
+---
+title: Manage Eventing Functions
+description: Use the Capella UI to manage the Eventing Functions in your cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/manage-eventing-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/manage-eventing-functions.html)
+
+# Manage Eventing Functions
 
 > Use the Capella UI to manage the Eventing Functions in your cluster. 
 
@@ -8,8 +17,8 @@ You can pause an Eventing Function to checkpoint the Function and stop processin
 
 You can edit the JavaScript code of a paused Function.
 
-|  | You can only pause an Eventing Function when that Function has already been deployed. |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only pause an Eventing Function when that Function has already been deployed.
 
 To pause an Eventing Function:
 
@@ -66,8 +75,8 @@ To check the logs of your deployed Function:
 
 ## [](#edit-javascript)Edit a Function’s JavaScript Code
 
-|  | You can only edit the JavaScript code of an Eventing Function when that Function is paused or undeployed. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only edit the JavaScript code of an Eventing Function when that Function is paused or undeployed.
 
 To edit the JavaScript code of an Eventing Function:
 
@@ -107,8 +116,8 @@ If your Eventing Function is in a deployed state, you can only edit some of its 
 
 ## [](#delete-function)Delete a Function
 
-|  | You can only delete an Eventing Function if the Function is undeployed. |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> You can only delete an Eventing Function if the Function is undeployed.
 
 To delete an Eventing Function:
 

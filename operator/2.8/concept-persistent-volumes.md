@@ -1,4 +1,12 @@
+---
+title: Persistent Volumes
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-persistent-volumes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-persistent-volumes.html)
+
+# Persistent Volumes
 
 > The Operator fully supports Couchbase Clusters running with persistent storage. This section details benefits and requirements in order to correctly function. 
 
@@ -42,8 +50,8 @@ It is for this reason that the Operator requires lazily bound storage classes to
 
 Please refer to the [storage class how-to guide](howto-storage-class.md) to configure lazy bound storage classes.
 
-|  | Some storage providers or platforms may work transparently across availability zones. If this is the case then you may use any existing storage class. Please consult with your Kubernetes vendor to confirm. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Some storage providers or platforms may work transparently across availability zones. If this is the case then you may use any existing storage class. Please consult with your Kubernetes vendor to confirm.
 
 ### [](#storage-reclaim-policy)Storage Reclaim Policy
 

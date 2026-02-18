@@ -1,4 +1,14 @@
+---
+title: "Auto-Compaction: Global"
+description: Auto-compaction settings can be established and retrieved for the
+  entire cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-autocompact-global.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-autocompact-global.html)
+
+# Auto-Compaction: Global
 
 > Auto-compaction settings can be established and retrieved for the entire cluster. 
 

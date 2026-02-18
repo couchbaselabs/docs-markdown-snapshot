@@ -1,4 +1,12 @@
+---
+title: There + To Be
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/there-is.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/there-is.html)
+
+# There + To Be
 
 Do not start a sentence with `there` and a form of the verb `to be`:
 

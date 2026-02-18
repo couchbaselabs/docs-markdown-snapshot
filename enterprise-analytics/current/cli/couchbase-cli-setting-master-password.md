@@ -1,4 +1,13 @@
+---
+title: setting-master-password
+description: Manages the Couchbase master password
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-setting-master-password.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-setting-master-password.html)
+
+# setting-master-password
 
 Manages the Couchbase master password
 
@@ -109,8 +118,8 @@ Once the master password is configured restart the server. Upon restarting the c
 
 $ couchbase-cli master-password --send-password password
 
-|  | You can also use the CB\_MASTER\_PASSWORD=<password> environmental variable to pass the password to the node during startup. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also use the CB\_MASTER\_PASSWORD=<password> environmental variable to pass the password to the node during startup.
 
 ## [](#environment-and-configuration-variables)ENVIRONMENT AND CONFIGURATION VARIABLES
 

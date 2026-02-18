@@ -1,4 +1,14 @@
+---
+title: Using Indexes
+description: Primary Indexes and Global Secondary Indexes (GSI) support queries
+  made by the Query Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/global-secondary-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/services-and-indexes/indexes/global-secondary-indexes.html)
+
+# Using Indexes
 
 > Primary Indexes and Global Secondary Indexes (GSI) support queries made by the Query Service. 
 

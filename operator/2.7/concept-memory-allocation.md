@@ -1,4 +1,12 @@
+---
+title: Couchbase Memory Allocation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-memory-allocation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-memory-allocation.html)
+
+# Couchbase Memory Allocation
 
 > Couchbase memory allocation is configured in the `CouchbaseCluster` resource. It’s important to understand how memory allocation works in Couchbase Server, and how it applies to deployments using the Autonomous Operator. 
 
@@ -14,8 +22,8 @@ For deployments using the Autonomous Operator, memory quotas are configured in t
 
 Figure 1\. Cluster with homogeneous service distribution
 
-|  | You’ll notice that the Query service is not pictured in [Figure 1](#image-cluster-homogeneous-service-distribution). This is because the Query service is not memory constrained, and will compete for memory against all the other services. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You’ll notice that the Query service is not pictured in [Figure 1](#image-cluster-homogeneous-service-distribution). This is because the Query service is not memory constrained, and will compete for memory against all the other services.
 
 When deploying the cluster in [Figure 1](#image-cluster-homogeneous-service-distribution) using the Autonomous Operator, the `CouchbaseCluster` configuration would include the following:
 
@@ -43,8 +51,8 @@ spec:
     - analytics
 ```
 
-|  | The memory quotas from the configuration above are the defaults that the Autonomous Operator will use if none are specified. The defaults are the lowest allowed and almost certainly will need modification for your specific workload. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The memory quotas from the configuration above are the defaults that the Autonomous Operator will use if none are specified. The defaults are the lowest allowed and almost certainly will need modification for your specific workload.
 
 In this configuration, [couchbaseclusters.spec.cluster.dataServiceMemoryQuota](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-dataservicememoryquota) is set to `256Mi`, resulting in 256 MB of RAM being reserved for the Data service on each node, for a total of 768 MB across the whole cluster.
 
@@ -117,8 +125,8 @@ For shared nodes, you’ll be using pod resource requests with the [couchbaseclu
 
 The same memory requirements that apply to shared nodes (total of all service memory quotas in the server specification, plus 25% overhead for the Couchbase Server application) also apply to dedicated nodes. However, instead of using resource requests/limits to ensure server Pods have enough memory to satisfy quotas, you may be using things like labels, node selectors, and taints/tolerations to ensure that server Pods get [scheduled](#concept-scheduling) onto Kubernetes nodes that you know for sure have enough memory.
 
-|  | Even when running a Couchbase Server Pod on a dedicated Kubernetes node, it’s important to remember that Kubernetes does not allow swap storage for containers, and thus a singular Pod must still remain within the bounds of the node’s [allocatable](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#node-allocatable) memory, or else risk being evicted. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Even when running a Couchbase Server Pod on a dedicated Kubernetes node, it’s important to remember that Kubernetes does not allow swap storage for containers, and thus a singular Pod must still remain within the bounds of the node’s [allocatable](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#node-allocatable) memory, or else risk being evicted.
 
 ## [](#automatic-memory-reservation-operator-2-2)Automatic Memory Reservation operator 2.2
 
@@ -128,8 +136,8 @@ When using automatic memory allocation, be aware there is a [couchbaseclusters.s
 
 Modification of memory allocation will cause an upgrade of the affected pods.
 
-|  | It is dangerous to change both a memory quota and the resource request at the same time. Changing both parameters, the resource request and a quota to take advantage of the new request, at the same time could potentially lead to the Couchbase Autonomous Operator performing a swap/rebalance of all nodes in the cluster. This is due to the order in which these changes may be applied. If the quota modification gets applied before the new resource request, the memory will not be available for the pod, precipitating operator to create a new pod. To prevent this, change the resource request first, then apply the quota modification. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> It is dangerous to change both a memory quota and the resource request at the same time. Changing both parameters, the resource request and a quota to take advantage of the new request, at the same time could potentially lead to the Couchbase Autonomous Operator performing a swap/rebalance of all nodes in the cluster. This is due to the order in which these changes may be applied. If the quota modification gets applied before the new resource request, the memory will not be available for the pod, precipitating operator to create a new pod. To prevent this, change the resource request first, then apply the quota modification.
 
 ## [](#interactive-memory-allocation-operator-2-1)Interactive Memory Allocation operator 2.1
 

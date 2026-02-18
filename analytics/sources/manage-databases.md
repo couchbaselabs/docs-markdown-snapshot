@@ -1,4 +1,15 @@
+---
+title: Manage Capella Analytics Services Databases
+description: In a Capella Analytics cluster, a database is the top-level
+  container for organizing related information. You can add or delete databases
+  using the UI or SQL++ for Capella Analytics statements.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-databases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/manage-databases.html)
+
+# Manage Capella Analytics Services Databases
 
 > In a Capella Analytics cluster, a database is the top-level container for organizing related information. You can add or delete databases using the UI or SQL++ for Capella Analytics statements. 
 
@@ -31,8 +42,8 @@ Each time you add a database, Capella Analytics records its metadata in the `Sys
 
 When you delete a database, Capella Analytics deletes all of the scopes, collections, and other objects in that database.
 
-|  | You cannot delete the system-supplied Default database. |
-|  | ------------------------------------------------------- |
+> [!TIP]
+> You cannot delete the system-supplied `Default` database.
 
 1. In the Capella UI, select the **Capella Analytics** tab.
 2. Click a cluster name. The workbench opens.

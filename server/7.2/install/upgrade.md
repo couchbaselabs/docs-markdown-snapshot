@@ -1,12 +1,26 @@
+---
+title: Upgrade
+description: To upgrade a Couchbase-Server cluster means to upgrade the version
+  of Couchbase Server that is running on every node.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/upgrade.html)
+
+# Upgrade
 
 > To upgrade a Couchbase-Server cluster means to upgrade the version of Couchbase Server that is running on every node. 
 
-|  | Upgrading from Versions 7.1 or 7.2 to Versions 7.6.0 or 7.6.1 If there are index service nodes running in your cluster, you must use the swap rebalance method when upgrading from Couchbase Server 7.1 or 7.2 to Server 7.6.0 or 7.6.1\. See [Swap Rebalance](upgrade-procedure-selection.md#swap-rebalance) for more information about the swap rebalance method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Upgrading from Versions 7.1 or 7.2 to Versions 7.6.0 or 7.6.1
+> 
+> If there are index service nodes running in your cluster, you must use the swap rebalance method when upgrading from Couchbase Server 7.1 or 7.2 to Server 7.6.0 or 7.6.1\. See [Swap Rebalance](upgrade-procedure-selection.md#swap-rebalance) for more information about the swap rebalance method.
 
-|  | Upgrading to Version 7.x with older versions of .NET SDK If you are upgrading from Couchbase **6.5/6.6** to **7.x+** while using a version of .NET SDK prior to 3.2.9, then make sure your cluster is **not** running in mixed mode. (i.e. some nodes are using IPv4 addressing while some are using IPv6). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Upgrading to Version 7.x with older versions of .NET SDK
+> 
+> If you are upgrading from Couchbase **6.5/6.6** to **7.x+** while using a version of .NET SDK prior to 3.2.9, then make sure your cluster is **not** running in `mixed mode`. (i.e. some nodes are using IPv4 addressing while some are using IPv6).
 
 ## [](#understanding-upgrade)Understanding Upgrade
 
@@ -20,8 +34,8 @@ An upgrade _path_ declares that the upgrade of one version of Couchbase Server t
 
 All supported upgrades can be performed with the cluster either _offline_ or _online_.
 
-|  | As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> As far as is possible, you should aim to keep your cluster up to date with the latest version of Couchbase Server.
 
 ## [](#how-to-upgrade-your-cluster)How to Upgrade Your Cluster
 
@@ -36,8 +50,13 @@ Example 1\. Upgrading from version `5.1x` to `7.2.4`
 | 2    | Upgrade all nodes from 6.6 to 7.2.3   | **Node 1** ⇒ 6.6 → 7.2.3 **Node 2** ⇒ 6.6 → 7.2.3 **Node 3** ⇒ 6.6 → 7.2.3       |
 | 3    | Upgrade all nodes from 7.2.3 to 7.2.4 | **Node 1** ⇒ 7.2.3 → 7.2.4 **Node 2** ⇒ 7.2.3 → 7.2.4 **Node 3** ⇒ 7.2.3 → 7.2.4 |
 
-|  | Upgrading between non-adjacent version numbers is usually _not_ supported. For example, to upgrade from **5.1.x** to **7.2.4**, then _three_ upgrades must be performed (as shown in [Example 1](#upgrade-example)):first, from **5.1.x** to **6.6**,then, from **6.6** to **7.2.3**and finally, from **7.2.3** to **7.2.4**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Upgrading between non-adjacent version numbers is usually _not_ supported.
+> 
+> For example, to upgrade from **5.1.x** to **7.2.4**, then _three_ upgrades must be performed (as shown in [Example 1](#upgrade-example)):  
+> first, from **5.1.x** to **6.6**,  
+> then, from **6.6** to **7.2.3**  
+> and finally, from **7.2.3** to **7.2.4**.
 
 ### [](#table-upgrade-enterprise)Enterprise Edition Upgrade Paths
 
@@ -72,8 +91,8 @@ The server can be fixed by invoking the Windows Repair operation on the Couchbas
 
 If you’re currently operating a Couchbase Server cluster on Community Edition, you can upgrade it to Enterprise Edition by way of a [rolling online upgrade](upgrade-procedure-selection.md#online-upgrade). This involves switching out the Community Edition nodes with fresh, net-new Enterprise Edition nodes. Both 'swap rebalance' and 'remove and reblance' methods are supported. (Delta Recovery is not supported since the new nodes must be fresh Enterprise Edition installations without any pre-existing Community Edition data remaining on them.)
 
-|  | Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Rolling upgrades from CE to EE are not supported if there are index service nodes running in the cluster.
 
 The Enterprise Edition nodes must be running the same version number of Couchbase Server as the Community Edition nodes that they are replacing, otherwise the upgrade may fail. This means you can’t upgrade to a newer version of Couchbase Server while also upgrading to Enterprise Edition during the same rolling upgrade.
 
@@ -96,8 +115,8 @@ Once you’ve upgraded one node to Enterprise Edition, you must upgrade all the 
 Users can create equivalent indexes (same index with different name) on different nodes, to avoid loss of index functionality.
 * If a rolling online upgrade to Enterprise Edition isn’t possible in your environment, contact Couchbase for assistance.
 
-|  | Remember that Enterprise Edition is not free to run in production. If you’re interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Remember that Enterprise Edition is not free to run in production. If you’re interested in upgrading to Couchbase Server Enterprise Edition, check out the [editions page](https://www.couchbase.com/products/editions).
 
 See [Upgrade Procedure-Selection](upgrade-procedure-selection.md), for a list of procedures that can be used when upgrading from Community Edition to Enterprise. Note, however, that _Graceful Failover_ for Data Service nodes, with _Delta Recovery_, is _not_ supported for such upgrades: instead, _removal_, _addition_, and _swap rebalance_ should be used; for all nodes.
 

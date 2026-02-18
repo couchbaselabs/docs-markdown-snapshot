@@ -1,4 +1,13 @@
+---
+title: Importing Data
+description: How to import documents into Couchbase.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/import.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/import.html)
+
+# Importing Data
 
 > How to import documents into Couchbase.  
 > This guide is for Couchbase Server.
@@ -23,8 +32,13 @@ Clients access data by connecting to a Couchbase cluster over the network. The m
 
 The command line clients also provide a quick and streamlined interface for access and are suitable if you just want to access an item without writing any code. For this guide, we’re especially interested in the `cbimport` tool.
 
-|  | With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system: Linux /opt/couchbase/bin Windows C:\\Program Files\\Couchbase\\Server\\bin macOS /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system:
+> 
+> | Linux   | /opt/couchbase/bin                                                       |
+> | ------- | ------------------------------------------------------------------------ |
+> | Windows | C:\\Program Files\\Couchbase\\Server\\bin                                |
+> | macOS   | /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin |
 
 The Couchbase Server UI also offers a graphical interface to `cbimport`.
 
@@ -533,8 +547,8 @@ Click the  View button to see any code sample in context.
 
 Use the [stream-json](https://github.com/uhop/stream-json) library.
 
-|  | stream-json formats its output with a { key: …​, value: …​} wrapper, so we need to map the stream into the expected format. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> stream-json formats its output with a `{ key: …​, value: …​}` wrapper, so we need to map the stream into the expected format.
 
 ```nodejs
 const stream = require('stream'); 
@@ -677,8 +691,8 @@ To insert an imported document into the keyspace:
 2. Do any additional processing, for example calculating fields, or adding metadata about the importer.
 3. Finally, use an upsert operation to the store the document.
 
-|  | Use upsert rather than insert to upload the document even if the target key already has a value. This means that in the case of any error, it’s easy to make any required tweaks to the import file and re-run the whole import. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use `upsert` rather than `insert` to upload the document even if the target key already has a value. This means that in the case of any error, it’s easy to make any required tweaks to the import file and re-run the whole import.
 
 * .NET
 * Java
@@ -687,8 +701,8 @@ To insert an imported document into the keyspace:
 
 To store the data, hook the prepared data into an `upsert` routine.
 
-|  | As CsvHelper and Newtonsoft generate different outputs, we have provided some overloaded options that work for either. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As CsvHelper and Newtonsoft generate different outputs, we have provided some overloaded options that work for either.
 
 ```csharp
 // CsvHelper emits `dynamic` records

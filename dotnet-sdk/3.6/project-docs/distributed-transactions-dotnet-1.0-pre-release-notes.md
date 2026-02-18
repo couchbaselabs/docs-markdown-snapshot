@@ -1,4 +1,15 @@
+---
+title: Couchbase Distributed ACID Transactions for .NET SDK Pre-release Archive
+  Release Notes
+description: Historic release notes archive for the 1.0 pre-GA (Alpha &amp;
+  Beta) Couchbase .NET Distributed ACID Transactions Releases.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-1.0-pre-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/project-docs/distributed-transactions-dotnet-1.0-pre-release-notes.html)
+
+# Couchbase Distributed ACID Transactions for .NET SDK Pre-release Archive Release Notes
 
 > Release notes archive for the 1.0 Alpha & Beta Couchbase .NET Distributed ACID Transactions Releases. 
 
@@ -6,8 +17,8 @@ Couchbase Distributed ACID Transactions is distributed as a separate library for
 
 In the run-up to the Couchbase .NET Distributed ACID Transactions 1.0 API releases, several αλφα and βετα releases were made. Their release notes are maintained here for archive purposes. The 1.0 series release notes proper can be found [here](distributed-transactions-dotnet-release-notes.md), and howto documentation can be found [here](../howtos/distributed-acid-transactions-from-the-sdk.md). Please note that none of the pre-releases listed below are supported; all _supported_ (GA) releases can be found [here](sdk-release-notes.md).
 
-|  | These are the pre-release α & β Release Notes maintained purely for archive and information purposes. These releases are unsupported. Supported (GA) releases can be found on the [.NET Transactions Release Notes page](distributed-transactions-dotnet-release-notes.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> These are the pre-release α & β Release Notes maintained purely for archive and information purposes. These releases are unsupported. Supported (GA) releases can be found on the [.NET Transactions Release Notes page](distributed-transactions-dotnet-release-notes.md).
 
 ## [](#version-1-0-0-beta-1-3-november-2020)Version 1.0.0.beta.1 (3 November 2020)
 

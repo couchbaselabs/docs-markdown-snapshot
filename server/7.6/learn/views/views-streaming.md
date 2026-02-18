@@ -1,4 +1,14 @@
+---
+title: Stream-based Views
+description: "With DCP, data does not need to be persisted to disk before
+  retrieving it with a view query. DCP offers the following benefits for views:"
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-streaming.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/views/views-streaming.html)
+
+# Stream-based Views
 
 With DCP, data does not need to be persisted to disk before retrieving it with a view query. DCP offers the following benefits for views:
 
@@ -16,5 +26,5 @@ Every 5 seconds the automatic update process checks whether 5000 changes have oc
 
 The `stale=false` view query argument has been enhanced. When an application sends a query that has the `stale` parameter set to false, the application receives all recent changes to the documents, including changes that haven’t yet been persisted to disk. It considers all document changes that have been received at the time the query was received. This means that using the durability requirements or observe feature to block for persistence in application code before issuing the `stale=false` query is no longer needed. It is recommended that you remove all such application level checks after upgrading.
 
-|  | For better scalability and throughput, we recommend that you set the value of the stale parameter to ok. With the stream-based views, data returned when stale is set to ok is closer to the key-value data, even though it might not include all of it. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For better scalability and throughput, we recommend that you set the value of the `stale` parameter to `ok`. With the stream-based views, data returned when `stale` is set to `ok` is closer to the key-value data, even though it might not include all of it.

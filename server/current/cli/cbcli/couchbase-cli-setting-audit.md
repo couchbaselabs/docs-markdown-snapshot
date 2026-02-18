@@ -1,4 +1,13 @@
+---
+title: setting-audit
+description: Modifies audit log settings (EE only)
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-audit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-setting-audit.html)
+
+# setting-audit
 
 Modifies audit log settings (EE only)
 

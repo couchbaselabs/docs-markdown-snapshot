@@ -1,4 +1,13 @@
+---
+title: Deployment
+description: Transition from dev environment to prod, and keep up with the latest fixes.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/project-docs/pages/deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-columnar-sdk/current/project-docs/deployment.html)
+
+# Deployment
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 

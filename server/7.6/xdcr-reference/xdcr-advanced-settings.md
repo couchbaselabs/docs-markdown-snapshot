@@ -1,4 +1,13 @@
+---
+title: XDCR Advanced Settings
+description: XDCR performance can be fine-tuned.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/xdcr-reference/pages/xdcr-advanced-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/xdcr-reference/xdcr-advanced-settings.html)
+
+# XDCR Advanced Settings
 
 > XDCR performance can be fine-tuned. 
 

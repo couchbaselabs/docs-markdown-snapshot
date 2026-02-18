@@ -1,4 +1,15 @@
+---
+title: React Native
+description: The React Native plugin for Couchbase Lite is now in public
+  preview. This is an open-source, community-supported project developed by
+  Couchbase.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/javascript/pages/react.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/javascript/react.html)
+
+# React Native
 
 ## [](#overview)Overview
 
@@ -11,8 +22,8 @@ More information on React Native Native Modules can be found at [Couchbase Lite 
 * Platform Support - This plugin currently only supports iOS and Android platforms. Web, Windows, and macOS are not currently supported.
 * Couchbase Community Supported - This open-source plugin is Couchbase Community supported. Note that the Couchbase Lite binary linked to the plugin is Couchbase Lite Enterprise Edition (EE) and its use is guided by the terms and conditions of the [Couchbase Lite Enterprise license agreement](https://www.couchbase.com/2018-04-30v3%5FLicense%5FAgreement/).
 
-|  | _**Couchbase Community Supported**_ is an Open source integration that is developed by Couchbase. Issues related to the integration can be raised in the relevant GitHub repositories or via Couchbase forums or Discord. Support is provided best effort by development team. For more information, see [Support Models](../../../cloud/third-party/integrations.md#support-model). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> _**Couchbase Community Supported**_ is an Open source integration that is developed by Couchbase. Issues related to the integration can be raised in the relevant GitHub repositories or via Couchbase forums or Discord. Support is provided best effort by development team. For more information, see [Support Models](../../../cloud/third-party/integrations.md#support-model).
 
 ## [](#getting-started)Getting Started
 

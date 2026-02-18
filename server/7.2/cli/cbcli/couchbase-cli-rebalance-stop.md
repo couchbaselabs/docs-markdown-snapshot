@@ -1,4 +1,13 @@
+---
+title: rebalance-stop
+description: Stops the current rebalance task
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-rebalance-stop.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-rebalance-stop.html)
+
+# rebalance-stop
 
 Stops the current rebalance task
 

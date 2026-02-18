@@ -1,4 +1,13 @@
+---
+title: Analytics Administration REST APIs
+description: A description of the Administration REST APIs for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/analytics-rest-admin/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics-rest-admin/index.html)
+
+# Analytics Administration REST APIs
 
 ## [](#overview)Overview
 
@@ -423,8 +432,8 @@ Response 200
 
 GET /analytics/node/agg/stats/remaining
 
-|  | This operation is deprecated, and will be removed in a future release. |
-|  | ---------------------------------------------------------------------- |
+> [!CAUTION]
+> This operation is deprecated, and will be removed in a future release.
 
 #### [](#monitor%5Fnode-description)Description
 

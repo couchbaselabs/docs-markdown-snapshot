@@ -1,11 +1,19 @@
+---
+title: Examples
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/subquery-examples.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/subquery-examples.html)
+
+# Examples
 
 Examples on this Page
 
 To use the examples on this page, you must set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | Please note that some of the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Import Sample Data](../../clusters/data-service/import-data-documents.md#import-sample-data) for details. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that some of the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Import Sample Data](../../clusters/data-service/import-data-documents.md#import-sample-data) for details.
 
 ## [](#example-1)Example 1
 

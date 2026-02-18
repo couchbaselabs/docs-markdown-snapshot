@@ -1,4 +1,13 @@
+---
+title: Keyspace Hints
+description: Keyspace hints apply to a specific keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/keyspace-hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/keyspace-hints.html)
+
+# Keyspace Hints
 
 > Keyspace hints apply to a specific keyspace. 
 
@@ -402,8 +411,8 @@ A hash join has two sides: a **build** side and a **probe** side. The build side
 
 This hint enables you specify whether the right side of the join should be the build side or the probe side. If you specify that the right side of the join is the build side, then the left side will be the probe side, and vice versa.
 
-|  | For Couchbase Server Community Edition (CE), only nested-loop join is considered by the optimizer, and any specified USE\_HASH hint will be silently ignored. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For Couchbase Server Community Edition (CE), only nested-loop join is considered by the optimizer, and any specified `USE_HASH` hint will be silently ignored.
 
 ### [](#simple-syntax-4)Simple Syntax
 

@@ -1,4 +1,14 @@
+---
+title: Monitor
+description: Monitoring of Couchbase Server can be performed by means of
+  Couchbase Web Console, the CLI, and the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/monitor/monitor-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/monitor/monitor-intro.html)
+
+# Monitor
 
 > Monitoring of Couchbase Server can be performed by means of Couchbase Web Console, the CLI, and the REST API. 
 

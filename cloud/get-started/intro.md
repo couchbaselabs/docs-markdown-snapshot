@@ -1,4 +1,12 @@
+---
+title: Welcome to Couchbase Capella
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/intro.html)
+
+# Welcome to Couchbase Capella
 
 Unresolved include directive in modules/get-started/pages/intro.adoc - include::home::partial$info-banner.adoc\[\]
 

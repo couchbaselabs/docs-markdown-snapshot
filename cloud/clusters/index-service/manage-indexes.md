@@ -1,11 +1,24 @@
+---
+title: Manage Indexes
+description: You can perform some index management tasks using the Couchbase Capella UI.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/index-service/manage-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/index-service/manage-indexes.html)
+
+# Manage Indexes
 
 > You can perform some index management tasks using the Couchbase Capella UI. 
 
 ## [](#accessing-indexes-in-the-capella-ui)Accessing Indexes in the Capella UI
 
-|  | Permissions Required To access indexes in the Couchbase Capella UI, you need the following permissions: You need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role for the project containing the cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> To access indexes in the Couchbase Capella UI, you need the following permissions:
+> 
+> You need the [Project Owner](../../projects/project-roles.md#project-owner-role) or [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role for the project containing the cluster.
 
 To view the Indexes page for a cluster that’s running the [Index Service](../../indexes/indexing-overview.md):
 
@@ -71,8 +84,8 @@ The following statistics are available:
 
 ## [](#drop-an-index)Drop an Index
 
-|  | You can also drop an index using the SQL++ [DROP INDEX](../../n1ql/n1ql-language-reference/dropindex.md) or [DROP PRIMARY INDEX](../../n1ql/n1ql-language-reference/dropprimaryindex.md) commands. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also drop an index using the SQL++ [DROP INDEX](../../n1ql/n1ql-language-reference/dropindex.md) or [DROP PRIMARY INDEX](../../n1ql/n1ql-language-reference/dropprimaryindex.md) commands.
 
 To drop an index:
 

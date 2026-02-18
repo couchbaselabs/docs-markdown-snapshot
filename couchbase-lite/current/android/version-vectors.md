@@ -1,4 +1,14 @@
+---
+title: Version Vectors
+description: Couchbase Lite 4.0 -- Version Vectors -- Document versioning and
+  conflict resolution
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/version-vectors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/version-vectors.html)
+
+# Version Vectors
 
 > Description — _Couchbase Lite 4.0 — Version Vectors — Document versioning and conflict resolution_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Handling Data Conflicts](conflict.md) | [Data Sync](replication.md)

@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Data Sync Fundamentals"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/sync/content/modules/userprofile-sync-android/pages/userprofile_sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-sync-android/userprofile_sync.html)
+
+# User Profile Sample: Data Sync Fundamentals
 
 ## [](#introduction)Introduction
 
@@ -486,10 +494,9 @@ public static void stopAllReplicationForCurrentUser()
 ```java  
 replicator.removeChangeListener(replicatorListenerToken);  
 replicator.stop();  
-```
-
-|  | All open replicators must be stopped before database is closed. There will be an exception if you attempt to close the database without closing the active replicators. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> All open replicators must be stopped before database is closed. There will be an exception if you attempt to close the database without closing the active replicators.
 
 ## [](#query-events-live-queries)Query Events / Live Queries
 

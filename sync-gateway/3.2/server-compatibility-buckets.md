@@ -1,4 +1,14 @@
+---
+title: Buckets&#8201;&#8212;&#8201;Server Compatibility
+description: How <em>Sync Gateway</em> works with <em>Couchbase Server's</em>
+  <em>Buckets</em>
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-buckets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/server-compatibility-buckets.html)
+
+# Buckets&#8201;&#8212;&#8201;Server Compatibility
 
 > How _Sync Gateway_ works with _Couchbase Server’s_ _Buckets_  
 
@@ -12,8 +22,8 @@ A bucket in Couchbase Server is the fundamental space for storing data. Each buc
 
 For more information, see [Buckets](../../server/current/learn/buckets-memory-and-storage/buckets.md)
 
-|  | See: [Compatibility Matrix](compatibility.md) for version compatibility information. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> See: [Compatibility Matrix](compatibility.md) for version compatibility information.
 
 You can find details here about compatibility between Couchbase Server buckets and the Couchbase Mobile ecosystem.
 
@@ -25,8 +35,8 @@ You can still use high durability settings when set on the client side. For more
 
 ## [](#time-to-live-ttl)Time To Live (TTL)
 
-|  | Document TTL is an Enterprise Edition only feature. |
-|  | --------------------------------------------------- |
+> [!IMPORTANT]
+> Document TTL is an Enterprise Edition only feature.
 
 Couchbase Server Enterprise Edition lets you have documents expire after a period of time, called the document’s Time To Live (TTL). This feature only works in Couchbase and Ephemeral buckets. It does not work in Memcached buckets. For more information, see [Expiration](../../server/current/learn/data/expiration.md).
 
@@ -34,8 +44,8 @@ Sync Gateway does not support Bucket-level TTL, make sure your buckets have thei
 
 Similarly, do not set Collection-level TTL (`maxTTL` on collections) as this can interfere with Sync Gateway’s internal documents, including those with `_sync` prefixes and other system documents that are essential for proper operation. If these system documents expire due to collection-level TTL, Sync Gateway may malfunction or fail to operate properly. You can use per-collection sync functions to set expiry on all documents within a collection when you need TTL-like behavior at the collection level, while preserving Sync Gateway’s system documents.
 
-|  | You can still set Document expiration settings on individual documents. |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> You can still set Document expiration settings on individual documents.
 
 ---
 

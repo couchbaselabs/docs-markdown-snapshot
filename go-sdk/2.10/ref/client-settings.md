@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: Client settings using <code>ConnectOptions</code> for
+  bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.10/ref/client-settings.html)
+
+# Client Settings
 
 > Client settings using `ConnectOptions` for bootstrapping, timeouts, reliability, and performance. 
 
@@ -120,8 +130,10 @@ Default: `5s`
 
 The period of time which canary operations are permitted to take before they are marked as a failure.
 
-|  | Cloud Native Gateway If using the couchbase2:// connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Cloud Native Gateway
+> 
+> If using the `couchbase2://` connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure.
 
 ## [](#timeout-options)Timeout Options
 
@@ -137,8 +149,8 @@ Default: `2.5s`
 
 The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like get(), getFromReplica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, KVDurableTimeout, see below. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, `KVDurableTimeout`, see below.
 
 Name: **KVDurableTimeout**
 
@@ -148,8 +160,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The KVDurableTimeout property is not part of the stable API and may change or be removed at any time. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `KVDurableTimeout` property is not part of the stable API and may change or be removed at any time.
 
 Name: **ViewTimeout**
 
@@ -224,8 +236,8 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
 
@@ -233,8 +245,8 @@ A program using the SDK can also use the `waitUntilReady()` API call to handle a
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

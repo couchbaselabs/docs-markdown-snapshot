@@ -1,4 +1,12 @@
+---
+title: Child Field Index
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-add-child-field-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings-add-child-field-index.html)
+
+# Child Field Index
 
 When checked, the field is indexed; when unchecked, the field is not indexed. This may be used, therefore, to explicitly remove an already-defined field from the index.
 
@@ -6,5 +14,5 @@ When checked, the field is indexed; when unchecked, the field is not indexed. Th
 
 ![fts type mappings child field index](_images/fts-type-mappings-child-field-index.png) 
 
-|  | When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When this checkbox is checked, the resulting index will proportionately increase in size.

@@ -1,17 +1,37 @@
+---
+title: What&#8217;s New in Version 7.6
+description: Couchbase is the modern database for enterprise applications.
+  Couchbase Server 7.6 combines the strengths of relational databases with the
+  flexibility, performance, and scale of Couchbase.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/introduction/whats-new.html)
+
+# What&#8217;s New in Version 7.6
 
 > Couchbase is the modern database for enterprise applications. Couchbase Server 7.6 combines the strengths of relational databases with the flexibility, performance, and scale of Couchbase. 
 
 For information about platform support changes, deprecation notifications, notable improvements, and fixed and known issues, refer to the [Release Notes](../release-notes/relnotes.md).
 
-|  | deprecation notice Using older x86 processors that do not have the AVX2 instruction set is deprecated in Couchbase Server 7.6.x. Deprecated processors include pre-2013 Intel Core processors, pre-2020 Celeron or Pentium processors, and pre-2015 AMD processors. See [System Resource Requirements](../install/pre-install.md) for details. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> deprecation notice
+> 
+> Using older x86 processors that do not have the AVX2 instruction set is deprecated in Couchbase Server 7.6.x. Deprecated processors include pre-2013 Intel Core processors, pre-2020 Celeron or Pentium processors, and pre-2015 AMD processors. See [System Resource Requirements](../install/pre-install.md) for details.
 
-|  | note regarding cbbackupmgr If you are performing a backup/restore operation on a Couchbase Server 7.6.x cluster, ensure that you use cbbackupmgr version 7.6. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> note regarding `cbbackupmgr`
+> 
+> If you are performing a backup/restore operation on a Couchbase Server 7.6.x cluster, ensure that you use `cbbackupmgr` version 7.6.
 
-|  | \*Sync Gateway 4.0.0 is a future release version. |
-|  | ------------------------------------------------- |
+## [](#new-features-7610)New Features and Enhancements in 7.6.10
+
+The following new features are provided in this release.
+
+## [](#new-features-7610-query)Query Service
+
+* **[MB-69387](https://jira.issues.couchbase.com/browse/MB-69387):**Couchbase Server 7.6.10 now includes an auto-reprepare feature for PREPARE statements. When enabled, a prepared statement automatically updates its query plan whenever GSI metadata version changes, ensuring it always uses newer, more efficient indexes as they become available. For more information, see [PREPARE](../n1ql/n1ql-language-reference/prepare.md).
 
 ## [](#new-features-766)New Features and Enhancements in 7.6.6
 
@@ -23,7 +43,7 @@ The following new features are provided in this release.
 
 ## [](#new-features-766-xdcr)XDCR
 
-* **[MB-57921](https://jira.issues.couchbase.com/browse/MB-57921):**Created provision to set up XDCR bidirectional replication with Sync Gateway (SGW) 4.0\* or a later version. In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0.0\*, only an active-passive setup was supported with both XDCR and SGW. XDCR active-active replication with Sync Gateway for XDCR-Mobile interoperability configuration is introduced in the Server 7.6.6 version, where you can configure an active-active XDCR setup with Sync Gateway and mobile applications both on the XDCR source and target clusters. You need to have at least a Server 7.6.6 version and SGW 4.0.0\* version to use this setup. For more info, see [XDCR Active-Active with Sync Gateway](../learn/clusters-and-availability/xdcr-active-active-sgw.md).
+* **[MB-57921](https://jira.issues.couchbase.com/browse/MB-57921):**Created provision to set up XDCR bidirectional replication with Sync Gateway (SGW) 4.0 or a later version. In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0.0, only an active-passive setup was supported with both XDCR and SGW. XDCR active-active replication with Sync Gateway for XDCR-Mobile interoperability configuration is introduced in the Server 7.6.6 version, where you can configure an active-active XDCR setup with Sync Gateway and mobile applications both on the XDCR source and target clusters. You need to have at least a Server 7.6.6 version and SGW 4.0.0 version to use this setup. For more info, see [XDCR Active-Active with Sync Gateway](../learn/clusters-and-availability/xdcr-active-active-sgw.md).
 
 ## [](#new-features-764)New Features and Enhancements in 7.6.4
 
@@ -117,10 +137,9 @@ For more information, see [Cluster Manager Metrics](../metrics-reference/ns-serv
 ### [](#index%5F762)Index Service
 
 * From version 7.6.2, you can specify that index creation operates in deferred build mode by default. In deferred build mode, creating an index does not trigger the index build phase: you must trigger the index build before you can use the index. For details, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md).
-* In Couchbase Server Versions 7.6.0 and 7.6.1, enabling file-based index rebalance prevented you from controlling which Index Service nodes contain an index. Version 7.6.2 removes this restriction. You can now use the `WITH <node>` clause of the `CREATE INDEX` SQL++ statement when your cluster has file-based index rebalancing enabled. See [learn:clusters-and-availability/rebalance-and-index-service.adoc#index-rebalance-methods](../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods) for more information.
-
-|  | You still cannot use the WITH <node> clause with the ALTER INDEX statement when your cluster has file-based index rebalancing enabled. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+* In Couchbase Server Versions 7.6.0 and 7.6.1, enabling file-based index rebalance prevented you from controlling which Index Service nodes contain an index. Version 7.6.2 removes this restriction. You can now use the `WITH <node>` clause of the `CREATE INDEX` SQL++ statement when your cluster has file-based index rebalancing enabled. See [learn:clusters-and-availability/rebalance-and-index-service.adoc#index-rebalance-methods](../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods) for more information.  
+> [!NOTE]  
+> You still cannot use the `WITH <node>` clause with the `ALTER INDEX` statement when your cluster has file-based index rebalancing enabled.
 
 ### [](#search%5F762)Search Service
 
@@ -132,10 +151,9 @@ For more information, see [Cluster Manager Metrics](../metrics-reference/ns-serv
   Add a base64-encoded vector to your Search index with the new `vector_base64` field data type, then use the `vector_base64` object in your Search request.
   * Use the Couchbase Server Web Console to edit and generate a full curl command for a Search request, with a new built-in code editor. Use the curl command to run a Search query with the Search REST API.
   * The Search Service can now index and search for metadata stored in Extended Attributes (XATTRs) fields inside your documents.  
-  Use the new [XATTRs mapping type](../search/create-xattrs-mapping.md) in a Search index, then add the prefix `_$xattrs.` to a [field object](../search/search-request-params.md#field) in your Search request. You can also use the [Search Functions](../n1ql/n1ql-language-reference/searchfun.md) from SQL++ to search for XATTRs data.
-
-|  | You must use the [META function](../n1ql/n1ql-language-reference/metafun.md) to select the XATTRs field you want to search for an uncovered query, or any SQL++ query without a suitable Search index. Use the [SEARCH\_META function](../n1ql/n1ql-language-reference/searchfun.md#search%5Fmeta) to select XATTRs fields when you do have a suitable Search index. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  Use the new [XATTRs mapping type](../search/create-xattrs-mapping.md) in a Search index, then add the prefix `_$xattrs.` to a [field object](../search/search-request-params.md#field) in your Search request. You can also use the [Search Functions](../n1ql/n1ql-language-reference/searchfun.md) from SQL++ to search for XATTRs data.  
+  > [!TIP]  
+  > You must use the [META function](../n1ql/n1ql-language-reference/metafun.md) to select the XATTRs field you want to search for an uncovered query, or any SQL++ query without a suitable Search index. Use the [SEARCH\_META function](../n1ql/n1ql-language-reference/searchfun.md#search%5Fmeta) to select XATTRs fields when you do have a suitable Search index.
   * [Vector Search](../vector-search/vector-search.md) is now supported on MacOS.
   * [Vector Search](../vector-search/vector-search.md) is up to 7 times more performant, due to improvements in using node resources.
 
@@ -170,10 +188,9 @@ The following new features are provided in this release.
   * macOS 13 "Ventura"
   * macOS 14 "Sonoma"  
 See [Supported Platforms](../install/install-platforms.md) for a full list of supported platforms.
-* In response to [CVE-2023-5363](https://nvd.nist.gov/vuln/detail/CVE-2023-5363) and [CVE-2023-5678](https://nvd.nist.gov/vuln/detail/CVE-2023-5678), OpenSSL upgraded to version 3.1.4.
-
-|  | This update changes the available ciphers for TLS connections. If you have not updated your client applications to use recent TLS libraries, you may experience an inability to connect and TLS handshake failures. Before upgrading, we recommend testing compatibility in a separate environment – especially if you are unsure that your platform TLS (OpenSSL, Java Secure Socket Extensions, .NET Security Provider, etc.) has compatible ciphers. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* In response to [CVE-2023-5363](https://nvd.nist.gov/vuln/detail/CVE-2023-5363) and [CVE-2023-5678](https://nvd.nist.gov/vuln/detail/CVE-2023-5678), OpenSSL upgraded to version 3.1.4.  
+> [!NOTE]  
+> This update changes the available ciphers for TLS connections. If you have not updated your client applications to use recent TLS libraries, you may experience an inability to connect and TLS handshake failures. Before upgrading, we recommend testing compatibility in a separate environment – especially if you are unsure that your platform TLS (OpenSSL, Java Secure Socket Extensions, .NET Security Provider, etc.) has compatible ciphers.
 
 ### [](#cluster-manager-2)Cluster Manager
 
@@ -243,10 +260,9 @@ A Vector Search database includes:
   * Querying Vector Indexes (REST and UI via a JSON object/fragment, Couchbase SDKs, and SQL++)
   * SQL++/N1QL integration
   * Third-party framework integration: LangChain (later LlamaIndex + others)
-  * Full support for Replicas Partitions and file-based Rebalance
-
-|  | Vector Search is currently only supported on Couchbase Server 7.6.0 deployments running on Linux platforms. macOS and Windows platforms are not supported. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  * Full support for Replicas Partitions and file-based Rebalance  
+> [!NOTE]  
+> Vector Search is currently only supported on Couchbase Server 7.6.0 deployments running on Linux platforms. macOS and Windows platforms are not supported.  
 For more information about vector search, see [Use Vector Search for AI Applications](../vector-search/vector-search.md)
 * Couchbase Server 7.6 introduces Scoped Index Naming as an optional part of the `WHERE` clause in an SQL++ statement. For more information, see [SEARCH function arguments](../n1ql/n1ql-language-reference/searchfun.md#search-function-arguments-section)
 

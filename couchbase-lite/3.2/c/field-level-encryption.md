@@ -1,10 +1,22 @@
+---
+title: Field Level Encryption
+description: Client-side Field Level Encryption on Couchbase Lite C Clients
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/field-level-encryption.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/c/field-level-encryption.html)
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+# Field Level Encryption
 
-|  | Community Edition The push replicator will detect encryptable values inside a document. It will fail to replicate unencrypted encryptable values with a crypto error. The pull replicator will **not** detect encryptable values inside pulled documents. The document will be saved as it was received. This **may** include Server SDK encrypted fields |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
+
+> [!CAUTION]
+> Community Edition
+> 
+> * The push replicator will detect encryptable values inside a document. It will fail to replicate unencrypted encryptable values with a crypto error.
+> * The pull replicator will **not** detect encryptable values inside pulled documents. The document will be saved as it was received. This **may** include Server SDK encrypted fields
 
 ## [](#overview)Overview
 

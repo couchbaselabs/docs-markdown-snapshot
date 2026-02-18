@@ -1,4 +1,12 @@
+---
+title: Successful Request
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exsuccessful.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/exsuccessful.html)
+
+# Successful Request
 
 Request
 

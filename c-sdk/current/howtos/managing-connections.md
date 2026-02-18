@@ -1,4 +1,14 @@
+---
+title: Managing Connections using the C SDK with Couchbase Server
+description: This section describes how to connect the C SDK (libcouchbase) to a
+  Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections using the C SDK with Couchbase Server
 
 > This section describes how to connect the C SDK (libcouchbase) to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
 
@@ -78,8 +88,8 @@ static void open_callback(lcb_INSTANCE *instance, lcb_STATUS rc)
 }
 ```
 
-|  | If you are connecting to a version of Couchbase Server earlier than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open an LCB\_TYPE\_BUCKET instance before connecting to any other HTTP services (such as _Query_ or _Search_). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are connecting to a version of Couchbase Server earlier than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open an `LCB_TYPE_BUCKET` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
 ```c++
 const char *connection_string = "couchbase://localhost";
@@ -101,8 +111,8 @@ lcb_createopts_create(&options, LCB_TYPE_CLUSTER);
 lcb_createopts_connstr(options, connection_string, strlen(connection_string));
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -170,8 +180,8 @@ In many cases the client is able to automatically select the correct set of addr
 
 If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#ssl)Secure Connections
 

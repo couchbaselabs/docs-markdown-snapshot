@@ -1,4 +1,13 @@
+---
+title: CREATE USER
+description: The CREATE USER statement enables you to create a user.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createuser.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/createuser.html)
+
+# CREATE USER
 
 > The CREATE USER statement enables you to create a user. 
 
@@ -28,8 +37,12 @@ create-user ::= 'CREATE' 'USER' ( 'IF' 'NOT' 'EXISTS' )? username 'PASSWORD' pas
 | name     | (Optional) A quoted string containing the user’s full name.                                       |
 | group    | (Optional) The group you want to assign the user to.                                              |
 
-|  | When creating a user, you can assign them to groups using one of the following options: GROUP, GROUPS, or NO GROUPS. You can specify only one of these options per statement. GROUP assigns the user to a single group. GROUPS assigns the user to multiple groups (the names must be separated by commas). NO GROUPS creates a user without assigning any groups. This option has no effect during user creation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When creating a user, you can assign them to groups using one of the following options: `GROUP`, `GROUPS`, or `NO GROUPS`. You can specify only one of these options per statement.
+> 
+> * `GROUP` assigns the user to a single group.
+> * `GROUPS` assigns the user to multiple groups (the names must be separated by commas).
+> * `NO GROUPS` creates a user without assigning any groups. This option has no effect during user creation.
 
 ### [](#if-not-exists)IF NOT EXISTS Clause
 

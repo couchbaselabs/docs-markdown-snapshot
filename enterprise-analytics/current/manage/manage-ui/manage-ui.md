@@ -1,4 +1,14 @@
+---
+title: Enterprise Analytics Web Console
+description: The features of Enterprise Analytics can be managed by means of
+  Enterprise Analytics Web Console.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-ui/manage-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-ui/manage-ui.html)
+
+# Enterprise Analytics Web Console
 
 > The features of Enterprise Analytics can be managed by means of Enterprise Analytics Web Console. 
 
@@ -90,8 +100,8 @@ System notifications are shown, as required, in the lower left-hand corner of th
 * Orange notifications indicate warnings of actual or potential problems
 * Red notifications indicate failure
 
-|  | Red notifications provide a red, interactive X, which must be clicked on to dismiss the notification. Green and orange notifications are self-dismissive. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Red notifications provide a red, interactive `X`, which must be clicked on to dismiss the notification. Green and orange notifications are self-dismissive.
 
 ## [](#accesing-features)Accessing Features
 
@@ -115,8 +125,8 @@ For a single-node cluster, a single row of information is displayed for the curr
 * **CPU**, **RAM**, **swap**, **disk used** \- information about resource-consumption, on the specified node.
 * **Statistics** \- Click on this interactive option to display interactive statistics-charts for the database, on the console’s **Dashboard**.
 
-|  | Statistics are only available when at least one database has been installed. |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Statistics are only available when at least one database has been installed.
 
 Above the server-information display, two additional controls are provided:
 

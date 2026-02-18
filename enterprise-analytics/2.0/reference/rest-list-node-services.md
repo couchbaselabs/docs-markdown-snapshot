@@ -1,4 +1,15 @@
+---
+title: Listing Node Services
+description: The services running on a specific node can be listed, with their
+  respective port numbers, by means of the <code>GET
+  /pools/default/nodeServices</code> method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-list-node-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-list-node-services.html)
+
+# Listing Node Services
 
 > The services running on a specific node can be listed, with their respective port numbers, by means of the `GET /pools/default/nodeServices` method and URI. 
 

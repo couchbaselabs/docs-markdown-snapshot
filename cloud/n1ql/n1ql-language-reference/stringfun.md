@@ -1,9 +1,19 @@
+---
+title: String Functions
+description: String functions perform operations on a string input value and
+  returns a string or other value.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/stringfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/stringfun.html)
+
+# String Functions
 
 String functions perform operations on a string input value and returns a string or other value.
 
-|  | If any arguments to any of the following functions are MISSING then the result is also MISSING — that is, no result is returned. Similarly, if any of the arguments passed to the functions are NULL or are of the wrong type, such as an integer instead of a string, then NULL is returned as the result. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If any arguments to any of the following functions are `MISSING` then the result is also `MISSING` — that is, no result is returned. Similarly, if any of the arguments passed to the functions are `NULL` or are of the wrong type, such as an integer instead of a string, then `NULL` is returned as the result.
 
 ## [](#fn-str-compress)COMPRESS(`input_string`)
 
@@ -13,8 +23,8 @@ Couchbase Server 8.0
 
 This function compresses a string using `zlib` compression and encodes the compressed data into `base64` format. It returns a compact, encoded string that can be easily transmitted or stored.
 
-|  | To convert a compressed string back to its original format, use the [UNCOMPRESS()](#fn-str-uncompress) function. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To convert a compressed string back to its original format, use the [UNCOMPRESS()](#fn-str-uncompress) function.
 
 ### [](#arguments)Arguments
 
@@ -1605,8 +1615,8 @@ A JSON object indicating the options passed to the `TOKENS()` function. Options 
 
 **Optional**. Use this option to preserve strings with specials characters, such as email addresses, URLs, and hyphenated phone numbers. The default value is `false`.
 
-|  | The specials options preserves special characters except at the end of a word. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `specials` options preserves special characters except at the end of a word.
 
 ### [](#return-value-29)Return Value
 
@@ -1614,8 +1624,8 @@ An array of strings containing all of the tokens obtained from the input string.
 
 ### [](#examples-29)Examples
 
-|  | By default, for speed, the results are randomly ordered. To make the difference more clear between the first two example queries, the ARRAY\_SORT() function is used. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, for speed, the results are randomly ordered. To make the difference more clear between the first two example queries, the `ARRAY_SORT()` function is used.
 
 List the tokens of an array where `specials` is FALSE
 
@@ -1899,8 +1909,8 @@ Couchbase Server 8.0
 
 This function takes a `base64` encoded, compressed string as input and returns the original uncompressed string.
 
-|  | This function is often used together with the [COMPRESS()](#fn-str-compress) function, which compresses and encodes strings to base64 format. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function is often used together with the [COMPRESS()](#fn-str-compress) function, which compresses and encodes strings to `base64` format.
 
 ### [](#arguments-34)Arguments
 

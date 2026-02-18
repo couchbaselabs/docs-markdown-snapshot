@@ -1,4 +1,14 @@
+---
+title: Storage Properties
+description: Couchbase Server stores certain items on disk as well as in memory
+  to provide persistence and enhance reliability.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/storage-settings.html)
+
+# Storage Properties
 
 > Couchbase Server stores certain items on disk as well as in memory to provide persistence and enhance reliability. 
 
@@ -83,8 +93,8 @@ When the filesystem reaches the disk use limit, the Data Service stops writing t
 
 To learn how to set the disk usage limit using the Couchbase Server Web Console, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings). To set the limits using the REST API, see [Set Data Disk Use Limits](../../rest-api/disk-usage-limits.md).
 
-|  | This limit applies only to the Data Service. If other service’s data paths share the same filesystem, they can continue to write to it even if the Data Service stops writing. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This limit applies only to the Data Service. If other service’s data paths share the same filesystem, they can continue to write to it even if the Data Service stops writing.
 
 ## [](#append-only-writes-and-auto-compaction)Append-Only Writes and Auto-Compaction
 

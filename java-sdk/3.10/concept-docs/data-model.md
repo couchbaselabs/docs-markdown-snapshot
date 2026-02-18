@@ -1,4 +1,14 @@
+---
+title: Data Model
+description: Couchbase's use of JSON as a storage format allows powerful search
+  and query over documents.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/concept-docs/pages/data-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/concept-docs/data-model.html)
+
+# Data Model
 
 > Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
@@ -46,5 +56,5 @@ Map<String, String> myMap = collection.map("name", String.class);
 
 The Map interface requires the "put" and "remove" methods to return the previous value associated with the key. To implement this behavior, CouchbaseMap needs to make at least 2 subdocument requests: one request to get the current value, and a second request to update it. If the document changes between these two requests, the code retries up to the `casMismatchRetries` limit, after which it gives up and throws an exception. If the return values of `put` and `remove` are never actually used, you could end up making a lot of unnecessary requests. There’s also the potential for exceptions if concurrent map updates are extremely frequent.
 
-|  | For many use cases, the [Sub-Document API](../howtos/subdocument-operations.md) will be a useful and possibly better altermative to CouchbaseMap. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For many use cases, the [Sub-Document API](../howtos/subdocument-operations.md) will be a useful and possibly better altermative to `CouchbaseMap`.

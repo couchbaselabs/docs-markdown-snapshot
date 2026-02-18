@@ -1,4 +1,12 @@
+---
+title: Quickstart
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/quickstart.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/quickstart.html)
+
+# Quickstart
 
 > This section shows how to deploy the connector. 
 
@@ -62,8 +70,8 @@ kafka-server-start.sh $KAFKA_HOME/config/server.properties
 
 The source connector listens for changes to Couchbase documents and publishes them to a Kafka topic.
 
-|  | If you’re more interested in saving Kafka messages to Couchbase, skip ahead to the [Couchbase Sink Connector](#sink) section. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re more interested in saving Kafka messages to Couchbase, skip ahead to the [Couchbase Sink Connector](#sink) section.
 
 ### [](#source-config)Configure the Source Connector
 
@@ -73,15 +81,15 @@ Take a moment to peruse the configuration options specified here. Some are [stan
 
 For this exercise, change the value of `couchbase.bucket` to `travel-sample` (or whichever bucket you want to stream from). For `couchbase.username` and `couchbase.password`, supply the credentials of a Couchbase user who has the "Data DCP Reader" role for the bucket. If you have not yet created such a user, now is a good time to read about [Creating and Managing Users with the UI](../../server/current/manage/manage-security/manage-users-and-roles.md).
 
-|  | If you’re connecting to Capella, make sure to read [Couchbase Capella Support](cloud.md). |
-|  | ----------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re connecting to Capella, make sure to read [Couchbase Capella Support](cloud.md).
 
 ### [](#run)Run the Source Connector
 
 Kafka connectors can be run in [standalone or distributed](https://kafka.apache.org/documentation/#connect%5Frunning) mode. For now let’s run the connector in standalone mode, using the CLASSPATH environment variable to include the Couchbase connector JAR in the class path.
 
-|  | The connect-standalone and connect-distributed commands are part of Kafka. Make sure your PATH environment variable includes Kafka’s bin directory. See [Set Up Kafka](#set-up-kafka) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `connect-standalone` and `connect-distributed` commands are part of Kafka. Make sure your `PATH` environment variable includes Kafka’s `bin` directory. See [Set Up Kafka](#set-up-kafka) for details.
 
 For Confluent Platform Kafka:
 
@@ -157,8 +165,8 @@ kafka-console-consumer --bootstrap-server localhost:9092 \
                        --topic test-default --from-beginning
 ```
 
-|  | When a topic contains messages in Avro format, Confluent users should view the messages by running kafka-avro-console-consumer instead of kafka-console-consumer. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When a topic contains messages in Avro format, Confluent users should view the messages by running `kafka-avro-console-consumer` instead of `kafka-console-consumer`.
 
 Or for Apache Kafka:
 
@@ -234,8 +242,8 @@ This source handler generates records whose values contain the same kind of meta
 couchbase.source.handler=com.couchbase.connect.kafka.handler.source.DefaultSchemaSourceHandler
 ```
 
-|  | The schema used by this source handler defines the Couchbase document content to be a byte array. If you use JsonConverter, this byte array will be serialized as a single Base64-encoded string. If this is not the behavior you want, consider using one of the raw JSON source handlers instead. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The schema used by this source handler defines the Couchbase document content to be a byte array. If you use `JsonConverter`, this byte array will be serialized as a single Base64-encoded string. If this is not the behavior you want, consider using one of the raw JSON source handlers instead.
 
 For reference, the Avro schema for this payload format is shown below.
 

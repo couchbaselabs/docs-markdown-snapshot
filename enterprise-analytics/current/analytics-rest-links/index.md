@@ -1,4 +1,13 @@
+---
+title: Analytics Links REST API
+description: A description of the Links REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/analytics-rest-links/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/analytics-rest-links/index.html)
+
+# Analytics Links REST API
 
 * Single Links
   * postCreate Link

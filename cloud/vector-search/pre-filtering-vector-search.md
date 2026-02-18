@@ -1,4 +1,14 @@
+---
+title: Pre-filtering Vector Searches
+description: You can specify filters as part of a Vector Search query object to
+  restrict the documents searched in a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/pre-filtering-vector-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-search/pre-filtering-vector-search.html)
+
+# Pre-filtering Vector Searches
 
 > You can specify filters as part of a Vector Search query object to restrict the documents searched in a Search index. 
 
@@ -11,10 +21,13 @@ The Search Service supports pre-filtering on Vector Search queries. Pre-filterin
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
 * You have a bucket with scopes and collections in your operational cluster. For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 * You have created a Search Vector Index.  
-For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).
-
-|  | You can import a sample dataset to use with the procedure or examples on this page. Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data. For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index with the Capella UI](create-vector-search-index-ui.md#example). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
+> [!TIP]  
+> You can import a sample dataset to use with the procedure or examples on this page.  
+>  
+> Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data.  
+>  
+> For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index with the Capella UI](create-vector-search-index-ui.md#example).
 
 ## [](#procedure)Procedure
 

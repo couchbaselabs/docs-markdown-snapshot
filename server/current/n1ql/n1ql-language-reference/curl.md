@@ -1,4 +1,15 @@
+---
+title: CURL Function
+description: The CURL() function implements a subset of cURL functionality and
+  enables SQL++ queries to interact and integrate with external JSON data
+  sources available over HTTP/REST.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/curl.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/curl.html)
+
+# CURL Function
 
 The `CURL()` function implements a subset of [cURL](https://en.wikipedia.org/wiki/CURL) functionality and enables SQL++ queries to interact and integrate with external JSON data sources available over HTTP/REST. This allows federated queries against external data sources, such as the [Google geocoding API](https://maps.googleapis.com), [Yahoo API](https://developer.yahoo.com/api/), or other Couchbase clusters. The federated queries can leverage full querying capabilities of SQL++, including functions, expressions, sub-queries, JOINs, NESTs, UNNESTs etc.
 
@@ -70,10 +81,9 @@ The following security measures help control risks when using the `CURL()` funct
 * Each query node in the cluster must define its access list file.
 * The `CURL()` function internally supports a specific set of SSL ciphers (MEDIUM or HIGH). This is dependent on the `COUCHBASE_SSL_CIPHER_LIST`.
 * The `CURL()` function runs on the query node within a cluster. In order to identify a request from SQL++'s `CURL()` function, a custom header is always set for all requests. The custom header format is: `"X-N1QL-User-Agent: couchbase/n1ql/<n1ql-version>"`. External clients that wish to disallow SQL++ `CURL()` from accessing their REST API endpoints can explicitly check for the above header and block it. The general external endpoints will ignore this header value.
-* A `user-agent` is always set by default. This can be reset using the `-user-agent` option. The value set by default is `couchbase/n1ql/<n1ql-version>`.
-
-|  | The current <n1ql-version> is "1.7.0-N1QL". |
-|  | ------------------------------------------- |
+* A `user-agent` is always set by default. This can be reset using the `-user-agent` option. The value set by default is `couchbase/n1ql/<n1ql-version>`.  
+> [!NOTE]  
+> The current <n1ql-version> is "1.7.0-N1QL".
 
 ### [](#curl-access-list)Creating an Access List for CURL()
 

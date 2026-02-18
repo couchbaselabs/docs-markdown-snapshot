@@ -1,4 +1,14 @@
+---
+title: Error Messages
+description: The standardized error codes returned by the Couchbase Go SDK, from
+  cloud connection to sub-document.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/ref/pages/error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/ref/error-codes.html)
+
+# Error Messages
 
 > The standardized error codes returned by the Couchbase Go SDK, from cloud connection to sub-document. 
 

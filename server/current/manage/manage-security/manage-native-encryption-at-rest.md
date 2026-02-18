@@ -1,4 +1,14 @@
+---
+title: Manage Native Encryption at Rest
+description: Couchbase Server's native encryption at rest protects sensitive
+  data by encrypting it when writing it to disk.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-native-encryption-at-rest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/manage-native-encryption-at-rest.html)
+
+# Manage Native Encryption at Rest
 
 > Couchbase Server’s native encryption at rest protects sensitive data by encrypting it when writing it to disk. This feature is transparent to the database’s users. Couchbase Server automatically decrypts data when read from disk and encrypts it when writing it to disk. 
 
@@ -36,8 +46,12 @@ See [Encryption Key Management Services](../../learn/security/native-encryption-
 
 You must decide what data your encryption key can encrypt. You can create an encryption key that can encrypt any type of data and other encryption keys. You can also choose to limit what types of data the key can encrypt, or configure it to only encrypt other encryption keys. See [Encryption-at-Rest Keys](../../learn/security/native-encryption-at-rest-overview.md#keys) for more information.
 
-|  | When configuring external KMS integration, make sure that all required key and certificate files are present at the exact file paths specified during key creation. These files must exist on every node in the cluster, including any nodes added during a rebalance operation. Couchbase Server does not create these files automatically. If any of these files are missing or located at a different path, encryption initialization or rebalance operations can fail. For example, the Client Private Key Path (PEM format) must exist at the same specified location on all nodes before you create or edit a KMIP key. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When configuring external KMS integration, make sure that all required key and certificate files are present at the exact file paths specified during key creation. These files must exist on every node in the cluster, including any nodes added during a rebalance operation.
+> 
+> Couchbase Server does not create these files automatically.
+> 
+> If any of these files are missing or located at a different path, encryption initialization or rebalance operations can fail. For example, the Client Private Key Path (PEM format) must exist at the same specified location on all nodes before you create or edit a KMIP key.
 
 You must have the proper privileges to create encryption keys. The role you need depends on what the key you’re creating can encrypt:
 
@@ -75,10 +89,9 @@ To create an encryption key using the Couchbase Server Web Console:
 4. Enter a name for your key in the **Name** box.
 5. If you want to limit what your key can encrypt, click **Configure** to expand the list of uses. Then choose what you want to your key to be able to encrypt.  
 ![add encryption key uses](../_images/manage-security/add-encryption-key-uses.png)  
-If you want your key to only be able encrypt specific buckets, deselect **Data** and then select the buckets.
-
-|  | If you’re creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encryption Key (KEK)** selected. Then use the key to encrypt an encryption key managed by Couchbase Server. Do not assign an encryption key managed by a remote KMS to directly encrypt data. See [this caution](../../learn/security/native-encryption-at-rest-overview.md#aws-kms-caution) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If you want your key to only be able encrypt specific buckets, deselect **Data** and then select the buckets.  
+> [!IMPORTANT]  
+> If you’re creating an encryption key managed by a KMIP KMS or AWS KMS, only leave **Key Encryption Key (KEK)** selected. Then use the key to encrypt an encryption key managed by Couchbase Server. Do not assign an encryption key managed by a remote KMS to directly encrypt data. See [this caution](../../learn/security/native-encryption-at-rest-overview.md#aws-kms-caution) for more information.
 6. Under **Key Type**, choose the KMS you want to manage your key. The option you choose changes the fields in the rest of the dialog.
 7. Depending on the KMS you chose, enter the details to complete creating the encryption key:
 
@@ -176,8 +189,8 @@ See [Create or Update an Encryption-at-Rest Key](../../rest-api/security/encrypt
 
 Once you have created an encrytion-at-rest key, you can use it to encrypt bucket data. For audit, configuration, and log data, you can choose to use the master password instead of an encryption-at-rest key. You must set the master password on each node before using it for encryption at rest. By default, the nodes do not have a master password. See [Setting the Master Password](manage-system-secrets.md#setting-the-master-password) for more information.
 
-|  | Once you enable encryption for a bucket or system data, Couchbase Server begins to encrypt data as it writes it. It does not encrypt the data that existed before you enabled encryption. See [When Couchbase Server Encrypts Data](../../learn/security/native-encryption-at-rest-overview.md#when-data-is-encrypted) for more information when Couchbase Server encrypts and decrypts data. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Once you enable encryption for a bucket or system data, Couchbase Server begins to encrypt data as it writes it. It does not encrypt the data that existed before you enabled encryption. See [When Couchbase Server Encrypts Data](../../learn/security/native-encryption-at-rest-overview.md#when-data-is-encrypted) for more information when Couchbase Server encrypts and decrypts data.
 
 The following sections explain how to enable encryption for each type of data.
 
@@ -187,8 +200,8 @@ To encrypt a bucket, you must have at least one encrytion-at-rest key configured
 
 Users with [Bucket Admin](../../learn/security/roles.md#bucket-admin) or [Cluster Admin](../../learn/security/roles.md#cluster-admin) roles can enable encryption for rest for buckets as long as an encryption key exists that’s allowed to encrypt the bucket.
 
-|  | Once you enable encryption for a bucket, Couchbase Server begins to encrypt data as it writes it. It does not encrypt the data that existed in the bucket before you enabled encryption. See [When Couchbase Server Encrypts Data](../../learn/security/native-encryption-at-rest-overview.md#when-data-is-encrypted) for more information when Couchbase Server encrypts and decrypts data. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Once you enable encryption for a bucket, Couchbase Server begins to encrypt data as it writes it. It does not encrypt the data that existed in the bucket before you enabled encryption. See [When Couchbase Server Encrypts Data](../../learn/security/native-encryption-at-rest-overview.md#when-data-is-encrypted) for more information when Couchbase Server encrypts and decrypts data.
 
 #### [](#encrypt-a-bucket-using-the-couchbase-server-web-console)Encrypt a Bucket Using the Couchbase Server Web Console
 
@@ -268,8 +281,8 @@ The REST API’s `/settings/security/encryptionAtRest` endpoint lets you change 
       -d "audit.encryptionKeyId=0" | jq
 ```
 
-|  | You can find the id attribute of the encryption-at-rest key you want to use by sending a GET request to the /settings/encryptionKeys endpoint. See [List Encryption-at-Rest Keys](../../rest-api/security/encryption-at-rest/manage-encryption-keys.md#list-keys) for more information about this endpoint. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can find the `id` attribute of the encryption-at-rest key you want to use by sending a GET request to the `/settings/encryptionKeys` endpoint. See [List Encryption-at-Rest Keys](../../rest-api/security/encryption-at-rest/manage-encryption-keys.md#list-keys) for more information about this endpoint.
 
 For more information about managing encryption at rest settings for audit, configuration, and log data, see [Manage Audit, Config, and Log Encryption at Rest](../../rest-api/security/encryption-at-rest/manage-system-encryption-at-rest.md).
 
@@ -360,8 +373,12 @@ To re-encrypt the DEKs using the REST API, send a POST request to the `/controll
 
 You must use the KMS’s tools to rotate the keys it manages. Couchbase Server cannot trigger the rotation of a key managed by an external KMS. Consult your KMS’s documentation to learn how to rotate its keys.
 
-|  | When configuring external KMS integration, make sure that all required key and certificate files are present at the exact file paths specified during key creation. These files must exist on every node in the cluster, including any nodes added during a rebalance operation. Couchbase Server does not create these files automatically. If any of these files are missing or located at a different path, encryption initialization or rebalance operations can fail. For example, the Client Private Key Path (PEM format) must exist at the same specified location on all nodes before you create or edit a KMIP key. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When configuring external KMS integration, make sure that all required key and certificate files are present at the exact file paths specified during key creation. These files must exist on every node in the cluster, including any nodes added during a rebalance operation.
+> 
+> Couchbase Server does not create these files automatically.
+> 
+> If any of these files are missing or located at a different path, encryption initialization or rebalance operations can fail. For example, the Client Private Key Path (PEM format) must exist at the same specified location on all nodes before you create or edit a KMIP key.
 
 Some KMIP KMSs require you to create a new key with a new ID when rotating a key. In this case, when you rotate a key in the KMS, you must update the key ID in Couchbase Server.
 
@@ -439,15 +456,15 @@ The result of running this command looks like this:
 
 See [Create or Update an Encryption-at-Rest Key](../../rest-api/security/encryption-at-rest/manage-encryption-keys.md#create-key) for more information about updating encryption-at-rest keys using the REST API.
 
-|  | When you change the KMIP key ID, Couchbase Server starts re-encryption the DEKs that used the old key with the new key. However, this process may take some time. Be sure that the KMS does not delete the old key until Couchbase Server has finished re-encrypting the DEKs with the new key. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When you change the KMIP key ID, Couchbase Server starts re-encryption the DEKs that used the old key with the new key. However, this process may take some time. Be sure that the KMS does not delete the old key until Couchbase Server has finished re-encrypting the DEKs with the new key.
 
 ## [](#drop-deks)Manually Drop DEKs and Re-encrypt Data
 
 You can have Couchbase Server drop the data encryption keys (DEKs) for a bucket or type of data and re-encrypt the data with new DEKs. You may choose to do this if you believe the DEKs have been compromised. When you drop the DEKs for a bucket or type of data, Couchbase Server creates a new replacement DEK and uses it to re-encrypt all of the data in the bucket or of that type. Then it removes the old DEKs.
 
-|  | Dropping DEKs is not the same as rotating DEKs. When Couchbase Server automatically rotates a DEK, it makes it inactive, creates a new active DEK, and then uses that for newly written data. It does not re-encrypt data, nor does it immediately remove the old DEKs. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Dropping DEKs is not the same as rotating DEKs. When Couchbase Server automatically rotates a DEK, it makes it inactive, creates a new active DEK, and then uses that for newly written data. It does not re-encrypt data, nor does it immediately remove the old DEKs.
 
 ### [](#drop-deks-for-a-bucket)Drop DEKs for a Bucket
 
@@ -458,8 +475,8 @@ To drop DEKs for a bucket using the Couchbase Server Web Console:
 3. Click **Re-encrypt**.
 4. In the **Confirm Rotate DEKs & Re-encrypt Data** dialog, click **Rotate DEKs & Re-encrypt** to confirm you want to rotate the DEKs and re-encrypt the data.
 
-|  | This process re-encrypts all data in the bucket. Depending on the amount of data the bucket stores, this process can take a long time and could affect the performance of the cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This process re-encrypts all data in the bucket. Depending on the amount of data the bucket stores, this process can take a long time and could affect the performance of the cluster.
 
 To learn how to drop DEKs for a bucket using the REST API, see [Drop DEKs and Re-encrypt Data for a Bucket](../../rest-api/security/encryption-at-rest/drop-encryption-deks.md#drop-bucket).
 

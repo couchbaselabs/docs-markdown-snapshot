@@ -1,4 +1,14 @@
+---
+title: Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase Tableau Connector.
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/1.0/release-notes.html)
+
+# Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Tableau Connector. 
 

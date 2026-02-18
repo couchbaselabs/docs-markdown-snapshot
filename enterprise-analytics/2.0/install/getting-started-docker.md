@@ -1,4 +1,14 @@
+---
+title: Install Enterprise Analytics Using Docker
+description: Enterprise Analytics can be installed using Couchbase-provided
+  images from Docker Hub.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/getting-started-docker.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/getting-started-docker.html)
+
+# Install Enterprise Analytics Using Docker
 
 > Enterprise Analytics can be installed using Couchbase-provided images from Docker Hub. 
 
@@ -18,8 +28,11 @@ If you’re looking for the Enterprise Analytics Docker image, you can find it o
 
 To run a single-node cluster, deploy a single container for a single Enterprise Analytics node.
 
-|  | For detailed information about deploying Enterprise Analytics, make sure to review the Enterprise Analytics [system requirements](system-requirements.md) and [deployment guidelines](deploy-guidelines.md), paying particular attention to the following pages: [Deployment Considerations for Virtual Machines and Containers](vm-container-guidelines.md) [Two-Node and Single-Node Clusters](single-two-node-clusters.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For detailed information about deploying Enterprise Analytics, make sure to review the Enterprise Analytics [system requirements](system-requirements.md) and [deployment guidelines](deploy-guidelines.md), paying particular attention to the following pages:
+> 
+> * [Deployment Considerations for Virtual Machines and Containers](vm-container-guidelines.md)
+> * [Two-Node and Single-Node Clusters](single-two-node-clusters.md).
 
 1. Download and install Docker on the host computer.  
 To set up Docker on the host computer, see Docker’s [installation instructions](https://www.docker.com/get-started).
@@ -60,8 +73,8 @@ This model is commonly used for scale-minimized deployments that simulate produc
 
 This model is commonly used for production deployments.
 
-|  | For detailed information about deploying Enterprise Analytics, make sure to review the Enterprise Analytics [system requirements](system-requirements.md) and [deployment guidelines](deploy-guidelines.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For detailed information about deploying Enterprise Analytics, make sure to review the Enterprise Analytics [system requirements](system-requirements.md) and [deployment guidelines](deploy-guidelines.md).
 
 ### [](#multi-node-cluster-one-host)All Containers on One Host
 
@@ -237,8 +250,8 @@ This allows the AWS SDK to read from:
 /home/couchbase/.aws/credentials
 /home/couchbase/.aws/config
 
-|  | Couchbase recommends this option for local development.\\ Do not use for production unless credentials are isolated and access-controlled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase recommends this option for local development.\\ Do not use for production unless credentials are isolated and access-controlled.
 
 * Copy Credentials File into a Running Container
 
@@ -265,8 +278,8 @@ $ docker run -d --name ea \
     couchbase/enterprise-analytics
 ```
 
-|  | Couchbase recommends this option for local development.\\ Do not use for production unless credentials are isolated and access-controlled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase recommends this option for local development.\\ Do not use for production unless credentials are isolated and access-controlled.
 
 Caution:The values may be visible via Docker inspect or logs.
 

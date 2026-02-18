@@ -1,4 +1,15 @@
+---
+title: Explore the Server Configuration
+description: Once you have Couchbase Server running, you can log into the
+  Couchbase Server Web Console and start to examine the different features that
+  it provides.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/look-at-the-results.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/getting-started/look-at-the-results.html)
+
+# Explore the Server Configuration
 
 > Once you have Couchbase Server running, you can log into the Couchbase Server Web Console and start to examine the different features that it provides. These features include an interface for inspecting Couchbase _documents_, organized within _buckets_. 
 
@@ -101,8 +112,8 @@ The **Collection Information** screen will be displayed, giving you a number of 
 
 Once the options have been set, click on **Start Collecting** to start recording logs to your specified location.
 
-|  | If you are having a problem with your cluster setup, it may be useful to provide Couchbase Support with a log of the server activity. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you are having a problem with your cluster setup, it may be useful to provide Couchbase Support with a log of the server activity.
 
 ## [](#examining-the-cluster-metrics)Examining the Cluster’s Metrics
 
@@ -111,9 +122,8 @@ As well as examining the state of the cluster from the web console, (see the sec
 1. Select **All Services** from the **Choose Dashboard** dropdown menu.
 2. The page will expand to include all the services available on the node. Click on **Index** and you will be presented with a series of graphs depicting real-time metrics for the indexes running on the node.  
 ![Index from UI dashboard](_images/showDashboardIndex.png)  
-
-|  | The graphs will allow you to see if loads across multiple nodes differ significantly. |
-|  | ------------------------------------------------------------------------------------- |
+> [!TIP]  
+> The graphs will allow you to see if loads across multiple nodes differ significantly.
 
 ## [](#other-destinations)Other Destinations
 

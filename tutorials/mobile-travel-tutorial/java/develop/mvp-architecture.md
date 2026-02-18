@@ -1,4 +1,12 @@
+---
+title: MVP Architecture
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/mvp-architecture.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/java/develop/mvp-architecture.html)
+
+# MVP Architecture
 
 ## [](#the-model-view-presenter-pattern)The Model-View-Presenter pattern
 

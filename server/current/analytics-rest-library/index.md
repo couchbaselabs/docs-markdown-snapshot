@@ -1,4 +1,13 @@
+---
+title: Analytics Library REST API
+description: A description of the Library REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/analytics-rest-library/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics-rest-library/index.html)
+
+# Analytics Library REST API
 
 ## [](#overview)Overview
 
@@ -75,8 +84,8 @@ http://localhost:8095/analytics/library/travel-sample%2Finventory/mylib \
 -u Administrator:password
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ### [](#get%5Fcollection)Read All Libraries
 
@@ -192,8 +201,8 @@ http://localhost:8095/analytics/library/travel-sample%2Finventory/mylib \
 -d data=lib.pyz
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ## [](#models)Definitions
 

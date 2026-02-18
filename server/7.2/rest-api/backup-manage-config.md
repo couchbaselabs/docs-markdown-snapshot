@@ -1,4 +1,14 @@
+---
+title: Manage Backup Configuration
+description: The rotation period and size for Backup Service configuration data
+  can be set and returned by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-manage-config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/backup-manage-config.html)
+
+# Manage Backup Configuration
 
 > The rotation period and size for Backup Service configuration data can be set and returned by means of the REST API. 
 

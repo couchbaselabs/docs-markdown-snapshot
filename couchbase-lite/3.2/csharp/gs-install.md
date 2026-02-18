@@ -1,4 +1,13 @@
+---
+title: Installing Couchbase Lite on .Net
+description: How to install Couchbase Lite on .Net
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/gs-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/csharp/gs-install.html)
+
+# Installing Couchbase Lite on .Net
 
 > Description — _How to install Couchbase Lite on .Net_  
 > _Abstract — Using Nuget to install Couchbase Lite on csharp_  
@@ -16,8 +25,8 @@ For experienced developers, this is all you need to add _Couchbase Lite for C#.N
     * Vector Search Extension — `Couchbase.Lite.VectorSearch` package for 1.0.1
 3. Within your app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly.
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 That’s it!  
 You should be ready to build you app using this version. The rest of this content contains more detail, for those who want to know more about the install or who encountered issues
@@ -48,8 +57,8 @@ This is the recommended method of dependency management because it supports the 
 
 Couchbase recommends installing Nuget packages via _PackageReference_.
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 #### [](#vector-search-package-reference)Vector Search Package Reference
 
@@ -60,8 +69,8 @@ This is the recommended method of dependency management for the Vector Search ex
 
 ## [](#activating-on-android-platform-only)Activating (on Android platform only)
 
-|  | Couchbase Lite must be activated before any other calls can be made. |
-|  | -------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Lite must be activated before any other calls can be made.
 
 Within your Android app, include a call to the relevant `Activate()` function inside of the class that is included in the support assembly.
 
@@ -70,8 +79,8 @@ There is only one public class in each support assembly, and the support assembl
 For example:  
 `Couchbase.Lite.Support.Droid.Activate()`
 
-|  | The Activate() function is required for applications using .NET on the Android platform in general. This includes Couchbase Lite and the Vector Search extension. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `Activate()` function is required for applications using .NET on the Android platform in general. This includes Couchbase Lite and the Vector Search extension.
 
 Currently the support assemblies provide dependency injected mechanisms for default directory logic, and platform specific logging (So, C# will log to logcat with correct log levels and tags. No more "mono-stdout" always at info level.)
 

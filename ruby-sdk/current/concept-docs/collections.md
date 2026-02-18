@@ -1,4 +1,13 @@
+---
+title: Collections and Scopes
+description: Fully supported in Couchbase Server 7.0.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/concept-docs/pages/collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/current/concept-docs/collections.html)
+
+# Collections and Scopes
 
 > Fully supported in Couchbase Server 7.0\. 
 

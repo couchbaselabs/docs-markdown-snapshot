@@ -1,4 +1,13 @@
+---
+title: enterprise-analytics-link-setup
+description: Manage Enterprise Analytics links
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-enterprise-analytics-link-setup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-enterprise-analytics-link-setup.html)
+
+# enterprise-analytics-link-setup
 
 Manage Enterprise Analytics links
 

@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr strategies
+description: Recommended backup strategies for cbbackupmgr
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-strategies.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/backup-restore/cbbackupmgr-strategies.html)
+
+# cbbackupmgr strategies
 
 Recommended backup strategies for cbbackupmgr
 

@@ -1,4 +1,14 @@
+---
+title: Audit Events
+description: Capella provides event auditing, whereby events are logged. Log
+  files can be downloaded for inspection.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/auditing.html)
+
+# Audit Events
 
 > Capella provides event auditing, whereby events are logged. Log files can be downloaded for inspection. 
 
@@ -8,8 +18,8 @@ The Capella _auditing_ facility recognizes specific, server-generated _events_, 
 
 Auditing occurs on a _per node_ basis: each node captures its own events, and saves the records in its own log file. When inspection is required of events that were audited within a specific time period, the user can request _export_ of the corresponding log files. Capella duly gathers the files, and makes them available within a single compressed file, which can be downloaded by the user.
 
-|  | Auditing is available to clusters with an Enterprise Support Plan. |
-|  | ------------------------------------------------------------------ |
+> [!NOTE]
+> Auditing is available to clusters with an Enterprise Support Plan.
 
 ## [](#filterable-and-non-filterable-events)Filterable and Non-Filterable Events
 
@@ -287,8 +297,8 @@ After a request has been made, its progress can be tracked by means of its _stat
 * `In Progress`. The request is being processed. This status is typically reached soon after the request has been initially queued. The duration of processing typically depends on the length and calendar-placement of the user-specified time-period. If the time-period is within the last 24 hours, processing is likely to be fast, since the corresponding files are at hand. Alternatively, if the time-period extends to a point earlier than the last 24 hours, processing is likely to take longer, since corresponding files have in some cases been archived, and so require additional steps for retrieval.
 * `Completed`. The request has successfully processed and the export is now available for 72 hours. With this export, a URL is available to download the resulting compressed file containing a single log file for each node that existed on the cluster during the specified time-period. This download URL is active for only 1 hour and you must start the download before the URL expires.
 
-|  | Each [GET request](../management-api-reference/index.md#tag/Audit-Logs/operation/getAuditLogExport) for a cluster audit log export generates a new download URL. Multiple URLs can coexist and be used to download the export during this 72 hour period that the export is available. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Each [GET request](../management-api-reference/index.md#tag/Audit-Logs/operation/getAuditLogExport) for a cluster audit log export generates a new download URL. Multiple URLs can coexist and be used to download the export during this 72 hour period that the export is available.
 
 * `Failed`. The request failed, and no export has occurred. The user should open a support ticket, so that the problem can be investigated and appropriately resolved.
 * `no audit log files exist within the requested time frame`. No log files exist for the time-period that was specified: therefore, no export has occurred. This error may occur if auditing was not enabled during the requested time period. It’s also possible that there was no auditable activity on the cluster during the requested time-period.

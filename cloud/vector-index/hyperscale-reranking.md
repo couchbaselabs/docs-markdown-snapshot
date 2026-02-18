@@ -1,4 +1,14 @@
+---
+title: Hyperscale Vector Index Reranking and Full Vector Persistence
+description: You can enable reranking in queries using a Hyperscale Vector index
+  to potentially improve the query results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/hyperscale-reranking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-index/hyperscale-reranking.html)
+
+# Hyperscale Vector Index Reranking and Full Vector Persistence
 
 > You can enable reranking in queries using a Hyperscale Vector index to potentially improve the query results. It uses non-quantized versions of the search and indexed vectors to return more accurate results. After the query locates similar vectors in the index, it performs a second round of comparisons using the full vector values stored in the index to reorder the results. This reranking can make the most relevant vectors to the search vector appear higher in the search results. 
 

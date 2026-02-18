@@ -1,4 +1,13 @@
+---
+title: Indexing
+description: Couchbase Lite JavaScript -- Indexing for Query Performance
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/indexing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/indexing.html)
+
+# Indexing
 
 > Description — _Couchbase Lite JavaScript — Indexing for Query Performance_  
 > Related Content — [SQL++ for Mobile](query-n1ql-mobile.md) | [Query Resultsets](query-resultsets.md) | [Live Queries](query-live.md)
@@ -11,8 +20,8 @@ Couchbase Lite JavaScript uses IndexedDB’s native indexing capabilities, which
 
 ## [](#indexing-constraints)IndexedDB Indexing Constraints
 
-|  | Due to IndexedDB requirements, indexes must be declared when opening the database. You cannot create or delete indexes while the database is open. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Due to IndexedDB requirements, indexes must be declared when opening the database. You cannot create or delete indexes while the database is open.
 
 **Key Constraints:**
 

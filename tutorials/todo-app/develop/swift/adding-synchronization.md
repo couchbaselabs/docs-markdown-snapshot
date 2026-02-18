@@ -1,4 +1,12 @@
+---
+title: Adding Synchronization
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/swift/adding-synchronization.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/develop/swift/adding-synchronization.html)
+
+# Adding Synchronization
 
 In this lesson you’ll be introduced to Sync Gateway, our secure web gateway. You’ll learn how to use Couchbase Lite’s synchronization APIs, set up Sync Gateway for synchronization with the cloud and other devices, and resolve data conflicts within your application.
 
@@ -27,8 +35,8 @@ During development, you can set the **server** property to **walrus:** (also kno
 
 By default, Sync Gateway doesn’t allow unauthenticated requests to be processed for security reasons. So you’re enabling the **GUEST** user which represents all the unauthenticated clients that will be synchronizing with your Sync Gateway instance.
 
-|  | User authentication is covered in more detail in the [Adding Security](#swift/adding-security.adoc) lesson. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> User authentication is covered in more detail in the [Adding Security](#swift/adding-security.adoc) lesson.
 
 Sync Gateway is always listening on two ports:
 
@@ -45,10 +53,9 @@ sync_gateway sync-gateway-config.json
 ```  
 ```swift  
 PS  'C:\Program Files (x86)\Couchbase\sync_gateway.exe' sync-gateway-config.json  
-```
-
-|  | The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'.
 
 ## [](#add-synchronization)Add synchronization
 
@@ -155,8 +162,8 @@ Shown below is a list document created with two conflicting revisions. After del
 
 ![image47](../../_images/image47.gif)
 
-|  | During development, the method saveAllowingConflicts is used to intentionally create a conflict. You can shake the device (**^⌘Z** on the simulator) to create a list conflict. The code is located in the motionEnded(\_:with:) method of **ListsViewController.swift**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> During development, the method `saveAllowingConflicts` is used to intentionally create a conflict. You can shake the device (**^⌘Z** on the simulator) to create a list conflict. The code is located in the `motionEnded(_:with:)` method of **ListsViewController.swift**.
 
 This can be surprising at first but it’s the strength of using a distributed database that defers the conflict resolution logic to the application. It’s your responsibility as the developer to ensure conflicts are resolved! Even if you decide to let Couchbase Lite pick the winner you must remove extraneous conflicting revisions to prevent the behaviour observed above. The code below removes all revisions except the current/winning one.
 
@@ -204,8 +211,8 @@ For task documents, you will follow the same steps as previously except this tim
 
 ![image67](../../_images/image67.gif)
 
-|  | To see the same result, open any list and shake the device (**^⌘Z** on the simulator) to create a task conflict. The code is located in the motionEnded(\_:with:) method of **TasksViewController.swift**. Be sure to disable conflict resolution to see the same result as the animation above. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> To see the same result, open any list and shake the device (**^⌘Z** on the simulator) to create a task conflict. The code is located in the `motionEnded(_:with:)` method of **TasksViewController.swift**. Be sure to disable conflict resolution to see the same result as the animation above.
 
 Similarly to the previous section, you will learn how to resolve conflicts, this time for task documents. In this case, the resolution code will **merge the changes** (i.e n-way merge) of the conflicting revisions and promote the result as the current revision.
 

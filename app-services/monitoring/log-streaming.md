@@ -1,4 +1,15 @@
+---
+title: Log Streaming
+description: Log Streaming provides a mechanism for real-time streaming of App
+  Services operational logs to third-party observability platforms or
+  self-hosted HTTP logs collectors.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/log-streaming.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/log-streaming.html)
+
+# Log Streaming
 
 > Log Streaming provides a mechanism for real-time streaming of App Services operational logs to third-party observability platforms or self-hosted HTTP logs collectors. This is a crucial tool to gain instant insights into application behavior, enabling rapid issue detection and resolution to enhance application reliability, performance, and security. 
 
@@ -8,13 +19,13 @@ With the opt-in Log Streaming feature, logs stream from each of the nodes to an 
 
 Log Streaming has implications for [cost and sizing](#resource-consideration), and is turned off by default.
 
-|  | When configuring Log Streaming for App Services, you must make sure that all streamed log data complies with your company’s security and privacy standards as well as with any regulatory standards you adhere to. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> When configuring Log Streaming for App Services, you must make sure that all streamed log data complies with your company’s security and privacy standards as well as with any regulatory standards you adhere to.
 
 ## [](#supported-providers)Supported Log Collector Providers
 
-|  | Couchbase is not responsible for any third-party endpoints you configure. |
-|  | ------------------------------------------------------------------------- |
+> [!WARNING]
+> Couchbase is not responsible for any third-party endpoints you configure.
 
 We support log streaming to [Datadog](https://www.datadoghq.com/), [Sumo Logic](https://www.sumologic.com/), [Elasticsearch](https://www.elastic.co/elasticsearch), [Grafana Loki](https://grafana.com/oss/loki/), [Splunk](https://www.splunk.com/), [Dynatrace](https://www.dynatrace.com/) and to self-hosted log collectors via HTTP.
 
@@ -22,8 +33,8 @@ You can configure log streaming [using the Capella UI](configure-log-collector-a
 
 You must set up your Log Collector as a prerequisite to using the Log Streaming feature.
 
-|  | Capella App Services supports only Elasticsearch versions 8+. Capella App Services supports only the basic auth method with Elasticsearch. Elasticsearch creates and uses an Elasticsearch Index named capella-app-services. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Capella App Services supports only Elasticsearch versions 8+. Capella App Services supports only the `basic auth` method with Elasticsearch. Elasticsearch creates and uses an `Elasticsearch Index` named `capella-app-services`.
 
 ## [](#resource-consideration)Resource Considerations
 
@@ -37,8 +48,8 @@ The amount of data depends on factors such as:
 
 You’ll incur egress data charges from the App Services nodes for the logging data. It’s therefore important to configure this feature precisely, to make sure that you receive useful information at a reasonable cost.
 
-|  | Do not enable log streaming until you have validated what data you want, and understand the costs and resources involved in streaming it for your current and predicted data patterns. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Do not enable log streaming until you have validated what data you want, and understand the costs and resources involved in streaming it for your current and predicted data patterns.
 
 By default, we stream everything from `Info` level and below, and enable a preset set of filters as detailed in [App Endpoint configuration page](configure-log-streaming-app-endpoint.md).
 
@@ -46,8 +57,8 @@ The log level and log filters are configurable, and can dramatically affect the 
 
 Couchbase recommends keeping the defaults until you have verified that you need the data, and understand the costs involved.
 
-|  | In addition to network traffic, a node that’s streaming logs has some marginal effect on CPU and RAM usage. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In addition to network traffic, a node that’s streaming logs has some marginal effect on CPU and RAM usage.
 
 ## [](#troubleshooting)Troubleshooting
 
@@ -99,8 +110,8 @@ Roles enforce the following permissions for Log Streaming:
 
 The structure of the JSON logs (the key names and type of values sent) is stable.
 
-|  | The contents of the message string in the JSON log field are an internal detail. The format and contents of this string are subject to change. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The contents of the message string in the JSON `log` field are an internal detail. The format and contents of this string are subject to change.
 
 ### [](#migration-from-sync-gateway)Migration from Sync Gateway
 
@@ -108,8 +119,8 @@ The underlying logging uses [Sync Gateway logging](../../sync-gateway/current/ma
 
 Your log processing code on prem should continue to work with Capella App Services log streaming with no or minimal changes.
 
-|  | Though the structure of the logs is stable, if your processing code relies on specific format of the log message, it may not work after migration. Scraping information from this field is not recommended. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Though the structure of the logs is stable, if your processing code relies on specific format of the `log` message, it may not work after migration. Scraping information from this field is not recommended.
 
 ## [](#billing)Billing
 

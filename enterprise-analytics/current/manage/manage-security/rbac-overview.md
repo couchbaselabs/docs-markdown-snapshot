@@ -1,4 +1,14 @@
+---
+title: Role Based Access Control (RBAC)
+description: For authorizing users, Enterprise Analytics provides <em>Role-Based
+  Access Control</em>.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/rbac-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/rbac-overview.html)
+
+# Role Based Access Control (RBAC)
 
 > For authorizing users, Enterprise Analytics provides _Role-Based Access Control_. 
 
@@ -33,8 +43,8 @@ A user can be assigned one or more roles by the Full Administrator. Each role is
 
 For example, the Data Reader role features the Read privilege, which is applied to the data of a database. When a user has been assigned the Data Reader role, and attempts to gain read-access to the database’s data by submitting their credentials, Enterprise Analytics identifies the user, recognises their assigned role and privilege, and duly authorises read-access.
 
-|  | Resource-access can optionally be specified by means of _parameterisation_. This means that a wildcard character has been used, during role-assignment, to specify that a privilege applies to all resource-instances within a resource-class: for example, to all databases. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Resource-access can optionally be specified by means of _parameterisation_. This means that a wildcard character has been used, during role-assignment, to specify that a privilege applies to all resource-instances within a resource-class: for example, to all databases.
 
 ## [](#defining-users-and-groups)Defining Users and Groups
 
@@ -48,7 +58,7 @@ Couchbase-Server roles can be assigned both to local and to external users. Role
 * _Directly_. The user is associated directly with one or more Couchbase-Server roles.
 * _By Group_. A Couchbase-Server _user-group_ is defined, and roles are assigned to the user-group. The user is made a member of the user-group, and thereby inherits all the roles of the group. A user can be a member of any number of groups.
 
-|  | By means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Enterprise Analytics. For a detailed account, see [Authentication Domains](configure-ldap.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By means of _LDAP Group Support_, the roles assigned to a Couchbase-Server user-group can be inherited by users not defined on Enterprise Analytics. For a detailed account, see [Authentication Domains](configure-ldap.md).
 
 See [Manage Users, Groups, and Roles](manage-users-and-roles.md), for details on creating users and assigning roles.

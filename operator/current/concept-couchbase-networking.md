@@ -1,4 +1,12 @@
+---
+title: Couchbase Networking
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-couchbase-networking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-couchbase-networking.html)
+
+# Couchbase Networking
 
 > Connecting to a Couchbase cluster in Kubernetes is challenging. This section outlines supported strategies and key concepts. 
 
@@ -76,8 +84,8 @@ Figure 4\. Generic Networking
 
 The client uses Kubernetes node ports to connect to individual Couchbase nodes. Stable service discovery is not possible. TLS cannot be used to secure communications.
 
-|  | When using Istio or another service mesh, remember that strict mode mTLS cannot be used with Kubernetes node ports. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When using Istio or another service mesh, remember that strict mode mTLS cannot be used with Kubernetes node ports.
 
 Learn More
 
@@ -113,15 +121,15 @@ __Table 1\. Couchbase Clients That Support Exposed Features__
 | Couchbase Elasticsearch Connector | 4.1.0+                                                                                                                                                                                                                     |
 | Couchbase Kafka Connector         | 3.4.5+                                                                                                                                                                                                                     |
 
-|  | A known issue exists ([K8S-1585](https://issues.couchbase.com/browse/K8S-1585)) where lookup may fail when using DNS SRV over TLS to connect to a Couchbase Cluster in the same Kubernetes cluster. In such cases, the workaround is to add wildcard matches to the Subject Alternate Names (SANs) as discussed in the [Creating TLS Certificates](tutorial-tls.md#creating-a-couchbase-cluster-server-certificate) tutorial. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A known issue exists ([K8S-1585](https://issues.couchbase.com/browse/K8S-1585)) where lookup may fail when using DNS SRV over TLS to connect to a Couchbase Cluster in the same Kubernetes cluster. In such cases, the workaround is to add wildcard matches to the Subject Alternate Names (SANs) as discussed in the [Creating TLS Certificates](tutorial-tls.md#creating-a-couchbase-cluster-server-certificate) tutorial.
 
 #### [](#sync-gateway-exposed-features-limitations)Sync Gateway Limitations When Using Exposed Features
 
 Earlier versions of Sync Gateway can experience certain network limitations when connecting to a Couchbase cluster that is configured with [exposed features](#exposed-features). [Table 2](#table-sgw-exposed-features-limitations) describes the different network limitations that can occur based on the version of Sync Gateway that is being used.
 
-|  | Sync Gateway, like other Couchbase clients, does not require exposed features to be configured in order to establish a network connection with an instance of Couchbase Server that is running on the same local Kubernetes cluster. The rows labeled **Local** in [Table 2](#table-sgw-exposed-features-limitations) assume that you already have exposed features configured for a different purpose, e.g. exposing the admin port for remote administration, connecting to a remote cluster for XDCR, etc. However, if you are running Sync Gateway on the same Kubernetes cluster as Couchbase Server, and there is nothing else requiring you to configure [couchbaseclusters.spec.networking.exposedFeatures](resource/couchbasecluster.md#couchbaseclusters-spec-networking-exposedfeatures) for a different purpose, then you can ignore the rest of this section as this issue will not affect you. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Sync Gateway, like other Couchbase clients, does not require exposed features to be configured in order to establish a network connection with an instance of Couchbase Server that is running on the same local Kubernetes cluster. The rows labeled **Local** in [Table 2](#table-sgw-exposed-features-limitations) assume that you already have exposed features configured for a different purpose, e.g. exposing the admin port for remote administration, connecting to a remote cluster for XDCR, etc. However, if you are running Sync Gateway on the same Kubernetes cluster as Couchbase Server, and there is nothing else requiring you to configure [couchbaseclusters.spec.networking.exposedFeatures](resource/couchbasecluster.md#couchbaseclusters-spec-networking-exposedfeatures) for a different purpose, then you can ignore the rest of this section as this issue will not affect you.
 
 __Table 2\. Supported Connection Methods for Sync Gateway When Using Exposed Features__
 | Sync Gateway Version | Relationship to Cluster | Method                                                   | Connection String                                                               | High Availability |

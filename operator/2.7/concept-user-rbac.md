@@ -1,4 +1,12 @@
+---
+title: Couchbase User RBAC
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-user-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-user-rbac.html)
+
+# Couchbase User RBAC
 
 > The Couchbase Autonomous Operator manages Couchbase Role-Based Access Control (RBAC) for the authorization of administrative users and groups. 
 
@@ -150,8 +158,8 @@ metadata:
 
 Note that `CouchbaseRoleBinding` resources don’t support labels and don’t directly utilize label selection. Instead, the Autonomous Operator looks at the names of the users and groups specified in the `CouchbaseRoleBinding` resource. If those names match the `CouchbaseUser` and `CouchbaseGroup` resources that are both being selected by the same cluster, then they will be bound together. Therefore, so long as the `CouchbaseUser` and `CouchbaseGroup` resources have the same label, the users and groups specified in the `CouchbaseRoleBinding` resource will be bound together.
 
-|  | Users and groups must match the labels of the same cluster when being bound together, otherwise a scheduling conflict will occur if one cluster is only selecting a user but not selecting the group it belongs to. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Users and groups must match the labels of the same cluster when being bound together, otherwise a scheduling conflict will occur if one cluster is only selecting a user but not selecting the group it belongs to.
 
 #### [](#example-label-selection)Example Label Selection
 

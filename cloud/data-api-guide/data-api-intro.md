@@ -1,4 +1,16 @@
+---
+title: Manage Data with the Data API
+description: The Couchbase Capella Data API is a secure REST API that enables
+  you to create, read, update, and delete data. It also provides passthrough
+  access to the Query Service and the Search Service, so that you can run SQL++
+  queries and full-text searches.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/data-api-guide/data-api-intro.html)
+
+# Manage Data with the Data API
 
 > The Couchbase Capella Data API is a secure REST API that enables you to create, read, update, and delete data. It also provides passthrough access to the Query Service and the Search Service, so that you can run SQL++ queries and full-text searches. 
 
@@ -19,8 +31,12 @@ Exceptions to backward compatibility are as follows:
 * Critical security fixes. A vulnerable version is marked as unsupported when a fixed version is released. In this case, you must plan to upgrade as soon as possible.
 * Fundamental architectural changes, when unavoidable.
 
-|  | Beta Features From time to time, beta features may be added to the Data API. Beta features are early previews that are added to the Data API for evaluation only. They’re subject to change, and should not be used in production. Beta features are clearly labelled in the Data API reference. They will be promoted to regular features in a future version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Beta Features
+> 
+> From time to time, beta features may be added to the Data API. Beta features are early previews that are added to the Data API for evaluation only. They’re subject to change, and should not be used in production.
+> 
+> Beta features are clearly labelled in the Data API reference. They will be promoted to regular features in a future version.
 
 ## [](#private-networking)Private Networking
 
@@ -56,8 +72,10 @@ The passthrough Search Service endpoints enable you to run Full-Text Search quer
 
 You can access the passthrough Query Service and Search Service endpoints via the Data API, in the same way as the other Data API endpoints.
 
-|  | Versioning of Passthrough Endpoints The version of the passthrough endpoints depends on the version of Couchbase Server installed on the cluster. Clusters running different versions of Couchbase Server may expose slightly different functionality via the passthrough endpoints. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Versioning of Passthrough Endpoints
+> 
+> The version of the passthrough endpoints depends on the version of Couchbase Server installed on the cluster. Clusters running different versions of Couchbase Server may expose slightly different functionality via the passthrough endpoints.
 
 ## [](#billing)Billing
 

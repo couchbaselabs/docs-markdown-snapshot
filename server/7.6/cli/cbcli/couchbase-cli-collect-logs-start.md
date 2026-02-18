@@ -1,4 +1,13 @@
+---
+title: collect-logs-start
+description: Start log collection
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-collect-logs-start.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-collect-logs-start.html)
+
+# collect-logs-start
 
 Start log collection
 

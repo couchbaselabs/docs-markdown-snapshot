@@ -1,4 +1,14 @@
+---
+title: Scans
+description: This section discusses how index spans are generated from query
+  predicates and provides a number of examples.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/index-scans.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/services-and-indexes/indexes/index-scans.html)
+
+# Scans
 
 > During query execution, when the index path is chosen, the query engine requests the scan by providing a range of values to return. This range is represented as a _span_ in the query plan. Index scans play a major role in optimizing the query plan generation and execution. This section discusses how index spans are generated from query predicates and provides a number of examples. 
 
@@ -505,8 +515,8 @@ SELECT meta().id FROM airline WHERE id IN [10, 20];
 
 In this example, the predicate is `id IN [10,20]` (that is, id = 10 OR id = 20). After eliminating the duplicates, each element is pushed as a separate range to index scan.
 
-|  | In version 4.5, up to 8192 IN elements are pushed as separate ranges to the index service. If the number of elements exceed 8192, then the index service performs a full scan on that key. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In version 4.5, up to 8192 IN elements are pushed as separate ranges to the index service. If the number of elements exceed 8192, then the index service performs a full scan on that key.
 
 | Span Range for | Low | High | Inclusion |
 | -------------- | --- | ---- | --------- |
@@ -1295,8 +1305,8 @@ END;
 
 ### [](#ex29-equality-on-expr)Example 29: EQUALITY Predicate on Expression
 
-|  | The following examples don’t have the right indexes, or the queries need to be modified to produce an optimal plan. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The following examples don’t have the right indexes, or the queries need to be modified to produce an optimal plan.
 
 ```sqlpp
 SELECT meta().id FROM airline WHERE abs(id) = 10;

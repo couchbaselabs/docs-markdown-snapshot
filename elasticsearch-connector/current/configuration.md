@@ -1,12 +1,20 @@
+---
+title: Configuration
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/configuration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/configuration.html)
+
+# Configuration
 
 > A description of the sections and properties defined in the sample connector config file `$CBES_HOME/config/example-connector.toml` ([view on GitHub](https://github.com/couchbase/couchbase-elasticsearch-connector/blob/4.4.14/src/dist/config/example-connector.toml)), followed by a description of the Consul configuration options specific to Autonomous Operations mode. 
 
-|  | If this is your first time working with the TOML config file format, check out Nate Finch’s excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If this is your first time working with the TOML config file format, check out Nate Finch’s excellent [Intro to TOML](https://npf.io/2014/08/intro-to-toml/), or the [official specification](https://github.com/toml-lang/toml).
 
-|  | Some configuration properties are filesystem paths. The base for a relative path is the connector installation directory. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some configuration properties are filesystem paths. The base for a relative path is the connector installation directory.
 
 ## [](#group-membership)Group Membership
 
@@ -30,8 +38,8 @@ name = 'example-group' (1)
 | **1** | Each connector group must be assigned a unique name (in order to keep its replication checkpoints separate). The group name is required even if there is only one connector instance in the group. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Renaming a group invalidates its replication status checkpoint, causing the connector to start replicating from the beginning again. To preserve the checkpoint (i.e. the replication progress), run the cbes-checkpoint-backup command before renaming, and cbes-checkpoint-restore afterwards. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Renaming a group invalidates its replication status checkpoint, causing the connector to start replicating from the beginning again. To preserve the checkpoint (i.e. the replication progress), run the `cbes-checkpoint-backup` command before renaming, and `cbes-checkpoint-restore` afterwards.
 
 ### [](#sharing-the-load)Sharing the load
 
@@ -50,8 +58,8 @@ totalMembers = 1 (3)
 | **2** | A value from 1 to 'totalMembers', inclusive. Each member in the group must be assigned a unique member number.                                                                                                                                             |
 | **3** | The total number of workers in the group.                                                                                                                                                                                                                  |
 
-|  | To safely add or remove workers from a static group, first stop all running workers, then reconfigure them with the new 'totalMembers' value, and finally start all the workers again. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To safely add or remove workers from a static group, first stop all running workers, then reconfigure them with the new 'totalMembers' value, and finally start all the workers again.
 
 ## [](#logging)Logging
 
@@ -89,8 +97,8 @@ The metrics log file location defaults to `CBES_HOME/logs/cbes-metrics.log`. The
 
 Here you can specify the location of a Java keystore containing the CA certificates for the Couchbase and/or Elasticsearch clusters.
 
-|  | This config section is DEPRECATED and will be removed in a future version of the connector. Please use the pathToCaCertificate properties in the \[couchbase\] and/or \[elasticsearch\] sections instead. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> This config section is DEPRECATED and will be removed in a future version of the connector. Please use the `pathToCaCertificate` properties in the `[couchbase]` and/or `[elasticsearch]` sections instead.
 
 ```toml
 [truststore]
@@ -160,11 +168,11 @@ defaultCheckpoint = 'ZERO' (13)
 | **12** | If you want to replicate from a subset of collections within a scope, or collections in different scopes, name the collections here. Qualify each collection name with its parent scope, like 'scope.collection'.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **13** | **_(Since 4.4.12)_** If there is no existing replication checkpoint for a partition, the connector starts from the place in history specified here. Possible values: 'ZERO' — Replicate past and future changes. This is the default value. 'NOW' — Replicate only changes that happen after the connector starts.                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-|  | The scope and collections properties are mutually exclusive. You can specify one or the other, but not both. If you specify neither, the connector will examine every document in the bucket. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `scope` and `collections` properties are mutually exclusive. You can specify one or the other, but not both. If you specify neither, the connector will examine every document in the bucket.
 
-|  | If you want to replicate from multiple buckets, you can run a separate connector group for each bucket. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you want to replicate from multiple buckets, you can run a separate connector group for each bucket.
 
 ### [](#couchbase-env)Custom Couchbase settings
 
@@ -204,11 +212,11 @@ persistencePollingInterval = '100ms' (3)
 | **2** | The flow control buffer limits how much data Couchbase will send before waiting for the connector to acknowledge the data has been processed. The recommended size is between 10 MiB ("10m") and 50 MiB ("50m").                                                                                   |
 | **3** | To propagate changes immediately, disable persistence polling by setting this to '0ms'. A non-zero duration tells the connector to defer propagation until the change is persisted on all Couchbase replicas. Longer intervals reduce network traffic at the cost of increased end-to-end latency. |
 
-|  | When replicating from an ephemeral bucket, always set persistencePollingInterval = '0s' to disable persistence polling, since documents are never persisted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When replicating from an ephemeral bucket, always set `persistencePollingInterval = '0s'` to disable persistence polling, since documents are never persisted.
 
-|  | Make sure to allocate enough memory to the Elasticsearch connector process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Make sure to allocate enough memory to the Elasticsearch connector process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details.
 
 There’s a separate flow control buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Elasticsearch connector, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is the amount of memory required for the flow control buffer (not counting the connector’s baseline memory usage).
 
@@ -216,8 +224,8 @@ There’s a separate flow control buffer for each node in the Couchbase cluster.
 
 This is where you configure the connection to Elasticsearch (or OpenSearch, if you prefer).
 
-|  | Event though this config section is called "elasticsearch", it also applies to OpenSearch. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Event though this config section is called "elasticsearch", it also applies to OpenSearch.
 
 ```toml
 [elasticsearch]
@@ -235,8 +243,8 @@ pathToCaCertificate = '' (5)
 | **4** | If your Elasticsearch cluster requires secure connections, set secureConnection to true and also configure the pathToCaCertificate property.                                                                                                              |
 | **5** | Path to a separate file containing the trusted Elasticsearch CA certificate(s) in PEM format. For more details, see [Setting Up Secure Connections](secure-connections.md). If you decide not to enable secure connections, you can ignore this property. |
 
-|  | See the [Elastic Cloud](#elastic-cloud) and [Amazon OpenSearch Service](#amazon-opensearch-service) sections for important information about connecting to those services. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> See the [Elastic Cloud](#elastic-cloud) and [Amazon OpenSearch Service](#amazon-opensearch-service) sections for important information about connecting to those services.
 
 ### [](#bulk-request-limits)Bulk Request Limits
 
@@ -256,18 +264,18 @@ concurrentRequests = 2 (4)
 | **3** | A bulk request will be retried if it takes longer than this duration.                                                                          |
 | **4** | Limits the number of simultaneous bulk requests the connector will make. Setting this to 1 will reduce the load on your Elasticsearch cluster. |
 
-|  | A bulk request is full when _either_ the bytes limit _or_ the actions limit is reached, whichever comes first. |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A bulk request is full when _either_ the `bytes` limit _or_ the `actions` limit is reached, whichever comes first.
 
-|  | Actual bulk request size may exceed the bytes limit by approximately the size of a single document. Make sure the limit configured here is **well under** the Elasticsearch cluster’s [http.max\_content\_length](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#%5Fsettings%5F2) setting. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Actual bulk request size may exceed the `bytes` limit by approximately the size of a single document. Make sure the limit configured here is **well under** the Elasticsearch cluster’s [http.max\_content\_length](https://www.elastic.co/guide/en/elasticsearch/reference/current/modules-http.html#%5Fsettings%5F2) setting.
 
 ### [](#document-structure)Document Structure
 
 You control whether the Couchbase document is indexed verbatim, or whether it is transformed to include Couchbase metadata. If you decide to include metadata, it will be in a top-level field of the Elasticsearch document, with a field name of your choice. You also control whether the Couchbase document content is at the top level of the Elasticsearch document, or nested inside field named `doc`.
 
-|  | The connector does not replicate a document’s extended attributes (xattrs). |
-|  | --------------------------------------------------------------------------- |
+> [!NOTE]
+> The connector does not replicate a document’s extended attributes (xattrs).
 
 ```toml
 [elasticsearch.docStructure]
@@ -281,11 +289,11 @@ wrapCounters = false (3)
 | **2** | If false, the Elasticsearch document root will have a doc field whose value is the Couchbase document. If true, the Elasticsearch document will be identical to the Couchbase document with the possible addition of the metadata field. |
 | **3** | If false, ignore Couchbase counter documents. If true, replicate them as Object nodes like {"value":<counter>}                                                                                                                           |
 
-|  | The defaults mimic the behavior of version 3.x of the connector. If you don’t care about metadata, you can make the Elasticsearch document identical to the Couchbase document by setting documentContentAtTopLevel = true and metadataFieldName = ''. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The defaults mimic the behavior of version 3.x of the connector. If you don’t care about metadata, you can make the Elasticsearch document identical to the Couchbase document by setting `documentContentAtTopLevel = true` and `metadataFieldName = ''`.
 
-|  | If you set documentContentAtTopLevel = true, be sure to omit metadata or select a metadata field name that does not conflict with any document fields. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> If you set `documentContentAtTopLevel = true`, be sure to omit metadata or select a metadata field name that does not conflict with any document fields.
 
 ## [](#type-definitions)Type Definitions
 
@@ -327,8 +335,8 @@ A type definition with a `prefix` field matches any document whose ID starts wit
 
 A type definition with a `regex` field matches any document whose ID fully matches the given [Java regular expression](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html).
 
-|  | If the regular expression contains a capturing group named "index", the captured value will be used as the destination index. We’ll see an example of this shortly. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If the regular expression contains a capturing group named "index", the captured value will be used as the destination index. We’ll see an example of this shortly.
 
 ### [](#sample-type-definitions)Sample Type Definitions
 
@@ -346,8 +354,8 @@ ignore = true (2)
 | ----- | --------------------------------------------------------------------------------------------------- |
 | **2** | Any matched documents will be ignored completely.                                                   |
 
-|  | Did you notice that unlike the config sections we’ve looked at so for, the \[\[elasticsearch.type\]\] section name is enclosed in **double brackets**? This indicates it’s a repeated element. You can declare any number of these sections, and each one will define an additional type. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Did you notice that unlike the config sections we’ve looked at so for, the `[[elasticsearch.type]]` section name is enclosed in **double brackets**? This indicates it’s a repeated element. You can declare any number of these sections, and each one will define an additional type.
 
 #### [](#prefix-match)Prefix Match
 
@@ -364,8 +372,8 @@ pipeline = 'audit' (2)
 | ----- | ----------------------------------------------------------------------------------- |
 | **2** | A pipeline lets you apply additional processing to a document before it is indexed. |
 
-|  | Specifying the empty string ('') as the prefix will match _any_ document. |
-|  | ------------------------------------------------------------------------- |
+> [!TIP]
+> Specifying the empty string (`''`) as the prefix will match _any_ document.
 
 #### [](#regular-expression-match)Regular Expression Match
 
@@ -474,8 +482,8 @@ index = 'cbes-rejects' (1)
 | **1** | Rejection log entries are written to this index. |
 | ----- | ------------------------------------------------ |
 
-|  | If you’re running multiple connector groups, you may wish to use a separate rejection log index for each group. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re running multiple connector groups, you may wish to use a separate rejection log index for each group.
 
 ## [](#hosted-services)Connecting to Hosted Services
 
@@ -498,16 +506,16 @@ username = 'database-account-username' (1)
 
 Make sure to use the credentials of a database user account, _not_ your Capella website credentials.
 
-|  | Couchbase Capella uses a Certificate Authority (CA) whose certificate is bundled with the connector and trusted by default (unless you specify a different certificate to trust). It is not necessary to configure pathToCaCertificate. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Capella uses a Certificate Authority (CA) whose certificate is bundled with the connector and trusted by default (unless you specify a different certificate to trust). It is not necessary to configure `pathToCaCertificate`.
 
-|  | Couchbase Capella only allows connections from certain IP addresses. If you have trouble connecting, make sure the IP address of the machine running the connector has been added to the list of Allowed IP Addresses for your Capella cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Couchbase Capella only allows connections from certain IP addresses. If you have trouble connecting, make sure the IP address of the machine running the connector has been added to the list of Allowed IP Addresses for your Capella cluster.
 
 ### [](#elastic-cloud)Elastic Cloud
 
-|  | This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Starting with version 4.4.5, the connector supports Elastic Cloud, the Software-as-a-Service offering from Elastic.
 
@@ -528,8 +536,8 @@ secureConnection = true
 pathToPassword = 'secrets/elasticsearch-password.toml'
 ```
 
-|  | Elastic Cloud uses a well-known public Certificate Authority (CA). It is not necessary to configure pathToCaCertificate. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Elastic Cloud uses a well-known public Certificate Authority (CA). It is not necessary to configure `pathToCaCertificate`.
 
 When connecting to Elastic Cloud, the `username` property is ignored. Use your Elastic Cloud API key as the password.
 
@@ -541,8 +549,8 @@ password = 'your-elastic-cloud-api-key'
 
 ### [](#amazon-opensearch-service)Amazon OpenSearch Service
 
-|  | This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Starting with version 4.4.5, the connector supports Amazon OpenSearch Service.
 
@@ -566,8 +574,8 @@ pathToPassword = 'secrets/elasticsearch-password.toml' (1)
 | **1** | The password specified here is ignored, but the config property must still be present. Sorry about that. |
 | ----- | -------------------------------------------------------------------------------------------------------- |
 
-|  | Amazon OpenSearch Service uses a well-known public Certificate Authority (CA). It is not necessary to configure pathToCaCertificate. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Amazon OpenSearch Service uses a well-known public Certificate Authority (CA). It is not necessary to configure `pathToCaCertificate`.
 
 When connecting to Amazon OpenSearch Service, the `username` property is ignored, and so is the password. Instead, the connector gets AWS credentials from the [Default Credential Provider Chain](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/credentials.html).
 
@@ -589,8 +597,8 @@ favoriteColor = '${FAVORITE_COLOR:blue}' (2)
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **2** | A colon in the placeholder separates the environment variable name from the default value to use if the variable is not set. If the FAVORITE\_COLOR environment variable is set, its value will be used. Otherwise, the specified default value blue will be used. |
 
-|  | As you may have noticed, age = ${AGE} is not valid TOML syntax. This is fine if the connector is the only program that reads the config file, but other TOML processing tools might complain. To accommodate other tools, integer and boolean values may be specified as strings. For example: age = '${AGE}'. This lets you use placeholders for integers and booleans without invalidating the TOML syntax. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As you may have noticed, `age = ${AGE}` is not valid TOML syntax. This is fine if the connector is the only program that reads the config file, but other TOML processing tools might complain. To accommodate other tools, integer and boolean values may be specified as strings. For example: `age = '${AGE}'`. This lets you use placeholders for integers and booleans without invalidating the TOML syntax.
 
 ## [](#consul)Consul
 

@@ -1,13 +1,22 @@
+---
+title: Introduction
+description: The Couchbase Power BI Connector provides data visualization for
+  the Couchbase platform, using Microsoft's data visualization software.
+editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/main/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/power-bi-connector/current/index.html)
+
+# Introduction
 
 > The Couchbase Power BI Connector provides data visualization for the Couchbase platform, using Microsoft’s data visualization software.
 > 
 > The Couchbase Power BI Connector integrates:
 > 
-> * Couchbase Analytics tabular views.
-> 
-> |  | For self-managed CBAS, the Power BI connector requires Couchbase Server 7.2.4 or newer. |
-> |  | --------------------------------------------------------------------------------------- |
+> * Couchbase Analytics tabular views.  
+>> [!TIP]  
+>> For self-managed CBAS, the Power BI connector requires Couchbase Server 7.2.4 or newer.
 > * Capella Columnar instances
 > * or Capella provisioned services
 > 
@@ -23,8 +32,8 @@ Before you start, ensure you have a supported version of Microsoft Power BI Desk
 
 If necessary, download Power BI Desktop from the [Microsoft downloads](https://www.microsoft.com/en-US/download/details.aspx?id=58494) page.
 
-|  | Power BI is only available for the Microsoft Windows platform; for other platforms, consider our [Tableau connector](../../tableau-connector/current/index.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Power BI is only available for the Microsoft Windows platform; for other platforms, consider our [Tableau connector](../../tableau-connector/current/index.md).
 
 ## [](#install-the-couchbase-odbc-driver)Install the Couchbase ODBC Driver
 
@@ -32,8 +41,8 @@ If necessary, download Power BI Desktop from the [Microsoft downloads](https://w
 2. Double-click the file to open the **Couchbase ODBC Setup Wizard**.
 3. Install the ODBC drivers from the downloaded file. This installation provides both ANSI and Unicode drivers.
 
-|  | Make sure that you have installed the 64-bit versions of the ODBC drivers. |
-|  | -------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Make sure that you have installed the 64-bit versions of the ODBC drivers.
 
 ## [](#install-openssl)Install OpenSSL
 
@@ -88,9 +97,8 @@ To obtain the `connection string`.
 ![copying connection string](_images/get-connection-string.png)
 4. In the next section of the page, you will find the link to create a list of **Allowed IP Addresses**. Click on the link to create an entry for the IP address of the machine from which you’re running Power BI.  
 ![creating-allowed-ip address](_images/allowed-ip-addresses.png)  
-
-|  | You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]  
+> You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console.
 5. Return to the **Connect** screen and click on the **Cluster Access** link.Create a new database access entry, setting values for `bucket`, and `scopes`.  
 ![Creating cluster access](_images/create-cluster-access.png)
 6. To set up a secure connection, you will need to retrieve the root certificate for your Capella instance.
@@ -117,10 +125,9 @@ Next, you need to add the IP address of the machine from which you are running P
 1. Click on **Allowed IP Addresses** in the left-hand menu.
 2. Click the **Add Allowed IP** button.  
 ![capella columnar add allowed ip](_images/capella-columnar-add-allowed-ip.png)
-3. Enter the IP address of the Power BI host machine.
-
-|  | You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+3. Enter the IP address of the Power BI host machine.  
+> [!TIP]  
+> You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console.
 
 Now, you will need to create a user account for Power BI to access the columnar data.
 
@@ -144,8 +151,8 @@ You will use this file later when you create the ODBC connection.
 
 You configure an ODBC data source name (DSN) for each CBAS scope or Capella columnar database you want to use in Power BI.
 
-|  | Be careful to use the **ODBC Data Source Administrator (64 bit)**; there is an **ODBC Data Source Administrator (32 bit)**available, but this will not work with the connector. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Be careful to use the **ODBC Data Source Administrator (64 bit)**; there is an **ODBC Data Source Administrator (32 bit)**available, but this will not work with the connector.
 
 * Capella Operational
 * Capella Columnar
@@ -210,8 +217,8 @@ To add data from Capella columnar or CBAS to Power BI, follow the instructions t
 
 **Couchbase Connector** appears on the **Get Data** list of data sources. When prompted for **Username** and **Password**, supply the account username and password you created for [Capella Operational](#setup-database-access) or [Capella Columnar](#capella-columnar-user-account). If you are running a Self-Managed Couchbase Server, then supply a set of credentials with the correct data access permissions.
 
-|  | The user account credentials for Capella Operational or Capella Columnar will always match the username and password attached to the ODBC DSN. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The user account credentials for Capella Operational or Capella Columnar will always match the username and password attached to the ODBC DSN.
 
 After you connect, a list of the tabular views in the database specified by the DSN appears. **Load** a view to use Power BI options.
 

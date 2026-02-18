@@ -1,4 +1,12 @@
+---
+title: Transactions Release Notes
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/project-docs/distributed-transactions-dotnet-release-notes.html)
+
+# Transactions Release Notes
 
 Couchbase Distributed ACID Transactions is distributed as a separate library for the .NET SDK. This page features the release notes for that library — for release notes, download links, and installation methods for the latest 3.x .NET SDK releases, see [the current Release Notes page](sdk-release-notes.md).
 

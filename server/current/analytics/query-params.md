@@ -1,4 +1,13 @@
+---
+title: Analytics Query Parameters
+description: A description of query parameters for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/query-params.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/query-params.html)
+
+# Analytics Query Parameters
 
 To specify request-level parameters for the Analytics Service, do one of the following:
 
@@ -26,11 +35,11 @@ For more information on these common parameters, refer to [Request-Level Paramet
 | **args**optional                    | An array of positional parameter values.                                                                                                                                                                                                                                                                                                    | Any Type array |
 | **<$identifier>**additionalproperty | A named parameter value. **Nullable:** yes                                                                                                                                                                                                                                                                                                  | Any Type       |
 
-|  | The Analytics Service API does not support the prepared parameter. |
-|  | ------------------------------------------------------------------ |
+> [!IMPORTANT]
+> The Analytics Service API does not support the `prepared` parameter.
 
-|  | The Analytics Service API does not support the at\_plus or statement\_plus settings for scan consistency. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Analytics Service API does not support the `at_plus` or `statement_plus` settings for scan consistency.
 
 ## [](#analytics-parameters)Analytics Parameters
 

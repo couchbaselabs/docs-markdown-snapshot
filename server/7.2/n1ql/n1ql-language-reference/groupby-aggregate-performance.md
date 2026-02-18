@@ -1,4 +1,14 @@
+---
+title: Grouping and Aggregate Pushdown
+description: SQL++ Pushdowns optimize the performance of SQL++ queries by
+  supporting grouping and aggregate expressions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/groupby-aggregate-performance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/groupby-aggregate-performance.html)
+
+# Grouping and Aggregate Pushdown
 
 > SQL++ Pushdowns optimize the performance of SQL++ queries by supporting grouping and aggregate expressions. 
 
@@ -867,8 +877,8 @@ SELECT COUNT(1)
 FROM _namedkeyspaceref_
 GROUP BY SUBSTR(META().id, _start_, _finish_);
 
-|  | If there is a filter on the Document ID, then the primary index can be used as a secondary scan. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If there is a filter on the Document ID, then the primary index can be used as a secondary scan.
 
 Example 8\. List the number of airports that are in each decile of the `META().id` field
 
@@ -1682,8 +1692,8 @@ FROM _namedkeyspaceref_
 WHERE _a_ IS NOT MISSING
 GROUP BY _b_;
 
-|  | The results will be pre-aggregated if the GROUP BY key is non-leading, as in this case and example. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The results will be pre-aggregated if the `GROUP BY` key is non-leading, as in this case and example.
 
 Example 21\. DISTINCT aggregate — Case 3
 

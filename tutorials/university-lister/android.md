@@ -1,4 +1,12 @@
+---
+title: Using Couchbase Lite with Recycler Views
+editUrl: https://github.com/couchbaselabs/UniversityLister-Android/edit/master/content/modules/university-lister/pages/android.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/university-lister/android.html)
+
+# Using Couchbase Lite with Recycler Views
 
 ## [](#introduction)Introduction
 

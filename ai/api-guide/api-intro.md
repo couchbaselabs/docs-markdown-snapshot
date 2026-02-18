@@ -1,4 +1,15 @@
+---
+title: Manage Deployments with AI Services APIs
+description: The Couchbase Capella Management API and the Model Serving API are
+  secure REST APIs that enable you to provision, deploy, and configure Capella
+  AI Services.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/api-guide/api-intro.html)
+
+# Manage Deployments with AI Services APIs
 
 > The Couchbase Capella Management API and the Model Serving API are secure REST APIs that enable you to provision, deploy, and configure Capella AI Services. 
 
@@ -13,8 +24,8 @@ You do not need any special tools, SDKs, or libraries to access the Management A
 
 To get started with the APIs, [create an API key](api-start.md) and [make an API call](api-use.md).
 
-|  | The Management API is not available for free tier operational clusters. [Upgrade your account](../../cloud/billing/upgrade-account.md) to manage deployments with the Management API. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Management API is not available for free tier operational clusters. [Upgrade your account](../../cloud/billing/upgrade-account.md) to manage deployments with the Management API.
 
 ## [](#management-rest-api)The Management API
 

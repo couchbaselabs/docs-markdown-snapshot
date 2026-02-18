@@ -1,4 +1,13 @@
+---
+title: SDK Release Notes
+description: Release notes for the Couchbase Kotlin Client.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.3/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes for the Couchbase Kotlin Client. 
 
@@ -47,10 +56,9 @@ Regular maintenance release.
 #### [](#new-features)New Features
 
 * [KCBC-190](https://jira.issues.couchbase.com/browse/KCBC-190): New APIs added to allow getting KV documents from a preferred server group. This feature allows the implementation of network optimization when traffic cost between server groups is higher than in the local group. In this case the application might select preferred server group in the connection options, and later opt-in for local operations during replica reads.
-* [KCBC-189](https://jira.issues.couchbase.com/browse/KCBC-189): `KotlinxSerializationJsonSerializer` is now part of the SDK’s stable API, with full support for nullable types and contextual serializers.
-
-|  | The stable version of this class is not binary compatible with the experimental version. If you were already using KotlinxSerializationJsonSerializer, you will need to recompile your project. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* [KCBC-189](https://jira.issues.couchbase.com/browse/KCBC-189): `KotlinxSerializationJsonSerializer` is now part of the SDK’s stable API, with full support for nullable types and contextual serializers.  
+> [!WARNING]  
+> The stable version of this class is not binary compatible with the experimental version. If you were already using `KotlinxSerializationJsonSerializer`, you will need to recompile your project.
 * [JVMCBC-1602](https://couchbasecloud.atlassian.net/browse/JVMCBC-1602:): Application Telemetry improvements.
 
 #### [](#improvements-3)Improvements
@@ -184,10 +192,9 @@ This regular maintenance release adds an experimental API for Couchbase transact
 
 #### [](#improvements-7)Improvements
 
-* [KCBC-96](https://jira.issues.couchbase.com/browse/KCBC-96): Added experimental API for Couchbase transactions. This is a new [Kotlin-flavored candy shell](https://www.couchbase.com/forums/t/kotlin-sdk-1-4-4-adds-experimental-support-for-couchbase-transactions/39307) on the same Couchbase transactions engine used by the Java SDK.
-
-|  | The Kotlin transactions API is still "volatile", meaning it could change without notice as we refine it based on your feedback. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+* [KCBC-96](https://jira.issues.couchbase.com/browse/KCBC-96): Added experimental API for Couchbase transactions. This is a new [Kotlin-flavored candy shell](https://www.couchbase.com/forums/t/kotlin-sdk-1-4-4-adds-experimental-support-for-couchbase-transactions/39307) on the same Couchbase transactions engine used by the Java SDK.  
+> [!WARNING]  
+> The Kotlin transactions API is still "volatile", meaning it could change without notice as we refine it based on your feedback.
 
 ### [](#v1.4.3)Version 1.4.3 (23 September 2024)
 
@@ -366,8 +373,14 @@ The SDK now directly depends on SLF4J, which may impact some users — see below
 
 When upgrading from a previous version of the SDK, please be aware of this behavioral change:
 
-|  | [JVMCBC-1319](https://issues.couchbase.com/browse/JVMCBC-1319): As [previously announced](https://www.couchbase.com/forums/t/embracing-slf4j-in-couchbase-java-sdk-3-5/36474), the SLF4J API is now a required dependency, and the SDK does all logging through SLF4J. The following client settings for customizing logging behavior are deprecated, and no longer have any effect: logger.disableSlf4J logger.fallbackToConsole logger.consoleLoggerFormatter If your project does not already use SLF4J, please follow the announcement link for details and a mini-migration guide. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> [JVMCBC-1319](https://issues.couchbase.com/browse/JVMCBC-1319): As [previously announced](https://www.couchbase.com/forums/t/embracing-slf4j-in-couchbase-java-sdk-3-5/36474), the SLF4J API is now a required dependency, and the SDK does all logging through SLF4J. The following client settings for customizing logging behavior are deprecated, and no longer have any effect:
+> 
+> * `logger.disableSlf4J`
+> * `logger.fallbackToConsole`
+> * `logger.consoleLoggerFormatter`
+> 
+> If your project does not already use SLF4J, please follow the announcement link for details and a mini-migration guide.
 
 #### [](#improvements-18)Improvements
 

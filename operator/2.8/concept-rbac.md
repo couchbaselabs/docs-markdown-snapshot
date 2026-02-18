@@ -1,4 +1,12 @@
+---
+title: Couchbase Resource RBAC
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-rbac.html)
+
+# Couchbase Resource RBAC
 
 > The Kubernetes Operator manages many different types of Kubernetes custom resources, giving you the ability to control access to your Couchbase deployments based on which resource type each user should have access to. 
 

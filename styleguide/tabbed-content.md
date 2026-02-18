@@ -1,4 +1,12 @@
+---
+title: Tabbed Content
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabbed-content.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/tabbed-content.html)
+
+# Tabbed Content
 
 Use tabbed content in a [procedure](writing-procedures.md) when you need to present 2 distinct, branched paths to a user.
 

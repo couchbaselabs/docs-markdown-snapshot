@@ -1,4 +1,13 @@
+---
+title: Expressions
+description: A description of SQL++ for Enterprise Analytics expressions.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/2_expr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/2_expr.html)
+
+# Expressions
 
 > A description of SQL++ for Enterprise Analytics expressions. 
 
@@ -283,8 +292,8 @@ customer_name
 
 A very simple kind of SQL++ for Enterprise Analytics expression is a variable, which is simply an identifier. As in SQL, a variable can be bound to a value, which can be an input dataset, some intermediate result during processing of a query, or the final result of a query. For more information about variables, see [SELECT Statements](3%5Fquery.md).
 
-|  | SQL++ for Enterprise Analytics has different rules for delimiting strings and identifiers than the SQL rules. In SQL, you use single quotes to enclose strings, and double quotes to enclose delimited identifiers. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ for Enterprise Analytics has different rules for delimiting strings and identifiers than the SQL rules. In SQL, you use single quotes to enclose strings, and double quotes to enclose delimited identifiers.
 
 ### [](#Parameter%5Freferences)Parameter References
 

@@ -1,4 +1,14 @@
+---
+title: Remove a Node and Rebalance
+description: Enterprise Analytics allows a cluster node to be removed, and the
+  remaining nodes rebalanced.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/remove-node-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/remove-node-and-rebalance.html)
+
+# Remove a Node and Rebalance
 
 > Enterprise Analytics allows a cluster node to be removed, and the remaining nodes rebalanced. 
 
@@ -38,8 +48,8 @@ Click on the **Remove Server** confirmation button to proceed. The **Servers** s
 4. Click on the **Rebalance** button at the upper right of the screen to begin the rebalancing process. Rebalancing now occurs, redistributing the data from the node being removed to the remaining nodes in the cluster.  
 A progress dialog appears providing status information about the rebalance operation, including: - Progress bars showing completion percentage.
 
-|  | If rebalance fails, notifications are duly provided. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> If rebalance fails, notifications are duly provided.
 
 These are described in [Rebalance Failure Notification](add-node-and-rebalance.md#rebalance-failure-notification).
 

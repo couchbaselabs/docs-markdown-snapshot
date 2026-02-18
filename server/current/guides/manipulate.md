@@ -1,4 +1,13 @@
+---
+title: Manipulate Data with Queries
+description: These guides explain how to create, update, and delete data with a SQL++ query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/manipulate.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/guides/manipulate.html)
+
+# Manipulate Data with Queries
 
 These guides explain how to create, update, and delete data with a SQL++ query.
 

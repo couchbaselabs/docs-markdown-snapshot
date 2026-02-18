@@ -1,4 +1,13 @@
+---
+title: Calling SQL++ from JavaScript
+description: Executing SQL++ statements from Javascript functions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/javascript-udfs/calling-n1ql-from-javascript.html)
+
+# Calling SQL++ from JavaScript
 
 > Executing SQL++ statements from Javascript functions. 
 
@@ -39,8 +48,8 @@ function addAirline() {
 }
 ```
 
-|  | Behind the scenes, the inline call method will generate the equivalent SQL++ call, so whichever you choose to use will come down to personal preference. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Behind the scenes, the inline call method will generate the equivalent `SQL++` call, so whichever you choose to use will come down to personal preference.
 
 ## [](#side-effects)Side Effects
 
@@ -52,8 +61,8 @@ SELECT "true" AS response WHERE AddAirline() = "missing";
 
 will generate an error because the `AddAirline()` function will attempt to alter data, which the caller may be unaware of.
 
-|  | Functions that change data must be called using the EXECUTE FUNCTION statement. |
-|  | ------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Functions that change data must be called using the `EXECUTE FUNCTION` statement.
 
 ## [](#returning-values-from-sql-statements)Returning values from SQL++ statements
 
@@ -84,8 +93,12 @@ function selectHotels() {
 | **3** | Add the current document from the iterator to the result array res.                     |
 | **4** | Once all the items have been retrieved, return the result array.                        |
 
-|  | If an inline statement/SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. i.e. the runtime will wait until the statement completes before moving on to the next line of Javascript. If the inline statement/SQL++ call returns a value then it is executed _asynchronously_: execution continues before the iterator is returned. Each document is fetched from the bucket as it requested by the iterator. ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If an inline statement/SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. i.e. the runtime will wait until the statement completes before moving on to the next line of Javascript.
+> 
+> If the inline statement/SQL++ call returns a value then it is executed _asynchronously_: execution continues before the iterator is returned. Each document is fetched from the bucket as it requested by the iterator.
+> 
+> ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg)
 
 ## [](#passing-parameters-to-sql-statements)Passing Parameters to SQL++ statements
 
@@ -126,8 +139,8 @@ function addAirlineWithNamedParameters(name, callsign, country) {
 }
 ```
 
-|  | The names of the parameters passed into the Javascript function are used in the SQL++ statement without any need to assign the parameters in a separate step. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The names of the parameters passed into the Javascript function are used in the SQL++ statement without any need to assign the parameters in a separate step.
 
 SQL++ calls support both _named_ and _positional_ parameters. Inline calls only support named parameters.
 
@@ -144,8 +157,10 @@ Transactions are supported from SQL++ statements called from Javascript function
 * The function can run a statement that starts the transaction.
 * The function can run a statement that rolls back a transaction.
 
-|  | A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely. ![transactions-and-iterators](_images/transactions-and-iterators-e7a0ef29da863605ec653086aaa015f5fb6002f3.svg) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely.
+> 
+> ![transactions-and-iterators](_images/transactions-and-iterators-e7a0ef29da863605ec653086aaa015f5fb6002f3.svg)
 
 ## [](#role-based-access-control)Role-Based Access Control
 
@@ -197,8 +212,12 @@ returns the following result:
 | **1** | The call failed after 10 nested call, which exhausted the number of Javascript workers available during the call sequence. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------- |
 
-|  | The JavaScript workers are created when the Couchbase server is started up. \\$"Number of JavaScript Workers" = 4 xx "Number of CPUs"\\$ The service will automatically prevent recursive calls if there are less than 50% javascript workers available |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The JavaScript workers are created when the Couchbase server is started up.
+> 
+> \\$"Number of JavaScript Workers" = 4 xx "Number of CPUs"\\$
+> 
+> The service will automatically prevent recursive calls if there are less than 50% javascript workers available
 
 ## [](#further-reading)Further Reading
 

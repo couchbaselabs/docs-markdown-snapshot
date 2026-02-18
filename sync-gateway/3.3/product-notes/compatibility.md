@@ -1,12 +1,25 @@
+---
+title: Compatibility
+description: Couchbase Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/product-notes/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/product-notes/compatibility.html)
+
+# Compatibility
 
 > Couchbase Sync Gateway  
 > Covers Couchbase Sync Gateway’s compatibility with Couchbase Server and Couchbase Lite
 
 ## [](#sync-gateway-and-couchbase-server)Sync Gateway and Couchbase Server
 
-|  | Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1). The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs. This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
+> 
+> The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs.
+> 
+> This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage.
 
 Sync Gateway/Couchbase Server
 
@@ -34,11 +47,16 @@ Compatibility Matrix
 | 3.3.0                                                 |                                                | ![no](../_images/no.png)                              | ![no](../_images/no.png)                              | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 | 3.3.0                                                 | Using Scopes and Collections                   | ![no](../_images/no.png)                              | ![no](../_images/no.png)                              | ![no](../_images/no.png)   | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 
-|  | Starting from CBS 7.0, the use\_views feature is deprecated. SGW 3.1 will only run with use\_views with a default scope/collection configuration You cannot run use\_views with a defined scope/collection |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Starting from CBS 7.0, the `use_views` feature is deprecated.
+> 
+> * SGW 3.1 will only run with `use_views` with a default scope/collection configuration
+> * You cannot run `use_views` with a defined scope/collection
 
-|  | Couchbase Server Bucket TypesUse only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server Bucket Types
+> 
+> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 ## [](#sync-gateway-and-couchbase-lite)Sync Gateway and Couchbase Lite
 

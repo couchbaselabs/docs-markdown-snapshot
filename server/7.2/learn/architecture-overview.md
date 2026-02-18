@@ -1,4 +1,14 @@
+---
+title: Overview
+description: A high-level summary of Couchbase Server technology, and an
+  overview of information provided by other pages in this section.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/architecture-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/architecture-overview.html)
+
+# Overview
 
 > A high-level summary of Couchbase Server technology, and an overview of information provided by other pages in this section. 
 

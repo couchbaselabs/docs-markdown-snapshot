@@ -1,4 +1,15 @@
+---
+title: Understanding Authentication
+description: To access Couchbase Server, users must be authenticated.
+  <em>Authentication</em> is a process for identifying who is attempting to
+  access a system.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/authentication-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/security/authentication-overview.html)
+
+# Understanding Authentication
 
 > To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined. 
 
@@ -45,8 +56,8 @@ Locally managed user-account credentials are stored in Couchbase Server using bo
 
 _Argon2ID_ is a state of the art password hashing function, designed to be resistant to various password-cracking attacks: including both time-memory trade-off attacks, and side-channel attacks. _PBKDF2_ is another powerful password hashing function; and is required to allow SCRAM-SHA capabilities. By default, the PBKDF2 credentials are stored with 5,000 iterations: this can be configured with the `POST settings/security/scramShaIterations` REST API method and URI, with a higher specified number increasing the security of the credentials, with the trade-off of higher resource requirements when authentication is performed. Following guidance from NIST, it is recommended to disable SCRAM-SHA1 unless it is absolutely required.
 
-|  | By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use.
 
 The various levels of SCRAM SHA can be disabled with `POST /settings/security/scramSha1Enabled`, `POST /settings/security/scramSha256Enabled` and `POST /settings/security/scramSha512Enabled`. For more information on the using the REST API to configure security settings, see [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md).
 
@@ -85,8 +96,9 @@ In addition to a username and password requirement, SAML can require _Two-Factor
 
 Administrators can lock user accounts by blocking their authentication. This is enforced through account locking. After an account is marked as locked, it prevents the user from logging in or from continuing the existing sessions. Locking an account terminates all active UI sessions and long-running connections such as Memcached or streaming connections.
 
-|  | This feature is only available after the entire cluster is upgraded to version 8.0 or later. Only local domain user accounts can be locked or unlocked. External domain user accounts cannot be locked or unlocked. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> * This feature is only available after the entire cluster is upgraded to version 8.0 or later.
+> * Only local domain user accounts can be locked or unlocked. External domain user accounts cannot be locked or unlocked.
 
 This feature is useful for preventing users from connecting to the database during maintenance.
 

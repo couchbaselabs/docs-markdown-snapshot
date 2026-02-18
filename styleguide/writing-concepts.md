@@ -1,4 +1,12 @@
+---
+title: Writing Concepts
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/writing-concepts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/writing-concepts.html)
+
+# Writing Concepts
 
 A concept explains to the user the why behind a [procedure](writing-procedures.md) or piece of [reference material](writing-references.md). It explains what things are and introduces the things a user needs to know to be successful at completing a procedure or understanding references.
 
@@ -30,5 +38,5 @@ The **See Also** section in a concept should be an H2 level heading.
 
 It contains an [unordered list](unordered-list.md) of links to tasks, references, or other concepts that the user can read to continue in their learning journey.
 
-|  | There will always be somewhere the user can go next or view after reading your concept. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There will always be somewhere the user can go next or view after reading your concept.

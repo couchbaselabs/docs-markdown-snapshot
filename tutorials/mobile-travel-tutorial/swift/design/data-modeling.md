@@ -1,4 +1,12 @@
+---
+title: Data Modeling
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/design/data-modeling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/design/data-modeling.html)
+
+# Data Modeling
 
 ## [](#introduction)Introduction
 

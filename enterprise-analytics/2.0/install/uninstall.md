@@ -1,4 +1,14 @@
+---
+title: Uninstall Enterprise Analytics
+description: The Enterprise Analytics application and its associated data can be
+  removed from supported systems.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/uninstall.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/uninstall.html)
+
+# Uninstall Enterprise Analytics
 
 > The Enterprise Analytics application and its associated data can be removed from supported systems. 
 
@@ -10,8 +20,8 @@ This page describes how to uninstall Enterprise Analytics from Linux systems; an
 
 If the system is a part of an active Enterprise Analytics cluster, you must [remove it and rebalance the cluster](../manage/manage-nodes/remove-node-and-rebalance.md) to take the node out of the configuration. You’ll also need to update Enterprise Analytics clients to point to an available node within the active cluster.
 
-|  | The instructions on this page removes Enterprise Analytics, and all configuration and database files. Make sure that you backup your configuration and data before proceeding, as this process cannot be undone. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The instructions on this page removes Enterprise Analytics, and all configuration and database files. Make sure that you backup your configuration and data before proceeding, as this process cannot be undone.
 
 ## [](#linux)Linux
 

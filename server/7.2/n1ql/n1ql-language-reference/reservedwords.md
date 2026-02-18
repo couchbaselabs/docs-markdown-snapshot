@@ -1,4 +1,14 @@
+---
+title: Reserved Words
+description: SQL++ defines an extensive list of keywords that are reserved
+  words. You cannot use these keywords as identifiers unless you escape them.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/reservedwords.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/reservedwords.html)
+
+# Reserved Words
 
 > SQL++ defines an extensive list of keywords that are reserved words. You cannot use these keywords as identifiers unless you escape them. All of the SQL++ keywords are case-insensitive. 
 

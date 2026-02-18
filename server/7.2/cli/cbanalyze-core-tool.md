@@ -1,4 +1,14 @@
+---
+title: cbanalyze-core
+description: The <code class="cmd">cbanalyze-core</code> tool is used to parse
+  and analyze core dump data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbanalyze-core-tool.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbanalyze-core-tool.html)
+
+# cbanalyze-core
 
 > The `cbanalyze-core` tool is used to parse and analyze core dump data. 
 
@@ -12,8 +22,8 @@ cbanalyze-core -r [root] -f [reportfile] [corefile]
 
 The command `cbanalyze-core` tool is a helper script to parse and analyze core dump from a Couchbase Server node.
 
-|  | The cbanalyze-core tool cannot analyze minidump core files and should only be used when directed by Couchbase Support. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `cbanalyze-core` tool cannot analyze minidump core files and should only be used when directed by Couchbase Support.
 
 Depending upon your platform, this tool is at the following locations:
 

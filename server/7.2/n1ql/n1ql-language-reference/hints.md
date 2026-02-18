@@ -1,4 +1,14 @@
+---
+title: USE Clause
+description: The USE clause enables you to specify that the query should use
+  particular keys, or a particular index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/hints.html)
+
+# USE Clause
 
 > The `USE` clause enables you to specify that the query should use particular keys, or a particular index. 
 
@@ -6,8 +16,8 @@
 
 The `USE` clause is used within the [FROM](from.md) clause. It enables you to provide a hint to the query service, specifying that the query should use particular keys, or a particular index.
 
-|  | You can also supply an index hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify an index hint for the same keyspace using both the USE clause and a hint comment. If you do this, the USE clause and the hint comment are both marked as erroneous and ignored by the optimizer. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also supply an index hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify an index hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer.
 
 ## [](#prerequisites)Prerequisites
 

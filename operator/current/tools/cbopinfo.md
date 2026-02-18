@@ -1,7 +1,15 @@
+---
+title: cbopinfo
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cbopinfo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tools/cbopinfo.html)
 
-|  | The cbopinfo binary is deprecated and will be removed in a later release. Please use the [cao](cao.md) binary that features all the same functionality under the cao collect-logs subcommand. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# cbopinfo
+
+> [!IMPORTANT]
+> The `cbopinfo` binary is deprecated and will be removed in a later release. Please use the [cao](cao.md) binary that features all the same functionality under the `cao collect-logs` subcommand.
 
 ## [](#installation)Installation
 
@@ -26,8 +34,8 @@ $ chmod +x ./cbopinfo
 $ sudo mv ./cbopinfo /usr/local/bin/cbopinfo  
 ```
 
-|  | On newer versions of macOS, you may encounter errors such as cannot execute binary file when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.” |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
 
 1. Open a command prompt and go to the directory where the `cbopinfo` binary is located:  
 ```console  
@@ -104,6 +112,28 @@ Group to impersonate for the operation, this flag can be repeated to specify mul
 **Type**: string
 
 UID to impersonate for the operation.
+
+\--backup-logs
+
+**Type**: bool
+
+**Default**: false
+
+Collect cbbackupmgr logs from backup PVCs
+
+\--backup-logs-keep-job
+
+**Type**: bool
+
+**Default**: false
+
+Keep backup logs collection job after completion for debugging
+
+\--backup-logs-name
+
+**Type**: string
+
+Specify which backup to collect logs from (default: all backups)
 
 \--cache-dir
 

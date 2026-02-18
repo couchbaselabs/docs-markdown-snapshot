@@ -1,4 +1,14 @@
+---
+title: WINDOW Clause
+description: The WINDOW clause defines named windows for window functions and
+  aggregate functions used as window functions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/window.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/window.html)
+
+# WINDOW Clause
 
 > The WINDOW clause defines named windows for window functions and aggregate functions used as window functions. 
 
@@ -133,8 +143,8 @@ If this clause is omitted, all objects are considered peers, i.e. their order is
 
 This clause may have multiple [ordering terms](#ordering-term). To reduce the number of ties, add additional [ordering terms](#ordering-term).
 
-|  | This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query [ORDER BY clause](orderby.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query [ORDER BY clause](orderby.md).
 
 #### [](#ordering-term)Ordering Term
 
@@ -186,11 +196,17 @@ Looks for a value offset within the frame. The function produces deterministic r
 
 Counts all groups of tied rows within the frame. The function produces deterministic results.
 
-|  | If this clause uses RANGE with either _valexpr_ PRECEDING or _valexpr_ FOLLOWING, the [window order clause](#window-order-clause) must have only a single ordering term. The ordering term expression must evaluate to a number. If the ordering term expression does not evaluate to a number, the window frame will be empty, which means the window function will return its default value: in most cases this is NULL, except for [COUNT()](aggregatefun.md#count) or [COUNTN()](aggregatefun.md#countn), whose default value is 0. This restriction does not apply when the window frame uses ROWS or GROUPS. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If this clause uses `RANGE` with either `_valexpr_ PRECEDING` or `_valexpr_ FOLLOWING`, the [window order clause](#window-order-clause) must have only a single ordering term. The ordering term expression must evaluate to a number.
+> 
+> If the ordering term expression does not evaluate to a number, the window frame will be empty, which means the window function will return its default value: in most cases this is NULL, except for [COUNT()](aggregatefun.md#count) or [COUNTN()](aggregatefun.md#countn), whose default value is 0.
+> 
+> This restriction does not apply when the window frame uses `ROWS` or `GROUPS`.
 
-|  | The RANGE window frame is commonly used to define a window frame based on date or time. In JSON, dates and times are represented as a string in ISO-8601 standard. If you want to use RANGE with either _valexpr_ PRECEDING or _valexpr_ FOLLOWING, and you want to use an ordering expression based on date or time, use the appropriate [date or time function](datefun.md) to convert the date or time into milliseconds, then use the resulting number in the ordering expression. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `RANGE` window frame is commonly used to define a window frame based on date or time. In JSON, dates and times are represented as a string in ISO-8601 standard.
+> 
+> If you want to use `RANGE` with either `_valexpr_ PRECEDING` or `_valexpr_ FOLLOWING`, and you want to use an ordering expression based on date or time, use the appropriate [date or time function](datefun.md) to convert the date or time into milliseconds, then use the resulting number in the ordering expression.
 
 #### [](#window-frame-extent)Window Frame Extent
 

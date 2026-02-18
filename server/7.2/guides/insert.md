@@ -1,4 +1,13 @@
+---
+title: Inserting Data with SQL++
+description: How to insert documents using SQL++.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/insert.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/insert.html)
+
+# Inserting Data with SQL++
 
 > How to insert documents using SQL++.  
 > This guide is for Couchbase Server.
@@ -12,8 +21,8 @@ If you want to try out the examples in this section, follow the instructions giv
 * [cbq: The Command Line Shell for SQL++](../tools/cbq-shell.md)
 * [Query Workbench](../tools/query-workbench.md)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#inserting-a-document)Inserting a Document
 
@@ -167,8 +176,8 @@ To insert documents using a query, use the INSERT statement with a SELECT statem
 3. Use the SELECT statement to return a resultset which is used as a basis for the inserted documents. The INSERT statement inserts a document for every result returned by the SELECT statement.
 4. If required, use the RETURNING clause specifies what the query returns when the document is inserted.
 
-|  | The document key that you specify must be unique for every document that you insert. For example, you can use the [UUID()](../n1ql/n1ql-language-reference/metafun.md#uuid) function to generate a unique key for each document. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The document key that you specify must be unique for every document that you insert. For example, you can use the [UUID()](../n1ql/n1ql-language-reference/metafun.md#uuid) function to generate a unique key for each document.
 
 The following query creates a copy in the `airport` keyspace of any document whose `airportname` is Heathrow.
 

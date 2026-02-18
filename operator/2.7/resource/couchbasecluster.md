@@ -1,4 +1,12 @@
+---
+title: CouchbaseCluster Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/resource/couchbasecluster.html)
+
+# CouchbaseCluster Resource
 
 The CouchbaseCluster resource represents a Couchbase cluster. It allows configuration of cluster topology, networking, storage and security options.
 

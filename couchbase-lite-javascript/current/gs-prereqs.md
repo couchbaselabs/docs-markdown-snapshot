@@ -1,4 +1,13 @@
+---
+title: Preparing for Couchbase Lite JavaScript
+description: Prerequisites for the installation of Couchbase Lite JavaScript
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/gs-prereqs.html)
+
+# Preparing for Couchbase Lite JavaScript
 
 > Description — _Prerequisites for the installation of Couchbase Lite JavaScript_  
 > _Abstract — Laying out the prerequisites and preparatory steps before installing Couchbase Lite JavaScript_  
@@ -13,8 +22,8 @@ Compatibility has been verified on the following browser versions (and newer):
 * Chrome 142+
 * Firefox 144+
 
-|  | Sync behaviour may be limited in private browsing modes (especially Chrome). |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Sync behaviour may be limited in private browsing modes (especially Chrome).
 
 The SDK also runs seamlessly in Progressive Web App (PWA) environments, enabling installable, native-like usage scenarios.
 
@@ -27,8 +36,8 @@ If you are using Sync Gateway or App Services as a backend for your browser-base
 * For App Services, see [CORS Configuration for App Services](https://docs.couchbase.com/cloud/app-services/deployment/cors-configuration-for-app-services.html)
 * The CORS configuration should be done in the [Sync Gateway Bootstrap Configuration](../../sync-gateway/current/configuration/configuration-schema-bootstrap.md#lbl-schema).
 
-|  | Users must be on Sync Gateway 3.3.1 or 4.0.1 and above to sync data with the JavaScript SDK. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users must be on Sync Gateway 3.3.1 or 4.0.1 and above to sync data with the JavaScript SDK.
 
 ## [](#related-content)Related Content
 

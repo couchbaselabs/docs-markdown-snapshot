@@ -1,4 +1,13 @@
+---
+title: Manage Audit Logs
+description: How to configure and manage audit logging for App Services and App Endpoints.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-audit-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/manage-audit-logs.html)
+
+# Manage Audit Logs
 
 > How to configure and manage audit logging for App Services and App Endpoints. 
 
@@ -11,8 +20,8 @@ To work with audit logging for App Services, you must use the Capella Operationa
 * To make an API call, see [Make an API Call with the Management API](../../cloud/management-api-guide/management-api-use.md).
 * For a full reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
 
-|  | Auditing is available only to clusters with an Enterprise Service Plan. |
-|  | ----------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Auditing is available only to clusters with an Enterprise Service Plan.
 
 ## [](#examples-on-this-page)Examples on this Page
 
@@ -234,8 +243,8 @@ curl -X PUT "https://cloudapi.cloud.couchbase.com/v4/organizations/$organization
 
 You can stream your App Services audit logs to an external storage (host) via a remote endpoint.
 
-|  | You’re responsible for any third-party audit log collectors that you configure. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> You’re responsible for any third-party audit log collectors that you configure.
 
 ### [](#set-streaming-config)Configure Streaming for App Services Audit Logs
 
@@ -245,8 +254,8 @@ To configure audit log streaming for a specified App Service:
 2. Pass the App Service ID as a path parameter.
 3. Pass the required streaming configuration as the request body. For details, see the [request body schema](../../cloud/management-api-reference/index.md#tag/App-Services-Audit-Logging/operation/putAppServiceAuditLogStreaming).
 
-|  | If you set "streamingEnabled": true in the request body, streaming starts. Similarly, if you set "streamingEnabled": false in the request body, streaming stops. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you set `"streamingEnabled": true` in the request body, streaming starts. Similarly, if you set `"streamingEnabled": false` in the request body, streaming stops.
 
 This example configures audit log streaming for an App Service.
 

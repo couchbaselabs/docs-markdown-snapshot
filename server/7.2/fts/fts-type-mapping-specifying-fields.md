@@ -1,4 +1,12 @@
+---
+title: Specifying fields for Type Mapping
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mapping-specifying-fields.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mapping-specifying-fields.html)
+
+# Specifying fields for Type Mapping
 
 A Full Text Index can be defined not only to include (or exclude) documents of a certain type but also to include (or exclude) specified fields within each of the typed documents.
 
@@ -12,8 +20,8 @@ Left-clicking on the **edit** button displays the following interface:
 
 This allows the mapping to be deleted or associated with a different analyzer.
 
-|  | FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding dot (. or period) in the field name. Like using field.name or country.name is not supported. For example, { "database.name": "couchbase"} |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding dot (. or period) in the field name. Like using `field.name` or `country.name` is not supported. For example, `{ "database.name": "couchbase"}`
 
 If the **only index specified fields** checkbox is checked, only fields specified by the user are included in the index.
 

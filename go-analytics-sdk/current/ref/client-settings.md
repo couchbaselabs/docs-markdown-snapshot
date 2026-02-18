@@ -1,4 +1,13 @@
+---
+title: Client Settings
+description: Change the SDK's behavior by configuring client settings.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-analytics-sdk/current/ref/client-settings.html)
+
+# Client Settings
 
 > Change the SDK’s behavior by configuring client settings. 
 
@@ -24,8 +33,8 @@ To configure SDK client settings by writing code, provide an options block when 
 
 Note: Options blocks can created using builder-style functions, like above, or by assigning to the struct fields directly.
 
-|  | You don’t need to call every method in the above example; call only the methods where you want to override the client setting’s default value. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to call every method in the above example; call only the methods where you want to override the client setting’s default value.
 
 ## [](#configure-with-connection-string)Configure with Connection String Parameters
 
@@ -39,8 +48,8 @@ If the same parameter name appears in the connection string more than once, the 
 
 If the same client setting is specified both in code and in the connection string, the SDK uses the value in the connection string.
 
-|  | If your application reads the connection string from a config file (or other external source), you can change the connection string to override client settings without having to recompile your code. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If your application reads the connection string from a config file (or other external source), you can change the connection string to override client settings without having to recompile your code.
 
 ### [](#durations)Durations
 
@@ -82,8 +91,8 @@ The SDK is secure by default. You probably won’t need to configure the SDK’s
 
 Finally, there is one security option whose use is strongly discouraged in nearly all circumstances. Setting `security.disable_server_certificate_verification` to `true` allows the SDK to connect to any server, regardless of whether the server presents a certificate trusted by the SDK.
 
-|  | Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don’t do this unless connecting to a server running locally on your development machine. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Disabling server certificate verification is roughly equivalent to sending your credentials and all data over an insecure connection. Don’t do this unless connecting to a server running locally on your development machine.
 
 ### [](#unmarshaler)Unmarshaler
 

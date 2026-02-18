@@ -1,4 +1,12 @@
+---
+title: Configure Index Options
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-configure-index-options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-configure-index-options.html)
+
+# Configure Index Options
 
 In Full Text Search, you can create an index just by specifying the index name and selecting the source bucket, scope and collection for the index. However, FTS provides various configurations for the index to enhance the search experience.
 

@@ -1,4 +1,12 @@
+---
+title: Comparing the Classic Editor, Quick Editor, and the Search REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-difference-between-classic-quick-editor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-difference-between-classic-quick-editor.html)
+
+# Comparing the Classic Editor, Quick Editor, and the Search REST API
 
 To perform a Full Text Search, you can create indexes using one of the following methods:
 

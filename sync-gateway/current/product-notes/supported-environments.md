@@ -1,4 +1,13 @@
+---
+title: Supported Environments
+description: Sync Gateway's Supported Operating System and Cloud environments
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/supported-environments.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/product-notes/supported-environments.html)
+
+# Supported Environments
 
 > Sync Gateway’s Supported Operating System and Cloud environments  
 > Sync Gateway is supported on several popular operating systems and virtual environments.
@@ -7,8 +16,8 @@
 
 Make sure that your chosen operating system or cloud environment is listed in one of the following tables before you install _Sync Gateway_. See the [Deprecated Versions](#deprecated-versions) section for information about platform support changes, including deprecated platforms.
 
-|  | sync gateway clusters on mixed platforms are not supported. Nodes in a sync gateway cluster should all be running on the same OS, and every effort should be made to apply the same OS patches across the entire cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> sync gateway clusters on mixed platforms are not supported. Nodes in a sync gateway cluster should all be running on the same OS, and every effort should be made to apply the same OS patches across the entire cluster.
 
 __Table 1\. Supported Operating Systems for Development, Testing, and Production__
 | Operating System                | Supported Versions           |

@@ -1,4 +1,14 @@
+---
+title: Entities in Capella Analytics Services
+description: This topic describes how Capella Analytics organizes entities into
+  a hierarchy and resolves the entity names in a statement or query.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/1a_entities.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/1a_entities.html)
+
+# Entities in Capella Analytics Services
 
 > This topic describes how Capella Analytics organizes entities into a hierarchy and resolves the entity names in a statement or query. 
 
@@ -42,8 +52,8 @@ Entity Hierarchy Example
   CREATE COLLECTION music.myPlaylist.countrySongs;
 ```
 
-|  | Database and scope names cannot themselves include a dot (.) character. See [Requirements for Identifiers](#names). |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Database and scope names cannot themselves include a dot (.) character. See [Requirements for Identifiers](#names).
 
 Capella Analytics provides a Default database with a Default scope. If you do not specify the database for a scope, or the database and scope for a database\_object, Capella Analytics creates the entity in the Default database or the Default database and scope.
 
@@ -67,8 +77,8 @@ System database
     |-- Dataverse (metadata for scopes)
     |-- Dataset (metadata for database_objects)
 
-|  | The terms dataverse and dataset are earlier synonyms for the terms scope and collection. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!TIP]
+> The terms dataverse and dataset are earlier synonyms for the terms scope and collection.
 
 In the [entity hierarchy example](#hierarchy), you created a database, a scope, and a collection. For these entities, Capella Analytics adds metadata as follows:
 
@@ -90,10 +100,9 @@ You can query metadata, but you cannot directly create or manipulate entities in
 Names for databases, scopes, and other entities in Capella Analytics must meet the following requirements:
 
 * Start with a letter (A-Z, a-z).
-* Contain only upper- and lower-case letters (A-Z, a-z), numbers (0-9), and the underscore (\_) and dash (-) characters.
-
-|  | You cannot use a dot (.) character in a database or scope name. |
-|  | --------------------------------------------------------------- |
+* Contain only upper- and lower-case letters (A-Z, a-z), numbers (0-9), and the underscore (\_) and dash (-) characters.  
+> [!NOTE]  
+> You cannot use a dot (.) character in a database or scope name.
 * Be from 1 to 251 characters in length.
 
 Also, keep the following constraints in mind:
@@ -102,8 +111,8 @@ Also, keep the following constraints in mind:
 * Dash (-) characters are also used as an [operator](2%5Fexpr.md#Operator%5Fexpressions). To use an identifier that includes a dash in a query, you must escape that identifier with backtick (``` `` ```) characters.
 * Reserved keywords have a defined meaning in SQL++ syntax or Capella Analytics processing. To use an identifier that’s the same as a [reserved keyword](reserved%5Fkeywords.md) in a query, you must escape that identifier with backtick (``` `` ```) characters.
 
-|  | You may also need to escape identifiers that originate outside of Capella Analytics, and that are therefore not subject to these requirements. For example, to identify a primary key that has a space character in it, such as "Employee ID", you enter it as \`Employee ID\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You may also need to escape identifiers that originate outside of Capella Analytics, and that are therefore not subject to these requirements. For example, to identify a primary key that has a space character in it, such as "Employee ID", you enter it as ```` `` `Employee ID ``` ````.
 
 ### [](#system-supplied-database-and-scope-identifiers)System-Supplied Database and Scope Identifiers
 
@@ -172,8 +181,8 @@ The name of a database\_object is incompletely qualified when you specify only i
   USE Default.Default;
 ```
 
-|  | To query an entity with a name that’s the same as a [reserved keyword](reserved%5Fkeywords.md), like Database, you must escape the name with backtick (\`\`) characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> To query an entity with a name that’s the same as a [reserved keyword](reserved%5Fkeywords.md), like Database, you must escape the name with backtick (``` `` ```) characters.
 
 ## [](#see-also)See Also
 

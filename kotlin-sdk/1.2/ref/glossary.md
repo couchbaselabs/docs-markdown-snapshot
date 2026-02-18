@@ -1,4 +1,12 @@
+---
+title: Glossary
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/ref/pages/glossary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/ref/glossary.html)
+
+# Glossary
 
 > Unpicking the tangled alphabet soup of the Couchbase Platform, from an SDK perspective. 
 

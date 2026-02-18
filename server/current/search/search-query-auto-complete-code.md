@@ -1,4 +1,14 @@
+---
+title: Add Autocomplete to Your Application
+description: Use autocomplete to add suggestions for a user's Search query as
+  they type in your application.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/search-query-auto-complete-code.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/search-query-auto-complete-code.html)
+
+# Add Autocomplete to Your Application
 
 > Use autocomplete to add suggestions for a user’s Search query as they type in your application. 
 

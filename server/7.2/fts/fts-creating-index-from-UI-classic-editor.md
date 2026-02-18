@@ -1,4 +1,12 @@
+---
+title: Classic Editor Examples
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-classic-editor.html)
+
+# Classic Editor Examples
 
 > The classic editor is the most advanced interface where users can directly configure the index mapping with all of capabilities in Search. 
 

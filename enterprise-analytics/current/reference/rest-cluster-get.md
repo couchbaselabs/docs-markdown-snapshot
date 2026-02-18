@@ -1,4 +1,14 @@
+---
+title: Retrieving Cluster Information
+description: Cluster information is retrieved with <code>GET /pools</code> HTTP
+  method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-get.html)
+
+# Retrieving Cluster Information
 
 > Cluster information is retrieved with `GET /pools` HTTP method and URI. 
 

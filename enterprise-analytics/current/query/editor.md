@@ -1,4 +1,14 @@
+---
+title: Write and Run Queries
+description: To query data in Enterprise Analytics collections you use SQL++, a
+  SQL-for-JSON language specification that is similar to SQL.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/editor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/query/editor.html)
+
+# Write and Run Queries
 
 > To query data in Enterprise Analytics collections you use SQL++, a SQL-for-JSON language specification that is similar to SQL. 
 
@@ -16,8 +26,8 @@ The query editor is where you build and run queries. You can use the query edito
 
 You use SQL++ for Enterprise Analytics to write queries. For information about the SQL++ statements and syntax you use in Enterprise Analytics, see [DDL Statements](../sqlpp/5%5Fddl.md) and [DML Statements](../sqlpp/5%5Fdml.md).
 
-|  | Since large result sets can take a long time to display, it’s recommended that you use the LIMIT clause as part of your query when appropriate. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Since large result sets can take a long time to display, it’s recommended that you use the `LIMIT` clause as part of your query when appropriate.
 
 The query editor provides syntax highlighting. For easy viewing, SQL++ for Enterprise Analytics keywords, numbers, and string literals are differently colored.
 
@@ -29,8 +39,8 @@ After entering a query, you can run the query to view the results. You can also 
 
 After you enter a query, click **Execute**.
 
-|  | You can also execute a query by typing a semicolon ; at the end of the query and then using the Enter key. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also execute a query by typing a semicolon `;` at the end of the query and then using the Enter key.
 
 While the query is running, the **Execute** button changes to **Cancel**, which allows you to cancel the running query. You can also cancel DDL and DML statements. When you cancel a running query or statement, it stops the activity on the data source side as well.
 

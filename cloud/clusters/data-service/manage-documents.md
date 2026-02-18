@@ -1,11 +1,24 @@
+---
+title: Manage Documents with the Capella UI
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/manage-documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/data-service/manage-documents.html)
+
+# Manage Documents with the Capella UI
 
 > The Couchbase Capella UI provides the Documents tool that you can use to view and edit documents. 
 
 This page describes how you can manage documents in a Couchbase cluster using the Documents tool in the Capella UI.
 
-|  | Permissions Required To use the document editor in the Capella UI, you need the appropriate [project role](../../projects/project-roles.md). To _view_ the documents within a cluster, you must have the [Data Reader](../../projects/project-roles.md#project-cluster-data-reader) project role for the project containing the cluster. To _view_, _create_, _edit_, and _delete_ documents in a cluster, you must have the [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) project role for the project containing the cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> To use the document editor in the Capella UI, you need the appropriate [project role](../../projects/project-roles.md).
+> 
+> * To _view_ the documents within a cluster, you must have the [Data Reader](../../projects/project-roles.md#project-cluster-data-reader) project role for the project containing the cluster.
+> * To _view_, _create_, _edit_, and _delete_ documents in a cluster, you must have the [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) project role for the project containing the cluster.
 
 ## [](#accessing-documents-in-the-capella-ui)Accessing Documents in the Capella UI
 

@@ -1,4 +1,14 @@
+---
+title: Configure Queries
+description: You can configure the Query Service using cluster-level query
+  settings, node-level query settings, and request-level query parameters.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-manage/query-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-manage/query-settings.html)
+
+# Configure Queries
 
 > You can configure the Query Service using cluster-level query settings, node-level query settings, and request-level query parameters. 
 
@@ -19,8 +29,8 @@ __Table 1\. Comparison of Query Settings and Parameters__
 | **Node-level query settings \[[note](#service-level)\]**    | Service Node        | System administrator | Server side | curl statements                                           |
 | **Request-level parameters**                                | Request (statement) | Each user            | Client side | cbq shell, curl statements, client programming, or the UI |
 
-|  | Cluster-level settings and node-level settings are collectively referred to as service-level settings. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Cluster-level settings and node-level settings are collectively referred to as service-level settings.
 
 ## [](#query-setting-levels-and-equivalents)How Setting Levels Interact
 

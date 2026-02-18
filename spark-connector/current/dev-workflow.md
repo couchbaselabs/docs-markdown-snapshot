@@ -1,4 +1,12 @@
+---
+title: Development Workflow
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/dev-workflow.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/dev-workflow.html)
+
+# Development Workflow
 
 > Developing and Deploying Spark applications can be a challenge upfront. This section helps you through the development and deployment workflow. 
 

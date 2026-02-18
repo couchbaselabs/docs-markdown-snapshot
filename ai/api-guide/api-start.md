@@ -1,4 +1,15 @@
+---
+title: Get Started with AI Services APIs
+description: To get started with the Couchbase Capella APIs for AI Services, you
+  must create an API key. An API key authenticates and authorizes you to access
+  the APIs.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/api-guide/api-start.html)
+
+# Get Started with AI Services APIs
 
 > To get started with the Couchbase Capella APIs for AI Services, you must create an API key. An API key authenticates and authorizes you to access the APIs. 
 
@@ -97,10 +108,9 @@ To generate a Management API key at the organization level:
   2. To add your current IP address block, click **Add Current IP Address**.
 10. Click **Add**.
 11. When you’re ready, click **Generate Key**.  
-The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.
-
-|  | You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
+> [!WARNING]  
+> You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
 12. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 13. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 
@@ -119,10 +129,9 @@ To generate a Management API key at the project level:
   2. To add your current IP address, click **Add Current IP Address**.
 9. Click **Add**.
 10. When you’re ready, click **Generate Key**.  
-The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.
-
-|  | You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
+> [!WARNING]  
+> You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
 11. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 12. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 
@@ -207,10 +216,9 @@ To generate a Model Service API key:
 2. Click **Generate API Key**.
 3. In the **API Key Name** field, enter a name for the API key.
 4. In the **Expiration (Days)** field, accept the default expiration, change the expiration, or specify that the key should not expire.
-5. In the **Region** field, select the AWS region for this API key.
-
-|  | Select a region with deployed models where you want to use this API key. For more information, see [AWS Regions](#aws-regions). |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+5. In the **Region** field, select the AWS region for this API key.  
+> [!IMPORTANT]  
+> Select a region with deployed models where you want to use this API key. For more information, see [AWS Regions](#aws-regions).
 6. (Optional) In the **Description** field, enter a description of the API key.
 7. Specify IP access for the API key by choosing one of the following options:
 
@@ -219,10 +227,9 @@ To generate a Model Service API key:
   3. Click **Allow Access from Anywhere** to allow any IP address to access models with this API key.
 8. Click **Add Allowed IP Address**.
 9. When you’re ready, click **Generate API Key**.  
-The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.
-
-|  | You must copy or download the API key token now. When you leave this page, you’ll not be able to copy or download the API key token again. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
+> [!WARNING]  
+> You must copy or download the API key token now. When you leave this page, you’ll not be able to copy or download the API key token again.
 10. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 11. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 

@@ -1,4 +1,13 @@
+---
+title: SQL++ for Query Reference
+description: This reference guide describes the syntax and structure of SQL++ for Query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/index.html)
+
+# SQL++ for Query Reference
 
 > This reference guide describes the syntax and structure of SQL++ for Query. It provides information about the basic elements which can be combined to build SQL++ statements. The Couchbase implementation of SQL++ was formerly known as [N1QL](https://www.couchbase.com/products/n1ql). 
 

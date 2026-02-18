@@ -1,4 +1,14 @@
+---
+title: Authentication
+description: As well as Role-Based Access Control (RBAC), Couchbase offers
+  connection with Certificate Authentication, and works transparently with LDAP.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/sdk-authentication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/3.5/howtos/sdk-authentication.html)
+
+# Authentication
 
 > As well as Role-Based Access Control (RBAC), Couchbase offers connection with Certificate Authentication, and works transparently with LDAP. 
 

@@ -1,4 +1,14 @@
+---
+title: Restore a Bucket Backup
+description: You can restore a bucket backup to the same cluster where it was
+  created or another cluster in the same organization.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/manage-restore.html)
+
+# Restore a Bucket Backup
 
 > You can restore a bucket backup to the same cluster where it was created or another cluster in the same organization. 
 
@@ -8,8 +18,12 @@ To backup or restore data for an entire cluster, see [Back Up and Restore An Ent
 
 ## [](#restore-prerequisites)Prerequisites
 
-|  | Permissions Required To view and restore bucket data from a backup: You need the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project with the cluster that created the bucket backup and the project containing the destination cluster for the restore. If you have the Organization Owner role, you already have the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in the organization. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> To view and restore bucket data from a backup:
+> 
+> * You need the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project with the cluster that created the bucket backup and the project containing the destination cluster for the restore. If you have the `Organization Owner` role, you already have the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in the organization.
 
 * The source cluster that created the bucket backup must still exist.
 * You can only restore bucket backups to a cluster running the same [major version](databases.md#cluster-version) or later as the cluster that created the bucket backup.
@@ -20,8 +34,8 @@ To backup or restore data for an entire cluster, see [Back Up and Restore An Ent
 
 Couchbase recommends that you only restore data from bucket backups in worst-case scenarios. You should use other recovery methods, such as [XDCR replication](xdcr/xdcr.md) from a redundant cluster as the primary recovery method.
 
-|  | Capella resolves any conflicts during the restore with the conflict resolution method configured for the buckets. For example, if a key-value pair in the target bucket is newer than the one in the backup, then the one from the backup is not restored unless [otherwise specified](#overwrite-docs) in the restore settings. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella resolves any conflicts during the restore with the conflict resolution method configured for the buckets. For example, if a key-value pair in the target bucket is newer than the one in the backup, then the one from the backup is not restored unless [otherwise specified](#overwrite-docs) in the restore settings.
 
 1. Open the **Backup** page for your cluster:
 
@@ -34,10 +48,9 @@ Couchbase recommends that you only restore data from bucket backups in worst-cas
 
     1. Go to **Backups**.
 2. Select the bucket you want to restore.
-3. Click **Restore** for the bucket backup you want to restore.
-
-|  | Clicking the **From Date** date picker allows you to select a previous date for a backup cycle or on-demand bucket backup. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+3. Click **Restore** for the bucket backup you want to restore.  
+> [!TIP]  
+> Clicking the **From Date** date picker allows you to select a previous date for a backup cycle or on-demand bucket backup.
 4. Specify the **Destination Cluster**.  
 The restore location can be the current cluster (chosen by default) or a different cluster in your organization. If you select **Restore to a different cluster**, the **Cluster** list appears.
 
@@ -58,10 +71,9 @@ The restore location can be the current cluster (chosen by default) or a differe
   5. **Map Data**  
   This field allows you to map data from the backup to differently named data containers on the cluster. For example, buckets can be remapped to other buckets (`bucket=newbucket`), scopes and collections to other scopes and collections in the same bucket (`bucket.scope=bucket.newscope` or `bucket.scope.collection=bucket.scope.newcollection`). Map sources can only be specified once and cannot overlap.
   6. **Include Data**  
-  Use this field to restore only specific data containers from the bucket backup. Use the following format for Include Data items: `bucket.scope`, or `bucket.scope.collection`.
-
-|  | As bucket names can contain periods, they must be escaped: my\\.bucket.my-scope. |
-|  | -------------------------------------------------------------------------------- |  
+  Use this field to restore only specific data containers from the bucket backup. Use the following format for Include Data items: `bucket.scope`, or `bucket.scope.collection`.  
+  > [!TIP]  
+  > As bucket names can contain periods, they must be escaped: `my\.bucket.my-scope`.  
   Included data can only be specified once and cannot overlap, for example `bucket1` and `bucket1.scope1`.
   7. **Exclude Data**  
   Use this field to define any buckets, scopes, or collections you want to exclude from the restore. Excludes are defined as follows: `bucket.scope`, and `bucket.scope.collection`.
@@ -70,8 +82,12 @@ There can be a delay while Capella schedules the restore. Once the restore start
 
 ## [](#restore-indexes)Restore Indexes
 
-|  | Permissions Required To access indexes in the Couchbase Capella UI: You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role for the project with the cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> To access indexes in the Couchbase Capella UI:
+> 
+> * You need the [Project Owner](../projects/project-roles.md#project-owner-role) or [Data Writer](../projects/project-roles.md#project-cluster-data-reader-writer) role for the project with the cluster.
 
 If GSI indexes were included in the bucket you restored, they’re automatically restored in a round-robin fashion among the current nodes running the Index Service. These indexes are created, but not built.
 

@@ -1,4 +1,15 @@
+---
+title: Core Files
+description: When a process panics, a core dump occurs and the system creates a
+  core file. These files are intended for troubleshooting and to help diagnose
+  faults.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/troubleshoot/core-files.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/troubleshoot/core-files.html)
+
+# Core Files
 
 > When a process panics, a core dump occurs and the system creates a core file. These files are intended for troubleshooting and to help diagnose faults. 
 

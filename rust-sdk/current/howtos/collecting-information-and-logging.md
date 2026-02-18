@@ -1,4 +1,13 @@
+---
+title: Logging
+description: The Rust SDK logs events.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > The Rust SDK logs events. It has no hard dependency on a specific logger implementation, but you should add one you are comfortable with. 
 

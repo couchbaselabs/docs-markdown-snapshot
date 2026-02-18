@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr cloud
+description: Storing cbbackupmgr archives directly in the cloud
+editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-cloud.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/backup-restore/cbbackupmgr-cloud.html)
+
+# cbbackupmgr cloud
 
 Storing cbbackupmgr archives directly in the cloud
 

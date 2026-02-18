@@ -1,4 +1,13 @@
+---
+title: ALTER GROUP
+description: The ALTER GROUP statement enables you to update an existing group.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/altergroup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/altergroup.html)
+
+# ALTER GROUP
 
 > The ALTER GROUP statement enables you to update an existing group. 
 
@@ -6,8 +15,8 @@
 
 Use the ALTER GROUP statement to modify an existing group within the Couchbase Server Role-Based Access Control (RBAC) system. You can update the group’s description and its roles. You can either add new roles or remove all the existing ones. When you update a role for a group, all users in the group inherit the updated permissions automatically.
 
-|  | When you add new roles to a group, the ALTER GROUP statement replaces the group’s existing role assignments with the new ones you provide. It updates the entire role list, so any existing roles not included in the new list will be removed. If you want to add or remove specific roles without affecting the others, use the [GRANT](grant.md) and [REVOKE](revoke.md) statements instead. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When you add new roles to a group, the ALTER GROUP statement replaces the group’s existing role assignments with the new ones you provide. It updates the entire role list, so any existing roles not included in the new list will be removed. If you want to add or remove specific roles without affecting the others, use the [GRANT](grant.md) and [REVOKE](revoke.md) statements instead.
 
 ## [](#rbac-privileges)RBAC Privileges
 
@@ -27,8 +36,12 @@ alter-group ::= 'ALTER' 'GROUP' name ( 'WITH' description )?
 | description | (Optional) A quoted string containing the updated description for the group. |
 | rbac-role   | (Optional) [Update Roles](#roles)                                            |
 
-|  | When altering a group, you can update its roles using one of the following options: ROLE, ROLES, or NO ROLES. You can specify only one of these options per statement. ROLE assigns a single role to the group. ROLES assigns multiple roles to group (the names must be separated by commas). NO ROLES removes all roles from the group. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When altering a group, you can update its roles using one of the following options: `ROLE`, `ROLES`, or `NO ROLES`. You can specify only one of these options per statement.
+> 
+> * `ROLE` assigns a single role to the group.
+> * `ROLES` assigns multiple roles to group (the names must be separated by commas).
+> * `NO ROLES` removes all roles from the group.
 
 ### [](#roles)Update Roles
 

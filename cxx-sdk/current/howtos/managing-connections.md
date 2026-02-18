@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the C++ SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the C++ SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections. 
 
@@ -99,8 +108,8 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](../../../cloud/get-started/connect.md#connecting-your-sdk-to-capella).
 
-|  | If you are connecting from _IPv6-only_ environment, you cannot connect to Couchbase Capella as you are unable to use the IPv4 records published for Capella clusters. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are connecting from _IPv6-only_ environment, you cannot connect to Couchbase Capella as you are unable to use the IPv4 records published for Capella clusters.
 
 #### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 

@@ -1,4 +1,13 @@
+---
+title: CREATE GROUP
+description: The CREATE GROUP statement enables you to create a group.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/creategroup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/creategroup.html)
+
+# CREATE GROUP
 
 > The CREATE GROUP statement enables you to create a group. 
 
@@ -27,8 +36,12 @@ create-group ::= 'CREATE' 'GROUP' ( 'IF' 'NOT' 'EXISTS' )? name
 | description | (Optional) A quoted string containing the description for the group. |
 | rbac-role   | (Required) [Add Roles](#roles)                                       |
 
-|  | When creating a group, you can grant roles to them using one of the following options: ROLE, ROLES, or NO ROLES. You can specify only one of these options per statement. ROLE assigns a single role to the group. ROLES assigns multiple roles to group (the names must be separated by commas). NO ROLES creates a group with no roles assigned. This option has no effect during group creation. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When creating a group, you can grant roles to them using one of the following options: `ROLE`, `ROLES`, or `NO ROLES`. You can specify only one of these options per statement.
+> 
+> * `ROLE` assigns a single role to the group.
+> * `ROLES` assigns multiple roles to group (the names must be separated by commas).
+> * `NO ROLES` creates a group with no roles assigned. This option has no effect during group creation.
 
 ### [](#if-not-exists)IF NOT EXISTS Clause
 

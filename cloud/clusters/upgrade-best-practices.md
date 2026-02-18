@@ -1,4 +1,16 @@
+---
+title: Upgrade Best Practices
+description: Each Capella cluster runs a specific version of Couchbase Server.
+  Upgrading a cluster means upgrading its underlying Server version, which may
+  include enhancements or changes to performance and compatibility. These best
+  practices help ensure a secure and smooth upgrade process.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/upgrade-best-practices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/upgrade-best-practices.html)
+
+# Upgrade Best Practices
 
 > Each Capella cluster runs a specific version of Couchbase Server. Upgrading a cluster means upgrading its underlying Server version, which may include enhancements or changes to performance and compatibility. These best practices help ensure a secure and smooth upgrade process. 
 
@@ -8,8 +20,8 @@ Before upgrading your operational cluster with a patch, minor, or major release 
 
 For minor and major cluster upgrades, [test your application](#test-application) in a controlled staging environment. A [staging environment](#create-staging-cluster) lets you verify performance and compatibility while not disrupting your production workflow.
 
-|  | For any problems that occur during the testing and upgrade process of your staging or production cluster, [create a support ticket](../support/manage-support.md#create-support-ticket). For clusters that are community-supported only, use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [Discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for support and feedback. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For any problems that occur during the testing and upgrade process of your staging or production cluster, [create a support ticket](../support/manage-support.md#create-support-ticket). For clusters that are community-supported only, use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [Discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for support and feedback.
 
 ## [](#backup-cluster)Back Up Your Cluster
 
@@ -27,8 +39,8 @@ For more information about SDK compatibility, see the [Couchbase Server Release 
 
 For minor or major version upgrades, you can test your current SDK with the new cluster release in a [staging environment](#create-staging-cluster). Deploy the same workflows or applications that use the SDK in your staging environment and make sure they work as expected with the new version of the cluster.
 
-|  | You should update the Couchbase SDK that your application uses to the latest patched version, and validate after upgrading. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You should update the Couchbase SDK that your application uses to the latest patched version, and validate after upgrading.
 
 ## [](#test-application)Test Your Application
 
@@ -53,23 +65,23 @@ Using a separate staging environment allows you to test new features and changes
 
 Set up a staging cluster ahead of time. Run the same application, SDK, and Couchbase Server version as your production environment. This ensures that when a new minor or major release version becomes available on your cluster, you can go through the full upgrade process and verify your application’s behavior before, during, and after the upgrade.
 
-|  | If you wait to create your staging cluster until after a new release is available, you may only be able to deploy with the latest version of Couchbase Server. This means your staging environment will not match your current production version, making it difficult to accurately test how your application behaves throughout the upgrade process. If you have any problems with testing an upgrade, [create a support ticket](../support/manage-support.md#create-support-ticket). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you wait to create your staging cluster until after a new release is available, you may only be able to deploy with the latest version of Couchbase Server. This means your staging environment will not match your current production version, making it difficult to accurately test how your application behaves throughout the upgrade process.
+> 
+> If you have any problems with testing an upgrade, [create a support ticket](../support/manage-support.md#create-support-ticket).
 
 To create a staging environment:
 
 1. [Create a cluster](create-database.md) and [configure its settings](databases.md) to mirror your production cluster as closely as possible.  
-The settings you choose affect your staging environment’s performance. The goal is to have it mimic the performance of your production environment.
-
-|  | Your node and Service Group configurations should align with the volume of data you plan to replicate in your staging cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+The settings you choose affect your staging environment’s performance. The goal is to have it mimic the performance of your production environment.  
+> [!TIP]  
+> Your node and Service Group configurations should align with the volume of data you plan to replicate in your staging cluster.
 2. Transfer your production cluster’s data to your staging cluster. Do one of the following:
 
   1. Use the `cbbackupmgr` CLI tool to back up and restore data at the bucket level. This method does not restore a full cluster backup from your production cluster to your staging cluster. You must back up each individual bucket from your production cluster and restore them into pre-created buckets on your staging cluster. For more information, see [Back Up and Restore with Command Line Tools](cli-backup-restore.md)
-  2. Restore a full cluster backup to your new staging cluster. For more information, see [Restore a Cluster Backup](restore-cloud-snapshot.md).
-
-|  | If you need your staging cluster to stay in sync with your production cluster, create a [one way XDCR replication](#clusters:xdcr:manage-xdcr-replications.adoc) to migrate your data between the clusters. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. Restore a full cluster backup to your new staging cluster. For more information, see [Restore a Cluster Backup](restore-cloud-snapshot.md).  
+> [!NOTE]  
+> If you need your staging cluster to stay in sync with your production cluster, create a [one way XDCR replication](#clusters:xdcr:manage-xdcr-replications.adoc) to migrate your data between the clusters.
 3. Connect your application to your staging cluster:
 
   * Connect your application from [SDK, cbsh, CLI, or IDE](../get-started/connect.md).

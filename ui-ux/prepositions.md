@@ -1,4 +1,12 @@
+---
+title: Prepositions
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/prepositions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/prepositions.html)
+
+# Prepositions
 
 Try to avoid using prepositions and creating lengthy, prepositional phrases in UI copy.
 

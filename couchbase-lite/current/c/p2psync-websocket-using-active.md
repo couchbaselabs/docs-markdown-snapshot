@@ -1,11 +1,23 @@
+---
+title: Active Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/p2psync-websocket-using-active.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/p2psync-websocket-using-active.html)
+
+# Active Peer
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Replicator to connect with a Listener and replicate changes using peer-to-peer sync_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
@@ -15,8 +27,10 @@ This _active peer_ (also referred to as a client and-or a replicator) will initi
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
-|  | Secure StorageThe use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage).
 
 ## [](#configuration-summary)Configuration Summary
 
@@ -161,8 +175,10 @@ replConfig.replicatorType = kCBLReplicatorTypePull;
 replConfig.continuous = true;
 ```
 
-|  | Unless there is a solid use-case not to, always initiate a single PUSH\_AND\_PULL replication rather than identical separate PUSH and PULL replications. This prevents the replications generating the same checkpoint docID resulting in multiple conflicts. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless there is a solid use-case not to, always initiate a single `PUSH_AND_PULL` replication rather than identical separate `PUSH` and `PULL` replications.
+> 
+> This prevents the replications generating the same checkpoint `docID` resulting in multiple conflicts.
 
 ### [](#lbl-cfg-retry)Retry Configuration
 
@@ -279,8 +295,10 @@ You can monitor a replication’s status by using a combination of [Change Liste
 
 Use this to monitor changes and to inform on sync progress; this is an optional step. You can add and a replicator change listener at any point; it will report changes from the point it is registered.
 
-|  | Best PracticeDon’t forget to save the token so you can remove the listener later |
-|  | -------------------------------------------------------------------------------- |
+> [!TIP]
+> Best Practice
+> 
+> Don’t forget to save the token so you can remove the listener later
 
 Use the [Replication](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html) class to add a change listener as a callback to the Replicator ([CBLReplicator\_AddChangeListener()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#gaa49518d403aaa95f9b342759e0e30769)) — see: [Example 7](#ex-repl-mon). You will then be asynchronously notified of state changes.
 
@@ -348,13 +366,13 @@ __Table 2\. Replicator activity levels__
 | IDLE       | The replication caught up with all the changes available from the server. The IDLE state is only used in continuous replications. |
 | BUSY       | The replication is actively transferring data.                                                                                    |
 
-|  | The replication change object also has properties to track the progress (change.status.completed and change.status.total). Since the replication occurs in batches the total count can vary through the course of a replication. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The replication change object also has properties to track the progress (`change.status.completed` and `change.status.total`). Since the replication occurs in batches the total count can vary through the course of a replication.
 
 ### [](#lbl-repl-pend)Documents Pending Push
 
-|  | [CBLReplicator\_IsDocumentPending()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga493eeac915dd54a274b907a010664a2e) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [CBLReplicator\_IsDocumentPending()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga493eeac915dd54a274b907a010664a2e) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible.
 
 You can check whether documents are waiting to be pushed in any forthcoming sync by using either of the following API methods:
 

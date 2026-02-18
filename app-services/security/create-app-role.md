@@ -1,4 +1,12 @@
+---
+title: Create App Roles
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/create-app-role.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/security/create-app-role.html)
+
+# Create App Roles
 
 > App roles are used to secure applications using App Services to transfer data between the mobile applications and the Capella service. 
 
@@ -14,8 +22,8 @@ As an entity, roles comprise a name and a list of channels.
 
 Any user associated with a role inherits the right to access any of the channels in the role’s list. This provides a convenient way to associate multiple channels with multiple users.
 
-|  | Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name.
 
 ## [](#procedure)Procedure
 
@@ -43,8 +51,8 @@ You can perform the following actions in the Edit App Role page:
 * You can view non-admin channels assigned to the App Role per collection by the Access Control Function.
 * You can also view admin channels assigned by the Access Control Function per collection under the **Channels assigned by access control and data validation function** section.
 
-|  | Channels created by the Access Control Function and assigned to an App Role cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function to apply any changes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Channels created by the Access Control Function and assigned to an App Role cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function to apply any changes.
 
 ## [](#see-also)See Also
 

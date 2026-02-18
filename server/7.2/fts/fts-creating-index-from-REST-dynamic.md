@@ -1,4 +1,12 @@
+---
+title: Creating a Dynamic Index via the REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-REST-dynamic.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-REST-dynamic.html)
+
+# Creating a Dynamic Index via the REST API
 
 This example quickly creates the same index as [Creating a Dynamic Index via the UI](fts-creating-index-from-UI-classic-editor-dynamic.md#main).
 

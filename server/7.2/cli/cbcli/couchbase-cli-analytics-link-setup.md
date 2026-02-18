@@ -1,4 +1,13 @@
+---
+title: analytics-link-setup
+description: Manage Analytics links
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-analytics-link-setup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-analytics-link-setup.html)
+
+# analytics-link-setup
 
 Manage Analytics links
 

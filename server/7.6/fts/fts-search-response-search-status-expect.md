@@ -1,4 +1,12 @@
+---
+title: Search Status Expect
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-search-response-search-status-expect.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-search-response-search-status-expect.html)
+
+# Search Status Expect
 
 > A Full Text Search _Response Object_ is composed of multiple child objects that provides important information. 
 

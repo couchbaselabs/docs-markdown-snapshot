@@ -1,4 +1,16 @@
+---
+title: Manage Users, Groups, and Roles
+description: Couchbase Server lets you assign roles to individual users, which
+  grant access to resources. You can also create groups of users and assign
+  roles to each group. Each user automatically inherits the roles of the groups
+  they belong to.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-users-and-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/manage-users-and-roles.html)
+
+# Manage Users, Groups, and Roles
 
 > Couchbase Server lets you assign roles to individual users, which grant access to resources. You can also create groups of users and assign roles to each group. Each user automatically inherits the roles of the groups they belong to. 
 
@@ -6,13 +18,14 @@
 
 The administrator, who installs and configures Couchbase Server, is granted the Full Administrator role, with complete access to the system, including read and write privileges. After the initial configuration is complete, the Full Administrator can add other users and assign roles to define their privileges.
 
-|  | A cluster running Couchbase Server Enterprise Edition can have any number of users. A cluster running Couchbase Server Community Edition supports a maximum of 20 users. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * A cluster running Couchbase Server Enterprise Edition can have any number of users.
+> * A cluster running Couchbase Server Community Edition supports a maximum of 20 users.
 
 As a Full Administrator, you can add users and groups to Couchbase Server by using the [Couchbase Web Console UI](#manage-users-with-the-ui), the [CLI](#manage-users-with-the-cli), or the [REST API](#manage-users-with-the-rest-api), as described in the following sections.
 
-|  | All explanations and examples on this page are for the Couchbase Server cluster user with the Full Administrator role, unless otherwise noted. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> All explanations and examples on this page are for the Couchbase Server cluster user with the Full Administrator role, unless otherwise noted.
 
 For more information about the Couchbase Server authorization, see [Authorization](../../learn/security/authorization-overview.md).
 
@@ -98,8 +111,8 @@ Select the bucket field that lists the available 3 buckets **demoBucket**, **exa
 
 Repeat the procedure for any additional roles you want to assign to the same or a different group. You can assign multiple roles in one go and save the changes.
 
-|  | Some roles apply to all data in the bucket, some to all collections in a specified scope within a specified bucket, and some to all documents in a specified collection within a specified scope and bucket. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Some roles apply to all data in the bucket, some to all collections in a specified scope within a specified bucket, and some to all documents in a specified collection within a specified scope and bucket.
 
 ### [](#edit-a-group)Edit a Group
 
@@ -238,8 +251,8 @@ After the definition process is complete, the external user and its associated r
 
 From the example, the externally authenticated user `externalUser` has the roles `Query System Catalog` and `Cluster Admin`. The auth domain is `External`, indicating that the user is authenticated on an external server.
 
-|  | You can authenticate the external users only using the PLAIN method. By default, the Couchbase SDK uses PLAIN only when connecting over TLS ports. Therefore, external users must connect through TLS ports. For more information about the authentication methods, see [Understanding Authentication](../../learn/security/authentication-overview.md#authentication-for-applications). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can authenticate the external users only using the `PLAIN` method. By default, the Couchbase SDK uses PLAIN only when connecting over TLS ports. Therefore, external users must connect through TLS ports. For more information about the authentication methods, see [Understanding Authentication](../../learn/security/authentication-overview.md#authentication-for-applications).
 
 ### [](#delete-a-user)Delete a User
 
@@ -255,8 +268,9 @@ To delete a user, do the following:
 
 You can lock user accounts to prevent access to the Couchbase Server, and unlock them to restore access. Locking a user account does not delete the user; it only prevents authentication. After an account is marked as locked, it prevents the user from logging in or from continuing the existing sessions. Locking an account terminates all active UI sessions and long-running connections such as Memcached or streaming connections.
 
-|  | This feature is only available after the entire cluster is upgraded to the version 8.0 or later. You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * This feature is only available after the entire cluster is upgraded to the version 8.0 or later.
+> * You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts.
 
 For more information about user account locking, see [Blocking User Authentication](../../learn/security/authentication-overview.md#blocking-user-authentication).
 
@@ -468,8 +482,9 @@ SUCCESS: User 'dgreen' was removed
 
 You can lock or unlock user accounts, and get a list of locked or unlocked user accounts, using the CLI.
 
-|  | This feature is only available after the entire cluster is upgraded to the version 8.0 or later. You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * This feature is only available after the entire cluster is upgraded to the version 8.0 or later.
+> * You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts.
 
 ##### [](#lock-or-unlock-a-user-account-with-the-cli)Lock or Unlock a User Account with the CLI
 
@@ -555,8 +570,8 @@ The command explanation is as follows:
 * Specify the group name with the `--group-name` flag.
 * Assign the `replication_admin` role to the new group using the `--roles` flag.
 
-|  | To change the group’s role assignments, recreate the group and specify all new role assignments as arguments to the \--roles flag. User memberships remain unchanged. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To change the group’s role assignments, recreate the group and specify all new role assignments as arguments to the `--roles` flag. User memberships remain unchanged.
 
 If the command is successful, the following message is displayed.
 
@@ -788,8 +803,9 @@ GET /settings/rbac/users
 
 PATCH /settings/rbac/users/local/<username>
 
-|  | This feature is only available after the entire cluster is upgraded to the version 8.0 or later. You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * This feature is only available after the entire cluster is upgraded to the version 8.0 or later.
+> * You can lock or unlock only local domain user accounts. You cannot lock or unlock external domain user accounts.
 
 ##### [](#lock-or-unlock-a-user-account-using-the-rest-api)Lock or Unlock a User Account Using the REST API
 

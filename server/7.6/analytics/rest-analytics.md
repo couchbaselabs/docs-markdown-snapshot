@@ -1,4 +1,13 @@
+---
+title: Analytics REST API
+description: A description of the Analytics REST API.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/rest-analytics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/rest-analytics.html)
+
+# Analytics REST API
 
 Analytics provides REST APIs that a client application can use to invoke services using simple HTTP methods. A catalog of available REST resources and requests is provided below.
 

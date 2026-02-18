@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Python Columnar SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-columnar-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Python Columnar SDK. 
 
@@ -10,8 +19,12 @@ Sign up for a [Capella account](../../../cloud/get-started/create-account.md), a
 
 Currently Python 3.9 - Python 3.12 is supported. See the [compatibility page](compatibility.md#platform-compatibility) for more information about platform support.
 
-|  | Don’t Mix Columnar & Operational SDKs. Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs. Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Don’t Mix Columnar & Operational SDKs.
+> 
+> Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
+> 
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.
 
 ## [](#getting-the-sdk)Getting the SDK
 

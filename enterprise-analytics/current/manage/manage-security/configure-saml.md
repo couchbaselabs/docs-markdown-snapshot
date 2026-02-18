@@ -1,4 +1,12 @@
+---
+title: Configure SAML
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/configure-saml.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/configure-saml.html)
+
+# Configure SAML
 
 You can enable _Structured Authentication Markup Language_ (SAML) authentication that allows users to log into the Enterprise Analytics Web Console. This authentication methods offers features such as single sign on, two-factor authentication, and centralized authentication administration.
 
@@ -15,8 +23,8 @@ SAML authentication relies on an _Identity Provider_ (IdP) to authenticate a use
 * Okta
 * Microsoft Azure AD
 
-|  | Other IdPs may work. Enterprise Analytics was tested with the IdPs in the previous list. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Other IdPs may work. Enterprise Analytics was tested with the IdPs in the previous list.
 
 Your IdP may have its own requirements for interacting with services like Enterprise Analytics. See your IdP’s documentation to understand its requirements.
 

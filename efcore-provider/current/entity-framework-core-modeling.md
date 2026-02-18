@@ -1,4 +1,13 @@
+---
+title: Configuring the model with the EF Core Couchbase DB Provider
+description: Modeling a document database.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-modeling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-modeling.html)
+
+# Configuring the model with the EF Core Couchbase DB Provider
 
 > Modeling a document database. 
 
@@ -8,8 +17,8 @@ In a Couchbase Cluster, a Bucket is the fundamental place for storing documents.
 
 When modeling for Couchbase EF Core DB Provider, we must map entities to a Keyspace. The provider allows you to do this via attributes on an entity or by using `DbContext.OnModelCreated`.
 
-|  | EF Core allows for default modeling where the name of the entity class will be used as the table name explicity if the class is part of a DbSet<T>. This will work for the Couchbase EF Core DB Provider as well, however, the default Scope \_default will be used if not provided during configuration, and the Collection with the same name will have to be created on the server which will match the class name as well. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> EF Core allows for default modeling where the name of the entity class will be used as the table name explicity if the class is part of a `DbSet<T>`. This will work for the Couchbase EF Core DB Provider as well, however, the default Scope `_default` will be used if not provided during configuration, and the Collection with the same name will have to be created on the server which will match the class name as well.
 
 Assuming we have configured a `DbContext` for an application such as the Contoso University Sample as follows:
 
@@ -72,8 +81,8 @@ image::img\_12.png
 
 This is an example of using more than one tenant (Scope) with a single `DbContext`. Your use cases will dictate whether you use a single Keyspace per `DbContext` or multiple Keyspaces per `DbContext`.
 
-|  | Within an application you can achieve that same multi-tenancy model by configuring more than one DbContext with different Keyspaces globally at the application level. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Within an application you can achieve that same multi-tenancy model by configuring more than one `DbContext` with different Keyspaces globally at the application level.
 
 ### [](#supported-entity-modeling-features)Supported Entity Modeling features
 

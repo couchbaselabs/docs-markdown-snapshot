@@ -1,11 +1,23 @@
+---
+title: Platform Introduction
+description: Discover how to get up and running developing applications with the
+  Couchbase PHP SDK 4.0+ using <code>Visual Studio Code</code>.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/hello-world/pages/platform-help.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/hello-world/platform-help.html)
+
+# Platform Introduction
 
 > Discover how to get up and running developing applications with the Couchbase PHP SDK 4.0+ using `Visual Studio Code`. 
 
 A simple PHP orientation intro for _non-PHP_ folk who are evaluating the Couchbase PHP SDK.
 
-|  | Is This Page for You? This page is to help evaluate the Couchbase PHP SDK, if PHP is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the PHP SDK without necessarily being comfortable with the PHP environment. If this is not you, head back to the [rest of the Couchbase PHP SDK documentation](overview.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Is This Page for You?
+> 
+> This page is to help evaluate the Couchbase PHP SDK, if PHP is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the PHP SDK without necessarily being comfortable with the PHP environment. If this is not you, head back to the [rest of the Couchbase PHP SDK documentation](overview.md).
 
 ## [](#installing-php-and-the-couchbase-php-sdk)Installing PHP and the Couchbase PHP SDK
 
@@ -64,8 +76,8 @@ Visual Studio Code is a free code editor which runs on Windows, Linux and MacOS 
 
 * <https://code.visualstudio.com/docs/setup/setup-overview>
 
-|  | we’ve given instructions for VS Code as it’s a currently popular, cross-platform, multi-language editor that’s seeing widespread use, and is easy to set up and get started. If you’re planning to primarily develop in PHP, you may prefer to look into using a full IDE like [PhpStorm](https://www.jetbrains.com/phpstorm/). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> we’ve given instructions for VS Code as it’s a currently popular, cross-platform, multi-language editor that’s seeing widespread use, and is easy to set up and get started. If you’re planning to primarily develop in PHP, you may prefer to look into using a full IDE like [PhpStorm](https://www.jetbrains.com/phpstorm/).
 
 ### [](#adding-php-development-support)Adding PHP Development Support
 

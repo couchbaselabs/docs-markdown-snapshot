@@ -1,4 +1,14 @@
+---
+title: Read Data and Return Results
+description: How to use a SQL++ selection query to read data from a data source
+  and return results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/select.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/select.html)
+
+# Read Data and Return Results
 
 > How to use a SQL++ selection query to read data from a data source and return results. 
 
@@ -145,8 +155,8 @@ For more information and examples, see [FROM Clause](../n1ql/n1ql-language-refer
 
 The query context enables you to specify a bucket and scope to resolve partial keyspace references within your queries. When the query context is set, you can specify the data source in your queries using the collection name only. This enhances the portability of your queries.
 
-|  | The query context is only used to resolve partial keyspace references. When a query specifies a data source using the full path to a keyspace, the query context is not used to resolve that keyspace. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The query context is only used to resolve partial keyspace references. When a query specifies a data source using the full path to a keyspace, the query context is not used to resolve that keyspace.
 
 * Query Workbench
 * CBQ Shell

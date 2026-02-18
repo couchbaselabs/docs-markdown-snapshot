@@ -1,4 +1,12 @@
+---
+title: Couchbase Mobile - Embedded Database on the Edge
+editUrl: https://github.com/couchbase/docs-mobile/edit/release/3.1/modules/ROOT/pages/siteintro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/shared-mobile/3.1/siteintro.html)
+
+# Couchbase Mobile - Embedded Database on the Edge
 
 # Couchbase Mobile
 

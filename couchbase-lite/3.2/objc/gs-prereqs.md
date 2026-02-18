@@ -1,9 +1,20 @@
+---
+title: Prerequisites&#8201;&#8212;&#8201;Couchbase Lite for Objective-C
+description: Prerequisites for the installation of Couchbase Lite
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/objc/gs-prereqs.html)
+
+# Prerequisites&#8201;&#8212;&#8201;Couchbase Lite for Objective-C
 
 > Description — _Prerequisites for the installation of Couchbase Lite_  
 
-|  | Vector Search Prerequisites To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Vector Search Prerequisites
+> 
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 ## [](#couchbase-lite-framework-size)Couchbase Lite Framework Size
 

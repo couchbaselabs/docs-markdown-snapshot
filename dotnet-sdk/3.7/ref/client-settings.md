@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>ClusterOptions</code> class enables you to configure .NET
+  SDK options for bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/ref/client-settings.html)
+
+# Client Settings
 
 > The `ClusterOptions` class enables you to configure .NET SDK options for bootstrapping, timeouts, reliability, and performance. 
 
@@ -104,8 +114,8 @@ var options = new ClusterOptions()
 };
 ```
 
-|  | Unless you set EnableTls to true, none of the other security settings in this section have any effect. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unless you set `EnableTls` to `true`, none of the other security settings in this section have any effect.
 
 Name: **Enabling Secure Connections**
 
@@ -268,8 +278,8 @@ Default: `60s`
 
 The idle time after which a TCP keepalive gets fired. (This setting has no effect if `EnableTcpKeepAlives` is `false`.)
 
-|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval).
 
 Name: **Key/Value Endpoints per Node**
 
@@ -279,8 +289,8 @@ Default: `2`
 
 The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it.
 
-|  | [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower.
 
 Name: **Max Key/Value Endpoints per Node**
 
@@ -527,8 +537,8 @@ Default: `2.5s` — _but see TIP, below_
 
 The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like Get(), GetFromReplica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, KvDurableTimeout, see below. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, `KvDurableTimeout`, see below.
 
 Name: **Key-Value Durable Operation Timeout**
 
@@ -540,8 +550,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The KvDurableTimeout property is not part of the stable API and may change or be removed at any time. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `KvDurableTimeout` property is not part of the stable API and may change or be removed at any time.
 
 Name: **View Timeout**
 
@@ -694,8 +704,8 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
 
@@ -703,8 +713,8 @@ A program using the SDK can also use the `waitUntilReady()` API call to handle a
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

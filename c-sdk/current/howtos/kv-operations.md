@@ -1,4 +1,12 @@
+---
+title: Key Value Operations
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/kv-operations.html)
+
+# Key Value Operations
 
 ## [](#documents)Documents
 
@@ -12,8 +20,10 @@ See the [code sample](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/m
 
 ## [](#upsert)Upsert
 
-|  | Sub-Document Operations All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Sub-Document Operations
+> 
+> All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md).
 
 Here is a simple upsert operation, which will insert the document if it does not exist, or replace it if it does.
 
@@ -141,8 +151,8 @@ See the [code sample](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/m
 
 ### [](#preferred-server-group-replica-reads)Preferred Server Group Replica Reads
 
-|  | Preferred Server Group Replica Reads are only accessible with the C SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed), from SDK version 3.3.14\. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Preferred Server Group Replica Reads are only accessible with the C SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed), from SDK version 3.3.14\.
 
 [Server Groups](../../../server/current/learn/clusters-and-availability/groups.md#understanding-server-group-awareness)can be used to define subsets of nodes within a Couchbase cluster, which contain a complete set of vbuckets (active or replica). As well as high availability use cases, Servre Groups can also be used to keep much traffic within the same cloud Availability Zone.
 
@@ -152,15 +162,21 @@ This may mean the application has to be tolerant of slight inconsistencies, unti
 
 Couchbase does not recommend this feature where read consistency is critical, but with the appropriate durability settings consistency can be favored ahead of availability.
 
-|  | Replicas, Nodes, and Server Groups Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted: Moving servers between Server Groups updates the clustermap immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the vBucketMap may still refer to data in the previous locations. The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: active+num\_replicas). The Admin UI should emit small yellow warning if the configuration is considered unbalanced. Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](#concept-docs:transactions.adoc). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Replicas, Nodes, and Server Groups
+> 
+> Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted:
+> 
+> * Moving servers between Server Groups updates the `clustermap` immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the `vBucketMap` may still refer to data in the previous locations.
+> * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
+> * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](#concept-docs:transactions.adoc).
 
 ## [](#atomic-counters)Atomic Counters
 
 The numeric content of a document can be manipulated using [lcb\_RESPCOUNTER](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.18/group%5F%5Flcb-counter.html).
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change.
 
 Counter opeations treat the document as a numeric value (the document must contain a parseable integer as its content). This value may then be incremented or decremented.
 
@@ -177,8 +193,8 @@ Counter opeations treat the document as a numeric value (the document must conta
 
 See the [code sample](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/counter.cc) for use in context.
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 

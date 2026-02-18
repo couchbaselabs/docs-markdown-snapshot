@@ -1,4 +1,14 @@
+---
+title: Using Full-Text Search
+description: Working with Couchbase Lite's data model  -- Querying the database
+  using full text search
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/fts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/fts.html)
+
+# Using Full-Text Search
 
 > Description — _Working with Couchbase Lite’s data model — Querying the database using full text search_  
 > Related Content — [Predictive Queries](#c:querybuilder.adoc#lbl-predquery) | [Indexing](indexing.md) | [QueryBuilder](#c:querybuilder.adoc)

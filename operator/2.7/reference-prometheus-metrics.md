@@ -1,4 +1,12 @@
+---
+title: Prometheus Metrics Reference
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-prometheus-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/reference-prometheus-metrics.html)
+
+# Prometheus Metrics Reference
 
 > This page captures the metrics supplied to Prometheus by the Couchbase Autonomous Operator. 
 

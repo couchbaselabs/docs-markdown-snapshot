@@ -1,4 +1,14 @@
+---
+title: XDCR Active-Active and Eventing
+description: Understand how to safely use Couchbase Eventing functions in
+  bi-directional XDCR environments, including Sync Gateway 4.0 compatibility.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/server-compatibility/pages/xdcr-active-active-eventing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/server-compatibility/xdcr-active-active-eventing.html)
+
+# XDCR Active-Active and Eventing
 
 > Understand how to safely use Couchbase Eventing functions in bi-directional XDCR environments, including Sync Gateway 4.0 compatibility.  
 > Learn how to design Couchbase Eventing functions to avoid replication loops and conflicts in active-active XDCR environments with Sync Gateway 4.0.
@@ -131,8 +141,10 @@ When designing Eventing functions for active-active XDCR environments, consider 
 * **Gradual Deployment**: Introduce changes incrementally, testing at each step.
 * **Document Dependencies**: Inform app teams about required fields like `update_location`.
 
-|  | Without proper logic, Eventing functions in active-active XDCR environments may create infinite loops that consume excessive resources and destabilize the system. These issues apply to all Couchbase versions with Eventing and XDCR support, and are now relevant with Sync Gateway 4.0 support for Bidirectional XDCR. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Without proper logic, Eventing functions in active-active XDCR environments may create infinite loops that consume excessive resources and destabilize the system.
+> 
+> These issues apply to all Couchbase versions with Eventing and XDCR support, and are now relevant with Sync Gateway 4.0 support for Bidirectional XDCR.
 
 ---
 

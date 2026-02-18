@@ -1,4 +1,14 @@
+---
+title: Initialize a Node
+description: A new Enterprise Analytics node can be <em>initialized</em>, to
+  establish node-specific paths for local storage.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/initialize-node.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/initialize-node.html)
+
+# Initialize a Node
 
 > A new Enterprise Analytics node can be _initialized_, to establish node-specific paths for local storage. 
 

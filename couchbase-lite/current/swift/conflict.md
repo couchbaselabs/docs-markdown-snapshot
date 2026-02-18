@@ -1,4 +1,13 @@
+---
+title: Handling Data Conflicts
+description: Couchbase Lite Database Sync -- Handling conflict between data changes
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/conflict.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/swift/conflict.html)
+
+# Handling Data Conflicts
 
 > Description — _Couchbase Lite Database Sync — Handling conflict between data changes_  
 
@@ -11,13 +20,15 @@ Such conflicts can occur after either of the following events:
 * **A replication saves a document change** — in which case the change with the _most-revisions wins_ (unless one change is a delete). See the example [Case 1: Conflicts when a replication is in progress](#lbl-conflicts-when-replicating)
 * **An application saves a document change directly to a database instance** — in which case, _last write wins_, unless one change is a delete — see [Case 2: Conflicts when saving a document](#conflicts-when-saving)
 
-|  | **_Deletes_ always win.** So, in either of the above cases, if one of the changes was a _Delete_ then that change wins. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> **_Deletes_ always win.** So, in either of the above cases, if one of the changes was a _Delete_ then that change wins.
 
 The following sections discuss each scenario in more detail.
 
-|  | Dive deeper …​Read more about [Document Conflicts and Automatic Conflict Resolution in Couchbase Mobile](https://blog.couchbase.com//document-conflicts-couchbase-mobile). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Dive deeper …​
+> 
+> Read more about [Document Conflicts and Automatic Conflict Resolution in Couchbase Mobile](https://blog.couchbase.com//document-conflicts-couchbase-mobile).
 
 ## [](#lbl-conflicts-when-replicating)Conflicts when Replicating
 
@@ -36,8 +47,8 @@ This device already has _ChangeY_ and now Naomi’s local document is in conflic
 
 ### [](#automatic-conflict-resolution)Automatic Conflict Resolution
 
-|  | The rules only apply to conflicts caused by replication. Conflict resolution takes place exclusively during pull replication, while push replication remains unaffected. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The rules only apply to conflicts caused by replication. Conflict resolution takes place exclusively during pull replication, while push replication remains unaffected.
 
 Couchbase Lite uses the following rules to handle conflicts such as those described in [A typical replication conflict scenario](#bmkRepConScene):
 
@@ -55,8 +66,8 @@ Starting in Couchbase Lite 2.6, application developers who want more control ove
 
 If a custom conflict resolver is not provided, the system will automatically resolve conflicts as discussed in [Automatic Conflict Resolution](#automatic-conflict-resolution), and as a consequence there will be no conflicting revisions in the database.
 
-|  | While this is true of any user defined functions, app developers must be strongly cautioned against writing sub-optimal custom conflict handlers that are time consuming and could slow down the client’s save operations. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> While this is true of any user defined functions, app developers must be strongly cautioned against writing sub-optimal custom conflict handlers that are time consuming and could slow down the client’s save operations.
 
 To implement custom conflict resolution during replication, you must implement the following steps.
 
@@ -113,23 +124,20 @@ When a null document is returned by the resolver, the conflict will be resolved 
 Points of Note:
 
 * If you have multiple replicators, it is recommended that instead of distinct resolvers, you should use a unified conflict resolver across all replicators. Failure to do so could potentially lead to data loss under exception cases or if the app is terminated (by the user or an app crash) while there are pending conflicts.
-* If the document ID of the document returned by the resolver does not correspond to the document that is in conflict then the replicator will log a warning message.
-
-|  | Developers are encouraged to review the warnings and fix the resolver to return a valid document ID. |
-|  | ---------------------------------------------------------------------------------------------------- |
-* If a document from a different database is returned, the replicator will treat it as an error. A [document replication event](#replication-events) will be posted with an error and an error message will be logged.
-
-|  | Apps are encouraged to observe such errors and take appropriate measures to fix the resolver function. |
-|  | ------------------------------------------------------------------------------------------------------ |
+* If the document ID of the document returned by the resolver does not correspond to the document that is in conflict then the replicator will log a warning message.  
+> [!IMPORTANT]  
+> Developers are encouraged to review the warnings and fix the resolver to return a valid document ID.
+* If a document from a different database is returned, the replicator will treat it as an error. A [document replication event](#replication-events) will be posted with an error and an error message will be logged.  
+> [!IMPORTANT]  
+> Apps are encouraged to observe such errors and take appropriate measures to fix the resolver function.
 * When the replicator is stopped, the system will attempt to resolve outstanding and pending conflicts before stopping. Hence apps should expect to see some delay when attempting to stop the replicator depending on the number of outstanding documents in the replication queue and the complexity of the resolver function.
 * If there is an exception thrown in the `resolve()` method, the exception will be caught and handled:
 
   * The conflict to resolve will be skipped. The pending conflicted documents will be resolved when the replicator is restarted.
   * The exception will be reported in the warning logs.
-  * The exception will be reported in the [document replication event](#replication-events).
-
-|  | While the system will handle exceptions in the manner specified above, it is strongly encouraged for the resolver function to catch exceptions and handle them in a way appropriate to their needs. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * The exception will be reported in the [document replication event](#replication-events).  
+  > [!IMPORTANT]  
+  > While the system will handle exceptions in the manner specified above, it is strongly encouraged for the resolver function to catch exceptions and handle them in a way appropriate to their needs.
 
 ### [](#configure-the-replicator)Configure the Replicator
 

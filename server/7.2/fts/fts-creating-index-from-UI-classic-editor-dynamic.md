@@ -1,4 +1,12 @@
+---
+title: Classic Editor
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-dynamic.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-classic-editor-dynamic.html)
+
+# Classic Editor
 
 > The classic editor is the most advanced tool where users can directly configure the index mapping with all capabilities. 
 
@@ -49,8 +57,8 @@ This is all you need to specify in order to create a more advanced index for tes
 * If you subsequently Edit your Index it should look like the following:  
 ![fts edit index dynamic](_images/fts-edit-index-dynamic.png)
 
-|  | Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant.
 
 ## [](#test-the-dynamic-index-with-a-simple-query)Test the Dynamic Index with a simple query
 

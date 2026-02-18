@@ -1,4 +1,13 @@
+---
+title: prev-vbucket
+description: Lists the previous state of each vBucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-prev-vbucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-prev-vbucket.html)
+
+# prev-vbucket
 
 > Lists the previous state of each vBucket. 
 

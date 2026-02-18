@@ -1,4 +1,13 @@
+---
+title: Conflict Resolution
+description: How Sync Gateway resolves document conflicts during synchronization
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/conflict-resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/conflict-resolution.html)
+
+# Conflict Resolution
 
 > How Sync Gateway resolves document conflicts during synchronization  
 
@@ -40,15 +49,15 @@ Sync Gateway uses Most Write Wins conflict resolution in the following scenarios
 
 In these cases, the document with the most revisions wins the conflict, maintaining backward compatibility.
 
-|  | For Sync Gateway versions less than 4.0+, Most Write Wins is the default behavior. See [Upgrading Sync Gateway](upgrading.md) for upgrade instructions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For Sync Gateway versions less than 4.0+, Most Write Wins is the default behavior. See [Upgrading Sync Gateway](upgrading.md) for upgrade instructions.
 
 ## [](#xdcr-integration)XDCR Integration
 
 For active-active deployments using XDCR with Sync Gateway 4.0+, configure your Couchbase Server buckets to use **Timestamp-based** conflict resolution to match Sync Gateway’s Last Write Wins behavior.
 
-|  | This configuration has significant constraints: |
-|  | ----------------------------------------------- |
+> [!IMPORTANT]
+> This configuration has significant constraints:
 
 * The conflict resolution strategy must be chosen when the bucket is created and cannot be changed later
 * Both sides of an XDCR replication must have matching conflict resolution strategies

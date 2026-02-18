@@ -1,4 +1,12 @@
+---
+title: Introduction to Couchbase Style
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/index.html)
+
+# Introduction to Couchbase Style
 
 This guide outlines how to write in Couchbase style for all technical documentation of Couchbase products.
 
@@ -14,5 +22,5 @@ Use the following rules to determine which style to follow:
 2. If you cannot find the answer in the Couchbase Style Guide, use the [Google Developer Style Guide](https://developers.google.com/style).
 3. If the Google Developer Style Guide contradicts the Couchbase Style Guide, the Couchbase Style Guide wins.
 
-|  | If you do not agree with an element of the Couchbase Style Guide, raise a pull request against this repository or bring it up to the Couchbase Documentation team for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you do not agree with an element of the Couchbase Style Guide, raise a pull request against this repository or bring it up to the Couchbase Documentation team for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws.

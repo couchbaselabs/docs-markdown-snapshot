@@ -1,9 +1,21 @@
+---
+title: Vector Search Using Search Vector Indexes
+description: Use Couchbase Server's Vector Search features to add fast and
+  accurate semantic search to your applications.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/vector-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-search/vector-search.html)
+
+# Vector Search Using Search Vector Indexes
 
 > Use Couchbase Server’s Vector Search features to add fast and accurate semantic search to your applications. 
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 ## [](#about-vector-search)About Vector Search
 
@@ -30,8 +42,8 @@ To get started using Vector Search in Server:
 
 In addition to supporting integrations with frameworks like LangChain and LlamaIndex, you can also use the API for an existing LLM and one of their embedding models to generate vector embeddings for your data. For example, the OpenAI `embeddings` endpoint can generate embeddings for a text string using a specified embedding model. You can then store that embedding as a new field in your documents. For more information about how to generate and obtain embeddings for text strings using the OpenAI API, see the [Embeddings documentation](https://platform.openai.com/docs/guides/embeddings/what-are-embeddings).
 
-|  | When you create a Search Vector Index, the [dimension](../search/child-field-options-reference.md#dimension) of your data vector embeddings must match the dimension for any search query vectors. Otherwise, a Vector Search query fails to return any results. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create a Search Vector Index, the [dimension](../search/child-field-options-reference.md#dimension) of your data vector embeddings must match the dimension for any search query vectors. Otherwise, a Vector Search query fails to return any results.
 
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Search Vector Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).
 

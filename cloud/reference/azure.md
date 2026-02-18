@@ -1,4 +1,13 @@
+---
+title: Microsoft Azure
+description: Couchbase Capella supports deploying clusters onto Microsoft Azure.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/azure.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/azure.html)
+
+# Microsoft Azure
 
 > Couchbase Capella supports deploying clusters onto Microsoft Azure. 
 
@@ -62,8 +71,8 @@ Except for free tier operational clusters, Capella clusters deploy with a minimu
 
 The **Multiple Zones** option is the default when creating clusters using the Developer Pro or Enterprise [Support Plans](../billing/billing.md#support-plans).
 
-|  | The option to deploy across multiple Azure Availability Zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same Availability Zone. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The option to deploy across multiple Azure Availability Zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same Availability Zone.
 
 ## [](#configuration-options)Configuration Options
 
@@ -77,8 +86,8 @@ Customize the clusters you deploy with Microsoft Azure to fit your requirements 
 
 Clusters have a minimum of 3 nodes and a maximum of 27.
 
-|  | As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node.
 
 Clusters consist of Service Groups that include the services deployed and system resources. Each Service Group has a node quantity representing the number of nodes in the cluster with that configuration. Individual Service Groups can have between 2 and 27 nodes but cannot collectively exceed 27\. The Service Group that includes the [Data Service](../clusters/data-service/data-service.md) requires at least 3 nodes.
 
@@ -117,8 +126,8 @@ The Capella clusters you deploy onto Azure can use Premium SSDs (v1) or Ultra di
 
 When using Azure’s Premium SSDs (v1), the amount of storage available per node in your cluster depends on the chosen disk type. For example, if you want the 256 GiB of storage, you could choose the P15 disk configuration. If you’re using the Ultra Disk type, you can choose between fixed storage size options.
 
-|  | Free tier operational clusters only allow 10 GB of data storage. |
-|  | ---------------------------------------------------------------- |
+> [!NOTE]
+> Free tier operational clusters only allow 10 GB of data storage.
 
 IOPS (input/output operations per second) measures the storage speed of a cluster. Premium storage disk speed is based on the chosen disk type and cannot be separately set. Ultra Disk speed can be set, but the possible range depends on the chosen disk size.
 
@@ -158,8 +167,8 @@ The Ultra Disk option allows you to choose a storage size and IOPS. By default, 
 | 512                                     | 80,000   |
 | 1,024 — 15,360 (In increments of 1 TiB) | 80,000   |
 
-|  | Adjusting the IOPS rate affects performance and cost. When creating or modifying a cluster with the Azure Ultra Disk storage option, Capella uses recommended defaults for the IOPS field. You can replace a default IOPS value with one higher than the default but not lower. For the recommended IOPS values for clusters using Azure Ultra Disks with typical enterprise workloads, see [IOPS Defaults](../clusters/scale-database.md#IOPS-Defaults). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Adjusting the IOPS rate affects performance and cost. When creating or modifying a cluster with the Azure Ultra Disk storage option, Capella uses recommended defaults for the IOPS field. You can replace a default IOPS value with one higher than the default but not lower. For the recommended IOPS values for clusters using Azure Ultra Disks with typical enterprise workloads, see [IOPS Defaults](../clusters/scale-database.md#IOPS-Defaults).
 
 ## [](#integrations-with-azure)Integrations with Azure
 

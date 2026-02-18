@@ -1,4 +1,12 @@
+---
+title: Ports Used by FTS
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-architecture-ports-used.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-architecture-ports-used.html)
+
+# Ports Used by FTS
 
 The following table lists the FTS port details:
 

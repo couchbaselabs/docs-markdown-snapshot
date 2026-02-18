@@ -1,4 +1,14 @@
+---
+title: System Defined Roles
+description: For authorizing users, Enterprise Analytics has some pre-built
+  roles with predefined sets of privileges that can be assigned to users.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/system-defined-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/system-defined-roles.html)
+
+# System Defined Roles
 
 > For authorizing users, Enterprise Analytics has some pre-built roles with predefined sets of privileges that can be assigned to users. 
 

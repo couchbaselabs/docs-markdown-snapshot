@@ -1,9 +1,17 @@
+---
+title: Managing a Sync Gateway Cluster
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-sync-gateway-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tutorial-sync-gateway-manage.html)
+
+# Managing a Sync Gateway Cluster
 
 > Collecting logs from your Sync Gateway cluster 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#troubleshooting-and-log-collection)Troubleshooting and Log Collection
 
@@ -58,8 +66,8 @@ $ kubectl port-forward <pod_id> 4985:4985
 
 Trigger the execution of the `sgcollect_info` tool on the Sync Gateway pod using the [POST \_sgcollect\_info](#sync-gateway::admin-rest-api.adoc) REST endpoint. This is an example of the command.
 
-|  | The example below outputs the logs to local directory. Instead, Enterprise customers can use this endpoint to automatically upload it to Couchbase support servers. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The example below outputs the logs to local directory. Instead, Enterprise customers can use this endpoint to automatically upload it to Couchbase support servers.
 
 ```console
 $ curl -X POST \

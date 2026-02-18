@@ -1,4 +1,12 @@
+---
+title: Delete a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-couchbase-delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-couchbase-delete.html)
+
+# Delete a Couchbase Deployment
 
 You can delete a cluster either by using the cluster configuration file that you created the cluster with, or by deleting the cluster directly.
 

@@ -1,4 +1,13 @@
+---
+title: Nesting and Unnesting Documents
+description: How to nest and unnest arrays of embedded objects.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/nest-unnest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/nest-unnest.html)
+
+# Nesting and Unnesting Documents
 
 > How to nest and unnest arrays of embedded objects.  
 > This guide is for Couchbase Server.
@@ -24,8 +33,8 @@ To create a nest:
 2. Use the NEST clause to specify the data source on the right-hand side of the nest. This must be a keyspace reference.
 3. Use the ON keyword to specify the nest predicate. This is a condition that must be met in order to nest an object on the right-hand side within an object on the left-hand side.
 
-|  | To use a [document key](../learn/data/data.md#keys) in the nest predicate, use the [META()](../n1ql/n1ql-language-reference/metafun.md#meta) function to return the id field from the document metadata. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use a [document key](../learn/data/data.md#keys) in the nest predicate, use the [META()](../n1ql/n1ql-language-reference/metafun.md#meta) function to return the `id` field from the document metadata.
 
 For example, the following query selects a route and the associated airline.
 
@@ -48,8 +57,8 @@ LIMIT 1;
 | **2** | The airline keyspace is the right-hand side of the nest.                                            |
 | **3** | The airlineid field on the left-hand side must be equal to the document key on the right-hand side. |
 
-|  | Before running a query containing a nest, make sure all the required indexes exist. To check which indexes may be required, use the [Index Advisor](../n1ql/n1ql-language-reference/advise.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Before running a query containing a nest, make sure all the required indexes exist. To check which indexes may be required, use the [Index Advisor](../n1ql/n1ql-language-reference/advise.md).
 
 For more information and examples, see [ANSI NEST Clause](../n1ql/n1ql-language-reference/nest.md#section%5Ftc1%5Fnnx%5F1db).
 

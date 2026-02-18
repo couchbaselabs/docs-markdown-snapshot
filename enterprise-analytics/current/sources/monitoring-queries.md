@@ -1,4 +1,13 @@
+---
+title: Monitoring Queries
+description: This page explains how to monitor queries in Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/monitoring-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sources/monitoring-queries.html)
+
+# Monitoring Queries
 
 The Monitor screen is a UI that allows you to monitor the current state of the Analytics Service.
 

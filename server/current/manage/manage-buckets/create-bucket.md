@@ -1,4 +1,14 @@
+---
+title: Create a Bucket
+description: Full, Cluster, and Backup  Administrators can use Couchbase Web
+  Console, the CLI, or the REST API to create a bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/create-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-buckets/create-bucket.html)
+
+# Create a Bucket
 
 > Full, Cluster, and Backup Administrators can use Couchbase Web Console, the CLI, or the REST API to create a bucket. 
 
@@ -91,10 +101,9 @@ To configure advanced settings for a Couchbase bucket:
   2. To replicate view indexes and data from the bucket, select the **Replicate view indexes** checkbox.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.
-
-|  | The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.  
+  > [!TIP]  
+  > The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
 
   * **Off**
@@ -112,8 +121,8 @@ For more information about XDCR conflict resolution, see [XDCR Conflict Resoluti
   * **Full**  
 For more information about ejection, see the [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) section in Memory.
 
-|  | Use the Full Ejection policy for buckets using the [Magma storage engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma). This setting works well when the ratio of memory to data is low. In these cases, retaining just the keys and metadata of documents can still consume significant portions of the allocated memory. Magma allows you to set a memory to data ratio as low as 1%. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use the Full Ejection policy for buckets using the [Magma storage engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma). This setting works well when the ratio of memory to data is low. In these cases, retaining just the keys and metadata of documents can still consume significant portions of the allocated memory. Magma allows you to set a memory to data ratio as low as 1%.
 
 1. In the **Minimum Durability Level** list, select a durability level for the bucket:
 
@@ -131,8 +140,8 @@ For more information about flushing, see [Flush a Bucket](flush-bucket.md).
 
 ![An image that displays the Add Data Bucket dialog, with a Couchbase Bucket Type and CouchStore Storage Backend selected. The Advanced bucket settings are expanded and to show the default selections for a Couchbase and Couchstore bucket.](../_images/manage-buckets/addBucketWithMagmaOption.png) 
 
-|  | Enable Cross Cluster Versioning can be enabled only in the [Edit a Bucket](edit-bucket.md) mode. Enabling Cross Cluster Versioning is a prerequisite for features like XDCR Conflict Logging and XDCR Active-Active with Sync Gateway 4.0 and later versions. For more information, see [XDCR enableCrossClusterVersioning](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Enable Cross Cluster Versioning can be enabled only in the [Edit a Bucket](edit-bucket.md) mode. Enabling Cross Cluster Versioning is a prerequisite for features like XDCR Conflict Logging and XDCR Active-Active with Sync Gateway 4.0 and later versions. For more information, see [XDCR enableCrossClusterVersioning](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 #### [](#ephemeral-bucket-settings)Ephemeral Bucket Settings
 
@@ -145,10 +154,9 @@ To configure advanced settings for an Ephemeral bucket:
   1. In the **Number of replica (backup) copies** list, select the number of replicas for the bucket.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.
-
-|  | The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.  
+  > [!TIP]  
+  > The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
 
   * **Off**

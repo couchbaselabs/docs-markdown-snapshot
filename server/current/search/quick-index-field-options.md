@@ -1,4 +1,14 @@
+---
+title: Quick Index Field Options
+description: When you create a Search index with the Quick Editor, you must set
+  options for each field you add to the index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/quick-index-field-options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/quick-index-field-options.html)
+
+# Quick Index Field Options
 
 > When you create a Search index with the Quick Editor, you must set options for each field you add to the index. 
 

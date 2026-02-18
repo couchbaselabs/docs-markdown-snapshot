@@ -1,4 +1,14 @@
+---
+title: Default Analyzers
+description: Use an analyzer to filter and modify search strings to improve
+  matches for search results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/default-analyzers-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/default-analyzers-reference.html)
+
+# Default Analyzers
 
 > Use an analyzer to filter and modify search strings to improve matches for search results. 
 

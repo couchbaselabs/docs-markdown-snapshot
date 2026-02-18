@@ -1,4 +1,12 @@
+---
+title: Specifying Type Mappings
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings.html)
+
+# Specifying Type Mappings
 
 > Whereas a _type identifier_ tells the index how to determine the position in each document of the characters that specify the document’s type, a _type mapping_ specifies the characters themselves. 
 
@@ -68,8 +76,8 @@ The **Collection** field displays the selected collection along with the selecte
 
 * Click ok to add the collection to the index. Continue the same process to add other collections to the index.
 
-|  | In Type Mappings, you can add multiple collections to the index. However, you can either select only one collection to create a single collection index or select multiple collections to create an index with multiple collections. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In Type Mappings, you can add multiple collections to the index. However, you can either select only one collection to create a single collection index or select multiple collections to create an index with multiple collections.
 
 The Type Mappings panel appears as follows:
 
@@ -136,8 +144,8 @@ During index creation, for each document-field for which the data-type has not b
 | Geopoint                       | A [legacy lat/lon pair](fts-supported-queries-geopoint-spatial.md#recognizing%5Ftarget%5Fdata) |
 | Geoshape                       | A [GeoJSON shape](fts-supported-queries-geojson-spatial.md#supported-geojson-data-types)       |
 
-|  | The indexer attempts to parse String date-values as dates, and indexes them as such if the operation succeeds. However, on query-execution, Full Text Search expects dates to be in the format specified by [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt), which is a specific profile of ISO-8601\. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The indexer attempts to parse String date-values as dates, and indexes them as such if the operation succeeds. However, on query-execution, Full Text Search expects dates to be in the format specified by [RFC-3339](https://www.ietf.org/rfc/rfc3339.txt), which is a specific profile of ISO-8601\.
 
 The String values such as `7` or `true` remains as Strings and did not index as numbers or Booleans respectively.
 
@@ -168,8 +176,8 @@ Left-clicking on the **edit** button displays the following interface:
 
 This allows the mapping to be deleted or associated with a different analyzer.
 
-|  | FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding dot (. or period) in the field name. Like using field.name or country.name is not supported. For example, { "database.name": "couchbase"} |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding dot (. or period) in the field name. Like using `field.name` or `country.name` is not supported. For example, `{ "database.name": "couchbase"}`
 
 If the **only index specified fields** checkbox is checked, only fields specified by the user are included in the index.
 
@@ -261,8 +269,8 @@ When checked, the field is indexed; when unchecked, the field is not indexed. Th
 
 ![fts type mappings child field index](_images/fts-type-mappings-child-field-index.png) 
 
-|  | When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When this checkbox is checked, the resulting index will proportionately increase in size.
 
 ### [](#store)Store
 
@@ -282,8 +290,8 @@ Ideally, enabling this `Child Field Store` option has a sizing aspect to the ind
 }
 Setting "fields" to ["*"] will include the contents of all stored fields in the index.
 
-|  | "store" - writes a copy of the field content into the index. When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> "store" - writes a copy of the field content into the index. When this checkbox is checked, the resulting index will proportionately increase in size.
 
 ### [](#include-term-vectors)Include term vectors
 
@@ -295,8 +303,8 @@ Term vectors are the locations of terms in a particular field. Certain kinds of 
 
 ![fts type mappings child field termvectors](_images/fts-type-mappings-child-field-termvectors.png) 
 
-|  | "include term vectors" indexes the array positions (locations) of the terms within the field (needed for phrase searching and highlighting). When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> "include term vectors" indexes the array positions (locations) of the terms within the field (needed for phrase searching and highlighting). When this checkbox is checked, the resulting index will proportionately increase in size.
 
 ### [](#include-in%5Fall-field)Include in\_all field:
 
@@ -308,8 +316,8 @@ Inclusion means when _query strings_ are used to specify searches, the text in t
 
 ![fts type mappings child field include in all](_images/fts-type-mappings-child-field-include-in-all.png) 
 
-|  | "include in \_all" will write a copy of the tokens generated for a particular field to the "\_all" composite field. When this checkbox is checked, the resulting index will proportionately increase in size. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> "include in \_all" will write a copy of the tokens generated for a particular field to the "\_all" composite field. When this checkbox is checked, the resulting index will proportionately increase in size.
 
 Enabling this option results in larger indexes, so disable this option to always use field scoped queries in the search requests.
 
@@ -325,8 +333,8 @@ By default, this checkbox is selected. If it is _unchecked_, the values are _not
 
 ![fts type mappings child field docvalues](_images/fts-type-mappings-child-field-docvalues.png) 
 
-|  | When this checkbox is checked, the resulting index will increase proportionately in size. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When this checkbox is checked, the resulting index will increase proportionately in size.
 
 The dialog, when completed, might look as follows:
 
@@ -336,8 +344,8 @@ Left-click on **OK**. The field is saved, and its principal attributes displayed
 
 ![fts type mappings child field saved](_images/fts-type-mappings-child-field-saved.png) 
 
-|  | When you hover the mouse over this row, an **Edit** button appears, where you can make updates to the definition. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you hover the mouse over this row, an **Edit** button appears, where you can make updates to the definition.
 
 ## [](#docid-with-regexp-in-type-mappings)DocID with regexp in Type Mappings
 

@@ -1,4 +1,13 @@
+---
+title: Glossary
+description: Principal terms and their meanings.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/glossary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/glossary.html)
+
+# Glossary
 
 > Principal terms and their meanings. 
 

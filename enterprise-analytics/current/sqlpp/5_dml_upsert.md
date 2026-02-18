@@ -1,4 +1,14 @@
+---
+title: UPSERT INTO Statements
+description: This topic describes how you use <code>UPSERT INTO</code>
+  statements to insert and update objects in a standalone collection.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_upsert.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_dml_upsert.html)
+
+# UPSERT INTO Statements
 
 > This topic describes how you use `UPSERT INTO` statements to insert and update objects in a standalone collection. 
 

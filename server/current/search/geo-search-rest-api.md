@@ -1,4 +1,14 @@
+---
+title: Run a Geospatial Search Query with the REST API and curl/HTTP
+description: Search for geospatial data in your Couchbase Server cluster with a
+  compatible Search index, the REST API and curl/HTTP.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/geo-search-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/geo-search-rest-api.html)
+
+# Run a Geospatial Search Query with the REST API and curl/HTTP
 
 > Search for geospatial data in your Couchbase Server cluster with a compatible Search index, the REST API and curl/HTTP. 
 
@@ -99,7 +109,7 @@ To run a Search query against the Search index:
 2. Set your header content to include `"Content-Type: application/json"`.
 3. Enter your username, password, and the Search Service endpoint on port `8094` with the name of the index you want to query:  
 ```console  
-curl -s -XPUT -H "Content-Type: application/json" \
+curl -s -XPOST -H "Content-Type: application/json" \
     -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/${BUCKET-NAME}/scope/${SCOPE-NAME}/index/${INDEX-NAME}/query -d \  
 ```  
 To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
@@ -110,7 +120,7 @@ To use SSL, use the `https` protocol in the Search Service endpoint URL and port
 For example, the following query searches a geospatial field, `geo`, for any locations within a 100 mile radius of the coordinates `-2.235143, 53.482358` with a [Distance/Radius-Based Geopoint Query](search-request-params.md#geopoint-queries-distance):
 
 ```console
-curl -s -XPUT -H "Content-Type: application/json" \
+curl -s -XPOST -H "Content-Type: application/json" \
     -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/${BUCKET-NAME}/scope/${SCOPE-NAME}/index/${INDEX-NAME}/query 
     -d '{
       "from": 0,
@@ -248,13 +258,19 @@ If the REST API call is successful, the Search Service returns a `200 OK`. Using
 
 ### [](#example-geojson-query)Example: GeoJSON Query
 
-|  | To run the following example against the landmark collection in the travel-sample dataset, run the following SQL++ query from the [Query Workbench](../tools/query-workbench.md): UPDATE \`travel-sample\`.inventory.landmark     SET geojson = { "type": "Point", "coordinates": \[geo.lon, geo.lat\] }     WHERE geo IS NOT null; |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To run the following example against the `landmark` collection in the `travel-sample` dataset, run the following SQL++ query from the [Query Workbench](../tools/query-workbench.md):
+> 
+> ```sqlpp
+> UPDATE `travel-sample`.inventory.landmark
+>     SET geojson = { "type": "Point", "coordinates": [geo.lon, geo.lat] }
+>     WHERE geo IS NOT null;
+> ```
 
 For example, the following query searches a geospatial field, `geojson`, for any locations within a defined shape with a [Polygon GeoJSON Query](search-request-params.md#geojson-queries-polygon):
 
 ```console
-curl -s -XPUT -H "Content-Type: application/json" \
+curl -s -XPOST -H "Content-Type: application/json" \
     -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/${BUCKET-NAME}/scope/${SCOPE-NAME}/index/${INDEX-NAME}/query 
     -d '{
         "query": {

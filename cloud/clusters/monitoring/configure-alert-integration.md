@@ -1,4 +1,14 @@
+---
+title: Configure an Alert Integration
+description: Send Capella metric-based notifications to a third-party tool using
+  an alert integration.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/configure-alert-integration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/configure-alert-integration.html)
+
+# Configure an Alert Integration
 
 > Send Capella metric-based notifications to a third-party tool using an alert integration. 
 
@@ -21,10 +31,9 @@ In addition, users with the following roles have read-only access to Capella ale
 When you add an alert integration, you must supply:
 
 * An identifying name.
-* The URL that uniquely identifies the destination for the alert integration’s notifications.
-
-|  | The destination Webhook URL must be publicly accessible for Capella to add alert integrations. |
-|  | ---------------------------------------------------------------------------------------------- |
+* The URL that uniquely identifies the destination for the alert integration’s notifications.  
+> [!IMPORTANT]  
+> The destination Webhook URL must be publicly accessible for Capella to add alert integrations.
 * An authentication and authorization method and credentials:
 
   * Basic auth requires a username and password.
@@ -36,8 +45,8 @@ Use your third-party tool to obtain the URL and credentials.
 
 To use the Capella Management API to create and configure an alert integration, see [Create Alert Integration](../../management-api-reference/index.md#tag/alert-integration/operation/postAlertIntegration).
 
-|  | You can add 1 alert integration for each project. |
-|  | ------------------------------------------------- |
+> [!NOTE]
+> You can add 1 alert integration for each project.
 
 To add an alert integration using the Capella UI:
 

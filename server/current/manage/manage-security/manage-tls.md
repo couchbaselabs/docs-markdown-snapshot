@@ -1,4 +1,15 @@
+---
+title: Manage On-the-Wire Security
+description: To support secure communications between nodes, clusters, and
+  clients, Couchbase Server provides interfaces for the configuration of
+  on-the-wire security settings.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-tls.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/manage-tls.html)
+
+# Manage On-the-Wire Security
 
 > To support secure communications between nodes, clusters, and clients, Couchbase Server provides interfaces for the configuration of on-the-wire security settings. 
 
@@ -18,10 +29,9 @@ These areas are described in detail in [On-the-Wire Security](../../learn/securi
 
 You can set the following three options globally and on a per-service basis. Settings at the service level override the global setting for the service.
 
-* `tlsMinVersion`. Specifies the minimum accepted TLS version. The server rejects client connections with protocols using a version earlier than the minimum version. The value can be `tlsv1.2` (the default) or `tlsv1.3`.
-
-|  | The values tlsv1 and tlsv1.1 were deprecated in Couchbase Server 7.2, and are no longer supported by Couchbase Server 7.6 and later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |  
+* `tlsMinVersion`. Specifies the minimum accepted TLS version. The server rejects client connections with protocols using a version earlier than the minimum version. The value can be `tlsv1.2` (the default) or `tlsv1.3`.  
+> [!NOTE]  
+> The values `tlsv1` and `tlsv1.1` were deprecated in Couchbase Server 7.2, and are no longer supported by Couchbase Server 7.6 and later.  
 This parameter can set globally and per service.
 * `honorCipherOrder`. Specifies whether the service uses its own cipher-suite preference, rather than the client’s. The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure.
 * `cipherSuites`. Specifies a list of the cipher suites to be used by the service, in order of preference. The argument must be a list of cipher suites, each of which appears as a member of the array that is the value of the non-configurable **supportedCipherSuites** setting for the service.  

@@ -1,9 +1,18 @@
+---
+title: Client Settings
+description: Client settings
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/ref/client-settings.html)
+
+# Client Settings
 
 > Client settings 
 
-|  | The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client-4.0.0/classes/Couchbase-ClusterOptions.html). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client-4.0.0/classes/Couchbase-ClusterOptions.html).
 
 Unresolved include directive in modules/ref/pages/client-settings.adoc - include::7.5@sdk:shared:partial$client-settings-nowait.adoc\[\]
 
@@ -11,8 +20,8 @@ Unresolved include directive in modules/ref/pages/client-settings.adoc - include
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

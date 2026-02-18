@@ -1,4 +1,13 @@
+---
+title: Views and Stored Data
+description: This section describes how the views system relates to stored data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-store-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-store-data.html)
+
+# Views and Stored Data
 
 > This section describes how the views system relates to stored data. 
 

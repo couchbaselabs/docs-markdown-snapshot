@@ -1,4 +1,13 @@
+---
+title: Getting Started
+description: Learn how to install the Elasticsearch Connector.
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/getting-started.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/getting-started.html)
+
+# Getting Started
 
 > A brief overview of the various ways to run the Couchbase Elasticsearch Connector, followed by step-by-step instructions for installing the connector in solo/distributed mode. 
 
@@ -22,8 +31,8 @@ Figure 1\. Distributed data flow with ElasticSearch
 
 In this mode each process is manually configured to handle only a subset of the replication workload. Distributed mode can scale to handle high volumes of traffic, but is inflexible; adding an additional process to a distributed connector group requires stopping and reconfiguring _all_ of the processes in the group.
 
-|  | Solo mode is effectively the same as distributed mode with a group size of 1\. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> Solo mode is effectively the same as distributed mode with a group size of 1\.
 
 ### [](#autonomous-operations)Autonomous Operations
 
@@ -40,8 +49,8 @@ To deploy the connector in solo or distributed mode, you will need:
 * The [latest release](release-notes.md) of Couchbase Elasticsearch Connector.
 * [Compatible versions](compatibility.md) of Java, Elasticsearch, and Couchbase Server.
 
-|  | Couchbase Enterprise Edition is required if you wish to enable secure connections to Couchbase. Likewise, versions of Elasticsearch prior to 6.8 and 7.1 require an additional license in order to support secure connections. Trial versions of both are available. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Enterprise Edition is required if you wish to enable secure connections to Couchbase. Likewise, versions of Elasticsearch prior to 6.8 and 7.1 require an additional license in order to support secure connections. Trial versions of both are available.
 
 ## [](#pre-flight-check)Pre-flight Check
 
@@ -91,8 +100,8 @@ Add `$CBES_HOME/bin` to your `PATH`.
 
 Copy `$CBES_HOME/config/example-connector.toml` to `$CBES_HOME/config/default-connector.toml`.
 
-|  | The connector commands get their configuration from $CBES\_HOME/config/default-connector.toml by default. You can tell them to use a different config file with the \--config <file> command line option. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The connector commands get their configuration from `$CBES_HOME/config/default-connector.toml` by default. You can tell them to use a different config file with the `--config <file>` command line option.
 
 Take a moment to browse the settings available in `default-connector.toml`. Make sure the Couchbase and Elasticsearch credentials and hostnames match your environment. Note that the passwords are stored separately in the `$CBES_HOME/secrets` directory.
 
@@ -122,8 +131,8 @@ A Couchbase bucket consists of many separate partitions (also known as virtual b
 
 To run the connector in distributed mode, install the connector on multiple machines. Make sure the connector configuration is identical on each machine, except for the `memberNumber` config key, which must be unique within the group. Set the `totalMembers` config key to the total number of connector processes in the group.
 
-|  | Make sure to stop all of the connector instances in a group before changing the number of instances in the group. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Make sure to stop all of the connector instances in a group before changing the number of instances in the group.
 
 When a connector instance runs in distributed mode, it replicates from only the partitions that correspond to its group membership configuration.
 
@@ -133,8 +142,8 @@ The connector periodically saves its replication state by writing metadata docum
 
 Command line tools are provided to manage the replication checkpoint.
 
-|  | You must stop all connector instances in a group before modifying the replication checkpoint, otherwise the changes will not take effect. (This restriction does not apply when running in [Autonomous Operations mode](autonomous-operations.md).) |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> You must stop all connector instances in a group before modifying the replication checkpoint, otherwise the changes will not take effect. (This restriction does not apply when running in [Autonomous Operations mode](autonomous-operations.md).)
 
 The following commands are specific to the solo and distributed modes. [Autonomous Operations mode](autonomous-operations.md) has its own separate commands for managing checkpoints.
 
@@ -162,11 +171,25 @@ The checkpoint management commands use only the following parts of the config fi
 
 See [connector configuration](configuration.md) for details about these settings.
 
-|  | Although the other config sections are unused by the checkpoint management commands, they must still be present in the config file, otherwise the commands fail and complain of an invalid config file. Any files referenced by the config must also be present (for example, the contents of the secrets directory). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Although the other config sections are unused by the checkpoint management commands, they must still be present in the config file, otherwise the commands fail and complain of an invalid config file. Any files referenced by the config must also be present (for example, the contents of the `secrets` directory).
 
-|  | Instead of hardcoding values in the connector config file, you can pass in values via environment variables. This requires editing the config file to use environment variable placeholders. For example, you could edit your config file to say: \[group\] name = '${GROUP\_NAME}' Then specify the group name by setting an environment variable when running the checkpoint management command: env GROUP\_NAME=example-group \\     cbes-<command> --config <path/to/connector/config.toml> For more details, see [using environment variable placeholders in config files](configuration.md#environment-variables). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Instead of hardcoding values in the connector config file, you can pass in values via environment variables. This requires editing the config file to use environment variable placeholders.
+> 
+> For example, you could edit your config file to say:
+> 
+> ```toml
+> [group]
+> name = '${GROUP_NAME}'
+> ```
+> 
+> Then specify the group name by setting an environment variable when running the checkpoint management command:
+> 
+> env GROUP_NAME=example-group \
+>     cbes-<command> --config <path/to/connector/config.toml>
+> 
+> For more details, see [using environment variable placeholders in config files](configuration.md#environment-variables).
 
 ### [](#save-checkpoint)Saving the current replication state
 

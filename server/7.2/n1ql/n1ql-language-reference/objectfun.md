@@ -1,4 +1,15 @@
+---
+title: Object Functions
+description: You can use object functions to evaluate objects, perform
+  computations on attributes in an object, and to return a new object based on a
+  transformation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/objectfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/objectfun.html)
+
+# Object Functions
 
 You can use object functions to evaluate objects, perform computations on attributes in an object, and to return a new object based on a transformation.
 

@@ -1,4 +1,12 @@
+---
+title: Java Columnar SDK
+editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/hello-world/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-columnar-sdk/current/hello-world/overview.html)
+
+# Java Columnar SDK
 
 # Java Columnar SDK
 

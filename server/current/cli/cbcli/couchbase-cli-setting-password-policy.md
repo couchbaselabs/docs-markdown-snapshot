@@ -1,4 +1,13 @@
+---
+title: setting-password-policy
+description: Manage the password policy for new users
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-password-policy.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-setting-password-policy.html)
+
+# setting-password-policy
 
 Manage the password policy for new users
 

@@ -1,4 +1,12 @@
+---
+title: Capella Columnar Management API Reference
+editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/AV-120497-link-service-desc/docs/columnar/modules/management-api-reference/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/management-api-reference/index.html)
+
+# Capella Columnar Management API Reference
 
 * Api Keys
   * postCreate API Key

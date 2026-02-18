@@ -1,4 +1,14 @@
+---
+title: Managing Enterprise Analytics Links
+description: This page describes how to manage remote links and external links
+  using the Analytics Workbench.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sources/manage-links.html)
+
+# Managing Enterprise Analytics Links
 
 The Analytics Workbench enables you to create or edit remote links and external links:
 
@@ -28,10 +38,9 @@ To edit a remote link:
 
 1. In the UI, select the **Workbench** tab and browse to the link you want to edit.
 2. Select the required link. NOTE: You must disconnect the link before you can edit it.
-3. Edit the details of the link as required.
-
-|  | You cannot change the name of the link or the link type. Make sure that you enter the password in the **Remote Password** field. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |  
+3. Edit the details of the link as required.  
+> [!NOTE]  
+> You cannot change the name of the link or the link type. Make sure that you enter the password in the **Remote Password** field.  
 For information about the available options, see:
 
   * [Stream Data from Remote Sources](manage-remote.md)
@@ -44,10 +53,9 @@ To edit an external link:
 
 1. In the UI, select the **Workbench** tab and browse to the link you want to edit.
 2. Select the required link.
-3. Edit the details of the link as required.
-
-|  | You cannot change the name of the link or the link type. Make sure that you enter the access key, if it’s provided, in the **Secret Access Key** field. For more information about the available options, see: |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Edit the details of the link as required.  
+> [!NOTE]  
+> You cannot change the name of the link or the link type. Make sure that you enter the access key, if it’s provided, in the **Secret Access Key** field. For more information about the available options, see:
 
   * [Stream Data from Remote Sources](manage-remote.md)
   * [Set Up an External Data Source](manage-external.md)

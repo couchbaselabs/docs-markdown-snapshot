@@ -1,4 +1,14 @@
+---
+title: Manage Scopes and Collections
+description: Scopes and collections, which allow documents to be categorized and
+  organized within a bucket, can be created and deleted within the Capella UI.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/scopes-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/data-service/scopes-collections.html)
+
+# Manage Scopes and Collections
 
 > Scopes and collections, which allow documents to be categorized and organized within a bucket, can be created and deleted within the Capella UI. 
 
@@ -38,8 +48,8 @@ A scope name can only contain the `A-Z`, `a-z`, and `0-9` characters as well as 
 
 To delete a scope, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re deleting a scope. ](../../projects/project-roles.md#project-owner-role)
 
-|  | Deleting a scope deletes all of the collections and documents in that scope from the cluster. You can only restore them from a previous backup. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deleting a scope deletes all of the collections and documents in that scope from the cluster. You can only restore them from a previous backup.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -78,8 +88,8 @@ For information about collection expiration, see [Expiration](../../../server/cu
 
 To delete a collection, you need the [Project Owner or Cluster Manager role for the project with the cluster where you’re deleting the collection. ](../../projects/project-roles.md#project-owner-role)
 
-|  | Deleting a collection deletes all of the documents within it from the cluster. You can restore these documents from a previous backup. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deleting a collection deletes all of the documents within it from the cluster. You can restore these documents from a previous backup.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 

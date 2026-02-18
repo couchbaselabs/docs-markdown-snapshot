@@ -1,9 +1,17 @@
+---
+title: Integrating CMOS with Existing Monitoring Stacks
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/integrating-with-existing-deployments.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/integrating-with-existing-deployments.html)
+
+# Integrating CMOS with Existing Monitoring Stacks
 
 > You can integrate CMOS with your existing Prometheus, Alertmanager, and Grafana monitoring system. This tutorial documents how to configure each component in order to achieve this. 
 
-|  | Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#pre-requisites)Pre-requisites
 
@@ -39,8 +47,8 @@ docker run -d --rm \
 | ----- | ---------------------------------------------------------------------------------- |
 | **2** | If you are not using Alertmanager, set this to a blank value.                      |
 
-|  | Docker networking [defaults to bridge](https://docs.docker.com/network/#network-drivers), meaning that this container will be able to communicate with any other running Docker containers. If your Grafana, Prometheus / Alertmanager instances are not containerized, ensure that the Cluster Monitor container can communicate with them. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Docker networking [defaults to bridge](https://docs.docker.com/network/#network-drivers), meaning that this container will be able to communicate with any other running Docker containers. If your Grafana, Prometheus / Alertmanager instances are not containerized, ensure that the Cluster Monitor container can communicate with them.
 
 ### [](#configure-cluster-monitor)Configure Cluster Monitor
 
@@ -52,8 +60,8 @@ Then click "Add Cluster" and enter the IP address of a node in the cluster, alon
 
 ### [](#grafana-plugins)Grafana: Plugins
 
-|  | The instructions for each plugin offer a Grafana Cloud one-click install, a command-line based install for a running instance, or a .zip file which can be unpacked manually into your Grafana plugins directory. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The instructions for each plugin offer a Grafana Cloud one-click install, a command-line based install for a running instance, or a `.zip` file which can be unpacked manually into your Grafana plugins directory.
 
 **Currently, we require only [JSON API](https://grafana.com/grafana/plugins/marcusolsson-json-datasource/), which has associated [installation instructions](https://grafana.com/grafana/plugins/marcusolsson-json-datasource/?tab=installation).**
 
@@ -93,8 +101,8 @@ providers:
 
 Now we have the required plugins and dashboards installed, we need to configure Data Sources.
 
-|  | If adding through the web UI, both Cluster Monitor and Alertmanager will return 404\. This is expected and not an issue - the dashboards use sub-paths of these configured URLs which are themselves valid and exist. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If adding through the web UI, both Cluster Monitor and Alertmanager will return 404\. This is expected and not an issue - the dashboards use sub-paths of these configured URLs which are themselves valid and exist.
 
 1. **Cluster Monitor (JSON API)**, via the Web UI: click on _Add Data Source_ and select _JSON API_.
 
@@ -109,8 +117,8 @@ Now we have the required plugins and dashboards installed, we need to configure 
 
 If you are utilizing Grafana provisioning for dashboards, and would instead like to specify this in a configuration file, then your `grafana.yml` should look something like this:
 
-|  | The names of these two data sources must match the below snippet exactly, otherwise the dashboards may fail to provision. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The names of these two data sources must match the below snippet exactly, otherwise the dashboards may fail to provision.
 
 ```console
     - name: Couchbase Cluster Monitor API
@@ -158,8 +166,8 @@ scrape_configs:
 | **3** | targets should specify the addresses of all the nodes in your cluster. For a Couchbase Server 7+ cluster the port number needs to be the management port: 8091 by default, or :18091 if you have TLS enabled. For clusters below Couchbase Server 7.0, you should use the port that your Prometheus exporter uses. There are alternative configuration options that do not require hard-coding the addresses - refer to the [Prometheus documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape%5Fconfig) for more details. |
 | **4** | Any labels defined here will be added to **all** metrics from this cluster - you may want to configure e.g., environment, datacenter etc.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
-|  | The cluster label is required, and must match the name the cluster is configured to use in the Web Console. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `cluster` label is required, and must match the name the cluster is configured to use in the Web Console.
 
 Add another `scrape_config` job for the previously-installed Cluster Monitor:
 
@@ -203,8 +211,8 @@ rule_files:
   - /etc/prometheus/alerting/prometheus-rules.yaml
 ```
 
-|  | If you have existing alert definitions, simply add the prometheus-rules.yaml file to the same directory, and specify \*.yaml as the target for rule\_files. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you have existing alert definitions, simply add the `prometheus-rules.yaml` file to the same directory, and specify `*.yaml` as the target for `rule_files`.
 
 Restart Prometheus once more, and navigate to the Web UI. You should be able to see the new rules listed on the `/rules` page. You may need to unhide inactive rules.
 

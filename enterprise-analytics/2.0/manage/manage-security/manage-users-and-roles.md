@@ -1,4 +1,14 @@
+---
+title: Manage Users, Groups, and Roles
+description: Enterprise Analytics allows defined <em>users</em> to be assigned
+  roles, which permit access to resources.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/manage-users-and-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-security/manage-users-and-roles.html)
+
+# Manage Users, Groups, and Roles
 
 > Enterprise Analytics allows defined _users_ to be assigned roles, which permit access to resources. Additionally, _groups_ of users can be established, and roles assigned to each group; so that each user is granted the roles of each group of which they are a member. 
 
@@ -6,8 +16,8 @@
 
 The administrator who initially performs installation and configuration of Enterprise Analytics is granted the role of _Full Administrator_, with complete access to the entire system, including _read_ and _write_ privileges. Once basic system configuration has been completed, the Full Administrator is free to add other users to the system, and assign them roles; thereby specifying their privileges.
 
-|  | A cluster running Enterprise Analytics can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty users. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A cluster running Enterprise Analytics can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty users.
 
 As Full Administrator, to add _users_ (each of which might be either an administrator or an application) and groups to Enterprise Analytics, do the following:
 
@@ -25,8 +35,8 @@ The **Users & Groups** panel, which is visible by default on the **Security** sc
 
 Initially, the panel shows that no users have yet been defined. (The Full Administrator who established the cluster is never included on the list; which contains only administrators subsequently defined.)
 
-|  | A notification may appear in the upper area of the screen indicating that no ability to support _external authentication_ — by means of either saslauthd or LDAP — has yet been enabled. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A notification may appear in the upper area of the screen indicating that no ability to support _external authentication_ — by means of either `saslauthd` or `LDAP` — has yet been enabled.
 
 To enable LDAP, see the first step of the command-sequence provided in [Getting Started with saslauthd and LDAP](configure-saslauthd.md#getting-started-with-saslauthd-and-ldap). For a general overview of external authentication, see [Authentication Domains](../../../../server/current/learn/security/authentication-domains.md).
 

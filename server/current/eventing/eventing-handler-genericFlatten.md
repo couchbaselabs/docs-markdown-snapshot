@@ -1,4 +1,14 @@
+---
+title: "Function: genericFlatten"
+description: Recursively and Generically Flatten a document for integration with
+  a non-NOSQL RDBMS.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-genericFlatten.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-handler-genericFlatten.html)
+
+# Function: genericFlatten
 
 **Goal**: Recursively and Generically Flatten a document for integration with a non-NOSQL RDBMS.
 

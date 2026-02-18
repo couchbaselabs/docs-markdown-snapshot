@@ -1,4 +1,12 @@
+---
+title: Management API Reference
+editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/AV-120497-link-service-desc/docs/public/modules/management-api-reference/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/management-api-reference/index.html)
+
+# Management API Reference
 
 * Capella Operational
   * Alert Integration

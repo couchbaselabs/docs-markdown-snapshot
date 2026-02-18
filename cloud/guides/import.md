@@ -1,4 +1,13 @@
+---
+title: Import Data with an SDK
+description: How to import documents into Couchbase with an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/import.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/import.html)
+
+# Import Data with an SDK
 
 > How to import documents into Couchbase with an SDK. 
 
@@ -436,8 +445,8 @@ Click the  View button to see any code sample in context.
 
 Use the [stream-json](https://github.com/uhop/stream-json) library.
 
-|  | stream-json formats its output with a { key: …​, value: …​} wrapper, so we need to map the stream into the expected format. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> stream-json formats its output with a `{ key: …​, value: …​}` wrapper, so we need to map the stream into the expected format.
 
 ```nodejs
 const stream = require('stream'); 
@@ -580,8 +589,8 @@ To insert an imported document into the keyspace:
 2. Do any additional processing, for example calculating fields, or adding metadata about the importer.
 3. Finally, use an upsert operation to the store the document.
 
-|  | Use upsert rather than insert to upload the document even if the target key already has a value. This means that in the case of any error, it’s easy to make any required tweaks to the import file and re-run the whole import. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use `upsert` rather than `insert` to upload the document even if the target key already has a value. This means that in the case of any error, it’s easy to make any required tweaks to the import file and re-run the whole import.
 
 * .NET
 * Java
@@ -590,8 +599,8 @@ To insert an imported document into the keyspace:
 
 To store the data, hook the prepared data into an `upsert` routine.
 
-|  | As CsvHelper and Newtonsoft generate different outputs, we have provided some overloaded options that work for either. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As CsvHelper and Newtonsoft generate different outputs, we have provided some overloaded options that work for either.
 
 ```csharp
 // CsvHelper emits `dynamic` records

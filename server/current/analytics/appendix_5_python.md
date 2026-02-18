@@ -1,4 +1,13 @@
+---
+title: "Appendix 5: Python UDFs"
+description: A short guide and tutorial regarding the use of Python user-defined functions
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/appendix_5_python.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/appendix_5_python.html)
+
+# Appendix 5: Python UDFs
 
 ## [](#function-authors-guide)Function Author’s Guide
 

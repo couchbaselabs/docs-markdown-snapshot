@@ -1,4 +1,14 @@
+---
+title: Conditional Functions for Numbers
+description: Conditional functions evaluate expressions to determine if the
+  values and formulas meet the specified condition.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/condfunnum.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/condfunnum.html)
+
+# Conditional Functions for Numbers
 
 Conditional functions evaluate expressions to determine if the values and formulas meet the specified condition.
 

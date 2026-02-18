@@ -1,4 +1,15 @@
+---
+title: Cross Data Center Replication (XDCR)
+description: <em>Cross Data Center Replication</em> (XDCR) allows data to be
+  replicated across clusters that are potentially located in different data
+  centers.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-overview.html)
+
+# Cross Data Center Replication (XDCR)
 
 > _Cross Data Center Replication_ (XDCR) allows data to be replicated across clusters that are potentially located in different data centers. 
 
@@ -6,8 +17,8 @@
 
 Cross data center replication (XDCR) replicates data between a source bucket and a target bucket. The buckets may be located on different clusters, and in different data centers: this provides protection against data-center failure, and also provides high-performance data-access for globally distributed, mission-critical applications.
 
-|  | In Version 7.0, Couchbase made XDCR a commercial-only feature of Enterprise Edition. See [Couchbase Modifies License of Free Community Edition Package](https://blog.couchbase.com/couchbase-modifies-license-free-community-edition-package/), for more information about the license restrictions. Also see [XDCR and Community Edition](../../manage/manage-xdcr/xdcr-management-overview.md#xdcr-and-community-edition), for information about how the new restrictions affect the experience of Community-Edition administrators. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Version 7.0, Couchbase made XDCR a commercial-only feature of Enterprise Edition. See [Couchbase Modifies License of Free Community Edition Package](https://blog.couchbase.com/couchbase-modifies-license-free-community-edition-package/), for more information about the license restrictions. Also see [XDCR and Community Edition](../../manage/manage-xdcr/xdcr-management-overview.md#xdcr-and-community-edition), for information about how the new restrictions affect the experience of Community-Edition administrators.
 
 Data from the source bucket is pushed to the target bucket by means of an XDCR agent, running on the source cluster, using the Database Change Protocol. Any bucket (Couchbase or Ephemeral) on any cluster can be specified as a source or a target for one or more XDCR definitions. Note, however, that if an Ephemeral bucket configured to eject data when its RAM-quota is exceeded is used as a source for XDCR, not all data written to the bucket is guaranteed to be replicated by XDCR. (See [Buckets](../buckets-memory-and-storage/buckets.md), for information on ejection.)
 
@@ -19,8 +30,8 @@ Cross Data Center Replication differs from intra-cluster replication in the foll
 
 The starting, stopping, and pausing of XDCR all occur independently of whatever intra-cluster replication is in progress on either the source or target cluster. While running, XDCR continuously propagates mutations from the source to the target bucket.
 
-|  | Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Versions of Couchbase Server before 8.0 do not support XDCR replication between buckets with different numbers of vBuckets. They also do not support Magma buckets with 128 vBuckets. Due to both these limitations, you cannot replicate from a pre-8.0 cluster to a Magma bucket with 128 vBuckets. You can replicate in the opposite direction (from a Magma bucket with 128 vBuckets to a pre-8.0 cluster) because Magma buckets on Couchbase Server 8.0 and later can replicate to buckets with a different number of vBuckets. However, you should avoid doing so because bidirectional replication is impossible in this configuration.
 
 ## [](#tools-for-managing-xdcr)Tools and Procedures for Managing XDCR
 
@@ -84,10 +95,11 @@ XDCR supports _scopes_ and _collections_, which are provided with Couchbase Serv
 
 * Replication based on _implicit mapping_. Whenever a _keyspace_ (i.e. a reference to the location of a collection within its scope, provided as _scope-name_._collection-name_) is identical on source and target clusters, XDCR replicates documents from the source collection to the target collection automatically, when the respective buckets are specified as source and target.
 * Replicaton based on _explicit_ mapping. The data in any source collection can be replicated to any target collection, as specified by the administrator.
-* _Migration_. Data in the _default_ collection of a source bucket can be replicated to an administrator-defined collection in the target bucket.
-
-|  | Be aware that performing data migration may result in data loss when using XDCR filters to delete data. If you are running filters that remove data, be sure to read [Configuring Deletion Filters to Prevent Data-Loss](xdcr-filtering.md#configuring-deletion-filters-to-prevent-data-loss) before attempting a migration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* _Migration_. Data in the _default_ collection of a source bucket can be replicated to an administrator-defined collection in the target bucket.  
+> [!WARNING]  
+> Be aware that performing data migration may result in data loss when using XDCR filters to delete data.  
+>  
+> If you are running filters that remove data, be sure to read [Configuring Deletion Filters to Prevent Data-Loss](xdcr-filtering.md#configuring-deletion-filters-to-prevent-data-loss) before attempting a migration.
 
 In each case, _filtering_ can be applied.
 
@@ -187,5 +199,32 @@ The following table indicates XDCR compatibility between different versions of C
 | 7.6.6 and later                                               | ✓\*           | ✓\*                          | ✓\*\* No ECCV                                                                                     |
 | 7.6.5, 7.6.4, 7.6.3, 7.6.2, 7.6.1, 7.6.0, 7.2.x, 7.1.x, 7.0.x | ✓\*\* No ECCV | ✓\*\* No ECCV                | ✓                                                                                                 |
 
-|  | XDCR Compatibility with vBucket Configuration (for both \* and \*\*) Starting in Couchbase Server 8.0, Magma storage backend buckets can have either 128 or 1024 vBuckets. In earlier versions, all buckets had 1024 vBuckets, except on macOS. When creating XDCR replications between the Couchbase Server clusters, make sure of the compatibility of number of vBuckets with the Couchbase Server version as follows: From pre-8.0 to 8.0: The source and destination buckets must have the same number of vBuckets. For example, when replicating from a 7.x cluster to an 8.x cluster, create the target 8.x bucket with 1024 vBuckets. From 8.0 to pre-8.0: The vBucket counts do not need to match. However, the vBucket count mismatch, in the source and target buckets of an XDCR topology, does not support the bi-directional replication. Between 8.0 and later versions: Replications are supported even if the buckets have different vBucket counts. For more information about Magma storage, see [Storage Engines](../buckets-memory-and-storage/storage-engines.md). For more information about vBuckets, see [vBuckets](../buckets-memory-and-storage/vbuckets.md). Cross Cluster Versioning (ECCV) Compatibility (for \*\* only) Starting in Couchbase Server 7.6.6, buckets include the enableCrossClusterVersioning (ECCV) property, which is set to false (disabled) by default. If you set ECCV to true (enabled) on a bucket in an XDCR replication topology, then you must set ECCV to true on all buckets participating in the XDCR replication topology. Otherwise, dependent features may not function. As the Couchbase Server versions earlier than 7.6.6 do not support the enableCrossClusterVersioning bucket property, those buckets cannot participate in a replication topology containing ECCV-enabled buckets. XDCR does not automatically validate ECCV property consistency across buckets. If you want to prevent a bucket without ECCV from participating in an XDCR replication topology, then before creating or modifying XDCR replications, you must manually verify that ECCV is disabled for all participating buckets. For more information about ECCV, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> XDCR Compatibility with vBucket Configuration (for both \* and \*\*)
+> 
+> Starting in Couchbase Server 8.0, Magma storage backend buckets can have either 128 or 1024 vBuckets. In earlier versions, all buckets had 1024 vBuckets, except on macOS.
+> 
+> When creating XDCR replications between the Couchbase Server clusters, make sure of the compatibility of number of vBuckets with the Couchbase Server version as follows:
+> 
+> * From pre-8.0 to 8.0:  
+> The source and destination buckets must have the same number of vBuckets. For example, when replicating from a 7.x cluster to an 8.x cluster, create the target 8.x bucket with 1024 vBuckets.
+> * From 8.0 to pre-8.0:  
+> The vBucket counts do not need to match. However, the vBucket count mismatch, in the source and target buckets of an XDCR topology, does not support the bi-directional replication.
+> * Between 8.0 and later versions:  
+> Replications are supported even if the buckets have different vBucket counts.
+> 
+> For more information about Magma storage, see [Storage Engines](../buckets-memory-and-storage/storage-engines.md).
+> 
+> For more information about vBuckets, see [vBuckets](../buckets-memory-and-storage/vbuckets.md).
+> 
+> Cross Cluster Versioning (ECCV) Compatibility (for \*\* only)
+> 
+> Starting in Couchbase Server 7.6.6, buckets include the `enableCrossClusterVersioning` (ECCV) property, which is set to `false` (disabled) by default.
+> 
+> If you set ECCV to `true` (enabled) on a bucket in an XDCR replication topology, then you must set ECCV to `true` on all buckets participating in the XDCR replication topology. Otherwise, dependent features may not function.
+> 
+> As the Couchbase Server versions earlier than 7.6.6 do not support the `enableCrossClusterVersioning` bucket property, those buckets cannot participate in a replication topology containing ECCV-enabled buckets.
+> 
+> XDCR does not automatically validate ECCV property consistency across buckets. If you want to prevent a bucket without ECCV from participating in an XDCR replication topology, then before creating or modifying XDCR replications, you must manually verify that ECCV is disabled for all participating buckets.
+> 
+> For more information about ECCV, see [XDCR enableCrossClusterVersioning](xdcr-enable-crossclusterversioning.md).

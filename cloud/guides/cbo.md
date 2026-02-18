@@ -1,4 +1,13 @@
+---
+title: Use the Cost-Based Optimizer with Queries
+description: How to use the Cost-Based Optimizer and manage optimizer statistics.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/cbo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/cbo.html)
+
+# Use the Cost-Based Optimizer with Queries
 
 > How to use the Cost-Based Optimizer and manage optimizer statistics. 
 
@@ -8,8 +17,8 @@ The Cost-Based Optimizer enables the Query Service to create the most efficient 
 
 The Cost-Based Optimizer can generate a query plan for [SELECT](../n1ql/n1ql-language-reference/selectintro.md), [UPDATE](../n1ql/n1ql-language-reference/update.md), [DELETE](../n1ql/n1ql-language-reference/delete.md), [MERGE](../n1ql/n1ql-language-reference/merge.md), and [INSERT INTO with SELECT](../n1ql/n1ql-language-reference/insert.md) queries.
 
-|  | If the Cost-Based Optimizer is unavailable or inactive, or if statistics are not available, the Query Service falls back on the legacy rules-based optimizer to generate the query execution plan. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the Cost-Based Optimizer is unavailable or inactive, or if statistics are not available, the Query Service falls back on the legacy rules-based optimizer to generate the query execution plan.
 
 If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
 
@@ -41,8 +50,8 @@ The following setting activates the Cost-Based Optimizer for subsequent requests
 
 To activate or deactivate the Cost-Based Optimizer for a request, use `\SET` command with the `use_cbo` parameter.
 
-|  | The parameter name must be prefixed by a hyphen. The parameter is set to true by default. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The parameter name must be prefixed by a hyphen. The parameter is set to `true` by default.
 
 ---
 
@@ -160,8 +169,8 @@ For more information and examples, see [Update Statistics for Multiple Indexes](
 
 To delete statistics, use the `UPDATE STATISTICS` command with the `DELETE` clause.
 
-|  | Deleting statistics for a set of index expressions effectively turns off the Cost-Based Optimizer for queries which use predicates on those expressions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Deleting statistics for a set of index expressions effectively turns off the Cost-Based Optimizer for queries which use predicates on those expressions.
 
 For example, the following query deletes statistics for the specified index expressions.
 

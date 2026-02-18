@@ -1,4 +1,14 @@
+---
+title: Manage Logging
+description: The Logging facility allows a record to be maintained of important
+  events that occur on Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-logging/manage-logging.html)
+
+# Manage Logging
 
 > The Logging facility allows a record to be maintained of important events that occur on Couchbase Server. 
 
@@ -65,8 +75,8 @@ Each node in the cluster saves several different log files to the log directory.
 | views                             | Troubleshooting log for the views engine, mainly logging the changing of partition states.                                                                                                                                                                                                                                                                                   |
 | xdcr\_target                      | Troubleshooting log for data received from XDCR sources.                                                                                                                                                                                                                                                                                                                     |
 
-|  | Additional log files may exist in the log directory. These files are often empty unless you have enabled specific debugging options. You usually only enable these settings at the request of Couchbase Support. Some logs in preceding table do not appear in the log directory of a node where you have not enabled the associated feature or service associated with it. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Additional log files may exist in the log directory. These files are often empty unless you have enabled specific debugging options. You usually only enable these settings at the request of Couchbase Support. Some logs in preceding table do not appear in the log directory of a node where you have not enabled the associated feature or service associated with it.
 
 ### [](#changing-log-file-locations)Changing Log File Locations
 
@@ -99,8 +109,8 @@ Couchbase Server rotates other log files automatically when they reach 40 MB. It
 
 You can change log rotation settings by editing the `static_config` configuration file. This file only controls the log rotation settings on the node where you make the change. It does not propagate to other nodes in the cluster.
 
-|  | Couchbase Server upgrades can overwrite static\_config, losing any of your modifications. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server upgrades can overwrite `static_config`, losing any of your modifications.
 
 To change log rotation settings, follow these steps:
 
@@ -143,8 +153,8 @@ Some components and services in Couchbase Server let you adjust logging levels a
 | Index Service            | [projector.settings.log\_level](#index-rest-settings:index.adoc:~:text=Projector%20logging%20level.)                | Sets the logging level for the Index Service’s projector component that provides data to the Index Service. |
 | Query Service            | [loglevel](../../n1ql/n1ql-manage/query-settings.md#loglevel)                                                       | Sets the logging level for the Query Service.                                                               |
 
-|  | Couchbase Server auditing has its own log settings. See [Manage Audit Logs and Events](#https:manage:manage-security/manage-auditing.adoc#manage-audit-logs-and-events) for more information. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server auditing has its own log settings. See [Manage Audit Logs and Events](#https:manage:manage-security/manage-auditing.adoc#manage-audit-logs-and-events) for more information.
 
 #### [](#persistent-changes)Change Logging Levels via a Configuration File
 
@@ -152,8 +162,8 @@ It’s possible to change the logging level of Couchbase Server components that 
 
 The logging level for Couchbase Server’s internal components is set in the `static_config` configuration file. This file contains a series of `loglevel_` entries that set the log level of internal Couchbase Server components. This file only controls the log levels on the node where you make the change. If you need to make the change on multiple nodes, you must edit the file on each node.
 
-|  | Couchbase Server upgrades can overwrite static\_config, losing any modifications you have made. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server upgrades can overwrite `static_config`, losing any modifications you have made.
 
 To change the logging level for a component, follow these steps:
 
@@ -210,8 +220,8 @@ Once you start the collection process, the page clears and shows you a status me
 
 After the process completes, the log files are available in the specified destination directory on each node. If you enabled redaction, Couchbase Server creates 2 zip files for each node. One contains the redacted data, and the other contains unredacted data.
 
-|  | Couchbase Server adds the prefix ns\_server. to the log files from the log directory. The additional logs it gathers do not have this prefix. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server adds the prefix `ns_server.` to the log files from the log directory. The additional logs it gathers do not have this prefix.
 
 ### [](#getting-a-cluster-summary)Getting a Cluster Summary
 
@@ -342,8 +352,8 @@ You can use `curl` to upload the log file using the provided URL and UUID:
 curl --upload-file [filename] https://uploads.couchbase.com/bigstuff-fle11fdb-4b1c-48e4-88fe-7fe2fb0f2019/
 ```
 
-|  | Include the final forward slash (/) character at the end of the command. |
-|  | ------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Include the final forward slash (`/`) character at the end of the command.
 
 You can also send the file using the Couchbase Server web console:
 
@@ -361,8 +371,12 @@ You can examine and alter the logging threshold for slow-running operations. Use
 
 Retrieve the current settings using the `mcctl` CLI to execute the `get sla` command:
 
-|  | These settings only apply to the nodes where you make the changes. You must implement the changes on each node to apply them across the cluster. You must also configure the node to run the data service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> These settings only apply to the nodes where you make the changes.
+> 
+> You must implement the changes on each node to apply them across the cluster.
+> 
+> You must also configure the node to run the `data service`.
 
 Getting threshold details
 
@@ -398,8 +412,13 @@ set sla '{"version":1, "DELETE_BUCKET":{"slow":"100 ms"}}'
 
 In this example, the threshold for the `DELETE_BUCKET` operation is set to 100 ms. If a bucket deletion operation takes longer than this, a message is logged.
 
-|  | You can also specify the time interval without a space: /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \\ set sla '{"version":1, "DELETE\_BUCKET":{"slow":"100ms"}}' |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also specify the time interval without a space:
+> 
+> ```bash
+> /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \
+> set sla '{"version":1, "DELETE_BUCKET":{"slow":"100ms"}}'
+> ```
 
 You can set the threshold for all op-codes in a single command using the `default` code:
 
@@ -470,5 +489,5 @@ cp opcode-attributes.json opcode-attributes.d
 
 Edit `/opt/couchbase/etc/couchbase/kv/opcode-attributes.d/opcode-attributes.json` with the new settings.
 
-|  | These settings only apply to the node where you make the changes. To change the threshold across the cluster, apply all configurations to each node. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These settings only apply to the node where you make the changes. To change the threshold across the cluster, apply all configurations to each node.

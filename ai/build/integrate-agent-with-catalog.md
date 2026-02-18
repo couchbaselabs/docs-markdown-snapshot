@@ -1,4 +1,14 @@
+---
+title: Integrate an Agent with the Agent Catalog
+description: Use the Couchbase Agent Catalog to create your own custom AI agents
+  with your preferred Large Language Model (LLM) and agent framework.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/integrate-agent-with-catalog.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/integrate-agent-with-catalog.html)
+
+# Integrate an Agent with the Agent Catalog
 
 > Use the Couchbase Agent Catalog to create your own custom AI agents with your preferred Large Language Model (LLM) and agent framework. 
 
@@ -6,8 +16,11 @@ An AI agent could be a simple application like a chatbot, or a more specialized 
 
 Use Capella AI Services together with the Couchbase Agent Catalog to integrate Capella-hosted models into your agent. The Agent Catalog features a command-line tool and a Python SDK to support your development. It works with Capella as a profile store, transactional store, or vector store.
 
-|  | Couchbase AI Services also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework: Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) \| [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb) GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Couchbase AI Services also offers notebooks and sample code hosted on Google Colab and GitHub to get you started with a prebuilt agentic app in your choice of agent framework:
+> 
+> * Colab: [LangGraph](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://colab.research.google.com/github/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
+> * GitHub: [LangGraph](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/flight%5Fsearch%5Fagent%5Flangraph/flight%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LangChain](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/hotel%5Fsearch%5Fagent%5Flangchain/hotel%5Fsearch%5Fagent%5Ftutorial.ipynb) | [LlamaIndex](https://github.com/couchbase-examples/agent-catalog-quickstart/blob/main/notebooks/landmark%5Fsearch%5Fagent%5Fllamaindex/landmark%5Fsearch%5Fagent%5Ftutorial.ipynb)
 
 The Agent Catalog also helps you:
 
@@ -30,8 +43,8 @@ You can also use it to manage your agent’s tools and prompts, through [Git](ht
 
 You can create new projects with the Agent Catalog, or integrate it into an existing project.
 
-|  | The Agent Catalog uses the [Python programming language](https://www.python.org/). |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Agent Catalog uses the [Python programming language](https://www.python.org/).
 
 ## [](#prerequisites)Prerequisites
 
@@ -57,10 +70,17 @@ For example, you could install and use [Anaconda](https://docs.conda.io/projects
 2. Install the Agent Catalog package in your project:  
 ```console  
 pip install agentc  
-```
-
-|  | To install the helper packages for [LangChain](https://www.langchain.com/), [LangGraph](https://www.langchain.com/langgraph), or [LlamaIndex](https://www.llamaindex.ai/), run: pip install agentc\[langchain,langgraph,llamaindex\] These helper packages contain custom helper functions to help automatically integrate Agent Catalog into the existing features in your chosen framework. For example, you could use agentc\_langgraph.agent.agent.ReActAgent.create\_react\_agent instead of langchain.agents.react.agent.create\_react\_agent for easier logging. For alternate installation instructions for Agent Catalog, see the [agent-catalog documentation](https://couchbaselabs.github.io/agent-catalog/install.html#installation). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!TIP]  
+> To install the helper packages for [LangChain](https://www.langchain.com/), [LangGraph](https://www.langchain.com/langgraph), or [LlamaIndex](https://www.llamaindex.ai/), run:  
+>  
+> ```console  
+> pip install agentc[langchain,langgraph,llamaindex]  
+> ```  
+>  
+> These helper packages contain custom helper functions to help automatically integrate Agent Catalog into the existing features in your chosen framework. For example, you could use `agentc_langgraph.agent.agent.ReActAgent.create_react_agent` instead of `langchain.agents.react.agent.create_react_agent` for easier logging.  
+>  
+> For alternate installation instructions for Agent Catalog, see the [agent-catalog documentation](https://couchbaselabs.github.io/agent-catalog/install.html#installation).
 3. Add the required environment variables for the Agent Catalog to an `.env` file at the root of your project:  
 ```txt  
 # Enter the connection string for your Capella cluster.  
@@ -80,10 +100,9 @@ AGENT_CATALOG_ACTIVITY=.agent-activity
 ```txt  
 OPENAI_API_KEY=$API_KEY  
 ```  
-For more information about how to find your OpenAI API key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
-
-|  | You can use any LLM you want with the Agent Catalog and your chosen agent framework. Make sure you add any required API keys to your .env file. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+For more information about how to find your OpenAI API key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).  
+> [!TIP]  
+> You can use any LLM you want with the Agent Catalog and your chosen agent framework. Make sure you add any required API keys to your `.env` file.
 5. (Optional) Add additional environment variables for other features of the Agent Catalog:  
 ```txt  
 # If you want to use TLS for secure connections, enter the path to the TLS root certificate for your Couchbase cluster  
@@ -141,8 +160,10 @@ Choose what type of tool or prompt you want to use in your AI agent and add to t
 
 The Agent Catalog converts the SQL++ queries, semantic searches, and HTTP requests you create into Python functions, after you retrieve them from the catalog using `get_item`. You can use these functions during LLM function and tool calls and execute them in your choice of agent framework. Your agent framework uses your prompts to create a final LLM prompt, which guides the LLM to choose the relevant tools for a question.
 
-|  | The [agent-catalog GitHub repository](https://github.com/couchbaselabs/agent-catalog/) has some example code and tools that you can use right away in your agent. Find these tools in the [examples](https://github.com/couchbaselabs/agent-catalog/tree/master/examples) folder, under tools for your specific framework. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The [agent-catalog GitHub repository](https://github.com/couchbaselabs/agent-catalog/) has some example code and tools that you can use right away in your agent.
+> 
+> Find these tools in the [examples](https://github.com/couchbaselabs/agent-catalog/tree/master/examples) folder, under `tools` for your specific framework.
 
 * Python Function
 * SQL++ Query
@@ -646,8 +667,8 @@ content:
 
 ### [](#index-publish)Index and Publish New Tools and Prompts to the Agent Catalog
 
-|  | If you do not want the Agent Catalog to index your agent code, create an .agentcignore file and add the files or filename patterns that you want the Agent Catalog to ignore. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you do not want the Agent Catalog to index your agent code, create an `.agentcignore` file and add the files or filename patterns that you want the Agent Catalog to ignore.
 
 After you have written new tools or prompts or prepared existing tools and prompts, you must index them in the Agent Catalog. Indexing creates a JSON index file in your local project that contains information about your tools and prompts.
 
@@ -657,10 +678,9 @@ The Tools and Prompts Hub and the Agent Catalog rely on Git for versioning and s
 
 To index and publish your tools or prompts:
 
-1. Create a new commit in Git for all changes in your project. Before you index any tools or prompts, you must make sure that your working directory in Git is clean.
-
-|  | Run git status to check the current status of your working directory in Git. |
-|  | ---------------------------------------------------------------------------- |
+1. Create a new commit in Git for all changes in your project. Before you index any tools or prompts, you must make sure that your working directory in Git is clean.  
+> [!TIP]  
+> Run `git status` to check the current status of your working directory in Git.
 2. To index all tools and prompts contained in a single directory, in your command prompt, run the following command:  
 ```console  
 agentc index $PATH_TO_TOOL_OR_PROMPT_DIRECTORY  
@@ -695,8 +715,16 @@ If your publish was successful, the Agent Catalog creates a new scope, `agent_ca
   * If you did not use the `tool` or `prompt` flag, the Agent Catalog uploads all catalog and metadata files to their appropriate collections under `agent_catalog`.  
   The Agent Catalog updates this scope and its collections every time you run the `agentc publish` command on your project.
 
-|  | Remember to reindex and publish your tools and prompts as they change in your project. If your tools and prompts change after your first index and publish command, you can also set Agent Catalog to automatically index and publish your catalog when you run git commit in your project. Add the \--add-hook-for flag when you run agentc init in your project, to install the available Git hooks. For example, to automatically index and publish items in the my-agent folder while running git commit: agentc init --add-hook-for my-agent |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Remember to reindex and publish your tools and prompts as they change in your project.
+> 
+> If your tools and prompts change after your first index and publish command, you can also set Agent Catalog to automatically index and publish your catalog when you run `git commit` in your project. Add the `--add-hook-for` flag when you run `agentc init` in your project, to install the available Git hooks.
+> 
+> For example, to automatically index and publish items in the `my-agent` folder while running `git commit`:
+> 
+> ```console
+> agentc init --add-hook-for my-agent
+> ```
 
 #### [](#index-and-publish-programmatically-using-the-agentc-cmd-module)Index and Publish Programmatically Using The agentc.cmd Module
 
@@ -722,8 +750,8 @@ cmd_publish(
 
 ### [](#call)Call Tools and Prompts From Your Agent
 
-|  | The code samples in this section are only partial code samples, to show you the specific code you need to add to your own agent. Click **View on GitHub** to view the full example code and view the necessary imports and other information. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The code samples in this section are only partial code samples, to show you the specific code you need to add to your own agent. Click **View on GitHub** to view the full example code and view the necessary imports and other information.
 
 To call a tool or prompt from your agent’s code, call the `catalog.find()` method. For example, to search for a tool:
 
@@ -800,8 +828,8 @@ To pass the tools and prompts to your agent, you could use the `AgentExecutor` c
 
 For more information about working with `Catalog` instances and functions in your agent code, see the [agent-catalog documentation](https://couchbaselabs.github.io/agent-catalog/api.html#agentc.catalog.Catalog).
 
-|  | If you want to define your tools so the results of tool calls are logged to the Agent Catalog, see [Log the Results of Tool Calls](agent-tracer/add-spans-callbacks.md#tool-results). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you want to define your tools so the results of tool calls are logged to the Agent Catalog, see [Log the Results of Tool Calls](agent-tracer/add-spans-callbacks.md#tool-results).
 
 ### [](#delete)Clean or Delete Data From Agent Catalog
 

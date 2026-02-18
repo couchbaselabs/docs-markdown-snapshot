@@ -1,9 +1,17 @@
+---
+title: Stream Data from Couchbase Server
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/remote-cb-server.html)
+
+# Stream Data from Couchbase Server
 
 > To continuously update a Capella Analytics collection with data hosted on Couchbase Server, create a remote link and collection. 
 
-|  | For an example, see [Create Remote beer-sample Collections](../intro/examples.md#beer-sample). |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For an example, see [Create Remote beer-sample Collections](../intro/examples.md#beer-sample).
 
 ## [](#encryption)Requirements
 
@@ -42,10 +50,9 @@ You can now create a collection associated with the link.
 
 Once you have created a link, create a remote collection to receive the data from Couchbase Server:
 
-1. In the **Create Link for <cluster name> Cluster** dialog, click **Create Linked Collection**
-
-|  | If you closed the **Create Link for <cluster name> Cluster** dialog by clicking **Complete Later**, then under **Links** move your pointer over the name of the link and choose **⋮ (More)** **Create Linked Collection**. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. In the **Create Link for <cluster name> Cluster** dialog, click **Create Linked Collection**  
+> [!NOTE]  
+> If you closed the **Create Link for <cluster name> Cluster** dialog by clicking **Complete Later**, then under **Links** move your pointer over the name of the link and choose **⋮ (More)** **Create Linked Collection**.
 2. Select the Capella Analytics database and scope for the new collection and supply a name in the **Collection Name** field.
 3. In the **Source** fields, enter the names of the Couchbase **Bucket**, **Scope**, and **Collection** you want to shadow.
 4. Optionally, enter an expression in the **WHERE clause** field to filter the documents in the source collection. Do not include the `WHERE` keyword, and supply only a deterministic expression. For example, `activity = "eat"`.

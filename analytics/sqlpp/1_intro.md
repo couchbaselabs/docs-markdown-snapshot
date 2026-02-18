@@ -1,4 +1,15 @@
+---
+title: SQL++ for Capella Analytics
+description: Capella Analytics extends the grammar, statements, and capabilities
+  of  SQL++ for Analytics used with the Analytics Service in Couchbase Server
+  and Capella.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/1_intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/1_intro.html)
+
+# SQL++ for Capella Analytics
 
 > Capella Analytics extends the grammar, statements, and capabilities of SQL++ for Analytics used with the Analytics Service in Couchbase Server and Capella. This guide is a reference to the full syntax and semantics of the SQL++ query language that you use with Capella Analytics services. 
 

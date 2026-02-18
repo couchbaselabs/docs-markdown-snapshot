@@ -1,4 +1,13 @@
+---
+title: Install Enterprise Analytics
+description: Follow this process to install Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/introduction-linux-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/introduction-linux-installation.html)
+
+# Install Enterprise Analytics
 
 > Follow this process to install Enterprise Analytics. 
 

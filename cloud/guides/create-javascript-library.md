@@ -1,4 +1,14 @@
+---
+title: Create a User-Defined Function Library
+description: Create an user-defined function (UDF) library to store and organize
+  your JavaScript functions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-javascript-library.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/create-javascript-library.html)
+
+# Create a User-Defined Function Library
 
 > Create an user-defined function (UDF) library to store and organize your JavaScript functions. 
 
@@ -23,10 +33,9 @@ To create a new UDF library from the Query Tab:
   1. Choose **Global** to allow all buckets and scopes on this cluster to use functions in this library.
   2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this library.  
   Use this bucket and scope as the namespace for [your user-defined function](create-user-defined-function.md) to use this library and its functions later.
-7. (Optional) Add functions to your UDF library.
-
-|  | Function names must be unique within your selected scope. You cannot have 2 functions with the same name inside your library. See [Add Functions to a New User-Defined Function (UDF) Library](#add-functions-now). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+7. (Optional) Add functions to your UDF library.  
+> [!TIP]  
+> Function names must be unique within your selected scope. You cannot have 2 functions with the same name inside your library. See [Add Functions to a New User-Defined Function (UDF) Library](#add-functions-now).
 8. Click **Create**.
 
 ## [](#add-functions-now)Add Functions to a New User-Defined Function (UDF) Library
@@ -36,10 +45,9 @@ To add functions to your new UDF library while you create your library:
 1. Do one of the following:
 
   1. To manually define functions for your library, on the **Define Functions** tab, enter the code for each function.
-  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.
-
-|  | Each function should have a unique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.  
+  > [!TIP]  
+  > Each function should have a unique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard.
 
 ## [](#add-functions-later)Add Functions to an Existing User-Defined Function (UDF) Library
 
@@ -52,10 +60,9 @@ To add or edit functions in an existing UDF library:
 5. Do one of the following:
 
   1. To manually define functions for your library, on the **Create Functions** tab, enter or edit the code for each function.
-  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.
-
-|  | Each function should have aunique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.  
+  > [!TIP]  
+  > Each function should have aunique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard.
 6. Click **Update**.
 
 ## [](#creating-functions-with-variable-length-parameter-lists)Creating Functions with Variable Length Parameter Lists

@@ -1,4 +1,13 @@
+---
+title: Manage Scopes and Collections
+description: Scopes and collections allow you to organize your documents within a database.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/scopes-collections-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/scopes-collections-manage.html)
+
+# Manage Scopes and Collections
 
 > Scopes and collections allow you to organize your documents within a database. 
 
@@ -18,8 +27,8 @@ Collections can be assigned to different scopes according to content-type or dep
 
 ## [](#browser-specific-behavior)Browser-Specific Behavior
 
-|  | Due to IndexedDB requirements, collections and their indexes must be declared when opening the database. Collections cannot be created or deleted while the database is open. This is different from native Couchbase Lite SDKs. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Due to IndexedDB requirements, collections and their indexes must be declared when opening the database. Collections cannot be created or deleted while the database is open. This is different from native Couchbase Lite SDKs.
 
 To modify collections, you must:
 
@@ -102,8 +111,8 @@ const inventoryAirlines = travelDatabase.collections['inventory.airline'];
 | ----- | -------------------------------------------------------- |
 | **2** | Access collection in custom scope using bracket notation |
 
-|  | When accessing collections with custom scopes, use bracket notation with the full "scope.collection" string: database.collection\['scope.collection'\] |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When accessing collections with custom scopes, use bracket notation with the full `"scope.collection"` string: `database.collection['scope.collection']`
 
 ## [](#collection-configuration)Collection Configuration
 
@@ -168,8 +177,8 @@ const updatedDb = await Database.open(updatedConfig);
 | **3** | Add new collection to configuration |
 | **4** | Reopen database with new collection |
 
-|  | All existing collections must be included when reopening. Omitting a collection from the configuration will make it inaccessible (though its data remains in IndexedDB). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> All existing collections must be included when reopening. Omitting a collection from the configuration will make it inaccessible (though its data remains in IndexedDB).
 
 ## [](#remove-collections)Remove Collections
 
@@ -208,15 +217,15 @@ console.log('Collection removed from configuration');
 | **2** | Reopen without 'archived'                 |
 | **3** | Collection no longer accessible           |
 
-|  | Removing a collection from the configuration does not delete its data from IndexedDB. The data remains but is inaccessible. To permanently delete the collection’s data, you must delete the documents before removing the collection from the configuration. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Removing a collection from the configuration does not delete its data from IndexedDB. The data remains but is inaccessible. To permanently delete the collection’s data, you must delete the documents before removing the collection from the configuration.
 
 ## [](#purge-collection-data)Purge Collection Data
 
 To permanently delete a collection’s data:
 
-|  | Purging deletes all traces of a document, without leaving a "tombstone" revision behind. However, this means _purges are not visible to the replicator_, which has two side effects: |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Purging deletes all traces of a document, without leaving a "tombstone" revision behind. However, this means _purges are not visible to the replicator_, which has two side effects:
 
 * A push replication will not push the deletion to a server.
 * If the document is later updated on the server side, the next pull replication will download the new revision.

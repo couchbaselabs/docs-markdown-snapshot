@@ -1,4 +1,14 @@
+---
+title: DROP FUNCTION
+description: The <code>DROP FUNCTION</code> statement enables you to delete a
+  user-defined function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/dropfunction.html)
+
+# DROP FUNCTION
 
 > The `DROP FUNCTION` statement enables you to delete a user-defined function. 
 
@@ -31,8 +41,8 @@ To delete a global function in a particular namespace, the function name must be
 
 You cannot have 2 functions with the same name in the same scope. You can have 2 functions in the same name across different scopes.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created.
 
 ### [](#if-exists-clause)IF EXISTS Clause
 

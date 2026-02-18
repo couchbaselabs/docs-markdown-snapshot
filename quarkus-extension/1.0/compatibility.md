@@ -1,4 +1,13 @@
+---
+title: Compatibility Guide
+description: Quarkus Couchbase needs Quarkus 3.15 or newer.
+editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.0/modules/ROOT/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/quarkus-extension/1.0/compatibility.html)
+
+# Compatibility Guide
 
 Quarkus Couchbase has the following minimum dependencies:
 

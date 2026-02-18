@@ -1,4 +1,14 @@
+---
+title: Command Line Tools
+description: Use Couchbase command line tools to import and export large amounts
+  of data, and manage ad hoc backups.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/command-line-tools.html)
+
+# Command Line Tools
 
 > Use Couchbase command line tools to import and export large amounts of data, and manage ad hoc backups. 
 
@@ -100,8 +110,8 @@ $ ./cbq --version
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```
 
-|  | On Windows, you will need to have a recent Microsoft Visual C++ Redistributable already installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> On Windows, you will need to have a recent Microsoft Visual C++ Redistributable already installed. Download the latest Visual C++ Redistributable from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 
 ### [](#apple-m1-silicon)Apple M1 Silicon
 

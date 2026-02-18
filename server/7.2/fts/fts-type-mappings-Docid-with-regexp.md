@@ -1,4 +1,12 @@
+---
+title: DocID with regexp in Type Mappings
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-mappings-Docid-with-regexp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-mappings-Docid-with-regexp.html)
+
+# DocID with regexp in Type Mappings
 
 “Doc ID with regexp” is another way the search service allows the user to extract “type identifiers” for indexing.
 

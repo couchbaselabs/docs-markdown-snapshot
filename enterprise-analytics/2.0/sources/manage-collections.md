@@ -1,4 +1,13 @@
+---
+title: Managing Enterprise Analytics Collections
+description: This page describes how to manage collections with the Analytics Workbench.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/manage-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/manage-collections.html)
+
+# Managing Enterprise Analytics Collections
 
 The Analytics Workbench enables you to create, edit, drop collections, and connect or disconnect local links and remote links.
 

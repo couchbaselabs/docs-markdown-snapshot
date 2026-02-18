@@ -1,4 +1,13 @@
+---
+title: Querying Your Data
+description: Choosing the right service to query your data.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/concept-docs/querying-your-data.html)
+
+# Querying Your Data
 
 > Choosing the right service to query your data. SQL++ is a declarative query language for JSON data. Couchbase also offers fuzzy search, including Vector Search. 
 
@@ -8,8 +17,10 @@ SQL++ is a SQL-family language, and an easy way for anyone familiar with Relatio
 
 Couchbase also has a powerful Search Service, supporting similarity and hybrid search, combining text, vector, range, and geospatial search. [Search functions](../../../server/current/n1ql/n1ql-language-reference/searchfun.md) enable you to use Search queries directly within a SQL++ query.
 
-|  | SQL++ or CRUD API? Maybe you’d prefer to retrieve whole documents and work on them as objects in Rust, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> SQL++ or CRUD API?
+> 
+> Maybe you’d prefer to retrieve whole documents and work on them as objects in Rust, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol.
 
 ## [](#your-use-case)Your Use Case
 

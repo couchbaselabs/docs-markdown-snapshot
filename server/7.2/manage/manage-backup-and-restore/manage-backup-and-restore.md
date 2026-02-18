@@ -1,4 +1,14 @@
+---
+title: Manage Backup and Restore
+description: Couchbase Server allows one or more buckets, and selected subsets
+  of their data, to be backed up, restored, and archived.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-backup-and-restore/manage-backup-and-restore.html)
+
+# Manage Backup and Restore
 
 > Couchbase Server allows one or more buckets, and selected subsets of their data, to be backed up, restored, and archived. 
 

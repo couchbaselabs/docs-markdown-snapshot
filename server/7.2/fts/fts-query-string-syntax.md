@@ -1,4 +1,12 @@
+---
+title: Query String Syntax
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-query-string-syntax.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-query-string-syntax.html)
+
+# Query String Syntax
 
 > Query strings enable you to describe complex queries using a simple syntax. 
 

@@ -1,4 +1,13 @@
+---
+title: User Authentication
+description: Access {sgw} securely to sync from cloud to edge
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/security/pages/authentication-users.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/security/authentication-users.html)
+
+# User Authentication
 
 > Access {sgw} securely to sync from cloud to edge  
 > This content explains how to implement user authentication in sync gateway
@@ -46,8 +55,11 @@ Related Couchbase Lite content
 
 ## [](#auth-providers)Auth Providers
 
-|  | Deprecation NoticeThis feature is deprecated.It can be enabled **only** when running in legacy mode. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deprecation Notice
+> 
+> This feature is deprecated.  
+> It can be enabled **only** when running in legacy mode.
 
 sync gateway provides a turn-key solution to authenticate with Facebook or Google.
 

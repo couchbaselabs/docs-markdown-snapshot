@@ -1,4 +1,13 @@
+---
+title: Transcoders and Non-JSON Documents
+description: The Java SDK supports common JSON document requirements out-of-the-box.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/transcoders-nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/howtos/transcoders-nonjson.html)
+
+# Transcoders and Non-JSON Documents
 
 > The Java SDK supports common JSON document requirements out-of-the-box. Custom transcoders and serializers provide support for applications needing to perform advanced operations, including supporting non-JSON data. 
 
@@ -8,8 +17,8 @@ When sending data to Couchbase, the SDK passes the Object being sent to a transc
 
 On retrieving data from Couchbase, the fetched `byte[]` and Common Flag are passed to a transcoder. The transcoder converts the bytes into a concrete class (the application specifies the required type) if possible. It may use a serializer for this.
 
-|  | Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library.
 
 ## [](#default-behaviour)Default Behaviour
 
@@ -92,8 +101,8 @@ User returnedUser = gson.fromJson(returnedJson, User.class);
 
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data, perhaps using an concise binary encoding like [MessagePack](https://msgpack.org) or [CBOR](https://cbor.io/), in the Key-Value store.
 
-|  | It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, FTS, analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) and its indexes, FTS, analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 
@@ -176,8 +185,8 @@ class GsonSerializer implements JsonSerializer {
 }
 ```
 
-|  | The TypeRef overload is optional, and is only used if the application explicitly uses it with for example result.contentAs(new TypeRef<String> {}), which is an uncommon requirement. It is fine to throw an exception from this method rather than implementing it, if it is not needed. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `TypeRef` overload is optional, and is only used if the application explicitly uses it with for example `result.contentAs(new TypeRef<String> {})`, which is an uncommon requirement. It is fine to throw an exception from this method rather than implementing it, if it is not needed.
 
 In this case, there is no need to provide a custom transcoder. The [table for JsonTranscoder](#default-behaviour) shows that it already does what we need: for any Object (that’s not a `byte[]`), it sends it to its serializer, and then stores the result in Couchbase with the JSON Common Flag set. All we need to do is change the serializer, as so:
 

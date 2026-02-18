@@ -1,4 +1,13 @@
+---
+title: Build and Run
+description: Build and run a starter app to validate your install of Couchbase Lite on C#
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/gs-build.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/csharp/gs-build.html)
+
+# Build and Run
 
 > Description — _Build and run a starter app to validate your install of Couchbase Lite on C#_  
 > _Abstract — This content provides sample code and instructions that enable you to test your Couchbase Lite for csharp installation._  

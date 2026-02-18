@@ -1,4 +1,15 @@
+---
+title: Archive Documents After Expiration
+description: When a document in an existing collection is about to expire, use
+  the Eventing Service to create an archived copy of that document in a
+  different collection.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docarchive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-docarchive.html)
+
+# Archive Documents After Expiration
 
 > When a document in an existing collection is about to expire, use the Eventing Service to create an archived copy of that document in a different collection. 
 
@@ -24,8 +35,8 @@ Before trying out the examples on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-archive-documents-after-expiration)Example: Archive Documents After Expiration
 

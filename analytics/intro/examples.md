@@ -1,4 +1,14 @@
+---
+title: Access Data
+description: You can set up different data sources to work with sample data in
+  Capella Analytics.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/intro/pages/examples.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/intro/examples.html)
+
+# Access Data
 
 > You can set up different data sources to work with sample data in Capella Analytics. 
 
@@ -8,10 +18,9 @@ Use the procedures on this page to create Capella Analytics collections for thes
 
 * Set up [standalone collections and populate them by inserting the Commerce dataset](#install).
 * Directly [import the travel-sample data](#travel-sample) into a new database object in your Capella Analytics cluster.
-* Set up a [remote data source—a link and a set of remote collections—to shadow beer-sample data](#beer-sample) in a Capella collection.
-
-|  | The beer-sample example requires you to set up a Capella operational cluster as a remote data source for Capella Analytics. The Commerce dataset and travel-sample do not require a Capella operational cluster or other remote data source to set up. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* Set up a [remote data source—a link and a set of remote collections—to shadow beer-sample data](#beer-sample) in a Capella collection.  
+> [!NOTE]  
+> The `beer-sample` example requires you to set up a Capella operational cluster as a remote data source for Capella Analytics. The `Commerce` dataset and `travel-sample` do not require a Capella operational cluster or other remote data source to set up.
 
 ## [](#prerequisites)Prerequisites
 
@@ -51,10 +60,9 @@ To work with this dataset in Capella Analytics you create a standalone collectio
 2. In the query editor, begin an INSERT INTO statement as follows:  
 ```SQL++  
   INSERT INTO customers (  
-```
-
-|  | If you type in the statement instead of copying and pasting this example, the query editor automatically supplies the closing parenthesis ). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!TIP]  
+> If you type in the statement instead of copying and pasting this example, the query editor automatically supplies the closing parenthesis `)`.
 3. [Open the customers data](https://docs.couchbase.com/server/current/analytics/%5Fattachments/CommerceCustomers.json), select the contents of the page and copy it.
 4. To complete the statement, return to the query editor and paste the JSON document in between the parentheses. You’ll need to add the closing parenthesis `)` if you used copy and paste to supply the `INSERT INTO` statement.
 5. Run the query to populate the `customers` collection.
@@ -65,8 +73,8 @@ To work with this dataset in Capella Analytics you create a standalone collectio
 
 Create another standalone collection for `orders`, which uses the **Field Name** `orderno` and a **Field Type** of **int** as a primary key. Use the [orders data](https://docs.couchbase.com/server/current/analytics/%5Fattachments/CommerceOrders.json) to select and copy the data for this collection, then populate it using another `INSERT INTO` statement.
 
-|  | You can also populate standalone collections by importing data from a file. After you create a standalone collection, point to the collection name, and go to **More Options (⋮)** **Import Data to Collection** to upload a CSV, TSV, JSON, or JSONL file. You can configure import filters or create a new collection for your import. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also populate standalone collections by importing data from a file. After you create a standalone collection, point to the collection name, and go to **More Options (⋮)** **Import Data to Collection** to upload a CSV, TSV, JSON, or JSONL file. You can configure import filters or create a new collection for your import.
 
 ## [](#travel-sample)Import the `travel-sample` Collections
 
@@ -92,8 +100,8 @@ Any Capella Analytics collections that use a WHERE clause apply that clause on a
 
 ### [](#prep)Prepare to Ingest Data from the Remote System
 
-|  | Make sure the Capella operational cluster you want to use as a remote data source belongs to the same organization as your Capella Analytics cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Make sure the Capella operational cluster you want to use as a remote data source belongs to the same organization as your Capella Analytics cluster.
 
 To prepare your Capella operational cluster for creating a remote collection in Capella Analytics:
 
@@ -123,10 +131,9 @@ country = "Belgium"
 16. Click **Create Collection**.
 17. (Optional) Click **Create Another Collection** and use the following WHERE clause to shadow data for French beers and breweries:  
 country = "France"
-18. To start shadowing data from your Capella operational cluster in Capella Analytics, click **Connect Link**.
-
-|  | You’ll incur charges for usage after you connect this link. |
-|  | ----------------------------------------------------------- |
+18. To start shadowing data from your Capella operational cluster in Capella Analytics, click **Connect Link**.  
+> [!NOTE]  
+> You’ll incur charges for usage after you connect this link.
 19. Click **Yes, Continue**.
 20. Close the link creation pane.
 21. Verify that your `brewBelgium` collection now contains a shadow copy of the data sourced from Capella by running the following query, with your query context set to **remoteCapella** and **remoteBeer**:  

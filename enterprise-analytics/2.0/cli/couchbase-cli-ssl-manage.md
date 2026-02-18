@@ -1,4 +1,13 @@
+---
+title: ssl-manage
+description: Manage SSL certificates
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-ssl-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-ssl-manage.html)
+
+# ssl-manage
 
 Manage SSL certificates
 
@@ -120,8 +129,8 @@ When using a REST call to fetch the password, the file may look similar to the o
 
 Uploads the certificate specified to the cluster. The uploaded certificate will replace the cluster certificate in this cluster.
 
-|  | For security reasons, this method has been deprecated in Enterprise Analytics. |
-|  | ------------------------------------------------------------------------------ |
+> [!WARNING]
+> For security reasons, this method has been deprecated in Enterprise Analytics.
 
 \--set-client-auth <path>
 
@@ -212,8 +221,8 @@ To automatically regenerate the cluster certificate and save the new certificate
 $ couchbase-cli ssl-manage -c 192.168.1.5 -u Administrator \
  -p password --regenerate-cert /root/new_cluster.cert
 
-|  | The command above should never be run if you are using X.509 certificates because using the --regenerate-cert command will generate an unsigned certificate for the cluster to use. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The command above should never be run if you are using X.509 certificates because using the --regenerate-cert command will generate an unsigned certificate for the cluster to use.
 
 To update a node certificate you will first need to copy the new certificate to the certificate inbox folder on the node you wish to change the certificate. Once you have done this you can run the command below to tell the server to begin using the new certificate.
 

@@ -1,4 +1,14 @@
+---
+title: Frequently Asked Questions
+description: This section provides answers to commonly asked questions
+  pertaining to the Eventing Service and Functions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-faq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-faq.html)
+
+# Frequently Asked Questions
 
 > This section provides answers to commonly asked questions pertaining to the Eventing Service and Functions. 
 

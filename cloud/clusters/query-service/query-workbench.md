@@ -1,4 +1,13 @@
+---
+title: Query Tab
+description: Use the Query tab to develop and run SQL++ queries from your browser.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/query-service/query-workbench.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/query-service/query-workbench.html)
+
+# Query Tab
 
 > Use the Query tab to develop and run SQL++ queries from your browser. 
 
@@ -34,8 +43,8 @@ The Query tab consists of three working areas:
 * [Query Editor](#query-editor)
 * [Query Results and Plans](#results)
 
-|  | You can expand and collapse the Cluster Schema Browser. You can vertically resize or expand the Query Editor and Results areas accordingly when you write queries or view query results. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can expand and collapse the Cluster Schema Browser. You can vertically resize or expand the Query Editor and Results areas accordingly when you write queries or view query results.
 
 ## [](#insights-sidebar)Cluster Schema Browser
 
@@ -92,13 +101,13 @@ Use the **Format** button to improve the formatting and readability of your quer
 
 Once you have a statement ready, click **Run**.
 
-|  | You can also execute queries by typing a semi-colon (;) at the end of the query and pressing Enter. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also execute queries by typing a semi-colon (`;`) at the end of the query and pressing Enter.
 
 When the query is running, the **Run** button changes to **Cancel**, which allows you to cancel the running query. When you cancel a running query, it stops the activity on the cluster side as well.
 
-|  | The **Cancel** button doesn’t cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the query editor. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The **Cancel** button doesn’t cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the query editor.
 
 ## [](#query-settings)Modify Query Settings
 
@@ -196,8 +205,8 @@ The data flow generally follows these steps:
 5. Order
 6. Projection (part 2)
 
-|  | Projection is split into two parts (one before Order and one after Order), but the query editor shows only the first part. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Projection is split into two parts (one before Order and one after Order), but the query editor shows only the first part.
 
 Click a unit of the plan to see more details about it.
 
@@ -231,26 +240,25 @@ The query editor maintains a history of all the queries executed.
 
 If you edit a previous query and execute it, the new query is stored at the end of the history. The history is persistent across browser sessions. The query history saves queries; due to limited browser storage, it doesn’t save query results. When you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.
 
-|  | Clearing the browser history clears the history maintained by the query editor as well. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Clearing the browser history clears the history maintained by the query editor as well.
 
 To open the **Query History** menu, click **History** .
 
 You can scroll through the entire query history, and click an individual query to view that particular point in the history.
 
 * **Search history**: You can search the query history by entering text in the **Filter saved queries** search box. All matching queries are displayed.
-* **Delete a specific entry**: Click the Trash icon next to a query to delete it from the history.
-
-|  | Deleting entries can be useful if you want a more manicured history when you [export the history](#export-query) for future use. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+* **Delete a specific entry**: Click the Trash icon next to a query to delete it from the history.  
+> [!TIP]  
+> Deleting entries can be useful if you want a more manicured history when you [export the history](#export-query) for future use.
 * **Delete all entries**: Click the Trash icon next to the Export query history icon to delete the entire query history.
 
 ## [](#import-query)Import Queries
 
 You can load a new query history into the query editor from a JSON file. The query history can be the [exported query history](#export-query) from a different cluster.
 
-|  | Importing a query history overwrites your current query history. |
-|  | ---------------------------------------------------------------- |
+> [!CAUTION]
+> Importing a query history overwrites your current query history.
 
 1. From the cluster’s **Data Tools** **Query** page, click **History**.  
 This opens the **Query History** menu.

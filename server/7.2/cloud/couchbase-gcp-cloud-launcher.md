@@ -1,4 +1,14 @@
+---
+title: Deploy Couchbase Server Using GCP Marketplace
+description: Couchbase partners with Google to provide a packaged solution on
+  GCP Marketplace.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-gcp-cloud-launcher.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cloud/couchbase-gcp-cloud-launcher.html)
+
+# Deploy Couchbase Server Using GCP Marketplace
 
 > Couchbase partners with Google to provide a packaged solution on GCP Marketplace. This solution is based on Google Deployment Manager templates that incorporate the latest features and best practices for deploying Couchbase Server on Google Cloud Platform. 
 
@@ -9,15 +19,14 @@ Couchbase is available through GCP Marketplace with hourly pricing, or through a
 ## [](#before-you-begin)Before You Begin
 
 * You need a Google account with access to Google Cloud Platform. If you don’t have one, [sign up](https://console.cloud.google.com/getting-started) for one before proceeding.
-* You should review the [best practices](couchbase-cloud-deployment.md#gcp-best-practices) for deploying Couchbase Server on GCP.
-
-|  | The free trial version of GCP has limits on the number of resources that can be be deployed. You can proactively request quota adjustments from the [Quotas](https://console.cloud.google.com/projectselector/iam-admin/quotas) page in the Cloud Platform Console. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You should review the [best practices](couchbase-cloud-deployment.md#gcp-best-practices) for deploying Couchbase Server on GCP.  
+> [!NOTE]  
+> The free trial version of GCP has limits on the number of resources that can be be deployed. You can proactively request quota adjustments from the [Quotas](https://console.cloud.google.com/projectselector/iam-admin/quotas) page in the Cloud Platform Console.
 
 ## [](#deploying-couchbase-enterprise)Deploying Couchbase Enterprise
 
-|  | The templates are provided as a starting point and may be customized as needed. Note that additional post deployment setup may be required. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The templates are provided as a starting point and may be customized as needed. Note that additional post deployment setup may be required.
 
 1. Log in to your Google Cloud Platform account and navigate to the Google Cloud Launcher page for [Couchbase Enterprise Edition](https://console.cloud.google.com/launcher/details/couchbase-public/couchbase-enterprise-edition). If you wish to bring your own license, navigate to [Couchbase Enterprise Editon - BYOL](https://console.cloud.google.com/launcher/details/couchbase-public/couchbase-enterprise-edition-byol) instead.  
 ![gcp cloud launcher couchbase enterprise](_images/gcp/deploying/gcp-cloud-launcher-couchbase-enterprise.png)
@@ -41,10 +50,9 @@ Couchbase is available through GCP Marketplace with hourly pricing, or through a
 | Couchbase Sync Gateway Version                | Choose the Couchbase Sync Gateway version to deploy. The [Compatibility Matrix](https://developer.couchbase.com/documentation/mobile/current/installation/index.html#story-h2-1) summarizes the compatible versions of Sync Gateway and Couchbase Server. |
 3. Click Deploy. Deployment begins and you will be redirected to the Deployment Manager where the deployment status is displayed.  
 ![gcp new couchbase ee deploy inprogress](_images/gcp/deploying/gcp-new-couchbase-ee-deploy-inprogress.png)
-4. You should see a green check mark once deployment completes successfully.
-
-|  | Note the Couchbase Username and Password displayed on the screen. |
-|  | ----------------------------------------------------------------- |  
+4. You should see a green check mark once deployment completes successfully.  
+> [!IMPORTANT]  
+> Note the Couchbase Username and Password displayed on the screen.  
 ![gcp new couchbase ee deploy done](_images/gcp/deploying/gcp-new-couchbase-ee-deploy-done.png)
 
 That’s it! It may take a short while for Couchbase to be up and running.
@@ -63,10 +71,11 @@ You can log in to the Couchbase cluster and explore the items created.
   ![gcp server igm details](_images/gcp/logging-in/gcp-server-igm-details.png)
   3. Open a browser tab and enter the copied External IP along with port 8091 as _<external-ip>:8091_ to open the Couchbase Server Web Console.  
   ![gcp web console login](_images/gcp/logging-in/gcp-web-console-login.png)
-  4. Enter the user name and password noted when deployment completed.
-
-|  | If you forgot to note the credentials, you can retrieve them by examining the Custom metadata > startup-script for the server instance template. ![gcp instance template startup script](_images/gcp/logging-in/gcp-instance-template-startup-script.png) |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  4. Enter the user name and password noted when deployment completed.  
+  > [!TIP]  
+  > If you forgot to note the credentials, you can retrieve them by examining the Custom metadata > startup-script for the server instance template.  
+  >  
+  > ![gcp instance template startup script](_images/gcp/logging-in/gcp-instance-template-startup-script.png)  
   The dashboard shows the current view of the cluster. If you’ve gotten to this step quickly, the cluster may still be adding nodes and rebalance may be in progress. Once the process complete, the dashboard will look something like the following screen capture.  
   ![gcp web console dashboard](_images/gcp/logging-in/gcp-web-console-dashboard.png)  
   Click the Servers tab to explore the server nodes that have been created.  

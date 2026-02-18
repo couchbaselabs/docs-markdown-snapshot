@@ -1,4 +1,14 @@
+---
+title: Disabling Transparent Huge Pages (THP)
+description: Transparent huge pages (THP) is a memory management system that is
+  enabled by default in most Linux operating systems.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/thp-disable.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/thp-disable.html)
+
+# Disabling Transparent Huge Pages (THP)
 
 > Transparent huge pages (THP) is a memory management system that is enabled by default in most Linux operating systems.
 > 

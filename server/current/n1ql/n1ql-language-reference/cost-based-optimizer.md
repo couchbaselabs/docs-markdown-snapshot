@@ -1,4 +1,15 @@
+---
+title: Understand the Cost-Based Optimizer for Queries
+description: The cost-based optimizer takes into account the cost of memory,
+  CPU, network transport, and disk usage when choosing the optimal plan to
+  execute a query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/cost-based-optimizer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/cost-based-optimizer.html)
+
+# Understand the Cost-Based Optimizer for Queries
 
 > The cost-based optimizer takes into account the cost of memory, CPU, network transport, and disk usage when choosing the optimal plan to execute a query. 
 
@@ -42,8 +53,8 @@ With the legacy [rules-based optimizer](../../learn/services-and-indexes/service
 
 Refer to [ORDERED](query-hints.md#ordered) for an example.
 
-|  | The cost-based optimizer can also exclude certain indexes or join methods when evaluating query plans. This is particularly useful when you know some options are inefficient and not suitable for your query. For more information, see [Negative Keyspace Hints](negative-keyspace-hints.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The cost-based optimizer can also exclude certain indexes or join methods when evaluating query plans. This is particularly useful when you know some options are inefficient and not suitable for your query. For more information, see [Negative Keyspace Hints](negative-keyspace-hints.md).
 
 ## [](#optimizer-stats)Optimizer Statistics
 

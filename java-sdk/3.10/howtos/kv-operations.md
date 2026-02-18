@@ -1,4 +1,14 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS — as well as KV Range scan, for querying without an index. 
 
@@ -44,8 +54,10 @@ import com.couchbase.client.java.kv.PersistTo;
 import com.couchbase.client.java.kv.ReplicateTo;
 ```
 
-|  | SQL++ vs. Key-Value [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient. The request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> SQL++ vs. Key-Value
+> 
+> [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) can also be used to perform many single-document operations but we very strongly recommend using the key-value API for this instead, as it can be much more efficient. The request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
@@ -57,8 +69,10 @@ If you pass any object (like the provided `JsonObject` and `JsonArray`), includi
 
 ## [](#crud)CRUD
 
-|  | Sub-Document Operations All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Sub-Document Operations
+> 
+> All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md).
 
 ### [](#upsert)Upsert
 
@@ -74,8 +88,13 @@ JsonObject content = JsonObject.create()
 MutationResult result = collection.upsert("document-key", content);
 ```
 
-|  | All the examples here use the Java SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Java’s CompletableFuture, and a reactive API built around [Project Reactor](https://projectreactor.io/). They can be accessed like this: AsyncCollection asynccollection = collection.async(); ReactiveCollection reactivecollection = collection.reactive(); |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All the examples here use the Java SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Java’s `CompletableFuture`, and a reactive API built around [Project Reactor](https://projectreactor.io/). They can be accessed like this:
+> 
+> ```java
+> AsyncCollection asynccollection = collection.async();
+> ReactiveCollection reactivecollection = collection.reactive();
+> ```
 
 ### [](#insert)Insert
 
@@ -268,13 +287,13 @@ GetResult result = collection.getAndTouch("my-document3", Duration.ofDays(1));
 
 The value of a document can be increased or decreased atomically using `collecion.binary().increment()` and `collection.binary().decrement()`.
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
 
 See the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/kv/Increment.html) for full details.
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 
@@ -301,8 +320,8 @@ MutationResult result = usersCollection.upsert("user-key", content);
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

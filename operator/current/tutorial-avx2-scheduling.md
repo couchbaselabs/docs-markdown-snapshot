@@ -1,9 +1,17 @@
+---
+title: AVX2-Aware Scheduling for Couchbase Server
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-avx2-scheduling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-avx2-scheduling.html)
+
+# AVX2-Aware Scheduling for Couchbase Server
 
 > This tutorial explains how to detect the AVX2 CPU extension and x86-64-v3 Microarchitecture on Kubernetes nodes, label nodes accordingly, and configure CouchbaseCluster resources to schedule pods only on compatible nodes. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#background)Background
 
@@ -19,8 +27,8 @@ AVX2 is:
 * Not guaranteed on all cloud VM types.
 * Not enforced by default in Kubernetes scheduling.
 
-|  | Kubernetes clusters must explicitly detect CPU capabilities and restrict scheduling to make sure Couchbase Server pods run on AVX2-capable nodes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Kubernetes clusters must explicitly detect CPU capabilities and restrict scheduling to make sure Couchbase Server pods run on AVX2-capable nodes.
 
 ## [](#avx2-aware-scheduling-approach)AVX2-Aware Scheduling Approach
 
@@ -41,8 +49,8 @@ Use one of the following methods to label Kubernetes nodes that support AVX2:
 
 Node Feature Discovery (NFD) is a Kubernetes SIG project that detects hardware features and labels nodes automatically.
 
-|  | Couchbase recommends this method for production environments. |
-|  | ------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase recommends this method for production environments.
 
 Use the following steps to label Kubernetes nodes that support AVX2 using NFD:
 

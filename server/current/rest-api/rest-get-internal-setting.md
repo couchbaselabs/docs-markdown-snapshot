@@ -1,4 +1,13 @@
+---
+title: Managing Internal Settings
+description: Couchbase-Server internal settings can be retrieved and modified..
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-get-internal-setting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-get-internal-setting.html)
+
+# Managing Internal Settings
 
 > Couchbase-Server internal settings can be retrieved and modified.. 
 
@@ -16,8 +25,8 @@ POST /settings/maxParallelIndexers
 
 Couchbase-Server internal settings can be inspected and modified, in order to control cluster-performance.
 
-|  | The settings detailed on this page are meant for performance tuning. Rigorous and careful testing of any changes to these settings should be made in a non-production environment that is representative, in load and scale, of production data before implementing in production. Incorrect settings can cause severe impacts to cluster performance or operation due to resource consumption. Couchbase makes no recommendations for tuning beyond the default settings. Any changes to these settings not explicitly recommended by Couchbase Employees are not supported by Couchbase. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> The settings detailed on this page are meant for performance tuning. Rigorous and careful testing of any changes to these settings should be made in a non-production environment that is representative, in load and scale, of production data before implementing in production. Incorrect settings can cause severe impacts to cluster performance or operation due to resource consumption. Couchbase makes no recommendations for tuning beyond the default settings. Any changes to these settings not explicitly recommended by Couchbase Employees are not supported by Couchbase.
 
 ## [](#curl-syntax)Curl Syntax
 

@@ -1,4 +1,12 @@
+---
+title: Configuring Rebalance Retries
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-configure-rebalance-retry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-configure-rebalance-retry.html)
+
+# Configuring Rebalance Retries
 
 ## [](#http-methods-and-uri)HTTP methods and URI
 

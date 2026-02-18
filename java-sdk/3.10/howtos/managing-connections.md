@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Java SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Java SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
 
@@ -23,8 +32,8 @@ Collection widgets = customerA.collection("widgets");
 cluster.disconnect();
 ```
 
-|  | If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 7.0 and earlier, need to open a Bucket instance before connecting to any other HTTP services (such as _Query_ or _Search_). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 7.0 and earlier, need to open a `Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -32,8 +41,8 @@ In a production environment, your connection string should include the addresses
 Cluster cluster = Cluster.connect("192.168.56.101,192.168.56.102", "username", "password");
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#cluster-environment)Cluster Environment
 
@@ -62,8 +71,8 @@ Cluster cluster = Cluster.connect(
 cluster.disconnect();
 ```
 
-|  | When you customize the environment using a callback like in the above example, the client creates an environment that is managed completely by the Java SDK. This environment is automatically shut down when the associated Cluster is disconnected. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you customize the environment using a callback like in the above example, the client creates an environment that is managed completely by the Java SDK. This environment is automatically shut down when the associated `Cluster` is disconnected.
 
 ## [](#connection-strings)Connection Strings
 
@@ -85,8 +94,8 @@ Connection string with two parameters
 
 The full list of recognized parameters is documented in the client settings reference. Any client setting with a system property name may also be specified as a connection string parameter (without the `com.couchbase.env.` prefix).
 
-|  | When creating a Cluster using a custom ClusterEnvironment, **_connection string parameters are ignored_**, since client settings are frozen when the cluster environment is built. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When creating a `Cluster` using a custom `ClusterEnvironment`, **_connection string parameters are ignored_**, since client settings are frozen when the cluster environment is built.
 
 ## [](#connection-lifecycle)Connection Lifecycle
 
@@ -126,11 +135,14 @@ clusterB.disconnect();
 sharedEnvironment.shutdown();
 ```
 
-|  | If you manually create a ClusterEnvironment, be aware of these limitations: A manually created ClusterEnvironment cannot be further customized by connection string parameters or Java system properties. When you manually create a ClusterEnvironment, the SDK will not shut it down when you call Cluster.disconnect(). Instead, you are responsible for shutting it down after disconnecting all clusters that share the environment. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you manually create a `ClusterEnvironment`, be aware of these limitations:
+> 
+> * A manually created `ClusterEnvironment` cannot be further customized by connection string parameters or Java system properties.
+> * When you manually create a `ClusterEnvironment`, the SDK will not shut it down when you call `Cluster.disconnect()`. Instead, you are responsible for shutting it down after disconnecting all clusters that share the environment.
 
-|  | When connecting to a single cluster, it’s usually better to customize the ClusterEnvironment by [providing a configuration callback](#cluster-environment). That way, the SDK automatically shuts down the environment for you, and you can customize the environment with connection string parameters and Java system properties. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When connecting to a single cluster, it’s usually better to customize the `ClusterEnvironment` by [providing a configuration callback](#cluster-environment). That way, the SDK automatically shuts down the environment for you, and you can customize the environment with connection string parameters and Java system properties.
 
 ## [](#alternate-addresses)Alternate Addresses and Custom Ports
 
@@ -154,13 +166,13 @@ String connectionString = "127.0.0.1:" + customManagerPort + "=manager";
 Cluster cluster = Cluster.connect(connectionString, username, password);
 ```
 
-|  | In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
 In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#ssl)Secure Connections
 
@@ -171,15 +183,15 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 
 The Java SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 As of SDK 3.4, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings.
 
 The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
-|  | The JVM’s trust store is represented by a file named cacerts, which can be found inside your Java installation folder. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The JVM’s trust store is represented by a file named `cacerts`, which can be found inside your Java installation folder.
 
 You can still provide a certificate explicitly if necessary:
 

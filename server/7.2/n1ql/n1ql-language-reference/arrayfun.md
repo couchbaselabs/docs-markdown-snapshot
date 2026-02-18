@@ -1,4 +1,15 @@
+---
+title: Array Functions
+description: You can use array functions to evaluate arrays, perform
+  computations on elements in an array, and to return a new array based on a
+  transformation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/arrayfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/arrayfun.html)
+
+# Array Functions
 
 > You can use array functions to evaluate arrays, perform computations on elements in an array, and to return a new array based on a transformation. 
 
@@ -153,8 +164,8 @@ This function returns the first position of the specified value `val` within the
 
 The array position is zero-based, that is, the first position is 0.
 
-|  | This function uses a binary search algorithm. If the array is unsorted, the function may not be able to find the value. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function uses a binary search algorithm. If the array is unsorted, the function may not be able to find the value.
 
 See also [ARRAY\_POSITION()](#fn-array-position), [ARRAY\_SORT()](#fn-array-sort).
 
@@ -1559,8 +1570,10 @@ If any of the arguments is `MISSING`, then it returns `MISSING`.
 
 If any of the arguments is a non-array value, then it returns `NULL`.
 
-|  | The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays. Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays.
+> 
+> Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ### [](#example-23)Example
 
@@ -1610,8 +1623,10 @@ If any of the arguments is `MISSING`, then it returns `MISSING`.
 
 If any of the arguments is a non-array value, then it returns `NULL`.
 
-|  | The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays. Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays.
+> 
+> Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ### [](#example-24)Example
 

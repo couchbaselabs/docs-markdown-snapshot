@@ -1,11 +1,19 @@
+---
+title: Escaping
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-query-string-syntax-escaping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-query-string-syntax-escaping.html)
+
+# Escaping
 
 The following quoted-string enumerates the characters which may be escaped:
 
 "+-=&|><!(){}[]^\"~*?:\\/ "
 
-|  | This list contains the space character. |
-|  | --------------------------------------- |
+> [!NOTE]
+> This list contains the space character.
 
 In order to escape these characters, they are prefixed with the `\` (backslash) character. In all cases, using the escaped version produces the character itself and is not interpreted by the lexer.
 

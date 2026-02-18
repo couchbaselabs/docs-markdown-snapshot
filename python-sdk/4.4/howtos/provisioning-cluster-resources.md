@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-python-client/). 
 
@@ -16,8 +26,8 @@ Management operations in the SDK may be performed through several interfaces dep
 * CollectionManager — [Bucket.collections()](https://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.0/couchbase%5Fapi/couchbase%5Fcore.html#couchbase.bucket.Bucket.collections)
 * ViewIndexManager — [Bucket.view\_indexes()](https://docs.couchbase.com/sdk-api/couchbase-python-client-4.0.0/couchbase%5Fapi/couchbase%5Fcore.html#couchbase.bucket.Bucket.collections)
 
-|  | When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using Cluster.bucket(name) before you can use cluster level managers. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster.bucket(name)` before you can use cluster level managers.
 
 ## [](#bucket-management)Bucket Management
 
@@ -38,8 +48,8 @@ bucket_manager = cluster.buckets()
 
 The `CreateBucketSettings` and `BucketSettings` classes are used for creating and updating buckets, `BucketSettings` is also used for exposing information about existing buckets.
 
-|  | Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 Here is the list of parameters available:
 
@@ -206,8 +216,8 @@ Applications can use this manager to perform operations such as creating, deleti
 * A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
-|  | To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.
 
 The example below shows how to create a simple primary index, restricted to a named scope and collection, by calling the `create_primary_index()` method. Note that you cannot provide a named scope or collection separately, both must be set for the `QueryIndexManager` to create an index on the relevant keyspace path.
 
@@ -325,8 +335,12 @@ view_manager.upsert_design_document(
     design_doc, DesignDocumentNamespace.DEVELOPMENT)
 ```
 
-|  | When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the upsert\_design\_document method. However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased! The solution is to perform a get\_design\_document, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the map or reduce functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When you want to update an existing document with a new view (or a modification of a view’s definition), you can use the `upsert_design_document` method.
+> 
+> However, this method needs the list of views in the document to be exhaustive, meaning that if you just create the new view definition as previously and add it to a new design document that you upsert, all your other views will be erased!
+> 
+> The solution is to perform a `get_design_document`, add your view definition to the DesignDocument’s views list, then upsert it. This also works with view modifications, provided the change is in the `map` or `reduce` functions (just reuse the same name for the modified view), or for deletion of one out of several views in the document.
 
 Note the use of `DesignDocumentNamespace.DEVELOPMENT`, the other option is `DesignDocumentNamespace.PRODUCTION`. This parameter specifies whether the design document should be created as development, or as production — with the former running over only a small fraction of the documents.
 

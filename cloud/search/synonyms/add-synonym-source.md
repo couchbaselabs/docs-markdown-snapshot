@@ -1,4 +1,14 @@
+---
+title: Add a Synonym Source
+description: Add a Synonym Source to set the collection where your synonym
+  documents are stored.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/synonyms/add-synonym-source.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/synonyms/add-synonym-source.html)
+
+# Add a Synonym Source
 
 > Add a Synonym Source to set the collection where your synonym documents are stored. After you have set the synonym source for your Search index and any child fields, you can run any type of text-based Search query to return results with synonyms. 
 
@@ -152,8 +162,8 @@ It uses synonyms from the `synonyms_en` synonym source for the `description` and
 }
 ```
 
-|  | To use this index definition on your own cluster, remove the uuid parameter and replace the sourceUUID parameter with the appropriate UUID for your own travel-sample bucket. For more information about how to import a Search index definition, see [Import a Search Index Definition with the Capella UI](../import-search-index.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use this index definition on your own cluster, remove the `uuid` parameter and replace the `sourceUUID` parameter with the appropriate UUID for your own `travel-sample` bucket. For more information about how to import a Search index definition, see [Import a Search Index Definition with the Capella UI](../import-search-index.md).
 
 For this example, the `synonyms` collection inside the `travel-sample` bucket has the following 2 synonym documents:
 

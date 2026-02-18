@@ -1,4 +1,14 @@
+---
+title: cbft-bleve for Scorch Indexes
+description: The <code>cbft-bleve</code> tool supports commands that return
+  information on <em>Scorch</em> index partitions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbft-bleve-scorch.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbft-bleve-scorch.html)
+
+# cbft-bleve for Scorch Indexes
 
 > The `cbft-bleve` tool supports commands that return information on _Scorch_ index partitions. 
 

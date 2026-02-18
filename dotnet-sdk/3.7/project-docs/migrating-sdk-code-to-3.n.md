@@ -1,4 +1,14 @@
+---
+title: Migrating to SDK 3 API
+description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
+  number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating to SDK 3 API
 
 > The 3.0 API breaks the existing 2.0 APIs in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behavior is more proactive, and lazy bootstrapping moves all error handling to a single place. Individual behaviour changes across services are explained here. 
 
@@ -216,8 +226,8 @@ cluster.Dispose();
 
 `Collections` will be generally available with an upcoming Couchbase Server release, but the SDK already encodes it in its API to be future-proof. If you are using a Couchbase Server version which does not support `Collections` such as 6.0, always use the `DefaultCollection()` method to access the KV API; it will map to the full bucket.
 
-|  | You’ll notice that BucketAsync(String) returns immediately, even if the bucket resources are not completely opened. This means that the subsequent Get operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout. In this example case, you’ll see network socket connection failures. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You’ll notice that `BucketAsync(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `Get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout. In this example case, you’ll see network socket connection failures.
 
 Also note you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong as they are Cluster level services as opposed to KV which is bucket specific. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -314,8 +324,8 @@ catch (CouchbaseException ex) {
 
 One reason why the APIs do not expose a long list of exceptions is that the SDK now retries as many operations as it can if it can do so safely. This depends on the type of operation (idempotent or not), in which state of processing it is (already dispatched or not), and what the actual response code is if it arrived already. As a result, many transient cases — such as locked documents, or temporary failure — are now retried by default and should less often impact applications. It also means, when migrating to the new SDK API, you may observe a longer period of time until an error is returned by default.
 
-|  | Operations are retried by default as described above with the default BestEffortRetryStrategy. Like in SDK 2 you can configure fail-fast retry strategies to not retry certain or all operations. The RetryStrategy interface has been extended heavily in SDK 3 — please see the [error handling documentation](../howtos/error-handling.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations are retried by default as described above with the default `BestEffortRetryStrategy`. Like in SDK 2 you can configure fail-fast retry strategies to not retry certain or all operations. The `RetryStrategy` interface has been extended heavily in SDK 3 — please see the [error handling documentation](../howtos/error-handling.md).
 
 When migrating your SDK 2 exception handling code to SDK 3, make sure to wrap every call with a catch for `CouchbaseException` (or let it bubble up immediately). You can likely remove your user-level retry code for temporary failures, backpressure exception, and so on. One notable exception from this is the `CasMismatchException`, which is still thrown since it requires more app-level code to handle (most likely identical to SDK 2).
 
@@ -434,8 +444,8 @@ In SDK 2, the `GetFromReplica` method was available for replica reads, this has 
 
 Unless you want to build some kind of consensus between the different replica responses, we recommend `GetAnyReplicaAsync` for a fallback to a regular `GetAsync` when the active node times out.
 
-|  | Operations which cannot be performed on JSON documents have been moved to the IBinaryCollection, accessible through ICollection.Binary(). These operations include AppendAsync, PrependAsync, IncrementAsync, and DecrementAsync (previously called counter in SDK 2). These operations should only be used against non-json data. Similar functionality is available through MutateIn on JSON documents. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations which cannot be performed on JSON documents have been moved to the `IBinaryCollection`, accessible through `ICollection.Binary()`. These operations include `AppendAsync`, `PrependAsync`, `IncrementAsync`, and `DecrementAsync` (previously called `counter` in SDK 2). These operations should only be used against non-json data. Similar functionality is available through `MutateIn` on JSON documents.
 
 ### [](#query)Query
 

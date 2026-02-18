@@ -1,4 +1,13 @@
+---
+title: Explore the Playground
+description: Use the Playground to practice and learn more about SQL++.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/sdk-playground.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/sdk-playground.html)
+
+# Explore the Playground
 
 > Use the Playground to practice and learn more about SQL++. 
 

@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase .NET Client.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Couchbase .NET Client. 
 
@@ -76,8 +85,8 @@ Other versions might not be compatible with the current SDK version.
 
 If none of the other installation options suffice or if you want to debug the source or perhaps contribute, building directly from the source is the best option for you. All source is located on GitHub.
 
-|  | The software provided via NuGet and S3 are the official releases that have been through a rigorous testing process. Code on GitHub that is not tagged as an official release is still in development. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The software provided via NuGet and S3 are the official releases that have been through a rigorous testing process. Code on GitHub that is not tagged as an official release is still in development.
 
 To build the .NET SDK from source:
 

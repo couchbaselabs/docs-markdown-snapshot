@@ -1,4 +1,14 @@
+---
+title: Import Data to a Standalone Collection
+description: You can use the Capella Analytics workbench to upload a data file
+  into a standalone collection.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/import-data-standalone.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/import-data-standalone.html)
+
+# Import Data to a Standalone Collection
 
 > You can use the Capella Analytics workbench to upload a data file into a standalone collection. 
 
@@ -20,8 +30,8 @@ You can import data sets that are 40 MB or less in size. If you attempt to impor
 * For files in CSV, TSV, or JSONL format, Capella Analytics provides a warning message and automatically truncates the file.
 * For files in JSON format, Capella Analytics provides an error message. After you edit the source file to reduce its size you can try the import again.
 
-|  | You can use a SQL++ for Capella Analytics COPY INTO statement to import data from an Amazon S3 bucket to a standalone collection. The 40 MB size limitation does not apply. See [COPY INTO Statements](../sqlpp/5%5Fdml%5Fcopy%5Fin.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can use a SQL++ for Capella Analytics COPY INTO statement to import data from an Amazon S3 bucket to a standalone collection. The 40 MB size limitation does not apply. See [COPY INTO Statements](../sqlpp/5%5Fdml%5Fcopy%5Fin.md).
 
 ## [](#reviewing-and-refining-your-import)Reviewing and Refining Your Import
 
@@ -39,8 +49,8 @@ If you set any import filters, the tabular and JSON document previews update to 
 
 Using import filters, you can control which portions of your source file Capella Analytics includes in the import.
 
-|  | Capella Analytics applies the maximum file size limitation of 40 MB before applying any filtering options. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Capella Analytics applies the maximum file size limitation of 40 MB before applying any filtering options.
 
 * CSV/TSV
 * JSON/JSONL
@@ -73,10 +83,9 @@ The Import Data dialog opens.
 5. Preview your import and optionally refine it by setting [import filters](#filters).
 6. Specify the target database, scope, and standalone collection for your import. You can choose an existing collection or click **Create Collection** to create a new one.  
 The primary key and data type of the data you’re importing must match the values defined for the collection. See [Create a Standalone Collection](manage-columnar.md#create-standalone).
-7. Click **Import Data**. Your browser begins a batch process to upsert documents into the collection.
-
-|  | Navigating away from the Import Data dialog can interrupt this process. |
-|  | ----------------------------------------------------------------------- |  
+7. Click **Import Data**. Your browser begins a batch process to upsert documents into the collection.  
+> [!NOTE]  
+> Navigating away from the Import Data dialog can interrupt this process.  
 When the import is complete, a banner appears at the top of the page to tell you that it was successful.
 
 After you import data, you can run `ANALYZE COLLECTION` to sample data in the collection so that cost-based optimization (CBO) can be applied instead of rule-based optimization. See [Cost-Based Optimizer for Capella Analytics Services](../sqlpp/5b%5Fcbo.md)

@@ -1,4 +1,13 @@
+---
+title: Secure Connections with TLS
+description: Learn how to enable client support for TLS and configure trusted certificates.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/howtos/pages/secure-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.5/howtos/secure-connections.html)
+
+# Secure Connections with TLS
 
 > Learn how to enable client support for TLS and configure trusted certificates. 
 
@@ -15,15 +24,15 @@ You’ll need the certificate of the Certificate Authority (CA) that issues cert
 * Couchbase Capella
 * Couchbase Server
 
-|  | The Capella CA certificate is included in the SDK, and the SDK trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by using a connection string that starts with couchbases:// (note the final 's'). You can skip the rest of this chapter, or continue reading to learn how to trust a Capella CA certificate other than the one included in the SDK. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The Capella CA certificate is included in the SDK, and the SDK trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by using a connection string that starts with `couchbases://` (note the final 's'). You can skip the rest of this chapter, or continue reading to learn how to trust a Capella CA certificate other than the one included in the SDK.
 
 Log into the Capella admin website and navigate to your cluster. Click on the "Connect" tab and scroll down to "Security Certificates." Download the "Root Certificate."
 
 Log into the admin console and navigate to **Security** **Certificates**. Copy the "Trusted Root Certificates" (there might be only one). Create a new text file called `ca.pem` and paste the certificates into this file.
 
-|  | Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism.
 
 ## [](#connect-tls)Connecting to a Cluster Using TLS
 
@@ -31,8 +40,8 @@ As of SDK 1.1, if you connect to a Couchbase Server cluster with a root certific
 
 The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
-|  | The JVM’s trust store is represented by a file named cacerts, which can be found inside your Java installation folder. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The JVM’s trust store is represented by a file named `cacerts`, which can be found inside your Java installation folder.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -64,8 +73,8 @@ The `TrustSource` determines whether the client trusts the TLS certificate prese
 
 When the server presents a certificate to the client, the client checks whether the address encoded in the certificate matches the address the client is connecting to. If the address does not match, the client refuses to connect.
 
-|  | During development, when connecting to a local single-node cluster be sure to use "127.0.0.1" in the connection string instead of "localhost". Otherwise, hostname validation fails. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> During development, when connecting to a local single-node cluster be sure to use "127.0.0.1" in the connection string instead of "localhost". Otherwise, hostname validation fails.
 
 If you must disable this check, and are sure you understand the consequences, set the `security.enableHostnameVerification` client setting to false. However, it’s almost always better to fix the problem that causes hostname validation to fail.
 
@@ -117,8 +126,8 @@ val cluster = Cluster.connect(connectionString, username, password) {
 }
 ```
 
-|  | There’s an overload of TrustSource.trustStore that accepts an existing KeyStore object, for cases when you need more control over how the KeyStore is initialized. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> There’s an overload of `TrustSource.trustStore` that accepts an existing `KeyStore` object, for cases when you need more control over how the `KeyStore` is initialized.
 
 ### [](#factory)From a custom TrustManagerFactory
 

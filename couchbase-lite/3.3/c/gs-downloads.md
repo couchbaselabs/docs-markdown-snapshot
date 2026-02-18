@@ -1,4 +1,13 @@
+---
+title: Download Links
+description: Download links for Couchbase Lite for C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/gs-downloads.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/gs-downloads.html)
+
+# Download Links
 
 > Description — _Download links for Couchbase Lite for C_  
 
@@ -158,8 +167,8 @@ Available platforms are:
 
 [Android](#android-1-0-1) | [MacOS](#macos-1-0-1) | [iOS](#ios-1-0-1) | [Windows](#windows-1-0-1) | [Linux](#linux-1-0-1) |
 
-|  | You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature.
 
 ### [](#android-1-0-1)Android
 

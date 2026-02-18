@@ -1,4 +1,15 @@
+---
+title: Supported Platforms
+description: Enterprise Analytics supports several popular operating systems and
+  virtual environments. The Enterprise Analytics Web Console supports most
+  recent major browsers.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/supported-platform.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/supported-platform.html)
+
+# Supported Platforms
 
 > Enterprise Analytics supports several popular operating systems and virtual environments. The Enterprise Analytics Web Console supports most recent major browsers. 
 
@@ -6,8 +17,8 @@
 
 Choose an operating system from the following list for your Enterprise Analytics deployment.
 
-|  | Couchbase clusters on mixed platforms are not supported and nodes in a Couchbase cluster should be running on the same operating system. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase clusters on mixed platforms are not supported and nodes in a Couchbase cluster should be running on the same operating system.
 
 __Table 1\. Supported Operating Systems for Development, Testing, and Production__
 | Operating System                | Supported Versions (64-bit)                  |

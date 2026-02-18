@@ -1,4 +1,12 @@
+---
+title: Facets
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-response-facets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-search-response-facets.html)
+
+# Facets
 
 > Facets are aggregate information collected on a particular result set. 
 
@@ -33,10 +41,9 @@ It would not make sense to use it on a unique field like an ID.
 * **Field**: The field over which you want to gather the facet information.
 * **Size**: The number of top categories per partition to be considered for the facet results.  
 For example, size - 3 ⇒ facets results returns the top 3 categories across all partitions and merges them as the final result.  
-Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.
-
-|  | It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.  
+> [!NOTE]  
+> It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results.
 * **Numeric Range Facet**: A numeric range facet works by the user defining their own buckets (numeric ranges).  
 The facet then counts how many of the matching documents fall into a particular bucket for a particular field.  
 Along with the two fields from term facet, “numeric\_ranges” field has to include all the numeric ranges for the faceted field.  
@@ -54,8 +61,8 @@ The facet ranges go under a field named “date\_ranges”.
   * **Start**: Start date for this range.
   * **End**: End date for this range.
 
-|  | Most of the time, when building a term facet, you must use the keyword analyzer. Otherwise, multi-term values are tokenized, which might cause unexpected results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Most of the time, when building a term facet, you must use the keyword analyzer. Otherwise, multi-term values are tokenized, which might cause unexpected results.
 
 ## [](#example)Example
 

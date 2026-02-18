@@ -1,4 +1,12 @@
+---
+title: Couchbase PHP SDK 4.2
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/hello-world/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/hello-world/overview.html)
+
+# Couchbase PHP SDK 4.2
 
 # Couchbase PHP SDK 4.2
 

@@ -1,4 +1,15 @@
+---
+title: Sample Application
+description: Discover how to program interactions with the Couchbase Server via
+  the Data, Query, and Search services -- using the Travel Sample Application
+  with the built-in Travel Sample data Bucket.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/hello-world/sample-application.html)
+
+# Sample Application
 
 Unresolved include directive in modules/hello-world/pages/sample-application.adoc - include::7.5@sdk:shared:partial$sample-application.adoc\[\]
 

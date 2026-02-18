@@ -1,4 +1,14 @@
+---
+title: Configure Your Free Tier App Services (Mobile sync)
+description: Configure App Services to test out a mobile application with your
+  free tier operational cluster.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/get-started/configuring-app-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/get-started/configuring-app-services.html)
+
+# Configure Your Free Tier App Services (Mobile sync)
 
 > Configure App Services to test out a mobile application with your free tier operational cluster. 
 
@@ -82,8 +92,8 @@ To create a user for the App Endpoint:
     3. (Optional) In the **Assign Channels** field, enter an asterix (\*) and press Enter.
   3. Click **Create App User**.
 
-|  | App Users can inherit their assigned channels directly from roles or be specifically assigned channels on a per user basis. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> App Users can inherit their assigned channels directly from roles or be specifically assigned channels on a per user basis.
 
 ## [](#access-endpoint)Connect to the App Services
 
@@ -210,5 +220,5 @@ To add an allowed IP address and create an admin credential:
   3. Toggle the checkmark under **App Endpoint** to **Apply to all current and future App Endpoints within this App Service**.
   4. Click **Create Admin Credential**.
 
-|  | You cannot change the Username and Password after creating the admin credential. |
-|  | -------------------------------------------------------------------------------- |
+> [!CAUTION]
+> You cannot change the Username and Password after creating the admin credential.

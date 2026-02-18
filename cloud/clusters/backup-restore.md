@@ -1,4 +1,14 @@
+---
+title: Back Up and Restore Bucket Data
+description: Couchbase recommends a robust scheduled backup and retention time
+  policy as part of an overall disaster recovery plan for production data.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/backup-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/backup-restore.html)
+
+# Back Up and Restore Bucket Data
 
 > Couchbase recommends a robust scheduled backup and retention time policy as part of an overall disaster recovery plan for production data. 
 
@@ -23,8 +33,8 @@ Keep the following in mind when scheduling or running backups on your cluster wh
 * If you have [scheduled your cluster to turn off](off-on-schedule.md) and there is a pending or active backup or restore, Capella waits for the backup or restore to complete before turning off the cluster.
 * If you try to [turn your cluster off on-demand](off-on-database.md) and there is a pending or active backup or restore, Capella returns an error and the cluster does not turn off.
 
-|  | Scheduled backups do not run when your cluster is turned off. Make sure your cluster is on if you want to run a cluster backup on a schedule. For more information about turning a cluster on or off, see [Turn Clusters Off or On](off-on-database.md) or [Schedule Cluster On or Off](off-on-schedule.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Scheduled backups do not run when your cluster is turned off. Make sure your cluster is on if you want to run a cluster backup on a schedule. For more information about turning a cluster on or off, see [Turn Clusters Off or On](off-on-database.md) or [Schedule Cluster On or Off](off-on-schedule.md).
 
 ## [](#per-bucket-backups)Per-Bucket Backups
 
@@ -57,19 +67,17 @@ You can select a cost-optimized retention policy to manage bucket backups, and p
 
 A cost-optimized retention policy enables you to save money at the expense of RPO. For example, where the retention of bucket backups might be more costly than running the cluster itself. For the cost-optimized retention policy, the retention time is applied only to the monthly restore point, keeping all other bucket backups for four weeks. This policy enables restoring from any backup within the last four weeks. Beyond this time, Capella retains only the monthly restore point.
 
-|  | Your backups will continue to expire when your cluster is turned off. Download backups you want to keep before turning off your cluster, or do not turn your cluster off past the expiration dates of your existing backups. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Your backups will continue to expire when your cluster is turned off. Download backups you want to keep before turning off your cluster, or do not turn your cluster off past the expiration dates of your existing backups.
 
 Weekly full backup scheduled cycles expire as follows:
 
 * Each weekly cycle expires after four weeks.
-* The last backup cycle of each monthly period expires at your **Retention Time** setting. Therefore, only the last backup cycle of each monthly period is retained for the retention time you select in the **Set Weekly Schedule**.
-
-|  | For example, suppose you start bucket backups at mid-calendar month, on March 15\. The last backup cycle of the monthly period is in the week of April 15th, and not in the last week of March. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-|  | For **Set Weekly Schedule**, a cycle is the weekly full bucket backup and the incremental bucket backups following it for that week. When the week ends, a new cycle starts. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* The last backup cycle of each monthly period expires at your **Retention Time** setting. Therefore, only the last backup cycle of each monthly period is retained for the retention time you select in the **Set Weekly Schedule**.  
+> [!TIP]  
+> For example, suppose you start bucket backups at mid-calendar month, on March 15\. The last backup cycle of the monthly period is in the week of April 15th, and not in the last week of March.  
+> [!NOTE]  
+> For **Set Weekly Schedule**, a cycle is the weekly full bucket backup and the incremental bucket backups following it for that week. When the week ends, a new cycle starts.
 
 You are able to restore:
 
@@ -85,15 +93,15 @@ RPO intervals and retention time periods are as follows:
 | Weekly       | 4 Weeks                                                  |
 | Monthly      | User-chosen retention time period \[30 days to 5 years\] |
 
-|  | Only the monthly restore point (RPO) is retained for the user-chosen time retention period. Others are retained for 30 days. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only the monthly restore point (RPO) is retained for the user-chosen time retention period. Others are retained for 30 days.
 
 ## [](#bucket-backup-retention)Bucket Backup Retention
 
 Capella retains a bucket’s scheduled backups based on the **Retention Time** setting in the bucket’s [Backup Schedule](manage-backup.md#configure-automatic-backups). Retention time is from 30 days to five years. After the retention time lapses, Capella schedules the bucket backup for deletion.
 
-|  | The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups.
 
 Capella retains on-demand bucket backups for 30 days.
 
@@ -103,8 +111,8 @@ Backups continue to expire if a cluster is turned off. Download backups you want
 
 You can download on-demand bucket backups or completed cycles of scheduled bucket backups for storage or use outside Couchbase Capella. The request to create a download file is done in Capella. When the download file is ready, you are notified by email to copy the download URL from the Downloadable Backups in Capella.
 
-|  | You can’t download a bucket backup that’s over 5 TB. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> You can’t download a bucket backup that’s over 5 TB.
 
 You can use the download URL to download the zip archive file using a browser or a utility like [wget](manage-backup.md#download-backup-wget).
 

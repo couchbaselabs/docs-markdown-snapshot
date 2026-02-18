@@ -1,4 +1,14 @@
+---
+title: Indexes
+description: These guides explain how to create and use primary and secondary
+  indexes for SQL++ queries.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/indexes.html)
+
+# Indexes
 
 These guides explain how to create and use primary and secondary indexes for SQL++ queries.  
 This page is for Couchbase Server.

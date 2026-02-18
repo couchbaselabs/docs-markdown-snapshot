@@ -1,4 +1,13 @@
+---
+title: Result Sets
+description: How to use Couchbase Lite Query's Result Sets
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-resultsets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/query-resultsets.html)
+
+# Result Sets
 
 > Description — _How to use Couchbase Lite Query’s Result Sets_  
 > Related Content — [QueryBuilder](querybuilder.md) | [SQL++ for Mobile](query-n1ql-mobile.md) | [Predictive Queries](querybuilder.md#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
@@ -325,8 +334,8 @@ If your query selects ALL then the JSON format will be:
 }
 ```
 
-|  | The top-level key is the collection name, for example "cards" for SELECT \* FROM main.cards. You can also use the alias if one is specified, for example "c" for SELECT c.\* FROM main.cards as c. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The top-level key is the collection name, for example "cards" for `SELECT * FROM main.cards`. You can also use the alias if one is specified, for example "c" for `SELECT c.* FROM main.cards as c`.
 
 If your query selects a sub-set of available properties then the JSON format is:
 

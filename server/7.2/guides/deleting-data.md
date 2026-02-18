@@ -1,4 +1,13 @@
+---
+title: Deleting Data
+description: How to delete documents in Couchbase.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/deleting-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/deleting-data.html)
+
+# Deleting Data
 
 > How to delete documents in Couchbase.  
 > This guide is for Couchbase Server.
@@ -12,8 +21,8 @@ Read the following for further information about the clients available:
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#deleting-a-document)Deleting a Document
 
@@ -53,8 +62,8 @@ The example below deletes document `hotel-123` from the database.
 await hotelCollection.RemoveAsync("hotel-123");
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -71,8 +80,8 @@ MutationResult removeResult = hotelCollection.remove("hotel-123");
 System.out.println("CAS:" + removeResult.cas());
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -89,8 +98,8 @@ const removeResult = await hotelCollection.remove('hotel-123')
 console.log('CAS:', removeResult.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundError error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -107,8 +116,8 @@ remove_result = hotel_collection.remove("hotel-123")
 print("CAS:", remove_result.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -144,8 +153,8 @@ hotel-123          CAS=0x16be2f11c6040000
 0. Size=0, RC=LCB_SUCCESS (0)
 ```
 
-|  | If the path cannot be found, cbc-subdoc will return a LCB\_ERR\_SUBDOC\_PATH\_NOT\_FOUND error. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the path cannot be found, `cbc-subdoc` will return a `LCB_ERR_SUBDOC_PATH_NOT_FOUND` error.
 
 For further details, refer to [cbc-subdoc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5Fcbc%5Fsubdoc.html).
 
@@ -165,8 +174,8 @@ var mutateInResult = await hotelCollection.MutateInAsync("hotel-123",
 Console.WriteLine($"Cas: {mutateInResult.Cas}");
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -188,8 +197,8 @@ MutateInResult mutateInResult = hotelCollection.mutateIn("hotel-123", specs);
 System.out.println("CAS:" + mutateInResult.cas());
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -211,8 +220,8 @@ mutateInResult = await hotelCollection.mutateIn('hotel-123', [
 console.log('CAS:', mutateInResult.cas)
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundError error. |
-|  | -------------------------------------------------------------------------- |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -234,8 +243,8 @@ mutate_in_result = hotel_collection.mutate_in(
 print("CAS:", mutate_in_result.cas)
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 

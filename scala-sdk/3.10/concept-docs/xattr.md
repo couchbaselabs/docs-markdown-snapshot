@@ -1,4 +1,14 @@
+---
+title: XATTR &amp; Virtual XATTR
+description: Extended Attributes (XATTR) are metadata that can be provided on a
+  per-application basis.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/xattr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/concept-docs/xattr.html)
+
+# XATTR &amp; Virtual XATTR
 
 > Extended Attributes (XATTR) are metadata that can be provided on a per-application basis. 
 
@@ -12,8 +22,8 @@ The SDK supports extended attributes by means of extensions to the _Sub-Document
 
 For more information, see [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md).
 
-|  | The maximum content size for a document stored in Couchbase Server is 20MB. XATTRs — including Virtual XATTRs — will reduce the space available for the remainder of the document. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The maximum content size for a document stored in Couchbase Server is 20MB. XATTRs — including Virtual XATTRs — will reduce the space available for the remainder of the document.
 
 ## [](#virtual-extended-attributes)Virtual Extended Attributes
 

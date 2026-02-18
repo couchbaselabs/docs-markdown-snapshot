@@ -1,4 +1,12 @@
+---
+title: Custom Filters
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-custom-filters.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-custom-filters.html)
+
+# Custom Filters
 
 Custom filters can be viewed and modified from the index’s configuration page under the Index Settings section. Any custom filters that are configured for the current index can be viewed by expanding the Custom Filters panel. If no custom filters have been configured for the index, the Custom Filters panel will be empty.
 
@@ -74,9 +82,8 @@ The following interactive fields are provided:
 * **Name**: A suitable, user-defined name for the new token filter.
 * **Type**: The type of post-processing to be provided by the new token filter. The default is `length`, which creates tokens whose minimum number of characters is specified by the integer provided in the **Min** field and whose maximum by the integer provided in the **Max**. Additional post-processing types can be selected from the pull-down menu at the right of the field:  
 ![fts custom filters token filter types](_images/fts-custom-filters-token-filter-types.png)  
-
-|  | The type-selection determines which interactive fields appear in the **Custom Token Filter** dialog, following **Name** and **Type**. The pull-down menu displays a list of available types. For descriptions, see the section [Token Filters](fts-index-analyzers.md#Token-Filters), on the page [Understanding Analyzers](fts-index-analyzers.md#Understanding-Analyzers). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]  
+> The type-selection determines which interactive fields appear in the **Custom Token Filter** dialog, following **Name** and **Type**. The pull-down menu displays a list of available types. For descriptions, see the section [Token Filters](fts-index-analyzers.md#Token-Filters), on the page [Understanding Analyzers](fts-index-analyzers.md#Understanding-Analyzers).
 * **Min**: The minimum length of the token, in characters. Note that this interactive field is displayed for the `length` type, and may not appear, or be replaced, when other types are specified. The default value is 3.
 * **Max**: The maximum length of the token, in characters. Note that this interactive field is displayed for the `length` type and may not appear, or be replaced when other types are specified. The default value is 255.
 

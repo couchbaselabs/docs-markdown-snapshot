@@ -1,4 +1,14 @@
+---
+title: Sub-Document Operations with the C SDK
+description: <em>Sub-document</em> operations can be used to efficiently access
+  <em>parts</em> of documents.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/subdocument-operations.html)
+
+# Sub-Document Operations with the C SDK
 
 > _Sub-document_ operations can be used to efficiently access _parts_ of documents. Sub-document operations may be quicker and more network-efficient than _full-document_ operations such as _upsert_, _replace_ and _get_ because they only transmit the accessed sections of the document over the network. Sub-document operations are also atomic, allowing safe modifications to documents with built-in concurrency control. 
 
@@ -8,8 +18,8 @@ Starting with Couchbase Server 4.5 you can atomically and efficiently update and
 
 While full-document retrievals retrieve the entire document and full document updates require sending the entire document, sub-document retrievals only retrieve relevant parts of a document and sub-document updates only require sending the updated portions of a document. You should use sub-document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
-|  | The sub-document operations described on this page are for _Key-Value_ requests only: they are not related to sub-document SQL++ (formerly N1QL) queries. (Sub-document SQL++ queries are explained in the section [Querying with SQL++](../concept-docs/n1ql-query.md).) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The sub-document operations described on this page are for _Key-Value_ requests only: they are not related to sub-document SQL++ (formerly N1QL) queries. (Sub-document SQL++ queries are explained in the section [Querying with SQL++](../concept-docs/n1ql-query.md).)
 
 Considering the document:
 
@@ -116,8 +126,8 @@ Mutation operations modify one or more paths in the document. The simplest of th
 
 See the [code sample](https://github.com/couchbase/docs-sdk-c/blob/release/3.3/modules/devguide/examples/c/subdoc-retrieving.cc) for use in context.
 
-|  | mutateIn is an _atomic_ operation. If any single ops fails, then the entire document is left unchanged. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `mutateIn` is an _atomic_ operation. If any single `ops` fails, then the entire document is left unchanged.
 
 ## [](#array-insertion)Array insertion
 
@@ -134,8 +144,8 @@ Note that the array must already exist and that the index must be valid (i.e. it
 
 Multiple sub-document operations can be executed at once on the same document, allowing you to retrieve or modify several sub-documents at once. When multiple operations are submitted within the context of a single _lookup-in_ or _mutate-in_ command, the server will execute all the operations with the same version of the document.
 
-|  | Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple subdoc operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple subdoc operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
 
 When submitting multiple _mutation_ operations within a single _mutate-in_ command, those operations are considered to be part of a single transaction: if any of the mutation operations fail, the server will logically roll-back any other mutation operations performed within the _mutate-in_, even if those commands would have been successful had another command not failed.
 
@@ -209,7 +219,7 @@ A path such as \`literal\[\]bracket\`.\`literal.dot\`. You can use double-backti
 
 If you need to combine both JSON _and_ path-syntax literals you can do so by escaping the component from any JSON string characters (e.g. a quote or backslash) and then encapsulating it in backticks (`` `path` ``).
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
 Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::6.6@sdk:shared:partial$sdk-xattr-overview.adoc\[\]

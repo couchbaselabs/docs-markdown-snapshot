@@ -1,10 +1,22 @@
+---
+title: Using the Legacy Logging API for Troubleshooting
+description: Couchbase Lite on Swift -- Using Logs for Troubleshooting
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/troubleshooting-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/swift/troubleshooting-logs.html)
+
+# Using the Legacy Logging API for Troubleshooting
 
 > Description — _Couchbase Lite on Swift — Using Logs for Troubleshooting_  
 > Related Content — [Troubleshooting Queries](troubleshooting-queries.md) | [Decoding Crash Logs](troubleshooting-crashes.md)
 
-|  | Constraints The retrieval of logs from the device is out of scope of this feature. This content applies to the post 2.5 versions. If you are using a Couchbase Lite release prior to 2.5 see [Deprecated functionality](#pre-2x5-logging) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> * The retrieval of logs from the device is out of scope of this feature.
+> * This content applies to the post 2.5 versions. If you are using a Couchbase Lite release prior to 2.5 see [Deprecated functionality](#pre-2x5-logging)
 
 ## [](#introduction)Introduction
 
@@ -132,8 +144,8 @@ Database.log.custom =  logger (1)
 
 ## [](#decoding-binary-logs)Decoding binary logs
 
-|  | The latest version of the cbl-log tool is 3.0.0. |
-|  | ------------------------------------------------ |
+> [!NOTE]
+> The latest version of the cbl-log tool is `3.0.0`.
 
 You can use the **cbl-log** tool to decode binary log files — see [Example 5](#eg-cbl-log).
 

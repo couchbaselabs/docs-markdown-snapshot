@@ -1,4 +1,12 @@
+---
+title: Match Query Syntax
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-query-string-syntax-match.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-query-string-syntax-match.html)
+
+# Match Query Syntax
 
 A term without any other syntax is interpreted as a match query for the term in the default field.
 

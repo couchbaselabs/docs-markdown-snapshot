@@ -1,4 +1,13 @@
+---
+title: dispatcher
+description: Gets statistics from the reader, writer, auxio, and nonio worker threads.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-dispatcher-job.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-dispatcher-job.html)
+
+# dispatcher
 
 > Gets statistics from the reader, writer, auxio, and nonio worker threads. 
 

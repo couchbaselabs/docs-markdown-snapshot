@@ -1,4 +1,14 @@
+---
+title: Automatic Workload Repository
+description: Monitor and optimize query performance and workload using Automatic
+  Workload Repository (AWR).
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/query-awr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-manage/query-awr.html)
+
+# Automatic Workload Repository
 
 > Monitor and optimize query performance and workload using Automatic Workload Repository (AWR). 
 
@@ -70,8 +80,8 @@ You can manage these settings through the [system:awr](#system-awr) catalog.
 
 This catalog determines how AWR functions including where it stores snapshots, how often it collects statistics, and which queries to include in the report. You can adjust these settings using an UPDATE query on `system:awr`.
 
-|  | Only admins or users with the query\_manage\_system\_catalog role can modify settings in system:awr. For more information, see [Authentication and Client Privileges](../n1ql-intro/sysinfo.md#authentication-and-client-privileges). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only admins or users with the `query_manage_system_catalog` role can modify settings in `system:awr`. For more information, see [Authentication and Client Privileges](../n1ql-intro/sysinfo.md#authentication-and-client-privileges).
 
 The catalog consists of the following attributes:
 

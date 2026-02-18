@@ -1,4 +1,13 @@
+---
+title: Reference Pages
+description: Essential reference infomation for developing with Columnar.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/ref/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-columnar-sdk/current/ref/index.html)
+
+# Reference Pages
 
 > Essential reference infomation for developing with Columnar. 
 

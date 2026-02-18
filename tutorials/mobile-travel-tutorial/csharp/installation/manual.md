@@ -1,4 +1,12 @@
+---
+title: Manual
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/manual.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/installation/manual.html)
+
+# Manual
 
 ## [](#pre-requisites)Pre-requisites
 

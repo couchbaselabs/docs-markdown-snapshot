@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on Android
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-4-0-0)4.0.0 — October 2025
 
@@ -44,5 +53,5 @@ Version 4.0.0 for Android delivers the following features and enhancements:
 
 No new deprecations for this release.
 
-|  | For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md)

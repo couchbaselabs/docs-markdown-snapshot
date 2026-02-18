@@ -1,4 +1,14 @@
+---
+title: Nested Operators and Expressions
+description: In SQL++, nested operators and paths indicate expressions to access
+  nested sub-documents within a JSON document or expression.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/nestedops.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/nestedops.html)
+
+# Nested Operators and Expressions
 
 In SQL++, nested operators and paths indicate expressions to access nested sub-documents within a JSON document or expression.
 

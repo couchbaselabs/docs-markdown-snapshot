@@ -1,4 +1,14 @@
+---
+title: Comma-Separated Join
+description: A comma-separated join enables you to produce new input objects by
+  creating a Cartesian product of all the source objects.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/comma.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/comma.html)
+
+# Comma-Separated Join
 
 > A comma-separated join enables you to produce new input objects by creating a Cartesian product of all the source objects. 
 
@@ -61,8 +71,8 @@ If you use the LATERAL keyword in a join that has no lateral correlation, the ke
 
 You can use the optional LATERAL keyword in front of the right-hand side keyspace of a comma-separated join.
 
-|  | Using the LATERAL keyword in a comma-separated join implies that the right-hand side of the join must appear after the left-hand side of the join. This may prevent the cost-based optimizer from reordering joins in the query to give the optimal join order. For details, see [Join Enumeration](cost-based-optimizer.md#join-enumeration). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using the LATERAL keyword in a comma-separated join implies that the right-hand side of the join must appear after the left-hand side of the join. This may prevent the cost-based optimizer from reordering joins in the query to give the optimal join order. For details, see [Join Enumeration](cost-based-optimizer.md#join-enumeration).
 
 ### [](#rhs-keyspace)Right-Hand Side Keyspace
 
@@ -91,8 +101,8 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 Enables you to specify that the join should use particular keys, a particular index, or a particular join method. For details, see [ANSI JOIN Hints](join.md#ansi-join-hints).
 
-|  | You can also supply a join hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify a join hint for the same keyspace using both the USE clause and a hint comment. If you do this, the USE clause and the hint comment are both marked as erroneous and ignored by the optimizer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also supply a join hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify a join hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer.
 
 ### [](#rhs-subquery)Right-Hand Side Subquery
 
@@ -110,8 +120,8 @@ rhs-subquery ::= subquery-expr 'AS'? alias
 
 Use parentheses to specify a subquery for the right-hand side of the comma-separated join. For details, see [Subquery Expression](from.md#select-expr-clause).
 
-|  | A subquery on the right-hand side of the comma-separated join cannot be **correlated**, i.e. it cannot refer to a keyspace in the outer query block. This will lead to an error. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A subquery on the right-hand side of the comma-separated join cannot be **correlated**, i.e. it cannot refer to a keyspace in the outer query block. This will lead to an error.
 
 #### [](#ansi-subquery-alias)AS Alias
 
@@ -135,8 +145,8 @@ rhs-generic ::= expr ( 'AS'? alias )?
 
 A SQL++ [expression](index.md#N1QL%5FExpressions) generating JSON documents or objects for the right-hand side of the comma-separated join.
 
-|  | An expression on the right-hand side of the comma-separated join may be **correlated**, i.e. it may refer to a keyspace on the left-hand side of the join. In this case, only a [nested-loop join](#ansi-join-hints) may be used. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An expression on the right-hand side of the comma-separated join may be **correlated**, i.e. it may refer to a keyspace on the left-hand side of the join. In this case, only a [nested-loop join](#ansi-join-hints) may be used.
 
 #### [](#ansi-generic-alias)AS Alias
 

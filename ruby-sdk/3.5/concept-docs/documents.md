@@ -1,4 +1,14 @@
+---
+title: Documents
+description: Couchbase supports CRUD operations, various data structures, and
+  binary documents.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/3.5/concept-docs/documents.html)
+
+# Documents
 
 > Couchbase supports CRUD operations, various data structures, and binary documents. 
 
@@ -20,8 +30,20 @@ Unresolved include directive in modules/concept-docs/pages/documents.adoc - incl
 
 Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::7.5@sdk:shared:partial$documents.adoc\[\]
 
-|  | If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents: collection.mutate\_in('airline\_10', \[   MutateInSpec.upsert('msrp', 18) \]) or [N1QL UPDATE](#7.1@server:n1ql:n1ql-language-reference/update.adoc) to update documents based on specific query criteria: UPDATE \`travel-sample\`.inventory.airline SET sale\_price = msrp \* 0.75 WHERE msrp < 19.95; |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
+> 
+> ```ruby
+> collection.mutate_in('airline_10', [
+>   MutateInSpec.upsert('msrp', 18)
+> ])
+> ```
+> 
+> or [N1QL UPDATE](#7.1@server:n1ql:n1ql-language-reference/update.adoc) to update documents based on specific query criteria:
+> 
+> ```sql
+> UPDATE `travel-sample`.inventory.airline SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
+> ```
 
 Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::7.5@sdk:shared:partial$documents.adoc\[\]
 

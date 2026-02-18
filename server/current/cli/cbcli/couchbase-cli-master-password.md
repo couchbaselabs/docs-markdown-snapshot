@@ -1,4 +1,13 @@
+---
+title: master-password
+description: Sends the Couchbase master password
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-master-password.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-master-password.html)
+
+# master-password
 
 Sends the Couchbase master password
 

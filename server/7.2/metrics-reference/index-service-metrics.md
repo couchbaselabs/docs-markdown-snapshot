@@ -1,11 +1,21 @@
+---
+title: Index Service Metrics
+description: A list of the metrics provided by the Index Service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/metrics-reference/pages/index-service-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/metrics-reference/index-service-metrics.html)
+
+# Index Service Metrics
 
 > A list of the metrics provided by the Index Service. 
 
 The following Index-Service metrics can be queried by means of the REST APIs described in [Statistics](../rest-api/rest-statistics.md).
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | index\_avg\_disk\_bps7.2.0 gauge Sum of disk bytes written per second, of all indexes, located on this node                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- |

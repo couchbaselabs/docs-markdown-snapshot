@@ -1,4 +1,13 @@
+---
+title: Configure Auditing
+description: Enterprise Analytics <em>event auditing</em> can be configured, per node.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-auditing.html)
+
+# Configure Auditing
 
 > Enterprise Analytics _event auditing_ can be configured, per node. 
 

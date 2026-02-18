@@ -1,4 +1,14 @@
+---
+title: Manage Encryption-at-Rest Keys
+description: You must create encryption-at-rest keys before you can have
+  Couchbase Server encrypt data as it saves it to disk.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-encryption-keys.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/manage-encryption-keys.html)
+
+# Manage Encryption-at-Rest Keys
 
 > You must create encryption-at-rest keys before you can have Couchbase Server encrypt data as it saves it to disk. 
 
@@ -111,8 +121,8 @@ The following roles let you view keys that can encrypt data in buckets. Some of 
 
 Returns the encryption-at-rest keys or a particular key if you specified the `KEY_ID` path parameter. See examples for an example of the keys.
 
-|  | Call returns 200 OK and an empty JSON message if user does not have permission to view keys. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Call returns `200 OK` and an empty JSON message if user does not have permission to view keys.
 
 `404 Object Not Found`
 
@@ -216,10 +226,9 @@ All keys have the following fields:
 * `id`: the integer identifying the encryption key
 * `name`: the friendly name assigned by the administrator who created the key.
 * `usage`: what the key is allowed to encrypt.
-* `type`: which key management system (KMS) manages the key.
-
-|  | The type also contains the encryption algorithm used for the encryption-at-rest key. Currently, this is always aes-key-256. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+* `type`: which key management system (KMS) manages the key.  
+> [!NOTE]  
+> The `type` also contains the encryption algorithm used for the encryption-at-rest key. Currently, this is always `aes-key-256`.
 
 The `data` object defines the KMS-specific details for each encryption key. You’ll notice different fields for each type of key:
 
@@ -295,8 +304,8 @@ curl -sS -u $USER:$PASSWORD \
 EOF
 ```
 
-|  | Updating a key has the same required fields as the creating a new key. For example, you must supply the name field, even if you want the key’s name to remain the same. Couchbase Server sets any value you do not supply in the update call to the default value (if any) or is left empty, overwriting any existing value. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Updating a key has the same required fields as the creating a new key. For example, you must supply the `name` field, even if you want the key’s name to remain the same. Couchbase Server sets any value you do not supply in the update call to the default value (if any) or is left empty, overwriting any existing value.
 
 Path Parameters
 
@@ -396,8 +405,8 @@ source_profile = base
 ```
 * `profile`: The name of the profile defined in the configuration file to use when authenticating with AWS KMS.
 
-|  | Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to AWS when you select the key to encrypt data or another key. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to AWS when you select the key to encrypt data or another key. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
 
 When using a KMIP-compatible KMS, the `data` object has the following schema:
 
@@ -436,10 +445,9 @@ Fields
   * `"useSysAndCbCa"` (default): Use the certificates in both the operating system’s and Couchbase Server’s trust stores.
   * `"useSysCa"`: Use the certificates in the operating system’s trust store.
   * `"useCbCa"`: Use the certificates in Couchbase Server’s trust store.
-  * `"skipServerCertVerification"`: Skip verification of the KMS.
-
-|  | Not verifying the identity of the KMS is insecure. |
-|  | -------------------------------------------------- |
+  * `"skipServerCertVerification"`: Skip verification of the KMS.  
+  > [!CAUTION]  
+  > Not verifying the identity of the KMS is insecure.
 * `encryptionApproach` (optional): controls how the passphrase for the private key is encrypted for local storage. The two options are:
 
   * `"nodeSecretManager"` (default): Couchbase Server encrypts the passphrase using the [master password](../../../manage/manage-security/manage-system-secrets.md#setting-the-master-password).
@@ -447,8 +455,8 @@ Fields
 * `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It’s often in the form of a UUID or a friendly name.
 * `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key’s passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key’s `id`. Required if you set `encryptWith` to `encryptionKey`.
 
-|  | Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
 
 When having Couchbase Server manage the key, the `data` object has the following schema:
 
@@ -860,8 +868,8 @@ If successful, the previous example just returns the `200 OK` status code and no
 
 You can test changes you want to make to an encryption-at-rest key managed by a remote KMS before you actually make them. Calling this REST API method does not actually make the changes to the key. It just tests an altered copy of the key to determine if it able to encrypt and decrypt data. The call to this API method is the same as altering the key using the [Create or Update an Encryption-at-Rest Key](#create-key) API method, except it adds a `/test` suffix to the URL.
 
-|  | This endpoint only works for AWS and KMIP keys. It does not work for Couchbase Server managed keys. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint only works for AWS and KMIP keys. It does not work for Couchbase Server managed keys.
 
 Test Possible CHanges to a Key
 
@@ -988,8 +996,8 @@ source_profile = base
 ```
 * `profile`: The name of the profile defined in the configuration file to use when authenticating with AWS KMS.
 
-|  | Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to AWS when you select the key to encrypt data or another key. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to AWS when you select the key to encrypt data or another key. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
 
 When using a KMIP-compatible KMS, the `data` object has the following schema:
 
@@ -1028,10 +1036,9 @@ Fields
   * `"useSysAndCbCa"` (default): Use the certificates in both the operating system’s and Couchbase Server’s trust stores.
   * `"useSysCa"`: Use the certificates in the operating system’s trust store.
   * `"useCbCa"`: Use the certificates in Couchbase Server’s trust store.
-  * `"skipServerCertVerification"`: Skip verification of the KMS.
-
-|  | Not verifying the identity of the KMS is insecure. |
-|  | -------------------------------------------------- |
+  * `"skipServerCertVerification"`: Skip verification of the KMS.  
+  > [!CAUTION]  
+  > Not verifying the identity of the KMS is insecure.
 * `encryptionApproach` (optional): controls how the passphrase for the private key is encrypted for local storage. The two options are:
 
   * `"nodeSecretManager"` (default): Couchbase Server encrypts the passphrase using the [master password](../../../manage/manage-security/manage-system-secrets.md#setting-the-master-password).
@@ -1039,8 +1046,8 @@ Fields
 * `activeKey.kmipId`: The ID of the encryption key stored in the KMS. The format of this value depends on the KMS. It’s often in the form of a UUID or a friendly name.
 * `encryptionWithKeyId` (integer): The `id` attribute of the encryption key Couchbase Server uses to encrypt the private key’s passphrase when storing it locally. See [List Encryption-at-Rest Keys](#list-keys) to learn how to get an encryption key’s `id`. Required if you set `encryptWith` to `encryptionKey`.
 
-|  | Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server does not verify the information you give it during key creation. It only attempts to connect to the KMS when you assign the key to encrypt something. See [Test an Encryption-at-Rest Key](#test-key) to learn how to test the key.
 
 ### [](#test-changes-privs)Required Privileges
 

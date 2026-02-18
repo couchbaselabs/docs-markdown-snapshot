@@ -1,4 +1,14 @@
+---
+title: Work Faster with Capella iQ
+description: Capella iQ is your partner in getting started with Couchbase
+  Capella. Use it to create SQL++ queries, sample data, and more.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/work-with-capellaiq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/capella-iq/work-with-capellaiq.html)
+
+# Work Faster with Capella iQ
 
 > Capella iQ is your partner in getting started with Couchbase Capella. Use it to create SQL++ queries, sample data, and more. 
 
@@ -18,8 +28,8 @@ With Capella iQ, you can use natural language prompts to:
 
 For more information about using these capabilities, see [Get Started with Capella iQ](get-started-with-iq.md).
 
-|  | Some features differ between Capella iQ for operational clusters and Capella iQ for [Capella Analytics](../../../analytics/intro/intro.md). For more information about Capella iQ for Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some features differ between Capella iQ for operational clusters and Capella iQ for [Capella Analytics](../../../analytics/intro/intro.md). For more information about Capella iQ for Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md).
 
 ### [](#explore-results-with-iq-insights)Explore Results with iQ Insights
 

@@ -1,4 +1,14 @@
+---
+title: DISCONNECT Statements
+description: This topic describes how you use <code>DISCONNECT</code> statements
+  to disconnects all remote collections on the given link or links.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_disconnect.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_disconnect.html)
+
+# DISCONNECT Statements
 
 > This topic describes how you use `DISCONNECT` statements to disconnects all remote collections on the given link or links. 
 
@@ -6,8 +16,8 @@ A `DISCONNECT` statement is the inverse of a `CONNECT` statement.
 
 The `DISCONNECT` statement applies only to remote links, and is not applicable to external links.
 
-|  | DISCONNECT statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `DISCONNECT` statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete.
 
 ## [](#syntax)Syntax
 

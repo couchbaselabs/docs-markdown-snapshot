@@ -1,4 +1,13 @@
+---
+title: Logging
+description: Logging with the Columnar Python SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/howtos/pages/logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-columnar-sdk/current/howtos/logging.html)
+
+# Logging
 
 > Logging with the Columnar Python SDK. 
 
@@ -52,8 +61,8 @@ if __name__ == '__main__':
 
 ## [](#logging-via-environmental-settings)Logging via Environmental Settings
 
-|  | Only one logger can be created. Either use PYCBCC\_LOG\_LEVEL to create a console logger or python logging, as mentioned above. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Only one logger can be created. Either use `PYCBCC_LOG_LEVEL` to create a console logger or python `logging`, as mentioned above.
 
 In the command line environment, the PYCBCC\_LOG\_LEVEL variable is set as follows:
 

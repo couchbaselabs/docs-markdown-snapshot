@@ -1,4 +1,15 @@
+---
+title: Querying with SQL++
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/current/howtos/sqlpp-queries-with-sdk.html)
+
+# Querying with SQL++
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. 
 
@@ -8,8 +19,10 @@ On this page we dive straight into using the Query Service API from the Scala SD
 
 Our query service uses SQL++, which will be fairly familiar to anyone who’s used any dialect of SQL. [Additional Resources](#additional-resources) for learning about SQL++ are listed at the bottom of the page. Before you get started you may wish to checkout the [SQL++ intro page](#6.5@server:n1ql:n1ql-language-reference/index.adoc).
 
-|  | SQL++ Compared to Key-Value SQL++ is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be much more efficient to use the Key-Value API. We strongly recommend using both APIs to create a flexible, performant application. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> SQL++ Compared to Key-Value
+> 
+> SQL++ is excellent for performing queries against multiple documents, but if you only need to access or mutate a single document and you know its unique ID, it will be much more efficient to use the Key-Value API. We strongly recommend using both APIs to create a flexible, performant application.
 
 ## [](#getting-started)Getting Started
 
@@ -95,8 +108,8 @@ cluster
 }
 ```
 
-|  | Most of the examples here use the simplest of the three APIs provided by the Scala SDK, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala Future, and a streaming reactive API, for which we’ll see an example later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Most of the examples here use the simplest of the three APIs provided by the Scala SDK, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala `Future`, and a streaming reactive API, for which we’ll see an example later.
 
 ## [](#placeholder-and-named-arguments)Placeholder and Named Arguments
 
@@ -232,8 +245,8 @@ The recommended solution is to use the reactive API. Reactive programming is a s
 
 The Scala SDK exposes primitives from the [Project Reactor](https://projectreactor.io/) library, most notably `Mono` and `Flux`. We strongly recommend [learning](https://projectreactor.io/learn) a little of this library first, and the following examples will assume basic familiarity with Reactor.
 
-|  | You’ll see both reactor.core.scala.publisher and reactor.core.publisher imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You’ll see both `reactor.core.scala.publisher` and `reactor.core.publisher` imports available for Reactor. Use the former, it is the Scala-optimized variant that the Scala SDK will return.
 
 Here’s how to perform a query and stream the results using the reactive API:
 
@@ -254,8 +267,8 @@ val allRows: Seq[JsonObject] = rows
   .block()
 ```
 
-|  | The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes.
 
 ## [](#querying-at-scope-level)Querying at Scope Level
 
@@ -278,7 +291,7 @@ A complete list of `QueryOptions` can be found in the [API docs](https://docs.co
 
 ## [](#additional-resources)Additional Resources
 
-|  | SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/querying-your-data.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/querying-your-data.md).
 
 The [SQL++ interactive tutorial](http://query.pub.couchbase.com/tutorial/#1) is a good introduction to the basics of SQL++ use.

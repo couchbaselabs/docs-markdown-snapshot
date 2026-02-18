@@ -1,4 +1,13 @@
+---
+title: Literals
+description: Literal values include strings, numbers, TRUE, FALSE, NULL, and MISSING.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/literals.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/literals.html)
+
+# Literals
 
 > Literal values include strings, numbers, TRUE, FALSE, NULL, and MISSING. 
 

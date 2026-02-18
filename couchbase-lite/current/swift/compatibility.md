@@ -1,4 +1,13 @@
+---
+title: Compatibility
+description: Couchbase Lite framework and Sync Gateway compatibility
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/swift/compatibility.html)
+
+# Compatibility
 
 > Description — _Couchbase Lite framework and Sync Gateway compatibility_  
 > _Abstract — This content identifies the compatibility of Couchbase Lite on Swift with Sync Gateway, together with the operating systems upon which it is supported._  

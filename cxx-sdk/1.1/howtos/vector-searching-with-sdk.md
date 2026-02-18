@@ -1,4 +1,14 @@
+---
+title: Vector Search
+description: Vector Search from the SDK, to enable AI integration, semantic
+  search, and the RAG framework.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/vector-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.1/howtos/vector-searching-with-sdk.html)
+
+# Vector Search
 
 > Vector Search from the SDK, to enable AI integration, semantic search, and the RAG framework. 
 

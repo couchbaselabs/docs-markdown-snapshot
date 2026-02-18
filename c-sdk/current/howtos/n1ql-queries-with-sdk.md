@@ -1,4 +1,15 @@
+---
+title: SQL++ Queries from the SDK
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/n1ql-queries-with-sdk.html)
+
+# SQL++ Queries from the SDK
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
@@ -85,8 +96,8 @@ Usage details for this and `lcb_cmdquery_scope_qualifier()` can be found in the 
 
 ## [](#additional-resources)Additional Resources
 
-|  | The Query Service is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Query Service is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service.
 
 The [Server doc SQL++ intro](../../../server/current/n1ql/n1ql-language-reference/index.md) introduces up a complete guide to the SQL++ language, including all of the latest additions.
 

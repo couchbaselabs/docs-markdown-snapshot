@@ -1,11 +1,21 @@
+---
+title: Role-Based Access Control (RBAC)
+description: Full  and Security Administrators can manage the Couchbase
+  <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rbac.html)
+
+# Role-Based Access Control (RBAC)
 
 > Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
 
 ## [](#description)Description
 
-|  | The resulting list of this API also include roles that are not applicable to Enterprise Analytics. For more information about roles specific to Enterprise Analytics, see [Role-Based Access Control (RBAC)](#manage:rbac.adoc). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The resulting list of this API also include roles that are not applicable to Enterprise Analytics. For more information about roles specific to Enterprise Analytics, see [Role-Based Access Control (RBAC)](#manage:rbac.adoc).
 
 An Enterprise Analytics _role_ permits one or more _resources_ to be accessed according to defined _privileges_. Roles can be assigned to individual users, and to groups, by means of the REST API.
 
@@ -26,8 +36,8 @@ If successful, this returns `200 OK`, and an array that contains a description o
 
 The following example lists the roles for the current cluster.
 
-|  | In this example (as in others, below) the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate readability. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In this example (as in others, below) the output is piped to the [jq](https://stedolan.github.io/jq/) command, to facilitate readability.
 
 curl -v -X GET http://10.143.201.101:8091/settings/rbac/roles \
 -u Administrator:password | jq
@@ -255,8 +265,8 @@ If successful, the call returns an array such as the following:
 
 Thus, the array contains two members, which respectively contain information about the `ClusterAdmins`, and the `DataReaderGroup` groups.
 
-|  | The ClusterAdmins group is shown to have an ldap\_group\_ref: meaning that it corresponds to an LDAP group, defined on the LDAP server. For information, see [Native LDAP Support](#learn:security/authentication-domains.adoc#native-ldap-support). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `ClusterAdmins` group is shown to have an `ldap_group_ref`: meaning that it corresponds to an LDAP group, defined on the LDAP server. For information, see [Native LDAP Support](#learn:security/authentication-domains.adoc#native-ldap-support).
 
 ## [](#create-users-and-groups)Create Users and Groups
 
@@ -264,8 +274,8 @@ The REST API allows users and groups to be created, and roles thereby assigned. 
 
 Users can be either _local_ or _external_. A local user may have the same username as an external user.
 
-|  | A cluster running Enterprise Analytics _Enterprise Edition_ can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty, local users. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A cluster running Enterprise Analytics _Enterprise Edition_ can have any number of users. A cluster running _Community Edition_ can have a maximum of twenty, local users.
 
 Groups can optionally be mapped to _external groups_, defined on an LDAP server. For information, see [Authentication Domains](#learn:security/authentication-domains.adoc).
 
@@ -282,8 +292,8 @@ The specified `password` must conform to the settings established as described i
 
 If successful, the call returns `200 OK`. No object is returned.
 
-|  | In Enterprise Analytics, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the /settings/rbac/users/local URI can be used with the PATCH method: this allows the password parameter to be used, specifying a new password; and the username and roles parameters to be omitted. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Enterprise Analytics, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
 
 #### [](#example-create-local-users)Examples: Create Local Users, Assigning Roles
 
@@ -354,8 +364,8 @@ curl -X PUT http://<ip-address-or-domain-name>:8091/settings/rbac/users/external
   -u <username:password>
   -d roles=[ <role> ]*
 
-|  | No password needs to be specified, since this is expected to have been defined on an external server: the external server will be contacted by Enterprise Analytics, as part of the user-authentication procedure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> No password needs to be specified, since this is expected to have been defined on an external server: the external server will be contacted by Enterprise Analytics, as part of the user-authentication procedure.
 
 Roles that permit data-access can be assigned with reference to a bucket, to a scope within a bucket, or to a collection within a scope. Syntactically, the assignment should be specified in square brackets, immediately after the role-name; with the bucket-name preceding (if one is specified) the scope-name; and the scope-name preceding (if one is specified) the collection-name. The names of bucket, scope, and collection must be separated by colons.
 
@@ -507,8 +517,8 @@ The following example backs up all users and groups to a file named `full.backup
 
 Unresolved include directive in modules/reference/pages/rbac.adoc - include::rest-api:example$rbac-backup-users-groups.sh[]
 
-|  | The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure.
 
 Parameters
 

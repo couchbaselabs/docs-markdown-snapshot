@@ -1,4 +1,14 @@
+---
+title: Using Couchbase Transactions
+description: A practical guide to using Couchbase distributed ACID transactions
+  with the Python SDK.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 > A practical guide to using Couchbase distributed ACID transactions with the Python SDK. 
 
@@ -22,8 +32,16 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) page for a 
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
-|  | Single Node Cluster When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a DurabilityImpossibleException. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via: [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket) [Couchbase Server UI](../../../server/7.6/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings) [Command Line](../../../server/7.6/cli/cbcli/couchbase-cli-bucket-create.md#options) If the bucket already exists, then the server needs to be rebalanced for the setting to take effect. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Single Node Cluster
+> 
+> When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
+> 
+> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
+> * [Couchbase Server UI](../../../server/7.6/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
+> * [Command Line](../../../server/7.6/cli/cbcli/couchbase-cli-bucket-create.md#options)
+> 
+> If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
 
 Simply `pip install` the most recent version of the SDK. You may, on occasion, need to import some enumerations for particular settings, but in basic cases nothing is needed.
 
@@ -93,8 +111,8 @@ You can perform transactional database operations using familiar key-value CRUD 
 * **U**pdate - `replace()`
 * **D**elete - `remove()`
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as ctx.insert(), rather than collection.insert(). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as `ctx.insert()`, rather than `collection.insert()`.
 
 ### [](#insert)Insert
 
@@ -164,8 +182,8 @@ cluster.transactions.run(txn_logic)
 
 If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), then its use in transactions is very similar. A query returns a `TransactionQueryResult` that is very similar to the `QueryResult` you are used to, and takes most of the same options.
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as ctx.query(), rather than cluster.query() or scope.query(). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as `ctx.query()`, rather than `cluster.query()` or `scope.query()`.
 
 Here is an example of selecting some rows from the `travel-sample` bucket:
 
@@ -266,8 +284,10 @@ cluster.transactions.run(txn_logic)
 | ----- | -------------------------------------------------------------------------------------------------------------------------- |
 | **2** | But the SELECT can view it, as the insert was in the same transaction.                                                     |
 
-|  | Query Mode When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Query Mode
+> 
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 
@@ -297,8 +317,8 @@ cluster = Cluster.connect('couchbase://your-ip', opts)
 
 The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.
 
-|  | A level of None is present but its use is discouraged and unsupported. If durability is set to None, then ACID semantics are not guaranteed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> A level of `None` is present but its use is discouraged and unsupported. If durability is set to `None`, then ACID semantics are not guaranteed.
 
 ## [](#additional-resources)Additional Resources
 

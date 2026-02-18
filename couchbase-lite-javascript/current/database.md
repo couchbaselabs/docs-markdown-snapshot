@@ -1,4 +1,13 @@
+---
+title: Databases
+description: Working with Couchbase Lite Databases in JavaScript
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/database.html)
+
+# Databases
 
 > Description — _Working with Couchbase Lite Databases in JavaScript_  
 > Related Content — [Encryption](encryption.md) | [Blobs](blob.md) | [Documents](document.md) | [Indexing](indexing.md)
@@ -57,8 +66,8 @@ Things to watch for include:
 * If the named database does not exist, a new one is created
 * The database is stored in the browser’s IndexedDB under the current origin
 
-|  | Unlike native Couchbase Lite SDKs, collections and their indexes must be declared in the DatabaseConfig when opening the database. Collections cannot be created or deleted while the database is open. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Unlike native Couchbase Lite SDKs, collections and their indexes must be declared in the `DatabaseConfig` when opening the database. Collections cannot be created or deleted while the database is open.
 
 Example 1\. Open or create a database
 
@@ -125,11 +134,13 @@ You are advised to incorporate the closing of all open databases into your appli
 
 To close a database, use [Database.close()](https://docs.couchbase.com/mobile/1.0.0/couchbase-lite-javascript/classes/Database.html#close) — see: [Example 3](#ex-dbclose). This also closes active replications, listeners and-or live queries connected to the database.
 
-|  | Closing a database soon after starting a replication involving it can cause an exception as the asynchronous replicator may not yet be connected. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Closing a database soon after starting a replication involving it can cause an exception as the asynchronous replicator may not yet be connected.
 
-|  | Safely Closing a DatabaseBefore closing, check that any attached listeners (query/replication/change) indicate they are at least at connected status before closing — see for example: [Monitor Status](replication.md#lbl-repl-mon). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Safely Closing a Database
+> 
+> Before closing, check that any attached listeners (query/replication/change) indicate they are at least at `connected` status before closing — see for example: [Monitor Status](replication.md#lbl-repl-mon).
 
 Example 3\. Close a Database
 
@@ -164,8 +175,8 @@ await Database.delete('myapp');
 console.log('Database deleted');
 ```
 
-|  | Deleting a database is permanent and cannot be undone. All data, collections, and indexes are removed from IndexedDB. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Deleting a database is permanent and cannot be undone. All data, collections, and indexes are removed from IndexedDB.
 
 ## [](#multiple-databases)Multiple Databases
 
@@ -201,8 +212,8 @@ await localDb.close();
 
 Databases in Couchbase Lite JavaScript are subject to browser storage quotas and policies.
 
-|  | IndexedDB quotas, persistence, and eviction rules vary by browser, so the same app may store different amounts of data across environments. When writes exceed quota, a QuotaExceededError is thrown with no automatic retry or cleanup. The application must catch these errors, decide how to free space, or prompt the user. The SDK relies entirely on IndexedDB’s native behavior. See [Browsers and Storage](supported-browsers.md#browser-specific-considerations) for detailed information. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> IndexedDB quotas, persistence, and eviction rules vary by browser, so the same app may store different amounts of data across environments. When writes exceed quota, a `QuotaExceededError` is thrown with no automatic retry or cleanup. The application must catch these errors, decide how to free space, or prompt the user. The SDK relies entirely on IndexedDB’s native behavior. See [Browsers and Storage](supported-browsers.md#browser-specific-considerations) for detailed information.
 
 ### [](#storage-quotas)Storage Quotas
 

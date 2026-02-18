@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Couchbase Lite Fundamentals"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/standalone/content/modules/userprofile-standalone/pages/userprofile_basic.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-standalone/userprofile_basic.html)
+
+# User Profile Sample: Couchbase Lite Fundamentals
 
 ## [](#introduction)Introduction
 
@@ -30,10 +38,9 @@ You can learn more about Couchbase Mobile [here](https://developer.couchbase.com
 This tutorial assumes familiarity with building Swift apps with Xcode and with Couchbase Lite.
 
 * iOS (Xcode 12/13)  
-Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-
-|  | If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)  
+> [!NOTE]  
+> If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac.
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 

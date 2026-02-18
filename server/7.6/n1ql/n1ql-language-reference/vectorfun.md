@@ -1,4 +1,13 @@
+---
+title: Vector Functions
+description: Vector functions enable you to work with vector values.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/vectorfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/vectorfun.html)
+
+# Vector Functions
 
 > Vector functions enable you to work with vector values. 
 
@@ -97,8 +106,8 @@ Couchbase Server supports four metrics:
 
 Euclidean Distance (also known as L2) calculates the geometric distance between two vectors by finding the distance between the individual dimensions in the vectors. This method is most sensitive to the distance between the vectors in space, rather than their alignment. It’s also sensitive to the scale of the vectors, where the length of one vector versus the other affects the relationship between the vectors. Use this method when the actual distance of the vectors and their magnitudes are important. This method is useful if the distance between vectors represents a real-world value.
 
-|  | When you select Euclidean Distance or L2 as the metric for a vector index, Couchbase Server internally uses the [Euclidean Squared Distance](#euclidean-squared) metric (explained in the next section) to perform vector comparisons. This approach improves performance because it avoids performing a computationally expensive square root operation. Vector searches using the Euclidean Squared metric return the same relevant vectors and ranking of results as Euclidean Distance. If your query materializes or projects the actual distance between vectors, Couchbase Server calculates the actual Euclidean Distance. For example, if your query returns the distance between vectors as a column, Couchbase Server calculates the square root of the Euclidean Squared distance to return the actual Euclidean Distance. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you select Euclidean Distance or L2 as the metric for a vector index, Couchbase Server internally uses the [Euclidean Squared Distance](#euclidean-squared) metric (explained in the next section) to perform vector comparisons. This approach improves performance because it avoids performing a computationally expensive square root operation. Vector searches using the Euclidean Squared metric return the same relevant vectors and ranking of results as Euclidean Distance. If your query materializes or projects the actual distance between vectors, Couchbase Server calculates the actual Euclidean Distance. For example, if your query returns the distance between vectors as a column, Couchbase Server calculates the square root of the Euclidean Squared distance to return the actual Euclidean Distance.
 
 ### [](#euclidean-squared)Euclidean Squared Distance
 

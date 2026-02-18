@@ -1,4 +1,12 @@
+---
+title: Index Statistics REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/index-rest-stats/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/index-rest-stats/index.html)
+
+# Index Statistics REST API
 
 ## [](#overview)Overview
 
@@ -58,11 +66,13 @@ Query Parameters
 | **redact**optional    | Whether keyspace and index names should be redacted in the output. **Default:** false         | Boolean |
 | **skipEmpty**optional | Whether empty, null, or zero statistics should be omitted from the output. **Default:** false | Boolean |
 
-|  | In most cases, the [keyspace](#get%5Findex%5Fstats-parameters) path parameter must specify the complete name of the keyspace containing the index. It may not omit the scope name or the collection name. However, if the specified index is stored in the default collection in the default scope within a bucket, then the [keyspace](#get%5Findex%5Fstats-parameters) path parameter may specify just the bucket name alone. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In most cases, the [keyspace](#get%5Findex%5Fstats-parameters) path parameter must specify the complete name of the keyspace containing the index. It may not omit the scope name or the collection name.
+> 
+> However, if the specified index is stored in the default collection in the default scope within a bucket, then the [keyspace](#get%5Findex%5Fstats-parameters) path parameter may specify just the bucket name alone.
 
-|  | It is not possible to specify an individual index partition in the path. |
-|  | ------------------------------------------------------------------------ |
+> [!TIP]
+> It is not possible to specify an individual index partition in the path.
 
 #### [](#get%5Findex%5Fstats-responses)Responses
 
@@ -313,8 +323,10 @@ Query Parameters
 | **redact**optional    | Whether keyspace and index names should be redacted in the output. **Default:** false         | Boolean |
 | **skipEmpty**optional | Whether empty, null, or zero statistics should be omitted from the output. **Default:** false | Boolean |
 
-|  | If the [keyspace](#get%5Fkeyspace%5Fstats-parameters) path parameter specifies just a bucket name, the response contains statistics for all indexes in all collections in all scopes within that bucket. If this parameter specifies a bucket name and a scope name, the response contains statistics for all indexes in all collections within that scope. Similarly, if this parameter specifies a bucket name, a scope name, and a collection, the response contains statistics for all indexes in that collection. To get statistics for the indexes in the default collection in the default scope within a bucket only, you must specify the scope and collection explicitly. For example, bucket.\_default.\_default. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the [keyspace](#get%5Fkeyspace%5Fstats-parameters) path parameter specifies just a bucket name, the response contains statistics for all indexes in all collections in all scopes within that bucket. If this parameter specifies a bucket name and a scope name, the response contains statistics for all indexes in all collections within that scope. Similarly, if this parameter specifies a bucket name, a scope name, and a collection, the response contains statistics for all indexes in that collection.
+> 
+> To get statistics for the indexes in the default collection in the default scope within a bucket only, you must specify the scope and collection explicitly. For example, `bucket._default._default`.
 
 #### [](#get%5Fkeyspace%5Fstats-responses)Responses
 
@@ -652,10 +664,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| All of …​        |                       | Schema                     |
-| ---------------- | --------------------- | -------------------------- |
-| Node statistics. | [Nodes](#NodeIdxNode) |                            |
-| and              | Index statistics.     | [Indexes](#PartIdxIndexes) |
+| All of …​ |                   | Schema                     |
+| --------- | ----------------- | -------------------------- |
+|           | Node statistics.  | [Nodes](#NodeIdxNode)      |
+| and       | Index statistics. | [Indexes](#PartIdxIndexes) |
 
 #### Nodes
 
@@ -681,10 +693,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| All of …​         |                             | Schema                           |
-| ----------------- | --------------------------- | -------------------------------- |
-| Index statistics. | [Indexes](#PartIdxIndexes)  |                                  |
-| and               | Index partition statistics. | [Partitions](#PartIdxPartitions) |
+| All of …​ |                             | Schema                           |
+| --------- | --------------------------- | -------------------------------- |
+|           | Index statistics.           | [Indexes](#PartIdxIndexes)       |
+| and       | Index partition statistics. | [Partitions](#PartIdxPartitions) |
 
 ### [](#PartIdxIndexes)Indexes
 
@@ -694,8 +706,13 @@ This section describes the properties consumed and returned by this REST API.
 | ------------------ | ---------------------------------------------------------------------- | -------------------------------- |
 | additionalproperty | A nested object containing statistics for an index or index partition. | [Index](#PartIdxPartitionsIndex) |
 
-|  | By default, the name of the nested object has the form <keyspace>:<index>. <keyspace> is the bucket, scope, and collection containing the index. <index> is the name of the index. If the redact query parameter was set to true, the name of the nested object is replaced by the index instance ID for confidentiality. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, the name of the nested object has the form `<keyspace>:<index>`.
+> 
+> * `<keyspace>` is the bucket, scope, and collection containing the index.
+> * `<index>` is the name of the index.
+> 
+> If the `redact` query parameter was set to `true`, the name of the nested object is replaced by the index instance ID for confidentiality.
 
 #### Partitions
 
@@ -705,8 +722,11 @@ This section describes the properties consumed and returned by this REST API.
 | ------------------ | ---------------------------------------------------------------------- | -------------------------------- |
 | additionalproperty | A nested object containing statistics for an index or index partition. | [Index](#PartIdxPartitionsIndex) |
 
-|  | The name of the nested object has the form Partition-<num>. If the index is partitioned, this object contains statistics for one index partition, where <num> is the partition number. If the index is not partitioned, this object contains statistics for the entire index, and <num> is 0. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of the nested object has the form `Partition-<num>`.
+> 
+> * If the index is partitioned, this object contains statistics for one index partition, where `<num>` is the partition number.
+> * If the index is not partitioned, this object contains statistics for the entire index, and `<num>` is `0`.
 
 #### Index
 

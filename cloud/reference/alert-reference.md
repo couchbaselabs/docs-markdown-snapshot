@@ -1,4 +1,14 @@
+---
+title: Alert Reference
+description: This reference lists the alerts that Capella can emit, the
+  conditions in which they occur, and a description for each.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/alert-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/alert-reference.html)
+
+# Alert Reference
 
 > This reference lists the alerts that Capella can emit, the conditions in which they occur, and a description for each. 
 

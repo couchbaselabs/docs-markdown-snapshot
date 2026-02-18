@@ -1,4 +1,13 @@
+---
+title: WHERE clause
+description: The WHERE clause filters resultsets based specified conditions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/where.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/where.html)
+
+# WHERE clause
 
 > The `WHERE` clause filters resultsets based specified conditions. 
 

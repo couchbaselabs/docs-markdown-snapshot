@@ -1,11 +1,23 @@
+---
+title: Run a Vector Search with the REST API and curl/HTTP
+description: You can use the REST API and a curl command to run a search against
+  a Vector Search index and return similar vectors.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/run-vector-search-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/vector-search/run-vector-search-rest-api.html)
+
+# Run a Vector Search with the REST API and curl/HTTP
 
 > You can use the REST API and a curl command to run a search against a Vector Search index and return similar vectors. 
 
 For more information about how the Search Service scores documents in search results, see [Scoring for Search Queries](#run-searches.adoc#scoring).
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -15,10 +27,20 @@ For more information about how the Search Service scores documents in search res
 * You installed the Couchbase command-line tool (CLI).
 * You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../../current/manage/manage-nodes/list-cluster-nodes.md).
 * You have created a Vector Search index.  
-For more information about how to create a Vector Search index, see [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).
-
-|  | You can download a sample dataset to use with the procedure or examples on this page: [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip) To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/import.md) from the dataset into your database with the following settings: Use a bucket called vector-sample. Use a scope called color. Use a collection called rgb for rgb.json. To set your document keys, use the value of the id field from each JSON document. For the best results, consider using the sample Vector Search index from [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md#example) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md#example). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+For more information about how to create a Vector Search index, see [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md).  
+> [!TIP]  
+> You can download a sample dataset to use with the procedure or examples on this page:  
+>  
+> [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip)  
+>  
+> To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/import.md) from the dataset into your database with the following settings:  
+>  
+> * Use a bucket called `vector-sample`.  
+> * Use a scope called `color`.  
+> * Use a collection called `rgb` for `rgb.json`.  
+> * To set your document keys, use the value of the `id` field from each JSON document.  
+>  
+> For the best results, consider using the sample Vector Search index from [Create a Vector Search Index with the Server Web Console](create-vector-search-index-ui.md#example) or [Create a Vector Search Index with the REST API and curl/HTTP](create-vector-search-index-rest-api.md#example).
 
 ## [](#procedure)Procedure
 
@@ -32,10 +54,9 @@ curl -s -XPUT -H "Content-Type: application/json" \
 -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/${BUCKET_NAME}/scope/${SCOPE_NAME}/index/${INDEX_NAME}/query -d \  
 ```  
 To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
-4. Enter the JSON payload for your query.
-
-|  | You can copy the JSON for a Query Request from the Couchbase Server Web Console to use in your REST API call. For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](../search/simple-search-ui.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+4. Enter the JSON payload for your query.  
+> [!TIP]  
+> You can copy the JSON for a Query Request from the Couchbase Server Web Console to use in your REST API call. For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](../search/simple-search-ui.md).
 
 ### [](#example)Example
 
@@ -67,8 +88,8 @@ curl -XPOST -H "Content-Type: application/json" \
 
 The Search Service combines the Vector search results from the `knn` object with the traditional `query` object by using an `OR` function. If the same documents match the `knn` and `query` objects, the Search Service ranks those documents higher in search results.
 
-|  | For a more complex query, you can copy the query object from the example under [Example: Running a Semantic Search Query with a Large Embedding Vector](run-vector-search-ui.md#large) to use in your REST API call. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For a more complex query, you can copy the `query` object from the example under [Example: Running a Semantic Search Query with a Large Embedding Vector](run-vector-search-ui.md#large) to use in your REST API call.
 
 For more information about the available properties for a Search query JSON payload, see [Search Request JSON Properties](../search/search-request-params.md).
 

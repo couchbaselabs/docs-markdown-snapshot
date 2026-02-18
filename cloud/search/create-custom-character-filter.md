@@ -1,4 +1,15 @@
+---
+title: Create a Custom Character Filter
+description: Create a custom character filter with the Couchbase Capella UI to
+  remove unwanted characters from a Search query or the contents of a Search
+  index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-character-filter.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/create-custom-character-filter.html)
+
+# Create a Custom Character Filter
 
 > Create a custom character filter with the Couchbase Capella UI to remove unwanted characters from a Search query or the contents of a Search index. 
 
@@ -31,10 +42,9 @@ To create a custom character filter with the Capella UI in Advanced Mode:
   1. To create a new custom analyzer with a new character filter, click **Add Custom Analyzer**.
   2. To add a new custom character filter to use with an existing analyzer, expand the **Default Analyzer** list, and next to your custom analyzer, click **Edit**.
 8. Click **Add Custom Character Filter**.
-9. In the **Character Filter Name** field, enter a name for the character filter.
-
-|  | The Search Service supports only the **regexp** Type for character filters. |
-|  | --------------------------------------------------------------------------- |
+9. In the **Character Filter Name** field, enter a name for the character filter.  
+> [!NOTE]  
+> The Search Service supports only the **regexp** Type for character filters.
 10. In the **Regular Expression** field, enter the regular expression for the character filter.  
 Any analyzer that uses your character filter will remove any characters that match the regular expression from token results.  
 For example, if you wanted to remove numeric characters from your tokens, you could use `[0-9]` as your regular expression.

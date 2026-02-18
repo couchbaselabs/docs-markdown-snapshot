@@ -1,4 +1,12 @@
+---
+title: Manage Your Couchbase Capella Account
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/manage-account.html)
+
+# Manage Your Couchbase Capella Account
 
 > Couchbase Capella accounts are independent of organizations. 
 
@@ -12,13 +20,13 @@ To manage your Couchbase Capella account settings, click your initials in the up
 
 In the account management menu, the **General** option offers settings to update your profile information, password, region and timezone, and enable notifications. Make sure you save any changes.
 
-|  | Users who sign in with SSO cannot change their name, email, password, or activate Multi-Factor Authentication (MFA) settings. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users who sign in with SSO cannot change their name, email, password, or activate Multi-Factor Authentication (MFA) settings.
 
 ![The General settings screen.](_images/general.png) 
 
-|  | You can also reset your password by selecting **Forgot Password** from the log-in screen, which will send you a recovery email. No matter how many times you click **Forgot Password**, you will only receive one password reset email per minute. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also reset your password by selecting **Forgot Password** from the log-in screen, which will send you a recovery email. No matter how many times you click **Forgot Password**, you will only receive one password reset email per minute.
 
 To activate MFA, see [Manage MFA](ui-auth/mfa.md).
 
@@ -72,10 +80,9 @@ Procedure
 To unlink your Couchbase Capella account from a Google or GitHub account:
 
 1. On your profile page, click **Unlink from Google** or **Unlink from GitHub**.
-2. Enter a new password for your Capella account and confirm it.
-
-|  | If Multi-Factor Authentication (MFA) is on for your Capella account, Capella keeps this, and you’ll need your MFA time-based one-time password (TOTP) to sign in to your account after unlinking from a Google or GitHub account. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+2. Enter a new password for your Capella account and confirm it.  
+> [!NOTE]  
+> If Multi-Factor Authentication (MFA) is on for your Capella account, Capella keeps this, and you’ll need your MFA time-based one-time password (TOTP) to sign in to your account after unlinking from a Google or GitHub account.
 3. Click **Unlink from Google** or **Unlink from Google**.  
 The next time you sign in, you must use your email address and the new password that you set.
 

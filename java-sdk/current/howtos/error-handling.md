@@ -1,4 +1,14 @@
+---
+title: Handling Errors
+description: Errors are inevitable. That's why the SDK has very extensive error
+  handling and retry capabilties
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/howtos/error-handling.html)
+
+# Handling Errors
 
 > Errors are inevitable. That’s why the SDK has very extensive error handling and retry capabilties which are focussed on one goal: keeping your application available as best as possible even in the face of (transient) failures. 
 
@@ -107,8 +117,8 @@ AnalyticsResult analyticsResult = cluster.analyticsQuery("SELECT * FROM `travel-
 
 The `RetryStrategy` decides whether or not a request should be retried based on the `RetryReason`. By default, the SDK ships with a `BestEffortRetryStrategy` which, when faced with a retryable error, retries the request until it either succeeds or the timeout expires.
 
-|  | SDK 2 ships with a FailFastRetryStrategy which is intended to be used by an application. SDK 3 also ships with one, but it is marked as @Internal. We recommend extending and customizing the BestEffortRetryStrategy as described in [Customizing the RetryStrategy](#customizing-the-retrystrategy). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> SDK 2 ships with a `FailFastRetryStrategy` which is intended to be used by an application. SDK 3 also ships with one, but it is marked as `@Internal`. We recommend extending and customizing the `BestEffortRetryStrategy` as described in [Customizing the RetryStrategy](#customizing-the-retrystrategy).
 
 The `RetryReasons` are good to look at (see the [Reference](#reference) section), because they give insight into why an operation got retried. The `ErrorContext` described in the previous chapters exposes the reasons as a list, since it is certainly possible that a request gets retried more than once because of different reasons. So a request might be retried on one occasion because the socket went down during dispatch, and then on another because the response indicated a temporary failure.
 
@@ -215,8 +225,8 @@ If `.block()` is called (instead of `.subscribe()`) at the end, the error will b
 
 Usually though you either want to perform corrective action at some point or retry the operation. The former can be achieved through the various reactor methods that start with `onError*(…​)`.
 
-|  | Do not confuse onError\*(…​) with doOnError(…​). The former actively changes the operator sequence while the latter should only be used to perform side effects (like logging) and does not alter the sequence at all. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not confuse `onError*(…​)` with `doOnError(…​)`. The former actively changes the operator sequence while the latter should only be used to perform side effects (like logging) and does not alter the sequence at all.
 
 The following example performs a get operation and switches to a fallback method called `createDocumentReactive` if the document does not exist. Note that because `get` and `upsert` have different return types, we unify the API on the document content as a `JsonObject` which in this example will be returned to the user:
 
@@ -236,8 +246,8 @@ collection.reactive().get("my-doc-id")
 
 There are many more options available on the `Retry` builder, please consult the official reactor documentation for more information.
 
-|  | We always recommend using the Retry class from the reactor.util.retry package. Do not confuse it with the Retry class in the com.couchbase.client.core.retry.reactor package, which is deprecated and should not be used for this purpose. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> We always recommend using the `Retry` class from the `reactor.util.retry` package. Do not confuse it with the `Retry` class in the `com.couchbase.client.core.retry.reactor` package, which is deprecated and should not be used for this purpose.
 
 ## [](#customizing-the-retrystrategy)Customizing the RetryStrategy
 
@@ -297,8 +307,8 @@ If you need to call out to third party systems over the network or the file syst
 
 The `RetryAction` indicates what should be done with the request: if you return a `RetryAction.noRetry()`, the orchestrator will cancel the request, resulting in a `RequestCanceledException`. The other option is to call it through `RetryAction withDuration(Duration duration)`, indicating the duration when the request should be retried next. This allows you to customize not only _if_ a request should be retried, but also _when_.
 
-|  | Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-vs-non-idempotent-requests) in mind. You can check if a request is idempotent through the idempotent() getter, and also check if the RetryReason allows for non-idempotent retry through the allowsNonIdempotentRetry() getter. If in doubt, check the implementation of the BestEffortRetryStrategy for guidance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-vs-non-idempotent-requests) in mind. You can check if a request is idempotent through the `idempotent()` getter, and also check if the `RetryReason` allows for non-idempotent retry through the `allowsNonIdempotentRetry()` getter. If in doubt, check the implementation of the `BestEffortRetryStrategy` for guidance.
 
 ## [](#reference)Reference
 

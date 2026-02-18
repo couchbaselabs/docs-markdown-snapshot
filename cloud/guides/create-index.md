@@ -1,4 +1,13 @@
+---
+title: Create Indexes
+description: How to create primary indexes and secondary indexes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/create-index.html)
+
+# Create Indexes
 
 > How to create primary indexes and secondary indexes. 
 

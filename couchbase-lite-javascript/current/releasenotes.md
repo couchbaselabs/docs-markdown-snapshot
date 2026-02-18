@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite JavaScript Release Notes
+description: Couchbase Lite JavaScript release notes
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/releasenotes.html)
+
+# Couchbase Lite JavaScript Release Notes
 
 ## [](#version-1-0-0-november-2025)Version 1.0.0 — November 2025
 
@@ -31,8 +40,8 @@ None for this release.
 
 None for this release.
 
-|  | For an overview of the latest features offered in Couchbase Lite JavaScript, see [What’s New](whats-new.md). |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite JavaScript, see [What’s New](whats-new.md).
 
 ## [](#related-content)Related Content
 

@@ -1,4 +1,14 @@
+---
+title: User-Defined Functions
+description: You can call a user-defined function in any expression where you
+  can call a built-in function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/userfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/userfun.html)
+
+# User-Defined Functions
 
 > You can call a user-defined function in any expression where you can call a built-in function. 
 
@@ -10,8 +20,8 @@ The name of the function is usually an unqualified identifier, such as `func1` o
 
 To call a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to call a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more details.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must call the user-defined function using the same case that was used when it was created. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must call the user-defined function using the same case that was used when it was created.
 
 It is not possible to call a user-defined function in an expression if the function has side effects, such as performing mutations. When you do this, an error is generated.
 

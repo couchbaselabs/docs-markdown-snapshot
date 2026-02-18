@@ -1,4 +1,13 @@
+---
+title: Transactions&#8201;&#8212;&#8201;Server Compatibility
+description: How Sync Gateway works with <em>Couchbase Server Transactions</em>
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/server-compatibility-transactions.html)
+
+# Transactions&#8201;&#8212;&#8201;Server Compatibility
 
 > How Sync Gateway works with _Couchbase Server Transactions_  
 
@@ -10,8 +19,8 @@ _Other Topics_: [Compatibility Matrix](compatibility.md)
 
 Couchbase Server provides the backing data store for Sync Gateway.
 
-|  | See: [Compatibility Matrix](compatibility.md) for version compatibility information. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> See: [Compatibility Matrix](compatibility.md) for version compatibility information.
 
 Both Couchbase Server and Couchbase mobile (Sync Gateway and Couchbase Lite) support local transactions.
 

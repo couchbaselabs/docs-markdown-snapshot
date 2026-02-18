@@ -1,4 +1,14 @@
+---
+title: DROP INDEX
+description: The DROP INDEX statement allows you to drop a named primary index
+  or a secondary index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/dropindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/dropindex.html)
+
+# DROP INDEX
 
 The DROP INDEX statement allows you to drop a named primary index or a secondary index. Dropping an index that has replicas will also drop all of the replica indexes too. You can drop unnamed primary indexes using the [DROP PRIMARY INDEX](dropprimaryindex.md) statement.
 
@@ -52,8 +62,8 @@ index-path ::= keyspace-full | keyspace-prefix | keyspace-partial
 
 You can use a dotted notation to specify the index and the keyspace on which the index is built. This syntax provides compatibility with legacy versions of Couchbase Server. The index path may be a [full keyspace path](#keyspace-full-index), a [keyspace prefix](#keyspace-prefix-index), or a [keyspace partial](#keyspace-partial-index).
 
-|  | If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). Refer to the examples below. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). Refer to the examples below.
 
 #### [](#keyspace-full-index)Index Path: Full Keyspace
 
@@ -129,8 +139,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 In Couchbase Server 7.0 and later, you can use the index name with the `ON` keyword and a keyspace reference to specify the keyspace on which the index is built. The keyspace reference may be a [keyspace path](#keyspace-path) or a [keyspace partial](#keyspace-partial).
 
-|  | If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). Refer to the examples below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). Refer to the examples below.
 
 #### [](#keyspace-path)Keyspace Reference: Keyspace Path
 
@@ -198,8 +208,8 @@ If you drop an index with replicas when one of the index nodes is unavailable bu
 
 If you drop an index which is scheduled for background creation, a warning message is generated, but the drop index operation succeeds.
 
-|  | We recommend that you do not drop (or create) secondary indexes when any node with a secondary index role is down as this may result in duplicate index names. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> We recommend that you do not drop (or create) secondary indexes when any node with a secondary index role is down as this may result in duplicate index names.
 
 ## [](#examples)Examples
 

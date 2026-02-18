@@ -1,4 +1,12 @@
+---
+title: Understanding Analyzers
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-index-analyzers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-index-analyzers.html)
+
+# Understanding Analyzers
 
 > Analyzers increase search-awareness by transforming input text into token-streams, which permit the management of richer and more finely controlled forms of text-matching. An analyzer consists of modules, each of which performs a particular, sequenced role in the transformation. 
 
@@ -26,8 +34,8 @@ Analyzers are built from modular components:
 
 Each component-type is described in more detail below. You can use these components to create custom analyzers from the Couchbase Web Console.
 
-|  | If you have configured an analyzer for your field, you cannot specify any other analyzer for the field in the search request. However, if you do not specify any analyzer in your search query, the query will automatically choose the analyzer that was used for indexing. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you have configured an analyzer for your field, you cannot specify any other analyzer for the field in the search request. However, if you do not specify any analyzer in your search query, the query will automatically choose the analyzer that was used for indexing.
 
 ### [](#Character-Filters)Character Filters
 
@@ -52,10 +60,9 @@ The following tokenizers are available from the Couchbase Web Console:
 This does a restricted set of operations on the punctuations for example, it can’t combine the two geresh into a single gershayim (both of which are used as punctuations)
 * **Letter**: Creates tokens by breaking input-text into subsets that consist of letters only: characters such as punctuation-marks and numbers are omitted.  
 The creation of a token ends whenever a non-letter character is encountered. For example, the text `Reqmnt: 7-element phrase` would return the following tokens: `Reqmnt`, `element`, and `phrase`.
-* **Single**: Creates a single token from the entirety of the input-text. For example, the text `in each place` would return the following token: `in each place`.
-
-|  | This may be useful for handling URLs or email addresses, which can thus be prevented from being broken at punctuation or special-character boundaries. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |  
+* **Single**: Creates a single token from the entirety of the input-text. For example, the text `in each place` would return the following token: `in each place`.  
+> [!NOTE]  
+> This may be useful for handling URLs or email addresses, which can thus be prevented from being broken at punctuation or special-character boundaries.  
 It may also be used to prevent multi-word phrases (for example, place names such as `Milton Keynes` or `San Francisco`) from being broken up due to whitespace; so that they become indexed as a single term.
 * **Unicode**: Creates tokens by performing _Unicode Text Segmentation_ on word-boundaries, using the [segment](https://github.com/blevesearch/segment) library.  
 For examples, see [Unicode Word Boundaries](http://www.unicode.org/reports/tr29/#Word%5FBoundaries).
@@ -97,8 +104,8 @@ For example, the token stream `the quick brown fox`, when configured with a shin
 * **normalize\_unicode**: Converts tokens into [Unicode Normalization Form](http://unicode.org/reports/tr15/).
 * **unique**: Only indexes unique tokens during analysis.
 
-|  | The token filters are frequently configured according to the special characteristics of individual languages. Couchbase Full Text Search provides multiple language-specific versions of the **elision**, **normalize**, **stemmer**, **possessive**, and **stop** token filters. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The token filters are frequently configured according to the special characteristics of individual languages. Couchbase Full Text Search provides multiple language-specific versions of the **elision**, **normalize**, **stemmer**, **possessive**, and **stop** token filters.
 
 The following table lists the specially supported languages for token filters.
 
@@ -193,9 +200,8 @@ For example, the text “the QUICK brown fox jumps over the lazy Dog” phrase r
   * **stop\_token filter**: It removes words such as ‘and’, ‘is’, and ‘the’.  
   For example, the text “The QUICK Brown Fox Jumps Over The Lazy Dog” phrase returns the following tokens:  
   ![fts pre constructed analysers standard](_images/fts-pre-constructed-analysers-standard.png)  
-
-|  | Analyzers - Reserve Words The ‘standard’ analyzer removes stop words defined by the English language and special characters. If the user wants the stop words and special characters to be searchable, then the user will need to use a pre-constructed “simple” analyzer. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  > [!NOTE]  
+  > Analyzers - Reserve Words The ‘standard’ analyzer removes stop words defined by the English language and special characters. If the user wants the stop words and special characters to be searchable, then the user will need to use a pre-constructed “simple” analyzer.
 4. **Web**: The web analyzer identifies email addresses, URLs, Twitter usernames and hashtags, and attempts to keep them intact, indexed as individual tokens.  
 For example, the web analyzer identifies the email address and keeps it intact, indexed as individual token.  
 ![fts pre constructed analysers web](_images/fts-pre-constructed-analysers-web.png)
@@ -262,5 +268,5 @@ SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": "fts-index-1"})
 Example 3  
 SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": {...<an index mapping>....})
 
-|  | If users fail to provide this query context for non-covering queries, they may see incorrect results, including dropped documents, especially while using non-standard and custom analyzers. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If users fail to provide this query context for non-covering queries, they may see incorrect results, including dropped documents, especially while using non-standard and custom analyzers.

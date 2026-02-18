@@ -1,4 +1,12 @@
+---
+title: Colons and Semi-Colons
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/colons.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/colons.html)
+
+# Colons and Semi-Colons
 
 Use the following guidance for when to add a colon or semi-colon to your text.
 

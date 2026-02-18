@@ -1,4 +1,13 @@
+---
+title: Migration
+description: Migration Guide for migrating from Couchbase Lite 3.2.x / 3.3.x to 4.0.0
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/migration.html)
+
+# Migration
 
 Couchbase Lite 4.0.0 introduces several important updates and API changes to simplify development and ensure consistency across all platforms. Most APIs deprecated in versions 3.1.0 through 3.3.x have now been removed, and several configurations have been updated or restructured.
 
@@ -324,8 +333,8 @@ Introduced in 3.3.0 for iOS and Android, MultipeerReplicator requires a TLSIdent
 
 In 4.0.0, the older methods for creating separate client-only or server-only identities have been removed to improve API consistency and prevent confusion. Use the unified API with the KeyUsages flag, which allows you to specify whether the identity is for the client, the server, or both.
 
-|  | Couchbase Lite C has provided only the unified API since version 3.2.3. |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite C has provided only the unified API since version 3.2.3.
 
 * Swift
 * Objective-C

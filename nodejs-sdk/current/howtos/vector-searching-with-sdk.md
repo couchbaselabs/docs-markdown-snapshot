@@ -1,4 +1,14 @@
+---
+title: Vector Search
+description: Vector Search from the SDK, to enable AI integration, semantic
+  search, and use of RAG frameworks.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/vector-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/current/howtos/vector-searching-with-sdk.html)
+
+# Vector Search
 
 > Vector Search from the SDK, to enable AI integration, semantic search, and use of RAG frameworks. 
 

@@ -1,18 +1,30 @@
+---
+title: Encrypting Your Data
+description: A practical guide for getting started with Field-Level Encryption,
+  showing how to encrypt and decrypt JSON fields using the Java SDK.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/howtos/encrypting-using-sdk.html)
+
+# Encrypting Your Data
 
 > A practical guide for getting started with Field-Level Encryption, showing how to encrypt and decrypt JSON fields using the Java SDK. 
 
 For a high-level overview of this feature, see [Field Level Encryption](../concept-docs/encryption.md).
 
-|  | Native Encryption at Rest Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 ## [](#package)Packaging
 
 The Couchbase Java SDK works together with the [Java Couchbase Encryption](https://github.com/couchbase/java-couchbase-encryption) library to provide support for encryption and decryption of JSON fields. This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates).
 
 ## [](#requirements)Requirements
 
@@ -195,8 +207,8 @@ From Java SDK 3.2.1, the `@Encrypted` annotation can now be used to migrate an e
 
 then either encrypted or unencrypted values will be accepted during deserialization (without the latter causing error). See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/encryption/annotation/Encrypted.html).
 
-|  | Encryption means that document fields have been authenticated. Enabling this feature bypasses that protection, and so this should only be used in strictly limited circumstances, such as the migration from an unencrypted to an encrypted field. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Encryption means that document fields have been authenticated. Enabling this feature bypasses that protection, and so this should only be used in strictly limited circumstances, such as the migration from an unencrypted to an encrypted field.
 
 ## [](#creating-encryption-keys)Creating Encryption Keys
 
@@ -237,5 +249,5 @@ KeyStoreKeyring keyring = new KeyStoreKeyring(keyStore, keyName -> "protection-p
 
 SDK 2.x reached end-of-life long ago, but should you have fields encrypted by SDK 2.x, and the need to read them from SDK 3.x, then follow the steps in the [archived documents](https://docs-archive.couchbase.com/java-sdk/3.4/howtos/encrypting-using-sdk.html#migration-from-sdk2).
 
-|  | The encryption algorithms used by SDK 2 are deprecated, and are no longer used for encrypting new data. Do not rely on the security of outdated encryption algorithms. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The encryption algorithms used by SDK 2 are deprecated, and are no longer used for encrypting new data. Do not rely on the security of outdated encryption algorithms.

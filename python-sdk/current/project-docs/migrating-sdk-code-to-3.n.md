@@ -1,4 +1,15 @@
+---
+title: Migrating to SDK 3 API
+description: The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking
+  changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to
+  provide a number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating to SDK 3 API
 
 > The SDK API 3 (used in Python SDK 3.x and 4.x) introduces breaking changes to the previous SDK API 2 APIs (used in Python SDK 2.x) in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place. Individual behaviour changes across services are explained here. 
 
@@ -6,8 +17,8 @@ The current Python SDK 4.0 is also based on the [SDK API 3.3 specification](comp
 
 Couchbase Python SDK 4.0, like the 3.2, 3.1, and 3.0 versions, conforms to the Couchbase 3.x SDK API. Couchbase Python SDK 4.0 is built upon Couchbase++, whereas 3.x releases were built upon LCB (libcouchbase)
 
-|  | For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing Python SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For the most part, migration from SDK API 2._x_ versions remains the same. The few 4.0-specific changes can be found at the end of this document. If you are an existing Python SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below.
 
 This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
@@ -100,8 +111,8 @@ Now that you are familiar with the general theme of the migration, the next sect
 
 The primary source of artifacts is [the installation page](#installation.adoc), where we publish links to pre-built binaries, as well as to source tarballs. Builds can be found on PyPi. Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
 
-|  | Python SDK 3.x and 4.x have a minimum required Python version of 3.5, although we recommend running the latest fully supported version (i.e. at the time of writing Python 3.10) with the highest patch version available. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Python SDK 3.x and 4.x have a minimum required Python version of 3.5, although we recommend running the latest fully supported version (i.e. at the time of writing Python 3.10) with the highest patch version available.
 
 Note that the transitive dependency list has changed. As a refresher, Python SDK API 2 depended on the following packages:
 
@@ -119,8 +130,8 @@ Additionally these are supported optionally in SDK API 2 and SDK API 3.
 * **Twisted**
 * **gevent**
 
-|  | If you are pulling in the SDK through a package manager (recommended), all mandatory dependencies will be resolved for you automatically. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you are pulling in the SDK through a package manager (recommended), all mandatory dependencies will be resolved for you automatically.
 
 ### [](#configuring-collections)Configuring Collections
 

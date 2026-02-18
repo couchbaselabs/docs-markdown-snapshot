@@ -1,4 +1,14 @@
+---
+title: Window Functions
+description: Window functions are used to compute cumulative, moving, and
+  reporting aggregations.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/windowfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/windowfun.html)
+
+# Window Functions
 
 > Window functions are used to compute cumulative, moving, and reporting aggregations. 
 
@@ -103,11 +113,11 @@ Note that any restrictions on the clauses permitted in the window specification 
 
 Window functions can only appear in the [SELECT](selectclause.md) projection clause or query [ORDER BY](orderby.md) clause.
 
-|  | Any expression within a window function may be a subquery. However, this will lead to repeated evaluation when the query is processed. If required, use a [LET clause](let.md), a [WITH clause](with.md), or an intervening [subquery](subqueries.md) to avoid repeated evaluation. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Any expression within a window function may be a subquery. However, this will lead to repeated evaluation when the query is processed. If required, use a [LET clause](let.md), a [WITH clause](with.md), or an intervening [subquery](subqueries.md) to avoid repeated evaluation.
 
-|  | An expression within the window function may not contain another, nested window function. If necessary, you can specify one window function in a [subquery](subqueries.md), and another window function in the parent query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An expression within the window function may not contain another, nested window function. If necessary, you can specify one window function in a [subquery](subqueries.md), and another window function in the parent query.
 
 Window functions are processed after [JOIN](join.md) clauses, the [LET](let.md) clause, the [WHERE](where.md) clause, and the [GROUP BY](groupby.md), [LETTING](groupby.md), and [HAVING](groupby.md) clauses. Window functions therefore operate on the query result set.
 
@@ -345,8 +355,15 @@ The specified value from the first object.
 
 If all values are NULL or MISSING it returns NULL.
 
-|  | In the following cases, this function may return unpredictable results. If the [window order clause](window.md#window-order-clause) is omitted. If the window frame is defined by ROWS, and there are tied objects in the window frame. To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied. If the window frame is defined by RANGE or GROUPS, and there are tied objects in the window frame, the function returns the lowest value of the input expression. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the following cases, this function may return unpredictable results.
+> 
+> * If the [window order clause](window.md#window-order-clause) is omitted.
+> * If the window frame is defined by `ROWS`, and there are tied objects in the window frame.
+> 
+> To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied.
+> 
+> If the window frame is defined by `RANGE` or `GROUPS`, and there are tied objects in the window frame, the function returns the lowest value of the input expression.
 
 ### [](#example-3)Example
 
@@ -584,8 +601,16 @@ The specified value from the last object.
 
 If all values are NULL or MISSING it returns NULL.
 
-|  | In the following cases, this function may return unpredictable results. If the [window order clause](window.md#window-order-clause) is omitted. If the [window frame clause](window.md#window-frame-clause) is omitted. If the window frame is defined by ROWS, and there are tied objects in the window frame. To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied. If the window frame is defined by RANGE or GROUPS, and there are tied objects in the window frame, the function returns the highest value of the input expression. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In the following cases, this function may return unpredictable results.
+> 
+> * If the [window order clause](window.md#window-order-clause) is omitted.
+> * If the [window frame clause](window.md#window-frame-clause) is omitted.
+> * If the window frame is defined by `ROWS`, and there are tied objects in the window frame.
+> 
+> To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied.
+> 
+> If the window frame is defined by `RANGE` or `GROUPS`, and there are tied objects in the window frame, the function returns the highest value of the input expression.
 
 ### [](#example-5)Example
 
@@ -841,8 +866,16 @@ The window specification may include an optional [window partition clause](windo
 
 The specified value from the offset object.
 
-|  | In the following cases, this function may return unpredictable results. If the [window order clause](window.md#window-order-clause) is omitted. If the [window frame clause](window.md#window-frame-clause) is omitted. If the window frame is defined by ROWS, and there are tied objects in the window frame. To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied. If the window frame is defined by RANGE or GROUPS, and there are tied objects in the window frame, the function returns the lowest value of the input expression when counting FROM FIRST, or the highest value of the input expression when counting FROM LAST. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the following cases, this function may return unpredictable results.
+> 
+> * If the [window order clause](window.md#window-order-clause) is omitted.
+> * If the [window frame clause](window.md#window-frame-clause) is omitted.
+> * If the window frame is defined by `ROWS`, and there are tied objects in the window frame.
+> 
+> To make the function return deterministic results, add a [window order clause](window.md#window-order-clause), or add further ordering terms to the [window order clause](window.md#window-order-clause) so that no objects are tied.
+> 
+> If the window frame is defined by `RANGE` or `GROUPS`, and there are tied objects in the window frame, the function returns the lowest value of the input expression when counting `FROM FIRST`, or the highest value of the input expression when counting `FROM LAST`.
 
 ### [](#examples)Examples
 

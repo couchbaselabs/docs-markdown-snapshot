@@ -1,4 +1,13 @@
+---
+title: GRANT
+description: The GRANT statement allows granting any RBAC roles to a specific user or group.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/grant.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/grant.html)
+
+# GRANT
 
 > The GRANT statement allows granting any RBAC roles to a specific user or group. 
 
@@ -17,8 +26,8 @@ Roles which are defined for the context of the specified keyspace only. Specify 
 For example: `` data_reader ON `travel-sample` ``  
 or `` query_select ON `travel-sample`.`inventory`.`airline` ``
 
-|  | Only Full Administrators can run the GRANT statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only Full Administrators can run the GRANT statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 
@@ -48,8 +57,8 @@ grant-group ::= 'GRANT' role ( ',' role )* ( 'ON' keyspace-ref ( ',' keyspace-re
 | user         | A user name created by the Couchbase Server RBAC system.                                                                                                                                                                                                                 |
 | group        | A group name created by the Couchbase Server RBAC system.                                                                                                                                                                                                                |
 
-|  | When granting roles to users, the keyword USER or USERS is optional. However, when granting roles to groups, you must include the keyword GROUP or GROUPS. You can use either the singular or plural form of these keywords as this does not affect the number of users or groups the role applies to. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When granting roles to users, the keyword `USER` or `USERS` is optional. However, when granting roles to groups, you must include the keyword `GROUP` or `GROUPS`. You can use either the singular or plural form of these keywords as this does not affect the number of users or groups the role applies to.
 
 ### [](#keyspace-ref)Keyspace Reference
 
@@ -92,8 +101,8 @@ GRANT query_select, views_admin
    TO bill, linda;
 ```
 
-|  | Mixing of parameterized and unparameterized roles or syntax is not allowed and will create an error. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Mixing of parameterized and unparameterized roles or syntax is not allowed and will create an error.
 
 ## [](#examples)Examples
 

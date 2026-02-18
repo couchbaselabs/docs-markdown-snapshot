@@ -1,14 +1,35 @@
+---
+title: Passive Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-websocket-using-passive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/p2psync-websocket-using-passive.html)
+
+# Passive Peer
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
-|  | Android enablers Allow Unencrypted Network Traffic To use cleartext, un-encrypted, network traffic (http:// and-or ws://), include android:usesCleartextTraffic="true" in the application element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted). **This not recommended in production**. Use Background Threads As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Android enablers
+> 
+> Allow Unencrypted Network Traffic
+> 
+> To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
+> **This not recommended in production**.
+> 
+> Use Background Threads
+> 
+> As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread.
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
@@ -18,15 +39,17 @@ Couchbase’s Passive Peer (also referred to as the server, or Listener) will ac
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
-|  | Secure StorageThe use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage).
 
 ## [](#configuration-summary)Configuration Summary
 
 You should configure and initialize the Listener with a list of collections to sync. There is no limit on the number of Listeners you may configure — [Example 1](#simple-listener-initialization) shows a simple initialization and configuration process.
 
-|  | You must include the initializer CouchbaseLite.init(context) such that it is executed (once only) before initializing the replicator; for example, in your app’s onCreate() method. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You must include the initializer `CouchbaseLite.init(context)` such that it is executed (once only) before initializing the replicator; for example, in your app’s `onCreate()` method.
 
 Example 1\. Listener configuration and initialization
 
@@ -206,8 +229,9 @@ TLS-based encryption is enabled by default, and this setting ought to be used in
 
 When TLS is enabled, Couchbase Lite provides several options on how the Listener may be configured with an appropriate TLS Identity — see [Configure TLS Identity for Listener](#configure-tls-identity-for-listener).
 
-|  | To use cleartext, un-encrypted, network traffic (http:// and-or ws://), include android:usesCleartextTraffic="true" in the application element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted). **This not recommended in production**. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
+> **This not recommended in production**.
 
 You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
 
@@ -231,8 +255,8 @@ If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous 
 
 The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
 
-|  | Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
 
 Here are some example code snippets showing:
 
@@ -564,8 +588,8 @@ listener?.stop()
 thisListener.stop();
 ```
 
-|  | Closing the database will also close the Listener. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> Closing the database will also close the Listener.
 
 ## [](#related-content)Related Content
 

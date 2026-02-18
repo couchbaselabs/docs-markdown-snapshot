@@ -1,4 +1,13 @@
+---
+title: Schedule Cluster On or Off
+description: You can schedule when your cluster is on and off to save costs.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-schedule.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/off-on-schedule.html)
+
+# Schedule Cluster On or Off
 
 > You can schedule when your cluster is on and off to save costs. 
 
@@ -8,11 +17,17 @@ When you turn your cluster off, you will be charged the OFF amount for the clust
 
 Private endpoint charges still apply when your cluster is off. To avoid charges, delete your endpoints and turn off Private Endpoints before you turn off your cluster.
 
-|  | Variable backup and data transfer costs still apply when your cluster is off. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> Variable backup and data transfer costs still apply when your cluster is off.
 
-|  | Public API You can also schedule your cluster to turn on or off using the [Management API Reference](../management-api-reference/index.md): [Get Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/getOnOffSchedule) [Update Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/putOnOffSchedule) [Delete Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/deleteOnOffSchedule) |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Public API
+> 
+> You can also schedule your cluster to turn on or off using the [Management API Reference](../management-api-reference/index.md):
+> 
+> * [Get Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/getOnOffSchedule)
+> * [Update Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/putOnOffSchedule)
+> * [Delete Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/deleteOnOffSchedule)
 
 ## [](#when-a-cluster-is-turned-off)When a Cluster is Turned Off
 
@@ -44,8 +59,8 @@ To schedule your cluster:
 To add different time ranges for different days, click **\+ Add Scheduling Row** to add new rows.
 7. Click **Start Schedule**.
 
-|  | Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that is off requires maintenance, the maintenance begins when it turns on. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that is off requires maintenance, the maintenance begins when it turns on.
 
 ## [](#edit-cluster-schedule)Edit Cluster Schedule
 
@@ -66,8 +81,8 @@ Pause your cluster schedule to temporarily stop your cluster from automatically 
 
 You can resume your cluster schedule at any time.
 
-|  | You can still manually turn your cluster on or off when your schedule is paused. The status of your cluster will remain in that state until you decide to change it or reactivate the schedule. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can still manually turn your cluster on or off when your schedule is paused. The status of your cluster will remain in that state until you decide to change it or reactivate the schedule.
 
 To pause your schedule:
 
@@ -79,13 +94,13 @@ To pause your schedule:
 
 To reactivate your cluster schedule, click **Active**.
 
-|  | If you pause your On/Off schedule, your cluster can be continuously OFF for only a maximum of 30 days. After 30 days, Capella automatically turns your cluster back on, and you can manually turn it off again as needed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you pause your On/Off schedule, your cluster can be continuously OFF for only a maximum of 30 days. After 30 days, Capella automatically turns your cluster back on, and you can manually turn it off again as needed.
 
 ## [](#delete-cluster-schedule)Delete Cluster Schedule
 
-|  | You cannot recover a deleted schedule. |
-|  | -------------------------------------- |
+> [!NOTE]
+> You cannot recover a deleted schedule.
 
 To delete your cluster schedule:
 

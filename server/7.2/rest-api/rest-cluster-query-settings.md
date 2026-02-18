@@ -1,4 +1,12 @@
+---
+title: Cluster Query Settings API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-query-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-cluster-query-settings.html)
+
+# Cluster Query Settings API
 
 ## [](#%5Foverview)Overview
 

@@ -1,4 +1,15 @@
+---
+title: Logging
+description: REST API endpoints are provided for retrieving log and diagnostic
+  information, for collecting logs for upload and review, and for logging
+  client-side errors.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/logs-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/logs-rest-api.html)
+
+# Logging
 
 > REST API endpoints are provided for retrieving log and diagnostic information, for collecting logs for upload and review, and for logging client-side errors. 
 

@@ -1,9 +1,17 @@
+---
+title: Exposing Sync Gateway to Couchbase Lite Clients
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-sync-gateway-clients.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-sync-gateway-clients.html)
+
+# Exposing Sync Gateway to Couchbase Lite Clients
 
 > Expose Sync Gateway to external Couchbase Lite Clients 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 This tutorial defines best practices for exposing Sync Gateway cluster for Couchbase Lite clients to connect to.
 
@@ -142,8 +150,8 @@ This is the simplest configuration. In this case, Sync Gateway will be configure
 
 Figure 2\. image showing deployment with e2e TLS
 
-|  | Load balancers only work on Cloud Environments (e.g. AWS, GCP etc). So if you are deploying on premise or using something like [Minikube](https://github.com/kubernetes/minikube) for your test deployment, this option will not work. Please use a [service](https://kubernetes.io/docs/concepts/services-networking/service/) such as node port or ingress instead and follow steps outlined in the [\[Option 1: Ingress as SSL Termination Point\]](#Option 1: Ingress as SSL Termination Point) section of this tutorial. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Load balancers only work on Cloud Environments (e.g. AWS, GCP etc). So if you are deploying on premise or using something like [Minikube](https://github.com/kubernetes/minikube) for your test deployment, this option will not work. Please use a [service](https://kubernetes.io/docs/concepts/services-networking/service/) such as node port or ingress instead and follow steps outlined in the [\[Option 1: Ingress as SSL Termination Point\]](#Option 1: Ingress as SSL Termination Point) section of this tutorial.
 
 ### [](#prerequisites-2)Prerequisites
 
@@ -361,8 +369,8 @@ It should return the following.
 
 You have successfully deployed a Sync Gateway cluster on Kubernetes with end-to-end TLS enabled. The [Manage a Sync Gateway Cluster](tutorial-sync-gateway-manage.md) page contains additional details related to the management of the Sync Gateway cluster.
 
-|  | Red Hat OCP users will need to modify the provided template to reference an image pull secret. This must grant permission to pull container images from the Red Hat Container Registry. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Red Hat OCP users will need to modify the provided template to reference an image pull secret. This must grant permission to pull container images from the Red Hat Container Registry.
 
 ## [](#further-reading)Further Reading
 

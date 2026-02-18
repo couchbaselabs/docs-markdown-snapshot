@@ -1,4 +1,14 @@
+---
+title: Manage Statistics
+description: Statistics on Enterprise Analytics can be monitored; per database,
+  per node, per service, and per cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-statistics/manage-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-statistics/manage-statistics.html)
+
+# Manage Statistics
 
 > Statistics on Enterprise Analytics can be monitored; per database, per node, per service, and per cluster. By means of Enterprise Analytics Web Console, appropriate combinations of statistics can be selected for display, across multiple interactive dashboards. 
 

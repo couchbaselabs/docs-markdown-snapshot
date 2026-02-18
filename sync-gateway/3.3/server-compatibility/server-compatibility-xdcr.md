@@ -1,4 +1,14 @@
+---
+title: XDCR&#8201;&#8212;&#8201;Server Compatibility
+description: How Sync Gateway works with Couchbase Server's <em>Cross Data
+  Center Replication</em> (<em>XDCR</em>).
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/server-compatibility/pages/server-compatibility-xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/server-compatibility/server-compatibility-xdcr.html)
+
+# XDCR&#8201;&#8212;&#8201;Server Compatibility
 
 > How Sync Gateway works with Couchbase Server’s _Cross Data Center Replication_ (_XDCR_).  
 > Sync Gateway is specifically designed for mobile synchronization, but there are use-cases where it can usefully be used alongside XDCR to provide a comprehensive solution.
@@ -11,8 +21,8 @@ _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
 Couchbase Server provides the backing data store for Sync Gateway.
 
-|  | See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
 Both _Couchbase Mobile_ and [Couchbase Server Cross Data Center Replication](../../../server/current/learn/clusters-and-availability/xdcr-overview.md) (XDCR) provide for efficient and secure replication of data, albeit using different replication technologies.
 

@@ -1,15 +1,28 @@
+---
+title: Compatibility
+description: Couchbase Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/product-notes/compatibility.html)
+
+# Compatibility
 
 > Couchbase Sync Gateway  
 > Covers Couchbase Sync Gateway’s compatibility with Couchbase Server and Couchbase Lite
 
-|  | **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. See [What’s New](../whatsnew.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. See [What’s New](../whatsnew.md) for details.
 
 ## [](#sync-gateway-and-couchbase-server)Sync Gateway and Couchbase Server
 
-|  | Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1). The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs. This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
+> 
+> The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs.
+> 
+> This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage.
 
 __Table 1\. Sync Gateway/Couchbase Server Compatibility Matrix__
 | Sync Gateway ↓ | Couchbase Server →                             |                            |                            |                            |                            |                            |                            |
@@ -30,11 +43,18 @@ __Table 1\. Sync Gateway/Couchbase Server Compatibility Matrix__
 | 2.0            | shared\_bucket\_access: false                  | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 | 2.0            | shared\_bucket\_access: true                   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 
-|  | Starting from CBS 7.0, the use\_views feature is deprecated. SGW 3.1 will only run with use\_views with a default scope/collection configuration You cannot run use\_views with a defined scope/collection Sync Gateway 4.0 requires CBS 7.6.1+. Active-Active XDCR requires CBS 7.6.5+. Sync Gateway 3.x does not support Active-Active XDCR. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Starting from CBS 7.0, the `use_views` feature is deprecated.
+> 
+> * SGW 3.1 will only run with `use_views` with a default scope/collection configuration
+> * You cannot run `use_views` with a defined scope/collection
+> 
+> Sync Gateway 4.0 requires CBS 7.6.1+. Active-Active XDCR requires CBS 7.6.5+. Sync Gateway 3.x does not support Active-Active XDCR.
 
-|  | Couchbase Server Bucket TypesUse only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server Bucket Types
+> 
+> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 **Compatibility with Couchbase Server 5.0-7.0**
 
@@ -61,8 +81,10 @@ __Table 2\. Sync Gateway and Couchbase Lite Compatibility Matrix__
 | 3.3.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![no](../_images/no.png)   |
 | 4.0.0                                                                                                           | ![no](../_images/no.png)   | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) | ![yes](../_images/yes.png) |
 
-|  | **Couchbase Lite 4.0 requires Sync Gateway 4.0.** Couchbase Lite 4.0 is only compatible with Sync Gateway 4.0\. Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported due to version vector architecture changes. However, Sync Gateway 4.0 is compatible with all supported Couchbase Lite versions (2.0+), allowing customers to upgrade Sync Gateway first. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> **Couchbase Lite 4.0 requires Sync Gateway 4.0.**
+> 
+> Couchbase Lite 4.0 is only compatible with Sync Gateway 4.0\. Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported due to version vector architecture changes. However, Sync Gateway 4.0 is compatible with all supported Couchbase Lite versions (2.0+), allowing customers to upgrade Sync Gateway first.
 
 ---
 

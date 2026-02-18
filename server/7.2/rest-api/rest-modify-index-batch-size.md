@@ -1,4 +1,15 @@
+---
+title: Modify Index Batch Size
+description: The REST API supports modification of the batch size whereby the
+  relocation and rebuilding of indexes, during rebalance, is maintained at a
+  high level of performance.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-modify-index-batch-size.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-modify-index-batch-size.html)
+
+# Modify Index Batch Size
 
 > The REST API supports modification of the batch size whereby the relocation and rebuilding of indexes, during rebalance, is maintained at a high level of performance. 
 

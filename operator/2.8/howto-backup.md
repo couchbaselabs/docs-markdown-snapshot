@@ -1,4 +1,12 @@
+---
+title: Configure Automated Backup and Restore
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-backup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-backup.html)
+
+# Configure Automated Backup and Restore
 
 > You can configure the Kubernetes Operator to take periodic, automated backups of your Couchbase cluster with the existing functionality provided by `cbbackupmgr`, as well as being able to trigger automated immediate backups. 
 
@@ -8,8 +16,10 @@ This page details how to backup a Couchbase cluster and restore data in the face
 
 The Kubernetes Operator supports two of the backup strategies available in `cbbackupmgr`: _Full Only_ and _Full/Incremental_. Complete descriptions and explanations of these strategies can be found in the [cbbackupmgr documentation](../../server/current/backup-restore/cbbackupmgr-strategies.md). The examples on this page assume a backup schedule based on the _Full/Incremental_ strategy for both creating backups and performing restores.
 
-|  | Backup and restore jobs rely on a shared persistent volume claim (PVC) when in use. On Kubernetes platforms you must specify a value for [couchbaseclusters.spec.security.podSecurityContext.fsGroup](resource/couchbasecluster.md#couchbaseclusters-spec-security-podsecuritycontext-fsgroup) in order for volume permissions to be the same across all jobs. Red Hat OpenShift is not affected by this constraint. For further information about setting file system groups see the [persistent volume concepts](concept-persistent-volumes.md#using-storage-classes) page. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Backup and restore jobs rely on a shared persistent volume claim (PVC) when in use. On Kubernetes platforms you must specify a value for [couchbaseclusters.spec.security.podSecurityContext.fsGroup](resource/couchbasecluster.md#couchbaseclusters-spec-security-podsecuritycontext-fsgroup) in order for volume permissions to be the same across all jobs. Red Hat OpenShift is not affected by this constraint.
+> 
+> For further information about setting file system groups see the [persistent volume concepts](concept-persistent-volumes.md#using-storage-classes) page.
 
 ## [](#enable-automated-backup)Enable Automated Backup
 
@@ -147,8 +157,8 @@ NAME        STATUS   VOLUME                                     CAPACITY   ACCES
 my-backup   Bound    pvc-0c3c717f-e10b-423e-9279-a99edf81019b   5Gi        RWO            standard       14s
 ```
 
-|  | Deleting Persistent Volume Claims or Persistent Volumes will delete the backup data and backup log data permanently. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deleting Persistent Volume Claims or Persistent Volumes will delete the backup data and backup log data permanently.
 
 Once the first Job has been spawned by a backup cron job, the status fields of a `CouchbaseBackup` resource will update, and you can start [monitoring backup progress](#monitor-and-manage-backups).
 
@@ -191,8 +201,8 @@ spec:
 
 In this example above, the Kubernetes Operator would restore a range of backups from the latest backup repository. The omission of the `spec.repo` field means that the Kubernetes Operator will look for the most recent backup repository.
 
-|  | Any CouchbaseBackupRestore edits performed with kubectl edit will not be reflected in the respective Job once the Job has been created. The CouchbaseBackupRestore resource will have to be deleted and created from scratch. When a CouchbaseBackupRestore resource is deleted, its associated Job and Pod resources are deleted immediately. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Any `CouchbaseBackupRestore` edits performed with `kubectl edit` will not be reflected in the respective `Job` once the `Job` has been created. The `CouchbaseBackupRestore` resource will have to be deleted and created from scratch. When a `CouchbaseBackupRestore` resource is deleted, its associated `Job` and `Pod` resources are deleted immediately.
 
 ### [](#additional-backup-options)Additional Backup Options
 
@@ -302,8 +312,8 @@ $ kubectl get couchbasebackup my-backup -o yaml
 $ oc get couchbasebackup my-backup -o yaml
 ```
 
-|  | The short names cbbackup and cbrestore are available for CouchbaseBackup and CouchbaseBackupRestore respectively. So instead of executing kubectl get couchbasebackup you can instead write kubectl get cbbackup. To find out if any other of your current Kubernetes resources support a short name, run kubectl api-resources. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The short names `cbbackup` and `cbrestore` are available for `CouchbaseBackup` and `CouchbaseBackupRestore` respectively. So instead of executing `kubectl get couchbasebackup` you can instead write `kubectl get cbbackup`. To find out if any other of your current Kubernetes resources support a short name, run `kubectl api-resources`.
 
 The command output should show the given `CouchbaseBackup` specification and also a [couchbasebackups.status](resource/couchbasebackup.md#couchbasebackups-status) section containing useful information similar to the following output.
 
@@ -411,15 +421,17 @@ Only the preexisting schedules and volume size of a [CouchbaseBackup](resource/c
 
 A Backup PVC that is referenced by an existing [CouchbaseBackup](resource/couchbasebackup.md) resource can be resized _manually_ by the user, or _automatically_ by the Kubernetes Operator.
 
-|  | A Backup PVC can only be resized if its associated StorageClass is configured to allow volume expansion. This means the default StorageClass in your Kubernetes environment should have allowVolumeExpansion set to true. Ensure that the StorageClass is configured to allow volume expansion _before_ creating the [CouchbaseBackup](resource/couchbasebackup.md) resource. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> A Backup PVC can only be resized if its associated StorageClass is configured to allow volume expansion. This means the default StorageClass in your Kubernetes environment should have `allowVolumeExpansion` set to `true`.
+> 
+> Ensure that the StorageClass is configured to allow volume expansion _before_ creating the [CouchbaseBackup](resource/couchbasebackup.md) resource.
 
 #### [](#manual-backup-volume-resizing)Manual Backup Volume Resizing
 
 To perform a manual resize, simply edit [couchbasebackups.spec.size](resource/couchbasebackup.md#couchbasebackups-spec-size) and change it to a value that is _larger_ than the current size. The resize will then be performed with the next scheduled backup job.
 
-|  | The underlying StorageClass must be configured to allow volume expansion in order to modify the size of the Backup PVC (as stated [previously](#online-backup-volume-resizing)). Changes to the volume size may go through,but the Kubernetes Operator will error until the change is reverted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The underlying StorageClass must be configured to allow volume expansion in order to modify the size of the Backup PVC (as stated [previously](#online-backup-volume-resizing)). Changes to the volume size may go through,but the Kubernetes Operator will error until the change is reverted.
 
 #### [](#automated-backup-volume-resizing)Automated Backup Volume Resizing
 
@@ -449,8 +461,8 @@ spec:
 | **3** | [couchbasebackups.spec.autoScaling.incrementPercent](resource/couchbasebackup.md#couchbasebackups-spec-autoscaling-incrementpercent) controls how much the volume is increased each time the threshold is exceeded. Here, the increment is set to 20 (the default). In this case, if the volume is currently 80 GiB when the threshold is reached, the volume will be expanded to 100 GiB.                                                                                  |
 | **4** | [couchbasebackups.spec.autoScaling.limit](resource/couchbasebackup.md#couchbasebackups-spec-autoscaling-limit) imposes a hard limit on the size of the Backup PVC, at which point the volume size will no longer be incremented. When this field is not defined, no bounds are imposed.                                                                                                                                                                                     |
 
-|  | The underlying StorageClass must be configured to allow volume expansion in order to modify the size of the Backup PVC (as stated [previously](#online-backup-volume-resizing)). Changes to the volume size may go through, but the Kubernetes Operator will error until the change is reverted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The underlying StorageClass must be configured to allow volume expansion in order to modify the size of the Backup PVC (as stated [previously](#online-backup-volume-resizing)). Changes to the volume size may go through, but the Kubernetes Operator will error until the change is reverted.
 
 ### [](#deleting-a-backup-configuration)Deleting a Backup Configuration
 
@@ -698,8 +710,10 @@ spec:
 
 Please note that operations involving remote cloud stores take more time to complete in comparison to regular backup to PVCs so please bear this in mind when configuring your automated backup schedules.
 
-|  | Backing up to cloud store still requires a local PVC with enough space for [a staging folder](../../server/current/backup-restore/cbbackupmgr-cloud.md#the-staging-directory), where files will be stored locally first before being uploaded to the remote cloud store. Please note that cleanup schedules will also apply to the local PVC as well as the remote cloud store. The staging folder does not need to be created manually by the user. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Backing up to cloud store still requires a local PVC with enough space for [a staging folder](../../server/current/backup-restore/cbbackupmgr-cloud.md#the-staging-directory), where files will be stored locally first before being uploaded to the remote cloud store. Please note that cleanup schedules will also apply to the local PVC as well as the remote cloud store.
+> 
+> The `staging` folder does not need to be created manually by the user.
 
 ### [](#backup-and-restore-to-compatible-cloud-object-stores)Backup and Restore to Compatible Cloud Object Stores
 
@@ -751,8 +765,8 @@ data:
 
 If you are using Couchbase Operator version 2.4.0 or higher, and Couchbase Operator Backup 1.3.2 version or higher, the ability to backup/restore using a [generic ephemeral volumes](https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes) volume is available. This can only be used when backing up or restoring from a remote cloud store and may be useful for high availability setups. To enable ephemeral staging volumes for backup set [couchbasebackups.spec.ephemeralVolume](resource/couchbasebackup.md#couchbasebackups-spec-ephemeralvolume) to true, defaults to false. Both [couchbasebackups.spec.storageClassName](resource/couchbasebackup.md#couchbasebackups-spec-storageclassname) and [couchbasebackups.spec.size](resource/couchbasebackup.md#couchbasebackups-spec-size) will apply to the ephemeral PVC.
 
-|  | When enabled, the backup PVC will share it’s lifecycle with the backup/restore pod, and will not be removed until the pod is removed. It may be useful to tweak [couchbasebackups.spec.failedJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-failedjobshistorylimit) and [couchbasebackups.spec.successfulJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-successfuljobshistorylimit) to reduce the number of extraneous ephemeral volumes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When enabled, the backup PVC will share it’s lifecycle with the backup/restore pod, and will not be removed until the pod is removed. It may be useful to tweak [couchbasebackups.spec.failedJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-failedjobshistorylimit) and [couchbasebackups.spec.successfulJobsHistoryLimit](resource/couchbasebackup.md#couchbasebackups-spec-successfuljobshistorylimit) to reduce the number of extraneous ephemeral volumes.
 
 ```yaml
 apiVersion: couchbase/v2

@@ -1,9 +1,17 @@
+---
+title: Auto-scaling the Couchbase Data Service
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-autoscale-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/tutorial-autoscale-data.html)
+
+# Auto-scaling the Couchbase Data Service
 
 > Learn how to configure auto-scaling for Data Service nodes using the Kubernetes Operator. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#introduction)Introduction
 
@@ -95,8 +103,12 @@ Now, install the Couchbase chart, making sure to specify the values override fil
 $ helm upgrade --install -f autoscale_values.yaml scale couchbase/couchbase-operator
 ```
 
-|  | The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed: $ helm upgrade --install -f autoscale\_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> 
+> ```console
+> $ helm upgrade --install -f autoscale_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator
+> ```
 
 ### [](#verify-the-installation)Verify the Installation
 
@@ -203,8 +215,8 @@ EOF
 | **5** | metrics.pods.metric.name: The name of the target metric that will be monitored by the HPA for the purposes of auto-scaling. Here, we’ve specified cbbucketinfo\_basic\_quota\_user\_percent as the metric that will be used to scale the number default nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **6** | metrics.pods.target.type: Specifying the AverageValue type means that the metric will be averaged across all of the pods. Here, by setting a value of 70, the HPA will scale the number of default nodes when the average bucket memory utilization across all default pods exceeds 70%.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-|  | Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md).
 
 ### [](#verify-horizontalpodautoscaler-status)Verify `HorizontalPodAutoscaler` Status
 

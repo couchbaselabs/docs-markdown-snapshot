@@ -1,4 +1,14 @@
+---
+title: Role-Based Access Control (RBAC)
+description: Full  and Security Administrators can manage the Couchbase
+  <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rbac.html)
+
+# Role-Based Access Control (RBAC)
 
 > Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
 
@@ -500,8 +510,8 @@ The following example backs up all users and groups to a file named `full.backup
 curl -s -X GET -G -u Administrator:password \
     http://localhost:8091/settings/rbac/backup  > full.backup 
 
-|  | The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure.
 
 Parameters
 

@@ -1,4 +1,13 @@
+---
+title: Configuration Overview
+description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/configuration/configuration-overview.html)
+
+# Configuration Overview
 
 > How to configure _Sync Gateway_ for secure cloud-to-edge data sync  
 
@@ -15,10 +24,9 @@ The ability to make remote in-flight configuration changes to database settings,
 * **Cluster-aware Updates**  
 sync gateway propagates configuration changes made to a node through the API endpoints to other nodes belonging to the same cluster (or to a user-defined subset of nodes) — [Configuration Groups](#lbl-config-grp)
 * **Persistent Updates**  
-Any database changes made using the API endpoints persist and survive sync gateway node restarts (this does not apply when running in file-based configuration mode).
-
-|  | Using sync gateway with Couchbase Server’s [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Any database changes made using the API endpoints persist and survive sync gateway node restarts (this does not apply when running in file-based configuration mode).  
+> [!NOTE]  
+> Using sync gateway with Couchbase Server’s [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature requires persistent configuration. Databases created via file-based configuration are not recorded in the registry and Eventing cannot detect them for compatibility checks — see [Server Compatibility - Eventing](../server-compatibility/server-compatibility-eventing.md).
 * **Secure REST API**  
 by default the REST API requires authentication and authorization using Couchbase Server RBAC-user credentials — see [Secure Sync Gateway Access](../security/secure-sgw-access.md). This can be disabled for test purposes only.
 * **Automatic upgrade path**  

@@ -1,4 +1,14 @@
+---
+title: Capella App Services Release Notes
+description: Release notes for Capella App Services, including new features,
+  enhancements, and updates.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/release-notes/release-notes.html)
+
+# Capella App Services Release Notes
 
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 

@@ -1,4 +1,12 @@
+---
+title: Helm Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/helm-setup-guide.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/helm-setup-guide.html)
+
+# Helm Deployment
 
 > Use the official Couchbase Helm Chart to deploy multiple components, including the Kubernetes Operator, Admission Controller, Couchbase clusters, and Sync Gateway. 
 
@@ -12,8 +20,8 @@ A particular use case that is complex is upgrading so make sure to cover all the
 
 The recommendation, for more complex scenarios, is to manage the operator directly rather than relying on Helm to do it as the operator provides a lot more direct control and this approach simplifies the upgrade process.
 
-|  | The official Couchbase Helm Chart may only be used with Enterprise Edition products, such as Couchbase Server Enterprise Edition and Sync Gateway Enterprise Edition. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The official Couchbase Helm Chart may only be used with Enterprise Edition products, such as Couchbase Server Enterprise Edition and Sync Gateway Enterprise Edition.
 
 ## [](#install-helm)Install Helm
 
@@ -125,8 +133,12 @@ cluster:
 
 Any values in `values.yaml` that weren’t overridden will keep their defaults.
 
-|  | As stated above, Helm works by override-only, with the chart providing various defaults. If you want to override a whole key in the chart, or replace it with another key, then you must _explicitly disable the default_ in addition to adding the new one. For example, a default bucket is created unless you configure one or otherwise set buckets: null in the values file or buckets=null on the command line. Likewise, the default server configuration will always be created unless you set servers.default to null. For additional information, refer to the Helm documentation on [deleting a default key](https://helm.sh/docs/chart%5Ftemplate%5Fguide/values%5Ffiles/#deleting-a-default-key). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As stated above, Helm works by override-only, with the chart providing various defaults. If you want to override a whole key in the chart, or replace it with another key, then you must _explicitly disable the default_ in addition to adding the new one.
+> 
+> For example, a default bucket is created unless you configure one or otherwise set `buckets: null` in the values file or `buckets=null` on the command line. Likewise, the default server configuration will always be created unless you set `servers.default` to `null`.
+> 
+> For additional information, refer to the Helm documentation on [deleting a default key](https://helm.sh/docs/chart%5Ftemplate%5Fguide/values%5Ffiles/#deleting-a-default-key).
 
 ### [](#selective-deployment)Selective Deployment
 
@@ -206,8 +218,26 @@ helm install my-release --set tls.generate=true couchbase/couchbase-operator
 
 The Kubernetes Operator will create the certificates and then configure them as Kubernetes Secrets for the cluster.
 
-|  | There is an issue ([K8S-1900](https://issues.couchbase.com/browse/K8S-1900)) that may cause a certificate error when using the Helm chart to upgrade the Kubernetes Operator: certificate cannot be verified for zone This issue is caused by the certificate not having the necessary subject alternative names (SANs) required by the new version of the Kubernetes Operator. To resolve this issue, start by regenerating the Secrets from the new chart version: helm template my-release --values values.yaml couchbase/couchbase-operator > secrets.yaml The secrets.yaml file that is created by the command above will now contain the Kubernetes Secret definitions for the cluster. Remove anything else from the file other than the Secrets with the \-operator-tls and \-server-tls suffixes for your release. Now update the Secrets in Kubernetes with the new ones: kubectl apply -f secrets.yaml The Kubernetes Operator should now pick up the new certificates and proceed through the upgrade process. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There is an issue ([K8S-1900](https://issues.couchbase.com/browse/K8S-1900)) that may cause a certificate error when using the Helm chart to upgrade the Kubernetes Operator:
+> 
+> certificate cannot be verified for zone
+> 
+> This issue is caused by the certificate not having the necessary subject alternative names (SANs) required by the new version of the Kubernetes Operator.
+> 
+> To resolve this issue, start by regenerating the Secrets from the new chart version:
+> 
+> ```console
+> helm template my-release --values values.yaml couchbase/couchbase-operator > secrets.yaml
+> ```
+> 
+> The `secrets.yaml` file that is created by the command above will now contain the Kubernetes Secret definitions for the cluster. Remove anything else from the file other than the Secrets with the `-operator-tls` and `-server-tls` suffixes for your release. Now update the Secrets in Kubernetes with the new ones:
+> 
+> ```console
+> kubectl apply -f secrets.yaml
+> ```
+> 
+> The Kubernetes Operator should now pick up the new certificates and proceed through the upgrade process.
 
 #### [](#tls-certificate-byo)Bring Your Own Certificates
 
@@ -249,8 +279,8 @@ helm install -g couchbase/couchbase-operator
 
 ### [](#chart-versions)Chart Versions
 
-|  | It is **not** recommended to install different versions of the Couchbase Helm Chart in the same Kubernetes cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> It is **not** recommended to install different versions of the Couchbase Helm Chart in the same Kubernetes cluster.
 
 The `helm install` command will always pull the highest version of a chart. To list the versions of the Couchbase Helm Chart that are available for installation, you can use the `helm search` command:
 
@@ -271,5 +301,5 @@ To install a specific version of the Couchbase Helm Chart chart, include the `--
 helm install my-release --version 2.1.0 couchbase/couchbase-operator
 ```
 
-|  | If you’re having trouble finding or installing a specific version of a chart, use the helm repo update command to ensure that you have the latest list of charts. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you’re having trouble finding or installing a specific version of a chart, use the `helm repo update` command to ensure that you have the latest list of charts.

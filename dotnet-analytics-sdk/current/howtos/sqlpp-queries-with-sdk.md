@@ -1,4 +1,15 @@
+---
+title: Querying with SQL++
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/howtos/sqlpp-queries-with-sdk.html)
+
+# Querying with SQL++
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. 
 
@@ -64,8 +75,8 @@ await foreach (var row in result.ConfigureAwait(false))
 }
 ```
 
-|  | Helper methods WithNamedParameter and WithPositionalParameter take 1 parameter, and add it to the existing collection in the options. The methods WithNamedParameters and WithPositionalParameters (note the plural) take a collection of parameters, and replace all the parameters in the existing collection. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Helper methods `WithNamedParameter` and `WithPositionalParameter` take 1 parameter, and add it to the existing collection in the options. The methods `WithNamedParameters` and `WithPositionalParameters` (note the plural) take a collection of parameters, and replace all the parameters in the existing collection.
 
 ## [](#query-options)Query Options
 

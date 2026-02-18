@@ -1,4 +1,14 @@
+---
+title: Drop DEKs and Re-encrypt Data
+description: You can use the REST API to drop data encryption keys (DEKs) and
+  re-encrypt the data encrypted with the old keys.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/drop-encryption-deks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/drop-encryption-deks.html)
+
+# Drop DEKs and Re-encrypt Data
 
 > You can use the REST API to drop data encryption keys (DEKs) and re-encrypt the data encrypted with the old keys. 
 
@@ -8,13 +18,13 @@ You may want to drop data encryption keys (DEKs) if you believe they have been c
 
 If you call this endpoint after disabling encryption at rest for a bucket or type of data, Couchbase Server decrypts all of the data and drops the DEKs. If you do not
 
-|  | If you just want to encrypt any unencrypted data, you can do so without dropping the DEKs. See [Force Encryption of Unencrypted Data](force-encryption-at-rest.md) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you just want to encrypt any unencrypted data, you can do so without dropping the DEKs. See [Force Encryption of Unencrypted Data](force-encryption-at-rest.md) for more information.
 
 Dropping the DEKs is not the same as rotating them. When it rotates a DEK, Couchbase Server just creates a new DEK and makes it active. It does not re-encrypt data, and it keeps the inactive DEKs for a period of time. You cannot manually rotate DEKs. When you drop DEKs, Couchbase Server creates new a new DEK, re-encrypts all data with it, and deletes the old DEKs.
 
-|  | The process of dropping DEKs for a bucket with a large amount of data may take a long time and could affect performance. When you drop the DEKs, Couchbase Server has to re-encrypt all data in the bucket with the new DEK. Dropping DEKs for audit, configuration, or logs is less of a concern because it usually results in re-encrypting less data than a bucket. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The process of dropping DEKs for a bucket with a large amount of data may take a long time and could affect performance. When you drop the DEKs, Couchbase Server has to re-encrypt all data in the bucket with the new DEK. Dropping DEKs for audit, configuration, or logs is less of a concern because it usually results in re-encrypting less data than a bucket.
 
 See [Manually Drop DEKs and Re-encrypt Data](#manage:security/manage-native-encryption-at-rest.adoc#drop-deks) for instructions on dropping DEKs using the Couchbase Server Web Console.
 

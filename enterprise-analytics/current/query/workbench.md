@@ -1,4 +1,14 @@
+---
+title: Query and Explore with the Workbench
+description: The workbench for Enterprise Analytics provides a graphical user
+  interface for query development and data exploration.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/workbench.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/query/workbench.html)
+
+# Query and Explore with the Workbench
 
 > The workbench for Enterprise Analytics provides a graphical user interface for query development and data exploration. 
 

@@ -1,4 +1,12 @@
+---
+title: Analyzers - Search Functions
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-analyzers-search-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-analyzers-search-functions.html)
+
+# Analyzers - Search Functions
 
 [Search functions](../n1ql/n1ql-language-reference/searchfun.md) allow users to execute full text search requests within a SQL++ query.
 
@@ -31,5 +39,5 @@ SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": "fts-index-1"})
 Example 3  
 SEARCH(keyspace, {"match": "xyz", "field": "abc"}, {"index": {...<an index mapping>....})
 
-|  | If users fail to provide this query context for non-covering queries, they may see incorrect results, including dropped documents, especially while using non-standard and custom analyzers. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If users fail to provide this query context for non-covering queries, they may see incorrect results, including dropped documents, especially while using non-standard and custom analyzers.

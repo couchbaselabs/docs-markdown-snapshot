@@ -1,4 +1,12 @@
+---
+title: Multi-Collection Behaviour
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-multi-collection-behaviour.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-multi-collection-behaviour.html)
+
+# Multi-Collection Behaviour
 
 Couchbase’s FTS service is the only service that can create indexes that span collections.
 
@@ -209,8 +217,8 @@ FTS provides two primary roles for managing the access control:
 
 A user must have at least search reader permissions at the source Bucket or Scope or Collection level to access the FTS index.
 
-|  | With multi-collection indexes, the user must have search reader roles for all source collections in order to access a multi-collection index. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With multi-collection indexes, the user must have search reader roles for all source collections in order to access a multi-collection index.
 
 ## [](#data-lifecycle-impact)Data lifecycle impact
 

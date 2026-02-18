@@ -1,4 +1,15 @@
+---
+title: Configure Server Certificates
+description: "Couchbase Server Enterprise Edition supports using X.509 and PKCS
+  #12 certificates for authenticating and encrypting data between the nodes in
+  the cluster."
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/configure-server-certificates.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/configure-server-certificates.html)
+
+# Configure Server Certificates
 
 > Couchbase Server Enterprise Edition supports using X.509 and PKCS #12 certificates for authenticating and encrypting data between the nodes in the cluster. 
 
@@ -10,8 +21,8 @@ This page gives detailed steps to configure X.509 certificates on a Linux-based 
 
 This page also explains how you can bundle certificates, private keys, and certificate chains into a single Public-Key Cryptography Standard (PKCS) #12 certificate file. Couchbase Server supports using this type of file to upload node certificates.
 
-|  | Once you deploy cluster and node certificates to a database, you must create additional node certificates for any new nodes you add later. See [Adding New Cluster Nodes](#adding-new-cluster-nodes) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Once you deploy cluster and node certificates to a database, you must create additional node certificates for any new nodes you add later. See [Adding New Cluster Nodes](#adding-new-cluster-nodes) for details.
 
 ## [](#root-and-node-certificates)Create and Deploy Cluster and Node Certificates
 
@@ -106,10 +117,9 @@ cp ./server.ext ./server.ext.tmp
 echo "subjectAltName = IP:10.143.192.102" \  
 >> ./server.ext.tmp  
 ```  
-This command copies the file created in the previous step and adds a `subjectAltName` extension that identifies the node. This example uses the node’s IPv4 address. This extension makes sure the node’s certificate is valid for just the specific node. No other node or client can use the certificate. If your cluster uses DNS names to identify nodes, you must use the node’s DNS name, such as `DNS:node2.cb.com` instead of its IP address.
-
-|  | Couchbase Enterprise Server requires that the node’s certificate identifies the node in a Subject Alternative Name extension. Without this identification, Couchbase Server reports an error when you upload the certificate to the node or when you try to add the node to the cluster. For more information, see [Node-Certificate Validation](../../learn/security/certificates.md#node-certificate-validation). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+This command copies the file created in the previous step and adds a `subjectAltName` extension that identifies the node. This example uses the node’s IPv4 address. This extension makes sure the node’s certificate is valid for just the specific node. No other node or client can use the certificate. If your cluster uses DNS names to identify nodes, you must use the node’s DNS name, such as `DNS:node2.cb.com` instead of its IP address.  
+> [!NOTE]  
+> Couchbase Enterprise Server requires that the node’s certificate identifies the node in a Subject Alternative Name extension. Without this identification, Couchbase Server reports an error when you upload the certificate to the node or when you try to add the node to the cluster. For more information, see [Node-Certificate Validation](../../learn/security/certificates.md#node-certificate-validation).
 10. Create the node’s certificate by signing it with the certificate and digital signature of the CA. In this example, the CA is the root certificate created earlier. Therefore, the command to sign the node’s certificate uses the `ca.pem` and `ca.key` files:  
 ```console  
 openssl x509 -CA ca.pem -CAkey ca.key -CAcreateserial -days 365 -req \
@@ -140,10 +150,9 @@ cd ./public
 mv couchbase.default.svc.pem chain.pem  
 cd ../private  
 mv couchbase.default.svc.key pkey.key  
-```
-
-|  | In this example you could just have openssl output the correct filenames in steps 5 and 9\. In production, you often create certificates for multiple nodes at the same time, and so need to give each file a unique name. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> In this example you could just have `openssl` output the correct filenames in steps 5 and 9\. In production, you often create certificates for multiple nodes at the same time, and so need to give each file a unique name.
 12. If the node to which you’re deploying the certificate does not have an inbox directory, create it. The inbox directory is where Couchbase Server looks for certificate, key, and related files. See [Load Root Certificates](../../rest-api/load-trusted-cas.md) for a list of the inbox paths on all platforms. On Linux, this directory is `/opt/couchbase/var/lib/couchbase/inbox/`.  
 ```console  
 sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/  
@@ -153,10 +162,9 @@ sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/
 cd ..  
 sudo cp ./public/chain.pem /opt/couchbase/var/lib/couchbase/inbox/chain.pem  
 sudo cp ./private/pkey.key /opt/couchbase/var/lib/couchbase/inbox/pkey.key  
-```
-
-|  | This example has a single node, so you created the node’s certificate on the node where you’ll deploy it. Therefore, you can just copy the files into the correct directory using cp. When creating certificates for multiple nodes, you must move the files to the node’s filesystem to deploy them. If you created all of the certificates on one node, you can use a command such as scp to copy the files from that node to the node the certificate is for. Remember to create the inbox directory on each node as well. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> This example has a single node, so you created the node’s certificate on the node where you’ll deploy it. Therefore, you can just copy the files into the correct directory using `cp`. When creating certificates for multiple nodes, you must move the files to the node’s filesystem to deploy them. If you created all of the certificates on one node, you can use a command such as `scp` to copy the files from that node to the node the certificate is for. Remember to create the `inbox` directory on each node as well.
 14. Deploy the root certificate. Couchbase Server expects to find the root certificate in a subdirectory named `CA` in the `inbox` directory. Create the subdirectory and then copy the root CA file:  
 ```console  
 sudo mkdir /opt/couchbase/var/lib/couchbase/inbox/CA  
@@ -177,9 +185,8 @@ curl -X POST http://10.143.192.102:8091/node/controller/loadTrustedCAs -u Admini
   2. Click **Security**, and click **Certificates**  
 In this example, you can see both the original automatically generated root certificate and the newly uploaded certificate. The original generated root certificate appears at the top.  
 ![600](../_images/manage-security/rootCertificateWithSignedCert.png)  
-
-|  | You cannot delete a certificate if it has signed one or more node certificates that are in use in the cluster. You can only delete the old autogenerated certificate after you have deployed new node certificates signed by the new root CA to each node. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+> [!NOTE]  
+> You cannot delete a certificate if it has signed one or more node certificates that are in use in the cluster. You can only delete the old autogenerated certificate after you have deployed new node certificates signed by the new root CA to each node.  
 For more information about the **Certificates** tab on the **Security** screen, see [Certificates](manage-security-settings.md#root-certificate-security-screen-display).
 18. Load the node certificate and its private key by calling the [reloadCertificate](../../rest-api/upload-retrieve-node-cert.md) REST API:  
 ```console  
@@ -219,10 +226,9 @@ mkdir servercertfiles2
 cd servercertfiles2  
 mkdir -p {root,servers,clients}/{issued,reqs,private}  
 ```  
-You’ll use the `root`, `servers`, and `clients` directories to contain the certificates, requests, and private keys for the root, node, and client certificates. The `issued`, `reqs`, and `private` subdirectories in these directories will contain the final certificates, the signing requests, and the private keys respectively.
-
-|  | The example [Client Access: Intermediate Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate) uses this directory structure. It demonstrates creating the certificates that the clients need. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+You’ll use the `root`, `servers`, and `clients` directories to contain the certificates, requests, and private keys for the root, node, and client certificates. The `issued`, `reqs`, and `private` subdirectories in these directories will contain the final certificates, the signing requests, and the private keys respectively.  
+> [!NOTE]  
+> The example [Client Access: Intermediate Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate) uses this directory structure. It demonstrates creating the certificates that the clients need.
 3. Change to the `root` directory and create a configuration file for the root certificate:  
 ```console  
 cd root  
@@ -407,10 +413,9 @@ curl -X POST http://10.143.192.102:8091/node/controller/loadTrustedCAs \
 ```console  
 curl -X POST http://10.143.192.102:8091/node/controller/reloadCertificate
      -u Administrator:password  
-```
-
-|  | When the cluster contains more than one node, you must repeat the call to /node/controller/reloadCertificate for each node. Be sure to use the IP address of each node in the POST URL to have each node reload its certificates. Also, copy the files to the node’s inbox on its own filesystem. The files must be on the node for the REST API call to work. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> When the cluster contains more than one node, you must repeat the call to `/node/controller/reloadCertificate` for each node. Be sure to use the IP address of each node in the POST URL to have each node reload its certificates. Also, copy the files to the node’s inbox on its own filesystem. The files must be on the node for the REST API call to work.
 
 The node’s certificate is now deployed. Remember that it does not contain the intermediate certificate. For a peer to identify the node, it must have a copy of the intermediate certificate in its trust store. Without it, the peer cannot establish a chain of trust from the node to the root CA. To make sure other nodes in the cluster can identify the node, add the intermediate certificate to the Couchbase Server’s trust store. For other clients, consult their documentation to determine how to add the intermediate certificate to their trust stores.
 
@@ -467,10 +472,9 @@ curl -X POST http://10.143.192.102:8091/node/controller/reloadCertificate \
      -u Administrator:password
      -d '{"privateKeyPassphrase": {"type": "plain", "password": "private-key-password"}}'  
 ```  
-The JSON value you pass to the command supplies the password for the private key in the PKCS #12 certificate as plain text. Replace the `private-key-password` with the password you entered in step 2.
-
-|  | This example sends the private key’s password in plaintext for simplicity. In a production environment, consider using a more secure method of sending this password. See [JSON Passphrase Registration](../../rest-api/upload-retrieve-node-cert.md#json-passphrase-registration) |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The JSON value you pass to the command supplies the password for the private key in the PKCS #12 certificate as plain text. Replace the `private-key-password` with the password you entered in step 2.  
+> [!IMPORTANT]  
+> This example sends the private key’s password in plaintext for simplicity. In a production environment, consider using a more secure method of sending this password. See [JSON Passphrase Registration](../../rest-api/upload-retrieve-node-cert.md#json-passphrase-registration)
 
 Couchbase Server extracts the private key and certificate from the `couchbase.p12` file and activates them on the node.
 
@@ -484,8 +488,8 @@ You can choose to encrypt the private key for nodes when uploading them. You mus
 
 Once you have configured root, intermediate, and node certificates for the cluster, you can create client certificates so clients can securely connect. You can choose to create an intermediate client certificate that itself inherits the authority of the root. Client-certificate preparation varies, depending on the type of client. For steps to prepare a client certificate to support connections between Couchbase Server databases, see [Client Access: Intermediate-Certificate Authorization](configure-client-certificates.md#client-certificate-authorized-by-an-intermediate-certificate). For steps to prepare a certificate for a Java client, see [Java Client Access: Intermediate-Certificate Authorization](configure-client-certificates.md#java-client-access-intermediate-certificate-authorization).
 
-|  | Client connections secured by client certificate must be enabled on the cluster. See [Enable Client-Certificate Handling](enable-client-certificate-handling.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Client connections secured by client certificate must be enabled on the cluster. See [Enable Client-Certificate Handling](enable-client-certificate-handling.md).
 
 ## [](#using-an-externally-provided-root-certificate)Using an Externally Provided Root Certificate
 

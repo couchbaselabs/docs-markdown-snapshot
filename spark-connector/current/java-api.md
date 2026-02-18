@@ -1,4 +1,12 @@
+---
+title: Java API
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/java-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/java-api.html)
+
+# Java API
 
 > In addition to the Scala API, some APIs can also be accessed from Java. 
 

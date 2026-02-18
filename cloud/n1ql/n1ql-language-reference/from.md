@@ -1,4 +1,13 @@
+---
+title: FROM Clause
+description: The FROM clause specifies the documents to be used as the input for a query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/from.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/from.html)
+
+# FROM Clause
 
 > The `FROM` clause specifies the documents to be used as the input for a query. 
 
@@ -41,8 +50,10 @@ This may be followed by further FROM terms, each of which may be one of the foll
 
 You may additionally include one or more [comma-separated joins](comma.md).
 
-|  | JOIN clauses, NEST clauses, UNNEST clauses, and comma-separated joins each have a _left-hand side_ and a _right-hand side_. The left-hand side is defined by the preceding FROM term; the right-hand side is defined by the FROM term itself. When you chain multiple FROM terms together, the right-hand side of one FROM term acts as the left-hand side of the following FROM term. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> `JOIN` clauses, `NEST` clauses, `UNNEST` clauses, and comma-separated joins each have a _left-hand side_ and a _right-hand side_. The left-hand side is defined by the preceding FROM term; the right-hand side is defined by the FROM term itself.
+> 
+> When you chain multiple FROM terms together, the right-hand side of one FROM term acts as the left-hand side of the following FROM term.
 
 ### [](#limitations)Limitations
 
@@ -83,8 +94,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 Keyspace reference of the data source. The identifiers that make up the keyspace reference are not available as [variables in scope of a subquery](subqueries.md#section%5Fonz%5F3tj%5Fmz).
 
-|  | If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). Refer to the examples below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). Refer to the examples below.
 
 #### [](#keyspace-path)Keyspace Path
 
@@ -376,8 +387,14 @@ alias
 
 String to assign an alias.
 
-|  | Since the original name may lead to referencing wrong data and wrong results, you must use the alias name throughout the query instead of the original keyspace name. In the FROM clause, the renaming appears only in the projection and not the fields themselves. When no alias is used, the keyspace or last field name of an expression is given as the implicit alias. When an alias conflicts with a keyspace or field name in the same scope, the identifier always refers to the alias. This allows for consistent behavior in scenarios where an identifier only conflicts in some documents. For more information on aliases, see [Identifiers](identifiers.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Since the original name may lead to referencing wrong data and wrong results, you must use the alias name throughout the query instead of the original keyspace name.
+> 
+> In the FROM clause, the renaming appears only in the projection and not the fields themselves.
+> 
+> When no alias is used, the keyspace or last field name of an expression is given as the implicit alias.
+> 
+> When an alias conflicts with a keyspace or field name in the same scope, the identifier always refers to the alias. This allows for consistent behavior in scenarios where an identifier only conflicts in some documents. For more information on aliases, see [Identifiers](identifiers.md).
 
 ### [](#examples-4)Examples
 

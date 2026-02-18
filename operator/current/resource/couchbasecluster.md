@@ -1,4 +1,12 @@
+---
+title: CouchbaseCluster Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasecluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/resource/couchbasecluster.html)
+
+# CouchbaseCluster Resource
 
 The CouchbaseCluster resource represents a Couchbase cluster. It allows configuration of cluster topology, networking, storage and security options.
 
@@ -4788,7 +4796,7 @@ ServerGroups define the set of availability zones you want to distribute pods ov
 
 #### [](#description-372)Description
 
-Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of "data", "index", "query", "search", "eventing" or "analytics". Each service may only be specified once. An empty list can also be specified for a serviceless class ("\[\]") if Couchbase version is 7.6.0 or greater.
+Services is the set of Couchbase services to run on this server class. At least one class must contain the data service. The field may contain any of "data", "index", "query", "search", "eventing" or "analytics". Each service may only be specified once. An empty list can also be specified for an Arbiter class ("\[\]") if Couchbase version is 7.6.0 or greater.
 
 ### [](#couchbaseclusters-spec-servers-size)couchbaseclusters.spec.servers.size
 

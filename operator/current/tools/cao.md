@@ -1,4 +1,12 @@
+---
+title: cao
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cao.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tools/cao.html)
+
+# cao
 
 ## [](#installation)Installation
 
@@ -23,8 +31,8 @@ $ chmod +x ./cao
 $ sudo mv ./cao /usr/local/bin/cao  
 ```
 
-|  | On newer versions of macOS, you may encounter errors such as cannot execute binary file when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.” |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
 
 1. Open a command prompt and go to the directory where the `cao` binary is located:  
 ```console  
@@ -605,6 +613,12 @@ cao collect-logs --all
 
 # Collect only required resources, filtering potentially sensitive information
 cao collect-logs --log-level 0
+
+# Collect cbbackupmgr logs from all backups
+cao collect-logs --backup-logs
+
+# Collect cbbackupmgr logs from a specific backup
+cao collect-logs --backup-logs --backup-logs-name my-backup
 ```
 
 ### [](#flags-2)Flags
@@ -616,6 +630,28 @@ cao collect-logs --log-level 0
 **Default**: false
 
 Collect all resources from the namespace
+
+\--backup-logs
+
+**Type**: bool
+
+**Default**: false
+
+Collect cbbackupmgr logs from backup PVCs
+
+\--backup-logs-keep-job
+
+**Type**: bool
+
+**Default**: false
+
+Keep backup logs collection job after completion for debugging
+
+\--backup-logs-name
+
+**Type**: string
+
+Specify which backup to collect logs from (default: all backups)
 
 \--collectinfo
 
@@ -1415,6 +1451,14 @@ Whether to scope the Operator to a 'namespace' or to the 'cluster'.
 
 Separates cluster name and namespace from certain metrics.
 
+\--use-high-cardinality-metrics
+
+**Type**: bool
+
+**Default**: false
+
+Adds high cardinality labels for http request metrics.
+
 \--with-resources
 
 **Type**: bool
@@ -1547,17 +1591,16 @@ The name of the kubeconfig user to use
 
 This command is for debug and recovery purposes only. It is intended to create a pod for a since removed pod, or a new pod when support needs to do so.
 
+Note: The Couchbase Operator watches CouchbaseCluster resources and may immediately delete pods it considers unclustered. Pause or stop the Operator before using this command.
+
 ### [](#examples-5)Examples
 
 ```console
-# Create pod.
-cao create pod
-
 # Create pod scoped to the cluster with a specific index.
-cao create pod --cluster-name cb-example --server-class all_services --index 3
+cao create pod --couchbase-cluster cb-example --server-class all_services --index 3
 
 # Create pod scoped to a cluster with the next available index.
-cao create pod --cluster-name cb-example --server-class all_services --auto-index
+cao create pod --couchbase-cluster cb-example --server-class all_services --auto-index
 ```
 
 ### [](#flags-6)Flags
@@ -1575,6 +1618,12 @@ Use the persistence secret’s to generate a new pod with a new index
 **Type**: string
 
 The cluster from which to create a pod definition for.
+
+\--image
+
+**Type**: string
+
+The Couchbase Server image to use for the pod
 
 \--index
 
@@ -2662,6 +2711,14 @@ Whether to scope the Operator to a 'namespace' or to the 'cluster'.
 
 Separates cluster name and namespace from certain metrics.
 
+\--use-high-cardinality-metrics
+
+**Type**: bool
+
+**Default**: false
+
+Adds high cardinality labels for http request metrics.
+
 \--with-resources
 
 **Type**: bool
@@ -2797,14 +2854,11 @@ This command is for debug and recovery purposes only. It is intended to generate
 ### [](#examples-10)Examples
 
 ```console
-# Create pod.
-cao generate pod
-
 # Create pod scoped to the cluster with a specific index.
-cao generate pod --cluster-name cb-example --server-class all_services --index 3
+cao generate pod --couchbase-cluster cb-example --server-class all_services --index 3
 
 # Create pod scoped to a cluster with the next available index.
-cao generate pod --cluster-name cb-example --server-class all_services --auto-index
+cao generate pod --couchbase-cluster cb-example --server-class all_services --auto-index
 ```
 
 ### [](#flags-12)Flags
@@ -2822,6 +2876,12 @@ Use the persistence secret’s to generate a new pod with a new index
 **Type**: string
 
 The cluster from which to create a pod definition for.
+
+\--image
+
+**Type**: string
+
+The Couchbase Server image to use for the pod
 
 \--index
 

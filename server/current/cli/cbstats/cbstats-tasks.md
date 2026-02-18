@@ -1,4 +1,13 @@
+---
+title: tasks
+description: Gives details on any running background tasks.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-tasks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-tasks.html)
+
+# tasks
 
 > Gives details on any running background tasks. 
 

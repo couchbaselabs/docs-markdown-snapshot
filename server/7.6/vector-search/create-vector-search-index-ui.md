@@ -1,23 +1,42 @@
+---
+title: Create a Vector Search Index with the Server Web Console
+description: You can create a Vector Search index with the Couchbase Server Web Console.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/create-vector-search-index-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/vector-search/create-vector-search-index-ui.html)
+
+# Create a Vector Search Index with the Server Web Console
 
 > You can create a Vector Search index with the Couchbase Server Web Console. 
 
 You must create a Vector Search index before you can [run a search](run-vector-search-ui.md) that supports vector comparisons.
 
-|  | Vector Search indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Vector Search indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md).
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 ## [](#prerequisites)Prerequisites
 
 * You have the Search Service enabled on a node in your cluster. For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../../current/manage/manage-nodes/node-management-overview.md).
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../../current/manage/manage-buckets/create-bucket.md).
-* You have documents in a keyspace inside your bucket that contain vector embeddings. Embeddings can be an array of floats or a base64 encoded string.
-
-|  | You can download a sample dataset to use with the procedure or examples on this page: [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip) To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/import.md) from the dataset into your database with the following settings: Use a bucket called vector-sample. Use a scope called color. Use a collection called rgb for rgb.json. To set your document keys, use the value of the id field from each JSON document. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* You have documents in a keyspace inside your bucket that contain vector embeddings. Embeddings can be an array of floats or a base64 encoded string.  
+> [!TIP]  
+> You can download a sample dataset to use with the procedure or examples on this page:  
+>  
+> [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip)  
+>  
+> To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/import.md) from the dataset into your database with the following settings:  
+>  
+> * Use a bucket called `vector-sample`.  
+> * Use a scope called `color`.  
+> * Use a collection called `rgb` for `rgb.json`.  
+> * To set your document keys, use the value of the `id` field from each JSON document.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
 * You have logged in to the Couchbase Server Web Console.
 
@@ -27,10 +46,11 @@ To create a Vector Search index with the Couchbase Server Web Console:
 
 1. Go to **Search**.
 2. Click **Add Index**.
-3. In the **Index Name** field, enter a name for the Vector Search index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+3. In the **Index Name** field, enter a name for the Vector Search index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 4. In the **Bucket** list, select the bucket that contains the documents you want to include in your index.
 5. Expand **Customize Index**.
 6. Select **Use non-default scope/collection(s)**.
@@ -173,8 +193,8 @@ If you want to use the sample dataset for the examples in [Run A Vector Search w
    }
 ```
 
-|  | Make sure you imported the sample dataset with the recommended settings. |
-|  | ------------------------------------------------------------------------ |
+> [!NOTE]
+> Make sure you imported the sample dataset with the recommended settings.
 
 This Vector Search index has a type mapping for a `color.rgb` collection and includes the following fields:
 

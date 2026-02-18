@@ -1,4 +1,14 @@
+---
+title: Batching
+description: The PHP SDK offers only a blocking API -- but this is not
+  necessarily a limitation.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/current/howtos/concurrent-async-apis.html)
+
+# Batching
 
 > The PHP SDK offers only a blocking API — but this is not necessarily a limitation. Using data batching or process forks you can perform effective bulk operations over data. 
 

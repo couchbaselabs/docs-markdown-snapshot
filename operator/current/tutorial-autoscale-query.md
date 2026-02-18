@@ -1,9 +1,17 @@
+---
+title: Auto-scaling the Couchbase Query Service
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-autoscale-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-autoscale-query.html)
+
+# Auto-scaling the Couchbase Query Service
 
 > Learn how to configure auto-scaling for Query Service nodes using the Kubernetes Operator. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#introduction)Introduction
 
@@ -133,8 +141,12 @@ Now, install the Couchbase chart, making sure to specify the values override fil
 $ helm install -f autoscale_values.yaml scale couchbase/couchbase-operator
 ```
 
-|  | The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed: $ helm install -f autoscale\_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> 
+> ```console
+> $ helm install -f autoscale_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator
+> ```
 
 ### [](#verify-the-installation)Verify the Installation
 
@@ -237,8 +249,8 @@ EOF
 | **6** | metrics.resource.name: The name of target metric that will be monitored by the HPA for the purposes of auto-scaling. Here, we’ve specified cpu as the metric that will be used to scale the number query nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **7** | metrics.resource.target.averageUtilization: Specifying the averageUtilization type means that the metric will be averaged across all of the pods. Here, by setting a value of 70, the HPA will scale the number of query nodes when the average CPU utilization across all query pods exceeds 70%.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
-|  | Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md).
 
 ### [](#verify-horizontalpodautoscaler-status)Verify `HorizontalPodAutoscaler` Status
 
@@ -362,8 +374,8 @@ Events:
 
 After 10 minutes the query generator will complete and the number of `query` nodes will eventually scale back down to the previously-configured minimum of two nodes.
 
-|  | If your CPU utilization didn’t reach the target value, you can try with a lower CPU utilization threshold, or apply additional query generators by adjusting the concurrency and seed values. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If your CPU utilization didn’t reach the target value, you can try with a lower CPU utilization threshold, or apply additional query generators by adjusting the `concurrency` and `seed` values.
 
 ### [](#optional-limit-scale-down-rate)Optional: Limit Scale Down Rate
 

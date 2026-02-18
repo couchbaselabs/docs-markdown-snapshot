@@ -1,4 +1,14 @@
+---
+title: "Function: Shipping Notifier"
+description: Send notifications when an order scheduled to arrive, when it is
+  shipped, and when it is delivered.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-shippingNotifier.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-shippingNotifier.html)
+
+# Function: Shipping Notifier
 
 **Goal**: Send notifications when an order scheduled to arrive, when it is shipped, and when it is delivered.
 
@@ -193,8 +203,8 @@ function OnUpdate(doc, meta) {
 
 We want to create a test set of three (3) documents. Use the Query Editor to insert the the data items (you do not need an index).
 
-|  | For key "ship:dea0fca2-e7b7-11ea-adc1-0242ac120002", you may want to adjust the timestamps as the times are in seconds since Unix epoch. Use a tool like <https://www.dcode.fr/timestamp-converter> or <https://www.epochconverter.com/> . |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For key "ship:dea0fca2-e7b7-11ea-adc1-0242ac120002", you may want to adjust the timestamps as the times are in seconds since Unix epoch. Use a tool like <https://www.dcode.fr/timestamp-converter> or <https://www.epochconverter.com/> .
 
 ```sqlpp
   UPSERT INTO `bulk`.`data`.`active` (KEY,VALUE)

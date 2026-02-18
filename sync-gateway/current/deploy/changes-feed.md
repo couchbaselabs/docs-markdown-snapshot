@@ -1,4 +1,13 @@
+---
+title: Changes Feed
+description: Integrating Sync Gateway with other servers
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/changes-feed.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/deploy/changes-feed.html)
+
+# Changes Feed
 
 > Integrating Sync Gateway with other servers  
 > This content describes how to use the changes feed to integrate Sync Gateway with other servers to build services that react to document changes.

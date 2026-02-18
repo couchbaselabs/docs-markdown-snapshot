@@ -1,4 +1,12 @@
+---
+title: Geospatial GeoJSON Queries
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-geojson-spatial.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-geojson-spatial.html)
+
+# Geospatial GeoJSON Queries
 
 > _GeoJSON_ queries return documents that contain location in either legacy Geopoint format or standard GeoJSON, thus providing more utility than that of legacy point-distance, bounded-rectangle and bounded-polygon against the indexed Geopoint fields. 
 
@@ -465,8 +473,8 @@ To be successful, a geospatial GeoJSON query must reference an index that applie
 
 This can be achieved with Couchbase Web Console, or with the REST endpoints provided for managing [Indexes](../rest-api/rest-fts-indexing.md). Detailed instructions for setting up indexes, and specifying type mappings, are provided in [Creating Indexes](fts-creating-indexes.md).
 
-|  | For initial experimentation with geospatial GeoJSON querying (based on the type geojson), the travel-sample.\_default.\_default must updated as per [Prerequisites for GeoJSON Search](#prerequisites-dataset) to ensure your dataset contains GeoJSON objects that can be indexed. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For initial experimentation with geospatial GeoJSON querying (based on the type geojson), the `travel-sample._default._default` must updated as per [Prerequisites for GeoJSON Search](#prerequisites-dataset) to ensure your dataset contains GeoJSON objects that can be indexed.
 
 * Click the **Add Index** link in the upper right of the **Couchbase Web Console** \> **Search** page.  
 ![fts add initial](_images/fts-add-initial.png)
@@ -546,8 +554,8 @@ This is all you need to specify in order to create a more advanced index for tes
 * If you subsequently Edit your Index it should look like the following:  
 ![fts edit index geojson](_images/fts-edit-index-geojson.png)
 
-|  | Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. However this index can be edited and optimized if you check **\[X\] only index specified fields** under the Type Mappings section. This will result in a much smaller index and a faster index build since only the fields **geojson** and **geoarea** will be indexed in the set of documents. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Indexing all fields as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. However this index can be edited and optimized if you check **\[X\] only index specified fields** under the Type Mappings section. This will result in a much smaller index and a faster index build since only the fields **geojson** and **geoarea** will be indexed in the set of documents.
 
 The index once created can also be accessed by means of the Search REST API see [Searching with the REST API](fts-searching-with-curl-http-requests.md). Furthermore the index could have been created in the first place via the Search REST API see [Index Creation with REST API](fts-creating-index-with-rest-api.md) for more information on using the Search REST API syntax.
 
@@ -641,8 +649,8 @@ curl -XPOST -H "Content-Type: application/json" \
 
 If you copy and then run the above cURL command via the console the response from the Search service will report that there are 847 total\_hits but only return the first 10 hits. A subset of formatted console output might appear as follows:
 
-|  | To pretty print the response just pipe the output through the utility [jq](http://stedolan.github.io/jq) to enhance readability. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To pretty print the response just pipe the output through the utility [jq](http://stedolan.github.io/jq) to enhance readability.
 
 ```json
 "hits": [

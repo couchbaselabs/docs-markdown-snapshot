@@ -1,4 +1,13 @@
+---
+title: Default Character Filters
+description: Character filters remove unwanted characters from your search input.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/default-character-filters-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/default-character-filters-reference.html)
+
+# Default Character Filters
 
 > Character filters remove unwanted characters from your search input. 
 

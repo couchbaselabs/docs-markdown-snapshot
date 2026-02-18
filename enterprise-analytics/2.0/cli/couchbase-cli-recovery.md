@@ -1,4 +1,13 @@
+---
+title: recovery
+description: Recovers a previously failed over node
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-recovery.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-recovery.html)
+
+# recovery
 
 Recovers a previously failed over node
 
@@ -16,8 +25,8 @@ Another use case is taking a server out of the cluster for maintenance. This is 
 
 The recovery command also allows a server to have it’s data removed before being added back to the cluster (full recovery) or having the server resume from where it last left off (delta recovery). Delta recovery will always take the least amount of time and is the recommended recovery mode.
 
-|  | After the recovery subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information on rebalancing a cluster. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> After the recovery subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information on rebalancing a cluster.
 
 ## [](#options)OPTIONS
 

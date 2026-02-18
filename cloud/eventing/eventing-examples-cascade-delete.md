@@ -1,4 +1,14 @@
+---
+title: Cascade Delete Documents
+description: Use the Eventing Service to perform cascade delete operations on
+  your documents.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-cascade-delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-cascade-delete.html)
+
+# Cascade Delete Documents
 
 > Use the Eventing Service to perform cascade delete operations on your documents. 
 
@@ -18,8 +28,8 @@ Before trying out the example on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-cascade-delete-documents)Example: Cascade Delete Documents
 

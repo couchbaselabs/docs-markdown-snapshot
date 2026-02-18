@@ -1,11 +1,19 @@
+---
+title: Operator Deployment Settings
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-operator-configuration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/reference-operator-configuration.html)
+
+# Operator Deployment Settings
 
 ## [](#operator-deployment)Operator Deployment
 
 The Couchbase Kubernetes Operator configuration is defined below. This is intended as a reference only, and you should prefer the use of the [cao utility](tools/cao.md) or [Helm](helm-setup-guide.md), as these will handle configuration for you and provide an abstraction layer, less prone to modification.
 
-|  | Most of the fields in the Operator configuration should never be changed and it is recommended that you use the configuration as is. However, there are some exceptions noted below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Most of the fields in the Operator configuration should never be changed and it is recommended that you use the configuration as is. However, there are some exceptions noted below.
 
 ```yaml
 apiVersion: apps/v1
@@ -113,8 +121,8 @@ Allows log format to be specified. By default, `json` logging provides a machine
 
 Controls the verbosity of log output. Informational logging displays errors and informational messages. Debug logging displays basic debug, error and informational messages. Level 2 debug logging displays full debug, error and informational messages, including Couchbase server API calls.
 
-|  | When using logging level 2 be aware this will print all data payloads to and from Couchbase server. This data may contain user names and passwords in plain text along with any other sensitive information concerning naming of resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When using logging level `2` be aware this will print all data payloads to and from Couchbase server. This data may contain user names and passwords in plain text along with any other sensitive information concerning naming of resources.
 
 \--zap-stacktrace-level
 

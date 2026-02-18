@@ -1,4 +1,13 @@
+---
+title: ssl-manage
+description: Manage SSL certificates
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-ssl-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-ssl-manage.html)
+
+# ssl-manage
 
 Manage SSL certificates
 
@@ -120,8 +129,8 @@ When using a REST call to fetch the password, the file may look similar to the o
 
 Uploads the certificate specified to the cluster. The uploaded certificate will replace the cluster certificate in this cluster.
 
-|  | For security reasons, this method has been deprecated in Couchbase Server 7.1 and later. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!WARNING]
+> For security reasons, this method has been deprecated in Couchbase Server 7.1 and later.
 
 \--set-client-auth <path>
 

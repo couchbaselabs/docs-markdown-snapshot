@@ -1,4 +1,14 @@
+---
+title: Bitwise Functions
+description: This topic describes the builtin SQL++ for Enterprise Analytics
+  bitwise functions.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/8_builtin_bit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/8_builtin_bit.html)
+
+# Bitwise Functions
 
 > This topic describes the builtin SQL++ for Enterprise Analytics bitwise functions. 
 
@@ -6,11 +16,11 @@
 
 All Bit/Binary functions can only operate on 64-bit signed integers.
 
-|  | All non-integer numbers and other data types result in null. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> All non-integer numbers and other data types result in null.
 
-|  | The query language uses [two’s complement](https://en.wikipedia.org/wiki/Two%27s%5Fcomplement) representation. |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The query language uses [two’s complement](https://en.wikipedia.org/wiki/Two%27s%5Fcomplement) representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -60,10 +70,9 @@ This results in 2 (0010 in binary) because only the 2nd bit from the right is 1 
 
 * Syntax:  
 BITCLEAR(int_value, positions)
-* Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.
-
-|  | Specifying a negative or zero bit position makes the function return a null. |
-|  | ---------------------------------------------------------------------------- |
+* Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.  
+> [!NOTE]  
+> Specifying a negative or zero bit position makes the function return a null.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to clear.
@@ -98,10 +107,9 @@ This results in 4 (0**00**1**00**) because bits 1, 2, 4, and 5 changed to zero.
 * Syntax:  
 BITNOT(int_value)
 * Returns the results of a bitwise logical NOT operation performed on an integer value.  
-The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.
-
-|  | All bits of the integer will be altered by this operation. |
-|  | ---------------------------------------------------------- |
+The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.  
+> [!NOTE]  
+> All bits of the integer will be altered by this operation.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bits to reverse.
@@ -156,10 +164,9 @@ This results in 15 (1111 in binary) because there is at least one 1 in each of t
 
 * Syntax:  
 BITSET(int_value, positions)
-* Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.
-
-|  | Specifying a negative or zero position makes the function return a null. |
-|  | ------------------------------------------------------------------------ |
+* Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.  
+> [!NOTE]  
+> Specifying a negative or zero position makes the function return a null.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to set.
@@ -256,10 +263,9 @@ This results in 1 because the 1-bit wrapped left, around to the Least Significan
 
 * Syntax:  
 BITTEST(int_value, positions [, all_set])
-* Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).
-
-|  | Specifying a negative or zero bit position will result in null being returned. |
-|  | ------------------------------------------------------------------------------ |
+* Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).  
+> [!NOTE]  
+> Specifying a negative or zero bit position will result in null being returned.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to test.

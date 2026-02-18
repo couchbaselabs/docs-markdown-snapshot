@@ -1,4 +1,14 @@
+---
+title: Swap Space and Kernel Swappiness
+description: On Linux, the kernel's <em>swappiness</em> level indicates how
+  likely the system is to swap pages out of physical memory based on RAM usage.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-swap-space.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/install-swap-space.html)
+
+# Swap Space and Kernel Swappiness
 
 > On Linux, the kernel’s _swappiness_ level indicates how likely the system is to swap pages out of physical memory based on RAM usage. Swappiness should be set to 1 or 0 on most Linux systems to achieve optimal Couchbase Server performance. 
 

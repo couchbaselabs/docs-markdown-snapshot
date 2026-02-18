@@ -1,4 +1,12 @@
+---
+title: The Couchbase Pendo Voice
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/voice.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/pendo/voice.html)
+
+# The Couchbase Pendo Voice
 
 When writing in-app guidance through Pendo, aim for the following voice characteristics:
 

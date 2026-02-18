@@ -1,4 +1,14 @@
+---
+title: Use Capella AI Functions
+description: Use AI Functions to summarize text, classify content, detect
+  sentiment, explain patterns, and more — all within your SQL++ queries.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/ai-functions.html)
+
+# Use Capella AI Functions
 
 > Use AI Functions to summarize text, classify content, detect sentiment, explain patterns, and more — all within your SQL++ queries. 
 
@@ -17,8 +27,8 @@ The following Capella AI Functions are available:
 * **Translation**: Converts text between languages.
 * **Completion**: Allows you to define your own tasks using prompts and generates tailored responses. Combine with AI Guardrails for safe content generation.
 
-|  | When you use AI Functions, Capella charges based on your Model Service usage and Query Service usage. If you’re using external LLMs such as OpenAI and Amazon Bedrock, you incur charges from those model service providers. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you use AI Functions, Capella charges based on your Model Service usage and Query Service usage. If you’re using external LLMs such as OpenAI and Amazon Bedrock, you incur charges from those model service providers.
 
 ## [](#prerequisites)Prerequisites
 
@@ -45,10 +55,9 @@ The following Capella AI Functions are available:
   * The [Capella Model Service](model-service/deploy-llm-model.md)
   * [OpenAI](https://openai.com/)
   * [Amazon Bedrock](https://aws.amazon.com/bedrock/)
-* (Recommended) If you have a production workload, [enable private networking](../security/add-aws-privatelink.md) to use AI Functions.
-
-|  | If you want to enable private networking for your AI Functions, your Capella model and Capella operational cluster need to be deployed within the same AWS region. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* (Recommended) If you have a production workload, [enable private networking](../security/add-aws-privatelink.md) to use AI Functions.  
+> [!NOTE]  
+> If you want to enable private networking for your AI Functions, your Capella model and Capella operational cluster need to be deployed within the same AWS region.
 * (Recommended) You have guardrails selected for your chosen model. This includes keyword filtering and jailbreak detection. Guardrails are important to have when you use the completion function. For more information, see [Deploy a Large Language Model (LLM)](model-service/deploy-llm-model.md).
 
 ## [](#enable-ai-functions)Enable AI Functions
@@ -65,10 +74,9 @@ To enable Capella AI Functions:
     1. Go to **AI Functions**.
 2. Click **Enable AI Functions**.
 3. Select the functions you want to use, and click **Next**.
-4. Select 1 of the model options:
-
-|  | Private networking is only available for Capella models. |
-|  | -------------------------------------------------------- |
+4. Select 1 of the model options:  
+> [!NOTE]  
+> Private networking is only available for Capella models.
 
   * Capella Model
   * OpenAI Model
@@ -101,18 +109,17 @@ To enable Capella AI Functions:
   4. Choose your Bedrock credentials.
   5. Click **Next**.
 5. Choose a Capella operational cluster for your functions.
-6. (Optional) If your Capella model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM’s AWS region and your Capella operational cluster.
-
-|  | You cannot disable private networking later. |
-|  | -------------------------------------------- |
+6. (Optional) If your Capella model and your Capella operational cluster have the same AWS region, choose whether you want to enable private networking for your functions. This enables private networking between your LLM’s AWS region and your Capella operational cluster.  
+> [!NOTE]  
+> You cannot disable private networking later.
 7. Click **Complete Setup**.
 
 ## [](#run-an-ai-function)Run an AI Function
 
 Run AI Functions like any other SQL++ query using the [Query tab](../../cloud/clusters/query-service/query-workbench.md) on the operational cluster where you have configured AI Functions.
 
-|  | When using input prompts with Capella, Bedrock, or OpenAI LLMs, turn on model guardrails for security. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> When using input prompts with Capella, Bedrock, or OpenAI LLMs, turn on model guardrails for security.
 
 Experiment with AI Functions with your own data or by loading a sample query into the Query tab of your operational cluster. The following sample queries require the `travel-sample` dataset on the same cluster where you configured your AI Functions LLM.
 
@@ -129,8 +136,8 @@ Test these functions using your own data, queries, and prompts. You can specify 
 
 AI Function performance depends on the number and size of query nodes, data volume, and query complexity. Larger or more complex queries may require [scaling your cluster](../../cloud/clusters/scale-database.md) to maintain performance.
 
-|  | If you receive an error code 3000 after running your query, it indicates the function you’re using is not enabled or associated with an LLM. You need to [enable the function](#enable-ai-functions) and try again. For more information about SQL++ error codes, see [SQL++ Error Codes](../../cloud/n1ql/n1ql-language-reference/n1ql-error-codes.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you receive an error code `3000` after running your query, it indicates the function you’re using is not enabled or associated with an LLM. You need to [enable the function](#enable-ai-functions) and try again. For more information about SQL++ error codes, see [SQL++ Error Codes](../../cloud/n1ql/n1ql-language-reference/n1ql-error-codes.md).
 
 ## [](#view-ai-functions)View AI Functions
 
@@ -222,8 +229,13 @@ View sample queries for all the available AI Functions and their general respons
 * [Translation](#translation)
 * [Completion](#completion)
 
-|  | Model Type When working with different LLMs, keep the following in mind: Responses may vary slightly depending on the model selected. When using reasoning models, it’s recommended to set a higher max\_tokens value. For these models, reasoning tokens count towards the total token limit. If your token limit is too low, it may cause truncated responses. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Model Type
+> 
+> When working with different LLMs, keep the following in mind:
+> 
+> * Responses may vary slightly depending on the model selected.
+> * When using reasoning models, it’s recommended to set a higher `max_tokens` value. For these models, reasoning tokens count towards the total token limit. If your token limit is too low, it may cause truncated responses.
 
 ### [](#sentiment-analysis)Sentiment Analysis
 

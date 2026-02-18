@@ -1,4 +1,12 @@
+---
+title: Search
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/full-text-search-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/concept-docs/full-text-search-overview.html)
+
+# Search
 
 > _Full Text Search_ (FTS) lets you create, manage, and query specially purposed _indexes_, defined on JSON documents within a Couchbase bucket. 
 

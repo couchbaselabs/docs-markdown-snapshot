@@ -1,4 +1,14 @@
+---
+title: Encrypting Your Data
+description: A practical guide for getting started with Field-Level Encryption,
+  showing how to encrypt and decrypt JSON fields using the Go SDK.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/howtos/encrypting-using-sdk.html)
+
+# Encrypting Your Data
 
 > A practical guide for getting started with Field-Level Encryption, showing how to encrypt and decrypt JSON fields using the Go SDK. 
 
@@ -8,8 +18,8 @@ For a high-level overview of this feature, see [Field Level Encryption](../conce
 
 The Go SDK works together with the [Go Couchbase Encryption](https://github.com/couchbase/gocbencryption) library to provide support for encryption and decryption of JSON fields. This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration.
 
 To get started with the Go encryption library you can fetch it using:
 
@@ -216,8 +226,8 @@ The output is now:
 
 ## [](#migration-from-sdk1)Migrating from SDK 1
 
-|  | SDK 1 cannot read fields encrypted by SDK 2\. |
-|  | --------------------------------------------- |
+> [!WARNING]
+> SDK 1 cannot read fields encrypted by SDK 2\.
 
 It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
@@ -237,8 +247,8 @@ For compatibility with SDK 1, you can configure the `CryptoManager` to use the o
 
 Alternatively, you can [rename the existing fields using a SQL++ statement](https://forums.couchbase.com/t/replacing-field-name-prefix/28786).
 
-|  | In SDK 1, only top-level fields could be encrypted. SDK 2 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> In SDK 1, only top-level fields could be encrypted. SDK 2 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
 
 ### [](#configure-legacy-decrypters)Enabling decrypters for legacy algorithms
 

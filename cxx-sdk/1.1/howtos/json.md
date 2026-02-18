@@ -1,4 +1,13 @@
+---
+title: JSON Libraries
+description: The Scala SDK supports multiple options for working with JSON.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/howtos/pages/json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.1/howtos/json.html)
+
+# JSON Libraries
 
 > The Scala SDK supports multiple options for working with JSON. 
 
@@ -274,8 +283,8 @@ The same `Codec` also generates a `JsonDeserializer[User]`, which can be used to
     }
 ```
 
-|  | There are other ways to handle case classes. Many of the supported JSON libraries have some method to encode and decode case classes into an interim type, as in the [Circe example](#circe). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There are other ways to handle case classes. Many of the supported JSON libraries have some method to encode and decode case classes into an interim type, as in the [Circe example](#circe).
 
 ## [](#json4s)Json4s
 

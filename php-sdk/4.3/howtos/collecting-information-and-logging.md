@@ -1,11 +1,20 @@
+---
+title: Logging
+description: Logging with the SDK using the default logger implementation in PHP.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > Logging with the SDK using the default logger implementation in PHP. 
 
 ## [](#logging)Logging
 
-|  | The Logging implementation has changed substantially in 4.0 and is not currently fully documented. This will be resolved in a future 4.x release. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The Logging implementation has changed substantially in 4.0 and is not currently fully documented. This will be resolved in a future 4.x release.
 
 The Couchbase PHP SDK has no hard dependency on a specific logger implementation. By default it uses built-in means to report events. The only thing you may change is the log level, which is controlled by `couchbase.log_level` in `php.ini`.
 
@@ -65,5 +74,5 @@ When logging is turned on, the SDK will output messages similar to this:
 [2022-05-25 11:51:20.182] [72937,15083872] [debug] 0ms, [3d1ad384-ca9b-4983-b701-ea6ef15909ee/725383a6-e68b-460a-d782-56ee249fba58/plain/-] <localhost/::1:11210> user_agent={"a":"cxx/1.0.0/","i":"3d1ad384-ca9b-4983-b701-ea6ef15909ee/725383a6-e68b-460a-d782-56ee249fba58"}, requested_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, json, duplex, alt_request_support, tracing, sync_replication, vattr, collections, subdoc_create_as_deleted, preserve_ttl, unordered_execution, clustermap_change_notification, snappy]
 ```
 
-|  | By default, php-fpm redirects the standard output and error streams to /dev/null for performance and FastCGI conformance reasons. In order to capture the logs in this setup, you must explicitly configure catch\_workers\_output = yes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, `php-fpm` redirects the standard output and error streams to `/dev/null` for performance and FastCGI conformance reasons. In order to capture the logs in this setup, you must explicitly configure `catch_workers_output = yes`.

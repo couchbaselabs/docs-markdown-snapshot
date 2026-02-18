@@ -1,4 +1,15 @@
+---
+title: Adding Nodes to Groups
+description: A node can be added to the cluster and simultaneously added to an
+  existing server group with the <code>POST
+  /pools/default/serverGroups/<:uuid>/addNode</code> HTTP method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-servergroup-post-add.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-servergroup-post-add.html)
+
+# Adding Nodes to Groups
 
 > A node can be added to the cluster and simultaneously added to an existing server group with the `POST /pools/default/serverGroups/<:uuid>/addNode` HTTP method and URI. 
 
@@ -12,8 +23,8 @@ This adds a node to a cluster, and assigns it to the specified group. Optionally
 
 For a conceptual overview of nodes, and of the process of adding nodes to clusters, see [Nodes](#learn:clusters-and-availability/nodes.adoc).
 
-|  | The node to be added needs only to have been installed and started. If it has been _initialized_, data-paths so established will be retained, following addition. However, if the node to be added has been _provisioned_, all results of that provisioning will be deleted by the addition-process. This includes services, memory-quotas, buckets, bucket-data, and all established usernames and passwords. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The node to be added needs only to have been installed and started. If it has been _initialized_, data-paths so established will be retained, following addition. However, if the node to be added has been _provisioned_, all results of that provisioning will be deleted by the addition-process. This includes services, memory-quotas, buckets, bucket-data, and all established usernames and passwords.
 
 Following successful addition, rebalance is required. For a conceptual overview, see [Rebalance](#learn:clusters-and-availability/rebalance.adoc). For examples of performing rebalance, see [Rebalancing Nodes](rest-cluster-rebalance.md).
 

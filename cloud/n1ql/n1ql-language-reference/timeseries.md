@@ -1,4 +1,13 @@
+---
+title: _TIMESERIES Function
+description: The _TIMESERIES function enables you to query time series data.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/timeseries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/timeseries.html)
+
+# _TIMESERIES Function
 
 The \_TIMESERIES function enables you to query time series data.
 
@@ -6,8 +15,8 @@ The time series data must be stored in Couchbase time series documents. For more
 
 The function dynamically generates data point objects from the array of time series data in the input document. For a regular time series, the function uses the time series interval to generate a date-time stamp for each time point automatically.
 
-|  | This feature is only available on clusters using Couchbase Server 7.2 or later. |
-|  | ------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This feature is only available on clusters using Couchbase Server 7.2 or later.
 
 ## [](#syntax)Syntax
 

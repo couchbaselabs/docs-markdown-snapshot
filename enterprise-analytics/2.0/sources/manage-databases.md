@@ -1,4 +1,15 @@
+---
+title: Manage Enterprise Analytics Databases
+description: In an Enterprise Analytics cluster, a database is the top-level
+  container for organizing related information.You can add or delete databases
+  using the UI or SQL++ for Enterprise Analytics statements.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/manage-databases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/manage-databases.html)
+
+# Manage Enterprise Analytics Databases
 
 > In an Enterprise Analytics cluster, a database is the top-level container for organizing related information.You can add or delete databases using the UI or SQL++ for Enterprise Analytics statements. 
 
@@ -25,8 +36,8 @@ Each time you add a database, Enterprise Analytics records its metadata in the `
 
 When you delete a database, Enterprise Analytics deletes all of the scopes, collections, and other objects in that database.
 
-|  | You cannot delete the system-supplied Default database. |
-|  | ------------------------------------------------------- |
+> [!TIP]
+> You cannot delete the system-supplied `Default` database.
 
 1. In the UI, select the **Workbench** tab.
 2. Browse to the database you want to delete and click the Recycle Bin icon.

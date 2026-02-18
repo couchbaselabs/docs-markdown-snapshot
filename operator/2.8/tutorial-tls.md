@@ -1,9 +1,17 @@
+---
+title: Creating TLS Certificates
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-tls.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/tutorial-tls.html)
+
+# Creating TLS Certificates
 
 > This section shows a simple way to create and manage a TLS certificate hierarchy. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 Creating X.509 certificates is beyond the scope of this documentation and is given only for illustrative purposes only. Please consult the [Couchbase Server documentation^](../../server/current/learn/security/certificates.md) for additional details on certificate and TLS configuration.
 
@@ -55,8 +63,12 @@ DNS:localhost
 | **1** | If you plan to configure [public networking](tutorial-public-addressability.md) for the cluster, then you must add the wildcard SAN DNS:\*._<[couchbaseclusters.spec.networking.dns.domain](resource/couchbasecluster.md#couchbaseclusters-spec-networking-dns-domain)\>_ to handle all of the public DNS names for the cluster. This will commonly be a subdomain of your public DNS domain, e.g. \*.subdomain.dns-domain.com. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Search Domains SANs depend on search domains being configured for your stub resolver. By default, Kubernetes will do this for you. However, if you use the [inter-Kubernetes networking with forwarded DNS](concept-couchbase-networking.md#inter-kubernetes-networking-with-forwarded-dns) networking model for connecting your clients, then you will need to configure this yourself. For example, the FQDN for a Couchbase pod would be similar to cb-0000.cb.default.svc.cluster.local, however a client will communicate with cb-0000.cb.default.svc. In order for a client to match the \*.cb.default.svc SAN, and resolve the pod address, a search domain would need to be configured for cluster.local. Likewise, if your clients used the short form hostname cb-0000.cb, a search domain would need to configured for default.svc.cluster.local. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Search Domains
+> 
+> SANs depend on search domains being configured for your stub resolver. By default, Kubernetes will do this for you. However, if you use the [inter-Kubernetes networking with forwarded DNS](concept-couchbase-networking.md#inter-kubernetes-networking-with-forwarded-dns) networking model for connecting your clients, then you will need to configure this yourself.
+> 
+> For example, the FQDN for a Couchbase pod would be similar to `cb-0000.cb.default.svc.cluster.local`, however a client will communicate with `cb-0000.cb.default.svc`. In order for a client to match the `*.cb.default.svc` SAN, and resolve the pod address, a search domain would need to be configured for `cluster.local`. Likewise, if your clients used the short form hostname `cb-0000.cb`, a search domain would need to configured for `default.svc.cluster.local`.
 
 To generate a certificate for the cluster `cb-example` in the `default` namespace:
 

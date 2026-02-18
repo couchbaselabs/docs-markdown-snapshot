@@ -1,4 +1,14 @@
+---
+title: Add SSO Authentication
+description: Add federated authentication with single sign-on (SSO) to your
+  Couchbase Capella organization.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/add-sso-auth.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/add-sso-auth.html)
+
+# Add SSO Authentication
 
 > Add federated authentication with single sign-on (SSO) to your Couchbase Capella organization. 
 
@@ -8,8 +18,8 @@ Couchbase Capella provides Single Sign-On (SSO) for users to access your Capella
 
 You can manage federated and SSO authentication from the **SSO** page in your organization’s settings.
 
-|  | SSO is available only to paid accounts. Only users with the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role can view and use the **SSO** page. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> SSO is available only to paid accounts. Only users with the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role can view and use the **SSO** page.
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name.
 2. Go to **Settings** **SSO**.

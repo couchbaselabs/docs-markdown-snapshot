@@ -1,4 +1,12 @@
+---
+title: Create a Database
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/create-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/develop/java/create-database.html)
+
+# Create a Database
 
 In this lesson you’ll be introduced to Couchbase Lite, our embedded NoSQL database. You’ll learn how to create a new embedded database and optionally use databases pre-packaged in your application.
 
@@ -44,8 +52,8 @@ try {
 
 Here you’re using the `openDatabaseNamed` method where the database is the user currently logged in and `options.create` is set to `true`.
 
-|  | You can ignore the encryption flag. Database encryption will be covered in the [Adding Security](#java/adding-security.adoc) lesson. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can ignore the encryption flag. Database encryption will be covered in the [Adding Security](#java/adding-security.adoc) lesson.
 
 ### [](#try-it-out)Try it out
 
@@ -151,8 +159,8 @@ retVal.usePrebuiltDB = true;
 2. Build and run (⚠️ don’t forget to delete the app first).
 3. A Groceries list will now be visible on the Lists screen. Click on it to see the tasks.
 
-|  | Refer to the [Database](https://docs.couchbase.com/couchbase-lite/1.4/java.html#database) guide to learn how to create **pre-built** databases. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to the [Database](https://docs.couchbase.com/couchbase-lite/1.4/java.html#database) guide to learn how to create **pre-built** databases.
 
 ##### [](#conclusion)Conclusion
 

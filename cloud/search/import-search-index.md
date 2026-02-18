@@ -1,4 +1,13 @@
+---
+title: Import a Search Index Definition with the Capella UI
+description: Use the Couchbase Capella UI to import a JSON Search index definition.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/import-search-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/import-search-index.html)
+
+# Import a Search Index Definition with the Capella UI
 
 > Use the Couchbase Capella UI to import a JSON Search index definition. 
 
@@ -6,10 +15,9 @@
 
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
 * You have a bucket with scopes and collections in your operational cluster. For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
-* You have a Search index definition saved as a JSON file. For more information about the properties you can include in a Search index definition, see [Search Index JSON Properties](search-index-params.md).
-
-|  | Your JSON file must be smaller than 40 MB. |
-|  | ------------------------------------------ |
+* You have a Search index definition saved as a JSON file. For more information about the properties you can include in a Search index definition, see [Search Index JSON Properties](search-index-params.md).  
+> [!NOTE]  
+> Your JSON file must be smaller than 40 MB.
 * You have logged in to the Couchbase Capella UI.
 
 ## [](#import-a-search-index-definition)Import a Search Index Definition

@@ -1,11 +1,21 @@
+---
+title: DESCRIBE LINK Statements
+description: This topic describes how you can get information about a link with
+  a <code>DESCRIBE LINK</code> statement.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_describe.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5_dml_describe.html)
+
+# DESCRIBE LINK Statements
 
 > This topic describes how you can get information about a link with a `DESCRIBE LINK` statement. 
 
 You can use a `DESCRIBE LINK` statement to get information about either a remote or an external link.
 
-|  | To create a remote or external link, or to associate a Capella Analytics collection with a link, you must use the Capella Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md) or [Set Up an External Data Source](../sources/manage-external.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> To create a remote or external link, or to associate a Capella Analytics collection with a link, you must use the Capella Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md) or [Set Up an External Data Source](../sources/manage-external.md).
 
 ## [](#syntax)Syntax
 

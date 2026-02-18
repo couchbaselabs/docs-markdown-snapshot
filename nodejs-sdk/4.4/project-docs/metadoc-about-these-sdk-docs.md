@@ -1,4 +1,14 @@
+---
+title: About These Docs
+description: Meta documentation -- what you might need to know to get the best
+  from these docs, from their intent to their Information Architecture.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/project-docs/metadoc-about-these-sdk-docs.html)
+
+# About These Docs
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 

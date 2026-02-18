@@ -1,4 +1,14 @@
+---
+title: CREATE FUNCTION
+description: The <code>CREATE FUNCTION</code> statement enables you to create a
+  user-defined function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/createfunction.html)
+
+# CREATE FUNCTION
 
 > The `CREATE FUNCTION` statement enables you to create a user-defined function. 
 
@@ -91,8 +101,8 @@ When a function with the same name already exists within the same context: \[[1]
 * If the `IF NOT EXISTS` clause is present, the statement does nothing and completes without error.
 * If neither of these two clauses is present, an error is generated.
 
-|  | These clauses are exclusive. If the statement contains both the OR REPLACE clause and the IF NOT EXISTS clause, an error is generated. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These clauses are exclusive. If the statement contains both the `OR REPLACE` clause and the `IF NOT EXISTS` clause, an error is generated.
 
 #### [](#inline-name)Function Name
 
@@ -124,8 +134,9 @@ params ::= identifier ( "," identifier )* | "..."
 
 The function body defines the function. You can use any valid SQL++ expression. If you specified named parameters for the function, you can use these in the expression to represent arguments passed to the function at execution time. If you specified that the function is variadic, any arguments passed to the function at execution time are held in an array named `args`.
 
-|  | If the expression contains a parameter that has the same name as a field in the document, it will always refer to the parameter. To distinguish between the field and the parameter, prefix the field with the keyspace name, for example landmark.activity. To avoid this ambiguity, you should use unique parameter names that do not clash with document field names, such as vActivity. Functions may return only one value, of any valid SQL++ type. For inline functions, the result and type of the function are the result and type of the expression. If you need to return multiple values, construct an array. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * If the expression contains a parameter that has the same name as a field in the document, it will always refer to the parameter. To distinguish between the field and the parameter, prefix the field with the keyspace name, for example `landmark.activity`. To avoid this ambiguity, you should use unique parameter names that do not clash with document field names, such as `vActivity`.
+> * Functions may return only one value, of any valid SQL++ type. For inline functions, the result and type of the function are the result and type of the expression. If you need to return multiple values, construct an array.
 
 ### [](#create-function-external)JavaScript Functions
 
@@ -156,8 +167,8 @@ When a function with the same name already exists within the same context: \[[1]
 * If the `IF NOT EXISTS` clause is present, the statement does nothing and completes without error.
 * If neither of these two clauses is present, an error is generated.
 
-|  | These clauses are exclusive. If the statement contains both the OR REPLACE clause and the IF NOT EXISTS clause, an error is generated. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These clauses are exclusive. If the statement contains both the `OR REPLACE` clause and the `IF NOT EXISTS` clause, an error is generated.
 
 #### [](#external-name)Function Name
 

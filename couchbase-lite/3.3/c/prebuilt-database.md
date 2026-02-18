@@ -1,4 +1,13 @@
+---
+title: Pre-built Database
+description: How to handle pre-built databases in your Couchbase Lite on C app
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/prebuilt-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/prebuilt-database.html)
+
+# Pre-built Database
 
 > Description — _How to handle pre-built databases in your Couchbase Lite on C app_  
 > _Abstract — This content explains how to include a snapshot of a pre-built database in your package to shorten initial sync time and reduce bandwidth use_  
@@ -26,23 +35,26 @@ If the database doesn’t already exist, create one using the bundled pre-built 
 
 These steps should form part of your build and release process:
 
-1. Create a fresh Couchbase Lite database (every time)
-
-|  | **Always start with a fresh database for each app version**; this ensures there are no [checkpoint](refer-glossary.md#checkpoint) issues **Otherwise:** You will invalidate the cached [checkpoint](refer-glossary.md#checkpoint) in the packaged database, and instead reuse the same database in your build process (for subsequent app versions). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-2. Pull the data from Sync Gateway into the new Couchbase Lite database
-
-|  | Ensure the replication used to populate Couchbase Lite database **uses the exact same remote URL and replication config parameters (channels and filters)** as those your app will use when it is running. **Otherwise:** …​ there will be a [checkpoint](refer-glossary.md#checkpoint) mismatch and the app will attempt to pull the data down again Don’t, for instance, create a pre-built database against a staging Sync Gateway server and use it within a production app that syncs against a production Sync Gateway. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+1. Create a fresh Couchbase Lite database (every time)  
+> [!IMPORTANT]  
+> **Always start with a fresh database for each app version**; this ensures there are no [checkpoint](refer-glossary.md#checkpoint) issues  
+>  
+> **Otherwise:** You will invalidate the cached [checkpoint](refer-glossary.md#checkpoint) in the packaged database, and instead reuse the same database in your build process (for subsequent app versions).
+2. Pull the data from Sync Gateway into the new Couchbase Lite database  
+> [!IMPORTANT]  
+> Ensure the replication used to populate Couchbase Lite database **uses the exact same remote URL and replication config parameters (channels and filters)** as those your app will use when it is running.  
+>  
+> **Otherwise:** …​ there will be a [checkpoint](refer-glossary.md#checkpoint) mismatch and the app will attempt to pull the data down again  
+>  
+> Don’t, for instance, create a pre-built database against a staging Sync Gateway server and use it within a production app that syncs against a production Sync Gateway.  
 You can use the cblite tool (`cblite cp`) for this — see: [cblite cp (export, import, push, pull)](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/Documentation.md#cp-aka-export-import-push-pull) | [cblite on GitHub](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md)
 
 **Alternatively** …​
 
   * You can write a simple CBL app to just initiate the required pull sync — see: [Remote Sync Gateway](replication.md)
-  * A third party community Java app is available. It provides a UI to create a local Couchbase Lite database and pull data from a Sync Gateway database — see: [CouchbaseLite Tester](https://github.com/Infosys/CouchbaseLiteTester)
-
-|  | Couchbase accepts no responsibility for the ongoing availability, maintenance, or support of this third party community contribution, nor for the provision of support for issues arising from its use. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * A third party community Java app is available. It provides a UI to create a local Couchbase Lite database and pull data from a Sync Gateway database — see: [CouchbaseLite Tester](https://github.com/Infosys/CouchbaseLiteTester)  
+  > [!NOTE]  
+  > Couchbase accepts no responsibility for the ongoing availability, maintenance, or support of this third party community contribution, nor for the provision of support for issues arising from its use.
 3. Create the **same** indexes the app will use (wait for the replication to finish before doing this).
 
 ## [](#bundle-db)Bundle a Database with an Application
@@ -57,8 +69,8 @@ Where the platform permits you can zip the database.
 
 ## [](#database-encryption)Database Encryption
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 If you are using an encrypted database, [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
 
@@ -75,19 +87,20 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API’s [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy
-
-|  | **Do not copy the database using any other method** **Otherwise:** Each copy of the app will invalidate the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Use the API’s [CBL\_CopyDatabase()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga027d34b2de65b040ecf42a2a83bf6720) method — see: [Example 1](#lbl-code); this ensures that a UUID is generated for each copy  
+> [!IMPORTANT]  
+> **Do not copy the database using any other method**  
+> **Otherwise:** Each copy of the app will invalidate the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.
 3. Open the database; you can now start querying the data and using it
 4. Start a pull replication, to sync any changes  
-The replicator uses the pre-built database’s [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced
-
-|  | If you used cblite to pull the data **without including a port number with the URL** and are replicating in a Java or iOS (swift/ObjC) app — **you must include the port number in the URL provided to the replication** (port 443 for wss:// or 80 for ws://). **Otherwise:** You will get a [checkpoint](refer-glossary.md#checkpoint) mismatch.This is caused by a URL discrepancy, which arises because cblite automatically adds the default port number when none is specified, **but** the Java and iOS (swift/ObjC) replicators DO NOT. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-|  | Start your normal application logic immediately, unless it is essential to have the absolute up-to-date data set to begin. That way the user is not kept hanging around watching a progress indicator. They can begin interacting with your app whilst any out-of-data data is being updated. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The replicator uses the pre-built database’s [checkpoint](refer-glossary.md#checkpoint) as the timestamp to sync from; only documents changed since then are synced  
+> [!IMPORTANT]  
+> If you used cblite to pull the data **without including a port number with the URL** and are replicating in a Java or iOS (swift/ObjC) app — **you must include the port number in the URL provided to the replication** (port 443 for `wss://` or 80 for `ws://`).  
+>  
+> **Otherwise:** You will get a [checkpoint](refer-glossary.md#checkpoint) mismatch.  
+> This is caused by a URL discrepancy, which arises because `cblite` automatically adds the default port number when none is specified, **but** the Java and iOS (swift/ObjC) replicators DO NOT.  
+> [!NOTE]  
+> Start your normal application logic immediately, unless it is essential to have the absolute up-to-date data set to begin. That way the user is not kept hanging around watching a progress indicator. They can begin interacting with your app whilst any out-of-data data is being updated.
 
 Example 1\. Copy database using API
 

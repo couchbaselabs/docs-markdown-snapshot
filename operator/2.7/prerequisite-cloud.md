@@ -1,4 +1,12 @@
+---
+title: Public Cloud Prerequisites
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/prerequisite-cloud.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/prerequisite-cloud.html)
+
+# Public Cloud Prerequisites
 
 > Vendor specific tasks to perform before installing the Operator. 
 
@@ -45,8 +53,18 @@ When the `gcloud` command has been installed and added to your PATH, log in with
 $ gcloud auth login
 ```
 
-|  | The gcloud command can support multiple logins. You can select the user to run as with: $ gcloud config set account john.doe@acme.com You can also remove the login authentication locally with: $ gcloud auth revoke john.doe@acme.com |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `gcloud` command can support multiple logins. You can select the user to run as with:
+> 
+> ```console
+> $ gcloud config set account john.doe@acme.com
+> ```
+> 
+> You can also remove the login authentication locally with:
+> 
+> ```console
+> $ gcloud auth revoke john.doe@acme.com
+> ```
 
 The project must also be set so that resources are provisioned into it:
 

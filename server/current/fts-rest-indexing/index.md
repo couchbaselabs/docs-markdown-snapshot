@@ -1,4 +1,14 @@
+---
+title: Couchbase Search Index Management and Monitoring API
+description: The Search Indexing REST API is provided by the Search Service.
+  This API enables you to manage and monitor your Search indexes.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-indexing/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts-rest-indexing/index.html)
+
+# Couchbase Search Index Management and Monitoring API
 
 ## [](#overview)Overview
 
@@ -50,8 +60,8 @@ DELETE /api/index/{INDEX_NAME}
 
 Deletes the Search index definition specified in the endpoint URL.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Delete Index Definition (Scoped)](#d-api-scoped-index-name) instead. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Delete Index Definition (Scoped)](#d-api-scoped-index-name) instead.
 
 Produces
 
@@ -163,8 +173,8 @@ GET /api/index
 
 Returns all Search index definitions from the bucket where you have read permissions, as a JSON object.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Get All Search Index Definitions (Scoped)](#g-api-scoped-index) instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Get All Search Index Definitions (Scoped)](#g-api-scoped-index) instead.
 
 Produces
 
@@ -223,8 +233,8 @@ GET /api/index/{INDEX_NAME}
 
 Returns the definition of the Search index specified in the endpoint URL as a JSON object.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Get Index Definition (Scoped)](#g-api-scoped-index-name) instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Get Index Definition (Scoped)](#g-api-scoped-index-name) instead.
 
 Produces
 
@@ -660,8 +670,8 @@ PUT /api/index/{INDEX_NAME}
 
 If the Search index in the endpoint URL does not exist, this endpoint uses a JSON object in the request body to create a new index. If the Search index already exists, this endpoint updates the Search index definition.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Create or Update an Index Definition (Scoped)](#p-api-scoped-index-name) instead. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Create or Update an Index Definition (Scoped)](#p-api-scoped-index-name) instead.
 
 Consumes
 
@@ -806,8 +816,8 @@ POST /api/index/{INDEX_NAME}/ingestControl/{OP}
 
 For the Search index specified in the endpoint URL, pause or resume index updates and maintenance. While paused, the Search index does not load any new document mutations.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Set Index Ingestion Control (Scoped)](#p-api-scoped-ingestcontrol) instead. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Set Index Ingestion Control (Scoped)](#p-api-scoped-ingestcontrol) instead.
 
 Produces
 
@@ -852,8 +862,8 @@ POST /api/index/{INDEX_NAME}/planFreezeControl/{OP}
 
 For the Search index specified in the endpoint URL, freeze or unfreeze the assignment of index partitions to nodes. While frozen, the Search index stops assigning partitions during index rebalancing and index definition updates.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Freeze Index Partition Assignment (Scoped)](#p-api-scoped-planfreezecontrol) instead. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Freeze Index Partition Assignment (Scoped)](#p-api-scoped-planfreezecontrol) instead.
 
 Produces
 
@@ -898,8 +908,8 @@ POST /api/index/{INDEX_NAME}/queryControl/{OP}
 
 For the Search index specified in the endpoint URL, disallow or allow queries. While queries are disallowed, users see an error that the Search index's partitions could not be reached.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Stop Queries on an Index (Scoped)](#p-api-scoped-querycontrol) instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Stop Queries on an Index (Scoped)](#p-api-scoped-querycontrol) instead.
 
 Produces
 
@@ -1618,8 +1628,8 @@ POST /api/index/{INDEX_NAME}/query
 
 Run a query formatted as a JSON object against the Search index definition specified in the endpoint URL. The endpoint returns a JSON object as a response.
 
-|  | This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Query a Search Index (Scoped)](#p-api-scoped-query) instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is for legacy Search indexes and may be deprecated in a future release. Use [Query a Search Index (Scoped)](#p-api-scoped-query) instead.
 
 Consumes
 

@@ -1,4 +1,14 @@
+---
+title: Run a Geospatial Search Query with the Web Console
+description: Search for geospatial data in your Couchbase database with a
+  compatible Search index and the Couchbase Server Web Console.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/geo-search-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/geo-search-ui.html)
+
+# Run a Geospatial Search Query with the Web Console
 
 > Search for geospatial data in your Couchbase database with a compatible Search index and the Couchbase Server Web Console. 
 
@@ -21,10 +31,9 @@ To create the Search index from the Web Console:
 
 1. Go to **Search**.
 2. Click **Add Index**.
-3. In the **Index Name** field, enter a name for the index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. In the **Index Name** field, enter a name for the index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).
 4. In the **Bucket** list, select the bucket where you want to create the index.
 5. [Create a Type Mapping](create-type-mapping.md) on the scope and collection in your database that you want to search.
 6. [Create a Child Field](create-child-field.md) on the new type mapping with the following settings:

@@ -1,4 +1,14 @@
+---
+title: Manage Users, Groups, and Roles
+description: Couchbase Server allows defined <em>users</em> to be assigned
+  roles, which permit access to resources.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/manage-users-and-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-security/manage-users-and-roles.html)
+
+# Manage Users, Groups, and Roles
 
 > Couchbase Server allows defined _users_ to be assigned roles, which permit access to resources. Additionally, _groups_ of users can be established, and roles assigned to each group; so that each user is granted the roles of each group of which they are a member. 
 
@@ -193,8 +203,10 @@ From this point, the externally authenticated user can be defined exactly as was
 
 The externally authenticated user is now shown to have the username `externalUser`, and the **Query System Catalog** and **Cluster Admin** roles. Their **auth domain** is specified as `External`, indicating that they are authenticated on an external server.
 
-|  | External users can only be authenticated using the PLAIN method. By default, the Couchbase SDK will only default to PLAIN when connecting over TLS ports, therefore, external users should use the TLS ports. More details on authentication methods can be found in [Understanding Authentication](../../learn/security/authentication-overview.md#authentication-for-applications) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> External users can only be authenticated using the `PLAIN` method. By default, the Couchbase SDK will only default to PLAIN when connecting over TLS ports, therefore, external users should use the TLS ports.
+> 
+> More details on authentication methods can be found in [Understanding Authentication](../../learn/security/authentication-overview.md#authentication-for-applications)
 
 ### [](#role-based-console-appearance)Role-Based Console Appearance
 

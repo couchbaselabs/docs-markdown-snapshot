@@ -1,4 +1,13 @@
+---
+title: Transcoders and Non-JSON Documents
+description: The PHP SDK supports common JSON document requirements out-of-the-box.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/transcoders-nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/current/howtos/transcoders-nonjson.html)
+
+# Transcoders and Non-JSON Documents
 
 Information on transcoders can be found in the [API documentation](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5FsetTranscoder).
 
@@ -10,8 +19,8 @@ When sending data to Couchbase, the SDK passes the Object being sent to a `encod
 
 On retrieving data from Couchbase, the fetched bytes and Common Flag are passed to a `decoder`. The transcoder converts the bytes into a concrete class (the application specifies the required type) if possible.
 
-|  | Many applications will not need to be aware of encoders and decoders, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Many applications will not need to be aware of `encoders` and `decoders`, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library.
 
 ## [](#default-behaviour)Default Behaviour
 

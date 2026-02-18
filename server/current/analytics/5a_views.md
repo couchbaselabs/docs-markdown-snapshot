@@ -1,4 +1,13 @@
+---
+title: Analytics Views
+description: A description of Analytics views and Tabular Analytics views.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/5a_views.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/5a_views.html)
+
+# Analytics Views
 
 Analytics views are virtual Analytics collections that are derived from actual stored Analytics collections. Analytics views might be used to present a subset of the stored data, or to present a join or other transformation of stored data for some particular purpose. Queries may operate on Analytics views in exactly the same way as they do on real stored data — in fact, a query might refer to both a stored Analytics collection and an Analytics view, perhaps joining them together. Analytics views are not materialized. When a query refers to an Analytics view, the definition of the view is merged with the query to produce the desired result.
 

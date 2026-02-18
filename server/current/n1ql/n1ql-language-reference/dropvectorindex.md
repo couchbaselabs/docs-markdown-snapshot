@@ -1,11 +1,21 @@
+---
+title: DROP VECTOR INDEX
+description: The DROP VECTOR INDEX statement allows you to drop a Hyperscale
+  Vector index, a Composite Vector index, or a secondary index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropvectorindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/dropvectorindex.html)
+
+# DROP VECTOR INDEX
 
 The DROP VECTOR INDEX statement allows you to drop a Hyperscale Vector index, a Composite Vector index, or a secondary index. Dropping an index that has replicas will drop all of the replica indexes too.
 
 The [DROP INDEX](dropindex.md) statement is a synonym for the DROP VECTOR INDEX statement. Both statements have the same functionality.
 
-|  | To drop a primary index, use the [DROP PRIMARY INDEX](dropprimaryindex.md) statement. For compatibility with legacy versions of Couchbase Server, you can also use DROP INDEX or DROP VECTOR INDEX to drop a named primary index. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To drop a primary index, use the [DROP PRIMARY INDEX](dropprimaryindex.md) statement. For compatibility with legacy versions of Couchbase Server, you can also use DROP INDEX or DROP VECTOR INDEX to drop a named primary index.
 
 ## [](#prerequisites)Prerequisites
 
@@ -44,8 +54,8 @@ You can use a dotted notation to specify the index and the keyspace on which the
 | ---------- | --------------------------------------------------- |
 | index-path | (Required) See [Index Path](#index-path).           |
 
-|  | If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page.
 
 #### [](#index-path)Index Path
 
@@ -121,8 +131,8 @@ You can use the index name with the `ON` keyword and a keyspace reference to spe
 | ------------ | --------------------------------------------------- |
 | keyspace-ref | (Required) See [Keyspace Reference](#keyspace-ref). |
 
-|  | If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-ref)Keyspace Reference
 
@@ -196,8 +206,10 @@ If you drop an index with replicas when one of the index nodes is unavailable bu
 
 If you drop an index which is scheduled for background creation, a warning message is generated, but the drop index operation succeeds.
 
-|  | Attention Do not drop (or create) secondary indexes, Composite Vector indexes, or Hyperscale Vector indexes when any Index service node is down, as this may result in duplicate index names. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Attention
+> 
+> Do not drop (or create) secondary indexes, Composite Vector indexes, or Hyperscale Vector indexes when any Index service node is down, as this may result in duplicate index names.
 
 ## [](#examples)Examples
 

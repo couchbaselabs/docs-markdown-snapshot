@@ -1,4 +1,15 @@
+---
+title: View Health Advisor
+description: Capella Health Advisor analyzes the health of your operational
+  cluster and provides expert advice to optimize its configurations,
+  performance, and stability.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/health-advisor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/health-advisor.html)
+
+# View Health Advisor
 
 > Capella Health Advisor analyzes the health of your operational cluster and provides expert advice to optimize its configurations, performance, and stability. 
 
@@ -19,8 +30,8 @@ To view existing Health Advisor reports:
 
 * A [project role](../../projects/project-roles.md) in any project where you want to view a Health Advisor report.
 
-|  | This feature is not available to use with Capella Analytics clusters, free tier operational clusters or operational clusters deployed with the **Basic** plan. Use the [**Monitoring** dashboards](metrics-dashboard.md) to view cluster metrics for all Capella operational clusters or [upgrade your plan](../../billing/upgrade-account.md) to get expert advice on your cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This feature is not available to use with Capella Analytics clusters, free tier operational clusters or operational clusters deployed with the **Basic** plan. Use the [**Monitoring** dashboards](metrics-dashboard.md) to view cluster metrics for all Capella operational clusters or [upgrade your plan](../../billing/upgrade-account.md) to get expert advice on your cluster.
 
 ## [](#generate-a-new-health-advisor-report)Generate a New Health Advisor Report
 
@@ -52,8 +63,8 @@ To view a Health Advisor report in the Capella UI:
 
 ### [](#schedule-automatic-reports)Schedule Automatic Reports
 
-|  | Automatic report scheduling is only available to clusters on an [**Enterprise**](../../support/support.md#support-levels) Plan. To upgrade your Support Plan, see [Change a Cluster’s Plan and Support Timezone](../../billing/change-support-plan.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Automatic report scheduling is only available to clusters on an [**Enterprise**](../../support/support.md#support-levels) Plan. To upgrade your Support Plan, see [Change a Cluster’s Plan and Support Timezone](../../billing/change-support-plan.md).
 
 Health Advisor supports automatic report generation and delivery. You can choose to schedule and receive weekly reports to your Capella account email address every Monday. You can also enable or disable the automatic generation of Health Advisor reports for your cluster.
 
@@ -75,8 +86,8 @@ Health Advisor severity levels, from least to most urgent, include:
 * **Needs Review**: It’s recommended to consider following the advice and fixing any issues to prevent future issues.
 * **Warning**: It’s highly recommended you follow the advice provided and fix any issues in your cluster as soon as possible.
 
-|  | If your cluster configurations are intentional, but get flagged as **Needs Review**, the advice provided might not be relevant to you. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If your cluster configurations are intentional, but get flagged as **Needs Review**, the advice provided might not be relevant to you.
 
 All Health Advisor advice provided is optional. You can choose which advice and recommendations you want to follow at any time.
 

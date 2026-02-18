@@ -1,4 +1,12 @@
+---
+title: Match Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-match.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-match.html)
+
+# Match Query
 
 A term without any other syntax is interpreted as a match query for the term in the default field. The default field is `_all`.
 
@@ -8,8 +16,8 @@ A match query _analyzes_ input text and uses the results to query an index. Opti
 
 By default, the analyzer used for the search text is what was set for the specified field during index creation. For information on analyzers, see [Understanding Analyzers](fts-index-analyzers.md).
 
-|  | If the field is not specified, the match query will target the \_all field within the index. Including content within the \_all field is a setting during index creation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the field is not specified, the match query will target the `_all` field within the index. Including content within the `_all` field is a setting during index creation.
 
 When fuzzy matching is used, if the single parameter is set to a non-zero integer, the analyzed text is matched with a corresponding level of fuzziness. The maximum supported fuzziness is 2.
 

@@ -1,4 +1,12 @@
+---
+title: Date/Time Parsers
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-date-time-parsers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-date-time-parsers.html)
+
+# Date/Time Parsers
 
 Custom _date/time parsers_ can be specified to allow matches to be made across date/time formats.
 

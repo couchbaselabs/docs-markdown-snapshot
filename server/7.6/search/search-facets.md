@@ -1,4 +1,14 @@
+---
+title: Collect Additional Information with Search Facets
+description: Use Search facets to collect specific, additional information about
+  the documents included in results for a specific search query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/search-facets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/search-facets.html)
+
+# Collect Additional Information with Search Facets
 
 > Use Search facets to collect specific, additional information about the documents included in results for a specific search query. 
 
@@ -12,8 +22,8 @@ The Search Service supports the following facet types:
 
 Use a term facet to return a count for the number of documents in your search results that have a specific term in a field.
 
-|  | For best results with a term facet, use the [keyword analyzer](default-analyzers-reference.md#keyword) on the field you want to use for the facet. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For best results with a term facet, use the [keyword analyzer](default-analyzers-reference.md#keyword) on the field you want to use for the facet.
 
 Term facets work best when you have a field with a limited range of values, such as a type or tags field.
 
@@ -82,8 +92,8 @@ For more information about how to configure a term facet in your Search query, s
 
 Use a numeric range facet to define a numeric range and receive the number of documents with a field value that falls within that range.
 
-|  | For best results with a numeric range facet, use a field with a number type in your documents. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For best results with a numeric range facet, use a field with a `number` type in your documents.
 
 For example, you could define numeric range facets to collect information about the ABV values for different beers in the `beer-sample` sample data:
 
@@ -169,8 +179,8 @@ For more information about how to configure a numeric range facet in your Search
 
 Use a date range facet to define a date range and receive the number of documents with a date field value that falls within that range.
 
-|  | For best results with a date range facet, use a field with the datetime type in your documents. Make sure to use a [date/time parser](customize-index.md#date-time) that matches your date and time data. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For best results with a date range facet, use a field with the `datetime` type in your documents. Make sure to use a [date/time parser](customize-index.md#date-time) that matches your date and time data.
 
 For example, you could define date range facets to collect information about the last time a document was updated in the `beer-sample` sample data:
 

@@ -1,10 +1,22 @@
+---
+title: Data Sync using Sync Gateway
+description: Couchbase Lite for C# -- Synchronizing data changes between local
+  and remote databases using Sync Gateway
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/csharp/pages/replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/csharp/replication.html)
+
+# Data Sync using Sync Gateway
 
 > Description — _Couchbase Lite for C# — Synchronizing data changes between local and remote databases using Sync Gateway_  
 > Related Content — [Handling Data Conflicts](conflict.md) | [Intra-Device](dbreplica.md) | [Peer-to-Peer](#csharp:replication:p2psync-websocket.adoc)
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 Introduction
 
@@ -102,8 +114,9 @@ Configuration Summary
 
 You should configure and initialize a replicator for each Couchbase Lite database instance you want to sync. [csharp:replication:::csharp:replication.adoc#ex-simple-repl](#csharp:replication:::csharp:replication.adoc#ex-simple-repl) shows the configuration and initialization process.
 
-|  | You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use custom Scopes and Collections.If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access custom Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the default Collection as a backup option. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use `custom` Scopes and Collections.  
+> If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
 
 Click the **GitHub** tab in the code examples for further details.
 
@@ -230,8 +243,10 @@ thisConfig.ReplicatorType = ReplicatorType.PushAndPull;
 thisConfig.Continuous = true; // default value
 ```
 
-|  | Unless there is a solid use-case not to, always initiate a single PUSH\_AND\_PULL replication rather than identical separate PUSH and PULL replications. This prevents the replications generating the same checkpoint docID resulting in multiple conflicts. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless there is a solid use-case not to, always initiate a single `PUSH_AND_PULL` replication rather than identical separate `PUSH` and `PULL` replications.
+> 
+> This prevents the replications generating the same checkpoint `docID` resulting in multiple conflicts.
 
 # [](#lbl-cfg-keep-alive)Retry Configuration
 
@@ -455,8 +470,8 @@ replicator.Start();
 
 The pull filter gives an app the ability to validate documents being pulled, and skip ones that fail. This is an important security mechanism in a peer-to-peer topology with peers that are not fully trusted.
 
-|  | Pull replication filters are not a substitute for channels. Sync Gateway [channels](../../../sync-gateway/current/access-control/channels.md)are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Pull replication filters are not a substitute for channels. Sync Gateway [channels](../../../sync-gateway/current/access-control/channels.md)are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded.
 
 ```C#
 var url = new Uri("ws://localhost:4984/mydatabase");
@@ -505,8 +520,8 @@ Optionally, it’s also possible to specify a string array of channel names on C
 
 # [](#anchor-auto-purge-on-revoke)Auto-purge on Channel Access Revocation
 
-|  | This is a Breaking Change at 3.0 |
-|  | -------------------------------- |
+> [!CAUTION]
+> This is a Breaking Change at 3.0
 
 ## [](#new-outcome)New outcome
 
@@ -578,8 +593,8 @@ __Table 4\. Impact of Pull-Filters__
 
 # [](#lbl-repl-delta)Delta Sync
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 With Delta Sync \[[1](#%5Ffootnotedef%5F1 "View footnote.")\], only the changed parts of a Couchbase document are replicated. This can result in significant savings in bandwidth consumption as well as throughput improvements, especially when network bandwidth is typically constrained.
 
@@ -650,8 +665,10 @@ You can also choose to monitor document changes — see: [csharp:replication:::c
 
 Use this to monitor changes and to inform on sync progress; this is an optional step. You can add and a replicator change listener at any point; it will report changes from the point it is registered.
 
-|  | Best PracticeDon’t forget to save the token so you can remove the listener later |
-|  | -------------------------------------------------------------------------------- |
+> [!TIP]
+> Best Practice
+> 
+> Don’t forget to save the token so you can remove the listener later
 
 Use the [Replicator](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-net/api/Couchbase.Lite.Sync.Replicator.html) class to add a change listener as a callback to the Replicator ([addChangeListener()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-net/api/Couchbase.Lite.Sync.Replicator.html#Couchbase%5FLite%5FSync%5FReplicator%5FAddChangeListener%5FSystem%5FEventHandler%5FCouchbase%5FLite%5FSync%5FReplicatorStatusChangedEventArgs%5F%5F)) — see: [csharp:replication:::csharp:replication.adoc#ex-repl-mon](#csharp:replication:::csharp:replication.adoc#ex-repl-mon). You will then be asynchronously notified of state changes.
 
@@ -708,8 +725,8 @@ __Table 5\. Replicator activity levels__
 | IDLE       | The replication caught up with all the changes available from the server. The IDLE state is only used in continuous replications. |
 | BUSY       | The replication is actively transferring data.                                                                                    |
 
-|  | The replication change object also has properties to track the progress (change.status.completed and change.status.total). Since the replication occurs in batches the total count can vary through the course of a replication. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The replication change object also has properties to track the progress (`change.status.completed` and `change.status.total`). Since the replication occurs in batches the total count can vary through the course of a replication.
 
 ## [](#replication-status-and-app-life-cycle)Replication Status and App Life Cycle
 
@@ -757,8 +774,8 @@ When access to a document is removed on Sync Gateway (see: Sync Gateway’s [Syn
 
 # [](#lbl-repl-pend)Documents Pending Push
 
-|  | [Replicator.IsDocumentPending()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-net/api/Couchbase.Lite.Sync.Replicator.html#Couchbase%5FLite%5FSync%5FReplicator%5FIsDocumentPending%5FSystem%5FString%5F) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Replicator.IsDocumentPending()](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-net/api/Couchbase.Lite.Sync.Replicator.html#Couchbase%5FLite%5FSync%5FReplicator%5FIsDocumentPending%5FSystem%5FString%5F) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible.
 
 You can check whether documents are waiting to be pushed in any forthcoming sync by using either of the following API methods:
 

@@ -1,4 +1,14 @@
+---
+title: Manage Passwords
+description: Couchbase Server lets you manage passwords for local users, and
+  enforce password policies.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-passwords.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/manage-passwords.html)
+
+# Manage Passwords
 
 > Couchbase Server lets you manage passwords for local users, and enforce password policies. 
 
@@ -40,15 +50,15 @@ Administrators can set initial passwords for users when creating accounts in the
 
 This feature ensures that users set their own private password as soon as possible.
 
-|  | External users must use external authentication systems such as LDAP or SAML to change their passwords. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> External users must use external authentication systems such as LDAP or SAML to change their passwords.
 
 ### [](#reset-password)Reset Passwords for Existing Users
 
 You can reset any local user’s password associated with your cluster.
 
-|  | You cannot reset the password for external domain user accounts. The **Reset Password** button appears on the **Users** section only if the user is locally defined. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot reset the password for external domain user accounts. The **Reset Password** button appears on the **Users** section only if the user is locally defined.
 
 To reset a local user’s password, do the following:
 
@@ -126,8 +136,8 @@ As an administrator, you can force a password update for any local user, associa
 
 After authentication, the Couchbase Web Console UI prompts the user to set a new password.
 
-|  | Users can proceed to use Couchbase Server only after they change their password. |
-|  | -------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users can proceed to use Couchbase Server only after they change their password.
 
 #### [](#create-temporary-password)Create a Temporary Password for a New User
 
@@ -171,10 +181,9 @@ As an administrator, to force existing users to change their passwords, do the f
 
 1. On the **Security** screen, select **Users & Groups**, and then select **Users**.
 2. Select the local user account from the list for which you want to force a password change and select **Edit**.
-3. In the **Edit User** dialog, in the Force Password Update section, enable **User must change password at next logon**.
-
-|  | You cannot undo this setting once set from the Web UI. You can undo this setting only via the REST API. |
-|  | ------------------------------------------------------------------------------------------------------- |
+3. In the **Edit User** dialog, in the Force Password Update section, enable **User must change password at next logon**.  
+> [!NOTE]  
+> You cannot undo this setting once set from the Web UI. You can undo this setting only via the REST API.
 4. Select **Save Changes**.
 
 The system prompts the user to change their password during their next login. For more information, see [Change Password When Prompted](#change-password-prompted-by-admin).
@@ -193,8 +202,8 @@ http://10.143.192.101:8091/settings/rbac/users/local/dgreen \
 
 The API request sets the new password to `nextpassword` for the existing local user `dgreen` and prompts them to change their password at the first login.
 
-|  | You can set the attribute temporaryPassword=false to undo this setting; to cancel the forcing of password change on a user. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can set the attribute `temporaryPassword=false` to undo this setting; to cancel the forcing of password change on a user.
 
 ## [](#local-user-password-changes)Local User Password Changes
 

@@ -1,4 +1,14 @@
+---
+title: Quickstart in Couchbase with Kotlin and Ktor
+description: Quickstart app to build a REST API using Couchbase Capella in
+  Kotlin using Ktor.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/hello-world/sample-application.html)
+
+# Quickstart in Couchbase with Kotlin and Ktor
 
 > Quickstart app to build a REST API using Couchbase Capella in Kotlin using Ktor. Discover how to connect to a Couchbase Capella cluster to create, read, update, and delete documents and how to write simple parametrized SQL++ queries. 
 
@@ -17,10 +27,9 @@ To run this prebuilt project, you will need:
 
 * A [Couchbase Capella](https://www.couchbase.com/products/capella/) cluster with the [travel-sample](../ref/travel-app-data-model.md) bucket loaded.  
 To run this tutorial using a self-managed Couchbase cluster, please refer to the [Running Self Managed Couchbase Cluster](#running-self-managed-couchbase-cluster) section.
-* A supported LTS JDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).
-
-|  | The application is tested with Java 17 and 21\. If you are using a different version of Java, please update the pom.xml file accordingly. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+* A supported LTS JDK 17+ — see the [compatibility guide](../project-docs/compatibility.md#jdk-compat).  
+> [!NOTE]  
+> The application is tested with Java 17 and 21\. If you are using a different version of Java, please update the `pom.xml` file accordingly.
 * The Travel Sample Bucket — pre-loaded in Capella Free Tier, or see [cloud:clusters:data-service/import-data-documents.adoc#import-sample-data](../../../cloud/clusters/data-service/import-data-documents.md#import-sample-data).
 * [Maven 3.6.3+](https://maven.apache.org/install.html).
 

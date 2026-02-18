@@ -1,4 +1,14 @@
+---
+title: Query Workbench
+description: The Query Workbench provides a rich graphical user interface to
+  perform query development.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/tools/pages/query-workbench.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/query-workbench.html)
+
+# Query Workbench
 
 > The Query Workbench provides a rich graphical user interface to perform query development. 
 
@@ -13,8 +23,8 @@ Features of the Query Workbench include:
 
 From the **Couchbase Web Console** select the **Query** menu. By default, the **Query Workbench** tab is displayed.
 
-|  | The Query Workbench only runs on nodes which are running the Query service. If the Query service is _not_ running on the current node, it provides a link to the nodes in the cluster which _are_ running the Query service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Query Workbench only runs on nodes which are running the Query service. If the Query service is _not_ running on the current node, it provides a link to the nodes in the cluster which _are_ running the Query service.
 
 The **Query Workbench** consists of three working areas as shown in the following figure:
 
@@ -42,8 +52,8 @@ Click the double-headed arrow icon  to enlarge the **Query Editor** and **Result
 
 After entering a query, you can execute the query either by typing a semicolon (`;`) and pressing Enter, or by clicking the **Execute** button. When the query is running, the **Execute** button changes to **Cancel**, which allows you to cancel the running query. When you cancel a running query, it stops the activity on the server side as well. After running the query, you can view the [query results](#results), view the [query execution plan](#query-plans), or get [index advice](#index-advisor) for the query.
 
-|  | The **Cancel** button does not cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the Query Workbench. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The **Cancel** button does not cancel index creation statements. The index creation continues on the server side even though it appears to have been canceled from the Query Workbench.
 
 You can also run a sequence of statements in the Query Editor. Each statement must be terminated with a semicolon. After each statement, you must press Shift+Enter to start a new line _without_ executing the query. When you enter the last statement, you can run the sequence of statements either by typing a semicolon (`;`) and pressing Enter, or by clicking the **Execute** button.
 
@@ -78,8 +88,8 @@ For more information on scopes and collections, refer to [Scopes and Collections
 
 The tool maintains a history of all the queries executed. If you edit a previous query and execute it, the new query is stored at the end of the history. The history is persistent across browser sessions. The query history only saves queries; due to limited browser storage it does not save query results. Thus, when you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.
 
-|  | Clearing the browser history clears the history maintained by the Query Editor as well. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Clearing the browser history clears the history maintained by the Query Editor as well.
 
 Click the **history** link, at the top of the editor, to open the **Query History** window. When the window opens, the current query is selected.
 
@@ -109,8 +119,8 @@ Query History
 Adds the imported queries to the end of the current query history.
 3. Choose **Next** to continue, or **Cancel** to cancel.
 
-|  | The browser’s Open File dialog is displayed. Locate and open a text file or JSON file containing the data you want to import. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The browser’s Open File dialog is displayed. Locate and open a text file or JSON file containing the data you want to import.
 
 Alternatively, you can drag and drop the file from the Desktop into the **Query Editor** to a load a file. The content of the file is added in the **Query Editor** as a new query at the end of the history.
 
@@ -134,8 +144,8 @@ Exports the current query statement in the .txt format.
 3. In the **Filename** box, specify the name of the file where data is to be saved. The file extension is added automatically. By default, the query is saved in the Downloads directory when using Firefox and Chrome browsers.
 4. Choose **Save** to export the data, or **Cancel** to cancel.
 
-|  | When using Safari, clicking **Save** loads the data into a new window. You have to save the file manually using the **File** **Save As** menu. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using Safari, clicking **Save** loads the data into a new window. You have to save the file manually using the **File** **Save As** menu.
 
 ## [](#query-preferences)Query Preferences
 
@@ -314,8 +324,8 @@ The data flow generally follows these steps:
 5. Order
 6. Projection (part 2)
 
-|  | Projection is split into two parts (one before Order and one after Order), but Query Workbench shows only the first part. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Projection is split into two parts (one before Order and one after Order), but Query Workbench shows only the first part.
 
 Clicking on any unit of the plan shows more details of it.
 

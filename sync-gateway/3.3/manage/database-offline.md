@@ -1,4 +1,13 @@
+---
+title: Take Database Offline/Online
+description: How to take a <em>Sync&nbspGateway</em> database offline and bring back online.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/manage/pages/database-offline.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/manage/database-offline.html)
+
+# Take Database Offline/Online
 
 > How to take a _Sync Gateway_ database offline and bring back online.  
 

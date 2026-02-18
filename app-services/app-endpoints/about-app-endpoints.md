@@ -1,4 +1,14 @@
+---
+title: About App Endpoints
+description: Learn about App Endpoints, how they work, and how to configure them
+  in Couchbase Capella.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/about-app-endpoints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/about-app-endpoints.html)
+
+# About App Endpoints
 
 > Learn about App Endpoints, how they work, and how to configure them in Couchbase Capella. 
 
@@ -28,8 +38,8 @@ From App Services version 3.1.8, you can configure the following settings at the
 * [Resync](resync.md) \- Resync documents per collection or batch of collections
 * [Import Filters](import-filters.md) \- Configure import filters per collection
 
-|  | You can find advanced settings, such as [Delta Sync](delta-sync.md) or [Import Filters](import-filters.md), in the [advanced settings menu](advanced-settings.md) in the Capella UI. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> You can find advanced settings, such as [Delta Sync](delta-sync.md) or [Import Filters](import-filters.md), in the [advanced settings menu](advanced-settings.md) in the Capella UI.
 
 For more information about scopes and collections, see [Buckets, Scopes and Collections](../../cloud/clusters/data-service/about-buckets-scopes-collections.md) in the Capella operational documentation.
 

@@ -1,4 +1,14 @@
+---
+title: Creating a Replication
+description: To create an XDCR replication, use the <code>POST
+  /controller/createReplication</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-create-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-xdcr-create-replication.html)
+
+# Creating a Replication
 
 > To create an XDCR replication, use the `POST /controller/createReplication` HTTP method and URI. 
 
@@ -52,8 +62,8 @@ The `replicationType` value is always `continuous`. This value must be specified
 
 The `conflictLogging` setting is used to configure and enable or disable logging conflicts for the replication. For configuration information and examples, see [Enabling and Configuring Conflict Logging](../learn/clusters-and-availability/xdcr-conflict-logging-feature.md#configure-conflictlogging-settings).
 
-|  | To configure and enable Conflict Logging, you must enable the bucket property enableCrossClusterVersioning on all buckets of the XDCR topology. This bucket property cannot be disabled after it is enabled. For information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To configure and enable Conflict Logging, you must enable the bucket property `enableCrossClusterVersioning` on all buckets of the XDCR topology. This bucket property cannot be disabled after it is enabled. For information about the bucket property `enableCrossClusterVersioning`, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 If the optional parameters `collectionsExplicitMapping`, `colMappingRules`, and `collectionsMigrationMode` are all _unspecified_, replication occurs between the specified `fromBucket` and `toBucket` according to whatever _implicit mappings_ can be determined at bucket-level: that is, if a collection in the source bucket has the same _keyspace_ as a collection in the target bucket (i.e., the name of a collection and the name of the scope within which it is located form the identical _scope-name.collection-name_ pattern, on both source and target), data is replicated between those collections; with the optional application of a filter expression. At a minimum, this ensures that data is replicated between the default collections.
 
@@ -91,8 +101,8 @@ The `priority` flag controls resource-allocation to the replication. The value c
 
 Use the `mobile=[Off | Active]` flag to enable the setting _XDCR Active-Active with Sync Gateway 4.0 or a later version_ by changing the value to `Active` on the clusters of both sides of the replication. The default value is `Off` , which indicates that the setup supports either _XDCR Active-Passive with Sync Gateway_ or _XDCR Active-Active without Sync Gateway_.
 
-|  | To enable the setting mobile=\[Off \| Active\], ensure you have enabled the property enableCrossClusterVersioning on all the participating buckets, which is a prerequisite. For information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To enable the setting `mobile=[Off | Active]`, ensure you have enabled the property `enableCrossClusterVersioning` on all the participating buckets, which is a prerequisite. For information about the bucket property `enableCrossClusterVersioning`, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 For information on all other flags, see [Managing Advanced XDCR Settings](rest-xdcr-adv-settings.md).
 

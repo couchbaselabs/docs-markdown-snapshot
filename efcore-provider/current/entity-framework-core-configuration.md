@@ -1,4 +1,13 @@
+---
+title: Configuring the EF Core Couchbase DB Provider
+description: Couchbase EFCore configuration choices
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-configuration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-configuration.html)
+
+# Configuring the EF Core Couchbase DB Provider
 
 > Couchbase EFCore configuration choices 
 
@@ -84,5 +93,5 @@ optionsBuilder.UseCamelCaseNamingConvention();
 
 [Documentation](https://github.com/efcore/EFCore.NamingConventions) for EFCore.Naming Conventions is located in the GitHub repo. Of interest is the section on [supported naming conventions](https://github.com/efcore/EFCore.NamingConventions?tab=readme-ov-file#supported-naming-conventions).
 
-|  | The casing of the queries that EF Core generates much match the casing of the JSON stored in Couchbase. The reason is because JSON is case sensitive and if they do not match, the queries will not return the expected results. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The casing of the queries that EF Core generates much match the casing of the JSON stored in Couchbase. The reason is because JSON is case sensitive and if they do not match, the queries will not return the expected results.

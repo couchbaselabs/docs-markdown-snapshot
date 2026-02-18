@@ -1,4 +1,15 @@
+---
+title: Do a Quick Install
+description: First-time users can get Enterprise Analytics running simply and
+  rapidly by using Docker. Once you install Docker, you can use a single command
+  to download and install Enterprise Analytics on your computer.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/intro/pages/do-a-quick-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/intro/do-a-quick-install.html)
+
+# Do a Quick Install
 
 > First-time users can get Enterprise Analytics running simply and rapidly by using Docker. Once you install Docker, you can use a single command to download and install Enterprise Analytics on your computer. 
 

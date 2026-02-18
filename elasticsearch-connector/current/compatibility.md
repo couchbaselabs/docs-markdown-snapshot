@@ -1,4 +1,12 @@
+---
+title: Compatibility
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/compatibility.html)
+
+# Compatibility
 
 Legend
 
@@ -26,8 +34,8 @@ Elasticsearch version support is informed by [Elastic product end of life dates]
 
 ## [](#opensearch)OpenSearch
 
-|  | This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 OpenSearch version support is informed by the [OpenSearch Maintenance Policy](https://opensearch.org/releases.html#maintenance-policy).
 
@@ -41,8 +49,8 @@ OpenSearch version support is informed by the [OpenSearch Maintenance Policy](ht
 
 ## [](#elastic-cloud)Elastic Cloud
 
-|  | This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Connector versions 4.4.5 and later are compatible with Elastic Cloud.
 
@@ -50,8 +58,8 @@ See [how to configure the connector for Elastic Cloud](configuration.md#elastic-
 
 ## [](#amazon-opensearch-service)Amazon OpenSearch Service
 
-|  | This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This is an experimental feature. If you’d like to share feedback, please post in the [Elasticsearch category](https://forums.couchbase.com/c/elasticsearch-connector/36) on the Couchbase Forum.
 
 Connector versions 4.4.5 and later are compatible with Amazon OpenSearch Service.
 

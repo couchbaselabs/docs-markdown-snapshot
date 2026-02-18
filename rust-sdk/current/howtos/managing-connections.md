@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Rust SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Rust SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections. 
 
@@ -65,8 +74,8 @@ let cluster = Cluster::connect(
 .await?;
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
@@ -120,8 +129,8 @@ Both Couchbase Capella, and the [Enterprise Edition](../../../server/current/int
 
 The Rust SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 You can provide a certificate:
 
@@ -187,8 +196,8 @@ On the client side, the externally visible ports must be used when connecting. I
 
 In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
@@ -232,8 +241,8 @@ let socket = "1.1.1.1:53".parse().unwrap();
 opts = opts.dns_options(DnsOptions::new(socket).timeout(Duration::from_secs(1)));
 ```
 
-|  | In the developer preview of the SDK, this feature is not part of the stable [Committed](../project-docs/compatibility.md#interface-stability) API. To enable it requires use of the unstable-dns-options — see the API reference for further information. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> In the developer preview of the SDK, this feature is not part of the stable [Committed](../project-docs/compatibility.md#interface-stability) API. To enable it requires use of the `unstable-dns-options` — see the API reference for further information.
 
 If the DNS SRV records could not be loaded properly you’ll get an error logged and the given host name will be used as a A record lookup. Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
 

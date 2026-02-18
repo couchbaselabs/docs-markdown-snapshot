@@ -1,4 +1,12 @@
+---
+title: Data Modeling
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/data-modeling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/design/data-modeling.html)
+
+# Data Modeling
 
 In this lesson you will learn how to model the data for an application and the relationships between the different models.
 
@@ -50,8 +58,8 @@ Tasks can have an image attached to them. Attachments are also persisted to disc
 
 ![06 attachment](../_images/06-attachment.png)
 
-|  | All the fields that start with "\_" are Couchbase specific (i.e \\\_id, \\\_attachments). For this reason, it is not recommended to name your own properties with a leading underscore. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All the fields that start with "\_" are Couchbase specific (i.e `\_id`, `\_attachments`). For this reason, it is not recommended to name your own properties with a leading underscore.
 
 ## [](#conclusion)Conclusion
 

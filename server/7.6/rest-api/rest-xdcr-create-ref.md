@@ -1,4 +1,12 @@
+---
+title: Creating or Editing a Reference
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-create-ref.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-xdcr-create-ref.html)
+
+# Creating or Editing a Reference
 
 > You can use the REST API to create or edit an XDCR reference to a target cluster. 
 
@@ -56,8 +64,8 @@ __POST Parameters__
 | certificate                     | The local path to a copy of the root CA of the target cluster. You must supply this parameter if you set secureType to full.                                                                                                                                                                                                                                                                                         | URL-encoded string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | clientCertificate and clientKey | The client certificate and key that Couchbase Server uses to authenticate with the target cluster. Set these parameters only if you set secureType to full and you have chosen to use a certificate instead of a username and password for authentication.                                                                                                                                                           | URL-encoded string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
-|  | XDCR automatically trusts Capella root certificates when you use the REST API to enable fully secure replications from Couchbase Enterprise Server to Capella. In this case, you do not need to supply the certificate parameter to the command. See [Capella Trusted CAs](../manage/manage-xdcr/secure-xdcr-replication.md#capella-trusted-cas) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> XDCR automatically trusts Capella root certificates when you use the REST API to enable fully secure replications from Couchbase Enterprise Server to Capella. In this case, you do not need to supply the `certificate` parameter to the command. See [Capella Trusted CAs](../manage/manage-xdcr/secure-xdcr-replication.md#capella-trusted-cas) for more information.
 
 ## [](#responses)Responses
 

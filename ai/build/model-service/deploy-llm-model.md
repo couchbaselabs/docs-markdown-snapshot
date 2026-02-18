@@ -1,4 +1,14 @@
+---
+title: Deploy a Large Language Model (LLM)
+description: The Capella Model Service can deploy Large Language Models (LLMs)
+  close to your data in Capella to power your AI applications.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-llm-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/model-service/deploy-llm-model.html)
+
+# Deploy a Large Language Model (LLM)
 
 > The Capella Model Service can deploy Large Language Models (LLMs) close to your data in Capella to power your AI applications. 
 
@@ -22,10 +32,9 @@ The Capella Model Service offers endpoints for popular Large Language Models (LL
 5. Choose the AWS region where you want to deploy the model.
 6. Choose the compute and GPU size configuration to run the model.  
 The minimum supported compute size available for the model in your chosen region is the default.
-7. (Optional) Apply advanced configuration options:
-
-|  | If you change or enable any advanced configurations, such as value adds or security features, after deployment, your existing Model Service API keys will stop working, and you must create a new API key. For more information, see [Value Adds and Security Features](../../api-guide/api-start.md#value-adds). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+7. (Optional) Apply advanced configuration options:  
+> [!CAUTION]  
+> If you change or enable any advanced configurations, such as value adds or security features, after deployment, your existing Model Service API keys will stop working, and you must create a new API key. For more information, see [Value Adds and Security Features](../../api-guide/api-start.md#value-adds).  
 Quantization  
 Available to select models, reduce the model size and improve inference speed by applying a quantization level. Quantization can lead to a slight decrease in model accuracy, so test if it works well for your application.  
 For more information, see [Configure LLM Performance](configure-llm-performance.md#quantization).  

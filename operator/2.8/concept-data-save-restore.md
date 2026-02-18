@@ -1,4 +1,12 @@
+---
+title: Data Topology Save, Restore and Synchronization
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-data-save-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-data-save-restore.html)
+
+# Data Topology Save, Restore and Synchronization
 
 > The Operator and tooling provides features to aid with development and management of clusters. This details what can be done, and when it should be used. 
 
@@ -15,8 +23,13 @@ On some occasions, such as development environments, introducing a complex workf
 
 This is where the save, restore and synchronization features come in to play.
 
-|  | Save, restore and synchronization are — ostensibly — manual operations outside of the scope of any life-cycle manager used to deploy and manage a Couchbase cluster. To a lifecycle manager, any modifications to managed resources will look like external interference that needs to be reconciled back into the requested state. A result of accidental reversion is deletion of buckets, scopes, collection, data and indexes. It is your responsibility to ensure either: Life-cycle management is not used, or does not run periodically and update infrastructure. Life-cycle management is updated with any necessary changes to prevent reversion. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Save, restore and synchronization are — ostensibly — manual operations outside of the scope of any life-cycle manager used to deploy and manage a Couchbase cluster. To a lifecycle manager, any modifications to managed resources will look like external interference that needs to be reconciled back into the requested state. A result of accidental reversion is deletion of buckets, scopes, collection, data and indexes.
+> 
+> It is your responsibility to ensure either:
+> 
+> * Life-cycle management is not used, or does not run periodically and update infrastructure.
+> * Life-cycle management is updated with any necessary changes to prevent reversion.
 
 ## [](#data-topology-save-and-restore)Data Topology Save and Restore
 
@@ -49,8 +62,8 @@ The command above results in a _full-tree save_, i.e. everything on the system.
 
 It is also possible to do a _sub-tree save_, that limits the scope to all resources contained within a single bucket, or scope. For example, a sub-tree save of a bucket will contain all scopes and collections within it, and a sub-tree save of a scope will contain only the collections within that scope.
 
-|  | Due to the design of scopes and collections for Kubernetes, a default collection can only be preserved by also including its parent scope. When taking a sub-tree save of a scope, the default collection will be discarded. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Due to the design of scopes and collections for Kubernetes, a default collection can only be preserved by also including its parent scope. When taking a sub-tree save of a scope, the default collection will be discarded.
 
 For more information on the `cao save` command, and all supported flags, read the [reference documentation](tools/cao.md#cao-save-flags).
 
@@ -96,8 +109,14 @@ For more information on the `cao restore` command, and all supported flags, read
 
 Read on for a more technical breakdown of how this command works, or skip to the [Data Topology Synchronization](#data-topology-synchronization) section for more options migrating from an unmanaged data topology to a managed one.
 
-|  | When performing a restore, there are a number of cluster conditions that must be met: Data topology is not be managed or data topology is managed, and bucket label selectors are in use or data topology is managed, bucket label selectors are not in use, but there are no bucket resources selected The use of label selectors is two-fold. First, this is a strong indicator that other clusters in the same namespace will not be affected, it is your responsibility to ensure selector uniqueness. Second, this allows atomic updates of the entire topology, and rollback in the event of an error. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> When performing a restore, there are a number of cluster conditions that must be met:
+> 
+> * Data topology is not be managed
+> * or data topology is managed, and bucket label selectors are in use
+> * or data topology is managed, bucket label selectors are not in use, but there are no bucket resources selected
+> 
+> The use of label selectors is two-fold. First, this is a strong indicator that other clusters in the same namespace will not be affected, it is your responsibility to ensure selector uniqueness. Second, this allows atomic updates of the entire topology, and rollback in the event of an error.
 
 ### [](#restore-internals)Restore Internals
 
@@ -153,8 +172,8 @@ The difference between this strategy and the default merge strategy is that thin
 
 Whatever merge strategy was selected, the _merged tree_ output from this stage is what is presented to the user on the command line for user verification.
 
-|  | You may have noticed that as sub-tree saves are spliced into the _current tree_, therefore anything outside of the scope of the save data will always be preserved, regardless of the merge strategy. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You may have noticed that as sub-tree saves are spliced into the _current tree_, therefore anything outside of the scope of the save data will always be preserved, regardless of the merge strategy.
 
 #### [](#compaction)Compaction
 
@@ -170,8 +189,8 @@ This pivot from an existing tree, to a new one, is atomic, therefore if anything
 
 Cleanup occurs after the new data topology is live. The restore command interrogated the Couchbase cluster before doing the pivot to determine any Kubernetes resources linked to it (e.g. `CouchbaseBucket`, `CouchbaseScope`, etc.) These are now deleted to provide automated garbage collection.
 
-|  | Because multiple Couchbase clusters can run in the same namespace, there is a danger that any resource created, or deleted, by a restore may be erroneously picked up by another cluster. It is your responsibility to ensure any other clusters in this namespace have a unique bucket/scope/collection label selectors that will not be affected by this synchronization operation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Because multiple Couchbase clusters can run in the same namespace, there is a danger that any resource created, or deleted, by a restore may be erroneously picked up by another cluster. It is your responsibility to ensure any other clusters in this namespace have a unique bucket/scope/collection label selectors that will not be affected by this synchronization operation.
 
 ## [](#data-topology-synchronization)Data Topology Synchronization
 
@@ -181,8 +200,11 @@ Synchronization allows data topology to be manually created by the user, either 
 
 Once completed, the Operator can be told to synchronize data topology. This will poll Couchbase for the full data-topology — including buckets, scopes and collections — then mirror this configuration as Kubernetes-native custom resources. The user can then poll for completion before finally setting the Couchbase cluster to manage buckets. After this point, any manual modifications to the data topology will be reverted by the Operator as per usual.
 
-|  | As this feature is completely controlled by the Operator, there are a number of things to be aware of: The Operator will never modify user managed custom resources (e.g. CouchbaseCluster, CouchbaseBucket, etc). These resources are intended solely for management by users — either manually, or through life-cycle managers. To modify a resource specification would be to alter the managing entity’s original intent, and is not allowed in Kubernetes. Operator modifications would also be reverted by any automated life-cycle manager. The Operator will never delete user managed custom resources. Like modification, deletion may go against the user’s intent, or be reverted by a life-cycle manager. It also may result in accidental data loss. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> As this feature is completely controlled by the Operator, there are a number of things to be aware of:
+> 
+> 1. The Operator will never modify user managed custom resources (e.g. `CouchbaseCluster`, `CouchbaseBucket`, etc). These resources are intended solely for management by users — either manually, or through life-cycle managers. To modify a resource specification would be to alter the managing entity’s original intent, and is not allowed in Kubernetes. Operator modifications would also be reverted by any automated life-cycle manager.
+> 2. The Operator will never delete user managed custom resources. Like modification, deletion may go against the user’s intent, or be reverted by a life-cycle manager. It also may result in accidental data loss.
 
 ## [](#related-links)Related Links
 

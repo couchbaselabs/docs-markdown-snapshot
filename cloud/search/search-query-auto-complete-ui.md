@@ -1,4 +1,14 @@
+---
+title: Configure an Autocomplete Search Index
+description: Create a Search index with the Capella UI or import a JSON Search
+  index payload to start using autocomplete with the Search Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-query-auto-complete-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/search-query-auto-complete-ui.html)
+
+# Configure an Autocomplete Search Index
 
 > Create a Search index with the Capella UI or import a JSON Search index payload to start using autocomplete with the Search Service. 
 
@@ -25,10 +35,11 @@ To create the Search index in the Capella UI with Advanced Mode:
 3. Go to **Data Tools** **Search**.
 4. Click **Create Search Index**.
 5. Click **Enable Advanced Options**.
-6. In the **Index Name** field, enter a name for the Search index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+6. In the **Index Name** field, enter a name for the Search index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 7. In the **Bucket**, **Scope**, and **Collection** lists, choose the bucket and scope where you want to create your Search index, and the collections you want to include.
 8. [Create a Custom Analyzer](create-custom-analyzer.md) with the following settings:
 

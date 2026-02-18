@@ -1,4 +1,14 @@
+---
+title: "How-to Guide: Data Topology Synchronization"
+description: A how-to guide on data topology synchronization with Couchbase
+  Kubernetes Operator.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-data-topology-sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-guide-data-topology-sync.html)
+
+# How-to Guide: Data Topology Synchronization
 
 > A how-to guide on data topology synchronization with Couchbase Kubernetes Operator. 
 
@@ -15,8 +25,8 @@ In your Couchbase cluster load the `travel-sample` sample bucket. See [Load the 
 
 On this cluster we’ll enable synchronization to discover the bucket and its scopes and collections in the form of Kubernetes resources.
 
-|  | For the purposes of this guide, we’ll be referring to an example cluster called cb-example. Substitute the name of the cluster with your own if necessary. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For the purposes of this guide, we’ll be referring to an example cluster called `cb-example`. Substitute the name of the cluster with your own if necessary.
 
 ![data topology synchronized prereq buckets](_images/data-topology-synchronized-prereq-buckets.png) 
 
@@ -47,15 +57,15 @@ $ for i in couchbasebuckets \
 
 This command deletes all resources in the namespace that will be affected by a synchronization operation. You can replace `--all` with a label, or field, selector if you wish to be more selective, especially in the case where multiple Couchbase clusters are running in the same namespace.
 
-|  | Data topology resources can be [shared between clusters](concept-label-selection.md). If they are shared, then deletion may affect another — unrelated — cluster and result in data loss. For this reason we recommend only ever deploying one Couchbase cluster per namespace. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Data topology resources can be [shared between clusters](concept-label-selection.md). If they are shared, then deletion may affect another — unrelated — cluster and result in data loss. For this reason we recommend only ever deploying one Couchbase cluster per namespace.
 
 ## [](#synchronizing)Synchronizing
 
 Once you have manually updated the data topology to how you want it, we can begin synchronizing it so it can be managed.
 
-|  | Because multiple Couchbase clusters can run in the same namespace, there is a danger that any resource created by synchronization may be erroneously picked up by another cluster. For this reason, the Operator enforces the use of a label selector to generate and select buckets for inclusion on the cluster to be synchronized. It is your responsibility to ensure any other clusters in this namespace have a unique bucket label selector that will not be affected by this synchronization operation. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Because multiple Couchbase clusters can run in the same namespace, there is a danger that any resource created by synchronization may be erroneously picked up by another cluster. For this reason, the Operator enforces the use of a label selector to generate and select buckets for inclusion on the cluster to be synchronized. It is your responsibility to ensure any other clusters in this namespace have a unique bucket label selector that will not be affected by this synchronization operation.
 
 Synchronization is triggered by first setting a label selector, then triggering the operation:
 
@@ -76,8 +86,8 @@ The synchronization operation proceeds as follows:
 3. Kubernetes resources are created and persisted.
 4. The Operator reports the status in the cluster conditions.
 
-|  | Once synchronization has been triggered, you should not make any more manual adjustments to the data topology. Doing so may result in a conflict between what is expected and what has already been generated and committed. If you do encounter a conflict, then restart the process from the [Enabling Synchronization](#enabling-synchronization) stage to remove the conflicting resource. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Once synchronization has been triggered, you should not make any more manual adjustments to the data topology. Doing so may result in a conflict between what is expected and what has already been generated and committed. If you do encounter a conflict, then restart the process from the [Enabling Synchronization](#enabling-synchronization) stage to remove the conflicting resource.
 
 To check for completion status, you can wait until the condition is reported:
 
@@ -171,8 +181,8 @@ collection-0c21c5e37c1d282eff2d1a08032698bb8bd4e5be02b00442c4717c979463f3c9   4m
 collection-4bbb3cbbc1fbe031b218a383a12c1cf0abefb3cfbbf43ad7679cc503035cf1d5   4m51s
 ```
 
-|  | Unlike save and restore, synchronization does not optimize the data topology Kubernetes resources. In a worst case scenario, where 1000’s of scopes and collections are in use, then you can expect synchronization to take several minutes due to the throttling of requests to the Kubernetes API to ensure fair use. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unlike save and restore, synchronization does not optimize the data topology Kubernetes resources. In a worst case scenario, where 1000’s of scopes and collections are in use, then you can expect synchronization to take several minutes due to the throttling of requests to the Kubernetes API to ensure fair use.
 
 ## [](#managing-synchronized-resources)Managing Synchronized Resources
 

@@ -1,4 +1,14 @@
+---
+title: Uninstall Couchbase Server
+description: The Couchbase Server application and its associated data can be
+  removed from supported systems.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-uninstalling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install-uninstalling.html)
+
+# Uninstall Couchbase Server
 
 > The Couchbase Server application and its associated data can be removed from supported systems. 
 
@@ -10,8 +20,8 @@ This page describes how to uninstall Couchbase Server from Linux, Windows, and M
 
 If the system is a part of an active Couchbase cluster, you’ll need to [remove it and rebalance the cluster](../manage/manage-nodes/remove-node-and-rebalance.md) to take the node out of the configuration. You’ll also need to update Couchbase clients to point to an available node within the active cluster.
 
-|  | The instructions on this page will completely remove Couchbase Server, and all configuration and database files. Ensure that your configuration and data are backed up before proceeding, as this process cannot be undone. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The instructions on this page will completely remove Couchbase Server, and all configuration and database files. Ensure that your configuration and data are backed up before proceeding, as this process cannot be undone.
 
 ## [](#linux)Linux
 
@@ -59,10 +69,9 @@ Refer to [Start and Stop Couchbase Server](startup-shutdown.md#start-stop-macos)
 Go to the `Applications` folder and drag `Couchbase Server.app` to the Trash.
 3. Remove the data and log directories.  
 Open Finder and go to `~/Library/Application Support/`, and drag both the `Couchbase` and `Membase` folders (if present) to the Trash.  
-Next, go to `~/Library/Python/`, and drag the `couchbase-py` folder to the Trash.
-
-|  | If you don’t see the Library folder in your home folder, you can choose to follow the Terminal instructions instead, or you can toggle-on the Library folder. To toggle-on the Library folder, first click on Finder, then click on **View,Show View Options** in the menu bar, then check the checkbox next to **Show Library Folder**. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Next, go to `~/Library/Python/`, and drag the `couchbase-py` folder to the Trash.  
+> [!NOTE]  
+> If you don’t see the Library folder in your home folder, you can choose to follow the Terminal instructions instead, or you can toggle-on the Library folder. To toggle-on the Library folder, first click on Finder, then click on **View,Show View Options** in the menu bar, then check the checkbox next to **Show Library Folder**.
 
 1. Quit Couchbase Server if it’s running.  
 ```console  

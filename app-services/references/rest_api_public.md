@@ -1,4 +1,12 @@
+---
+title: Capella App Services Public API Reference
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/references/rest_api_public.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/references/rest_api_public.html)
+
+# Capella App Services Public API Reference
 
 * Introduction
 * Server

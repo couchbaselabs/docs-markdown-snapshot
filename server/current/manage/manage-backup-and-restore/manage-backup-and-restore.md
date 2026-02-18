@@ -1,4 +1,14 @@
+---
+title: Manage Backup and Restore
+description: Couchbase Server allows one or more buckets, and selected subsets
+  of their data, to be backed up, restored, and archived.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-backup-and-restore/manage-backup-and-restore.html)
+
+# Manage Backup and Restore
 
 > Couchbase Server allows one or more buckets, and selected subsets of their data, to be backed up, restored, and archived. 
 
@@ -90,10 +100,9 @@ Use the control at the right-hand side of the field, to select a bucket. For the
 The value for **Storage Locations** can be specified as **Filesystem** (the default) or **Cloud**. For the current example, **Filesystem** will be used. If **Cloud** is selected, allowing AWS S3 storage to be used, the dialog expands, and displays additional options: these are described below, in [Use Cloud Storage](#use-cloud-storage).  
 The **Location** should be the location of the storage-based archive for the repository. If on the local filesystem, this location must be a pathname accessible to all nodes within the cluster that are running the Backup Service: which is to say, reads from and writes to the location are shared through an NFS mount (or through some other type of shared-folder technology, such as Samba). Couchbase Server must have read and write access to the location. On Linux, therefore, for a filesystem location, use the `chgrp` command to set the group ID of the folder to `couchbase`; unless a _non-root installation_ has been performed, in which case set the group ID either to the username of the current user, or to a group of which the current user is a member.  
 A location should be used for only one repository: when multiple repositories are to be archived, a different location should be used for each. If appropriate, locations may be specified as subdirectories, within a top-level directory.  
-To backup the cluster user groups and users, including roles, permissions, and hashed passwords to the repository, select **Backup Users and User Groups**.
-
-|  | You must have a Full Admin, a Local User Admin, and an External User Admin role to be able to backup users and user groups. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+To backup the cluster user groups and users, including roles, permissions, and hashed passwords to the repository, select **Backup Users and User Groups**.  
+> [!NOTE]  
+> You must have a Full Admin, a Local User Admin, and an External User Admin role to be able to backup users and user groups.
 
 **Retention** is the period for which the backups are to be retained. When you enable **Retention**, the **Default Retention Period (days)** field appears. Each repository has a default retention period, measured in days. Retention period value can be set from 0 to 36,500, where 0 means backups are retained indefinitely. For more information, see [Retain Backups](#backup-retention).  
 You can use **Encryption Options** to encrypt the backup data.  
@@ -181,13 +190,14 @@ You can delete individual backups that:
 * Do not have dependent incremental backups.
 * Have dependent incremental backups.
 
-|  | Deleting backups with dependent incremental backups can break backup cycles and make dependent backups invalid. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deleting backups with dependent incremental backups can break backup cycles and make dependent backups invalid.
 
 You can use either delete or prune to delete backups.
 
-|  | Using the delete backup method deletes only the expired backups in the repository, whether it has dependent incremental backups or not. To delete all expired backups in a repository, use the pruning method, which deletes all expired backups in the repository. For more information, see [Schedule Pruning](#schedule-backup-pruning). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Using the delete backup method deletes only the expired backups in the repository, whether it has dependent incremental backups or not.
+> * To delete all expired backups in a repository, use the pruning method, which deletes all expired backups in the repository. For more information, see [Schedule Pruning](#schedule-backup-pruning).
 
 To delete a backup, with or without dependent incremental backups, follow these steps:
 
@@ -202,18 +212,17 @@ You can choose to do one of the following:
 4. Click the delete icon associated with the backup.  
 The **Delete Backup** dialog appears.
 5. Enter the name of the backup you want to delete in the **Backup Name** field.
-6. Select **Disable the Safe Remove Check** if you want to delete a backup that has incremental backups depending on it.
-
-|  | This can break backup cycles and make dependent backups invalid. |
-|  | ---------------------------------------------------------------- |
+6. Select **Disable the Safe Remove Check** if you want to delete a backup that has incremental backups depending on it.  
+> [!CAUTION]  
+> This can break backup cycles and make dependent backups invalid.
 7. Click **Delete Backup**.
 
 The backup is deleted.
 
 To set the Disable the Safe Remove Check or `disable_safe_remove_check` property in the API call, see [Delete a Backup](../../rest-api/backup-delete-backups.md).
 
-|  | If you try to delete a backup that has dependent incremental backups, without enabling the **Disable Safe Remove Check** option, you will see an alert telling you that the backup cannot be deleted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you try to delete a backup that has dependent incremental backups, without enabling the **Disable Safe Remove Check** option, you will see an alert telling you that the backup cannot be deleted.
 
 ## [](#inspect-tasks)Inspect Tasks
 
@@ -255,8 +264,9 @@ You can Prune backups in a repository in one of the following ways:
   * Create and schedule a Prune task.
 * By running a Prune task on-demand or performing an immediate pruning, using the **Prune** button on a repository listed on the **Backup** screen.
 
-|  | The pruning method deletes _all_ the _expired_ backups in the repository. To delete an individual backup in a repository, whether it has dependent incremental backups or not, see [Delete Backups](#delete-backups). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> * The pruning method deletes _all_ the _expired_ backups in the repository.
+> * To delete an individual backup in a repository, whether it has dependent incremental backups or not, see [Delete Backups](#delete-backups).
 
 ### [](#using-default-pruning-plan)Schedule a Prune task using default plans
 
@@ -271,10 +281,10 @@ To manually schedule a Prune task, do the following:
 
 1. Start creating a repository, as explained in [Schedule Backups](#schedule-backups).
 2. On the **Select Plan** dialog, from the **Plan** list, select **\+ Create new plan**.
-3. Create a **Backup** task, as explained in [Schedule Backups](#schedule-backups).
-
-|  | Every Prune task must be associated with a Backup task. Pruning won’t delete backups that have incremental backups depending on them. To delete such backups, use [Delete Backups](#delete-backups). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Create a **Backup** task, as explained in [Schedule Backups](#schedule-backups).  
+> [!NOTE]  
+> * Every Prune task must be associated with a Backup task.  
+> * Pruning won’t delete backups that have incremental backups depending on them. To delete such backups, use [Delete Backups](#delete-backups).
 4. To create a **Prune** task, click **Add Task**, and do the following:
 
   * Enter a name for the pruning task in the **Task Name** field.
@@ -296,10 +306,9 @@ To prune backups on demand, follow these steps:
 
 1. Go to the **Backup** screen and select the repository.
 2. To examine the backups in the repository, click **Inspect Backups**.  
-Examine the expiry status of the backups in the repository. If the backups have reached their retention period, they’re marked as _Expired_.
-
-|  | Only expired backups can be pruned. |
-|  | ----------------------------------- |
+Examine the expiry status of the backups in the repository. If the backups have reached their retention period, they’re marked as _Expired_.  
+> [!NOTE]  
+> Only expired backups can be pruned.
 3. Go back to the **Backup** screen with repositories, select the repository, and click **Prune**.  
 The **Prune Expired Backups** dialog appears, listing the backups that are eligible for pruning.
 4. Type **permanently delete** in the **Type 'permanently delete' to confirm** field.
@@ -321,8 +330,9 @@ Backup retention lets you configure the Backup Service to automatically delete o
 
 You can set a retention period for a repository when creating it or editing it later. After creating a repository, you can set a custom retention period for its individual backups.
 
-|  | If a retention period is not set for a backup, the repository’s default retention period applies automatically on all individual backups of that repository. By default, the retention period is set to 0, which is an indefinite period. As a result, Prune tasks do not automatically delete any backups. You need to configure a value greater than 0 for a retention period to enable automatic deletion. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * If a retention period is not set for a backup, the repository’s default retention period applies automatically on all individual backups of that repository.
+> * By default, the retention period is set to 0, which is an indefinite period. As a result, Prune tasks do not automatically delete any backups. You need to configure a value greater than 0 for a retention period to enable automatic deletion.
 
 **Prerequisites:**
 
@@ -337,22 +347,22 @@ To set the retention period for a repository, follow these steps:
 2. From the **Plan** list on the **Select Plan** dialog, continue with one of the following:
 
   * [Schedule a Prune task using default plans](#using-default-pruning-plan).
-  * [Create and schedule a Prune task](#creating-new-pruning-task).
-
-|  | Pruning won’t delete backups that have incremental backups depending on them. |
-|  | ----------------------------------------------------------------------------- |
+  * [Create and schedule a Prune task](#creating-new-pruning-task).  
+  > [!NOTE]  
+  > Pruning won’t delete backups that have incremental backups depending on them.
 3. Click **Next**.
 4. Select **Retention** on the **Create Repository** dialog.  
 ![set retention period](../_images/manage-backup-restore/set-retention-period.png)
-5. Use **Default Retention Period (days)** to specify the necessary retention period, in days, for the repository.
-
-|  | This set period becomes the default retention period for all backups in the repository. A value of 0 means that backups are retained indefinitely. The retention period can be set from 1 to 36,500 days. The default value is 0. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+5. Use **Default Retention Period (days)** to specify the necessary retention period, in days, for the repository.  
+> [!NOTE]  
+> * This set period becomes the default retention period for all backups in the repository.  
+> * A value of 0 means that backups are retained indefinitely.  
+> * The retention period can be set from 1 to 36,500 days. The default value is 0.
 6. Click **Add** to save the changes.  
 The **Backup** screen lists the new repository with its default retention period.
 
-|  | When you have set the retention period for the repository but haven’t created a pruning task, the repository is listed with a warning icon. When you have not set the retention period for a repository, the repository indicates it. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you have set the retention period for the repository but haven’t created a pruning task, the repository is listed with a warning icon. When you have not set the retention period for a repository, the repository indicates it.
 
 ### [](#set-retention-period-after-repo-creation)Set Retention Period after Creating a Repository
 
@@ -367,8 +377,9 @@ To set the retention period for an existing repository, follow these steps:
 ![edit default retention](../_images/manage-backup-restore/edit-default-retention.png)
 5. Click **Edit Retention** to save the changes.
 
-|  | The new retention value applies to existing backups at the time of the backup creation. If you set a retention value that’s shorter than the original value, existing backups may be pruned according to the new retention period. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * The new retention value applies to existing backups at the time of the backup creation.
+> * If you set a retention value that’s shorter than the original value, existing backups may be pruned according to the new retention period.
 
 ### [](#set-retention-period-for-a-backup)Set Retention Period for a Specific Backup
 
@@ -436,8 +447,12 @@ The details in the expanded row confirm that five backups were merged by the ope
 
 You can restore a backup to the same bucket or buckets that you originally backed up or to a different set of buckets. You can also restore a backup to a different cluster. The buckets you restore data to do not have to use the same [storage engine](../../learn/buckets-memory-and-storage/storage-engines.md) as the original buckets. You can restore a backup of data from a bucket using the Couchstore storage engine to one using Magma. You can also restore a Magma-backed bucket backup to a Couchstore bucket.
 
-|  | When restoring Vector Indexes, you must run the BUILD INDEX command only after the Key-Value Data restoration is complete. The sequence of stages in the restoration process is the same as that of the [backup](../../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process. Starting the build before all the data is restored can result in training failure or an inaccurate codebook. This can cause the build to either error-out or produce unreliable query results. Also, re-training the codebook after the build has started is not supported. Couchbase recommends waiting for the restoration of the full dataset. Only after the restoration is complete, run a build to make sure that the codebook generated out of build accurately represents the completely restored dataset. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When restoring Vector Indexes, you must run the BUILD INDEX command only after the Key-Value Data restoration is complete. The sequence of stages in the restoration process is the same as that of the [backup](../../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process.
+> 
+> Starting the build before all the data is restored can result in training failure or an inaccurate codebook. This can cause the build to either error-out or produce unreliable query results. Also, re-training the codebook after the build has started is not supported.
+> 
+> Couchbase recommends waiting for the restoration of the full dataset. Only after the restoration is complete, run a build to make sure that the codebook generated out of build accurately represents the completely restored dataset.
 
 To restore a backup:
 
@@ -464,8 +479,8 @@ To monitor an ongoing restore, click the **Task History** button in the reposito
 
 After the restore tasks finishes, you can see whether it succeeded or failed under the **Results** section.
 
-|  | If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**.
 
 To learn how to restore a backup using the command line, see [cbbackupmgr restore](../../backup-restore/cbbackupmgr-restore.md).
 
@@ -526,10 +541,9 @@ These fields let you choose how the restore task handles time to live (TTL) valu
 * **all**: The restore task applies the new TTL you supply in **Replace TTL with** to all documents it restores. It even applies the new value to restored documents that had a TTL of `0` (no expiration) in the backup.  
 The value you supply in **Replace TTL with** field must be either:
 * `0` : No TTL value is set for the document. The document does not expire unless the bucket or collection containing it has a non-zero `maxTTL` value. See [Expiration](../../learn/data/expiration.md).
-* A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.
-
-|  | The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.  
+> [!NOTE]  
+> The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration.
 
 Force Updates
 
@@ -539,8 +553,8 @@ Auto-remove Collections
 
 When checked, the restore task drops scopes and collections that currently exist in buckets but had been dropped prior to the backup’s creation. The restore task knows which scopes and collections have been dropped because the backup contains the tombstones of these dropped objects. For a scope or collection to be dropped when you enable **Auto-remove Collections**, its ID must match the ID of a dropped scope or collection as well as matching its name. Just matching the name of a deleted scope or collection is not enough to have the restore task drop it.
 
-|  | This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup.
 
 Auto-create Buckets
 
@@ -752,10 +766,9 @@ Use the `client_id` and the `client_secret` obtained in the previous section as 
   ```console  
   ./oauth.sh  
   ```  
-  The script will open your default browser; you can copy the `oauth` credential from the string in the browser URL input field.
-
-|  | You may need to click through a few pages, until you see https:localhost:12345 in the URL field. |
-|  | ------------------------------------------------------------------------------------------------ |  
+  The script will open your default browser; you can copy the `oauth` credential from the string in the browser URL input field.  
+  > [!TIP]  
+  > You may need to click through a few pages, until you see `https:localhost:12345` in the URL field.  
   ![getOauthCodefromURL](../_images/manage-backup-restore/getOauthCodefromURL.png)  
   Copy the string denoted by the `code` field for use in the next section.
 3. **Generate the Refresh Token**  
@@ -803,10 +816,9 @@ Now, you will create a short shell script, using te oauth credentials you retrie
   Cloud Bucket  
   The name of the bucket on the `GCP` service you’re backing up to.  
   Cloud Auth Type  
-  This can be either `ID and Key` or `Instance Metadata Service`.
-
-|  | For the Instance Metadata Service you will need to configure your GCP VM service account so that the VM instance can read and write to the cloud storage bucket. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  This can be either `ID and Key` or `Instance Metadata Service`.  
+  > [!NOTE]  
+  > For the `Instance Metadata Service` you will need to configure your GCP VM service account so that the VM instance can read and write to the cloud storage bucket.  
   You will require a different set of options depending on which one cloud authentication type you choose:
 
 ---  

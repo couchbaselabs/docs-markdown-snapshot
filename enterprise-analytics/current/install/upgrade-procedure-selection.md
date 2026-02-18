@@ -1,4 +1,15 @@
+---
+title: Choose an Upgrade Procedure
+description: Multiple procedures are available for the upgrade of Enterprise
+  Analytics. An appropriate procedure should be selected, based on a variety of
+  factors.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/upgrade-procedure-selection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/upgrade-procedure-selection.html)
+
+# Choose an Upgrade Procedure
 
 > Multiple procedures are available for the upgrade of Enterprise Analytics. An appropriate procedure should be selected, based on a variety of factors. 
 
@@ -43,8 +54,8 @@ Enterprise Analytics automatically performs a **Swap Rebalance** when all the fo
 
 Since the introduced nodes are recognized by Enterprise Analytics to have equivalent capacities and configurations to those that have been taken out, rebalance is performed as a **swap rebalance**; which largely confines its activity to the incoming and outgoing nodes. Thus, for example, if one Data Service node is removed and another added, the swap rebalance ensures that the vBucket layout of the outgoing node is created identically on the incoming node; with the layouts of other Data Service nodes not requiring modification.
 
-|  | Make sure you’re familiar with the effects of a rebalance on your Enterprise Analytics cluster. See [Rebalance](../reference/rest-rebalance-overview.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Make sure you’re familiar with the effects of a rebalance on your Enterprise Analytics cluster. See [Rebalance](../reference/rest-rebalance-overview.md).
 
 #### [](#using-spare-nodes)Using Spare Nodes
 
@@ -82,8 +93,8 @@ For a multi-node cluster, an **online upgrade** means that the cluster continues
 
 One or more spare nodes, which exist in addition to those committed to the cluster, are prepared for addition to the cluster. When these nodes are added to the cluster, the same number are removed. Addition occurs by means of either **joining** or **adding**, as described in [Clusters](#server:learn:clusters-and-availability/nodes.html#clusters).
 
-|  | Configuration of the added nodes must match that of the removed nodes. When rebalance is triggered by the administrator, Enterprise Analytics performs a **swap rebalance**. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Configuration of the added nodes must match that of the removed nodes. When rebalance is triggered by the administrator, Enterprise Analytics performs a **swap rebalance**.
 
 Removed nodes are kept **up** and **network-accessible**: and in this state, are upgraded to the latest version of Enterprise Analytics. Then, following the upgrade procedure, the upgraded nodes are re-introduced into the cluster; and are given configurations that match the configurations of the spare nodes; and the spare nodes are themselves now removed. Finally, a further [Rebalance](../../../server/current/learn/clusters-and-availability/rebalance.md) is performed, and the upgraded nodes become full members of the cluster.
 

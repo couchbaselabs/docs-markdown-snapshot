@@ -1,4 +1,13 @@
+---
+title: Enterprise Analytics REST API
+description: A description of the Enterprise Analytics REST API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-analytics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-analytics.html)
+
+# Enterprise Analytics REST API
 
 Enterprise Analytics provides REST APIs that a client application can use to invoke services using simple HTTP methods. A catalog of available REST resources and requests is provided below.
 

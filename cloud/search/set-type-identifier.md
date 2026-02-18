@@ -1,4 +1,14 @@
+---
+title: Set a Document Filter
+description: Use a document filter with a type mapping to add an extra filter to
+  the documents you want to include in a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/set-type-identifier.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/set-type-identifier.html)
+
+# Set a Document Filter
 
 > Use a document filter with a type mapping to add an extra filter to the documents you want to include in a Search index. 
 
@@ -48,8 +58,8 @@ To set a document filter for a Search index with the Capella UI:
   3. [Create a Doc ID with Regex Document Filter](#doc-id-regex)
   4. [Create a Custom Document Filter](#custom)
 
-|  | You cannot use custom document filters with another type of type identifier on your Search index. If you select an option other than **Custom** after you have defined custom document filters, you’ll lose any defined custom filters on your Search index. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> You cannot use custom document filters with another type of type identifier on your Search index. If you select an option other than **Custom** after you have defined custom document filters, you’ll lose any defined custom filters on your Search index.
 
 ### [](#json-type)Create a JSON Type Field Document Filter
 
@@ -57,10 +67,9 @@ To only add documents to your Search index that contain a specific field with a 
 
 1. Under **Choose Document Filter**, click **JSON Type Field**
 2. In the **JSON Type Field** field, enter the name of the field in your documents that you want to use to filter documents in your Search index.  
-For example, if your documents include a `type` field, you could enter `type` in the **JSON Type Field** field.
-
-|  | You cannot use a field as a document filter if the field name contains a period (.). |
-|  | ------------------------------------------------------------------------------------ |
+For example, if your documents include a `type` field, you could enter `type` in the **JSON Type Field** field.  
+> [!NOTE]  
+> You cannot use a field as a document filter if the field name contains a period (.).
 3. Under **Type Mappings**, next to the type mapping where you want to add the document filter, click **Edit**.
 4. In the **Enter Document Filter** field, enter the exact string from the document field that you want to use as a filter.  
 For example, if you wanted your type mapping to only include documents that had a value of `hotel` in the `type` field, you could enter `hotel` in the filter field.
@@ -110,10 +119,11 @@ For more information about the properties for each document filter type, see:
   * [Numeric Range Document Filters](search-index-params.md#numeric%5Frange%5Ffilter)
   * [Term Document Filters](search-index-params.md#term%5Ffilter)
   * [Conjunct Document Filters](search-index-params.md#conjunct%5Ffilter)
-  * [Disjunct Document Filters](search-index-params.md#disjunct%5Ffilter)
-
-|  | Do not add the name of your document filter to your filter definition when defining a custom document filter through the Capella UI. Define the document filter as an unnamed object with the specific properties you need for your document filter type. You can also click a **Preset Example** to automatically add the necessary fields for each filter type to your editor. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * [Disjunct Document Filters](search-index-params.md#disjunct%5Ffilter)  
+  > [!TIP]  
+  > Do not add the name of your document filter to your filter definition when defining a custom document filter through the Capella UI. Define the document filter as an unnamed object with the specific properties you need for your document filter type.  
+  >  
+  > You can also click a **Preset Example** to automatically add the necessary fields for each filter type to your editor.
 5. Click **Save**.
 6. Under **Type Mappings**, next to the type mapping where you want to add the document filter, click **Edit**.
 7. In the **Select Document Filter** list, select the name of the custom document filter that you want to use to filter documents on this type mapping.

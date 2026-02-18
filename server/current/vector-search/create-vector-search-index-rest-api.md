@@ -1,23 +1,42 @@
+---
+title: Create a Search Vector Index with the REST API and curl/HTTP
+description: You can create a Search Vector Index with the Search Service API.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/create-vector-search-index-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-search/create-vector-search-index-rest-api.html)
+
+# Create a Search Vector Index with the REST API and curl/HTTP
 
 > You can create a Search Vector Index with the Search Service API. 
 
 You must create a Search index before you can [run a search](run-vector-search-rest-api.md) with the Search Service.
 
-|  | Search Vector Indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Search Vector Indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md).
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 ## [](#prerequisites)Prerequisites
 
 * You have the Search Service enabled on a node in your cluster. For more information about how to deploy a new node and Services on your cluster, see [Manage Nodes and Clusters](../manage/manage-nodes/node-management-overview.md).
 * You have a bucket with scopes and collections in your cluster. For more information about how to create a bucket, see [Create a Bucket](../manage/manage-buckets/create-bucket.md).
-* You have documents in a keyspace inside your bucket that contain vector embeddings.
-
-|  | You can download a sample dataset to use with the procedure or examples on this page: [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip) To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/load.md) from the dataset into your database with the following settings: Use a bucket called vector-sample. Use a scope called color. Use a collection called rgb for rgb.json. To set your document keys, use the value of the id field from each JSON document. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You have documents in a keyspace inside your bucket that contain vector embeddings.  
+> [!TIP]  
+> You can download a sample dataset to use with the procedure or examples on this page:  
+>  
+> [Download color\_data\_2vectors.zip](https://cbc-remote-execution-examples-prod.s3.amazonaws.com/color%5Fdata%5F2vectors.zip)  
+>  
+> To get the best results with using the sample data with the examples in this documentation, [import the sample files](../guides/load.md) from the dataset into your database with the following settings:  
+>  
+> * Use a bucket called `vector-sample`.  
+> * Use a scope called `color`.  
+> * Use a collection called `rgb` for `rgb.json`.  
+> * To set your document keys, use the value of the `id` field from each JSON document.
 * Your user account has the **Search Admin** role for the bucket where you want to create the index.
 * You have installed the Couchbase command-line tool (CLI).
 * You have the hostname or IP address for the node in your cluster where you’re running the Search Service. For more information about where to find the IP address for your node, see [List Cluster Nodes](../manage/manage-nodes/list-cluster-nodes.md).
@@ -35,10 +54,9 @@ curl -s -XPUT -H "Content-Type: application/json" \
     -d \  
 ```
 4. Enter the JSON payload for the settings you want in your index.  
-Do not include the [uuid](../search/search-index-params.md#uuid) or [sourceUUID](../search/search-index-params.md#sourceuuid) parameters.
-
-|  | If you remove the [uuid](../search/search-index-params.md#uuid) and [sourceUUID](../search/search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in a REST API call. For more information about how to create a Search Vector Index with the UI, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Do not include the [uuid](../search/search-index-params.md#uuid) or [sourceUUID](../search/search-index-params.md#sourceuuid) parameters.  
+> [!TIP]  
+> If you remove the [uuid](../search/search-index-params.md#uuid) and [sourceUUID](../search/search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in a REST API call. For more information about how to create a Search Vector Index with the UI, see [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md).
 
 ### [](#example)Example
 
@@ -177,8 +195,8 @@ curl -s -XPUT -H "Content-Type: application/json" \
 }'
 ```
 
-|  | This sample JSON Search Vector Index is the same as the one provided in [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This sample JSON Search Vector Index is the same as the one provided in [Create a Search Vector Index with the Server Web Console](create-vector-search-index-ui.md).
 
 For more information about all the available JSON properties for a Search index, see [Search Index JSON Properties](../search/search-index-params.md).
 

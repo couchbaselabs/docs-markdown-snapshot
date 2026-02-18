@@ -1,4 +1,14 @@
+---
+title: Storage Properties
+description: Couchbase Server provides persistence, whereby certain items are
+  stored on disk as well as in memory; and reliability is thereby enhanced.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/buckets-memory-and-storage/storage-settings.html)
+
+# Storage Properties
 
 > Couchbase Server provides persistence, whereby certain items are stored on disk as well as in memory; and reliability is thereby enhanced. 
 
@@ -17,6 +27,10 @@ Items can be removed from the disk based on a configured point of expiration, re
 For illustrations of how Couchbase Server saves new and updates existing Couchbase-bucket items, thereby employing both memory and storage resources, see [Memory and Storage](memory-and-storage.md).
 
 ## [](#threading)Threading
+
+Couchbase Server uses multiple threads when reading and writing data. It offers several configuration settings you can change to optimize performance for your workload and hardware.
+
+### [](#reader-and-writer-threads)Reader and Writer Threads
 
 Synchronized, multithreaded _readers_ and _writers_ provide simultaneous, high-performance operations for data on disk. Conflicts are avoided by assigning each thread (reader or writer) a specific subset of the 1024 vBuckets for each Couchbase bucket.
 
@@ -39,7 +53,22 @@ Again, the maximum thread-allocation that can be specified for each is _64_, the
 
 Thread-status can be viewed, by means of the `cbstats` command, specified with the `raw workload` option. See [cbstats](../../cli/cbstats-intro.md) for information.
 
-For information on using the REST API to manage thread counts, see [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+For information about using the REST API to manage thread counts, see [Setting Storage Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+
+### [](#magma-flushing-and-compaction-threads)Magma Flushing and Compaction Threads
+
+Couchbase Server compacts the data it writes to disk for [Magma](storage-engines.md#storage-engine-magma) buckets. It allocates a thread pool (containing 20 threads by default) for background compaction and flushing operations for these buckets. You can change the number of threads in this pool using the `num_storage_threads` setting of the [thread allocation REST API](../../rest-api/rest-reader-writer-thread-config.md).
+
+2 types of threads share the Magma thread pool: compactor threads that compact data and flusher threads that write data to disk. By default, Couchbase Server allocates 20% of the threads to flushing data and 80% to compacting data. With the default thread pool size and the default flusher allocation, Couchbase Server uses 4 threads to flush data and 16 threads to compact data for Magma buckets. You can also change the percentage of flusher threads using the `magma_flusher_thread_percentage` setting of the [thread allocation REST API](../../rest-api/rest-reader-writer-thread-config.md).
+
+For most workloads, the default thread pool size and flusher allocation percentage work well. If you notice CPU use spikes during heavy data mutation workloads, you might want to investigate whether the compactor threads are the cause.
+
+You can monitor the compaction and flushing activity using the `kv_magma_compactions` metric. This metric counts the number of compactions Couchbase Server has performed. You can view this metric via the [Statistics](../../rest-api/rest-statistics.md) REST API or through Prometheus if you have configured it to collect Couchbase Server metrics. For more information about using Prometheus with Couchbase Server, see [Configure Prometheus to Collect Couchbase Metrics](../../manage/monitor/set-up-prometheus-for-monitoring.md).
+
+If you see the CPU use of the `memcached` Linux process on your nodes spike while the `kv_magma_compactions` count is increasing, the compactor threads may be the cause of the spike. In this case, you may want to reduce the number of compactor threads by increasing the percentage of flusher threads. This reduction limits the compactor’s ability to spike CPU use. However, reducing the number of compactor threads may lead to higher latency before Couchbase Server writes data to disk.
+
+> [!NOTE]
+> The number of threads in the compactor and flusher pool and the percentages of flusher threads are advanced settings. Contact Couchbase Support before making changes to them. Support can help you determine the best settings for your workload and hardware.
 
 ## [](#deletion)Deletion
 
@@ -101,8 +130,8 @@ __Table 1\. Ejection policies__
 
 The policy can be set using the [REST API](../../rest-api/rest-bucket-create.md#evictionpolicy) when the bucket is created. For more information on ejection policies, read <https://blog.couchbase.com/a-tale-of-two-ejection-methods-value-only-vs-full/>
 
-|  | Full Ejection is recommended when the [Magma storage engine](storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Full Ejection is recommended when the [Magma storage engine](storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio).
 
 ---
 

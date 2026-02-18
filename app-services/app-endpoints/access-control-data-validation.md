@@ -1,4 +1,14 @@
+---
+title: Configure Access Control and Data Validation
+description: Access Control and Data Validation is vital to the security of your
+  App Endpoint.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/access-control-data-validation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/access-control-data-validation.html)
+
+# Configure Access Control and Data Validation
 
 > Access Control and Data Validation is vital to the security of your App Endpoint. 
 
@@ -27,10 +37,9 @@ Figure 1\. Select Linked Collections
 4. Define your Access Control and Data Validation function.  
 ![Updating the Access Control and Data Validation function](../_images/app-endpoint/access-control-data-validation.png)  
 Figure 2\. Updating the Access Control and Data Validation Function  
-The provided JavaScript function executes every time a new revision/update is made to a document.
-
-|  | Couchbase recommends thoroughly checking the validity of the function as it will affect each document’s operations that are passing through an App Endpoint. You can restore the function to its original default by clicking **Restore to Default**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The provided JavaScript function executes every time a new revision/update is made to a document.  
+> [!NOTE]  
+> Couchbase recommends thoroughly checking the validity of the function as it will affect each document’s operations that are passing through an App Endpoint. You can restore the function to its original default by clicking **Restore to Default**.
 
 ## [](#the-access-control-and-data-validation-function)The Access Control and Data Validation Function
 
@@ -50,8 +59,11 @@ The function arguments are:
 | oldDoc (optional) | If the document has been saved before, this object references the revision being replaced; otherwise it is null. In the case of a document with conflicts, the current provisional winning revision is passed in oldDoc.                                                                                                                                                    |
 | meta (optional)   | This argument references the user-defined XATTR that you can use to hold access grant data. The referenced object can include items such as channels or roles. So, instead of embedding channel information directly within the document body, users can specify the user-defined XATTR associated with the document.                                                       |
 
-|  | The default function differs depending on the following situations: For the default collection: (\_default.\_default) \- channel(doc.channels) will be used. For non-default collections - channel(collectionName) will be used. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The default function differs depending on the following situations:
+> 
+> * For the default collection: `(_default._default)` \- `channel(doc.channels)` will be used.
+> * For non-default collections - `channel(collectionName)` will be used.
 
 ## [](#writing-a-custom-access-control-and-data-validation-function)Writing a Custom Access Control and Data Validation Function
 

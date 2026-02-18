@@ -1,4 +1,12 @@
+---
+title: Upgrade a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-couchbase-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-couchbase-upgrade.html)
+
+# Upgrade a Couchbase Deployment
 
 > How-to upgrade Couchbase Server to a newer version. 
 

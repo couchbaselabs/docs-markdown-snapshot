@@ -1,4 +1,14 @@
+---
+title: Retrieve GSI Settings
+description: To retrieve the global secondary index settings use <code>GET
+  /settings/indexes</code>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/get-settings-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/get-settings-indexes.html)
+
+# Retrieve GSI Settings
 
 > To retrieve the global secondary index settings use `GET /settings/indexes`. 
 

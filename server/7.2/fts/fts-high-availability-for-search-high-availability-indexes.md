@@ -1,4 +1,12 @@
+---
+title: High Availability Indexes
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-high-availability-for-search-high-availability-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-high-availability-for-search-high-availability-indexes.html)
+
+# High Availability Indexes
 
 High availability indexes help users prevent downtime caused by unplanned incidents and enhance the overall system availability. It is achieved through Replica and Failover mechanisms with Search Service.
 

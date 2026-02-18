@@ -1,4 +1,12 @@
+---
+title: Travel Sample Mobile App
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/installation/travel-mobile-app.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/installation/travel-mobile-app.html)
+
+# Travel Sample Mobile App
 
 ## [](#pre-requisites)Pre-requisites
 
@@ -19,10 +27,9 @@ cd /path/to/mobile-travel-sample/ios/TravelSample
 * Run the following script to download and install Couchbase Lite. Scripts are provided to install Couchbase Lite compatible with different versions of Xcode and Swift, here we use the version for Xcode 13.  
 ```bash  
 sh install_13.sh  
-```
-
-|  | If you choose to use Xcode12.3+, you may be impacted by an issue in Xcode while using linked frameworks. Please follow the instructions outlined [here](#2.8@couchbase-lite:swift:gs-install.adoc) to workaround the issue. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> If you choose to use Xcode12.3+, you may be impacted by an issue in Xcode while using linked frameworks. Please follow the instructions outlined [here](#2.8@couchbase-lite:swift:gs-install.adoc) to workaround the issue.
 * Open the `TravelSample.xcodeproj` using Xcode
 
 ## [](#configure-app-to-connect-to-backend)Configure App to connect to Backend

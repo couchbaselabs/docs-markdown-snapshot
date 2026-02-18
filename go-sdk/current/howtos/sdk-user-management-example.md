@@ -1,4 +1,15 @@
+---
+title: User Management
+description: The Go SDK lets you create <em>users</em>, assign them
+  <em>roles</em> and associated <em>privileges</em>, and remove them from the
+  system.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/sdk-user-management-example.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/howtos/sdk-user-management-example.html)
+
+# User Management
 
 > The Go SDK lets you create _users_, assign them _roles_ and associated _privileges_, and remove them from the system. 
 
@@ -141,8 +152,8 @@ Using a user created in the SDK to access data:
 
 From SDK 2.6, you can also perform password rotation on the currently authenticated user without the need for elevated permissions.
 
-|  | The SDK instance becomes invalidated after changing the user’s password, so you need to re-authenticate your SDK client with the new password. If you don’t, you will start to see authentication errors. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The SDK instance becomes invalidated after changing the user’s password, so you need to re-authenticate your SDK client with the new password. If you don’t, you will start to see authentication errors.
 
 ```golang
 	opts := gocb.ClusterOptions{

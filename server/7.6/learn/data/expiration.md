@@ -1,4 +1,17 @@
+---
+title: Expiration
+description: The expiration setting for a document determines if and when it
+  expires. When a document expires, Couchbase Server removes it. You can set a
+  maximum time to live (maxTTL) value on buckets and collections that imposes a
+  default expiration on their documents. It also imposes an upper limit on
+  explicitly-set expiration times.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/expiration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/data/expiration.html)
+
+# Expiration
 
 > The expiration setting for a document determines if and when it expires. When a document expires, Couchbase Server removes it. You can set a maximum time to live (maxTTL) value on buckets and collections that imposes a default expiration on their documents. It also imposes an upper limit on explicitly-set expiration times. 
 
@@ -62,8 +75,8 @@ For example, suppose a document is in a bucket that has a `maxTTL` setting of 72
 
 You can use [deletion filters](../../manage/manage-xdcr/filter-xdcr-replication.md#deletion-filters) to prevent XDCR from replicating expiration values.
 
-|  | For replicated documents to expire consistently in a source and target database, be sure to synchronize the system clocks of the two database clusters. Otherwise, replicated documents which should expire at the same time as their source documents may expire before or after the source. See [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For replicated documents to expire consistently in a source and target database, be sure to synchronize the system clocks of the two database clusters. Otherwise, replicated documents which should expire at the same time as their source documents may expire before or after the source. See [Clock Sync with NTP](../../install/synchronize-clocks-using-ntp.md).
 
 ## [](#auditing)Auditing Expiration
 

@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Hibernation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-hibernation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-hibernation.html)
+
+# Couchbase Cluster Hibernation
 
 > The Operator allows a Couchbase cluster to be hibernated. This documents what hibernation means and the hibernation life-cycle. 
 
@@ -39,5 +47,5 @@ Supportable clusters, with both volume backed and ephemeral server classes, will
 
 The Operator updates the cluster conditions during the life cycle of a hibernation. This allows 3rd party observers to know when a cluster has hibernated fully. When completely hibernated all I/O to persistent volumes will have terminated and be in a stable state.
 
-|  | Currently, you must make sure that no rebalance is taking place before hibernating the cluster. This can be done by querying the couchbase server API to [ensure there are no running tasks.](https://docs.couchbase.com/server/current/rest-api/rest-get-cluster-tasks.html#no-tasks-underway) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Currently, you must make sure that no rebalance is taking place before hibernating the cluster. This can be done by querying the couchbase server API to [ensure there are no running tasks.](https://docs.couchbase.com/server/current/rest-api/rest-get-cluster-tasks.html#no-tasks-underway)

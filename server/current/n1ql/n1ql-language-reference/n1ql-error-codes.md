@@ -1,4 +1,14 @@
+---
+title: SQL++ Error Codes
+description: The following table lists all of the SQL++ error codes, their error
+  message, and some tips to resolve them.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/n1ql-error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/n1ql-error-codes.html)
+
+# SQL++ Error Codes
 
 > The following table lists all of the SQL++ error codes, their error message, and some tips to resolve them. 
 
@@ -94,8 +104,10 @@ These errors are related to the services.
 | 1203  | Slow/stalled client write timed out                                                         | **Reason** A write to the request output stream timed out. Individual writes that make up the response must not block indefinitely, which typically occurs when the client isn't reading the response stream. **User Action** Check the application is reading response stream fast enough to avoid blocking writes.                                                                                                                                                                                                                                                                                     |
 | 1204  | request halted: free memory below «threshold»% of available memory                          | **Reason** The request was halted by admission control due to low available memory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-|  | Error 1040 The Query Service REST API returns this error if you specify request parameters as form data and include an unescaped semicolon (;) in a statement. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Error 1040
+> 
+> The Query Service REST API returns this error if you specify request parameters as form data and include an unescaped semicolon (;) in a statement.
 
 ## [](#2xxx-codes-admin)2xxx Codes (admin)
 
@@ -362,8 +374,14 @@ These errors are related to the execution.
 | 5706  | Failed to seek in spill file                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | 5707  | Too many spill files                                                                                                                     | **Reason** The operation is attempting to use more files for temporarily spilling data to disk than is permitted. **User Action** Increase your request memory quota. Contact support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
-|  | Error 5500 You can set a memory quota with the Couchbase Server UI, the REST API, or the CLI. For more information, see [Configure Queries](../n1ql-manage/query-settings.md). To set a memory quota with the UI, see [Query Settings](../../manage/manage-settings/general-settings.md#query-settings) in the General settings for Couchbase Server. To set a memory quota with the REST API, see the cluster-level [queryMemoryQuota](../n1ql-manage/query-settings.md#queryMemoryQuota) setting. To set a memory quota with the CLI, see [setting-query](../../cli/cbcli/couchbase-cli-setting-query.md) in the CLI Reference. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Error 5500
+> 
+> You can set a memory quota with the Couchbase Server UI, the REST API, or the CLI. For more information, see [Configure Queries](../n1ql-manage/query-settings.md).
+> 
+> * To set a memory quota with the UI, see [Query Settings](../../manage/manage-settings/general-settings.md#query-settings) in the General settings for Couchbase Server.
+> * To set a memory quota with the REST API, see the cluster-level [queryMemoryQuota](../n1ql-manage/query-settings.md#queryMemoryQuota) setting.
+> * To set a memory quota with the CLI, see [setting-query](../../cli/cbcli/couchbase-cli-setting-query.md) in the CLI Reference.
 
 ## [](#9999-code-error)9999 Code (error)
 

@@ -1,4 +1,13 @@
+---
+title: Buckets, Memory, and Storage
+description: Couchbase Server saves data within <em>Buckets</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/buckets-memory-and-storage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/buckets-memory-and-storage.html)
+
+# Buckets, Memory, and Storage
 
 > Couchbase Server saves data within _Buckets_. 
 

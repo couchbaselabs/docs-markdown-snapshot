@@ -1,4 +1,14 @@
+---
+title: Data Structures Reference
+description: You can use complex data structures such as dictionaries and lists
+  in Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/ref/pages/data-structures.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/ref/data-structures.html)
+
+# Data Structures Reference
 
 > You can use complex data structures such as dictionaries and lists in Couchbase. 
 
@@ -32,8 +42,8 @@ Note that there are only **two** basic types: map and list. Types such as _queue
 
 Data structures can be accessed using key-value APIs as well. In fact, the data structure API is actually a client-side wrapper _around_ the key-value and sub-document API. Most of the data structure APIs wrap the sub-document API directly.
 
-|  | Because the data structure API is just a wrapper around the various key-value APIs, you are free to switch between them in your code. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Because the data structure API is just a wrapper around the various key-value APIs, you are free to switch between them in your code.
 
 ## [](#jcf)Collections Framework Integration
 

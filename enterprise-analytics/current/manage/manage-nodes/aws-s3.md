@@ -1,4 +1,14 @@
+---
+title: Configuring AWS S3 Storage
+description: You can set up Couchbase Enterprise Analytics to use Amazon S3 as
+  its storage solution.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/aws-s3.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/aws-s3.html)
+
+# Configuring AWS S3 Storage
 
 > You can set up Couchbase Enterprise Analytics to use Amazon S3 as its storage solution. Your Enterprise Analytics cluster can then read and store data from an Amazon S3 bucket. Each node in an Enterprise Analytics cluster must have access to the configured bucket either using an AWS access policy or credentials file. 
 

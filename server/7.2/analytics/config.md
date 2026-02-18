@@ -1,4 +1,13 @@
+---
+title: Analytics Configuration Parameters
+description: A description of all configurable parameters for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/config.html)
+
+# Analytics Configuration Parameters
 
 The Couchbase Analytics Service has a number of configuration parameters to customize Analytics nodes. There are two categories of configuration parameters: service-level parameters and node-specific parameters.
 
@@ -6,8 +15,8 @@ The Couchbase Analytics Service has a number of configuration parameters to cust
 
 Service-level parameters are applied to all nodes running the Analytics Service. These parameters can be used with the [Service Configuration API](rest-config.md#%5Fput%5Fservice)to configure all Analytics Service nodes in the cluster.
 
-|  | For the configuration changes to take effect, you must restart the Analytics cluster using the [Cluster Restart API](rest-admin.md#%5Frestart%5Fcluster). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For the configuration changes to take effect, you must restart the Analytics cluster using the [Cluster Restart API](rest-admin.md#%5Frestart%5Fcluster).
 
 ### [](#%5Fservice)Service
 
@@ -64,8 +73,8 @@ Service-level parameters are applied to all nodes running the Analytics Service.
 
 The following parameters can be used with the [Node Configuration API](rest-config.md#%5Fput%5Fnode)to configure the Analytics Service node that receives the change request.
 
-|  | For the configuration changes to take effect, you must restart the node using the [Node Restart API](rest-admin.md#%5Frestart%5Fnode), or restart the Analytics cluster using the [Cluster Restart API](rest-admin.md#%5Frestart%5Fcluster). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For the configuration changes to take effect, you must restart the node using the [Node Restart API](rest-admin.md#%5Frestart%5Fnode), or restart the Analytics cluster using the [Cluster Restart API](rest-admin.md#%5Frestart%5Fcluster).
 
 ### [](#%5Fnode)Node
 

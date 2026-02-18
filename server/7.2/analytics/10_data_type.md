@@ -1,4 +1,13 @@
+---
+title: Data Types
+description: A description of data types in Couchbase SQL++ for Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/10_data_type.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/10_data_type.html)
+
+# Data Types
 
 This section describes the data types which Couchbase Analytics can operate on.
 
@@ -17,8 +26,8 @@ Examples:
 true
 false
 
-|  | An expression that compares two values, such as weight > limit, might return a boolean value, or it might return one of the special values null or missing. For details, see [Comparison Operators](2%5Fexpr.md#Comparison%5Foperators). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An expression that compares two values, such as `weight > limit`, might return a `boolean` value, or it might return one of the special values `null` or `missing`. For details, see [Comparison Operators](2%5Fexpr.md#Comparison%5Foperators).
 
 ### [](#PrimitiveTypesString)String
 
@@ -32,8 +41,8 @@ Examples:
 'Have you read "War and Peace"?'
 "I don't think so."
 
-|  | For more details on string literals, see [Literals](2%5Fexpr.md#Literals). |
-|  | -------------------------------------------------------------------------- |
+> [!NOTE]
+> For more details on string literals, see [Literals](2%5Fexpr.md#Literals).
 
 ### [](#PrimitiveTypesInt)Bigint
 
@@ -44,8 +53,11 @@ Examples:
 45
 -27900
 
-|  | In general, arithmetic operations on two bigint values return a bigint result. However, two kinds of division operators are provided: 5 / 2 returns 2.5, a value of type double. 5 div 2 returns 2, a value of type bigint, by truncating the result. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In general, arithmetic operations on two `bigint` values return a `bigint` result. However, two kinds of division operators are provided:
+> 
+> * `5 / 2` returns `2.5`, a value of type `double`.
+> * `5 div 2` returns `2`, a value of type `bigint`, by truncating the result.
 
 ### [](#PrimitiveTypesDouble)Double (double precision)
 
@@ -59,8 +71,8 @@ Examples:
 -2.79E4
 2.79E-4
 
-|  | All numbers in the incoming JSON which are not integers are parsed as double values. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> All numbers in the incoming JSON which are not integers are parsed as `double` values.
 
 ## [](#TemporalData)Temporal Data
 
@@ -126,8 +138,8 @@ As neither the data model nor the system enforces homogeneity for datasets or co
 
 Since a field with value `missing` means the field is absent, we get an empty object.
 
-|  | A missing value is converted to null when converted to JSON in the query results. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> A `missing` value is converted to `null` when converted to JSON in the query results.
 
 ## [](#CompositeTypes)Composite Types
 
@@ -149,12 +161,12 @@ An example would be:
 
 ["alice", 123, "bob", null]
 
-|  | An array can appear in the incoming JSON and can be constructed by the query. Each SELECT statement with an ORDER BY clause returns an array. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An `array` can appear in the incoming JSON and can be constructed by the query. Each SELECT statement with an ORDER BY clause returns an `array`.
 
 ### [](#CompositeTypesMultiset)Multiset
 
 A `multiset` is an unordered collection of items. A `multiset` allows multiple instances of its elements.
 
-|  | A multiset cannot appear in the incoming JSON. A multiset is converted into a JSON array with an undefined order of elements in the query results. The order of the items in the result might change from one query execution to another. Each SELECT statement without an ORDER BY clause returns a multiset. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A `multiset` cannot appear in the incoming JSON. A `multiset` is converted into a JSON array with an undefined order of elements in the query results. The order of the items in the result might change from one query execution to another. Each SELECT statement without an ORDER BY clause returns a `multiset`.

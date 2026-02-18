@@ -1,4 +1,13 @@
+---
+title: "Function: redactSharedData"
+description: Redact Sensitive Data prior to sharing.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-redactSharedData.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-handler-redactSharedData.html)
+
+# Function: redactSharedData
 
 **Goal**: Redact Sensitive Data prior to sharing.
 

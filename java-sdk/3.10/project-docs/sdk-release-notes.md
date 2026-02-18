@@ -1,4 +1,14 @@
+---
+title: SDK Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase Java Client.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Java Client. 
 
@@ -51,10 +61,9 @@ __Table 1\. Optional Artifact Version Compatibility__
 #### [](#improvements)Improvements
 
 * [JVMCBC-1707](https://jira.issues.couchbase.com/browse/JVMCBC-1707): Upgraded `Netty` from `4.1.128` to `4.1.130`.
-* [JCBC-2206](https://jira.issues.couchbase.com/browse/JCBC-2206): Deprecated the Views API.
-
-|  | Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+* [JCBC-2206](https://jira.issues.couchbase.com/browse/JCBC-2206): Deprecated the Views API.  
+> [!NOTE]  
+> Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release.
 
 ### [](#version-3-10-0-11-november-2025)Version 3.10.0 (11 November 2025)
 
@@ -366,10 +375,9 @@ __Table 11\. Optional Artifact Version Compatibility__
   * `io.sendBuffer`
   * `io.receiveBuffer`
   * `io.lowWaterMark`
-  * `io.highWaterMark`
-
-|  | We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * `io.highWaterMark`  
+  > [!NOTE]  
+  > We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue.
 * [JCBC-2179](https://jira.issues.couchbase.com/browse/JCBC-2179): `CouchbaseHttpClient` can now send `PATCH` requests.
 
 ### [](#version-3-7-7-08-january-2025)Version 3.7.7 (08 January 2025)
@@ -464,10 +472,9 @@ __Table 14\. Optional Artifact Version Compatibility__
 #### [](#improvements-12)Improvements
 
 * [JVMCBC-1576](https://jira.issues.couchbase.com/browse/JVMCBC-1576): Bumped `protobuf` version from `3.23.2` to `3.25.5`.
-* [JCBC-2167](https://jira.issues.couchbase.com/browse/JCBC-2167): When using the Reactive API, it’s now possible to specify the default Scheduler results are published on. The new `ClusterEnvironment.Builder.publishOnScheduler(Supplier<Scheduler>)` method takes a supplier that the SDK invokes every time you subscribe to a Mono/Flux. The supplier is invoked by the same thread that does the subscription.
-
-|  | This new configuration option is volatile API, meaning it could change without notice as we refine it based on your feedback. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+* [JCBC-2167](https://jira.issues.couchbase.com/browse/JCBC-2167): When using the Reactive API, it’s now possible to specify the default Scheduler results are published on. The new `ClusterEnvironment.Builder.publishOnScheduler(Supplier<Scheduler>)` method takes a supplier that the SDK invokes every time you subscribe to a Mono/Flux. The supplier is invoked by the same thread that does the subscription.  
+> [!WARNING]  
+> This new configuration option is `volatile` API, meaning it could change without notice as we refine it based on your feedback.
 * [JCBC-2169](https://jira.issues.couchbase.com/browse/JCBC-2169): QueryMetrics now has a useful `.toString()` method.
 
 ### [](#version-3-7-4-08-october-2024)Version 3.7.4 (08 October 2024)
@@ -1664,8 +1671,8 @@ Version 3.2.4 is the fifth release of the 3.2 series.
 
 [Download](https://packages.couchbase.com/clients/java/3.2.4/Couchbase-Java-Client-3.2.4.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-java-client-3.2.4/index.html) | [Core API Reference](http://docs.couchbase.com/sdk-api/couchbase-core-io-2.2.4/)
 
-|  | This release introduces support for JDK 17\. |
-|  | -------------------------------------------- |
+> [!NOTE]
+> This release introduces support for JDK 17\.
 
 The supported and tested dependencies for this release are:
 
@@ -2011,8 +2018,8 @@ The supported and tested dependencies for this release are:
 * io.projectreactor:**reactor-core:3.4.4**
 * org.reactivestreams:**reactive-streams:1.0.3**
 
-|  | Due to protocol level changes, Java SDK 3.1.4 and later are not compatible with _pre-release_ versions of Couchbase Server 7.0\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Due to protocol level changes, Java SDK 3.1.4 and later are not compatible with _pre-release_ versions of Couchbase Server 7.0\.
 
 #### [](#bug-fixes-19)Bug Fixes
 

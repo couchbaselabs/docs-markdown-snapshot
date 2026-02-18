@@ -1,4 +1,12 @@
+---
+title: Configure Couchbase Cluster Auto-scaling
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-couchbase-autoscaling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-couchbase-autoscaling.html)
+
+# Configure Couchbase Cluster Auto-scaling
 
 > Configure Couchbase clusters to automatically scale based on observed usage metrics. 
 
@@ -55,8 +63,8 @@ spec:
 
 After deploying the [CouchbaseCluster](resource/couchbasecluster.md) resource specification, the Kubernetes Operator will create a [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource for each server class configuration that has [couchbaseclusters.spec.servers.autoscaleEnabled](resource/couchbasecluster.md#couchbaseclusters-spec-servers-autoscaleenabled) set to `true`.
 
-|  | Enabling auto-scaling for a particular server class configuration **does not** immediately subject the cluster to being auto-scaled. The [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource simply acts as an endpoint for the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource to access the pods that are selected for auto-scaling. The [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource is only activated when [referenced](#creating-a-horizontalpodautoscaler-resource) by a [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Enabling auto-scaling for a particular server class configuration **does not** immediately subject the cluster to being auto-scaled. The [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource simply acts as an endpoint for the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource to access the pods that are selected for auto-scaling. The [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource is only activated when [referenced](#creating-a-horizontalpodautoscaler-resource) by a [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource.
 
 ### [](#verifying-creation-of-couchbaseautoscaler-resources)Verifying Creation of `CouchbaseAutoscaler` Resources
 
@@ -74,8 +82,10 @@ query.cb-example                   2      query
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | SIZE: This is the current number of Couchbase nodes that the Kubernetes Operator is maintaining for the index server class. The Kubernetes Operator keeps the size of a [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource in sync with the size of its associated server class configuration.                              |
 
-|  | [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources are fully managed by the Kubernetes Operator and should not be manually created, modified, or deleted by the user. If one is manually deleted, the Kubernetes Operator will re-create it. However, it is possible to edit the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) (refer to [\[scale-subresource\]](#scale-subresource) below). A [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource only gets deleted by the Kubernetes Operator when [auto-scaling is disabled](#disabling-auto-scaling) for the associated server class, or if the associated [CouchbaseCluster](resource/couchbasecluster.md) resource is deleted altogether. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) custom resources are fully managed by the Kubernetes Operator and should not be manually created, modified, or deleted by the user. If one is manually deleted, the Kubernetes Operator will re-create it. However, it is possible to edit the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) (refer to [\[scale-subresource\]](#scale-subresource) below).
+> 
+> A [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource only gets deleted by the Kubernetes Operator when [auto-scaling is disabled](#disabling-auto-scaling) for the associated server class, or if the associated [CouchbaseCluster](resource/couchbasecluster.md) resource is deleted altogether.
 
 ## [](#creating-a-horizontalpodautoscaler-resource)Creating a `HorizontalPodAutoscaler` Resource
 
@@ -211,8 +221,8 @@ It’s important to note, however, that the [HorizontalPodAutoscaler](https://ku
 
 If the desire is to only temporarily disable auto-scaling, the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource can be left to persist until auto-scaling is eventually re-enabled. This only works if the names of both the server class and the Couchbase cluster remain the same, because when [couchbaseclusters.spec.servers.autoscaleEnabled](resource/couchbasecluster.md#couchbaseclusters-spec-servers-autoscaleenabled) is set back to `true`, the Kubernetes Operator will create a [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource that is already [referenced](concept-couchbase-autoscaling.md#referencing-the-couchbase-autoscaler) by the existing [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource. In this case, the cluster will immediately become subject to the recommendations of the Horizontal Pod Autoscaler.
 
-|  | Deleting just the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource will also have the effect of "disabling" auto-scaling. In this scenario, the Kubernetes Operator continues to maintain the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource, but it will remain at the same size that was last recommended by the Horizontal Pod Autoscaler before it was deleted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Deleting just the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource will also have the effect of "disabling" auto-scaling. In this scenario, the Kubernetes Operator continues to maintain the [CouchbaseAutoscaler](resource/couchbaseautoscaler.md) resource, but it will remain at the same size that was last recommended by the Horizontal Pod Autoscaler before it was deleted.
 
 ## [](#related-links)Related Links
 

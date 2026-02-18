@@ -1,4 +1,14 @@
+---
+title: Create a Type Mapping
+description: Create a type mapping with the Couchbase Server Web Console to
+  control what documents are included or excluded from a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-type-mapping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/create-type-mapping.html)
+
+# Create a Type Mapping
 
 > Create a type mapping with the Couchbase Server Web Console to control what documents are included or excluded from a Search index. For more information, see [Customize a Search Index with the Web Console](customize-index.md#type-mappings). 
 

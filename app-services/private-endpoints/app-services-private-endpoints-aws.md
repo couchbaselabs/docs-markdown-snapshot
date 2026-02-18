@@ -1,4 +1,14 @@
+---
+title: Manage AWS Private Endpoints for App Services
+description: How to configure and manage private endpoints for App Services
+  using Amazon Web Services (AWS).
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/private-endpoints/app-services-private-endpoints-aws.html)
+
+# Manage AWS Private Endpoints for App Services
 
 > How to configure and manage private endpoints for App Services using Amazon Web Services (AWS). 
 
@@ -148,8 +158,8 @@ To initiate the private endpoint connection for an App Service, run the connecti
 
 The connection command returns a JSON object, giving information about the private endpoint. The most useful information to note is the value of `VpcEndpointId`.
 
-|  | The private endpoint connection must be accepted by the App Service before you can use it. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The private endpoint connection must be accepted by the App Service before you can use it.
 
 Example 4\. Run the connection command for an App Service
 
@@ -315,10 +325,11 @@ To modify the security groups:
 | ---------- | ------------------------------------------- |
 | Source     | Your VPC IPv4 CIDR.For example: 10.0.0.0/16 |
 | Type       | All traffic                                 |
-| Port range | All                                         |
-
-|  | Before selecting All traffic as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](#support:manage-support.adoc). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Port range | All                                         |  
+  > [!CAUTION]  
+  > Before selecting `All traffic` as an inbound rule, consult with your security team and confirm that your private link meets security standards.  
+  >  
+  > For any further questions or concerns, contact [Couchbase Support](#support:manage-support.adoc).
   5. Click **Save changes**.
 3. In the [AWS VPC console](https://console.aws.amazon.com/vpc/), configure your network ACL with an outbound rule:
 
@@ -391,8 +402,8 @@ Removing connections isn’t usually necessary for most operations using App Ser
 
 The [App Services On/Off](../app-services/turn-on-off.md) feature is fully compatible with private endpoints. When an App Service is turned off, any private endpoints will remain in place, although not usable. When the App Service is turned back on, any private endpoints will begin working again. You do not need to re-create any private endpoints.
 
-|  | When an App Service is turned off, a network load balancer remains active in the infrastructure to maintain the private endpoint state. There is some cost associated with this, even though the App Service is turned off. To avoid this cost, you must fully tear down the private endpoint and disable it, before turning off the App Service. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When an App Service is turned off, a network load balancer remains active in the infrastructure to maintain the private endpoint state. There is some cost associated with this, even though the App Service is turned off. To avoid this cost, you must fully tear down the private endpoint and disable it, before turning off the App Service.
 
 ## [](#disable-private-endpoints)Disable Private Endpoints
 

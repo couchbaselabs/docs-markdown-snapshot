@@ -1,7 +1,15 @@
+---
+title: Health Checks
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/health-checks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/health-checks.html)
 
-|  | The "CB900XX" system of IDs is subject to change in future releases. |
-|  | -------------------------------------------------------------------- |
+# Health Checks
+
+> [!NOTE]
+> The "CB900XX" system of IDs is subject to change in future releases.
 
 ## [](#cluster-checks)Cluster Checks
 
@@ -411,8 +419,8 @@ Note that this list of ports is different to the ports needed for application cl
 
 **Condition**: A node detects that it cannot establish TCP connections to another node.
 
-|  | Not all internal ports are currently checked, so there may still be intra-cluster communication issues even if this health check is good. You should ensure that all ports on the below page are unblocked between all nodes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Not all internal ports are currently checked, so there may still be intra-cluster communication issues even if this health check is good. You should ensure that all ports on the below page are unblocked between all nodes.
 
 (Requires the Couchbase Health Agent to be installed.)
 
@@ -654,8 +662,8 @@ The default limit is high enough that it is unlikely to be legitimately exceeded
 
 **Condition**: Warning if the number of connections is above 80% of the default limit (60,000). Upgraded to an alert if the limit is exceeded, or log messages are seen that indicate that client connections are being rejected because of the limit.
 
-|  | It is possible to modify this limit. However, if this is done, you will need to adjust this health check’s threshold accordingly, otherwise it may produce false positives or negatives. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is possible to modify this limit. However, if this is done, you will need to adjust this health check’s threshold accordingly, otherwise it may produce false positives or negatives.
 
 **Remediation**: Review your application code to ensure that it is closing Couchbase connections properly.
 

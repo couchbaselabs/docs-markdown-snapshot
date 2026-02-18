@@ -1,4 +1,15 @@
+---
+title: Request Prompt Action for Cluster Recovery
+description: You can choose to authorize Couchbase Capella Support to
+  automatically take remedial actions to a specific cluster, in case a failure
+  is detected.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/support-pre-auth.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/support-pre-auth.html)
+
+# Request Prompt Action for Cluster Recovery
 
 > You can choose to authorize Couchbase Capella Support to automatically take remedial actions to a specific cluster, in case a failure is detected. 
 
@@ -8,8 +19,8 @@ Use the **Request prompt action for cluster recovery** feature from the **Settin
 
 If you enable this setting, Capella Support does not wait for your explicit permission to try and recover your cluster and any linked App Services. If you have not deployed App Services with your cluster, this authorization still applies to any future App Services deployments.
 
-|  | This setting is enabled by default when you create a new cluster. |
-|  | ----------------------------------------------------------------- |
+> [!NOTE]
+> This setting is enabled by default when you create a new cluster.
 
 Capella Support will only make changes to your cluster if you enable the cluster recovery authorization, and a delay in action might result in severe consequences to your cluster App Services. You can [Review Actions Taken By Capella Support](#review-support) at any time.
 
@@ -26,8 +37,8 @@ If you enable the cluster recovery authorization, Couchbase Capella support may 
 * Create another cluster with the same topology, restored from the last known backup.
 * Create another cluster with increased storage and compute resources, restored from the last known backup.
 
-|  | Adding storage or compute resources to your cluster could result in additional costs to you. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Adding storage or compute resources to your cluster could result in additional costs to you.
 
 ### [](#what-actions-capella-support-cannot-take-on-a-cluster)What Actions Capella Support Cannot Take On A Cluster
 
@@ -35,8 +46,8 @@ If you enable the cluster recovery authorization, the Capella Support team still
 
 ## [](#change-auth)Enable Cluster Recovery Authorization for a Cluster
 
-|  | You must have the Organization Owner, Project Owner, or Cluster Manager role to change the cluster recovery authorization for a cluster |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must have the `Organization Owner`, `Project Owner`, or `Cluster Manager` role to change the cluster recovery authorization for a cluster
 
 You must set this permission for each cluster in your organization. This setting also applies to any current or future App Services linked to the cluster.
 

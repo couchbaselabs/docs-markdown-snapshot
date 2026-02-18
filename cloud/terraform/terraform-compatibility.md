@@ -1,4 +1,14 @@
+---
+title: Terraform Compatibility Guide
+description: Compatibility of Couchbase Capella Provider with Cloud Providers,
+  Operating Systems, and processor architectures.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/terraform/pages/terraform-compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/terraform/terraform-compatibility.html)
+
+# Terraform Compatibility Guide
 
 > Compatibility of Couchbase Capella Provider with Cloud Providers, Operating Systems, and processor architectures. 
 

@@ -1,4 +1,14 @@
+---
+title: Sync Function
+description: About Sync Gateway <em>Roles</em> and their part in secure
+  cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/sync-function/sync-function.html)
+
+# Sync Function
 
 > About Sync Gateway _Roles_ and their part in secure cloud-to-edge enterprise data synchronization.  
 > Here we introduce the concept of _Roles_ and the part they play in assuring secure access control within _Sync Gateway_.
@@ -29,8 +39,8 @@ Any validation checks will probably fail because of the missing properties, so b
 
 Couchbase Sync Gateway defines a Sync Function at the `collection` level. Defining at this level helps simplify data management and improve data reliability. Each collection in the system allows for only one Sync Function, which enables the specification of Access Control rules.
 
-|  | The Sync Function uses the [ES5 standard](https://ecma-international.org/wp-content/uploads/ECMA-262%5F5.1%5Fedition%5Fjune%5F2011.pdf) of JavaScript syntax. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Sync Function uses the [ES5 standard](https://ecma-international.org/wp-content/uploads/ECMA-262%5F5.1%5Fedition%5Fjune%5F2011.pdf) of JavaScript syntax.
 
 Example 1\. Default Sync Function
 
@@ -90,8 +100,8 @@ curl --location --request PUT 'http://localhost:4985/getting-started-db.foo.bar/
         }'
 ```
 
-|  | Users running version v3.0+ must run with disable\_persistent\_config=true |
-|  | -------------------------------------------------------------------------- |
+> [!NOTE]
+> Users running version v3.0+ must run with `disable_persistent_config=true`
 
 Here we embed our Sync Function in our Sync Gateway configuration file.
 
@@ -226,20 +236,20 @@ Use the `access()` function to grant a user access to a channel.
 | username | Must be a string identifying a user, or an array of strings identifying multiple users; the function is applied to each user in the array. If the value resolves to null the function result is a no-op.                                                              |
 | channels | Must be a string identifying a channel name, or an array of strings to specify multiple channel names (for example: (\['channel1', 'channel2'\]); the function is applied to each element in the array. If the value resolves to null the function result is a no-op. |
 
-|  | As a convenience, the resolved value of either argument may be null or undefined, in which case nothing happens. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As a convenience, the resolved value of either argument may be `null` or `undefined`, in which case nothing happens.
 
 ### [](#context)Context
 
 You can invoke this function multiple times from within your Sync Function.
 
-|  | Prefix the username argument value with role: to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Prefix the `username` argument value with `role:` to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role.
 
 The effects of all access calls by all active documents are effectively combined in a union, so if _any_ document grants a user access to a channel, that user has access to the channel.
 
-|  | The sync function access() call does not support the wildcard ('**\***') for granting access to all channels. To grant a user access to all channels, use the REST API channel grant endpoint. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The sync function `access()` call does not support the wildcard ('**\***') for granting access to all channels. To grant a user access to all channels, use the REST API channel grant endpoint.
 
 ### [](#use-2)Use
 
@@ -263,8 +273,8 @@ access ("snej", null);
 | **4** | Allow access of multiple channels to multiple users |
 | **5** | The null arguments mean these are treated as no-ops |
 
-|  | If you invoke the access() function multiple times to grant the same user access to the same channel, you could see negative performance effects, such as large fetches or request timeouts. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you invoke the `access()` function multiple times to grant the same user access to the same channel, you could see negative performance effects, such as large fetches or request timeouts.
 
 ## [](#lbl-channel)channel()
 
@@ -316,13 +326,15 @@ Here is the default Sync Function when you have upgraded; it remains the same as
 
 The channel function can be called zero or more times from the sync function, for any document.
 
-|  | Channels don’t have to be predefined.A channel implicitly comes into existence when a document is routed to it. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Channels don’t have to be predefined.  
+> A channel implicitly comes into existence when a document is routed to it.
 
 Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur.
 
-|  | As a convenience, it is legal to call channel with a null or undefined argument; it simply does nothing.This allows you to do something like channel(doc.channels) without having to first check whether doc.channels exists. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As a convenience, it is legal to call `channel` with a `null` or `undefined` argument; it simply does nothing.  
+> This allows you to do something like `channel(doc.channels)` without having to first check whether `doc.channels` exists.
 
 ### [](#use-3)Use
 
@@ -548,8 +560,8 @@ role(username, rolename)
 
 Use the `role()` function to add a role to a user. This indirectly gives them access to any channels assigned to that role.
 
-|  | Roles, like users, have to be explicitly created by an administrator. |
-|  | --------------------------------------------------------------------- |
+> [!NOTE]
+> Roles, like users, have to be explicitly created by an administrator.
 
 ### [](#arguments-8)Arguments
 
@@ -564,8 +576,8 @@ This function affects the user’s ability to revise documents, if the access fu
 
 Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
 
-|  | You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.
 
 ### [](#use-9)Use
 

@@ -1,4 +1,14 @@
+---
+title: Introduction
+description: The Couchbase Apache Superset Connector lets you visualize data
+  from Tabular Analytics Views (TAV) in Apache Superset.
+editUrl: https://github.com/couchbase/docs-connectors-superset/edit/release/1.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/superset-connector/current/index.html)
+
+# Introduction
 
 > The Couchbase Apache Superset Connector lets you visualize data from Tabular Analytics Views (TAV) in Apache Superset.
 > 
@@ -40,10 +50,9 @@ Next, you need to add the IP address of the machine from which you’re running 
 1. Click on **Allowed IP Addresses** in the left-hand menu.
 2. Click the **Add Allowed IP** button.  
 ![capella columnar add allowed ip](_images/capella-columnar-add-allowed-ip.png)
-3. Enter the IP address of the Superset host machine.
-
-|  | You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+3. Enter the IP address of the Superset host machine.  
+> [!TIP]  
+> You can use the **Add Current IP Address** button to fill in the address of the machine currently running the web console.
 
 Now, you will need to create a user account for Superset to access the columnar data.
 

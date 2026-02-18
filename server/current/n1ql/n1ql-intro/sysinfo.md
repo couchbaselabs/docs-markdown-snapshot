@@ -1,4 +1,15 @@
+---
+title: Get System Information
+description: SQL++ has a system namespace that stores metadata about data
+  containers, the Query service, and the system as a whole. You can query the
+  system namespace to get this information.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-intro/sysinfo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-intro/sysinfo.html)
+
+# Get System Information
 
 > SQL++ has a system namespace that stores metadata about data containers, the Query service, and the system as a whole. You can query the system namespace to get this information. 
 
@@ -88,8 +99,8 @@ This catalog contains the following attributes:
 | **namespace\_id** _required_ | ID of the namespace to which the scope belongs. | String |
 | **path** _required_          | Path of the scope.                              | String |
 
-|  | Querying system:scopes only returns named scopes — that is, non-default scopes. To return all scopes, including the default scopes, you can query system:all\_scopes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:scopes` only returns named scopes — that is, non-default scopes. To return all scopes, including the default scopes, you can query `system:all_scopes`.
 
 ## [](#querying-keyspaces)Query Collections
 
@@ -112,8 +123,8 @@ This catalog contains the following attributes:
 | **path** _required_          | Path of the keyspace.                                                                                                                                     | String |
 | **scope** _optional_         | For a named, non-default collection: Scope to which the keyspace belongs.                                                                                 | String |
 
-|  | Querying system:keyspaces only returns non-system keyspaces. To return all keyspaces, including the system keyspaces, you can query system:all\_keyspaces. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:keyspaces` only returns non-system keyspaces. To return all keyspaces, including the system keyspaces, you can query `system:all_keyspaces`.
 
 ## [](#querying-indexes)Query Indexes
 
@@ -154,8 +165,8 @@ This catalog contains the following attributes:
 | -------------------------------------- | ---------------------------------------------------------------- | ------ |
 | **last\_known\_scan\_time** _required_ | The index last scan time from the indexer, in UNIX Epoch format. | Number |
 
-|  | Querying system:indexes only returns indexes on non-system keyspaces. To return all indexes, including indexes on system keyspaces, you can query system:all\_indexes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:indexes` only returns indexes on non-system keyspaces. To return all indexes, including indexes on system keyspaces, you can query `system:all_indexes`.
 
 ## [](#querying-dual)Query Dual
 
@@ -803,21 +814,21 @@ This will result in a list similar to:
 
 This catalog contains the following attributes:
 
-| Name                             | Description                                              | Schema            |
-| -------------------------------- | -------------------------------------------------------- | ----------------- |
-| **durabilityLevel** _required_   | Durability level for all mutations within a transaction. | string            |
-| **durabilityTimeout** _required_ | Durability timeout per mutation within the transaction.  | string (duration) |
-| **expiryTime** _required_        | string (date-time)                                       |                   |
-| **id** _required_                | The transaction ID.                                      | string            |
-| **isolationLevel** _required_    | The isolation level of the transaction.                  | string            |
-| **lastUse** _required_           | string (date-time)                                       |                   |
-| **node** _required_              | The node where the transaction was started.              | string            |
-| **numAtrs** _required_           | The total number of active transaction records.          | integer           |
-| **scanConsistency** _required_   | The transactional scan consistency.                      | string            |
-| **status** _required_            | integer                                                  |                   |
-| **timeout** _required_           | The transaction timeout duration.                        | string (duration) |
-| **usedMemory** _required_        | integer                                                  |                   |
-| **uses** _required_              | integer                                                  |                   |
+| Name                             | Description                                              | Schema             |
+| -------------------------------- | -------------------------------------------------------- | ------------------ |
+| **durabilityLevel** _required_   | Durability level for all mutations within a transaction. | string             |
+| **durabilityTimeout** _required_ | Durability timeout per mutation within the transaction.  | string (duration)  |
+| **expiryTime** _required_        |                                                          | string (date-time) |
+| **id** _required_                | The transaction ID.                                      | string             |
+| **isolationLevel** _required_    | The isolation level of the transaction.                  | string             |
+| **lastUse** _required_           |                                                          | string (date-time) |
+| **node** _required_              | The node where the transaction was started.              | string             |
+| **numAtrs** _required_           | The total number of active transaction records.          | integer            |
+| **scanConsistency** _required_   | The transactional scan consistency.                      | string             |
+| **status** _required_            |                                                          | integer            |
+| **timeout** _required_           | The transaction timeout duration.                        | string (duration)  |
+| **usedMemory** _required_        |                                                          | integer            |
+| **uses** _required_              |                                                          | integer            |
 
 Refer to [SQL++ Support for Couchbase Transactions](../n1ql-language-reference/transactions.md) for more information.
 

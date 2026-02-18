@@ -1,4 +1,13 @@
+---
+title: Work with Documents
+description: How to perform CRUD key-value operations in Couchbase.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/kv-operations.html)
+
+# Work with Documents
 
 > How to perform CRUD key-value operations in Couchbase. 
 

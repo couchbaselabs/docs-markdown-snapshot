@@ -1,4 +1,14 @@
+---
+title: CREATE SEQUENCE
+description: The CREATE SEQUENCE statement enables you to create a sequence in a
+  given scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createsequence.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/createsequence.html)
+
+# CREATE SEQUENCE
 
 > The CREATE SEQUENCE statement enables you to create a sequence in a given scope. 
 

@@ -1,4 +1,12 @@
+---
+title: On-premise deployment
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/deployment-onpremise.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/deployment-onpremise.html)
+
+# On-premise deployment
 
 A working example is [provided](https://github.com/couchbaselabs/observability/tree/main/examples/containers/) based on a docker compose stack to run up a single node Couchbase cluster with the microlith all correctly configured.
 

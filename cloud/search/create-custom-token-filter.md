@@ -1,4 +1,15 @@
+---
+title: Create a Custom Token Filter
+description: Create a custom token filter with the Couchbase Capella UI to
+  change how the Search Service creates tokens from Search index content and
+  Search queries.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-token-filter.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/create-custom-token-filter.html)
+
+# Create a Custom Token Filter
 
 > Create a custom token filter with the Couchbase Capella UI to change how the Search Service creates tokens from Search index content and Search queries. 
 

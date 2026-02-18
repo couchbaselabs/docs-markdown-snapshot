@@ -1,11 +1,20 @@
+---
+title: New Logging API
+description: Couchbase Lite 3.2.2 introduces a new Logging API.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/new-logging-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/new-logging-api.html)
+
+# New Logging API
 
 > Couchbase Lite 3.2.2 introduces a new Logging API. 
 
 ## [](#upgrading-to-the-new-cbl-logging-api)Upgrading to the New CBL Logging API
 
-|  | Use of the deprecated and new Logging API at the same time is not supported. |
-|  | ---------------------------------------------------------------------------- |
+> [!CAUTION]
+> Use of the deprecated and new Logging API at the same time is not supported.
 
 You can find information about the new Couchbase Lite Logging API introduced in Couchbase Lite 3.2.2.
 
@@ -62,8 +71,8 @@ LogSinks.get().setConsole(new ConsoleLogSink(LogLevel.WARNING));
 
 The changes necessary to convert the installation of a file logger are also similar. Instead of configuring a `FileLogger` using a `LogFileConfiguration`, create a new `FileLogSink` with the desired properties and install it.
 
-|  | setRotateCount from the old API is slightly different from setMaxKeptFiles. setMaxKeptFiles is the maximum number of log files that will exist at any time and is the count of rotated files (setRotateCount) plus one. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `setRotateCount` from the old API is slightly different from `setMaxKeptFiles`. `setMaxKeptFiles` is the maximum number of log files that will exist at any time and is the count of rotated files (`setRotateCount`) plus one.
 
 Old API
 
@@ -102,8 +111,8 @@ A second important change is that your logger will receive only logs at the leve
 
 Related to this last point, the Couchbase `Loggers`, now `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
-|  | With the new API, customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> With the new API, customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so.
 
 Old API Implementing The Custom Logger Interface
 

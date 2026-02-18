@@ -1,4 +1,14 @@
+---
+title: JOIN Clause
+description: The JOIN clause enables you to create new input objects by
+  combining two or more source objects.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/join.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/join.html)
+
+# JOIN Clause
 
 > The `JOIN` clause enables you to create new input objects by combining two or more source objects. 
 
@@ -50,8 +60,8 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 To be closer to standard SQL syntax, ANSI JOIN can join arbitrary fields of the documents and can be chained together.
 
-|  | [ANSI JOIN](#section%5Fek1%5Fjnx%5F1db) and [ANSI NEST](nest.md#section%5Ftc1%5Fnnx%5F1db) clauses have much more flexible functionality than their earlier INDEX and LOOKUP equivalents. Since these are standard compliant and more flexible, we recommend you to use ANSI JOIN and ANSI NEST exclusively, where possible. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [ANSI JOIN](#section%5Fek1%5Fjnx%5F1db) and [ANSI NEST](nest.md#section%5Ftc1%5Fnnx%5F1db) clauses have much more flexible functionality than their earlier INDEX and LOOKUP equivalents. Since these are standard compliant and more flexible, we recommend you to use ANSI JOIN and ANSI NEST exclusively, where possible.
 
 ### [](#syntax-2)Syntax
 
@@ -104,8 +114,13 @@ To try the examples in this section, set the query context to the `inventory` sc
 | **LEFT \[OUTER\] JOIN ... ON**  | SELECT \* FROM route LEFT JOIN airline ON route.airlineid = META(airline).id WHERE route.sourceairport = "SFO"; |                                                                                                                  |
 | **RIGHT \[OUTER\] JOIN ... ON** | RIGHT OUTER JOIN can only be the first join specified in a FROM clause.                                         | SELECT \* FROM route RIGHT JOIN airline ON route.airlineid = META(airline).id WHERE route.sourceairport = "SFO"; |
 
-|  | In Couchbase Capella, if you create either of the following: A LEFT OUTER JOIN where all the NULL or MISSING results on the right-hand side are filtered out by the [WHERE clause](where.md) or by the ON clause of a subsequent INNER JOIN, or A RIGHT OUTER JOIN where all the NULL or MISSING results on the left-hand side are filtered out by the [WHERE clause](where.md) or by the ON clause of a subsequent INNER JOIN, Then the query is transformed internally into an INNER JOIN for greater efficiency. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Capella, if you create either of the following:
+> 
+> * A LEFT OUTER JOIN where all the NULL or MISSING results on the right-hand side are filtered out by the [WHERE clause](where.md) or by the ON clause of a subsequent INNER JOIN, or
+> * A RIGHT OUTER JOIN where all the NULL or MISSING results on the left-hand side are filtered out by the [WHERE clause](where.md) or by the ON clause of a subsequent INNER JOIN,
+> 
+> Then the query is transformed internally into an INNER JOIN for greater efficiency.
 
 #### [](#ansi-join-lateral)LATERAL Join
 
@@ -119,8 +134,8 @@ INNER JOINS and LEFT OUTER JOINS support the optional LATERAL keyword in front o
 
 RIGHT OUTER JOINS do not support the optional LATERAL keyword.
 
-|  | Using the LATERAL keyword in an ANSI join implies that the right-hand side of the join must appear after the left-hand side of the join. This may prevent the cost-based optimizer from reordering joins in the query to give the optimal join order. For details, see [Join Enumeration](cost-based-optimizer.md#join-enumeration). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Using the LATERAL keyword in an ANSI join implies that the right-hand side of the join must appear after the left-hand side of the join. This may prevent the cost-based optimizer from reordering joins in the query to give the optimal join order. For details, see [Join Enumeration](cost-based-optimizer.md#join-enumeration).
 
 #### [](#ansi-join-predicate)Join Predicate
 
@@ -441,8 +456,8 @@ rhs-subquery ::= subquery-expr 'AS'? alias
 
 Use parentheses to specify a subquery for the right-hand side of the ANSI join. For details, see [Subquery Expression](from.md#select-expr-clause).
 
-|  | A subquery on the right-hand side of the ANSI join cannot be **correlated**, i.e. it cannot refer to a keyspace in the outer query block. This will lead to an error. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A subquery on the right-hand side of the ANSI join cannot be **correlated**, i.e. it cannot refer to a keyspace in the outer query block. This will lead to an error.
 
 #### [](#ansi-subquery-alias)AS Alias
 
@@ -466,8 +481,8 @@ rhs-generic ::= expr ( 'AS'? alias )?
 
 A SQL++ [expression](index.md) generating JSON documents or objects for the right-hand side of the ANSI join.
 
-|  | An expression on the right-hand side of the ANSI join may be **correlated**, i.e. it may refer to a keyspace on the left-hand side of the join. In this case, only a [nested-loop join](#ansi-join-hints) may be used. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An expression on the right-hand side of the ANSI join may be **correlated**, i.e. it may refer to a keyspace on the left-hand side of the join. In this case, only a [nested-loop join](#ansi-join-hints) may be used.
 
 #### [](#ansi-generic-alias)AS Alias
 
@@ -557,11 +572,11 @@ There are two join methods for performing ANSI join: nested-loop join and hash j
 
 The ANSI join hints are similar to the [USE INDEX](hints.md#use-index-clause) or [USE KEYS](hints.md#use-keys-clause) hints. The ANSI join hints can be specified after the right-hand side of an ANSI join specification.
 
-|  | The join hint for the first join should be specified on the first join’s right-hand side, and the join hint for the second join should be specified on the second join’s right-hand side, etc. If a join hint is specified on the first FROM term, i.e. the first join’s left-hand side, an error is returned. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The join hint for the first join should be specified on the first join’s right-hand side, and the join hint for the second join should be specified on the second join’s right-hand side, etc. If a join hint is specified on the first FROM term, i.e. the first join’s left-hand side, an error is returned.
 
-|  | In Couchbase Capella, you can also supply a join hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify a join hint for the same keyspace using both the USE clause and a hint comment. If you do this, the USE clause and the hint comment are both marked as erroneous and ignored by the optimizer. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In Couchbase Capella, you can also supply a join hint within a specially-formatted [hint comment](optimizer-hints.md). Note that you cannot specify a join hint for the same keyspace using both the `USE` clause and a hint comment. If you do this, the `USE` clause and the hint comment are both marked as erroneous and ignored by the optimizer.
 
 Default Join Method
 
@@ -651,8 +666,8 @@ When chosen, the hash join will always work; the restrictions are on any USE KEY
 * The expression must be constants, host variables, etc.
 * Must not contain any subqueries.
 
-|  | If the USE KEYS hint contains references to other keyspaces or subqueries, then the USE HASH hint will be ignored and nested-loop join will be used instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the USE KEYS hint contains references to other keyspaces or subqueries, then the USE HASH hint will be ignored and nested-loop join will be used instead.
 
 ### [](#examples-3)Examples
 
@@ -738,8 +753,19 @@ ON (rte.airlineid = META(aline).id);
 
 ANSI JOIN provides great flexibility since the `ON` clause of an ANSI JOIN can be any expression as long as it evaluates to TRUE or FALSE. Below are different join scenarios involving arrays and ways to handle each scenario.
 
-|  | These keyspaces and indexes will be used throughout this section’s array scenarios. As a convention, when a field name starts with a it is an array, so each keyspace has two array fields and two regular fields. ![ansi-join-example](../_images/ansi-join-example-5655abeb045efeff368831190fba81dddb8f3fbe.svg) Within each keyspace, both \_idx1 indexes index each element of its array, while both \_idx2 indexes use its entire array as the index key. CREATE INDEX b1\_idx1 ON b1 (c11, c12, DISTINCT a11); CREATE INDEX b1\_idx2 ON b1 (a12); CREATE INDEX b2\_idx1 ON b2 (c21, c22, DISTINCT a21); CREATE INDEX b2\_idx2 ON b2 (a22); |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> These keyspaces and indexes will be used throughout this section’s array scenarios. As a convention, when a field name starts with `a` it is an array, so each keyspace has two array fields and two regular fields.
+> 
+> ![ansi-join-example](../_images/ansi-join-example-5655abeb045efeff368831190fba81dddb8f3fbe.svg) 
+> 
+> Within each keyspace, both `_idx1` indexes index each element of its array, while both `_idx2` indexes use its entire array as the index key.
+> 
+> ```sqlpp
+> CREATE INDEX b1_idx1 ON b1 (c11, c12, DISTINCT a11);
+> CREATE INDEX b1_idx2 ON b1 (a12);
+> CREATE INDEX b2_idx1 ON b2 (c21, c22, DISTINCT a21);
+> CREATE INDEX b2_idx2 ON b2 (a22);
+> ```
 
 ### [](#ansi-join-with-no-arrays)ANSI JOIN with No Arrays
 
@@ -965,8 +991,8 @@ lookup-join-rhs ::= keyspace-ref ( 'AS'? alias )?
 
 Keyspace reference for the right-hand side of the lookup join. For details, see [Keyspace Reference](from.md#from-keyspace-ref).
 
-|  | The right-hand side of a lookup join must be a keyspace. Expressions, subqueries, or other join combinations cannot be on the right-hand side of a lookup join. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The right-hand side of a lookup join must be a keyspace. Expressions, subqueries, or other join combinations cannot be on the right-hand side of a lookup join.
 
 ##### [](#lookup-as-alias)AS Alias
 
@@ -1117,8 +1143,8 @@ You can use an index join when a lookup join would be inefficient, and you need 
 
 For index joins, the syntax uses `ON KEY …​ FOR` (singular) instead of `ON KEYS` (plural). This is because an index join’s `ON KEY …​ FOR` expression produces a single scalar value; whereas a lookup join’s `ON KEYS` expression can produce either a single scalar or an array of scalar values.
 
-|  | An index join requires an inverse index on the foreign key in the keyspace on the right-hand side of the join. |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An index join requires an inverse index on the foreign key in the keyspace on the right-hand side of the join.
 
 ### [](#syntax-4)Syntax
 
@@ -1171,8 +1197,8 @@ index-join-rhs ::= keyspace-ref ( 'AS'? alias )?
 
 Keyspace reference for right-hand side of an index join. For details, see [Keyspace Reference](from.md#from-keyspace-ref).
 
-|  | The right-hand side of an index join must be a keyspace. Expressions, subqueries, or other join combinations cannot be on the right-hand side of an index join. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The right-hand side of an index join must be a keyspace. Expressions, subqueries, or other join combinations cannot be on the right-hand side of an index join.
 
 ##### [](#index-as-alias)AS Alias
 

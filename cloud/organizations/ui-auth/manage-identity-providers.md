@@ -1,4 +1,15 @@
+---
+title: Manage Identity Providers
+description: After creating a realm, you can change its realm name, rotate its
+  certificates, change the default team, turn group mapping on or off, or delete
+  it.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/manage-identity-providers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/manage-identity-providers.html)
+
+# Manage Identity Providers
 
 > After creating a realm, you can change its realm name, rotate its certificates, change the default team, turn group mapping on or off, or delete it. 
 
@@ -12,17 +23,16 @@ Realms manage the link with your identity provider (IdP). Each organization supp
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name.
 2. Go to **Settings** **SSO**.  
-When you first open it, the **Organization Realms** page shows basic information about your configured realm.
-
-|  | On the Organization Realms page, there is a copy button that provides a link pointing to the SSO login page for Capella and has your realm name prepopulated. You can send this to your users so they can more easily sign in with SSO. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+When you first open it, the **Organization Realms** page shows basic information about your configured realm.  
+> [!TIP]  
+> On the Organization Realms page, there is a copy button that provides a link pointing to the SSO login page for Capella and has your realm name prepopulated. You can send this to your users so they can more easily sign in with SSO.
 3. Click **⌄** to show more detailed information about the realm. This information includes its Callback URL, Entity ID, Signature Certificate, Signature Algorithm, and Digest Algorithm.
 4. Click **Edit Realm**.
 
 ### [](#change-realm-name)Change the Realm Name
 
-|  | It may be possible for another party to guess your custom realm name. Keep this in mind when you’re choosing one. Automatically generated realm names can help prevent this. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> It may be possible for another party to guess your custom realm name. Keep this in mind when you’re choosing one. Automatically generated realm names can help prevent this.
 
 When you create a realm, the realm is automatically assigned a unique auto-generated realm name. To change your realm name:
 
@@ -49,8 +59,8 @@ Provide a new Client Secret to save your changes.
 
 ### [](#default-teams)Change the Default Team
 
-|  | Capella assigns SSO users to the default team if they’re not mapped to another team. Typically, a default team should have the fewest permissions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Capella assigns SSO users to the default team if they’re not mapped to another team. Typically, a default team should have the fewest permissions.
 
 Every SSO user is a member of a realm’s default team unless otherwise specified through [role mapping](manage-role-mapping.md). When you create a realm, the default team is "My First Team," but you can designate any team in your organization as the default. You cannot delete any team set as the default team.
 
@@ -65,8 +75,8 @@ If group mapping is on, Capella assigns roles to SSO users based on which teams 
 
 When you turn off group mapping for a realm, Capella still uses the [default team](#default-teams) to assign roles when SSO users first sign in. After SSO users sign in, you manage them like other Capella users through the **People** tab and each project’s **Collaborators** tab.
 
-|  | When SSO users sign in for the first time after you turn off group mapping, they keep their current roles. If they sign in after you turn on group mapping, their roles sync based on any mapped SSO groups, and Capella deletes the old permissions. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When SSO users sign in for the first time after you turn off group mapping, they keep their current roles. If they sign in after you turn on group mapping, their roles sync based on any mapped SSO groups, and Capella deletes the old permissions.
 
 1. In the **Default Team** section, turn group mapping on or off by selecting or deselecting **Group Mapping**.
 2. Click **Save**.  
@@ -76,11 +86,11 @@ For more information about managing SSO users with group mapping turned off, see
 
 ### [](#delete-a-realm)Delete a Realm
 
-|  | You cannot delete a realm that you’re signed into. |
-|  | -------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot delete a realm that you’re signed into.
 
-|  | When you delete a realm, Capella deletes the permissions of all SSO users connected to your organization through that realm. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When you delete a realm, Capella deletes the permissions of all SSO users connected to your organization through that realm.
 
 1. In the **Delete Realm** section, click **Delete Realm**.
 2. Type `delete` to confirm the action.

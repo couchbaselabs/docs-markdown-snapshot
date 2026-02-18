@@ -1,4 +1,14 @@
+---
+title: Get Information on Tasks
+description: The Backup Service REST API allows information to be retrieved on
+  the task history of an active, imported, or archived repository.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-get-task-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/backup-get-task-info.html)
+
+# Get Information on Tasks
 
 > The Backup Service REST API allows information to be retrieved on the task history of an active, imported, or archived repository. 
 

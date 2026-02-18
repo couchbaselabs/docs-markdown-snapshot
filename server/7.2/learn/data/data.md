@@ -1,4 +1,14 @@
+---
+title: Data
+description: Couchbase Server saves data as <em>items</em>, each of which has a
+  <em>key</em> and a <em>value</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/data/data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/data/data.html)
+
+# Data
 
 > Couchbase Server saves data as _items_, each of which has a _key_ and a _value_. 
 
@@ -17,10 +27,9 @@ Note that Couchbase also refers to an item’s key as its _id_.
 Each key:
 
 * Can consist of any string of bytes — but is strongly recommended to consist of a UTF-8 string with no spaces (in order ensure the key’s acceptability to all Couchbase-Server services). Special characters, such as `(`, `%`, `/`, `"`, and `_`, are acceptable.
-* May be no longer than 246 bytes.
-
-|  | If a user accesses the **default** collection, for example by setting the query context to the default collection in the default scope, or by using a legacy SDK, then the key can be up to 250 bytes in length. This is to maintain compatibilitity with older versions of Couchbase. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* May be no longer than 246 bytes.  
+> [!NOTE]  
+> If a user accesses the **default** collection, for example by setting the query context to the default collection in the default scope, or by using a legacy SDK, then the key can be up to 250 bytes in length. This is to maintain compatibilitity with older versions of Couchbase.
 * Must be unique within a collection.
 
 ## [](#values)Values

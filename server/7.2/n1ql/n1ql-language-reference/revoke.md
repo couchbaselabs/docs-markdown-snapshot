@@ -1,4 +1,13 @@
+---
+title: REVOKE
+description: The REVOKE statement allows revoking of any RBAC roles from specific users.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/revoke.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/revoke.html)
+
+# REVOKE
 
 > The REVOKE statement allows revoking of any RBAC roles from specific users. 
 
@@ -17,8 +26,8 @@ Roles which are defined for the scope of the specified keyspace only. The keyspa
 For example: `` DataReader ON `travel-sample` ``  
 or `` Query_Select ON `travel-sample` ``
 
-|  | Only Full Administrators can run the REVOKE statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only Full Administrators can run the REVOKE statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 

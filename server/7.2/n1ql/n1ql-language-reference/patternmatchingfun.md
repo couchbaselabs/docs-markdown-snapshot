@@ -1,11 +1,21 @@
+---
+title: Pattern-Matching Functions
+description: Pattern-matching functions allow you to find regular expression
+  patterns in strings or attributes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/patternmatchingfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/patternmatchingfun.html)
+
+# Pattern-Matching Functions
 
 Pattern-matching functions allow you to find regular expression patterns in strings or attributes. Regular expressions can formally represent various string search patterns using different special characters to indicate wildcards, positional characters, repetition, optional or mandatory sequences of letters, etc. SQL++ functions are available to find matching patterns, find position of matching pattern, or replace a pattern with a new string.
 
 For more information on all supported REGEX patterns, see <https://golang.org/pkg/regexp/syntax>.
 
-|  | From Couchbase Server 5.0, SQL++ supports regular expressions supported by The Go Programming Language version 1.8\. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From Couchbase Server 5.0, SQL++ supports regular expressions supported by The Go Programming Language version 1.8\.
 
 ## [](#section%5Fregex%5Fcontains)REGEXP\_CONTAINS(`expression`, `pattern`)
 

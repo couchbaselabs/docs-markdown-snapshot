@@ -1,4 +1,14 @@
+---
+title: Enabling and Disabling Auto-Failover
+description: Send a POST message to the <code>/settings/autoFailover</code>
+  endpoint to change auto-failover settings.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-autofailover-enable.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-cluster-autofailover-enable.html)
+
+# Enabling and Disabling Auto-Failover
 
 > Send a POST message to the `/settings/autoFailover` endpoint to change auto-failover settings. 
 
@@ -31,10 +41,9 @@ curl -X POST http://<ip-address-or-hostname>:8091/settings/autoFailover
 
 The parameters are as follows:
 
-* `enabled`: Enables or disables automatic failover. Default setting is `true`. This parameter is required. If you set `enabled` to `true`, you must also supply a value for the `timeout` parameter. Setting `enabled` to `false` automatically sets `failoverOnDataDiskIssues[enabled]` and `failoverOnDataDiskNonResponsiveness` to `false`.
-
-|  | When you set enabled to false, Couchbase Server ignores any values you supply for additional parameters including failoverOnDataDiskIssues\[enabled\] and canAbortRebalance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* `enabled`: Enables or disables automatic failover. Default setting is `true`. This parameter is required. If you set `enabled` to `true`, you must also supply a value for the `timeout` parameter. Setting `enabled` to `false` automatically sets `failoverOnDataDiskIssues[enabled]` and `failoverOnDataDiskNonResponsiveness` to `false`.  
+> [!NOTE]  
+> When you set `enabled` to `false`, Couchbase Server ignores any values you supply for additional parameters including `failoverOnDataDiskIssues[enabled]` and `canAbortRebalance`.
 * `timeout`: Sets the number of seconds Couchbase Server waits before performing an auto-failover on an unresponsive node. Default setting is 120\. The `timeout` parameter can only be specified when `enabled` is set to `true`. This parameter and its values are ignored if the value for the `enabled` parameter is `false`.  
 You can set the value of `timeout` to `1` second. A low setting, such as anything less than 5 seconds, increases the sensitivity of failure detection. This low setting can cause false positives which result in Couchbase Server triggering auto-failovers unnecessarily. It also increases CPU usage.  
 If you want to use a low setting, test a representative workload before setting the value of `timeout` to `1` in a production environment. Make sure to measure CPU usage. Monitor the cluster for auto-failovers caused by false positives.

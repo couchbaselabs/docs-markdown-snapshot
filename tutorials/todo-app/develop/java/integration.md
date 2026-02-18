@@ -1,4 +1,12 @@
+---
+title: Integration
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/integration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/develop/java/integration.html)
+
+# Integration
 
 In this lesson you’ll learn how to integrate Couchbase Mobile with external systems using Sync Gateway. You’ll use the changes stream for real-time streaming access to data changes and the bulk APIs for bulk import/export operations.
 
@@ -14,8 +22,8 @@ Documents written to Sync Gateway are assigned a sequence value at write time. T
 $ curl -H 'Content-Type: application/json' -vX GET 'http://localhost:4985/todo/_changes?since=3'
 ```
 
-|  | The curl executable for Windows can be found [on this page](https://curl.haxx.se/download.html) |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The curl executable for Windows can be found [on this page](https://curl.haxx.se/download.html)
 
 The **since** parameter in the querystring is used to specify which sequence to start from. In this case the response contains changes starting at `seq: 3` because the `since=3` parameter was sent in the querystring.
 
@@ -29,10 +37,9 @@ Deleting a document creates a new revision with the `deleted: true` property and
 ```  
 ```swift  
 PS  'C:\Program Files (x86)\Couchbase\sync_gateway.exe' sync-gateway-config.json  
-```
-
-|  | The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'.
 2. Open **AppDelegate.swift** and set the following constants to `true`.  
 ```swift  
 let kLoginFlowEnabled = true  

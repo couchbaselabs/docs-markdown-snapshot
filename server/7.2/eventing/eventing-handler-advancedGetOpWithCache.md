@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced GET operation (with cache)"
+description: Perform the Advanced GET operation where Eventing interacts with
+  the Data service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-advancedGetOpWithCache.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-handler-advancedGetOpWithCache.html)
+
+# Function: Advanced GET operation (with cache)
 
 Couchbase Server 7.0.2 **Goal**: Perform the Advanced GET operation where Eventing interacts with the Data service.
 

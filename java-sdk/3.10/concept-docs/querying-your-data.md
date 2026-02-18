@@ -1,4 +1,13 @@
+---
+title: Querying Your Data
+description: Choosing the right service to query your data.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/concept-docs/pages/querying-your-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/concept-docs/querying-your-data.html)
+
+# Querying Your Data
 
 > Choosing the right service to query your data. SQL++ is a declarative query language for JSON data. Couchbase also offers fuzzy search, including Vector Search. 
 
@@ -8,8 +17,10 @@ SQL++ is a SQL-family language, and an easy way for anyone familiar with Relatio
 
 Couchbase also has a powerful Search Service, supporting similarity and hybrid search, combining text, vector, range, and geospatial search. [Search functions](../../../server/current/n1ql/n1ql-language-reference/searchfun.md) enable you to use Search queries directly within a SQL++ query.
 
-|  | SQL++ or CRUD API? Maybe you’d prefer to retrieve whole documents and work on them as objects in Java, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> SQL++ or CRUD API?
+> 
+> Maybe you’d prefer to retrieve whole documents and work on them as objects in Java, or do this after running just a few queries, reducing the number of Query and Index Service nodes you need on your Capella (or self-managed) cluster. Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [Data Service section](data-durability-acid-transactions.md) for information on CRUD with the Data Service, with its fast binary protocol.
 
 ## [](#your-use-case)Your Use Case
 
@@ -26,8 +37,12 @@ Both use versions of the SQL++ query language.
 
 This page covers using our operational Java SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
-|  | Analytics SDKs SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information. Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Analytics SDKs
+> 
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information.
+> 
+> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information.
 
 ### [](#search)Search
 

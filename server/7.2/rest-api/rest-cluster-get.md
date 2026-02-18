@@ -1,4 +1,14 @@
+---
+title: Retrieving Cluster Information
+description: Cluster information is retrieved with <code>GET /pools</code> HTTP
+  method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-cluster-get.html)
+
+# Retrieving Cluster Information
 
 > Cluster information is retrieved with `GET /pools` HTTP method and URI. 
 

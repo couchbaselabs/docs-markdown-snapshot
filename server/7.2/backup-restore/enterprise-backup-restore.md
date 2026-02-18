@@ -1,4 +1,14 @@
+---
+title: cbbackupmgr
+description: <code>cbbackupmgr</code> is a tool for managing the backup and
+  restore of Couchbase-Server data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/backup-restore/pages/enterprise-backup-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/backup-restore/enterprise-backup-restore.html)
+
+# cbbackupmgr
 
 > `cbbackupmgr` is a tool for managing the backup and restore of Couchbase-Server data. 
 
@@ -8,8 +18,10 @@ The `cbbackupmgr` tool backs up and restores data, scripts, configurations, and 
 
 Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server _Enterprise Edition_ and Couchbase Server _Community Edition_.
 
-|  | cbbackupmgr is _not_ backward compatible with backups created by means of cbbackup. In Couchbase Enterprise Server 7.2 and after, cbbackupmgr is available in the Tools package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `cbbackupmgr` is _not_ backward compatible with backups created by means of `cbbackup`.
+> 
+> In Couchbase Enterprise Server 7.2 and after, `cbbackupmgr` is available in the `Tools` package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages).
 
 ### [](#planning-for-disaster-recovery)Planning for Disaster Recovery
 

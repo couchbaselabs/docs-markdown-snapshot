@@ -1,4 +1,13 @@
+---
+title: Troubleshooting Queries
+description: Couchbase Lite on C# -- Using query.explain()
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/troubleshooting-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/csharp/troubleshooting-queries.html)
+
+# Troubleshooting Queries
 
 > Description — _Couchbase Lite on C# — Using query.explain()_  
 > _Abstract — This content describes how to use the Couchbase Lite on C#.Net Query API’s explain() method to examine a query_  
@@ -32,8 +41,8 @@ Example 2\. Using Query Explain in cblite
 
 `cblite` is a command-line tool for inspecting and querying Couchbase Lite databases. You can download and build it from the couchbaselabs [GitHub repository](https://github.com/couchbaselabs/couchbase-mobile-tools/blob/master/README.cblite.md).
 
-|  | The cblite tool is not supported by the [Couchbase Support Policy](https://www.couchbase.com/support-policy). |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `cblite` tool is not supported by the [Couchbase Support Policy](https://www.couchbase.com/support-policy).
 
 ```console
 cblite <your-database-name>.cblite2 (1)
@@ -124,8 +133,10 @@ When planning the indexes you need for your database, remember that while indexe
 
 Excessive indexes may hurt performance. Optimal performance depends on designing and creating the _right_ indexes to go along with your queries.
 
-|  | ConstraintsCouchbase Lite for .Net does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> Couchbase Lite for .Net does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query.
 
 The Query optimizer converts your query into a parse tree that groups zero or more _and-connected_ clauses together (as dictated by your `where` conditionals) for effective query engine processing.
 
@@ -157,8 +168,8 @@ To show this, you can use a modified query from the Mobile Travel Sample applica
 
 In [Like with Wildcard Prefix](#like-wild-pfx-qry) we use a wildcard prefix and suffix. You can see that the query plan decides on a retrieval method of `Scan Table`.
 
-|  | For more on indexes — see: [Indexing](indexing.md) |
-|  | -------------------------------------------------- |
+> [!TIP]
+> For more on indexes — see: [Indexing](indexing.md)
 
 Like with Wildcard Prefix
 
@@ -265,8 +276,8 @@ Consider fetching details _lazily_. You could break complex queries into compone
 
 Consider using paging to minimize the data returned when the number of results returned is expected to be high. Getting the whole lot at once is slow and resource intensive. Instead, retrieve batches of information at a time, perhaps using the `Where` method’s `limit(offset)` feature to set a starting point for each subsequent batch.
 
-|  | Using query offsets becomes less effective as the overhead of skipping a growing number of rows each time increases. You can work around this by using ranges of search-key values instead. If the last search-key value of batch 1 was 'x', that becomes the starting point for your next batch, and so on. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Using query offsets becomes less effective as the overhead of skipping a growing number of rows each time increases. You can work around this by using ranges of search-key values instead. If the last search-key value of batch 1 was 'x', that becomes the starting point for your next batch, and so on.
 
 Optimize document size in design. Smaller docs load faster. Break your data into logical linked units.
 

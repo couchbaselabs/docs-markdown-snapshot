@@ -1,4 +1,13 @@
+---
+title: couchbase-cli
+description: The Couchbase cluster management utility.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli.html)
+
+# couchbase-cli
 
 The Couchbase cluster management utility.
 

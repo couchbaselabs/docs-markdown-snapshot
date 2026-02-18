@@ -1,4 +1,14 @@
+---
+title: Creating and Editing Buckets
+description: Buckets can be created, and their configurations subsequently
+  edited, with the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-bucket-create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-bucket-create.html)
+
+# Creating and Editing Buckets
 
 > Buckets can be created, and their configurations subsequently edited, with the REST API. 
 
@@ -22,8 +32,8 @@ A single cluster can contain up to 30 buckets.
 
 Administrators with the Full Admin or Cluster Admin role can create and configure buckets. Administrators with the Bucket Admin role can also edit bucket configurations, as long as their privileges apply to all buckets or specifically to the target bucket. For details on roles and privileges, see [Roles](../learn/security/roles.md).
 
-|  | When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md).
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -82,8 +92,8 @@ curl -X POST -u <administrator>:<password>
 
 All parameters are described in the following subsections.
 
-|  | The threadsNumber parameter, which sets the number of threads for the bucket, has not had any effect since version Couchbase Server 7.0.0\. It’s deprecated and is no longer listed in the syntax. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `threadsNumber` parameter, which sets the number of threads for the bucket, has not had any effect since version Couchbase Server 7.0.0\. It’s deprecated and is no longer listed in the syntax.
 
 ## [](#parameter-groups)Parameter Groups
 
@@ -120,10 +130,9 @@ This section lists the general parameters for creating a bucket.
   * [expiryPagerSleepTime](#expirypagersleeptime)
   * [warmupBehavior](#warmupbehavior)
   * [memoryLowWatermark](#memorylowwatermark)
-  * [memoryHighWatermark](#memoryhighwatermark)
-
-|  | When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * [memoryHighWatermark](#memoryhighwatermark)  
+  > [!NOTE]  
+  > When migrating a bucket between storage backends, you can edit only the bucket’s [ramQuota](#ramQuota), [evictionPolicy](#evictionpolicy), and [storageBackend](#storagebackend) parameters. For more information, see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md).
 * You cannot edit the following parameters after bucket creation:
 
   * [bucketType](#buckettype)
@@ -151,11 +160,16 @@ The Auto-compaction parameter group contains the following:
 * [allowedTimePeriod\[toMinute\]](#allowedtimeperiodtominute)
 * [allowedTimePeriod\[abortOutside\]](#allowedtimeperiodabortoutside)
 
-|  | Auto-compaction parameters take effect only if both of the following are true: Auto-compaction is enabled, by means of the [autoCompactionDefined](#autocompactiondefined) parameter. An explicit setting is made to the [parallelDBAndViewCompaction](#paralleldbandviewcompaction) parameter. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Auto-compaction parameters take effect only if both of the following are true:
+> 
+> * Auto-compaction is enabled, by means of the [autoCompactionDefined](#autocompactiondefined) parameter.
+> * An explicit setting is made to the [parallelDBAndViewCompaction](#paralleldbandviewcompaction) parameter.
 
-|  | In Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage. There are no settings necessary for configuring the auto-compaction of Global Secondary Indexes using standard index storage. For information about storage, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md). For full details and examples, see [Auto-Compaction Parameters](#auto-compaction-parameters). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage. There are no settings necessary for configuring the auto-compaction of Global Secondary Indexes using standard index storage. For information about storage, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
+> 
+> For full details and examples, see [Auto-Compaction Parameters](#auto-compaction-parameters).
 
 ## [](#general-parameters)General Parameters
 
@@ -263,8 +277,8 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 The storage backend to use for the new bucket. In Enterprise Edition, this value can be set to either `couchstore` or `magma` (the default). In Couchbase Server Community Edition, the default and only valid value is `couchstore`. For more information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
-|  | You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 #### [](#example-storage-backend)Example: Specifying the Storage Backend
 
@@ -286,8 +300,8 @@ Sets the number of vBuckets for a Magma bucket. The possible values are `128` or
 
 If you set `storageBackend` to `couchstore`, the number of vBuckets is always 1024, and Couchbase Server ignores this parameter if you provide it.
 
-|  | You cannot change the number of vBuckets for a bucket after creating it. If you need a bucket with a different number of vBuckets, you must create a new bucket with the desired number of vBuckets and then migrate your data to it. See [XDCR Storage Backend Migration](../manage/manage-buckets/migrate-bucket.md#xdcr-migration) for more information. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot change the number of vBuckets for a bucket after creating it. If you need a bucket with a different number of vBuckets, you must create a new bucket with the desired number of vBuckets and then migrate your data to it. See [XDCR Storage Backend Migration](../manage/manage-buckets/migrate-bucket.md#xdcr-migration) for more information.
 
 #### [](#example-numvbuckets-create)Example: Setting the Number of vBuckets
 
@@ -317,10 +331,9 @@ Changes to the ejection policy of an ephemeral bucket take effect without requir
 
 * Allow Couchbase Server to restart the bucket automatically. It does so automatically unless you set [noRestart](#norestart) to `true`. When Couchbase Server restarts the bucket, it closes connections and makes the bucket unavailable temporarily.
 * Perform a [swap rebalance](../install/upgrade-procedure-selection.md#swap-rebalance) on all nodes in the cluster running the data service.
-* Perform a [graceful failover](../learn/clusters-and-availability/graceful-failover.md) followed by a [delta recovery](../learn/clusters-and-availability/recovery.md#delta-recovery) and [rebalance](../learn/clusters-and-availability/rebalance.md) for all nodes running the data service in the cluster.
-
-|  | If you’re performing a storage backend migration (see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md)) while you’re changing the ejection policy, you must set noRestart to true. You must also perform a full recovery instead of a delta recovery after the graceful failover because the migration process requires it. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* Perform a [graceful failover](../learn/clusters-and-availability/graceful-failover.md) followed by a [delta recovery](../learn/clusters-and-availability/recovery.md#delta-recovery) and [rebalance](../learn/clusters-and-availability/rebalance.md) for all nodes running the data service in the cluster.  
+> [!NOTE]  
+> If you’re performing a storage backend migration (see [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md)) while you’re changing the ejection policy, you must set `noRestart` to `true`. You must also perform a full recovery instead of a delta recovery after the graceful failover because the migration process requires it.
 
 For more information about changing the ejection policy of a bucket, including the steps to take to change the policy without downtime, see [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md).
 
@@ -410,8 +423,12 @@ Overrides Couchbase Server’s default behavior when it cannot meet a durable wr
 
 If you set this value to `fallbackToActiveAck`, Couchbase Server reports the write as successful if the write succeeds to the active vBucket. It reports it as a successful durable write even if it could not meet the majority requirement.
 
-|  | Potential Data Loss Enabling durabilityImpossibleFallback degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when durabilityImpossibleFallback is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Potential Data Loss
+> 
+> Enabling `durabilityImpossibleFallback` degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when `durabilityImpossibleFallback` is off.
+> 
+> Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
 Use this setting only in special cases. For example, use it when you’re performing a graceful failover and you still want durable writes to succeed for a bucket with a single replica.
 
@@ -419,8 +436,8 @@ For information about the `durabilityImpossibleFallback` setting, see [Maintaini
 
 You can modify this parameter for existing buckets.
 
-|  | Each time Couchbase Server reports success for a durable write that does meet its majority requirement, it increments the stat named sync\_write\_committed\_not\_durable\_count on the vBucket. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Each time Couchbase Server reports success for a durable write that does meet its majority requirement, it increments the stat named `sync_write_committed_not_durable_count` on the vBucket.
 
 #### [](#example-allow-durable-writes-to-succeed-during-a-node-failover)Example: Allow Durable Writes to Succeed During a Node Failover
 
@@ -1037,8 +1054,8 @@ This value defaults to `31536000`, which means Couchbase Server keeps expired DE
 
 If you set `encryptionAtRestDekRotationInterval` to a non-zero value and `encryptionAtRestDekLifetime` to 0, Couchbase Server keeps old DEKs forever. Depending on how often you rotate the DEKs, this can lead to a Couchbase Server keeping a large number of DEKs. Couchbase Server limits the number of DEKs to 50 per node. When this limit is reached, Couchbase Server refuses to rotate the DEKs until you adjust the DEK lifetime so some DEKs can expire.
 
-|  | Setting this value too low can cause performance issues because Couchbase Server may need to re-encrypt large amounts of data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Setting this value too low can cause performance issues because Couchbase Server may need to re-encrypt large amounts of data.
 
 For more information about key lifetime, see [Encryption Key Rotation and Expiration](../learn/security/native-encryption-at-rest-overview.md##rotation-expiration).
 
@@ -1261,8 +1278,8 @@ Enabling Cross Cluster Versioning is a pre-requisite to a few XDCR features. The
 
 See the example provided in [Example: Turning on enableCrossClusterVersioning, when Editing](#example-enablecrossclusterversioning-edit)
 
-|  | The default value is false. Do not change the value of this property unless instructed by a feature configuration. Once enabled, you cannot turn off the enableCrossClusterVersioning property. The only way for you to undo setting this value to true is to backup your data, create a new bucket, and restore the data, using the option cbbackupmgr restore --disable-hlv to remove the HLV info in the xattrs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The default value is `false`. Do not change the value of this property unless instructed by a feature configuration. Once enabled, you cannot turn off the `enableCrossClusterVersioning` property. The only way for you to undo setting this value to `true` is to backup your data, create a new bucket, and restore the data, using the option `cbbackupmgr restore --disable-hlv` to remove the HLV info in the xattrs.
 
 #### [](#example-enablecrossclusterversioning-edit)Example: Turning on enableCrossClusterVersioning, when Editing
 
@@ -1278,8 +1295,8 @@ Controls the pruning frequency of the Hybrid Logical Vector (HLV) metadata. The 
 
 See the example provided in [Example: Specifying time value for versionPruningWindowHrs, when Editing](#example-versionpruningwindowhrs-edit)
 
-|  | versionPruningWindowHrs must be set to the same value for all buckets in an XDCR replication topology. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> `versionPruningWindowHrs` must be set to the same value for all buckets in an XDCR replication topology.
 
 #### [](#example-versionpruningwindowhrs-edit)Example: Specifying time value for versionPruningWindowHrs, when Editing
 

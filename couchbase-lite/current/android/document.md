@@ -1,4 +1,13 @@
+---
+title: Documents
+description: Couchbase Lite concepts -- Data model -- Documents
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/document.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/document.html)
+
+# Documents
 
 > Description — _Couchbase Lite concepts — Data model — Documents_  
 > Related Content — [Databases](database.md) | [Blobs](blob.md) | [Indexing](indexing.md) |
@@ -13,8 +22,8 @@ Each document has an ID or unique identifier. This ID is similar to a primary ke
 
 You can specify the ID programmatically. If you omit it, it will be automatically generated as a UUID.
 
-|  | Couchbase documents are assigned to a [Collection](database.md#database-concepts). The ID of a document must be unique within the Collection it is written to. You cannot change it after you have written the document. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase documents are assigned to a [Collection](database.md#database-concepts). The ID of a document must be unique within the Collection it is written to. You cannot change it after you have written the document.
 
 The document also has a value which contains the actual application data. This value is stored as a dictionary of key-value (k-v) pairs. The values can be made of up several different [Data Types](#data-types) such as numbers, strings, arrays, and nested objects.
 
@@ -265,8 +274,8 @@ mutableDoc.setDictionary("address", address);
 mutableDoc.setArray("phones", phones);
 ```
 
-|  | Couchbase recommend using a type attribute to define each logical document type. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase recommend using a `type` attribute to define each logical document type.
 
 ### [](#save-a-document)Save a Document
 
@@ -310,8 +319,12 @@ To check whether a given property exists in the document, use the [\`Document.Co
 
 If you try to access a property which doesn’t exist in the document, the call will return the default value for that getter method (0 for [Document.getInt()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/Document.html#getInt-java.lang.String-) 0.0 for [Document.getFloat()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/Document.html#getFloat-java.lang.String-) etc.).
 
-|  | Fleece data encoding Care should be taken when storing and recovering data in a document or converting that document to JSON and back.Data encoding (Fleece) can result in Long values being converted to Integer, and Double values to Float.Interpreting data as boolean can also give inconsistent results. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Fleece data encoding
+> 
+> Care should be taken when storing and recovering data in a document or converting that document to JSON and back.  
+> Data encoding (Fleece) can result in `Long` values being converted to `Integer`, and `Double` values to `Float`.  
+> Interpreting data as boolean can also give inconsistent results.
 
 ### [](#date-accessors)Date accessors
 
@@ -569,8 +582,8 @@ mutableDocument.setString("name", "apples");
 collection.save(mutableDocument);
 ```
 
-|  | Any user change to the value of reserved keys (\_id, \_rev or \_deleted) will be detected when a document is saved and will result in an exception (Error Code 5 — CorruptRevisionData) — see also [Document Constraints](#lbl-doc-constraints). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Any user change to the value of reserved keys (`_id`, `_rev` or `_deleted`) will be detected when a document is saved and will result in an exception (Error Code 5 — `CorruptRevisionData`) — see also [Document Constraints](#lbl-doc-constraints).
 
 ## [](#batch-operations)Batch operations
 
@@ -722,8 +735,8 @@ You can set expiration for a whole Collection
 
 Couchbase Lite APIs do not explicitly disallow the use of attributes with the underscore prefix at the top level of document. This is to facilitate the creation of documents for use either in _local only_ mode where documents are not synced, or when used exclusively in peer-to-peer sync.
 
-|  | "\_id", :"\_rev" and "\_sequence" are reserved keywords and must not be used as top-level attributes — see [Example 11](#res-keys). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> "\_id", :"\_rev" and "\_sequence" are reserved keywords and must not be used as top-level attributes — see [Example 11](#res-keys).
 
 Users are cautioned that any attempt to sync such documents to Sync Gateway will result in an error. To be future proof, you are advised to avoid creating such documents. Use of these attributes for user-level data may result in undefined system behavior.
 

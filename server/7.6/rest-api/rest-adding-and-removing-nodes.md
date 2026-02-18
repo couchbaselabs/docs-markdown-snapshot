@@ -1,4 +1,13 @@
+---
+title: Node Addition and Removal
+description: Nodes can be added to and removed from a cluster, by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-adding-and-removing-nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-adding-and-removing-nodes.html)
+
+# Node Addition and Removal
 
 > Nodes can be added to and removed from a cluster, by means of the REST API. 
 

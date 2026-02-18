@@ -1,4 +1,13 @@
+---
+title: user-manage
+description: Manage RBAC users
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-user-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-user-manage.html)
+
+# user-manage
 
 Manage RBAC users
 
@@ -10,7 +19,7 @@ _couchbase-cli user-manage_ [--cluster <url>] [--username <user>] [--password <p
     [--set-group] [--delete-group] [--list-groups] [--get-group]
     [-- get] [--lock] [--unlock] [--rbac-username <username>]
     [--rbac-password <password>] [--rbac-name <name>] [--roles <roles_list>]
-    [--auth-domain <domain>] [--user-groups <group>]
+    [--auth-domain <domain>] [--user-groups <group>] [--temporary-password]
     [--group-description <text>] [--ldap-ref <ref>]
 
 ## [](#description)DESCRIPTION
@@ -120,6 +129,10 @@ Specifies the auth\_domain to use for a RBAC user profile. This option is used w
 \--user-groups <groups>
 
 Specifies the groups the user should be added to. This is used when creating a user (--set) or when updating the users group, and should be specified as a comma separated list.
+
+\--temporary-password
+
+Sets a temporary password which the user must change on their next login. This option can only be used with _local_ users.
 
 \--group-name <group>
 
@@ -351,6 +364,13 @@ $ couchbase-cli user-manage -c 127.0.0.1:8091 -u Administrator \
  -p password --set --rbac-username jdoe --rbac-password cbpass \
  --rbac-name "John Doe" --roles bucket_admin[default],replication_admin \
  --auth-domain local
+
+To create a local user that with a temporary password (Enterprise Edition only):
+
+$ couchbase-cli user-manage -c 127.0.0.1:8091 -u Administrator \
+ -p password --set --rbac-username jdoe --rbac-password cbpass \
+ --rbac-name "John Doe" --roles bucket_admin[default] \
+ --auth-domain local --temporary-password
 
 If you have external user source setup in your cluster and you want to add a user "John Doe" with username `jdoe` who should have the ability to manage only views for all bucket run the following command
 

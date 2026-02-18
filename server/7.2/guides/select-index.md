@@ -1,4 +1,13 @@
+---
+title: Selecting Indexes
+description: How to select an index for a query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/select-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/select-index.html)
+
+# Selecting Indexes
 
 > How to select an index for a query.  
 > This guide is for Couchbase Server.
@@ -16,8 +25,8 @@ If you want to try out the examples in this section, follow the instructions giv
 
 To specify an index using query predicates, specify the leading query predicates in the WHERE clause in the same order as the index keys in the index.
 
-|  | Use IS NOT MISSING as the predicate for any fields which are required by the index, but which are not actually used for filtering data in the query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use `IS NOT MISSING` as the predicate for any fields which are required by the index, but which are not actually used for filtering data in the query.
 
 Context
 

@@ -1,4 +1,14 @@
+---
+title: Monitor and Observe with Agent Tracer
+description: Use the Agent Tracer with the Agent Catalog and your agentic app to
+  monitor and observe agent activity.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/agent-tracer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/agent-tracer/agent-tracer.html)
+
+# Monitor and Observe with Agent Tracer
 
 > Use the Agent Tracer with the Agent Catalog and your agentic app to monitor and observe agent activity. 
 

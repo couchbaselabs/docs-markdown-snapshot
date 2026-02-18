@@ -1,9 +1,17 @@
+---
+title: Auto-scaling the Couchbase Index Service
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-autoscale-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tutorial-autoscale-index.html)
+
+# Auto-scaling the Couchbase Index Service
 
 > Learn how to configure auto-scaling for Index Service nodes using the Autonomous Operator. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#introduction)Introduction
 
@@ -115,8 +123,12 @@ Now, install the Couchbase chart, making sure to specify the values override fil
 $ helm upgrade --install -f autoscale_values.yaml scale couchbase/couchbase-operator
 ```
 
-|  | The Couchbase chart deploys the Autonomous Operator by default. If you already have the Autonomous Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed: $ helm upgrade --install -f autoscale\_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase chart deploys the Autonomous Operator by default. If you already have the Autonomous Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> 
+> ```console
+> $ helm upgrade --install -f autoscale_values.yaml --set install.couchbaseOperator=false,install.admissionController=false scale couchbase/couchbase-operator
+> ```
 
 ### [](#verify-the-installation)Verify the Installation
 
@@ -223,8 +235,8 @@ EOF
 | **5** | metrics.pods.metric.name: The name of the target metric that will be monitored by the HPA for the purposes of auto-scaling. Here, we’ve specified cbindex\_ram\_percent as the metric that will be used to scale the number index nodes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **6** | metrics.pods.target.type: Specifying the AverageValue type means that the metric will be averaged across all of the pods. Here, by setting a value of 60, the HPA will scale the number of index nodes when the average memory utilization across all index pods exceeds 60% of the quota set for the Index Service.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-|  | Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Details about how sizing decisions are made are discussed in [Couchbase Cluster Auto-scaling](concept-couchbase-autoscaling.md).
 
 ### [](#verify-horizontalpodautoscaler-status)Verify `HorizontalPodAutoscaler` Status
 
@@ -255,8 +267,8 @@ However, we should test our configuration to be sure that `index` nodes will aut
 
 Let’s start by creating an index that will be partitioned across the available Couchbase `index` nodes. As additional `index` nodes are added to the Couchbase cluster, the partitions will be redistributed across the nodes according to the provided `HASH` method on document `id`.
 
-|  | Horizontal scaling of the Index Service requires that indexes be [partitioned](../../server/current/n1ql/n1ql-language-reference/index-partitioning.md). Indexes that don’t utilize partitioning reside on a single node with underlying memory and compute resources that cannot be resized in-place after creation. You will need to delete and re-create any non-partitioned indexes before you can auto-scale the underlying Index nodes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Horizontal scaling of the Index Service requires that indexes be [partitioned](../../server/current/n1ql/n1ql-language-reference/index-partitioning.md). Indexes that don’t utilize partitioning reside on a single node with underlying memory and compute resources that cannot be resized in-place after creation. You will need to delete and re-create any non-partitioned indexes before you can auto-scale the underlying Index nodes.
 
 To create a partitioned index, open the Couchbase Web Console and navigate to the Query Workbench under the **Query** tab in the left navigation menu. Within the **Query Editor** field, enter the following and click **Execute**:
 

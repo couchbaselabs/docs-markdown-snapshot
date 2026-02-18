@@ -1,7 +1,17 @@
+---
+title: Temporal Functions
+description: This topic describes the builtin SQL++ for Capella Analytics
+  temporal functions.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_temp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/8_builtin_temp.html)
 
-|  | In SQL++ for Capella Analytics, temporal functions only support ISO-8601 example date formats. They do not support date string codes, Go reference dates, or percent-style dates, which are supported by SQL++ for Query. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Temporal Functions
+
+> [!NOTE]
+> In SQL++ for Capella Analytics, temporal functions only support ISO-8601 example date formats. They do not support date string codes, Go reference dates, or percent-style dates, which are supported by SQL++ for Query.
 
 > This topic describes the builtin SQL++ for Capella Analytics temporal functions. 
 

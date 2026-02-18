@@ -1,4 +1,14 @@
+---
+title: Data Modelling
+description: <em>Couchbase Sync Gateway's</em> data model; for secure
+  cloud-to-edge synchronization of enterprise data.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/data-modeling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/data-modeling.html)
+
+# Data Modelling
 
 > _Couchbase Sync Gateway’s_ data model; for secure cloud-to-edge synchronization of enterprise data.  
 
@@ -43,8 +53,10 @@ You may encounter the error in the following deployment situations:
 * In Mobile-to-Web Data Sync with [Node.js Server SDK](../../nodejs-sdk/current/hello-world/start-using-sdk.md) and [Ottoman.js](http://ottomanjs.com/) (the Node.js ODM for Couchbase), where the rule conflicts with the `_type` property that is automatically added by _Ottoman.js_.  
 A suggested workaround in this scenario is to fork the _Ottoman.js_ library, perform a search-replace for the `_type` property and replace it without a leading underscore.
 
-|  | For versions 2.x of Sync Gateway, you can encounter the following error: In Mobile-to-Web Data Sync with Field-level Encryption enabled, because the rule conflicts with the default [field encryption format](../../java-sdk/current/concept-docs/encryption.md#format). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For versions 2.x of Sync Gateway, you can encounter the following error:
+> 
+> * In Mobile-to-Web Data Sync with Field-level Encryption enabled, because the rule conflicts with the default [field encryption format](../../java-sdk/current/concept-docs/encryption.md#format).
 
 How to avoid the error
 

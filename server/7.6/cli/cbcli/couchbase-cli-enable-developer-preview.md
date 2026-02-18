@@ -1,4 +1,13 @@
+---
+title: enable-developer-preview
+description: Enable developer preview mode in target cluster
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-enable-developer-preview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-enable-developer-preview.html)
+
+# enable-developer-preview
 
 Enable developer preview mode in target cluster
 

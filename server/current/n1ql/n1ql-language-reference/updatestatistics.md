@@ -1,4 +1,14 @@
+---
+title: UPDATE STATISTICS
+description: The UPDATE STATISTICS statement collects statistics on expressions
+  over a named keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/updatestatistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/updatestatistics.html)
+
+# UPDATE STATISTICS
 
 > The UPDATE STATISTICS statement collects statistics on expressions over a named keyspace. These statistics are used by the cost-based optimizer when choosing the optimal plan to execute a query. 
 

@@ -1,4 +1,13 @@
+---
+title: PREPARE
+description: The PREPARE statement prepares a query for repeated execution.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/prepare.html)
+
+# PREPARE
 
 > The PREPARE statement prepares a query for repeated execution. 
 
@@ -81,16 +90,20 @@ You may also use `?` to refer to a positional parameter in a statement. In this 
 
 ## [](#result)Result
 
-A JSON object is returned that contains the following properties:
+A JSON object that contains the following properties:
 
 name
 
 The full name of the prepared statement. This has the format `[host:port]local-name-or-UUID`, and consists of:
 
-* The host and port of the node where the prepared statement was created, in square brackets, followed by
-* The local name that you specified for the prepared statement, or a UUID that was generated from the statement text.
+* The host and port of the node where you created the prepared statement, enclosed in square brackets.
+* The local name you specified for the prepared statement, or a UUID that was generated from the statement text.
 
-The host and port can be used when executing to retrieve the prepared statement from the node where it was created.
+You can use this name to execute a prepared statement without resending the entire statement text. When executing a prepared statement by its name:
+
+* The Query Service first checks whether the executing node contains the prepared statement.
+* If not found, the service uses the host information in the name to retrieve the prepared statement from the node where you originally created it.
+* If the service cannot find the prepared statement on the original node either, it returns an error.
 
 operator
 
@@ -132,8 +145,8 @@ When you create an anonymous prepared statement, i.e. a prepared statement witho
   * If not found, the statement is created and added to the prepared cache.
   * If found, the existing prepared statement is returned. However, if the FORCE keyword is present, the prepared statement is created again.
 
-|  | When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement.
 
 ## [](#auto-prepare)Auto-Prepare
 

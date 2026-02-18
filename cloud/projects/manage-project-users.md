@@ -1,4 +1,12 @@
+---
+title: Manage Project Users
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/manage-project-users.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/projects/manage-project-users.html)
+
+# Manage Project Users
 
 > Manage the collaborators of a project to control access to Couchbase clusters. 
 
@@ -10,8 +18,8 @@ You can view and manage project collaborators on the **Projects** tab in the mai
 
 You can only see the summary if you’re a project collaborator. If you’re a [Project Owner](project-roles.md#project-owner-role), you can also see an option to invite collaborators to the project.
 
-|  | Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, which means they can also access collaborator information for all projects. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, which means they can also access collaborator information for all projects.
 
 ### [](#project-users-summary)Project Collaborators Summary
 
@@ -28,8 +36,8 @@ This includes the following information:
 
 ## [](#add-users-to-project)Add Users to an Existing Project
 
-|  | By default, you add SSO users to projects using [teams](../organizations/ui-auth/manage-role-mapping.md). Only when a realm has [group mapping turned off](../organizations/ui-auth/manage-identity-providers.md#group-mapping), can you invite and manage SSO users using the procedures on this page. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, you add SSO users to projects using [teams](../organizations/ui-auth/manage-role-mapping.md). Only when a realm has [group mapping turned off](../organizations/ui-auth/manage-identity-providers.md#group-mapping), can you invite and manage SSO users using the procedures on this page.
 
 After you create a project, you can add collaborators. To add a collaborator, you must have the [Project Owner](project-roles.md#project-owner-role) project role. If you created a project, then you automatically have this role.
 
@@ -43,10 +51,9 @@ Capella opens the [Project Collaborators summary](#project-users-summary).
 4. Click **Add Collaborators**.  
 Capella opens the **Add Collaborators** page.
 5. In the **Collaborators** list, select the people in the current organization that you want to add to the project.  
-If a user isn’t a member of your organization, [invite them](../organizations/manage-organization-users.md#invite-organization-users) to your organization to add them to a project.
-
-|  | Selected users get the same project roles. |
-|  | ------------------------------------------ |
+If a user isn’t a member of your organization, [invite them](../organizations/manage-organization-users.md#invite-organization-users) to your organization to add them to a project.  
+> [!TIP]  
+> Selected users get the same project roles.
 6. Click the tile for each project role you want to assign to your selected users.
 7. To add the selected users to the project and assign the selected roles, click **Add**.  
 Capella notifies you after it adds the new collaborators to the project.
@@ -57,8 +64,8 @@ To change a user’s project role, you must have the [Project Owner](project-rol
 
 If you created a project, you automatically have this role.
 
-|  | Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role have [Project Owner](project-roles.md#project-owner-role) roles for all projects in their organization. You cannot remove the [Project Owner](project-roles.md#project-owner-role) role from a user with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role have [Project Owner](project-roles.md#project-owner-role) roles for all projects in their organization. You cannot remove the [Project Owner](project-roles.md#project-owner-role) role from a user with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -75,8 +82,8 @@ Capella opens the user’s collaborator information page.
 
 ## [](#remove-users-from-project)Remove a User (or Yourself) from a Project
 
-|  | You can’t remove a user from a project if they have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) user role. If you remove a user with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role, you can remove their other project roles. The user keeps their [Project Owner](project-roles.md#project-owner-role) access. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> You can’t remove a user from a project if they have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) user role. If you remove a user with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role, you can remove their other project roles. The user keeps their [Project Owner](project-roles.md#project-owner-role) access.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 

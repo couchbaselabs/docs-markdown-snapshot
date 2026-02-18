@@ -1,4 +1,12 @@
+---
+title: Naming a Node
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-name-node.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-name-node.html)
+
+# Naming a Node
 
 > A node can be named, by means of the REST API. 
 

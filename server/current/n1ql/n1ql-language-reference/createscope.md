@@ -1,4 +1,13 @@
+---
+title: CREATE SCOPE
+description: The <code>CREATE SCOPE</code> statement enables you to create a scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createscope.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/createscope.html)
+
+# CREATE SCOPE
 
 > The `CREATE SCOPE` statement enables you to create a scope. 
 
@@ -15,8 +24,8 @@ create-scope ::= 'CREATE' 'SCOPE' ( namespace ':' )? bucket '.' scope ( 'IF' 'NO
 | bucket    | (Required) An [identifier](identifiers.md) that refers to the bucket in which you want to create the scope.                                                                                                                                                                                                                      |
 | scope     | (Required) An [identifier](identifiers.md) that refers to the name of the scope that you want to create. Refer to [Naming for Scopes and Collections](../../learn/data/scopes-and-collections.md#naming-for-scopes-and-collections) for restrictions on scope names.                                                             |
 
-|  | If there is a hyphen (-) inside the bucket name or the scope name, you must wrap that part of the path in backticks (\` \`). For example, default:\`travel-sample\` indicates the travel-sample keyspace in the default namespace. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the bucket name or the scope name, you must wrap that part of the path in backticks (\` \`). For example, `` default:`travel-sample` `` indicates the `travel-sample` keyspace in the `default` namespace.
 
 ### [](#if-not-exists)IF NOT EXISTS Clause
 

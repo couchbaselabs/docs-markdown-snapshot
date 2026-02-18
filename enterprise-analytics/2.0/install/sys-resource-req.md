@@ -1,4 +1,15 @@
+---
+title: System Resource Requirements
+description: Although resource requirements will largely depend on the size and
+  resource demands of your Couchbase deployment, there are some minimum and
+  recommended specifications that you should follow.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/sys-resource-req.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/sys-resource-req.html)
+
+# System Resource Requirements
 
 > Although resource requirements will largely depend on the size and resource demands of your Couchbase deployment, there are some minimum and recommended specifications that you should follow. 
 

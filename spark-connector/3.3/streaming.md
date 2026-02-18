@@ -1,16 +1,24 @@
+---
+title: Spark Structured Streaming Support
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/streaming.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/streaming.html)
+
+# Spark Structured Streaming Support
 
 > Spark Structured Streaming for Couchbase is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine and the Couchbase Data Service. 
 
 ## [](#overview)Overview
 
-|  | Spark Structured Streaming is available from connector version 3.2.1 and later. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> Spark Structured Streaming is available from connector version 3.2.1 and later.
 
 The connector supports Spark Structured Streaming (as opposed to the older streaming support through `DStreams`) which is built on top of the Spark SQL capabilities.
 
-|  | The basic concepts of how structured streaming works are not discussed in this document - please refer to the [official Spark documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#basic-concepts) for further information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The basic concepts of how structured streaming works are not discussed in this document - please refer to the [official Spark documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#basic-concepts) for further information.
 
 Two modes of operation are available, both with different fault-tolerance guarantees that mach the Spark semantics:
 
@@ -125,11 +133,11 @@ At the moment, spark supports different trigger modes which will cause different
 
 All three modes use the DCP protocol of the data service, but they slightly differ in how it is utilized. In both `Once` and `ProcessingTime`, spark will actively drive the "from state → to state" when streaming each batch where with `Continuous` it will just keep running until terminated as quickly as it can.
 
-|  | please keep in mind that Continuous has different delivery guarantees inside spark streaming than MicroBatch. While MicroBatch can guarantee exactly-once semantics, the Continuous mode is only able to provide at-least-once semantics. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> please keep in mind that `Continuous` has different delivery guarantees inside spark streaming than `MicroBatch`. While `MicroBatch` can guarantee exactly-once semantics, the `Continuous` mode is only able to provide at-least-once semantics.
 
-|  | for performance reasons it is recommended to use Continuous if small intervals are chosen (i.e. around a couple seconds and less) since it allows the client to reuse the underlying DCP client and TCP sockets. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> for performance reasons it is recommended to use `Continuous` if small intervals are chosen (i.e. around a couple seconds and less) since it allows the client to reuse the underlying DCP client and TCP sockets.
 
 ## [](#starting-offset)Starting Offset
 
@@ -140,8 +148,8 @@ When a stream is started for the first time, a fundamental choice needs to be ma
 
 The connector looks for a saved initial offset which is stored inside the `checkpointLocation`. If not provided explicitly be user, spark will create a temporary directory automatically.
 
-|  | If it’s required to delete a current checkpoint location, please set spark.sql.streaming.forceDeleteTempCheckpointLocation to true. According to spark docs, deleting the temp checkpoint folder is best effort. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If it’s required to delete a current checkpoint location, please set `spark.sql.streaming.forceDeleteTempCheckpointLocation` to `true`. According to spark docs, deleting the temp checkpoint folder is best effort.
 
 ## [](#persistence-polling-interval)Persistence Polling Interval
 
@@ -153,11 +161,11 @@ To disable this feature, specify a zero duration (0). In this mode the connector
 
 The property to modify the default (`100ms`) is `KeyValueOptions.StreamPersistencePollingInterval`.
 
-|  | Documents written to Couchbase with enhanced durability are never published to Spark until the durability requirements are met, regardless of whether persistence polling is enabled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Documents written to Couchbase with enhanced durability are never published to Spark until the durability requirements are met, regardless of whether persistence polling is enabled.
 
-|  | When connecting to an ephemeral bucket, always disable persistence polling by setting this config option to 0, otherwise the connector will never publish any changes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When connecting to an ephemeral bucket, always disable persistence polling by setting this config option to 0, otherwise the connector will never publish any changes.
 
 ## [](#configuration-options)Configuration Options
 

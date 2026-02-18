@@ -1,4 +1,14 @@
+---
+title: Sub-Document Operations
+description: Sub-Document operations can be used to efficiently access and
+  change parts of documents.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/subdocument-operations.html)
+
+# Sub-Document Operations
 
 > Sub-Document operations can be used to efficiently access and change parts of documents. 
 
@@ -12,8 +22,8 @@ You can atomically and efficiently update and retrieve _parts_ of a document. Th
 
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
-|  | The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to [Sub-Document SQL++ queries](../../../cloud/n1ql/n1ql-intro/queriesandresults.md#paths). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to [Sub-Document SQL++ queries](../../../cloud/n1ql/n1ql-intro/queriesandresults.md#paths).
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#path-syntax). Considering the document:
 
@@ -85,8 +95,8 @@ let exists: bool = result.content_as(0)?;
 println!("Does field exist? {exists}");
 ```
 
-|  | LookupInResult has an exists method, but this should not be confused with the exists _operation_. The exists method is used to check if anything was returned by the server for a given operation. The result of the exists operation should be checked with contentAs\[Boolean\], as in the example. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> LookupInResult has an `exists` method, but this should not be confused with the exists _operation_. The `exists` method is used to check if anything was returned by the server for a given operation. The result of the exists operation should be checked with `contentAs[Boolean]`, as in the example.
 
 Multiple operations can be combined, and this can be most neatly done with a for-comprehension:
 
@@ -192,8 +202,8 @@ let result = collection
     .await;
 ```
 
-|  | mutateIn is an _atomic_ operation. If any single operation fails, then the entire document is left unchanged. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `mutateIn` is an _atomic_ operation. If any single operation fails, then the entire document is left unchanged.
 
 ## [](#supported-types)Supported Types
 
@@ -372,8 +382,8 @@ Note that there are several differences as compared to the full-document counter
 
 Multiple Sub-Document operations can be executed at once on the same document, allowing you to retrieve or modify several Sub-Documents at once. When multiple operations are submitted within the context of a single _lookupIn_ or _mutateIn_ command, the server will execute all the operations with the same version of the document.
 
-|  | Multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
 
 When submitting multiple _mutation_ operations within a single _mutateIn_ command, those operations are considered to be part of a single transaction: if any of the mutation operations fail, the server will logically roll-back any other mutation operations performed within the _mutateIn_, even if those commands would have been successful had another command not failed.
 
@@ -531,8 +541,8 @@ A path such as \`literal\[\]bracket\`.\`literal.dot\`. You can use double-backti
 
 If you need to combine both JSON _and_ path-syntax literals you can do so by escaping the component from any JSON string characters (e.g. a quote or backslash) and then encapsulating it in backticks (`` `path` ``).
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
 ## [](#extended-attributes)Extended Attributes
 

@@ -1,4 +1,13 @@
+---
+title: Type Functions
+description: This topic describes the builtin SQL++ for Enterprise Analytics type functions.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/8_builtin_type.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/8_builtin_type.html)
+
+# Type Functions
 
 > This topic describes the builtin SQL++ for Enterprise Analytics type functions. 
 
@@ -529,10 +538,9 @@ typename(expr)
 * Syntax:  
 array_infer_schema(collection[, parameters])
 * Infers the schema of an array or multiset, for example the structure of the elements, data types of various attributes, sample values, and so on. Since an array or multiset can contain items with varying structures, the result of this function is statistical in nature rather than deterministic.  
-This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.html).
-
-|  | You can infer the schema of a collection by applying this function to a subquery which returns the documents in that collection, or a representative sample of them. The subquery must use the SELECT VALUE clause to avoid an additional layer of nesting in the result of the subquery. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.html).  
+> [!NOTE]  
+> You can infer the schema of a collection by applying this function to a subquery which returns the documents in that collection, or a representative sample of them. The subquery must use the `SELECT VALUE` clause to avoid an additional layer of nesting in the result of the subquery.
 * Arguments:
 
   * `collection`: An array or multiset, or an expression that evaluates to an array or multiset.

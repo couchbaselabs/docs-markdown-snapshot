@@ -1,9 +1,19 @@
+---
+title: Tracing
+description: Tracing and Metrics provide fine-grained insight into how an
+  application is performing, and helps to diagnose when it is not.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/response-time-observability.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/current/concept-docs/response-time-observability.html)
+
+# Tracing
 
 > Tracing and Metrics provide fine-grained insight into how an application is performing, and helps to diagnose when it is not. 
 
-|  | In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI.
 
 Health indicators can tell you a lot about the performance of an application. Monitoring them is vital both during its development and production lifecycle.
 
@@ -30,8 +40,8 @@ Tracing provides granular timing information down the individual phases of a req
 }
 ```
 
-|  | Ensure you have [logging](../howtos/collecting-information-and-logging.md) enabled to at least info level for tracing and metrics logging. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Ensure you have [logging](../howtos/collecting-information-and-logging.md) enabled to at least `info` level for tracing and metrics logging.
 
 It is possible to identify how long the operation took to encode, how much time it spent on the server, to which node it got sent to and much more. Only requests over a configurable threshold are logged and reported, so it is possible to fine tune these settings depending on the performance characteristics of each environment.
 

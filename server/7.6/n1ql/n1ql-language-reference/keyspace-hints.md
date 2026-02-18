@@ -1,4 +1,13 @@
+---
+title: Keyspace Hints
+description: Keyspace hints apply to a specific keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/keyspace-hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/keyspace-hints.html)
+
+# Keyspace Hints
 
 > Keyspace hints apply to a specific keyspace. 
 
@@ -167,8 +176,16 @@ Furthermore, the hint operates on an all-or-nothing basis. The optimizer uses th
 
 If you do not specify this hint, the optimizer selects the optimal available index.
 
-|  | To use the INDEX\_ALL hint effectively: You must specify at least two indexes for the hint to be valid. You can only use GSI indexes. The hint does not support FTS indexes. You cannot mix INDEX\_ALL with other index hints for the same keyspace. It must be the only index hint present. You can use the hint on a keyspace on the right-hand side of an ANSI JOIN or ANSI NEST. You cannot use it on a keyspace on the inner side of a legacy JOIN or NEST, like LOOKUP JOIN/NEST or INDEX JOIN/NEST. INDEX\_COMBINE is an alias for INDEX\_ALL. You can use either as the hint keyword. Negative hints are not available for INDEX\_ALL. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To use the INDEX\_ALL hint effectively:
+> 
+> * You must specify at least two indexes for the hint to be valid.
+> * You can only use GSI indexes. The hint does not support FTS indexes.
+> * You cannot mix INDEX\_ALL with other index hints for the same keyspace. It must be the only index hint present.
+> * You can use the hint on a keyspace on the right-hand side of an ANSI JOIN or ANSI NEST.
+> * You cannot use it on a keyspace on the inner side of a legacy JOIN or NEST, like LOOKUP JOIN/NEST or INDEX JOIN/NEST.
+> * INDEX\_COMBINE is an alias for INDEX\_ALL. You can use either as the hint keyword.
+> * Negative hints are not available for INDEX\_ALL.
 
 ### [](#simple-syntax-2)Simple Syntax
 
@@ -180,8 +197,8 @@ gsi-all-hint-simple ::= 'INDEX_ALL' '(' keyspace index* ')'
 
 With the simple syntax, this hint specifies a single keyspace expression along with zero, one, or more indexes. You can use this hint multiple times within the hint comment to specify hints for more than one keyspace.
 
-|  | You must specify at least two indexes. The hint is invalid if you provide zero or one index. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must specify at least two indexes. The hint is invalid if you provide zero or one index.
 
 #### [](#arguments-2)Arguments
 
@@ -609,8 +626,8 @@ A hash join has two sides: a **build** side and a **probe** side. The build side
 
 This hint enables you specify whether the right side of the join should be the build side or the probe side. If you specify that the right side of the join is the build side, then the left side will be the probe side, and vice versa.
 
-|  | For Couchbase Server Community Edition (CE), only nested-loop join is considered by the optimizer, and any specified USE\_HASH hint will be silently ignored. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For Couchbase Server Community Edition (CE), only nested-loop join is considered by the optimizer, and any specified `USE_HASH` hint will be silently ignored.
 
 ### [](#simple-syntax-5)Simple Syntax
 

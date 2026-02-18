@@ -1,4 +1,12 @@
+---
+title: Configuring Rebalance Retries
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-configure-rebalance-retry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-configure-rebalance-retry.html)
+
+# Configuring Rebalance Retries
 
 ## [](#http-methods-and-uri)HTTP methods and URI
 

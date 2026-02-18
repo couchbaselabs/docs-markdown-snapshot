@@ -1,4 +1,12 @@
+---
+title: FTS FLEX (FTS + SQL++ Extended Support For Collections)
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-flex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-flex.html)
+
+# FTS FLEX (FTS + SQL++ Extended Support For Collections)
 
 FTS is capable of supporting multiple collections within a single index definition.
 
@@ -8,8 +16,8 @@ If the user wants to set up an index definition to subscribe to just a few colle
 
 The type mappings will now take the form of either "scope\_name.collection\_name" (to index all documents within that scope.collection) or "scope\_name.collection\_name.type\_name" (to index only those documents within that scope.collection that match "type" = "type\_name") . We will refer to FTS index definitions in this mode as collection-aware FTS indexes.
 
-|  | The type expression check within SQL++ queries becomes unnecessary with collection-aware FTS indexes. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The type expression check within SQL++ queries becomes unnecessary with collection-aware FTS indexes.
 
 ## [](#example)Example
 

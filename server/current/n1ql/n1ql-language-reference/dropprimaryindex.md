@@ -1,9 +1,18 @@
+---
+title: DROP PRIMARY INDEX
+description: The DROP PRIMARY INDEX statement allows you to drop a primary index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropprimaryindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/dropprimaryindex.html)
+
+# DROP PRIMARY INDEX
 
 The DROP PRIMARY INDEX statement allows you to drop a primary index.
 
-|  | For compatibility with legacy versions of Couchbase Server, you can also use the DROP INDEX or DROP VECTOR INDEX statement to drop a named primary index. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For compatibility with legacy versions of Couchbase Server, you can also use the DROP INDEX or DROP VECTOR INDEX statement to drop a named primary index.
 
 ## [](#prerequisites)Prerequisites
 
@@ -42,8 +51,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 Specifies the keyspace for the primary index to drop. The keyspace reference may be a [keyspace path](#keyspace-path) or a [keyspace partial](#keyspace-partial).
 
-|  | If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). See the examples on this page. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-path)Keyspace Path
 

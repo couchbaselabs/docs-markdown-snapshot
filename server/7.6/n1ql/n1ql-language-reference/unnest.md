@@ -1,4 +1,14 @@
+---
+title: UNNEST clause
+description: The UNNEST clause creates an input object by flattening an array in
+  the parent document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/unnest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/unnest.html)
+
+# UNNEST clause
 
 > The UNNEST clause creates an input object by flattening an array in the parent document. 
 
@@ -6,8 +16,8 @@
 
 The `UNNEST` clause is used within the [FROM](from.md) clause. If a document or object contains a nested array, UNNEST conceptually performs a join of the nested array with its parent object. Each resulting joined object becomes an output of the query. Unnests can be chained.
 
-|  | To return the position of the elements in an unnested array after you use UNNEST, use the [UNNEST\_POS function](metafun.md#unnest-pos). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To return the position of the elements in an unnested array after you use `UNNEST`, use the [UNNEST\_POS function](metafun.md#unnest-pos).
 
 ## [](#syntax)Syntax
 
@@ -77,8 +87,8 @@ Assigns another name to the right-hand side of the unnest. For details, see [AS 
 
 Assigning an alias to the path is optional. If you assign an alias to the path, the `AS` keyword may be omitted.
 
-|  | If you want to use an [ARRAY index](indexing-arrays.md) for the UNNEST query, you can use any arbitrary alias for the right side of the UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want to use an [ARRAY index](indexing-arrays.md) for the UNNEST query, you can use any arbitrary alias for the right side of the UNNEST — the alias does not have to be the same as the ARRAY index variable name in order to use that index.
 
 ## [](#limitations)Limitations
 

@@ -1,4 +1,14 @@
+---
+title: Sub-Document Operations
+description: Sub-Document operations can be used to efficiently access and
+  change parts of documents.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.10/howtos/subdocument-operations.html)
+
+# Sub-Document Operations
 
 > Sub-Document operations can be used to efficiently access and change parts of documents. 
 
@@ -16,8 +26,8 @@ While full-document retrievals retrieve the entire document and full document up
 
 You should use sub-document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
-|  | The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) queries. Sub-document SQL++ queries are explained in the [Query page](n1ql-queries-with-sdk.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) queries. Sub-document SQL++ queries are explained in the [Query page](n1ql-queries-with-sdk.md).
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#Path syntax).
 
@@ -95,8 +105,8 @@ if err != nil {
 fmt.Println(country) // United Kingdom
 ```
 
-|  | The value pointer provided to the ContentAt function must match the type at the provided index. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The value pointer provided to the `ContentAt` function must match the type at the provided index.
 
 Check existence of Sub-Document path
 
@@ -114,8 +124,8 @@ exists := res.Exists(0)
 fmt.Printf("Path exists? %t\n", exists) // Path exists? false
 ```
 
-|  | Using ExistsSpec with ContentAt will return an error if the path does not exist. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using `ExistsSpec` with `ContentAt` will return an error if the path does not exist.
 
 Multiple operations can be combined as well:
 
@@ -191,8 +201,8 @@ if err != nil {
 }
 ```
 
-|  | MutateIn is an _atomic_ operation. If any single ops fails, then the entire document is left unchanged. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `MutateIn` is an _atomic_ operation. If any single `ops` fails, then the entire document is left unchanged.
 
 ## [](#array-append-and-prepend)Array Append and Prepend
 
@@ -430,8 +440,8 @@ Note that there are several differences as compared the full-document _counter_ 
 
 Multiple Sub-Document operations can be executed at once on the same document, allowing you to retrieve or modify several Sub-Documents at once. When multiple operations are submitted within the context of a single _LookupIn_ or _MutateIn_ command, the server will execute all the operations with the same version of the document.
 
-|  | Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
 
 When submitting multiple _mutation_ operations within a single _MutateIn_ command, those operations are considered to be part of a single transaction: if any of the mutation operations fail, the server will logically roll-back any other mutation operations performed within the _MutateIn_, even if those commands would have been successful had another command not failed.
 
@@ -684,8 +694,8 @@ A path such as \`literal\[\]bracket\`.\`literal.dot\`. You can use double-backti
 
 If you need to combine both JSON _and_ path-syntax literals you can do so by escaping the component from any JSON string characters (e.g. a quote or backslash) and then encapsulating it in backticks (`` `path` ``).
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
 ## [](#extended-attributes)Extended Attributes
 

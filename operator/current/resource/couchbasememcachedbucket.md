@@ -1,4 +1,12 @@
+---
+title: CouchbaseMemcachedBucket Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasememcachedbucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/resource/couchbasememcachedbucket.html)
+
+# CouchbaseMemcachedBucket Resource
 
 **DEPRECATED** \- Memcached buckets are now deprecated in Couchbase Server and should not be used, they will be removed in a future release.
 

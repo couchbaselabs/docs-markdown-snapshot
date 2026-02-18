@@ -1,4 +1,12 @@
+---
+title: Import Filters
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/import-filters.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/import-filters.html)
+
+# Import Filters
 
 ![Delta Sync](../_images/app-endpoint/import-filters.png) 
 
@@ -25,8 +33,8 @@ To access Import Filters:
 
 You can switch to another linked collection within the same App Endpoint to quickly and conveniently apply an existing Import Filter to a different collection.
 
-|  | You must save and enable any changes to your Import Filter function before switching linked collections, or your changes will be lost. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> You must save and enable any changes to your Import Filter function before switching linked collections, or your changes will be lost.
 
 ### [](#working-with-import-filters)Working with Import Filters
 
@@ -52,8 +60,8 @@ function (doc) {
 }
 ```
 
-|  | The Javascript function is executed with [Otto](https://github.com/robertkrimen/otto)and has no access to any Capella data or features other than the doc argument. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Javascript function is executed with [Otto](https://github.com/robertkrimen/otto)and has no access to any Capella data or features other than the `doc` argument.
 
 Once the document has been imported and processed by the App Endpoint, changing the Import Filter will not remove it, even if the updated import filters would prevent newer mutations or iterations of the document from getting imported. The Import Filter is designed for a coarse-grained filter only. Look instead to the [Access Control & Data Validation function](access-control-data-validation.md) support for fine-grained read/write access control.
 

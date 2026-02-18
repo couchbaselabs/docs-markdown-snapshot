@@ -1,4 +1,14 @@
+---
+title: Upgrades for AI Services
+description: Your AI Services components run regular maintenance jobs to
+  maintain health and reliability.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/upgrade-ai-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/admin/upgrade-ai-services.html)
+
+# Upgrades for AI Services
 
 > Your AI Services components run regular maintenance jobs to maintain health and reliability. 
 

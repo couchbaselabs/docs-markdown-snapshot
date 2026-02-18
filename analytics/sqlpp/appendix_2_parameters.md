@@ -1,4 +1,13 @@
+---
+title: Performance Tuning
+description: This topic describes options for Capella Analytics query performance tuning.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_2_parameters.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/appendix_2_parameters.html)
+
+# Performance Tuning
 
 > This topic describes options for Capella Analytics query performance tuning. 
 
@@ -149,8 +158,8 @@ SET `compiler.cbo` "true";
 
 You can supply hints to the cost-based optimizer using a hint comment. These enable you to specify the behavior of the cost-based optimizer for individual queries.
 
-|  | Generally speaking, you should rely on the optimizer to generate the optimal query plan. Optimizer hints may be useful to nudge the query optimizer in specific—hopefully rare—situations where it’s not able to come up with the optimal plan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Generally speaking, you should rely on the optimizer to generate the optimal query plan. Optimizer hints may be useful to nudge the query optimizer in specific—hopefully rare—situations where it’s not able to come up with the optimal plan.
 
 ### [](#productivity%5Fhint)Productivity Hint
 

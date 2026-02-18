@@ -1,4 +1,13 @@
+---
+title: Hard Failover
+description: Hard failover takes an unresponsive node out of the cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/hard-failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/hard-failover.html)
+
+# Hard Failover
 
 > Hard failover takes an unresponsive node out of the cluster. 
 

@@ -1,11 +1,21 @@
+---
+title: Translating SQL to MapReduce
+description: This section provides information on how to translate SQL to a
+  MapReduce environment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-trans-sql.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-trans-sql.html)
+
+# Translating SQL to MapReduce
 
 > This section provides information on how to translate SQL to a MapReduce environment. 
 
 If you have existing SQL queries and need materialized reductions, you can follow the guidelines on this page for translating SQL queries to MapReduce views.
 
-|  | If you don’t need materialized reductions, we recommend that you reformulate your SQL queries to use SQL++ rather than MapReduce views. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you don’t need materialized reductions, we recommend that you reformulate your SQL queries to use SQL++ rather than MapReduce views.
 
 Here’s an example of a SQL statement that you might want to translate:
 

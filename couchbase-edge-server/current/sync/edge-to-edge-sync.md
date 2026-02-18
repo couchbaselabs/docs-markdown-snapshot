@@ -1,4 +1,17 @@
+---
+title: Sync with Edge Server
+description: Deploy multiple Edge Servers at the edge, each serving a subset of
+  local clients and set up the edge servers to sync data with each other to
+  enable eventual consistency of data on all the local clients. This topology
+  can also be leveraged to deploy Edge Servers in a primary-secondary
+  configuration for High Availability (HA).
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-to-edge-sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/sync/edge-to-edge-sync.html)
+
+# Sync with Edge Server
 
 ![edge to edge sync diagram](_images/edge-to-edge-sync-diagram.png) 
 

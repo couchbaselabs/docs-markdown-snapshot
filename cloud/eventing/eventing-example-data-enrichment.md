@@ -1,4 +1,13 @@
+---
+title: Improve Document Searchability
+description: Make searching documents easier by adding new attributes to existing documents.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-example-data-enrichment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-example-data-enrichment.html)
+
+# Improve Document Searchability
 
 > Make searching documents easier by adding new attributes to existing documents. 
 
@@ -18,8 +27,8 @@ Before trying out the examples on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-create-a-new-document-in-a-target-collection)Example: Create a New Document in a Target Collection
 
@@ -153,8 +162,8 @@ To test that your Eventing Function runs on new mutations:
 
 ## [](#example-update-an-existing-document-in-the-source-collection)Example: Update an Existing Document in the Source Collection
 
-|  | This example assumes that you have already created all of the documents from the first example. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This example assumes that you have already created all of the documents from the first example.
 
 Before following the steps for this example, you must undeploy the Eventing Function **case\_enrich\_ips** from the first example. To undeploy the Function, go to **DataTools** **Eventing** and click **Undeploy** in **More Options (⋮)**.
 

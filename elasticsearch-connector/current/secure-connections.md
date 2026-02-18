@@ -1,4 +1,12 @@
+---
+title: Setting Up Secure Connections
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/secure-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/secure-connections.html)
+
+# Setting Up Secure Connections
 
 > Configure the connector to encrypt data in transit. 
 
@@ -17,8 +25,8 @@ You will need:
 * Couchbase Server **Enterprise Edition** if you’re connecting securely to a self-hosted Couchbase Server cluster. You can download and evaluate Enterprise Edition for free.
 * The Certificate Authority (CA) certificates used by your Couchbase Server and/or Elasticsearch clusters.
 
-|  | The Couchbase Capella CA certificate is included in the connector. |
-|  | ------------------------------------------------------------------ |
+> [!TIP]
+> The Couchbase Capella CA certificate is included in the connector.
 
 ## [](#get-couchbase-cert)Get the Couchbase CA Certificate
 
@@ -27,15 +35,15 @@ The steps for getting the Couchbase certificate are different depending on wheth
 * Couchbase Capella
 * Couchbase Server
 
-|  | The Capella CA certificate is included in the connector, and the connector trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by setting the secureConnection property in the \[couchbse\] config section to true. You can skip the rest of this section, or continue reading to learn how to trust a Capella CA certificate other than the one included in the connector. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The Capella CA certificate is included in the connector, and the connector trusts it by default unless you specify another trust source. If you’re connecting to a Capella cluster, all you have to do is enable TLS by setting the `secureConnection` property in the `[couchbse]` config section to `true`. You can skip the rest of this section, or continue reading to learn how to trust a Capella CA certificate other than the one included in the connector.
 
 Log into the Capella admin website and navigate to your cluster. Click on the "Connect" tab and scroll down to "Security Certificates." Download the "Root Certificate."
 
 Log into the admin console and navigate to **Security** **Certificates**. Copy the "Trusted Root Certificates" (there might be only one). Create a new text file called `couchbase-ca.pem` and paste the certificates into this file.
 
-|  | Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless you’re working in a local development environment, it’s important to transfer the CA certificate using a secure channel, so you know you’re getting the correct certificate. If you are unable to access the admin console securely over HTTPS, copy the CA certificate from a server node using SSH or some other secure mechanism.
 
 ## [](#get-elasticsearch-cert)Get the Elasticsearch CA Certificate
 
@@ -53,10 +61,10 @@ Search for the `[couchbase]` section and set the `secureConnection` property to 
 
 A relative path is resolved using the connector installation directory as the base. This means you can put the `couchbase-ca.pem` file into the connector installation’s `config` subdirectory, and set the `[couchbase]` config section’s `pathToCaCertificate` property to `'config/couchbase-ca.pem'`.
 
-|  | If you’re connecting to Couchbase Capella, leave the pathToCaCertificate property blank to trust the Capella CA certificate bundled with the connector. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re connecting to Couchbase Capella, leave the `pathToCaCertificate` property blank to trust the Capella CA certificate bundled with the connector.
 
 Now search for the `[elasticsearch]` section and do the same thing, only this time set the `pathToCaCertificate` property to the path of the file containing the Elasticsearch CA certificate.
 
-|  | Previous versions of the connector required the certificates to be in a Java keystore file. This is no longer required. The \[truststore\] config section is deprecated, and will be removed in a future version of the connector. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Previous versions of the connector required the certificates to be in a Java keystore file. This is no longer required. The `[truststore]` config section is deprecated, and will be removed in a future version of the connector.

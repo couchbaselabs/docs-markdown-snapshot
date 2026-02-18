@@ -1,4 +1,14 @@
+---
+title: Auto-Compaction
+description: Auto-Compaction settings determine the <em>compaction process</em>;
+  whereby databases and their respective view-indexes are compacted.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-settings/configure-compact-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-settings/configure-compact-settings.html)
+
+# Auto-Compaction
 
 > Auto-Compaction settings determine the _compaction process_; whereby databases and their respective view-indexes are compacted. 
 
@@ -116,8 +126,12 @@ The panel appears as follows:
 
 _Tombstones_ are records of expired or deleted items. They include key and metadata. Tombstones are used in Couchbase Server to provide eventual consistency of data between clusters. The specified number of days will elapse before tombstones for expired or deleted items are _permanently_ removed. The default value is three days. The permitted range of values is `0.04` to `60` (where `0.04` equals one hour, and `1` equals one day.
 
-|  | If you set this value too low, you may see inconsistent results in Views queries, such as deleted items appearing in a result set. You may also see inconsistent items across clusters, if XDCR has been set up between the clusters. If the metadata purge interval is set too low, it can also cause severe issues with transactions, especially for ephemeral buckets. If you set this value too high, it delays Couchbase Server from reclaiming disk space. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you set this value too low, you may see inconsistent results in Views queries, such as deleted items appearing in a result set. You may also see inconsistent items across clusters, if XDCR has been set up between the clusters.
+> 
+> If the metadata purge interval is set too low, it can also cause severe issues with transactions, especially for ephemeral buckets.
+> 
+> If you set this value too high, it delays Couchbase Server from reclaiming disk space.
 
 The **Metadata Purge Interval** panel on this screen establishes a default purge interval for _Couchbase buckets only_. Therefore:
 

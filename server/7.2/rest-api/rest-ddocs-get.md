@@ -1,4 +1,15 @@
+---
+title: Getting Design Doc Information
+description: To retrieve a design document, use the <code>GET
+  /bucket/_design/[ddoc-name]</code> HTTP method and URI on the
+  <code>8092</code> port.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-ddocs-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-ddocs-get.html)
+
+# Getting Design Doc Information
 
 > To retrieve a design document, use the `GET /bucket/_design/[ddoc-name]` HTTP method and URI on the `8092` port. 
 
@@ -28,8 +39,8 @@ Curl request syntax:
 curl -u [admin]:[password] -X GET
   http://[localhost]:8092/[bucket-name]/_design/[ddoc-name]
 
-|  | HTTP response header includes a JSON document containing the metadata about the design document being accessed. The information is returned within the X-Couchbase-Meta header of the returned data. This information is retrieved by using the \-v option to the curl command. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> HTTP response header includes a JSON document containing the metadata about the design document being accessed. The information is returned within the `X-Couchbase-Meta` header of the returned data. This information is retrieved by using the `-v` option to the `curl` command.
 
 To get design document information from the cluster, the following request is made on the `8091` port.
 
@@ -40,8 +51,8 @@ curl -u [admin]:[password] -X GET
 
 Curl request example:
 
-|  | To retrieve design doc information, the request must be made on the 8092 port. |
-|  | ------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> To retrieve design doc information, the request must be made on the `8092` port.
 
 To get the existing design document from the bucket `test2` for the development design document `ruth` and the view `ruthView`
 

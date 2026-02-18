@@ -1,9 +1,20 @@
+---
+title: Compression
+description: In response to increasing volumes of data being sent over the wire,
+  Couchbase Data Platform provides data compression between the SDK and
+  Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/concept-docs/pages/compression.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/concept-docs/compression.html)
+
+# Compression
 
 > In response to increasing volumes of data being sent over the wire, Couchbase Data Platform provides data compression between the SDK and Couchbase Server. 
 
-|  | From version 3.5.2, the .NET SDK provides compression by using [Snappier](https://www.nuget.org/packages/Snappier), a performance-focused C# port of [Snappy](https://github.com/google/snappy). This was previously opt-in only via installing the corresponding [Couchbase.Extensions](https://www.nuget.org/packages/Couchbase.Extensions.Compression.Snappier/1.0.0-beta.1) package. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From version 3.5.2, the .NET SDK provides compression by using [Snappier](https://www.nuget.org/packages/Snappier), a performance-focused C# port of [Snappy](https://github.com/google/snappy). This was previously opt-in only via installing the corresponding [Couchbase.Extensions](https://www.nuget.org/packages/Couchbase.Extensions.Compression.Snappier/1.0.0-beta.1) package.
 
 ## [](#overview)Overview
 
@@ -49,15 +60,22 @@ clusterOptions.WithCompressionAlgorithm(myCompressionImplementation);
 // See Couchbase.Compression.Snappier.Internal.SnappierCompression for details on how Snappier implements the interface.
 ```
 
-|  | Even when compression is turned Off server-side, Couchbase Server will decompress documents in memory, and store them recompressed on disk (using Snappy) [see server compression docs](../../../server/7.6/learn/buckets-memory-and-storage/compression.md#compression-modes). It is therefore not recommended to implement a different compression algorithm from Snappy as this may very well cause data corruption. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Even when compression is turned `Off` server-side, Couchbase Server will decompress documents in memory, and store them recompressed on disk (using Snappy) [see server compression docs](../../../server/7.6/learn/buckets-memory-and-storage/compression.md#compression-modes).
+> 
+> It is therefore not recommended to implement a different compression algorithm from Snappy as this may very well cause data corruption.
 
 ## [](#limits)Limits
 
 The document must be below 20MiB in size in both compressed and uncompressed form. Compression is available in Couchbase Capella, and in the Enterprise Edition of self-managed Couchbase Server.
 
-|  | This size limit is enforced by Couchbase Server; in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed doument of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows: Couchbase Server decompresses the document to check that it is valid JSON, and is correctly compressed with _Snappy_, and at this point measures it against max data size (20 MiB). If the decompressed value’s size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3). Therefore, where necessary, enforce document size limits in your application on _uncompressed_ documents. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> This size limit is enforced by Couchbase Server; in practice it will affect very few users, as most JSON documents are considerably smaller. A compressed doument of just under 20MB, which is greater than 20,971,520 bytes (20 MiB) when uncompressed, will be rejected by the server as follows:
+> 
+> * Couchbase Server decompresses the document to check that it is valid JSON, and is correctly compressed with _Snappy_, and at this point measures it against `max data size` (20 MiB).
+> * If the decompressed value’s size exceeds this limit, the mutation is failed with a "too big" error code (E2BIG code 3).
+> 
+> Therefore, where necessary, enforce document size limits in your application on _uncompressed_ documents.
 
 ## [](#operating-modes-server-side)Operating Modes (Server-side)
 

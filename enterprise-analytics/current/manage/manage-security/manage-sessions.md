@@ -1,4 +1,14 @@
+---
+title: Manage Sessions
+description: User-sessions with Enterprise Analytics Web Console can be timed
+  out, following a specified period of user-inactivity.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-sessions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/manage-sessions.html)
+
+# Manage Sessions
 
 > User-sessions with Enterprise Analytics Web Console can be timed out, following a specified period of user-inactivity. 
 

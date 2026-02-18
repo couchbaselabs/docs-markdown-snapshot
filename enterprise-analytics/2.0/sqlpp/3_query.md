@@ -1,4 +1,13 @@
+---
+title: SELECT Statements
+description: This topic describes the syntax used by SQL++ for Enterprise Analytics queries.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/3_query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/3_query.html)
+
+# SELECT Statements
 
 > This topic describes the syntax used by SQL++ for Enterprise Analytics queries. 
 
@@ -36,8 +45,8 @@ A query can be an [expression](2%5Fexpr.md), or you can construct it from blocks
 
 ![FromClause LetClause? WhereClause? (GroupByClause LetClause? HavingClause?)?](_images/StreamGenerator.png) 
 
-|  | Unlike SQL, SQL++ allows the SELECT clause to appear either at the beginning or at the end of a query block. Placing the SELECT clause at the end can make some query blocks easier to understand, because the SELECT clause refers to variables defined by previous clauses. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unlike SQL, SQL++ allows the `SELECT` clause to appear either at the beginning or at the end of a query block. Placing the `SELECT` clause at the end can make some query blocks easier to understand, because the `SELECT` clause refers to variables defined by previous clauses.
 
 ## [](#Select%5Fclauses)SELECT Clause
 
@@ -1966,8 +1975,8 @@ This clause is optional. If you omit it, the system considers all tuples peers, 
 
 If the window frame is defined by `RANGE` or `GROUPS`, the results are the same for each tuple.
 
-|  | This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query ORDER BY clause. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query `ORDER BY` clause.
 
 #### [](#Window%5Fframe%5Fclause)Window Frame Clause
 
@@ -1984,11 +1993,11 @@ You can define the window frame in the following ways:
 * `RANGE`: Looks for a value offset within the frame. The function produces deterministic results.
 * `GROUPS`: Counts all groups of tied rows within the frame. The function produces deterministic results.
 
-|  | If this clause uses RANGE with either _Expr_ PRECEDING or _Expr_ FOLLOWING, the [window order clause](#Window%5Forder%5Fclause) must have only a single ordering term. The ordering term expression must evaluate to a number. If these conditions are not met, the result is an empty window frame, which means the window function returns its default value. In most cases this is null, except for strict\_count() or array\_count(), whose default value is 0\. This restriction does not apply when the window frame uses ROWS or GROUPS. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If this clause uses `RANGE` with either _Expr_ `PRECEDING` or _Expr_ `FOLLOWING`, the [window order clause](#Window%5Forder%5Fclause) must have only a single ordering term. The ordering term expression must evaluate to a number. If these conditions are not met, the result is an empty window frame, which means the window function returns its default value. In most cases this is `null`, except for `strict_count()` or `array_count()`, whose default value is 0\. This restriction does not apply when the window frame uses `ROWS` or `GROUPS`.
 
-|  | The RANGE window frame is commonly used to define window frames based on date or time. If you want to use RANGE with either _Expr_ PRECEDING or _Expr_ FOLLOWING, and you want to use an ordering expression based on date or time, the expression in _Expr_ PRECEDING or _Expr_ FOLLOWING must use a data type that can be added to the ordering expression. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `RANGE` window frame is commonly used to define window frames based on date or time. If you want to use `RANGE` with either _Expr_ `PRECEDING` or _Expr_ `FOLLOWING`, and you want to use an ordering expression based on date or time, the expression in _Expr_ `PRECEDING` or _Expr_ `FOLLOWING` must use a data type that can be added to the ordering expression.
 
 #### [](#Window%5Fframe%5Fextent)Window Frame Extent
 

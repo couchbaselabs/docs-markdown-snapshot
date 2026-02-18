@@ -1,4 +1,13 @@
+---
+title: Explore Sample Data with Data Tools
+description: Use Couchbase Capella's Data Tools to explore and work with your data.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/run-first-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/run-first-queries.html)
+
+# Explore Sample Data with Data Tools
 
 > Use Couchbase Capella’s Data Tools to explore and work with your data. 
 
@@ -49,8 +58,12 @@ ORDER BY route.sourceairport;
 ```
 3. Press Enter or click **Run**. The query results are automatically displayed in JSON format.
 
-|  | Capella can also display the query results as a table, chart, plan, and plan text. To display the results in the format of a data-flow diagram with query operators, select the **Plan** tab. The initial scans are on the right of the diagram and the final query output is on the left. The query results highlight the operators that might use a lot of resources. For example, Capella spends almost 90% of the time on the **Fetch** operator when running your query. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Capella can also display the query results as a table, chart, plan, and plan text.
+> 
+> To display the results in the format of a data-flow diagram with query operators, select the **Plan** tab. The initial scans are on the right of the diagram and the final query output is on the left.
+> 
+> The query results highlight the operators that might use a lot of resources. For example, Capella spends almost 90% of the time on the **Fetch** operator when running your query.
 
 For more information about the tools on the Query tab, see [Query Tab](../clusters/query-service/query-workbench.md).
 

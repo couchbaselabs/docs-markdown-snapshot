@@ -1,4 +1,14 @@
+---
+title: "How-to Guide: XDCR with Scopes and Collections"
+description: A how-to guide on configuring cross data center replication (XDCR)
+  using the Autonomous Operator.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-guide-xdcr-scopes-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-guide-xdcr-scopes-collections.html)
+
+# How-to Guide: XDCR with Scopes and Collections
 
 > A how-to guide on configuring cross data center replication (XDCR) using the Autonomous Operator. 
 
@@ -17,8 +27,8 @@ This guide will take you through a few examples on how to configure XDCR.
 
 ## [](#configure-xdcr)Configure XDCR
 
-|  | This guide uses IP based Addressing to configure XDCR. To configure it using a different approach please refer to [Configure XDCR](howto-xdcr.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This guide uses IP based Addressing to configure XDCR. To configure it using a different approach please refer to [Configure XDCR](howto-xdcr.md).
 
 XDCR can be configured to do `Unidirectional` and `Bidirectional` replication.
 

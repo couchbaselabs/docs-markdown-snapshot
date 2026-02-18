@@ -1,4 +1,14 @@
+---
+title: Index Pushdowns
+description: Index Pushdowns are performance optimizations where the Query
+  engine pushes more of the work down to the Indexer.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/index_pushdowns.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/index_pushdowns.html)
+
+# Index Pushdowns
 
 > Index Pushdowns are performance optimizations where the Query engine pushes more of the work down to the Indexer. 
 
@@ -136,8 +146,10 @@ Various age and name values are stored in the index in a tree-like structure, re
 * A point lookup query for `age=20 AND name="joe"` may follow arrows labelled **p1**.
 * Similarly, a range scan for `(age BETWEEN 20 and 21) AND (name="joe")` may find entries of interest between the paths labelled **p1** and **p2** (highlighted in green).
 
-|  | This range may include some unwanted entries (such as "mark", "abby", "anne") which will be filtered subsequently. Queries with predicates such as (age = 20) AND (name BETWEEN "joe" and "mark") will need all the entries found using range scans. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This range may include some unwanted entries (such as "mark", "abby", "anne") which will be filtered subsequently.
+> 
+> Queries with predicates such as `(age = 20) AND (name BETWEEN "joe" and "mark")` will need all the entries found using range scans.
 
 In general, when the predicate has a range condition on prefixing index-keys (such as `age`) may produce unwanted results from the range-scan index-lookups. In Couchbase Server, the Query service and Indexer are enhanced with complete and accurate predicate pushdown to filter such unnecessary results in the Indexer itself. This improves query performance as it saves the additional overhead in transferring the unwanted data/results to query nodes and subsequently filtering the results. This is explained with an example in the following section: [Composite Predicate with Range Scan on Prefix Index-Keys](#range-scan-prefix).
 

@@ -1,4 +1,12 @@
+---
+title: Create a Lazy Bound Storage Class
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-storage-class.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-storage-class.html)
+
+# Create a Lazy Bound Storage Class
 
 > The Operator requires a lazily bound storage class to function correctly. This guide describes how to configure one. 
 

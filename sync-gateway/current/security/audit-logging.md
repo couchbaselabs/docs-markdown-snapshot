@@ -1,4 +1,15 @@
+---
+title: Audit Logging
+description: Audit Logging provides tools for administrators to track
+  operational irregularities and to support regulatory and security compliance
+  standards.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/security/pages/audit-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/security/audit-logging.html)
+
+# Audit Logging
 
 > Audit Logging provides tools for administrators to track operational irregularities and to support regulatory and security compliance standards. 
 
@@ -15,8 +26,8 @@ Audit logs typically include:
 
 Logs are immutable and cannot be altered once recorded. Viewing and managing audit logs permissions are enforced through Sync Gateway RBAC controls. Logs are written locally on each Sync Gateway node.
 
-|  | [SG Collect Info](../manage/sgcollect-info.md) does NOT collect audit log information as audit logs contain sensitive, unredacted data. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> [SG Collect Info](../manage/sgcollect-info.md) does NOT collect audit log information as audit logs contain sensitive, unredacted data.
 
 There is only one audit log file active at a time, which is periodically rotated based on the following properties:
 
@@ -28,8 +39,8 @@ There is only one audit log file active at a time, which is periodically rotated
 
 Rotated audit logs are automatically pruned at a default value of six days.
 
-|  | Administrators must ensure the rotated logs are picked up before they are deleted. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> Administrators must ensure the rotated logs are picked up before they are deleted.
 
 ## [](#audit-events)Audit Events
 
@@ -37,8 +48,8 @@ Audit events are tagged at a database level to distinguish between events coming
 
 For more information, see [audit events reference page](audit-log-events.md).
 
-|  | Event auditing occurs per Sync Gateway node, capturing its own events only. If you require a cluster-wide record, the records must be manually consolidated by an adminstrator. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Event auditing occurs per Sync Gateway node, capturing its own events only. If you require a cluster-wide record, the records must be manually consolidated by an adminstrator.
 
 ### [](#filtering-audit-logs)Filtering Audit Logs
 
@@ -47,8 +58,8 @@ You can filter audit logs to customize events that are stored in the log file. Y
 * Enabling and disabling users - This affects all events related to a specified user. If a given user is disabled, no audit events from the user will be logged.
 * Enabling and disabling events - This affects the specified events globally. If a given event is disabled, it will not be logged regardless of the user. Events can be enabled per database or globally.
 
-|  | If an audit event has DefaultEnabled set to true, it does not need to be explicitly enabled by the API. See [Audit Logging Events Reference](audit-log-events.md) for more information on specific audit events. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If an audit event has `DefaultEnabled` set to `true`, it does not need to be explicitly enabled by the API. See [Audit Logging Events Reference](audit-log-events.md) for more information on specific audit events.
 
 ### [](#audit-fields)Audit Fields
 

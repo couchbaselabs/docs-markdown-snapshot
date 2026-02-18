@@ -1,4 +1,12 @@
+---
+title: Couchbase Server 5.5
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/couchbase-server-5.5.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/installation/couchbase-server-5.5.html)
+
+# Couchbase Server 5.5
 
 ## [](#manual)Manual
 

@@ -1,4 +1,14 @@
+---
+title: Search
+description: You can use the Full Text Search service (FTS) to create queryable
+  full-text indexes in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/howtos/full-text-searching-with-sdk.html)
+
+# Search
 
 > You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
 
@@ -220,8 +230,10 @@ In addition to the blocking API on `Cluster`, the SDK provides reactive and asyn
 
 There is another reason for using the reactive API here: streaming large results with backpressure from the application side. Both the blocking and async APIs have no means of signalling backpressure in a good way, so if you need it the reactive API is your best option.
 
-|  | Advanced Reactive Concepts Ahead Please see recent guides to reactive programming for more information on the basics — this guide dives straight into their impact on querying search. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Advanced Reactive Concepts Ahead
+> 
+> Please see recent guides to reactive programming for more information on the basics — this guide dives straight into their impact on querying search.
 
 A simple reactive query is similar to the blocking one:
 

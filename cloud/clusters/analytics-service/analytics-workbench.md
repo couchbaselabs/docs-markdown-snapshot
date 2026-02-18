@@ -1,4 +1,14 @@
+---
+title: Analytics Workbench
+description: The Analytics Workbench provides a rich graphical user interface to
+  perform Analytics query development.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-workbench.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/analytics-service/analytics-workbench.html)
+
+# Analytics Workbench
 
 > The Analytics Workbench provides a rich graphical user interface to perform Analytics query development. 
 
@@ -13,8 +23,8 @@ Features of the Analytics Workbench include:
 
 For more information on Couchbase Analytics, see the [Analytics section](../../../server/current/learn/services-and-indexes/services/analytics-service.md) in our Couchbase Server documentation.
 
-|  | The Analytics Workbench is only available on clusters that are running the [Analytics Service](analytics-service.md). |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Analytics Workbench is only available on clusters that are running the [Analytics Service](analytics-service.md).
 
 ## [](#accessing-the-analytics-workbench)Accessing the Analytics Workbench
 
@@ -51,8 +61,8 @@ The new collection will appear just below the local link.
 
 To run the query, click **Execute**.
 
-|  | You can also execute queries by typing a semi-colon (;) at the end of the query and hitting Enter. |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also execute queries by typing a semi-colon (`;`) at the end of the query and hitting Enter.
 
 When the query is running, the **Execute** button changes to **Cancel**, which allows you to cancel the running query. When you cancel a running query, it stops the activity on the cluster side as well.
 
@@ -114,8 +124,8 @@ If you have run the query, a detailed query execution plan is shown, which inclu
 
 The Analytics Workbench maintains a history of all the queries executed. If you edit a previous query and execute it, the new query is stored at the end of the history. The history is persistent across browser sessions. The query history only saves queries; due to limited browser storage, it does not save query results. Thus, when you restart the browser or reload the page, you can see your old queries, but you must re-execute the queries if you want to see their results.
 
-|  | Clearing the browser history clears the history maintained by the Query Editor as well. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Clearing the browser history clears the history maintained by the Query Editor as well.
 
 Clicking the **History** button above the Query Editor opens the **Query History** flyout menu:
 
@@ -124,10 +134,9 @@ Clicking the **History** button above the Query Editor opens the **Query History
 You can scroll through the entire query history, and click on an individual query to be taken to that particular point in the history.
 
 * **Search history** — You can search the query history by entering text in the **Filter Queries** search box. All matching queries are displayed.
-* **Delete a specific entry** — Click the Trash icon next to a particular query to delete it from the history.
-
-|  | This can be useful if you want a more manicured history for when you’re [exporting it](#export-query) for future use. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+* **Delete a specific entry** — Click the Trash icon next to a particular query to delete it from the history.  
+> [!TIP]  
+> This can be useful if you want a more manicured history for when you’re [exporting it](#export-query) for future use.
 * **Delete all entries** — Click **Clear** to delete the entire query history.
 
 ### [](#import-query)Import Query

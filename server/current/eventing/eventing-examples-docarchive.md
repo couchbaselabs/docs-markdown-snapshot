@@ -1,4 +1,16 @@
+---
+title: Document Archival
+description: Create a JavaScript Function that contains an
+  <strong>OnUpdate</strong> handler, which when a document in an existing
+  collection is about to expire, a perfect copy is created in a different
+  collection.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples-docarchive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-examples-docarchive.html)
+
+# Document Archival
 
 **Goal**: Create a JavaScript Function that contains an **OnUpdate** handler, which when a document in an existing collection is about to expire, a perfect copy is created in a different collection.
 
@@ -24,8 +36,8 @@ _If you run a version of Couchbase prior to 7.0 you can just create the buckets 
 
 For complete details on how to set up your keyspaces refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
-|  | The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions.
 
 **Procedure**:
 
@@ -120,10 +132,9 @@ The details under Bucket "bulk" scope "data" show that we have archived the 1,96
 ![docarchive 07 preexpired](_images/docarchive_07_preexpired.png)
 12. Now switch to the access the **Couchbase Web Console** \> **Eventing** page. Expand the function **archive\_before\_expiry** and not the count under successes (3,936)  
 ![docarchive cntb](_images/docarchive_cntb.png)
-13. Wait a few more minutes (a bit more than two minutes) past the 120 second window, then check the documents within the `bulk`.`data`.`source` collection, you will find that none of the documents will be accessible as they have expired due to the enclosing bucket’s defined TTL.
-
-|  | If you don’t actually try to access the documents in the bulk.data.source collection the UI may still indicate they still exist until the expiry pager removes the tombstone for the deleted or expired documents (or an attempt to access them is made). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+13. Wait a few more minutes (a bit more than two minutes) past the 120 second window, then check the documents within the `bulk`.`data`.`source` collection, you will find that none of the documents will be accessible as they have expired due to the enclosing bucket’s defined TTL.  
+> [!NOTE]  
+> If you don’t actually try to access the documents in the `bulk`.`data`.`source` collection the UI may still indicate they still exist until the expiry pager removes the tombstone for the deleted or expired documents (or an attempt to access them is made).  
 ![docarchive 06 buckets](_images/docarchive_06_buckets.png)  
 The details under Bucket "bulk" scope "data" show that the 1,968 archived documents remain in the "target" collection but the original documents in the "source" collection have expired:  
 ![docarchive 08 expired](_images/docarchive_08_expired.png)

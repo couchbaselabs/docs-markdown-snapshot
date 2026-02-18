@@ -1,9 +1,18 @@
+---
+title: Cluster Manager Metrics
+description: A list of the metrics provided by the Cluster Manager.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/metrics-reference/pages/ns-server-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/metrics-reference/ns-server-metrics.html)
+
+# Cluster Manager Metrics
 
 > A list of the metrics provided by the Cluster Manager. 
 
-| Tip | The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | audit\_queue\_lengthgauge Current number of entries in the audit queue                                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |

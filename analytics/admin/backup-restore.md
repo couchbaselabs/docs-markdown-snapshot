@@ -1,4 +1,14 @@
+---
+title: Back Up or Restore a Capella Analytics Cluster
+description: With a Cloud Snapshot cluster backup, you can backup and restore
+  your entire Capella Analytics cluster with a single backup.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/backup-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/backup-restore.html)
+
+# Back Up or Restore a Capella Analytics Cluster
 
 > With a Cloud Snapshot cluster backup, you can backup and restore your entire Capella Analytics cluster with a single backup. 
 
@@ -75,10 +85,13 @@ To restore a backup to a cluster:
 1. On the **Capella Analytics** page, select the cluster where you want to restore a backup.
 2. Go to **Backup** **Capella Analytics Snapshots**.
 3. In the list of cluster backups, find the backup you want to restore.
-4. Go to **More Options (⋮)** **Restore**.
-
-|  | Restoring a cluster backup also deletes all allowed IP addresses on your cluster. Before you restore a cluster backup, use version 4 of the Management API to [get a list of all available allowed IP addresses](../management-api-reference/index.md#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/listColumnarAllowedCidrs) on your cluster. You can use the list to recreate your allowed IP address list later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. Go to **More Options (⋮)** **Restore**.  
+> [!CAUTION]  
+> Restoring a cluster backup also deletes all allowed IP addresses on your cluster.  
+>  
+> Before you restore a cluster backup, use version 4 of the Management API to [get a list of all available allowed IP addresses](../management-api-reference/index.md#tag/Allowed-CIDRs-%28Analytics-Cluster%29/operation/listColumnarAllowedCidrs) on your cluster.  
+>  
+> You can use the list to recreate your allowed IP address list later.
 5. Confirm that you want to restore the cluster backup.
 6. Click **Restore**.
 
@@ -92,5 +105,5 @@ Capella starts the restore process for your cluster backup on your current clust
 
 You can view the details and status for all your cluster backup restores on the **Capella Analytics Snapshot Restores** page.
 
-|  | The **Size** of the cluster used size at the time of your backup is only an estimate. Capella calculates the cluster size information for a backup at the start of the backup process, based on the current size of your cluster. The actual size of a restored cluster may be different from this initial estimate. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The **Size** of the cluster used size at the time of your backup is only an estimate. Capella calculates the cluster size information for a backup at the start of the backup process, based on the current size of your cluster. The actual size of a restored cluster may be different from this initial estimate.

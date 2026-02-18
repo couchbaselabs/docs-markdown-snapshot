@@ -1,4 +1,12 @@
+---
+title: Creating Index from UI
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-creating-index-from-UI.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-creating-index-from-UI.html)
+
+# Creating Index from UI
 
 The user interface for Full Text Search is provided by the Couchbase Web Console. To proceed, you must have permission to log into the console, create indexes, and perform searches. For information on Role-Based Access Control, see Authorization.
 
@@ -14,8 +22,8 @@ Enter your username and password, and left-click on the **Sign In** button. The 
 
 ![fts console initial](_images/fts-console-initial.png) 
 
-|  | The appearance of the main panel of the Dashboard varies in accordance with customizations that have been performed. For information, see [Manage Statistics](../manage/manage-statistics/manage-statistics.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The appearance of the main panel of the Dashboard varies in accordance with customizations that have been performed. For information, see [Manage Statistics](../manage/manage-statistics/manage-statistics.md).
 
 To access the Full Text Search screen, left-click on the **Search** tab in the navigation bar on the left-hand side:
 
@@ -41,8 +49,8 @@ To define a basic index on which Full Text Search can be performed, begin by ent
 
 This is all you need to specify to create a basic index for test and development. No further configuration is required.
 
-|  | Such default indexing is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Such default indexing is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant.
 
 ### [](#using-non-default-scope-collections)Using Non Default Scope/Colle
 
@@ -62,10 +70,10 @@ At this point, you are returned to the Full Text Search screen. In the Full Text
 
 ![fts new index progress](_images/fts-new-index-progress.png) 
 
-|  | This percentage figure appears under the indexing progress column and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. However, search queries will be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This percentage figure appears under the indexing progress column and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. However, search queries will be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete.
 
 Once the new index has been built, it supports Full Text Searches performed by all available means: the Console UI, the Couchbase REST API, and the Couchbase SDK.
 
-|  | If one or more of the nodes in the cluster running data service goes down and/or are failed over, indexing progress may show a value > 100%. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If one or more of the nodes in the cluster running data service goes down and/or are failed over, indexing progress may show a value > 100%.

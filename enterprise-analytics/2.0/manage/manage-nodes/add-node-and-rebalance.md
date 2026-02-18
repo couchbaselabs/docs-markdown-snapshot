@@ -1,4 +1,13 @@
+---
+title: Add a Node and Rebalance
+description: A new Enterprise Analytics node can be added to an existing cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/add-node-and-rebalance.html)
+
+# Add a Node and Rebalance
 
 > A new Enterprise Analytics node can be added to an existing cluster. 
 
@@ -40,10 +49,9 @@ Proceed as follows:
 
 1. Bring up Enterprise Analytics Web Console, and log into cluster `127.0.0.1`, using the Full Administrator username and password. Access the **Servers** tab in the left-hand navigation bar. The **Servers** screen for the cluster displays the name of the only node currently in the cluster, `127.0.0.1`, plus additional information.
 2. Ensure that the node to be added has been started. This can be accomplished by checking the IP address and port number for the new node in the address bar of the browser. When you access the new node’s address, you’ll see a welcome interface indicating that Enterprise Analytics is installed and running on the new node, but has not yet been provisioned. Do not use this interface: instead, return to Enterprise Analytics Web Console for the cluster, `127.0.0.1`.
-3. In the **Servers** panel for the cluster, click on the **ADD SERVER** button at the upper right. The **Add Server Node** dialog is now displayed.
-
-|  | A warning provided at the top of the dialog - "If the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node’s addition to the current cluster." |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. In the **Servers** panel for the cluster, click on the **ADD SERVER** button at the upper right. The **Add Server Node** dialog is now displayed.  
+> [!NOTE]  
+> A warning provided at the top of the dialog - "If the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node’s addition to the current cluster."
 4. Specify the IP address of the node to be added in the **Server IP Address** field. A placeholder password must be specified in the **Password** field, even though the node has not yet been provisioned with one.
 
 Optionally, the **Customize disk storage paths (this node)** checkbox can be checked to display interactive fields that allow to modify the storage paths for the node. When checked, the dialog extends vertically to display interactive fields for **Metadata Disk** and **Cache Disk** data paths. For the current example, the displayed default paths do not need modification.
@@ -108,13 +116,13 @@ To ensure cluster-security, in Enterprise Analytics, restrictions can be placed 
 
 To add a new Enterprise Analytics-node to an existing cluster, use the [server-add](../../cli/couchbase-cli-server-add.md) command.
 
-|  | This command requires that arguments be provided for its \--server-add-username and \--server-add-password flags. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This command requires that arguments be provided for its `--server-add-username` and `--server-add-password` flags.
 
 In this case, meaningful arguments do not exist, since the new node features an instance of Enterprise Analytics that’s running, but has not been provisioned with a username or password. Therefore, specify placeholder arguments. Additionally, specify that the `data` service be run on the node, once it’s part of the cluster.
 
-|  | A server to be added (as specified by the value of the server-add parameter) can be prefixed with the scheme https://, and/or with the port 8091: if no scheme and no port is specified, https:// and 8091 are used as defaults. The scheme http:// cannot be used, nor can the port 8091: addition must occur over a secure connection. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A server to be added (as specified by the value of the `server-add` parameter) can be prefixed with the scheme `https://`, and/or with the port `8091`: if no scheme and no port is specified, `https://` and `8091` are used as defaults. The scheme `http://` cannot be used, nor can the port `8091`: addition must occur over a secure connection.
 
 /opt/enterprise-analytics/bin/couchbase-cli server add -c 127.0.0.1:8091
 --username Administrator \
@@ -142,20 +150,20 @@ If successful, the command returns the following:
 
 SUCCESS: Rebalance complete
 
-|  | When the operation is highly complex, it may be desirable to get status on its progress, or stop the operation. See the command reference for [rebalance-status](#cli:cbcli/couchbase-cli-rebalance-status.adoc) and [rebalance-stop](../../cli/couchbase-cli-rebalance-stop.md), for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When the operation is highly complex, it may be desirable to get status on its progress, or stop the operation. See the command reference for [rebalance-status](#cli:cbcli/couchbase-cli-rebalance-status.adoc) and [rebalance-stop](../../cli/couchbase-cli-rebalance-stop.md), for more information.
 
 ### [](#cancel-retries-with-the-cli)Cancel Retries with the CLI
 
 _Retries_ (described above, in [Automated Rebalance-Failure Handling](#automated-rebalance-failure-handling)) can be cancelled with the CLI, by means of the [setting-rebalance](../../cli/couchbase-cli-setting-rebalance.md) command.
 
-|  | Use of setting-rebalance for setting and getting the current rebalance-failure configuration is documented in [General Settings](../manage-settings/general-settings.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use of `setting-rebalance` for setting and getting the current rebalance-failure configuration is documented in [General Settings](../manage-settings/general-settings.md).
 
 If, following a rebalance failure, a retry is pending, retrieve information about the pending retry as follows.
 
-|  | The command is piped to the [jq](https://stedolan.github.io/jq/) program, to facilitate readability: |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The command is piped to the [jq](https://stedolan.github.io/jq/) program, to facilitate readability:
 
 /opt/enterprise-analytics/bin/couchbase-cli
 -c 10.143.192.101 \
@@ -198,8 +206,8 @@ To add a new Enterprise Analytics-node to an existing cluster, use the `/control
 
 The following command adds node `127.0.0.2` to cluster `127.0.0.1`.
 
-|  | A server to be added can be prefixed with the scheme https://, and/or can be suffixed with the port 18091: if no scheme or port is specified, https:// and 18091 are used as defaults. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A server to be added can be prefixed with the scheme `https://`, and/or can be suffixed with the port `18091`: if no scheme or port is specified, `https://` and `18091` are used as defaults.
 
 The scheme `http://` cannot be used; nor can the port `8091`, since in 7.1+, node-addition takes place only over a secure connection.
 
@@ -217,8 +225,8 @@ curl -u Administrator:password -v -X POST \
 10.142.181.101:8091/controller/rebalance \
 -d 'knownNodes=ns_1@10.142.181.101,ns_1@127.0.0.2'
 
-|  | The knownNodes argument lists each of the nodes in the cluster. If successful, the command returns no output. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `knownNodes` argument lists each of the nodes in the cluster. If successful, the command returns no output.
 
 For further information about adding nodes with the REST API, see [Adding Nodes to Clusters](../../reference/rest-cluster-addnodes.md); on rebalancing, see [Rebalancing the Cluster](../../reference/rest-cluster-rebalance.md).
 
@@ -226,13 +234,13 @@ For further information about adding nodes with the REST API, see [Adding Nodes 
 
 _Retries_ (described above, in [Automated Rebalance-Failure Handling](#automated-rebalance-failure-handling)) can be cancelled with the REST API.
 
-|  | Use of the REST API for setting and getting the current rebalance-failure configuration is documented in [Rebalance Settings via REST](../manage-settings/general-settings.md#rebalance-settings-via-rest). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use of the REST API for setting and getting the current rebalance-failure configuration is documented in [Rebalance Settings via REST](../manage-settings/general-settings.md#rebalance-settings-via-rest).
 
 If, following a rebalance failure, a retry is pending, use the `GET /pools/default/pendingRetryRebalance` http method and URI to identify the pending retry, as follows.
 
-|  | This example uses the [jq](https://stedolan.github.io/jq/) tool, to facilitate readability of output. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This example uses the [jq](https://stedolan.github.io/jq/) tool, to facilitate readability of output.
 
 curl -u Administrator:password -v -X GET \
 http://10.143.192.101:8091/pools/default/pendingRetryRebalance | jq '.'

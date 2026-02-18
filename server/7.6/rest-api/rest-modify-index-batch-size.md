@@ -1,9 +1,20 @@
+---
+title: Modify Index Batch Size
+description: Couchbase Server breaks the rebuilding of indexes during a
+  rebalance into batches to limit the performance impact. You can use the REST
+  API to change the size of these batches.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-modify-index-batch-size.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-modify-index-batch-size.html)
+
+# Modify Index Batch Size
 
 > Couchbase Server breaks the rebuilding of indexes during a rebalance into batches to limit the performance impact. You can use the REST API to change the size of these batches. 
 
-|  | Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance.
 
 ## [](#http-method-and-uri)HTTP Method and URI
 

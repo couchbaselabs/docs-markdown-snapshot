@@ -1,4 +1,13 @@
+---
+title: Read Documents
+description: How to read documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/reading-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/reading-data.html)
+
+# Read Documents
 
 > How to read documents with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#reading-a-document)Reading a Document
 
@@ -68,8 +77,8 @@ hotel-123            CAS=0x16ba896b78930000, Flags=0x0, Size=567, Datatype=0x01(
 
 The output has been prettified for readability.
 
-|  | If the document cannot be found, cbc will return a LCB\_ERR\_DOCUMENT\_NOT\_FOUND error. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document cannot be found, `cbc` will return a `LCB_ERR_DOCUMENT_NOT_FOUND` error.
 
 For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5F2cbc.html).
 
@@ -89,8 +98,8 @@ Console.WriteLine($"CAS: {getResult.Cas}");
 Console.WriteLine($"Data: {getResult.ContentAs<JObject>()}");
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -111,8 +120,8 @@ GetResult getResult = hotelCollection.get("hotel-123");
 System.out.println("CAS:" + getResult.cas());
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -134,8 +143,8 @@ console.log('CAS:', getResult.cas)
 console.log('Data:', JSON.stringify(getResult.content, null, '  '))
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundError error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -157,8 +166,8 @@ print("CAS:", get_result.cas)
 print("Data: {}".format(get_result.content_as[dict]))
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -360,8 +369,8 @@ airport_1254         CAS=0x16b815068df80000
 {"lat":50.962097,"lon":1.954764,"alt":12.0}
 ```
 
-|  | If the path cannot be found, cbc-subdoc will return a LCB\_ERR\_SUBDOC\_PATH\_NOT\_FOUND error. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the path cannot be found, `cbc-subdoc` will return a `LCB_ERR_SUBDOC_PATH_NOT_FOUND` error.
 
 For further details, refer to [cbc-subdoc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5Fcbc%5Fsubdoc.html).
 
@@ -404,8 +413,8 @@ System.out.println("CAS:" + lookupInResult.cas());
 System.out.println("Geo:" + lookupInResult.contentAsObject(0));
 ```
 
-|  | If the document path cannot be found, the SDK will return a PathNotFoundException error. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document path cannot be found, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -449,8 +458,8 @@ print("CAS:", lookup_in_result.cas)
 print("Data:", lookup_in_result.content_as[dict](0))
 ```
 
-|  | If the document path cannot be found, the SDK will return a PathNotFoundException error. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document path cannot be found, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 

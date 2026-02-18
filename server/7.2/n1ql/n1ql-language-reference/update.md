@@ -1,9 +1,18 @@
+---
+title: UPDATE
+description: UPDATE replaces a document that already exists with updated values.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/update.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/update.html)
+
+# UPDATE
 
 > UPDATE replaces a document that already exists with updated values. 
 
-|  | Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#prerequisites)Prerequisites
 
@@ -11,8 +20,8 @@
 
 User executing the UPDATE statement must have the _Query Update_ privilege on the target keyspace. If the statement has any clauses that needs data read, such as SELECT clause, or RETURNING clause, then _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
-|  | A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
 
 RBAC Examples 
 
@@ -127,8 +136,8 @@ The SET clause also supports alternative arguments which enable you to set the e
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | expiration | An integer, or an expression resolving to an integer, representing the [document expiration](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration) in seconds. |
 
-|  | If the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../../settings/query-settings.md#preserve%5Fexpiry) parameter. If this is true, the existing document expiration is preserved; if false, the document expiration defaults to 0, meaning the document expiration is the same as the [bucket expiration](../../learn/data/expiration.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../../settings/query-settings.md#preserve%5Fexpiry) parameter. If this is `true`, the existing document expiration is preserved; if `false`, the document expiration defaults to `0`, meaning the document expiration is the same as the [bucket expiration](../../learn/data/expiration.md).
 
 ### [](#unset-clause)UNSET Clause
 
@@ -144,8 +153,8 @@ Removes the specified attribute from the document.
 | ---------- | ------------------------------------------------------- |
 | update-for | [FOR Clause](#update-for)                               |
 
-|  | You cannot use the UNSET clause to unset the document expiration. To unset the document expiration, set the document expiration to 0. Alternatively, if the request-level [preserve\_expiry](../../settings/query-settings.md#preserve%5Fexpiry) parameter is set to false, simply update the document without specifying the document expiration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use the UNSET clause to unset the document expiration. To unset the document expiration, set the document expiration to `0`. Alternatively, if the request-level [preserve\_expiry](../../settings/query-settings.md#preserve%5Fexpiry) parameter is set to `false`, simply update the document without specifying the document expiration.
 
 ### [](#update-for)FOR Clause
 
@@ -200,8 +209,8 @@ Specifies the information to be returned by the operation as a query result. For
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | For some of these examples, the Query Workbench may warn you that the query has no WHERE clause and will update all documents. In this case, you can ignore the warning: the USE KEYS hint in these examples ensures that the query updates only one document. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For some of these examples, the Query Workbench may warn you that the query has no WHERE clause and will update all documents. In this case, you can ignore the warning: the USE KEYS hint in these examples ensures that the query updates only one document.
 
 Example 1\. Set an attribute
 

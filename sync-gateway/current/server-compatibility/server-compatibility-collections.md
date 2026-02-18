@@ -1,4 +1,13 @@
+---
+title: Collections&#8201;&#8212;&#8201;Server Compatibility
+description: How <em>Sync Gateway</em> can work with <em>Couchbase Server's Collections</em>
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/server-compatibility/server-compatibility-collections.html)
+
+# Collections&#8201;&#8212;&#8201;Server Compatibility
 
 > How _Sync Gateway_ can work with _Couchbase Server’s Collections_  
 
@@ -10,8 +19,8 @@ _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
 Couchbase Server provides the backing data store for Sync Gateway.
 
-|  | See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
 Sync Gateway supports scopes and collections ([Default Collections](#7.0@server:learn:data/scopes-and-collections.adoc#default-scope-and-collection), [Named Collections](#7.0@server:learn:data/scopes-and-collections.adoc#naming-for-scopes-and-collections) ).
 

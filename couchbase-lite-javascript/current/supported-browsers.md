@@ -1,4 +1,13 @@
+---
+title: Supported Browsers
+description: Couchbase Lite JavaScript -- browser versions on which this SDK is supported
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/supported-browsers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/supported-browsers.html)
+
+# Supported Browsers
 
 > Description — _Couchbase Lite JavaScript — browser versions on which this SDK is supported_  
 > Related Content — [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
@@ -13,8 +22,8 @@ Compatibility has been verified on the following browser versions (and newer):
 * Chrome 142+
 * Firefox 144+
 
-|  | Sync behaviour may be limited in private browsing modes (especially Chrome). |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Sync behaviour may be limited in private browsing modes (especially Chrome).
 
 The SDK also runs seamlessly in Progressive Web App (PWA) environments, enabling installable, native-like usage scenarios.
 

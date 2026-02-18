@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/1.0/index.html)
+
+# Introduction
 
 > The Couchbase Tableau Connector provides integration between your high performance Couchbase Server tabular views and the Tableau interactive data visualization platform. 
 

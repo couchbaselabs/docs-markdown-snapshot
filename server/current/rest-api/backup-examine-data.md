@@ -1,4 +1,15 @@
+---
+title: Examine Backed-Up Data
+description: The Backup Service REST API allows the examination of instances of
+  a specified document, within a subset of backups from a specified active,
+  imported, or archived repository.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-examine-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/backup-examine-data.html)
+
+# Examine Backed-Up Data
 
 > The Backup Service REST API allows the examination of instances of a specified document, within a subset of backups from a specified active, imported, or archived repository. 
 

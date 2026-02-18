@@ -1,4 +1,12 @@
+---
+title: Release Notes
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/release-notes.html)
+
+# Release Notes
 
 > Release notes for the Spark Connector. 
 

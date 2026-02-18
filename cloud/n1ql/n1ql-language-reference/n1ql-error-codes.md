@@ -1,4 +1,14 @@
+---
+title: SQL++ Error Codes
+description: The following table lists all of the SQL++ error codes, their error
+  message, and some tips to resolve them.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/n1ql-error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/n1ql-error-codes.html)
+
+# SQL++ Error Codes
 
 > The following table lists all of the SQL++ error codes, their error message, and some tips to resolve them. 
 
@@ -94,8 +104,10 @@ These errors are related to the services.
 | 1203  | Slow/stalled client write timed out                                                         | **Reason** A write to the request output stream timed out. Individual writes that make up the response must not block indefinitely, which typically occurs when the client isn't reading the response stream. **User Action** Check the application is reading response stream fast enough to avoid blocking writes.                                                                                                                                                                                                                                                                                     |
 | 1204  | request halted: free memory below «threshold»% of available memory                          | **Reason** The request was halted by admission control due to low available memory.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
-|  | Error 1040 The Query Service REST API returns this error if you specify request parameters as form data and include an unescaped semicolon (;) in a statement. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Error 1040
+> 
+> The Query Service REST API returns this error if you specify request parameters as form data and include an unescaped semicolon (;) in a statement.
 
 ## [](#2xxx-codes-admin)2xxx Codes (admin)
 
@@ -204,8 +216,10 @@ These errors are related to the parsing.
 | 3407  | Cannot use DISTINCT in an array index key with VECTOR attribute in CREATE INDEX statement.                         | **Reason** An array index key with VECTOR attribute is specified using DISTINCT in CREATE INDEX statement. **User Action** Revise the statement to remove DISTINCT in array index key with VECTOR attribute.                                                                                                                                                                                               |
 | 3408  | Cannot use a constant construct (object or array) in an index key with VECTOR attribute in CREATE INDEX statement. | **Reason** An index key (<<name>>) with VECTOR attribute is specified as an object construct or array construct in CREATE INDEX statement. **User Action** Revise the statement to not use a constant construct in index key with VECTOR attribute.                                                                                                                                                        |
 
-|  | Error 3000 If you’re using AI Functions, this error code indicates that the function you’re using is not enabled or associated with an LLM. You need to [enable the function](../../../ai/build/ai-functions.md#enable-ai-functions) and try again. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Error 3000
+> 
+> If you’re using AI Functions, this error code indicates that the function you’re using is not enabled or associated with an LLM. You need to [enable the function](../../../ai/build/ai-functions.md#enable-ai-functions) and try again.
 
 ## [](#4xxx-codes-plan)4xxx Codes (plan)
 

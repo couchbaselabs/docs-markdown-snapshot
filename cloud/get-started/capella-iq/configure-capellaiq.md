@@ -1,4 +1,15 @@
+---
+title: Configure Capella iQ
+description: Capella iQ harnesses the power of a third-party large language
+  model (LLM) to improve your queries. You can turn this tool on or off for your
+  organization.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/configure-capellaiq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/capella-iq/configure-capellaiq.html)
+
+# Configure Capella iQ
 
 > Capella iQ harnesses the power of a third-party large language model (LLM) to improve your queries. You can turn this tool on or off for your organization. 
 
@@ -15,8 +26,8 @@ Before anyone in an organization can use Capella iQ, an [Organization Owner](../
 3. Click **Continue**.  
 Capella iQ is now available to all your organization’s users, who can use it with all of your organization’s clusters.
 
-|  | Accepting the terms for Capella iQ enables iQ for both operational clusters and [Capella Analytics clusters](../../../analytics/intro/intro.md). While iQ helps you write SQL++ queries in an operational cluster, iQ for Capella Analytics helps you write [SQL++ for Capella Analytics queries and statements](../../../analytics/sqlpp/1%5Fintro.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Accepting the terms for Capella iQ enables iQ for both operational clusters and [Capella Analytics clusters](../../../analytics/intro/intro.md). While iQ helps you write SQL++ queries in an operational cluster, iQ for Capella Analytics helps you write [SQL++ for Capella Analytics queries and statements](../../../analytics/sqlpp/1%5Fintro.md).
 
 ### [](#turn-capella-iq-off-for-your-organization)Turn Capella iQ Off for Your Organization
 
@@ -27,8 +38,8 @@ Capella iQ is on by default and you control it at the organization level. To tur
 3. Select or deselect **Enable Capella iQ** and click **Save**.  
 If Capella iQ is turned off for an organization the iQ button is still visible in the query editor. Any user who clicks this button sees a message that Capella iQ is disabled.
 
-|  | When you disable Capella iQ, you also disable [iQ Insights](explore-iq-insights.md). |
-|  | ------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When you disable Capella iQ, you also disable [iQ Insights](explore-iq-insights.md).
 
 ## [](#next-steps)Next Steps
 

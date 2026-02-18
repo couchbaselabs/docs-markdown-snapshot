@@ -1,4 +1,14 @@
+---
+title: Add a Synonym Source Using the Web Console
+description: Add a Synonym Source to set the collection where your synonym
+  documents are stored.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/synonyms/add-synonym-source.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/synonyms/add-synonym-source.html)
+
+# Add a Synonym Source Using the Web Console
 
 > Add a Synonym Source to set the collection where your synonym documents are stored. After you have set the synonym source for your Search index and any child fields, you can run any type of text-based Search query to return results with synonyms. 
 
@@ -152,8 +162,8 @@ It uses synonyms from the `synonyms_en` synonym source for the `description` and
 }
 ```
 
-|  | To use this index definition on your own cluster, remove the uuid parameter and replace the sourceUUID parameter with the appropriate UUID for your own travel-sample bucket. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use this index definition on your own cluster, remove the `uuid` parameter and replace the `sourceUUID` parameter with the appropriate UUID for your own `travel-sample` bucket.
 
 For this example, the `synonyms` collection inside the `travel-sample` bucket has the following 2 synonym documents:
 

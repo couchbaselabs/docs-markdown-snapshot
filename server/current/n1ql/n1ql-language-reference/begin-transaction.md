@@ -1,4 +1,13 @@
+---
+title: BEGIN TRANSACTION
+description: The BEGIN TRANSACTION statement enables you to begin a transaction.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/begin-transaction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/begin-transaction.html)
+
+# BEGIN TRANSACTION
 
 > The BEGIN TRANSACTION statement enables you to begin a transaction. 
 
@@ -12,8 +21,8 @@ The `BEGIN TRANSACTION` statement enables you to begin a sequence of statements 
 
 All statements within a transaction are sent to the same Query node.
 
-|  | You can also specify a single DML statement as an ACID transaction by setting the [tximplicit](../n1ql-manage/query-settings.md#tximplicit) query parameter. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can also specify a single DML statement as an ACID transaction by setting the [tximplicit](../n1ql-manage/query-settings.md#tximplicit) query parameter.
 
 ## [](#syntax)Syntax
 

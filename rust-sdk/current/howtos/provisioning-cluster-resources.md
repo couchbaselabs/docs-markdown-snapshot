@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-rust-client/). 
 
@@ -6,8 +16,12 @@ The primary means for managing clusters is through the Couchbase Web UI which pr
 
 The Rust SDK also comes with some convenience functionality for common Couchbase management requests.
 
-|  | Managing Capella Clusters This part of the SDK API predates the Capella Management API, and is only intended to work with self-managed Couchbase Server clusters. Management of your Capella Operational cluster is available away from the Web UI with the [Capella Management API](../../../cloud/management-api-guide/management-api-intro.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Managing Capella Clusters
+> 
+> This part of the SDK API predates the Capella Management API, and is only intended to work with self-managed Couchbase Server clusters.
+> 
+> Management of your Capella Operational cluster is available away from the Web UI with the [Capella Management API](../../../cloud/management-api-guide/management-api-intro.md).
 
 ## [](#bucket-management)Bucket Management
 
@@ -15,8 +29,8 @@ The `BucketManager` interface may be used to create and delete buckets from the 
 
 `BucketSettings` is used for creating and updating buckets. `BucketSettings` is also used for exposing information about existing buckets.
 
-|  | Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 Here is the list of parameters available for `BucketSettings`. The "Updatable" column indicates whether the parameter may only be specified when creating a bucket, or whether it may be updated after creation.
 
@@ -255,8 +269,8 @@ Applications can use this manager to perform operations such as creating, deleti
 * A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
-|  | To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.
 
 The example below shows how to create a simple primary index on the collection, by calling the `create_primary_index()` method.
 

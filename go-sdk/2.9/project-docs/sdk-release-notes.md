@@ -1,4 +1,14 @@
+---
+title: SDK Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase Go Client.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Go Client. 
 
@@ -10,8 +20,8 @@ These pages cover the 2.x versions of the Couchbase Go SDK (3.x SDK API). For re
 $ go get github.com/couchbase/gocb/v2@v2.9.4
 ```
 
-|  | In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. Older versions may work, but are not supported. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. Older versions may work, but are not supported.
 
 ### [](#api-documentation)API Documentation
 

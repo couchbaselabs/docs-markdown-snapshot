@@ -1,4 +1,14 @@
+---
+title: Selecting Data
+description: How to use a SQL++ selection query to read data from a data source
+  and return results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/select.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/select.html)
+
+# Selecting Data
 
 > How to use a SQL++ selection query to read data from a data source and return results.  
 > This guide is for Couchbase Server.
@@ -113,8 +123,8 @@ To specify the data source for a query, use the FROM clause. For example, to get
 
 When you specify a FROM clause, you can use the SELECT clause to specify the fields that you want to return from that data source. The set of fields returned by the query is known as the projection.
 
-|  | Before you can query a data source, there must be an index on that data source. The sample dataset already contains all the indexes you need to run the example queries in this guide. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Before you can query a data source, there must be an index on that data source. The sample dataset already contains all the indexes you need to run the example queries in this guide.
 
 The following query gets the name and city of every airport.
 
@@ -149,8 +159,8 @@ For more information and examples, see [FROM Clause](../n1ql/n1ql-language-refer
 
 The query context enables you to specify a bucket and scope to resolve partial keyspace references within your queries. When the query context is set, you can specify the data source in your queries using the collection name only. This enhances the portability of your queries.
 
-|  | The query context is only used to resolve partial keyspace references. When a query specifies a data source using the full path to a keyspace, the query context is not used to resolve that keyspace. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The query context is only used to resolve partial keyspace references. When a query specifies a data source using the full path to a keyspace, the query context is not used to resolve that keyspace.
 
 * Query Workbench
 * CBQ Shell

@@ -1,4 +1,14 @@
+---
+title: Request with Authentication&#8201;&#8212;&#8201;HTTP Header
+description: In this example, the credentials (user="simon", pass="fizzbuzz")
+  are given in the request header using basic authentication.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/n1ql/pages/n1ql-rest-api/exauthhttp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-rest-api/exauthhttp.html)
+
+# Request with Authentication&#8201;&#8212;&#8201;HTTP Header
 
 In this example, the credentials (user="simon", pass="fizzbuzz") are given in the request header using basic authentication.
 

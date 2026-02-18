@@ -1,4 +1,13 @@
+---
+title: XDCR Advanced Settings
+description: XDCR performance can be fine-tuned.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-advanced-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/xdcr-reference/xdcr-advanced-settings.html)
+
+# XDCR Advanced Settings
 
 > XDCR performance can be fine-tuned. 
 
@@ -31,10 +40,9 @@ Note that the XDCR conflict resolution policy is set on a per bucket basis, duri
 
 The XDCR Compression Type setting can be either `Auto` or `None`.
 
-* When `Auto` is specified, data compression is attempted during replication only if the target cluster is running Couchbase Server 5.5 or a later version.
-
-|  | When compressionType is set to Auto, the behavior remains the same whether the data in the source bucket is compressed or uncompressed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+* When `Auto` is specified, data compression is attempted during replication only if the target cluster is running Couchbase Server 5.5 or a later version.  
+> [!NOTE]  
+> When `compressionType` is set to `Auto`, the behavior remains the same whether the data in the source bucket is compressed or uncompressed.
 * When `None` is specified, data compression is not attempted during replication if the target cluster is not running Couchbase Server 5.5 or a later version.  
 However, if the target cluster is running Couchbase Server 5.5 or a later version, and:
 

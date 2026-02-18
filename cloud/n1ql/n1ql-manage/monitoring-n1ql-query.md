@@ -1,4 +1,15 @@
+---
+title: Manage and Monitor Queries
+description: Monitoring and profiling SQL++ queries, Query Service nodes, and
+  corresponding system resources is important for smoother operational
+  performance and efficiency of the system.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-manage/monitoring-n1ql-query.html)
+
+# Manage and Monitor Queries
 
 > Monitoring and profiling SQL++ queries, Query Service nodes, and corresponding system resources is important for smoother operational performance and efficiency of the system. In fact, often it’s vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 
@@ -901,8 +912,11 @@ The `profile` object contains the following attributes:
 | **kernTime**optional       | Time spent waiting to be scheduled for CPU time. **Example:** "15.027879ms"                                                                                                                             | String (duration) |
 | **servTime**optional       | Time spent waiting for another service, such as index or data. For index scan, it is time spent waiting for GSI/indexer. For fetch, it is time spent waiting on the KV store. **Example:** "1.590934ms" | String (duration) |
 
-|  | The kernTime, servTime, and execTime statistics can be helpful in troubleshooting query performance issues. For example: A high servTime for a low number of items processed is an indication that the indexer or KV store is stressed. A high kernTime means there is a downstream issue in the query plan or the query server having many requests to process, so the scheduled waiting time will be more for CPU time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `kernTime`, `servTime`, and `execTime` statistics can be helpful in troubleshooting query performance issues. For example:
+> 
+> * A high `servTime` for a low number of items processed is an indication that the indexer or KV store is stressed.
+> * A high `kernTime` means there is a downstream issue in the query plan or the query server having many requests to process, so the scheduled waiting time will be more for CPU time.
 
 ### [](#plan)Profiling Details in System Catalogs
 
@@ -917,8 +931,11 @@ Within these system catalogs, not all statements have a `meta().plan` attribute.
 * With [system:active\_requests](#sys-active-req) and [system:completed\_requests](#sys-completed-req), the `meta().plan` attribute is only available for statements that you run when profile is set to `timings`.
 * With [system:prepareds](#sys-prepared), the `meta().plan` attribute is available for all statements.
 
-|  | When request profiling is set to timings, profiling information is likely to use 100KB+ per entry in the system:completed\_requests keyspace. Due to the added overhead of running both profiling and [logging](../../clusters/monitoring/monitoring.md#activity-logs), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance. Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When request profiling is set to `timings`, profiling information is likely to use 100KB+ per entry in the `system:completed_requests` keyspace.
+> 
+> * Due to the added overhead of running both profiling and [logging](../../clusters/monitoring/monitoring.md#activity-logs), turn on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
 
 Plan Details
 

@@ -1,4 +1,13 @@
+---
+title: Analytics Links
+description: In the Analytics Workbench, you can create and manage external links.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/analytics-service/analytics-links.html)
+
+# Analytics Links
 
 > In the Analytics Workbench, you can create and manage external links. These enable you to access data from outside the local Couchbase cluster. 
 
@@ -14,8 +23,8 @@ The Analytics Scopes area shows all Analytics scopes, and any links that exist w
 
 ![The links in the Analytics Scopes area.](../_images/analytics-scopes-working-area.png) 
 
-|  | It is not possible to modify an existing link. If you want to modify an existing link, you must delete it and recreate it. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is not possible to modify an existing link. If you want to modify an existing link, you must delete it and recreate it.
 
 ## [](#s3)Create an Amazon S3 Link
 
@@ -34,8 +43,8 @@ The new link is displayed within the Analytics Scopes area.
 
 If you close the Add Link flyout without creating the link, any information you have entered in the Add Link flyout is not preserved.
 
-|  | When creating a link to the Amazon S3 service, be sure to follow best practices for security. AWS root account credentials should never be used. The policy for the created IAM User roles should be as strict as possible and only allow access to the required data and required resources. You only need to know the access key ID and the secret access key for the created IAM User role to access the S3 service. The link will be able to access whatever is permitted to the IAM User, since it will be using the IAM User credentials to interact with the AWS S3 service. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When creating a link to the Amazon S3 service, be sure to follow best practices for security. AWS root account credentials should never be used. The policy for the created IAM User roles should be as strict as possible and only allow access to the required data and required resources. You only need to know the access key ID and the secret access key for the created IAM User role to access the S3 service. The link will be able to access whatever is permitted to the IAM User, since it will be using the IAM User credentials to interact with the AWS S3 service.
 
 ## [](#gcs)Create a Google Cloud Storage Link
 

@@ -1,4 +1,15 @@
+---
+title: Failover
+description: Nodes can be <em>failed over</em>, and thereby removed safely from
+  a cluster in the event of unavoidable downtime, without any break in the
+  serving of data to applications.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/fail-nodes-over.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/fail-nodes-over.html)
+
+# Failover
 
 > Nodes can be _failed over_, and thereby removed safely from a cluster in the event of unavoidable downtime, without any break in the serving of data to applications. 
 

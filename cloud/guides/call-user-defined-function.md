@@ -1,4 +1,14 @@
+---
+title: Call a User-Defined Function
+description: Call a user-defined JavaScript function from the Query Tab or cbq
+  and use it with your Capella operational cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/call-user-defined-function.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/call-user-defined-function.html)
+
+# Call a User-Defined Function
 
 > Call a user-defined JavaScript function from the Query Tab or cbq and use it with your Capella operational cluster. 
 

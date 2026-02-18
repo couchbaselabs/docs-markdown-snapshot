@@ -1,4 +1,12 @@
+---
+title: Autonomous Operator Logging
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-operator-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-operator-logging.html)
+
+# Autonomous Operator Logging
 
 > The Autonomous Operator provides flexible logging support to enable failure detection and alerting. 
 
@@ -18,8 +26,11 @@ Example of Autonomous Operator Logs
 {"level":"info","ts":1580377226.7565176,"logger":"cluster","msg":"Creating XDCR remote cluster","cluster":"default/cb-example","remote":"remote"}
 ```
 
-|  | Popular logging solutions that feature native support for JSON input [Fluentd JSON parser](https://docs.fluentd.org/parser/json) [Logstash JSON codec](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-json%5Flines.html) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Popular logging solutions that feature native support for JSON input
+> 
+> * [Fluentd JSON parser](https://docs.fluentd.org/parser/json)
+> * [Logstash JSON codec](https://www.elastic.co/guide/en/logstash/current/plugins-codecs-json%5Flines.html)
 
 ## [](#related-content)Related Content
 

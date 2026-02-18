@@ -1,4 +1,13 @@
+---
+title: Upgrade Couchbase Lite for C
+description: Couchbase mobile database upgrading
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/dep-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/dep-upgrade.html)
+
+# Upgrade Couchbase Lite for C
 
 > Couchbase mobile database upgrading 
 

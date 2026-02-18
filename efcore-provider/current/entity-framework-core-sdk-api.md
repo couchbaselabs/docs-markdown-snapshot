@@ -1,4 +1,13 @@
+---
+title: Entity Framework Core API Reference
+description: The API reference for the Couchbase EF Core Provider.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-sdk-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-sdk-api.html)
+
+# Entity Framework Core API Reference
 
 > The API reference for the Couchbase EF Core Provider. 
 

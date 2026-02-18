@@ -1,4 +1,12 @@
+---
+title: maxConcurrentPartitionMovesPerNode
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-advance-settings-maxConcurrentPartitionMovesPerNode.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-advance-settings-maxConcurrentPartitionMovesPerNode.html)
+
+# maxConcurrentPartitionMovesPerNode
 
 The `maxConcurrentPartitionMovesPerNode` setting offers a way to speed up the rebalance operation to move partitions concurrently.
 
@@ -19,7 +27,6 @@ curl -XPUT -H "Content-type:application/json" http://<username>:<password>@<ip>:
 * Set `maxConcurrentPartitionMovesPerNode` to N as runtime cluster option:  
 curl -XPUT -H "Content-type:application/json" http://<username>:<password>@<ip>:8094/api/managerOptions \-d '{"maxConcurrentPartitionMovesPerNode": "N"}'
 * Set `maxConcurrentPartitionMovesPerNode` to 1 for maximum concurrency:  
-curl -XPUT -H "Content-type:application/json" http://<username>:<password>@<ip>:8094/api/managerOptions \-d '{"maxFeedsPerDCPAgent": "1"}'
-
-|  | Ensure that you have enough memory quota. |
-|  | ----------------------------------------- |
+curl -XPUT -H "Content-type:application/json" http://<username>:<password>@<ip>:8094/api/managerOptions \-d '{"maxFeedsPerDCPAgent": "1"}'  
+> [!NOTE]  
+> Ensure that you have enough memory quota.

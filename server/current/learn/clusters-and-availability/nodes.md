@@ -1,4 +1,15 @@
+---
+title: Nodes
+description: A Couchbase-Server <em>cluster</em> consists of one or more
+  <em>nodes</em>, each of which is a system running an instance of Couchbase
+  Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/nodes.html)
+
+# Nodes
 
 > A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Couchbase Server. 
 
@@ -46,10 +57,9 @@ An instance of Couchbase Server must have been installed on the available node, 
   * The services and memory-quotas that are currently the default for the cluster can be optionally assigned to the node that is being added. However, an error occurs if the node does not have sufficient memory. Services and memory-quotas for the node can be configured to be other than the default. Alternatively, the default itself can be changed, provided that it does not require more of a given resource than is available on every node currently in the cluster.
 
 * The routine for _joining_ an existing cluster is executed on the new node.  
-The available node must be at stage 2 or 3: that is, it must have been started, and may have had its data, index, analytics, and eventing paths configured. However, it cannot have been provisioned in any way: if the routine for joining is executed on a provisioned node, an error is flagged, and the operation fails.
-
-|  | Services can be assigned to the new node during the join operation or on-demand. The memory quota for each service defaults to the setting for the existing cluster. An error occurs if the new node does not have sufficient memory. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+The available node must be at stage 2 or 3: that is, it must have been started, and may have had its data, index, analytics, and eventing paths configured. However, it cannot have been provisioned in any way: if the routine for joining is executed on a provisioned node, an error is flagged, and the operation fails.  
+> [!NOTE]  
+> Services can be assigned to the new node during the join operation or on-demand. The memory quota for each service defaults to the setting for the existing cluster. An error occurs if the new node does not have sufficient memory.  
 If Couchbase Web Console is used to perform the join, the data, index, analytics, and eventing paths can be modified as part of the join operations.
 
 Once a cluster has been created, any of the IP addresses of the cluster-nodes can be used to access data and services. Therefore, provided that one node in the cluster is running the Data Service, the IP address of another node - one that is not running the Data Service - can be specified, in order to access the Data Service: the Cluster Manager ensures that all requests are appropriately routed across the cluster.
@@ -122,8 +132,8 @@ When a cluster is first created, it is necessarily a single-node cluster. The ne
   * The _loopback address_, `127.0.0.1`. This is the default.  
 Whichever kind of node name is specified for the single-node cluster, if calls are made to the cluster by means of the Couchbase CLI or the REST API, those made from the underlying host can use the loopback address, the IP address of the underlying host, or the hostname of the underlying host, if one has been assigned. Calls made from other hosts on the network must use either the IP address or the hostname. In all cases, the appropriate port number must also be specified, following the name, separated by a colon.
 
-|  | In Couchbase Enterprise Server 7.2 and later versions, when certificates are used for cluster authentication, each node certificate must be configured with the node-name correctly specified as a Subject Alternative Name (SAN). For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Enterprise Server 7.2 and later versions, when certificates are used for cluster authentication, each node certificate must be configured with the node-name correctly specified as a Subject Alternative Name (SAN). For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation).
 
 #### [](#specifying-the-cluster-name)Specifying the Cluster Name
 
@@ -172,8 +182,8 @@ Certificate deployment for a cluster requires that the chain certificate _chain.
 
 Therefore, a new node should be appropriately certificate-protected, before any attempt is made to incorporate it into a certificate-protected cluster.
 
-|  | In Couchbase Enterprise Server 7.2 and later versions, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when uploading the certificate, or when attempting to add or join the node to a cluster. For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Enterprise Server 7.2 and later versions, the node-name _must_ be correctly identified in the node certificate as a Subject Alternative Name. If such identification is not correctly configured, failure may occur when uploading the certificate, or when attempting to add or join the node to a cluster. For information, see [Node Certificate Validation](../security/certificates.md#node-certificate-validation).
 
 See [Certificates](../security/certificates.md) for an overview of certificates in the context of Couchbase Server. For information on configuring server certificates, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md); and in particular, the section [Adding New Nodes](../../manage/manage-security/configure-server-certificates.md#adding-new-nodes).
 

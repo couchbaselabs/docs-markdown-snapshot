@@ -1,9 +1,24 @@
+---
+title: Add a GCP Private Service Connection
+description: Add a GCP Private Service Connection that connects your GCP network
+  with a Capella cluster using GCP as its cloud provider. This connection can
+  reduce latency and egress costs for applications hosted in the same region.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-gcp-private-link.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/add-gcp-private-link.html)
+
+# Add a GCP Private Service Connection
 
 > Add a GCP Private Service Connection that connects your GCP network with a Capella cluster using GCP as its cloud provider. This connection can reduce latency and egress costs for applications hosted in the same region. 
 
-|  | XDCR and Prometheus Metrics GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions. For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> XDCR and Prometheus Metrics
+> 
+> GCP Private Service Connections can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions.
+> 
+> For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -26,8 +41,8 @@ For more information about projects in Capella, see [Projects Overview](../proje
   * A BASH-like shell environment with the [Google Cloud Command Line Interface (CLI)](https://cloud.google.com/sdk/docs/install) installed and configured.
   * The Terraform command-line tool downloaded and installed. For more information, see the [Install Terraform Documentation](https://developer.hashicorp.com/terraform/downloads).
 
-|  | Couchbase Capella automatically manages load balancers for each node in GCP. You do not need to open ports for GCP when configuring a firewall. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Capella automatically manages load balancers for each node in GCP. You do not need to open ports for GCP when configuring a firewall.
 
 ## [](#procedure)Procedure
 
@@ -43,8 +58,8 @@ To get started, open the Capella UI and the Google Cloud CLI or Google Terraform
 
 In Capella, enable Private Endpoints:
 
-|  | Enabling private endpoints bills your account hourly for GCP Private Service Connect until you turn off this option. As this feature is resource-intensive, it can result in increased costs. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Enabling private endpoints bills your account hourly for GCP Private Service Connect until you turn off this option. As this feature is resource-intensive, it can result in increased costs.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -74,14 +89,12 @@ To add a private endpoint:
 Use a shell script to create the private endpoint:
 
   1. Download and run the configuration shell script provided by Capella.  
-  This script contains commands to create the required related resources in your chosen GCP network. When successful, the provisioning details are output. It can take several minutes for this script to complete.
-
-|  | If you add a subnet to your network after completing this procedure in GCP, you must re-run the configuration shell script to provision all the required resources in your network. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
-Use Google Terraform Provider commands to create the private endpoint:
-
-|  | The Google Terraform configuration files are not available for download through Capella. |
-|  | ---------------------------------------------------------------------------------------- |
+  This script contains commands to create the required related resources in your chosen GCP network. When successful, the provisioning details are output. It can take several minutes for this script to complete.  
+  > [!CAUTION]  
+  > If you add a subnet to your network after completing this procedure in GCP, you must re-run the configuration shell script to provision all the required resources in your network.  
+Use Google Terraform Provider commands to create the private endpoint:  
+> [!NOTE]  
+> The Google Terraform configuration files are not available for download through Capella.
 
   1. Create 2 Terraform configuration files:
 
@@ -97,10 +110,9 @@ Use Google Terraform Provider commands to create the private endpoint:
   base_dns_name                = "YOUR_BASE_DNS_NAME."  #Include the trailing period ( . )  
   service_attachment           = "SERVICE_ATTACHMENT_URI"  
   bootstrap_service_attachment = "BOOTSTRAP_SERVICE_ATTACHMENT_URI"  
-  ```
-
-|  | You can download the script.sh configuration shell script provided through Capella and use it as a reference for these value inputs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+  ```  
+  > [!TIP]  
+  > You can download the `script.sh` configuration shell script provided through Capella and use it as a reference for these value inputs.
   3. Copy and save the following Terraform configuration into your `main.tf` file. Do not make any modifications.  
   ```tf  
   terraform {  
@@ -202,8 +214,12 @@ Use Google Terraform Provider commands to create the private endpoint:
 6. In Capella, enter the `gcp-project-id` for your project and accept the connection.  
 The acceptance process takes several minutes when you accept a connection to your project for the first time.
 
-|  | When connecting an SDK to a cluster with a GCP Private Service Connection, you must add ?network=external to the end of the private endpoint in the connection string. For example, couchbases://private-endpoint.<RANDOM>.cloud.couchbase.com?network=external. This is only required for Java, Scala, Kotlin, C++, Node.js, Python, Ruby, and PHP SDKs. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When connecting an SDK to a cluster with a GCP Private Service Connection, you must add `?network=external` to the end of the private endpoint in the connection string.
+> 
+> For example, `couchbases://private-endpoint.<RANDOM>.cloud.couchbase.com?network=external`.
+> 
+> This is only required for Java, Scala, Kotlin, C++, Node.js, Python, Ruby, and PHP SDKs.
 
 ### [](#verify-connection)Verify the Connection
 
@@ -218,8 +234,10 @@ Disabling private endpoints deletes all private endpoints in a cluster. At the b
 
 It can take several minutes for Capella to complete this process.
 
-|  | Disabling private endpoints only cleans up the infrastructure deployed in Capella. You must manually clean up any resources deployed to your GCP VPC that were supporting private endpoints. Do not remove GCP resources until the disabling process in Capella is complete. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Disabling private endpoints only cleans up the infrastructure deployed in Capella. You must manually clean up any resources deployed to your GCP VPC that were supporting private endpoints.
+> 
+> Do not remove GCP resources until the disabling process in Capella is complete.
 
 #### [](#delete-private-endpoints-with-terraform)Delete Private Endpoints with Terraform
 

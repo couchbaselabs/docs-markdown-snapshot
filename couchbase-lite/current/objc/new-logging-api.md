@@ -1,4 +1,13 @@
+---
+title: Logging API
+description: Introduced in Couchbase Lite 3.2.2.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/new-logging-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/objc/new-logging-api.html)
+
+# Logging API
 
 > Introduced in Couchbase Lite 3.2.2\. 
 
@@ -38,8 +47,8 @@ CBLLogSinks.console = [[CBLConsoleLogSink alloc] initWithLevel:kCBLLogLevelVerbo
 
 Create a new `FileLogSink` with the desired properties and install it.
 
-|  | setRotateCount from before 3.2.2 API is slightly different from setMaxKeptFiles. setMaxKeptFiles is the maximum number of log files that will exist at any time and is the count of rotated files (setRotateCount) plus one. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `setRotateCount` from before 3.2.2 API is slightly different from `setMaxKeptFiles`. `setMaxKeptFiles` is the maximum number of log files that will exist at any time and is the count of rotated files (`setRotateCount`) plus one.
 
 ```objc
 NSString* tempFolder = [NSTemporaryDirectory() stringByAppendingPathComponent:  @"cbllog"];
@@ -62,8 +71,8 @@ Sinks will receive only logs at the level and domain for which it is initialized
 
 `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
-|  | Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so.
 
 API Custom Logger Class
 
@@ -91,8 +100,8 @@ CBLLogSinks.custom = [[CBLCustomLogSink alloc] initWithLevel:kCBLLogLevelWarning
 
 ## [](#decoding-binary-logs)Decoding binary logs
 
-|  | The latest version of the cbl-log tool is 3.0.0. |
-|  | ------------------------------------------------ |
+> [!NOTE]
+> The latest version of the cbl-log tool is `3.0.0`.
 
 You can use the **cbl-log** tool to decode binary log files — see [Example 1](#eg-cbl-log).
 

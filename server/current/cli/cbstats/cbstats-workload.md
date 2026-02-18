@@ -1,4 +1,13 @@
+---
+title: workload
+description: Provides the workload status of threads for buckets.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-workload.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-workload.html)
+
+# workload
 
 > Provides the workload status of threads for buckets. 
 

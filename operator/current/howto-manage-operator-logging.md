@@ -1,4 +1,12 @@
+---
+title: Kubernetes Operator Troubleshooting
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-manage-operator-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-manage-operator-logging.html)
+
+# Kubernetes Operator Troubleshooting
 
 > If you run into issues with the Kubernetes Operator, you can troubleshoot by examining the logs and events that it generates. 
 

@@ -1,4 +1,14 @@
+---
+title: Add Security with Channels
+description: Channels and their part in data routing and access control for
+  secure cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/channels.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/security/channels.html)
+
+# Add Security with Channels
 
 > Channels and their part in data routing and access control for secure cloud-to-edge enterprise data synchronization. 
 
@@ -23,8 +33,8 @@ You can associate a channel with a role or a user using any of these methods:
 2. The UI via the [Create App User page](create-user.md).
 3. The [Access Control and Data Validation Function](../app-endpoints/access-control-data-validation.md).
 
-|  | Channels are configured on a collection level. |
-|  | ---------------------------------------------- |
+> [!IMPORTANT]
+> Channels are configured on a collection level.
 
 ## [](#overview)Overview
 
@@ -81,8 +91,8 @@ Admin channels can also be created through the REST Admin API by calling `/{db}/
 }
 ```
 
-|  | Channels within the **admin\_channels** root level field are used as channels for the **\_default** collection. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Channels within the **admin\_channels** root level field are used as channels for the **\_default** collection.
 
 The channels can also be updated through a call to update the user: `/{db}/_user/{username}`
 
@@ -96,8 +106,8 @@ Figure 3\. Assigning document to channel through Access Control/JavaScript
 
 These channels are created and allocated dynamically as documents are created and modified. Once a channel is allocated to an App User, it will be displayed under "Other Channels".
 
-|  | Channels created by the Access Control Function and assigned to an App User or App Role cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function and potentially run resync to apply changes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Channels created by the Access Control Function and assigned to an App User or App Role cannot be edited or deleted by the Capella UI or Admin API. You will need to edit the Access Control Function and potentially run resync to apply changes.
 
 ## [](#see-also)See Also
 

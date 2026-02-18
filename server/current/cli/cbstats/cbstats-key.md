@@ -1,4 +1,13 @@
+---
+title: key
+description: Provides information on keys.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-key.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-key.html)
+
+# key
 
 > Provides information on keys. 
 

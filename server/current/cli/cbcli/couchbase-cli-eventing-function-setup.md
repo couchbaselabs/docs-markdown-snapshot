@@ -1,4 +1,13 @@
+---
+title: eventing-function-setup
+description: Manage Events
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-eventing-function-setup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-eventing-function-setup.html)
+
+# eventing-function-setup
 
 Manage Events
 

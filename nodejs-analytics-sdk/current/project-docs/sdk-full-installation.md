@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Node.js Analytics SDK.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-analytics-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Node.js Analytics SDK. 
 

@@ -1,4 +1,12 @@
+---
+title: Create a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-couchbase-create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-couchbase-create.html)
+
+# Create a Couchbase Deployment
 
 ## [](#prerequisites)Prerequisites
 
@@ -7,10 +15,9 @@ Before you attempt to deploy a Couchbase Server cluster with the Couchbase Kuber
 * You have reviewed the [prerequisites](prerequisite-and-setup.md)
 * You have downloaded the [Kubernetes Operator package](https://www.couchbase.com/downloads)
 * You have [deployed the admission controller and the Kubernetes Operator](install-kubernetes.md), and both are up and running  
-The package contains YAML configuration files that will help you set up a Couchbase cluster.
-
-|  | After you unpack the download, the resulting directory will be titled something like couchbase-autonomous-operator-kubernetes.x.x-linux\_x86\_64. Make sure to cd into this directory before you run the commands in this guide. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The package contains YAML configuration files that will help you set up a Couchbase cluster.  
+> [!IMPORTANT]  
+> After you unpack the download, the resulting directory will be titled something like `couchbase-autonomous-operator-kubernetes.x.x-linux_x86_64`. Make sure to `cd` into this directory before you run the commands in this guide.
 
 ## [](#preparing-the-couchbase-cluster-configuration)Preparing the Couchbase Cluster Configuration
 
@@ -73,8 +80,16 @@ By taking a quick look at this configuration file, you can see that it defines a
 
 You can use this example `CouchbaseCluster` configuration file "as-is" to test out how the Operator deploys a Couchbase Server cluster. However, to deploy a Couchbase cluster that is more specifically tailored to your development and production needs, you need to create your own custom configuration file that conforms to the `CouchbaseCluster` specification.
 
-|  | Ensure that your Kubernetes environment has the [appropriate resources](../../server/current/install/sizing-general.md) for the Couchbase cluster that you’re trying to deploy. In the case of Minikube, the default memory allocation is 2 GB. This is not sufficient for running a three-node Couchbase cluster like the one in the example configuration. If you’re using the example configuration for demo purposes, you should set the memory allocation to 4 GB at a minimum (8 GB recommended). You should also increase the CPU allocation if you experience poor performance. You can set the recommended memory and CPU allocation when you start Minikube: $ minikube start --cpus 2 --memory 8192 |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Ensure that your Kubernetes environment has the [appropriate resources](../../server/current/install/sizing-general.md) for the Couchbase cluster that you’re trying to deploy.
+> 
+> In the case of Minikube, the default memory allocation is 2 GB. This is not sufficient for running a three-node Couchbase cluster like the one in the example configuration. If you’re using the example configuration for demo purposes, you should set the memory allocation to 4 GB at a minimum (8 GB recommended). You should also increase the CPU allocation if you experience poor performance.
+> 
+> You can set the recommended memory and CPU allocation when you start Minikube:
+> 
+> ```console
+> $ minikube start --cpus 2 --memory 8192
+> ```
 
 ## [](#deploying-the-couchbase-cluster)Deploying the Couchbase Cluster
 

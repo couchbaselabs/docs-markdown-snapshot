@@ -1,4 +1,12 @@
+---
+title: Loki
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/component-loki.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/component-loki.html)
+
+# Loki
 
 > Loki can be used to process and store Couchbase logs. 
 

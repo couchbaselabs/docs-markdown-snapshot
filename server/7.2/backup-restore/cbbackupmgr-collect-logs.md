@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr collect-logs
+description: Collects debugging information from a backup archive
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-collect-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/backup-restore/cbbackupmgr-collect-logs.html)
+
+# cbbackupmgr collect-logs
 
 Collects debugging information from a backup archive
 

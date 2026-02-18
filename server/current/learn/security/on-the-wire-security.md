@@ -1,4 +1,15 @@
+---
+title: On-the-Wire Security
+description: To support secure communications between nodes, clusters, and
+  clients, Couchbase Server provides interfaces for the configuration of
+  on-the-wire security.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/on-the-wire-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/security/on-the-wire-security.html)
+
+# On-the-Wire Security
 
 > To support secure communications between nodes, clusters, and clients, Couchbase Server provides interfaces for the configuration of on-the-wire security. 
 
@@ -38,8 +49,8 @@ The relationships between _global_ and _per service_ settings for TLS and cipher
 
 You can set the minimum version of TLS that Couchbase Server accepts either for the entire server or on a per-service basis. Couchbase Server refuses connections from clients who use a version of TLS earlier than this minimum. You can choose to set the minimum TLS version to either 1.2 or 1.3.
 
-|  | Couchbase Server 7.6 and later do not support TLS versions 1 and 1.1\. Support for these earlier versions was deprecated in Couchbase Server 7.2\. When upgrading from a pre-7.6 version of Couchbase Server to version 7.6 or later, the upgrade process sets any TLS minimum setting that’s lower than 1.2 to 1.2\. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server 7.6 and later do not support TLS versions 1 and 1.1\. Support for these earlier versions was deprecated in Couchbase Server 7.2\. When upgrading from a pre-7.6 version of Couchbase Server to version 7.6 or later, the upgrade process sets any TLS minimum setting that’s lower than 1.2 to 1.2\.
 
 Couchbase Server defaults to requiring TLS version 1.2 or later if you have set Couchbase Server to enforce TLS. You can change this global default to require at least TLS version 1.3\. Individual services use the system default value unless you set a minimum TLS version for them specifically. See [Manage On-the-Wire Security](../../manage/manage-security/manage-tls.md) to learn how to change these settings.
 

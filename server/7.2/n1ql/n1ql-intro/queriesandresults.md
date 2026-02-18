@@ -1,4 +1,14 @@
+---
+title: SQL++ Queries and Results
+description: An overview of common concepts that you will need to understand in
+  order to use the Query service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-intro/queriesandresults.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-intro/queriesandresults.html)
+
+# SQL++ Queries and Results
 
 > An overview of common concepts that you will need to understand in order to use the Query service. 
 
@@ -72,8 +82,10 @@ When the query context is set, you can refer to a collection using just the coll
 * To set the query context in the Query Workbench, use the the [query context](../../tools/query-workbench.md#query-context) drop-down menu in the Query Editor.
 * To set the query context from the cbq shell or the REST API, use the [query\_context](../../settings/query-settings.md#query%5Fcontext) request-level parameter.
 
-|  | Tenant separation By using queries with partial keyspace references, which are resolved using the query context, a database application can be switched from one scope to another simply by changing the query context. This can be used to support the separation of tenant data in a multi-tenancy environment. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Tenant separation
+> 
+> By using queries with partial keyspace references, which are resolved using the query context, a database application can be switched from one scope to another simply by changing the query context. This can be used to support the separation of tenant data in a multi-tenancy environment.
 
 ## [](#paths)Paths
 
@@ -105,8 +117,8 @@ When a SQL++ query string is sent to the server, the server will inspect the str
 
 A frequently-used query can be _prepared_ so that its _plan_ is generated only once. Subsequent queries using the same query string will use the pre-generated _plan_ instead, saving on the overhead and processing of the plan each time.
 
-|  | Parameterized queries are considered the same query for caching and planning purposes, even if the supplied parameters are different. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Parameterized queries are considered the same query for caching and planning purposes, even if the supplied parameters are different.
 
 For more information on how to optimize queries using prepared statements, refer to the [PREPARE](../n1ql-language-reference/prepare.md) statement.
 

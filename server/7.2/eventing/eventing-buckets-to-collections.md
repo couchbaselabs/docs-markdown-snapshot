@@ -1,4 +1,15 @@
+---
+title: Buckets vs Collections
+description: Now in Couchbase version 7.0 the concept of scopes and collections
+  have been introduced allowing greater flexibility in grouping data and also
+  the ability to support multitenancy.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-buckets-to-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-buckets-to-collections.html)
+
+# Buckets vs Collections
 
 Now in Couchbase version 7.0 the concept of scopes and collections have been introduced allowing greater flexibility in grouping data and also the ability to support multitenancy.
 
@@ -48,8 +59,8 @@ Thus a bucket called `travelinfo` prior to 7.0 essentially becomes a single coll
 
 However all types could be split up and moved into individual collections perhaps all airline documents to a keyspace of `travelinfo.data.airline` and all hotel documents to a keyspace of `travelinfo.data.hotel`.
 
-|  | The Eventing Service can be used to quickly and efficiently migrate a bucket into a set of collections. An example scriptlet [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) has been provided to demonstrate the migration of the beer-sample data set from a bucket paradigm to a collection paradigm. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Service can be used to quickly and efficiently migrate a bucket into a set of collections. An example scriptlet [ConvertBucketToCollections](eventing-handler-ConvertBucketToCollections.md) has been provided to demonstrate the migration of the `beer-sample` data set from a bucket paradigm to a collection paradigm.
 
 The benefits of reorganizing to collections are numerous:
 

@@ -1,4 +1,14 @@
+---
+title: BUILD INDEX
+description: The BUILD INDEX statement enables you to build one or more GSI
+  indexes that are marked for deferred building all at once.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/build-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/build-index.html)
+
+# BUILD INDEX
 
 > The BUILD INDEX statement enables you to build one or more GSI indexes that are marked for deferred building all at once. 
 
@@ -10,8 +20,20 @@ Index metadata provides a state field. The index state may be `scheduled for cre
 
 If you attempt to build an index which is still scheduled for background creation, the request fails.
 
-|  | If you kick off multiple index build operations concurrently, then you may sometimes see transient errors similar to the following. \[   {     "code": 5000,     "msg": "GSI CreateIndex() - cause: Encountered transient error.  Index creation will be retried in background.  Error: Index ... will retry building in the background for reason: Build Already In Progress. Keyspace ...",     "query": "..."   } \] To work around this issue, wait for index building to complete (that is, for all indexes to get to the online state), then issue the BUILD INDEX command again. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you kick off multiple index build operations concurrently, then you may sometimes see transient errors similar to the following.
+> 
+> ```json
+> [
+>   {
+>     "code": 5000,
+>     "msg": "GSI CreateIndex() - cause: Encountered transient error.  Index creation will be retried in background.  Error: Index ... will retry building in the background for reason: Build Already In Progress. Keyspace ...",
+>     "query": "..."
+>   }
+> ]
+> ```
+> 
+> To work around this issue, wait for index building to complete (that is, for all indexes to get to the online state), then issue the BUILD INDEX command again.
 
 BUILD INDEX is also idempotent. On execution, the statement only builds indexes which have not already been built. If any of the indexes specified by BUILD INDEX have already been built, BUILD INDEX skips those indexes.
 
@@ -105,8 +127,13 @@ BUILD INDEX ON keyspace(['ix1', 'ix2', 'ix3']);
 BUILD INDEX ON keyspace('ix1', ['ix2', 'ix3'], ['ix4']);
 ```
 
-|  | Arrays of identifiers are _not_ permitted. BUILD INDEX ON keyspace(\[ix1, ix2, ix3\]); BUILD INDEX ON keyspace(\[ix1\], \[ix2, ix3\]); |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Arrays of identifiers are _not_ permitted.
+> 
+> ```sqlpp
+> BUILD INDEX ON keyspace([ix1, ix2, ix3]);
+> BUILD INDEX ON keyspace([ix1], [ix2, ix3]);
+> ```
 
 #### [](#subquery-expr)Subquery Expression
 

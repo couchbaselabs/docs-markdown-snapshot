@@ -1,4 +1,13 @@
+---
+title: bucket-edit
+description: Edit a bucket
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-bucket-edit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-bucket-edit.html)
+
+# bucket-edit
 
 Edit a bucket
 

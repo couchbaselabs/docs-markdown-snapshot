@@ -1,9 +1,21 @@
+---
+title: Platform Introduction
+description: A simple Scala orientation intro for <em>non-Scala</em> folk who
+  are evaluating the Couchbase Scala SDK.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/hello-world/pages/platform-help.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/hello-world/platform-help.html)
+
+# Platform Introduction
 
 > A simple Scala orientation intro for _non-Scala_ folk who are evaluating the Couchbase Scala SDK. 
 
-|  | Is This Page for You? This page is to help evaluate the Couchbase Scala SDK, if Scala is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the Scala SDK without necessarily being comfortable with the Scala environment. If this is not you, head back to the [rest of the Couchbase Scala SDK documentation](overview.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Is This Page for You?
+> 
+> This page is to help evaluate the Couchbase Scala SDK, if Scala is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the Scala SDK without necessarily being comfortable with the Scala environment. If this is not you, head back to the [rest of the Couchbase Scala SDK documentation](overview.md).
 
 It may be that you are a Java developer trying out our Scala SDK, or someone else who has a JDK installed, in which case feel free to skip ahead a section, but note that we will be installing `sdkman` in the next section, and using that to manage Scala installation.
 

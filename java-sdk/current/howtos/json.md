@@ -1,4 +1,13 @@
+---
+title: JSON Modelling
+description: The Java SDK supports multiple options for working with JSON.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/howtos/json.html)
+
+# JSON Modelling
 
 ## [](#philosophy)Philosophy
 
@@ -333,8 +342,8 @@ collection.mutateIn("arthur",
 }
 ```
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. DJSON documents with more than 32 nested layers cannot be parsed, atttempting to do so will result in a DocumentTooDeepException exception. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. DJSON documents with more than 32 nested layers cannot be parsed, atttempting to do so will result in a `DocumentTooDeepException` exception.
 
 ## [](#identifying-the-type-of-arbitrary-json)Identifying the type of arbitrary JSON
 

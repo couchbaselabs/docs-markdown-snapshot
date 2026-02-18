@@ -1,4 +1,14 @@
+---
+title: Caching Example
+description: A walk-through of the basics of Key-Value operations with
+  Couchbase, through the lens of a REST api caching layer.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/caching-example.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/howtos/caching-example.html)
+
+# Caching Example
 
 > A walk-through of the basics of Key-Value operations with Couchbase, through the lens of a REST api caching layer. 
 

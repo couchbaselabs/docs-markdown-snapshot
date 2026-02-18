@@ -1,4 +1,13 @@
+---
+title: "Appendix 2: Performance Tuning"
+description: A description of Couchbase Analytics query performance tuning.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_2_parameters.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/appendix_2_parameters.html)
+
+# Appendix 2: Performance Tuning
 
 The `SET` statement can be used to override some cluster-wide configuration parameters for a specific request:
 
@@ -193,8 +202,8 @@ SET `compiler.cbo` "true";
 
 You can supply hints to the cost-based optimizer using a hint comment. These enable you to specify the behavior of the cost-based optimizer for individual queries.
 
-|  | Generally speaking, you should rely on the optimizer to generate the query plan. Optimizer hints may be useful in specific situations where the optimizer is not able to come up with the preferred plan. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Generally speaking, you should rely on the optimizer to generate the query plan. Optimizer hints may be useful in specific situations where the optimizer is not able to come up with the preferred plan.
 
 ### [](#productivity%5Fhint)Productivity Hint
 

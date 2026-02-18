@@ -1,4 +1,12 @@
+---
+title: Queries with curl/http requests
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-with-curl-http-requests.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-with-curl-http-requests.html)
+
+# Queries with curl/http requests
 
 > Couchbase Full Text Search supports running multiple types of queries through curl/http request. 
 
@@ -6,8 +14,8 @@
 
 The below sample responds with a list of documents in which the field _type_ contains the term **airline**.
 
-|  | The query works only for the terms with single word. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> The query works only for the terms with single word.
 
 ### [](#curl-request)Curl Request
 
@@ -1347,8 +1355,8 @@ curl -XPOST -H "Content-Type: application/json" -u <username>:<password> http://
 
 ## [](#date-range-query)Date Range Query
 
-|  | This example needs an index created on beer-sample bucket. |
-|  | ---------------------------------------------------------- |
+> [!NOTE]
+> This example needs an index created on beer-sample bucket.
 
 The below sample responds with a list of documents in which the _updateOn_ field contains the date in between the _start_ date and _end_ date, both inclusive.
 
@@ -1758,8 +1766,8 @@ curl -XPOST -H "Content-Type: application/json" -u <username>:<password> http://
 
 ## [](#date-range-facets-query)Date Range Facets Query
 
-|  | This example needs an index created on beer-sample bucket. |
-|  | ---------------------------------------------------------- |
+> [!NOTE]
+> This example needs an index created on beer-sample bucket.
 
 ### [](#curl-request-21)Curl Request
 

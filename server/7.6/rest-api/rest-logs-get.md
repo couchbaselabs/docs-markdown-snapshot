@@ -1,4 +1,16 @@
+---
+title: Retrieving Diagnostic and Log Information
+description: Diagnostic information can be retrieved by using the
+  <code>GET</code> method with the <code>/diag</code> URI. The current content
+  of a log file can be returned by using <code>GET</code> with the
+  <code>/sasl_logs</code> URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-logs-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-logs-get.html)
+
+# Retrieving Diagnostic and Log Information
 
 > Diagnostic information can be retrieved by using the `GET` method with the `/diag` URI. The current content of a log file can be returned by using `GET` with the `/sasl_logs` URI. 
 

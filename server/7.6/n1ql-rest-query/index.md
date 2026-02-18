@@ -1,4 +1,12 @@
+---
+title: Query Service REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/n1ql-rest-query/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql-rest-query/index.html)
+
+# Query Service REST API
 
 ## [](#overview)Overview
 
@@ -569,8 +577,11 @@ Additional elements not listed here might also be present. Clients and consumers
 | **kernTime**optional       | Time spent waiting to be scheduled for CPU time. **Example:** "15.027879ms"                                                                                                                             | String (duration) |
 | **servTime**optional       | Time spent waiting for another service, such as index or data. For index scan, it is time spent waiting for GSI/indexer. For fetch, it is time spent waiting on the KV store. **Example:** "1.590934ms" | String (duration) |
 
-|  | The kernTime, servTime, and execTime statistics can be helpful in troubleshooting query performance issues. For example: A high servTime for a low number of items processed is an indication that the indexer or KV store is stressed. A high kernTime means there is a downstream issue in the query plan or the query server having many requests to process, so the scheduled waiting time will be more for CPU time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `kernTime`, `servTime`, and `execTime` statistics can be helpful in troubleshooting query performance issues. For example:
+> 
+> * A high `servTime` for a low number of items processed is an indication that the indexer or KV store is stressed.
+> * A high `kernTime` means there is a downstream issue in the query plan or the query server having many requests to process, so the scheduled waiting time will be more for CPU time.
 
 ## [](#security)Security
 

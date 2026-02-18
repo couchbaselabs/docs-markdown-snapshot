@@ -1,4 +1,12 @@
+---
+title: Certificate-Based Authentication
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/concept-docs/pages/certificate-based-authentication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/concept-docs/certificate-based-authentication.html)
+
+# Certificate-Based Authentication
 
 > x.509 Certificates for client-server authentication. 
 

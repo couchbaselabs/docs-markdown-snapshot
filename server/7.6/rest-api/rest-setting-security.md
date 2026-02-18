@@ -1,4 +1,14 @@
+---
+title: Configure On-the-Wire Security
+description: Establish and retrieve cluster-wide settings for the use of
+  encryption and cipher-suites.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-setting-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-setting-security.html)
+
+# Configure On-the-Wire Security
 
 > Establish and retrieve cluster-wide settings for the use of encryption and cipher-suites. 
 
@@ -55,19 +65,17 @@ The syntax for the `GET` and `POST` methods includes the following:
   * `all`, meaning that all information passed between nodes, including data handled by services, is passed in encrypted form.
   * `strict`, meaning `all` with only encrypted communication permitted between nodes and between the cluster and external clients. Note that after `strict` has been specified, communication that occurs entirely on a single node using the _loopback_ interface (whereby the machine is identified as either `::1` or `127.0.0.1`) is still permitted in non-encrypted form.  
   Before applying `strict`, see [Enforcing TLS](#enforcing-tls), below.
-* `tlsMinVersion`. Specifies the minimum TLS version accepted by the cluster. Can be the default `tlsv1.2` or `tlsv1.3`. It can be set either globally or per service.
-
-|  | The settings tlsv1 and tlsv1.1 were deprecated in Couchbase Server Version 7.2 and removed in Coucbase Server 7.6\. The Couchbase Server upgrade process from pre-7.6 to 7.6 or later sets this value to tlsv1.2 if it was set to a lower value. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* `tlsMinVersion`. Specifies the minimum TLS version accepted by the cluster. Can be the default `tlsv1.2` or `tlsv1.3`. It can be set either globally or per service.  
+> [!NOTE]  
+> The settings `tlsv1` and `tlsv1.1` were deprecated in Couchbase Server Version 7.2 and removed in Coucbase Server 7.6\. The Couchbase Server upgrade process from pre-7.6 to 7.6 or later sets this value to `tlsv1.2` if it was set to a lower value.
 * `honorCipherOrder`. Specifies whether the server uses its own cipher-suite preference, rather than the client’s. The cluster’s list of accepted cipher-suites can be defined with the `cipherSuites` flag (see below). The default value of `honorCipherOrder` is `true`: a setting of `false` is _not_ recommended, since insecure. This parameter can be set either globally, or per service.
 * `cipherSuites`. Specifies a list of the cipher suites to be used, in order of preference. The argument must be a list of cipher-suites.  
 This parameter can be set either globally, or per service. If the parameter is set for a given service, each listed cipher-suite must appear as a member of the array that is the value of the non-configurable **supportedCipherSuites** setting for the service. If the parameter is set globally, each listed cipher-suite can be used by a given service only if it appears as a member of **supportedCipherSuites** for that service.
 * `scramSha1Enabled`, `scramSha256Enabled`, or `scramSha512Enabled`. Whether the specified password-authentication mechanism — which can be used by applications accessing the Data Service without a TLS-encrypted connection — is enabled or disabled. Value can be `true` (the default, meaning _enabled_) or `false` (meaning _disabled_). This setting is established _globally_, and must not specify the `service-name`.  
 Note that for Couchbase Server Version 7.6 and later, disablement of all three SCRAM/SHA protocols is _recommended_: see [Usernames and Passwords for Applications](../learn/security/usernames-and-passwords.md#authentication-for-applications).
-* `passwordHashAlg`. Which hash function to use for Data-Service password hashing. The options are `argon2id` (the default), `pbkdf2-hmac-sha512`, and `SHA-1` (which is deprecated). Changing this setting does not affect existing passwords. Only new or changed passwords use the new hashing algorithm. See [allowHashMigrationDuringAuth](#migrate-password-hash) for a way to migrate passwords to the new hashing algorithm.
-
-|  | By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* `passwordHashAlg`. Which hash function to use for Data-Service password hashing. The options are `argon2id` (the default), `pbkdf2-hmac-sha512`, and `SHA-1` (which is deprecated). Changing this setting does not affect existing passwords. Only new or changed passwords use the new hashing algorithm. See [allowHashMigrationDuringAuth](#migrate-password-hash) for a way to migrate passwords to the new hashing algorithm.  
+> [!IMPORTANT]  
+> By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use.
 * `argon2idTime`, `argon2idMem`. Time and memory parameters for `argon2id`. Used only if `argon2id` is specified for Data-Service password hashing, as the value of `passwordHashAlg`.
 * `pbkdf2HmacSha512Iterations`. Iterations parameter of `pbkdf2-hmac-sha512`, used only if `pbkdf2-hmac-sha512` is specified for Data-Service password hashing, as the value of `passwordHashAlg`. Specified as a number of iterations. Default is `10000`.
 * `scramShaIterations`. Sets the number of iterations for all `scram-sha` hashes (`scram-sha1`, `scram-sha256`, and `scram-sha512`), if they are not disabled. Specified as a number of iterations. Default is `15000`.
@@ -79,10 +87,9 @@ Note that for Couchbase Server Version 7.6 and later, disablement of all three S
   * When the node’s `hostname` changes due to use of an API or CLI (for example, the [node-init](#cli:cbcli/couchbase-cli-node-iniit.adoc) command).  
 These checks are performed to ensure that each node bears a certificate whose SAN matches the node’s hostname, thereby ensuring that other nodes will be able to verify the node’s identity when connecting with it.
 
-* `allowHashMigrationDuringAuth` controls whether Couchbase Server automatically rehashes a locally-stored password if it was hashed using an algorithm other than the one set by `passwordHashAlg`. If you set this value to `true`, the user’s password is automatically rehashed using the new algorithm after authentication. See [Automatic Password Hash Migration](../learn/security/authentication-overview.md#password-hash-migration) for more information.
-
-|  | This setting only has an effect if the entire database cluster is running Couchbase Server 7.6 or later. |
-|  | -------------------------------------------------------------------------------------------------------- |
+* `allowHashMigrationDuringAuth` controls whether Couchbase Server automatically rehashes a locally-stored password if it was hashed using an algorithm other than the one set by `passwordHashAlg`. If you set this value to `true`, the user’s password is automatically rehashed using the new algorithm after authentication. See [Automatic Password Hash Migration](../learn/security/authentication-overview.md#password-hash-migration) for more information.  
+> [!NOTE]  
+> This setting only has an effect if the entire database cluster is running Couchbase Server 7.6 or later.
 
 For an explanation of the relationships between per service and global settings, see [On-the-Wire Security](../learn/security/on-the-wire-security.md).
 

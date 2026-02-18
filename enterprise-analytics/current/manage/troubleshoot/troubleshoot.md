@@ -1,4 +1,13 @@
+---
+title: Troubleshoot
+description: Common errors, general tips, and an account of how to handle core files.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/troubleshoot/troubleshoot.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/troubleshoot/troubleshoot.html)
+
+# Troubleshoot
 
 > Common errors, general tips, and an account of how to handle core files. 
 

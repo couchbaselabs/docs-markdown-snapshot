@@ -1,4 +1,14 @@
+---
+title: Getting Rebalance Progress
+description: The progress of rebalance can be ascertained with the <code>GET
+  /pools/default/rebalanceProgress</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-get-rebalance-progress.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-get-rebalance-progress.html)
+
+# Getting Rebalance Progress
 
 > The progress of rebalance can be ascertained with the `GET /pools/default/rebalanceProgress` HTTP method and URI. 
 

@@ -1,4 +1,13 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the SQL++ query language.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/howtos/pages/n1ql-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.3/howtos/n1ql-queries.html)
+
+# Query
 
 > You can query for documents in Couchbase using the SQL++ query language. SQL++ (formerly N1QL) is based on SQL, but designed for structured and flexible JSON documents. 
 
@@ -29,8 +38,10 @@ queryResult.rows.forEach { row: QueryRow ->
 | **1** | The query method returns a Flow<QueryFlowItem>. Nothing happens until you collect the flow. Calling execute is an easy way to collect the flow. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Buckets and Queries Before Couchbase 6.5 If you use a version of Couchbase before 6.5, you must open a bucket before doing a query. It does not need to be the bucket you are searching. If you forget to open a bucket, the SDK throws FeatureNotAvailableException. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Buckets and Queries Before Couchbase 6.5
+> 
+> If you use a version of Couchbase before 6.5, you must open a bucket before doing a query. It does not need to be the bucket you are searching. If you forget to open a bucket, the SDK throws `FeatureNotAvailableException`.
 
 ## [](#search-non-default-collection)Searching a Non-Default Collection
 
@@ -79,8 +90,8 @@ A "query parameter" is like a variable in a SQL++ statement. Query parameters pr
 
 You can give parameters names, or refer to them by position.
 
-|  | Some parts of a SQL++ statement cannot be parameters. If you use a parameter where it is not allowed, the SDK throws an exception. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some parts of a SQL++ statement cannot be parameters. If you use a parameter where it is not allowed, the SDK throws an exception.
 
 ### [](#named-parameters)Named parameters
 
@@ -106,8 +117,8 @@ val queryResult: QueryResult = cluster
 | **1** | In this example, the WHERE condition is country = $country. Unfortunately, Kotlin doesn’t have a nice way to escape a dollar sign ($) in multi-line strings. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-|  | When using named parameters, always escape the dollar sign ($) in the placeholder name. Otherwise, Kotlin does string interpolation, which does not prevent SQL injection. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When using named parameters, always escape the dollar sign (`$`) in the placeholder name. Otherwise, Kotlin does string interpolation, which does not prevent SQL injection.
 
 ### [](#positional-parameters)Positional parameters
 
@@ -179,8 +190,8 @@ val metadata: QueryMetadata = cluster
     }
 ```
 
-|  | The streaming version of execute returns QueryMetadata instead of QueryResult. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> The streaming version of `execute` returns `QueryMetadata` instead of `QueryResult`.
 
 ## [](#prepared-statements)Prepared Statements
 

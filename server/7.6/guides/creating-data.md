@@ -1,4 +1,13 @@
+---
+title: Create Documents
+description: How to create documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/creating-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/creating-data.html)
+
+# Create Documents
 
 > How to create documents with a command line tool or an SDK. 
 
@@ -13,8 +22,8 @@ Read the following for further information about the clients available:
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#inserting-a-document)Inserting a Document
 
@@ -82,8 +91,8 @@ hotel-123          Stored. CAS=0x16b37e5081690000
                    SYNCTOKEN=829,51260943619833,92
 ```
 
-|  | If the document already exists, cbc will return a LCB\_ERR\_DOCUMENT\_EXISTS error. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, `cbc` will return a `LCB_ERR_DOCUMENT_EXISTS` error.
 
 For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5F2cbc.html).
 
@@ -132,8 +141,8 @@ var insertResult = await hotelCollection.InsertAsync("hotel-123", document);
 Console.WriteLine($"Cas: {insertResult.Cas}");
 ```
 
-|  | If the document already exists, the SDK will return a DocumentExistsException error. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document already exists, the SDK will return a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 
@@ -181,8 +190,8 @@ MutationResult insertResult = hotelCollection.insert("hotel-123", document);
 System.out.println("CAS:" + insertResult.cas());
 ```
 
-|  | If the document already exists, the SDK will return a DocumentExistsException error. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document already exists, the SDK will return a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 
@@ -231,8 +240,8 @@ const insertResult = await hotelCollection.insert('hotel-123', document)
 console.log('CAS:', insertResult.cas)
 ```
 
-|  | If the document already exists, the SDK will return a DocumentExistsError error. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, the SDK will return a `DocumentExistsError` error.
 
 Click the  View button to see this code in context.
 
@@ -280,8 +289,8 @@ insert_result = hotel_collection.insert("hotel-123", document)
 print("CAS:", insert_result.cas)
 ```
 
-|  | If the document already exists, the SDK will return a DocumentExistsException error. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document already exists, the SDK will return a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 

@@ -1,4 +1,13 @@
+---
+title: Manage Inter-Sync Gateway Replications
+description: Managing inter-Sync Gateway replications
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-inter-syncgateway-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/sync-inter-syncgateway-manage.html)
+
+# Manage Inter-Sync Gateway Replications
 
 > Managing inter-Sync Gateway replications  
 
@@ -6,8 +15,10 @@ _Related topics_: [Overview](sync-inter-syncgateway-overview.md) | [Run](sync-in
 
 _Other Topics_: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) | [Admin REST API](rest-api-admin.md)
 
-|  | Context Clarification This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Context Clarification
+> 
+> This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release.
 
 ## [](#admin-capabilities)Admin capabilities
 
@@ -20,9 +31,8 @@ The available endpoints used for admin tasks are:
 * `_replication` — Retrieve, Update or Remove a _replication definition_
 * `_replicationStatus` — Stop, Start or Reset a replication
 
-[COMMUNITY EDITION](https://www.couchbase.com/products/editions) Only
-
-Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
+> [!TIP]
+> BAD ADMONITION \[COMMUNITY EDITION\](https://www.couchbase.com/products/editions) Only Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
 
 ## [](#getting-replication-details)Getting Replication Details
 
@@ -129,8 +139,10 @@ You can update an existing replication’s definition, whether configured or ini
 
 If you change the remote URI it must be to a valid URI.
 
-|  | How do I change an existing replication’s definition details? Send a PUT request to the \_replication endpoint. Specify just the changed items in the JSON body. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> How do I change an existing replication’s definition details?
+> 
+> Send a `PUT` request to the `_replication` endpoint. Specify just the changed items in the JSON body.
 
 Example 3\. Update a replication’s details
 
@@ -210,9 +222,8 @@ Sync Gateway provides easy access to replication status data through the Admin R
 
 You can obtain the replication status details for a specific replication, or for all replications across all nodes. This option can be useful, for example, to find any auto-generated replication\_id details needed to enable further replication management activities.
 
-[COMMUNITY EDITION](https://www.couchbase.com/products/editions) Only
-
-Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
+> [!TIP]
+> BAD ADMONITION \[COMMUNITY EDITION\](https://www.couchbase.com/products/editions) Only Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
 
 For more information on monitoring see: [Inter Sync Gateway Sync - Monitor](sync-inter-syncgateway-monitor.md)
 
@@ -428,8 +439,10 @@ Success Response::
 
 ## [](#skipping-tls-certificate-verification)Skipping TLS Certificate Verification
 
-|  | Development and Testing Option ONLY This is an **unsupported** configuration option. It must not be used in a production environment. Its ongoing availability is not guaranteed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Development and Testing Option ONLY
+> 
+> This is an **unsupported** configuration option. It must not be used in a production environment. Its ongoing availability is not guaranteed.
 
 The configuration setting. `database.this_db.unsupported.sgr_tls_skip_verify`, can be used to skip the validation of TLS certificates, simplifying development and testing — see: [Example 10](#using-sgr-tls-skip-verify) and the configuration item [unsupported.sgr\_tls\_skip\_verify](configuration-schema-database.md#database-unsupported-sgr%5Ftls%5Fskip%5Fverify).
 
@@ -472,13 +485,13 @@ Note: that _users_ are cluster-specific; _userA_ in custer A is not the same ent
 
 If required, you can override this behavior using the configurable option (`enable_auto_purge-true`).
 
-|  | The behavior of the config flag is the **reverse** of what is done on Couchbase Lite. |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The behavior of the config flag is the **reverse** of what is done on Couchbase Lite.
 
 Using this option auto-purges documents on the active Sync Gateway that are no longer accessible, unless a document belongs to another of replicating user’s channels. This applies even if they are not actively replicating that channel.
 
-|  | When enable\_auto\_purge-true=true, documents in revoked user channels are auto purged from Sync Gateway. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When `enable_auto_purge-true=true`, documents in revoked user channels are auto purged from Sync Gateway.
 
 This is consistent with _Sync Gateway_'s handling of document access revocation using the `purge-on-removal` option
 
@@ -486,8 +499,8 @@ This is consistent with _Sync Gateway_'s handling of document access revocation 
 
 Where a user loses access to a channel and is then reassigned access to a channel, any previously auto-purged documents still assigned to any of the user’s channels are automatically pulled down by the active Sync Gateway.
 
-|  | This will not impact active nodes that have turned off auto-purge behavior. Auto-purged documents removed from a user’s channels subsequent to the purge will not be synced again. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This will not impact active nodes that have turned off auto-purge behavior. Auto-purged documents removed from a user’s channels subsequent to the purge will not be synced again.
 
 If you want to control whether to sync previous auto purged versions of the document and do not want to pull down purged documents, you must remove the documents from all of the users channels to ensure they are not synced down again.
 
@@ -513,8 +526,8 @@ The replicating user of a pull-only replication is revoked channel access.
 
 ISGR is configured to run as a non-admin user on active peer.
 
-|  | Depends on availability of a new feature (3.0) wherein the active peer is also running as the replicating user. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Depends on availability of a new feature (3.0) wherein the active peer is also running as the replicating user.
 
 | System State                                                                     | Impact on Sync                                                       |                                                                                                                                                |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |

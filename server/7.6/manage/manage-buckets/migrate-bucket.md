@@ -1,4 +1,15 @@
+---
+title: Migrate a Bucket&#8217;s Storage Backend
+description: Full and Cluster Administrators can migrate a bucket's storage
+  backend by calling the REST API and then performing full restores on the nodes
+  containing the bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-buckets/migrate-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-buckets/migrate-bucket.html)
+
+# Migrate a Bucket&#8217;s Storage Backend
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
@@ -8,8 +19,8 @@ You can migrate a bucket’s storage backend if you find the bucket’s current 
 
 You can migrate from Couchstore to Magma, or from Magma to Couchstore. You start a bucket’s migration by calling the REST API to edit the bucket’s `storageBackend` setting. This call changes the bucket’s global storage backend parameter. However, it does not trigger an immediate conversion of the vBuckets to the new backend. Instead, Couchbase adds override settings to each node to indicate its vBuckets still use the old storage backend. To complete the migration, you must force the vBuckets to be rewritten. The two ways to trigger this rewrite are to perform a swap rebalance or a graceful failover followed by a full recovery. As Couchbase writes the vBuckets during these processes, it removes the storage override and saves the vBuckets using the new storage backend.
 
-|  | While you’re migrating a bucket between storage backends, you can only change the bucket’s ramQuota and storageBackend parameters. Couchbase Server prevents you from making changes to the bucket’s other parameters. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While you’re migrating a bucket between storage backends, you can only change the bucket’s `ramQuota` and `storageBackend` parameters. Couchbase Server prevents you from making changes to the bucket’s other parameters.
 
 ## [](#prerequisites)Prerequisites
 

@@ -1,4 +1,13 @@
+---
+title: Analytics Error Codes
+description: A list of Couchbase Analytics error codes.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/error-codes.html)
+
+# Analytics Error Codes
 
 The following table lists all of the Analytics error codes, their error message, and some tips to resolve them.
 

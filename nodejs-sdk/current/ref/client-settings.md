@@ -1,9 +1,18 @@
+---
+title: Client Settings
+description: Client settings
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/current/ref/client-settings.html)
+
+# Client Settings
 
 > Client settings 
 
-|  | The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-node-client/interfaces/ConnectOptions.html). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-node-client/interfaces/ConnectOptions.html).
 
 ## [](#commonly-used-options)Commonly Used Options
 
@@ -18,15 +27,15 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 ## [](#configuration-profiles)Configuration Profiles
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

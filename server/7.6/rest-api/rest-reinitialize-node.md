@@ -1,4 +1,12 @@
+---
+title: Reinitializing Nodes
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-reinitialize-node.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-reinitialize-node.html)
+
+# Reinitializing Nodes
 
 > After an unsafe failover, failed-over nodes can be individually reinitialized by means of the REST API 
 

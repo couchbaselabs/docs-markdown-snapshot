@@ -1,4 +1,13 @@
+---
+title: Analytics Settings REST API
+description: A description of the Settings REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/analytics-rest-settings/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics-rest-settings/index.html)
+
+# Analytics Settings REST API
 
 ## [](#overview)Overview
 
@@ -83,8 +92,8 @@ Sets cluster-level Analytics settings. Note that only one setting is available: 
 
 You can also set the number of Analytic replicas using the [Couchbase Web Console](../manage/manage-settings/general-settings.md#analytics-replicas) or the [CLI](../manage/manage-settings/general-settings.md#analytics-settings-via-cli). For more information about Analytics replicas, see [Rebalance](../learn/clusters-and-availability/rebalance.md#rebalancing-the-analytics-service) and [Hard Failover](../learn/clusters-and-availability/hard-failover.md#hard-failover-and-the-analytics-service).
 
-|  | A rebalance is required for a new numReplicas value to take effect. |
-|  | ------------------------------------------------------------------- |
+> [!NOTE]
+> A rebalance is required for a new `numReplicas` value to take effect.
 
 Consumes
 

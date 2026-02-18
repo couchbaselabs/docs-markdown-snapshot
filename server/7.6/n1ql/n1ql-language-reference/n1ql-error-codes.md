@@ -1,4 +1,14 @@
+---
+title: SQL++ Error Codes
+description: The following table lists all of the SQL++ error codes, their error
+  message, and some tips to resolve them.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/n1ql-error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/n1ql-error-codes.html)
+
+# SQL++ Error Codes
 
 > The following table lists all of the SQL++ error codes, their error message, and some tips to resolve them. 
 

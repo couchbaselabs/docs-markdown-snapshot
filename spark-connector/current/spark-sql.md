@@ -1,4 +1,14 @@
+---
+title: DataFrames, Datasets, and SQL
+description: Spark allows accessing query, analytics, Enterprise Analytics, and
+  Capella Columnar in powerful and convenient ways.
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/spark-sql.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/spark-sql.html)
+
+# DataFrames, Datasets, and SQL
 
 > Spark allows accessing query, analytics, Enterprise Analytics, and Capella Columnar in powerful and convenient ways. 
 

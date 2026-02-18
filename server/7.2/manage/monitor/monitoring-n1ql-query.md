@@ -1,4 +1,15 @@
+---
+title: Monitor Queries
+description: Monitoring and profiling SQL++ queries, query service engines, and
+  corresponding system resources is very important for smoother operational
+  performance and efficiency of the system.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/monitor/monitoring-n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/monitor/monitoring-n1ql-query.html)
+
+# Monitor Queries
 
 > Monitoring and profiling SQL++ queries, query service engines, and corresponding system resources is very important for smoother operational performance and efficiency of the system. In fact, often it is vital for diagnosing and troubleshooting issues such as query performance, resource bottlenecks, and overloading of various services. 
 
@@ -17,8 +28,8 @@ These system keyspaces are like virtual keyspaces that are transient in nature, 
 * REST API
 * Monitoring SDK
 
-|  | All the power of the SQL++ query language can be applied on the keyspaces to obtain various insights. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All the power of the SQL++ query language can be applied on the keyspaces to obtain various insights.
 
 The following diagnostics are provided:
 
@@ -417,8 +428,8 @@ The `meta().plan` attribute is enabled only for individual requests that are run
 
 Since there may be a combination of profile settings for all of the requests reported by the system keyspaces, not all requests returned will have a `meta().plan` attachment.
 
-|  | For the system:prepareds requests, the meta().plan is available at all times since the PREPARE statement is not dependant on the profile setting. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For the `system:prepareds` requests, the `meta().plan` is available at all times since the `PREPARE` statement is not dependant on the profile setting.
 
 This attribute is enabled for the following system keyspaces:
 
@@ -1057,8 +1068,13 @@ Note that the `completed` state means that the request was started and completed
 
 To find requests that completed successfully, search for completed requests whose `state` is `completed` and whose `errorCount` field has the value `0`.
 
-|  | Request profiling affects the system:completed\_requests keyspace in the following ways: When the feature is turned on, completed requests are stored with their execution plan. Profiling information is likely to use 100KB+ per entry. Due to the added overhead of running both profiling and logging, we recommend turning on both of them only when needed. Running only one of them continuously has no noticeable affect on performance. Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Request profiling affects the `system:completed_requests` keyspace in the following ways:
+> 
+> * When the feature is turned on, completed requests are stored with their execution plan.
+> * Profiling information is likely to use 100KB+ per entry.
+> * Due to the added overhead of running both profiling and logging, we recommend turning on both of them only when needed. Running only one of them continuously has no noticeable affect on performance.
+> * Profiling does not carry any extra cost beyond memory for completed requests, so it’s fine to run it continuously.
 
 ### [](#sys-completed-get)Get Completed Requests
 
@@ -1177,8 +1193,10 @@ You cannot add a new instance of an existing qualifier to a tagged set using a p
 
 You can remove a qualifier from a tagged set using a minus sign (`-`) before the qualifier name, e.g. `-user`. When you remove the last qualifier from a tagged set, the tagged set is removed.
 
-|  | You can specify multiple tagged sets. In this case, completed requests are logged if they match all of the qualifiers in any of the tagged sets. You can also specify a mixture of tagged sets and individual qualifiers. In this case, completed requests are logged if they match any of the individual qualifiers, or all of the qualifiers in any of the tagged sets. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can specify multiple tagged sets. In this case, completed requests are logged if they match all of the qualifiers in any of the tagged sets.
+> 
+> You can also specify a mixture of tagged sets and individual qualifiers. In this case, completed requests are logged if they match any of the individual qualifiers, or all of the qualifiers in any of the tagged sets.
 
 #### [](#completed-threshold)Completed Threshold
 

@@ -1,4 +1,13 @@
+---
+title: Security API
+description: The REST API supports all aspects of Couchbase-Server security
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-security.html)
+
+# Security API
 
 > The REST API supports all aspects of Couchbase-Server security 
 

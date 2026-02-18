@@ -1,4 +1,14 @@
+---
+title: Tombstones
+description: Sync Gateway's <em>Tombstones</em> are the means by which mobile
+  clients are notified that a document has been deleted.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/managing-tombstones.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/managing-tombstones.html)
+
+# Tombstones
 
 > Sync Gateway’s _Tombstones_ are the means by which mobile clients are notified that a document has been deleted.  
 > Here we introduce the concept of _Tombstones_ and their role in the _Sync Gateway_ revision process.
@@ -33,8 +43,8 @@ The server’s `metadata purge interval` becomes an important consideration for 
 
 So, users should set the server’s `metadata purge interval` based on their expected client replication frequency, to ensure that clients are notified of the tombstone prior to that tombstone being purged.
 
-|  | The default metadata purge interval is set to 3 days which can potentially result in tombstones being purged before all clients have had a chance to be notified. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The default `metadata purge interval` is set to 3 days which can potentially result in tombstones being purged before all clients have had a chance to be notified.
 
 For how to tune the `metadata purge interval` on Couchbase Server, see the server documentation on:
 

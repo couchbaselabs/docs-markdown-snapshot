@@ -1,10 +1,19 @@
+---
+title: SQL for Mobile -- Differences from SQL for Server
+description: Differences between Couchbase Server SQL++ and Couchbase Lite N1QL
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/query-n1ql-mobile-server-diffs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/query-n1ql-mobile-server-diffs.html)
+
+# SQL for Mobile -- Differences from SQL for Server
 
 > Description — _Differences between Couchbase Server SQL++ and Couchbase Lite N1QL_  
 > Related Content — [Predictive Queries](#c:querybuilder.adoc#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
-|  | N1QL is Couchbase’s implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> N1QL is Couchbase’s implementation of the developing **SQL++** standard. As such the terms _N1QL_ and _SQL++_ are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
 
 There are several minor but notable behavior differences between _SQL++ for Mobile_ queries and _SQL++ for Server_, as shown in [Table 1](#tbl-diffs).
 

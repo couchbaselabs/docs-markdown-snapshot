@@ -1,4 +1,13 @@
+---
+title: Errors, Exceptions, and Diagnostics
+description: When the unexpected happens, take a step-by-step approach.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/concept-docs/pages/errors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/concept-docs/errors.html)
+
+# Errors, Exceptions, and Diagnostics
 
 > When the unexpected happens, take a step-by-step approach. 
 

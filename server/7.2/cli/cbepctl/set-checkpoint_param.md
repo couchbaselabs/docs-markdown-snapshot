@@ -1,4 +1,13 @@
+---
+title: set checkpoint_param
+description: The command <code class="cmd">set checkpoint_param</code> sets the checkpoint.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbepctl/set-checkpoint_param.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbepctl/set-checkpoint_param.html)
+
+# set checkpoint_param
 
 > The command `set checkpoint_param` sets the checkpoint. 
 

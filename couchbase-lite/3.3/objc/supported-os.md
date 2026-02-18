@@ -1,4 +1,14 @@
+---
+title: Supported Operating System Versions
+description: Couchbase Lite on Objective-C -- the OS and SDK versions on which
+  this framework is supported
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/supported-os.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/objc/supported-os.html)
+
+# Supported Operating System Versions
 
 > Description — _Couchbase Lite on Objective-C — the OS and SDK versions on which this framework is supported_  
 > Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
@@ -13,8 +23,8 @@ __Table 1\. Supported versions__
 | iOS      | 15.0+                                   |
 | macOS    | 13 (Ventura), 14 (Sonoma), 15 (Sequoia) |
 
-|  | Couchbase Lite for Objective-C provides native support for both Mac Catalyst and M1\. |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite for Objective-C provides native support for both Mac Catalyst and M1\.
 
 ## [](#deprecated-versions)Deprecated Versions
 

@@ -1,4 +1,12 @@
+---
+title: Classic Editor
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-onefield.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-classic-editor-onefield.html)
+
+# Classic Editor
 
 > The classic editor is the most advanced tool where users can directly configure the index mapping with all capabilities. 
 
@@ -59,8 +67,8 @@ This is all you need to specify in order to create a more advanced index for tes
 * If you subsequently Edit your Index it should look like the following:  
 ![fts edit index nondefault](_images/fts-edit-index-nondefault.png)
 
-|  | This index is an example of a potentially optimal index for use in a production environments since it creates only on index on a needed field as such it will be more performant that the first example. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This index is an example of a potentially optimal index for use in a production environments since it creates only on index on a needed field as such it will be more performant that the first example.
 
 ## [](#test-the-one-field-index-with-a-simple-query)Test the One Field Index with a simple query
 

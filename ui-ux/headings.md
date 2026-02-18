@@ -1,4 +1,12 @@
+---
+title: Headings
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/headings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/headings.html)
+
+# Headings
 
 Headings are text components that mark off areas of [Instruction Text](instruction-text.md) or other interactive components in the UI.
 

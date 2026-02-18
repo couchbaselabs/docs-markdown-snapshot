@@ -1,4 +1,14 @@
+---
+title: Configure an Autocomplete Search Index
+description: Create a Search index with the Couchbase Server Web Console or the
+  REST API to start using autocomplete with the Search Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/search-query-auto-complete-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/search-query-auto-complete-ui.html)
+
+# Configure an Autocomplete Search Index
 
 > Create a Search index with the Couchbase Server Web Console or the REST API to start using autocomplete with the Search Service. 
 
@@ -19,10 +29,11 @@ To create the Search index with the Web Console:
 
 1. Go to **Search**.
 2. Click **Add Index**.
-3. In the **Index Name** field, enter a name for the new index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+3. In the **Index Name** field, enter a name for the new index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 4. In the **Bucket** list, select the bucket where you want to create the index.
 5. Expand **Customize Index**.
 6. Select **Use non-default scope/collection(s)**.
@@ -62,8 +73,8 @@ To create the Search index with the Web Console:
 17. In the **Default Analyzer** list, select your **keyword\_to\_lower** analyzer.
 18. Click **Create Index**
 
-|  | You can use the generated index definition JSON payload from the UI to create a Search index with the REST API. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can use the generated index definition JSON payload from the UI to create a Search index with the REST API.
 
 ### [](#api)Create an Autocomplete Search Index with the REST API
 

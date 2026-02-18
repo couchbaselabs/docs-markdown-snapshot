@@ -1,4 +1,14 @@
+---
+title: Couchbase EFCore Provider Limitations
+description: The Couchbase EFCore Provider is still evolving and does not
+  currently support all features of EF Core or Couchbase.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-limitations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-limitations.html)
+
+# Couchbase EFCore Provider Limitations
 
 > The Couchbase EFCore Provider is still evolving and does not currently support all features of EF Core or Couchbase. We recommend reviewing the known limitations to avoid potential issues and ensure a smooth development experience. 
 

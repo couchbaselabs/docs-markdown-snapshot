@@ -1,9 +1,24 @@
+---
+title: Arithmetic Operators
+description: Arithmetic operations perform the basic mathematical operations of
+  addition, subtraction, multiplication, division, and modulo within an
+  expression or any numerical value retrieved as part of query clauses.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/arithmetic.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/arithmetic.html)
+
+# Arithmetic Operators
 
 Arithmetic operations perform the basic mathematical operations of addition, subtraction, multiplication, division, and modulo within an expression or any numerical value retrieved as part of query clauses. Additionally, SQL++ provides a negation operation which changes the sign of a value.
 
-|  | These arithmetic operators only operate on numbers. In SQL++, arithmetic operators have their usual meaning. However, in any of these expressions: If any operand is MISSING, the value of the expression is MISSING. If any operand is NULL and no operand is MISSING, the value of the expression is NULL. If any operand is not a number, the operator evaluates to NULL. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These arithmetic operators only operate on numbers. In SQL++, arithmetic operators have their usual meaning. However, in any of these expressions:
+> 
+> * If any operand is MISSING, the value of the expression is MISSING.
+> * If any operand is NULL and no operand is MISSING, the value of the expression is NULL.
+> * If any operand is not a number, the operator evaluates to NULL.
 
 ## [](#syntax)Syntax
 

@@ -1,10 +1,20 @@
+---
+title: SQL++ Query Strings
+description: How to use SQL++ Query Strings to build effective queries with
+  Couchbase Lite on C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/query-n1ql-mobile.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/c/query-n1ql-mobile.html)
+
+# SQL++ Query Strings
 
 > Description — _How to use SQL++ Query Strings to build effective queries with Couchbase Lite on C_  
 > Related Content — [Predictive Queries](#c:querybuilder.adoc#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
-|  | The examples used in this topic are based on the _Travel Sample_ app and data introduced in the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The examples used in this topic are based on the _Travel Sample_ app and data introduced in the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial
 
 ## [](#introduction)Introduction
 
@@ -69,8 +79,8 @@ Query Components
 | [LIMIT statement](#lbl-limit)    | The maximum number of results to be returned                                                                         |
 | [OFFSET statement](#lbl-offset)  | The number of results to be skipped before starting to return results                                                |
 
-|  | We recommend working through the [SQL++ Tutorials](https://query-tutorial.couchbase.com/tutorial/#1) to build your SQL++ skills. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> We recommend working through the [SQL++ Tutorials](https://query-tutorial.couchbase.com/tutorial/#1) to build your SQL++ skills.
 
 ## [](#lbl-select)SELECT statement
 
@@ -241,8 +251,8 @@ You can use `UNNEST` in queries to unpack arrays within a document into individu
 
 You can also use a new type of index, the [Array Index](indexing.md#array-indexing), to allow querying with `UNNEST` more efficiently.
 
-|  | Couchbase Lite currently supports inner UNNEST only. |
-|  | ---------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite currently supports inner `UNNEST` only.
 
 ### [](#syntax-4)Syntax
 
@@ -252,8 +262,8 @@ The syntax for `UNNEST` is shown below:
 unnestClause = UNNEST expr ( ‘AS’? alias)?
 ```
 
-|  | "unnest" will be defined as a new keyword in the SQL++ syntax. You cannot use the term as an identifier for a property name or data source unless you escape it using backticks. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> `"unnest"` will be defined as a new keyword in the SQL++ syntax. You cannot use the term as an identifier for a property name or data source unless you escape it using backticks.
 
 ### [](#examples)Examples
 
@@ -319,8 +329,8 @@ The query above will then produce the following output:
 
 The output demonstrates retrieval of both primary and secondary contact numbers listed as type `"mobile"`.
 
-|  | Array literals are not supported in CBL 3.2.1\. Attempting to create a query with array literals will return an error. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Array literals are not supported in CBL 3.2.1\. Attempting to create a query with array literals will return an error.
 
 ## [](#lbl-where)WHERE statement
 
@@ -646,8 +656,8 @@ Identifiers provide symbolic references. Use them for example to identify: colum
 | **1** | The identifier allows a-z, A-Z, 0-9, \_ (underscore), and $ character.The identifier is case sensitive. |
 | ----- | ------------------------------------------------------------------------------------------------------- |
 
-|  | To use other characters in the identifier, surround the identifier with the backticks \` character. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use other characters in the identifier, surround the identifier with the backticks \` character.
 
 #### [](#example-11)Example
 
@@ -765,8 +775,8 @@ SELECT name
 
 Parameter expressions specify a value to be assigned from the parameter map presented when executing the query.
 
-|  | If parameters are specified in the query string, but the parameter and value mapping is not specified in the query object, an error will be thrown when executing the query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If parameters are specified in the query string, but the parameter and value mapping is not specified in the query object, an error will be thrown when executing the query.
 
 #### [](#syntax-20)Syntax
 
@@ -906,8 +916,16 @@ Logical operators combine expressions using the following Boolean Logic Rules:
 * NULL is FALSE
 * MISSING is MISSING
 
-|  | This is different from Server SQL++, where: MISSING, NULL and FALSE are FALSE Numbers 0 is FALSE Empty strings, arrays, and objects are FALSE All other values are TRUE Use TOBOOLEAN(expr) function to convert a value based on Server SQL++ boolean value rules, |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This is different from Server SQL++, where:
+> 
+> * MISSING, NULL and FALSE are FALSE
+> * Numbers 0 is FALSE
+> * Empty strings, arrays, and objects are FALSE
+> * All other values are TRUE
+> 
+> > [!TIP]
+> > Use TOBOOLEAN(expr) function to convert a value based on Server SQL++ boolean value rules,
 
 __Table 5\. Logical Operators__
 | Op  | Description                                                                                                                                                                                                                                                                                                                                                   | Example                                              |
@@ -935,8 +953,11 @@ __Table 6\. Logical Operation Table__
 | NULL    | FALSE 5-2 | MISSING 5-3 |        |
 | MISSING | MISSING   | MISSING     |        |
 
-|  | This differs from Server SQL++ in the following instances: 5-1 Server will return: NULL instead of FALSE 5-2 Server will return: MISSING instead of FALSE 5-3 Server will return: NULL instead of MISSING |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This differs from Server SQL++ in the following instances:  
+> 5-1 Server will return: NULL instead of FALSE  
+> 5-2 Server will return: MISSING instead of FALSE  
+> 5-3 Server will return: NULL instead of MISSING  
 
 #### [](#lbl-ops-string)String Operator
 
@@ -992,8 +1013,8 @@ The collate operator is used in conjunction with string comparison expressions a
 
 If multiple collations are used, the collations need to be specified in a parenthesis. When only one collation is used, the parenthesis is optional.
 
-|  | Collate is not supported by Server SQL++ |
-|  | ---------------------------------------- |
+> [!NOTE]
+> Collate is not supported by Server SQL++
 
 #### [](#syntax-22)Syntax
 

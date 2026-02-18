@@ -1,9 +1,17 @@
+---
+title: Creating a GeoJSON Index via the REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-REST-geojson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-REST-geojson.html)
+
+# Creating a GeoJSON Index via the REST API
 
 This example quickly creates the final index (able to sort by keyword) as found in [Creating a Geospatial Index (type geojson)](fts-supported-queries-geojson-spatial.md#creating%5Fa%5Fgeojson%5Findex) in Geospatial GeoJSON Queries.
 
-|  | In order to run this example there is a required data modification for travel-sample refer to the "Prerequisites - Modify the travel-sample dataset" section in [Geospatial GeoJSON Queries](fts-supported-queries-geojson-spatial.md#prerequisites-dataset). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In order to run this example there is a required data modification for `travel-sample` refer to the "Prerequisites - Modify the travel-sample dataset" section in [Geospatial GeoJSON Queries](fts-supported-queries-geojson-spatial.md#prerequisites-dataset).
 
 The cURL command below was initially created via the Classic Editor in the UI, however the follwoing modifications were made.
 

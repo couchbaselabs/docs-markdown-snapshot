@@ -1,4 +1,14 @@
+---
+title: "Function: Multi Collection Eventing"
+description: Show how to access the Data Service when Eventing is listening to
+  multiple collections.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-multiCollectionEventing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-handler-multiCollectionEventing.html)
+
+# Function: Multi Collection Eventing
 
 **Goal**: Show how to access the Data Service when Eventing is listening to multiple collections.
 

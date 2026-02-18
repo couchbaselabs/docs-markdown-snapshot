@@ -1,4 +1,12 @@
+---
+title: Kubernetes Operator Log Attributes
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-operator-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/reference-operator-logging.html)
+
+# Kubernetes Operator Log Attributes
 
 > Kubernetes Operator logs contain some fixed attributes that can be reliably used in your logging infrastructure. 
 

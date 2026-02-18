@@ -1,4 +1,13 @@
+---
+title: cbbackup
+description: Backs up an entire running cluster, a bucket or a single node
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbbackup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbtools/cbbackup.html)
+
+# cbbackup
 
 (Deprecated) Backs up an entire running cluster, a bucket or a single node
 

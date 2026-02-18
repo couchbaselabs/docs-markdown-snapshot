@@ -1,4 +1,15 @@
+---
+title: Managing Cluster Connections
+description: By means of the REST API, the maximum permitted numbers of
+  connections can be established and retrieved for memcached connections, and
+  for system-user connections, for the cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-manage-cluster-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-manage-cluster-connections.html)
+
+# Managing Cluster Connections
 
 > By means of the REST API, the maximum permitted numbers of connections can be established and retrieved for memcached connections, and for system-user connections, for the cluster. 
 
@@ -8,8 +19,20 @@ POST /pools/default/settings/memcached/global
 
 GET /pools/default/settings/memcached/global
 
-|  | Couchbase supports the REST API DELETE pools/default/settings/memcached/global/setting/\[setting\_name\] for the following settings that are not always passed from the Cluster Manager to memcached: default\_reqs\_per\_event reqs\_per\_event\_high\_priority reqs\_per\_event\_med\_priority reqs\_per\_event\_low\_priority threads dcp\_disconnect\_when\_stuck\_timeout\_seconds dcp\_disconnect\_when\_stuck\_name\_regex external\_auth\_request\_timeout not\_locked\_returns\_tmpfail clustermap\_push\_notifications\_enabled magma\_blind\_write\_optimisation\_enabled |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase supports the REST API `DELETE pools/default/settings/memcached/global/setting/[setting_name]` for the following settings that are not always passed from the Cluster Manager to memcached:
+> 
+> * `default_reqs_per_event`
+> * `reqs_per_event_high_priority`
+> * `reqs_per_event_med_priority`
+> * `reqs_per_event_low_priority`
+> * `threads`
+> * `dcp_disconnect_when_stuck_timeout_seconds`
+> * `dcp_disconnect_when_stuck_name_regex`
+> * `external_auth_request_timeout`
+> * `not_locked_returns_tmpfail`
+> * `clustermap_push_notifications_enabled`
+> * `magma_blind_write_optimisation_enabled`
 
 ## [](#description)Description
 

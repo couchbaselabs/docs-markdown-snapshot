@@ -1,4 +1,14 @@
+---
+title: Initializing a Cluster
+description: A cluster can be initialized and provisioned, by means of a single
+  call to the REST API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-initialize-cluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-initialize-cluster.html)
+
+# Initializing a Cluster
 
 > A cluster can be initialized and provisioned, by means of a single call to the REST API. 
 

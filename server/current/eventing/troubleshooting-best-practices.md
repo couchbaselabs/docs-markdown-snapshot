@@ -1,4 +1,12 @@
+---
+title: Troubleshooting and Best Practices
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/troubleshooting-best-practices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/troubleshooting-best-practices.html)
+
+# Troubleshooting and Best Practices
 
 ## [](#what-are-the-recommendations-before-starting-an-upgrade)What Are the Recommendations Before Starting an Upgrade?
 
@@ -8,8 +16,8 @@ In Couchbase Server version 8.0 or earlier, running Eventing functions while rol
 
 The default number of workers per function was 3 in 6.X and is now 1 in 7.0.0\. You can raise the number of workers to 3 to get back the expected performance.
 
-|  | All upgrades carry forward the configured number of workers in an Eventing Function so you do not have to worry about a production system slowing down during an upgrade. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All upgrades carry forward the configured number of workers in an Eventing Function so you do not have to worry about a production system slowing down during an upgrade.
 
 Raising the worker counts should be down if you need higher levels of throughput, for example cURL functions access slow external REST endpoints need more workers to scale up the performance (in this case you’re IO bound and not CPU bound).
 
@@ -88,8 +96,8 @@ function OnUpdate(doc, meta) {
 
 A highly useful special case allows an Eventing Function to perform direct self-recursion by creating a Read-Write binding to its own source collection for document enrichment operations. In this case, the Eventing framework detects and suppresses the direct self-recursive mutations. This capability applies only to the aliased JavaScript map and is not supported for mutations generated through SQL++.
 
-|  | Since the 6.5 release, the Eventing Function JavaScript code can directly mutate (or write back) to the source bucket that’s now in the 7.0.0 the source collection. For example, direct self-recursion. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Since the 6.5 release, the Eventing Function JavaScript code can directly mutate (or write back) to the source bucket that’s now in the 7.0.0 the source collection. For example, direct self-recursion.
 
 * For example the following design is taken from the [Data Enrichment, Case: 2](eventing-example-data-enrichment.md):
 
@@ -156,15 +164,15 @@ Yes, Ephemeral are fine for user data but not for the Eventing Storage (metadata
 
 The source bucket and any bucket (or keyspace) bindings of your Eventing Function can be Ephemeral. However, the Eventing Storage keyspace (metadata collection) should always be persistent.
 
-|  | The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent, the Data Service, or KV, evicts timer and checkpoint documents after hitting quota. Eventing can lose track of both timers and mutations processed. At any point, do not delete the Eventing metadata collection. Make sure that your Eventing Function’s JavaScript code or other services does not perform a write or delete operation on the Eventing metadata collection. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent, the Data Service, or KV, evicts timer and checkpoint documents after hitting quota. Eventing can lose track of both timers and mutations processed. At any point, do not delete the Eventing metadata collection. Make sure that your Eventing Function’s JavaScript code or other services does not perform a write or delete operation on the Eventing metadata collection.
 
 ## [](#eventing-worked-fine-when-application-was-first-deployed-but-now-i-am-getting-lcb%5Fetmpfail-failures)Eventing Worked Fine When Application Was First Deployed But Now I Am Getting LCB\_ETMPFAIL Failures.
 
 A low residency ratio for either the source or the destination collection (sometimes these 2 can be the same) can result in a system that’s unable to keep up with rate of mutations and internal logic’s required reads and writes to the data service.
 
-|  | Watch the number of documents in your collections (source, Eventing Storage, and destinations) and in particular pay close attention to the change in the resident ratio. Typically, this could be due to growth in your overall dataset. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Watch the number of documents in your collections (source, Eventing Storage, and destinations) and in particular pay close attention to the change in the resident ratio. Typically, this could be due to growth in your overall dataset.
 
 For example, a high velocity Eventing function that’s processing in excess of 12K mutations/sec with a source or destination collection residency ratio of 100% can start to experience issues if the residency ratio drops below 18%. This percentage is not hard and fast and varies based on a variety of factors such as the number of mutations acted on, the storage type, and so on.
 

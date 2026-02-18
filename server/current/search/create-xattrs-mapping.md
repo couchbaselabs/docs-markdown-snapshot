@@ -1,4 +1,15 @@
+---
+title: Create an XATTRs Mapping
+description: Use the Server Web Console to create a mapping for Extended
+  Attributes (XATTRs) and search for them with the Search Service, on Couchbase
+  Server version 7.6.2 and later.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-xattrs-mapping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/create-xattrs-mapping.html)
+
+# Create an XATTRs Mapping
 
 > Use the Server Web Console to create a mapping for Extended Attributes (XATTRs) and search for them with the Search Service, on Couchbase Server version 7.6.2 and later. 
 

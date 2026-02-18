@@ -1,4 +1,14 @@
+---
+title: Manage Access to Cluster Data
+description: Access control accounts provide granular, programmatic and
+  application-level access to data on a cluster.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/auth/auth-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/auth/auth-data.html)
+
+# Manage Access to Cluster Data
 
 > Access control accounts provide granular, programmatic and application-level access to data on a cluster. 
 
@@ -15,8 +25,8 @@ To create, modify, and delete access control accounts and roles, you need:
   * [Organization Owner](../../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner)
   * [Project Owner](auth-ui.md#project-owner-role)
 
-|  | The [Project Viewer](auth-ui.md#project-cluster-viewer-role) role can view control accounts and roles, but cannot modify or create them. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [Project Viewer](auth-ui.md#project-cluster-viewer-role) role can view control accounts and roles, but cannot modify or create them.
 
 ## [](#create-an-access-control-account)Create an Access Control Account
 
@@ -51,8 +61,8 @@ A role is a group of privileges you can assign to one or more access control acc
 
 Capella Analytics provides four preset roles that cover common use cases: `sys_data_admin`, `sys_data_reader`, `sys_external_stats_reader`, and `sys_view_reader`. You cannot delete these roles.
 
-|  | The new role you create must not start with sys\_. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The new role you create must not start with `sys_`.
 
 To create a new role:
 

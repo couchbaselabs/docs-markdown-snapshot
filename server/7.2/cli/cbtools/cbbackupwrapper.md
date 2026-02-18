@@ -1,4 +1,15 @@
+---
+title: cbbackupwrapper
+description: A wrapper around cbbackup that was made to improve performance for
+  enterprise users. Superseded by cbbackupmgr, which should be used instead of
+  this tool.
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbbackupwrapper.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbtools/cbbackupwrapper.html)
+
+# cbbackupwrapper
 
 (Deprecated) A wrapper around `cbbackup` that was made to improve performance for enterprise users. Superseded by `cbbackupmgr`, which should be used instead of this tool.
 

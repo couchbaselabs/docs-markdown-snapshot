@@ -1,4 +1,13 @@
+---
+title: Run Queries with Edge Server
+description: You can run SQL++ queries in a keyspace using the keyspace's query endpoint.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/queries-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/rest-based-access/queries-api.html)
+
+# Run Queries with Edge Server
 
 > You can run SQL++ queries in a keyspace using the keyspace’s query endpoint. 
 
@@ -28,8 +37,8 @@ To run a named query:
 
 If the query is successful, the response is a JSON array of objects. Each object is a result; the keys are the column names.
 
-|  | If the database configuration does not include a queries section, a 403 Forbidden status is returned. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the database configuration does not include a `queries` section, a 403 Forbidden status is returned.
 
 ### [](#named-examples)Named Query Examples
 
@@ -117,8 +126,8 @@ HTTP Response
 
 An ad-hoc query is an arbitrary SQL++ query that the client specifies when running the query. You must enable ad-hoc queries in the Edge Server config file. You must enable ad-hoc queries for each database where you want to run an arbitrary query.
 
-|  | Allowing clients to execute raw SQL++ queries introduces security risks, as malicious queries could cause denial of service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Allowing clients to execute raw SQL++ queries introduces security risks, as malicious queries could cause denial of service.
 
 ### [](#adhoc-enable)Enable Ad-Hoc Queries
 
@@ -136,8 +145,8 @@ To run an ad-hoc query:
 
 If the query is successful, the response is a JSON array of objects. Each object is a result; the keys are the column names.
 
-|  | If the database configuration does not include [enable\_adhoc\_queries](../configuration/edge-server-configuration.md#databases-{DatabaseName}-enable%5Fadhoc%5Fqueries), a 403 Forbidden status is returned. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the database configuration does not include [enable\_adhoc\_queries](../configuration/edge-server-configuration.md#databases-{DatabaseName}-enable%5Fadhoc%5Fqueries), a 403 Forbidden status is returned.
 
 ### [](#adhoc-examples)Ad-Hoc Query Examples
 

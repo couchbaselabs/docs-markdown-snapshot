@@ -1,4 +1,14 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Go Analytics SDK to an
+  Analytics cluster.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-analytics-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Go Analytics SDK to an Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 

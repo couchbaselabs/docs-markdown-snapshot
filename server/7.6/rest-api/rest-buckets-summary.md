@@ -1,4 +1,14 @@
+---
+title: Getting Bucket Information
+description: Information on buckets defined on the cluster can be retrieved, by
+  means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-buckets-summary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-buckets-summary.html)
+
+# Getting Bucket Information
 
 > Information on buckets defined on the cluster can be retrieved, by means of the REST API. 
 
@@ -31,8 +41,8 @@ http://localhost:8091/pools/default/buckets/travel-sample | jq '.'
 
 If successful, the call returns `200 OK`, and an object similar to the one shown in the following example.
 
-|  | The output contains an extensive array of vBucket data that is omitted from this example. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The output contains an extensive array of vBucket data that is omitted from this example.
 
 The fields `historyRetentionCollectionDefault`, `historyRetentionCollectionBytes`, and `historyRetentionCollectionSeconds` are specific to Magma storage. When the bucket does not use Magma as its storage backend, these properties do not appear in the output.
 
@@ -374,8 +384,8 @@ The fields `historyRetentionCollectionDefault`, `historyRetentionCollectionBytes
 }
 ```
 
-|  | Couchbase Server version 7.6.2 added a property named enableCrossClusterVersioning to support a future feature. Do not change the value of this field. Once enabled, you cannot turn it off. See the [Notes](rest-bucket-create.md#notes) section of [Creating and Editing Buckets](rest-bucket-create.md) for more information. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server version 7.6.2 added a property named `enableCrossClusterVersioning` to support a future feature. Do not change the value of this field. Once enabled, you cannot turn it off. See the [Notes](rest-bucket-create.md#notes) section of [Creating and Editing Buckets](rest-bucket-create.md) for more information.
 
 ## [](#see-also)See Also
 

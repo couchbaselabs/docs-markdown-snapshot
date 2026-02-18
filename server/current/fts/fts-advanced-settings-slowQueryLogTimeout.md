@@ -1,4 +1,12 @@
+---
+title: slowQueryLogTimeout
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-advanced-settings-slowQueryLogTimeout.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-advanced-settings-slowQueryLogTimeout.html)
+
+# slowQueryLogTimeout
 
 The `slowQueryLogTimeout` setting controls the logging of the queries in the FTS server logs.
 

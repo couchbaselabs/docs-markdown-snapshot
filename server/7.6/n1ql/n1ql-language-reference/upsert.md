@@ -1,9 +1,18 @@
+---
+title: UPSERT
+description: UPSERT is used to insert a new record or update an existing one.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/upsert.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/upsert.html)
+
+# UPSERT
 
 > UPSERT is used to insert a new record or update an existing one. If the document doesn’t exist it will be created. UPSERT is a combination of INSERT and UPDATE. 
 
-|  | Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#prerequisites)Prerequisites
 
@@ -11,8 +20,8 @@
 
 User executing the UPSERT statement must have the _Query Update_ and _Query Insert_ privileges on the target keyspace. If the statement has any RETURNING clauses, then the _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
-|  | A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
 
 RBAC Examples 
 
@@ -134,8 +143,8 @@ values-clause ::= 'VALUES'  '(' key ',' value ( ',' options )? ')'
 
 Specify the values as well-formed JSON. Also enables you to set the [expiration](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration) of the upserted documents. For details, refer to [VALUES Clause](insert.md#values-clause).
 
-|  | When updating a document, if the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter. If this is true, the existing document expiration is preserved; if false, the document expiration defaults to 0, meaning the document expiration is the same as the [bucket or collection expiration](../../learn/data/expiration.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When updating a document, if the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter. If this is `true`, the existing document expiration is preserved; if `false`, the document expiration defaults to `0`, meaning the document expiration is the same as the [bucket or collection expiration](../../learn/data/expiration.md).
 
 ### [](#insert-select)Insert Select
 
@@ -148,8 +157,8 @@ insert-select ::= '(' 'PRIMARY'? 'KEY' key ( ',' 'VALUE' value )?
 
 Specifies the documents to be upserted as a SELECT statement. Also enables you to set the [expiration](../../../../java-sdk/current/howtos/kv-operations.md#document-expiration) of the upserted documents. For details, refer to [Insert Select](insert.md#insert-select).
 
-|  | When updating a document, if the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter. If this is true, the existing document expiration is preserved; if false, the document expiration defaults to 0, meaning the document expiration is the same as the [bucket or collection expiration](../../learn/data/expiration.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When updating a document, if the document expiration is not specified, the document expiration is set according to the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter. If this is `true`, the existing document expiration is preserved; if `false`, the document expiration defaults to `0`, meaning the document expiration is the same as the [bucket or collection expiration](../../learn/data/expiration.md).
 
 ### [](#returning-clause)RETURNING Clause
 

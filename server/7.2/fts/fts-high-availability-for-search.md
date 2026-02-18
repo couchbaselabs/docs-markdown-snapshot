@@ -1,4 +1,12 @@
+---
+title: High Availability for Search
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-high-availability-for-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-high-availability-for-search.html)
+
+# High Availability for Search
 
 Search delivers key high availability features such as zero downtime administration and maintenance, built-in optional data redundancy, and manual failover.
 
@@ -22,8 +30,8 @@ Following the group definition and rebalance, the primary partitions for any Sea
 
 Search service would place the index replicas on separate server groups as long as there is enough number of server groups (with Search service) equal to the number of replicas available in the cluster. If not, then it would end up positioning multiple replicas on the same server group/rack.
 
-|  | Optimum distribution - when the number of index replicas created for a given index is at least one less than the total number of groups for the cluster, and each group contains sufficient nodes running the Search Service, automatic distribution ensures that each index and index replica resides on its own exclusive group. This configuration gives the High Availability for the Search service. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Optimum distribution - when the number of index replicas created for a given index is at least one less than the total number of groups for the cluster, and each group contains sufficient nodes running the Search Service, automatic distribution ensures that each index and index replica resides on its own exclusive group. This configuration gives the High Availability for the Search service.
 
 By contrast, when groups are not assigned equal numbers of nodes, rebalance can only produce the best effort redistribution of replicas: this may result in one or more replica index partitions each occupying the same group as their associated primary counterparts; meaning that index partition data may be lost if such a group becomes unavailable.
 

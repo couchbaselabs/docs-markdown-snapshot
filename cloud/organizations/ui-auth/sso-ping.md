@@ -1,4 +1,16 @@
+---
+title: Set Up Capella SSO Using PingOne
+description: Configure Single Sign-On (SSO) between PingOne and Couchbase
+  Capella to allow your organization's users to authenticate securely without
+  managing separate credentials. This integration enables streamlined access
+  management while maintaining enterprise-grade security.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-ping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/sso-ping.html)
+
+# Set Up Capella SSO Using PingOne
 
 > Configure Single Sign-On (SSO) between PingOne and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
@@ -98,10 +110,9 @@ With a Ping application created, you need to create a realm in Capella using inf
 2. Click **Create Realm** **SAML**.
 3. Complete the **Create Realm** page:
 
-  1. Copy the following information from your Ping configuration to Capella:
-
-|  | To find this information in the Ping admin console, go to **Connections** **Applications**. Find and click the application that you want to view. In the details panel, click the **Configuration** tab. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. Copy the following information from your Ping configuration to Capella:  
+  > [!TIP]  
+  > To find this information in the Ping admin console, go to **Connections** **Applications**. Find and click the application that you want to view. In the details panel, click the **Configuration** tab.
 
 | Ping Field                                                       |                          | Capella Field |
 | ---------------------------------------------------------------- | ------------------------ | ------------- |
@@ -121,10 +132,9 @@ With a Ping application created, you need to create a realm in Capella using inf
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 4. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -136,10 +146,9 @@ Now that you have created the realm, you need to configure Ping to replace the p
 2. With the **Overview** tab open, click the **Protocol** button with the gear  icon.
 3. Edit the configuration settings:
 
-  1. Copy the following fields from your Capella realm configuration to the Ping configuration:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. Copy the following fields from your Capella realm configuration to the Ping configuration:  
+  > [!TIP]  
+  > To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |           | Ping Field |
 | ------------- | --------- | ---------- |
@@ -183,10 +192,9 @@ With the application created in Ping, you need to create a realm in Capella usin
 
 1. In Capella, click **Settings** **SSO**.
 2. Click **Create Realm** **OpenID Connect**.
-3. Copy the following information from your Ping application to Capella:
-
-|  | To find this information in the Ping admin console, go to **Applications** **Applications**. Find and click the application that you want to view. The **Overview** tab includes the OIDC Discovery URL, Client ID, and Client Secret information. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Copy the following information from your Ping application to Capella:  
+> [!TIP]  
+> To find this information in the Ping admin console, go to **Applications** **Applications**. Find and click the application that you want to view. The **Overview** tab includes the OIDC Discovery URL, Client ID, and Client Secret information.
 
 | Ping Field              |                              | Capella Field |
 | ----------------------- | ---------------------------- | ------------- |
@@ -205,10 +213,9 @@ When adding additional scopes, separate each entry with a space.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 6. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -219,10 +226,9 @@ Now that you have created the realm, you need to finishing configuring the Ping 
 1. In the Ping admin console, open the application you [created](#create-ping-app) for Capella.
 2. Open the **Configuration** tab and click the Edit () icon
 3. Change the **Token Endpoint Authentication Method** to **Client Secret Post**.
-4. Copy the following fields from your Capella realm configuration to the Ping configuration:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. Copy the following fields from your Capella realm configuration to the Ping configuration:  
+> [!TIP]  
+> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |               | Ping Field |
 | ------------- | ------------- | ---------- |

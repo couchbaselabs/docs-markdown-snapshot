@@ -1,4 +1,12 @@
+---
+title: Regexp Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-regexp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-regexp.html)
+
+# Regexp Query
 
 A _regexp_ query finds documents containing terms that match the specified regular expression. Please note that the regex query is a non-analytic query, meaning it won’t perform any text analysis on the query text.
 

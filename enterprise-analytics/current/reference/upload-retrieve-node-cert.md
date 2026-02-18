@@ -1,4 +1,13 @@
+---
+title: Upload and Retrieve a Node Certificate
+description: The REST API can be used to upload and retrieve a node certificate.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/upload-retrieve-node-cert.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/upload-retrieve-node-cert.html)
+
+# Upload and Retrieve a Node Certificate
 
 > The REST API can be used to upload and retrieve a node certificate. 
 

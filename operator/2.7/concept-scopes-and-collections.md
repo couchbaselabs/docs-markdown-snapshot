@@ -1,11 +1,19 @@
+---
+title: Couchbase Scopes and Collections
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-scopes-and-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-scopes-and-collections.html)
+
+# Couchbase Scopes and Collections
 
 > From Couchbase Server 7 onward, all data and indexes belong to collections, collections are then grouped into scopes, and scopes belong to buckets. This page describes how this hierarchical data management works and how it is managed by the Operator. 
 
 ## [](#overview)Overview
 
-|  | This documentation refers to a Couchbase Server feature, particularly how it is represented by the Operator, and is accurate at the time of writing. Couchbase server may evolve over time, so consult the [official documentation](#server:learn:data/scopes-and-collections.html) for up to date configuration limits and more detailed information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This documentation refers to a Couchbase Server feature, particularly how it is represented by the Operator, and is accurate at the time of writing. Couchbase server may evolve over time, so consult the [official documentation](#server:learn:data/scopes-and-collections.html) for up to date configuration limits and more detailed information.
 
 Consider the following conceptual diagram:
 
@@ -21,8 +29,14 @@ Collections also contain indexes that apply to the collection’s documents. As 
 
 Collections enable fine-grain access control, and fine grain data replication with cross-datacenter replication (XDCR).
 
-|  | Legacy Behavior with Default Collections To maintain the legacy behavior of Couchbase Server versions prior to 7, there is the concept of a default collection. A default collection belongs to the default scope of a bucket. Couchbase clients such as cross-datacenter replication (XDCR) and SDKs will transparently make use of a default scope and collection without any client-side configuration changes. A default collection cannot be modified, inheriting the configuration from the underlying bucket to maintain legacy behavior. A default collection can be deleted, but cannot be recreated. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Legacy Behavior with Default Collections
+> 
+> To maintain the legacy behavior of Couchbase Server versions prior to 7, there is the concept of a default collection. A default collection belongs to the default scope of a bucket. Couchbase clients such as cross-datacenter replication (XDCR) and SDKs will transparently make use of a default scope and collection without any client-side configuration changes.
+> 
+> A default collection cannot be modified, inheriting the configuration from the underlying bucket to maintain legacy behavior.
+> 
+> A default collection can be deleted, but cannot be recreated.
 
 ### [](#scopes)Scopes
 
@@ -32,8 +46,12 @@ For example, consider a white-box website that requires all the same collections
 
 Scopes, and by extension multi-tenancy in general, allow high data density by aggregating multiple applications into a single database. To aid in this, scopes can define coarser-grain access control, and data replication, than collections.
 
-|  | Legacy Behavior with Default Scopes Like collections, there is the concept of a default scope to maintain legacy behavior. Every bucket gets a default scope, and every default scope a default collection. The default scope is permanent, and cannot be deleted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Legacy Behavior with Default Scopes
+> 
+> Like collections, there is the concept of a default scope to maintain legacy behavior. Every bucket gets a default scope, and every default scope a default collection.
+> 
+> The default scope is permanent, and cannot be deleted.
 
 ### [](#buckets)Buckets
 
@@ -69,13 +87,13 @@ Implicit reference
 
 A bucket can reference scopes, and scopes can reference collections implicitly with [Kubernetes label selection](concept-label-selection.md). Being able to mentally picture the relationship between tree nodes is difficult, however the configuration is greatly simplified in that a single selector can reference many resources.
 
-|  | Unlike the label selection that is used to select buckets by a CouchbaseCluster resource — as described in the [Kubernetes label selection](concept-label-selection.md), implicit referencing of scopes and collections defaults to "select nothing", rather than "select everything". |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Unlike the label selection that is used to select buckets by a `CouchbaseCluster` resource — as described in the [Kubernetes label selection](concept-label-selection.md), implicit referencing of scopes and collections defaults to "select nothing", rather than "select everything".
 
 Both methods can be used at the same time if you so desire.
 
-|  | The remainder of this page will use explicit resource references due to clarity, however the two methods can be used interchangeably and yield the same result. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The remainder of this page will use explicit resource references due to clarity, however the two methods can be used interchangeably and yield the same result.
 
 ### [](#resource-grouping)Resource Grouping
 

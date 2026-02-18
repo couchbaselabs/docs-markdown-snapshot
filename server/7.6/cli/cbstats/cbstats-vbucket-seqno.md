@@ -1,4 +1,13 @@
+---
+title: vbucket-seqno
+description: Provides seqno statistics for vBuckets.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-vbucket-seqno.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-vbucket-seqno.html)
+
+# vbucket-seqno
 
 > Provides seqno statistics for vBuckets. 
 

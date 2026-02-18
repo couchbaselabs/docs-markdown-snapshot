@@ -1,4 +1,14 @@
+---
+title: Querying with SQL++
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/concept-docs/n1ql-query.html)
+
+# Querying with SQL++
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 

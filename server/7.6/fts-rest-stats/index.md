@@ -1,4 +1,15 @@
+---
+title: Couchbase Search Statistics API
+description: The Search Statistics REST API is provided by the Search Service.
+  This API enables you to get statistics for the Search Service and your Search
+  indexes.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-stats/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts-rest-stats/index.html)
+
+# Couchbase Search Statistics API
 
 ## [](#overview)Overview
 
@@ -350,10 +361,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| All of …​                          |                                       | Schema                          |
-| ---------------------------------- | ------------------------------------- | ------------------------------- |
-| Statistics for the entire cluster. | [Cluster Statistics](#clusterStats)   |                                 |
-| and                                | Statistics for a single Search index. | [Index Statistics](#indexStats) |
+| All of …​ |                                       | Schema                              |
+| --------- | ------------------------------------- | ----------------------------------- |
+|           | Statistics for the entire cluster.    | [Cluster Statistics](#clusterStats) |
+| and       | Statistics for a single Search index. | [Index Statistics](#indexStats)     |
 
 #### Cluster Statistics
 

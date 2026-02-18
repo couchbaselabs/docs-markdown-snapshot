@@ -1,4 +1,13 @@
+---
+title: Couchbase Server Editions
+description: "Couchbase Server is available in two editions: Enterprise and Community."
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/editions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/introduction/editions.html)
+
+# Couchbase Server Editions
 
 > Couchbase Server is available in two editions: Enterprise and Community. 
 

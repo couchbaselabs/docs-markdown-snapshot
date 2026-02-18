@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/index.html)
+
+# Introduction
 
 > The Couchbase Kafka connector is a plug-in for the [Kafka Connect](https://kafka.apache.org/documentation.html#connect) framework. It provides source and sink components. 
 

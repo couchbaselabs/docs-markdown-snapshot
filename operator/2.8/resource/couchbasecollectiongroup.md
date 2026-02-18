@@ -1,4 +1,12 @@
+---
+title: CouchbaseCollectionGroup Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbasecollectiongroup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/resource/couchbasecollectiongroup.html)
+
+# CouchbaseCollectionGroup Resource
 
 CouchbaseCollectionGroup represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection group must be referenced by a `CouchbaseScope` or `CouchbaseScopeGroup` resource. Unlike the CouchbaseCollection resource, a collection group represents multiple collections, with common configuration parameters, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic. It also forms the basis of Couchbase RBAC security boundaries.
 

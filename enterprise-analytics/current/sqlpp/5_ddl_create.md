@@ -1,4 +1,14 @@
+---
+title: CREATE Statements
+description: This topic introduces how you use <code>CREATE</code> statements to
+  create different Enterprise Analytics objects.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_create.html)
+
+# CREATE Statements
 
 > This topic introduces how you use `CREATE` statements to create different Enterprise Analytics objects. 
 
@@ -14,8 +24,8 @@ You can use `CREATE` statements to create the following Enterprise Analytics obj
 
 To create links to remote or external data sources, you use the Enterprise Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md) or [Set Up an External Data Source](../sources/manage-external.md).
 
-|  | CREATE statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> `CREATE` statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete.
 
 ## [](#syntax)Syntax
 

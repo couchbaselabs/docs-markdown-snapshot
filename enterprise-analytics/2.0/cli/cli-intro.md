@@ -1,4 +1,14 @@
+---
+title: CLI Reference
+description: The command-line interface (CLI) tools let you manage and monitor
+  your Enterprise Analytics installation.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/cli-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/cli-intro.html)
+
+# CLI Reference
 
 > The command-line interface (CLI) tools let you manage and monitor your Enterprise Analytics installation. 
 

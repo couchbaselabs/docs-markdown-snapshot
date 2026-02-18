@@ -1,4 +1,12 @@
+---
+title: Progress Messages
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/progress-messages.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/progress-messages.html)
+
+# Progress Messages
 
 Use a progress message to inform a user that a process has started.
 

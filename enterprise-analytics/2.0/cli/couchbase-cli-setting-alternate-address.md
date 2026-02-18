@@ -1,4 +1,13 @@
+---
+title: setting-alternate-address
+description: Modify alternate addresses
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-setting-alternate-address.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-setting-alternate-address.html)
+
+# setting-alternate-address
 
 Modify alternate addresses
 

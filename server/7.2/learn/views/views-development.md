@@ -1,4 +1,14 @@
+---
+title: Development Views
+description: Views are created in a development environment in order to control
+  the impact of views prior to deployment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-development.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-development.html)
+
+# Development Views
 
 > Views are created in a development environment in order to control the impact of views prior to deployment. 
 

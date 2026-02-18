@@ -1,4 +1,13 @@
+---
+title: SDK Release Notes
+description: Release notes for the Couchbase PHP Client.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/current/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes for the Couchbase PHP Client. 
 

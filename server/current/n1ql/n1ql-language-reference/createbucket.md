@@ -1,4 +1,13 @@
+---
+title: CREATE BUCKET
+description: The CREATE BUCKET statement enables you to create a bucket.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createbucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/createbucket.html)
+
+# CREATE BUCKET
 
 > The CREATE BUCKET statement enables you to create a bucket. 
 
@@ -40,8 +49,11 @@ Use the optional `WITH` clause to specify additional options for the bucket.
 | with-fields | A JSON object containing a list of name-value pairs that define the additional options. For a list of valid fields names and values, see [Bucket Parameter Groups](../../rest-api/rest-bucket-create.md#parameter-groups) in the REST API documentation. If you do not include with-fields, the statement creates the bucket with default values for all optional settings. Similarly, if you include with-fields but omit specific options, those options are also set to their default values. |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-|  | When using with-fields, if you set a value for ramQuota, the bucket’s configured with that value as its memory quota. However, if you do not specify a value for ramQuota, its value is determined as follows: If storageBackend is set to magma and numVBuckets is set to 1024, then ramQuota is set to 1024 MiB. In all other cases, ramQuota is set to 100 MiB. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When using `with-fields`, if you set a value for `ramQuota`, the bucket’s configured with that value as its memory quota. However, if you do not specify a value for `ramQuota`, its value is determined as follows:
+> 
+> * If `storageBackend` is set to `magma` and `numVBuckets` is set to `1024`, then `ramQuota` is set to `1024 MiB`.
+> * In all other cases, `ramQuota` is set to `100 MiB`.
 
 ## [](#examples)Examples
 

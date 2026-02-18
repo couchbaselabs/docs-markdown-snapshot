@@ -1,4 +1,13 @@
+---
+title: "Function/Benchmark: fasterToLocalString"
+description: Explore faster local time zone date formating.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-fasterToLocalString.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-fasterToLocalString.html)
+
+# Function/Benchmark: fasterToLocalString
 
 **Goal**: Explore faster local time zone date formating.
 

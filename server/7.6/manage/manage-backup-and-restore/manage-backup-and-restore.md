@@ -1,4 +1,14 @@
+---
+title: Manage Backup and Restore
+description: Couchbase Server allows one or more buckets, and selected subsets
+  of their data, to be backed up, restored, and archived.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-backup-and-restore/manage-backup-and-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-backup-and-restore/manage-backup-and-restore.html)
+
+# Manage Backup and Restore
 
 > Couchbase Server allows one or more buckets, and selected subsets of their data, to be backed up, restored, and archived. 
 
@@ -322,8 +332,8 @@ To monitor an ongoing restore, click the **Task History** button in the reposito
 
 After the restore tasks finishes, you can see whether it succeeded or failed under the **Results** section.
 
-|  | If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the restore task completes while you’re viewing **Task History**, it does not appear under the **Results** section until you click **Refresh Tasks**.
 
 To learn how to restore a backup using the command line, see [cbbackupmgr restore](../../backup-restore/cbbackupmgr-restore.md).
 
@@ -384,10 +394,9 @@ These fields let you choose how the restore task handles time to live (TTL) valu
 * **all**: The restore task applies the new TTL you supply in **Replace TTL with** to all documents it restores. It even applies the new value to restored documents that had a TTL of `0` (no expiration) in the backup.  
 The value you supply in **Replace TTL with** field must be either:
 * `0` : No TTL value is set for the document. The document does not expire unless the bucket or collection containing it has a non-zero `maxTTL` value. See [Expiration](../../learn/data/expiration.md).
-* A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.
-
-|  | The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* A string containing an [RFC3339](http://https://www.rfc-editor.org/rfc/rfc3339) time stamp. All documents to which the restore task applies this value will expire when on the date and time you set.  
+> [!NOTE]  
+> The **Replace TTL with** field does not prevent you from entering a timestamp in the past. Entering a date in the past results in any documents that the restore task applies the field’s value to being deleted by Couchbase Server soon after restoration.
 
 Force Updates
 
@@ -397,8 +406,8 @@ Auto-remove Collections
 
 When checked, the restore task drops scopes and collections that currently exist in buckets but had been dropped prior to the backup’s creation. The restore task knows which scopes and collections have been dropped because the backup contains the tombstones of these dropped objects. For a scope or collection to be dropped when you enable **Auto-remove Collections**, its ID must match the ID of a dropped scope or collection as well as matching its name. Just matching the name of a deleted scope or collection is not enough to have the restore task drop it.
 
-|  | This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This option is only useful for situations where you’re dropping and recreating buckets. For example, suppose you make a backup of a bucket where you had dropped scopes or collections. Then, later, you drop the bucket and recreate it and its scopes and collections (including the ones you had previously deleted) in precisely the same order that you had created them in the original bucket. In this case, the scopes and collections will have the same IDs that they had in the original bucket and therefore in the backup. Finally, if you restore the backup to the bucket with **Auto-remove Collections** selected, the restore task deletes scopes and collections that match the IDs of deleted ones in the backup.
 
 Auto-create Buckets
 
@@ -623,10 +632,9 @@ Use the `client_id` and the `client_secret` obtained in the previous section as 
   ```console  
   ./oauth.sh  
   ```  
-  The script will open your default browser; you can copy the `oauth` credential from the string in the browser URL input field.
-
-|  | You may need to click through a few pages, until you see https:localhost:12345 in the URL field. |
-|  | ------------------------------------------------------------------------------------------------ |  
+  The script will open your default browser; you can copy the `oauth` credential from the string in the browser URL input field.  
+  > [!TIP]  
+  > You may need to click through a few pages, until you see `https:localhost:12345` in the URL field.  
   ![getOauthCodefromURL](../_images/manage-backup-restore/getOauthCodefromURL.png)  
   Copy the string denoted by the `code` field for use in the next section.
 3. **Generate the Refresh Token**  
@@ -674,10 +682,9 @@ Now, you will create a short shell script, using te oauth credentials you retrie
   Cloud Bucket  
   The name of the bucket on the `GCP` service you’re backing up to.  
   Cloud Auth Type  
-  This can be either `ID and Key` or `Instance Metadata Service`.
-
-|  | For the Instance Metadata Service you will need to configure your GCP VM service account so that the VM instance can read and write to the cloud storage bucket. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  This can be either `ID and Key` or `Instance Metadata Service`.  
+  > [!NOTE]  
+  > For the `Instance Metadata Service` you will need to configure your GCP VM service account so that the VM instance can read and write to the cloud storage bucket.  
   You will require a different set of options depending on which one cloud authentication type you choose:
 
 ---  

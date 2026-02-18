@@ -1,4 +1,13 @@
+---
+title: timings
+description: Provides timing statistics.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-timing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-timing.html)
+
+# timings
 
 > Provides timing statistics. 
 
@@ -52,8 +61,8 @@ __Table 1\. Return values__
 | sync\_write\_commit\_majority\_and\_persist\_on\_master | Time spent in replicating mutations to memory on a majority of the Data Service nodes that hold the data, plus time spent in writing mutations to disk on the node hosting the active vBucket for the data. |
 | sync\_write\_commit\_persist\_to\_majority              | Time spent in replicating mutations to disk on a majority of the Data Service nodes that hold the data.                                                                                                     |
 
-|  | The most useful stats for understanding get and set timings are get\_cmd and store\_cmd. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The most useful stats for understanding get and set timings are `get_cmd` and `store_cmd`.
 
 ## [](#options)Options
 

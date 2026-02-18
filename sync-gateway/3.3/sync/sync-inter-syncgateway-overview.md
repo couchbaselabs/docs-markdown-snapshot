@@ -1,4 +1,14 @@
+---
+title: Inter-Sync Gateway Replication
+description: Use inter-Sync Gateway replication to keep clusters in different
+  mobile data centers in sync.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/sync-inter-syncgateway-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/sync/sync-inter-syncgateway-overview.html)
+
+# Inter-Sync Gateway Replication
 
 > Use inter-Sync Gateway replication to keep clusters in different mobile data centers in sync.  
 > _Inter-Sync Gateway_ replication supports resilient, secure, scalable bidirectional synchronization of data cloud-to-edge.
@@ -7,8 +17,10 @@ _Related topics_: [Overview](sync-inter-syncgateway-overview.md) | [Run](sync-in
 
 _Other Topics_: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Admin REST API](../rest-api/rest-api-admin.md)
 
-|  | Context Clarification This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Context Clarification
+> 
+> This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release.
 
 ## [](#introduction)Introduction
 
@@ -65,8 +77,8 @@ For legacy versions see: [Legacy Pre-3.0 Configuration](../configuration/configu
 
 Inter-Sync Gateway replications are based on websockets. This is the exact same protocol that is used for replication with Couchbase Lite 2.x clients.
 
-|  | For users on releases prior to 2.8, SG Replicate provides a HTTP-based replication — see the appropriate release documentation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For users on releases prior to 2.8, SG Replicate provides a HTTP-based replication — see the appropriate release documentation.
 
 The bi-directional, persistent, nature of websocket connections is ideal for applications such as a _continuous_ Sync Gateway replication, which is constantly waiting-for and synchronizing change events.
 
@@ -86,8 +98,8 @@ _Related configuration elements_: [replications](../configuration/configuration-
 
 ### [](#delta-sync)Delta Sync
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 With delta-sync enabled on the replication and both databases involved, only the changed data items are transferred.
 
@@ -96,8 +108,8 @@ You can configure replications to use delta-sync by:
 * Setting `"enable_delta_sync": true` in the _replication definition_
 * Setting `"delta-sync": { "enabled": true}` on both databases in their respective _database definitions_.
 
-|  | Push replications to pre-2.8 targets do not use Delta Sync |
-|  | ---------------------------------------------------------- |
+> [!NOTE]
+> Push replications to pre-2.8 targets do not use Delta Sync
 
 _Related configuration elements_: [Database Configuration](../configuration/configuration-schema-database.md) | [replications](../configuration/configuration-schema-database.md#database-replications-this%5Frep) | [database.delta\_sync](../configuration/configuration-schema-database.md#database-delta%5Fsync) | [enable\_delta\_sync](../configuration/configuration-schema-database.md#database-replications-this%5Frep-enable%5Fdelta%5Fsync)
 
@@ -120,8 +132,8 @@ Collection mapping allows you to replicate local collections to differently name
 
 The mapping works positionally, where the first collection in `collections_local` maps to the first collection in `collections_remote`, the second to the second, and so on.
 
-|  | You must verify all specified collections exist in both source and target Sync Gateway database configurations before starting replication. Sync Gateway does not automatically create missing collections or sync new collections after replication begins. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You must verify all specified collections exist in both source and target Sync Gateway database configurations before starting replication. Sync Gateway does not automatically create missing collections or sync new collections after replication begins.
 
 This collection mapping capability adapts the mapping concept from XDCR for Sync Gateway deployments. For information about [Implicit Mapping](../../../server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#implicit-mapping) and [Explicit Mapping](../../../server/current/learn/clusters-and-availability/xdcr-with-scopes-and-collections.md#explicit-mapping) in the XDCR documentation.
 
@@ -160,8 +172,8 @@ _Related replication definition elements_: [max\_backoff\_time](../configuration
 
 ### [](#overview)Overview
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 * Enterprise
 * Community
@@ -170,8 +182,8 @@ Inter-Sync Gateway Replication provides built-in High Availability (HA) support.
 
 A replication runs on only one node at any given time. When a node fails, the system automatically distributes that node’s replications across any available alternative nodes (providing the replication has been configured on multiple nodes).
 
-|  | To use high-availability, configure the same replication on at least two Sync Gateway nodes. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use high-availability, configure the same replication on at least two Sync Gateway nodes.
 
 Even though automatic node-distribution is not available in [COMMUNITY EDITION](https://www.couchbase.com/products/editions), you can make your replications more highly-available.
 
@@ -332,8 +344,12 @@ Conflicts are **not** resolved in **push** replications though. The passive end 
 
 Both approaches reflect the way conflicts are handled by Couchbase Lite clients. Not surprising since in both instances Couchbase Lite is acting like the active node in an inter-sync gateway exchange.
 
-|  | Conflicts are only resolved during a **pull** replication. If conflicts are likely, you should configure a pushAndPull replication when using Conflict Free mode. _Alternatively_: Run the replicator from the other side; flipping the direction (to pull) and the resolution policy (for example localWins becomes remoteWins). See also — our blog post: [Document Conflicts & Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile/) |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Conflicts are only resolved during a **pull** replication. If conflicts are likely, you should configure a `pushAndPull` replication when using Conflict Free mode.
+> 
+> _Alternatively_: Run the replicator from the other side; flipping the direction (to `pull`) and the resolution policy (for example `localWins` becomes `remoteWins`).
+> 
+> See also — our blog post: [Document Conflicts & Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile/)
 
 For [ENTERPRISE EDITION](https://www.couchbase.com/products/editions), a custom conflict resolver policy is available, providing additional flexibility by allowing users to provide their own conflict resolution logic — see: [Inter Sync Gateway Sync - Custom Conflict Resolution](sync-inter-syncgateway-conflict-resolution.md#custom-conflict-resolution-ee)
 

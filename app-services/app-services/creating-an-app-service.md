@@ -1,4 +1,14 @@
+---
+title: Create an App Service
+description: Using the Capella UI, you can create an App Service for your mobile
+  apps to connect to.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/creating-an-app-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-services/creating-an-app-service.html)
+
+# Create an App Service
 
 > Using the Capella UI, you can create an App Service for your mobile apps to connect to. 
 
@@ -36,8 +46,8 @@ To create an App Service with default deployment configuration:
 8. Choose the cluster you want to connect to.
 9. Click the **Create App Service** button to instantiate the service.
 
-|  | Azure App Services deployments can take an average of 15-20 minutes. Deployments on AWS and GCP will take around 5 minutes. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Azure App Services deployments can take an average of 15-20 minutes. Deployments on AWS and GCP will take around 5 minutes.
 
 ## [](#deployment-configuration)Deployment Configuration
 
@@ -53,8 +63,15 @@ Choose the size of each node. The options offered vary depending on which cloud 
 
 You can scale an application after it’s deployed by changing its configuration. For more information, see [Scale a Deployed App Service](scaling-a-deployed-app-service.md).
 
-|  | If you want to connect App Services to a [Single Node cluster](../../cloud/clusters/databases.md#option), you can choose to deploy App Services on a single node. Single Node App Services only support the following Compute configurations: 2vCPU with 4 GB RAM 4vCPU with 8 GB RAM You cannot scale a Single Node App Service to add more nodes later. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want to connect App Services to a [Single Node cluster](../../cloud/clusters/databases.md#option), you can choose to deploy App Services on a single node.
+> 
+> Single Node App Services only support the following Compute configurations:
+> 
+> * 2vCPU with 4 GB RAM
+> * 4vCPU with 8 GB RAM
+> 
+> You cannot scale a Single Node App Service to add more nodes later.
 
 ## [](#service-cluster-size-implications)Service Cluster Size Implications
 

@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Migration
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-migration.html)
+
+# Couchbase Cluster Migration
 
 > The Operator can manage the migration of an unmanaged Couchbase cluster to an Operator managed cluster running on Kubernetes. 
 

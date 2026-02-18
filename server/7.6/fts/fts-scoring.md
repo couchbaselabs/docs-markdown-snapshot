@@ -1,4 +1,12 @@
+---
+title: Scoring
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-scoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-scoring.html)
+
+# Scoring
 
 Search result scoring occurs at a query time. The result of the search request is ordered by **score** (relevance), with the descending sort order unless explicitly set not to do so.
 
@@ -76,8 +84,8 @@ On the Search page, you can search for a term in any index. The search result di
 
 You can disable the scoring by setting `score` to `none` in the search request. This is recommended in a situation where scoring (document relevancy) is not needed by the application.
 
-|  | Using "score": "none" is expected to boost query performance in certain situations. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using `"score": "none"` is expected to boost query performance in certain situations.
 
 ### [](#example-2)Example
 

@@ -1,4 +1,16 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the
+  https://www.couchbase.com/products/n1ql[SQL++] (formerly N1QL) query language,
+  a language based on SQL, but designed for structured and flexible JSON
+  documents.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/howtos/sqlpp-queries-with-sdk.html)
+
+# Query
 
 > You can query for documents in Couchbase using the [SQL++](https://www.couchbase.com/products/n1ql) (formerly N1QL) query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
@@ -105,8 +117,10 @@ Once a result returns you can iterate the returned rows and/or accessing the `Qu
 Exception in thread "main" com.couchbase.client.core.error.ParsingFailureException: Parsing of the input failed {"completed":true,"coreId":1,"errors":[{"code":3000,"message":"syntax error - at end of input"}],"idempotent":false,"lastDispatchedFrom":"127.0.0.1:56279","lastDispatchedTo":"127.0.0.1:8093","requestId":3,"requestType":"QueryRequest","service":{"operationId":"eee9b796-bfff-42dc-941d-1a985e019ff8","statement":"select 1=","type":"query"},"timeoutMs":75000,"timings":{"dispatchMicros":14381,"totalMicros":1365348}}
 ```
 
-|  | Open Buckets and Cluster-Level Queries If you are using a cluster older than Couchbase Server 6.5, it is required that there is at least one bucket open before performing a cluster-level query. If you fail to do so, the SDK will return a FeatureNotAvailableException with a descriptive error message asking you to open one. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Open Buckets and Cluster-Level Queries
+> 
+> If you are using a cluster older than Couchbase Server 6.5, it is required that there is at least one bucket open before performing a cluster-level query. If you fail to do so, the SDK will return a `FeatureNotAvailableException` with a descriptive error message asking you to open one.
 
 ## [](#parameterized-queries)Parameterized Queries
 
@@ -232,8 +246,10 @@ In addition to the blocking API on `Cluster`, the SDK provides reactive and asyn
 
 Also, there is another reason you want to use the reactive API: streaming large results with backpressure from the application side. Both the blocking and async APIs have no means of signalling backpressure in a good way, so if you need it the reactive API is your best option.
 
-|  | Advanced Reactive Concepts Ahead Please see the guides on reactive programming for more information on the basics, this guide is diving straight into their impact on querying. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Advanced Reactive Concepts Ahead
+> 
+> Please see the guides on reactive programming for more information on the basics, this guide is diving straight into their impact on querying.
 
 A simple reactive query is similar to the blocking one:
 
@@ -265,8 +281,8 @@ for (JsonObject row : result.rowsAsObject()) {
 
 ## [](#additional-resources)Additional Resources
 
-|  | SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/querying-your-data.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/querying-your-data.md).
 
 * For a deeper dive into SQL++ from the SDK, refer to our [SQL++ SDK concept doc](../concept-docs/n1ql-query.md).
 * The [Server doc SQL++ intro](#7.1@server:n1ql:n1ql-language-reference/index.adoc) introduces a complete guide to the SQL++ language, including all of the latest additions.

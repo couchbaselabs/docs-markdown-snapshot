@@ -1,4 +1,12 @@
+---
+title: Using Couchbase Transactions
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 Distributed ACID Transactions are not currently available for the Rust SDK. Nevertheless, you may find that you can achieve the same result with our [strong durable gurarantees within a single bucket](../concept-docs/durability-replication-failure-considerations.md#durable-writes) and some re-architecture.
 

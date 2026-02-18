@@ -1,4 +1,12 @@
+---
+title: Field Scoping
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-query-string-syntax-field-scoping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-query-string-syntax-field-scoping.html)
+
+# Field Scoping
 
 You can specify the field in which a search needs to be performed by prefixing the term with a field-name, separated by a colon.
 
@@ -11,8 +19,8 @@ When a query string includes multiple items, by default these are placed into th
 * Prefixing with `+` places that item in the MUST portion of the boolean query.
 * Prefixing with `-` places that item in the MUST NOT portion of the boolean query.
 
-|  | You can use the preceding syntax to create [Compound Queries](fts-supported-queries-compound-query.md) in Search. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can use the preceding syntax to create [Compound Queries](fts-supported-queries-compound-query.md) in Search.
 
 ### [](#example)Example
 

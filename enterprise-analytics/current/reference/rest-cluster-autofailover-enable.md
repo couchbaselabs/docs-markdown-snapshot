@@ -1,4 +1,14 @@
+---
+title: Enabling and Disabling Auto-Failover
+description: Auto-failover is enabled and disabled by means of the <code>POST
+  /settings/autoFailover</code> HTTP method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-autofailover-enable.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-autofailover-enable.html)
+
+# Enabling and Disabling Auto-Failover
 
 > Auto-failover is enabled and disabled by means of the `POST /settings/autoFailover` HTTP method and URI. 
 

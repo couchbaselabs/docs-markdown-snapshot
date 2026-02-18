@@ -1,4 +1,14 @@
+---
+title: Cleanup
+description: The SDK takes care of failed or lost transactions, using an
+  asynchronous cleanup background task.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/concept-docs/pages/transactions-cleanup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.9/concept-docs/transactions-cleanup.html)
+
+# Cleanup
 
 > The SDK takes care of failed or lost transactions, using an asynchronous cleanup background task. 
 
@@ -16,8 +26,8 @@ All applications connected to the same cluster and running transactions will sha
 
 An application may cleanup transactions created by another application.
 
-|  | It is important to understand that if an application is not running, then cleanup is not running. This is particularly relevant to developers running unit tests or similar. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is important to understand that if an application is not running, then cleanup is not running. This is particularly relevant to developers running unit tests or similar.
 
 ### [](#tuning-cleanup)Configuring Cleanup
 

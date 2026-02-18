@@ -1,9 +1,20 @@
+---
+title: Prerequisites for Couchbase Lite on Swift
+description: Prerequisites for the installation of Couchbase Lite
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/swift/gs-prereqs.html)
+
+# Prerequisites for Couchbase Lite on Swift
 
 > Description — _Prerequisites for the installation of Couchbase Lite_  
 
-|  | Vector Search Prerequisites To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Vector Search Prerequisites
+> 
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 ## [](#couchbase-lite-framework-size)Couchbase Lite Framework Size
 
@@ -19,8 +30,10 @@ More information on App size is available on this [Apple Q&A](https://developer.
 
 See also: [Supported Versions](supported-os.md)
 
-|  | Deprecation Notice — Apple Mac OS Support for Mac OS 13 is deprecated in release 3.3 and will be removed in a future release _Action:_ Please plan to migrate your apps to use an appropriate alternative version. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Deprecation Notice — Apple Mac OS
+> 
+> Support for Mac OS 13 is deprecated in release 3.3 and will be removed in a future release _Action:_ Please plan to migrate your apps to use an appropriate alternative version.
 
 ## [](#related-content)Related Content
 

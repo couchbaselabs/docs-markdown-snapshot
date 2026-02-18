@@ -1,4 +1,14 @@
+---
+title: Slow Operations Logging
+description: Tracing information on slow operations can be found in the logs as
+  threshold logging and orphan logging.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/slow-operations-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.0/howtos/slow-operations-logging.html)
+
+# Slow Operations Logging
 
 > Tracing information on slow operations can be found in the logs as threshold logging and orphan logging. Change the settings to alter how much information you collect 
 

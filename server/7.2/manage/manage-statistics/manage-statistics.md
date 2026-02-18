@@ -1,4 +1,14 @@
+---
+title: Manage Statistics
+description: Statistics on Couchbase Server can be monitored; per bucket, per
+  node, per service, and per cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-statistics/manage-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-statistics/manage-statistics.html)
+
+# Manage Statistics
 
 > Statistics on Couchbase Server can be monitored; per bucket, per node, per service, and per cluster. By means of Couchbase Web Console, appropriate combinations of statistics can be selected for display, across multiple interactive dashboards. 
 

@@ -1,4 +1,13 @@
+---
+title: Deploy Eventing Functions
+description: Use the Capella UI to deploy and undeploy Eventing Functions in your cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/deploy-eventing-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/deploy-eventing-functions.html)
+
+# Deploy Eventing Functions
 
 > Use the Capella UI to deploy and undeploy Eventing Functions in your cluster. 
 
@@ -14,8 +23,8 @@ Deploying a Function:
 * Calculates initial partitions
 * Initiates checkpointing of processed stream data
 
-|  | You cannot edit the JavaScript source code of a deployed Eventing Function. |
-|  | --------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot edit the JavaScript source code of a deployed Eventing Function.
 
 To deploy an Eventing Function:
 

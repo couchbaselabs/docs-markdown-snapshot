@@ -1,4 +1,13 @@
+---
+title: failover
+description: Failover a node in the cluster
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-failover.html)
+
+# failover
 
 Failover a node in the cluster
 
@@ -13,8 +22,8 @@ _couchbase-cli failover_ [--cluster <url>] [--username <user>] [--password <pass
 
 This command fails over one or more nodes. Nodes can be either hard failed over or gracefully failed over. A hard failover means that the failover happens immediately but risks potential data loss. Graceful failover ensures that replication is up to date before the node is failed over so that there is no data loss, but the failover is not immediate.
 
-|  | If a node is already down, you must perform a hard failover. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> If a node is already down, you must perform a hard failover.
 
 ## [](#options)OPTIONS
 

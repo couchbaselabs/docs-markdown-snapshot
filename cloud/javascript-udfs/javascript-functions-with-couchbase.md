@@ -1,4 +1,14 @@
+---
+title: JavaScript Functions for Query Reference
+description: You can write extension functions for SQL++ for Query in Couchbase
+  Capella, using the JavaScript programming language.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/javascript-udfs/javascript-functions-with-couchbase.html)
+
+# JavaScript Functions for Query Reference
 
 > You can write extension functions for SQL++ for Query in Couchbase Capella, using the JavaScript programming language. 
 

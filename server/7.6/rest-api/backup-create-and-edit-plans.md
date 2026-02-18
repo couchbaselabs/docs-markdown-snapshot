@@ -1,4 +1,14 @@
+---
+title: Create and Edit Plans
+description: The Backup Service REST API allows <em>plans</em> to be created and
+  edited. A plan specifies one or more <em>tasks</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-create-and-edit-plans.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/backup-create-and-edit-plans.html)
+
+# Create and Edit Plans
 
 > The Backup Service REST API allows _plans_ to be created and edited. A plan specifies one or more _tasks_. Once created, a plan can be used in the creation of a _repository_. 
 

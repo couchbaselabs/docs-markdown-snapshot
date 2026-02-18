@@ -1,4 +1,15 @@
+---
+title: Non-Root Install and Upgrade
+description: Couchbase Server can be installed on any supported Linux
+  distribution by users who do not have <em>root</em> or <em>sudo</em>
+  privileges.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/non-root.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/non-root.html)
+
+# Non-Root Install and Upgrade
 
 Couchbase Server can be installed on any supported Linux distribution by users who do not have _root_ or _sudo_ privileges. A non-root server, once installed, can be upgraded by the same users.
 
@@ -79,10 +90,9 @@ To perform a non-root installation of Couchbase Server on any supported Linux di
 
 1. Download the Couchbase Server RPM, using `wget` or `curl`.
 2. Using `wget` or `curl`, download the appropriate binary for your platform (the URI is the same for all supported x86\_64 or aarch64 Linux distributions):  
-<https://packages.couchbase.com/cb-non-package-installer/cb-non-package-installer-aarch64> <https://packages.couchbase.com/cb-non-package-installer/cb-non-package-installer-x86%5F64>
-
-|  | In the following examples, use the appropriate suffix ("x86\_64" or "aarch64") instead of <platform-suffix> for the cb-non-package-installer. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+<https://packages.couchbase.com/cb-non-package-installer/cb-non-package-installer-aarch64> <https://packages.couchbase.com/cb-non-package-installer/cb-non-package-installer-x86%5F64>  
+> [!NOTE]  
+> In the following examples, use the appropriate suffix (`"x86_64"` or `"aarch64"`) instead of `<platform-suffix>` for the `cb-non-package-installer`.
 3. Make the binary executable.  
 ```console  
 chmod u+x ./cb-non-package-installer-<platform-suffix>  
@@ -93,10 +103,9 @@ mkdir ./cb-install
 ```console  
  ./cb-non-package-installer-<platform-suffix> --install --install-location ./cb-install \
  --package ./couchbase-server-enterprise-7.1.0-amzn2.<platform-suffix>.rpm  
-```
-
-|  | the program performs dependency checking, prior to installation. If installation cannot proceed, due to missing dependencies, the program displays corresponding notifications, and stops running. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> the program performs dependency checking, prior to installation. If installation cannot proceed, due to missing dependencies, the program displays corresponding notifications, and stops running.
 6. If dependencies have been flagged as missing, restore those dependencies by performing the necessary installations. Then, run the `cb-non-package-installer-<platform-suffix>` binary again.
 
 When installation is complete, the following notification is displayed:

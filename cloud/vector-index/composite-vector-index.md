@@ -1,4 +1,14 @@
+---
+title: Filtered Search Using Composite Vector Indexes
+description: A Composite Vector index is a Global Secondary Index (GSI) with a
+  single vector column that combines scalar queries with semantic search.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/composite-vector-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-index/composite-vector-index.html)
+
+# Filtered Search Using Composite Vector Indexes
 
 > A Composite Vector index is a Global Secondary Index (GSI) with a single vector column that combines scalar queries with semantic search. The added vector column lets your application perform a query using both the index’s scalar, array, and object index entries to pre-filter the dataset before performing a vector similarity search. 
 
@@ -43,10 +53,11 @@ To create a Composite Vector index with the Capella UI:
 2. Go to **Data Tools** **Vector Indexes**.
 3. Click **Create Vector Index**.
 4. Choose **Composite Vector Index**.
-5. In the **Index Name** field, enter a name for your new Vector index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). Your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+5. In the **Index Name** field, enter a name for your new Vector index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> Your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 6. In the **Bucket**, **Scope**, and **Collection** lists, select the bucket, scope, and collection where you have documents that contain a vector field.
 7. Under **Vector Field**, in the **Select Field** list, select the vector field to use in your Composite Vector index.
 8. (Optional) To add a field to use as a filter on the data included in your Composite Vector index, click **\+ Add Filter Field**.
@@ -68,10 +79,11 @@ To create a Composite Vector index with the Capella UI:
   Your embedding model determines this value, and Capella automatically configures it based on your chosen **Vector Field**.
   4. In the **Replicas** list, select the number of replicas you want to create for your index.  
   Replicas affect the query throughput, memory footprint, and fault tolerance for your Composite Vector index. More replicas increase the required memory for your index, but can increase query throughput.
-  5. (Optional) In the **Training List** field, enter or select the number of vectors to consider when searching for centroids in your data.
-
-|  | If you have less than 10,000 vectors in your index, Couchbase sets the **Training List** value to your number of vectors. If you have more than 10,000 vectors up to a maximum of 1,000,000, Couchbase sets the **Training List** value to either 10% of your total number of vectors or 10 times your number of centroids - whichever value is higher, up to a maximum of 1,000,000. You can change your **Training List** value from these recommended defaults. Increasing the value can improve recall, but increase build times. Decreasing the value can improve build times, but reduces recall. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  5. (Optional) In the **Training List** field, enter or select the number of vectors to consider when searching for centroids in your data.  
+  > [!TIP]  
+  > If you have less than 10,000 vectors in your index, Couchbase sets the **Training List** value to your number of vectors. If you have more than 10,000 vectors up to a maximum of 1,000,000, Couchbase sets the **Training List** value to either 10% of your total number of vectors or 10 times your number of centroids - whichever value is higher, up to a maximum of 1,000,000.  
+  >  
+  > You can change your **Training List** value from these recommended defaults. Increasing the value can improve recall, but increase build times. Decreasing the value can improve build times, but reduces recall.
   6. (Optional) In the **Probes to scan** field, enter or select the number of centroids to check for similar vectors for each query.  
   The default value is **1**. A higher value increases search times, but also increases accuracy. You can also choose to override this value in your queries.
   7. (Optional) In the **Number of centroids** field, enter or select the number of centroids to create in your index.  
@@ -107,8 +119,8 @@ WITH {"dimension": <dimensions>,
      };
 ```
 
-|  | The WITH clause can contain other parameters that affect how the index processes vectors. For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `WITH` clause can contain other parameters that affect how the index processes vectors. For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference.
 
 * `dimensions` is an integer value that sets the number of dimensions in the vector. This value is set by the embedded model you used to embed the vectors.
 * `similarity_metric` is a string that sets the distance metric to use when comparing vectors during index creation.  

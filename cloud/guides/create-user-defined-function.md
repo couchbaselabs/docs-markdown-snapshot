@@ -1,4 +1,14 @@
+---
+title: Create a User-Defined Function
+description: Create a user-defined function (UDF) to call an inline function or
+  a specific JavaScript function stored in a library.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-user-defined-function.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/create-user-defined-function.html)
+
+# Create a User-Defined Function
 
 > Create a user-defined function (UDF) to call an inline function or a specific JavaScript function stored in a library. 
 
@@ -27,15 +37,13 @@ To create a user-defined function that references a JavaScript function from a U
 6. Choose the access level for your user-defined function:
 
   1. Choose **Global** to allow all buckets and scopes on this cluster to use this function.
-  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.
-
-|  | Choose the same access level and namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.  
+  > [!TIP]  
+  > Choose the same access level and namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
 7. In the **Parameters** field, enter a list of parameters, separated by commas (`,`) for any values you need to process or use in your function.  
-For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.
-
-|  | If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add …​ as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.  
+> [!TIP]  
+> If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add `…​` as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function.
 8. Click the **UDF Library** tab.
 9. Choose the UDF library and specific JavaScript function you want to assign to this user-defined function.
 10. Click **Create Function**.
@@ -46,8 +54,8 @@ Execute a `CREATE FUNCTION` statement in cbq to create a user-defined function:
 CREATE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays(...) LANGUAGE JAVASCRIPT as "getBusinessDays" AT "travel-sample/inventory/my-library";
 ```
 
-|  | Set the same namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Set the same namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
 
 For more information on the `CREATE FUNCTION` statement, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
 
@@ -69,15 +77,13 @@ To create a user-defined function that uses inline JavaScript or SQL++:
 6. Choose the access level for your user-defined function:
 
   1. Choose **Global** to allow all buckets and scopes on this cluster to use this function.
-  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.
-
-|  | Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.  
+  > [!TIP]  
+  > Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
 7. In the **Parameters** field, enter a list of parameters, separated by commas (`,`) for any values you need to process or use in your function.  
-For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.
-
-|  | If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add …​ as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function. You can also define your function with a variable length parameter list, by adding a variable to your function definition that starts with …​ \- such as …​ args. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.  
+> [!TIP]  
+> If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add `…​` as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function. You can also define your function with a variable length parameter list, by adding a variable to your function definition that starts with `…​` \- such as `…​ args`.
 8. Click the **Inline SQL++** or **Inline JavaScript** tab.
 9. Enter a SQL++ expression or JavaScript function.
 10. Click **Create Function**.

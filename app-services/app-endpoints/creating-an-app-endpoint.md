@@ -1,4 +1,14 @@
+---
+title: Create App Endpoints
+description: Create an App Endpoint to synchronize data between Couchbase
+  Capella and mobile or IoT applications.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/creating-an-app-endpoint.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/creating-an-app-endpoint.html)
+
+# Create App Endpoints
 
 > Create an App Endpoint to synchronize data between Couchbase Capella and mobile or IoT applications. 
 
@@ -11,8 +21,8 @@ Before creating an App Endpoint, verify that you have:
 * Verified that your bucket has [maxTTL](../../cloud/clusters/data-service/manage-buckets.md#time-to-live) set to `0` (no bucket-level Time To Live configured).
 * Verified that collections you plan to link have [maxTTL](../../cloud/clusters/data-service/scopes-collections.md#create-collection) set to `0` (no collection-level Time To Live configured).
 
-|  | App Services does not support Time To Live (TTL) on buckets or collections linked to App Endpoints. Collection-level TTL can cause App Services' system documents (including those with \_sync prefixes) to expire, which prevents synchronization from functioning correctly. If you need expiry behavior, set [expiration on individual documents](#cloud:clusters:data-service/document-expiration.adoc) or use per-collection sync functions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> App Services does not support Time To Live (TTL) on buckets or collections linked to App Endpoints. Collection-level TTL can cause App Services' system documents (including those with `_sync` prefixes) to expire, which prevents synchronization from functioning correctly. If you need expiry behavior, set [expiration on individual documents](#cloud:clusters:data-service/document-expiration.adoc) or use per-collection sync functions.
 
 ## [](#create-an-app-endpoint)Create an App Endpoint
 
@@ -25,17 +35,14 @@ Before creating an App Endpoint, verify that you have:
 4. Go to **App Endpoint**.
 5. Click **Create App Endpoint**.
 6. In the Create App Endpoint dialog, enter a name for your App Endpoint.
-7. Select a `Memory and Disk` bucket and a scope.
-
-|  | The bucket must have **maxTTL** set to 0. See [more about TTL restrictions](#ttl-restrictions). |
-|  | ----------------------------------------------------------------------------------------------- |
-8. Select 1 or more collections to link to your App Endpoint.
-
-|  | Collections must have **maxTTL** set to 0. You can link a maximum of 250 collections from a scope to an App Endpoint in a single linking operation.App Endpoints can share scopes but cannot link to the same collections. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-
-|  | Linking large numbers of collections can result in long linking times. During linking, you cannot connect to your App Endpoint and sync data. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+7. Select a `Memory and Disk` bucket and a scope.  
+> [!NOTE]  
+> The bucket must have **maxTTL** set to `0`. See [more about TTL restrictions](#ttl-restrictions).
+8. Select 1 or more collections to link to your App Endpoint.  
+> [!NOTE]  
+> Collections must have **maxTTL** set to `0`. You can link a maximum of 250 collections from a scope to an App Endpoint in a single linking operation.App Endpoints can share scopes but cannot link to the same collections.  
+> [!IMPORTANT]  
+> Linking large numbers of collections can result in long linking times. During linking, you cannot connect to your App Endpoint and sync data.
 9. Click **Create App Endpoint**.
 
 Your App Endpoint enters an **Initializing** state while App Services links the collections. Once linking completes, the App Endpoint moves to an **Offline** state.

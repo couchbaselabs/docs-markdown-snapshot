@@ -1,4 +1,14 @@
+---
+title: XDCR enableCrossClusterVersioning
+description: Enabling Cross Cluster Versioning allows XDCR to add metadata to
+  each replicated document.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-enable-crossclusterversioning.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.html)
+
+# XDCR enableCrossClusterVersioning
 
 > Enabling Cross Cluster Versioning allows XDCR to add metadata to each replicated document. 
 
@@ -12,8 +22,8 @@ The new metadata, HLV, is stored as a system created extended attribute (xattrs)
 
 The HLV metadata takes up `109 + 40N` bytes of space per document, where N is the number of buckets mutating the document in the replication topology.
 
-|  | As long as your replication topology is constant, the size of the HLV metadata will grow to 109 + 40N bytes and remain constant. However, the HLV data accumulation occurs when the replication topology changes and the document copy goes through different clusters, for example, when being restored to a new cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As long as your replication topology is constant, the size of the HLV metadata will grow to `109 + 40N` bytes and remain constant. However, the HLV data accumulation occurs when the replication topology changes and the document copy goes through different clusters, for example, when being restored to a new cluster.
 
 To remove the accumulated or outdated HLV data, the HLV metadata is pruned periodically. You can control the pruning frequency by setting the bucket property `versionPruningWindowHrs`.
 
@@ -21,22 +31,22 @@ To remove the accumulated or outdated HLV data, the HLV metadata is pruned perio
 
 After enabling, you cannot disable the bucket property `enableCrossClusterVersioning`. You can, however, backup and restore the data to a bucket where `enableCrossClusterVersioning` is set to `false`, and remove the xattrs information added by XDCR using the option `cbbackupmgr restore --disable-hlv`.
 
-|  | To remove the on-going maintenance of HLV information, you must remove the xattrs information previously added to the documents. To completely remove the effects of enabling HLV, only restoring the data to a bucket where enableCrossClusterVersioning is set to false is not enough. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To remove the on-going maintenance of HLV information, you must remove the xattrs information previously added to the documents. To completely remove the effects of enabling HLV, only restoring the data to a bucket where `enableCrossClusterVersioning` is set to `false` is not enough.
 
 ## [](#modify-enablecrossclusterversioning)Modify the bucket property enableCrossClusterVersioning
 
 You can modify the bucket property `enableCrossClusterVersioning` through the REST API. For information about modifying `enableCrossClusterVersioning` through the REST API, see [Example: Turning on enableCrossClusterVersioning, when Editing](../../rest-api/rest-bucket-create.md#example-enablecrossclusterversioning-edit).
 
-|  | You cannot enable the bucket property enableCrossClusterVersioning while creating the bucket. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot enable the bucket property `enableCrossClusterVersioning` while creating the bucket.
 
 ## [](#version-pruning-window-hrs)versionPruningWindowHrs
 
 `versionPruningWindowHrs` is a bucket property, which controls the pruning frequency of the HLV metadata. The default value of versionPruningWindowHrs is 720 hours (30 days), which means that any HLV data older than 720 hours is pruned to remove the outdated entries.
 
-|  | versionPruningWindowHrs must be set to the same value for all buckets in an XDCR replication topology. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> `versionPruningWindowHrs` must be set to the same value for all buckets in an XDCR replication topology.
 
 ### [](#manage-version-pruning-window-hrs)Manage the bucket property versionPruningWindowHrs
 
@@ -50,5 +60,5 @@ The bi-directional, active-active replication with Sync Gateway 4.0 or a later v
 
 \+ For more information about how Sync Gateway 4.0+ version works with Couchbase Server’s XDCR, see [XDCR - Server Compatibility](../../../../sync-gateway/current/server-compatibility/server-compatibility-xdcr.md).
 
-|  | To set up XDCR bi-directional replication with Sync Gateway (SGW), the minimum required version for Server is 7.6.6 and SGW is 4.0.0\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To set up XDCR bi-directional replication with Sync Gateway (SGW), the minimum required version for Server is 7.6.6 and SGW is 4.0.0\.

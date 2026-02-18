@@ -1,4 +1,13 @@
+---
+title: Manage Projects
+description: Create and manage projects to organize and allow access to Couchbase clusters.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/manage-projects.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/projects/manage-projects.html)
+
+# Manage Projects
 
 > Create and manage projects to organize and allow access to Couchbase clusters. 
 
@@ -8,8 +17,8 @@ The purpose of a _project_ is to organize and manage access to groups of Couchba
 
 Projects can be viewed and managed from the **Projects** tab in the main navigation. A summary of all projects — _of which you are a member_ — is displayed in table format.
 
-|  | Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, so they will see all the organization’s projects listed in the project summary. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in their organization, so they will see all the organization’s projects listed in the project summary.
 
 If your user has the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) organization roles, you will see an option to create a project.
 
@@ -46,8 +55,8 @@ Since there are not yet any clusters in the new project, you will see an option 
 
 To change the name of a project, you need the [Project Owner](project-roles.md#project-owner-role) role for the project in question.
 
-|  | Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in the organization, so they can also rename a project. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) organization role automatically have a [Project Owner](project-roles.md#project-owner-role) role for all projects in the organization, so they can also rename a project.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -62,8 +71,8 @@ A notification confirms that the project is renamed.
 
 ## [](#delete-project)Delete a Project
 
-|  | Deleting a project is a permanent action and cannot be reversed. |
-|  | ---------------------------------------------------------------- |
+> [!WARNING]
+> Deleting a project is a permanent action and cannot be reversed.
 
 ### [](#prerequisites)Prerequisites
 

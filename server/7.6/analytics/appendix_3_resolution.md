@@ -1,4 +1,13 @@
+---
+title: "Appendix 3: Variable Bindings and Name Resolution"
+description: A description of variable bindings and name resolution.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_3_resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/appendix_3_resolution.html)
+
+# Appendix 3: Variable Bindings and Name Resolution
 
 In this Appendix, we’ll look at how variables are bound and how names are resolved. Names can appear in every clause of a query. Sometimes a name consists of just a single identifier, e.g., `region` or `revenue`. More often a name will consist of two identifiers separated by a dot, e.g., `customer.address`. Occasionally a name may have more than two identifiers, e.g., `policy.owner.address.zipcode`. _Resolving_ a name means determining exactly what the (possibly multi-part) name refers to. It is necessary to have well-defined rules for how to resolve a name in cases of ambiguity. (In the absence of schemas, such cases arise more commonly, and also differently, than they do in SQL.)
 
@@ -169,8 +178,8 @@ The value of the `query_context` parameter must start with `default:`, followed 
 
 For more details, refer to [Analytics Query Parameters](query-params.md).
 
-|  | You can also set the query context in the Analytics workbench using the query context drop-down menu. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also set the query context in the Analytics workbench using the query context drop-down menu.
 
 ### [](#Database%5Fentity%5Freference)The Database Entity Reference
 

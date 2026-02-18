@@ -1,4 +1,15 @@
+---
+title: Understanding Authentication
+description: To access Couchbase Server, users must be authenticated.
+  <em>Authentication</em> is a process for identifying who is attempting to
+  access a system.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/authentication-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/security/authentication-overview.html)
+
+# Understanding Authentication
 
 > To access Couchbase Server, users must be authenticated. _Authentication_ is a process for identifying who is attempting to access a system. Subsequent to successful authentication, _authorization_ can be performed, whereby the user’s appropriate access-level is determined. 
 
@@ -45,8 +56,8 @@ Locally managed user-account credentials are stored in Couchbase Server using bo
 
 _Argon2ID_ is a state of the art password hashing function, designed to be resistant to various password-cracking attacks: including both time-memory trade-off attacks, and side-channel attacks. _PBKDF2_ is another powerful password hashing function; and is required to allow SCRAM-SHA capabilities. By default, the PBKDF2 credentials are stored with 5,000 iterations: this can be configured with the `POST settings/security/scramShaIterations` REST API method and URI, with a higher specified number increasing the security of the credentials, with the trade-off of higher resource requirements when authentication is performed. Following guidance from NIST, it is recommended to disable SCRAM-SHA1 unless it is absolutely required.
 
-|  | By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> By design, the Argon2id hashing algorithm consumes more CPU and memory than the prior default SHA-1 hashing algorithm. If your server handles a high volume of authentications, using the Argon2id hashing algorithm can result in higher CPU and memory use.
 
 The various levels of SCRAM SHA can be disabled with `POST /settings/security/scramSha1Enabled`, `POST /settings/security/scramSha256Enabled` and `POST /settings/security/scramSha512Enabled`. For more information on the using the REST API to configure security settings, see [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md).
 
@@ -60,8 +71,8 @@ You can enable Couchbase Server’s password hash migration feature that automat
 
 You enable automatic password hash by calling the `/settings/security` endpoint to set the `allowHashMigrationDuringAuth` setting to `true`. This setting has an effect only if the entire database cluster is running Couchbase Server 7.6 or later. See [Configure On-the-Wire Security](../../rest-api/rest-setting-security.md) for more information.
 
-|  | Versions of Couchbase Server prior to 7.6 defaulted to using SHA-1 hashing to store passwords for local accounts. This algorithm is obsolete and is no longer considered secure by security experts. After upgrading to 7.6 or later, Couchbase Server defaults to using the Argon2id algorithm to hash newly created passwords for new users and users who change their password. Because Argon2id provides better security, you should enable allowHashMigrationDuringAuth to allow Couchbase Server to migrate passwords from SHA-1 to Argon2id. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Versions of Couchbase Server prior to 7.6 defaulted to using SHA-1 hashing to store passwords for local accounts. This algorithm is obsolete and is no longer considered secure by security experts. After upgrading to 7.6 or later, Couchbase Server defaults to using the Argon2id algorithm to hash newly created passwords for new users and users who change their password. Because Argon2id provides better security, you should enable `allowHashMigrationDuringAuth` to allow Couchbase Server to migrate passwords from SHA-1 to Argon2id.
 
 ## [](#authorization)Authorization
 

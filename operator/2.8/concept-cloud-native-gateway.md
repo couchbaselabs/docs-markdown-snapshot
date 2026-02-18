@@ -1,4 +1,14 @@
+---
+title: Cloud Native Gateway
+description: A direct gRPC interface to key Couchbase services, abstracting
+  topology details behind a service endpoint.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-cloud-native-gateway.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-cloud-native-gateway.html)
+
+# Cloud Native Gateway
 
 > A direct gRPC interface to key Couchbase services, abstracting topology details behind a service endpoint. 
 
@@ -12,8 +22,8 @@ For Kubernetes and OpenShift, this means the Cloud Native Gateway service can be
 
 This also allows deployers to work with other parts of the Cloud Native ecosystem, such as Istio, Krakkend, many gRPC proxies, many observability tools, and so on. There is a direct gRPC interface to the Data, Query, and FTS (Search) services in the Couchbase Cluster. This can be useful in the rare cases where an SDK may not exist for your language or you want to just use a small feature such as a Functions as a Service (FaaS, a.k.a. Lambda) type deployment.
 
-|  | gRPC was chosen because it aligns well to the low latency performance of Couchbase — gRPC over HTTP/2 is an efficient binary wire protocol which can be efficiently marshaled to the native services of Couchbase Server. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> gRPC was chosen because it aligns well to the low latency performance of Couchbase — gRPC over HTTP/2 is an efficient binary wire protocol which can be efficiently marshaled to the native services of Couchbase Server.
 
 ## [](#how-it-is-deployed)How it is Deployed
 
@@ -29,8 +39,8 @@ networking:
        serverSecretName: secret-for-cng
 ```
 
-|  | At the moment, adding CNG to an existing cluster requires a rebalance which will create new pods and move data. For compatibility with commonly deployed Kubernetes and OpenShift releases, the Couchbase Kubernetes Operator cannot yet use some of the newer features for sidecar management. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> At the moment, adding CNG to an existing cluster requires a rebalance which will create new pods and move data. For compatibility with commonly deployed Kubernetes and OpenShift releases, the Couchbase Kubernetes Operator cannot yet use some of the newer features for sidecar management.
 
 ## [](#monitoring-health)Monitoring Health
 
@@ -38,8 +48,8 @@ networking:
 
 Metrics for a number of CNG functions are available.
 
-|  | In this release, metrics are _volatile_ interface stability. This means that the metrics may change in updated releases, even maintenance releases. Please consider this interface stability when planning system monitoring. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> In this release, metrics are _volatile_ interface stability. This means that the metrics may change in updated releases, even maintenance releases. Please consider this interface stability when planning system monitoring.
 
 ### [](#logs)Logs
 
@@ -85,8 +95,8 @@ And you should see a response:
 
 The Cloud Native Gateway container can be upgraded independently of the rest of a deployment. This makes applying maintenance fixes easy and targeted while allowing deployments to minimize the software running. To upgrade to a newer version of CNG listed as compatible in the [system requirements](prerequisite-and-setup.md), simply update the `image` in the deployment via normal Kubernetes or OpenShift tooling.
 
-|  | Changing the image used for the cloudNativeGateway requires a rebalance at this time. In the future, we expect to be able to improve this through the Kubernetes sidecar APIs. At the time of writing (February 2024), these are not available on OpenShift or from Kubernetes at popular Cloud Service Providers. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Changing the image used for the `cloudNativeGateway` requires a rebalance at this time. In the future, we expect to be able to improve this through the Kubernetes sidecar APIs. At the time of writing (February 2024), these are not available on OpenShift or from Kubernetes at popular Cloud Service Providers.
 
 ## [](#platform-integration)Platform Integration
 

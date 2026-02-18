@@ -1,4 +1,13 @@
+---
+title: Release Notes
+description: Couchbase Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/product-notes/release-notes.html)
+
+# Release Notes
 
 Quicklinks
 
@@ -7,8 +16,10 @@ Quicklinks
 > Couchbase Sync Gateway  
 > This content describes the key features and changes implemented by release 4.0.0 of Couchbase Sync Gateway
 
-|  | One Way Upgrade The migration to a 4.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> One Way Upgrade
+> 
+> The migration to a 4.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
 ## [](#maint-latest)4.0.3 — February 2026
 
@@ -108,8 +119,8 @@ None for this release.
 * [CBG-4316 - Disallow allow\_conflicts=true](https://jira.issues.couchbase.com/browse/CBG-4316)
 * [CBG-4726 - Disallow enable\_shared\_bucket\_access=false](https://jira.issues.couchbase.com/browse/CBG-4726)
 
-|  | For an overview of the latest features offered in Sync Gateway 4.0.0, see [New in 4.0](../whatsnew.md). |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 4.0.0, see [New in 4.0](../whatsnew.md).
 
 ## [](#upgrading)Upgrading
 

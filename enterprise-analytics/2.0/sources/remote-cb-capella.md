@@ -1,9 +1,17 @@
+---
+title: Stream Data from Couchbase Capella
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/remote-cb-capella.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/remote-cb-capella.html)
+
+# Stream Data from Couchbase Capella
 
 > To continuously update Enterprise Analytics with data hosted on a Couchbase Capella operational cluster, create a link and collection. 
 
-|  | For an example, see [Create Remote beer-sample Collections](../intro/connecting-to-data-sources.md#create-remote-collections-for-beer-sample). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For an example, see [Create Remote beer-sample Collections](../intro/connecting-to-data-sources.md#create-remote-collections-for-beer-sample).
 
 ## [](#encryption)Requirements for Couchbase Capella Links
 

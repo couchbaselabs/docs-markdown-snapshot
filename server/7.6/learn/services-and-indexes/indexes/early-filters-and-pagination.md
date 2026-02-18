@@ -1,4 +1,15 @@
+---
+title: Early Filters, Order, and Pagination
+description: When covering indexes and index pushdowns are not available, the
+  Query Service may use early filtering, early ordering, and early pagination to
+  improve the query response time.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/early-filters-and-pagination.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/early-filters-and-pagination.html)
+
+# Early Filters, Order, and Pagination
 
 > When covering indexes and index pushdowns are not available, the Query Service may use early filtering, early ordering, and early pagination to improve the query response time. 
 
@@ -522,8 +533,8 @@ The following table summarizes the different methods of performing filtering, or
 | Filters, order, and paginationperformed: | After scan     | After scan,before fetch          | After scan,before fetch                               | After fetch                                             |
 | …​ by:                                   | Index service  | Index service                    | Query service                                         | Query service                                           |
 
-|  | An uncovered query may use a mixture of these methods. |
-|  | ------------------------------------------------------ |
+> [!NOTE]
+> An uncovered query may use a mixture of these methods.
 
 ## [](#related-links)Related Links
 

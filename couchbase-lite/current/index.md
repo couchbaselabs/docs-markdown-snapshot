@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/index.html)
+
+# Introduction
 
 ## Couchbase Lite
 
@@ -36,5 +44,5 @@ You can use Couchbase Lite as a standalone embedded database within your mobile 
 | Ionic _(Community)_        | [Community resources ](https://cbl-ionic.dev/)                  |
 | Flutter _(Community)_      | [Community resources](https://cbl-dart.dev/)                    |
 
-|  | The community maintains the React Native, Ionic and Flutter integrations. Couchbase does not officially support them. See [Support model](https://docs.couchbase.com/cloud/third-party/integrations.html#support-model) for more information on community support. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The community maintains the React Native, Ionic and Flutter integrations. Couchbase does not officially support them. See [Support model](https://docs.couchbase.com/cloud/third-party/integrations.html#support-model) for more information on community support.

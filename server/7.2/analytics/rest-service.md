@@ -1,4 +1,13 @@
+---
+title: Analytics Service REST API
+description: A description of the Service REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/rest-service.html)
+
+# Analytics Service REST API
 
 ## [](#%5Foverview)Overview
 
@@ -285,8 +294,8 @@ _Polymorphism_ : Composition
 | **expressionTree** _optional_          | The expression tree.           | string |
 | **job** _optional_                     | The job details.               | object |
 
-|  | The structure and content of query plans is expected to change as development of the query processor progresses. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The structure and content of query plans is expected to change as development of the query processor progresses.
 
 ### [](#%5Fmetrics)Metrics
 

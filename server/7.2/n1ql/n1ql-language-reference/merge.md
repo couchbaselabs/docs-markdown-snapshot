@@ -1,11 +1,22 @@
+---
+title: MERGE
+description: A MERGE statement provides the ability to update, insert into, or
+  delete from a keyspace based on the results of a join with another keyspace or
+  subquery.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/merge.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/merge.html)
+
+# MERGE
 
 > A MERGE statement provides the ability to update, insert into, or delete from a keyspace based on the results of a join with another keyspace or subquery. It is possible to specify actions (insert, update, delete) on the keyspace based on a match or no match in the join. Multiple actions can be specified in the same query. 
 
 Couchbase Server supports two types of merge clause, which are described in the sections below: [ANSI Merge](#ansi-merge) and [Lookup Merge](#lookup-merge).
 
-|  | The ANSI merge clause has much more flexible functionality than its earlier legacy equivalent. Since it is standard compliant and more flexible, we recommend you to use ANSI merge exclusively, where possible. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The ANSI merge clause has much more flexible functionality than its earlier legacy equivalent. Since it is standard compliant and more flexible, we recommend you to use ANSI merge exclusively, where possible.
 
 ## [](#privileges)Privileges
 
@@ -17,8 +28,8 @@ User executing the MERGE statement must have the following privileges:
 
 For more details about user roles, refer to [Authorization](../../learn/security/authorization-overview.md).
 
-|  | A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
 
 ## [](#syntax)Syntax
 
@@ -96,8 +107,8 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 You can use a `USE INDEX` hint on the merge target to specify that the merge should use a particular index. For details, refer to [USE INDEX Clause](hints.md#use-index-clause).
 
-|  | The USE INDEX hint is the only hint allowed on the target. You cannot specify a USE KEYS hint or a join hint (USE NL or USE HASH) on the target of a merge statement. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `USE INDEX` hint is the only hint allowed on the target. You cannot specify a `USE KEYS` hint or a join hint (`USE NL` or `USE HASH`) on the target of a merge statement.
 
 ### [](#ansi-merge-source)ANSI Merge Source
 
@@ -206,8 +217,16 @@ Assigning an alias to the generic expression is optional. If you assign an alias
 
 You can specify ANSI join hints (`USE HASH` or `USE NL`) on the source of an ANSI merge. For details, refer to [ANSI JOIN Hints](join.md#ansi-join-hints).
 
-|  | If the merge source is a keyspace, you can also specify a USE KEYS or USE INDEX hint on the merge source. For details, refer to [Multiple Hints](join.md#multiple-hints). If the merge action is [update](#ansi-merge-update) or [delete](#ansi-merge-delete), you can specify any of the join methods: USE HASH(BUILD), USE HASH(PROBE), or USE NL. If the merge action is [insert](#ansi-merge-insert), the only join methods you can specify are USE HASH(PROBE) or USE NL. In this case, if you specify USE HASH(BUILD), the join method will default to USE NL. The ANSI join hint is optional. If omitted, the default hint is USE NL. If you are using a nested-loop join, i.e. USE NL is specified or no join hint is specified, the target keyspace reference must have an appropriate secondary index defined for the join to work. If such an index cannot be found an error will be returned. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the merge source is a keyspace, you can also specify a `USE KEYS` or `USE INDEX` hint on the merge source. For details, refer to [Multiple Hints](join.md#multiple-hints).
+> 
+> If the merge action is [update](#ansi-merge-update) or [delete](#ansi-merge-delete), you can specify any of the join methods: `USE HASH(BUILD)`, `USE HASH(PROBE)`, or `USE NL`.
+> 
+> If the merge action is [insert](#ansi-merge-insert), the only join methods you can specify are `USE HASH(PROBE)` or `USE NL`. In this case, if you specify `USE HASH(BUILD)`, the join method will default to `USE NL`.
+> 
+> The ANSI join hint is optional. If omitted, the default hint is `USE NL`.
+> 
+> If you are using a nested-loop join, i.e. `USE NL` is specified or no join hint is specified, the target keyspace reference must have an appropriate secondary index defined for the join to work. If such an index cannot be found an error will be returned.
 
 ### [](#ansi-merge-predicate)ANSI Merge Predicate
 
@@ -341,8 +360,8 @@ ansi-merge-insert ::= 'WHEN' 'NOT' 'MATCHED' 'THEN' 'INSERT' '(' 'KEY'? key
 
 Inserts a new document into the keyspace. Use parentheses to specify the key and value for the inserted document, separated by a comma.
 
-|  | Use the [UUID()](metafun.md#uuid) function to generate a random, unique document key. |
-|  | ------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the [UUID()](metafun.md#uuid) function to generate a random, unique document key.
 
 | key          | An expression specifying the key for the inserted document. The KEY keyword may be omitted. If it is omitted, the VALUE keyword must be omitted also.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -463,8 +482,8 @@ Inserts a new document into the keyspace. The key specified in the [Lookup Merge
 | ------------ | ------------------------------------------------------------- |
 | where-clause | [WHERE Clause](#lookup-merge-insert-where)                    |
 
-|  | The Lookup Merge Insert syntax does not enable you to specify the document expiration. If you need to specify the document expiration, rewrite the query using the ANSI Merge Insert syntax. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Lookup Merge Insert syntax does not enable you to specify the document expiration. If you need to specify the document expiration, rewrite the query using the ANSI Merge Insert syntax.
 
 ##### [](#lookup-merge-insert-where)WHERE Clause
 
@@ -505,8 +524,8 @@ Specifies the information to be returned by the operation as a query result. For
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | Please note that the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 Example 1\. ANSI merge with expression source
 

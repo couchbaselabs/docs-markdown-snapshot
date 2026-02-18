@@ -1,4 +1,14 @@
+---
+title: Hello World
+description: Install, connect, try. A quick start guide to get you up and
+  running with Couchbase and the Node.js SDK.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/current/hello-world/start-using-sdk.html)
+
+# Hello World
 
 > Install, connect, try. A quick start guide to get you up and running with Couchbase and the Node.js SDK. 
 
@@ -51,15 +61,15 @@ The code examples also assume:
 * You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
-|  | Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 
 * [Couchbase Server](#8.0@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
 * You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
 * A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md) for more details.
 
-|  | Couchbase Server uses [Role-Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to cluster resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server uses [Role-Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to cluster resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. In production, Couchbase strongly recommends setting up users with more granular access roles as a best practice for data security.
 
 ## [](#installation)Installation
 
@@ -293,11 +303,11 @@ main()
 
 Otherwise, read on as we introduce the CRUD API and connection to Capella or self-managed Couchbase Server.
 
-|  | There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> There’s a **View** link to the complete sample code on GitHub above each of the snippets on these SDK pages, and a **Copy** icon to grab just the snippet shown.
 
-|  | The code samples on this page use ESModules, but the Node.js SDK is fully compatible with CommonJS as well. Simply adjust the import syntax as needed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The code samples on this page use ESModules, but the Node.js SDK is fully compatible with CommonJS as well. Simply adjust the import syntax as needed.
 
 ## [](#connect-to-your-database)Connect to your Database
 
@@ -379,8 +389,8 @@ The `ClientOptions` are covered more fully on the [Client Settings](../ref/clien
 
 For a deeper look at connection options, read [Managing Connections](../howtos/managing-connections.md).
 
-|  | The connection code for getting started uses the Administrator password that you were given during set up. In any production app you should create a role restricted to the permissions needed for your app |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The connection code for getting started uses the Administrator password that you were given during set up. In any production app you should create a role restricted to the permissions needed for your app
 
 ### [](#opening-a-bucket)Opening a Bucket
 
@@ -510,8 +520,8 @@ const replaceOpts: ReplaceOptions = {
 await collection.replace(docId, newJson, replaceOpts)
 ```
 
-|  | When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/concurrent-document-mutations.md). Otherwise, changes might get lost if two people change the same document at the same time. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When you replace a document, it’s usually good practice to use [optimistic locking](../howtos/concurrent-document-mutations.md). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove-delete)Remove (Delete)
 

@@ -1,4 +1,13 @@
+---
+title: Install Couchbase Lite on Swift
+description: Installing Couchbase Lite on Swift
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/swift/gs-install.html)
+
+# Install Couchbase Lite on Swift
 
 > Description — _Installing Couchbase Lite on Swift_  
 
@@ -8,8 +17,11 @@ To get started coding Couchbase Lite for Swift apps, just create or open an exis
 
 Enterprise users can also download the Couchbase Lite Vector Search extension library.
 
-|  | Couchbase Lite is distributed as an XCFramework, to support this: The minimum required CocoaPods version is **1.15** The minimum required Carthage version is **0.38** |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite is distributed as an XCFramework, to support this:
+> 
+> * The minimum required CocoaPods version is **1.15**
+> * The minimum required Carthage version is **0.38**
 
 ### [](#lbl-install-tabs)Install Couchbase Lite
 
@@ -25,8 +37,8 @@ Enterprise users can also download the Couchbase Lite Vector Search extension li
 3. Select your target settings in XCode and drag **CouchbaseLiteSwift.xcframework** from your Finder to the **Frameworks, Libraries, and Embedded Content** section.
 4. Start using Couchbase Lite on Swift in your project.
 
-|  | The minimum required Carthage version is **0.38+** |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The minimum required Carthage version is **0.38+**
 
 1. Install Carthage using the instructions here:  
 <https://github.com/Carthage/Carthage#installing-carthage>
@@ -49,8 +61,8 @@ binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/Couc
 4. Drag **CouchbaseLiteSwift.xcframework** from **Carthage/Build/** to the Xcode navigator.
 5. Select **Project** **General** **Embedded Binary**, add **CouchbaseLiteSwift.xcframework** to this section.
 
-|  | The minimum required Cocoapods version is **1.15** |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The minimum required Cocoapods version is **1.15**
 
 1. Install CocoaPods using the instructions here:  
 <https://guides.cocoapods.org/using/getting-started.html>
@@ -80,8 +92,8 @@ end
 pod install  
 ```
 
-|  | Starting with version 4.0, the Swift Package Manager repository URL for Community Edition has changed: |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Starting with version 4.0, the Swift Package Manager repository URL for Community Edition has changed:
 
 * **Version 3.x and earlier:** <https://github.com/couchbase/couchbase-lite-ios.git>
 * **Version 4.0 and later:** <https://github.com/couchbase/couchbase-lite-swift.git>
@@ -93,8 +105,8 @@ For Enterprise Edition - continue using <https://github.com/couchbase/couchbase-
 This tab explains how to include the CouchbaseLiteSwift package within your app  
 See: [Example 1](#case-1) | [Example 2](#case-2)
 
-|  | Using Swift Package Manager to install CouchbaseLiteSwift requires XCode 12+ |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Using Swift Package Manager to install CouchbaseLiteSwift requires XCode 12+
 
 Example 1\. Use Case 1\. Include in Existing Swift Package
 
@@ -189,13 +201,13 @@ Xcode displays the name, version and URL of the added CouchbaseLiteSwift Package
 
 ## [](#install-vector-search-extension)Install Vector Search Extension
 
-|  | The Vector Search extension is an **Enterprise-only** feature. |
-|  | -------------------------------------------------------------- |
+> [!NOTE]
+> The Vector Search extension is an **Enterprise-only** feature.
 
 You can get set up with the Vector Search Extension for iOS (Swift) by following these instructions.
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 * Direct Download
 * Carthage
@@ -207,8 +219,8 @@ You can get set up with the Vector Search Extension for iOS (Swift) by following
 3. Select your target settings in XCode and drag **CouchbaseLiteVectorSearch.xcframework** from your Finder to the **Frameworks, Libraries, and Embedded Content** section.
 4. Start using Couchbase Lite Vector Search on Swift in your project.
 
-|  | The minimum required Carthage version is **0.38+** |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The minimum required Carthage version is **0.38+**
 
 1. Install Carthage using the instructions here:  
 <https://github.com/Carthage/Carthage#installing-carthage>
@@ -223,8 +235,8 @@ binary "http://packages.couchbase.com/releases/couchbase-lite-vector-search/cart
 4. Drag **CouchbaseLiteSwift.xcframework** from **Carthage/Build/** to the Xcode navigator.
 5. Select **Project** **General** **Embedded Binary**, add **CouchbaseLiteSwift.xcframework** to this section.
 
-|  | The minimum required Cocoapods version is **1.15** |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The minimum required Cocoapods version is **1.15**
 
 1. Install CocoaPods using the instructions here:  
 <https://guides.cocoapods.org/using/getting-started.html>
@@ -295,8 +307,8 @@ XCode displays the name, version and URL of the added CouchbaseLiteVectorSearch 
         try Extension.enableVectorSearch()
 ```
 
-|  | You must enable the extension before you open your database. |
-|  | ------------------------------------------------------------ |
+> [!IMPORTANT]
+> You must enable the extension before you open your database.
 
 ## [](#related-content)Related Content
 

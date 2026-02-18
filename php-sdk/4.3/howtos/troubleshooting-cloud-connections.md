@@ -1,4 +1,14 @@
+---
+title: Troubleshooting Cloud Connections
+description: Diagnose DNS-SRV problems. Troubleshoot other network connection
+  trouble with SDK doctor.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/troubleshooting-cloud-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/howtos/troubleshooting-cloud-connections.html)
+
+# Troubleshooting Cloud Connections
 
 > Diagnose DNS-SRV problems. Troubleshoot other network connection trouble with SDK doctor. 
 

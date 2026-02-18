@@ -1,4 +1,14 @@
+---
+title: Migrating from SDK2 to SDK3 API
+description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
+  number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating from SDK2 to SDK3 API
 
 > The 3.0 API breaks the existing 2.0 APIs in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place. Individual behavior changes across services are explained here. 
 

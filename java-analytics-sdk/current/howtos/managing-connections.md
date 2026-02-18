@@ -1,4 +1,14 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Java Analytics SDK to an
+  Analytics cluster.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-analytics-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Java Analytics SDK to an Analytics cluster. It contains best practices as well as information on TLS/SSL and advanced connection options. 
 
@@ -33,8 +43,8 @@ public class Example {
 }
 ```
 
-|  | The above example uses a try-with-resources block to ensure the Cluster instance gets closed at the end. It’s important to either use a try-with-resources block, or make sure to call cluster.close() when you’re done with the cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The above example uses a `try-with-resources` block to ensure the `Cluster` instance gets closed at the end. It’s important to either use a `try-with-resources` block, or make sure to call `cluster.close()` when you’re done with the cluster.
 
 ## [](#connection-strings)Connection Strings
 

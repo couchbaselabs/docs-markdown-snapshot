@@ -1,9 +1,21 @@
+---
+title: SDK Release Notes
+description: Release notes, brief installation instructions, and download
+  archive for the Couchbase Rust Client.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, brief installation instructions, and download archive for the Couchbase Rust Client. 
 
-|  | Developer Preview This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Developer Preview
+> 
+> This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only.
 
 Version 1.0 of the Rust SDK implements the 3.8 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 

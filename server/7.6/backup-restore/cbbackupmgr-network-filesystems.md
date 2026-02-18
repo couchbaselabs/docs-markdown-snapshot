@@ -1,4 +1,12 @@
+---
+title: cbbackupmgr network filesystems
+editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-network-filesystems.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/backup-restore/cbbackupmgr-network-filesystems.html)
+
+# cbbackupmgr network filesystems
 
 Storing cbbackupmgr archive on centralized storage using network filesystems
 

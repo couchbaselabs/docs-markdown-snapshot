@@ -1,28 +1,55 @@
+---
+title: Passive Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/p2psync-websocket-using-passive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/swift/p2psync-websocket-using-passive.html)
+
+# Passive Peer
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
-|  | iOS Restrictions iOS 14 Applications When your application attempts to access the user’s local network, iOS will prompt them to allow (or deny) access. You can customize the message presented to the user by editing the description for the NSLocalNetworkUsageDescription key in the Info.plist. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> iOS Restrictions
+> 
+> iOS 14 Applications
+> 
+> When your application attempts to access the user’s local network, iOS will prompt them to allow (or deny) access. You can customize the message presented to the user by editing the description for the `NSLocalNetworkUsageDescription` key in the `Info.plist`.
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
 This content provides code and configuration examples covering the implementation of [Peer-to-Peer Sync](refer-glossary.md#peer-to-peer-sync) over WebSockets. Specifically, it covers the implementation of a [Passive Peer](refer-glossary.md#passive-peer).
 
-|  | Multipeer P2P Replicator [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Android, offering: Auto-discovery over local Wi-Fi (via DNS-SD) Lightweight and low-maintenance configuration Dynamic mesh topology for optimal peer connectivity Secure communication via TLS and certificate-based authentication For many use cases, this will be quicker to develop for than Active-Passive peer-to-peer sync. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Multipeer P2P Replicator
+> 
+> [Multipeer P2P Replicator](p2psync-multipeer.md) is available for Android, offering:
+> 
+> * Auto-discovery over local Wi-Fi (via `DNS-SD`)
+> * Lightweight and low-maintenance configuration
+> * Dynamic mesh topology for optimal peer connectivity
+> * Secure communication via TLS and certificate-based authentication
+> 
+> For many use cases, this will be quicker to develop for than Active-Passive peer-to-peer sync.
 
 Couchbase’s Passive Peer (also referred to as the server, or Listener) will accept a connection from an [Active Peer](refer-glossary.md#active-peer) (also referred to as the client or replicator) and replicate database changes to synchronize both databases.
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
-|  | Secure StorageThe use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage).
 
 ## [](#configuration-summary)Configuration Summary
 
@@ -130,8 +157,8 @@ config.networkInterface = "10.1.1.10"  (1)
 | **1** | To specify an interface — one known to other applications — identify it explicitly, using the [networkInterface](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift/Structs/URLEndpointListenerConfiguration.html#/s:18CouchbaseLiteSwift32URLEndpointListenerConfigurationC16networkInterfaceSSSgvp) method shown here. This must be either an IP Address or network interface name such as en0. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Where necessary, you can identify the available interfaces at runtime, using appropriate platform tools — see [Example 5](#get-network-interfaces). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Where necessary, you can identify the available interfaces at runtime, using appropriate platform tools — see [Example 5](#get-network-interfaces).
 
 Example 5\. Identify available network interfaces
 
@@ -195,8 +222,8 @@ If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous 
 
 The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
 
-|  | Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Typically, you will configure the Listener’s TLS Identity once during the initial launch and re-use it (from secure storage) on any subsequent starts.
 
 Here are some example code snippets showing:
 
@@ -418,8 +445,8 @@ Example 16\. Stop listener using `stop` method
 self.listener.stop()
 ```
 
-|  | Closing the database will also close the Listener. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> Closing the database will also close the Listener.
 
 ## [](#related-content)Related Content
 

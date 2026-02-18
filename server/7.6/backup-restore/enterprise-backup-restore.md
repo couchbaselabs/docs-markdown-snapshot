@@ -1,4 +1,14 @@
+---
+title: cbbackupmgr
+description: <code>cbbackupmgr</code> is a tool for managing the backup and
+  restore of Couchbase-Server data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/backup-restore/pages/enterprise-backup-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/backup-restore/enterprise-backup-restore.html)
+
+# cbbackupmgr
 
 > `cbbackupmgr` is a tool for managing the backup and restore of Couchbase-Server data. 
 
@@ -8,8 +18,10 @@ The `cbbackupmgr` tool backs up and restores data, scripts, configurations, and 
 
 Only Full Administrators can use `cbbackupmgr`; which is available for both Couchbase Server _Enterprise Edition_ and Couchbase Server _Community Edition_.
 
-|  | cbbackupmgr is _not_ backward compatible with backups created by means of cbbackup. In Couchbase Enterprise Server 7.2 and after, cbbackupmgr is available in the Tools package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `cbbackupmgr` is _not_ backward compatible with backups created by means of `cbbackup`.
+> 
+> In Couchbase Enterprise Server 7.2 and after, `cbbackupmgr` is available in the `Tools` package that must be downloaded. See [Server Tools Packages](../cli/cli-intro.md#server-tools-packages).
 
 ### [](#planning-for-disaster-recovery)Planning for Disaster Recovery
 
@@ -37,13 +49,13 @@ You can change what the tool backs up and restores by using arguments to the `cb
 * scopes and collections definitions (Couchbase Server version 7.6 and later)
 * views
 
-|  | cbbackupmgr does not back up query function libraries such as user-created JavaScript libraries. You must back up these libraries separately. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `cbbackupmgr` does not back up query function libraries such as user-created JavaScript libraries. You must back up these libraries separately.
 
 Another useful flag is `--enable-users` which backs up users and user groups. Users and groups are not backed up by default. This option is useful for preventing the loss of users and groups in case of disaster.
 
-|  | Backups that include users contain the user’s hashed passwords. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> Backups that include users contain the user’s hashed passwords.
 
 Other flags let you exclude specific metadata, or select a subset of data to back up. See [cbbackupmgr config](cbbackupmgr-config.md) for a list of the arguments you can use to control what `cbbackupmgr` backs up.
 

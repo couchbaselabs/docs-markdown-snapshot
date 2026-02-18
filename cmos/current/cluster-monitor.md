@@ -1,4 +1,12 @@
+---
+title: Cluster Monitor
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/cluster-monitor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/cluster-monitor.html)
+
+# Cluster Monitor
 
 Couchbase cluster monitor is a core component of CMOS that provides cluster-level information via a Prometheus endpoint. If Couchbase cluster monitor is enabled, it will output the status of its checkers to Prometheus like the following:
 

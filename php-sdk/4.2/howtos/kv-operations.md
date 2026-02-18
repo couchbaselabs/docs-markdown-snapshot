@@ -1,4 +1,14 @@
+---
+title: Data Operations
+description: Key Value (KV) or data service offers the simplest way to retrieve
+  or mutate data where the key is known.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/howtos/kv-operations.html)
+
+# Data Operations
 
 > Key Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
@@ -97,8 +107,10 @@ printf("document \"document-key2\" has been created with CAS \"%s\"\n", $res->ca
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
 
-|  | Sub-Document Operations All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Sub-Document Operations
+> 
+> All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md).
 
 ## [](#retrieving-full-documents)Retrieving full documents
 
@@ -137,8 +149,8 @@ printf("document \"document-key\" \"%s\" been removed successfully.\n", $res->ca
 
 By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents. Using `Touch()`, you can set expiration values on documents to handle transient data:
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change.
 
 ```php
 $collection->touch($key, 60 /* seconds */);
@@ -171,8 +183,8 @@ try {
 
 The value of a document can be increased or decreased atomically using `Binary.Increment()` and `.Binary.Decrement()`.
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change.
 
 Increment
 
@@ -213,8 +225,8 @@ $res = $binaryCollection->decrement($key, $opts);
 printf("Decremented Counter: %d\n", $res->content());
 ```
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::7.5@sdk:shared:partial$atomic.adoc\[\]
 
@@ -222,8 +234,8 @@ Unresolved include directive in modules/howtos/pages/kv-operations.adoc - includ
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 
@@ -290,8 +302,8 @@ foreach ($results as $result) {
 
 It is possible to perform scoped key value operations on named [Collections](#7.1@server:learn:data/scopes-and-collections.adoc) _with the beta version of the next Couchbase Server release, 7.0β_. See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Collection.html) for more information.
 
-|  | This feature is marked [_Uncommitted_](../project-docs/compatibility.md#interface-stability). Expect a promotion to _Committed_ API in a future minor release. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> This feature is marked [_Uncommitted_](../project-docs/compatibility.md#interface-stability). Expect a promotion to _Committed_ API in a future minor release.
 
 Here is an example showing an upsert in the `users` collection, which lives in the `travel-sample.tenant_agent_00` keyspace:
 

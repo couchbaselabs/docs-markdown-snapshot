@@ -1,4 +1,14 @@
+---
+title: Create Documents After Expiration
+description: When a document in an existing collection is about to expire, use
+  the Eventing Service to create a new document in a different collection.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docexpiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-docexpiry.html)
+
+# Create Documents After Expiration
 
 > When a document in an existing collection is about to expire, use the Eventing Service to create a new document in a different collection. 
 
@@ -16,8 +26,8 @@ Before trying out the examples on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-create-a-new-document-when-a-document-expires)Example: Create a New Document When a Document Expires
 
@@ -236,8 +246,8 @@ Wait a few minutes and check the Eventing Function log again. The Timer has fire
 2024-05-07T21:01:15.236+00:00 [INFO] "DocTimerCallback 1 on DocId:" "SampleDocument2"
 2024-05-07T21:01:06.821+00:00 [INFO] "OnUpdate add Timer 2 min. prior to TTL to DocId:" "SampleDocument2"
 
-|  | The document had an expiration time of 600 seconds, or 10 minutes. The DocTimerCallback function fires a Timer 2 minutes before the initial expiration time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The document had an expiration time of 600 seconds, or 10 minutes. The `DocTimerCallback` function fires a Timer 2 minutes before the initial expiration time.
 
 The final result is a new document named `SourceDocument2` which contains a copy of the data from the original document. This new document is written to the `target` collection.
 

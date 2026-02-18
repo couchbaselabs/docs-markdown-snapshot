@@ -1,4 +1,12 @@
+---
+title: Audit Logging
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/administer/pages/audit-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/administer/audit-logging.html)
+
+# Audit Logging
 
 Audit logging is a separate optional log file that allows you to track events associated with administrative, management, and end-user operations made in Couchbase Edge Server. These logs are presented as a [JSON-lines formatted series of events](https://jsonlines.org/).
 
@@ -23,8 +31,8 @@ __Table 1\. Audit Log Configuration Options__
 | audit.enable            | Array or "\*" | Array of audit events to enable, "\*" enables all events.   |
 | audit.disable           | Array or "\*" | Array of audit events to disable, "\*" disables all events. |
 
-|  | If audit.omit\_description is true in the audit configuration, the description field is not included. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If `audit.omit_description` is `true` in the audit configuration, the `description` field is not included.
 
 Audit Events have four core components:
 
@@ -38,8 +46,8 @@ __Table 2\. Audit Log Event Breakdown__
 
 The following table lists all Audit Log Events that can be captured in the Couchbase Edge Server audit log file.
 
-|  | If Enabled is true, the audit events are logged in the audit log file unless it’s within the audit.disabled array. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> If `Enabled` is `true`, the audit events are logged in the audit log file unless it’s within the `audit.disabled` array.
 
 __Table 3\. Audit Log Events__
 | Audit Event ID | Description                        | Enabled? |

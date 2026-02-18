@@ -1,4 +1,12 @@
+---
+title: Links
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/ui-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/ui-links.html)
+
+# Links
 
 When you need to describe the UI, do not refer to anything as a `link.`
 

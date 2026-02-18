@@ -1,11 +1,27 @@
+---
+title: Use Customer-Managed Encryption Keys (CMEK) at Rest
+description: Capella encrypts cluster volumes at rest. You can move control of
+  the keys from Couchbase to your own key management system (KMS).
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/cmek.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/cmek.html)
+
+# Use Customer-Managed Encryption Keys (CMEK) at Rest
 
 > Capella encrypts cluster volumes at rest. You can move control of the keys from Couchbase to your own key management system (KMS). 
 
 By default, all clusters in Couchbase Capella use your cluster’s cloud provider KMS to encrypt cluster volumes at rest. Instead of using this Couchbase-managed solution, you can create your own encryption keys for data at rest using customer-managed encryption keys (CMEK). By managing your encryption keys, you control their configuration, rotation cycles, geographic storage location, and can directly revoke them.
 
-|  | Backups and CMEK Customer-managed encryption keys for bucket backups are not available at this time. To manage your encryption keys for a bucket backup, you can run your backup outside Capella. If you use CMEK on your cluster for encryption at rest, Capella encrypts your [cluster backups](../clusters/cloud-snapshots.md) with the same key used to encrypt your cluster storage. You cannot use CMEK for Azure cluster backups with [cross-region copies](../clusters/cloud-snapshots.md#cross-region). Only AWS clusters support encrypting cross-region backup copies with CMEK. Do not delete a Key Management System (KMS) Key ID until any cluster backups using that Key ID have expired. If you delete the Key ID, your backup becomes unusable. Encryption Key IDs must be enabled and available to restore an encrypted backup to a Capella cluster. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Backups and CMEK
+> 
+> Customer-managed encryption keys for bucket backups are not available at this time. To manage your encryption keys for a bucket backup, you can run your backup outside Capella. If you use CMEK on your cluster for encryption at rest, Capella encrypts your [cluster backups](../clusters/cloud-snapshots.md) with the same key used to encrypt your cluster storage.
+> 
+> You cannot use CMEK for Azure cluster backups with [cross-region copies](../clusters/cloud-snapshots.md#cross-region). Only AWS clusters support encrypting cross-region backup copies with CMEK.
+> 
+> Do not delete a Key Management System (KMS) Key ID until any cluster backups using that Key ID have expired. If you delete the Key ID, your backup becomes unusable. Encryption Key IDs must be enabled and available to restore an encrypted backup to a Capella cluster.
 
 ## [](#key-management-provider-support)Key Management Provider Support
 
@@ -17,8 +33,8 @@ Capella supports the following customer key management providers for encryption 
 
 Capella supports both the Standard and Premium tier of Azure Key Vault, including Managed Hardware Security Module (HSM) keys.
 
-|  | CMEK on Azure clusters is available upon request. [Contact Couchbase Capella Support](../support/manage-support.md). |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> CMEK on Azure clusters is available upon request. [Contact Couchbase Capella Support](../support/manage-support.md).
 
 Couchbase recommends using 1 key per cluster and not sharing keys across clusters.
 
@@ -97,10 +113,9 @@ For the details and requirements of each call, see the [Management API Reference
                       }  
                   }  
               }  
-      ```
-
-|  | For more information about cross-account KMS encryption key access, see [Creating KMS keys that other accounts can use](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-console). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      ```  
+      > [!TIP]  
+      > For more information about cross-account KMS encryption key access, see [Creating KMS keys that other accounts can use](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-console).
   * The Amazon Resource Name (ARN) of your KMS encryption key.
 
 * You must have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role to create, rotate, and delete customer-managed encryption keys. The [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator) and `Organization Owner` roles can associate a key with a cluster. All organization members can retrieve the list of keys in an organization and view the details of a key.
@@ -134,8 +149,12 @@ For the details and requirements of each call, see the [Management API Reference
 
 To use CMEK on Capella, you need to enable customer-managed keys for your specific cloud service provider by making a call to the [PUT - Enable CMEK for Cloud Services Provider](../management-api-reference/index.md#tag/CMEK/operation/enableCMEK) endpoint.
 
-|  | If have not yet deployed a cluster with AWS or GCP in your organization, and want to use customer managed-encryption keys for a new cluster, you need to enable customer managed-encryption keys for your cloud service provider, first. If you have already deployed a cluster with AWS or GCP, you do not need to enable CMEK for that cloud service provider. You must always enable customer-managed keys if you want to use a customer-managed key for Azure clusters. CMEK for Azure is currently available upon request. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If have not yet deployed a cluster with AWS or GCP in your organization, and want to use customer managed-encryption keys for a new cluster, you need to enable customer managed-encryption keys for your cloud service provider, first.
+> 
+> If you have already deployed a cluster with AWS or GCP, you do not need to enable CMEK for that cloud service provider.
+> 
+> You must always enable customer-managed keys if you want to use a customer-managed key for Azure clusters. CMEK for Azure is currently available upon request.
 
 Using CMEK on Azure requires additional configuration after enabling customer-managed keys.
 
@@ -293,10 +312,9 @@ curl --request POST \
     "region": "eastus"  
 	  }  
   }'  
-```
-
-|  | For Azure encryption keys, you must also provide the region where your Azure cluster and Key Vault are deployed. |
-|  | ---------------------------------------------------------------------------------------------------------------- |  
+```  
+> [!NOTE]  
+> For Azure encryption keys, you must also provide the region where your Azure cluster and Key Vault are deployed.  
 HTTP Response  
 ```sh  
 {  
@@ -319,8 +337,8 @@ To apply a customer-managed encryption key to an existing cluster, make a [POST 
 * The ID of the cluster you want to apply the encryption to.
 * The CMEK ID—​the Capella ID of the customer-managed encryption key you’re using.
 
-|  | The CMEK ID is in the response when you [add a new key](#add-cmek), and you can retrieve it by making a [GET - List Key Metadata](../management-api-reference/index.md#tag/CMEK/operation/getKeyMetadataList) call to the Capella Management API. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The CMEK ID is in the response when you [add a new key](#add-cmek), and you can retrieve it by making a [GET - List Key Metadata](../management-api-reference/index.md#tag/CMEK/operation/getKeyMetadataList) call to the Capella Management API.
 
 When the POST - Associate Key with Cluster call is successful, the cluster [rebalances](../clusters/scale-database.md#rebalance) to encrypt the existing data with the customer-provided key. Rebalancing does not cause any downtime.
 
@@ -328,8 +346,10 @@ You can confirm that your cluster is using the encryption key by making a [GET -
 
 ## [](#key-rotation)Key Rotation
 
-|  | Do not use key rotation in AWS or GCP. KMS encryption key expiry is not supported through AWS or GCP. Only rotate keys out of Capella and remove them from your AWS or GCP key management provider once your cluster has a new KMS encryption key. If a customer-managed encryption key becomes unavailable, the related cluster experiences availability issues and data loss. For clusters on Azure, you can do an in-place rotation of your key in Azure Key Vault, instead of rotating your key through Capella. See [Update Your Key Version in Azure Key Vault](#azure-update-key). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Do not use key rotation in AWS or GCP. KMS encryption key expiry is not supported through AWS or GCP. Only rotate keys out of Capella and remove them from your AWS or GCP key management provider once your cluster has a new KMS encryption key. If a customer-managed encryption key becomes unavailable, the related cluster experiences availability issues and data loss.
+> 
+> For clusters on Azure, you can do an in-place rotation of your key in Azure Key Vault, instead of rotating your key through Capella. See [Update Your Key Version in Azure Key Vault](#azure-update-key).
 
 Capella cannot rotate customer-managed encryption keys. You must do this using the Capella Management API.
 
@@ -379,8 +399,8 @@ curl --request PUT \
   }'  
 ```
 
-|  | You can do an in-place rotation of your key in Azure Key Vault, instead of rotating your key through Capella. See [Update Your Key Version in Azure Key Vault](#azure-update-key). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can do an in-place rotation of your key in Azure Key Vault, instead of rotating your key through Capella. See [Update Your Key Version in Azure Key Vault](#azure-update-key).
 
 * `$ORGID` is the organization ID.
 * `$CMEKID` is the Capella ID of the customer-managed encryption key you want to rotate.
@@ -398,10 +418,9 @@ curl --request PUT \
     "region": "eastus"  
 	  }  
   }'  
-```
-
-|  | For Azure encryption keys, you must also provide the region where your Azure cluster and Key Vault are deployed. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> For Azure encryption keys, you must also provide the region where your Azure cluster and Key Vault are deployed.
 
 You can rotate customer-managed encryption keys once every 30 days. Contact Couchbase Support if you need to rotate keys earlier.
 

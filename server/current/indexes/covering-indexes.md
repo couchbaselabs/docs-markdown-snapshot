@@ -1,4 +1,15 @@
+---
+title: Covering Indexes
+description: When an index includes the actual values of all the fields
+  specified in the query, the index covers the query and does not require an
+  additional step to fetch the actual values from the data service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/covering-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/indexes/covering-indexes.html)
+
+# Covering Indexes
 
 > When an index includes the actual values of all the fields specified in the query, the index covers the query and does not require an additional step to fetch the actual values from the data service. An index, in this case, is called a covering index and the query is called a covered query. As a result, covered queries are faster and deliver better performance. 
 
@@ -141,13 +152,17 @@ CREATE INDEX idx_state_city on hotel (state, city)
 USING GSI;
 ```
 
-|  | MISSING items are not indexed by indexers. To take advantage of covering indexes and for the index to qualify, a query needs to exclude documents where the index key expression evaluates to MISSING. For example, the index index1 defined below covers the following query. CREATE INDEX _index1_ ON _keyspace_(_attribute1_) WHERE _attribute2_ \= "_value_"; SELECT _attribute1_ FROM _keyspace_ WHERE _attribute2_ \= "_value_" AND _attribute1_ IS NOT MISSING; |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> `MISSING` items are not indexed by indexers. To take advantage of covering indexes and for the index to qualify, a query needs to exclude documents where the index key expression evaluates to `MISSING`. For example, the index `index1` defined below covers the following query.
+> 
+> CREATE INDEX _index1_ ON _keyspace_(_attribute1_) WHERE _attribute2_ = "_value_";
+> 
+> SELECT _attribute1_ FROM _keyspace_ WHERE _attribute2_ = "_value_" AND _attribute1_ IS NOT MISSING;
 
 Covering indexes are applicable to secondary index scans and can be used with global secondary indexes (GSI). Queries with expressions and aggregates benefit from covering indexes.
 
-|  | You cannot use multiple GSI indexes to cover a query. You must create a composite index with all the required fields for the query engine to cover by GSI and not require reading the documents from the data nodes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use multiple GSI indexes to cover a query. You must create a composite index with all the required fields for the query engine to cover by GSI and not require reading the documents from the data nodes.
 
 [Prepared statements](../n1ql/n1ql-language-reference/prepare.md) also benefit from using covering indexes.
 

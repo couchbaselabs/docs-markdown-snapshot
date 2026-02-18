@@ -1,4 +1,13 @@
+---
+title: "Function: Simple Timer"
+description: Create a Simple Timer that triggers in the future on each mutation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-simpleTimer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-simpleTimer.html)
+
+# Function: Simple Timer
 
 **Goal**: Create a Simple Timer that triggers in the future on each mutation.
 

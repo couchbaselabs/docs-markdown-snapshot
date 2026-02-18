@@ -1,4 +1,14 @@
+---
+title: Enable Log Streaming
+description: Enable real-time streaming of operational logs from App Services to
+  a third-party or self-hosted log collector.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-collector-app-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/configure-log-collector-app-service.html)
+
+# Enable Log Streaming
 
 > Enable real-time streaming of operational logs from App Services to a third-party or self-hosted log collector. 
 
@@ -10,8 +20,8 @@ Enable Log Streaming in App Services Settings, under the Log Streaming tab.
 
 Each option you choose has different configuration. See your third-party provider’s documentation for full details on the collector endpoint setup.
 
-|  | Couchbase is not responsible for any third-party endpoints you configure. |
-|  | ------------------------------------------------------------------------- |
+> [!WARNING]
+> Couchbase is not responsible for any third-party endpoints you configure.
 
 [Datadog](https://www.datadoghq.com/)
 

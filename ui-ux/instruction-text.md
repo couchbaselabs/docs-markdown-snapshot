@@ -1,4 +1,12 @@
+---
+title: Instruction Text
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/instruction-text.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/instruction-text.html)
+
+# Instruction Text
 
 Instruction text appears in the UI to tell the user what they can do and how to do it.
 

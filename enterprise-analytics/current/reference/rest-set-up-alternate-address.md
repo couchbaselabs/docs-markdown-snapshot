@@ -1,4 +1,16 @@
+---
+title: Managing Alternate Addresses
+description: Alternate addresses and port-numbers can be established for and
+  removed from nodes, by means of the <code>PUT</code> and <code>DELETE</code>
+  HTTP methods, using the
+  <code>/node/controller/setupAlternateAddresses/external</code> URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-set-up-alternate-address.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-set-up-alternate-address.html)
+
+# Managing Alternate Addresses
 
 > Alternate addresses and port-numbers can be established for and removed from nodes, by means of the `PUT` and `DELETE` HTTP methods, using the `/node/controller/setupAlternateAddresses/external` URI. 
 

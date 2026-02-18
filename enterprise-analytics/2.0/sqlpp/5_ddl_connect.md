@@ -1,4 +1,15 @@
+---
+title: CONNECT Statements
+description: This topic describes how you use <code>CONNECT</code> statements to
+  connect all of the remote collections on a given link or links to their
+  specified data sources, and start data ingestion.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_connect.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_connect.html)
+
+# CONNECT Statements
 
 > This topic describes how you use `CONNECT` statements to connect all of the remote collections on a given link or links to their specified data sources, and start data ingestion. 
 
@@ -6,8 +17,8 @@ You incur charges when you connect a remote link.
 
 The `CONNECT` statement applies only to remote links, and is not applicable to external links.
 
-|  | CONNECT statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `CONNECT` statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete.
 
 ## [](#syntax)Syntax
 

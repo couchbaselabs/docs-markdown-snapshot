@@ -1,11 +1,19 @@
+---
+title: Node.js Analytics SDK
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/hello-world/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-analytics-sdk/current/hello-world/overview.html)
+
+# Node.js Analytics SDK
 
 # Node.js Analytics SDK
 
 The Analytics Node.js SDK allows you to connect to an [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) cluster from Node.js. For connecting to a Couchbase Server Cluster — self-managed, or Capella Operational — see our [Node.js Server SDK](../../../nodejs-sdk/current/hello-world/overview.md).
 
-|  | Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from Node.js currently requires a [Node.js Columnar SDK](../../../nodejs-columnar-sdk/current/hello-world/overview.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from Node.js currently requires a [Node.js Columnar SDK](../../../nodejs-columnar-sdk/current/hello-world/overview.md).
 
   
 ##  Using Your Analytics Cluster

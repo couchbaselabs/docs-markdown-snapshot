@@ -1,4 +1,14 @@
+---
+title: Reactive APIs
+description: The Reactive APIs are enhanced APIs for Swift that streamline data
+  modeling and enable reactive programming patterns.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/reactive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/swift/reactive.html)
+
+# Reactive APIs
 
 > The Reactive APIs are enhanced APIs for Swift that streamline data modeling and enable reactive programming patterns. 
 
@@ -23,8 +33,8 @@ A **document model** is a Swift class that conforms to Codable and includes an o
 
 If no document ID is provided, Couchbase Lite generates a new one automatically and assigns to the model when it is encoded and saved.
 
-|  | Document models must be declared as classes, not structs. This ensures reference semantics and avoids issues where multiple in-memory objects point to the same document. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Document models must be declared as classes, not structs. This ensures reference semantics and avoids issues where multiple in-memory objects point to the same document.
 
 Example 1\. Data model
 
@@ -151,8 +161,8 @@ for result in results {
 
 For API details, see [ReadOnlyArrayProtocol](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift/Classes/Result.html#/ReadOnlyArrayProtocol).
 
-|  | When saving a document model decoded from the query’s result, the document associated with the model will be retrieved during the save time. As a result, the document may not be the same document during the query time if the document has been changed. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When saving a document model decoded from the query’s result, the document associated with the model will be retrieved during the save time. As a result, the document may not be the same document during the query time if the document has been changed.
 
 ### [](#get-all-query-results-as-decodable)Get All Query Results as Decodable
 
@@ -168,8 +178,8 @@ tasks = try query.execute().data(as: Task.self)
 
 For API details, see [ResultSet](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift/Classes/ResultSet.html).
 
-|  | Getting all the query’s results as an array of decodable model objects may take a long time and consume a large amount of memory, depending on the data size and the number of results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Getting all the query’s results as an array of decodable model objects may take a long time and consume a large amount of memory, depending on the data size and the number of results.
 
 ### [](#datakey)Specify a Data Key
 
@@ -210,8 +220,8 @@ query.changePublisher()
 
 For API details, see [Query](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-swift/Classes/Query.html).
 
-|  | The emitted QueryChange contains the entire new result set of the query, not just the delta. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The emitted `QueryChange` contains the entire new result set of the query, not just the delta.
 
 ### [](#publish-document-changes)Publish Document Changes
 

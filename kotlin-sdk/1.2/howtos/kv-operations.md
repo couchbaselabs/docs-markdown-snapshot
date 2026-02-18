@@ -1,4 +1,14 @@
+---
+title: Data Operations
+description: The Key Value (KV) service, sometimes called the "data service", is
+  often the best way to get or change a document when you know its ID.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/howtos/kv-operations.html)
+
+# Data Operations
 
 > The Key Value (KV) service, sometimes called the "data service", is often the best way to get or change a document when you know its ID. Here we cover CRUD operations and locking strategies. 
 
@@ -99,8 +109,8 @@ try {
 }
 ```
 
-|  | When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove)Remove (Delete)
 
@@ -199,15 +209,19 @@ collection.bulkGet(ids).forEach { (id, result) ->
 }
 ```
 
-|  | You can copy the bulkGet extension function and change it to do other operations, like upsert. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can copy the `bulkGet` extension function and change it to do other operations, like upsert.
 
 ## [](#locking)Locking
 
 A Key Value operation is atomic.
 
-|  | What is an "atomic" operation? An atomic operation succeeds completely or fails completely. When Couchbase Server works on an atomic operation, you never see the result of incomplete work. A failed atomic operation never changes a document. If two or more atomic operations use the same document, Couchbase Server works on only one of the operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> What is an "atomic" operation?
+> 
+> An atomic operation succeeds completely or fails completely. When Couchbase Server works on an atomic operation, you never see the result of incomplete work. A failed atomic operation never changes a document.
+> 
+> If two or more atomic operations use the same document, Couchbase Server works on only one of the operations at a time.
 
 However, a _sequence_ of KV operations is _not_ atomic.
 
@@ -258,8 +272,54 @@ while (true) { (1)
 | **1** | This example keeps trying until the coroutine is cancelled. Another choice would be to set a time limit, or limit the number of tries. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this: suspend inline fun <reified T> Collection.mutate(     id: String,     expiry: Expiry = Expiry.none(),     preserveExpiry: Boolean = false,     transcoder: Transcoder? = null,     durability: Durability = Durability.none(),     common: CommonOptions = CommonOptions.Default,     transform: (GetResult) -> T, ): MutationResult {     while (true) {         val old = get(             id = id,             withExpiry = preserveExpiry,             common = common,         )         val newContent = transform(old)         val newExpiry = if (preserveExpiry) old.expiry else expiry         try {             return replace(                 id = id,                 content = newContent,                 common = common,                 transcoder = transcoder,                 durability = durability,                 expiry = newExpiry,                 cas = old.cas             )         } catch (\_: CasMismatchException) {             // Someone else modified the document. Start again.         }     } } Now the optimistic locking example from before looks like this: collection.mutate("alice") { old: GetResult ->     val oldContent = old.contentAs<Map<String, Any?>>()     return@mutate oldContent + ("favoriteFood" to "hamburger") } |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
+> 
+> ```kotlin
+> suspend inline fun <reified T> Collection.mutate(
+>     id: String,
+>     expiry: Expiry = Expiry.none(),
+>     preserveExpiry: Boolean = false,
+>     transcoder: Transcoder? = null,
+>     durability: Durability = Durability.none(),
+>     common: CommonOptions = CommonOptions.Default,
+>     transform: (GetResult) -> T,
+> ): MutationResult {
+>     while (true) {
+>         val old = get(
+>             id = id,
+>             withExpiry = preserveExpiry,
+>             common = common,
+>         )
+> 
+>         val newContent = transform(old)
+>         val newExpiry = if (preserveExpiry) old.expiry else expiry
+> 
+>         try {
+>             return replace(
+>                 id = id,
+>                 content = newContent,
+>                 common = common,
+>                 transcoder = transcoder,
+>                 durability = durability,
+>                 expiry = newExpiry,
+>                 cas = old.cas
+>             )
+>         } catch (_: CasMismatchException) {
+>             // Someone else modified the document. Start again.
+>         }
+>     }
+> }
+> ```
+> 
+> Now the optimistic locking example from before looks like this:
+> 
+> ```kotlin
+> collection.mutate("alice") { old: GetResult ->
+>     val oldContent = old.contentAs<Map<String, Any?>>()
+>     return@mutate oldContent + ("favoriteFood" to "hamburger")
+> }
+> ```
 
 ### [](#pessimistic-locking)Pessimistic Locking
 

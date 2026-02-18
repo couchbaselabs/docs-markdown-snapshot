@@ -1,4 +1,13 @@
+---
+title: "cbq: The Command Line Shell for SQL++"
+description: cbq is a comprehensive command line shell for SQL++.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/tools/pages/cbq-shell.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/cbq-shell.html)
+
+# cbq: The Command Line Shell for SQL++
 
 > cbq is a comprehensive command line shell for SQL++. It is a powerful, developer friendly tool that enables you to query and update data from Couchbase Server. The cbq shell enables you to perform all the operations that are supported by the Query REST API and more, such as additional scripting functionality. 
 
@@ -8,8 +17,8 @@ The cbq shell interface accepts both shell commands as well as SQL++ commands. A
 
 When starting the cbq shell you can provide a set of command line options. If no options are present then it assumes default values for expected options.
 
-|  | The cbq shell commands are case insensitive. However, the command line options are case sensitive. |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The cbq shell commands are case insensitive. However, the command line options are case sensitive.
 
 For the complete list of command line options and shell commands, refer to [Table 1](#table%5Fa3h%5Frhz%5Fdw) and [Table 2](#table%5Fhtk%5Fhgc%5Ffw).
 
@@ -312,8 +321,8 @@ For the 'travel-sample' keyspace, if you add a password to it of _w1fg2Uhj89_ (a
 $ ./cbq -engine="http://travel-sample:w1fg2Uhj89@localhost:8091/"
 ```
 
-|  | These commands execute successfully only if you have loaded sample bucket 'travel-sample' either at install or from the Settings menu in the web UI. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These commands execute successfully only if you have loaded sample bucket 'travel-sample' either at install or from the Settings menu in the web UI.
 
 If you want to access all of the keyspaces in the same cbq session, you would pass in the Administrator username and password instead of the keyspace level.
 
@@ -368,8 +377,8 @@ For information on passing a single user name credential to the cbq shell, see [
 
 You can provide the credential types using the SET command.
 
-|  | The credentials are set for the shell session and not on a per query basis. You can use the SET, PUSH, POP and UNSET commands to reset the credentials during a session. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The credentials are set for the shell session and not on a per query basis. You can use the SET, PUSH, POP and UNSET commands to reset the credentials during a session.
 
 To pass authentication credentials per query, set the query parameter to a new value using the SET shell command before executing the query.
 
@@ -483,8 +492,8 @@ __Table 3\. Prefixes for Parameters__
 | No prefix | Predefined (built-in) session variable |
 | $         | User defined session variable          |
 
-|  | Positional parameters are set using the \-args query parameter. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> Positional parameters are set using the `-args` query parameter.
 
 You can use the cbq shell to set all the REST API settings by specifying the settings as query parameters prefixed by `-`. As a best practice, we recommend that you save the initial set of basic parameters and their default values using the `\PUSH` command (with no arguments).
 

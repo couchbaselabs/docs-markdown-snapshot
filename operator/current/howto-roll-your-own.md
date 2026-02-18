@@ -1,4 +1,12 @@
+---
+title: Create Your Own Operator Images
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-roll-your-own.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-roll-your-own.html)
+
+# Create Your Own Operator Images
 
 > How to create Operator and dynamic admission controller images for your environment. 
 

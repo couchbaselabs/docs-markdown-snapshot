@@ -1,4 +1,15 @@
+---
+title: Error Handling
+description: Errors are inevitable. The developer's job is to be prepared for
+  whatever is likely to come up -- and to try and be prepared for anything that
+  conceivably could come up.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.3/howtos/error-handling.html)
+
+# Error Handling
 
 > Errors are inevitable. The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. 
 

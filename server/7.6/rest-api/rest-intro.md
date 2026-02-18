@@ -1,4 +1,13 @@
+---
+title: REST API reference
+description: The REST API supports the management of Couchbase-Server clusters.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-intro.html)
+
+# REST API reference
 
 > The REST API supports the management of Couchbase-Server clusters. 
 
@@ -151,18 +160,18 @@ Reader and writer threads can be configured, to ensure that disk access is highl
 
 _Compaction_ can be managed: this is used by Couchbase Server to relocate on-disk data; so as to ensure the data’s closest-possible proximity, and thereby reclaim fragments of unused disk-space. The periodic compaction of a bucket’s data helps to ensure the ongoing efficiency of both reads and writes.
 
-| HTTP Method | URI                                                                      | Documented at                                                      |
-| ----------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| POST        | /nodes/self/controller/settings                                          | [Initializing a Node](rest-initialize-node.md)                     |
-| POST        | /pools/default                                                           | [Configuring Memory](rest-configure-memory.md)                     |
-| POST        | /pools/default/settings/memcached/global                                 | [Setting Thread Allocations](rest-reader-writer-thread-config.md)  |
-| GET         | /nodes/self                                                              | [Getting Storage Information](rest-getting-storage-information.md) |
-| POST        | /pools/default/buckets/\[bucket-name\]/controller/compactBucket          | [Performing Compaction Manually](rest-compact-post.md)             |
-| POST        | /pools/default/buckets/\[bucket-name\]/controller/cancelBucketCompaction | [Performing Compaction Manually](rest-compact-post.md)             |
-| GET         | /settings/autoCompaction                                                 | [Auto-Compaction: Global](rest-autocompact-global.md)              |
-| POST        | /controller/setAutoCompaction                                            | [Auto-Compaction: Global](rest-autocompact-global.md)              |
-| GET         | /pools/default/buckets/\[bucket-name\]                                   | [Auto-Compaction: Per Bucket](rest-autocompact-per-bucket.md)      |
-| POST        | /pools/default/buckets/\[bucket-name\]                                   | [Auto-Compaction: Per Bucket](rest-autocompact-per-bucket.md)      |
+| HTTP Method | URI                                                                      | Documented at                                                             |
+| ----------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| POST        | /nodes/self/controller/settings                                          | [Initializing a Node](rest-initialize-node.md)                            |
+| POST        | /pools/default                                                           | [Configuring Memory](rest-configure-memory.md)                            |
+| POST        | /pools/default/settings/memcached/global                                 | [Setting Storage Thread Allocations](rest-reader-writer-thread-config.md) |
+| GET         | /nodes/self                                                              | [Getting Storage Information](rest-getting-storage-information.md)        |
+| POST        | /pools/default/buckets/\[bucket-name\]/controller/compactBucket          | [Performing Compaction Manually](rest-compact-post.md)                    |
+| POST        | /pools/default/buckets/\[bucket-name\]/controller/cancelBucketCompaction | [Performing Compaction Manually](rest-compact-post.md)                    |
+| GET         | /settings/autoCompaction                                                 | [Auto-Compaction: Global](rest-autocompact-global.md)                     |
+| POST        | /controller/setAutoCompaction                                            | [Auto-Compaction: Global](rest-autocompact-global.md)                     |
+| GET         | /pools/default/buckets/\[bucket-name\]                                   | [Auto-Compaction: Per Bucket](rest-autocompact-per-bucket.md)             |
+| POST        | /pools/default/buckets/\[bucket-name\]                                   | [Auto-Compaction: Per Bucket](rest-autocompact-per-bucket.md)             |
 
 ## [](#server-groups-api)Server Groups API
 

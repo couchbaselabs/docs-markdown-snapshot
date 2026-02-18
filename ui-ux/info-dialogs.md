@@ -1,4 +1,12 @@
+---
+title: Information Dialogs
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/info-dialogs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/info-dialogs.html)
+
+# Information Dialogs
 
 An information dialog is a window that appears that a user needs to dismiss to get back to the UI.
 

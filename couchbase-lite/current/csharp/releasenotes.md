@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on C#.Net
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/csharp/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-4-0-0)4.0.0 — November 2025
 
@@ -50,5 +59,5 @@ Version 4.0.0 for C#.Net delivers the following features and enhancements:
 
 * [CBL-7306 — Deprecate TLSIdentity.createIdentity() with isServer boolean flag](https://jira.issues.couchbase.com/browse/CBL-7306)
 
-|  | For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md)

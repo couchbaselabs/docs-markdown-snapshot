@@ -1,4 +1,13 @@
+---
+title: Migrating from Apache CouchDB
+description: Migration guidelines for Apache CouchDB users.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/migrate-couchdb.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/migrate-couchdb.html)
+
+# Migrating from Apache CouchDB
 
 > Migration guidelines for Apache CouchDB users. 
 

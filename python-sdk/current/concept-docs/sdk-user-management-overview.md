@@ -1,4 +1,12 @@
+---
+title: User Management
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/sdk-user-management-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/concept-docs/sdk-user-management-overview.html)
+
+# User Management
 
 > The SDK lets you programmatically create _users_, assign them _roles_ and associated _privileges_, and remove them from the system. 
 

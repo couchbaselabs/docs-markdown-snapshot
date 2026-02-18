@@ -1,4 +1,12 @@
+---
+title: Introduction to Full Text Search
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-introduction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-introduction.html)
+
+# Introduction to Full Text Search
 
 > _Full Text Search_ (FTS) lets you create, manage, and query _indexes_, defined on JSON documents within a Couchbase bucket. 
 

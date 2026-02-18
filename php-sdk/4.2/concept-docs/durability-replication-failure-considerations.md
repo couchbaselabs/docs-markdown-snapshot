@@ -1,4 +1,14 @@
+---
+title: Failure Considerations
+description: Data durability refers to the fault tolerance and persistence of
+  data in the face of software or hardware failure.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/concept-docs/durability-replication-failure-considerations.html)
+
+# Failure Considerations
 
 > Data durability refers to the fault tolerance and persistence of data in the face of software or hardware failure. Even the most reliable software and hardware might fail at some point, and along with the failures, introduce a chance of data loss. Couchbase’s durability features include Synchronous Replication, and the possibility to use distributed, multi-document ACID transactions. It is the responsibility of the development team and the software architect to evaluate the best choice for each use case. 
 
@@ -10,8 +20,8 @@ Unresolved include directive in modules/concept-docs/pages/durability-replicatio
 
 If a version of Couchbase Server lower than 6.5 is being used then the fallback is 'client verified' durability.
 
-|  | Client Verified durability is supported in [PHP SDK 3.2](#3.2@durability-replication-failure-considerations.adoc#older-server-versions) but not in 4.0\. Legacy support will be available in a later 4.x release. See the [SDK 4.0 migration considerations](../project-docs/migrating-sdk-code-to-3.n.md#sdk4-specifics). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Client Verified durability is supported in [PHP SDK 3.2](#3.2@durability-replication-failure-considerations.adoc#older-server-versions) but not in 4.0\. Legacy support will be available in a later 4.x release. See the [SDK 4.0 migration considerations](../project-docs/migrating-sdk-code-to-3.n.md#sdk4-specifics).
 
 Unresolved include directive in modules/concept-docs/pages/durability-replication-failure-considerations.adoc - include::7.5@sdk:shared:partial$durability-replication-failure-considerations.adoc\[\]
 

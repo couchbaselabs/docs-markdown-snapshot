@@ -1,4 +1,14 @@
+---
+title: VPC Peering with GCP
+description: Use this procedure to create a VPC Peering connection between
+  Capella Analytics hosted with GCP and your application's VPC on GCP.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering-gcp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/vpc-peering-gcp.html)
+
+# VPC Peering with GCP
 
 > Use this procedure to create a VPC Peering connection between Capella Analytics hosted with GCP and your application’s VPC on GCP. 
 
@@ -27,10 +37,9 @@ To configure Capella Analytics VPC peering with GCP, you need the following:
   5. Confirm the prerequisites and click **Next**.
 2. In Capella Analytics, configure your private network details.
 
-  1. Fill out the _Network Details_ fields.
-
-|  | You can find most of the required info for these fields on the page for your chosen VPC in GCP. |
-|  | ----------------------------------------------------------------------------------------------- |  
+  1. Fill out the _Network Details_ fields.  
+  > [!TIP]  
+  > You can find most of the required info for these fields on the page for your chosen VPC in GCP.  
   Name  
   Enter a descriptive name for the new private network.  
   GCP Project ID  
@@ -46,8 +55,8 @@ Capella Analytics sets up the private network. This typically takes up to a minu
 If there’s a problem with the private network then Capella Analytics will tell you via an error message.
 4. Once setup is complete, you can see the new network listed in the list of networks.
 
-|  | While the network status is shown as Complete, there are some final steps you must carry out before you can access your Capella Analytics cluster from your VPC over this private network. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> While the network status is shown as Complete, there are some final steps you must carry out before you can access your Capella Analytics cluster from your VPC over this private network.
 
 1. On the **VPC Peering** screen, click the listing for the new Private Network.  
 This screen shows two commands to accept the peering request and link your VPC to the appropriate DNS server for hostname resolution. For example:  

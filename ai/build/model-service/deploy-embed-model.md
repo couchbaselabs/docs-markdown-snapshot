@@ -1,4 +1,13 @@
+---
+title: Deploy an Embedding Model
+description: Use the Capella Model Service to deploy embedding models for vectorizing text.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/model-service/deploy-embed-model.html)
+
+# Deploy an Embedding Model
 
 > Use the Capella Model Service to deploy embedding models for vectorizing text. 
 
@@ -22,10 +31,9 @@ An embedding model vectorizes text into numerical vectors that capture their sem
 5. Choose the AWS region where you want to deploy the model.
 6. Choose the compute and GPU size configuration to run the model.  
 The minimum supported compute size available for the model in your chosen region is the default.
-7. (Optional) Apply advanced configuration options:
-
-|  | If you change or enable any advanced configurations, such as value adds or security features, after deployment, your existing Model Service API keys will stop working, and you must create a new API key. For more information, see [Value Adds and Security Features](../../api-guide/api-start.md#value-adds). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+7. (Optional) Apply advanced configuration options:  
+> [!CAUTION]  
+> If you change or enable any advanced configurations, such as value adds or security features, after deployment, your existing Model Service API keys will stop working, and you must create a new API key. For more information, see [Value Adds and Security Features](../../api-guide/api-start.md#value-adds).  
 Dimensions  
 When available, you can configure your embedding model to generate vectors with more or fewer dimensions by adjusting the **Dimensions** setting.  
 You cannot change this setting after you deploy the embedding model.  

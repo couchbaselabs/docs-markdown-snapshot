@@ -1,4 +1,14 @@
+---
+title: Use Search Indexes with a Query
+description: The Flex Index feature enables you run a SQL++ query as a full-text
+  search query, using a full-text index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/flex-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/flex-indexes.html)
+
+# Use Search Indexes with a Query
 
 > The Flex Index feature enables you run a SQL++ query as a full-text search query, using a full-text index. This means that you can write queries in SQL++ to leverage the Search service’s keyword search capabilities. 
 
@@ -105,8 +115,8 @@ In this case:
 
 In all cases, if the query meets the requirements to use a full-text index, and a qualified full-text index is selected, the query is transformed into an FTS [simple query](../../search/run-searches.md) (_not_ a query string query), and the simple query is run against the qualified full-text index.
 
-|  | If the query predicate contains a search function, none of this applies — instead, an index is selected for the query according to the method described on the [Search Functions](searchfun.md) page. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If the query predicate contains a search function, none of this applies — instead, an index is selected for the query according to the method described on the [Search Functions](searchfun.md) page.
 
 ## [](#fts-requirements)Full-Text Index Requirements
 
@@ -142,8 +152,8 @@ Child mappings and fields mapped under top level type mappings can all be used w
 
 When clusters:search-service/create-full-text-indexes.adoc#inserting-a-child-field\[creating a full-text definition in the Couchbase Capella UI\], the child fields listed by field name or by **searchable as** may be used within a SQL++ query.
 
-|  | The type field in a custom type mapped index is _not_ searchable. |
-|  | ----------------------------------------------------------------- |
+> [!NOTE]
+> The type field in a custom type mapped index is _not_ searchable.
 
 Example 4\. Child fields that may be used in a query
 

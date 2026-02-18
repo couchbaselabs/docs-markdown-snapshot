@@ -1,4 +1,14 @@
+---
+title: Back Up and Restore An Entire Cluster
+description: With a Cloud Snapshot cluster backup, you can backup and restore an
+  entire cluster and all of its buckets in a single backup.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cloud-snapshots.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/cloud-snapshots.html)
+
+# Back Up and Restore An Entire Cluster
 
 > With a Cloud Snapshot cluster backup, you can backup and restore an entire cluster and all of its buckets in a single backup. 
 
@@ -18,8 +28,8 @@ Your CSP’s backup service, which is the underlying backup mechanism for your c
 
 The incrementality of your backups, or how much data has changed between each of your backups, is determined by your CSP’s backup service. Your backup size and backup retention policies determine your backup costs. Capella bases your billing for your cluster backups on the backup storage usage reports from your CSP.
 
-|  | If you use Cloud Snapshot backups on an Azure cluster, Azure limits your total number of incremental backups to a maximum of 500\. After 500 snapshot backups, Azure starts using full cluster backups. If you exceed 500 snapshot backups stored on your Azure-hosted cluster, your cluster backup costs will greatly increase. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you use Cloud Snapshot backups on an Azure cluster, Azure limits your total number of incremental backups to a maximum of 500\. After 500 snapshot backups, Azure starts using full cluster backups. If you exceed 500 snapshot backups stored on your Azure-hosted cluster, your cluster backup costs will greatly increase.
 
 ## [](#bucket-backups-and-cloud-snapshot-cluster-backups)Bucket Backups and Cloud Snapshot Cluster Backups
 
@@ -37,8 +47,8 @@ Cluster backups support faster end-to-end recovery of your cluster, including re
 
 Cluster backups are stored within the same cloud provider and cloud region as your cluster, giving you better governance over your data and reducing performance issues related to backups.
 
-|  | If your cluster has a write-heavy workload, try making the interval between your cluster backups as long as possible. This reduces your backup costs and increases the value of your individual backups. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If your cluster has a write-heavy workload, try making the interval between your cluster backups as long as possible. This reduces your backup costs and increases the value of your individual backups.
 
 ## [](#backup-encryption)Backup Encryption
 
@@ -46,8 +56,12 @@ If your cluster uses customer-managed encryptions keys (CMEK) for cluster storag
 
 You cannot choose to use CMEK for a cluster backup if your cluster is not already encrypted with a CMEK. Bucket backups still do not support CMEK.
 
-|  | Do not delete a Key Management System (KMS) Key ID until any cluster backups using that Key ID have expired. If you delete the Key ID, your backup becomes unusable. Encryption Key IDs must be enabled and available to restore an encrypted backup to a Capella cluster. If you delete your CMEK ID from Capella, contact Couchbase Capella Support to use your backups. To view the CMEK ID and Key IDs currently used by your backups, use the Management API or go to **Backup** **Cluster Backups** and expand the entry for a backup. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not delete a Key Management System (KMS) Key ID until any cluster backups using that Key ID have expired. If you delete the Key ID, your backup becomes unusable. Encryption Key IDs must be enabled and available to restore an encrypted backup to a Capella cluster.
+> 
+> If you delete your CMEK ID from Capella, contact Couchbase Capella Support to use your backups.
+> 
+> To view the CMEK ID and Key IDs currently used by your backups, use the Management API or go to **Backup** **Cluster Backups** and expand the entry for a backup.
 
 For more information about CMEK in Capella, see [Use Customer-Managed Encryption Keys (CMEK) at Rest](../security/cmek.md).
 
@@ -59,8 +73,8 @@ During the backup process, Capella queues and processes any backup copies in the
 
 For clusters hosted on GCP, cluster backups cannot be replicated to another region.
 
-|  | If you want to use a [customer-managed encryption key](../security/cmek.md) for an Azure cluster backup, you cannot use cross-region copies. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want to use a [customer-managed encryption key](../security/cmek.md) for an Azure cluster backup, you cannot use cross-region copies.
 
 ## [](#restoring-cluster-backups)Restoring Cluster Backups
 
@@ -74,8 +88,12 @@ For Couchbase Server version 7.6.6 and later, cluster backups for clusters hoste
 
 If you use a backup with cross-region copies to create a new cluster, Capella tries to use a backup copy from the same region as where you want to deploy your new cluster. Capella prioritizes the same region as the new cluster, even if you select a different region when choosing your restore options. This reduces your data transfer costs.
 
-|  | You can only restore a backup to a different compatible cluster if both clusters are currently running Couchbase Server version 7.6.6 or later. If a cluster is running an earlier version of Couchbase Server, you cannot restore its backups to another cluster. For example, if you have 2 clusters, with the first cluster on Couchbase Server version 7.6.5 and the second on Couchbase Server version 7.6.6, you cannot restore a backup from the 7.6.5 cluster to the 7.6.6 cluster until you upgrade the 7.6.5 cluster. If you do upgrade a 7.6.5 cluster to a later version of Couchbase Server, backups taken while the cluster was on version 7.6.5 can still be restored to that same cluster. Restoring a backup taken on version 7.6.5 will temporarily restore the cluster to Couchbase Server version 7.6.5\. You can run an upgrade to restore the cluster back to a later version at any point after the restore. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only restore a backup to a different compatible cluster if both clusters are currently running Couchbase Server version 7.6.6 or later. If a cluster is running an earlier version of Couchbase Server, you cannot restore its backups to another cluster.
+> 
+> For example, if you have 2 clusters, with the first cluster on Couchbase Server version 7.6.5 and the second on Couchbase Server version 7.6.6, you cannot restore a backup from the 7.6.5 cluster to the 7.6.6 cluster until you upgrade the 7.6.5 cluster.
+> 
+> If you do upgrade a 7.6.5 cluster to a later version of Couchbase Server, backups taken while the cluster was on version 7.6.5 can still be restored to that same cluster. Restoring a backup taken on version 7.6.5 will temporarily restore the cluster to Couchbase Server version 7.6.5\. You can run an upgrade to restore the cluster back to a later version at any point after the restore.
 
 For cluster backups across all versions, if the number of nodes deployed in the destination cluster for a restore is different from the node configuration in your backup, Capella scales your cluster configuration up or down to the number of nodes present in the backup. Take care when restoring backups to make sure you do not lose node configuration changes.
 
@@ -83,8 +101,14 @@ Before Capella restores a cluster backup, all existing data on the destination c
 
 The time it takes to restore your cluster is not considered to be downtime based on the [Capella Cloud Service Availability agreement](https://www.couchbase.com/capellasla/).
 
-|  | Restoring a cluster backup also deletes all cluster access credentials and allowed IP addresses on your cluster. Before you [restore a cluster backup](restore-cloud-snapshot.md), use version 4 of the Management API to [get a list of all available cluster access credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/listDatabaseCredentials) and [get a list of all allowed IP addresses](../management-api-reference/index.md#tag/Allowed-CIDRs-%28Cluster%29/operation/listAllowedCidrs) on your cluster. You can use the list to recreate your cluster access credentials and allowed IP addresses later. For more information about cluster access credentials, see [Manage Cluster Access Credentials](manage-database-users.md). For more information about allowed IP addresses, see [Configure Allowed IP Addresses](allow-ip-address.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Restoring a cluster backup also deletes all cluster access credentials and allowed IP addresses on your cluster.
+> 
+> Before you [restore a cluster backup](restore-cloud-snapshot.md), use version 4 of the Management API to [get a list of all available cluster access credentials](../management-api-reference/index.md#tag/Database-Credentials/operation/listDatabaseCredentials) and [get a list of all allowed IP addresses](../management-api-reference/index.md#tag/Allowed-CIDRs-%28Cluster%29/operation/listAllowedCidrs) on your cluster.
+> 
+> You can use the list to recreate your cluster access credentials and allowed IP addresses later.
+> 
+> For more information about cluster access credentials, see [Manage Cluster Access Credentials](manage-database-users.md). For more information about allowed IP addresses, see [Configure Allowed IP Addresses](allow-ip-address.md).
 
 ## [](#see-also)See Also
 

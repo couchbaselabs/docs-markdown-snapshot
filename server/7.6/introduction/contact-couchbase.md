@@ -1,4 +1,13 @@
+---
+title: Contact Couchbase
+description: Provide feedback, and get help with any problem you may encounter.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/contact-couchbase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/introduction/contact-couchbase.html)
+
+# Contact Couchbase
 
 > Provide feedback, and get help with any problem you may encounter. 
 

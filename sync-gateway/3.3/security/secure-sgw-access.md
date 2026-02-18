@@ -1,4 +1,13 @@
+---
+title: Secure Sync Gateway Access
+description: Couchbase Sync Gateway TLS encryption and verification
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/security/pages/secure-sgw-access.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/security/secure-sgw-access.html)
+
+# Secure Sync Gateway Access
 
 > Couchbase Sync Gateway TLS encryption and verification  
 

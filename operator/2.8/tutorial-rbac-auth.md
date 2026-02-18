@@ -1,9 +1,17 @@
+---
+title: Couchbase User Authentication
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-rbac-auth.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/tutorial-rbac-auth.html)
+
+# Couchbase User Authentication
 
 > A tutorial for configuring Couchbase user authentication and authorization using the Kubernetes Operator. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#overview)Overview
 
@@ -154,8 +162,8 @@ EOF
 | **1** | Updates the role binding to include the two new users alongside the user from the previous section. The group now contains three users, and each user is bound to same set of roles. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-|  | In this example, the two new users reference the same Secret as the user from the previous section. In production, you will want to create an individual secret for each user. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In this example, the two new users reference the same Secret as the user from the previous section. In production, you will want to create an individual secret for each user.
 
 At this point, you can modify the roles of all three users at once by updating the group. To do this, use the following command to edit the `CouchbaseGroup` resource and add the `security_admin` role:
 
@@ -261,8 +269,8 @@ spec:
    ...
 ```
 
-|  | In production you will want to set encryption to StartTLS or TLS. |
-|  | ----------------------------------------------------------------- |
+> [!NOTE]
+> In production you will want to set `encryption` to `StartTLS` or `TLS`.
 
 After updating the `CouchbaseCluster` resource, you can test LDAP authentication from the Couchbase Web Console. Start by [connecting to the Couchbase Web Console](howto-ui.md).
 

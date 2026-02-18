@@ -1,4 +1,13 @@
+---
+title: Deploying a Sync Gateway Cluster
+description: Connect Sync Gateway to a Server Cluster Deployed with CAO 1.2.x
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/deploy-cluster-to-kubernetes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/deploy-cluster-to-kubernetes.html)
+
+# Deploying a Sync Gateway Cluster
 
 > Connect Sync Gateway to a Server Cluster Deployed with CAO 1.2.x  
 > Provides access to instruction on deploying a Sync Gateway cluster on Kubernetes and connecting with a Couchbase Server cluster

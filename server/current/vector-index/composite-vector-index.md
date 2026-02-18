@@ -1,4 +1,14 @@
+---
+title: Filtered Search Using Composite Vector Indexes
+description: A Composite Vector index is a Global Secondary Index (GSI) with a
+  single vector column that combines scalar queries with semantic search.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/composite-vector-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-index/composite-vector-index.html)
+
+# Filtered Search Using Composite Vector Indexes
 
 > A Composite Vector index is a Global Secondary Index (GSI) with a single vector column that combines scalar queries with semantic search. The added vector column lets your application perform a query using both the index’s scalar, array, and object index entries to pre-filter the dataset before performing a vector similarity search. 
 
@@ -46,8 +56,8 @@ WITH {"dimension": <dimensions>,
      };
 ```
 
-|  | The WITH clause can contain other parameters that affect how the index processes vectors. For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `WITH` clause can contain other parameters that affect how the index processes vectors. For a full list of the parameters that affect a Composite Vector index, see [CREATE INDEX](../n1ql/n1ql-language-reference/createindex.md) in the SQL++ for Query Reference.
 
 * `dimensions` is an integer value that sets the number of dimensions in the vector. This value is set by the embedded model you used to embed the vectors.
 * `similarity_metric` is a string that sets the distance metric to use when comparing vectors during index creation.  

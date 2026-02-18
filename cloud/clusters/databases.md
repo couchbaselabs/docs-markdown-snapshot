@@ -1,4 +1,14 @@
+---
+title: Configure Your Cluster
+description: Understand the different configuration options available to
+  customize your Couchbase Capella cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/databases.html)
+
+# Configure Your Cluster
 
 > Understand the different configuration options available to customize your Couchbase Capella cluster. 
 
@@ -61,8 +71,8 @@ Your chosen region can change your available [Availability Zone](#availability) 
 
 You can choose to customize the CIDR block for your Capella cluster or leave it as the default value. Use IPv4 syntax to define your CIDR block for your cluster.
 
-|  | If you plan to use [private networks (VPC or VNet Peering)](../clouds/private-network.md) with your Capella cluster, make sure to customize your CIDR block to avoid overlap between your VPC CIDR and Capella. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you plan to use [private networks (VPC or VNet Peering)](../clouds/private-network.md) with your Capella cluster, make sure to customize your CIDR block to avoid overlap between your VPC CIDR and Capella.
 
 ### [](#cluster-version)Supported Couchbase Server Version
 
@@ -74,8 +84,8 @@ You can choose a previous version of Couchbase Server to maintain compatibility 
 
 Capella deploys new and upgraded clusters with the latest available patch version available for each minor Couchbase Server release automatically. Capella provides version upgrades for clusters when they become available.
 
-|  | [Organization Owners](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owners](../projects/project-roles.md#project-owner-role) can schedule certain upgrade maintenance jobs when they become available. To see the upgrades available to you, go to [Schedule a Maintenance Job](upgrade-database.md#schedule-maintenance-jobs). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [Organization Owners](../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owners](../projects/project-roles.md#project-owner-role) can schedule certain upgrade maintenance jobs when they become available. To see the upgrades available to you, go to [Schedule a Maintenance Job](upgrade-database.md#schedule-maintenance-jobs).
 
 For more information about how to upgrade or schedule maintenance for a cluster, see [Upgrading a Cluster](upgrade-database.md).
 
@@ -122,8 +132,8 @@ The following Services can be deployed on a Capella cluster:
 | **Eventing Service**  | Use the Eventing Service to create custom JavaScript snippets that run in response to document mutations or as scheduled by timers. These custom code snippets can support near real-time handling of data changes. The Eventing Service requires a minimum of 2 nodes for best results in a production environment. You cannot deploy the Eventing Service on a [Single Node](#single) cluster using the 2vCPU 8 GB RAM [compute configuration](#compute). To use the Eventing Service on a Single Node cluster, you must use the 4vCPU 16 GB RAM configuration.                                                                                                                                                                                                                                                                                                                                       | [Run a Function on Data Change](../eventing/eventing-overview.md)                                                                    |
 | **Analytics Service** | Use the Analytics Service to analyze large datasets with complex analytical queries. The Analytics Service supports large join, set, aggregation, and grouping operations, which can be long-running use a lot of memory and CPU resources. You can create shadow copies of the data you want to analyze and link from external data sources. The Analytics Service uses the SQL++ for Analytics query language. For more information about SQL++ for Analytics, see the [SQL++ for Analytics Reference](../../server/current/analytics/1%5Fintro.md). The Analytics Service requires a minimum of 2 nodes for best results in a production environment. You cannot deploy the Analytics Service on a [Single Node](#single) cluster using the 2vCPU 8 GB RAM [compute configuration](#compute). To use the Analytics Service on a Single Node cluster, you must use the 4vCPU 16 GB RAM configuration. | [Analyze Large Datasets](analytics-service/analytics-service.md)                                                                     |
 
-|  | You can only add a Service once to a cluster. |
-|  | --------------------------------------------- |
+> [!NOTE]
+> You can only add a Service once to a cluster.
 
 ### [](#nodes)Node Configuration
 
@@ -147,8 +157,14 @@ Your compute configuration controls the CPU cores and total RAM for each node in
 
 Different Services might have different CPU and RAM needs. If a Service Group needs more computing resources, you can [change your compute configuration](modify-database.md#change-computee) any time after you deploy your cluster.
 
-|  | Node RAM Allocations If you deploy multiple Services in a Service Group, Capella distributes the memory allocated to each node in that group between the operating system and all deployed Services. Capella gives 20% of the available RAM on a node to the operating system. It divides the remaining RAM evenly between Services in the Service Group. For example, if there was 25 GB of RAM available on a node in a Service Group that needed to run 3 Services, each Service would get 8.3 GB of RAM (25/3). If you plan to run more than 1 Service on the nodes in your Service Groups, make sure to size your nodes with appropriate compute resources. For production clusters, consider running each of your Services with their own dedicated nodes to give them enough RAM. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Node RAM Allocations
+> 
+> If you deploy multiple Services in a Service Group, Capella distributes the memory allocated to each node in that group between the operating system and all deployed Services.
+> 
+> Capella gives 20% of the available RAM on a node to the operating system. It divides the remaining RAM evenly between Services in the Service Group. For example, if there was 25 GB of RAM available on a node in a Service Group that needed to run 3 Services, each Service would get 8.3 GB of RAM (25/3).
+> 
+> If you plan to run more than 1 Service on the nodes in your Service Groups, make sure to size your nodes with appropriate compute resources. For production clusters, consider running each of your Services with their own dedicated nodes to give them enough RAM.
 
 Your available compute configuration options depend on the your chosen cluster option and cloud service provider (CSP). For more information about the available compute configurations for each cluster option and CSP, see:
 
@@ -156,8 +172,8 @@ Your available compute configuration options depend on the your chosen cluster o
 * [GCP Compute and Memory](../reference/gcp.md#compute-and-memory)
 * [Azure Compute and Memory](../reference/azure.md#compute-and-memory)
 
-|  | If you choose a compute configuration that cannot support your [Storage Configuration](#storage), Capella displays a warning. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you choose a compute configuration that cannot support your [Storage Configuration](#storage), Capella displays a warning.
 
 ### [](#storage)Storage Configuration
 
@@ -173,8 +189,8 @@ Your [Compute Configuration](#compute) must be large enough to support your chos
 | **Multi-Node**  | Total storage is based on disk type and your chosen cloud provider: [AWS Storage Size](../reference/aws.md#storage-size) [GCP Storage Size](../reference/gcp.md#storage-size) [Azure Storage Size](../reference/azure.md#storage-size) | AWS Choose between GP3 or IO2\. GP3 disks are general-purpose and provide the best balance of price and performance, for provisioning performance and storage capacity independently. IO2 disks have higher performance, more durability, and better reliability. GCP PD-SSD only - best for higher performance with lower latency and more IOPS. Azure Choose between Premium SSD or Ultra disks. Premium SSDs are best for higher performance with lower latency and more IOPS. Ultra Disks are best for intensive, transaction-heavy workloads with low latency and consistent IOPS. | AWS Your IOPS range depends on your disk type. GCP Your IOPS value is chosen based on your storage size, with 30 read and write IOPS per GB of storage. Azure Your IOPS value is chosen or limited based on your chosen storage size.                                                       |
 | **Custom**      | Total storage is based on disk type and your chosen cloud provider: [AWS Storage Size](../reference/aws.md#storage-size) [GCP Storage Size](../reference/gcp.md#storage-size) [Azure Storage Size](../reference/azure.md#storage-size) | AWS Choose between GP3 or IO2\. GP3 disks are general-purpose and provide the best balance of price and performance, for provisioning performance and storage capacity independently. IO2 disks have higher performance, more durability, and better reliability. GCP PD-SSD only - best for higher performance with lower latency and more IOPS. Azure Choose between Premium SSD or Ultra disks. Premium SSDs are best for higher performance with lower latency and more IOPS. Ultra Disks are best for intensive, transaction-heavy workloads with low latency and consistent IOPS. | AWS Your IOPS range depends on your disk type. GCP Your IOPS value is chosen based on your storage size, with 30 read and write IOPS per GB of storage. Azure Your IOPS value is chosen or limited based on your chosen storage size.                                                       |
 
-|  | Adjusting your IOPS value affects performance and cost for your cluster. For AWS GP3, AWS IO2, and Azure Ultra Disk, Capella uses the recommended defaults for your IOPS. You can go higher than the default IOPS value, but you cannot go lower. For more information about IOPS, see [IOPS Defaults](scale-database.md#IOPS-Defaults). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Adjusting your IOPS value affects performance and cost for your cluster. For AWS GP3, AWS IO2, and Azure Ultra Disk, Capella uses the recommended defaults for your IOPS. You can go higher than the default IOPS value, but you cannot go lower. For more information about IOPS, see [IOPS Defaults](scale-database.md#IOPS-Defaults).
 
 #### [](#auto-scaling-configuration)Auto-Scaling Configuration
 
@@ -184,8 +200,8 @@ Auto-Scale configuration is based on your chosen cloud provider and [cluster opt
 
 Auto-Scaling is always on for Single Node clusters.
 
-|  | Even with Auto-Scale enabled, Couchbase Capella support will contact you to reduce your storage usage if your Single Node cluster exceeds your chosen storage configuration of 50 GB or 100 GB. Try not to exceed your chosen storage configuration when using a Single Node cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Even with Auto-Scale enabled, Couchbase Capella support will contact you to reduce your storage usage if your Single Node cluster exceeds your chosen storage configuration of 50 GB or 100 GB. Try not to exceed your chosen storage configuration when using a Single Node cluster.
 
 AWS clusters can only auto-expand storage once every 6 hours. For more information about AWS storage scaling limitations, see the [AWS limitations documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/modify-volume-requirements.html#elastic-volumes-limitations).
 
@@ -223,8 +239,8 @@ Based on your chosen [cluster option](#option), [CSP](#cloud-provider) region, a
 
 Availability Zones can help minimize downtime and make sure your data remains highly available and fault resistant. It’s recommended to use **Multiple** Availability Zones for production clusters with the Multi-Node or Custom [cluster option](#option).
 
-|  | Clusters on the **Basic** [Support Plan](#plan) support only a **Single** Availability Zone. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Clusters on the **Basic** [Support Plan](#plan) support only a **Single** Availability Zone.
 
 | Cluster Option  | Availability Zones                                               |
 | --------------- | ---------------------------------------------------------------- |

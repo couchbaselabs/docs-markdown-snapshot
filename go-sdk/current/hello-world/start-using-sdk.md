@@ -1,4 +1,13 @@
+---
+title: Start Using the Go SDK
+description: A quick start guide to get you up and running with Couchbase and the Go SDK.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/hello-world/start-using-sdk.html)
+
+# Start Using the Go SDK
 
 > A quick start guide to get you up and running with Couchbase and the Go SDK. 
 
@@ -243,16 +252,16 @@ The following code samples assume:
 * You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
-|  | Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
 
 * You have initalised a [Go module](https://go.dev/blog/using-go-modules), and have a `go.mod` file in your working directory.
 * [Couchbase Server](#8.0@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
 * You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/current/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
 * A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/current/manage/manage-security/manage-users-and-roles.md) for more details.
 
-|  | Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/current/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings.
 
 ## [](#quick-installation)Quick Installation
 
@@ -264,8 +273,8 @@ $ go get github.com/couchbase/gocb/v2
 
 More details on installation can be found [here](../project-docs/sdk-full-installation.md).
 
-|  | In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go.
 
 ## [](#step-by-step)Step by Step
 
@@ -347,8 +356,8 @@ if err != nil {
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 2.6 introduces a `wan-development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ```golang
 // For a secure cluster connection, use `couchbases://<your-cluster-ip>` instead.
@@ -389,8 +398,10 @@ Here we refer to the `users` collection within the `tenant_agent_00` scope from 
 col := bucket.Scope("tenant_agent_00").Collection("users")
 ```
 
-|  | For Local Couchbase Server only The DefaultCollection must be used when connecting to a 6.6 cluster or earlier — see comment in the code snippet above. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For Local Couchbase Server only
+> 
+> The `DefaultCollection` must be used when connecting to a 6.6 cluster or earlier — see comment in the code snippet above.
 
 The code shows how you would use a named collection and scope. A named or default collection will provide the same functionality as bucket-level operations did in previous versions of Couchbase Server.
 

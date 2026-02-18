@@ -1,4 +1,13 @@
+---
+title: Back Up and Restore with Command Line Tools
+description: Use Couchbase command line tools to manage ad hoc backups.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cli-backup-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/cli-backup-restore.html)
+
+# Back Up and Restore with Command Line Tools
 
 > Use Couchbase command line tools to manage ad hoc backups. 
 
@@ -34,8 +43,8 @@ All procedures and examples on this page assume the following:
 
 ## [](#backup-and-restore-examples)Backup and Restore Examples
 
-|  | For full examples, see [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr.md) in the Couchbase Server documentation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For full examples, see [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr.md) in the Couchbase Server documentation.
 
 For production environments, use the secure `--cacert <cert_file>` option shown in the examples. For development environments, replace `--cacert <cert_file>` with `--no-ssl-verify`.
 
@@ -72,8 +81,8 @@ With Capella clusters running Couchbase Server 7.2, use the following `--disable
 --disable-analytics --disable-cluster-analytics --disable-bucket-query --disable-cluster-query
 ```
 
-|  | If you did not set these \--disable options when you created your repository, you must add them to the cbbackupmgr restore command when you restore a backup form your repository to Capella. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you did not set these `--disable` options when you created your repository, you must add them to the `cbbackupmgr restore` command when you restore a backup form your repository to Capella.
 
 If you’re restoring data backed up from a self-managed cluster to a Capella cluster with `cbbackupmgr restore`, use `--disable-views`. Capella clusters do not support [views](#7.1@server:learn:views/views-basics.adoc).
 
@@ -195,8 +204,8 @@ To restore to a paid provisioned cluster:
 $ cbbackupmgr restore --archive /home/couchbase/backups --repo repo_mydb -c couchbases://cb.eqwqztkw5e5kf6l.cloud.couchbase.com --cacert /root/capella.pem -u dbuser -p '******' --disable-analytics --disable-cluster-analytics --disable-bucket-query --disable-cluster-query --disable-views
 ```
 
-|  | While this example works with all cbbackupmgr versions, when using cbbackupmgr version 7.6 or later, you can use \--capella instead of the \--disable-analytics \--disable-cluster-analytics, \--disable-bucket-query, \--disable-cluster-query, and \--disable-views options. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> While this example works with all `cbbackupmgr` versions, when using `cbbackupmgr` version 7.6 or later, you can use `--capella` instead of the `--disable-analytics` `--disable-cluster-analytics`, `--disable-bucket-query`, `--disable-cluster-query`, and `--disable-views` options.
 
 The `--purge` option cleans up restore progress information from the previous restore attempt. Add the `--purge` option to the restore command to rerun the restore if you get an error at the start of the restore.
 

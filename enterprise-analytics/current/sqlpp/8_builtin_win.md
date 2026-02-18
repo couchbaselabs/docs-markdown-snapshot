@@ -1,4 +1,14 @@
+---
+title: Window Functions
+description: This topic describes the builtin SQL++ for Enterprise Analytics
+  window functions.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/8_builtin_win.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/8_builtin_win.html)
+
+# Window Functions
 
 > This topic describes the builtin SQL++ for Enterprise Analytics window functions. 
 

@@ -1,4 +1,13 @@
+---
+title: Verify the Enterprise Analytics Installation
+description: You can test your connection to Enterprise Analytics in multiple ways.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/verify-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/verify-installation.html)
+
+# Verify the Enterprise Analytics Installation
 
 > You can test your connection to Enterprise Analytics in multiple ways. 
 
@@ -10,8 +19,8 @@ If you set up Enterprise Analytics on a port other than `8091`, go to that speci
 
 If you’re logged into the node itself, you can go to `http://localhost:8091`. You can also use the `couchbase-cli` command to query node to confirm that it’s available.
 
-|  | The Web Console uses the same port as smart clients when communicating with Enterprise Analytics. If you can connect to the Web Console from a particular machine, then administration and database clients on the same machine can also connect to the core cluster port and perform operations. The Web Console provides a warning if the Web browser loses connectivity to the node. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Web Console uses the same port as smart clients when communicating with Enterprise Analytics. If you can connect to the Web Console from a particular machine, then administration and database clients on the same machine can also connect to the core cluster port and perform operations. The Web Console provides a warning if the Web browser loses connectivity to the node.
 
 ## [](#detailed-verification)Detailed Verification
 

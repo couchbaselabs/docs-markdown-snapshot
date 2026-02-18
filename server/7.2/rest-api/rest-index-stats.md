@@ -1,4 +1,12 @@
+---
+title: Index Statistics API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-index-stats.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-index-stats.html)
+
+# Index Statistics API
 
 ## [](#%5Foverview)Overview
 
@@ -263,8 +271,10 @@ Returns statistics for all indexes within a bucket, scope, or collection.
 | **Query** | **redact** _optional_    | Whether keyspace and index names should be redacted in the output.                                                                                                                                                                                                                                                                                           | boolean | "false" |
 | **Query** | **skipEmpty** _optional_ | Whether empty, null, or zero statistics should be omitted from the output.                                                                                                                                                                                                                                                                                   | boolean | "false" |
 
-|  | If the [keyspace](#%5Fget%5Fkeyspace%5Fstats%5Fparameters) path parameter specifies just a bucket name, the response contains statistics for all indexes in all collections in all scopes within that bucket. If this parameter specifies a bucket name and a scope name, the response contains statistics for all indexes in all collections within that scope. Similarly, if this parameter specifies a bucket name, a scope name, and a collection, the response contains statistics for all indexes in that collection. To get statistics for the indexes in the default collection in the default scope within a bucket only, you must specify the scope and collection explicitly. For example, bucket.\_default.\_default. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the [keyspace](#%5Fget%5Fkeyspace%5Fstats%5Fparameters) path parameter specifies just a bucket name, the response contains statistics for all indexes in all collections in all scopes within that bucket. If this parameter specifies a bucket name and a scope name, the response contains statistics for all indexes in all collections within that scope. Similarly, if this parameter specifies a bucket name, a scope name, and a collection, the response contains statistics for all indexes in that collection.
+> 
+> To get statistics for the indexes in the default collection in the default scope within a bucket only, you must specify the scope and collection explicitly. For example, `bucket._default._default`.
 
 #### [](#responses-2)Responses
 
@@ -395,11 +405,13 @@ Returns statistics for an index.
 | **Query** | **redact** _optional_    | Whether keyspace and index names should be redacted in the output.                                                                                                                                                                                                                                                                                           | boolean | "false" |
 | **Query** | **skipEmpty** _optional_ | Whether empty, null, or zero statistics should be omitted from the output.                                                                                                                                                                                                                                                                                   | boolean | "false" |
 
-|  | In most cases, the [keyspace](#%5Fget%5Findex%5Fstats%5Fparameters) path parameter must specify the complete name of the keyspace containing the index. It may not omit the scope name or the collection name. However, if the specified index is stored in the default collection in the default scope within a bucket, then the [keyspace](#%5Fget%5Findex%5Fstats%5Fparameters) path parameter may specify just the bucket name alone. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In most cases, the [keyspace](#%5Fget%5Findex%5Fstats%5Fparameters) path parameter must specify the complete name of the keyspace containing the index. It may not omit the scope name or the collection name.
+> 
+> However, if the specified index is stored in the default collection in the default scope within a bucket, then the [keyspace](#%5Fget%5Findex%5Fstats%5Fparameters) path parameter may specify just the bucket name alone.
 
-|  | It is not possible to specify an individual index partition in the path. |
-|  | ------------------------------------------------------------------------ |
+> [!TIP]
+> It is not possible to specify an individual index partition in the path.
 
 #### [](#responses-3)Responses
 

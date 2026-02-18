@@ -1,4 +1,13 @@
+---
+title: Analyze Large Datasets
+description: Overview of the Couchbase Analytics Service
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/introduction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/introduction.html)
+
+# Analyze Large Datasets
 
 Couchbase Analytics is a parallel data management capability for Couchbase Server. Couchbase Analytics is designed to efficiently run complex queries over many records. By complex queries, we mean large ad hoc join, set, aggregation, and grouping operations, any of which may result in long running queries, high CPU usage, high memory consumption, and/or excessive network latency due to data fetching and cross node coordination.
 

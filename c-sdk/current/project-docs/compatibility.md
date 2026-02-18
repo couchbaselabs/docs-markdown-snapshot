@@ -1,4 +1,15 @@
+---
+title: Compatibility of Couchbase Features, Couchbase Server Versions, and the
+  Couchbase C SDK
+description: Features available in different SDK versions, and compatibility
+  between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/project-docs/compatibility.html)
+
+# Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase C SDK
 
 > Features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
@@ -41,8 +52,8 @@ Libcouchbase (the C SDK) is tested and supported on the following platforms:
 * Debian 11 (_Bullseye_), and (since LCB 3.13) Debian 12 (_Bookworm_).
 * Alpine Linux (Since LCB 3.2.5)
 
-|  | Some of the OS versions listed above were supported at time of LCB 3.3 release, but have since gone End of Life, so are no longer supported. See the [release notes page](sdk-release-notes.md#latest-release) for the platforms built with the latest release. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some of the OS versions listed above were supported at time of LCB 3.3 release, but have since gone End of Life, so are no longer supported. See the [release notes page](sdk-release-notes.md#latest-release) for the platforms built with the latest release.
 
 ### Microsoft Windows
 
@@ -80,8 +91,8 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 Recent SDKs offer better resilience in handling errors that may occur when running your application in serverless environments, in particular when processes are frozen or thawed, and a rebalance is required. This means official support for AWS Lambda, Azure Functions, and GCP Functions.
 
-|  | When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly.
 
 Couchbase SDKs indicate the stability of an API through documentation. Since there are different meanings when developers mention stability, we mean **interface stability**: how likely the interface is to change or be removed entirely. A stable interface is one that is guaranteed not to change between versions, meaning that you may use an API of a given SDK version and be assured that the given API will retain the same parameters and behavior in subsequent versions. An unstable interface is one which may appear to work or behave in a specific way within a given SDK version, but may change in its behavior or arguments in future SDK versions, causing odd application behavior or compiler/API usage errors. **Implementation stability** is implied to be more reliable at higher levels, but all are tested to the level that is appropriate for their stability.
 

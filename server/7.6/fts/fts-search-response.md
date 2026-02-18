@@ -1,4 +1,14 @@
+---
+title: Search Response
+description: Full Text Search provides a <em>response object</em>, which
+  contains detailed information on the results of the search.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-search-response.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-search-response.html)
+
+# Search Response
 
 > Full Text Search provides a _response object_, which contains detailed information on the results of the search. Prior to the search, a _facet_ can be add to the response object, and information on _aggregations_ thereby returned. 
 
@@ -47,8 +57,8 @@ These settings allow for the client to maintain state while paginating - the sor
 
 Both the attributes accept an array of strings (sort keys) - the length of this array will need to be the same length of the "sort" array within the search request.
 
-|  | You cannot use both search\_after and search\_before in the same search request. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use both `search_after` and `search_before` in the same search request.
 
 #### [](#example-2)Example
 
@@ -78,8 +88,8 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
 }
 ```
 
-|  | A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results ("size: 10", "from": 0) ordered by _score_ sequentially from the highest to lowest. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ### [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 
@@ -95,8 +105,8 @@ This solution requires a few preconditions be met:
 
 * The search request must specify a sort order.
 
-|  | The sort order must impose a total order on the results. Without this, any results which share the same sort value might be left out when handling the page navigation boundaries. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The sort order must impose a total order on the results. Without this, any results which share the same sort value might be left out when handling the page navigation boundaries.
 
 A common solution to this is to always include the document ID as the final sort criteria.
 
@@ -239,8 +249,8 @@ The example below shows how to specify the object-sort.
 }
 ```
 
-|  | The above sample assumes that the travel-sample bucket has been loaded, and a default index has been created on it. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The above sample assumes that the `travel-sample` bucket has been loaded, and a default index has been created on it.
 
 For information on loading sample buckets, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md). For instructions on creating a default Full Text Index by means of the Couchbase Web Console, see [Creating Index from UI](../search/create-search-index-ui.md).
 
@@ -407,8 +417,8 @@ On the Search page, you can search for a term in any index. The search result di
 
 You can disable the scoring by setting `score` to `none` in the search request. This is recommended in a situation where scoring (document relevancy) is not needed by the application.
 
-|  | Using "score": "none" is expected to boost query performance in certain situations. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using `"score": "none"` is expected to boost query performance in certain situations.
 
 #### [](#example-7)Example
 
@@ -659,10 +669,9 @@ It would not make sense to use it on a unique field like an ID.
 * **Field**: The field over which you want to gather the facet information.
 * **Size**: The number of top categories per partition to be considered for the facet results.  
 For example, size - 3 ⇒ facets results returns the top 3 categories across all partitions and merges them as the final result.  
-Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.
-
-|  | It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+Varying size value varies the count value of each facet and the “others” value as well. This is due to the fact that when the size is varied, some of the categories fall out of the top “n” and into the “others” category.  
+> [!NOTE]  
+> It is recommended to keep the size reasonably large, close to the number of unique terms to get consistent results.
 * **Numeric Range Facet**: A numeric range facet works by the user defining their own buckets (numeric ranges).  
 The facet then counts how many of the matching documents fall into a particular bucket for a particular field.  
 Along with the two fields from term facet, “numeric\_ranges” field has to include all the numeric ranges for the faceted field.  
@@ -680,8 +689,8 @@ The facet ranges go under a field named “date\_ranges”.
   * **Start**: Start date for this range.
   * **End**: End date for this range.
 
-|  | Most of the time, when building a term facet, you must use the keyword analyzer. Otherwise, multi-term values are tokenized, which might cause unexpected results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Most of the time, when building a term facet, you must use the keyword analyzer. Otherwise, multi-term values are tokenized, which might cause unexpected results.
 
 ### [](#example-13)Example
 
@@ -996,8 +1005,8 @@ Total hits represent the total number of matches for this result. It can be any 
 
 ## [](#error-information)Error Information
 
-|  | For all errors listed in the table below, the "status" in the search response always show "fail". |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For all errors listed in the table below, the "status" in the search response always show "fail".
 
 __Table 1\. Search Query Response Codes__
 | Error/Reason            | Description                                           | Response Status | Response Description  |

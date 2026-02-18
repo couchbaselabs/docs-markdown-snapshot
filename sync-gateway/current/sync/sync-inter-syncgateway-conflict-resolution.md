@@ -1,4 +1,13 @@
+---
+title: Enhanced Conflict Resolution
+description: About conflict resolution in inter-Sync Gateway replication
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-conflict-resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/sync/sync-inter-syncgateway-conflict-resolution.html)
+
+# Enhanced Conflict Resolution
 
 > About conflict resolution in inter-Sync Gateway replication  
 > Introduces inter-Sync Gateway replication conflict resolution policies and behaviors
@@ -7,8 +16,10 @@ _Related topics_: [Overview](sync-inter-syncgateway-overview.md) | [Run](sync-in
 
 _Other Topics_: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Admin REST API](../rest-api/rest-api-admin.md)
 
-|  | Context Clarification This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Context Clarification
+> 
+> This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release.
 
 ## [](#automatic-conflict-resolution)Automatic Conflict Resolution
 
@@ -20,8 +31,12 @@ Conflicts are **not** resolved in **push** replications though. The passive end 
 
 Both approaches reflect the way conflicts are handled by Couchbase Lite clients. Not surprising since in both instances Couchbase Lite is acting like the active node in an inter-sync gateway exchange.
 
-|  | Conflicts are only resolved during a **pull** replication. If conflicts occur, you should configure a pushAndPull replication. _Alternatively_: Run the replicator from the other side; flipping the direction (to pull) and the resolution policy (for example localWins becomes remoteWins). See: [Document Conflicts & Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile/) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Conflicts are only resolved during a **pull** replication. If conflicts occur, you should configure a `pushAndPull` replication.
+> 
+> _Alternatively_: Run the replicator from the other side; flipping the direction (to `pull`) and the resolution policy (for example `localWins` becomes `remoteWins`).
+> 
+> See: [Document Conflicts & Resolution in Couchbase Mobile](https://blog.couchbase.com/document-conflicts-couchbase-mobile/)
 
 For [ENTERPRISE EDITION](https://www.couchbase.com/products/editions), a custom conflict resolver policy is available, providing additional flexibility by allowing users to provide their own conflict resolution logic — see: [Inter Sync Gateway Sync - Custom Conflict Resolution](#custom-conflict-resolution-ee)
 
@@ -110,8 +125,8 @@ For detailed information about each conflict resolution policy and how they dete
 
 ## [](#custom-conflict-resolution-ee)Build a Conflict Resolution Policy \[EE\]
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 Custom conflict resolution is handled by the _active_ Sync Gateway using a user-provided [custom conflict resolver![glossary icon](../_images/icons/glossaryIconImage2.png)](../glossary.md#custom-conflict-resolver). This Javascript function is embedded in the replication configuration.
 
@@ -122,10 +137,9 @@ The predefined conflict resolver policies are also available as Javascript funct
 There are two ways to handle conflicts in your custom\_conflict\_resolver, you can either:
 
 * Choose a _winning_ revision from among the conflicting revisions (see [Example 5](#simple-conflict-resolvers)), or
-* Merge conflicting revision to create a new _winning_ revision; losing revisions are tomb-stoned.
-
-|  | When creating a new revision, do not provide a \_rev/\_cv property. Sync Gateway generates a new revision ID/current version. Use delete mergedDoc.\_rev and delete mergedDoc.\_cv to invalidate these properties. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* Merge conflicting revision to create a new _winning_ revision; losing revisions are tomb-stoned.  
+> [!NOTE]  
+> When creating a new revision, do not provide a `_rev/_cv` property. Sync Gateway generates a new revision ID/current version. Use `delete mergedDoc._rev` and `delete mergedDoc._cv` to invalidate these properties.
 
 However, users should avoid overly-complex resolver logic that may affect performance.
 
@@ -167,19 +181,17 @@ Sync Gateway supports the use of Javascript functions to customize the sync proc
 
 You can provide your conflict resolver as either an inline or external JavaScript function.44 You can learn more about the ($db.custom\_conflict\_resolver) property in the Configuration Schema Reference — see: [custom\_conflict\_resolver](../configuration/configuration-schema-database.md#database-replications-this%5Frep-custom%5Fconflict%5Fresolver).
 
-|  | Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
 
 Prior to this, configuration was done within the database configuration file — see: [Example 3](#ex-jsfunc-opts)
 
 * Inline Javascript functions provided within the database configuration must be enclosed by a backtick pair (\`\`).
-* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.
-
-|  | You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
-
-|  | For testing purposes you may use the unsupported configuration option [unsupported.remote\_config\_tls\_skip\_verify](../configuration/configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     ). Setting this true will side-step essential security checks. Do not use in Production deployments. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.  
+> [!NOTE]  
+> You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints.  
+> [!TIP]  
+> For testing purposes you may use the unsupported configuration option `[unsupported.remote_config_tls_skip_verify](../configuration/configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     )`. Setting this `true` will side-step essential security checks. Do not use in Production deployments.
 
 Example 3\. Configuring a Javascript Sync Function
 

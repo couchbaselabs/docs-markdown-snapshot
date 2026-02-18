@@ -1,4 +1,13 @@
+---
+title: Using Couchbase Transactions
+description: Distributed ACID Transactions in Couchbase SDKs
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 > Distributed ACID Transactions in Couchbase SDKs 
 
@@ -22,8 +31,16 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) material fo
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
-|  | Single Node Cluster When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a DurabilityImpossibleException. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via: [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket) [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings) [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options) If the bucket already exists, then the server needs to be rebalanced for the setting to take effect. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Single Node Cluster
+> 
+> When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
+> 
+> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
+> * [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
+> * [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options)
+> 
+> If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
 
 ## [](#creating-a-transaction)Creating a Transaction
 
@@ -105,8 +122,8 @@ You can perform transactional database operations using familiar key-value CRUD 
 * **U**pdate - `replace()`
 * **D**elete - `remove()`
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as ctx.insert(), rather than collection.insert(). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as `ctx.insert()`, rather than `collection.insert()`.
 
 ### [](#insert)Insert
 
@@ -183,8 +200,8 @@ $cluster->transactions()->run(
 
 If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), then its use in transactions is very similar. It returns the same `QueryResult` you are used to, and takes most of the same options.
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as ctx.query(), rather than cluster.query() or scope.query(). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as `ctx.query()`, rather than `cluster.query()` or `scope.query()`.
 
 Here is an example of selecting some rows from the `travel-sample` bucket:
 
@@ -339,8 +356,8 @@ $cluster = new Cluster($CB_HOST, $options);
 
 The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.
 
-|  | A level of None is present but its use is discouraged and unsupported. If durability is set to None, then ACID semantics are not guaranteed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> A level of `None` is present but its use is discouraged and unsupported. If durability is set to `None`, then ACID semantics are not guaranteed.
 
 ## [](#additional-resources)Additional Resources
 

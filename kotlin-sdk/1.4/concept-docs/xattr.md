@@ -1,4 +1,14 @@
+---
+title: Extended Attributes
+description: Extended Attributes (XATTR) are metadata that can be provided on a
+  per-application basis.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/concept-docs/pages/xattr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.4/concept-docs/xattr.html)
+
+# Extended Attributes
 
 > Extended Attributes (XATTR) are metadata that can be provided on a per-application basis. 
 
@@ -12,8 +22,8 @@ The SDK supports extended attributes by means of extensions to the _Sub-Document
 
 For more information, see [Extended Attributes](#7.1@server:learn:data/extended-attributes-fundamentals.adoc).
 
-|  | The maximum content size for a document stored in Couchbase Server is 20MB. XATTRs — including Virtual XATTRs — will reduce the space available for the remainder of the document. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The maximum content size for a document stored in Couchbase Server is 20MB. XATTRs — including Virtual XATTRs — will reduce the space available for the remainder of the document.
 
 ## [](#virtual-extended-attributes)Virtual Extended Attributes
 

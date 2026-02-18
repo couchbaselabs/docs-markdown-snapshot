@@ -1,4 +1,15 @@
+---
+title: Use Queries to Monitor a Capella Analytics Cluster
+description: Monitor your Capella Analytics cluster by obtaining information
+  about query requests that are actively running or that have already been
+  completed.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/monitor-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/monitoring/monitor-query.html)
+
+# Use Queries to Monitor a Capella Analytics Cluster
 
 > Monitor your Capella Analytics cluster by obtaining information about query requests that are actively running or that have already been completed. 
 

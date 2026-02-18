@@ -1,4 +1,15 @@
+---
+title: Migrating to SDK API 3
+description: The SDK API 3 (used in Node.js SDK 3.x and 4.x) introduces breaking
+  changes to the previous SDK API 2 APIs (used in Node.js SDK 2.x) in order to
+  provide a number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating to SDK API 3
 
 > The SDK API 3 (used in Node.js SDK 3.x and 4.x) introduces breaking changes to the previous SDK API 2 APIs (used in Node.js SDK 2.x) in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behavior is more proactive, and lazy bootstrapping moves all error handling to a single place. 
 
@@ -6,8 +17,8 @@ The current Node.js SDK 4.0 is also based on the [SDK API 3.2 specification](com
 
 The intent of this migration guide is to provide detail information on the changes and what to look for while upgrading the SDK.
 
-|  | if you are an existing Node.js SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> if you are an existing Node.js SDK 3._x_ user considering migrating to SDK 4.0, you may wish to skip to the [SDK 4.0 specifics](#sdk4-specifics) below.
 
 This release of the SDK is written to version 3.7 of the SDK API specification (and matching the features available in Couchbase 7.6.6 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
@@ -197,8 +208,8 @@ cluster.close();
 
 `Collections` is generally available from Couchbase Server 7.0 release, but the SDK already encoded it in its API to be future-proof. If you are using a Couchbase Server version which does not support `Collections`, always use the `defaultCollection()` method to access the KV API; it will map to the full bucket.
 
-|  | You’ll notice that bucket(String) returns immediately, even if the bucket resources are not completely opened. This means that the subsequent get operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You’ll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the socket is open in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections).
 
 Also note, you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -248,8 +259,8 @@ Exception in thread "main" com.couchbase.client.core.error.ParsingFailedExceptio
 
 One reason why the APIs do not expose a long list of exceptions is that the SDK now retries as many operations as it can if it can do so safely. This depends on the type of operation (idempotent or not), in which state of processing it is (already dispatched or not), and what the actual response code is if it arrived already. As a result, many transient cases — such as locked documents, or temporary failure — are now retried by default and should less often impact applications. It also means, when migrating to SDK API 3, you may observe a longer period of time until an error is returned by default.
 
-|  | Operations are retried by default as described above with the default BestEffortRetryStrategy. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations are retried by default as described above with the default `BestEffortRetryStrategy`.
 
 ## [](#migrating-services)Migrating Services
 
@@ -334,8 +345,8 @@ In SDK API 2, the `getFromReplica` method had a `ReplicaMode` argument which all
 
 Unless you want to build some kind of consensus between the different replica responses, we recommend `getAnyReplica` for a fallback to a regular `get` when the active node times out.
 
-|  | Operations which cannot be performed on JSON documents have been moved to the binarycollection, accessible through Collection.binary(). These operations include append, prepend, increment, and decrement (previously called counter in SDK API 2). These operations should only be used against non-json data. Similar functionality is available through mutateIn on JSON documents. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations which cannot be performed on JSON documents have been moved to the `binarycollection`, accessible through `Collection.binary()`. These operations include `append`, `prepend`, `increment`, and `decrement` (previously called `counter` in SDK API 2). These operations should only be used against non-json data. Similar functionality is available through `mutateIn` on JSON documents.
 
 ### [](#query)Query
 

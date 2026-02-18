@@ -1,4 +1,12 @@
+---
+title: Spark SQL Integration
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/spark-sql.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/spark-sql.html)
+
+# Spark SQL Integration
 
 > Spark SQL allows accessing Query and Analytics in powerful and convenient ways. 
 

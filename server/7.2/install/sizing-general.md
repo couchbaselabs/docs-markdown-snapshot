@@ -1,4 +1,15 @@
+---
+title: Sizing Guidelines
+description: Evaluate the overall performance and capacity goals that you have
+  for Couchbase, and use that information to determine the necessary resources
+  that you'll need in your deployment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/sizing-general.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/sizing-general.html)
+
+# Sizing Guidelines
 
 > Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you’ll need in your deployment. 
 
@@ -8,8 +19,8 @@ With the increasing number of Couchbase services and the flexibility of the Couc
 
 If you want detailed recommendations for your specific deployment, you can contact Couchbase Support.
 
-|  | The sizing recommendations and calculations discussed in this guide are based on an analysis of performance data and common use-cases. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The sizing recommendations and calculations discussed in this guide are based on an analysis of performance data and common use-cases.
 
 ## [](#general-considerations)General Considerations
 

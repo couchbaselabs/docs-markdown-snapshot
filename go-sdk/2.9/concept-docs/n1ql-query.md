@@ -1,4 +1,14 @@
+---
+title: Query
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/concept-docs/n1ql-query.html)
+
+# Query
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
@@ -18,8 +28,8 @@ For Couchbase Server 6.0 and earlier, the generated plan is not influenced by pl
 
 If your queries are highly dynamic, we recommend using parameterized queries if possible (epecially when prepared statements are not used). Parameterized queries are more cache efficient and will allow for better performance.
 
-|  | In Go SDK {go-current-version} and earlier, the adhoc parameter is Adhoc. It is set to false by default — set to true for a plan _not_ to be prepared, or a prepared plan _not_ to be reused. The 5000 limit to the client-side cache also does not apply. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Go SDK {go-current-version} and earlier, the `adhoc` parameter is `Adhoc`. It is set to `false` by default — set to `true` for a plan _not_ to be prepared, or a prepared plan _not_ to be reused. The 5000 limit to the client-side cache also does not apply.
 
 ```golang
 		query := "SELECT count(*) FROM `travel-sample`.inventory.airport where country = $1;"
@@ -44,8 +54,8 @@ If your queries are highly dynamic, we recommend using parameterized queries if 
 
 The Couchbase query service makes use of [_indexes_](#7.1@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#7.1@server:learn:services-and-indexes/services/services.adoc) topologies.
 
-|  | In order to make a bucket queryable, it must have at least one index defined. |
-|  | ----------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In order to make a bucket queryable, it must have at least one index defined.
 
 You can define a _primary index_ on a bucket. When a _primary_ index is defined you can issue non-covered (see below) queries on the bucket as well. This includes using the `META` function in the queries.
 

@@ -1,4 +1,13 @@
+---
+title: Setting Thread Allocations
+description: The number of threads allocated per node is configurable.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-reader-writer-thread-config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-reader-writer-thread-config.html)
+
+# Setting Thread Allocations
 
 > The number of threads allocated per node is configurable. 
 
