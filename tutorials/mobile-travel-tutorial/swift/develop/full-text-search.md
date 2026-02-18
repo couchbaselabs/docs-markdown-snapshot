@@ -1,4 +1,12 @@
+---
+title: Full Text Search
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/full-text-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/develop/full-text-search.html)
+
+# Full Text Search
 
 Couchbase Lite \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] supports Full Text Search (FTS). FTS is accomplished using the `match` query. FTS matches are case-insensitive. In the Travel App, the FTS query is against local "travel-sample" documents that is pre-built with the app.
 

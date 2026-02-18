@@ -1,4 +1,12 @@
+---
+title: Adding Security
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/java/adding-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/develop/java/adding-security.html)
+
+# Adding Security
 
 In this lesson you’ll learn how to add security to your Couchbase Mobile application. You’ll implement authentication and define access control, data validation, and access grant policies.
 
@@ -41,8 +49,8 @@ $ /path/to/sync_gateway sync-gateway-config.json
 PS  'C:\Program Files (x86)\Couchbase\sync_gateway.exe' sync-gateway-config.json  
 ```
 
-|  | The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'. Two users are now visible at <http://localhost:4985/%5Fadmin/db/todo/users>. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Sync Gateway service might be running on Windows which will prevent this command from succeeding with the message 'FATAL: Failed to start HTTP server on 127.0.0.1:4985: listen tcp 127.0.0.1:4985: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.' To get around this, stop the 'Couchbase Sync Gateway' service in 'services.msc'. Two users are now visible at <http://localhost:4985/%5Fadmin/db/todo/users>.
 
 ### [](#replications-with-authentication)Replications with Authentication
 
@@ -176,8 +184,8 @@ You can use different API methods to route documents to channels, grant users ac
 
 ![image15](../../_images/image15.png) 
 
-|  | Open the [Access Control](#swift/adding-security.adoc) lesson in a new tab, it will be useful throughout this section. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Open the [Access Control](#swift/adding-security.adoc) lesson in a new tab, it will be useful throughout this section.
 
 ### [](#document-types)Document Types
 
@@ -269,8 +277,8 @@ The output should be the following:
 ]  
 ```
 
-|  | The curl executable for Windows can be found [on this page](https://curl.haxx.se/download.html)The document without a type is rejected with an error message: type property missing. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The curl executable for Windows can be found [on this page](https://curl.haxx.se/download.html)The document without a type is rejected with an error message: type property missing.
 
 ### [](#write-permissions)Write Permissions
 

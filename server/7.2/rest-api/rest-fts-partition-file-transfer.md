@@ -1,4 +1,13 @@
+---
+title: Rebalance Based on File Transfer
+description: The Search-Service REST API configures rebalance based on file transfer.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-fts-partition-file-transfer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-fts-partition-file-transfer.html)
+
+# Rebalance Based on File Transfer
 
 > The Search-Service REST API configures rebalance based on file transfer. 
 
@@ -26,8 +35,8 @@ If the value specified for the key `disableFileTransferRebalance` is `false` (wh
 
 If you set `enableReplicaCatchupOnRebalance` to `true`, Couchbase Server tracks its progress when copying FTS replica index partitions during a rebalance. This option only has an effect when `disableFileTransferRebalance` is false. It tracks its progress by comparing the sequence numbers of the partitions it has copied with the partition sequence numbers on the node containing the original partitions. Having Couchbase Server track its progress helps prevent problems such as rollbacks in later rebalance operations. Couchbase Server automatically tracks its progress using this method when copying active partitions. When `enableReplicaCatchupOnRebalance` is the default value of `false`, Couchbase Server does not monitor its progress when copying replica partitions. This setting reduces the overhead of a rebalance. However it can result in some replica partitions being only partially rebuilt.
 
-|  | Enabling enableReplicaCatchupOnRebalance impacts performance due to the added overhead of monitoring the progress of copying replica partitions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Enabling `enableReplicaCatchupOnRebalance` impacts performance due to the added overhead of monitoring the progress of copying replica partitions.
 
 ## [](#responses)Responses
 

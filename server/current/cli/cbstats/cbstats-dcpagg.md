@@ -1,4 +1,14 @@
+---
+title: dcpagg
+description: Retrieves statistics that are logically grouped and aggregated
+  together by prefixes.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-dcpagg.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-dcpagg.html)
+
+# dcpagg
 
 > Retrieves statistics that are logically grouped and aggregated together by prefixes. 
 

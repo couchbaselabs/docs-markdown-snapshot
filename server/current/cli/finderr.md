@@ -1,4 +1,14 @@
+---
+title: finderr
+description: The <code class="cmd">finderr</code> tool returns the full details
+  of any Query service or cbq shell error.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/finderr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/finderr.html)
+
+# finderr
 
 > The `finderr` tool returns the full details of any Query service or cbq shell error. 
 
@@ -51,8 +61,8 @@ Full error details include some or all of the following fields.
 | **USER ACTION** | List of possible steps a user can take to mitigate the error.                                                                                                         |
 | **USER ERROR**  | One of the following: Yes: The error was caused by the user. No: The error was caused by other services, or was internal to the server. Maybe: A combination of both. |
 
-|  | The error details also include a SYMBOL field, which contains a representation string for the error. This field is for internal use only, and is not shown in the output. However, the tool does search this field when the find argument is a string or a regular expression. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The error details also include a `SYMBOL` field, which contains a representation string for the error. This field is for internal use only, and is not shown in the output. However, the tool does search this field when the find argument is a string or a regular expression.
 
 ## [](#examples)Examples
 

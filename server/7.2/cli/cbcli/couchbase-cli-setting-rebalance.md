@@ -1,4 +1,13 @@
+---
+title: setting-rebalance
+description: Modifies rebalance retry settings
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-setting-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-setting-rebalance.html)
+
+# setting-rebalance
 
 Modifies rebalance retry settings
 

@@ -1,4 +1,15 @@
+---
+title: SELECT Overview
+description: With the SELECT statement, you can query and manipulate JSON data.
+  You can select, join, project, nest, unnest, group, and sort in a single
+  SELECT statement.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/selectintro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/selectintro.html)
+
+# SELECT Overview
 
 > With the SELECT statement, you can query and manipulate JSON data. You can select, join, project, nest, unnest, group, and sort in a single SELECT statement. 
 
@@ -176,8 +187,8 @@ The possible elements and operations in a query include:
 
 You can filter the query results using the WHERE clause. Consider the following example which queries for all airports in the America/Anchorage timezone that are at an altitude of 2000ft or more. The WHERE clause specifies the conditions that must be satisfied by the documents to be included in the resultset, and the resultset is returned as an array of airports that satisfy the condition.
 
-|  | The keys in the result object are ordered alphabetically at each level. |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> The keys in the result object are ordered alphabetically at each level.
 
 Query
 

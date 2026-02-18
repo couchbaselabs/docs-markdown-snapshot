@@ -1,9 +1,17 @@
+---
+title: Install the Operator on Kubernetes
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/install-kubernetes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/install-kubernetes.html)
+
+# Install the Operator on Kubernetes
 
 > This guide walks through the recommended procedure for installing the Couchbase Kubernetes Operator on an open source Kubernetes cluster that has _RBAC enabled_. 
 
-|  | If you are looking to upgrade an existing installation of the Operator, see [Upgrading the Kubernetes Operator](howto-operator-upgrade.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are looking to upgrade an existing installation of the Operator, see [Upgrading the Kubernetes Operator](howto-operator-upgrade.md).
 
 ## [](#helm-installation)Helm Installation
 
@@ -15,8 +23,8 @@ The guide below is for installing the Operator package _directly_.
 
 Download the Operator [package](https://www.couchbase.com/downloads) and unpack it on the same computer where you normally run `kubectl`. The Operator package contains YAML configuration files and command-line tools that you will use to install the Operator.
 
-|  | After you unpack the download, the resulting directory will be titled something like couchbase-autonomous-operator-kubernetes\_x.x.x-linux\_x86\_64. Make sure to cd into this directory before you run the commands in this guide. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> After you unpack the download, the resulting directory will be titled something like `couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64`. Make sure to `cd` into this directory before you run the commands in this guide.
 
 All commands in this guide are run as a system administrator account; they require the creation of cluster scoped resources or the granting of roles to service accounts (privilege escalation).
 
@@ -86,8 +94,8 @@ The Operator is ready to deploy `CouchbaseCluster` resources when both the DAC a
 
 Uninstalling the DAC and Operator is the reverse of the installation process:
 
-|  | If you are performing an uninstall in order to upgrade the Operator to a newer version, do not delete the CRDs as this is only relevant for a full uninstall. Failure to do so will result in the deletion of all Couchbase clusters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are performing an uninstall in order to upgrade the Operator to a newer version, do not delete the CRDs as this is only relevant for a full uninstall. Failure to do so will result in the deletion of all Couchbase clusters.
 
 ```console
 $ bin/cao delete operator

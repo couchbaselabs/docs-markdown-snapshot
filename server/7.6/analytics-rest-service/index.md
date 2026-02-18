@@ -1,4 +1,13 @@
+---
+title: Analytics Service REST API
+description: A description of the Service REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/analytics-rest-service/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics-rest-service/index.html)
+
+# Analytics Service REST API
 
 ## [](#overview)Overview
 
@@ -282,10 +291,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| All of …​                                 |                                               | Schema                                   |
-| ----------------------------------------- | --------------------------------------------- | ---------------------------------------- |
-| Parameters common with the Query Service. | [Common Parameters](#ParametersCommon)        |                                          |
-| and                                       | Parameters specific to the Analytics Service. | [Analytics Parameters](#ParametersLocal) |
+| All of …​ |                                               | Schema                                   |
+| --------- | --------------------------------------------- | ---------------------------------------- |
+|           | Parameters common with the Query Service.     | [Common Parameters](#ParametersCommon)   |
+| and       | Parameters specific to the Analytics Service. | [Analytics Parameters](#ParametersLocal) |
 
 #### Common Parameters
 
@@ -323,10 +332,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| All of …​                                |                                              | Schema                                 |
-| ---------------------------------------- | -------------------------------------------- | -------------------------------------- |
-| Responses common with the Query Service. | [Common Responses](#ResponsesCommon)         |                                        |
-| and                                      | Responses specific to the Analytics Service. | [Analytics Responses](#ResponsesLocal) |
+| All of …​ |                                              | Schema                                 |
+| --------- | -------------------------------------------- | -------------------------------------- |
+|           | Responses common with the Query Service.     | [Common Responses](#ResponsesCommon)   |
+| and       | Responses specific to the Analytics Service. | [Analytics Responses](#ResponsesLocal) |
 
 #### Common Responses
 
@@ -395,8 +404,8 @@ This section describes the properties consumed and returned by this REST API.
 | **expressionTree**optional          | The expression tree.           | String |
 | **job**optional                     | The job details.               | Object |
 
-|  | The structure and content of query plans is expected to change as development of the query processor progresses. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The structure and content of query plans is expected to change as development of the query processor progresses.
 
 #### Analytics Metrics
 

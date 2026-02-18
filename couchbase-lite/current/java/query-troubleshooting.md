@@ -1,4 +1,13 @@
+---
+title: Query Troubleshooting
+description: Couchbase Lite Queries -- troubleshooting
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/query-troubleshooting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/java/query-troubleshooting.html)
+
+# Query Troubleshooting
 
 > Description — _Couchbase Lite Queries — troubleshooting_  
 > _Abstract — This content describes how to use the Couchbase Lite on Java Query API’s explain() method to examine a query_  
@@ -117,8 +126,10 @@ When planning the indexes you need for your database, remember that while indexe
 
 Too many indexes may hurt performance. Optimal performance depends on designing and creating the _right_ indexes to go along with your queries.
 
-|  | ConstraintsCouchbase Lite for jvm does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> Couchbase Lite for jvm does not currently support partial value indexes; indexes with non-property expressions. You should only index with properties that you plan to use in the query.
 
 The Query optimizer converts your query into a parse tree that groups zero or more _and-connected_ clauses together (as dictated by your `where` conditionals) for effective query engine processing.
 
@@ -150,8 +161,8 @@ To illustrate this we can use a modified query from the Mobile Travel Sample app
 
 In [Like with Wildcard Prefix](#like-wild-pfx-qry) we use a wildcard prefix and suffix. You can see that the query plan decides on a retrieval method of `Scan Table`.
 
-|  | For more on indexes — see: [Indexing](indexing.md) |
-|  | -------------------------------------------------- |
+> [!TIP]
+> For more on indexes — see: [Indexing](indexing.md)
 
 Like with Wildcard Prefix
 

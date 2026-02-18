@@ -1,4 +1,12 @@
+---
+title: Getting Started with Peer-to-Peer Sync on Xamarin (UWP, iOS, and Android)
+editUrl: https://github.com/couchbaselabs/couchbase-lite-peer-to-peer-sync-examples/edit/master/content/modules/cbl-p2p-sync-websockets/pages/dotnet/cbl-p2p-sync-websockets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/cbl-p2p-sync-websockets/dotnet/cbl-p2p-sync-websockets.html)
+
+# Getting Started with Peer-to-Peer Sync on Xamarin (UWP, iOS, and Android)
 
 > This tutorial uses a simple inventory tracker app to demonstrate Couchbase Lite’s peer-to-peer database sync functionality. 
 
@@ -15,8 +23,8 @@ We will be using a simple inventory app as an example to demonstrate the peer-to
 * How to start a bi-directional replication from active peer.
 * How to sync data between connected peers
 
-|  | You need to add the UWP app to the Exception list on the Windows Firewall. |
-|  | -------------------------------------------------------------------------- |
+> [!NOTE]
+> You need to add the UWP app to the Exception list on the Windows Firewall.
 
 Throughout this tutorial, these terms are used interchangeably:
 
@@ -476,15 +484,14 @@ Try it out
 3. On login screen, sign in as any one of the users configured in the `userallowlist.json` file such as "bob" and "password". As an exercise, try with an invalid user and ensure it fails
 4. You can find 4 selections (`What’s in Season?`, `Listener`, `Browser`, and `Logout`) under the "hamburger" menu located on the upper left hand side.
 5. Select "Browser" from the "hamburger" menu.  
-The app automatically browses for listener and lists it here when any listener is broadcasting.
-
-|  | If the listener is not started before the "Browser" is selected, you will need to click the Broadcast toolbar item locates on top of the ListenerPage (See Broadcast in [Passive Peer or Server](#passive-peer-or-server))You will need to manually enter the listener’s IP endpoint (eg: 192.168.0.14:59840) for Xamarin android app. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The app automatically browses for listener and lists it here when any listener is broadcasting.  
+> [!NOTE]  
+> If the listener is not started before the "Browser" is selected, you will need to click the `Broadcast` toolbar item locates on top of the `ListenerPage` (See `Broadcast` in [Passive Peer or Server](#passive-peer-or-server))  
+> You will need to manually enter the listener’s IP endpoint (eg: 192.168.0.14:59840) for Xamarin android app.
 6. Tap on the row corresponding to listener.  
-This will start replication with the listener and it should transition to Connected state
-
-|  | If you [Cannot connect Android app active peer to passive peer when you are using Xamarin.Android SDK 9.x or other older version?](#cannot-connect-android-app-active-peer-to-passive-peer-when-you-are-using-xamarin-android-sdk-9-x-or-other-older-version) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+This will start replication with the listener and it should transition to Connected state  
+> [!NOTE]  
+> If you [Cannot connect Android app active peer to passive peer when you are using Xamarin.Android SDK 9.x or other older version?](#cannot-connect-android-app-active-peer-to-passive-peer-when-you-are-using-xamarin-android-sdk-9-x-or-other-older-version)
 7. Verify the connection count on listener by clicking "Peers" toolbar item locates on top of the `ListenerPage` (See `Broadcast` in [Passive Peer or Server](#passive-peer-or-server))
 8. Tap on the row corresponding to listener again.  
 This will stop replication with the listener and it should transition to Disconnected state. Try Disconnect and then reconnect again
@@ -538,8 +545,8 @@ Complete documentation is available [here](../../../couchbase-lite/current/cshar
 
 ### Connecting to an Android emulator
 
-|  | Sync will not work between two emulators. At least one app must be running on a device. |
-|  | --------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Sync will not work between two emulators. At least one app must be running on a device.
 
 When starting a listener on Android emulator and trying to connect it from a device or iOS simulator on localhost, the following steps must be followed:
 
@@ -554,10 +561,12 @@ adb forward tcp:35262 tcp:35262
 5. On your device or iOS simulator,
 
   1. Within the App, select **Browser**
-  2. Enter your required endpoint including the hard-coded port number
-
-|  | You cannot connect to an emulator directly over localhost.Regardless of the IP address in the displayed URL, ignore it and use 127.0.0.1 as the host address.For example, if the listener is listening on 10.2.0.15:35262,you must connect to URL 127.0.0.1:35262. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  2. Enter your required endpoint including the hard-coded port number  
+  > [!NOTE]  
+  > You cannot connect to an emulator directly over localhost.  
+  > Regardless of the IP address in the displayed URL, ignore it and use `127.0.0.1` as the host address.  
+  > For example, if the listener is listening on `10.2.0.15:35262`,  
+  > you must connect to URL `127.0.0.1:35262`.
 6. Within the Android emulater app, **Start listener**  
 You can make an inventory change and see the change sync to the other app.
 

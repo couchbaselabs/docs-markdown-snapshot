@@ -1,4 +1,14 @@
+---
+title: Manage Replications
+description: Use the procedures on this page to create and manage XDCR (Cross
+  Data Center Replication) with Capella operational clusters.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-replications.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/xdcr/manage-xdcr-replications.html)
+
+# Manage Replications
 
 > Use the procedures on this page to create and manage XDCR (Cross Data Center Replication) with Capella operational clusters. 
 
@@ -10,8 +20,8 @@ Configure XDCR to replicate data between source and destination buckets. XDCR co
 * To delete or create a new replication, you need the [Project Owner](../../projects/project-roles.md#project-owner-role) role for the projects that contain your source cluster and destination cluster.
 * You have created a single node or multi-node cluster that you want to use for replication, either as a source or destination cluster.
 
-|  | Replication on single node clusters is only supported for development or test use cases. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Replication on single node clusters is only supported for development or test use cases.
 
 ## [](#view-your-replications)View Your Replications
 
@@ -31,8 +41,8 @@ If you have already created replications for your cluster, you’ll see a summar
 
 ## [](#create-replication)Create a Replication
 
-|  | Source and destination buckets must have the same [conflict resolution method](xdcr.md#conflict-resolution) configured. If your source and destination buckets use different conflict resolution methods, then you cannot create a replication. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Source and destination buckets must have the same [conflict resolution method](xdcr.md#conflict-resolution) configured. If your source and destination buckets use different conflict resolution methods, then you cannot create a replication.
 
 Data replication can be between:
 
@@ -54,8 +64,10 @@ Clusters hosted by Couchbase Capella support the following replications:
 
 ### [](#between-capella-dbs)Create a Replication Between Operational Clusters
 
-|  | Replication Security Replications between Capella operational clusters are secured by default. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Replication Security
+> 
+> Replications between Capella operational clusters are secured by default.
 
 To create a replication between 2 operational clusters:
 
@@ -84,14 +96,12 @@ For more information about deletion filters, see [Deletion Filters](../../../ser
 9. If your operational cluster is on Couchbase Server version 7.2.2 or later, choose whether to **Filter Binary Documents**.  
 For more information about filtering binary documents from XDCR, see [Filtering Binary Documents](../../../server/current/manage/manage-xdcr/filter-xdcr-replication.md#filtering-binary-documents) in the Server documentation.
 10. Choose a **High**, **Medium**, or **Low** Replication Priority. For more information about each option, see [XDCR Priority](../../../server/current/learn/clusters-and-availability/xdcr-overview.md#xdcr-priority). A setting only takes effect if there are multiple replications with different priorities.
-11. To set a network usage limit, under **Set Network Usage Limit**, click **Enable**. Enter a limit in MiB per second for the maximum network usage of this replication.
-
-|  | This limit applies to all replications for your source cluster. |
-|  | --------------------------------------------------------------- |
-12. (Optional) If you want to replicate all scopes and collections on your source cluster to your target cluster, under **Replicate All Scopes and Collections**, click **Yes**.
-
-|  | To replicate your scopes and collections, each scope and collection must already exist with the same name on the source and target buckets. If you want to replicate documents to a different target scope and collection from your source, click **No**. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+11. To set a network usage limit, under **Set Network Usage Limit**, click **Enable**. Enter a limit in MiB per second for the maximum network usage of this replication.  
+> [!NOTE]  
+> This limit applies to all replications for your source cluster.
+12. (Optional) If you want to replicate all scopes and collections on your source cluster to your target cluster, under **Replicate All Scopes and Collections**, click **Yes**.  
+> [!NOTE]  
+> To replicate your scopes and collections, each scope and collection must already exist with the same name on the source and target buckets. If you want to replicate documents to a different target scope and collection from your source, click **No**.
 
   1. In the **Source Name** list, choose a scope and then a specific collection on your source cluster to replicate.
   2. In the **Target Name** list, choose the scope and specific collection on your target cluster to receive the replicated documents.
@@ -100,8 +110,8 @@ For more information about filtering binary documents from XDCR, see [Filtering 
 
 It may take some time for your replication to be set up and start replicating documents.
 
-|  | Bi-directional XDCR with Sync Gateway requires Server versions 7.6.6+, and Sync Gateway (App Services) versions 4.0+. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Bi-directional XDCR with Sync Gateway requires Server versions 7.6.6+, and Sync Gateway (App Services) versions 4.0+.
 
 ### [](#from-on-prem-to-capella)Create a Replication to Capella from a Self-Managed Cluster
 
@@ -150,8 +160,8 @@ To route your replications through a peered VPC network:
 
 For more information about routing your replication through a peered VPC network, see [Replicate Data Over a VPC Peering Connection](manage-xdcr-security.md#vpc-peering).
 
-|  | XDCR over private endpoints is only available upon request from [Support](../../support/manage-support.md#create-support-ticket). |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> XDCR over private endpoints is only available upon request from [Support](../../support/manage-support.md#create-support-ticket).
 
 To route your replication through a private endpoint connection, see [Replicate Data Over a Private Endpoint](manage-xdcr-security.md#private-endpoints).
 
@@ -162,10 +172,9 @@ To get the hostname to use in the XDCR remote cluster reference:
 1. In the Capella UI, go to **Operational** and select your cluster name.
 2. Choose 1 of the following options. If your replication is traveling through:
 
-  1. A peered VPC network or the public Internet, go to **Connect** **SDKs** and copy the Public Connection String without the `couchbases://` prefix. The public connection string is also the DNS SRV of the cluster.
-
-|  | Although the connection string is sometimes referred to as the "public connection string," if you have VPC peering set up the connection string resolves to private addresses. For more information, see [Configure a VPC Peering Connection](../../clouds/private-network.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. A peered VPC network or the public Internet, go to **Connect** **SDKs** and copy the Public Connection String without the `couchbases://` prefix. The public connection string is also the DNS SRV of the cluster.  
+  > [!NOTE]  
+  > Although the connection string is sometimes referred to as the "public connection string," if you have VPC peering set up the connection string resolves to private addresses. For more information, see [Configure a VPC Peering Connection](../../clouds/private-network.md).
   2. A private endpoint, go to **Settings** **Private Endpoints** and copy the **Private Endpoint DNS**.
 
 #### [](#copy-certificate)Copy Your Operational Cluster’s Security Certificate
@@ -178,8 +187,8 @@ To copy your operational cluster’s security certificate:
 
 #### [](#xdcr-remote-ref)Set Up XDCR Remote Reference
 
-|  | XDCR compatibility can vary between different versions of Couchbase Enterprise Server. To view and confirm compatibility, see [XDCR Compatibility](../../../server/current/learn/clusters-and-availability/xdcr-overview.md#xdcr-compatibility). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> XDCR compatibility can vary between different versions of Couchbase Enterprise Server. To view and confirm compatibility, see [XDCR Compatibility](../../../server/current/learn/clusters-and-availability/xdcr-overview.md#xdcr-compatibility).
 
 To set up your XDCR remote reference, choose the Couchbase Server version of your self-managed cluster:
 
@@ -203,8 +212,8 @@ To setup an XDCR remote reference:
 4. Complete the setup for your replication.  
 For more information about how to set up a replication in Couchbase Server, see [Create a Replication](../../../server/current/manage/manage-xdcr/create-xdcr-replication.md) in the Couchbase Server documentation.
 
-|  | If you’re [securing your replication over a private endpoint](#cluster:xdcr/manage-xdcr-security.adoc#xdcr-pe-limits), you can only setup the XDCR remote reference using the [REST API](../../../server/current/rest-api/rest-xdcr-create-ref.md). In your [curl Syntax](../../../server/current/rest-api/rest-xdcr-create-ref.md#curl-syntax), you must set the hostname as the **Private Endpoint DNS** and network type as network\_type=external. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you’re [securing your replication over a private endpoint](#cluster:xdcr/manage-xdcr-security.adoc#xdcr-pe-limits), you can only setup the XDCR remote reference using the [REST API](../../../server/current/rest-api/rest-xdcr-create-ref.md). In your [curl Syntax](../../../server/current/rest-api/rest-xdcr-create-ref.md#curl-syntax), you must set the hostname as the **Private Endpoint DNS** and network type as `network_type=external`.
 
 To setup an XDCR remote reference:
 
@@ -226,8 +235,15 @@ For more information about how to set up a replication in Couchbase Server, see 
 
 Replicate your data from an operational cluster to a self-managed cluster that’s in an on-premises datacenter or a non-Capella cloud.
 
-|  | Replication Security Security options for self-managed XDCR replications vary based on the source and destination cluster deployment configurations. For replications from a Capella operational cluster to a self-managed cluster, you can choose to connect through: [The public Internet](manage-xdcr-security.md#public-internet). [VPC Peering](manage-xdcr-security.md#vpc-peering). For more information, see [Manage Replication Security](manage-xdcr-security.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Replication Security
+> 
+> Security options for self-managed XDCR replications vary based on the source and destination cluster deployment configurations. For replications from a Capella operational cluster to a self-managed cluster, you can choose to connect through:
+> 
+> * [The public Internet](manage-xdcr-security.md#public-internet).
+> * [VPC Peering](manage-xdcr-security.md#vpc-peering).
+> 
+> For more information, see [Manage Replication Security](manage-xdcr-security.md).
 
 To configure the replication, the Capella administrator must have the following:
 
@@ -248,8 +264,8 @@ To replicate data from Capella to a self-managed cluster:
 1. [Add the self-managed cluster as a target](#add-self-managed-cluster).
 2. [Select the self-managed cluster to be the target for a specific replication](#replicate-to-self-managed-target).
 
-|  | If you want to view your self-managed target over a private network, set up VPC Peering for the connection before adding your self-managed target. For information, see [Configure a Private Network](../../clouds/private-network.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want to view your self-managed target over a private network, set up VPC Peering for the connection before adding your self-managed target. For information, see [Configure a Private Network](../../clouds/private-network.md).
 
 #### [](#add-self-managed-cluster)Add a Self-Managed Target
 

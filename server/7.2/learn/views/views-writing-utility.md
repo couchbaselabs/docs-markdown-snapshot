@@ -1,4 +1,14 @@
+---
+title: Built-in Utility Functions
+description: Utility functions are available that can be used within
+  <code>map()</code> and <code>reduce()</code> functions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-writing-utility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-writing-utility.html)
+
+# Built-in Utility Functions
 
 > Utility functions are available that can be used within `map()` and `reduce()` functions. 
 

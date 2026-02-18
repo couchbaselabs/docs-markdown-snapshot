@@ -1,4 +1,14 @@
+---
+title: Search Functions
+description: Search functions enable you to use Full Text Search (FTS) queries
+  directly within a SQL++ query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/searchfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/searchfun.html)
+
+# Search Functions
 
 Search functions enable you to use [Full Text Search (FTS)](../../search/search.md) queries directly within a SQL++ query.
 
@@ -6,8 +16,8 @@ Search functions enable you to use [Full Text Search (FTS)](../../search/search.
 
 To use any of the search functions, the Search Service must be available on the cluster. It’s recommended that you create a suitable Search index for the searches that you want to run. For more information, refer to [Create a Search Index](../../search/create-search-indexes.md).
 
-|  | The examples in this page all assume that demonstration Search indexes have been created, as described in [Demonstration Indexes](#server:fts:fts-demonstration-indexes.adoc). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The examples in this page all assume that demonstration Search indexes have been created, as described in [Demonstration Indexes](#server:fts:fts-demonstration-indexes.adoc).
 
 ### Authorization
 
@@ -27,15 +37,15 @@ This function enables you to use a Full Text Search to filter a result set, or a
 
 If a query contains a SEARCH function, the Query engine analyzes the entire query, including the search specification, to select the best index to use with this search, taking any index hints into account. The Query engine then passes the search specification over to the Search engine to perform the search.
 
-|  | If no suitable Search index can be selected, or no Search index exists, the Query engine falls back on a Primary index or qualified GSI index to produce document keys, and then fetches the documents. The Search Service then creates a temporary index in memory to perform the search. This process may be slower than using a suitable Search index. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If no suitable Search index can be selected, or no Search index exists, the Query engine falls back on a Primary index or qualified GSI index to produce document keys, and then fetches the documents. The Search Service then creates a temporary index in memory to perform the search. This process may be slower than using a suitable Search index.
 
 If your cluster is running Couchbase Server version 7.6.2 and there is no suitable Search index, but you want to return XATTRs data from your documents in another part of your SQL++ query, you must use the [META function](#metafun.adoc#meta) to select the XATTRs field you want to return. SQL++ cannot return XATTRs data without a specific field name.
 
 If you do have a Search index available for your query that includes XATTRs data, and you still want to use that data outside of the SEARCH function, you must use the [SEARCH\_META() function](#search%5Fmeta) to select the XATTRs field. You must also include the [fields property](../../search/search-request-params.md#fields) with the name of the XATTRs field in your Search request.
 
-|  | From Couchbase Server 7.6 and later, when you use the SEARCH function, you do not need to use the [keyword analyzer](../../search/default-analyzers-reference.md#keyword) in your Search index to run a non-analytic query. You also do not need to match the analyzer in a query to the analyzer in the Search index for an analytic query. For more information about how to set the analyzer for a Search index, see [Configure Global Search Index Settings](../../search/create-search-index-ui.md#default-analyzer) or the [Mapping Object](../../search/search-index-params.md#mapping). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From Couchbase Server 7.6 and later, when you use the SEARCH function, you do not need to use the [keyword analyzer](../../search/default-analyzers-reference.md#keyword) in your Search index to run a non-analytic query. You also do not need to match the analyzer in a query to the analyzer in the Search index for an analytic query. For more information about how to set the analyzer for a Search index, see [Configure Global Search Index Settings](../../search/create-search-index-ui.md#default-analyzer) or the [Mapping Object](../../search/search-index-params.md#mapping).
 
 ### [](#search-function-arguments-section)Arguments
 
@@ -43,8 +53,11 @@ identifier
 
 \[Required\] An expression in the form `_keyspaceAlias_[._path_]`, consisting of the keyspace or keyspace alias in which to search, followed by the path to a field in which to search, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, and the identifier contains a path, the keyspace or keyspace alias may be omitted. However, if the path is omitted, the keyspace or keyspace alias is mandatory. When the identifier contains a path, it is used as the default field in the _query_ argument, as long as the _query_ argument is a query string. If the path is omitted, the default field is set to \_all. If the _query_ argument is a query string which specifies a field, this field takes priority, and the path in the identifier is ignored. Similarly, if the _query_ argument is a query object, the path is ignored. The path must use Search syntax rather than SQL++ syntax; in other words, you cannot specify array locations such as \[\*\] or \[3\] in the path. If the keyspace, keyspace alias, or path contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, and the identifier contains a path, the keyspace or keyspace alias may be omitted. However, if the path is omitted, the keyspace or keyspace alias is mandatory.
+> * When the identifier contains a path, it is used as the default field in the _query_ argument, as long as the _query_ argument is a query string. If the path is omitted, the default field is set to `_all`. If the _query_ argument is a query string which specifies a field, this field takes priority, and the path in the identifier is ignored. Similarly, if the _query_ argument is a query object, the path is ignored.
+> * The path must use Search syntax rather than SQL++ syntax; in other words, you cannot specify array locations such as `[*]` or `[3]` in the path.
+> * If the keyspace, keyspace alias, or path contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 The _identifier_ argument cannot be replaced by a SQL++ query parameter.
 
@@ -261,8 +274,8 @@ For more information about defining custom type mappings within a Search index, 
 
 Search against a Vector Search index for the closest 2 vectors
 
-|  | This example does not use the travel sample data or query context mentioned before, as it requires documents that contain vector data. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This example does not use the travel sample data or query context mentioned before, as it requires documents that contain vector data.
 
 Query
 
@@ -304,8 +317,8 @@ If there is no suitable Search index, but you want to return XATTRs data from yo
 
 Add `_$xattrs` with a period (.) to the start of the field name you want to return in the `SEARCH` function.
 
-|  | Documents in the travel-sample do not include any XATTRs data. You can add XATTRs to the travel-sample documents yourself to use with these queries. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Documents in the `travel-sample` do not include any XATTRs data. You can add XATTRs to the `travel-sample` documents yourself to use with these queries.
 
 Query
 
@@ -329,8 +342,8 @@ If you have a Search index available for your query that includes XATTRs data, a
 
 Add `_$xattrs` with a period (.) to the start of the field name you want to return in the `SEARCH_META` and `SEARCH` functions.
 
-|  | Documents in the travel-sample do not include any XATTRs data. You can add XATTRs to the travel-sample documents yourself to use with these queries. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Documents in the `travel-sample` do not include any XATTRs data. You can add XATTRs to the `travel-sample` documents yourself to use with these queries.
 
 Query
 
@@ -365,8 +378,11 @@ identifier
 
 \[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the Full Text Search operation was performed, followed by the outname of the Full Text Search operation, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
+> * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-2)Return Value
 
@@ -476,8 +492,11 @@ identifier
 
 \[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the Full Text Search operation was performed, followed by the outname of the Full Text Search operation, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
+> * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-3)Return Value
 

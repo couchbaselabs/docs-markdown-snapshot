@@ -1,4 +1,14 @@
+---
+title: SET TRANSACTION
+description: The SET TRANSACTION statement enables you to specify settings for a
+  transaction.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/set-transaction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/set-transaction.html)
+
+# SET TRANSACTION
 
 > The SET TRANSACTION statement enables you to specify settings for a transaction. 
 
@@ -10,8 +20,8 @@ You may only use this statement within a transaction.
 
 You may also optionally specify settings when you start the transaction using the `BEGIN TRANSACTION` command.
 
-|  | Currently, the only available transaction setting is ISOLATION LEVEL READ COMMITTED. This setting is enabled by default. The SET TRANSACTION statement is therefore optional and may be omitted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Currently, the only available transaction setting is `ISOLATION LEVEL READ COMMITTED`. This setting is enabled by default. The `SET TRANSACTION` statement is therefore optional and may be omitted.
 
 ## [](#syntax)Syntax
 

@@ -1,4 +1,14 @@
+---
+title: Getting Started with Hashicorp Terraform Deployment
+description: Use Terraform Provider to deploy and manage your clusters with
+  declarative configuration.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/terraform/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/terraform/index.html)
+
+# Getting Started with Hashicorp Terraform Deployment
 
 > Use Terraform Provider to deploy and manage your clusters with declarative configuration. 
 

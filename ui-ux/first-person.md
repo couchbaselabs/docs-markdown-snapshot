@@ -1,4 +1,12 @@
+---
+title: First-Person
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/first-person.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/first-person.html)
+
+# First-Person
 
 First-person pronouns can help convey a friendlier tone in UI copy.
 

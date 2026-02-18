@@ -1,4 +1,12 @@
+---
+title: Create a Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/create-cluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-nodes/create-cluster.html)
+
+# Create a Cluster
 
 > A new Couchbase Server node can be _provisioned_, to establish its Full Administrator credentials, its service-assignments, and its memory quotas. At this point, it becomes a _cluster_ of one node. 
 

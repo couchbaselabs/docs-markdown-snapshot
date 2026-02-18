@@ -1,4 +1,12 @@
+---
+title: Configure TLS Passphrase Protection
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-tls-passphrase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-tls-passphrase.html)
+
+# Configure TLS Passphrase Protection
 
 > How to configure Couchbase Server with passphrase protected private keys. 
 
@@ -16,8 +24,8 @@ kubectl create secret generic \  (1)
 | **1** | Only the generic secret type allows passphrase protected data. |
 | ----- | -------------------------------------------------------------- |
 
-|  | Encrypted keys cannot actually be kubernetes.io/tls type because Kubernetes is not aware of the passphrase in order to validate the key pair. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Encrypted keys cannot actually be `kubernetes.io/tls` type because Kubernetes is not aware of the passphrase in order to validate the key pair.
 
 Refer to [TLS Secret Create](howto-tls.md#creating-secrets) documentation to set up the remaining TLS Secrets for Couchbase Cluster.
 
@@ -25,8 +33,8 @@ Refer to [TLS Secret Create](howto-tls.md#creating-secrets) documentation to set
 
 The Autonomous Operator is capable of registering a local script or a rest endpoint to generate the secret passphrase used by a private key. Passphrase TLS can be enabled from a non-TLS cluster or from a cluster with plain TLS keys. When enabling passphrase TLS on a Cluster that is already provisioned, the Couchbase Cluster will enter a rolling upgrade of the Server Pods.
 
-|  | Only one type of passphrase registration can be used at once, however it is possible to toggle between script or rest passphrase registration while the Couchbase Cluster is active. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Only one type of passphrase registration can be used at once, however it is possible to toggle between script or rest passphrase registration while the Couchbase Cluster is active.
 
 ### [](#script-passphrase)Script passphrase
 
@@ -60,8 +68,8 @@ metadata:
 
 When using a script to register the passphrase, the Operator internally creates a passphrase script and mounts it into each of the Couchbase Server Pods. This script provisioning is abstracted away for ease of use and security. See [TLS Concept Documentation](concept-tls.md#tls-passphrase-protection) for more in-depth information about how passphrase script registration works within the Operator.
 
-|  | The passphrase can be changed at any time. When changing the passphrase be sure to also rotate the Couchbase Server private key to match the update passphrase. See [Replacing Server Certificates](howto-tls-rotation.md#replacing-server-certificates) for documentation related to TLS certificate rotation. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The passphrase can be changed at any time. When changing the passphrase be sure to also rotate the Couchbase Server private key to match the update passphrase. See [Replacing Server Certificates](howto-tls-rotation.md#replacing-server-certificates) for documentation related to TLS certificate rotation.
 
 ### [](#rest-passphrase)Rest passphrase
 
@@ -83,8 +91,8 @@ networking:
 | **2** | Secure HTTPS is highly recommended and by default TLS peer verification is enabled.                                                                                                                                 |
 | **3** | Optional HTTP headers to include in the rest request.                                                                                                                                                               |
 
-|  | Couchbase Server doesn’t trim the response from the rest URL, therefore white-space and newline characters must be avoided by the webserver providing the passphrase. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server doesn’t trim the response from the rest URL, therefore white-space and newline characters must be avoided by the webserver providing the passphrase.
 
-|  | Couchbase Server is currently unable to perform mutual TLS between itself and the provided rest endpoint. Without Mutual TLS, the rest server is unable to verify if a client is allowed to request the passphrase. Given this limitation, caution should be taken when configuring a rest point to prevent unauthorized requests. See [Securing TLS Rest Endpoints](concept-tls.md#securing-rest-endpoints) documentation for a general guide to securing rest endpoints. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Couchbase Server is currently unable to perform mutual TLS between itself and the provided rest endpoint. Without Mutual TLS, the rest server is unable to verify if a client is allowed to request the passphrase. Given this limitation, caution should be taken when configuring a rest point to prevent unauthorized requests. See [Securing TLS Rest Endpoints](concept-tls.md#securing-rest-endpoints) documentation for a general guide to securing rest endpoints.

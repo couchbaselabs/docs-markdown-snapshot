@@ -1,4 +1,12 @@
+---
+title: Couchbase TLS
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-tls.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-tls.html)
+
+# Couchbase TLS
 
 > Transport layer security (TLS) is responsible for securing data over networks. This section documents what security protections are available. 
 
@@ -20,8 +28,8 @@ Managed TLS gives the ability for you to use any TLS certificates you like with 
 
 TLS can be configured by the Operator in a number of different ways as described in the following sections.
 
-|  | When using managed TLS, the Operator and any sidecar containers will also communicate with Couchbase Server over TLS. Use of managed TLS is highly recommended in order to encrypt passwords and other sensitive information that may be exchanged between Couchbase Server and the Operator. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When using managed TLS, the Operator and any sidecar containers will also communicate with Couchbase Server over TLS. Use of managed TLS is highly recommended in order to encrypt passwords and other sensitive information that may be exchanged between Couchbase Server and the Operator.
 
 For configuration details please see the [TLS configuration how-to](howto-tls.md).
 
@@ -45,8 +53,8 @@ CA certificates are provided as a pool, whose referenced secrets only need conta
 
 A CA pool allows Couchbase Server to utilize one CA, while client certificates can authenticate against an arbitrary number of certificate authorities. This provides isolated security domains and allows rolling CA rotation with minimal operational impact.
 
-|  | When using Couchbase 7.0 and earlier, only one CA is supported, therefore all server and client certificates must be signed by the same root CA. Specifying multiple CA certificates with Couchbase Server 7.0 and earlier will result in undefined behavior. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When using Couchbase 7.0 and earlier, only one CA is supported, therefore all server and client certificates must be signed by the same root CA. Specifying multiple CA certificates with Couchbase Server 7.0 and earlier will result in undefined behavior.
 
 ### [](#cert-manager-tls)Cert-Manager TLS
 
@@ -78,8 +86,8 @@ The server secret contains the server certificate and key that need to be mounte
 
 This bespoke domain specific format is inflexible and incompatible with any 3rd party certificate management.
 
-|  | Use of this configuration mode is deprecated and will be removed in a future release. It is highly recommended that you use, or migrate to, one of the other modes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Use of this configuration mode is deprecated and will be removed in a future release. It is highly recommended that you use, or migrate to, one of the other modes.
 
 ## [](#node-to-node-encryption)Node-to-Node Encryption
 

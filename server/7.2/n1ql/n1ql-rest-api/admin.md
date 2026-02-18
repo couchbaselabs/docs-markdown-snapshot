@@ -1,4 +1,12 @@
+---
+title: Admin REST API
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/admin.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/admin.html)
+
+# Admin REST API
 
 ## [](#%5Foverview)Overview
 
@@ -194,8 +202,8 @@ GET /admin/prepareds
 
 Returns all prepared statements.
 
-|  | Refer to [Get Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-get) for examples.
 
 ##### [](#responses-6)Responses
 
@@ -217,8 +225,8 @@ GET /admin/prepareds/{name}
 
 Returns the specified prepared statement.
 
-|  | Refer to [Get Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-get) for examples.
 
 ##### [](#parameters-4)Parameters
 
@@ -246,8 +254,8 @@ DELETE /admin/prepareds/{name}
 
 Deletes the specified prepared statement.
 
-|  | Refer to [Delete Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-delete) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Delete Prepared Statements](../../manage/monitor/monitoring-n1ql-query.md#sys-prepared-delete) for examples.
 
 ##### [](#parameters-5)Parameters
 
@@ -276,8 +284,9 @@ GET /admin/indexes/prepareds
 
 Returns all prepared index statements.
 
-|  | Use [Retrieve a Prepared Statement](#%5Fget%5Fprepared) to get information about a prepared index statement. Use [Delete a Prepared Statement](#%5Fdelete%5Fprepared) to delete a prepared index statement. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * Use [Retrieve a Prepared Statement](#%5Fget%5Fprepared) to get information about a prepared index statement.
+> * Use [Delete a Prepared Statement](#%5Fdelete%5Fprepared) to delete a prepared index statement.
 
 ##### [](#responses-9)Responses
 
@@ -308,8 +317,8 @@ GET /admin/active_requests
 
 Returns all active query requests.
 
-|  | Refer to [Get Active Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-active-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Active Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-active-get) for examples.
 
 ##### [](#responses-10)Responses
 
@@ -331,8 +340,8 @@ GET /admin/active_requests/{request}
 
 Returns the specified active query request.
 
-|  | Refer to [Get Active Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-active-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Active Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-active-get) for examples.
 
 ##### [](#parameters-6)Parameters
 
@@ -360,8 +369,8 @@ DELETE /admin/active_requests/{request}
 
 Terminates the specified active query request.
 
-|  | Refer to [Terminate an Active Request](../../manage/monitor/monitoring-n1ql-query.md#sys-active-delete) for examples. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Terminate an Active Request](../../manage/monitor/monitoring-n1ql-query.md#sys-active-delete) for examples.
 
 ##### [](#parameters-7)Parameters
 
@@ -390,8 +399,9 @@ GET /admin/indexes/active_requests
 
 Returns all active index requests.
 
-|  | Use [Retrieve an Active Request](#%5Fget%5Factive%5Frequest) to get information about an active index request. Use [Delete an Active Request](#%5Fdelete%5Factive%5Frequest) to terminate an active index request. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> * Use [Retrieve an Active Request](#%5Fget%5Factive%5Frequest) to get information about an active index request.
+> * Use [Delete an Active Request](#%5Fdelete%5Factive%5Frequest) to terminate an active index request.
 
 ##### [](#responses-13)Responses
 
@@ -422,8 +432,8 @@ GET /admin/completed_requests
 
 Returns all completed requests.
 
-|  | Refer to [Get Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-get) for examples.
 
 ##### [](#responses-14)Responses
 
@@ -445,8 +455,8 @@ GET /admin/completed_requests/{request}
 
 Returns the specified completed request.
 
-|  | Refer to [Get Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-get) for examples. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Get Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-get) for examples.
 
 ##### [](#parameters-8)Parameters
 
@@ -474,8 +484,8 @@ DELETE /admin/completed_requests/{request}
 
 Purges the specified completed request.
 
-|  | Refer to [Purge the Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-delete) for examples. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Purge the Completed Requests](../../manage/monitor/monitoring-n1ql-query.md#sys-completed-delete) for examples.
 
 ##### [](#parameters-9)Parameters
 
@@ -504,8 +514,9 @@ GET /admin/indexes/completed_requests
 
 Returns all completed index requests.
 
-|  | Use [Retrieve a Completed Request](#%5Fget%5Fcompleted%5Frequest) to get information about a completed index request. Use [Delete a Completed Request](#%5Fdelete%5Fcompleted%5Frequest) to purge a completed index request. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * Use [Retrieve a Completed Request](#%5Fget%5Fcompleted%5Frequest) to get information about a completed index request.
+> * Use [Delete a Completed Request](#%5Fdelete%5Fcompleted%5Frequest) to purge a completed index request.
 
 ##### [](#responses-17)Responses
 
@@ -536,8 +547,8 @@ GET /admin/vitals
 
 Returns data about the running state and health of the query engine. This information can be very useful to assess the current workload and performance characteristics of a query engine, and hence load-balance the requests being sent to various query engines.
 
-|  | Refer to [Get System Vitals](../../manage/monitor/monitoring-n1ql-query.md#vitals) for examples. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Refer to [Get System Vitals](../../manage/monitor/monitoring-n1ql-query.md#vitals) for examples.
 
 ##### [](#responses-18)Responses
 
@@ -644,8 +655,8 @@ GET /admin/settings
 
 Returns node-level query settings.
 
-|  | Refer to [Query Settings](../../settings/query-settings.md) for more information. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Query Settings](../../settings/query-settings.md) for more information.
 
 ##### [](#responses-22)Responses
 
@@ -667,8 +678,8 @@ POST /admin/settings
 
 Updates node-level query settings.
 
-|  | Refer to [Query Settings](../../settings/query-settings.md) for more information. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to [Query Settings](../../settings/query-settings.md) for more information.
 
 ##### [](#parameters-11)Parameters
 
@@ -745,7 +756,7 @@ This section describes the properties consumed and returned by this REST API.
 | **configstore** _optional_  | The URL of the configstore.  | string |
 | **datastore** _optional_    | The URL of the datastore.    | string |
 | **name** _optional_         | The name of the cluster.     | string |
-| **version** _optional_      | string                       |        |
+| **version** _optional_      |                              | string |
 
 ### [](#%5Fnodes)Nodes
 
@@ -755,7 +766,7 @@ This section describes the properties consumed and returned by this REST API.
 | **adminSecure** _optional_   | The HTTPS URL of the admin endpoint.        | string |
 | **cluster** _optional_       | The name of the cluster.                    | string |
 | **name** _optional_          | The URL of the node, including port number. | string |
-| **options** _optional_       | string                                      |        |
+| **options** _optional_       |                                             | string |
 | **queryEndpoint** _optional_ | The HTTP URL of the query endpoint.         | string |
 | **querySecure** _optional_   | The HTTPS URL of the query endpoint.        | string |
 

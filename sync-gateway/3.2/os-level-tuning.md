@@ -1,4 +1,13 @@
+---
+title: OS Level Tuning
+description: OS level parameters you can use to tune _Couchbase Sync&nbspGateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/os-level-tuning.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/os-level-tuning.html)
+
+# OS Level Tuning
 
 > OS level parameters you can use to tune \_Couchbase Sync Gateway  
 
@@ -60,8 +69,8 @@ To increase that, edit the `/sync_gateway.service` file to your desired value an
 
 If you are running Sync Gateway outside of _systemd_, use the following instructions.
 
-|  | If you are using systemd, you can skip this section. |
-|  | ---------------------------------------------------- |
+> [!TIP]
+> If you are using systemd, you can skip this section.
 
 1. Increase the **ulimit** setting for max number of file descriptors available to a single process. For example, setting it to 250K will allow the Sync Gateway to have 250K connections open at any given time, and leave 250K remaining file descriptors available for the rest of the processes on the machine. These settings are just an example, you will probably want to tune them for your own particular use case.  
 ```bash  

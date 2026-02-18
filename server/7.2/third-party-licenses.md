@@ -1,9 +1,19 @@
+---
+title: Licenses for Third-Party Components
+description: This section contains licensing information for some third-party
+  components that are used by Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/ROOT/pages/third-party-licenses.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/third-party-licenses.html)
+
+# Licenses for Third-Party Components
 
 This section contains licensing information for some third-party components that are used by Couchbase Server. We are thankful to all individuals that have created these third-party components.
 
-|  | The complete list of licenses for Couchbase Server is available on the [Legal Agreements](https://www.couchbase.com/legal/agreements) page. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The complete list of licenses for Couchbase Server is available on the [Legal Agreements](https://www.couchbase.com/legal/agreements) page.
 
 ## [](#pcre-license)PCRE LICENSE
 

@@ -1,4 +1,13 @@
+---
+title: Update Documents
+description: How to update documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/updating-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/updating-data.html)
+
+# Update Documents
 
 > How to update documents with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#upserting-a-document)Upserting a Document
 
@@ -207,8 +216,8 @@ hotel-123            Stored. CAS=0x16bd486ce6250000
                      SYNCTOKEN=500,228620113724555,293
 ```
 
-|  | If the document cannot be found, cbc will return a LCB\_ERR\_DOCUMENT\_NOT\_FOUND error. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document cannot be found, `cbc` will return a `LCB_ERR_DOCUMENT_NOT_FOUND` error.
 
 For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5F2cbc.html).
 
@@ -248,8 +257,8 @@ var replaceResult = await hotelCollection.ReplaceAsync("hotel-123", existingDoc,
 Console.WriteLine($"New Cas: {replaceResult.Cas}");
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -292,8 +301,8 @@ MutationResult replaceResult = hotelCollection.replace(
 System.out.println("New CAS:" + replaceResult.cas());
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -334,8 +343,8 @@ const replaceResult = await hotelCollection.replace(
 console.log('New CAS:', replaceResult.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundError error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -373,8 +382,8 @@ replace_result = hotel_collection.replace(
 print("New CAS:", replace_result.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 

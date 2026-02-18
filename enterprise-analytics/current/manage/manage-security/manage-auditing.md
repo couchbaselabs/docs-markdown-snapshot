@@ -1,4 +1,15 @@
+---
+title: Manage Auditing
+description: Actions performed on Enterprise Analytics can be <em>audited</em>.
+  This allows administrators to ensure that system-management tasks are being
+  appropriately performed.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/manage-auditing.html)
+
+# Manage Auditing
 
 > Actions performed on Enterprise Analytics can be _audited_. This allows administrators to ensure that system-management tasks are being appropriately performed. 
 
@@ -34,8 +45,8 @@ File Reset Interval
 
 These fields control when Enterprise Analytics rotates the audit log based on its age or file size. The rotation renames the current `audit.log` file to a new filename with a timestamp, such as `<node-name>.local-2024-07-30T15-42-18-audit.log`. See [Saving and Pruning Audit Records](#learn:security/auditing.adoc#saving-audit-records) for more information about log rotation.
 
-|  | By default, Enterprise Analytics does not automatically delete old log files. Over time, these log files can consume significant drive space on your nodes. You can use the [pruneAge](../../reference/rest-auditing.md#pruneAge) parameter of the settings/audit REST API to have Enterprise Analytics automatically delete log files based on their age. See [Configure Auditing](../../reference/rest-auditing.md) for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, Enterprise Analytics does not automatically delete old log files. Over time, these log files can consume significant drive space on your nodes. You can use the [pruneAge](../../reference/rest-auditing.md#pruneAge) parameter of the `settings/audit` REST API to have Enterprise Analytics automatically delete log files based on their age. See [Configure Auditing](../../reference/rest-auditing.md) for more information.
 
 ## [](#managing-events)Managing Events
 

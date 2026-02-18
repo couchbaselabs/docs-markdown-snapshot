@@ -1,4 +1,14 @@
+---
+title: Choose the Right Vector Index
+description: Use Couchbase Capella's vector indexes to find documents based on
+  content similarity or semantic meaning.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/use-vector-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-index/use-vector-indexes.html)
+
+# Choose the Right Vector Index
 
 > Use Couchbase Capella’s vector indexes to find documents based on content similarity or semantic meaning. 
 
@@ -62,8 +72,8 @@ The following table summarizes the differences between the three types of vector
 | **Strengths**                  | High performance for pure vector searches Higher accuracy at lower quantizations (fewer bits per vector) Low memory footprint Lowest TCO for huge datasets Best option for concurrent updates and searches Scalars and vector values compared at the same time | Scalar values pre-filter data to reduce the scope of vector searches Efficient when scalar values have low selectivity (exclude less than 20% of dataset) Can restrict searches based on scalars for use cases such as compliance Based on familiar Global Secondary Indexes (GSI) | Combines semantic and Full-Text Search and geospatial search in a single pass Uses familiar Search indexes                                                                                               |
 | **Limitations**                | Indexing can take longer relative to other index types                                                                                                                                                                                                         | Lower accuracy than Hyperscalar when using lower quantizations (fewer bits per vector) Scalar values filter data before vector search, potentially missing relevant results (see [note](#scalar-handling))                                                                         | Not as efficient as Composite Vector indexes if the search includes purely numeric or scalar values Does not scale to the extent of the other index types Limited to approximately 100 million documents |
 
-|  | A key difference between Hyperscale and Composite Vector indexes is how they handle scalar values in queries. Hyperscale Vector indexes compare vectors and scalar values at the same time. Composite Vector indexes always apply scalar filters first, and only perform vector searches on the results. This behavior means Composite Index searches can exclude relevant vectors from the search result. However, it’s useful for cases where you must exclude some vectors (even the nearest neighbors) based on scalar values. For example, it’s useful when meeting compliance requirements. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A key difference between Hyperscale and Composite Vector indexes is how they handle scalar values in queries. Hyperscale Vector indexes compare vectors and scalar values at the same time. Composite Vector indexes always apply scalar filters first, and only perform vector searches on the results. This behavior means Composite Index searches can exclude relevant vectors from the search result. However, it’s useful for cases where you must exclude some vectors (even the nearest neighbors) based on scalar values. For example, it’s useful when meeting compliance requirements.
 
 When choosing which type of index to use, consider the following:
 

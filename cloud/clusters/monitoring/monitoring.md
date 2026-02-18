@@ -1,4 +1,14 @@
+---
+title: Monitor Clusters
+description: Couchbase Capella provides a variety of monitoring tools to assess
+  the performance, health, and stability of your cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/monitoring.html)
+
+# Monitor Clusters
 
 > Couchbase Capella provides a variety of monitoring tools to assess the performance, health, and stability of your cluster. 
 
@@ -58,8 +68,8 @@ The Activity Logs in Capella provide a complete auditable timeline of [events](#
 
 Events are items written to [Activity Logs](#activity-logs) that reflect specific conditions in your Capella organization, project, and cluster. Events can include service-affecting conditions to user activity.
 
-|  | For a list of the events and alerts in Capella, see [Alert Reference](../../reference/alert-reference.md). |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For a list of the events and alerts in Capella, see [Alert Reference](../../reference/alert-reference.md).
 
 ### [](#event-severity)Event Severity
 

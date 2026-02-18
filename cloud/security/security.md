@@ -1,4 +1,15 @@
+---
+title: Security Best Practices
+description: Security is a process and Couchbase Capella strives to achieve the
+  best ways to protect your data, from Zero Trust, through adaptive access, to
+  centralized management and proactive monitoring.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/security.html)
+
+# Security Best Practices
 
 > Security is a process and Couchbase Capella strives to achieve the best ways to protect your data, from Zero Trust, through adaptive access, to centralized management and proactive monitoring. Best practices in the way you work with Capella further protect you from malicious attacks. 
 
@@ -76,8 +87,10 @@ See [Manage Multi-Factor Authentication (MFA)](../organizations/ui-auth/mfa.md) 
 
 #### [](#public-access)Restrict Public Access
 
-|  | Limited availability The option to create a cluster with restricted public access is available only on request. For more information, contact Couchbase Support. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Limited availability
+> 
+> The option to create a cluster with restricted public access is available only on request. For more information, contact Couchbase Support.
 
 If Couchbase grants your organization access to this feature, you can restrict public access for a [new cluster](../clusters/create-database.md).
 

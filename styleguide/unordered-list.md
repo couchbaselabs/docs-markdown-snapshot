@@ -1,4 +1,12 @@
+---
+title: Unordered Lists
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/unordered-list.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/unordered-list.html)
+
+# Unordered Lists
 
 Use an unordered or bulleted list when you have a collection of 3 or more things and the order of the items does not matter. These items could be nouns, phrases, or topics.
 
@@ -16,8 +24,8 @@ Use an unordered list when:
 * Writing a See Also section in your documentation.
 * Structuring the `nav.adoc` file in a documentation module.
 
-|  | Use an unordered list for prerequisites and the See Also section even if it contains only a single item. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use an unordered list for prerequisites and the See Also section even if it contains only a single item.
 
 Use an asterix (`*`) to render an item as an unordered list item. The number of asterixes sets the depth of the list item.
 

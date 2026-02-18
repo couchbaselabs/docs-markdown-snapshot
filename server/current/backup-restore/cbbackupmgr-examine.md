@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr examine
+description: Searches one or more backups by key for a specific document
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-examine.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/backup-restore/cbbackupmgr-examine.html)
+
+# cbbackupmgr examine
 
 Searches one or more backups by key for a specific document
 
@@ -110,8 +119,11 @@ Multiple cloud providers are supported, see the list below for more information.
 
 When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup.
 
-|  | Do not use /tmp as the obj-staging-dir.See Disk requirements in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information. Bear in mind that deleting individual directories within the staging directory is not supported; doing so may lead to abnormal behavior. If you wish to delete the staging directory, then it must be removed entirely. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not use `/tmp` as the `obj-staging-dir`.  
+> See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+> 
+> Bear in mind that deleting individual directories within the staging directory is not supported; doing so may lead to abnormal behavior. If you wish to delete the staging directory, then it must be removed entirely.
 
 #### [](#optional-2)Optional
 

@@ -1,4 +1,14 @@
+---
+title: Manage Auditing
+description: You can audit actions performed on Couchbase Server. Auditing helps
+  administrators verify that system management tasks are performed correctly.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-security/manage-auditing.html)
+
+# Manage Auditing
 
 > You can audit actions performed on Couchbase Server. Auditing helps administrators verify that system management tasks are performed correctly. 
 
@@ -68,10 +78,9 @@ Set the path for saving the audit logs. The operating system, on which Couchbase
   * MacOS: `/Users/couchbase/Library/Application Support/Couchbase/var/lib/couchbase/logs`  
 File Reset Interval  
 Use this setting to specify when Couchbase Server rotates the audit log, based on the log’s age or file size. When rotation occurs, Couchbase Server renames the current `audit.log` file to a new filename with a timestamp, for example, `<node-name>.local-2024-07-30T15-42-18-audit.log`.  
-For more information about log rotation, see [Saving and Pruning Audit Records](../../learn/security/auditing.md#saving-audit-records).
-
-|  | By default, Couchbase Server does not delete old log files automatically. Over time, these files can consume significant disk space on your nodes. You can set the [pruneAge](../../rest-api/rest-auditing.md#pruneAge) parameter in the settings/audit REST API to make Couchbase Server delete log files based on their age. For more information, see [Audit API](../../rest-api/rest-auditing.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For more information about log rotation, see [Saving and Pruning Audit Records](../../learn/security/auditing.md#saving-audit-records).  
+> [!NOTE]  
+> By default, Couchbase Server does not delete old log files automatically. Over time, these files can consume significant disk space on your nodes. You can set the [pruneAge](../../rest-api/rest-auditing.md#pruneAge) parameter in the `settings/audit` REST API to make Couchbase Server delete log files based on their age. For more information, see [Audit API](../../rest-api/rest-auditing.md).
 5. Edit necessary events in the Events section.  
 For example, select **Data Service** to view all of its filterable and non-filterable events.  
 ![eventFilteringUIdataServiceEnabled](../_images/manage-security/eventFilteringUIdataServiceEnabled.png)  
@@ -170,10 +179,9 @@ The example explanation is as follows:
 
 * Enable node auditing by setting the `auditEnabled` parameter to `true`.
 * Supply a comma-separated list of audit event ids as the value for the `disabled` parameter. This indicates that each corresponding filterable event will be disabled.
-* Mention a list of `disabledUsers`. For more information, see [Ignoring Filterable Events By User](#ignoring-events-by-user).
-
-|  | When you list the users using the REST API, the local and internal usernames take the /local in the place of the /couchbase suffix. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------- |
+* Mention a list of `disabledUsers`. For more information, see [Ignoring Filterable Events By User](#ignoring-events-by-user).  
+> [!NOTE]  
+> When you list the users using the REST API, the local and internal usernames take the `/local` in the place of the `/couchbase` suffix.
 * Specify `rotateSize` in bytes and `rotateInterval` in seconds.
 * Use the `pruneAge` parameter to instruct Couchbase Server to automatically delete rotated audit logs after 10800 seconds (3 hours).
 
@@ -185,8 +193,8 @@ You can track the last time a user made a request to Cluster Manager. This featu
 
 Administrators can configure roles or groups to include in activity tracking. For more information, see [Audit User Activity](../../learn/security/auditing.md#audit-user-activity).
 
-|  | Couchbase Server only tracks the activity of local users. The feature does not record activity for users who authenticate through external systems, such as LDAP or SAML. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Server only tracks the activity of local users. The feature does not record activity for users who authenticate through external systems, such as LDAP or SAML.
 
 By default, Couchbase Server tracks activity for certain administrative roles, but you can customize the configuration to meet organizational policies. You can view the last recorded activity in the UI, or through CLI, and the REST API.
 
@@ -201,10 +209,9 @@ To enable auditing of user activity, do the following:
 1. Open the Couchbase Web Console.
 2. Select **Security** **Audit**.
 3. To enable user activity auditing, turn on the **User activity** toggle.
-4. Select the roles and groups for which you want to log user activity.
-
-|  | By default, Couchbase Server records the login activities of all users who have an Administrator role. |
-|  | ------------------------------------------------------------------------------------------------------ |
+4. Select the roles and groups for which you want to log user activity.  
+> [!NOTE]  
+> By default, Couchbase Server records the login activities of all users who have an Administrator role.
 
   * To enable or disable user activity logging for roles, go to the **Roles** section. Then enable or disable each role by selecting or clearing the associated checkboxes respectively.
   * To enable or disable user activity logging for members of a group, go to the **Groups** section. Then enable or disable each group by selecting or clearing the associated checkboxes respectively.
@@ -272,8 +279,8 @@ An output example is as follows:
 
 User activity tracking records the last time a local user made a request to the Cluster Manager, helping administrators identify active and inactive accounts. You can view the last recorded activity in the UI, or through the REST API.
 
-|  | User activity is not saved in real time. User activity updates are batched and saved periodically. |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> User activity is not saved in real time. User activity updates are batched and saved periodically.
 
 #### [](#view-user-activity-from-the-ui)View User Activity from the UI
 

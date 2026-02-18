@@ -1,4 +1,12 @@
+---
+title: Browser and CLI Access
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/hello-world/pages/webui-cli-access.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/hello-world/webui-cli-access.html)
+
+# Browser and CLI Access
 
 > Web and command line interfaces to Couchbase Server are available. These are documented in the Server and the C SDK docs respectively. 
 

@@ -1,9 +1,19 @@
+---
+title: Take or Schedule a Cluster Backup
+description: You can take an on-demand cluster backup to back up your entire
+  Couchbase Capella cluster, or schedule backups.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/take-cloud-snapshot.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/take-cloud-snapshot.html)
+
+# Take or Schedule a Cluster Backup
 
 > You can take an on-demand cluster backup to back up your entire Couchbase Capella cluster, or schedule backups. 
 
-|  | If your cluster uses Couchbase Server version 7.6.6 or later and is deployed on AWS or Azure, you can choose to replicate your backups to 2 regions, other than the region where your cluster is deployed. You can restore a replicated backup like any other backup for your cluster. Cluster backups for GCP clusters cannot be replicated to additional regions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If your cluster uses Couchbase Server version 7.6.6 or later and is deployed on AWS or Azure, you can choose to replicate your backups to 2 regions, other than the region where your cluster is deployed. You can restore a replicated backup like any other backup for your cluster. Cluster backups for GCP clusters cannot be replicated to additional regions.
 
 ## [](#prerequisites)Prerequisites
 
@@ -29,8 +39,8 @@ The default retention period for cluster backups is 7 days.
   1. In the **Copy to Region** list, select the specific regions where you want to replicate your cluster backup.
 7. Click **Start Cluster Backup**.
 
-|  | To take a cluster backup from the Capella Management API, see [Create Cloud Snapshot Backup](../management-api-reference/index.md#tag/Cloud-Snapshot-Backups-and-Restore/operation/createCloudSnapshotBackup). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To take a cluster backup from the Capella Management API, see [Create Cloud Snapshot Backup](../management-api-reference/index.md#tag/Cloud-Snapshot-Backups-and-Restore/operation/createCloudSnapshotBackup).
 
 ## [](#schedule)Schedule Cluster Backups
 
@@ -53,11 +63,11 @@ By default, Capella shows a schedule to take cluster backups every 4 hours and k
   1. In the **Copy to Region** list, select the specific regions where you want to replicate your cluster backup.
 9. Click **Set Backup Schedule** or **Save Backup Schedule**.
 
-|  | Capella displays the estimated number of cluster backups that will be taken by your schedule. Azure limits your total number of incremental backups to a maximum of 500\. After 500 incremental snapshot backups, Azure starts using full cluster backups and your cluster backup costs will greatly increase. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella displays the estimated number of cluster backups that will be taken by your schedule. Azure limits your total number of incremental backups to a maximum of 500\. After 500 incremental snapshot backups, Azure starts using full cluster backups and your cluster backup costs will greatly increase.
 
-|  | To schedule cluster backups from the Capella Management API, see [Upsert Backup Schedule](../management-api-reference/index.md#tag/Cloud-Snapshot-Backups-Schedule/operation/upsertCloudSnapshotBackupSchedule). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To schedule cluster backups from the Capella Management API, see [Upsert Backup Schedule](../management-api-reference/index.md#tag/Cloud-Snapshot-Backups-Schedule/operation/upsertCloudSnapshotBackupSchedule).
 
 ## [](#next-steps)Next Steps
 

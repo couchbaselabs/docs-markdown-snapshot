@@ -1,4 +1,14 @@
+---
+title: Verify VPC Peering Connectivity
+description: Use the procedures on this page to verify that a VPC peering
+  connection is working correctly and help troubleshoot connectivity issues.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/verify-troubleshoot.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clouds/vpc-peering/verify-troubleshoot.html)
+
+# Verify VPC Peering Connectivity
 
 > Use the procedures on this page to verify that a VPC peering connection is working correctly and help troubleshoot connectivity issues. 
 
@@ -64,8 +74,8 @@ $ curl -k https://9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com:18091
 
 ## [](#troubleshooting)Troubleshooting
 
-|  | Tools such as the [AWS VPC Reachability Analyzer](https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html) can be useful to verify communications. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Tools such as the [AWS VPC Reachability Analyzer](https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html) can be useful to verify communications.
 
 If you entered an incorrect CIDR block, application VPC, VPC ID, or other information when creating a VPC peering connection, you must delete that connection and create a new one with the correct values.
 
@@ -97,5 +107,5 @@ __Table 1\. VPC Peering Connection Status__
 | No Networks                 | No networks are linked but the infrastructure has been provisioned for your cluster.                                        |
 | Infrastructure Provisioning | The infrastructure is being provisioned. This is an intermediate state that’s only possible for the first VPC peering link. |
 
-|  | Creating multiple networks rapidly may cause both the Linking and Provisioning states to display as 'Failed'. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Creating multiple networks rapidly may cause both the Linking and Provisioning states to display as 'Failed'.

@@ -1,13 +1,34 @@
+---
+title: Data Sync using Sync Gateway
+description: Couchbase Lite for Android -- Synchronizing data changes between
+  local and remote databases using Sync Gateway
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/android/replication.html)
+
+# Data Sync using Sync Gateway
 
 > Description — _Couchbase Lite for Android — Synchronizing data changes between local and remote databases using Sync Gateway_  
 > Related Content — [Handling Data Conflicts](conflict.md) | [Intra-Device](dbreplica.md) | [Peer-to-Peer](#p2psync-websocket.adoc)
 
-|  | Android enablers Allow Unencrypted Network Traffic To use cleartext, un-encrypted, network traffic (http:// and-or ws://), include android:usesCleartextTraffic="true" in the application element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted). **This not recommended in production**. Use Background Threads As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Android enablers
+> 
+> Allow Unencrypted Network Traffic
+> 
+> To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
+> **This not recommended in production**.
+> 
+> Use Background Threads
+> 
+> As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread.
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
@@ -64,8 +85,8 @@ To optimize for speed, the replication protocol doesn’t guarantee that documen
 
 Couchbase Lite \[[1](#%5Ffootnotedef%5F1 "View footnote.")\] spins up multiple executors. Unless mitigated, for example by using a custom executor, this policy can result in too many threads being spun up.
 
-|  | If no listeners are registered to listen to a replicator at the time of the most recent start(. . .), then no subsequently registered listeners will receive notifications. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If no listeners are registered to listen to a replicator at the time of the most recent `start(. . .)`, then no subsequently registered listeners will receive notifications.
 
 An executor manages a pool of threads and, perhaps, a queue in front of the executor, to handle the asynchronous callbacks. Couchbase Lite API calls processed by an executor include:
 
@@ -242,8 +263,9 @@ Syncing scope with user-defined collections. Couchbase Lite has more collections
 
 You should configure and initialize a replicator for each Couchbase Lite database instance you want to sync. [Example 1](#ex-simple-repl) shows the configuration and initialization process.
 
-|  | You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use custom Scopes and Collections.If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access custom Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the default Collection as a backup option. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You need Couchbase Lite 3.1+ and Sync Gateway 3.1+ to use `custom` Scopes and Collections.  
+> If you’re using Capella App Services or Sync Gateway releases that are older than version 3.1, you won’t be able to access `custom` Scopes and Collections. To use Couchbase Lite 3.1+ with these older versions, you can use the `default` Collection as a backup option.
 
 Click the **GitHub** tab in the code examples for further details.
 
@@ -338,8 +360,8 @@ thisReplicator = repl;
 thisToken = token;
 ```
 
-|  | As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread.
 
 **Notes on Example**
 
@@ -428,8 +450,10 @@ continuous = false, // default value
 .setContinuous(false) // default value
 ```
 
-|  | Unless there is a solid use-case not to, always initiate a single PUSH\_AND\_PULL replication rather than identical separate PUSH and PULL replications. This prevents the replications generating the same checkpoint docID resulting in multiple conflicts. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless there is a solid use-case not to, always initiate a single `PUSH_AND_PULL` replication rather than identical separate `PUSH` and `PULL` replications.
+> 
+> This prevents the replications generating the same checkpoint `docID` resulting in multiple conflicts.
 
 ### [](#lbl-cfg-keep-alive)Retry Configuration
 
@@ -768,8 +792,8 @@ thisReplicator = repl;
 
 The pull filter gives an app the ability to validate documents being pulled, and skip ones that fail. This is an important security mechanism in a peer-to-peer topology with peers that are not fully trusted.
 
-|  | Pull replication filters are not a substitute for channels. Sync Gateway [channels](../../../sync-gateway/current/access-control/channels.md)are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Pull replication filters are not a substitute for channels. Sync Gateway [channels](../../../sync-gateway/current/access-control/channels.md)are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded.
 
 * Kotlin
 * Java
@@ -828,8 +852,8 @@ Optionally, it’s also possible to specify a string array of channel names on C
 
 ### [](#anchor-auto-purge-on-revoke)Auto-purge on Channel Access Revocation
 
-|  | This is a Breaking Change at 3.0 |
-|  | -------------------------------- |
+> [!CAUTION]
+> This is a Breaking Change at 3.0
 
 #### [](#new-outcome)New outcome
 
@@ -910,8 +934,8 @@ __Table 4\. Impact of Pull-Filters__
 
 ### [](#lbl-repl-delta)Delta Sync
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 With Delta Sync \[[2](#%5Ffootnotedef%5F2 "View footnote.")\], only the changed parts of a Couchbase document are replicated. This can result in significant savings in bandwidth consumption as well as throughput improvements, especially when network bandwidth is typically constrained.
 
@@ -1058,8 +1082,10 @@ You can also choose to monitor document changes — see: [Monitor Document Chang
 
 Use this to monitor changes and to inform on sync progress; this is an optional step. You can add and a replicator change listener at any point; it will report changes from the point it is registered.
 
-|  | Best PracticeDon’t forget to save the token so you can remove the listener later |
-|  | -------------------------------------------------------------------------------- |
+> [!TIP]
+> Best Practice
+> 
+> Don’t forget to save the token so you can remove the listener later
 
 Use the [Replicator](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-android/com/couchbase/lite/Replicator.html) class to add a change listener as a callback to the Replicator ([addChangeListener()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#addChangeListener-java.util.concurrent.Executor-com.couchbase.lite.ReplicatorChangeListener-)) — see: [Example 13](#ex-repl-mon). You will then be asynchronously notified of state changes.
 
@@ -1149,15 +1175,15 @@ __Table 5\. Replicator activity levels__
 | IDLE       | The replication caught up with all the changes available from the server. The IDLE state is only used in continuous replications. |
 | BUSY       | The replication is actively transferring data.                                                                                    |
 
-|  | The replication change object also has properties to track the progress (change.status.completed and change.status.total). Since the replication occurs in batches the total count can vary through the course of a replication. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The replication change object also has properties to track the progress (`change.status.completed` and `change.status.total`). Since the replication occurs in batches the total count can vary through the course of a replication.
 
 #### [](#replication-status-and-app-life-cycle)Replication Status and App Life Cycle
 
 Couchbase Lite replications will continue running until the app terminates, unless the remote system, or the application, terminates the connection.
 
-|  | Recall that the Android OS may kill an application without warning. You should explicitly stop replication processes when they are no longer useful (for example, when they are suspended or idle) to avoid socket connections being closed by the OS, which may interfere with the replication process. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Recall that the Android OS may kill an application without warning. You should explicitly stop replication processes when they are no longer useful (for example, when they are `suspended` or `idle`) to avoid socket connections being closed by the OS, which may interfere with the replication process.
 
 ### [](#lbl-repl-evnts)Monitor Document Changes
 
@@ -1240,8 +1266,8 @@ When access to a document is removed on Sync Gateway (see: Sync Gateway’s [Syn
 
 ### [](#lbl-repl-pend)Documents Pending Push
 
-|  | [Replicator.isDocumentPending()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#isDocumentPending-java.lang.String-) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> [Replicator.isDocumentPending()](https://docs.couchbase.com/mobile/3.3.0/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#isDocumentPending-java.lang.String-) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible.
 
 You can check whether documents are waiting to be pushed in any forthcoming sync by using either of the following API methods:
 

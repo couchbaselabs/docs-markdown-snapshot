@@ -1,4 +1,14 @@
+---
+title: About Billing Alerts
+description: Couchbase Capella billing alerts notify you about important
+  information related to your usage and billing for operational clusters.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/about-billing-alerts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/about-billing-alerts.html)
+
+# About Billing Alerts
 
 > Couchbase Capella billing alerts notify you about important information related to your usage and billing for operational clusters. 
 
@@ -6,8 +16,10 @@ You can [create and manage your own custom alerts](manage-billing-alerts.md).
 
 ## [](#alert-conditions)Alert Conditions
 
-|  | Alert timingAlerts can be delayed by up to a day after usage meets alerting conditions. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Alert timing
+> 
+> Alerts can be delayed by up to a day after usage meets alerting conditions.
 
 The following conditions are available for billing alerts:
 

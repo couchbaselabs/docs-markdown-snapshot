@@ -1,11 +1,21 @@
+---
+title: DROP Statements
+description: This topic describes how you use <code>DROP</code> statements to
+  delete Enterprise Analytics objects.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_drop.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_drop.html)
+
+# DROP Statements
 
 > This topic describes how you use `DROP` statements to delete Enterprise Analytics objects. 
 
 A `DROP` statement is the inverse of a `CREATE` statement.
 
-|  | DROP statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `DROP` statements cannot execute while the cluster is in a scaling state. The evaluation of such DDL statements fails. You can reattempt the action after scaling is complete.
 
 ## [](#syntax)Syntax
 

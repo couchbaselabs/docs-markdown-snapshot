@@ -1,4 +1,14 @@
+---
+title: SQL++ Support for Couchbase Transactions
+description: SQL++ offers full support for Couchbase ACID transactions based on
+  optimistic concurrency.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/transactions.html)
+
+# SQL++ Support for Couchbase Transactions
 
 > SQL++ offers full support for Couchbase ACID transactions based on optimistic concurrency. 
 
@@ -44,8 +54,8 @@ To create a Couchbase transaction using SQL++, you can use:
 
 Some Couchbase SDKs provide APIs to support Couchbase transactions. For more information, see [Transactions](../../../server/current/learn/data/transactions.md) in the Server documentation.
 
-|  | Couchbase Transactions are not supported via the Couchbase Capella Query tab or the Data API (Query Service passthrough). The Query Service requires that the whole transaction must be executed by a single node, and there is currently no way for the Query tab or the Data API to enforce this. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Transactions are not supported via the Couchbase Capella Query tab or the Data API (Query Service passthrough). The Query Service requires that the whole transaction must be executed by a single node, and there is currently no way for the Query tab or the Data API to enforce this.
 
 ### [](#couchbase-transactions-with-the-cbq-shell)Couchbase Transactions with the cbq shell
 

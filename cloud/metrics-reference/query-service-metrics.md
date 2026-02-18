@@ -1,9 +1,19 @@
+---
+title: Query Service Metrics
+description: A list of the metrics provided by the Query Service.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/query-service-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/metrics-reference/query-service-metrics.html)
+
+# Query Service Metrics
 
 > A list of the metrics provided by the Query Service. 
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | n1ql\_active\_requests7.0.0gauge Total number of active requests.                                                                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

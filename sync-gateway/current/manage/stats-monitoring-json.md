@@ -1,4 +1,14 @@
+---
+title: JSON Metrics
+description: This content covers the statistics and metrics collected and made
+  available by Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring-json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/stats-monitoring-json.html)
+
+# JSON Metrics
 
 > This content covers the statistics and metrics collected and made available by Sync Gateway  
 > Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
@@ -17,11 +27,11 @@ curl -X GET "http://localhost:4986/_expvar" -H "accept: application/json"
 
 The response is a JSON object with a nested schema.
 
-|  | The statistics detailed in this schema are reset at each node restart — they are not persisted. All totals, counts, and averages are the values accrued since the last node restart unless otherwise specified. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The statistics detailed in this schema are reset at each node restart — they are not persisted. All totals, counts, and averages are the values accrued since the last node restart unless otherwise specified.
 
-|  | Use the click-through links to find out more about each item. |
-|  | ------------------------------------------------------------- |
+> [!TIP]
+> Use the click-through links to find out more about each item.
 
 ```json
 "syncgateway": {
@@ -763,10 +773,9 @@ The [propose\_change\_count](#propose%5Fchange%5Fcount) stat can be useful when:
 
 * Assessing the number of redundant requested changes being pushed by the client.  
 Do this by comparing the [propose\_change\_count](#propose%5Fchange%5Fcount) value with the number of actual writes [num\_doc\_writes](#num%5Fdoc%5Fwrites), which could indicate that clients are pushing changes already known to Sync Gateway.
-* Identifying situations where push replications are unexpectedly being restarted from zero.
-
-|  | P2P synchronizations will typically show a higher incidences of rejected proposed changes. |
-|  | ------------------------------------------------------------------------------------------ |
+* Identifying situations where push replications are unexpectedly being restarted from zero.  
+> [!NOTE]  
+> P2P synchronizations will typically show a higher incidences of rejected proposed changes.
 
 #### [](#propose%5Fchange%5Ftime)propose\_change\_time
 
@@ -1251,8 +1260,8 @@ The total time taken to process a document import.
 
 The metrics collated and reported here relate **only** to replications run using the inter-Sync Gateway replication.
 
-|  | These metrics refer to Sync Gateway replications only; Couchbase Lite replications are not included. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These metrics refer to Sync Gateway replications only; Couchbase Lite replications are not included.
 
 #### [](#per%5Freplication)Per\_replication
 
@@ -1416,8 +1425,8 @@ This [per\_replication](#per%5Freplication) group header encompasses all the sta
 
 It comprises an array of one or more [$replname](#replname) objects, each of which represents the statistics collected and recorded against the specified $replname (`replication_id`).
 
-|  | These metrics refer to Sync Gateway replications only; Couchbase Lite replications are not included. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These metrics refer to Sync Gateway replications only; Couchbase Lite replications are not included.
 
 ### [](#replname-2)$replname
 

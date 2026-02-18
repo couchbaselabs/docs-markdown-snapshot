@@ -1,4 +1,13 @@
+---
+title: JSON Functions
+description: DECODE_JSON(expression)
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/jsonfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/jsonfun.html)
+
+# JSON Functions
 
 DECODE\_JSON(expression)
 

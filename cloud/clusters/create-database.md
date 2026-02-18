@@ -1,11 +1,20 @@
+---
+title: Create A Paid Cluster
+description: Create a cluster to store and access data in Couchbase Capella.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/create-database.html)
+
+# Create A Paid Cluster
 
 > Create a cluster to store and access data in Couchbase Capella. 
 
 To modify options for an existing Capella cluster, see [Modify a Paid Cluster](modify-database.md).
 
-|  | This section does not apply to Capella free tier operational clusters. To get started with a free tier operational cluster in Capella, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This section does not apply to Capella free tier operational clusters. To get started with a free tier operational cluster in Capella, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -19,18 +28,18 @@ To create a new cluster in a Capella project:
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name and go to **Operational**.
 2. Click **\+ Create Cluster**.
-3. Choose the project where you want to create your new cluster.
-
-|  | To find a project or filter your list of projects, enter a project name in the **Project** list. |
-|  | ------------------------------------------------------------------------------------------------ |
+3. Choose the project where you want to create your new cluster.  
+> [!TIP]  
+> To find a project or filter your list of projects, enter a project name in the **Project** list.
 4. Click **Continue**.
 5. Choose your **Cluster Option** to pre-configure settings for your cluster. For more information about the available cluster options, see [Basic Cluster Options](databases.md#option).
 6. Enter a **Cluster Name** and **Description**.
 7. Choose your preferred Cloud Service Provider and **Region**. For more information about the available Cloud Service Providers for Capella, see [Cloud Service Provider, Region, and CIDR Block](databases.md#cloud-provider).
-8. Enter a **CIDR Block** for your cluster, or accept the default. For more information about how to configure a CIDR block, see [Cloud Service Provider, Region, and CIDR Block](databases.md#cloud-provider).
-
-|  | Restrict public accessIf Couchbase has given your organization access to the restrict public access feature, this option appears here. When you restrict public access, you’re restricting access to your cluster only through Capella’s private networking options. For more information, see [Restrict Public Access](../security/security.md#public-access). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+8. Enter a **CIDR Block** for your cluster, or accept the default. For more information about how to configure a CIDR block, see [Cloud Service Provider, Region, and CIDR Block](databases.md#cloud-provider).  
+> [!NOTE]  
+> Restrict public access  
+>  
+> If Couchbase has given your organization access to the restrict public access feature, this option appears here. When you restrict public access, you’re restricting access to your cluster only through Capella’s private networking options. For more information, see [Restrict Public Access](../security/security.md#public-access).
 9. Choose a version of Couchbase Server to deploy on your cluster. For more information about Couchbase Server versions, see [Supported Couchbase Server Version](databases.md#cluster-version).
 10. Do one of the following:
 
@@ -43,8 +52,8 @@ For more information, see [Services and Service Groups](databases.md#couchbase-s
 12. Choose the **Availability Zone** configuration for your cluster. For more information about Availability Zone configurations, see [Availability Zones](databases.md#availability).
 13. Click **Create Cluster**.
 
-|  | Accounts with a paid plan can deploy a free tier operational cluster alongside their paid operational clusters. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Accounts with a paid plan can deploy a free tier operational cluster alongside their paid operational clusters.
 
 ## [](#next-steps)Next Steps
 

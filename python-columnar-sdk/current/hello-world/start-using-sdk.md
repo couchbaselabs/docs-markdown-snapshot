@@ -1,11 +1,25 @@
+---
+title: Hello Columnar&#8201;&#8212;&#8201;Python SDK Quickstart Guide
+description: Install, connect, try. A quick start guide to get you up and
+  running with Columnar and the Python Columnar SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-columnar-sdk/current/hello-world/start-using-sdk.html)
+
+# Hello Columnar&#8201;&#8212;&#8201;Python SDK Quickstart Guide
 
 > Install, connect, try. A quick start guide to get you up and running with Columnar and the Python Columnar SDK. 
 
 [Capella Columnar](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home:sdk.adoc), the Python Columnar SDK is developed from the ground-up for Columnar’s analytical use cases, and supports streaming APIs to handle large datasets.
 
-|  | Don’t Mix Columnar & Operational SDKs. Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs. Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Don’t Mix Columnar & Operational SDKs.
+> 
+> Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
+> 
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.
 
 ## [](#before-you-start)Before You Start
 

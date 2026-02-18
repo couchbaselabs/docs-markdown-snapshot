@@ -1,7 +1,15 @@
+---
+title: cbopcfg
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/tools/cbopcfg.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tools/cbopcfg.html)
 
-|  | The cbopcfg binary is deprecated and will be removed in a later release. Please use the [cao](cao.md) binary that features all the same sub commands. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+# cbopcfg
+
+> [!IMPORTANT]
+> The `cbopcfg` binary is deprecated and will be removed in a later release. Please use the [cao](cao.md) binary that features all the same sub commands.
 
 ## [](#installation)Installation
 
@@ -26,8 +34,8 @@ $ chmod +x ./cbopcfg
 $ sudo mv ./cbopcfg /usr/local/bin/cbopcfg  
 ```
 
-|  | On newer versions of macOS, you may encounter errors such as cannot execute binary file when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.” |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
 
 1. Open a command prompt and go to the directory where the `cbopcfg` binary is located:  
 ```console  

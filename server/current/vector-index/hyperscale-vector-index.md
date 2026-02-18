@@ -1,4 +1,15 @@
+---
+title: Vector Search Using Hyperscale Vector Indexes
+description: Hyperscale Vector Indexes are optimized to index a single vector
+  column. They offer the highest performance of any index when it comes to
+  vector data.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/hyperscale-vector-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-index/hyperscale-vector-index.html)
+
+# Vector Search Using Hyperscale Vector Indexes
 
 > Hyperscale Vector Indexes are optimized to index a single vector column. They offer the highest performance of any index when it comes to vector data. They can scale up to a billion documents containing vectors with a large number of dimensions. 
 
@@ -51,8 +62,8 @@ CREATE VECTOR INDEX `<index_name>`
         };
 ```
 
-|  | This syntax for the CREATE VECTOR INDEX shows the minimum required parameters to get you started. For the full syntax, see [CREATE VECTOR INDEX](../n1ql/n1ql-language-reference/createvectorindex.md) in the SQL++ for Query Reference. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This syntax for the `CREATE VECTOR INDEX` shows the minimum required parameters to get you started. For the full syntax, see [CREATE VECTOR INDEX](../n1ql/n1ql-language-reference/createvectorindex.md) in the SQL++ for Query Reference.
 
 The parameters in this statement are:
 
@@ -253,8 +264,8 @@ The `APPROX_VECTOR_DISTANCE` parameters shown in the example are:
 
 Also use a `LIMIT` clause to return just the number of results you need. The query pushes the `LIMIT` clause down into the index scan so that the scan ends after finding the number of matches you need.
 
-|  | You can also call the function [VECTOR\_DISTANCE()](../n1ql/n1ql-language-reference/vectorfun.md#vector%5Fdistance) to find similar vectors. However, this function does not use the Hyperscale Vector index to perform the vector search. Instead, it performs a brute-force search for similar vectors. It’s useful to measure the recall of your Hyperscale Vector index. See [Determine Recall Rate](vector-index-best-practices.md#recall-accuracy) for more information about measuring recall. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also call the function [VECTOR\_DISTANCE()](../n1ql/n1ql-language-reference/vectorfun.md#vector%5Fdistance) to find similar vectors. However, this function does not use the Hyperscale Vector index to perform the vector search. Instead, it performs a brute-force search for similar vectors. It’s useful to measure the recall of your Hyperscale Vector index. See [Determine Recall Rate](vector-index-best-practices.md#recall-accuracy) for more information about measuring recall.
 
 ### [](#query-example)Hyperscale Vector Index Query Example
 

@@ -1,12 +1,24 @@
+---
+title: Verify a Sync Gateway Install
+description: Configure and verify your <em>Sync Gateway</em> installation;
+  securely sync enterprise data from cloud to edge!
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/get-started-verify-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/get-started-verify-install.html)
+
+# Verify a Sync Gateway Install
 
 > Configure and verify your _Sync Gateway_ installation; securely sync enterprise data from cloud to edge!  
 > This is **Step 4** in the _Start Here!_ topic group. Here we will verify that you can connect your _Sync Gateway_ to a _Couchbase Server_ and synchronize changes whether made in Couchbase Server or through Sync Gateway’s REST API.
 
 Related _Start Here!_ topics: [Introduction](introduction.md) | [Prepare](get-started-prepare.md) | [Install](get-started-install.md)
 
-|  | Preparatory StepsEnsure you have read, and acted-upon, the information and steps in [Prepare](get-started-prepare.md) and [Install](get-started-install.md) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Preparatory Steps
+> 
+> Ensure you have read, and acted-upon, the information and steps in [Prepare](get-started-prepare.md) and [Install](get-started-install.md)
 
 These instructions are for local or server based deployments. If you are using a container such as Docker, see this [blog post on using Docker with Couchbase Mobile](https://blog.couchbase.com/using-docker-with-couchbase-mobile/) for additional details.
 
@@ -73,8 +85,8 @@ bin/sync_gateway -<options> sgwconfig.json (1)
 
 ## [](#connect-to-sync-gateway)Connect to Sync Gateway
 
-|  | You can use [Console Logs](logging.md#lbl-console-logs) to aid diagnosis of connection issues |
-|  | --------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can use [Console Logs](logging.md#lbl-console-logs) to aid diagnosis of connection issues
 
 1. With Sync Gateway and Couchbase Server started, point your browser to the Sync Gateway url, typically on port 4984, but this can be changed — see: [REST API Access](rest-api-access.md).  
 So, for example:  
@@ -87,15 +99,23 @@ http://localhost:4984
 ```  
 If there are issues then check the [Console Logs](logging.md#lbl-console-logs) for more information. Where necessary you can redirect console output to a file — see: [Redirect Console Logs](logging.md#lbl-log-redirect).
 
-|  | If Sync Gateway is behind a load balancer then check the websockets configuration — see [Load Balancer](load-balancer.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If Sync Gateway is behind a load balancer then check the websockets configuration — see [Load Balancer](load-balancer.md).
 
 ## [](#add-a-database-configuration)Add a Database Configuration
 
 We can now use the Admin REST API to add a database to our Sync Gateway cluster.
 
-|  | The curl commands on this page requires basic authentication using the api\_admin Couchbase Server RBAC user’s credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). You can create the digest by taking a Base64 of username:password. For example: DIGEST=\`echo -n sync\_gateway:password \| base64\` echo $DIGEST \# c3luY19nYXRld2F5OnBhc3N3b3Jk curl --header "Authorization: Basic $DIGEST" ... |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `curl` commands on this page requires basic authentication using the `api_admin` Couchbase Server RBAC user’s credentials we created in Step 2 of [Create RBAC users](get-started-prepare.md#step-2create-rbac-user). You can create the digest by taking a Base64 of `username:password`. For example:
+> 
+> ```console
+> DIGEST=`echo -n sync_gateway:password | base64`
+> echo $DIGEST
+> # c3luY19nYXRld2F5OnBhc3N3b3Jk
+> 
+> curl --header "Authorization: Basic $DIGEST" ...
+> ```
 
 The `curl` command shown in [Example 2](#ex-add-sgw-db) below a `traveldb` database pointing to the Couchbase Server’s `travel-sample` bucket.
 

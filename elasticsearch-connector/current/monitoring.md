@@ -1,11 +1,19 @@
+---
+title: Monitoring
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/monitoring.html)
+
+# Monitoring
 
 > The connector exposes several performance metrics. Here’s a summary of the most important metrics and how to interpret them. 
 
 In its default configuration, the connector runs an embedded web server. Metrics are exposed in Dropwizard JSON format at `<http://localhost:31415/metrics?pretty>`.
 
-|  | Omit the ?pretty for a more compact response. |
-|  | --------------------------------------------- |
+> [!TIP]
+> Omit the `?pretty` for a more compact response.
 
 A simple health check might fetch that URL and assert the response has an HTTP status code of 200 (OK). A more sophisticated check should parse the JSON response and inspect the values of whichever metrics you consider important.
 
@@ -39,8 +47,8 @@ Perhaps the most important metric for implementing a health check, this gauge re
 
 An estimate of the number of Couchbase document changes yet to be processed. This is a general indication of how well the connector is keeping up with changes in Couchbase. Note that the count only includes changes in the Couchbase partitions handled by this connector instance. This value is dynamic; it goes up when changes happen in Couchbase, and goes down as the changes are processed by the connector.
 
-|  | The cbes.backlog metric maybe significantly less accurate when the connector is configured to replicate only a specific scope or specific collections. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `cbes.backlog` metric maybe significantly less accurate when the connector is configured to replicate only a specific scope or specific collections.
 
 `cbes.writeQueue`
 

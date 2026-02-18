@@ -1,4 +1,12 @@
+---
+title: Search Request
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-request.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-search-request.html)
+
+# Search Request
 
 ## [](#Query)Query
 
@@ -235,8 +243,8 @@ These settings allow for the client to maintain state while paginating - the sor
 
 Both the attributes accept an array of strings (sort keys) - the length of this array will need to be the same length of the "sort" array within the search request.
 
-|  | You cannot use both search\_after and search\_before in the same search request. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use both `search_after` and `search_before` in the same search request.
 
 ### [](#example-6)Example
 
@@ -266,8 +274,8 @@ Here are some examples using `search_after/search_before` over sort key "\_id" (
 }
 ```
 
-|  | A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results ("size: 10", "from": 0) ordered by _score_ sequentially from the highest to lowest. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A Full Text Search request that doesn’t carry any pagination settings will return the first 10 results (`"size: 10", "from": 0`) ordered by _score_ sequentially from the highest to lowest.
 
 ### [](#pagination-tips-and-recommendations)Pagination tips and recommendations
 
@@ -283,8 +291,8 @@ This solution requires a few preconditions be met:
 
 * The search request must specify a sort order.
 
-|  | The sort order must impose a total order on the results. Without this, any results which share the same sort value might be left out when handling the page navigation boundaries. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The sort order must impose a total order on the results. Without this, any results which share the same sort value might be left out when handling the page navigation boundaries.
 
 A common solution to this is to always include the document ID as the final sort criteria.
 
@@ -390,8 +398,8 @@ To fetch more accurate sort results, we strongly recommend specifying the `type`
 
 The example below shows how to specify the object-sort.
 
-|  | The below sample assumes that the travel-sample bucket has been loaded, and a default index has been created on it. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The below sample assumes that the `travel-sample` bucket has been loaded, and a default index has been created on it.
 
 ```json
 {
@@ -583,8 +591,8 @@ On the Search page, you can search for a term in any index. The search result di
 
 You can disable the scoring by setting `score` to `none` in the search request. This is recommended in a situation where scoring (document relevancy) is not needed by the application.
 
-|  | Using "score": "none" is expected to boost query performance in certain situations. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using `"score": "none"` is expected to boost query performance in certain situations.
 
 #### [](#example-11)Example
 
@@ -714,8 +722,8 @@ All the facet examples below, are for the query "`water`" on the beer-sample dat
 
 A term facet counts how many matching documents have a particular term for a specific field.
 
-|  | When building a term facet, use the keyword analyzer. Otherwise, multi-term values get tokenized, and the user gets unexpected results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When building a term facet, use the keyword analyzer. Otherwise, multi-term values get tokenized, and the user gets unexpected results.
 
 #### [](#example-13)Example
 

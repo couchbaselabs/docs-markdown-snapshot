@@ -1,4 +1,12 @@
+---
+title: Upgrade a Reduced-Capacity, Online Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-cluster-online-reduced-capacity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/upgrade-cluster-online-reduced-capacity.html)
+
+# Upgrade a Reduced-Capacity, Online Cluster
 
 > A cluster can be upgraded while still online, without additional nodes required — provided that it is permitted to serve data at reduced-capacity, for the duration of the cluster-upgrade. 
 

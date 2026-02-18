@@ -1,4 +1,15 @@
+---
+title: Sample Application
+description: Discover how to program interactions with the Couchbase Server via
+  the data, query, and search services -- using the Travel Sample Application
+  with the built-in Travel Sample data Bucket.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/hello-world/sample-application.html)
+
+# Sample Application
 
 > Discover how to program interactions with the Couchbase Server via the data, query, and search services — using the Travel Sample Application with the built-in Travel Sample data Bucket. 
 
@@ -188,8 +199,8 @@ The request body consists of a JSON object with two fields: `username` and `pass
   'password':<password>
 }
 
-|  | The document key is a lowercase version of the provided username — this means that different usernames can refer to the same document. For example, if a user signs up with the username Douglas Reynholm, a different user can’t sign up with the username douglas reynholm, as both resolve to the same document key. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The document key is a lowercase version of the provided username — this means that different usernames can refer to the same document. For example, if a user signs up with the username `Douglas Reynholm`, a different user can’t sign up with the username `douglas reynholm`, as both resolve to the same document key.
 
 See [Data Operations](../howtos/kv-operations.md) for more information about K/V operations.
 
@@ -279,8 +290,8 @@ class FlightPathsView(SwaggerView):
 
 Key/value operations aren’t sufficient to service a complex request like searching for flight information. The Query Service provides this capability with minimal complexity.
 
-|  | You may recall that the web application provides both outbound and return flights. The frontend provides this information by making two separate requests to the backend, with the <fromLoc> and <toLoc> variable sections of the URL switched. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You may recall that the web application provides both outbound and return flights. The frontend provides this information by making two separate requests to the backend, with the `<fromLoc>` and `<toLoc>` variable sections of the URL switched.
 
 A single query can’t provide this information without significant complexity, as the route document schema doesn’t include the airport names:
 
@@ -470,8 +481,8 @@ except Exception:
     return abortmsg(500, "Couldn't update flights")
 ```
 
-|  | If the booking document insert succeeds, but the update to the user document fails, the endpoint returns an internal server error to the frontend. However, the stray booking document remains the database. In a production environment it is good practice to add handling code to remove this stray document. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the booking document insert succeeds, but the update to the user document fails, the endpoint returns an internal server error to the frontend. However, the stray booking document remains the database. In a production environment it is good practice to add handling code to remove this stray document.
 
 ### [](#viewing-booked-flights)Viewing Booked Flights
 

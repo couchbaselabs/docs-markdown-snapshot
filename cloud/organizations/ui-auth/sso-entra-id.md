@@ -1,4 +1,16 @@
+---
+title: Set Up Capella SSO Using Microsoft Entra ID
+description: Configure Single Sign-On (SSO) between Microsoft Entra ID and
+  Couchbase Capella to allow your organization's users to authenticate securely
+  without managing separate credentials. This integration enables streamlined
+  access management while maintaining enterprise-grade security.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-entra-id.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/sso-entra-id.html)
+
+# Set Up Capella SSO Using Microsoft Entra ID
 
 > Configure Single Sign-On (SSO) between Microsoft Entra ID and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
@@ -60,10 +72,9 @@ After you have created an application with Entra ID, you need to create a realm 
 
 1. In Capella, click **Settings** **SSO**.
 2. Click **Create Realm** **SAML**.
-3. In the **SAML Signing Certificate** field, paste the contents of the downloaded PEM certificate from Entra ID, removing the first and last lines (`-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----`)
-
-|  | If you need to update your signing certificate later, see [Change Signing Endpoint URL and Certificate](manage-identity-providers.md#change-cert). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. In the **SAML Signing Certificate** field, paste the contents of the downloaded PEM certificate from Entra ID, removing the first and last lines (`-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----`)  
+> [!TIP]  
+> If you need to update your signing certificate later, see [Change Signing Endpoint URL and Certificate](manage-identity-providers.md#change-cert).
 4. Copy the Login URL from Entra ID to Capella.
 
   1. In Entra ID, under your Capella application name, copy the **Login URL**.
@@ -82,10 +93,9 @@ After you have created an application with Entra ID, you need to create a realm 
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 5. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -115,10 +125,9 @@ Add the Entity ID, Callback URL, and Sign on URL from your Capella realm to your
   1. In Entra ID, click **Token configuration**.
   2. Click **Add groups claim**.
   3. In the **Edit groups claim** flyout, select all the group types.
-  4. Click **Add**.
-
-|  | Microsoft Entra limits the total number of groups emitted in a token for SAML assertions to 150\. If you have a user that’s in more than 150 groups on Entra ID, their group claims do not emit properly to Capella. To avoid group claims limits, make sure to [filter your groups](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims#group-filtering) to only the groups you need for Capella. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  4. Click **Add**.  
+  > [!NOTE]  
+  > Microsoft Entra limits the total number of groups emitted in a token for SAML assertions to 150\. If you have a user that’s in more than 150 groups on Entra ID, their group claims do not emit properly to Capella. To avoid group claims limits, make sure to [filter your groups](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims#group-filtering) to only the groups you need for Capella.
   5. On the **Optional claims** page, click **Add optional claim**.
   6. In the **Add optional claim** flyout, choose the **SAML** option.
   7. Select the **email** claim.
@@ -169,10 +178,9 @@ With an application registered with Entra ID, you need to create a realm in Cape
 
   1. In Entra ID, on your new app’s **Overview** page, copy the **Application (client) ID**.
   2. In Capella, paste the Client ID into the **Client ID** field.
-5. Create and add the Client Secret to your realm configuration.
-
-|  | The secret is only shown once. You must copy it at the time of creation. If you forget to copy the secret value, you must create a new one. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+5. Create and add the Client Secret to your realm configuration.  
+> [!TIP]  
+> The secret is only shown once. You must copy it at the time of creation. If you forget to copy the secret value, you must create a new one.
 
   1. In Entra ID, on your new app’s **Overview** page, click **Add a certificate or secret**.
   2. Click **New client secret**.
@@ -192,10 +200,9 @@ When adding additional scopes, separate each entry with a space.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 8. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 

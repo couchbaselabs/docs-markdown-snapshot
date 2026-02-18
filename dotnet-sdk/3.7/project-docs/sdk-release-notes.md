@@ -1,4 +1,13 @@
+---
+title: SDK Release Notes
+description: Release notes and download archive for the Couchbase .NET Client.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes and download archive for the Couchbase .NET Client. 
 
@@ -37,10 +46,9 @@ We always recommend using the latest version of the SDK — it contains all of t
 
 #### [](#improvements-2)Improvements
 
-* [NCBC-3992](https://couchbasecloud.atlassian.net/browse/NCBC-3992): `KvIgnoreRemoteCertificateNameMismatch = true` was clearing other `RemoteCertificateChainErrors`. Further validation has been added, and this no longer occurs.
-
-|  | For use with SSL and certificates which contain the hostname (versus an IP address), with SDK 3.7.1, set ForceIpAsTargetHost = false as a ClusterOption(this is the default setting from release 3.7.2). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* [NCBC-3992](https://couchbasecloud.atlassian.net/browse/NCBC-3992): `KvIgnoreRemoteCertificateNameMismatch = true` was clearing other `RemoteCertificateChainErrors`. Further validation has been added, and this no longer occurs.  
+> [!IMPORTANT]  
+> For use with SSL and certificates which contain the hostname (versus an IP address), with SDK 3.7.1, set `ForceIpAsTargetHost = false` as a `ClusterOption`(this is the default setting from release 3.7.2).
 * [NCBC-4006](https://couchbasecloud.atlassian.net/browse/NCBC-4006), [NCBC-4010](https://couchbasecloud.atlassian.net/browse/NCBC-4010): Improvements on error handling in the Transactions API.
 
 #### [](#new-features)New Features
@@ -240,8 +248,8 @@ Version 3.5.2 is the third release of the 3.5 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.5/Couchbase-Net-Client-3.5.2.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.5.2) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.5.2)
 
-|  | Owing to [NCBC-3794](https://issues.couchbase.com/browse/NCBC-3794), it is recommended that all customers using Server 7.6 or later upgrade to SDK 3.5.3, or SDK 3.6.2 or later, immediately. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Owing to [NCBC-3794](https://issues.couchbase.com/browse/NCBC-3794), it is recommended that all customers using Server 7.6 or later upgrade to SDK 3.5.3, or SDK 3.6.2 or later, immediately.
 
 #### [](#fixed-issues-12)Fixed Issues
 
@@ -500,8 +508,8 @@ Version 3.4.11 is the twelfth release of the 3.4 series.
 
 ### [](#version-3-4-10)Version 3.4.10 (03 Aug 2023)
 
-|  | v3.4.10 is incompatible with Server 7.6 and later — do not use. This version of the SDK has been deprecated; use 3.4.11 or greater. Details can be found in [NCBC-3724](https://issues.couchbase.com/browse/NCBC-3724). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> v3.4.10 is incompatible with Server 7.6 and later — do not use. This version of the SDK has been deprecated; use 3.4.11 or greater. Details can be found in [NCBC-3724](https://issues.couchbase.com/browse/NCBC-3724).
 
 Version 3.4.10 is the eleventh release of the 3.4 series.
 
@@ -852,8 +860,8 @@ Version 3.3.1 is the second release of the 3.3 series.
 
 ### [](#version-3-3-0-27-april-2022)Version 3.3.0 (27 April 2022)
 
-|  | This version introduces an issue, [NCBC-3192](https://issues.couchbase.com/browse/NCBC-3192), which impacts TLS/SSL. Please use [version 3.3.1](#version-3-3-1) instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> This version introduces an issue, [NCBC-3192](https://issues.couchbase.com/browse/NCBC-3192), which impacts TLS/SSL. Please use [version 3.3.1](#version-3-3-1) instead.
 
 Version 3.3.0 is the first release of the 3.3 series (delisted from NuGet 4/28/2022).
 
@@ -923,8 +931,8 @@ Version 3.2.8 is the eighth release of the 3.2 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.8.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.8) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.8)
 
-|  | .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-7)Known Issues
 
@@ -957,8 +965,8 @@ Version 3.2.7 is the seventh release of the 3.2 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.7.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.7) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.7)
 
-|  | .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-8)Known Issues
 
@@ -994,8 +1002,8 @@ Version 3.2.6 is the sixth release of the 3.2 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.6.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.6) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.6)
 
-|  | .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-9)Known Issues
 
@@ -1048,8 +1056,8 @@ Version 3.2.5 is the fifth release of the 3.2 series.
 
 [Download](https://packages.couchbase.com/clients/net/3.2/Couchbase-Net-Client-3.2.5.zip) | [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client-3.2.5) | [Nuget](https://www.nuget.org/packages/CouchbaseNetClient/3.2.5)
 
-|  | .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> .NET Core 2.1 support has been dropped from the SDK, as of 3.2.5\. This corresponds to Microsoft’s decision to EOL .NET Core 2.1 on August 21, 2021\.
 
 #### [](#known-issues-10)Known Issues
 

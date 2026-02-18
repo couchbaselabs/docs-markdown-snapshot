@@ -1,4 +1,14 @@
+---
+title: cbft-bleve for Moss Indexes
+description: The <code>cbft-bleve</code> tool supports commands that return
+  information on <em>Moss</em> index partitions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbft-bleve-moss.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbft-bleve-moss.html)
+
+# cbft-bleve for Moss Indexes
 
 > The `cbft-bleve` tool supports commands that return information on _Moss_ index partitions. 
 

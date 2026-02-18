@@ -1,4 +1,12 @@
+---
+title: Searching Securely Using SSL
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-secure-fts-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-secure-fts-queries.html)
+
+# Searching Securely Using SSL
 
 To securely query data from the FTS service, the user must follow these steps:
 
@@ -22,5 +30,5 @@ https://<ip>:18094/api/index/travel-sample-index/query \
     }'
 ```
 
-|  | Ensure that the SSL ports are enabled in the cluster. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> Ensure that the SSL ports are enabled in the cluster.

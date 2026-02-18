@@ -1,4 +1,13 @@
+---
+title: Getting a Single Statistic
+description: The REST API allows cluster-statistics to be retrieved from a single metric.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-statistics-single.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-statistics-single.html)
+
+# Getting a Single Statistic
 
 > The REST API allows cluster-statistics to be retrieved from a single metric. 
 

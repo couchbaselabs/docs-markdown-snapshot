@@ -1,4 +1,14 @@
+---
+title: Manage App Endpoints Lifecycle
+description: Pause, resume, and delete App Endpoints for maintenance or to lower
+  costs when the service is not required.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/configuring-app-endpoints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/configuring-app-endpoints.html)
+
+# Manage App Endpoints Lifecycle
 
 > Pause, resume, and delete App Endpoints for maintenance or to lower costs when the service is not required. 
 
@@ -74,8 +84,8 @@ You can delete an App Endpoint entirely. Deleting an App Endpoint pauses it, the
 10. Click **Delete App Endpoint**.
 11. Confirm that you want to delete the App Endpoint.
 
-|  | Capella prevents you from deleting a bucket that is linked to an App Endpoint. To delete the associated bucket, you must delete the App Endpoint first. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Capella prevents you from deleting a bucket that is linked to an App Endpoint. To delete the associated bucket, you must delete the App Endpoint first.
 
 ## [](#see-also)See Also
 

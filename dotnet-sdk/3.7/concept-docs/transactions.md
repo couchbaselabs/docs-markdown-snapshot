@@ -1,4 +1,13 @@
+---
+title: Transaction Concepts
+description: A high-level overview of Distributed ACID Transactions with Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/concept-docs/pages/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/concept-docs/transactions.html)
+
+# Transaction Concepts
 
 > A high-level overview of Distributed ACID Transactions with Couchbase. 
 
@@ -57,8 +66,8 @@ Only once the lambda has successfully run to conclusion, will the attempt be com
 
 After this commit point is reached, the individual documents will be committed (or "unstaged"). This provides an eventually consistent commit for non-transactional actors.
 
-|  | Committing is automatic: if there is no explicit call to ctx.CommitAsync() at the end of the transaction logic callback, and no exception is thrown, it will be committed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Committing is automatic: if there is no explicit call to `ctx.CommitAsync()` at the end of the transaction logic callback, and no exception is thrown, it will be committed.
 
 ### [](#rollback)Rollback
 

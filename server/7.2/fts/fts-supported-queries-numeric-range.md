@@ -1,4 +1,12 @@
+---
+title: Numeric Range Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-numeric-range.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-numeric-range.html)
+
+# Numeric Range Query
 
 A _numeric range_ query finds documents containing a numeric value in the specified field within the specified range.
 

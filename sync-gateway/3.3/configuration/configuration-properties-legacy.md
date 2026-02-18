@@ -1,4 +1,15 @@
+---
+title: Legacy Pre-3.0 Configuration
+description: Configuring <em>Sync Gateway</em> Pre-3.0 to provide secure
+  cloud-to-edge synchronization of enterprise data using the standard, static,
+  configuration file.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-properties-legacy.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/configuration/configuration-properties-legacy.html)
+
+# Legacy Pre-3.0 Configuration
 
 > Configuring _Sync Gateway_ Pre-3.0 to provide secure cloud-to-edge synchronization of enterprise data using the standard, static, configuration file.  
 
@@ -6,15 +17,19 @@ Topic Group
 
 [Configuration Schema](configuration-properties-legacy.md)| [Javascript Functions](configuration-javascript-functions.md)| [Environment Variables](configuration-environment-variables.md)| [REST API](configuration-rest-api.md)| [Persistent Configuration](configuration-overview.md)
 
-|  | Legacy ConfigurationYou cannot use collections in Sync Gateway’s legacy Pre-3.0 configuration method. For current configuration details, see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Legacy Configuration
+> 
+> You cannot use `collections` in Sync Gateway’s legacy Pre-3.0 configuration method. For current configuration details, see: [Configuration Overview](configuration-overview.md) and-or [Bootstrap Configuration](configuration-schema-bootstrap.md).
 
 ## [](#introduction)Introduction
 
 This page describes Sync Gateway’s legacy Pre-3.0 configuration method. It uses a centralized configuration file to hold all configuration settings in JSON form — see:[the schema](#lbl-schema) for the file contents.
 
-|  | Persistent Configuration is enabled by default from 3.0. To continue using legacy Pre-3.0 configuration you should start sync gateway with [disable-persistent-config](#disable%5Fpersistent%5Fconfig) set true either in the configuration file or in [Command Line Options](../deploy/command-line-options.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Persistent Configuration is enabled by default from 3.0.
+> 
+> To continue using legacy Pre-3.0 configuration you should start sync gateway with [disable-persistent-config](#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](../deploy/command-line-options.md).
 
 Many configuration settings can be changed using the [Admin REST API](../rest-api/rest-api-admin.md) **but these are not persisted beyond a Sync Gateway restart**. To make persistent changes you must edit the central Configuration Properties file — or switch to the 3.x persistent configuration — see: [Configuration Overview](configuration-overview.md)
 
@@ -30,8 +45,8 @@ The Configuration Properties file defines sync gateway’s runtime behavior. Its
 
 The majority of the configuration is achieved using standard JSON syntax — see [the schema](#lbl-schema) for more.
 
-|  | The sync-gateway-config.json file relies on the use of one _relaxed_ JSON feature; the use of back ticks (\`). Text between back ticks is treated as a string. It can span multiple lines and contain double-quotes. Those features make it ideal for the incorporation of inline JavaScript, which can be used to provision, for example, sync and import\_filter functions. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `sync-gateway-config.json` file relies on the use of one _relaxed_ JSON feature; the use of back ticks (`` ` ``). Text between back ticks is treated as a string. It can span multiple lines and contain double-quotes. Those features make it ideal for the incorporation of inline JavaScript, which can be used to provision, for example, `sync` and `import_filter` functions.
 
 ## [](#lbl-running)Running
 

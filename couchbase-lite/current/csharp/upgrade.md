@@ -1,7 +1,16 @@
+---
+title: Upgrade
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/csharp/upgrade.html)
 
-|  | On upgrading from a 3.x release, all Couchbase Lite databases automatically re-index on initial database open.This can result in a delay before the database is usable. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Upgrade
+
+> [!IMPORTANT]
+> On upgrading from a 3.x release, all Couchbase Lite databases automatically re-index on initial database open.  
+> This can result in a delay before the database is usable.
 
 ## [](#4-0-0-upgrade)4.0.0 Upgrade
 
@@ -66,8 +75,8 @@ collConfig.Channels = new[] { "a", "b", "c" };
 var replicatorConfig = new ReplicatorConfiguration(collections: new[] { collConfig }, target: endpoint);
 ```
 
-|  | This change provides API consistency across all CBL platforms and simplifies the implementation by requiring collections and configurations at construction time. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This change provides API consistency across all CBL platforms and simplifies the implementation by requiring collections and configurations at construction time.
 
 ### [](#api-changes)API Changes
 

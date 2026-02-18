@@ -1,4 +1,13 @@
+---
+title: What&#8217;s New in Version 8.0
+description: Couchbase is the modern database for enterprise applications.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/whats-new.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/introduction/whats-new.html)
+
+# What&#8217;s New in Version 8.0
 
 > Couchbase is the modern database for enterprise applications.  
 > Couchbase Server 8.0 combines the strengths of relational databases with the flexibility, performance, and scale of Couchbase. 
@@ -50,8 +59,8 @@ Couchbase Server 8.0 introduces several new features for the Data Service.
 
 If you do not specify a storage engine for a new Couchbase bucket, Couchbase Server Enterprise Edition 8.0 uses Magma with 128 vBuckets as the storage engine. This new storage engine option has a minimum memory quota requirement of 100MiB compared to the original 1024 vBucket Magma bucket’s requirement of 1GiB. See [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md) for more information about storage engines.
 
-|  | This is a default behavior change. |
-|  | ---------------------------------- |
+> [!IMPORTANT]
+> This is a default behavior change.
 
 The new default storage backend for buckets is a behavior change that may cause issues if you rely on the previous behavior. Before upgrading, determine if your deployment scripts rely on the previous behavior. See [Before You Upgrade](../install/upgrade.md#before-you-upgrade) for potential compatibility issues compared with the previous behavior.
 
@@ -75,8 +84,10 @@ You can configure the Data Service to stop writing to the data service path once
 
 You can enable a cluster-level option that allows durable writes to succeed even when they cannot meet their majority requirements. Use this setting to allow durable writes to succeed when nodes are unavailable due to failovers. For example, you can enable this option to prevent durable writes failing to a bucket with a single replica during an upgrade that uses the graceful failover followed by a delta recovery method.
 
-|  | Potential Data Loss Enabling this feature degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. This setting makes durable writes during a failover no more safe from data loss as an asynchronous write. It also means transactions do not provide the same guarantees when this feature is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Potential Data Loss
+> 
+> Enabling this feature degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. This setting makes durable writes during a failover no more safe from data loss as an asynchronous write. It also means transactions do not provide the same guarantees when this feature is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
 See [Auto-Failover and Ephemeral Buckets](../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets) for more information about this feature.
 
@@ -99,7 +110,7 @@ The REST API now includes the per-bucket setting `warmupBehavior`. The previous 
 #### [](#other-data-service-features)Other Data Service Features
 
 * Memcached buckets have been removed. If your cluster contains Memcached buckets, you must remove them and replace them with ephemeral buckets before you can upgrade to Couchbase Server 8.0.
-* You can now change the eviction policy of a Couchbase bucket without the bucket restarting. Instead, you must take additional steps for the new setting to take effect. See [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
+* You can now change the eviction policy of a Couchbase bucket without the bucket restarting. To do this, you must use the REST API, and you must take additional steps for the new setting to take effect. See [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
 * You can now change the eviction policy of an ephemeral bucket. The new setting takes effect immediately, unlike Couchstore buckets. See [Change a Bucket’s Ejection Policy](../manage/manage-buckets/change-ejection-policy.md) for more information.
 * Previously, Couchbase Server would refuse to automatically failover a node if it had an ephemeral bucket without replicas. You can now configure Couchbase Server to allow these automatic failovers. When these failovers happen, Couchbase Server creates a new empty ephemeral bucket on another node to take the place of the bucket on the failed node. See [Auto-Failover and Ephemeral Buckets](../learn/clusters-and-availability/automatic-failover.md#auto-failover-and-ephemeral-buckets).
 

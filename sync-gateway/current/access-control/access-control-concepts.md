@@ -1,4 +1,14 @@
+---
+title: Access Control Concepts
+description: An introduction to the key concepts behind the provision of
+  effective access control in Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-concepts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/access-control-concepts.html)
+
+# Access Control Concepts
 
 > An introduction to the key concepts behind the provision of effective access control in Sync Gateway  
 > The sync function API provides several methods that you can use to validate and control user access to databases and documents.
@@ -77,8 +87,11 @@ By default, Couchbase Lite gets all the channels to which the configured user ac
 
 ### [](#lbl-access-revocation)Channel Access Revocation
 
-|  | 3.0 Breaking ChangeWhenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> 3.0 Breaking Change
+> 
+> Whenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.  
+> In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss.
 
 Users may lose access to documents for many reasons, including:
 
@@ -205,8 +218,8 @@ Replications by users with _all channels_ wildcard access will pull **all** docu
 
 **Note:** Users granted access using the _all channels_ wildcard **do not** inherit [requireAccess()](sync-function/sync-function-api-require-access-cmd.md) rights to any specific channel.
 
-|  | Always use a filter in conjunction with the _all channels_ wildcard, to avoid sync unnecessarily pulling large numbers of documents to mobile devices. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Always use a filter in conjunction with the _all channels_ wildcard, to avoid sync unnecessarily pulling large numbers of documents to mobile devices.
 
 You assign documents to channels in the [Sync Function](sync-function/sync-function.md).
 
@@ -278,8 +291,8 @@ As an entity, roles comprise a name and a list of channels.
 
 Any user associated with a role inherits the right to access any of the channels in the role’s list. This provides a convenient way to associate multiple channels with multiple users.
 
-|  | Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Roles have a separate namespace from users, so it’s possible to have a user and a role with the same name.
 
 ---
 

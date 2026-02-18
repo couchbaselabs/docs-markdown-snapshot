@@ -1,4 +1,13 @@
+---
+title: SQL++ versus SQL
+description: The most important difference between SQL++ and SQL is the <em>data model</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/n1ql-versus-sql.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/data/n1ql-versus-sql.html)
+
+# SQL++ versus SQL
 
 > The most important difference between SQL++ and SQL is the _data model_. Other notable differences relate to the _projection_, _selection_, and _filtering_ of data. 
 

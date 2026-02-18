@@ -1,4 +1,14 @@
+---
+title: Couchbase Lite on Java&#8201;&#8212;&#8201;Installing
+description: Couchbase Lite on Java -- a framework for developing offline-first
+  Java applications for mobile and edge
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/gs-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/java/gs-install.html)
+
+# Couchbase Lite on Java&#8201;&#8212;&#8201;Installing
 
 > Description — _Couchbase Lite on Java — a framework for developing offline-first Java applications for mobile and edge_  
 > _Abstract — This content provides instructions that enable you to deploy Couchbase Lite on java_  
@@ -31,8 +41,8 @@ Include the following in your Gradle `build.gradle` or Maven `pom.xml` file, as 
 Check you have `mavenCentral()` in `repositories` (or in `settings.gradle`).  
 Maven automatically checks its own repo for dependencies.
 
-|  | for Linux, make sure you have followed the [additional steps required](gs-prereqs.md#additional-steps-for-linux). |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> for Linux, make sure you have followed the [additional steps required](gs-prereqs.md#additional-steps-for-linux).
 
 That’s it! You’re all set to begin developing powerful Couchbase Lite applications.
 
@@ -57,18 +67,18 @@ You need to deploy the Couchbase Lite `support` library, which is available _onl
 
 ## [](#standalone-apps)Standalone Apps
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 ### [](#using-gradle)Using Gradle
 
 1. Create a project folder
 2. Initialize it for a Gradle Java application
 3. Include the content shown in [Example 1](#ex-bgf1) in your app-level `build.gradle` file
-4. Open the project folder in Intellij IDEA and import the gradle settings.
-
-|  | If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screenNote the Gradle menu at the extreme right of the screen: |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |  
+4. Open the project folder in Intellij IDEA and import the gradle settings.  
+> [!TIP]  
+> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen  
+> Note the Gradle menu at the extreme right of the screen:  
 ![GradleMenuWebApp](_images/GradleMenuWebApp.png)
 
 That’s it. You’re all set to start building your own Couchbase Lite applications — see [Build and Run](gs-build.md) for an example of how to do that.
@@ -114,8 +124,8 @@ repositories {
     }
 ```
 
-|  | Vector Search is an **Enterprise-only** feature. |
-|  | ------------------------------------------------ |
+> [!NOTE]
+> Vector Search is an **Enterprise-only** feature.
 
 Compile options
 
@@ -269,8 +279,13 @@ Dependencies
 
 This section explains how to set-up a build project to create Couchbase Lite web apps using gradle and Intellij IDEA.
 
-|  | Using Maven For examples of how to do this using Maven POM files, see — [Couchbase Mobile Workshop](https://github.com/couchbaselabs/mobile-travel-sample/tree/master/java/TravelSample) [Mobile Training To Do App](https://github.com/couchbaselabs/mobile-training-todo/tree/release/lithium/java-ws/server/Todo) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Using Maven
+> 
+> For examples of how to do this using Maven POM files, see — 
+> 
+> * [Couchbase Mobile Workshop](https://github.com/couchbaselabs/mobile-travel-sample/tree/master/java/TravelSample)
+> * [Mobile Training To Do App](https://github.com/couchbaselabs/mobile-training-todo/tree/release/lithium/java-ws/server/Todo)
 
 ### [](#tomcat)Tomcat
 
@@ -282,8 +297,8 @@ Each web application has its own \*class loader (WebappX). This loads the classe
 
 So, if you are running multiple Couchbase Lite web applications, deploy your Couchbase Lite library `<pathToCbl>/libs` to `$CATALINA_BASE/lib`. This means you do not need to deploy it in each web app and **minimizes the size of each app**.
 
-|  | Configuring Couchbase Lite logging functionality will affect the logging of all web applications as the _common class loader_ shares _Couchbase Lite Console, File_ and _Custom logging functionalities_ across all web apps. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Configuring Couchbase Lite logging functionality will affect the logging of all web applications as the _common class loader_ shares _Couchbase Lite Console, File_ and _Custom logging functionalities_ across all web apps.
 
 For information about building a WAR file see [Deploying a WAR File](#lbl-war)
 
@@ -291,10 +306,9 @@ For information about building a WAR file see [Deploying a WAR File](#lbl-war)
 
 * Ensure your build environment matches the runtime Tomcat environment. Specifically, that the Java and Tomcat versions are the same.
 * If your Tomcat server runs Linux, declare the _shared libraries_ (`<pathToCbl>/support`) in the `$CATALINA_HOME/bin/setenv.sh` script file — see: _Additional Steps for Linux_ section in [Prerequisites](gs-prereqs.md).
-* Ensure the Couchbase Lite jars (`<pathToCbl>/lib`) are on the executable path within Tomcat — see: [Multiple Web Apps](#bmkMultCblJapps)
-
-|  | This also means you should declare the dependencies as providedCompile to avoid them being bundled into the WEB-INF/libs folder |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+* Ensure the Couchbase Lite jars (`<pathToCbl>/lib`) are on the executable path within Tomcat — see: [Multiple Web Apps](#bmkMultCblJapps)  
+> [!TIP]  
+> This also means you should declare the dependencies as `providedCompile` to avoid them being bundled into the `WEB-INF/libs` folder
 
 ### [](#steps)Steps
 
@@ -305,8 +319,10 @@ gradle init
 2. Create your `build.gradle` file, including the [Example 3](#ex-bgf2) in your app-level build.gradle:
 3. Open the project folder in Intellij IDEA and import the gradle settings.
 
-|  | If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen.Note the Gradle menu at the extreme right of the screen:image::GradleMenuWebApp.png\[,300\] |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If you don’t have auto-import set for Gradle projects, then accept the **Import Gradle Project** prompt that is displayed bottom-right of the screen.  
+> Note the Gradle menu at the extreme right of the screen:  
+> image::GradleMenuWebApp.png\[,300\]
 
 If you want to deploy your app to a local tomcat container then see [\[Deploying a WAR file to tomcat\]](#Deploying a WAR file to tomcat)
 
@@ -371,18 +387,15 @@ To deploy your web app to a local Tomcat instance you need to generate a WAR fil
 1. You can do this using the Gradle command below from within your project folder:  
 ```bashrc  
 ./gradlew war  
-```
-
-|  | The generated war file will be at <PROJECT ROOT>/build/libs. |
-|  | ------------------------------------------------------------ |
-2. Deploy the war file to Tomcat, by copying it to $CATALINA\_BASE/webapps
-
-|  | You can also use Tomcat’s Manager App to deploy the war file — see [Tomcat’s Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-3. To use common class loader approach to load Couchbase Lite libraries, copy all of the Couchbase Lite jar files in $CATALINA\_BASE/lib.
-
-|  | For linux platform see also — _Using Native Libraries for Linux_ in [Prerequisites](gs-prereqs.md) |
-|  | -------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> The generated war file will be at <PROJECT ROOT>/build/libs.
+2. Deploy the war file to Tomcat, by copying it to $CATALINA\_BASE/webapps  
+> [!TIP]  
+> You can also use Tomcat’s Manager App to deploy the war file — see [Tomcat’s Manager App](https://tomcat.apache.org/tomcat-9.0-doc/manager-howto.html) documentation for more detail.
+3. To use common class loader approach to load Couchbase Lite libraries, copy all of the Couchbase Lite jar files in $CATALINA\_BASE/lib.  
+> [!NOTE]  
+> For linux platform see also — _Using Native Libraries for Linux_ in [Prerequisites](gs-prereqs.md)
 
 ## [](#related-content)Related Content
 

@@ -1,4 +1,13 @@
+---
+title: tap-vbtakeover
+description: Tracks the progress of rebalance using TAP.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-tap-vbtakeover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-tap-vbtakeover.html)
+
+# tap-vbtakeover
 
 > Tracks the progress of rebalance using TAP. 
 

@@ -1,4 +1,13 @@
+---
+title: WITH clause
+description: Use WITH to create a common table expression.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/with.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/with.html)
+
+# WITH clause
 
 > Use `WITH` to create a **common table expression**. The common table expression may be temporary result set that can be used as a data source for the query, or an expression for later use within a query. 
 

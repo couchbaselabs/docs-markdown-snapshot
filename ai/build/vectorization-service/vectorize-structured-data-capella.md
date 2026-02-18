@@ -1,4 +1,15 @@
+---
+title: Vectorize Structured Data from Capella
+description: Use a Data from Capella Workflow to automatically generate
+  embedding vectors from JSON data in your Capella operational cluster. Use
+  embedding vectors for similarity searches on your data.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-capella.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/vectorization-service/vectorize-structured-data-capella.html)
+
+# Vectorize Structured Data from Capella
 
 > Use a Data from Capella Workflow to automatically generate embedding vectors from JSON data in your Capella operational cluster. Use embedding vectors for similarity searches on your data. 
 
@@ -41,8 +52,8 @@ Workflow names can be a maximum of 128 characters and can include letters (A-Z, 
 11. Verify your workflow configuration.
 12. Click **Run Workflow**.
 
-|  | Do not delete or modify the metadata scope, collections, or Eventing functions created by your new Workflow. If you modify or delete the metadata or functions, you must delete your Workflow and create a new one. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not delete or modify the metadata scope, collections, or Eventing functions created by your new Workflow. If you modify or delete the metadata or functions, you must delete your Workflow and create a new one.
 
 ### [](#configure-data)Configure Your Source Fields
 
@@ -93,10 +104,9 @@ To use an OpenAI model:
   3. Click **Add Key**.
 4. In the **Integrations Name** list, select the OpenAI API Key you want to use.
 5. Click **Next**.
-6. Continue with the rest of the [Procedure](#procedure).
-
-|  | Workflows do not use the OpenAI Batch API. |
-|  | ------------------------------------------ |
+6. Continue with the rest of the [Procedure](#procedure).  
+> [!NOTE]  
+> Workflows do not use the OpenAI Batch API.
 
 ## [](#next-steps)Next Steps
 

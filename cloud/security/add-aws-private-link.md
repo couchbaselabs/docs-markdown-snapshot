@@ -1,9 +1,25 @@
+---
+title: Add an AWS PrivateLink Connection
+description: Add an AWS PrivateLink connection that peers your Amazon Web
+  Service (AWS) network with a Capella cluster using AWS as its cloud provider.
+  This connection can reduce latency and egress costs for applications hosted in
+  the same region.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-aws-private-link.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/add-aws-private-link.html)
+
+# Add an AWS PrivateLink Connection
 
 > Add an AWS PrivateLink connection that peers your Amazon Web Service (AWS) network with a Capella cluster using AWS as its cloud provider. This connection can reduce latency and egress costs for applications hosted in the same region. 
 
-|  | XDCR and Prometheus Metrics AWS PrivateLink connections can support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions. For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> XDCR and Prometheus Metrics
+> 
+> AWS PrivateLink connections can support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) and [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions.
+> 
+> For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -44,8 +60,8 @@ To get started, open the Capella UI, the AWS command line interface, and the AWS
 
 In Capella, enable Private Endpoints:
 
-|  | Enabling Private Endpoints bills your account hourly for AWS PrivateLink until you turn off this option. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Enabling Private Endpoints bills your account hourly for AWS PrivateLink until you turn off this option.
 
 1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
 
@@ -175,10 +191,9 @@ To configure your network access control list (ACL) with an **Inbound** and **Ou
 | ---------- | ------------------------------------------- |
 | Source     | Your VPC IPv4 CIDR.For example: 10.0.0.0/16 |
 | Type       | All traffic                                 |
-| Port range | All                                         |
-
-|  | Before selecting All traffic as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](../support/manage-support.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Port range | All                                         |  
+  > [!CAUTION]  
+  > Before selecting `All traffic` as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](../support/manage-support.md).
   3. Click **Save changes**.
 4. Configure your outbound rule:
 

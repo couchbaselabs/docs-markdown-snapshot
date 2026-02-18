@@ -1,4 +1,12 @@
+---
+title: Using the Spark Shell
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/spark-shell.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/spark-shell.html)
+
+# Using the Spark Shell
 
 > The interactive shell can be used together with the couchbase connector for quick and easy data exploration. 
 

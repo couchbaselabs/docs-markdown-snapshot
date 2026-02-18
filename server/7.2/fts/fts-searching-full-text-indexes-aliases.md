@@ -1,4 +1,12 @@
+---
+title: Searching Full Text Indexes/Aliases
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-full-text-indexes-aliases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-searching-full-text-indexes-aliases.html)
+
+# Searching Full Text Indexes/Aliases
 
 > Full Text indexes, are available under the **Search** tab of the Couchbase Web Console. 
 
@@ -21,7 +29,6 @@ The following buttons are displayed:
 * **Search** searches the specified term in the designated index or alias.
 * **Delete** causes the current index to be deleted.
 * **Clone** brings up the **Clone Index** screen, which allows a copy of the current index to be modified as appropriate and saved under a new name.
-* **Edit** brings up the **Edit Index** screen, which allows the index to be modified. Saving modifications cause the index to be rebuilt.
-
-|  | Both the **Edit Index** and **Clone Index** screens are in most respects the same as the **Add Index** screen, which was itself described in [Searching from the UI](fts-searching-from-the-UI.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* **Edit** brings up the **Edit Index** screen, which allows the index to be modified. Saving modifications cause the index to be rebuilt.  
+> [!NOTE]  
+> Both the **Edit Index** and **Clone Index** screens are in most respects the same as the **Add Index** screen, which was itself described in [Searching from the UI](fts-searching-from-the-UI.md).

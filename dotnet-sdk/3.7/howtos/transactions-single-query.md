@@ -1,4 +1,13 @@
+---
+title: Single Query Transactions
+description: Learn how to perform bulk-loading transactions with the SDK.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/transactions-single-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/howtos/transactions-single-query.html)
+
+# Single Query Transactions
 
 > Learn how to perform bulk-loading transactions with the SDK. 
 

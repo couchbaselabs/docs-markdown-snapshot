@@ -1,4 +1,13 @@
+---
+title: Alerts
+description: Email alerts can be dispatched automatically.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-settings/configure-alerts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-settings/configure-alerts.html)
+
+# Alerts
 
 > Email alerts can be dispatched automatically. 
 
@@ -42,10 +51,9 @@ To access the **Email Alerts** settings screen:
 
 When you have entered appropriate data into the fields, proceed as follows:
 
-1. Save the configuration by clicking the **Save** button at the bottom of the screen.
-
-|  | When you click **Save**, the password that you typed into the **Password** field becomes invisible, and the field therefore appears blank. This is a security measure imposed by Enterprise Analytics. The password remains valid and will be used in authenticating with the email server. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+1. Save the configuration by clicking the **Save** button at the bottom of the screen.  
+> [!NOTE]  
+> When you click **Save**, the password that you typed into the **Password** field becomes invisible, and the field therefore appears blank. This is a security measure imposed by Enterprise Analytics. The password remains valid and will be used in authenticating with the email server.  
 Alternatively, click **Cancel/Reset** to remove the configuration.
 2. Optionally, click the **Send Test Email** button to send a test email and verify your configuration.
 

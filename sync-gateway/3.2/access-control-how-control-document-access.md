@@ -1,4 +1,15 @@
+---
+title: Control Document Access
+description: How to control read/write/delete access using Sync Gateway's Sync
+  Function API to ensure secure access to data in cloud-to-edge enterprise data
+  synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how-control-document-access.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/access-control-how-control-document-access.html)
+
+# Control Document Access
 
 > How to control read/write/delete access using Sync Gateway’s Sync Function API to ensure secure access to data in cloud-to-edge enterprise data synchronization.  
 

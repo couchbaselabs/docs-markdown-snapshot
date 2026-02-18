@@ -1,4 +1,14 @@
+---
+title: Health Check
+description: Health Check provides ping() and diagnostics() tests for the health
+  of the network and the cluster.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/concept-docs/pages/health-check.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.3/concept-docs/health-check.html)
+
+# Health Check
 
 > Health Check provides ping() and diagnostics() tests for the health of the network and the cluster. 
 

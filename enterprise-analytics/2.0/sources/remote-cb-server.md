@@ -1,9 +1,17 @@
+---
+title: Stream Data from Couchbase Server
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/remote-cb-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/remote-cb-server.html)
+
+# Stream Data from Couchbase Server
 
 > To continuously update an Enterprise Analytics collection with data hosted on Couchbase Server, create a remote link and collection. 
 
-|  | For an example, see [Create Remote Collections for beer-sample](../intro/connecting-to-data-sources.md#create-remote-collections-for-beer-sample). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For an example, see [Create Remote Collections for beer-sample](../intro/connecting-to-data-sources.md#create-remote-collections-for-beer-sample).
 
 ## [](#encryption)Requirements
 

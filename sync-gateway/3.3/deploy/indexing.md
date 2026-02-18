@@ -1,4 +1,13 @@
+---
+title: Indexing
+description: Using Indexes to minimize system downtime in Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/deploy/pages/indexing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/deploy/indexing.html)
+
+# Indexing
 
 > Using Indexes to minimize system downtime in Sync Gateway  
 > Explains the use of Global Secondary Indexes

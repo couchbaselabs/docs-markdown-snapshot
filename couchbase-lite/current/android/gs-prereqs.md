@@ -1,12 +1,23 @@
+---
+title: Preparing for Couchbase Lite on Android
+description: Prerequisites for the installation of Couchbase Lite
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-prereqs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/gs-prereqs.html)
+
+# Preparing for Couchbase Lite on Android
 
 > Description — _Prerequisites for the installation of Couchbase Lite_  
 > _Abstract — Laying out some of the pre-requisites and preparatory steps to be considered before installing Couchbase Lite for android_  
 
 ## [](#supported-versions)Supported Versions
 
-|  | The requirements listed below are for the **Java/Kotlin SDK** on Android (Minimum API Level **22**). If you’re developing with the **C/C++ SDK** on Android, the minimum API Level is **24**. For C/C++ SDK requirements, see [Couchbase Lite for C - Android Requirements](../c/supported-os.md#android). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The requirements listed below are for the **Java/Kotlin SDK** on Android (Minimum API Level **22**).
+> 
+> If you’re developing with the **C/C++ SDK** on Android, the minimum API Level is **24**. For C/C++ SDK requirements, see [Couchbase Lite for C - Android Requirements](../c/supported-os.md#android).
 
 The [Supported OS Versions](supported-os.md#supported-os-versions) lists certified Android versions. Couchbase does not test against, nor guarantee support for, uncertified Android versions such as versions built from source.
 
@@ -19,8 +30,8 @@ The [Supported OS Versions](supported-os.md#supported-os-versions) lists certifi
 
 ## [](#supported-versions-for-vector-search-4-0-0)Supported Versions for Vector Search 4.0.0
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 | Platform | Runtime architectures | Minimum API Level |
 | -------- | --------------------- | ----------------- |

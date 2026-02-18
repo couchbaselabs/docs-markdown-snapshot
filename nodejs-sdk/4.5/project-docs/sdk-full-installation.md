@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase Node.js Client.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Couchbase Node.js Client. 
 
@@ -18,8 +27,8 @@ Information on new features, fixes, known issues, as well as information on how 
 
 ### [](#typescript-support)TypeScript Support
 
-|  | Follow this section only if you intend to use TypeScript instead of JavaScript. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> Follow this section only if you intend to use `TypeScript` instead of `JavaScript`.
 
 Since release 3.2, the Node.js SDK has added full support for the [TypeScript](https://www.typescriptlang.org/) programming language.
 

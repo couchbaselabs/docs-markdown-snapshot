@@ -1,4 +1,13 @@
+---
+title: Compatibility
+description: Couchbase Lite JavaScript -- platform and version compatibility information
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/compatibility.html)
+
+# Compatibility
 
 > Description — _Couchbase Lite JavaScript — platform and version compatibility information_  
 > _Abstract — This content identifies the compatibility of Couchbase Lite JavaScript with Sync Gateway and Capella App Services, together with the browsers upon which it is supported._  
@@ -10,8 +19,8 @@ This page provides compatibility information for Couchbase Lite JavaScript 1.0, 
 
 For specific deployment constraints and backend compatibility requirements, see [Known Limitations](known-limitations.md).
 
-|  | Users must be on Sync Gateway 3.3.1 or 4.0.1 and above to sync data with the JavaScript SDK. CORS configuration is required — see [Prerequisites](gs-prereqs.md#prerequisites). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users must be on Sync Gateway 3.3.1 or 4.0.1 and above to sync data with the JavaScript SDK. CORS configuration is required — see [Prerequisites](gs-prereqs.md#prerequisites).
 
 ## [](#sync-gateway-compatibility)Sync Gateway Compatibility
 
@@ -37,8 +46,8 @@ See [Supported Browsers](supported-browsers.md) for detailed browser version req
 
 **Progressive Web Apps (PWA):** Full support for installable web applications with Service Worker integration
 
-|  | Couchbase Lite JavaScript does not currently work with Couchbase Lite Edge Server. Use Sync Gateway or Capella App Services for data synchronization. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Lite JavaScript does not currently work with Couchbase Lite Edge Server. Use Sync Gateway or Capella App Services for data synchronization.
 
 ## [](#related-content)Related Content
 

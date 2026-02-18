@@ -1,4 +1,12 @@
+---
+title: Manage Bucket Backups
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/manage-backup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/manage-backup.html)
+
+# Manage Bucket Backups
 
 > Bucket backups contain bucket data. You can take a bucket backup on-demand or use a configurable automatic schedule. 
 
@@ -8,11 +16,15 @@ To backup an entire cluster, see [Back Up and Restore An Entire Cluster](cloud-s
 
 ## [](#view-and-manage-bucket-backups)View and Manage Bucket Backups
 
-|  | Permissions Required To view and manage bucket backups in the Capella UI: You must have the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project that contains the cluster. If you have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role, you already have [Project Owner](../projects/project-roles.md#project-owner-role) access. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> To view and manage bucket backups in the Capella UI:
+> 
+> * You must have the [Project Owner](../projects/project-roles.md#project-owner-role) role for the project that contains the cluster. If you have the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner) role, you already have [Project Owner](../projects/project-roles.md#project-owner-role) access.
 
-|  | Backup options are unavailable in the UI for your free tier operational cluster. To back-up and transfer your data from your old free tier operational cluster to a new free tier or paid operational cluster, you must use the cbbackupmgr tool. For more information about using the cbbackupmgr tool, see [Backup a Free Tier Capella Operational Cluster](cli-backup-restore.md#backup-free-cluster). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Backup options are unavailable in the UI for your free tier operational cluster. To back-up and transfer your data from your old free tier operational cluster to a new free tier or paid operational cluster, you must use the `cbbackupmgr` tool. For more information about using the `cbbackupmgr` tool, see [Backup a Free Tier Capella Operational Cluster](cli-backup-restore.md#backup-free-cluster).
 
 ### [](#accessing-bucket-backups-in-the-capella-ui)Accessing Bucket Backups in the Capella UI
 
@@ -71,39 +83,37 @@ To change a bucket’s backup schedule from the **Backup** page:
     1. Go to **Backups**.
 2. Select the bucket you want to change.
 3. Click **Edit Schedule**.
-4. If it’s not already selected, use the **Bucket** list to choose the bucket you want to change.
-
-|  | Using the **Bucket** list, you can select multiple buckets to bulk edit backup schedules. |
-|  | ----------------------------------------------------------------------------------------- |
+4. If it’s not already selected, use the **Bucket** list to choose the bucket you want to change.  
+> [!TIP]  
+> Using the **Bucket** list, you can select multiple buckets to bulk edit backup schedules.
 5. Choose a backup schedule for the bucket according to the relative importance of the workload and data.
 
-  1. Select **Do Not Backup** to not schedule any backups.
-
-|  | **Do Not Backup** is not recommended for production clusters. To avoid data loss, you should regularly back up a production cluster. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |  
+  1. Select **Do Not Backup** to not schedule any backups.  
+  > [!WARNING]  
+  > **Do Not Backup** is not recommended for production clusters. To avoid data loss, you should regularly back up a production cluster.  
   To set a weekly incremental schedule:
   2. Choose **Set Weekly Schedule**.
   3. Choose the **Day of the week** when you want Capella to take the full backup. The default value is `Sunday`.
   4. Set the **Start at** time of day for the full backup.  
   Select a **Start at** time when your application isn’t using Capella heavily unless you’ve chosen a cluster configuration with more capacity than you need.
-  5. Use the **Incremental Every** list to set the frequency of incremental backups.
-
-|  | If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time. For example, **Incremental Every** is 8 hours, and the **Start at** time is 4 AM. If the current time is 9 PM, Capella takes an incremental backup at 8 PM, an eight-hour interval backward from 4 AM. If you change the **Start at** to 6 AM, you would see another incremental backup at 10 PM, two hours after the last backup. The backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM **Start at** time. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  5. Use the **Incremental Every** list to set the frequency of incremental backups.  
+  > [!TIP]  
+  > If you change the **Start at** time, the next incremental backup might happen at a different time than you expect. Capella calculates the **Incremental Value** backward from the configured **Start at** time.  
+  >  
+  > For example, **Incremental Every** is `8 hours`, and the **Start at** time is 4 AM. If the current time is 9 PM, Capella takes an incremental backup at 8 PM, an eight-hour interval backward from 4 AM. If you change the **Start at** to 6 AM, you would see another incremental backup at 10 PM, two hours after the last backup. The backup occurs at this time because Capella recalculates the eight-hour backup interval back from the new 6 AM **Start at** time.
   6. Select **Cost Optimized Retention**. When selected, the cost optimized retention policy applies to your bucket backup. For more information, see [Cost Optimized Retention Policy](backup-restore.md#cost-optimized-retention-policy).
   7. Set a **Retention Time** in line with your data retention policy.  
   If you selected Cost Optimized Retention, the **Retention Time** applies only to the monthly restore point.  
-  Capella preserves each backup from `30 Days` to `5 Years`. After the retention time lapses, Capella schedules the backup for deletion.
-
-|  | The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+  Capella preserves each backup from `30 Days` to `5 Years`. After the retention time lapses, Capella schedules the backup for deletion.  
+  > [!NOTE]  
+  > The **Retention Time** setting applies to all future backups for a bucket. Changes to this setting do not affect previous backups.
 6. Click **Apply**.  
 The first automatic backup occurs at the next increment of the **Incremental Every** value, calculated backward from the configured **Start at** time.
 
 ### [](#create-manual-backup)Create an On-Demand Bucket Backup
 
-|  | Capella keeps on-demand bucket backups for 30 days. |
-|  | --------------------------------------------------- |
+> [!CAUTION]
+> Capella keeps on-demand bucket backups for 30 days.
 
 An on-demand backup of a bucket is always a Full bucket backup. Capella schedules on-demand backups to start immediately.
 
@@ -155,8 +165,8 @@ Choosing a new **From Date** automatically refreshes the page to show scheduled 
 
 ### [](#delete-backup)Delete a Bucket Backup
 
-|  | Deleting a bucket backup is a permanent action. |
-|  | ----------------------------------------------- |
+> [!WARNING]
+> Deleting a bucket backup is a permanent action.
 
 When you delete a cluster, you also delete its bucket backups. When you delete a bucket, Capella keeps its backups until their configured retention time.
 

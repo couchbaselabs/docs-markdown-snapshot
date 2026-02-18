@@ -1,4 +1,15 @@
+---
+title: Transactions
+description: A transaction is an atomic unit of work that contains one or more
+  operations. It is a group of operations that is either committed to the
+  database together, or undone from the database.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/data/transactions.html)
+
+# Transactions
 
 > A transaction is an atomic unit of work that contains one or more operations. It is a group of operations that is either committed to the database together, or undone from the database. 
 
@@ -23,8 +34,8 @@ Couchbase transactions support ACID properties for protected actions on the data
 
 `persistToMajority` provides the strongest protection from failures but is the least performant amongst the Durability levels. For more information, see [Durability Levels](#durability.adoc#durability-requirements).
 
-|  | Statement Level Atomicity is provided for SQL++ statements that are executed inside a transaction. This means that if a query statement fails during execution for a reason like a unique key violation that statement is completely rolled back and the rest of the transaction continues. It is as though the statement is not part of the transaction. No other work in the transaction is affected by the failure of this statement. If the query statement succeeds, it would be committed or rolled back based on the outcome of the overall transaction. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Statement Level Atomicity is provided for SQL++ statements that are executed inside a transaction. This means that if a query statement fails during execution for a reason like a unique key violation that statement is completely rolled back and the rest of the transaction continues. It is as though the statement is not part of the transaction. No other work in the transaction is affected by the failure of this statement. If the query statement succeeds, it would be committed or rolled back based on the outcome of the overall transaction.
 
 ### [](#distributed-transactions-multi-node-and-multi-bucket)Distributed Transactions: Multi-node and Multi-Bucket
 
@@ -78,8 +89,8 @@ The Java example above is a classic example to transfer money between two accoun
 
 The application supplies the logic for the transaction inside a lambda, including any conditional logic required, and the transactions API takes care of getting the transaction committed. If the transactions API encounters a transient error, such as a temporary conflict with another transaction, then it can rollback what has been done so far and run the lambda again. The application does not have to do these retries and error handling itself.
 
-|  | Use transactions only on documents less than 10 MB in size. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> Use transactions only on documents less than 10 MB in size.
 
 For application-level transactions, create and use transactions through Couchbase SDK APIs.
 
@@ -117,8 +128,8 @@ COMMIT ;
 
 For more information on using Query statements in transactions, see [SQL++ Support for Couchbase Transactions](../../n1ql/n1ql-language-reference/transactions.md).
 
-|  | Take a look at the [Query Transaction Simulator](https://transactions.couchbase.com) which demonstrates how query statements work in transactions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Take a look at the [Query Transaction Simulator](https://transactions.couchbase.com) which demonstrates how query statements work in transactions.
 
 ## [](#structure-of-a-transaction)Structure of a Transaction
 
@@ -229,8 +240,10 @@ Similarly, to run a query statement within a transaction, users must have the re
 
 Refer to [Roles](../security/roles.md) for details.
 
-|  | Query ModeWhen a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Query Mode
+> 
+> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
 
 ## [](#custom-metadata-collections)Custom Metadata Collections
 

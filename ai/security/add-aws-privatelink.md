@@ -1,9 +1,19 @@
+---
+title: Add an AWS PrivateLink Connection
+description: Add an AWS PrivateLink connection that peers your Amazon Web
+  Service (AWS) network with AI Services using AWS as its cloud provider.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/security/add-aws-privatelink.html)
+
+# Add an AWS PrivateLink Connection
 
 > Add an AWS PrivateLink connection that peers your Amazon Web Service (AWS) network with AI Services using AWS as its cloud provider. 
 
-|  | To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, Capella handles the connection automatically. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To link a Capella operational cluster with a model on the [Model Service](../get-started/intro.md#model), you only need to enable private networking. You do not have to perform any other configuration, Capella handles the connection automatically.
 
 Private endpoints for AI Services are region-based. You’re linking the AWS region for your AI Services to your AWS VPC.
 
@@ -50,8 +60,8 @@ To get started, open the Capella UI, the AWS command line interface, and the AWS
 
 In Capella AI Services, enable Private Endpoints:
 
-|  | Enabling Private Endpoints bills your account hourly for AWS PrivateLink until you turn off this option. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Enabling Private Endpoints bills your account hourly for AWS PrivateLink until you turn off this option.
 
 1. Go to **AI Services** **Private Endpoints**.
 2. Find the region you want and click **Enable Private Endpoint**.
@@ -69,10 +79,9 @@ To add a private endpoint:
 | Field      | Value                                                |
 | ---------- | ---------------------------------------------------- |
 | VPC ID     | Enter your AWS VPC ID.                               |
-| Subnet IDs | Enter each Subnet ID and separate them with a comma. |
-
-|  | Before you complete your AWS PrivateLink connection, confirm that the port 8081 is open on your AWS VPC. |
-|  | -------------------------------------------------------------------------------------------------------- |
+| Subnet IDs | Enter each Subnet ID and separate them with a comma. |  
+> [!IMPORTANT]  
+> Before you complete your AWS PrivateLink connection, confirm that the port 8081 is open on your AWS VPC.
 4. Click **Get Script**.
 5. Download and run the shell script provided by Capella:
 
@@ -177,10 +186,9 @@ To configure your network access control list (ACL) with an **Inbound** and **Ou
 | ---------- | ------------------- |
 | Source     | Your VPC IPv4 CIDR. |
 | Type       | All traffic         |
-| Port range | All                 |
-
-|  | Before selecting All traffic as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](../../cloud/support/manage-support.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Port range | All                 |  
+  > [!CAUTION]  
+  > Before selecting `All traffic` as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](../../cloud/support/manage-support.md).
   3. Click **Save changes**.
 4. Configure your outbound rule:
 

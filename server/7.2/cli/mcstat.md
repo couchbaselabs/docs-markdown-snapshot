@@ -1,4 +1,14 @@
+---
+title: mcstat
+description: The mcstat tool provides detailed information for a node, specified
+  bucket, or for all buckets on a cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/mcstat.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/mcstat.html)
+
+# mcstat
 
 > The mcstat tool provides detailed information for a node, specified bucket, or for all buckets on a cluster. 
 

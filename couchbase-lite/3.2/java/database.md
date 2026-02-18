@@ -1,4 +1,13 @@
+---
+title: Databases
+description: Working with Couchbase Lite on Java databases
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/database.html)
+
+# Databases
 
 > Description — _Working with Couchbase Lite on Java databases_  
 > Related Content — [Blobs](blob.md) | [Documents](document.md) | [Indexing](indexing.md)
@@ -70,11 +79,13 @@ You are advised to incorporate the closing of all open databases into your appli
 
 To close a database, use [Database.close()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-java/com/couchbase/lite/Database.html#close--) — see: [Example 3](#ex-dbclose). This also closes \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]active replications, listeners and-or live queries connected to the database.
 
-|  | Closing a database soon after starting a replication involving it can cause an exception as the asynchronous replicator (start) may not yet be connected. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
 
-|  | Safely Closing a Database pre 2.8Before closing, check that any attached listeners (query/replication/change) indicate they are at least at connected status before closing — see for example: [Monitor Status](replication.md#lbl-repl-mon). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Safely Closing a Database pre 2.8
+> 
+> Before closing, check that any attached listeners (query/replication/change) indicate they are at least at `connected` status before closing — see for example: [Monitor Status](replication.md#lbl-repl-mon).
 
 Example 3\. Close a Database
 
@@ -86,8 +97,8 @@ database.close();
 
 Database Full Sync will prevent the loss of transactional data due to an unexpected system crash or loss of power. This feature is not enabled by default and must be manually set in your database configuration.
 
-|  | Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance.
 
 Example 4\. Enable Database Full Sync
 
@@ -95,13 +106,13 @@ Example 4\. Enable Database Full Sync
 config.setFullSync(true);
 ```
 
-|  | It is not possible to change the configuration of a Database after instantiating the Database with the configuration by updating its DatabaseConfiguration property. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is not possible to change the configuration of a Database after instantiating the Database with the configuration by updating its `DatabaseConfiguration` property.
 
 ## [](#database-encryption)Database Encryption
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 _Couchbase Lite on Java_ includes the ability to encrypt Couchbase Lite databases. This allows mobile applications to secure the data at rest, when it is being stored on the device. The algorithm used to encrypt the database is 256-bit AES.
 

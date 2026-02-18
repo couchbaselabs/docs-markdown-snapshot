@@ -1,4 +1,12 @@
+---
+title: CouchbaseCollection Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/resource/couchbasecollection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/resource/couchbasecollection.html)
+
+# CouchbaseCollection Resource
 
 CouchbaseCollection represent the finest grained size of data storage in Couchbase. Collections contain all documents and indexes in the system. Collections also form the finest grain basis for role-based access control (RBAC) and cross-datacenter replication (XDCR). In order to be considered by the Operator, every collection must be referenced by a `CouchbaseScope` or `CouchbaseScopeGroup` resource.
 

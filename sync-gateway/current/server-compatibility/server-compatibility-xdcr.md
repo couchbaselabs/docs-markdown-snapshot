@@ -1,4 +1,14 @@
+---
+title: XDCR&#8201;&#8212;&#8201;Server Compatibility
+description: How Sync Gateway works with Couchbase Server's <em>Cross Data
+  Center Replication</em> (<em>XDCR</em>).
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/server-compatibility/server-compatibility-xdcr.html)
+
+# XDCR&#8201;&#8212;&#8201;Server Compatibility
 
 > How Sync Gateway works with Couchbase Server’s _Cross Data Center Replication_ (_XDCR_).  
 > Sync Gateway provides multiple approaches for replicating mobile data across clusters, with capabilities evolving significantly in version 4.0 to support bi-directional XDCR for active-active deployments.
@@ -11,8 +21,8 @@ _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
 Couchbase Server provides the backing data store for Sync Gateway.
 
-|  | See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
 Both _Couchbase Mobile_ and [Couchbase Server Cross Data Center Replication](../../../server/current/learn/clusters-and-availability/xdcr-overview.md) (XDCR) provide for efficient and secure replication of data, using different replication technologies optimized for specific use cases.
 
@@ -35,8 +45,8 @@ This enables active-active deployments where multiple clusters can process write
 
 Sync Gateway 4.0 uses automatic conflict resolution with a `Last-Write-Wins` method and hybrid logical clocks by default. Clients can switch seamlessly between clusters without data loss. This provides zero-downtime disaster recovery with immediate fail-over capabilities.
 
-|  | For detailed technical implementation and configuration requirements, see: [Bi-directional XDCR Active-Active with Mobile Clusters](../../../server/current/learn/clusters-and-availability/xdcr-active-active-sgw.md#xdcr-active-active-sgw-prerequisites). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> For detailed technical implementation and configuration requirements, see: [Bi-directional XDCR Active-Active with Mobile Clusters](../../../server/current/learn/clusters-and-availability/xdcr-active-active-sgw.md#xdcr-active-active-sgw-prerequisites).
 
 ![xdcr active active replication](../_images/xdcr-active-active-replication.png) 
 
@@ -165,8 +175,8 @@ Figure 7\. DR In-Recovery (clusters in different regions)
 
 For Sync Gateway versions prior to 4.0, Inter-Sync Gateway Replication was the primary solution for active-active mobile cluster deployments.
 
-|  | Sync Gateway 4.0 introduces native bi-directional XDCR support for active-active mobile clusters, providing a simpler and more efficient alternative to Inter-Sync Gateway Replication. See [Bi-directional XDCR](#lbl-bidirectional-xdcr). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Sync Gateway 4.0 introduces native bi-directional XDCR support for active-active mobile clusters, providing a simpler and more efficient alternative to Inter-Sync Gateway Replication. See [Bi-directional XDCR](#lbl-bidirectional-xdcr).
 
 Inter-Sync Gateway replication was specifically designed to keep mobile clusters in different data centers in sync, with the ideal use-case being edge clusters containing active Sync Gateway nodes replicated between geographically separate cloud-based Sync Gateway deployments.
 
@@ -183,8 +193,8 @@ Inter-Sync Gateway replication provides bi-directional read/write replications t
 
 Figure 8\. Inter-Sync Gateway Active-to-Active Replication
 
-|  | To upgrade to Sync Gateway 4.0 and enable bi-directional XDCR for active-active mobile clusters, see: [Upgrading Sync Gateway](../upgrading.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> To upgrade to Sync Gateway 4.0 and enable bi-directional XDCR for active-active mobile clusters, see: [Upgrading Sync Gateway](../upgrading.md).
 
 ---
 

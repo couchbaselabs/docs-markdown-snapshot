@@ -1,4 +1,15 @@
+---
+title: Configure PAM
+description: <em>Pluggable Authentication Modules</em> (PAM) provide an
+  authentication framework that allows multiple, low-level authentication
+  schemes to be used by a single API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/configure-pam.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/configure-pam.html)
+
+# Configure PAM
 
 > _Pluggable Authentication Modules_ (PAM) provide an authentication framework that allows multiple, low-level authentication schemes to be used by a single API. The _Enterprise Edition_ of Enterprise Analytics, running on Linux, supports administrator-authentication through PAM’s _Linux password-module_. 
 
@@ -17,8 +28,8 @@ Use of the PAM Linux password-module requires all cluster-nodes to be Linux-base
 
 The following sequence shows how the PAM Linux password-module can be used to validate usernames and passwords, when administrators log into Enterprise Analytics. Supervisor access, via `sudo`, is required to perform most of the steps; and an editor is required, to allow you to edit configuration files.
 
-|  | For PAM to be fully configured, the following procedure must be performed _on each node in the cluster_. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For PAM to be fully configured, the following procedure must be performed _on each node in the cluster_.
 
 Proceed as follows:
 
@@ -37,10 +48,9 @@ Proceed as follows:
 /opt/enterprise-analytics/bin/couchbase-cli
 -c 10.144.210.101 -u Administrator -p password \
 --authentication-enabled 1  
-```
-
-|  | \--authentication-enabled 1 enables external authentication, and \--authentication-enabled 0 disables. See [setting-ldap](../../cli/couchbase-cli-setting-ldap.md) for further information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> `--authentication-enabled 1` enables external authentication, and `--authentication-enabled 0` disables. See [setting-ldap](../../cli/couchbase-cli-setting-ldap.md) for further information.
 
 When successfully executed, the command provides the following notification: `SUCCESS: saslauthd settings modified`.
 
@@ -76,10 +86,9 @@ passwd linuxuser
 ```  
 The `passwd` command returns the prompt `Enter new UNIX password:`. Duly enter and then verify your chosen password.
 6. Access Enterprise Analytics Web Console (if on the same node, at `localhost:8091`), and log in. Then, access the **Security** tab, on the upper, horizontal control-bar. This brings up the **Security** view.
-7. Left-click on the **ADD USER** button, situated near the right. This brings up the **Add New User** dialog. Select the **External** radio-button, in the **Authentication Domain** panel at the upper left. Then, enter the name of the new user you are creating.
-
-|  | At this point, if [Native LDAP](configure-ldap.md) has also been configured for the cluster, the notification not found appears above the username-field: however, this can be ignored.) |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+7. Left-click on the **ADD USER** button, situated near the right. This brings up the **Add New User** dialog. Select the **External** radio-button, in the **Authentication Domain** panel at the upper left. Then, enter the name of the new user you are creating.  
+> [!NOTE]  
+> At this point, if [Native LDAP](configure-ldap.md) has also been configured for the cluster, the notification `not found` appears above the username-field: however, this can be ignored.)
 
 Next, specify a suitable role, such as **Cluster Admin**.
 

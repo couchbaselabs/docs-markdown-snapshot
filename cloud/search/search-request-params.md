@@ -1,4 +1,14 @@
+---
+title: Search Request JSON Properties
+description: You can add additional properties to a Search request to control
+  how the Search Service returns results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-request-params.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/search-request-params.html)
+
+# Search Request JSON Properties
 
 > You can add additional properties to a Search request to control how the Search Service returns results. 
 
@@ -203,8 +213,8 @@ Add the `knn` array with at least one object to run a Vector Search query:
     ],
 ```
 
-|  | If your cluster is running Couchbase Server version 7.6.2 and later, to return only results from your Vector Search query, do not include a query object with your Search request. To run a hybrid query that uses regular Search Service parameters together with Vector Search to return results, see the [Query Object](#query-object) section. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If your cluster is running Couchbase Server version 7.6.2 and later, to return only results from your Vector Search query, do not include a `query` object with your Search request. To run a hybrid query that uses regular Search Service parameters together with Vector Search to return results, see the [Query Object](#query-object) section.
 
 An object in the `knn` array can contain the following properties:
 
@@ -312,8 +322,8 @@ Query String queries let you express more complex queries with a special syntax.
 
 If you do not add any additional Query String syntax to a query, the Search Service interprets the query as a match query. It searches for an exact match to the provided term in any fields that have been added to the `default` field. For more information about how to configure the default field for your Search index, see the [default\_field property](search-index-params.md#all-field).
 
-|  | Query String syntax is not recommended for use in production environments. |
-|  | -------------------------------------------------------------------------- |
+> [!CAUTION]
+> Query String syntax is not recommended for use in production environments.
 
 | Operator          | Property                                                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Examples                                                                                                                                                                                                                                                                                                                                        |
 | ----------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -330,8 +340,8 @@ Analytic queries use an analyzer to analyze the contents of your Search query, a
 
 For more information about analyzers, see [Customize a Search Index with the Capella UI](customize-index.md#analyzers).
 
-|  | From Couchbase Server 7.6 and later, when you run a Search query with the [SQL++ Search Function](../n1ql/n1ql-language-reference/searchfun.md), the analyzer used in your Analytic query does not need to match the analyzer used in the Search index. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From Couchbase Server 7.6 and later, when you run a Search query with the [SQL++ Search Function](../n1ql/n1ql-language-reference/searchfun.md), the analyzer used in your Analytic query does not need to match the analyzer used in the Search index.
 
 | Property      | Type   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Examples                                                                                                                                                                                                                               |
 | ------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -344,8 +354,8 @@ Use Non-Analytic queries to run a search query without using an analyzer on the 
 
 For more information about analyzers, see [Customize a Search Index with the Capella UI](customize-index.md#analyzers).
 
-|  | From Couchbase Server 7.6 and later, when you run a Search query with the [SQL++ Search Function](../n1ql/n1ql-language-reference/searchfun.md), you do not need to use the [keyword analyzer](default-analyzers-reference.md#keyword) in your Search index to run a non-analytic query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From Couchbase Server 7.6 and later, when you run a Search query with the [SQL++ Search Function](../n1ql/n1ql-language-reference/searchfun.md), you do not need to use the [keyword analyzer](default-analyzers-reference.md#keyword) in your Search index to run a non-analytic query.
 
 | Property | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Examples                                                                                                                                                                                                                |
 | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -460,8 +470,8 @@ For example, the following query searches for any IP addresses in the range `2.7
 }
 ```
 
-|  | If your IP range includes over 1024 IP addresses, you must update the bleveMaxResultWindow setting to accommodate your results. For more information about how to change this setting, see [bleveMaxResultWindow](../../server/current/fts/fts-advanced-settings-bleveMaxResultWindow.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If your IP range includes over 1024 IP addresses, you must update the `bleveMaxResultWindow` setting to accommodate your results. For more information about how to change this setting, see [bleveMaxResultWindow](../../server/current/fts/fts-advanced-settings-bleveMaxResultWindow.md).
 
 | Property | Type                                         | Required? | Description                                                                                                                                                                                                   |
 | -------- | -------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

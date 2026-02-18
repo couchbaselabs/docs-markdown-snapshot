@@ -1,4 +1,14 @@
+---
+title: Buckets and Clusters
+description: The Couchbase Ruby SDK provides an API for managing a Couchbase
+  cluster programmatically.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/buckets-and-clusters.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/3.5/concept-docs/buckets-and-clusters.html)
+
+# Buckets and Clusters
 
 > The Couchbase Ruby SDK provides an API for managing a Couchbase cluster programmatically. 
 

@@ -1,4 +1,14 @@
+---
+title: Aggregate Functions
+description: Aggregate functions take multiple values from documents, perform
+  calculations, and return a single value as the result.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/aggregatefun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/aggregatefun.html)
+
+# Aggregate Functions
 
 Aggregate functions take multiple values from documents, perform calculations, and return a single value as the result. The function names are case insensitive.
 
@@ -66,8 +76,8 @@ cond
 
 The conditional expression is subject to the same rules as the conditional expression in the query WHERE clause, and the same rules as aggregation operands. It may not contain a subquery, a window function, or an outer reference.
 
-|  | If the query block contains an aggregate function which uses the FILTER clause, the aggregation is not pushed down to the indexer. Refer to [Grouping and Aggregate Pushdown](groupby-aggregate-performance.md#filter-clause) for more details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the query block contains an aggregate function which uses the FILTER clause, the aggregation is not pushed down to the indexer. Refer to [Grouping and Aggregate Pushdown](groupby-aggregate-performance.md#filter-clause) for more details.
 
 ### [](#over-clause)OVER Clause
 
@@ -237,8 +247,8 @@ Returns the total count of all rows in an aggregated group. \[[1](#%5Ffootnotede
 
 The `*` wildcard indicates that the function should count all rows, including those with `NULL` and `MISSING` values.
 
-|  | To get the count of only non-NULL and non-MISSING values in a group, use [COUNT(expression)](#count). |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To get the count of only non-NULL and non-MISSING values in a group, use [COUNT(expression)](#count).
 
 ### [](#arguments-4)Arguments
 
@@ -281,8 +291,8 @@ Returns the count of all non-NULL and non-MISSING values in an expression. \[[1]
 
 You can use the `ALL` or `DISTINCT` quantifier to specify which values to include in the calculation. For more information, see [Aggregate Quantifier](#aggregate-quantifier).
 
-|  | To get the count of all rows, including those with NULL and MISSING values, use [COUNT(\*)](#count%5Fall). |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To get the count of all rows, including those with `NULL` and `MISSING` values, use [COUNT(\*)](#count%5Fall).
 
 ### [](#return-value-4)Return Value
 
@@ -402,8 +412,8 @@ Returns the maximum value in an expression. The function ignores `MISSING` and `
 
 When comparing values of different data types, the function uses SQL++ [collation rules](datatypes.md#collation) to determine precedence.
 
-|  | The ALL and DISTINCT quantifiers do not affect the result of this function. The maximum value remains the same whether or not duplicates are included. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `ALL` and `DISTINCT` quantifiers do not affect the result of this function. The maximum value remains the same whether or not duplicates are included.
 
 ### [](#arguments-6)Arguments
 
@@ -582,8 +592,8 @@ Returns the minimum value in an expression. The function ignores `MISSING` and `
 
 When comparing values of different data types, the function uses SQL++ [collation rules](datatypes.md#collation) to determine precedence.
 
-|  | The ALL and DISTINCT quantifiers do not affect the result of this function. The minimum value remains the same whether or not duplicates are included. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `ALL` and `DISTINCT` quantifiers do not affect the result of this function. The minimum value remains the same whether or not duplicates are included.
 
 ### [](#arguments-8)Arguments
 
@@ -670,8 +680,8 @@ Returns the [corrected sample standard deviation](#eqn%5Fsamp%5Fstd%5Fdev) of al
 
 You can use the `ALL` or `DISTINCT` quantifier to specify which values to include in the calculation. For more information, see [Aggregate Quantifier](#aggregate-quantifier).
 
-|  | This function is similar to [STDDEV\_SAMP()](#stddev%5Fsamp). However, it returns 0 if there is only 1 matching value, while [STDDEV\_SAMP()](#stddev%5Fsamp) returns NULL in such cases. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function is similar to [STDDEV\_SAMP()](#stddev%5Fsamp). However, it returns `0` if there is only 1 matching value, while [STDDEV\_SAMP()](#stddev%5Fsamp) returns `NULL` in such cases.
 
 ### [](#arguments-9)Arguments
 
@@ -817,8 +827,8 @@ Returns the [corrected sample standard deviation](#eqn%5Fsamp%5Fstd%5Fdev) of al
 
 You can use the `ALL` or `DISTINCT` quantifier to specify which values to include in the calculation. For more information, see [Aggregate Quantifier](#aggregate-quantifier).
 
-|  | This function is similar to [STDDEV()](#stddev). However, it returns NULL if there is only 1 matching value, while [STDDEV()](#stddev) returns 0 in such cases. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function is similar to [STDDEV()](#stddev). However, it returns `NULL` if there is only 1 matching value, while [STDDEV()](#stddev) returns `0` in such cases.
 
 ### [](#arguments-11)Arguments
 
@@ -962,8 +972,8 @@ Returns the unbiased sample variance (the square of the [corrected sample standa
 
 You can use the `ALL` or `DISTINCT` quantifier to specify which values to include in the calculation. For more information, see [Aggregate Quantifier](#aggregate-quantifier).
 
-|  | This function is similar to [VARIANCE\_SAMP()](#variance%5Fsamp). However, it returns 0 if there is only 1 matching value, while [VARIANCE\_SAMP()](#variance%5Fsamp) returns NULL in such cases. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function is similar to [VARIANCE\_SAMP()](#variance%5Fsamp). However, it returns `0` if there is only 1 matching value, while [VARIANCE\_SAMP()](#variance%5Fsamp) returns `NULL` in such cases.
 
 ### [](#arguments-13)Arguments
 
@@ -1132,8 +1142,8 @@ Returns the unbiased sample variance (the square of the [corrected sample standa
 
 You can use the `ALL` or `DISTINCT` quantifier to specify which values to include in the calculation. For more information, see [Aggregate Quantifier](#aggregate-quantifier).
 
-|  | This function is similar to [VARIANCE()](#variance). However, it returns NULL if there is only 1 matching value, while [VARIANCE()](#variance) returns 0 in such cases. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function is similar to [VARIANCE()](#variance). However, it returns `NULL` if there is only 1 matching value, while [VARIANCE()](#variance) returns `0` in such cases.
 
 ### [](#arguments-15)Arguments
 

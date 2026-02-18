@@ -1,9 +1,20 @@
+---
+title: Hyperscale and Composite Vector Index Best Practices
+description: When creating and querying Hyperscale and Composite Vector indexes,
+  you have several options to set that can affect the speed and accuracy of your
+  results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vector-index-best-practices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/vector-index/vector-index-best-practices.html)
+
+# Hyperscale and Composite Vector Index Best Practices
 
 > When creating and querying Hyperscale and Composite Vector indexes, you have several options to set that can affect the speed and accuracy of your results. Couchbase has tested vector indexes to determine how index creation and query settings affect the performance of Hyperscale and Composite Vector indexes. The following sections describe the results of the testing and recommendations based on these results. 
 
-|  | Most of the tests were performed using the Hyperscale Vector index. However, many of the results also apply to Composite Vector indexes where the two index types share the same settings. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Most of the tests were performed using the Hyperscale Vector index. However, many of the results also apply to Composite Vector indexes where the two index types share the same settings.
 
 ## [](#tune-index-creation)Tune Index Creation
 
@@ -73,8 +84,8 @@ Couchbase tested different quantization settings using datasets that differed in
 | 100 million 128 dimensions | Hyperscale | SQ8                  | Lowest                   | Highest           | Best            | Best           | Best           |
 | 5 million, 1536 dimensions | Composite  | PQ32x8               | Slightly higher than SQ8 | 75% less than SQ8 | lower than SQ8  | Lower than SQ8 | Lower than SQ8 |
 
-|  | Couchbase also tested Hyperscale Vector indexes containing 1 billion vectors with 128 dimensions using SQ4 quantization. The results showed acceptable recall accuracy and similar performance to SQ8 on smaller datasets. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase also tested Hyperscale Vector indexes containing 1 billion vectors with 128 dimensions using SQ4 quantization. The results showed acceptable recall accuracy and similar performance to SQ8 on smaller datasets.
 
 **Recommendations:**
 
@@ -108,8 +119,8 @@ If you do not enable reranking, consider preventing the persistence of the full 
 
 To understand how well your index and queries are performing, you can determine the recall of your queries. To do this, compare the results of running a query using the `APPROX_VECTOR_DISTANCE` function to the results of running the same query using the `VECTOR_DISTANCE` function. The `VECTOR_DISTANCE` function performs a brute-force full vector comparison, so it returns the most accurate results. Based on the results of this comparison, you can decide whether you need to adjust your index or query settings to improve recall accuracy.
 
-|  | The VECTOR\_DISTANCE function is expensive to run because it compares all vectors in the dataset. You should only use it on a testing system with a smaller dataset. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `VECTOR_DISTANCE` function is expensive to run because it compares all vectors in the dataset. You should only use it on a testing system with a smaller dataset.
 
 For example, suppose you run the following query against a Hyperscale Vector index:
 

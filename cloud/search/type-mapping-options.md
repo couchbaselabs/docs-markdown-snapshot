@@ -1,4 +1,15 @@
+---
+title: Collection, Object, XATTRs, and Field Mapping Options
+description: When you create a Search index in the Capella UI, you must set
+  options for each collection, object, Extended Attributes (XATTRs) object, or
+  field mapping you add to your index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/type-mapping-options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/type-mapping-options.html)
+
+# Collection, Object, XATTRs, and Field Mapping Options
 
 > When you create a Search index in the Capella UI, you must set options for each collection, object, Extended Attributes (XATTRs) object, or field mapping you add to your index. 
 
@@ -9,8 +20,8 @@ You can create the following types of mappings in the Capella UI:
 * [XATTRs Mapping Options](#xattrs)
 * [Field Type Mapping Options](#field)
 
-|  | Indexing an entire collection creates a dynamic type mapping for that collection. Indexing a field creates a static type mapping for the parent collection. For more information about static and dynamic type mappings, see [Search Index Features](customize-index.md#type-mappings). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Indexing an entire collection creates a dynamic type mapping for that collection. Indexing a field creates a static type mapping for the parent collection. For more information about static and dynamic type mappings, see [Search Index Features](customize-index.md#type-mappings).
 
 For more information about how to create a Search index, see [Create a Search Index with the Capella UI](create-search-index-ui.md).
 

@@ -1,4 +1,14 @@
+---
+title: Manage Logging
+description: The <em>Logging</em> facility allows a record to be maintained of
+  important events that occur on Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-logging/manage-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-logging/manage-logging.html)
+
+# Manage Logging
 
 > The _Logging_ facility allows a record to be maintained of important events that occur on Couchbase Server. 
 
@@ -255,8 +265,12 @@ It is possible to examine and/or alter the logging threshold for slow-running op
 
 The current settings are retrieved by using the `mcctl` cli to execute the `get sla` command:
 
-|  | These settings only apply to the nodes _where the changes are made._ You must implement the changes on each node to ensure they are applied across the cluster. You must also configure the node to run the data service. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> These settings only apply to the nodes _where the changes are made._
+> 
+> You must implement the changes on each node to ensure they are applied across the cluster.
+> 
+> You must also configure the node to run the `data service`.
 
 Getting threshold details
 
@@ -292,8 +306,13 @@ set sla '{"version":1, "DELETE_BUCKET":{"slow":"100 ms"}}'
 
 In this example, the threshold for the `DELETE_BUCKET` operation is being set to 100ms. If a bucket deletion operation takes longer than this, then an message will be logged.
 
-|  | As an added minor convenience, the time interval can also be specified without a space: /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \\ set sla '{"version":1, "DELETE\_BUCKET":{"slow":"100ms"}}' |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As an added minor convenience, the time interval can also be specified without a space:
+> 
+> ```bash
+> /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \
+> set sla '{"version":1, "DELETE_BUCKET":{"slow":"100ms"}}'
+> ```
 
 It is also possible to set the threshold for all the op-codes in a single command by using the `default` code:
 
@@ -364,5 +383,5 @@ cp opcode-attributes.json opcode-attributes.d
 
 Edit `/opt/couchbase/etc/couchbase/kv/opcode-attributes.d/opcode-attributes.json` with the new settings.
 
-|  | These settings only apply to the node where the changes are made. To change the threshold across the cluster, then all the configurations must be applied to each node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These settings only apply to the node where the changes are made. To change the threshold across the cluster, then all the configurations must be applied to each node.

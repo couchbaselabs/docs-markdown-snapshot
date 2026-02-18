@@ -1,4 +1,11 @@
+---
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-sink-config-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/generated-sink-config-reference.html)
+
+# undefined
 
 ## [](#connection)Connection
 
@@ -192,8 +199,8 @@ For example, if you want to write messages from topic "topic1" to collection "sc
 
 Defaults to an empty map, with all documents going to the collection specified by `couchbase.default.collection`.
 
-|  | **DEPRECATED.** Instead, please use couchbase.default.collection with contextual overrides. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> **DEPRECATED.** Instead, please use `couchbase.default.collection` with contextual overrides.
 
 * Type: list
 * Default: `""`
@@ -212,8 +219,8 @@ Defaults to an empty map, which means the value of the `couchbase.document.id` c
 
 UNCOMMITTED; this feature may change in a patch release without notice.
 
-|  | **DEPRECATED.** Instead, please use couchbase.document.id with contextual overrides. |
-|  | ------------------------------------------------------------------------------------ |
+> [!WARNING]
+> **DEPRECATED.** Instead, please use `couchbase.document.id` with contextual overrides.
 
 * Since: 4.2.4
 * Type: list
@@ -239,8 +246,8 @@ Overrides the `couchbase.sink.handler` property.
 
 A value of `N1QL` forces the handler to `com.couchbase.connect.kafka.handler.sink.N1qlSinkHandler`. A value of `SUBDOCUMENT` forces the handler to `com.couchbase.connect.kafka.handler.sink.SubDocumentSinkHandler`.
 
-|  | **DEPRECATED.** Please set the couchbase.sink.handler property instead. |
-|  | ----------------------------------------------------------------------- |
+> [!WARNING]
+> **DEPRECATED.** Please set the `couchbase.sink.handler` property instead.
 
 * Type: string
 * Default: `DOCUMENT`
@@ -291,11 +298,11 @@ Retry failed writes to Couchbase until this deadline is reached. If time runs ou
 
 A value of `0` (the default) means the connector will terminate immediately when a write fails.
 
-|  | This retry timeout is distinct from the KV timeout (which you can set via couchbase.env.\*). The KV timeout affects an individual write attempt, while the retry timeout spans multiple attempts and makes the connector resilient to more kinds of transient failures. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This retry timeout is distinct from the KV timeout (which you can set via `couchbase.env.*`). The KV timeout affects an individual write attempt, while the retry timeout spans multiple attempts and makes the connector resilient to more kinds of transient failures.
 
-|  | Try not to confuse this with the Kafka Connect framework’s built-in errors.retry.timeout config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Try not to confuse this with the Kafka Connect framework’s built-in `errors.retry.timeout` config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector.
 
 * Since: 4.1.4
 * Type: string
@@ -311,8 +318,8 @@ The preferred way to specify an enhanced durability requirement when using Couch
 
 The default value of `NONE` means a write is considered successful as soon as it reaches the memory of the active node.
 
-|  | If you set this to anything other than NONE, then you must not set couchbase.persist.to or couchbase.replicate.to. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you set this to anything other than `NONE`, then you must not set `couchbase.persist.to` or `couchbase.replicate.to`.
 
 * Type: string
 * Default: `NONE`

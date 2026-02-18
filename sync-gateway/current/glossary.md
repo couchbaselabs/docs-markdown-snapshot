@@ -1,4 +1,13 @@
+---
+title: Glossary
+description: Sync Gateway Glossary of Terms
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/glossary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/glossary.html)
+
+# Glossary
 
 > Sync Gateway Glossary of Terms  
 
@@ -98,8 +107,8 @@ Remote Wins
 
 Custom
 
-|  | [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) Only |
-|  | ---------------------------------------------------------------------- |
+> [!NOTE]
+> [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) Only
 
 Applies the policy defined in the function provided by the `custom_conflict_resolver` parameter.
 

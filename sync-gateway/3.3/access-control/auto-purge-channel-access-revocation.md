@@ -1,4 +1,13 @@
+---
+title: Auto-Purge on Channel Access Revocation
+description: Auto-purge behavior on loss of access to document channels
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/auto-purge-channel-access-revocation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/access-control/auto-purge-channel-access-revocation.html)
+
+# Auto-Purge on Channel Access Revocation
 
 > Auto-purge behavior on loss of access to document channels  
 
@@ -19,8 +28,10 @@ Sync Gateway will take the configured action whenever this happens. By default:
 
 ## [](#lbl-sgw-cbl)Sync Gateway
 
-|  | Breaking ChangeIn _Sync Gateway_ 2.x these documents remain in the local database on channel access loss. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Breaking Change
+> 
+> In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss.
 
 By default, when a user loses access to a channel, the next Couchbase Lite Pull replication auto-purges all documents in the channel from local Couchbase Lite databases (on devices belonging to the user) **unless** they belong to any of the user’s other channels — see: [Couchbase Lite Replication — Auto Purge on Channel Access Revocation](../../../couchbase-lite/current/android/replication.md#anchor-auto-purge-on-revoke).
 
@@ -28,8 +39,8 @@ By default, when a user loses access to a channel, the next Couchbase Lite Pull 
 
 ### [](#access-revoked)Access Revoked
 
-|  | This behavior is the **reverse** of that between Sync Gateway and Couchbase Lite — see: [Sync Gateway](#lbl-sgw-cbl). |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This behavior is the **reverse** of that between Sync Gateway and Couchbase Lite — see: [Sync Gateway](#lbl-sgw-cbl).
 
 By default, documents are **not** auto purged on the active sync gateway even if the user on the passive sync gateway loses channel access.
 

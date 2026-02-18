@@ -1,4 +1,12 @@
+---
+title: Advanced Features
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/advanced.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/advanced.html)
+
+# Advanced Features
 
 ## Flex Indexes
 

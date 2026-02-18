@@ -1,4 +1,14 @@
+---
+title: Couchbase Search Node API
+description: The Search Node Configuration REST API is provided by the Search
+  Service. This API enables you to manage and monitor your Search nodes.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-nodes/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts-rest-nodes/index.html)
+
+# Couchbase Search Node API
 
 ## [](#overview)Overview
 

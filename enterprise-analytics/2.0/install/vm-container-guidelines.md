@@ -1,4 +1,15 @@
+---
+title: Deployment Considerations for Virtual Machines and Containers
+description: Use virtualized platforms such as AWS and Docker containers to get
+  hardware scalability and complement Enterprise Analytics's software
+  scalability.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/vm-container-guidelines.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/vm-container-guidelines.html)
+
+# Deployment Considerations for Virtual Machines and Containers
 
 > Use virtualized platforms such as AWS and Docker containers to get hardware scalability and complement Enterprise Analytics’s software scalability. 
 
@@ -14,8 +25,8 @@ The performance characteristics of physical hardware are well understood. Even t
 
 For stability and better performance predictability, you should dedicate at least 2 CPU cores to a VM in development environments, and 4 CPU cores to a VM in production.
 
-|  | One of the major benefits of virtualization is the ability to share physical resources and even over-commit these resources. This means each virtual instance can think it has more CPU, RAM, or disk space than is actually physically available. However, in an over-committed environment, you can end up with containers competing with each other causing unpredictable performance and sometimes stability issues. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> One of the major benefits of virtualization is the ability to share physical resources and even over-commit these resources. This means each virtual instance can think it has more CPU, RAM, or disk space than is actually physically available. However, in an over-committed environment, you can end up with containers competing with each other causing unpredictable performance and sometimes stability issues.
 
 For Enterprise Analytics, you should dedicate physical resources to the VM, rather than shared across multiple VMs. For more information about hardware requirements, see [System Resource Requirements](sys-resource-req.md).
 
@@ -41,8 +52,10 @@ By mapping the directory `/opt/enterprise-analytics/var` to a directory outside 
 
 In a standard Docker environment using a union filesystem, leaving `/opt/enterprise-analytics/var` inside the container results in some amount of performance degradation.
 
-|  | If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you’re mounting the \~/couchbase directory on the host filesystem, you need to run the following command once before running your first container on that host: mkdir \~/couchbase && chcon -Rt svirt\_sandbox\_file\_t \~/couchbase |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you have SELinux enabled, mounting the host volumes in a container requires an extra step. Assuming you’re mounting the `~/couchbase` directory on the host filesystem, you need to run the following command once before running your first container on that host:
+> 
+> mkdir ~/couchbase && chcon -Rt svirt_sandbox_file_t ~/couchbase
 
 **Increase ULIMIT in Production Deployments**
 
@@ -60,5 +73,5 @@ docker run -d --ulimit nofile=40960:40960
 
 Since `unlimited` is not supported as a value, it sets the `core` and `memlock` values to 100 GB. If your system has more than 100 GB RAM, increase this value to match the available RAM on the system.
 
-|  | The \--ulimit flags only work on Docker 1.6 or later. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> The `--ulimit` flags only work on Docker 1.6 or later.

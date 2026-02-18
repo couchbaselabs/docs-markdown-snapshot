@@ -1,4 +1,14 @@
+---
+title: CREATE SCOPE Statements
+description: This topic describes how you use the <code>CREATE</code> statement
+  to create Enterprise Analytics scopes.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_scope.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_scope.html)
+
+# CREATE SCOPE Statements
 
 > This topic describes how you use the `CREATE` statement to create Enterprise Analytics scopes. 
 

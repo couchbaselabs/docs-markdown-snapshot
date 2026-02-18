@@ -1,4 +1,15 @@
+---
+title: Overview
+description: Learn how to migrate from Couchbase or Capella Analytics Service
+  including checklists, best practices, and key steps for a successful
+  migration.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/migration/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/migration/overview.html)
+
+# Overview
 
 > Learn how to migrate from Couchbase or Capella Analytics Service including checklists, best practices, and key steps for a successful migration. 
 

@@ -1,4 +1,14 @@
+---
+title: Troubleshooting
+description: This page addresses errors you might come across when following the
+  Student Record System tutorial.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/java-tutorial/tutorial-troubleshooting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tutorials/java-tutorial/tutorial-troubleshooting.html)
+
+# Troubleshooting
 
 > This page addresses errors you might come across when following the Student Record System tutorial. 
 

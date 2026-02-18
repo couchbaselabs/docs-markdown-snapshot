@@ -1,9 +1,17 @@
+---
+title: Quick Start with Prometheus Monitoring
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-prometheus.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tutorial-prometheus.html)
+
+# Quick Start with Prometheus Monitoring
 
 > Enable and setup Prometheus Monitoring for the Couchbase Autonomous Operator. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 This guide walks through recommended procedures for enabling and configuring Prometheus monitoring of the Couchbase Autonomous Operator.
 
@@ -25,8 +33,8 @@ The Autonomous Operator, with monitoring enabled, exposes the Couchbase Promethe
 
 In order for our Prometheus deployment to recognize and scrape Couchbase endpoints, we need to create a Couchbase specific service monitor, and a Couchbase metrics specific service.
 
-|  | This tutorial works on the basis that the manifests which bring up the relevant resources for Prometheus Operator are still located in the folder manifests. Please adjust accordingly if changes have been made since as the repository is experimental and subject to change. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This tutorial works on the basis that the manifests which bring up the relevant resources for Prometheus Operator are still located in the folder `manifests`. Please adjust accordingly if changes have been made since as the repository is experimental and subject to change.
 
 ### [](#create-the-couchbase-metrics-service)Create the Couchbase Metrics `Service`
 

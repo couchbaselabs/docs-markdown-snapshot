@@ -1,4 +1,12 @@
+---
+title: Helm Management Guide
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/helm-managing-guide.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/helm-managing-guide.html)
+
+# Helm Management Guide
 
 > When you install a Helm chart, Helm creates a release. You can manage the release by updating, upgrading, or uninstalling it. 
 
@@ -24,8 +32,8 @@ It’s important that you make your updates using the `helm upgrade` command ins
 
 Upgrading the Kubernetes Operator and Admission Controller to a newer version requires that you upgrade the _release_ to a newer version of its _chart_. This allows Helm to ensure that all dependencies specified by the chart get updated appropriately.
 
-|  | An upgrade also requires the CRDs to be updated, this is something that Helm is [unable to do](https://github.com/helm/community/blob/f9e06c16d89ccea1bea77c01a6a96ae3b309f823/architecture/crds.md#upgrading-crds). The CRDs must be replaced (not deleted as this will remove any existing clusters) with the version for the release you want to upgrade to. Refer to the [Operator upgrade documentation](howto-operator-upgrade.md#update-crd) for detailed information on this stage. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> An upgrade also requires the CRDs to be updated, this is something that Helm is [unable to do](https://github.com/helm/community/blob/f9e06c16d89ccea1bea77c01a6a96ae3b309f823/architecture/crds.md#upgrading-crds). The CRDs must be replaced (not deleted as this will remove any existing clusters) with the version for the release you want to upgrade to. Refer to the [Operator upgrade documentation](howto-operator-upgrade.md#update-crd) for detailed information on this stage.
 
 To replace the CRDs:
 
@@ -49,8 +57,8 @@ helm upgrade --version <chart-version> <release-name> couchbase/couchbase-operat
 
 Where `<chart-version>` is the version of the Couchbase Helm Chart that you want to upgrade to, and `<release-name>` is the name of the release that is managing the instance of the Kubernetes Operator that you wish to upgrade.
 
-|  | Chart versions 2.2 and below are at risk of encountering an issue when upgrading to chart version 2.3 due to [Cluster name limitations](https://issues.couchbase.com/browse/MB-34280). In general if your Couchbase Server version is 6.6.3 and below, and you plan to upgrade to a higher version then your cluster will be at risk of this issue. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Chart versions 2.2 and below are at risk of encountering an issue when upgrading to chart version 2.3 due to [Cluster name limitations](https://issues.couchbase.com/browse/MB-34280). In general if your Couchbase Server version is 6.6.3 and below, and you plan to upgrade to a higher version then your cluster will be at risk of this issue.
 
 To determine if your cluster is potentially at risk of [Cluster name limitations](https://issues.couchbase.com/browse/MB-34280), you will need to deduce what sort of stream name Couchbase Server will derive from your Couchbase Pods. The stream name is what Couchbase Server uses internally to replicate data between nodes. Since the stream name consists of the Couchbase Custer name as both the hostname and domain in both source and target endpoints, a good general rule is the multiply your cluster name by `6` to account for additional bucket name and various other bits:
 
@@ -70,8 +78,8 @@ echo $(( `echo $cluster | wc -c`  * 6 ))
 
 There are two methods for upgrading a Couchbase cluster with Helm. The first method is to upgrade the release to a newer version of the Couchbase Helm Chart that uses the desired Couchbase Server version as a default. The second method is to update the existing release to use a newer Couchbase Server image. The first method is preferred, since upgrading the entire chart will ensure that any potential new parameters required to configure the cluster are defined.
 
-|  | When upgrading a Couchbase cluster, you should first upgrade the Kubernetes Operator to the latest compatible version so as to ensure that the cluster can be properly managed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When upgrading a Couchbase cluster, you should first upgrade the Kubernetes Operator to the latest compatible version so as to ensure that the cluster can be properly managed.
 
 To upgrade a Couchbase cluster by using a newer chart
 
@@ -121,7 +129,6 @@ kubectl delete secrets <deployment-name>-couchbase-admission-controller
 2. Create new resources.  
 ```console  
 helm upgrade <deployment-name> couchbase/couchbase-operator -f <override-values.yaml> --version <version>  
-```
-
-|  | To prevent accidental upgrades, it is important to use the the chart version and overriding values corresponding to the current deployment. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!IMPORTANT]  
+> To prevent accidental upgrades, it is important to use the the chart version and overriding values corresponding to the current deployment.

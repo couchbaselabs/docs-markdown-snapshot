@@ -1,4 +1,14 @@
+---
+title: Analyze Large Datasets
+description: The Analytics Service provides a parallel data-management
+  capability, allowing the running of complex analytical queries.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/analytics-service/analytics-service.html)
+
+# Analyze Large Datasets
 
 > The Analytics Service provides a parallel data-management capability, allowing the running of complex analytical queries. 
 
@@ -16,5 +26,5 @@ Like the other Couchbase services, the Analytics Service can be deployed during 
 
 If a cluster has the Analytics Service deployed, SQL++ for Analytics queries can be issued using the Couchbase SDK and the interactive [Analytics Workbench](analytics-workbench.md).
 
-|  | Use the Cost-Based Optimizer for Analytics to select the most efficient query operations. For more information, see [Cost-Based Optimizer for Analytics](../../../server/current/analytics/5b%5Fcbo.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the Cost-Based Optimizer for Analytics to select the most efficient query operations. For more information, see [Cost-Based Optimizer for Analytics](../../../server/current/analytics/5b%5Fcbo.md).

@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Node.js SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Node.js SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
 
@@ -33,8 +42,8 @@ cluster = await couchbase.connect('couchbases://nodeA.example.com', {
 })
 ```
 
-|  | If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a \`Bucket instance before connecting to any other HTTP services (such as _Query_ or _Search_. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `` `Bucket `` instance before connecting to any other HTTP services (such as _Query_ or _Search_.
 
 Connection String options are covered [in the API guide](https://docs.couchbase.com/sdk-api/couchbase-node-client/interfaces/ConnectOptions.html).
 
@@ -50,8 +59,8 @@ cluster = await couchbase.connect(
 )
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -122,8 +131,8 @@ In many cases the client is able to automatically select the correct set of addr
 
 If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#ssl)Secure Connections
 
@@ -172,8 +181,8 @@ With debug-level logging enabled, if the Mozilla certificates have been loaded, 
 
 The Node.js SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 Certificates from the Mozilla Root CA store are now bundled with the SDK. If the server’s certificate is signed by a well-known CA (e.g., GoDaddy, Verisign, etc.), you don’t need to configure this in the `SecurityConfig` settings, instead use `couchbases://` in your connection string.
 

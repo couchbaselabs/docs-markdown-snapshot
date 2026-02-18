@@ -1,9 +1,18 @@
+---
+title: Support Overview
+description: Couchbase Capella offers multiple levels of support for each cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/support.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/support/support.html)
+
+# Support Overview
 
 > Couchbase Capella offers multiple levels of support for each cluster. 
 
-|  | To ask for assistance, see [Request Support](manage-support.md). |
-|  | ---------------------------------------------------------------- |
+> [!NOTE]
+> To ask for assistance, see [Request Support](manage-support.md).
 
 All clusters in Couchbase Capella must have an associated _Support Plan_. For the free tier operational cluster, support is provided on the **Basic** plan on a best-effort basis through the Couchbase community. Different Support Plans are available. You can select a plan _per cluster_.
 
@@ -16,8 +25,16 @@ The plan you select determines:
 
 The [Support Time Zone](#support-time-zones) that you select determines when the time window for human support begins and ends for clusters that aren’t on a plan that comes with 24x7 support.
 
-|  | If you’re a free tier plan user, you’re community-supported. This includes the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md). Find the support page in the Capella UI: next to your user profile, click **Get Help** to access the support you need. You can also fill out a feedback form to provide your input and insights on Couchbase Capella. For more information, see [Provide Feedback](feedback.md). For more support options, [upgrade your plan](../billing/upgrade-account.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you’re a free tier plan user, you’re community-supported.
+> 
+> This includes the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md).
+> 
+> Find the support page in the Capella UI: next to your user profile, click **Get Help** to access the support you need.
+> 
+> You can also fill out a feedback form to provide your input and insights on Couchbase Capella. For more information, see [Provide Feedback](feedback.md).
+> 
+> For more support options, [upgrade your plan](../billing/upgrade-account.md).
 
 ## [](#support-levels)Cluster Support Plan Levels
 

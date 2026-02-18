@@ -1,9 +1,17 @@
+---
+title: Deploying in Kubernetes
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/kubernetes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/kubernetes.html)
+
+# Deploying in Kubernetes
 
 > A guide to deploying the connector in Kubernetes as a StatefulSet. 
 
-|  | The connector’s relationship with Kubernetes is evolving. Deployment instructions may change from one release to the next. **These instructions apply to version 4.3.4 of the connector.** |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> The connector’s relationship with Kubernetes is evolving. Deployment instructions may change from one release to the next. **These instructions apply to version 4.3.4 of the connector.**
 
 ## [](#docker-image)Docker Image
 
@@ -86,8 +94,8 @@ Saved checkpoints are typically valid for no more than a few days. Your cron job
 
 To restore a checkpoint, **first undeploy the connector** (or scale down to zero if using native Kubernetes integration) **and wait for the pods to terminate**. Then deploy a Kubernetes [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) that runs the `cbes-checkpoint-restore` command. When the Job is complete, redeploy the connector (or scale it back up).
 
-|  | If you fail to undeploy the connector (or scale to zero) before restoring a checkpoint, the connector will ignore the restored checkpoint and overwrite it. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you fail to undeploy the connector (or scale to zero) before restoring a checkpoint, the connector will ignore the restored checkpoint and overwrite it.
 
 The backup CronJob and the restore Job both use the same Docker image as the connector. They should also use the same ConfigMap and Secret (and associated volume mounts) as the connector. Be sure to override the default command (`cbes`, which runs the connector) by setting the `command` and `args` container properties in your CronJob/Job descriptor.
 
@@ -107,8 +115,8 @@ Edit `elasticsearch-connector-configuration.yaml` to reflect your desired connec
 kubectl apply -f elasticsearch-connector-configuration.yaml
 ```
 
-|  | If the connector is already running, you must restart it for config changes to take effect. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If the connector is already running, you must restart it for config changes to take effect.
 
 Now edit `elasticsearch-connector.yaml`. The default values are appropriate for experimenting with native Kubernetes integration. For a fixed-scale deployment, remove (or comment-out) any references to the custom service account.
 

@@ -1,4 +1,15 @@
+---
+title: Creating the Courses Collection
+description: Your first application created a single student record for the
+  student collection. In this part, you're going to populate the course
+  collection.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-courses-collection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/java-tutorial/creating-the-courses-collection.html)
+
+# Creating the Courses Collection
 
 > Your first application created a single student record for the student collection. In this part, you’re going to populate the course collection. 
 
@@ -43,8 +54,8 @@ Unresolved include directive in modules/tutorials/pages/java-tutorial/creating-t
 | **1** | Note that you’re now writing to a different collection. |
 | ----- | ------------------------------------------------------- |
 
-|  | Make sure that you’ve created the course-collection in the admin console before you attempt to run the program. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Make sure that you’ve created the `course-collection` in the admin console before you attempt to run the program.
 
 You can use maven to run the application:
 

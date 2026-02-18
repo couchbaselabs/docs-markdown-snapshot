@@ -1,11 +1,20 @@
+---
+title: Language Constructs
+description: The language constructs are fundamental units of a language.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-language-constructs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-language-constructs.html)
+
+# Language Constructs
 
 > The language constructs are fundamental units of a language. This topic discusses the JavaScript constructs that have been removed and new constructs that have been added in order to support the requirements of Couchbase Functions. 
 
 Using JavaScript, you can write your custom Functions. Couchbase Functions inherit support for most ECMAScript constructs by using Google v8 as the execution container. However, to support the ability to shard and scale Function-execution automatically, some capabilities have been removed. Additionally, to optimize language-utilization of the server environment, some new constructs have been added.
 
-|  | While every effort is made to ensure the accuracy of the content of the Eventing documentation herein, it should be noted that the controlling technical document is the [Couchbase 7.0 Eventing Specification](https://github.com/couchbase/eventing/blob/master/docs/specification-70.pdf) available on GitHub. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While every effort is made to ensure the accuracy of the content of the Eventing documentation herein, it should be noted that the controlling technical document is the [Couchbase 7.0 Eventing Specification](https://github.com/couchbase/eventing/blob/master/docs/specification-70.pdf) available on GitHub.
 
 ## [](#removed-lang-features)Removed Language Features
 
@@ -147,8 +156,8 @@ The Eventing Service also creates a system log file named **eventing.log** commo
 
 Top level SQL++ keywords, such as SELECT, UPDATE, INSERT and DELETE, are available as inline keywords in Eventing Functions. Operations that return values such as SELECT are accessible through a returned iterable handle. SQL++ Query results, via a SELECT, are streamed in batches to the iterable handle as the iteration progresses through the result set.
 
-|  | SQL++ DML statements cannot manipulate documents in the same bucket as the Eventing Function is listening for mutations on to avoid recursion. Workaround: use the exposed data service KV map in your Eventing function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ DML statements cannot manipulate documents in the same bucket as the Eventing Function is listening for mutations on to avoid recursion. Workaround: use the exposed data service KV map in your Eventing function.
 
 JavaScript variables can be referred by SQL++ statements using **$<variable>** syntax. Such parameters will be substituted with the corresponding JavaScript variable’s runtime value using SQL++ named parameters substitution facility.
 
@@ -178,8 +187,8 @@ The iterator is an input iterator (elements are read-only). The keyword _this_ c
 
 The returned handle must be closed using the `close()` method defined on it, which stops the underlying SQL++ query and releases associated resources.
 
-|  | When an Eventing Function completes for a given mutation and exits all resources will be freed even if you omit the close() statement for your result set(s). However in some complex use cases such as nested SQL++ lookups a failure to explicitly call close() after each result set is no longer needed can tie up an excessive amount of SQL++ resources and lead to poor performance. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When an Eventing Function completes for a given mutation and exits all resources will be freed even if you omit the `close()` statement for your result set(s). However in some complex use cases such as nested SQL++ lookups a failure to explicitly call `close()` after each result set is no longer needed can tie up an excessive amount of SQL++ resources and lead to poor performance.
 
 All three operations, i.e., the SQL++ statement, iterating over the result set, and closing the Iterable handle can throw exceptions if unexpected error arises from the underlying SQL++ query.
 
@@ -226,8 +235,8 @@ The following built in functions have been added:
 
 The _N1QL()_ function call is documented below for reference purposes but should not used directly as doing so would bypass the various semantic and syntactic checks of the transpiler (notably: recursive mutation checks will no longer function, and the statement will need to manual escaping of all SQL++ special sequences and keywords).
 
-|  | In addition the _N1qlQuery()_ is now deprecated and has been replaced with the _N1QL()_ call which has a different parameter format. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In addition the _N1qlQuery()_ is now deprecated and has been replaced with the _N1QL()_ call which has a different parameter format.
 
 * _statement_  
 This is the identified SQL++ statement. This will be passed to SQL++ via SDK to run as a prepared statement. All referenced JS variables in the statement (using the $var notation) will be treated by SQL++ as named parameters.

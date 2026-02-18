@@ -1,9 +1,19 @@
+---
+title: Get Assistance from Capella iQ
+description: Capella iQ is a service that leverages a large language model to
+  help you write queries.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/query/iq.html)
+
+# Get Assistance from Capella iQ
 
 > Capella iQ is a service that leverages a large language model to help you write queries. 
 
-|  | Remember that Capella iQ harnesses the power of third-party large language models (LLM) to improve your queries. Do not provide sensitive data in the prompt such as personally identifiable information or any confidential information that you would not want shared. Because technology built on LLMs can also suffer from hallucinations from time to time, be sure to review the output. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Remember that Capella iQ harnesses the power of third-party large language models (LLM) to improve your queries. Do not provide sensitive data in the prompt such as personally identifiable information or any confidential information that you would not want shared. Because technology built on LLMs can also suffer from hallucinations from time to time, be sure to review the output.
 
 Capella iQ is your partner in Capella Analytics, allowing you to work faster and assist you directly in the Capella UI. It uses a large language model (LLM) to generate queries based on plain language prompts.
 
@@ -32,8 +42,8 @@ After you choose the collection, iQ suggests some sample queries to start workin
   * To generate a custom query, type your prompt in the iQ message field. After you review the query that Capella iQ returns, click **Run**.
 3. Modify the query using follow-up prompts.
 
-|  | Always review every query that iQ returns before running it. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> Always review every query that iQ returns before running it.
 
 ### [](#example-generate-a-sql-for-capella-analytics-query-with-travel-sample-sample-data)Example: Generate a SQL++ for Capella Analytics Query with `travel-sample` Sample Data
 

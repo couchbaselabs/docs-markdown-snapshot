@@ -1,4 +1,12 @@
+---
+title: Query Data in Google Cloud Storage (GCS)
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-gcs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/external-gcs.html)
+
+# Query Data in Google Cloud Storage (GCS)
 
 > To provide query access to OLAP data in GCS, you create an external link and associate it with an external collection. 
 
@@ -18,20 +26,20 @@ These credentials must have permission to list and read data from GCS bucket. Fo
 
 You do not need credentials for publicly available data in GCS bucket.
 
-|  | When you create an external link, be sure to follow best practices for security. Couchbase recommends that you grant the minimum possible permissions to perform the required operations, and allow access only to the required data and resources. You should never use root account credentials. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you create an external link, be sure to follow best practices for security. Couchbase recommends that you grant the minimum possible permissions to perform the required operations, and allow access only to the required data and resources. You should never use root account credentials.
 
 ### [](#prefix)The Location Path
 
 When you create an external collection based on GCS bucket, you can supply a path to the files Capella Analytics queries. A path consists of one or more prefixes that define a hierarchical organization, using a format such as `topLevel/nextLevel/lowestLevel`. The path does not include filenames.
 
-|  | If you use the GCS bucket console, prefixes are also referred to as folders. |
-|  | ---------------------------------------------------------------------------- |
+> [!TIP]
+> If you use the GCS bucket console, prefixes are also referred to as folders.
 
 To make querying the external data source as efficient as possible, you should supply a path that’s as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
 
-|  | Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections.
 
 For information about using prefixes for data on GCS bucket, see [List the objects in a bucket using a prefix filter](https://cloud.google.com/storage/docs/samples/storage-list-files-with-prefix) in the Google Cloud documentation.
 
@@ -78,8 +86,8 @@ Choose whether Capella Analytics should parse embedded JSON data and convert dec
 
 The link is now available to provide your credentials whenever you query data in the external data source.
 
-|  | Because the data in an external collection is not ingested into Capella Analytics and remains on the external host, Capella Analytics cannot index it. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Because the data in an external collection is not ingested into Capella Analytics and remains on the external host, Capella Analytics cannot index it.
 
 ## [](#see-also)See Also
 

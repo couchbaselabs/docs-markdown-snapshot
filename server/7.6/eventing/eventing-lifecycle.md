@@ -1,4 +1,14 @@
+---
+title: The Eventing Lifecycle
+description: This page shows how to add a new Eventing Function and briefly
+  explores the Eventing Lifecycle.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-lifecycle.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-lifecycle.html)
+
+# The Eventing Lifecycle
 
 > This page shows how to add a new Eventing Function and briefly explores the Eventing Lifecycle. 
 
@@ -143,5 +153,5 @@ You should see the success count at 7,303 in the Function’s basic statistics.
 
     * Click **Delete Function**.
 
-|  | The Eventing Function lifecycle operations (deploying, undeploying, pausing, resuming, and deleting operations) and the Eventing rebalance operation **are mutually exclusive**. The Eventing rebalance operation fails when an Eventing Function lifecycle operation is currently in progress. Likewise, when the Eventing rebalance operation is in progress, you cannot perform an Eventing Function lifecycle operation. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Function lifecycle operations (deploying, undeploying, pausing, resuming, and deleting operations) and the Eventing rebalance operation **are mutually exclusive**. The Eventing rebalance operation fails when an Eventing Function lifecycle operation is currently in progress. Likewise, when the Eventing rebalance operation is in progress, you cannot perform an Eventing Function lifecycle operation.

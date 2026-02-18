@@ -1,4 +1,14 @@
+---
+title: Create a Cluster
+description: This topic includes the procedures you follow to create Capella
+  Analytics clusters.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/prepare-project.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/prepare-project.html)
+
+# Create a Cluster
 
 > This topic includes the procedures you follow to create Capella Analytics clusters. 
 

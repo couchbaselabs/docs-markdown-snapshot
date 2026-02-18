@@ -1,4 +1,12 @@
+---
+title: Default Settings
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-default-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-default-settings.html)
+
+# Default Settings
 
 Default settings can be specified in the **Advanced** panel. When opened, the Advanced panel appears as follows:
 

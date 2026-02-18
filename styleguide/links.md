@@ -1,9 +1,17 @@
+---
+title: Links
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/links.html)
+
+# Links
 
 Follow the [Google Developer Style Guide](https://developers.google.com/style/link-text)'s guidance on how to write link text. In general, make it clear where a user ends up after they click a link.
 
-|  | This does not mean to just use the URL as the displayed link text. Try to write effective and useful link text for all links. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This does not mean to just use the URL as the displayed link text. Try to write effective and useful link text for all links.
 
 Introduce all links with `For more information, see {link}.`Do not use `Refer to`, `For more details`, or other constructions. If you need to use another construction, try to have a good justification for that specific use case, and still try to keep the `For x, see y` construction.
 

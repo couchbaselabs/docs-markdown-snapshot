@@ -1,4 +1,12 @@
+---
+title: Configure Client SDKs
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-client-sdks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-client-sdks.html)
+
+# Configure Client SDKs
 
 > Connecting a Couchbase SDK to an Operator managed Couchbase cluster. 
 
@@ -6,8 +14,8 @@ Couchbase Server requires clients in order to do productive work. The operator i
 
 Configuration and use of a client SDK is available in [language specific documentation](#server:sdk:overview.adoc). All client SDKs share a common connection string format; used by the SDK to connect to the Couchbase cluster and discover nodes. This how-to documents how to calculate the required connection string based on your chosen [network architecture](concept-couchbase-networking.md).
 
-|  | While we discuss client SDKs, these configurations also apply to Couchbase Connectors and Couchbase Mobile. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While we discuss client SDKs, these configurations also apply to Couchbase Connectors and Couchbase Mobile.
 
 Client Explicit Network Selection
 
@@ -49,11 +57,11 @@ DNS based addressing with External DNS is slightly different to plain DNS. The E
 
 The connection string is determined by the [couchbaseclusters.spec.networking.dns.domain](resource/couchbasecluster.md#couchbaseclusters-spec-networking-dns-domain) cluster parameter. The connection string is in the form `couchbases://console._<dns-domain>_?network=external`. Given the DNS domain `my-cluster.acme.org`, to connect to the cluster using TLS use the connection string `couchbases://console.my-cluster.acme.org?network=external`.
 
-|  | Use of client SDKs with this network configuration relies on support for DNAT, which in turn requires that the SDK support [exposed features](concept-couchbase-networking.md#exposed-features). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Use of client SDKs with this network configuration relies on support for DNAT, which in turn requires that the SDK support [exposed features](concept-couchbase-networking.md#exposed-features).
 
-|  | Using SRV based connection strings is the recommended method of connecting client SDKs. Defects exist due to performance issues when using HTTP transport for cluster discovery. To mitigate the potential for errors, ensure your clients are not continually connecting and disconnecting from your Couchbase clusters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Using SRV based connection strings is the recommended method of connecting client SDKs. Defects exist due to performance issues when using HTTP transport for cluster discovery. To mitigate the potential for errors, ensure your clients are not continually connecting and disconnecting from your Couchbase clusters.
 
 ## [](#ip-based-addressing)IP Based Addressing
 
@@ -77,5 +85,5 @@ minikube   Ready    master   49d   v1.13.11   10.0.2.15     <none>        Buildr
 
 You may use any node IP address, however be aware these could change or be deprovisioned and break clients. The port must be the node port mapped to Couchbase port `8091`. The address to connect to is `http://10.0.2.15:31410?network=external`.
 
-|  | Use of client SDKs with this network configuration relies on support for DNAT, which in turn requires that the SDK support [exposed features](concept-couchbase-networking.md#exposed-features). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Use of client SDKs with this network configuration relies on support for DNAT, which in turn requires that the SDK support [exposed features](concept-couchbase-networking.md#exposed-features).

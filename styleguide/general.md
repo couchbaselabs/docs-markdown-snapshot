@@ -1,4 +1,12 @@
+---
+title: General Principles of Couchbase Style
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/general.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/general.html)
+
+# General Principles of Couchbase Style
 
 The following are some general principles of writing in the Couchbase Style:
 

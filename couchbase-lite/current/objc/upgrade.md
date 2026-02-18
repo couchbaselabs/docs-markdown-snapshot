@@ -1,7 +1,17 @@
+---
+title: Upgrade Couchbase Lite
+description: ""
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/objc/upgrade.html)
 
-|  | On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.This can result in a delay before the database is usable. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Upgrade Couchbase Lite
+
+> [!IMPORTANT]
+> On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.  
+> This can result in a delay before the database is usable.
 
 ## [](#4-0-0-upgrade)4.0.1 Upgrade
 
@@ -156,8 +166,8 @@ where: [[CBLQueryExpression property: @"notMissingProp"] isValued]];
 
 ##### [](#atan2)ATAN2
 
-|  | Breaking change |
-|  | --------------- |
+> [!CAUTION]
+> Breaking change
 
 `ATAN2(x, y)` now becomes `ATAN2(y, x)`
 

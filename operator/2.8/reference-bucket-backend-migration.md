@@ -1,4 +1,12 @@
+---
+title: Bucket Backend Migration Documentation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-bucket-backend-migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/reference-bucket-backend-migration.html)
+
+# Bucket Backend Migration Documentation
 
 > In Couchbase Server 7.6.0 the backend of a storage bucket can be migrated between Magma and Couchstore. 
 

@@ -1,9 +1,18 @@
+---
+title: Monitor Queries in the Couchbase Web Console
+description: Couchbase Server provides a UI to monitor the current state of Query Service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/tools/pages/query-monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tools/query-monitoring.html)
+
+# Monitor Queries in the Couchbase Web Console
 
 > Couchbase Server provides a UI to monitor the current state of Query Service. 
 
-|  | Query Monitoring is only available in Enterprise Edition. |
-|  | --------------------------------------------------------- |
+> [!NOTE]
+> Query Monitoring is only available in Enterprise Edition.
 
 To display the Query Monitor, in the Couchbase Web Console, choose **Query** **Query Monitor**.
 

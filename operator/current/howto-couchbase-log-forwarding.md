@@ -1,4 +1,12 @@
+---
+title: Configure Log Forwarding
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-couchbase-log-forwarding.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-couchbase-log-forwarding.html)
+
+# Configure Log Forwarding
 
 > Configure Couchbase Server logs to be forwarded to standard console output. 
 
@@ -10,14 +18,14 @@ However, the Kubernetes Operator can optionally enable [_log forwarding_](concep
 
 The sections on this page describe how to enable and configure log forwarding using the Couchbase-supplied log processor image.
 
-|  | The Couchbase-supplied log processor container image is only supported on Kubernetes platforms in conjunction with the Couchbase Kubernetes Operator. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase-supplied log processor container image is only supported on Kubernetes platforms in conjunction with the Couchbase Kubernetes Operator.
 
-|  | Log forwarding requires that logs be written to a persistent volume (i.e. the Couchbase deployment’s default or logs volumes are backed by [persistent storage](best-practices.md#storage)). Fully-ephemeral clusters are not supported by this feature. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Log forwarding requires that logs be written to a persistent volume (i.e. the Couchbase deployment’s `default` or `logs` volumes are backed by [persistent storage](best-practices.md#storage)). Fully-ephemeral clusters are not supported by this feature.
 
-|  | Log forwarding requires that [couchbaseclusters.spec.securityContext](resource/couchbasecluster.md#couchbaseclusters-spec-securitycontext) is set as appropriate for your Kubernetes distribution, as the sidecar requires read access to the shared volume. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Log forwarding requires that [couchbaseclusters.spec.securityContext](resource/couchbasecluster.md#couchbaseclusters-spec-securitycontext) is set as appropriate for your Kubernetes distribution, as the sidecar requires read access to the shared volume.
 
 ## [](#enabling-log-forwarding)Enabling Log Forwarding
 
@@ -172,8 +180,8 @@ When [using _custom_ log forwarding](#using-custom-log-forwarding), the Kubernet
 
 The rest of this section covers some relatively simple ways in which you can customize the default log forwarding configuration, such as limiting the number of forwarded logs, and enabling log redaction. However, since the Couchbase-supplied log processor image is based on Fluent Bit, you can technically customize the log forwarding configuration with any kind of configuration that is [supported by Fluent Bit](https://docs.fluentbit.io/manual/administration/configuring-fluent-bit). Some examples of these types of customizations are covered in the tutorial [Configure Log Forwarding](howto-couchbase-log-forwarding.md).
 
-|  | Only custom configurations that leverage the built-in parsing, redaction, and other standard features of the Couchbase-supplied log processor image are supported. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Only custom configurations that leverage the built-in parsing, redaction, and other standard features of the Couchbase-supplied log processor image are supported.
 
 ### [](#create-custom-log-forwarding-config-secret)Creating a Secret That Contains a Custom Log Forwarding Configuration
 
@@ -225,15 +233,15 @@ Further updates can be made to a custom log forwarding configuration Secret, eve
 
 The ability to restart Fluent Bit internally is a special characteristic of the Couchbase-supplied [log processor image](https://hub.docker.com/r/couchbase/fluent-bit). If you’re using a custom sidecar container image, be aware that Fluent Bit, on its own, does not currently support [dynamic reload](https://github.com/fluent/fluent-bit/issues/365) of its configuration.
 
-|  | The Couchbase-supplied log forwarding implementation does not currently support log buffering during restart. Therefore, log events that occur while Fluent Bit is restarting may be lost. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> The Couchbase-supplied log forwarding implementation does not currently support log buffering during restart. Therefore, log events that occur while Fluent Bit is restarting may be lost.
 
 ## [](#configuring-log-redaction)Configuring Log Redaction
 
 The Couchbase-supplied [log processor image](https://hub.docker.com/r/couchbase/fluent-bit) provides optional support for [_log redaction_](concept-couchbase-logging.md#log-redaction), whereby sensitive data from Couchbase log events are redacted before the events are forwarded to standard console output or other locations. Log redaction isn’t enabled by default, and therefore must be enabled via the [log forwarding configuration Secret](#create-custom-log-forwarding-config-secret).
 
-|  | This section describes how to configure the built-in LUA-based log redaction facility. However, there are simpler, more rudimentary methods of performing log redaction that may be more desirable depending on the use-case. Refer to log forwarding [tutorial](#) for examples. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This section describes how to configure the built-in LUA-based log redaction facility. However, there are simpler, more rudimentary methods of performing log redaction that may be more desirable depending on the use-case. Refer to log forwarding [tutorial](#) for examples.
 
 The following example is the same custom log forwarding configuration Secret from the section [Creating a Secret That Contains a Custom Log Forwarding Configuration](#create-custom-log-forwarding-config-secret), except that it is configured to additionally perform redaction of the audit log:
 

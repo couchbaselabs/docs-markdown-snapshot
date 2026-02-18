@@ -1,4 +1,12 @@
+---
+title: Getting Started
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/getting-started.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/getting-started.html)
+
+# Getting Started
 
 > To get started with the Couchbase Spark connector quickly, learn how to add the connector to your Spark project and run simple queries. 
 
@@ -56,8 +64,8 @@ val spark = SparkSession
 
 In this configuration, we are using the JVM-local spark master to run our jobs. The Couchbase cluster is located on our local machine (`127.0.0.1`) and we use the user `username` with a password of `password`.
 
-|  | to showcase different APIs, the following examples us the Keyspace explicitly. It is also possible to configure an implicit bucket, scope etc. through the configuration properties. See the configuration documentation for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> to showcase different APIs, the following examples us the `Keyspace` explicitly. It is also possible to configure an implicit bucket, scope etc. through the configuration properties. See the configuration documentation for more information.
 
 ## [](#creating-and-saving-rdds)Creating and saving RDDs
 
@@ -137,8 +145,8 @@ Next up is an introduction into Query/Analytics and DataFrames.
 
 DataFrames, in its essence, are RDDs with a Schema. They are represented in the SparkSQL `Row` type.
 
-|  | You need to at least have a primary index created on the travel-sample bucket to make the following examples work. If you haven’t done already, perform a CREATE PRIMARY INDEX ON \`travel-sample\` query. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You need to at least have a primary index created on the `travel-sample` bucket to make the following examples work. If you haven’t done already, perform a `` CREATE PRIMARY INDEX ON `travel-sample` `` query.
 
 Because a `DataFrame` is like an `RDD` but with a schema and Couchbase is a schemaless database at its heart, you need a way to either define or infer a schema. The connector has built-in schema inference, but if you have a large or diverse data set, you need to give it some clues on filtering (or use scopes and collections with Server 7.0 and later).
 

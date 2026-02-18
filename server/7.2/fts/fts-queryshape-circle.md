@@ -1,4 +1,12 @@
+---
+title: Circle Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-queryshape-circle.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-queryshape-circle.html)
+
+# Circle Query
 
 > A GeoJSON Circle Query against any GeoJSON type. 
 
@@ -129,8 +137,8 @@ WithIn rules for the Circle Query with other indexed GeoJSON shapes in the docum
 
 ## [](#example-circle-query-against-points)Example Circle Query (against Points)
 
-|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example.
 
 Intersects if the point lies within the circular region.
 
@@ -261,8 +269,8 @@ The output of five (5) hits (from a total of 842 matching docs) is as follows
 
 ## [](#example-circle-query-against-circles)Example Circle Query (against Circles)
 
-|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example.
 
 Matches if the document circle resides within the query circle.
 

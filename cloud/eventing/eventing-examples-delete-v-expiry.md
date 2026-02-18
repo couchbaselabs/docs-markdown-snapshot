@@ -1,4 +1,14 @@
+---
+title: Differentiate between Expiration and Deletion
+description: Differentiate between document deletion and document expiration in
+  Eventing Function logs.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-delete-v-expiry.html)
+
+# Differentiate between Expiration and Deletion
 
 > Differentiate between document deletion and document expiration in Eventing Function logs. 
 
@@ -16,8 +26,8 @@ For more information about creating buckets, scopes, and collections, see [Manag
 
 clusters:eventing-service/add-eventing-functions.adoc
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-differentiate-between-expiration-and-deletion)Example: Differentiate between Expiration and Deletion
 

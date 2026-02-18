@@ -1,4 +1,13 @@
+---
+title: Views API
+description: The Views REST API is used to index and query JSON documents.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-views-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-views-intro.html)
+
+# Views API
 
 > The Views REST API is used to index and query JSON documents. 
 
@@ -6,8 +15,8 @@
 
 Views are functions written in JavaScript that can serve several purposes in your application. You can use them to: find all the documents in your database, create a copy of data in a document and present it in a specific order, create an index to efficiently find documents by a particular value or by a particular structure in the document, represent relationships between documents, and perform calculations on data contained in documents.
 
-|  | View functions are stored in a design document as JSON. You can use the REST API to manage your design documents. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> View functions are stored in a design document as JSON. You can use the REST API to manage your design documents.
 
 __Table 1\. Views endpoints__
 | HTTP method | URI path                                                        | Description                                                       | Admin Role          |

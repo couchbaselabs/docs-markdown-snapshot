@@ -1,4 +1,14 @@
+---
+title: Collecting Information and Logging in the C (libcouchbase) SDK
+description: This page describes how to enable debug logging in the C SDK and
+  debug application crashes and potential bugs.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/collecting-information-and-logging.html)
+
+# Collecting Information and Logging in the C (libcouchbase) SDK
 
 > This page describes how to enable debug logging in the C SDK and debug application crashes and potential bugs. Basic C SDK logging can be enabled using environment variables, and may also be controlled from the SDK API itself. 
 
@@ -23,8 +33,8 @@ When logging is turned on, the library will output messages similar to this:
 1ms [I0] {14780} [DEBUG] (lcbio_mgr - L:383) <localhost:11210> (HE=0xe56760)
 Creating new connection because none are available in the pool
 
-|  | The output format is subject to change. It is intended for human consumption and is not designed to be parseable. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The output format is subject to change. It is intended for human consumption and is not designed to be parseable.
 
 The following table describes the components of the log entries:
 
@@ -39,8 +49,8 @@ The following table describes the components of the log entries:
 
 ## [](#getting-stack-traces)Getting stack traces
 
-|  | The following section applies to Linux, Mac OS X, and other Unix-like systems. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> The following section applies to Linux, Mac OS X, and other Unix-like systems.
 
 Stack traces and core dumps may be required if your application is hanging or crashing. In this case knowing in which location the library (or application) is misbehaving becomes useful.
 
@@ -173,8 +183,8 @@ Core dumps might be generated when an application crashes (though on many system
 
 Core dumps can only be analyzed if the binaries that generated them are accessible and have debugging symbols. Binaries in this sense includes the client library, the application, and any other shared libraries loaded by the application. This means that the platform (and distribution) that generated the core dump must be available and loadable (or at least reproducible) when analyzing the core dump.
 
-|  | A core file contains the memory contents of your application. Anyone who can read your core file can access potentially sensitive data that your application was processing at the time of the crash. If possible, have your application operate on sample data. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> A core file contains the memory contents of your application. Anyone who can read your core file can access potentially sensitive data that your application was processing at the time of the crash. If possible, have your application operate on sample data.
 
 To get a core dump:
 

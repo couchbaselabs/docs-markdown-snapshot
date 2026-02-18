@@ -1,4 +1,15 @@
+---
+title: Manage Node-to-Node Encryption
+description: Network traffic between the individual nodes of an Enterprise
+  Analytics cluster can be encrypted, in order to optimize cluster-internal
+  security.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/apply-node-to-node-encryption.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/apply-node-to-node-encryption.html)
+
+# Manage Node-to-Node Encryption
 
 > Network traffic between the individual nodes of an Enterprise Analytics cluster can be encrypted, in order to optimize cluster-internal security. 
 

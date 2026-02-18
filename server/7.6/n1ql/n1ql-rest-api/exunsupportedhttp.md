@@ -1,4 +1,13 @@
+---
+title: Unsupported HTTP Method
+description: For a REST method type that is not supported
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/n1ql/pages/n1ql-rest-api/exunsupportedhttp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-rest-api/exunsupportedhttp.html)
+
+# Unsupported HTTP Method
 
 For a REST method type that is not supported
 

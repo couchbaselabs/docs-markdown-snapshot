@@ -1,4 +1,15 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/howtos/n1ql-queries-with-sdk.html)
+
+# Query
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
@@ -12,8 +23,8 @@ CREATE PRIMARY INDEX ON `travel-sample`
 
 or replace _travel-sample_ with a different Bucket name to build an index on a different dataset.
 
-|  | The default installation places cbq in /opt/couchbase/bin/ on Linux, /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbq on OS X, and C:\\Program Files\\Couchbase\\Server\\bin\\cbq.exe on Microsoft Windows. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The default installation places cbq in `/opt/couchbase/bin/` on Linux, `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbq` on OS X, and `C:\Program Files\Couchbase\Server\bin\cbq.exe` on Microsoft Windows.
 
 Note that building indexes is covered in more detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building) — and in the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client/namespaces/couchbase-management.html).
 
@@ -97,8 +108,8 @@ foreach ($result->rows() as $row) {
 
 ## [](#additional-resources)Additional Resources
 
-|  | SQL++ is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service.
 
 The [Server doc SQL++ intro](#7.1@server:n1ql:n1ql-language-reference/index.adoc) introduces up a complete guide to the SQL++ language, including all of the latest additions.
 

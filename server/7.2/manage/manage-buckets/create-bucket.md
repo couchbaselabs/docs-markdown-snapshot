@@ -1,4 +1,14 @@
+---
+title: Create a Bucket
+description: <em>Full</em> and <em>Cluster</em> Administrators can use Couchbase
+  Web Console, the CLI, or the REST API to create a bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-buckets/create-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-buckets/create-bucket.html)
+
+# Create a Bucket
 
 > _Full_ and _Cluster_ Administrators can use Couchbase Web Console, the CLI, or the REST API to create a bucket. 
 
@@ -21,10 +31,13 @@ The **Add Data Bucket** dialog appears:
 
 ![An image that displays the Add Data Bucket dialog. The Name field is empty. Bucket Type is set to Couchbase, and the Storage Backend is set to CouchStore. The Memory Quota is set to 18488MiB. The Advanced bucket settings are collapsed.](../_images/manage-buckets/addDataBucketDialogInitial.png) 
 
-1. In the **Name** field, enter a name for the new bucket.
-
-|  | A bucket name can be up to 100 characters in length and contain: Uppercase and lowercase characters (A-Z and a-z) Digits (0-9) Underscores (\_), periods (.), dashes (-), and percent symbols (%) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. In the **Name** field, enter a name for the new bucket.  
+> [!NOTE]  
+> A bucket name can be up to 100 characters in length and contain:  
+>  
+> * Uppercase and lowercase characters (A-Z and a-z)  
+> * Digits (0-9)  
+> * Underscores (\_), periods (.), dashes (-), and percent symbols (%)
 2. Choose a **Bucket Type** for the bucket:
 
   * **Couchbase**
@@ -36,10 +49,9 @@ For more information about bucket types, see [Buckets](../../learn/buckets-memor
   * **Couchstore**
   * **Magma**  
 For more information about the available storage engines, see [Storage Engines](../../learn/buckets-memory-and-storage/storage-engines.md).
-4. In the **Memory Quota** field, enter a value in MiB per node for the total RAM available for the bucket. This value can’t exceed the total RAM quota for your cluster.
-
-|  | Your memory quota needs to match the minimum memory resident ratio required by your chosen storage engine. For more information, see [Bucket Memory Quotas](../../learn/buckets-memory-and-storage/memory.md#bucket-memory). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. In the **Memory Quota** field, enter a value in MiB per node for the total RAM available for the bucket. This value can’t exceed the total RAM quota for your cluster.  
+> [!NOTE]  
+> Your memory quota needs to match the minimum memory resident ratio required by your chosen storage engine. For more information, see [Bucket Memory Quotas](../../learn/buckets-memory-and-storage/memory.md#bucket-memory).
 
 1. Expand **Advanced bucket settings**.
 2. Set any advanced settings for your bucket. See [Set Advanced Bucket Settings](#advanced-bucket-settings).
@@ -79,10 +91,9 @@ To configure advanced settings for a Couchbase bucket:
   2. To replicate view indexes and data from the bucket, select the **Replicate view indexes** checkbox.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.
-
-|  | The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. In the **Seconds** field, enter the maximum time in seconds that a document can exist in the bucket before it’s deleted.  
+  > [!TIP]  
+  > The maximum allowed value is 2147483647 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
 
   * **Off**
@@ -100,8 +111,8 @@ For more information about XDCR conflict resolution, see [XDCR Conflict Resoluti
   * **Full**  
 For more information about ejection, see the [Ejection](../../learn/buckets-memory-and-storage/memory.md#ejection) section in Memory.
 
-|  | Full Ejection is recommended when the [Magma storage engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Full Ejection is recommended when the [Magma storage engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio).
 
 1. Choose a **Bucket Priority** for the bucket:
 
@@ -129,8 +140,8 @@ For more information about flushing, see [Flush a Bucket](flush-bucket.md).
 
 #### [](#memcached-bucket-settings)Memcached Bucket Settings
 
-|  | Memcached buckets are deprecated. Use a **Couchbase** or **Ephemeral** bucket, instead. |
-|  | --------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Memcached buckets are deprecated. Use a **Couchbase** or **Ephemeral** bucket, instead.
 
 To configure advanced settings for a Memcached bucket:
 
@@ -148,10 +159,9 @@ To configure advanced settings for an Ephemeral bucket:
   1. In the **Number of replica (backup) copies** list, select the number of replicas for the bucket.
 2. To set a [document expiration](../../learn/data/expiration.md) for documents in the bucket, under **Bucket Max Time-To-Live**, select the **Enable** checkbox.
 
-  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.
-
-|  | The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. In the **Seconds** field, enter the maximum number of seconds a document can exist in the bucket before it’s deleted.  
+  > [!TIP]  
+  > The maximum allowed value is 2147483648 seconds (68.096 years). You can only apply this setting to documents created after you change the configuration.
 3. Choose a **Compression Mode** for the bucket:
 
   * **Off**

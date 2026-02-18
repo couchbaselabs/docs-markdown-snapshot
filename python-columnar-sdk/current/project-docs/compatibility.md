@@ -1,9 +1,23 @@
+---
+title: Compatibility
+description: Platform compatibility, and features available in different SDK
+  versions, and compatibility between Server and SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-columnar-sdk/current/project-docs/compatibility.html)
+
+# Compatibility
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. 
 
-|  | Don’t Mix Columnar & Operational SDKs. Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs. Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Don’t Mix Columnar & Operational SDKs.
+> 
+> Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
+> 
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.
 
 ## [](#platform-compatibility)Platform Compatibility
 

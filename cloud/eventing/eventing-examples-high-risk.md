@@ -1,4 +1,14 @@
+---
+title: Generate Credit Card Transaction Alerts
+description: Use an Eventing Function to generate high-risk alerts whenever a
+  customer makes certain credit card transactions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-high-risk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-high-risk.html)
+
+# Generate Credit Card Transaction Alerts
 
 > Use an Eventing Function to generate high-risk alerts whenever a customer makes certain credit card transactions. 
 
@@ -27,8 +37,8 @@ Before trying out the examples on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#example-generate-high-risk-credit-card-transaction-alerts)Example: Generate High Risk Credit Card Transaction Alerts
 

@@ -1,4 +1,14 @@
+---
+title: Certificates
+description: Couchbase Server supports using certificates for client and server
+  security and  authentication.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/certificates.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/security/certificates.html)
+
+# Certificates
 
 Couchbase Server supports using certificates for client and server security and authentication.
 
@@ -38,8 +48,8 @@ You can add additional custom root certificates to Couchbase Server’s trust st
 
 You can choose to create your own certificates, optionally signed by a well-known authority, and add them to Couchbase Server’s trust store. These additional certificates are listed under Trusted Root Certificates on the **Certificates** tab of the **Security** page, along with the self-signed CA. You can use these custom root certificates to sign certificates for client systems and XDCR peers.
 
-|  | You cannot use the private key for the self-signed root CA that Couchbase Server created to sign node certificates. Therefore, the only way to create certificates for client systems and XDCR clusters is to create and add custom certificates to the trust store. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use the private key for the self-signed root CA that Couchbase Server created to sign node certificates. Therefore, the only way to create certificates for client systems and XDCR clusters is to create and add custom certificates to the trust store.
 
 ### [](#custom-node-certificates)Custom Node Certificates
 
@@ -92,8 +102,8 @@ The SAN must meet the following requirements:
 * If the node name is a Fully Qualified Domain Name (FQDN), the SAN must be the FQDN with a `DNS:` prefix. For example, `DNS:node1.localhost.com`. When the node name is an FQDN, the SAN cannot specify an IP address.
 * If the node name is an IPv4 or an IPv6 IP address, the SAN must be the IP address, with an `IP:` prefix. For example, `IP:127.0.0.1` or `IP:0:0:0:0:0:0:0:1`. When the node name is an IP address, the SAN cannot specify an FQDN.
 
-|  | You can use the wildcard character in all expressions. |
-|  | ------------------------------------------------------ |
+> [!NOTE]
+> You can use the wildcard character in all expressions.
 
 For examples configuring node certificate including setting the node’s name as a SAN, see [Configure Server Certificates](../../manage/manage-security/configure-server-certificates.md).
 
@@ -120,8 +130,8 @@ When authenticating a client that uses certificate-based authentication, Couchba
 
 A similar process allows the server to authenticate with the client in a process called mutual TLS (mTLS) or [mutual authentication](https://en.wikipedia.org/wiki/Mutual%5Fauthentication).
 
-|  | The client’s authentication with the server relies on the private key used to create the client certificate. The client digitally signs a message with its private key and sends the message to the server. The server uses the client’s public key to verify that the client sent the message. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The client’s authentication with the server relies on the private key used to create the client certificate. The client digitally signs a message with its private key and sends the message to the server. The server uses the client’s public key to verify that the client sent the message.
 
 For an example of using private keys to secure XDCR, see [Specify Root and Client Certificates, and Client Private Key](../../manage/manage-xdcr/enable-full-secure-replication.md#specify-full-xdcr-security-with-certificates).
 
@@ -137,10 +147,9 @@ If you configure multiple elements within the client certificate to be potential
 
 You can use the following elements in a certificate to specify a username:
 
-* The `Subject` for the certificate, featuring the Common Name. For example, when creating the client-certificate using the command line, you can set the subject of the certificate to `clientname` by using the `-subj "/CN=clientuser"` argument.
-
-|  | The Internet Engineering Task Force (IETF) has deprecated the Subject Common Name as described in [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4). Couchbase Server continues to support using the Subject Common Name. See also [Deprecation of Subject Common Name](#deprecation-of-subject-common-name). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* The `Subject` for the certificate, featuring the Common Name. For example, when creating the client-certificate using the command line, you can set the subject of the certificate to `clientname` by using the `-subj "/CN=clientuser"` argument.  
+> [!NOTE]  
+> The Internet Engineering Task Force (IETF) has deprecated the Subject Common Name as described in [section 6.4.4 of RFC 6125](https://tools.ietf.org/html/rfc6125#section-6.4.4). Couchbase Server continues to support using the Subject Common Name. See also [Deprecation of Subject Common Name](#deprecation-of-subject-common-name).
 * The `DNS` name, provided as a Subject Alternative Name for the certificate. For example, if you add `subjectAltName = DNS:node2.cb.com` to the certificate, you can configure Couchbase Server to use `node2.cb.com` as the username without a prefix or delimiter specified in the handling-configuration.  
 Prefix and delimiter are explained later in [Identifying Certificate-Based Usernames on Couchbase Server](#identifying-certificate-based-usernames-on-couchbase-server).
 * The `email` defined as a Subject Alternative Name for the certificate. For example, if you add `subjectAltName = email:john.smith@example.com` to the certificate, you can configure Couchbase Server to use `john.smith@example.com` as the username. However, because Couchbase Server does not allow the character `@` in usernames, `john.smith@example.com` is not valid. You can configure Couchbase Server extract just the account portion of the email address (`john.smith`) by defining `@` as a delimiter. See [Identifying Certificate-Based Usernames on Couchbase Server](#identifying-certificate-based-usernames-on-couchbase-server) form an explanation.
@@ -167,10 +176,9 @@ In some cases, the value in the certificate cannot match a Couchbase Server user
 
 * If you define neither a prefix or delimiter for a path, Couchbase Server does not parse element’s content. It attempts to match the value as-is to an existing username.
 * You can define a prefix which is a string of text Couchbase Server attempts to match of the start of the value extracted from the certificate. If the prefix matches the start of the value, Couchbase Server removes the matching prefix from the value. It then tries to match the remaining string to a Couchbase Server username. If the prefix does not match the start of the value, Couchbase Server tries to match the entire value to a username. For example, suppose you specify `san.uri` as a path in the certificate to use, and set the prefix to `www.`. If Couchbase Server extracts the value `www.example.com` from the `san.uri` element in the certificate, the prefix matches leading `www.`, leaving Couchbase Server with `example.com` as the username. If instead the `san.uri` is `example.com`, the prefix does not match. In this case, Couchbase Server attempts to match `example.com` to a username.
-* You can define a delimiter, which is a single character that Couchbase Server should use to split the value extracted from the certificate. If it finds the delimiter in the value, Couchbase Server uses the portion of the value before the delimiter as the username. If Couchbase Server does not find the delimiter in the value, it uses the entire value as the username. For example, suppose you specify `san.email` as a path in the certificate, and set the delimeter to `@`. If Couchbase Server extracts the value `john.smit@example.com` as the value of `san.email`, it splits the value at the `@`, leaving it with `john.smith` to match to a username.
-
-|  | If the value contains multiple instances of the delimiter, Couchbase Server only uses the portion before the first delimiter. For example, if you set the delimiter to . and the value is www.example.com, Couchbase Server attempts to match www to a username. It does not attempt to match any other portion of the value if the first part does not match. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You can define a delimiter, which is a single character that Couchbase Server should use to split the value extracted from the certificate. If it finds the delimiter in the value, Couchbase Server uses the portion of the value before the delimiter as the username. If Couchbase Server does not find the delimiter in the value, it uses the entire value as the username. For example, suppose you specify `san.email` as a path in the certificate, and set the delimeter to `@`. If Couchbase Server extracts the value `john.smit@example.com` as the value of `san.email`, it splits the value at the `@`, leaving it with `john.smith` to match to a username.  
+> [!NOTE]  
+> If the value contains multiple instances of the delimiter, Couchbase Server only uses the portion before the first delimiter. For example, if you set the delimiter to `.` and the value is `www.example.com`, Couchbase Server attempts to match `www` to a username. It does not attempt to match any other portion of the value if the first part does not match.
 
 For step-by-step instructions, see [Enable Client Certificate Handling](../../manage/manage-security/enable-client-certificate-handling.md).
 
@@ -211,8 +219,8 @@ Couchbase Server supports using the PKCS #1 file format only for unencrypted pri
 
 Couchbase Server supports using PKCS #8 file format for both unencrypted and encrypted private keys. The user-specified `EncryptedPrivateKeyInfo` must use PKCS #5 v2 algorithms. This format supports both RSA and Elliptic Curve keys.
 
-|  | Couchbase Server does not support Elliptic Curve Key files containing EC PARAMETERS. When generating EC keys using the openssl command, be sure to use the \-noout argument to prevent it from adding an EC PARAMETERS section. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server does not support Elliptic Curve Key files containing EC PARAMETERS. When generating EC keys using the `openssl` command, be sure to use the `-noout` argument to prevent it from adding an EC PARAMETERS section.
 
 ## [](#json-passphrase-registration)JSON Passphrase Registration
 

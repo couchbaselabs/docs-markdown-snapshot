@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/introduction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/introduction.html)
+
+# Introduction
 
 Couchbase Mobile brings the power of NoSQL to mobile. It is comprised of three different components: Couchbase Lite, an embedded NoSQL database, Sync Gateway, an internet-facing synchronization mechanism that securely syncs data between device and cloud, and Couchbase Server, a highly scalable and performant NoSQL database in the cloud.
 

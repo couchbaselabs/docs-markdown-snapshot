@@ -1,4 +1,14 @@
+---
+title: Miscellaneous Utility Functions
+description: Miscellaneous utility functions enable you to perform tasks beyond
+  the usual evaluation and transformation of data.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/metafun.html)
+
+# Miscellaneous Utility Functions
 
 Miscellaneous utility functions enable you to perform tasks beyond the usual evaluation and transformation of data. For example, there are functions to retrieve information about a document or item, perform base64 encoding and decoding, generate UUIDs, and control the flow of a query.
 
@@ -310,8 +320,8 @@ This function enables you to execute a SQL++ statement provided as a string and 
 
 The function evaluates the statement dynamically using the same permissions as the invoking statement. The statement must be read-only. If it tries to modify data (like with UPDATE or INSERT), the function fails with `error 5010, "not a readonly request”`.
 
-|  | The results are materialized in memory, so large result sets may require a lot of memory. To limit memory usage, you can use quotas (the evaluated statement operates within the invoking statement’s quota). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The results are materialized in memory, so large result sets may require a lot of memory. To limit memory usage, you can use quotas (the evaluated statement operates within the invoking statement’s quota).
 
 ### [](#arguments-6)Arguments
 
@@ -402,8 +412,8 @@ The function supports the following statements:
 * CREATE INDEX
 * CREATE SEQUENCE
 
-|  | To execute this function, you must have the query\_system\_catalog role. Also, to extract DDLs from a specific bucket, you need necessary permissions on that bucket. For more information about roles and permissions, see [Authorization](../../learn/security/authorization-overview.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To execute this function, you must have the `query_system_catalog` role. Also, to extract DDLs from a specific bucket, you need necessary permissions on that bucket. For more information about roles and permissions, see [Authorization](../../learn/security/authorization-overview.md).
 
 ### [](#arguments-7)Arguments
 
@@ -540,8 +550,8 @@ For each error, the function returns the following fields.
 | **user\_action** _optional_ | List of possible steps a user can take to mitigate the error.                                                                                                         | String array             |
 | **user\_error** _optional_  | One of the following: Yes: The error was caused by the user. No: The error was caused by other services, or was internal to the server. Maybe: A combination of both. | enum (Yes, No, Maybe)    |
 
-|  | The error details also include a symbol field, which contains a representation string for the error. This field is for internal use only, and is not shown in the results. However, the FINDERR function does search this field when the find expression is a string or a regular expression. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The error details also include a `symbol` field, which contains a representation string for the error. This field is for internal use only, and is not shown in the results. However, the FINDERR function does search this field when the find expression is a string or a regular expression.
 
 ### [](#examples-4)Examples
 
@@ -1011,8 +1021,9 @@ While you can create an index on a specific extended attribute like `META().xatt
 
 Attempting to select the entire `META().xattrs` object will return an empty result.
 
-|  | Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query. You can also use the META().xattrs property to access [virtual XATTRs](../../learn/data/extended-attributes-fundamentals.md#virtual-extended-attributes)(see [Example 5](#meta-ex5)). However, this is an expensive operation and may increase query latency. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Starting with Couchbase Server 8.0, you can include up to 15 XATTRs per query.
+> * You can also use the `META().xattrs` property to access [virtual XATTRs](../../learn/data/extended-attributes-fundamentals.md#virtual-extended-attributes)(see [Example 5](#meta-ex5)). However, this is an expensive operation and may increase query latency.
 
 ### [](#return-value-13)Return Value
 
@@ -1313,8 +1324,8 @@ Result
 
 This function generates an array of arrays of \[`field_name`, `value`\] pairs of all possible fields in the given JSON object `obj`.
 
-|  | Nested sub-object fields are explored recursively. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> Nested sub-object fields are explored recursively.
 
 ### [](#arguments-16)Arguments
 
@@ -1332,8 +1343,11 @@ Array of \[`field_name`, `value`\] arrays for each field in the input object `ob
 * If `obj` is an array of primitive data types, then it returns an empty array `[]`.
 * If `obj` is an array of objects, then it returns an array of objects.
 
-|  | If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns \[\]. For example, in [PAIRS() Example 2](#pairs-example2): PAIRS(public\_likes) returns \[\] PAIRS({public\_likes}) returns an array |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
+> 
+> * `PAIRS(public_likes)` returns `[]`
+> * `PAIRS({public_likes})` returns an array
 
 ### [](#examples-9)Examples
 
@@ -1734,8 +1748,8 @@ Redacts field names or values in a JSON object based on specific filtering crite
 
 Use this function to protect sensitive data such as credit card numbers or personally identifiable information (PII). You can either mask data with a specified string or omit it entirely from the output.
 
-|  | Masking applies to only string values. The function cannot mask non-string data types such as numbers, booleans, or dates. To redact non-string values, you must omit the fields entirely from the output instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Masking applies to only string values. The function cannot mask non-string data types such as numbers, booleans, or dates. To redact non-string values, you must omit the fields entirely from the output instead.
 
 ### [](#arguments-17)Arguments
 

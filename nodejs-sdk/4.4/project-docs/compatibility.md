@@ -1,4 +1,15 @@
+---
+title: Compatibility
+description: Platform compatibility, and features available in different SDK
+  versions, and compatibility between Server and SDK. Plus notes on Cloud,
+  networks, and AWS Lambda.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/project-docs/compatibility.html)
+
+# Compatibility
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
@@ -58,8 +69,8 @@ Couchbase does document, for purposes of convenience when developing and perform
 
 Recent SDKs offer better resilience in handling errors that may occur when running your application in serverless environments, in particular when processes are frozen or thawed, and a rebalance is required. This means official support for AWS Lambda, Azure Functions, and GCP Functions.
 
-|  | When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly.
 
 ### [](#ssl-library)SSL Library
 

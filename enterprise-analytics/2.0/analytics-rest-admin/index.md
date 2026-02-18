@@ -1,4 +1,14 @@
+---
+title: Analytics Administration REST API
+description: A description of the Administration REST APIs for Couchbase
+  Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/analytics-rest-admin/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/analytics-rest-admin/index.html)
+
+# Analytics Administration REST API
 
 * delRequest Cancellation
 * getActive Requests

@@ -1,4 +1,14 @@
+---
+title: Database Management
+description: Describes the various database management functions available to
+  maintain an efficient sync gateway database
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/database-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/database-management.html)
+
+# Database Management
 
 > Describes the various database management functions available to maintain an efficient sync gateway database  
 > Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
@@ -11,8 +21,8 @@ In the section
 
 Pruning is the process of removing obsolete revisions. It automatically runs whenever a new revision is generated.
 
-|  | Use the Admin Rest API endpoint for [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) or [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the Admin Rest API endpoint for [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) or [Database Configuration](rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content.
 
 ### [](#lbl-alg)Algorithm
 
@@ -28,8 +38,9 @@ You can vary the number of retained revisions using the Configuration File’s [
 
 So, for example, with a `revs_limit` of 1,000 the algorithm will keep the last 1,000 revisions in the shortest non-tombstoned branch and remove any others from that branch.
 
-|  | Do not set revs\_limit below 100 when allow\_conflicts = true **Otherwise** …​ you may adversely affect the conflict resolution process, as there may be insufficient revision history to resolve a given conflict. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not set `revs_limit` below 100 when `allow_conflicts = true`  
+> **Otherwise** …​ you may adversely affect the conflict resolution process, as there may be insufficient revision history to resolve a given conflict.
 
 ### [](#lbl-rtcons)Constraints
 
@@ -95,8 +106,8 @@ To this end, the Admin REST API provides a `/{db}/_resync` endpoint that enables
 
 To update the Sync Function and fully resync, you are recommended to follow the steps in [Steps to Update and Resync](#steps-to-resync).
 
-|  | This is an expensive operation because it requires every document in the database to be processed by the new function. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is an expensive operation because it requires every document in the database to be processed by the new function.
 
 The database can accept no requests until this process is complete because no user’s full access privileges are known until all documents have been scanned. Therefore, the Sync Function update will result in application downtime whilst the database is offline (that is, between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
 

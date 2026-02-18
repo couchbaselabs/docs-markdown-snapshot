@@ -1,4 +1,15 @@
+---
+title: Data Enrichment
+description: Given a legacy document set containing attributes whose format
+  makes them difficult to search on. In order to correct this search deficiency
+  new searchable attributes will be added to the document.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-example-data-enrichment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-example-data-enrichment.html)
+
+# Data Enrichment
 
 **Goal**: Given a legacy document set containing attributes whose format makes them difficult to search on. In order to correct this search deficiency new searchable attributes will be added to the document. These new attributes related to and can be calculated from the original attributes. On any mutation (a document creation or modification) the new attributes should also be created (or updated)
 
@@ -17,8 +28,8 @@ _If you run a version of Couchbase prior to 7.0 you can just create the buckets 
 
 For complete details on how to set up your keyspaces refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
-|  | The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions.
 
 **Procedure (Case 1)**:
 

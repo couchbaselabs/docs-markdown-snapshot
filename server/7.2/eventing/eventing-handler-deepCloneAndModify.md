@@ -1,4 +1,14 @@
+---
+title: "Function: deepCloneAndModify"
+description: Recursively change a type 'string' or 'number' generically via an
+  applied function.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-deepCloneAndModify.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-handler-deepCloneAndModify.html)
+
+# Function: deepCloneAndModify
 
 **Goal**: Recursively change a type 'string' or 'number' generically via an applied function.
 

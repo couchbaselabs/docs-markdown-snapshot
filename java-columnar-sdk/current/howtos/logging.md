@@ -1,4 +1,13 @@
+---
+title: Logging
+description: Configuring logging with the Columnar Java SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-columnar-sdk/current/howtos/logging.html)
+
+# Logging
 
 > Configuring logging with the Columnar Java SDK. 
 
@@ -10,8 +19,16 @@ The Java Columnar SDK uses [SLF4J](https://www.slf4j.org), a logging façade tha
 
 To see log messages from the Couchbase SDK, add an SLF4J binding as a dependency of your project.
 
-|  | SLF4J API versions At the time of writing, there are two different versions of the SLF4J API: **Version 2** is the modern version of SLF4J. It is actively maintained, and recommended for most users. **Version 1.7** is no longer maintained, but you can still use it if your preferred SLF4J binding does not support version 2. The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK’s Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SLF4J API versions
+> 
+> At the time of writing, there are two different versions of the SLF4J API:
+> 
+> **Version 2** is the modern version of SLF4J. It is actively maintained, and recommended for most users.
+> 
+> **Version 1.7** is no longer maintained, but you can still use it if your preferred SLF4J binding does not support version 2.
+> 
+> The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK’s Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project.
 
 ### [](#using-log4j-2)Using Log4j 2
 
@@ -44,8 +61,8 @@ Add these as children of the `dependencies` element.
 </dependency>
 ```
 
-|  | An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on log4j-slf4j2-impl **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on `log4j-slf4j2-impl` **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts.
 
 `**build.gradle**`
 
@@ -54,8 +71,8 @@ Add these as children of the `dependencies` element.
 implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.22.0")
 ```
 
-|  | Gradle automatically uses the correct SLF4J API 2.x dependency required by log4j-slf4j2-impl, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Gradle automatically uses the correct SLF4J API 2.x dependency required by `log4j-slf4j2-impl`, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\.
 
 #### [](#configuring-log4j-2-output)Configuring Log4j 2 output
 
@@ -63,8 +80,8 @@ Log4j 2 needs a configuration file to tell it which messages to log, where to wr
 
 Here’s an example `log4j2.xml` configuration file you can use to get started. It tells Log4j 2 to log messages to the console, and sets some reasonable logging levels.
 
-|  | If your project uses the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), this file should live in the src/main/resources directory. This makes it available at runtime as a class path resource. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If your project uses the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), this file should live in the `src/main/resources` directory. This makes it available at runtime as a class path resource.
 
 src/main/resources/log4j2.xml
 
@@ -126,8 +143,8 @@ Add these as children of the `dependencies` element.
 </dependency>
 ```
 
-|  | An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on slf4j-jdk14 **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on `slf4j-jdk14` **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts.
 
 `**build.gradle**`
 
@@ -136,8 +153,8 @@ Add these as children of the `dependencies` element.
 implementation("org.slf4j:slf4j-jdk14:2.0.9")
 ```
 
-|  | Gradle automatically uses the correct SLF4J API 2.x dependency required by slf4j-jdk14, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Gradle automatically uses the correct SLF4J API 2.x dependency required by `slf4j-jdk14`, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\.
 
 #### [](#configuring-a-jul-logger)Configuring a JUL Logger
 
@@ -155,5 +172,5 @@ for (Handler h : logger.getParent().getHandlers()) {
 }
 ```
 
-|  | We do not recommend using JUL in production. Dedicated logging frameworks like Log4j 2 and Logback are more configurable, and tend to perform better than JUL. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> We do not recommend using JUL in production. Dedicated logging frameworks like Log4j 2 and Logback are more configurable, and tend to perform better than JUL.

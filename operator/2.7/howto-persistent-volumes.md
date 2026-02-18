@@ -1,4 +1,12 @@
+---
+title: Configure Persistent Volumes
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-persistent-volumes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-persistent-volumes.html)
+
+# Configure Persistent Volumes
 
 > Configure and manage persistent volumes for a Couchbase cluster. 
 
@@ -78,8 +86,8 @@ spec:
 | **1** | The modification will trigger the Operator to detect that existing persistent volume claims do not match the intended size. The Operator triggers a rolling upgrade of the affected pods. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | You can also modify the storage class and the Operator will detect and upgrade the cluster to use it. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also modify the storage class and the Operator will detect and upgrade the cluster to use it.
 
 ### [](#online-volume-expansion)Online Volume Expansion
 
@@ -126,8 +134,10 @@ Normal  ExpandVolumeSucceeded  6s           Successfully expanded volume cb-exam
 
 It may take some time for online volume expansion to complete, especially since some cloud vendors impose rate limits on storage creation.
 
-|  | Once the provided timeout in [couchbaseclusters.spec.onlineVolumeExpansionTimeoutInMins](resource/couchbasecluster.md#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins) is reached for retries and the volume resize is not successful, as the underlying infrastructure could not provide larger volumes, it would report a failure. Unfortunately, the request cannot be rolled back since the request can only be increased. Therefore, the only way to abort a suspended expansion task is to set [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion) back to false so that a rolling upgrade may occur. Refer to [Volume Expansion Lifecycle](reference-couchbasecluster-events.md#volume-expansion-lifecycle) for a description of volume expansion events. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Once the provided timeout in [couchbaseclusters.spec.onlineVolumeExpansionTimeoutInMins](resource/couchbasecluster.md#couchbaseclusters-spec-onlinevolumeexpansiontimeoutinmins) is reached for retries and the volume resize is not successful, as the underlying infrastructure could not provide larger volumes, it would report a failure. Unfortunately, the request cannot be rolled back since the request can only be increased. Therefore, the only way to abort a suspended expansion task is to set [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion) back to `false` so that a rolling upgrade may occur.
+> 
+> Refer to [Volume Expansion Lifecycle](reference-couchbasecluster-events.md#volume-expansion-lifecycle) for a description of volume expansion events.
 
 It’s important to note that setting [couchbaseclusters.spec.enableOnlineVolumeExpansion](resource/couchbasecluster.md#couchbaseclusters-spec-enableonlinevolumeexpansion) to `true` _does not guarantee that volumes will be expanded online_. Please review the following notes before attempting online volume expansion:
 

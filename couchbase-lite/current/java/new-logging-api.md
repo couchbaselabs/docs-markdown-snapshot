@@ -1,10 +1,21 @@
+---
+title: Logging API
+description: Introduced in Couchbase Lite 3.2.2.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/new-logging-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/java/new-logging-api.html)
+
+# Logging API
 
 > Introduced in Couchbase Lite 3.2.2.  
 > Related Content — [Troubleshooting Queries](troubleshooting-queries.md)
 
-|  | Constraints The retrieval of logs from the device is out of scope of this feature. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> The retrieval of logs from the device is out of scope of this feature.
 
 ## [](#logsinks)LogSinks
 
@@ -44,8 +55,8 @@ LogSinks.get().setConsole(new ConsoleLogSink(LogLevel.WARNING));
 
 Create a new `FileLogSink` with the desired properties and install it.
 
-|  | setRotateCount from before 3.2.2 API is slightly different from setMaxKeptFiles. setMaxKeptFiles is the maximum number of log files that will exist at any time and is the count of rotated files (setRotateCount) plus one. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `setRotateCount` from before 3.2.2 API is slightly different from `setMaxKeptFiles`. `setMaxKeptFiles` is the maximum number of log files that will exist at any time and is the count of rotated files (`setRotateCount`) plus one.
 
 ```java
 LogSinks.get().setFile(new FileLogSink.Builder()
@@ -70,8 +81,8 @@ Your logger will receive only logs at the level and domain for which it is initi
 
 `LogSinks` are meant to support logging by the Couchbase Lite platform. They were never meant as a general framework for logging.
 
-|  | Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Customer code can no longer log, directly, to any of the Couchbase log sinks. The Console and File log sinks cannot be subclassed and do not publish methods that allow writing logs. If you need to log to the console for example, you’ll have to create your own way of doing so.
 
 ```java
 LogSinks.get().setCustom(new BaseLogSink(LogLevel.WARNING, LogDomain.NETWORK, LogDomain.REPLICATOR) {
@@ -86,8 +97,8 @@ LogSinks.get().setCustom(new BaseLogSink(LogLevel.WARNING, LogDomain.NETWORK, Lo
 
 ## [](#decoding-binary-logs)Decoding binary logs
 
-|  | The latest version of the cbl-log tool is 3.0.0. |
-|  | ------------------------------------------------ |
+> [!NOTE]
+> The latest version of the cbl-log tool is `3.0.0`.
 
 You can use the **cbl-log** tool to decode binary log files — see [Example 1](#eg-cbl-log).
 

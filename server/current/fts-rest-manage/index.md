@@ -1,4 +1,15 @@
+---
+title: Search Manager Options REST API
+description: The Search Manager Options REST API is provided by the Search
+  Service. This API enables you to set cluster-level Search settings; in
+  particular, to configure rebalance based on file transfer.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/fts-rest-manage/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts-rest-manage/index.html)
+
+# Search Manager Options REST API
 
 ## [](#overview)Overview
 

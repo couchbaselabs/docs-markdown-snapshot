@@ -1,4 +1,12 @@
+---
+title: Couchbase Scheduling and Isolation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-scheduling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-scheduling.html)
+
+# Couchbase Scheduling and Isolation
 
 > Scheduling Couchbase pods across a Kubernetes cluster in a predictable manner is essential to guarantee consistent performance. 
 
@@ -34,8 +42,8 @@ Figure 1\. Effect of Tainting Kubernetes Nodes and Couchbase Server Tolerations
 
 The diagram above shows the result of applying taints to Kubernetes nodes and an equal toleration to the Couchbase Server pods. Couchbase server can still be scheduled onto any node, however 3rd party pods are restricted to untainted nodes.
 
-|  | The NoSchedule taint is not applied retroactively. Tainting nodes will not drain them of existing workloads. In order to free resources, first apply a NoExecute taint to evacuate existing pods. Then cordon with NoSchedule, before finally removing the NoExecute taint. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `NoSchedule` taint is not applied retroactively. Tainting nodes will not drain them of existing workloads. In order to free resources, first apply a `NoExecute` taint to evacuate existing pods. Then cordon with `NoSchedule`, before finally removing the `NoExecute` taint.
 
 ### [](#node-selectors)Node Selectors
 
@@ -49,8 +57,8 @@ Figure 2\. Effect of Labeling and Selecting Specific Kubernetes Nodes
 
 The diagram above shows the result of using both node selectors with taints and tolerations. Couchbase server pods are restricted only to their nodes, while other workloads cannot be scheduled there.
 
-|  | It is possible to segregate workloads exclusively with node selectors. The downside is that all other workloads would need to be explicitly scheduled. It is therefore highly recommended that taints be used to implicitly schedule 3rd party workloads away from Couchbase server nodes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> It is possible to segregate workloads exclusively with node selectors. The downside is that all other workloads would need to be explicitly scheduled. It is therefore highly recommended that taints be used to implicitly schedule 3rd party workloads away from Couchbase server nodes.
 
 ## [](#quality-of-service)Quality of Service
 

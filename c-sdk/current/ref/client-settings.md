@@ -1,4 +1,13 @@
+---
+title: Client Settings
+description: Client settings
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/ref/client-settings.html)
+
+# Client Settings
 
 > Client settings 
 
@@ -16,10 +25,9 @@ Default: `true` (when only one node specified in server list) Possible values:
 
 * `on` or `true` — turn feature on
 * `off` or `false` — turn feature off  
-Gets the bootstrap node list from a DNS SRV record. See the Connection Management section for more information on how to use it properly.
-
-|  | This setting is only available on the connection string. |
-|  | -------------------------------------------------------- |  
+Gets the bootstrap node list from a DNS SRV record. See the Connection Management section for more information on how to use it properly.  
+> [!NOTE]  
+> This setting is only available on the connection string.  
 ```c++  
 std::string connection_string { "couchbase://localhost?dnssrv=off" };  
 lcb_createopts_connstr(create_options, connection_string.c_str(), connection_string.size());  
@@ -111,8 +119,8 @@ Default: `2.5` (2500 milliseconds), _but see TIP, below_
 
 The Key-Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like `get`, `lookup_in`, and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes)have their own timeout setting, persistence\_timeout\_floor, see below. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes)have their own timeout setting, `persistence_timeout_floor`, see below.
 
 ```c++
 // all examples below set operation timeout to 4.5 seconds
@@ -142,8 +150,8 @@ Default: `1.5` (1500 milliseconds)
 
 Generally the library derives persistence timeout from operation timeout, and the application should not care about this. This setting controls the minimum value for Key-Value operation with requested durability level. It is guaranteed that the library will not use timeout below this floor value.
 
-|  | The persistence\_timeout\_floor property is not part of the stable API and may change or be removed at any time. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `persistence_timeout_floor` property is not part of the stable API and may change or be removed at any time.
 
 ```c++
 // all examples below set operation timeout to 4.5 seconds

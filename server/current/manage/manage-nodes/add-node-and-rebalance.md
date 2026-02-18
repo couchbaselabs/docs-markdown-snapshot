@@ -1,4 +1,13 @@
+---
+title: Add a Node and Rebalance
+description: A new Couchbase Server node can be added to an existing cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-nodes/add-node-and-rebalance.html)
+
+# Add a Node and Rebalance
 
 > A new Couchbase Server node can be added to an existing cluster. 
 
@@ -50,10 +59,9 @@ The **Add Server Node** dialog is now displayed:
 Note the warning provided at the top of the dialog: if the node to be added has already been provisioned, the results of such provisioning will be eliminated and replaced on the node’s addition to the current cluster. (In fact, the node to be added in this example, has neither been initialized nor provisioned.)
 4. Specify the IP address of the node to be added. A placeholder password must be specified, even though the node has not yet been provisioned with one. Uncheck all of the **Services** check-boxes except **Data**. The dialog now appears as follows:  
 ![addServerNodeDialogComplete](../_images/manage-nodes/addServerNodeDialogComplete.png)  
-This indicates that the added node will run the **Data Service** only.
-
-|  | If you do not select any **Services**, Couchbase Server adds the node as an [arbiter node](../../learn/clusters-and-availability/nodes.md#adding-arbiter-nodes). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+This indicates that the added node will run the **Data Service** only.  
+> [!NOTE]  
+> If you do not select any **Services**, Couchbase Server adds the node as an [arbiter node](../../learn/clusters-and-availability/nodes.md#adding-arbiter-nodes).  
 Optionally, the **Customize disk storage paths (this node)** checkbox can be checked, to display interactive fields that allow such paths to be modified for the node that is to be added:  
 ![checkDiskStorageCheckbox](../_images/manage-nodes/checkDiskStorageCheckbox.png)  
 The dialog is now extended vertically, to display the interactive fields for **Data**, **Indexes**, and **Analytics** data paths:  

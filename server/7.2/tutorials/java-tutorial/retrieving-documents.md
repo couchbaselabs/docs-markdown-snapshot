@@ -1,4 +1,17 @@
+---
+title: Retrieving documents
+description: "In this section, you're going to look at two methods of retrieving
+  documents from a collection: you will use the administration console to build
+  simple queries, and also write a short program to retrieve documents matching
+  certain criteria. Both of the methods will introduce SQL++, Couchbase's
+  SQL-based query language."
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/java-tutorial/retrieving-documents.html)
+
+# Retrieving documents
 
 > In this section, you’re going to look at two methods of retrieving documents from a collection: you will use the administration console to build simple queries, and also write a short program to retrieve documents matching certain criteria. Both of the methods will introduce SQL++, Couchbase’s SQL-based query language. 
 
@@ -20,8 +33,8 @@ Type the following query into the query editor field:
 select crc.* from `course-record-collection` crc
 ```
 
-|  | SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt.
 
 ![Query to retrieve the course collection](../_images/attempt-first-query.png) 
 
@@ -54,8 +67,8 @@ create primary index course_idx on `course-record-collection`
 
 This will create a single index (`course_idx`) on your `course-record-collection`.
 
-|  | The error message returned from the search statement provides an example command for creating the primary index. You can copy the example command and run it in the query editor to create your primary index. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The error message returned from the search statement provides an example command for creating the primary index. You can copy the example command and run it in the query editor to create your primary index.
 
 Okay, now if you run the `select` query again …
 

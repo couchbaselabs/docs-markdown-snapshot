@@ -1,4 +1,14 @@
+---
+title: cbmigrate
+description: Use the <code>cbmigrate</code> command-line tool to migrate your
+  data from other platforms.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbmigrate-tool.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbmigrate-tool.html)
+
+# cbmigrate
 
 > Use the `cbmigrate` command-line tool to migrate your data from other platforms. 
 

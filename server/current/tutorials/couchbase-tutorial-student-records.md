@@ -1,4 +1,15 @@
+---
+title: "Developer Tutorial: Student Record System"
+description: The Student Record System tutorial walks you through downloading
+  and installing Couchbase, and then creating a database to store student
+  records.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tutorials/couchbase-tutorial-student-records.html)
+
+# Developer Tutorial: Student Record System
 
 > The Student Record System tutorial walks you through downloading and installing Couchbase, and then creating a database to store student records. 
 
@@ -6,8 +17,8 @@
 
 Couchbase is a schema-less JSON document database designed for high performance, scalability, and fast development. This tutorial teaches you about to the key concepts behind Couchbase and how they differ from traditional SQL database systems like MySQL and Oracle.
 
-|  | This tutorial uses standalone or Docker installations of Couchbase Server. To get started with the Couchbase Capella Cloud service, see [Create a Free Account and Deploy Your Database](../../../cloud/get-started/create-account.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This tutorial uses standalone or Docker installations of Couchbase Server. To get started with the Couchbase Capella Cloud service, see [Create a Free Account and Deploy Your Database](../../../cloud/get-started/create-account.md).
 
 ## [](#database-design)Data Model
 
@@ -87,8 +98,8 @@ Graphic Design course record
 
 Hilary’s enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary’s details with one search and without the need for complex table joins.
 
-|  | You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the credit-points. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the `credit-points`.
 
 ## [](#next-steps)Next Steps
 

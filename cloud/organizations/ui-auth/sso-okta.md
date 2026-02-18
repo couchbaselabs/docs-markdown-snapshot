@@ -1,4 +1,16 @@
+---
+title: Set Up Capella SSO Using Okta
+description: Configure Single Sign-On (SSO) between Okta and Couchbase Capella
+  to allow your organization's users to authenticate securely without managing
+  separate credentials. This integration enables streamlined access management
+  while maintaining enterprise-grade security.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-okta.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/sso-okta.html)
+
+# Set Up Capella SSO Using Okta
 
 > Configure Single Sign-On (SSO) between Okta and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
@@ -57,10 +69,9 @@ Start by creating an App Integration in Okta. You need information from this ste
 | Signature Algorithm  | RSA-SHA256  |
 | Digest Algorithm     | SHA256      |
 | Assertion Encryption | Unencrypted |
-  3. In the **Attribute Statements (optional)** section, create the following three attributes:
-
-|  | Values entered into the Name column are case-sensitive. Enter them as shown in the table. |
-|  | ----------------------------------------------------------------------------------------- |
+  3. In the **Attribute Statements (optional)** section, create the following three attributes:  
+  > [!IMPORTANT]  
+  > Values entered into the Name column are case-sensitive. Enter them as shown in the table.
 
 | Name         | Name format | Value          |
 | ------------ | ----------- | -------------- |
@@ -89,10 +100,9 @@ With an Okta integration app created, you need to create a realm in Capella that
 2. Click **Create Realm** **SAML**.
 3. Complete the **Create Realm** page:
 
-  1. Copy the following fields from your Okta configuration to Capella:
-
-|  | To find this information in Okta, open the app integration you just created to the **Sign On** tab. Within the **SAML Setup** section of this page, click **View SAML setup instructions**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. Copy the following fields from your Okta configuration to Capella:  
+  > [!TIP]  
+  > To find this information in Okta, open the app integration you just created to the **Sign On** tab. Within the **SAML Setup** section of this page, click **View SAML setup instructions**.
 
 | Okta Field                           |                          | Capella Field |
 | ------------------------------------ | ------------------------ | ------------- |
@@ -112,10 +122,9 @@ With an Okta integration app created, you need to create a realm in Capella that
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 4. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -128,10 +137,9 @@ Now that you have created the realm, you need to configure Okta to replace the p
 3. On the **General Settings** page, click **Next**.
 4. Edit the options on the **Configure SAML** page:
 
-  1. Copy the following fields from your Capella realm configuration to the Okta configuration:
-
-|  | To find this information for your organization’s Capella realm, first open the **Settings** **SSO** page. Listed on this page is the realm that you just created with an auto-generated name. Click the down arrow to show the realm information page. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  1. Copy the following fields from your Capella realm configuration to the Okta configuration:  
+  > [!TIP]  
+  > To find this information for your organization’s Capella realm, first open the **Settings** **SSO** page. Listed on this page is the realm that you just created with an auto-generated name. Click the down arrow to show the realm information page.
 
 | Capella Field |                             | Okta Field |
 | ------------- | --------------------------- | ---------- |
@@ -177,10 +185,9 @@ With the application created in Okta, you need to create a realm in Capella usin
 
 1. In Capella, click **Settings** **SSO**.
 2. Click **Create Realm** **OpenID Connect**.
-3. Copy the following information from your Okta application configuration to Capella:
-
-|  | All this information is in the **SSO** section of the Okta Admin panel when configuring your application. |
-|  | --------------------------------------------------------------------------------------------------------- |
+3. Copy the following information from your Okta application configuration to Capella:  
+> [!TIP]  
+> All this information is in the **SSO** section of the Okta Admin panel when configuring your application.
 
 | Okta Field                                                                                                                                         |                              | Capella Field |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------------- |
@@ -199,10 +206,9 @@ When adding additional scopes, separate each entry with a space.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 6. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -212,10 +218,9 @@ Now that you have created the realm, you need to configure Okta to replace the p
 
 1. In the Okta Console, open the app integration you [created](#create-okta-app) to the **General** tab.
 2. Scroll down to the **General Settings** section and click **Edit**.
-3. Copy the following fields from your Capella realm configuration to the Okta configuration:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Copy the following fields from your Capella realm configuration to the Okta configuration:  
+> [!TIP]  
+> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                       | Okta Fields |
 | ------------- | --------------------- | ----------- |

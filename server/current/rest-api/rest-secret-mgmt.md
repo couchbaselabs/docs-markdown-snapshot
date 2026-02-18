@@ -1,4 +1,13 @@
+---
+title: System Secrets API
+description: System secrets can be managed with the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-secret-mgmt.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-secret-mgmt.html)
+
+# System Secrets API
 
 > System secrets can be managed with the REST API. 
 

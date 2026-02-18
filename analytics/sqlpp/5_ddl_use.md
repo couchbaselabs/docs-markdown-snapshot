@@ -1,4 +1,14 @@
+---
+title: USE Statements
+description: This topic describes how a <code>USE</code> statement sets the
+  database name, scope name, or both for the statement that follows.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_use.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5_ddl_use.html)
+
+# USE Statements
 
 > This topic describes how a `USE` statement sets the database name, scope name, or both for the statement that follows. 
 

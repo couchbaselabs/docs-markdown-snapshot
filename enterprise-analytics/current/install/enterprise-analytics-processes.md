@@ -1,4 +1,13 @@
+---
+title: Enterprise Analytics Processes
+description: Enterprise Analytics creates a number of different processes on each node.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/enterprise-analytics-processes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/enterprise-analytics-processes.html)
+
+# Enterprise Analytics Processes
 
 > Enterprise Analytics creates a number of different processes on each node. Enterprise Analytics creates processes from a set of binaries that get installed by the product installer. 
 

@@ -1,4 +1,14 @@
+---
+title: Run a Simple Search with the REST API and curl/HTTP
+description: You can use the REST API and a curl command to run a search against
+  a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/simple-search-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/simple-search-rest-api.html)
+
+# Run a Simple Search with the REST API and curl/HTTP
 
 > You can use the REST API and a curl command to run a search against a Search index. 
 
@@ -21,14 +31,15 @@ To run a simple search with the REST API:
 2. Set your header content to include `"Content-Type: application/json"`.
 3. Enter your username, password, and the Search Service endpoint on port `8094` with the name of the index you want to query:  
 ```console  
-curl -s -XPUT -H "Content-Type: application/json" \
+curl -s -XPOST -H "Content-Type: application/json" \
     -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/${BUCKET-NAME}/scope/${SCOPE-NAME}/index/${INDEX-NAME}/query -d \  
 ```  
 To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
-4. Enter the JSON payload for your query.
-
-|  | Couchbase Server version 7.6.2 You can copy the JSON for a Search query from the Couchbase Server Web Console to use in your REST API call. You can choose to copy a full command-line curl example, or copy just the [JSON payload](search-request-params.md). For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](simple-search-ui.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+4. Enter the JSON payload for your query.  
+> [!TIP]  
+> Couchbase Server version 7.6.2  
+>  
+> You can copy the JSON for a Search query from the Couchbase Server Web Console to use in your REST API call. You can choose to copy a full command-line curl example, or copy just the [JSON payload](search-request-params.md). For more information about how to perform a search with the UI, see [Run A Simple Search with the Web Console](simple-search-ui.md).
 
 ### [](#example-simple-text-search)Example: Simple Text Search
 

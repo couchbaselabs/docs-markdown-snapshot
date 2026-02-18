@@ -1,4 +1,15 @@
+---
+title: Data Enrichment
+description: Given a legacy document set containing attributes whose format
+  makes them difficult to search on. In order to correct this search deficiency,
+  new searchable attributes will be added to the document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-example-data-enrichment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-example-data-enrichment.html)
+
+# Data Enrichment
 
 **Goal**: Given a legacy document set containing attributes whose format makes them difficult to search on. In order to correct this search deficiency, new searchable attributes will be added to the document. These new attributes related to and can be calculated from the original attributes. On any mutation (a document creation or modification), the new attributes should also be created (or updated)
 
@@ -13,13 +24,13 @@ For this example, two (2) buckets `bulk` and `rr100` are required where the latt
 
 For the Function Scope or RBAC grouping, we will use the `bulk.data`, assuming you have the role of either "Full Admin" or "Eventing Full Admin". For standard or non-privileged users, refer to [Eventing Role-Based Access Control](eventing-rbac.md).
 
-|  | If you run a version of Couchbase prior to 7.0, you can create the buckets source, target, and metadata and run this example. Furthermore, if your cluster was subsequently upgraded from, say, 6.6.2 to 7.0, your data would be moved to source.\_default.\_default, target.\_default.\_default, and metadata.\_default.\_default and your Eventing Function would be seamlessly upgraded to use the new keyspaces and continue to run correctly. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you run a version of Couchbase prior to 7.0, you can create the buckets `source`, `target`, and `metadata` and run this example. Furthermore, if your cluster was subsequently upgraded from, say, 6.6.2 to 7.0, your data would be moved to `source._default._default`, `target._default._default`, and `metadata._default._default` and your Eventing Function would be seamlessly upgraded to use the new keyspaces and continue to run correctly.
 
 For complete details on how to set up your keyspaces, refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
-|  | The Eventing Storage keyspace, in this case rr100.eventing.metadata, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition, do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace, in this case `rr100.eventing.metadata`, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition, do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions.
 
 **Procedure (Case 1)**:
 
@@ -142,8 +153,8 @@ For complete details on how to set up your keyspaces, refer to [creating buckets
 
 **Procedure (Case 2)**:
 
-|  | Undeploy the Eventing Function case\_1\_enrich\_ips, if it’s running. |
-|  | --------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Undeploy the Eventing Function `case_1_enrich_ips`, if it’s running.
 
 1. Access the **Couchbase Web Console** **Eventing** page and click the function name **case\_1\_enrich\_ips** link of the **source** bucket.  
 ![enrichcase1 03b undeploy](_images/enrichcase1_03b_undeploy.png)  

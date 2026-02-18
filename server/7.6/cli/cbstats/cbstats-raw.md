@@ -1,4 +1,13 @@
+---
+title: raw
+description: Issues a request for specific statistics.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-raw.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-raw.html)
+
+# raw
 
 > Issues a request for specific statistics. 
 

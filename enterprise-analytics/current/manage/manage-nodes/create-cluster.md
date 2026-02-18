@@ -1,4 +1,15 @@
+---
+title: Create a Cluster
+description: A new Enterprise Analytics node can be <em>provisioned</em>, to
+  establish its Full Administrator credentials, its service-assignments, and its
+  memory quotas. At this point, it becomes a <em>cluster</em> of one node.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/create-cluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/create-cluster.html)
+
+# Create a Cluster
 
 > A new Enterprise Analytics node can be _provisioned_, to establish its Full Administrator credentials, its service-assignments, and its memory quotas. At this point, it becomes a _cluster_ of one node. 
 
@@ -34,10 +45,9 @@ The **New Cluster** screen now appears. It contains fields for initial cluster c
 The fields displayed on the screen are:
 
 * **Cluster Name**: Your choice of name for the cluster to be created. For information about cluster-naming, see [Naming Clusters and Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md#naming-clusters-and-nodes).
-* **Create Admin Username**: Your choice of username, for yourself: the _Full Administrator_ for this cluster. You will have read-write access to all Enterprise Analytics resources; including the ability to create new users with defined roles and corresponding privileges.
-
-|  | Enterprise Analytics prohibits use of the following characters in usernames: ( ) < > @ , ; : \\ " / \[ \] ? = { }. Usernames _may not_ be more than 128 UTF-8 characters in length; and it is recommended that they be no more than 64 UTF-8 characters in length, in order to ensure successful onscreen display. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |  
+* **Create Admin Username**: Your choice of username, for yourself: the _Full Administrator_ for this cluster. You will have read-write access to all Enterprise Analytics resources; including the ability to create new users with defined roles and corresponding privileges.  
+> [!NOTE]  
+> Enterprise Analytics prohibits use of the following characters in usernames: `( ) < > @ , ; : \ " / [ ] ? = { }`. Usernames _may not_ be more than 128 UTF-8 characters in length; and it is recommended that they be no more than 64 UTF-8 characters in length, in order to ensure successful onscreen display.  
 For more information, see [Usernames and Passwords](../../../../server/current/learn/security/usernames-and-passwords.md).
 * **Create Password**: Your choice of password, for yourself: the Full Administrator for this cluster. The only default format-requirement is that the password be at least 6 characters in length. However, following cluster-initialization, you can modify (and indeed strengthen) the default password-policy, by means of the Couchbase CLI [setting-password-policy](../../cli/couchbase-cli-setting-password-policy.md) command.
 
@@ -84,8 +94,8 @@ The total RAM available is displayed below this figure, at the center. If your m
   * **Metadata Disk Path**: Enter the path to the directory in which metadata is stored. This is the directory in which Enterprise Analytics stores its metadata, such as cluster configuration and user data.
   * **Cache Disk Path(s)**: Enter the path to the directory in which cache data is stored.
 
-|  | Path(s) cannot be changed after setup. |
-|  | -------------------------------------- |
+> [!NOTE]
+> Path(s) cannot be changed after setup.
 
 When you have finished entering your configuration-details, click on the **Save & Finish** button, at the lower right. This configures the server accordingly, and brings up the Enterprise Analytics Web Console **Dashboard**, for the first time.
 
@@ -101,8 +111,8 @@ For more details on Databases, see [Manage Databases](../../sources/manage-datab
 
 There are three different kinds of database, so you may wish to familiarize yourself with their properties, before you start database-creation.
 
-|  | _Sample_ databases already contain data, and so are ready for your immediate experimentation and testing. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> _Sample_ databases already contain data, and so are ready for your immediate experimentation and testing.
 
 The database that you create must be accessed securely: therefore, Enterprise Analytics provides a system of _Role-Based Access Control_ (RBAC), which must be used by administrators and applications that wish to access databases. Each administrator and application is considered to be a _user_, and must perform database-access by passing a username and password. For information about how to set up RBAC users so that they can access the databases you create, see [Authorization](../../../../server/current/learn/security/authorization-overview.md).
 
@@ -124,8 +134,8 @@ If the node is successfully provisioned, it’s thereby initialized as a cluster
 
 SUCCESS: Cluster initialized
 
-|  | The IP-address family and the disk-paths for data, indexes, and analytics are, by this use of cluster-init, either left as the defaults, or as the values already specified by prior use of the node-init command: see [Initialize a Node with the CLI](initialize-node.md#initialize-node-with-the-cli). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The IP-address family and the disk-paths for data, indexes, and analytics are, by this use of `cluster-init`, either left as the defaults, or as the values already specified by prior use of the `node-init` command: see [Initialize a Node with the CLI](initialize-node.md#initialize-node-with-the-cli).
 
 For more information about the `cluster-init` command, including additional flags that can be specified, see the command reference for [cluster-init](../../cli/couchbase-cli-cluster-init.md).
 

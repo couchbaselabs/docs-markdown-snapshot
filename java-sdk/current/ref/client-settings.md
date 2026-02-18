@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>ClusterEnvironment</code> class enables you to configure
+  Java SDK options for security, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/ref/client-settings.html)
+
+# Client Settings
 
 > The `ClusterEnvironment` class enables you to configure Java SDK options for security, timeouts, reliability, and performance. 
 
@@ -54,8 +64,8 @@ The name of the `ClusterEnvironment.Builder` method for configuring a nested bui
 
 Many client settings may also be configured by specifying a parameter in the connection string.
 
-|  | A connection string parameter takes precedence over the corresponding [builder method](#config-builders). |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A connection string parameter takes precedence over the corresponding [builder method](#config-builders).
 
 Configuration via connection string parameters
 
@@ -79,8 +89,8 @@ Cluster cluster = Cluster.connect(
 
 Any client setting that can be specified as a connection string parameter may also be specified as a Java system property.
 
-|  | A system property takes precedence over the corresponding [connection string parameter](#connection-string-params) or [builder method](#config-builders). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A system property takes precedence over the corresponding [connection string parameter](#connection-string-params) or [builder method](#config-builders).
 
 Configuration via system property
 
@@ -103,8 +113,8 @@ Cluster cluster = Cluster.connect(
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The client setting specified here is overridden by the system property. In this example the actual kvTimeout is 10 seconds, and the queryTimeout is 15 seconds. |
 
-|  | The system property name for a client setting is always com.couchbase.env. plus the connection string parameter name. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The system property name for a client setting is always `com.couchbase.env.` plus the connection string parameter name.
 
 ## [](#configuration-options)Configuration Options
 
@@ -138,8 +148,10 @@ Cluster cluster = Cluster.connect(
 
 Set this to `true` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server.
 
-|  | The recommended way to enable TLS is to specify a connection string that starts with the couchbases:// (note the final "s") scheme. This forces a secure connection, regardless of whether security.enableTls is true or false. Specifying security.enableTls is only required when building a [shared cluster environment](../howtos/managing-connections.md#multiple-clusters) for use with secure connections. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The recommended way to enable TLS is to specify a connection string that starts with the `couchbases://` (note the final "s") scheme. This forces a secure connection, regardless of whether `security.enableTls` is true or false.
+> 
+> Specifying `security.enableTls` is only required when building a [shared cluster environment](../howtos/managing-connections.md#multiple-clusters) for use with secure connections.
 
 When TLS is enabled, you might also need to specify the trusted certificates by calling exactly one of `trustCertificate`, `trustCertificates`, or `trustManagerFactory`. Please see the [Managing Connections](../howtos/managing-connections.md) section for more details on how to set it up properly.
 
@@ -229,8 +241,8 @@ Mutation tokens allow enhanced durability requirements as well as advanced [SQL+
 | Builder           | env.ioConfig(it -> it.networkResolution(boolean)) |
 | Default Value     | auto                                              |
 
-|  | The value for the connection string parameter or system property should be one of auto, default, or external (lower case). |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The value for the connection string parameter or system property should be one of `auto`, `default`, or `external` (lower case).
 
 Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
 
@@ -246,8 +258,8 @@ If you wish to override the heuristic, you can set this value to `default` if th
 | Builder           | env.ioConfig(it -> it.captureTraffic(ServiceType…​)) |
 | Default Value     | traffic capture is disabled                          |
 
-|  | Multiple services may be specified in the connection string parameter or system property value using a comma-delimited list such as KV,QUERY. To enable capture for all services, set the value to an empty string. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Multiple services may be specified in the connection string parameter or system property value using a comma-delimited list such as `KV,QUERY`. To enable capture for all services, set the value to an empty string.
 
 Call this method to log all traffic to the specified services. If no services are specified, traffic to all services is captured.
 
@@ -273,8 +285,8 @@ If enabled, the client periodically sends a TCP keepalive to the server to preve
 
 The idle time after which a TCP keepalive gets fired. (This setting has no effect if `io.enableTcpKeepAlives` is `false`.)
 
-|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval).
 
 #### [](#io.numKvConnections)Key/Value Endpoints per Node
 
@@ -286,8 +298,8 @@ The idle time after which a TCP keepalive gets fired. (This setting has no effec
 
 The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it. The recommendation is keeping it at 1 unless there is other evidence.
 
-|  | [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower.
 
 #### [](#io.maxHttpConnections)Max HTTP Endpoints per Service per Node
 
@@ -395,8 +407,10 @@ Default: `1m`
 
 How long the window is in which the number of failed ops are tracked in a rolling fashion.
 
-|  | Cloud Native Gateway If using the couchbase2:// connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Cloud Native Gateway
+> 
+> If using the `couchbase2://` connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure.
 
 ### [](#timeout-options)Timeout Options
 
@@ -428,8 +442,8 @@ Cluster cluster = Cluster.connect(
 
 The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like get(), getFromReplica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, kvDurableTimeout, see below. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, `kvDurableTimeout`, see below.
 
 #### [](#timeout.kvDurableTimeout)Key-Value Durable Operation Timeout
 
@@ -443,8 +457,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The kvDurableTimeout property is not part of the stable API and may change or be removed at any time. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `kvDurableTimeout` property is not part of the stable API and may change or be removed at any time.
 
 #### [](#timeout.viewTimeout)View Timeout
 
@@ -564,8 +578,8 @@ Size in bytes. Documents smaller than this size are never compressed.
 
 A floating point value between 0 and 1\. Specifies how "compressible" a document must be in order for the compressed form to be sent to the server.
 
-|  | Increasing the value allows CompressionExample to be used with less-compressible documents. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Increasing the value allows CompressionExample to be used with less-compressible documents.
 
 If the compressed document size divided by the uncompressed document size is greater than this value, then the uncompressed version of the document will be sent to Couchbase Server instead of the compressed version.
 
@@ -601,8 +615,8 @@ A retry strategy decides whether a failed operation should be retried. Implement
 
 The "best effort" strategy will retry the operation until it either succeeds or the timeout expires. The "fail fast" strategy will immediately report the failure to your application, giving you more control over how and when to retry.
 
-|  | Most client operations that accept an options block allow for overriding the default strategy as one of the options. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Most client operations that accept an options block allow for overriding the default strategy as one of the options.
 
 See the advanced section in the documentation on more specific information on retry strategies and failure management.
 
@@ -630,8 +644,8 @@ The JSON serializer handles the conversion between JSON and Java objects.
 
 If Jackson is present in the class path, the default serializer will be an instance of `JacksonJsonSerializer` using a default `ObjectMapper`.
 
-|  | To create a serializer backed by a custom ObjectMapper, call JacksonJsonSerializer.create and pass in your custom mapper. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To create a serializer backed by a custom `ObjectMapper`, call `JacksonJsonSerializer.create` and pass in your custom mapper.
 
 If Jackson is not present, the client will fall back to using an unspecified default serializer. (Actually, it will use a repackaged version of Jackson, but this is an implementation detail you should not depend on.)
 
@@ -661,8 +675,8 @@ The default tracer logs the slowest requests per service.
 
 Various `RequestTracer` implementations exist, both as part of the core library and as external modules that can be attached (i.e. for OpenTracing and OpenTelemetry). It is recommended to use those modules and not write your own tracer unless absolutely needed.
 
-|  | When using a non-default tracer, you are responsible for starting and stopping it. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a non-default tracer, you are responsible for starting and stopping it.
 
 #### [](#scheduler)Computation Scheduler
 
@@ -676,8 +690,8 @@ This is an advanced setting that should not be modified without good reason.
 
 The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor’s `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
 
-|  | Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed.
 
 #### [](#eventBus)Event Bus
 
@@ -691,8 +705,8 @@ This is an advanced setting that should not be modified without good reason.
 
 The event bus implementation used to transport system, performance, and debug events from producers to subscribers. If you provide a custom implementation, double check that it fits with the contract of the event bus as documented.
 
-|  | Shutting down the cluster environment will not stop a custom event bus. You are responsible for stopping it after it is no longer needed. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shutting down the cluster environment will not stop a custom event bus. You are responsible for stopping it after it is no longer needed.
 
 ## [](#commonly-used-options)Commonly Used Options
 
@@ -707,8 +721,8 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
 
@@ -722,8 +736,8 @@ A program using the SDK can also use the `waitUntilReady()` API call to handle a
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

@@ -1,4 +1,13 @@
+---
+title: Release Notes
+description: Couchbase Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/product-notes/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/product-notes/release-notes.html)
+
+# Release Notes
 
 Quicklinks
 
@@ -7,8 +16,10 @@ Quicklinks
 > Couchbase Sync Gateway  
 > This content describes the key features and changes implemented by release 3.3.2 of Couchbase Sync Gateway
 
-|  | One Way Upgrade The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> One Way Upgrade
+> 
+> The migration to 3.x configuration is a ONE WAY process — see: [Upgrading](../upgrading.md) for more.
 
 ## [](#maint-latest)3.3.3 — February 2026
 
@@ -71,8 +82,8 @@ None for this release.
 
 ## [](#3-3-0august-2025)3.3.0 — August 2025
 
-|  | Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2 or later. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions experience infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen when you deploy a new Eventing/Sync Gateway function during an upgrade, with some SGW nodes at version 3.2 or later, and others at an earlier version. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2 or later. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions experience infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen when you deploy a new Eventing/Sync Gateway function during an upgrade, with some SGW nodes at version 3.2 or later, and others at an earlier version.
 
 ### [](#partitioned-indexes)Partitioned Indexes
 
@@ -181,8 +192,8 @@ None for this release.
 * [CBG-4575 — Set default value of allow\_conflicts to false](https://jira.issues.couchbase.com/browse/CBG-4575)
 * [CBG-4617 — Allow public /\_all\_docs endpoint to be disabled](https://jira.issues.couchbase.com/browse/CBG-4617)
 
-|  | For an overview of the latest features offered in Sync Gateway 3.3, see [New In 3.3](../whatsnew.md). |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Sync Gateway 3.3, see [New In 3.3](../whatsnew.md).
 
 ## [](#upgrading)Upgrading
 

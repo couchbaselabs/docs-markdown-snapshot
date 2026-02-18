@@ -1,4 +1,12 @@
+---
+title: Canceling Rebalance Retries
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cancel-rebalance-retry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-cancel-rebalance-retry.html)
+
+# Canceling Rebalance Retries
 
 ## [](#http-method-and-uri)HTTP method and URI
 

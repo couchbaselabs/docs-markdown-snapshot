@@ -1,4 +1,13 @@
+---
+title: Maven Coordinates
+description: How to get the Java Columnar SDK from Maven Central.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-columnar-sdk/current/project-docs/sdk-full-installation.html)
+
+# Maven Coordinates
 
 > How to get the Java Columnar SDK from Maven Central. 
 
@@ -81,5 +90,5 @@ repositories {
 }
 ```
 
-|  | Couchbase does not provide support for snapshot artifacts. We don’t recommend using them unless you’re working closely with Couchbase Support to verify a particular issue has been resolved prior to release. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Couchbase does not provide support for snapshot artifacts. We don’t recommend using them unless you’re working closely with Couchbase Support to verify a particular issue has been resolved prior to release.

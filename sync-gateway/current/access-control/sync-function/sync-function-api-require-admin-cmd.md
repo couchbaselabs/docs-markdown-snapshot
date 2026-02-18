@@ -1,4 +1,13 @@
+---
+title: requireAdmin()
+description: Requiring Sync Gateway admin user
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function-api-require-admin-cmd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/sync-function/sync-function-api-require-admin-cmd.html)
+
+# requireAdmin()
 
 > Requiring Sync Gateway admin user  
 

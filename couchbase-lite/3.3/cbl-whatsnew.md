@@ -1,7 +1,17 @@
+---
+title: New in 3.3
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/ROOT/pages/cbl-whatsnew.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/cbl-whatsnew.html)
 
-|  | Couchbase Lite 3.0 introduces some breaking changes.If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).You should be able to upgrade from 3.2.x to 3.3.x without manual intervention. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# New in 3.3
+
+> [!NOTE]
+> Couchbase Lite 3.0 introduces some breaking changes.  
+> If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
+> You should be able to upgrade from 3.2.x to 3.3.x without manual intervention.
 
 ## [](#release-3-3-0-october-2025)Release 3.3.0 (October 2025)
 
@@ -25,8 +35,8 @@ For more information about Multipeer Replicator, see:
 * [Swift Multipeer Replicator](swift/p2psync-multipeer.md)
 * [Android Multipeer Replicator](android/p2psync-multipeer.md)
 
-|  | This feature supports only continuous, push-and-pull replication. Version 3.3.0 disables Delta Sync by default. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This feature supports only continuous, push-and-pull replication. Version 3.3.0 disables Delta Sync by default.
 
 ## [](#see-also)See also
 

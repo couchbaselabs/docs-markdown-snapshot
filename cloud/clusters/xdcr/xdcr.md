@@ -1,4 +1,14 @@
+---
+title: Cross Data Center Replication (XDCR)
+description: Cross Data Center Replication (XDCR) allows data to be replicated
+  across clusters in cloud environments or on-premises.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/xdcr/xdcr.html)
+
+# Cross Data Center Replication (XDCR)
 
 > Cross Data Center Replication (XDCR) allows data to be replicated across clusters in cloud environments or on-premises. 
 
@@ -8,8 +18,8 @@ XDCR replicates data between clusters. XDCR can protect against data-center fail
 
 XDCR replicates data from a specific bucket on a source cluster to a specific bucket on a destination (or target) cluster.
 
-|  | If the source and/or destination buckets are deactivated, the replication will be removed. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the source and/or destination buckets are deactivated, the replication will be removed.
 
 Data from the source bucket is pushed to the destination bucket using an XDCR agent, running on the source cluster, using the Cluster Change Protocol. Any bucket on a cluster can be specified as a source or a destination for one or more XDCR replications.
 
@@ -17,8 +27,8 @@ Replication sources and destinations can be on clusters in an organization. The 
 
 You can create replications for single node or multi-node clusters.
 
-|  | You cannot [create a replication](manage-xdcr-replications.md#create-replication) between 2 Capella operational clusters that are within 2 different [cloud service providers](../../clouds/cloud-providers.md) (CSPs). Replications for single node clusters are only supported for development or test use cases. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot [create a replication](manage-xdcr-replications.md#create-replication) between 2 Capella operational clusters that are within 2 different [cloud service providers](../../clouds/cloud-providers.md) (CSPs). Replications for single node clusters are only supported for development or test use cases.
 
 ### [](#about-scopes-and-collections)About Scopes and Collections
 
@@ -65,8 +75,8 @@ Earlier versions of App Services (before 4.0) prevented XDCR replications when A
 * Mixed replication topologies like some buckets with App Services and some without.
 * Automatic conflict resolution for concurrent changes from both mobile clients and XDCR.
 
-|  | Bi-directional XDCR with App Services versions earlier than 4.0 can cause data corruption. Only use bi-directional replication when both clusters run Server 7.6.6+ and App Services 4.0+. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Bi-directional XDCR with App Services versions earlier than 4.0 can cause data corruption. Only use bi-directional replication when both clusters run Server 7.6.6+ and App Services 4.0+.
 
 ## [](#xdcr-direction)Replication Direction
 

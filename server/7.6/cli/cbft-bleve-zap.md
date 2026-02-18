@@ -1,4 +1,14 @@
+---
+title: cbft-bleve for Zap Files
+description: The <code>cbft-bleve</code> tool supports commands that return
+  information on <em>Zap</em> files.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbft-bleve-zap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbft-bleve-zap.html)
+
+# cbft-bleve for Zap Files
 
 > The `cbft-bleve` tool supports commands that return information on _Zap_ files. 
 

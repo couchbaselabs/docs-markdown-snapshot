@@ -1,4 +1,13 @@
+---
+title: Running Queries
+description: How to run queries in Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/run-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/run-query.html)
+
+# Running Queries
 
 You can run queries using the Analytics Workbench, the command line query tool `cbq`, or directly through the REST API. You can also run Analytics queries using a software development kit (SDK), or via the ODBC or JDBC drivers. For the examples, we assume that:
 
@@ -19,8 +28,8 @@ The result of this query is an array that contains an single object containing a
 
 ![Analytics Workbench](_images/workbench-results.png) 
 
-|  | The Analytics Workbench supports multi-line statements, just like the Query Workbench. You can press the **Execute** button to execute a statement at any time. You can also execute a statement by typing a semicolon ; at the end of the statement, and then pressing **Enter** or **Return**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The Analytics Workbench supports multi-line statements, just like the Query Workbench. You can press the **Execute** button to execute a statement at any time. You can also execute a statement by typing a semicolon `;` at the end of the statement, and then pressing **Enter** or **Return**.
 
 The _insights sidebar_ to the right of the Analytics Workbench shows the Analytics scopes, the links within each scope, and the Analytics collections on each link. When data ingestion is in progress, an indicator below each collection shows the percentage of mutations that remain to be synchronized to that collection. If the indicator is not displayed, then the collection is up-to-date.
 

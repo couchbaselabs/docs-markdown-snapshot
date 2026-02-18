@@ -1,4 +1,14 @@
+---
+title: Use the App Services Metrics REST API
+description: App Services can be monitored by extracting metrics data using the
+  App Services REST API.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/metrics-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/metrics-api.html)
+
+# Use the App Services Metrics REST API
 
 > App Services can be monitored by extracting metrics data using the App Services REST API. 
 

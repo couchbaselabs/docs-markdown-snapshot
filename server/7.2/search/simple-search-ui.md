@@ -1,4 +1,14 @@
+---
+title: Run A Simple Search with the Web Console
+description: Run a Search query from the Couchbase Server Web Console to preview
+  the search results from a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/simple-search-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/simple-search-ui.html)
+
+# Run A Simple Search with the Web Console
 
 > Run a Search query from the Couchbase Server Web Console to preview the search results from a Search index. 
 
@@ -32,10 +42,9 @@ For example, the following query searches for the strings `view`, `food`, and `b
     "from": 0  
 }  
 ```  
-The query payload enables scoring explanations and term highlighting. It also returns all available fields in the index, and returns 10 results per page.
-
-|  | Use a [Search index alias](index-aliases.md) to search multiple Search indexes in a single search query. Use the [collections parameter](search-request-params.md#collections) in your request to specify an array of collections to search from the Search index. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+The query payload enables scoring explanations and term highlighting. It also returns all available fields in the index, and returns 10 results per page.  
+> [!TIP]  
+> Use a [Search index alias](index-aliases.md) to search multiple Search indexes in a single search query. Use the [collections parameter](search-request-params.md#collections) in your request to specify an array of collections to search from the Search index.
 4. Press Enter or click **Search**.
 5. (Optional) To view the contents of a document, click the document name in the search results list.
 

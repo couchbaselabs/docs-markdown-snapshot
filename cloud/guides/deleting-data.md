@@ -1,4 +1,13 @@
+---
+title: Delete Documents
+description: How to delete documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/deleting-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/deleting-data.html)
+
+# Delete Documents
 
 > How to delete documents with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.
 
 ## [](#deleting-a-document)Deleting a Document
 
@@ -61,8 +70,8 @@ The example below deletes document `hotel-123` from the database.
 await hotelCollection.RemoveAsync("hotel-123");
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -79,8 +88,8 @@ MutationResult removeResult = hotelCollection.remove("hotel-123");
 System.out.println("CAS:" + removeResult.cas());
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -97,8 +106,8 @@ const removeResult = await hotelCollection.remove('hotel-123')
 console.log('CAS:', removeResult.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundError error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -115,8 +124,8 @@ remove_result = hotel_collection.remove("hotel-123")
 print("CAS:", remove_result.cas)
 ```
 
-|  | If the document does not exist, the SDK will return a DocumentNotFoundException error. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK will return a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -159,8 +168,8 @@ Result
 ╰───┴───────────┴─────────┴────────┴──────────┴─────────╯
 ```
 
-|  | If the field containing the Sub-Document cannot be found, the reject command returns a Cannot find column error. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the field containing the Sub-Document cannot be found, the `reject` command returns a `Cannot find column` error.
 
 For more information, see [reject for filters](https://www.nushell.sh/commands/docs/reject.html) in the Nushell documentation.
 
@@ -180,8 +189,8 @@ var mutateInResult = await hotelCollection.MutateInAsync("hotel-123",
 Console.WriteLine($"Cas: {mutateInResult.Cas}");
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -203,8 +212,8 @@ MutateInResult mutateInResult = hotelCollection.mutateIn("hotel-123", specs);
 System.out.println("CAS:" + mutateInResult.cas());
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -226,8 +235,8 @@ mutateInResult = await hotelCollection.mutateIn('hotel-123', [
 console.log('CAS:', mutateInResult.cas)
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundError error. |
-|  | -------------------------------------------------------------------------- |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -249,8 +258,8 @@ mutate_in_result = hotel_collection.mutate_in(
 print("CAS:", mutate_in_result.cas)
 ```
 
-|  | If the path does not exist, the SDK will return a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the path does not exist, the SDK will return a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 

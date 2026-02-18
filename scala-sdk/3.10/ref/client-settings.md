@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>ClusterEnvironment</code> class enables you to configure
+  Scala SDK options for bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/ref/client-settings.html)
+
+# Client Settings
 
 > The `ClusterEnvironment` class enables you to configure Scala SDK options for bootstrapping, timeouts, reliability, and performance. 
 
@@ -54,8 +64,8 @@ ClusterEnvironment.builder
 
 The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder’s `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
 
-|  | There are com.couchbase.client.scala.env and com.couchbase.client.core.env versions of all environment parameters: be sure to import the .scala versions. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There are `com.couchbase.client.scala.env` and `com.couchbase.client.core.env` versions of all environment parameters: be sure to import the `.scala` versions.
 
 ## [](#system-properties)System Properties
 
@@ -79,8 +89,8 @@ ClusterEnvironment.builder
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The kvTimeout value specified via TimeoutConfig.Builder is overridden by the system property. In this example the actual kvTimeout is 10 seconds, and the queryTimeout is 15 seconds. |
 
-|  | System property names starting with com.couchbase.env are paths in an object graph rooted at the environment builder. Setting the property com.couchbase.env.timeout.kvTimeout maps to TimeoutConfig.kvTimeout (the 'Config' is implicit and should not be included in the property). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> System property names starting with `com.couchbase.env` are paths in an object graph rooted at the environment builder. Setting the property `com.couchbase.env.timeout.kvTimeout` maps to `TimeoutConfig.kvTimeout` (the 'Config' is implicit and should not be included in the property).
 
 ## [](#configuration-options)Configuration Options
 
@@ -98,8 +108,8 @@ ClusterEnvironment.builder
   .build
 ```
 
-|  | Unless you set enableTls to true, none of the other security settings in this section have any effect. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unless you set `enableTls` to `true`, none of the other security settings in this section have any effect.
 
 Name: **Enabling Secure Connections**
 
@@ -171,8 +181,8 @@ Default: `auto`
 
 System Property: `com.couchbase.env.io.networkResolution`
 
-|  | The system property value should be one of auto, default, or external (lower case). |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> The system property value should be one of `auto`, `default`, or `external` (lower case).
 
 Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
 
@@ -188,8 +198,8 @@ Default: capture is disabled
 
 System Property: `com.couchbase.env.io.captureTraffic`
 
-|  | Multiple services may be specified in the system property value using a comma-delimited list such as KV,QUERY. To enable capture for all services, set the value of the system property to an empty string. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Multiple services may be specified in the system property value using a comma-delimited list such as `KV,QUERY`. To enable capture for all services, set the value of the system property to an empty string.
 
 Call this method to log all traffic to the specified services. If no services are specified, traffic to all services is captured.
 
@@ -213,8 +223,8 @@ System Property: `com.couchbase.env.io.tcpKeepAliveTime`
 
 The idle time after which a TCP keepalive gets fired. (This setting has no effect if `enableTcpKeepAlives` is `false`.)
 
-|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval).
 
 Name: **Key/Value Endpoints per Node**
 
@@ -226,8 +236,8 @@ System Property: `com.couchbase.env.io.numKvConnections`
 
 The number of actual endpoints (sockets) to open per node in the cluster against the Key/Value service. By default, for every node in the cluster one socket is opened where all traffic is pushed through. That way the SDK implicitly benefits from network batching characteristics when the workload increases. If you suspect based on profiling and benchmarking that the socket is saturated you can think about slightly increasing it to have more "parallel pipelines". This might be especially helpful if you need to push large documents through it. The recommendation is keeping it at 1 unless there is other evidence.
 
-|  | [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [Durable Write](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) operations with Couchbase Server 6.5 and above require up to 16 kvEndpoints per node, for most efficient operation, unless the environment dictates something a little lower.
 
 Name: **Max HTTP Endpoints per Service per Node**
 
@@ -333,8 +343,10 @@ Default: `1m`
 
 How long the window is in which the number of failed ops are tracked in a rolling fashion.
 
-|  | Cloud Native Gateway If using the couchbase2:// connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Cloud Native Gateway
+> 
+> If using the `couchbase2://` connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure.
 
 ## [](#timeout-options)Timeout Options
 
@@ -368,8 +380,8 @@ System Property: `com.couchbase.env.timeout.kvTimeout`
 
 The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like get(), getFromReplica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
 
-|  | [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, kvDurableTimeout, see below. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [Durable Write operations](../concept-docs/durability-replication-failure-considerations.md#synchronous-writes) have their own timeout setting, `kvDurableTimeout`, see below.
 
 Name: **Key-Value Durable Operation Timeout**
 
@@ -383,8 +395,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The kvDurableTimeout property is not part of the stable API and may change or be removed at any time. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `kvDurableTimeout` property is not part of the stable API and may change or be removed at any time.
 
 Name: **View Timeout**
 
@@ -500,8 +512,8 @@ System Property: `com.couchbase.env.compression.minRatio`
 
 A floating point value between 0 and 1\. Specifies how "compressible" a document must be in order for the compressed form to be sent to the server.
 
-|  | Increasing the value allows compression to be used with less-compressible documents. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> Increasing the value allows compression to be used with less-compressible documents.
 
 If the compressed document size divided by the uncompressed document size is greater than this value, then the uncompressed version of the document will be sent to Couchbase Server instead of the compressed version.
 
@@ -533,8 +545,8 @@ A retry strategy decides whether a failed operation should be retried. Implement
 
 The "best effort" strategy will retry the operation until it either succeeds or the timeout expires. The "fail fast" strategy will immediately report the failure to your application, giving you more control over how and when to retry.
 
-|  | Most client operations that accept an options block allow for overriding the default strategy as one of the options. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Most client operations that accept an options block allow for overriding the default strategy as one of the options.
 
 See the advanced section in the documentation on more specific information on retry strategies and failure management.
 
@@ -564,8 +576,8 @@ The default tracer logs the slowest requests per service.
 
 Various `RequestTracer` implementations exist, both as part of the core library and as external modules that can be attached (i.e. for OpenTracing and OpenTelemetry). It is recommended to use those modules and not write your own tracer unless absolutely needed.
 
-|  | When using a non-default tracer, you are responsible for starting and stopping it. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a non-default tracer, you are responsible for starting and stopping it.
 
 Name: **Computation Scheduler**
 
@@ -579,8 +591,8 @@ This is an advanced setting that should not be modified without good reason.
 
 The scheduler used for all CPU-intensive, non-blocking computations in the core, client, and user space. The default is a scheduler created from Reactor’s `Schedulers.newParallel` method, with one daemon thread per CPU core. Extra care should be used when changing the scheduler, since many internal components depend on it.
 
-|  | Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shutting down the cluster environment will not dispose of a custom scheduler. You are responsible for disposing of it after it is no longer needed.
 
 Name: **Event Bus**
 
@@ -594,8 +606,8 @@ This is an advanced setting that should not be modified without good reason.
 
 The event bus implementation used to transport system, performance, and debug events from producers to subscribers. If you provide a custom implementation, double check that it fits with the contract of the event bus as documented.
 
-|  | Shutting down the cluster environment will not stop a custom event bus. You are responsible for stopping it after it is no longer needed. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shutting down the cluster environment will not stop a custom event bus. You are responsible for stopping it after it is no longer needed.
 
 ## [](#commonly-used-options)Commonly Used Options
 
@@ -610,8 +622,8 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
 
@@ -619,8 +631,8 @@ A program using the SDK can also use the `waitUntilReady()` API call to handle a
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../../java-sdk/current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../../java-sdk/current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 

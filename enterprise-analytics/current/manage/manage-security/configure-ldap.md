@@ -1,4 +1,15 @@
+---
+title: Configure LDAP
+description: Enterprise Analytics can be configured to authenticate users by
+  means of LDAP; and to map the LDAP <em>groups</em> of which a user is a member
+  to roles defined on Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/configure-ldap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/configure-ldap.html)
+
+# Configure LDAP
 
 > Enterprise Analytics can be configured to authenticate users by means of LDAP; and to map the LDAP _groups_ of which a user is a member to roles defined on Enterprise Analytics. 
 
@@ -6,8 +17,8 @@
 
 For authentication purposes, Enterprise Analytics can be configured to use LDAP. This allows users, when they attempt to access Enterprise Analytics by presenting their credentials, to be authenticated by LDAP. Optionally, LDAP _group_ information for the authenticated user can be fetched from the LDAP server. If an LDAP group has been mapped to Couchbase-Server roles, the roles are thereby granted to the user.
 
-|  | LDAP authentication and authorization may be more appropriate for human users than for applications. For information, see [LDAP: Users and Applications](../../../../server/current/learn/security/authentication-domains.md#ldap-users-and-applications). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> LDAP authentication and authorization may be more appropriate for human users than for applications. For information, see [LDAP: Users and Applications](../../../../server/current/learn/security/authentication-domains.md#ldap-users-and-applications).
 
 Enterprise Analytics provides two different ways of setting up LDAP:
 
@@ -140,8 +151,8 @@ For example, the following template has two regular expressions. The first attem
 ]
 ```
 
-|  | Always double any backslashes (\\) that you use to escape special characters in your regular expressions because JSON also interprets backslash escapes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Always double any backslashes (\\) that you use to escape special characters in your regular expressions because JSON also interprets backslash escapes.
 
 Enterprise Analytics attempts to match the regular expressions against the username supplied by the user who’s attempting to authenticate. If a regular expression matches the username, Enterprise Analytics applies any captured portions of the regular expression to the back references in the replacement string. Then it attempts to authenticate the user with LDAP using the DN or LDAP query.
 
@@ -259,8 +270,8 @@ The row expands vertically, and exposes additional controls.
 5. Left-click on the **Edit** button, at the lower right. This brings up the **Edit Group Admins** dialog.  
 Within this dialog, the description, mapping, or roles for the group can be edited. For details of selecting roles within the **Roles** panel, see [Manage Users, Groups, and Roles](manage-users-and-roles.md).
 
-|  | If the **Delete Group** button is left-clicked on, the group is deleted. This means that all mappings between LDAP groups and the roles that were assigned to this group are also deleted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the **Delete Group** button is left-clicked on, the group is deleted. This means that all mappings between LDAP groups and the roles that were assigned to this group are also deleted.
 
 ### [](#adding-an-externally-authenticated-user)Adding an Externally Authenticated User
 

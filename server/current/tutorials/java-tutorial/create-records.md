@@ -1,4 +1,13 @@
+---
+title: Create Student and Course Records
+description: Use the SDK to create student and course records.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/java-tutorial/create-records.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tutorials/java-tutorial/create-records.html)
+
+# Create Student and Course Records
 
 > Use the SDK to create student and course records. 
 

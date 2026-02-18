@@ -1,4 +1,13 @@
+---
+title: Buckets
+description: A bucket is the fundamental space for storing data in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/buckets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/buckets.html)
+
+# Buckets
 
 > A bucket is the fundamental space for storing data in Couchbase Server. Each bucket contains a hierarchy of scopes and collections to group keys and values logically. See [Scopes and Collections](../data/scopes-and-collections.md) for more information about scopes and collections. 
 

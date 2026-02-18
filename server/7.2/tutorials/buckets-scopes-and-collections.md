@@ -1,4 +1,14 @@
+---
+title: Buckets, Scopes and Collections
+description: In this section, you'll learn how to logically partition your data
+  in Couchbase using buckets, scopes and collections.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/buckets-scopes-and-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/buckets-scopes-and-collections.html)
+
+# Buckets, Scopes and Collections
 
 > In this section, you’ll learn how to logically partition your data in Couchbase using buckets, scopes and collections. 
 
@@ -44,8 +54,8 @@ Within the `scope` we set up two collections:
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **course-record-collection**  | The enrollment records will carry a link to the course record it applies to, so we can retrieve other details such as the full name of the course and the number of credit points the student receives for completing it.                                                                                                               |
 
-|  | Of course, it’s possible to just add the details of the course to the student’s enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student’s enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Of course, it’s possible to just add the details of the course to the student’s enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student’s enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
 
 Now that you understand the basics of scopes and collections, return to your administration screen so we can add them to your bucket.
 

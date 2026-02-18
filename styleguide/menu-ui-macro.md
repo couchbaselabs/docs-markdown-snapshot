@@ -1,4 +1,12 @@
+---
+title: Menu UI Macro
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menu-ui-macro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/menu-ui-macro.html)
+
+# Menu UI Macro
 
 Use Antora’s Menu UI Macro to render any menu navigation in your documentation.
 

@@ -1,4 +1,13 @@
+---
+title: cbimport
+description: A utility for importing data into a Couchbase cluster
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbimport.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tools/cbimport.html)
+
+# cbimport
 
 A utility for importing data into a Couchbase cluster
 
@@ -12,8 +21,8 @@ cbimport is used to import data from various sources into Couchbase.
 
 For more information on how specific commands work, you can run "cbimport <command> --help".
 
-|  | Ensure that both you are using the same versions of cbimport and Couchbase server (e.g., if you are running Couchbase Server 7.6, then make sure you are using cbimport version 7.6 to import your data). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Ensure that the version of `cbimport` is the same or greater than the version of Couchbase server (e.g., if you are running Couchbase Server 7.2, then ensure `cbimport` is 7.2, 7.6, 8.0 etc).
 
 ## [](#options)OPTIONS
 

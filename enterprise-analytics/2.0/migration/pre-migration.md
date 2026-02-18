@@ -1,4 +1,16 @@
+---
+title: Pre-Migration Planning &amp; Preparation
+description: This section provides a comprehensive checklist and best practices
+  to help you prepare for migration from Couchbase Server Analytics Service or
+  Capella Operational Analytics Service to Capella Analytics or Enterprise
+  Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/migration/pages/pre-migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/migration/pre-migration.html)
+
+# Pre-Migration Planning &amp; Preparation
 
 > This section provides a comprehensive checklist and best practices to help you prepare for migration from Couchbase Server Analytics Service or Capella Operational Analytics Service to Capella Analytics or Enterprise Analytics. 
 
@@ -94,8 +106,8 @@ Review hardware, software, and network prerequisites to guarantee a smooth trans
 
 You can configure Capella Analytics with the same number of analytics nodes and similar specifications (or a config that translates to similar capacity) as the existing Couchbase Operational Analytics Service and Couchbase Server Analytics Service.
 
-|  | You must perform a sanity check post-migration. |
-|  | ----------------------------------------------- |
+> [!NOTE]
+> You must perform a sanity check post-migration.
 
 For more information about Capella Analytics cluster creation, see [Create a Cluster](../../../analytics/admin/prepare-project.md).
 

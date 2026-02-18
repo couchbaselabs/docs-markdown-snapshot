@@ -1,4 +1,15 @@
+---
+title: Built-in _count Function
+description: The <code>_count</code> function provides a simple count of the
+  input rows from the <code>map()</code> function, using the keys and group
+  level.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-writing-count.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/views/views-writing-count.html)
+
+# Built-in _count Function
 
 > The `_count` function provides a simple count of the input rows from the `map()` function, using the keys and group level. 
 

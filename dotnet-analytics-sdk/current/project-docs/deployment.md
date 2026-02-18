@@ -1,4 +1,13 @@
+---
+title: Deployment
+description: Transition from dev environment to prod, and keep up with the latest fixes.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/project-docs/pages/deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/project-docs/deployment.html)
+
+# Deployment
 
 > Transition from dev environment to prod, and keep up with the latest fixes. 
 
@@ -6,8 +15,8 @@ One of Couchbase’s strengths is speedy response, so deployment of apps should 
 
 We always recommend the [latest version](analytics-sdk-release-notes.md#latest-release) of the SDK. This not only contains the latest security updates and bug fixes, but will be compatible with the latest Enterprise Analytics release — Capella always runs a recent version of Enterprise Analytics.
 
-|  | Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from .NET is not currently possible. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Connecting to a [_Capella_ Analytics](../../../analytics/intro/intro.md) cluster from .NET is not currently possible.
 
 Before deploying, take note of any [compatibility](compatibility.md) issues for the language platform and underlying OS. The [full installation guide](sdk-full-installation.md) should cover any special cases for all supported environments.
 

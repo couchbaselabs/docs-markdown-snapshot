@@ -1,4 +1,15 @@
+---
+title: XDCR Conflict Resolution
+description: <em>XDCR Conflict Resolution</em> automatically synchronizes
+  document-copies that have been modified in different ways at different
+  locations.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-conflict-resolution.html)
+
+# XDCR Conflict Resolution
 
 > _XDCR Conflict Resolution_ automatically synchronizes document-copies that have been modified in different ways at different locations. 
 
@@ -58,8 +69,10 @@ When availability is restored to data center A, applications must wait for the s
 
 Conflict resolution policy is configured on a per-bucket basis at bucket creation time, it cannot be changed later. For more information, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
 
-|  | You must select the same conflict resolution policy for all the buckets in the replication topology because you can create a replication between only those buckets that have the same conflict resolution policy. When creating a bucket, you must actively choose the conflict resolution policy. If you do not choose a policy, the Sequence number-based conflict resolution policy is set as default. After the bucket is created, you cannot change the conflict resolution policy for that bucket. In general, the Timestamp-based conflict resolution policy is preferred as the logic is easier to understand, feasible with general use cases, and also preferred for working with the latest Server features. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> * You must select the same conflict resolution policy for all the buckets in the replication topology because you can create a replication between only those buckets that have the same conflict resolution policy.
+> * When creating a bucket, you must actively choose the conflict resolution policy. If you do not choose a policy, the Sequence number-based conflict resolution policy is set as default.
+> * After the bucket is created, you cannot change the conflict resolution policy for that bucket. In general, the Timestamp-based conflict resolution policy is preferred as the logic is easier to understand, feasible with general use cases, and also preferred for working with the latest Server features.
 
 The following examples illustrate how the two different conflict resolution policies apply:
 

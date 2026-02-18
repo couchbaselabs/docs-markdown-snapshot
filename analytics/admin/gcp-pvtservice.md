@@ -1,7 +1,21 @@
+---
+title: GCP Private Service Connection
+description: Add a Google Coud Platform (GCP) Private Service Connection that
+  peers your GCP network with a Capella Analytics cluster using GCP as its cloud
+  provider. This connection can reduce latency and egress costs for applications
+  hosted in the same region.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/gcp-pvtservice.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/gcp-pvtservice.html)
 
-|  | Limited availabilityAdding a GCP Private Service Connection is available only on request. For more information, [contact Couchbase Support](../../cloud/support/manage-support.md#create-support-ticket). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# GCP Private Service Connection
+
+> [!IMPORTANT]
+> Limited availability
+> 
+> Adding a GCP Private Service Connection is available only on request. For more information, [contact Couchbase Support](../../cloud/support/manage-support.md#create-support-ticket).
 
 > Add a Google Coud Platform (GCP) Private Service Connection that peers your GCP network with a Capella Analytics cluster using GCP as its cloud provider. This connection can reduce latency and egress costs for applications hosted in the same region. 
 
@@ -14,10 +28,9 @@ To use [GCP Private Service Connect](https://cloud.google.com/vpc/docs/private-s
 * A project in your organization.  
 For more information about projects in Capella Analytics, see [Projects Overview](../../cloud/projects/projects.md).
 * The [Project Owner](../../cloud/projects/project-roles.md#project-owner-role) role assigned to your user account.
-* A cluster in your project with GCP as its cloud provider and the region set to the same region as your GCP VPC. This cluster must use the **Developer Pro** or **Enterprise** plan.
-
-|  | You cannot have more than 3 GCP clusters with private endpoints enabled in the same region. Additionally, in an organization, you cannot have more than 6 GCP clusters with private endpoints enabled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* A cluster in your project with GCP as its cloud provider and the region set to the same region as your GCP VPC. This cluster must use the **Developer Pro** or **Enterprise** plan.  
+> [!CAUTION]  
+> You cannot have more than 3 GCP clusters with private endpoints enabled in the same region. Additionally, in an organization, you cannot have more than 6 GCP clusters with private endpoints enabled.
 * Information about your GCP VPC, including:
 
   * The **Network** name.
@@ -28,10 +41,9 @@ For more information about projects in Capella Analytics, see [Projects Overview
 
 To add a GCP Private Service Connection, you need the Capella Analytics UI and the Google Cloud CLI.
 
-1. In Capella Analytics, enable private endpoints:
-
-|  | Enabling private endpoints bills your account hourly for GCP Private Service Connect unless you turn off this option. As this feature is resource-intensive, it can result in increased costs. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. In Capella Analytics, enable private endpoints:  
+> [!IMPORTANT]  
+> Enabling private endpoints bills your account hourly for GCP Private Service Connect unless you turn off this option. As this feature is resource-intensive, it can result in increased costs.
 
   1. Open the cluster where you want to add a GCP Private Service Connection.
   2. Go to **Settings** **Private Endpoints**.
@@ -45,17 +57,16 @@ To add a GCP Private Service Connection, you need the Capella Analytics UI and t
 | Virtual Network Name | Enter the GCP network name.                                    |
 | Subnet Name          | Enter the GCP subnet name. Your VM must reside in this subnet. |
 4. Click **Next**.
-5. Download and run the configuration shell script provided by Capella Analytics.
-
-|  | If you add a subnet to your network after completing this procedure in GCP, you must re-run the configuration shell script to provision all the required resources in your network. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+5. Download and run the configuration shell script provided by Capella Analytics.  
+> [!WARNING]  
+> If you add a subnet to your network after completing this procedure in GCP, you must re-run the configuration shell script to provision all the required resources in your network.  
 This script contains commands to create the required related resources in your chosen GCP network, including 50 endpoints for each subnet in your VPC. When successful, the provisioning details are output. It can take several minutes for this script to complete.
 6. Once complete, verify the creation of the related endpoints by visiting Private Service Connect in the Google Cloud Console. These endpoints show a **Pending** status until you accept the connection.
 7. In Capella Analytics, enter the `gcp-project-id` for your project and accept the connection.  
 The acceptance process takes several minutes when you accept a connection to your project for the first time.
 
-|  | When connecting an SDK to a cluster with a GCP Private Service Connection, you must add ?network=external to the end of the private endpoint in the connection string. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When connecting an SDK to a cluster with a GCP Private Service Connection, you must add `?network=external` to the end of the private endpoint in the connection string.
 
 ### [](#verifying-the-connection)Verifying the Connection
 
@@ -70,5 +81,7 @@ Disabling private endpoints deletes all private endpoints in a cluster. At the b
 
 It can take several minutes for Capella Analytics to complete this process.
 
-|  | Disabling private endpoints only cleans up the infrastructure deployed in Capella Analytics. You must manually clean up any resources deployed to your GCP VPC that were supporting private endpoints. Do not remove GCP resources until the disabling process in Capella Analytics is complete. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Disabling private endpoints only cleans up the infrastructure deployed in Capella Analytics. You must manually clean up any resources deployed to your GCP VPC that were supporting private endpoints.
+> 
+> Do not remove GCP resources until the disabling process in Capella Analytics is complete.

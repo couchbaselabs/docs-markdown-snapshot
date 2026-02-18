@@ -1,4 +1,13 @@
+---
+title: Certificate Rotation
+description: Certificates should be rotated periodically, to ensure optimal security.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/rotate-server-certificates.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/rotate-server-certificates.html)
+
+# Certificate Rotation
 
 > Certificates should be rotated periodically, to ensure optimal security. 
 

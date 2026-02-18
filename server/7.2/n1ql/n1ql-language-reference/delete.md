@@ -1,4 +1,13 @@
+---
+title: DELETE
+description: DELETE immediately removes the specified document from your keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/delete.html)
+
+# DELETE
 
 DELETE immediately removes the specified document from your keyspace.
 
@@ -113,8 +122,8 @@ Specifies the information to be returned by the operation as a query result. For
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | Please note that running the following examples will permanently delete your sample data. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that running the following examples will permanently delete your sample data. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 Example 1\. Delete query containing a WHERE clause
 

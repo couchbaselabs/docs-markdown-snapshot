@@ -1,4 +1,14 @@
+---
+title: Field Level Encryption from the SDK
+description: The Field Level Encryption library enables encryption and
+  decryption of JSON fields, to support FIPS-140-2 compliance.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.0/howtos/encrypting-using-sdk.html)
+
+# Field Level Encryption from the SDK
 
 > The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
 
@@ -8,8 +18,8 @@ For a high-level overview of this feature, see [concept-docs:encryption.adoc](#c
 
 The Couchbase Java SDK works together with the [Java Couchbase Encryption](https://github.com/couchbase/java-couchbase-encryption) library to provide support for encryption and decryption of JSON fields. This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates).
 
 ## [](#requirements)Requirements
 
@@ -125,8 +135,8 @@ From Java SDK 3.2.1, the `@Encrypted` annotation can now be used to migrate an e
 
 then either encrypted or unencrypted values will be accepted during deserialization (without the latter causing error). See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-java-client/com/couchbase/client/java/encryption/annotation/Encrypted.html).
 
-|  | Encryption means that document fields have been authenticated. Enabling this feature bypasses that protection, and so this should only be used in strictly limited circumstances, such as the migration from an unencrypted to an encrypted field. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Encryption means that document fields have been authenticated. Enabling this feature bypasses that protection, and so this should only be used in strictly limited circumstances, such as the migration from an unencrypted to an encrypted field.
 
 ## [](#creating-encryption-keys)Creating Encryption Keys
 
@@ -146,8 +156,8 @@ Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc -
 
 ## [](#migration-from-sdk2)Migrating from SDK 2
 
-|  | SDK 2 cannot read fields encrypted by SDK 3\. |
-|  | --------------------------------------------- |
+> [!WARNING]
+> SDK 2 cannot read fields encrypted by SDK 3\.
 
 It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
@@ -165,8 +175,8 @@ Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc -
 
 Alternatively, you can [rename the existing fields](https://forums.couchbase.com/t/replacing-field-name-prefix/28786) using a [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) statement.
 
-|  | In SDK 2, only top-level fields could be encrypted. SDK 3 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> In SDK 2, only top-level fields could be encrypted. SDK 3 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
 
 ### [](#configure-legacy-decrypters)Enabling decrypters for legacy algorithms
 
@@ -176,5 +186,5 @@ The encryption algorithms used by SDK 2 are deprecated, and are no longer used f
 Unresolved include directive in modules/howtos/pages/encrypting-using-sdk.adoc - include::example$EncryptingUsingSDK.java[]
 ```
 
-|  | The legacy decrypters require a mapping function. For AES, this function accepts an encryption key name and returns the corresponding signing key name. For RSA, this function accepts a public key name and returns the corresponding private key name. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The legacy decrypters require a mapping function. For AES, this function accepts an encryption key name and returns the corresponding signing key name. For RSA, this function accepts a public key name and returns the corresponding private key name.

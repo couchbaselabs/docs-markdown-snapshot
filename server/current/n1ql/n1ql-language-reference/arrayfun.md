@@ -1,4 +1,15 @@
+---
+title: Array Functions
+description: You can use array functions to evaluate arrays, perform
+  computations on elements in an array, and to return a new array based on a
+  transformation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/arrayfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/arrayfun.html)
+
+# Array Functions
 
 > You can use array functions to evaluate arrays, perform computations on elements in an array, and to return a new array based on a transformation. 
 
@@ -153,8 +164,8 @@ This function returns the first position of the specified value `val` within the
 
 The array position is zero-based, that is, the first position is 0.
 
-|  | This function uses a binary search algorithm. If the array is unsorted, the function may not be able to find the value. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function uses a binary search algorithm. If the array is unsorted, the function may not be able to find the value.
 
 See also [ARRAY\_POSITION()](#fn-array-position), [ARRAY\_SORT()](#fn-array-sort).
 
@@ -1163,8 +1174,16 @@ If any of the arguments are `MISSING`, then it returns `MISSING`.
 
 If the first argument is not an array, then it returns `NULL`.
 
-|  | This function cannot be used to remove NULL values from an array as it uses an equality predicate when evaluating the array elements to remove. Since NULL does not equal NULL, such values are not matched and remain in the array. To remove NULL values, use the [Array Collection Operator](collectionops.md#array) instead. For example: SELECT ARRAY name FOR name IN \["Ryan", NULL, "Corrine"\] WHEN name IS NOT NULL END AS filtered\_names; |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This function cannot be used to remove NULL values from an array as it uses an equality predicate when evaluating the array elements to remove. Since NULL does not equal NULL, such values are not matched and remain in the array.
+> 
+> To remove NULL values, use the [Array Collection Operator](collectionops.md#array) instead. For example:
+> 
+> ```sqlpp
+> SELECT ARRAY name FOR name IN ["Ryan", NULL, "Corrine"]
+> WHEN name IS NOT NULL
+> END AS filtered_names;
+> ```
 
 ### [](#example-16)Example
 
@@ -1576,8 +1595,8 @@ The rules governing its use are as follows:
 | field\[\]\[\].field2        | If field is not an array, it returns MISSING. If every element in field is not an unnamed array, it returns MISSING. If field contains unnamed arrays, they are flattened by one level. Then from the resulting array, it extracts field2 from each object where it is present.                                                                                              |
 | field\[\].field2\[\].field3 | Returns an array of field3 values by traversing two levels of arrays. First it extracts field2 from each element of field, then extracts field3 from each element of the resulting field2 array. If field and field2 contain unnamed arrays, they are flattened by one level. Then from the resulting field2 array, it extracts field3 from each object where it is present. |
 
-|  | If you use more that two empty array subscripts (for example, field\[\]\[\]\[\]), the function considers only the first two subscripts and ignores the rest. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you use more that two empty array subscripts (for example, `field[][][]`), the function considers only the first two subscripts and ignores the rest.
 
 #### [](#example-23)Example
 
@@ -1709,8 +1728,10 @@ If any of the arguments is `MISSING`, then it returns `MISSING`.
 
 If any of the arguments is a non-array value, then it returns `NULL`.
 
-|  | The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays. Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays.
+> 
+> Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ### [](#example-25)Example
 
@@ -1760,8 +1781,10 @@ If any of the arguments is `MISSING`, then it returns `MISSING`.
 
 If any of the arguments is a non-array value, then it returns `NULL`.
 
-|  | The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays. Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The difference between [ARRAY\_SYMDIFF()](#fn-array-symdiff) and [ARRAY\_SYMDIFFN()](#fn-array-symdiffn) is that the former function includes the value when it appears only once, while the latter function includes the value when it appears an odd number of times in the input arrays.
+> 
+> Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ### [](#example-26)Example
 

@@ -1,4 +1,12 @@
+---
+title: Troubleshooting and FAQs
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-troubleshooting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-troubleshooting.html)
+
+# Troubleshooting and FAQs
 
 > Full Text logs can be found in the file fts.log. This is stored with the other Couchbase Server logs; the exact location depends on your operating system. 
 

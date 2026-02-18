@@ -1,4 +1,14 @@
+---
+title: Retrieving Auto-Failover Settings
+description: Auto-failover settings are retrieved by means of the <code>GET
+  /settings/autoFailover</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-autofailover-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-cluster-autofailover-settings.html)
+
+# Retrieving Auto-Failover Settings
 
 > Auto-failover settings are retrieved by means of the `GET /settings/autoFailover` HTTP method and URI. 
 

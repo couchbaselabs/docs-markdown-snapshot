@@ -1,4 +1,12 @@
+---
+title: Please, Thank You and Sorry
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/please-thanks-sorry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/please-thanks-sorry.html)
+
+# Please, Thank You and Sorry
 
 Only use "please" if you’re asking the user to do something that inconveniences them. In general, you can reword the error message to avoid "please."
 

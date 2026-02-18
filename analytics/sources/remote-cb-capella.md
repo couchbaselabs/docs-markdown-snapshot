@@ -1,9 +1,17 @@
+---
+title: Stream Data from Couchbase Capella
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-capella.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/remote-cb-capella.html)
+
+# Stream Data from Couchbase Capella
 
 > To continuously update Capella Analytics with data hosted on a Couchbase Capella operational cluster, create a remote link and collection. 
 
-|  | For an example, see [Create Remote beer-sample Collections](../intro/examples.md#beer-sample). |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For an example, see [Create Remote beer-sample Collections](../intro/examples.md#beer-sample).
 
 ## [](#encryption)Requirements for Couchbase Capella Links
 
@@ -31,10 +39,9 @@ You can now create a collection associated with that link.
 
 To create a remote collection to receive data from a Couchbase Capella operational cluster:
 
-1. In the **Create Link for <cluster name> Cluster** dialog, click **Create Linked Collection**. The **Create Collection Linked to <link name>** dialog opens.
-
-|  | If you closed the **Create Link for <cluster name> Cluster** dialog by clicking **Complete Later**, then under **LINKS** move your pointer over the name of the link and choose **⋮ (More)** **Create Linked Collection**. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. In the **Create Link for <cluster name> Cluster** dialog, click **Create Linked Collection**. The **Create Collection Linked to <link name>** dialog opens.  
+> [!NOTE]  
+> If you closed the **Create Link for <cluster name> Cluster** dialog by clicking **Complete Later**, then under **LINKS** move your pointer over the name of the link and choose **⋮ (More)** **Create Linked Collection**.
 2. In the **Collection Name** field, enter a name for your Capella Analytics collection.
 3. In the **Configure Data Details** fields, select the names of the **Bucket**, **Scope**, and **Collection** you want to shadow.
 4. Optionally, enter an expression in the **WHERE clause** field to filter the documents in the source collection. Do not include the `WHERE` keyword, and supply only a deterministic expression. For example, `activity = "eat"`.

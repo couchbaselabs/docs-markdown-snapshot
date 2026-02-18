@@ -1,4 +1,14 @@
+---
+title: Manage Authentication
+description: To access Couchbase Server, administrators and applications must be
+  authenticated.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/manage-authentication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-security/manage-authentication.html)
+
+# Manage Authentication
 
 > To access Couchbase Server, administrators and applications must be authenticated. _Authentication_ is a process for identifying a user who is attempting to access a system. 
 

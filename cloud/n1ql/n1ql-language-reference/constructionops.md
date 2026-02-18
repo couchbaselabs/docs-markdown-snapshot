@@ -1,4 +1,13 @@
+---
+title: Construction Operators
+description: SQL++ supports array and object construction operators.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/constructionops.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/constructionops.html)
+
+# Construction Operators
 
 SQL++ supports array and object construction operators.
 
@@ -114,8 +123,10 @@ expr
 
 An expression resolving to any supported JSON data type, which specifies the value of the attribute.
 
-|  | Dynamic namesIf the expr argument is an identifier referring to a named field in the data source, then you can omit the name-expr argument. In this case, the name of the field in the data source will be used as the name of the attribute in the output object. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Dynamic names
+> 
+> If the `expr` argument is an identifier referring to a named field in the data source, then you can omit the `name-expr` argument. In this case, the name of the field in the data source will be used as the name of the attribute in the output object.
 
 ### [](#examples)Examples
 

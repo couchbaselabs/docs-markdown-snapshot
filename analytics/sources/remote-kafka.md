@@ -1,4 +1,12 @@
+---
+title: Create a Kafka Pipeline Link
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-kafka.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/remote-kafka.html)
+
+# Create a Kafka Pipeline Link
 
 > To continuously update a Capella Analytics collection with a data stream from a Kafka pipeline, you create a remote link. 
 

@@ -1,4 +1,13 @@
+---
+title: SQL++ Auditing
+description: SQL++-related activities can be audited, by Couchbase Server.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/n1ql-auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/n1ql-auditing.html)
+
+# SQL++ Auditing
 
 > SQL++-related activities can be audited, by Couchbase Server. 
 
@@ -47,8 +56,8 @@ __Table 2\. Optional auditing fields for statements__
 | positionalArgs  | Array of values of positional arguments.                                                                                                                                                                                                       | $1 and ?       |
 | clientContextId | Captured from the client\_context\_id parameter of the SQL++ query. May be used to distinguish between user-generated queries and UI-generated queries from the Query WorkBench. UI-generated queries have the prefix INTERNAL- in this field. |                |
 
-|  | The client context ID has no security guarantees. The parameter can be set by any user in any request and is not verified in the server, so it should not be relied upon for security purposes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The client context ID has no security guarantees. The parameter can be set by any user in any request and is not verified in the server, so it should not be relied upon for security purposes.
 
 __Table 3\. Required auditing fields for API requests__
 | Field          | Description                                                       | Example                                                                    |

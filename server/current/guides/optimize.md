@@ -1,4 +1,12 @@
+---
+title: Advanced Query Features
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/optimize.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/guides/optimize.html)
+
+# Advanced Query Features
 
 ## Cost-Based Optimizer
 

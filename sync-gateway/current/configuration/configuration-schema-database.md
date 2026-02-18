@@ -1,18 +1,29 @@
+---
+title: Database Configuration
+description: Using Sync Gateway's Admin REST API to configure and manage databases
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/configuration/configuration-schema-database.html)
+
+# Database Configuration
 
 > Using Sync Gateway’s Admin REST API to configure and manage databases  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](configuration-schema-db-security.md) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
-|  | Pre-3.0 Legacy Configuration Equivalents This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Pre-3.0 Legacy Configuration Equivalents
+> 
+> This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md)
 
 ## [](#introduction)Introduction
 
 From _Sync Gateway_ 3.0 you can use the Admin REST API to provision persistent configuration changes. This content introduces the [PUT /{db}/](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Management/operation/put%5Fdb-) and [POST /{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) endpoints for convenience — see [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) for a full description of the endpoints available.
 
-|  | You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can define 1 custom scope per database with up to 1000 custom collections. If you don’t specify a custom scope and collection, any documents you create will be saved in the default scope and collection.
 
 ## [](#lbl-create-db)Create a new Sync Gateway database
 

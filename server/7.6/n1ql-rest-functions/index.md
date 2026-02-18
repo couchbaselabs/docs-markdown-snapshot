@@ -1,4 +1,12 @@
+---
+title: Query Functions REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/n1ql-rest-functions/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql-rest-functions/index.html)
+
+# Query Functions REST API
 
 ## [](#overview)Overview
 
@@ -47,8 +55,8 @@ Deletes the specified library entirely.
 
 By default, this operation deletes a global library. For a scoped library, you must specify the bucket and scope.
 
-|  | Before you can delete a library, you must first drop all SQL++ external user-defined functions which point to any of the JavaScript functions within that library. For more information, see [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Before you can delete a library, you must first drop all SQL++ external user-defined functions which point to any of the JavaScript functions within that library. For more information, see [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md).
 
 #### [](#delete%5Flibrary-parameters)Parameters
 
@@ -65,8 +73,8 @@ Query Parameters
 | **bucket**optional | For scoped libraries only. The bucket in which the library is stored. | String |
 | **scope**optional  | For scoped libraries only. The scope in which the library is stored.  | String |
 
-|  | To delete a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To delete a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#delete%5Flibrary-responses)Responses
 
@@ -128,8 +136,8 @@ Query Parameters
 | **bucket**optional | For scoped libraries only. The bucket from which to fetch libraries. | String |
 | **scope**optional  | For scoped libraries only. The scope from which to fetch libraries.  | String |
 
-|  | To fetch libraries from a scope, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To fetch libraries from a scope, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#get%5Fcollection-responses)Responses
 
@@ -227,8 +235,8 @@ Query Parameters
 | **bucket**optional | For scoped libraries only. The bucket in which the library is stored. | String |
 | **scope**optional  | For scoped libraries only. The scope in which the library is stored.  | String |
 
-|  | To read a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To read a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#get%5Flibrary-responses)Responses
 
@@ -297,8 +305,10 @@ Creates the specified library and its associated functions. If the specified lib
 
 By default, this operation creates or updates a global library. For a scoped library, you must specify the bucket and scope.
 
-|  | To add a function to a library, update the library with all existing functions, plus the new function. To update a function, update the library with all existing functions, including the updated function definition. To delete a function from a library, update the library with all existing functions, without the deleted function. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * To add a function to a library, update the library with all existing functions, plus the new function.
+> * To update a function, update the library with all existing functions, including the updated function definition.
+> * To delete a function from a library, update the library with all existing functions, without the deleted function.
 
 Consumes
 
@@ -325,8 +335,8 @@ Body Parameter
 | ---------------- | ----------------------------------------------------- | ------ |
 | **Body**required | The JavaScript code for all functions in the library. | String |
 
-|  | To create or update a scoped library, you must specify both the bucket and scope parameters. You cannot specify one without the other. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To create or update a scoped library, you must specify both the `bucket` and `scope` parameters. You cannot specify one without the other.
 
 #### [](#post%5Flibrary-responses)Responses
 

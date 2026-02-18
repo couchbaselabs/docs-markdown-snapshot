@@ -1,4 +1,12 @@
+---
+title: Configuration
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/configuration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/configuration.html)
+
+# Configuration
 
 > Information about the different configuration properties the Spark connector either expects or allows to set. 
 
@@ -68,8 +76,8 @@ Please refer to the SDK documentation for the possible keys or values.
 
 ## [](#connecting-to-multiple-clusters)Connecting to multiple Clusters
 
-|  | This feature is only available with Spark Connector 3.3.0 and later. |
-|  | -------------------------------------------------------------------- |
+> [!NOTE]
+> This feature is only available with Spark Connector 3.3.0 and later.
 
 It is possible to connect to more than one Couchbase Cluster when using the Spark Connector.
 

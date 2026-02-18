@@ -1,4 +1,12 @@
+---
+title: Backend Installation
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/installation/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/installation/index.html)
+
+# Backend Installation
 
 First, we will install the "backend components" required for the tutorial. This includes Couchbase Server, Sync Gateway and Python web app - essentially all components with the exception of the Couchbase Lite app.
 
@@ -10,5 +18,5 @@ There are three options available to install those components.
 | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Here, you would download and install the components on your local machine. | In this case, you would install all the backend components in separate docker containers on your local machine. |
 
-|  | Make sure to use the same installation option for _all_ backend components, so if you select Docker (Local), then you must use docker for Python Travel Sample Web App, Sync Gateway and Couchbase Server. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Make sure to use the same installation option for _all_ backend components, so if you select Docker (Local), then you must use docker for Python Travel Sample Web App, Sync Gateway and Couchbase Server.

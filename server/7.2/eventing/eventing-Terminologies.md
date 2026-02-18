@@ -1,4 +1,13 @@
+---
+title: Terminology
+description: While using Eventing Service, the following terminologies are used.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-Terminologies.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-Terminologies.html)
+
+# Terminology
 
 > While using Eventing Service, the following terminologies are used. 
 
@@ -14,8 +23,8 @@ Eventing Functions can interact with the Data Service (KV), the Query Service (S
 
 The Eventing Service routes mutations to the entry points **OnUpdate** or **OnDelete** and fired Timers to a user defined **Timer callback**.
 
-|  | Since the 6.5 release, the JavaScript code in the Eventing Function is compressed (with the compressed size limited to 128KB) in the Couchbase Server. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Since the 6.5 release, the JavaScript code in the Eventing Function is compressed (with the compressed size limited to 128KB) in the Couchbase Server.
 
 ### [](#handler)Handler
 
@@ -27,8 +36,8 @@ The **OnUpdate** handler gets called when a document is created or modified. Two
 
 The entry point OnUpdate(doc,meta) passes both `doc`, the document, and `meta`, additional data containing useful information such as the document’s id, CAS, expiration, and datatype ("json" or "binary").
 
-|  | Unless the _Language compatibility_ in the settings of the Function is at least 6.6.2 binary documents will be suppressed. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unless the _Language compatibility_ in the settings of the Function is at least 6.6.2 binary documents will be suppressed.
 
 #### [](#delete-handler)Delete Handler
 
@@ -103,8 +112,8 @@ Couchbase Eventing Functions use a collection as the source of data mutations. T
 
 When you are creating an Eventing Function, you need to specify a source collection. The handler(s) of **OnUpdate** and/or **OnDelete** are the entry points that receive events from this collection via DCP to both receive and track data mutations.
 
-|  | You can have multiple Eventing Functions running different code listening to the same source collection. However it is less resource intensive to use just one Eventing Function and merely code an if-then-else or switch statement in your handler’s JavaScript. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can have multiple Eventing Functions running different code listening to the same source collection. However it is less resource intensive to use just one Eventing Function and merely code an if-then-else or switch statement in your handler’s JavaScript.
 
 When a source collection is deleted, all deployed (or paused) Eventing Functions associated with this source collection are undeployed.
 
@@ -122,8 +131,8 @@ The Eventing Storage (or Metadata) collection, stores artifacts (or configuratio
 
 When you are creating an Eventing Function, ensure that a separate collection is designated as an Eventing metadata and reserved solely for the internal use of the Eventing Service. You can use a common Eventing metadata collection across multiple Eventing Functions for the same tenant.
 
-|  | The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent the Data Service, or KV, will evict timer and checkpoint documents on hitting quota and Eventing can lose track of both timers and mutations processed. Furthermore at any point, refrain from deleting the Eventing metadata collection. Also, ensure that your Eventing Function’s JavaScript code or other services do not perform a write or delete operation on the Eventing metadata collection. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace must be in a Bucket of type Couchbase. If this keyspace is not persistent the Data Service, or KV, will evict timer and checkpoint documents on hitting quota and Eventing can lose track of both timers and mutations processed. Furthermore at any point, refrain from deleting the Eventing metadata collection. Also, ensure that your Eventing Function’s JavaScript code or other services do not perform a write or delete operation on the Eventing metadata collection.
 
 If an Eventing metadata collection gets accidentally deleted, then all deployed Eventing Function are undeployed and associated indexes and constructs get dropped.
 
@@ -170,8 +179,8 @@ An Eventing Function can listen to multiple collections via a wildcard of `*` fo
 
 You can add bucket aliases via the 'Bucket alias' choice then entering a tuple of: alias-name, keyspace, and an access level. Where the alias-name that you can use to refer to the keyspace or collection from your Eventing Function code; the keyspace is the full path to a collection in the cluster; and the access level to the keyspace is either 'read only' or 'read and write'.
 
-|  | One or more Bucket alias bindings (or Bucket aliases) are mandatory when your Eventing Function code performs any collection related operations directly against the Data Service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> One or more Bucket alias bindings (or Bucket aliases) are mandatory when your Eventing Function code performs any collection related operations directly against the Data Service.
 
 * Read Only Bindings: A binding with access level of "Read Only" allows reading documents from the collection, but cannot be used to write (create, update or delete) documents in such a collection. Attempting to do so will throw a runtime exception.
 * Read-Write Bindings: A binding with access level of "Read Write" allows both reading and writing (create, update, delete) of documents in the collection. If you wish to modify the document passed to the OnUpdate entry point (or any other document in the source collection) you will need to provide a Read-Write binding alias to the Function’s source collection.

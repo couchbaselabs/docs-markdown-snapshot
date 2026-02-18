@@ -1,4 +1,14 @@
+---
+title: Upgrade Enterprise Analytics
+description: To upgrade Enterprise Analytics, you need to upgrade the version of
+  Enterprise Analytics running on each node in your cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/upgrade.html)
+
+# Upgrade Enterprise Analytics
 
 > To upgrade Enterprise Analytics, you need to upgrade the version of Enterprise Analytics running on each node in your cluster. 
 

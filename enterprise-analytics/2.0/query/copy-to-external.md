@@ -1,4 +1,14 @@
+---
+title: Copy Results to External Storage
+description: In Enterprise Analytics, you can write query results or entire
+  collections to an external file system or data store.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/copy-to-external.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/query/copy-to-external.html)
+
+# Copy Results to External Storage
 
 > In Enterprise Analytics, you can write query results or entire collections to an external file system or data store. This feature supports exporting data to an external cloud data store in JSON format. 
 
@@ -16,8 +26,8 @@ When you write a collection or query results to an external data store, you spec
 
 Structuring data on the external store helps if you plan to query it later. Use [dynamic prefixes](../sources/dynamic-prefixes.md) for optimizing the queries.
 
-|  | The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty.
 
 ## [](#copy-to-statements)COPY TO Statements
 

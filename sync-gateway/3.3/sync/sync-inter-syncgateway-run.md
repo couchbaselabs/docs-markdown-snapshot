@@ -1,4 +1,13 @@
+---
+title: Initialize Inter-Sync Gateway Replications
+description: Initializing and running inter-Sync Gateway replication
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/sync-inter-syncgateway-run.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/sync/sync-inter-syncgateway-run.html)
+
+# Initialize Inter-Sync Gateway Replications
 
 > Initializing and running inter-Sync Gateway replication  
 
@@ -6,8 +15,10 @@ _Related topics_: [Overview](sync-inter-syncgateway-overview.md) | [Run](sync-in
 
 _Other Topics_: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Admin REST API](../rest-api/rest-api-admin.md)
 
-|  | Context Clarification This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Context Clarification
+> 
+> This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release.
 
 ## [](#introduction)Introduction
 
@@ -208,8 +219,10 @@ curl --location --request POST \
 
 ## [](#generic-constraints)Generic Constraints
 
-|  | Replication All active nodes in an active cluster must be running Sync Gateway version 2.8+. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Replication
+> 
+> All active nodes in an active cluster must be running Sync Gateway version 2.8+.
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 

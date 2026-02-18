@@ -1,4 +1,13 @@
+---
+title: Search Index JSON Properties
+description: Use a JSON payload to control the settings for a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-index-params.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/search-index-params.html)
+
+# Search Index JSON Properties
 
 > Use a JSON payload to control the settings for a Search index. 
 
@@ -27,8 +36,8 @@ The start of the JSON payload for a Search index contains important settings for
     "params": {
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 All Search index payloads have the following properties:
 
@@ -56,8 +65,8 @@ The `planParams` object sets a Search index’s partition and replication settin
     },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `planParams` object contains the following properties:
 
@@ -91,8 +100,8 @@ The `doc_config` object sets how the Search index sets a document’s type:
         },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `doc_config` object is a child object of the [Params Object](#params). It contains the following properties:
 
@@ -116,8 +125,8 @@ Set a [type identifier](#customize-search-index.adoc#type-identifiers) for the S
 * `docid_prefix_delim`: Use the leading characters in the documents' ID values, up to but not including a specified separator.
 * `docid_regexp`: Use a regular expression on the documents' ID values.
 
-|  | If you want your Search index to only include documents from a specific collection, the mode value must be "scope.collection.{mode}". |
-|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want your Search index to only include documents from a specific collection, the `mode` value must be `"scope.collection.{mode}"`.
 
 docid\_prefix\_delim
 
@@ -194,8 +203,8 @@ The `mapping` object contains a Search index’s [analyzers](customize-index.md#
                 "token_filters": {
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `mapping` object is a child object of the [Params Object](#params). It contains the following properties:
 
@@ -235,8 +244,8 @@ The `analyzers` object contains any custom analyzers defined for a Search index.
                 },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `analyzers` object is a child object of the [analysis object](#analysis). It contains any number of [{analyzer\_name} objects](#analyzer-name):
 
@@ -287,8 +296,8 @@ The `char_filters` object contains any custom character filters defined for a Se
                 },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `char_filters` object is a child object of the [analysis object](#analysis). It contains any number of [{char\_filter\_name} objects](#char-name):
 
@@ -336,8 +345,8 @@ The `tokenizers` object contains any custom [tokenizers](customize-index.md#toke
                 },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `tokenizers` object is a child object of the [analysis object](#analysis). It contains any number of [{tokenizer\_name objects}](#tokenizer-name):
 
@@ -382,8 +391,8 @@ The `token_filters` object contains any custom token filters defined for a Searc
                 },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `token_filters` object is a child object of the [analysis object](#analysis). It contains any number of [{token\_filter\_name} objects](#token-filter-name):
 
@@ -628,8 +637,8 @@ The `token_maps` object contains any custom wordlists defined for a Search index
                 },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `token_maps` object is a child object of the [analysis object](#analysis). It contains any number of [{wordlist\_name} objects](#wordlist-name):
 
@@ -674,8 +683,8 @@ The `date_time_parsers` object contains any custom date/time parsers defined for
                 }
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `date_time_parsers` object is a child object of the [analysis object](#analysis). It contains any number of [{date\_time\_parser\_name} objects](#dt-parser-name):
 
@@ -714,8 +723,8 @@ The `default_mapping` object contains settings for the default type mapping on t
             },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `default_mapping` object is a child object of the [Mapping Object](#mapping). It contains the following properties:
 
@@ -776,8 +785,8 @@ The `types` object contains any additional user-defined type mappings for a Sear
             }
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `types` object is a child object of the [Mapping Object](#mapping). It contains any number of [{scope}.{collection} objects](#scope-collection):
 
@@ -872,8 +881,8 @@ The `{field_name}` object contains properties and an array for a child field in 
                         },
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The name of the object corresponds to the name of the field you want to include or exclude from your Search index.
 
@@ -904,8 +913,8 @@ The `fields` array contains objects with settings for each child field to index 
                                     ]
 ```
 
-|  | To view the entire JSON payload, click **View**. |
-|  | ------------------------------------------------ |
+> [!TIP]
+> To view the entire JSON payload, click **View**.
 
 The `fields` array is located inside a [{field\_name} object](#child-fields). It contains the following properties:
 

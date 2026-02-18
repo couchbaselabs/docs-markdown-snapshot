@@ -1,4 +1,12 @@
+---
+title: Operator Self-Certification Lifecycle
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-platform-certification.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-platform-certification.html)
+
+# Operator Self-Certification Lifecycle
 
 > Certifying your platform for use with Couchbase Kubernetes Operator. 
 
@@ -48,8 +56,8 @@ Individual test cases are run in separate namespaces so the whole process can be
 
 Platform certification needs full administrative access to the platform under test. Installation of cluster roles, cluster role bindings and custom resource definitions will always be an administrative task, so this is a hard requirement. Additionally, to test platform behavior, the self-certification image will need to install admission controllers in order to test compatibility, and have access to global resources such as nodes and storage classes in order to correctly simulate error conditions.
 
-|  | **Do not run self-certification on a production cluster** as it reserves the right to perform necessary cleanup operations of any resource it requires, and may interfere with other deployments on the platform. **It is highly recommended that any platform under test is ephemeral** — created on demand, tested, then deprovisioned. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> **Do not run self-certification on a production cluster** as it reserves the right to perform necessary cleanup operations of any resource it requires, and may interfere with other deployments on the platform. **It is highly recommended that any platform under test is ephemeral** — created on demand, tested, then deprovisioned.
 
 ## [](#what-is-the-self-certification-lifecycle-process)What is the Self-Certification Lifecycle Process?
 
@@ -64,8 +72,8 @@ The certification workflows consist of the following steps:
 5. The Couchbase Cloud-Native approval committee will review the results submitted. Based on the review, we will notify you whether the results meet the acceptance criteria or if issues are identified.
 6. Once approval is successful, our Couchbase Partner team will enter into a partnership agreement with the platform vendor or platform-specific component vendor, as applicable.
 
-|  | All the above steps must be completed for Couchbase to accept and fully support compatibility with a Kubernetes platform and other platform-specific components. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> All the above steps must be completed for Couchbase to accept and fully support compatibility with a Kubernetes platform and other platform-specific components.
 
 ## [](#running-self-certification)Running Self-Certification
 

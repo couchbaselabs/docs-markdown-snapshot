@@ -1,4 +1,13 @@
+---
+title: Exporting Functions
+description: Couchbase provides an option to export Functions as a JSON document.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-function-export.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-function-export.html)
+
+# Exporting Functions
 
 > Couchbase provides an option to export Functions as a JSON document. Using the export and import options, you can port defined Functions from your Test-to-Test, Test-to-Production, or Production-to-Production environments. 
 

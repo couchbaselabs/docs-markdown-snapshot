@@ -1,4 +1,14 @@
+---
+title: set flush_param
+description: The command <code class="cmd">set flush_param</code> establishes
+  bucket parameters for threading and memory management.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbepctl/set-flush_param.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbepctl/set-flush_param.html)
+
+# set flush_param
 
 > The command `set flush_param` establishes bucket parameters for threading and memory management. 
 
@@ -25,8 +35,11 @@ cbepctl [host]:11210 -b [bucket-name] -u [administrator-name] -p [administrator-
 
 Tune the dynamic shared thread pool performance by changing the thread types inside the ep-engine and memcached at run time. The command `set flush_param` adjusts the number of threads that prioritize read, write, non-i/o and auxiliary-i/o operations. These settings take effect immediately and do not require that the bucket be restarted.
 
-|  | The settings for threads number take effect only if the underlying operating system has a sufficient number of CPU cores. The minimum number of CPU cores is four (4), but three (3) additional cores are required for each additional writer thread. For example, five (5) writer threads is a valid setting if the underlying hardware has at least sixteen (16) cores. Changes of thresholds are NOT persistent and must be reapplied after the bucket warmup. The settings warmup\_min\_items\_threshold, warmup\_min\_memory\_threshold, exp\_pager\_stime, mem\_high\_wat, and mem\_low\_wat are removed, and no longer supported through cbepctl. These settings are replaced by new settings expiryPagerSleepTime, warmupBehavior, memoryLowWatermark, and memoryHighWatermark, which can be configured using REST APIs. See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * The settings for threads number take effect only if the underlying operating system has a sufficient number of CPU cores. The minimum number of CPU cores is four (4), but three (3) additional cores are required for each additional writer thread. For example, five (5) writer threads is a valid setting if the underlying hardware has at least sixteen (16) cores.
+> * Changes of thresholds are NOT persistent and must be reapplied after the bucket warmup.
+> * The settings `warmup_min_items_threshold`, `warmup_min_memory_threshold`, `exp_pager_stime`, `mem_high_wat`, and `mem_low_wat` are removed, and no longer supported through `cbepctl`.  
+> These settings are replaced by new settings `expiryPagerSleepTime`, `warmupBehavior`, `memoryLowWatermark`, and `memoryHighWatermark`, which can be configured using REST APIs. See [Creating and Editing Buckets](../../rest-api/rest-bucket-create.md).
 
 alog\_sleep\_time, alog\_task\_time
 
@@ -36,15 +49,15 @@ The `cbepctl flush_param` command is used to change the initial time and the int
 
 By default, the access scanner runs once every 24 hours at 10:00 AM GMT. The scanner is highly CPU-intensive: therefore, to reduce the cluster-wide impact of running this task, its start time should be staggered to a different value on each node in the cluster. Note also that if the scanner runs at the same time that index updates are being made (either on the current node, or on one or more other nodes) by the Index Service, the performance of the index updates may be adversely affected. The scanner should be configured to minimize the likelihood of this problem.
 
-|  | The access scanner always scans the entire key table, so increasing the frequency of the scans will not decrease the amount of work the scanner is doing. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The access scanner always scans the entire key table, so increasing the frequency of the scans will not decrease the amount of work the scanner is doing.
 
 mutation\_mem\_threshold
 
 By default, Couchbase Server sends clients a temporary out-of-memory error message if RAM is 95% consumed and only 5% RAM remains for overhead. Use the `cbepctl set flush_param mutation_mem-threshold` command parameter to change this threshold value.
 
-|  | Do not change this default to a higher value. However, this value might be reduced if you need more RAM for system overhead such as disk queue or for server data structures. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not change this default to a higher value. However, this value might be reduced if you need more RAM for system overhead such as disk queue or for server data structures.
 
 ## [](#options)Options
 
@@ -73,8 +86,8 @@ __Table 1\. set flush\_param options__
 | item\_compressor\_chunk\_duration | Maximum time, in milliseconds, for which the item compressor task is run, before being paused, and then resumed according to the established item\_compressor\_interval. Default value is 20. |
 | min\_compression\_ratio           | Minimum allowed ratio of each item’s uncompressed form to its compressed form. If the actual ratio is less than this value, the item is stored in uncompressed form. Default value is 1.2.    |
 
-|  | **%** You must use the percentage sign in order to set the value by percentage. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> **%** You must use the percentage sign in order to set the value by percentage.
 
 ## [](#examples)Examples
 

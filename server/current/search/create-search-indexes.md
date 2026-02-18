@@ -1,4 +1,13 @@
+---
+title: Create a Search Index
+description: Create a Search index to get started with the Search Service in your cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-search-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/create-search-indexes.html)
+
+# Create a Search Index
 
 > Create a Search index to get started with the Search Service in your cluster. 
 
@@ -7,8 +16,8 @@ You can create a Search index with:
 * The [Couchbase Server Web Console](#ui).
 * The [Search Service REST API](#api).
 
-|  | If you’re new to developing with the Search Service, [create a Search index with the UI](#ui). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md), or [Import a Search Index Definition with the Web Console](import-search-index.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re new to developing with the Search Service, [create a Search index with the UI](#ui). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md), or [Import a Search Index Definition with the Web Console](import-search-index.md).
 
 As of Couchbase Server version 8.0, you can also add synonym collections to your cluster and Search index to run synonym searches on text fields. For more information about synonym searches, see [Add Synonyms to a Search Index](synonyms/synonyms-search.md).
 
@@ -21,8 +30,14 @@ To [create a basic Search index](create-search-index-ui.md), provide the followi
 
 Many of the examples in the Search Service documentation use the `travel-sample` sample data bucket. For more information about how to load this sample data on your own cluster, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md).
 
-|  | For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Couchbase Server cluster running version 7.6. The Couchbase Server Web Console marks indexes as scoped or not scoped to a specific bucket and scope. Indexes created with a previous version of Couchbase Server are not scoped. To view the full, scoped name for an index, go to the **Search** tab and point to the **Index Name**. Use the scoped name with the [Search Service REST API](../rest-api/rest-fts.md), for any endpoints that do not include the bucket and scope in their path. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Couchbase Server cluster running version 7.6.
+> 
+> The Couchbase Server Web Console marks indexes as scoped or not scoped to a specific bucket and scope.
+> 
+> Indexes created with a previous version of Couchbase Server are not scoped.
+> 
+> To view the full, scoped name for an index, go to the **Search** tab and point to the **Index Name**. Use the scoped name with the [Search Service REST API](../rest-api/rest-fts.md), for any endpoints that do not include the bucket and scope in their path.
 
 If you want to restrict the documents you add to an index, you can also:
 
@@ -49,8 +64,8 @@ For more information about how to create an index with the Quick Index editor, s
 
 You can create a Search index with the REST API through a JSON payload. Most properties in the JSON payload correspond to settings in the Web Console. You can also copy the Search index definition JSON payload from a Search index in the Web Console to use in a REST API call.
 
-|  | Use the scoped name for an index with the [Search Service REST API](../rest-api/rest-fts.md) for any endpoints that do not include the bucket and scope in their path. For example, you must use bucket.scope.index\_name as the format for your index name with the analyzeDoc endpoint, but not with the new 7.6 query endpoint. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use the scoped name for an index with the [Search Service REST API](../rest-api/rest-fts.md) for any endpoints that do not include the bucket and scope in their path. For example, you must use `bucket.scope.index_name` as the format for your index name with the `analyzeDoc` endpoint, but not with the new 7.6 `query` endpoint.
 
 For more information about how to use the REST API to create a Search index, see [Create a Search Index with the REST API and curl/HTTP](create-search-index-rest-api.md).
 

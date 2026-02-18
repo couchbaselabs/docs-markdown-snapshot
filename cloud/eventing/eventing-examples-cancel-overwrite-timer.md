@@ -1,4 +1,13 @@
+---
+title: Cancel or Overwrite a Timer
+description: Create, cancel, and overwrite Timers.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-cancel-overwrite-timer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-examples-cancel-overwrite-timer.html)
+
+# Cancel or Overwrite a Timer
 
 > Create, cancel, and overwrite Timers. 
 
@@ -22,8 +31,8 @@ Before trying out the examples on this page, you must first:
 
 For more information about creating buckets, scopes, and collections, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 
-|  | Do not add, modify, or delete documents in the Eventing storage keyspace rr100.eventing.metadata while your Eventing Functions are in a deployed state. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not add, modify, or delete documents in the Eventing storage keyspace `rr100.eventing.metadata` while your Eventing Functions are in a deployed state.
 
 ## [](#setup)Setup
 

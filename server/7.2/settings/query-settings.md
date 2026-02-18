@@ -1,4 +1,14 @@
+---
+title: Settings and Parameters
+description: You can configure the Query service using cluster-level query
+  settings, node-level query settings, and request-level query parameters.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/settings/pages/query-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/settings/query-settings.html)
+
+# Settings and Parameters
 
 > You can configure the Query service using cluster-level query settings, node-level query settings, and request-level query parameters. 
 
@@ -11,8 +21,8 @@ __Table 1\. Comparison of Query Settings and Parameters__
 | **Node-level query settings**    | Service Node        | The administrator at the system level | Server side | cURL statements                                                             |
 | **Request-level parameters**     | Request (statement) | Each user                             | Client side | cbq command-line parameters, cURL statements, client programming, or the UI |
 
-|  | Cluster-level settings and node-level settings are collectively referred to as _service-level settings_. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Cluster-level settings and node-level settings are collectively referred to as _service-level settings_.
 
 ## [](#query-setting-levels-and-equivalents)Query Setting Levels and Equivalents
 

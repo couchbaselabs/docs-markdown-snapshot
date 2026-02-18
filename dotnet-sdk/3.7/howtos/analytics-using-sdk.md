@@ -1,11 +1,25 @@
+---
+title: Analytics
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL++ syntax.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/analytics-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/howtos/analytics-using-sdk.html)
+
+# Analytics
 
 > Parallel data management for complex queries over many records, using a familiar SQL++ syntax. 
 
 This page covers using our operational .NET SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
-|  | Analytics SDKs SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information. Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Analytics SDKs
+> 
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information.
+> 
+> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information.
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/7.6/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md).
 
@@ -46,8 +60,8 @@ var result = await cluster.AnalyticsQueryAsync<dynamic>("select airportname, cou
     .AddNamedParameter("country", "France");
 ```
 
-|  | As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources. See example in the next section. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources. See example in the next section.
 
 ## [](#fluent-api)Fluent API
 
@@ -122,8 +136,8 @@ From Couchbase Data Platform 6.5, _Deferred Queries_ and _KV Ingestion_ are adde
 
 You can ingest the results of an Analytics query directly back into a given collection. This then allows the results themselves to be queried in turn.
 
-|  | From .NET SDK 3.1, KV Ingest has an Interface Level of [Uncommited](../project-docs/compatibility.md#interface-stability). |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From .NET SDK 3.1, KV Ingest has an Interface Level of [Uncommited](../project-docs/compatibility.md#interface-stability).
 
 ```csharp
 await cluster.IngestAsync<dynamic>(

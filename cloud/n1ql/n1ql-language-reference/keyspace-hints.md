@@ -1,4 +1,13 @@
+---
+title: Keyspace Hints
+description: Keyspace hints apply to a specific keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/keyspace-hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/keyspace-hints.html)
+
+# Keyspace Hints
 
 > Keyspace hints apply to a specific keyspace. 
 
@@ -10,8 +19,8 @@ If the keyspace is _not_ given an explicit alias in the query, the hint must ref
 
 There are two possible formats for each optimizer hint: simple syntax and JSON syntax. Note that you cannot mix simple syntax and JSON syntax in the same hint comment.
 
-|  | While most keyspace hints guide the optimizer to use certain indexes or join methods, you can also use negative hints to instruct the optimizer what not to use. For more information, see [Negative Keyspace Hints](negative-keyspace-hints.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> While most keyspace hints guide the optimizer to use certain indexes or join methods, you can also use negative hints to instruct the optimizer what not to use. For more information, see [Negative Keyspace Hints](negative-keyspace-hints.md).
 
 ## [](#index)INDEX
 
@@ -191,8 +200,16 @@ Furthermore, the hint operates on an all-or-nothing basis. The optimizer uses th
 
 If you do not specify this hint, the optimizer selects the optimal available index.
 
-|  | To use the INDEX\_ALL hint effectively: You must specify at least two indexes for the hint to be valid. You can only use GSI indexes. The hint does not support FTS indexes. You cannot mix INDEX\_ALL with other index hints for the same keyspace. It must be the only index hint present. You can use the hint on a keyspace on the right-hand side of an ANSI JOIN or ANSI NEST. You cannot use it on a keyspace on the inner side of a legacy JOIN or NEST, like LOOKUP JOIN/NEST or INDEX JOIN/NEST. INDEX\_COMBINE is an alias for INDEX\_ALL. You can use either as the hint keyword. Negative hints are not available for INDEX\_ALL. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To use the INDEX\_ALL hint effectively:
+> 
+> * You must specify at least two indexes for the hint to be valid.
+> * You can only use GSI indexes. The hint does not support FTS indexes.
+> * You cannot mix INDEX\_ALL with other index hints for the same keyspace. It must be the only index hint present.
+> * You can use the hint on a keyspace on the right-hand side of an ANSI JOIN or ANSI NEST.
+> * You cannot use it on a keyspace on the inner side of a legacy JOIN or NEST, like LOOKUP JOIN/NEST or INDEX JOIN/NEST.
+> * INDEX\_COMBINE is an alias for INDEX\_ALL. You can use either as the hint keyword.
+> * Negative hints are not available for INDEX\_ALL.
 
 ### [](#simple-syntax-2)Simple Syntax
 
@@ -204,8 +221,8 @@ gsi-all-hint-simple ::= 'INDEX_ALL' '(' keyspace index* ')'
 
 With the simple syntax, this hint specifies a single keyspace expression along with zero, one, or more indexes. You can use this hint multiple times within the hint comment to specify hints for more than one keyspace.
 
-|  | You must specify at least two indexes. The hint is invalid if you provide zero or one index. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must specify at least two indexes. The hint is invalid if you provide zero or one index.
 
 #### [](#arguments-2)Arguments
 
@@ -500,8 +517,8 @@ Note that you cannot use a hint comment and the `USE` clause to specify optimize
 
 This hint directs the optimizer to consider a nested-loop join for the specified keyspace. This hint must be specified on the keyspace on the right-hand side of the join. If not specified, the optimizer selects the optimal join method.
 
-|  | This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements.
 
 ### [](#simple-syntax-4)Simple Syntax
 
@@ -634,8 +651,8 @@ A hash join has two sides: a **build** side and a **probe** side. The build side
 
 This hint enables you specify whether the right side of the join should be the build side or the probe side. If you specify that the right side of the join is the build side, then the left side will be the probe side, and vice versa.
 
-|  | This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements.
 
 ### [](#simple-syntax-5)Simple Syntax
 

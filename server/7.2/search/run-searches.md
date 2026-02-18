@@ -1,9 +1,18 @@
+---
+title: Run a Search
+description: Run a Search query to search and return the contents of a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/run-searches.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/run-searches.html)
+
+# Run a Search
 
 > Run a Search query to search and return the contents of a Search index. 
 
-|  | You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service.
 
 You can run a search against a Search index with:
 

@@ -1,4 +1,14 @@
+---
+title: Customize a Search Index with the Web Console
+description: Configure additional options for a Search index to improve
+  performance and fine tune your search results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/customize-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/customize-index.html)
+
+# Customize a Search Index with the Web Console
 
 > Configure additional options for a Search index to improve performance and fine tune your search results. 
 

@@ -1,4 +1,14 @@
+---
+title: Configure LLM Value Adds
+description: Use Value Adds features to help you enhance the capabilities of
+  your large language models (LLMs).
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-value-adds.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/model-service/configure-value-adds.html)
+
+# Configure LLM Value Adds
 
 > Use Value Adds features to help you enhance the capabilities of your large language models (LLMs). 
 
@@ -14,8 +24,8 @@ When deploying a Capella-hosted LLM, you have caching options. Caching stores co
 
 Enabling caching improves your model’s response times and reduces costs by reducing calls to the LLM. You can also enable conversational caching to store chatbot sessions that add context and enhance conversational experiences.
 
-|  | For information about the billable costs of caching value adds, see [Manage Your Billing - AI Services](../../../cloud/billing/billing.md#model-service). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For information about the billable costs of caching value adds, see [Manage Your Billing - AI Services](../../../cloud/billing/billing.md#model-service).
 
 ### [](#caching-expiry)Caching Expiry
 
@@ -105,8 +115,8 @@ Consider the computational and memory resources required for semantic caching.
 
 Asynchronous processing helps improve throughput and efficiency during periods of high demand or when processing large volumes of data. Rather than processing requests right away, asynchronous processing allows jobs to be queued and processed when system capacity becomes available. Enabling Async Processing maximizes resource utilization and reduces wait times for requests that do not require immediate results.
 
-|  | For information about the billable costs of Async Processing, see [Manage Your Billing - AI Services](../../../cloud/billing/billing.md#model-service). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For information about the billable costs of Async Processing, see [Manage Your Billing - AI Services](../../../cloud/billing/billing.md#model-service).
 
 Async Processing is beneficial when you need high throughput for batch operations, such as handling spikes in requests from multiple users or applications. Async Processing is less suitable for real-time applications that need immediate results, such as live chatbot responses.
 

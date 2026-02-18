@@ -1,4 +1,14 @@
+---
+title: View Traces in Agent Tracer
+description: Use the Agent Tracer inside Capella AI Services to view logs from
+  an agent app integrated with Agent Catalog.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/view-traces.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/agent-tracer/view-traces.html)
+
+# View Traces in Agent Tracer
 
 > Use the Agent Tracer inside Capella AI Services to view logs from an agent app integrated with Agent Catalog. 
 
@@ -32,10 +42,9 @@ To view agent traces in the Agent Tracer UI:
 
   1. In the search bar, choose to search for a **Session ID** or **Tags** from the specific trace you want to examine.  
   For more information about configuring tags, see [Add Tags to Spans or Logs](add-spans-callbacks.md#add-tags).
-  2. Click the **Bucket**, **Date Range**, or **App** filters to change the displayed sessions.
-
-|  | The app name matches the name of your [root span](add-spans-callbacks.md#root-span) from your logging configuration. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+  2. Click the **Bucket**, **Date Range**, or **App** filters to change the displayed sessions.  
+  > [!TIP]  
+  > The app name matches the name of your [root span](add-spans-callbacks.md#root-span) from your logging configuration.
 4. Click the name of the session that you want to debug to open its logs.
 5. In the **Session Trace Logs**, use the filters to change what messages are displayed from your logs.  
 For more information about the available trace types, see [Agent Tracer Trace Types](agent-tracer.md#trace-types).

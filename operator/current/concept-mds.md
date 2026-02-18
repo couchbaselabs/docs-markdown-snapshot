@@ -1,4 +1,12 @@
+---
+title: Couchbase Multi-Dimensional Scaling
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-mds.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-mds.html)
+
+# Couchbase Multi-Dimensional Scaling
 
 > Planning for and using multi-dimensional scaling for your cluster. 
 
@@ -28,8 +36,8 @@ MDS allows a service, or group of services to be horizontally scaled as needs di
 
 For further information see the [MDS configuration how-to](howto-mds.md).
 
-|  | Although the example depicts groups of services it is best to independently scale each on its own. By doing this there are now no assumptions that certain services will grow together. If our assumptions change in the future our cluster can be scaled with zero impact to any other service. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Although the example depicts groups of services it is best to independently scale each on its own. By doing this there are now no assumptions that certain services will grow together. If our assumptions change in the future our cluster can be scaled with zero impact to any other service.
 
 ## [](#running-different-services-on-different-hardware)Running Different Services on Different Hardware
 

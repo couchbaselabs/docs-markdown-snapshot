@@ -1,4 +1,12 @@
+---
+title: Alertmanager
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/component-alertmanager.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/component-alertmanager.html)
+
+# Alertmanager
 
 > Alertmanager handles and routes alerts from CMOS Prometheus server. 
 

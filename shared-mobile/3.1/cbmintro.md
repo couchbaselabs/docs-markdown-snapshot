@@ -1,4 +1,12 @@
+---
+title: Introduction to Couchbase Mobile
+editUrl: https://github.com/couchbase/docs-mobile/edit/release/3.1/modules/ROOT/pages/cbmintro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/shared-mobile/3.1/cbmintro.html)
+
+# Introduction to Couchbase Mobile
 
 # Introduction to Couchbase Mobile
 

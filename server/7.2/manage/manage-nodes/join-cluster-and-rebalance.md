@@ -1,4 +1,13 @@
+---
+title: Join a Cluster and Rebalance
+description: An independent Couchbase Server-node can be joined to an existing cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-nodes/join-cluster-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-nodes/join-cluster-and-rebalance.html)
+
+# Join a Cluster and Rebalance
 
 > An independent Couchbase Server-node can be joined to an existing cluster. 
 

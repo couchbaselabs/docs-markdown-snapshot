@@ -1,4 +1,12 @@
+---
+title: Upgrade the Operator
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-operator-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-operator-upgrade.html)
+
+# Upgrade the Operator
 
 Upgrading the Couchbase Kubernetes Operator is a five-step process:
 
@@ -8,18 +16,24 @@ Upgrading the Couchbase Kubernetes Operator is a five-step process:
 * [Step 4: Update Existing Resources](#update-existing-resources)
 * [Step 5: Install the New Operator](#install-operator)
 
-|  | When upgrading Couchbase Operator, you must use the uninstaller from the same version of the software you used to install it, then use the newer installer to upgrade. For example: To upgrade the Operator from 2.2 to 2.4, use Version 2.2 to remove the older version of the software, then use the 2.4 release package to upgrade. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When upgrading Couchbase Operator, you must use the uninstaller from the same version of the software you used to install it, then use the newer installer to upgrade.
+> 
+> For example:
+> 
+> To upgrade the Operator from 2.2 to 2.4, use Version 2.2 to remove the older version of the software, then use the 2.4 release package to upgrade.
 
 ## [](#before-upgrading)Before Upgrading
 
 Make sure to consult the [Release Notes](release-notes.md) and the [What’s New?](whats-new.md) pages before upgrading, as there may be additional considerations or steps required on a per-release basis. Clusters with [couchbaseclusters.spec.antiAffinity](resource/couchbasecluster.md#couchbaseclusters-spec-antiaffinity) attribute enabled will require the addition of a temporary node for the upgrade — see [here](concept-sizing.md#rolling-upgrade) for further details.
 
-|  | About Upgrading From Version 1.x.x There is no direct upgrade path to this release from versions prior to 2.0.x. To upgrade from a 1.x.x release, you must first upgrade to 2.0.x, paying particular attention to supported Kubernetes platforms and Couchbase Server versions. Refer to the [2.0.x version of this page](#2.0@operator::howto-operator-upgrade.adoc) if upgrading from a 1.x.x release. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> About Upgrading From Version 1.x.x
+> 
+> There is no direct upgrade path to this release from versions prior to 2.0.x. To upgrade from a 1.x.x release, you must first upgrade to 2.0.x, paying particular attention to supported Kubernetes platforms and Couchbase Server versions. Refer to the [2.0.x version of this page](#2.0@operator::howto-operator-upgrade.adoc) if upgrading from a 1.x.x release.
 
-|  | The Operator should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](https://docs.couchbase.com/operator/current/concept-hibernation.html) documentation. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The Operator should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](https://docs.couchbase.com/operator/current/concept-hibernation.html) documentation.
 
 ## [](#download-operator)Step 1: Download the New Operator Package
 
@@ -27,8 +41,8 @@ Download the Operator [package](https://www.couchbase.com/downloads) for the ver
 
 The Operator package contains the YAML configuration files and command-line tools that you will use to upgrade and manage the Operator.
 
-|  | After you unpack the download, the resulting directory will be titled something like couchbase-autonomous-operator-kubernetes\_x.x.x-linux\_x86\_64. Make sure to cd into this directory before you run the commands in this guide. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> After you unpack the download, the resulting directory will be titled something like `couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64`. Make sure to `cd` into this directory before you run the commands in this guide.
 
 ## [](#uninstall-operator)Step 2: Uninstall the Old DAC and Operator
 
@@ -36,8 +50,8 @@ What needs to be uninstalled is dependent on the release you are upgrading from.
 
 In general, you’ll need to undo the installation steps in reverse order for the specific version of the Operator you are upgrading from, e.g. uninstall the operator, then uninstall the DAC.
 
-|  | Never delete existing CRDs. If an existing CRD is deleted, any CouchbaseCluster resources will also be deleted. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Never delete existing CRDs. If an existing CRD is deleted, any `CouchbaseCluster` resources will also be deleted.
 
 To uninstall the current Operator version, instructions are provided for [Kubernetes](install-kubernetes.md#uninstalling-the-operator) and [OpenShift](install-openshift.md#uninstalling-the-operator).
 
@@ -45,8 +59,8 @@ To uninstall the current Operator version, instructions are provided for [Kubern
 
 In the Operator package you downloaded, you’ll find the updated version of the CRDs: `crd.yaml`. Between releases of the Operator, the CRDs may undergo small changes that don’t affect backward compatibility, and may add new fields or make changes to validation, therefore must be reinstalled. New CRDs may also be introduced that need installing.
 
-|  | CRDs are distributed as a single file. During the upgrade procedure, errors are expected during the apply operation if a CRD was previously created using a create operation. Using apply here allows the CRD to be replaced and created all in one operation. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> CRDs are distributed as a single file. During the upgrade procedure, errors are expected during the `apply` operation if a CRD was previously created using a `create` operation. Using `apply` here allows the CRD to be replaced and created all in one operation.
 
 To update the CRDs, run the following command:
 

@@ -1,4 +1,14 @@
+---
+title: Document
+description: Couchbase supports CRUD operations, various data structures, and
+  binary documents.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.3/concept-docs/documents.html)
+
+# Document
 
 > Couchbase supports CRUD operations, various data structures, and binary documents. 
 
@@ -20,8 +30,21 @@ Unresolved include directive in modules/concept-docs/pages/documents.adoc - incl
 
 Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::7.5@sdk:shared:partial$documents.adoc\[\]
 
-|  | If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents: List<MutateInSpec> spec = Collections.singletonList(         MutateInSpec.upsert("msrp", 18.00) ); collection.mutateIn("airline\_10", spec); or [N1QL UPDATE](#7.1@server:n1ql:n1ql-language-reference/update.adoc) to update documents based on specific query criteria: update \`travel-sample\`.inventory.airline SET sale\_price = msrp \* 0.75 WHERE msrp < 19.95; |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
+> 
+> ```java
+> List<MutateInSpec> spec = Collections.singletonList(
+>         MutateInSpec.upsert("msrp", 18.00)
+> );
+> collection.mutateIn("airline_10", spec);
+> ```
+> 
+> or [N1QL UPDATE](#7.1@server:n1ql:n1ql-language-reference/update.adoc) to update documents based on specific query criteria:
+> 
+> ```sql
+> update `travel-sample`.inventory.airline SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
+> ```
 
 Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::7.5@sdk:shared:partial$documents.adoc\[\]
 

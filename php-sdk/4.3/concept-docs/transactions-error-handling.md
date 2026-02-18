@@ -1,4 +1,13 @@
+---
+title: Error Handling
+description: Handling transaction errors with Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/transactions-error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/concept-docs/transactions-error-handling.html)
+
+# Error Handling
 
 > Handling transaction errors with Couchbase. 
 

@@ -1,4 +1,13 @@
+---
+title: "Function: simpleFlatten"
+description: Flatten a document for integration with a non-NOSQL RDBMS.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-simpleFlatten.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-handler-simpleFlatten.html)
+
+# Function: simpleFlatten
 
 **Goal**: Flatten a document for integration with a non-NOSQL RDBMS.
 

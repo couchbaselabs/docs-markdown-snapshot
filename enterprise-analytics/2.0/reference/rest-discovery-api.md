@@ -1,4 +1,14 @@
+---
+title: Prometheus Discovery API
+description: The discovery API generates a list of Enterprise Analytics nodes
+  that tools such Prometheus can use to collect metrics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-discovery-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-discovery-api.html)
+
+# Prometheus Discovery API
 
 > The discovery API generates a list of Enterprise Analytics nodes that tools such Prometheus can use to collect metrics. 
 
@@ -6,8 +16,8 @@ You can use Prometheus or similar tools to collect statistics and alerts from yo
 
 See [Configure Prometheus to Collect Couchbase Metrics](../manage/monitor/set-up-prometheus-for-monitoring.md) for detailed information about using this API with Prometheus.
 
-|  | This endpoint is a replacement for the earlier /prometheus\_sd-config.yaml endpoint. That endpoint is now deprecated. See [Replicate the Earlier Discovery API](#old-api) to learn how to call the new discovery API to get he same output as the old API. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint is a replacement for the earlier `/prometheus_sd-config.yaml` endpoint. That endpoint is now deprecated. See [Replicate the Earlier Discovery API](#old-api) to learn how to call the new discovery API to get he same output as the old API.
 
 ## [](#http-method-and-uri)HTTP Method and URI
 

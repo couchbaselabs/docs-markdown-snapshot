@@ -1,4 +1,14 @@
+---
+title: Search
+description: You can use the Full Text Search service (FTS) to create queryable
+  full-text indexes in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.3/howtos/full-text-searching-with-sdk.html)
+
+# Search
 
 > You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
 
@@ -45,8 +55,8 @@ except CouchbaseException as ex:
     traceback.print_exc()
 ```
 
-|  | When using a Couchbase version < 6.5 you must create a valid Bucket connection using cluster.bucket(name) before you can use Search. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.bucket(name)` before you can use Search.
 
 Let’s break it down. The `search_query` API takes the name of the index and the type of query as required arguments and then allows to provide additional options if needed (in the example above, no options are specified).
 

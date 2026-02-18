@@ -1,12 +1,23 @@
+---
+title: Get Started with Capella iQ
+description: Capella iQ is your partner in getting started with Couchbase
+  Capella. Use it to generate SQL++ queries, sample data, build indexes, and
+  more.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/get-started-with-iq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/capella-iq/get-started-with-iq.html)
 
-|  | Remember that Capella iQ harnesses the power of a third-party large language model (LLM) to improve your queries. Do not provide sensitive data in the prompt such as personally identifiable information or any confidential information that you would not want shared. Because technology built on LLMs can also suffer from hallucinations from time to time, be sure to review the output. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Get Started with Capella iQ
+
+> [!NOTE]
+> Remember that Capella iQ harnesses the power of a third-party large language model (LLM) to improve your queries. Do not provide sensitive data in the prompt such as personally identifiable information or any confidential information that you would not want shared. Because technology built on LLMs can also suffer from hallucinations from time to time, be sure to review the output.
 
 Capella iQ is your partner in Capella, allowing you to work faster and assist you directly in the Capella UI. It uses a large language model (LLM) and Couchbase-specific knowledge to generate SQL++ queries and more based on natural language prompts. For example, you can ask Capella iQ to generate a SQL++ query in a cluster with the travel-sample dataset using the `Count the number of airlines per country` prompt. Capella iQ also produces responses based on the context of a chat session. You can iterate on this query with another prompt, such as `Only count those in the United States.`
 
-|  | Only questions that relate to your cluster and Couchbase generate a response. The examples on this page relate to operational clusters only. For more information about using iQ with Capella Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Only questions that relate to your cluster and Couchbase generate a response. The examples on this page relate to operational clusters only. For more information about using iQ with Capella Analytics, see [Get Assistance from Capella iQ](../../../analytics/query/iq.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -30,8 +41,8 @@ Capella iQ is a part of the query editor in Capella’s Data Tools. As part of t
 
 ## [](#generate-sql-queries)Generate SQL++ Queries
 
-|  | Always review every query that Capella iQ returns before running it. |
-|  | -------------------------------------------------------------------- |
+> [!NOTE]
+> Always review every query that Capella iQ returns before running it.
 
 Use sample data to generate SQL++ queries with conversational questions.
 
@@ -91,8 +102,8 @@ The query output appears in the results area of the query editor. When you creat
 
 You can ask Capella iQ to generate realistic sample data and insert it into your cluster. Generating sample data is helpful when testing configurations and learning about Capella. For example, suppose you’re building an application that requires data about national parks in the United States. You can use Capella iQ to populate your cluster with relevant data.
 
-|  | The provided prompts are for example purposes. With Capella iQ, you can format your prompts differently to get the same information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The provided prompts are for example purposes. With Capella iQ, you can format your prompts differently to get the same information.
 
 1. Create a new scope and collection for national parks data:
 
@@ -112,9 +123,8 @@ To help speed up application development, Capella iQ can generate SDK code based
 2. Submit a prompt for a custom query. For example, "create a scope."
 3. When the query suggestion appears, click **SDK Preview**.  
 ![Capella iQ response with the SDK button](../_images/iq/iQ-sdk-preview.png)  
-
-|  | When clicking **SDK Preview** for the first time, the iQ Settings dialog appears so you can select your preferred SDK language. After choosing a language, the **SDK Preview** button changes to the name of your chosen language. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+> [!NOTE]  
+> When clicking **SDK Preview** for the first time, the iQ Settings dialog appears so you can select your preferred SDK language. After choosing a language, the **SDK Preview** button changes to the name of your chosen language.  
 In the results area of the query editor, the SDK code appears with an option to copy it.  
 ![GO SDK code generated from the 'create scope' prompt](../_images/iq/iQ-sdk.png)
 4. Review any code before using it and replace `your_username` and `your_password` with your [cluster access credentials](../../clusters/manage-database-users.md).  
@@ -128,8 +138,8 @@ After successfully running a query suggestion from Capella iQ, the prompt respon
 
 Marking a query as a favorite lets you refer back to it and gives the option to include it as part of your prompts. Including a favorite query in your prompts can improve Capella iQ’s accuracy and usability across your chat sessions. For example, this is useful when working with JOINs. If you prompt Capella iQ to use a [JOIN](../../n1ql/n1ql-language-reference/join.md), you can save the successful query so that subsequent queries can reference this JOIN. You can then prompt Capella iQ without having to mention this JOIN.
 
-|  | Only one of your favorite queries can be included in your prompts. |
-|  | ------------------------------------------------------------------ |
+> [!NOTE]
+> Only one of your favorite queries can be included in your prompts.
 
 View all favorite queries by clicking **Browse favorite queries** (⭒).
 

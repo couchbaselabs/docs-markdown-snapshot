@@ -1,4 +1,13 @@
+---
+title: Managing Collections
+description: Managing Collections with the Analytics Workbench.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/manage-datasets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/manage-datasets.html)
+
+# Managing Collections
 
 The Analytics Workbench enables you to create, edit, and drop collections. The Analytics Workbench also enables you to connect or disconnect local links and remote links.
 

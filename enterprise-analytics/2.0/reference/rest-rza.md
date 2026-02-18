@@ -1,4 +1,13 @@
+---
+title: Server Groups API
+description: The <em>Server Groups REST API</em> manages <em>Server Group Awareness</em>.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-rza.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-rza.html)
+
+# Server Groups API
 
 > The _Server Groups REST API_ manages _Server Group Awareness_. This enables logical server-groupings to be defined across the cluster: each group may be physically located on a specific rack or availability zone. 
 

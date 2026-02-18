@@ -1,9 +1,19 @@
+---
+title: Advanced Keyspace Accessors
+description: <em>Advanced Keyspace Accessors</em> make it possible to access
+  advanced KV functionality using the following built-in operators.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-advanced-keyspace-accessors.html)
+
+# Advanced Keyspace Accessors
 
 _Advanced Keyspace Accessors_ make it possible to access advanced KV functionality using the following built-in operators. They utilize the same bucket bindings defined in the handler as _Basic Keyspace Accessors_, but expose a richer set of options and operators that can be used to 1) set or retrieve expirations, 2) solve race conditions via CAS and 3) manipulate hot KV items under high contention.
 
-|  | The [Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors) are much easier to use, having a trivial API, and are also a bit faster than the corresponding Advanced Keyspace Accessors. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [Basic Keyspace Accessors](eventing-language-constructs.md#bucket%5Faccessors) are much easier to use, having a trivial API, and are also a bit faster than the corresponding Advanced Keyspace Accessors.
 
 The following Advanced Keyspace Accessors are supported:
 

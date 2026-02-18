@@ -1,4 +1,12 @@
+---
+title: Fluent Bit deployment
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/deployment-fluentbit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/deployment-fluentbit.html)
+
+# Fluent Bit deployment
 
 > [Fluent Bit](https://fluentbit.io/) is the recommended way to forward logs to CMOS from Couchbase Server instances. 
 
@@ -59,5 +67,7 @@ __Table 1\. Loki configuration for Fluent Bit__
 | LOKI\_PORT    | The port open on LOKI\_HOST for Loki to receive logs, defaults to 3100 if not provided.                                             |
 | LOKI\_MATCH   | The set of logs to match to send to Loki, this can be a wildcard or specific logs in the format couchbase.log.<file>.               |
 
-|  | In addition to the above Loki specific configuration make sure to set the [environment variables Fluent Bit requires](https://github.com/couchbase/couchbase-fluent-bit#configuration). The [example](https://github.com/couchbase/couchbase-fluent-bit/tree/main/tools/loki-stack) and [blog post](https://blog.couchbase.com/using-fluent-bit-for-log-forwarding-processing-with-couchbase-server/) cover this as well in more detail. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In addition to the above Loki specific configuration make sure to set the [environment variables Fluent Bit requires](https://github.com/couchbase/couchbase-fluent-bit#configuration).
+> 
+> The [example](https://github.com/couchbase/couchbase-fluent-bit/tree/main/tools/loki-stack) and [blog post](https://blog.couchbase.com/using-fluent-bit-for-log-forwarding-processing-with-couchbase-server/) cover this as well in more detail.

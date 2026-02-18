@@ -1,4 +1,13 @@
+---
+title: Create an Account and Deploy Your Free Tier Operational Cluster
+description: Create an account and start managing your data with Couchbase Capella.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/create-account.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/create-account.html)
+
+# Create an Account and Deploy Your Free Tier Operational Cluster
 
 > Create an account and start managing your data with Couchbase Capella. 
 
@@ -8,8 +17,8 @@ With a perpetual offering, you have the freedom to work with your active free ti
 
 With an active and working free tier operational cluster, there is no pressure of expiration dates or incurring additional costs.
 
-|  | You cannot deploy a free tier cluster in Capella Analytics. This free tier offering is only available in Capella Operational. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot deploy a free tier cluster in Capella Analytics. This free tier offering is only available in Capella Operational.
 
 ## [](#sign-up-free-tier)Create an Account
 
@@ -72,8 +81,11 @@ Procedure
 4. (Optional) Subscribe to offers, products, and services from Couchbase.
 5. Click **Create Account**.
 
-|  | For 30-day Capella free trial users: If your free trial account has not yet expired, your account is automatically converted to the free tier plan after your 30-day trial period if over. To deploy a free tier operational cluster, go to **Operational** and [create and deploy your free tier operational cluster](#getting-started). If your free trial account has already expired, log in to your account and click **Activate Free Tier**. Proceed to deploy a free tier operational cluster or [upgrade to a paid plan](#upgrade-to-paid-account) to continue using Capella operational. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For 30-day Capella free trial users:
+> 
+> * If your free trial account has not yet expired, your account is automatically converted to the free tier plan after your 30-day trial period if over. To deploy a free tier operational cluster, go to **Operational** and [create and deploy your free tier operational cluster](#getting-started).
+> * If your free trial account has already expired, log in to your account and click **Activate Free Tier**. Proceed to deploy a free tier operational cluster or [upgrade to a paid plan](#upgrade-to-paid-account) to continue using Capella operational.
 
 ## [](#choose-your-setup-method)Choose Your Setup Method
 
@@ -105,15 +117,15 @@ Follow the guided setup:
 
 After completing the guided setup, you can connect your App Endpoint to your application. For more information about connecting mobile applications, see [Connect App Services Endpoint](../../app-services/get-started/configuring-app-services.md#access-endpoint).
 
-|  | The guided setup creates a cluster with pre-configured travel-sample data and optimized settings for new users. If you prefer to set up a cluster manually or import your own data, see [Create and Deploy Your Free Tier Operational cluster](#getting-started). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The guided setup creates a cluster with pre-configured travel-sample data and optimized settings for new users. If you prefer to set up a cluster manually or import your own data, see [Create and Deploy Your Free Tier Operational cluster](#getting-started).
 
 ## [](#getting-started)Create and Deploy Your Free Tier Operational cluster
 
 After you create your account, Couchbase creates your organization and sets a default project labeled **My First Project**.
 
-|  | Only 1 free tier operational cluster is available per organization and it automatically turns off after 72 hours of inactivity. For more information, see [Turn Operational Cluster On and Off](#turn-cluster-on-off). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only 1 free tier operational cluster is available per organization and it automatically turns off after 72 hours of inactivity. For more information, see [Turn Operational Cluster On and Off](#turn-cluster-on-off).
 
 Create and deploy your first operational cluster:
 
@@ -131,8 +143,8 @@ Create and deploy your first operational cluster:
 8. Enter a **CIDR Block** for your cluster, or accept the default. For more information about how to configure a CIDR block, see [Cloud Service Provider, Region, and CIDR Block](../clusters/databases.md#cloud-provider).
 9. Click **Create Cluster** to deploy your free tier operational cluster with Capella.
 
-|  | Accounts with a paid plan can deploy a free tier operational cluster alongside their paid operational clusters. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Accounts with a paid plan can deploy a free tier operational cluster alongside their paid operational clusters.
 
 ### [](#turn-cluster-on-off)Turn Your Operational Cluster On and Off
 
@@ -172,8 +184,8 @@ To view your monitoring dashboards, go to **Monitoring** and select 1 of the das
 
 For more information, see [View Monitoring Dashboards](../clusters/monitoring/metrics-dashboard.md).
 
-|  | The Health Advisor dashboard is not available for free tier operational clusters. [Upgrade](../billing/upgrade-account.md) to a \*Developer Pro or Enterprise plan to get expert advice on your cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Health Advisor dashboard is not available for free tier operational clusters. [Upgrade](../billing/upgrade-account.md) to a \*Developer Pro or Enterprise plan to get expert advice on your cluster.
 
 ### [](#delete-your-free-tier-operational-cluster)Delete Your Free Tier Operational Cluster
 
@@ -195,8 +207,8 @@ To deploy free tier App Services for mobile development:
 3. Select your free tier operational cluster to link to your App Service.
 4. Click **Create App Service**.
 
-|  | Your free tier App Service automatically links to your free tier operational cluster. |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Your free tier App Service automatically links to your free tier operational cluster.
 
 For more information about how to configure App Services, see [Configure Your Free Tier App Services (Mobile sync)](../../app-services/get-started/configuring-app-services.md).
 
@@ -206,8 +218,8 @@ You need to [add an activation ID](../billing/upgrade-account.md#add-activation-
 
 Free tier operational clusters do not automatically migrate to paid operational clusters after an the upgrade. Capella allows only one free tier operational cluster per organization at any time.
 
-|  | When upgrading from a free tier plan to a paid Support plan, Couchbase deletes your existing free tier operational cluster. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When upgrading from a free tier plan to a paid Support plan, Couchbase deletes your existing free tier operational cluster.
 
 When you upgrade to a paid Support plan, you can choose to deploy another free tier operational cluster alongside your provisioned operational cluster. To back up and transfer your data from your existing free tier operational cluster to a new free tier or paid operational cluster, you must use the `cbbackupmgr` tool.
 

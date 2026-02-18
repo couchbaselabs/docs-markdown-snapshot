@@ -1,4 +1,14 @@
+---
+title: Developer Intro
+description: This section contains tutorials, how-to guides, and information
+  about Couchbase Services to help you develop applications.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/develop/pages/intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/develop/intro.html)
+
+# Developer Intro
 
 This section contains tutorials, how-to guides, and information about Couchbase Services to help you develop applications. It also provides links to the documentation for software development kits and other integrations.
 

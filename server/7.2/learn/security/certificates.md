@@ -1,4 +1,13 @@
+---
+title: Certificates
+description: Couchbase Server supports x.509 certificates for client and server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/certificates.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/security/certificates.html)
+
+# Certificates
 
 > Couchbase Server supports x.509 certificates for client and server. 
 

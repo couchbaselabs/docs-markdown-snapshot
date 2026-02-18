@@ -1,4 +1,14 @@
+---
+title: Working with JSON
+description: The SDK makes it easy to turn Kotlin objects into JSON, and JSON
+  into Kotlin objects.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/howtos/pages/json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/howtos/json.html)
+
+# Working with JSON
 
 > The SDK makes it easy to turn Kotlin objects into JSON, and JSON into Kotlin objects. 
 
@@ -108,8 +118,30 @@ collection.upsert(
 | **1** | We will talk more about RawJsonTranscoder and Content in the [transcoders section](#transcoders). |
 | ----- | ------------------------------------------------------------------------------------------------- |
 
-|  | If you use a String for the content when changing a document, and don’t skip data binding, the SDK assumes you want the document content to be a JSON String. For example, if you write: // Don't do this! collection.upsert(     id = "alice",     content = """{"favoriteColor":"blue"}""" ) The document content in Couchbase is: "{\\"favoriteColor\\":\\"blue\\"}" instead of what you probably want: {"favoriteColor":"blue"} To fix this problem, [skip data binding](#skip-data-binding), |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> If you use a `String` for the content when changing a document, and don’t skip data binding, the SDK assumes you want the document content to be a JSON String. For example, if you write:
+> 
+> ```kotlin
+> // Don't do this!
+> collection.upsert(
+>     id = "alice",
+>     content = """{"favoriteColor":"blue"}"""
+> )
+> ```
+> 
+> The document content in Couchbase is:
+> 
+> ```json
+> "{\"favoriteColor\":\"blue\"}"
+> ```
+> 
+> instead of what you probably want:
+> 
+> ```json
+> {"favoriteColor":"blue"}
+> ```
+> 
+> To fix this problem, [skip data binding](#skip-data-binding),
 
 ### [](#reading-json-content-without-data-binding)Reading JSON content without data binding
 
@@ -133,15 +165,28 @@ The part of the SDK that does data binding is called a `JsonSerializer`. The SDK
 
 The Kotlin SDK uses the [Jackson data binding library](https://github.com/FasterXML/jackson-databind). Jackson is a fast and popular library for working with JSON.
 
-|  | The Kotlin SDK includes a repackaged version of Jackson for its own internal use. Your code should not use that version of Jackson. Always import Jackson classes from the com.fasterxml.jackson package. Never import Jackson classes from the com.couchbase.client.core.deps.com.fasterxml.jackson package. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Kotlin SDK includes a repackaged version of Jackson for its own internal use. Your code should not use that version of Jackson. Always import Jackson classes from the `com.fasterxml.jackson` package. Never import Jackson classes from the `com.couchbase.client.core.deps.com.fasterxml.jackson` package.
 
 When you use your own classes for data binding, you can put special Jackson annotations on your classes to change how the data binding works. You can use annotations to change the JSON field names, or ignore some properties of your classes. Jackson is a powerful tool with many features.
 
 To learn more about Jackson, please read the [Jackson documentation](https://github.com/FasterXML/jackson-docs).
 
-|  | Jackson Tree Model Jackson can represent a JSON document as a tree of JsonNode objects. You can use data binding with JsonNode. This is useful if you don’t know the structure of the document. For example: val json = collection.get(id = "alice").contentAs<JsonNode>() when {     json is ArrayNode -> println("Content is a JSON Array")     json is ObjectNode -> println("Content is a JSON Object")     else -> println("Content is a JSON primitive") } Sometimes it’s easier to do data binding with a JsonNode than a Map. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Jackson Tree Model
+> 
+> Jackson can represent a JSON document as a tree of `JsonNode` objects. You can use data binding with `JsonNode`. This is useful if you don’t know the structure of the document. For example:
+> 
+> ```kotlin
+> val json = collection.get(id = "alice").contentAs<JsonNode>()
+> when {
+>     json is ArrayNode -> println("Content is a JSON Array")
+>     json is ObjectNode -> println("Content is a JSON Object")
+>     else -> println("Content is a JSON primitive")
+> }
+> ```
+> 
+> Sometimes it’s easier to do data binding with a `JsonNode` than a `Map`.
 
 #### [](#customize-jackson-mapper)Customizing the Jackson mapper
 

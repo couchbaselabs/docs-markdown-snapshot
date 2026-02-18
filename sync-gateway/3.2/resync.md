@@ -1,4 +1,13 @@
+---
+title: Resync
+description: Recalculating routing and data access following Sync Function changes
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/resync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/resync.html)
+
+# Resync
 
 > Recalculating routing and data access following Sync Function changes  
 > This content explains the resync feature
@@ -27,8 +36,8 @@ The resync operation is run asynchronously. Use [GET /{db}/\_resync](rest%5Fapi%
 
 To update the Sync Function and fully resync, you are recommended to follow the steps in [Steps to Update and Resync](#steps-to-resync).
 
-|  | This is an expensive operation because it requires every document in the database to be processed by the new function. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is an expensive operation because it requires every document in the database to be processed by the new function.
 
 The database can accept no requests until resync is complete because no user’s full access privileges are known until all documents have been scanned. Therefore, the Sync Function update will result in application downtime whilst the database is offline (that is, between the call to the `/{db}/_offline` and `/{db}/_online` endpoints in [Steps to Update and Resync](#steps-to-resync).
 

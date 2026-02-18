@@ -1,4 +1,14 @@
+---
+title: Deploy Couchbase Sync Gateway Using AWS Marketplace
+description: Couchbase partners with Amazon to provide a packaged solution on
+  AWS Marketplace.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-aws-syncgateway-deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cloud/couchbase-aws-syncgateway-deployment.html)
+
+# Deploy Couchbase Sync Gateway Using AWS Marketplace
 
 > Couchbase partners with Amazon to provide a packaged solution on AWS Marketplace. This solution is based on Amazon CloudFormation templates that incorporate the latest features and best practices for deploying Couchbase Server on Amazon Web Services. 
 
@@ -15,8 +25,8 @@ Couchbase Sync Gateway is available through AWS Marketplace with hourly pricing,
 
 ## [](#deploying-couchbase-sync-gateway)Deploying Couchbase Sync Gateway
 
-|  | The CloudFormation templates are provided as a starting point and may be customized as needed. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The CloudFormation templates are provided as a starting point and may be customized as needed.
 
 1. Log in to your account on the [Amazon Web Services Marketplace](https://aws.amazon.com/marketplace/), search for `Couchbase` and select Couchbase Sync Gateway. Alternately, you can click [here](https://aws.amazon.com/marketplace/pp/prodview-dy76bh5kmehws) to go to the Couchbase Sync Gateway product page directly.
 2. The Couchbase Sync Gateway product page provides a quick overview of the product offering and useful links. Click **Continue to Subscribe**.  

@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Couchbase Lite Query"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/query/content/modules/userprofile-query/pages/userprofile_query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-query/userprofile_query.html)
+
+# User Profile Sample: Couchbase Lite Query
 
 ## [](#introduction)Introduction
 
@@ -21,10 +29,9 @@ This tutorial assumes familiarity with building Swift apps with Xcode and with C
 
 * If you are unfamiliar with the basics of Couchbase Lite, it is recommended that you walk through the tutorial _Fundamentals of using Couchbase Lite as a [Standalone](../userprofile-standalone/userprofile%5Fbasic.md) database_
 * iOS (Xcode)  
-Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-
-|  | If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)  
+> [!NOTE]  
+> If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac.
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 

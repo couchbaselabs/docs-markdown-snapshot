@@ -1,4 +1,13 @@
+---
+title: Install the Couchbase Analytics Connector on Tableau Server
+description: The Couchbase Analytics Connector can be installed on Tableau Server.
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/setup-tableau-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/current/setup-tableau-server.html)
+
+# Install the Couchbase Analytics Connector on Tableau Server
 
 > The Couchbase Analytics Connector can be installed on Tableau Server. 
 

@@ -1,4 +1,12 @@
+---
+title: Creating a Reference
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-xdcr-create-ref.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-xdcr-create-ref.html)
+
+# Creating a Reference
 
 > The REST API can be used to create an XDCR reference to a destination cluster. 
 

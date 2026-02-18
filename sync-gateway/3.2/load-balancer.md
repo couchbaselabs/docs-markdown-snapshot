@@ -1,4 +1,13 @@
+---
+title: Load Balancer
+description: Load balancing replications
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/load-balancer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/load-balancer.html)
+
+# Load Balancer
 
 > Load balancing replications  
 > Considerations on using proxies and load balancers with Sync Gateway replications to manage secure SSL Cloud-to-Edge synchronization

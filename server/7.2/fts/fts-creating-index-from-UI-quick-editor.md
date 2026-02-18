@@ -1,4 +1,12 @@
+---
+title: Quick Editor and Example
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-quick-editor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-quick-editor.html)
+
+# Quick Editor and Example
 
 > The Quick Editor allows a visual inerface select fields from collections to easily quickly build near optimal indexes. 
 
@@ -84,8 +92,8 @@ Additionally, select from the following configuration options corresponding to t
 * **Support phrase matching**: Select this option to match the phrases in the index.
 * **Support sorting and faceting**: Select this option to allow sorting and faceting the index.
 
-|  | Selecting configuration options requires additional storage and makes the index size larger. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Selecting configuration options requires additional storage and makes the index size larger.
 
 ## [](#document-refreshreselection-option)Document Refresh/Reselection option
 
@@ -113,10 +121,10 @@ At this point, you are returned to the Full Text Search screen. A row now appear
 
 ![fts new quick index progress](_images/fts-new-quick-index-progress.png) 
 
-|  | The percentage figure appears under the indexing progress column, and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. Search queries will, however, be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The percentage figure appears under the indexing progress column, and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. Search queries will, however, be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete.
 
 Once the new index has been built, it supports Full Text Searches performed by all available means: the Console UI, the Couchbase REST API, and the Couchbase SDK.
 
-|  | If one or more of the nodes in the cluster running data service go down and/or are failed over, indexing progress may show a value > 100%. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If one or more of the nodes in the cluster running data service go down and/or are failed over, indexing progress may show a value > 100%.

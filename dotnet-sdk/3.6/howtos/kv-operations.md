@@ -1,4 +1,15 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known. Here we cover CRUD operations, document expiration,
+  and optimistic locking with CAS.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
@@ -107,8 +118,10 @@ If a version of Couchbase Server earlier than 6.5 is being used then the applica
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
 
-|  | Sub-Document Operations All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Docunent Operations](subdocument-operations.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Sub-Document Operations
+> 
+> All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Docunent Operations](subdocument-operations.md).
 
 ## [](#retrieving-full-documents)Retrieving full documents
 
@@ -172,18 +185,18 @@ await collection.TouchAsync("document-key", TimeSpan.FromSeconds(30),
 );
 ```
 
-|  | If the absolute value of the expiry is less than 30 days (such as 60 \* 60 \* 24 \* 30), it is considered an _offset_. If the value is greater, it is considered an _absolute time stamp_. For more on expiration see the [expiration section](../concept-docs/documents.md#setting-document-expiration) of our documents discussion doc. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the absolute value of the expiry is less than 30 days (such as `60 * 60 * 24 * 30`), it is considered an _offset_. If the value is greater, it is considered an _absolute time stamp_. For more on expiration see the [expiration section](../concept-docs/documents.md#setting-document-expiration) of our documents discussion doc.
 
-|  | If you are using the overloads that take IDocument, note that the IDocument.Expiry property assumes ms (milli-seconds), and is converted to seconds before being sent to the server. All other overloads take a TimeSpan or an uint, and assume an expiry in seconds A time of zero will set the document to never expire (a negative number will set expiry to immediate — creating a [tombstone](#7.1@server:learn:buckets-memory-and-storage/storage.adoc#tombstones)). Values above 0ms but below 1000ms are rounded up to one second before being sent to the server — _if you are using .NET SDK 3.0.4 or later_. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are using the overloads that take `IDocument`, note that the `IDocument.Expiry` property assumes ms (milli-seconds), and is converted to seconds before being sent to the server. All other overloads take a `TimeSpan` or an `uint`, and assume an expiry in seconds A time of zero will set the document to never expire (a negative number will set expiry to immediate — creating a [tombstone](#7.1@server:learn:buckets-memory-and-storage/storage.adoc#tombstones)). Values above 0ms but below 1000ms are rounded up to one second before being sent to the server — _if you are using .NET SDK 3.0.4 or later_.
 
 ## [](#atomic-counters)Atomic Counters
 
 The value of a document can be increased or decreased atomically using `Binary.Increment()` and `Binary.Decrement()`.
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
 
 Increment
 
@@ -225,8 +238,8 @@ await collection.Binary.DecrementAsync("binary-key",
 );
 ```
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 
@@ -253,8 +266,8 @@ var result = await usersCollection.UpsertAsync("user-key", content);
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

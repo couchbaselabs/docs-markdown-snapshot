@@ -1,4 +1,13 @@
+---
+title: Result Sets
+description: How to use Couchbase Lite Query's Result Sets
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/query-resultsets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/c/query-resultsets.html)
+
+# Result Sets
 
 > Description — _How to use Couchbase Lite Query’s Result Sets_  
 > Related Content — [QueryBuilder](#c:querybuilder.adoc) | [SQL++ for Mobile](query-n1ql-mobile.md) | [Predictive Queries](#c:querybuilder.adoc#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)

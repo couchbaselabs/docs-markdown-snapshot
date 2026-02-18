@@ -1,4 +1,14 @@
+---
+title: Settings and Connections
+description: Settings and connections for the cluster can be managed by means of
+  the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-settings-and-connections-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-settings-and-connections-overview.html)
+
+# Settings and Connections
 
 > Settings and connections for the cluster can be managed by means of the REST API. 
 

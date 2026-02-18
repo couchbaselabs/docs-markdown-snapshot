@@ -1,11 +1,21 @@
+---
+title: Enabling Timestamp-based Conflict Resolution for Migrated Data
+description: The Timestamp-based Conflict Resolution is a new conflict
+  resolution type added in version 4.6.0.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/migration.html)
+
+# Enabling Timestamp-based Conflict Resolution for Migrated Data
 
 > The Timestamp-based Conflict Resolution is a new conflict resolution type added in version 4.6.0\. This new feature is supported for **new** buckets that are created in Couchbase Server version 4.6.0\. You cannot change the conflict resolution mode to the _Timestamp-based Conflict Resolution_ for existing buckets after upgrading to version 4.6.0\. 
 
 If you wish to enable the timestamp-based conflict resolution for your existing data, then you must migrate your data to version 4.6.0 cluster using the `cbbackupmgr` tool. To learn more about the tool, See [Backup and Restore](../manage/manage-backup-and-restore/manage-backup-and-restore.md).
 
-|  | This is a one time migration and the bucket must be switched to a new conflict resolution type as part of the migration. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> This is a one time migration and the bucket must be switched to a new conflict resolution type as part of the migration.
 
 To understand more about timestamp-based Conflict Resolution, see [Timestamp-Based Conflict Resolution](../learn/clusters-and-availability/xdcr-conflict-resolution.md#timestamp-based-conflict-resolution).
 
@@ -16,10 +26,9 @@ Here are two scenarios:
 
 For Scenario 1, perform the following steps to migrate your data to a new cluster:
 
-1. Stop application traffic coming into Cluster 1 (Bucket A).
-
-|  | Allow _enough tim_e for the replication queues to drain. Check the **outbound XDCR mutation** statistics to confirm. For instructions, see [Monitoring Outgoing XDCR](../manage/monitor/monitor-intro.md#outgoing%5Fxdcr%5Fstats). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. Stop application traffic coming into Cluster 1 (Bucket A).  
+> [!NOTE]  
+> Allow _enough tim_e for the replication queues to drain. Check the **outbound XDCR mutation** statistics to confirm. For instructions, see [Monitoring Outgoing XDCR](../manage/monitor/monitor-intro.md#outgoing%5Fxdcr%5Fstats).
 2. Stop and delete Replication stream to Cluster 2 (Bucket A’). For instructions, see [XDCR Management Overview](../manage/manage-xdcr/xdcr-management-overview.md).
 3. Run the `cbbackupmgr` tool to back up the entire bucket’s (Bucket A) data. For instructions, see [Backup](../backup-restore/enterprise-backup-restore.md).
 4. Delete Bucket A from Cluster 1\. For instructions, see [Delete a Bucket](../manage/manage-buckets/delete-bucket.md).
@@ -33,10 +42,9 @@ For Scenario 1, perform the following steps to migrate your data to a new cluste
 
 For Scenario 2, perform the following steps to migrate your data to a new cluster:
 
-1. Stop application traffic coming to Cluster 1 (Bucket A) and Cluster 2 (Bucket A’).
-
-|  | Note: Allow _enough time_ for the replication queues to drain. Check the **outbound XDCR mutation** statistics to confirm. For instructions, see [Monitoring Outgoing XDCR](../manage/monitor/monitor-intro.md#outgoing%5Fxdcr%5Fstats). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+1. Stop application traffic coming to Cluster 1 (Bucket A) and Cluster 2 (Bucket A’).  
+> [!NOTE]  
+> Note: Allow _enough time_ for the replication queues to drain. Check the **outbound XDCR mutation** statistics to confirm. For instructions, see [Monitoring Outgoing XDCR](../manage/monitor/monitor-intro.md#outgoing%5Fxdcr%5Fstats).
 2. Stop and delete replication to both clusters. For instructions, see [XDCR Management Overview](../manage/manage-xdcr/xdcr-management-overview.md).
 3. Run the `cbbackupmgr` tool to backup the entire bucket data on both clusters. For instructions, see [Backup](../backup-restore/enterprise-backup-restore.md).
 4. Delete the Bucket A from Cluster 1 and Bucket A’ from Cluster 2\. For instructions, see [Delete a Bucket](../manage/manage-buckets/delete-bucket.md).

@@ -1,4 +1,15 @@
+---
+title: Compatibility
+description: Platform compatibility, and features available in different SDK
+  versions, and compatibility between Server and SDK. Plus notes on Cloud,
+  networks, and AWS Lambda.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-nodejs/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-analytics-sdk/current/project-docs/compatibility.html)
+
+# Compatibility
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
@@ -8,8 +19,8 @@
 
 The 1.0 Node.js SDK will run on recent LTS versions of Node.js: 24 and 22\. We recommend using the most recent long-term support (LTS) version of Node.js — at the time of writing (August 2025) this is version 24.
 
-|  | Remember to keep your Node.js installation up to date, via npm. |
-|  | --------------------------------------------------------------- |
+> [!TIP]
+> Remember to keep your Node.js installation up to date, via `npm`.
 
 ### [](#os-compatibility)OS Compatibility
 

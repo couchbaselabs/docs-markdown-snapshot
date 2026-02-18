@@ -1,4 +1,13 @@
+---
+title: cbtransfer
+description: Enables the transfer of Couchbase data from clusters and various file formats
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbtools/cbtransfer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbtools/cbtransfer.html)
+
+# cbtransfer
 
 (Deprecated) The `cbtransfer` tool enables the transfer of Couchbase data from clusters and various file formats.
 

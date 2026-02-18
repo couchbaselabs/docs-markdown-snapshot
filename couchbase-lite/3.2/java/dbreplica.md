@@ -1,4 +1,14 @@
+---
+title: Data Sync Locally on Device
+description: Couchbase Lite Database Sync - Synchronize changes between
+  databases on the same device
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/dbreplica.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/dbreplica.html)
+
+# Data Sync Locally on Device
 
 > Description — _Couchbase Lite Database Sync - Synchronize changes between databases on the same device_  
 > Related Content — [Remote Sync Gateway](replication.md) | [Peer-to-Peer Sync](#java:landing-p2psync.adoc)

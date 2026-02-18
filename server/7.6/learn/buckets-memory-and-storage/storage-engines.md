@@ -1,4 +1,14 @@
+---
+title: Storage Engines
+description: "Couchbase supports two different backend storage mechanisms:
+  Couchstore and Magma."
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/buckets-memory-and-storage/storage-engines.html)
+
+# Storage Engines
 
 > Couchbase supports two different backend storage mechanisms: Couchstore and Magma. It is important to understand which backend storage is best suited to your requirements. 
 
@@ -10,13 +20,13 @@ Couchstore is the original storage engine for Couchbase Server. It’s the only 
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-Magma is designed for high performance with very large datasets that do not fit in memory. It is ideal for use cases that rely primarily on disk access. The performance of disk access will be as good as the underlying disk sub-systems — for example, using NVMe SSDs will give higher performance.
-
-In order to get maximum performance from Magma for disk-oriented workloads, it is recommended to set the Writer Threads to `Disk i/o optimized`. This setting will ensure there are enough threads to sustain high write rates.
-
-To learn more about Writer Thread settings, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings)
+Magma is designed for high performance with very large datasets that do not fit in memory. It’s ideal for use cases that rely primarily on disk access. The performance of disk access will be as good as the underlying disk sub-systems — for example, using NVMe SSDs will give higher performance.
 
 Magma can work with very low amounts of memory for large datasets: a minimum memory-to-data ratio of 1% is required. For example, if a node is holding 5 TB of data, Magma can be used with only 64 GB RAM.
+
+Magma has several thread settings to tune performance for different workloads. To get maximum performance from Magma for disk-oriented workloads, set the Writer Threads to `Disk i/o optimized`. This setting allocates more threads to sustain high write rates. For more information about this setting, see [Data Settings](../../manage/manage-settings/general-settings.md#data-settings).
+
+You can also tune the number and allocation of threads that Magma uses to compact and flush data to disk. If you notice that Magma’s data compaction spikes CPU use, you can change the ratio of threads that compact data to the threads that flush data.
 
 __Table 1\. Magma Supported Services__
 | Couchbase Version            | Services Supported                                      |

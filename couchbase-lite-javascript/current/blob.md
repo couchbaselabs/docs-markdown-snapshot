@@ -1,4 +1,13 @@
+---
+title: Blobs
+description: Couchbase Lite database data model concepts - blobs
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/blob.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/blob.html)
+
+# Blobs
 
 > Description — _Couchbase Lite database data model concepts - blobs_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Indexing](indexing.md) |

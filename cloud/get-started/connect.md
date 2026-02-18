@@ -1,4 +1,13 @@
+---
+title: Connect To Your Cluster
+description: Use the Connect page to choose how you want to connect to your cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/connect.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/connect.html)
+
+# Connect To Your Cluster
 
 > Use the Connect page to choose how you want to connect to your cluster. 
 

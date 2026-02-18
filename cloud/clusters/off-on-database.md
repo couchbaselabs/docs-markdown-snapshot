@@ -1,4 +1,14 @@
+---
+title: Turn Clusters Off or On
+description: You can turn your cluster off to save costs. To resume operations,
+  turn it back on.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/off-on-database.html)
+
+# Turn Clusters Off or On
 
 > You can turn your cluster off to save costs. To resume operations, turn it back on. 
 
@@ -16,8 +26,13 @@ You can turn your cluster off for a maximum of 30 days. Capella will notify you 
 
 You can [create a schedule](off-on-schedule.md) to turn your cluster on or off.
 
-|  | Public API You can also turn your cluster on or off using the [Management API Reference](../management-api-reference/index.md): [Turn On Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOn) [Turn Off Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOff) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Public API
+> 
+> You can also turn your cluster on or off using the [Management API Reference](../management-api-reference/index.md):
+> 
+> * [Turn On Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOn)
+> * [Turn Off Cluster](../management-api-reference/index.md#tag/Clusters/operation/clusterOff)
 
 ## [](#when-a-cluster-is-turned-off)When a Cluster is Turned Off
 
@@ -38,8 +53,8 @@ You can [create a schedule](off-on-schedule.md) to turn your cluster on or off.
 
 ## [](#turn-cluster-onoff)Turn Cluster On/Off
 
-|  | If a cluster that is off requires maintenance, the maintenance begins when it turns on. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If a cluster that is off requires maintenance, the maintenance begins when it turns on.
 
 To turn your cluster on or off:
 

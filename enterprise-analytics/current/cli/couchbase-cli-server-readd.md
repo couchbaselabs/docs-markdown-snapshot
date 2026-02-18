@@ -1,4 +1,13 @@
+---
+title: server-readd
+description: Adds a node back to the cluster after a failover
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-server-readd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-server-readd.html)
+
+# server-readd
 
 Adds a node back to the cluster after a failover
 
@@ -20,8 +29,8 @@ Another use case is taking a node out of the cluster for maintenance. This is do
 
 It is also possible to add a server back to the cluster without removing the data and instead having the server recover data from where it left off. This is called delta recovery and is available from the [recovery](couchbase-cli-recovery.md) subcommand.
 
-|  | After the server-readd subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information about rebalancing a cluster. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> After the server-readd subcommand is run you must rebalance the cluster. See the [rebalance](couchbase-cli-rebalance.md) command for more information about rebalancing a cluster.
 
 ## [](#options)OPTIONS
 

@@ -1,4 +1,14 @@
+---
+title: Getting Search Statistics
+description: Statistics for the Search Service can be retrieved with the
+  <code>GET /api/nsstats</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-fts-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-fts-statistics.html)
+
+# Getting Search Statistics
 
 > Statistics for the Search Service can be retrieved with the `GET /api/nsstats` HTTP method and URI. 
 

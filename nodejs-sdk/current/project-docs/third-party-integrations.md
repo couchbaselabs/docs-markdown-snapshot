@@ -1,4 +1,15 @@
+---
+title: 3<sup>rd</sup> Party Integrations
+description: The Couchbase Node.js SDK is often used with unofficial and third
+  party tools and applications to integrate into broader language and platform
+  ecosystems, and across data lakes in heterogeneous environments.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/third-party-integrations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/current/project-docs/third-party-integrations.html)
+
+# 3<sup>rd</sup> Party Integrations
 
 > The Couchbase Node.js SDK is often used with unofficial and third party tools and applications to integrate into broader language and platform ecosystems, and across data lakes in heterogeneous environments. 
 

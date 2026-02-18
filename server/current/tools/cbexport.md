@@ -1,4 +1,13 @@
+---
+title: cbexport
+description: A utility for exporting data from a Couchbase cluster
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbexport.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tools/cbexport.html)
+
+# cbexport
 
 A utility for exporting data from a Couchbase cluster
 
@@ -12,8 +21,8 @@ cbexport is used to export data from Couchbase in various different formats.
 
 For more information on how specific commands work you can run "cbexport <command> --help".
 
-|  | Ensure that both you are using the same versions of cbexport and Couchbase server (e.g., if you are running Couchbase Server 7.6, then make sure you are using cbexport version 7.6 to export your data). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Ensure that the version of `cbexport` is the same or greater than the version of Couchbase server (e.g., if you are running Couchbase Server 7.2, then ensure `cbexport` is 7.2, 7.6, 8.0 etc).
 
 ## [](#options)OPTIONS
 

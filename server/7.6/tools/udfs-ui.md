@@ -1,4 +1,14 @@
+---
+title: User-Defined Functions UI
+description: The Couchbase Server admin console provides a UI for adding user
+  defined functions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/tools/pages/udfs-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tools/udfs-ui.html)
+
+# User-Defined Functions UI
 
 > The Couchbase Server admin console provides a UI for adding user defined functions. 
 
@@ -64,5 +74,5 @@ Then you select the JavaScript Library where you created your JavaScript functio
 
 Once the details have been filled, you can click the **Save Function** to save the function and exit the dialog, or click on **Cancel** to exit the dialog without saving the details.
 
-|  | You cannot use the UDF console to create SQL++ managed user-defined functions — that is, JavaScript functions which are not stored in a library. To do this, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use the UDF console to create SQL++ managed user-defined functions — that is, JavaScript functions which are not stored in a library. To do this, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).

@@ -1,4 +1,14 @@
+---
+title: Manage Roles for UI Access
+description: Your level of access to Capella AI Services using the Capella UI is
+  determined by your organization and project roles.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/ui-auth.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/admin/ui-auth.html)
+
+# Manage Roles for UI Access
 
 > Your level of access to Capella AI Services using the Capella UI is determined by your organization and project roles. 
 
@@ -102,8 +112,12 @@ __Table 6\. Project roles and AI Functions__
 
 Both organization and project roles determine your level of access to Agent Catalog - specifically [Agent Tracer](../build/agent-tracer/agent-tracer.md) and the [Tools and Prompts Hub](../build/tools-prompts-hub.md). When determining project roles, keep in mind that you must be a collaborator on the same project that has the operational cluster supporting Agent Catalog.
 
-|  | Programmatic Access The Agent Catalog uses programmatic access to read and write data to your Capella operational cluster. Any user with cluster access credentials for your Agent Catalog bucket has programmatic access to your Agent Catalog data. For example, if a user has cluster access credentials that provide read and write access to your Agent Catalog bucket, they can read and write data in the Agent Catalog regardless of their organization or project roles. For more information about Cluster Access Credentials, see [Manage Cluster Access Credentials](../../cloud/clusters/manage-database-users.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Programmatic Access
+> 
+> The Agent Catalog uses programmatic access to read and write data to your Capella operational cluster. Any user with cluster access credentials for your Agent Catalog bucket has programmatic access to your Agent Catalog data. For example, if a user has cluster access credentials that provide read and write access to your Agent Catalog bucket, they can read and write data in the Agent Catalog regardless of their organization or project roles.
+> 
+> For more information about Cluster Access Credentials, see [Manage Cluster Access Credentials](../../cloud/clusters/manage-database-users.md).
 
 The following table describes the organization roles as they apply to Agent Catalog:
 

@@ -1,4 +1,12 @@
+---
+title: Request Support
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/manage-support.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/support/manage-support.html)
+
+# Request Support
 
 > You can request support through the Couchbase Capella UI. 
 
@@ -8,8 +16,10 @@ Support tickets are created and managed on the **Support** tab. A summary of the
 
 Support tickets can be viewed and created by any user with the [Organization Member](../organizations/organization-user-roles.md#organization-role-view) role.
 
-|  | If you’re a free tier plan user, you’re unable to create a support ticket. You’re community-supported. Use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for community support and feedback. For more support options, [upgrade your plan](../billing/upgrade-account.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you’re a free tier plan user, you’re unable to create a support ticket. You’re community-supported. Use the Couchbase [forums](https://www.couchbase.com/forums/tag/couchbase-capella), [discord channel](https://discord.com/invite/K7NPMPGrPk?utm%5Fsource=forums&utm%5Fmedium=pinnedpost&utm%5Fcampaign=discord) and [documentation](../get-started/intro.md) for community support and feedback.
+> 
+> For more support options, [upgrade your plan](../billing/upgrade-account.md).
 
 ### [](#support-ticket-summary)Support Ticket Summary
 
@@ -31,8 +41,8 @@ The following information is shown for each support ticket:
 
 You can expect a response from Couchbase Capella Support in accordance with the cluster’s [Support Plan](../billing/billing.md#support-plans) and [Support Time Zone](support.md#support-time-zones).
 
-|  | If you cannot create a support ticket, click **Contact Us** to call Couchbase Support. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you cannot create a support ticket, click **Contact Us** to call Couchbase Support.
 
 To create a support ticket:
 
@@ -60,8 +70,8 @@ If the impact level of your support ticket changes, you have the option to escal
 
 Go to your support ticket, click **Escalate** and provide a brief explanation for the escalation.
 
-|  | You can escalate support tickets on **Enterprise** and **Developer Pro** clusters only. You cannot escalate tickets marked as **solved** or those related to billing or single node clusters. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can escalate support tickets on **Enterprise** and **Developer Pro** clusters only. You cannot escalate tickets marked as **solved** or those related to billing or single node clusters.
 
 If you cannot escalate your support ticket, click **Contact Us** to call Couchbase Support.
 
@@ -69,8 +79,8 @@ If you cannot escalate your support ticket, click **Contact Us** to call Couchba
 
 Add a comment on your support ticket to message the Support team directly. Use comments to discuss your ticket, offer more detail, ask questions, or address deadlines and potential impacts.
 
-|  | You can only view comments on support tickets marked as **solved**. You cannot add comments in this state. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can only view comments on support tickets marked as **solved**. You cannot add comments in this state.
 
 ### [](#verify-support-ticket-status)Verify Support Ticket Status
 

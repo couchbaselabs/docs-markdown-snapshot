@@ -1,4 +1,13 @@
+---
+title: Metrics Reference
+description: A list of the metrics used by Couchbase Capella.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/metrics-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/metrics-reference/metrics-reference.html)
+
+# Metrics Reference
 
 > A list of the metrics used by Couchbase Capella. 
 

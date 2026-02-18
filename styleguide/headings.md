@@ -1,9 +1,17 @@
+---
+title: Headings
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/headings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/headings.html)
+
+# Headings
 
 Use headings to split up the content on a page and make it easier for a user to scan. A heading indicates what information a user finds in a specific section of the page.
 
-|  | This guidance applies only to H<n> elements. For guidance on captions for images and tables, see [Images](images-diagrams.md) and [Tables](tables.md), respectively. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This guidance applies only to H<n> elements. For guidance on captions for images and tables, see [Images](images-diagrams.md) and [Tables](tables.md), respectively.
 
 Use the following guidance to write headings in your topics:
 
@@ -27,8 +35,8 @@ Depth
 
 Do not go past an H4 heading. You do not need to have more than 4 levels of headings in your text.
 
-|  | Do not add [Parentheses](parentheses.md) to headings. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> Do not add [Parentheses](parentheses.md) to headings.
 
 The content of your H1 heading also needs to match the type of topic you’re writing:
 

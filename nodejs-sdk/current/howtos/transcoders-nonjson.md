@@ -1,4 +1,14 @@
+---
+title: Transcoders and Non-JSON Documents
+description: The Node SDK supports common JSON, string and binary document
+  requirements out-of-the-box.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/transcoders-nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/current/howtos/transcoders-nonjson.html)
+
+# Transcoders and Non-JSON Documents
 
 > The Node SDK supports common JSON, string and binary document requirements out-of-the-box. Custom transcoders and serializers provide support for applications needing to perform advanced operations, including supporting non-JSON data. 
 
@@ -8,8 +18,8 @@ When sending data to Couchbase, the SDK passes the Object being sent to a transc
 
 On retrieving data from Couchbase, the fetched `Buffer` and Common Flag are passed to a transcoder. The transcoder converts the bytes into a concrete class (the application specifies the required type) if possible. It may use a serializer for this.
 
-|  | Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, non-string data, non-binary data, or a requirement for a particular JSON serialization library. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, non-string data, non-binary data, or a requirement for a particular JSON serialization library.
 
 ## [](#default-behaviour)Default Behaviour
 
@@ -32,8 +42,8 @@ This table summarizes that information, and this more concise form will be used 
 
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data.
 
-|  | It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS, Analytics, and Eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 

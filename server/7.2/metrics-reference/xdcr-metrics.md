@@ -1,11 +1,21 @@
+---
+title: XDCR Metrics
+description: A list of the metrics provided by XDCR.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/metrics-reference/pages/xdcr-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/metrics-reference/xdcr-metrics.html)
+
+# XDCR Metrics
 
 > A list of the metrics provided by XDCR. 
 
 The following XDCR metrics can be queried by means of the REST APIs described in [Statistics](../rest-api/rest-statistics.md).
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | xdcr\_binary\_filtered\_total7.2.1 counter Number of documents filtered that were binary documents                                                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,4 +1,14 @@
+---
+title: JavaScript Functions for Query Reference
+description: This reference guide describes how to write extension functions for
+  SQL++ for Query using the JavaScript language.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/javascript-udfs/javascript-functions-with-couchbase.html)
+
+# JavaScript Functions for Query Reference
 
 > This reference guide describes how to write extension functions for SQL++ for Query using the JavaScript language. 
 

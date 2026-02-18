@@ -1,4 +1,12 @@
+---
+title: ftsMemoryQuota
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-advanced-settings-ftsMemoryQuota.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-advanced-settings-ftsMemoryQuota.html)
+
+# ftsMemoryQuota
 
 The `ftsMemoryQuota` setting controls the maximum usable memory for the FTS Search service from the total amount of RAM available in the system.
 

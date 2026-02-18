@@ -1,11 +1,22 @@
+---
+title: Database Security
+description: Using Sync Gateway's Admin REST API to configure users and roles
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-schema-db-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/configuration/configuration-schema-db-security.html)
+
+# Database Security
 
 > Using Sync Gateway’s Admin REST API to configure users and roles  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](configuration-schema-db-security.md) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
-|  | Pre-3.0 Legacy Configuration Equivalents This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Pre-3.0 Legacy Configuration Equivalents
+> 
+> This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md)
 
 ## [](#introduction)Introduction
 

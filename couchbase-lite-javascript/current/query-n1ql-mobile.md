@@ -1,4 +1,13 @@
+---
+title: SQL++ Queries
+description: Couchbase Lite JavaScript -- SQL++ Query API
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-n1ql-mobile.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/query-n1ql-mobile.html)
+
+# SQL++ Queries
 
 > Description — _Couchbase Lite JavaScript — SQL++ Query API_  
 > Related Content — [Query Resultsets](query-resultsets.md) | [Live Queries](query-live.md) | [Indexing](indexing.md)
@@ -9,8 +18,8 @@ Couchbase Lite JavaScript supports SQL++ (also known as N1QL), a powerful query 
 
 SQL++ for Mobile brings SQL-like querying capabilities to the browser, allowing you to query documents stored locally in IndexedDB with the same familiar syntax used in Couchbase Server.
 
-|  | N1QL is Couchbase’s implementation of the developing SQL standard. As such, the terms N1QL and SQL are used interchangeably in Couchbase documentation unless explicitly stated otherwise. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> N1QL is Couchbase’s implementation of the developing SQL standard. As such, the terms N1QL and SQL are used interchangeably in Couchbase documentation unless explicitly stated otherwise.
 
 ## [](#query-format)Query Format
 
@@ -279,8 +288,8 @@ const joinQuery = database.createQuery(`
 const joinResults = await joinQuery.execute();
 ```
 
-|  | Only LEFT OUTER JOIN is supported in CBL-JS. RIGHT OUTER JOIN is not available. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only LEFT OUTER JOIN is supported in CBL-JS. RIGHT OUTER JOIN is not available.
 
 ## [](#grouping)GROUP BY and Aggregation
 

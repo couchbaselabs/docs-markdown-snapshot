@@ -1,10 +1,22 @@
+---
+title: Data Sync using Sync Gateway
+description: Couchbase Lite JavaScript -- Synchronizing data changes between
+  local and remote databases using Sync Gateway
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/replication.html)
+
+# Data Sync using Sync Gateway
 
 > Description — _Couchbase Lite JavaScript — Synchronizing data changes between local and remote databases using Sync Gateway_  
 > Related Content — [Handling Data Conflicts](conflict.md)
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
@@ -16,8 +28,8 @@ This page shows sample code and configuration examples covering the implementati
 
 Your application runs a replicator (also referred to here as a client), which will initiate connection with a Sync Gateway (also referred to here as a server) and participate in the replication of database changes to bring both local and remote databases into sync.
 
-|  | Configuring CORS settings for Sync Gateway is a prerequisite for enabling data syncronization with the JavaScript SDK. See [CORS Configuration](cors-configuration.md) for more details. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Configuring CORS settings for Sync Gateway is a prerequisite for enabling data syncronization with the JavaScript SDK. See [CORS Configuration](cors-configuration.md) for more details.
 
 ## [](#replication-concepts)Replication Concepts
 
@@ -43,8 +55,8 @@ As part of the syncing setup, the Gateway has to map the Couchbase Lite database
 
 Couchbase Lite JavaScript uses a WebSocket-based replication protocol. The replication URL must specify WebSockets as the URL scheme using `ws://` (non-TLS) or `wss://` (SSL/TLS) prefixes.
 
-|  | Always use wss:// (WebSocket Secure) in production for encrypted communication with Sync Gateway. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Always use `wss://` (WebSocket Secure) in production for encrypted communication with Sync Gateway.
 
 Incompatibilities
 
@@ -212,8 +224,10 @@ const pushOnlyConfig = {
 };
 ```
 
-|  | Unless there is a solid use-case not to, always initiate a single pushAndPull replication rather than separate push and pull replications. This prevents the replications generating the same checkpoint resulting in conflicts. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unless there is a solid use-case not to, always initiate a single `pushAndPull` replication rather than separate `push` and `pull` replications.
+> 
+> This prevents the replications generating the same checkpoint resulting in conflicts.
 
 ### [](#lbl-authentication)Authentication
 
@@ -294,8 +308,8 @@ const replicator = new Replicator(replicatorConfig);
 
 The pull filter gives an app the ability to validate documents being pulled, and skip ones that fail.
 
-|  | Pull replication filters are not a substitute for channels. Sync Gateway channels are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Pull replication filters are not a substitute for channels. Sync Gateway channels are designed to be scalable (documents are filtered on the server) whereas a pull replication filter is applied to a document once it has been downloaded.
 
 Example 7\. Pull Filter
 
@@ -352,8 +366,10 @@ You can monitor a replication’s status by using change listeners and the `repl
 
 Use change listeners to monitor replication progress. You can add a replicator change listener at any point; it will report changes from the point it is registered.
 
-|  | Best PracticeRemove listeners when they’re no longer needed to prevent memory leaks |
-|  | ----------------------------------------------------------------------------------- |
+> [!TIP]
+> Best Practice
+> 
+> Remove listeners when they’re no longer needed to prevent memory leaks
 
 Example 9\. Monitor replication
 

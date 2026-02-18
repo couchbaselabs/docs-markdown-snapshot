@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the .NET SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the .NET SDK to a Couchbase cluster. It contains best practices as well as information about TLS/SSL and other advanced connection options. 
 
@@ -23,8 +32,8 @@ var airline = inventory.Collection("airline");
 await cluster.DisposeAsync();
 ```
 
-|  | If you are connecting to a version of Couchbase Server earlier than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a \`Bucket instance before connecting to any other HTTP services (such as _Query_ or _Search_. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are connecting to a version of Couchbase Server earlier than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `` `Bucket `` instance before connecting to any other HTTP services (such as _Query_ or _Search_.
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -32,8 +41,8 @@ In a production environment, your connection string should include the addresses
 var cluster = await Cluster.ConnectAsync("192.168.56.101,192.168.56.102", "Administrator", "password");
 ```
 
-|  | You do not need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You do not need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -84,8 +93,8 @@ Before your application stops, gracefully shut down the client by calling the `D
 
 There is a special .NET Core style Dependency Injection (DI) framework for Cluster and Buckets. It simplifies cluster configuration, lifetime management, and bucket injection. You can find it on NuGet.org: [NuGet package](https://www.nuget.org/packages/Couchbase.Extensions.DependencyInjection/). Or using the NuGet Package Manager, add the dependency directly to your project:
 
-|  | Install-Package Couchbase.Extensions.DependencyInjection -Version 3.2.0 |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> Install-Package Couchbase.Extensions.DependencyInjection -Version 3.2.0
 
 ### [](#adding-couchbase-to-the-services-collection)Adding Couchbase To The Services Collection
 
@@ -240,8 +249,8 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 
 The .NET SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK when using .NET 6.0 or later, it is trusted by default. .NET Framework clients will have to add it to the Windows certificate store.
 
 ### [](#couchbase-server)Couchbase Server
 
@@ -249,8 +258,8 @@ As of SDK 3.4, if you connect to a Couchbase Server cluster with a root certific
 
 The cluster’s root certificate just needs to be issued by a CA whose certificate is in your system trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
-|  | Prior to .NET SDK 3.7.2, the SDK sets ClusterOptions.ForceIpAsTargetHost to true by default, which means it will send the IP as the target host during TLS authentication. This will cause a certificate name mismatch. As a workaround, for .NET SDK 3.7.1 and earlier, you need to set ClusterOptions.ForceIpAsTargetHost to false for the above to work. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Prior to .NET SDK 3.7.2, the SDK sets `ClusterOptions.ForceIpAsTargetHost` to `true` by default, which means it will send the IP as the target host during TLS authentication. This will cause a certificate name mismatch. As a workaround, for .NET SDK 3.7.1 and earlier, you need to set `ClusterOptions.ForceIpAsTargetHost` to `false` for the above to work.
 
 You can still provide a certificate explicitly if necessary:
 

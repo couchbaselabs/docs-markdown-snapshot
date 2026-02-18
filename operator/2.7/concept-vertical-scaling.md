@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Vertical Scaling
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-vertical-scaling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-vertical-scaling.html)
+
+# Couchbase Cluster Vertical Scaling
 
 > Vertical scaling is a Kubernetes anti-pattern but may be employed for various reasons. This page discusses some uses and how to perform vertical scaling. 
 

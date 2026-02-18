@@ -1,4 +1,14 @@
+---
+title: Get Backup Task History
+description: The Backup Service REST API lets you retrieve the task history of
+  an active, imported, or archived repository.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-get-task-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/backup-get-task-info.html)
+
+# Get Backup Task History
 
 ## [](#description)Description
 
@@ -12,8 +22,8 @@ GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory
 
 GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/taskHistory?{TASK_SUBSET_PARAMETERS}
 
-|  | These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service.
 
 __Table 1\. Path Parameters__
 | Name                     | Description                                                                              | Schema                                       |
@@ -64,8 +74,8 @@ Full Admin, Backup Full Admin, or Read-Only Admin roles.
 
 ## [](#example)Examples
 
-|  | The following examples assume you are running the curl command from a node that is running the Backup Service. |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The following examples assume you are running the curl command from a node that is running the Backup Service.
 
 The following call returns the entire task history for the active repository `quarterHourBackups`:
 

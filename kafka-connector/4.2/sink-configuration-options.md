@@ -1,4 +1,12 @@
+---
+title: Sink Configuration Options
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/sink-configuration-options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/4.2/sink-configuration-options.html)
+
+# Sink Configuration Options
 
 Reference of the sink connector options.
 
@@ -232,8 +240,8 @@ Overrides the `couchbase.sink.handler` property.
 
 A value of `N1QL` forces the handler to `com.couchbase.connect.kafka.handler.sink.N1qlSinkHandler`. A value of `SUBDOCUMENT` forces the handler to `com.couchbase.connect.kafka.handler.sink.SubDocumentSinkHandler`.
 
-|  | **DEPRECATED.** Please set the couchbase.sink.handler property instead. |
-|  | ----------------------------------------------------------------------- |
+> [!WARNING]
+> **DEPRECATED.** Please set the `couchbase.sink.handler` property instead.
 
 * Type: string
 * Default: `DOCUMENT`
@@ -273,11 +281,11 @@ Retry failed writes to Couchbase until this deadline is reached. If time runs ou
 
 A value of `0` (the default) means the connector will terminate immediately when a write fails.
 
-|  | This retry timeout is distinct from the KV timeout (which you can set via couchbase.env.\*). The KV timeout affects an individual write attempt, while the retry timeout spans multiple attempts and makes the connector resilient to more kinds of transient failures. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This retry timeout is distinct from the KV timeout (which you can set via `couchbase.env.*`). The KV timeout affects an individual write attempt, while the retry timeout spans multiple attempts and makes the connector resilient to more kinds of transient failures.
 
-|  | Try not to confuse this with the Kafka Connect framework’s built-in errors.retry.timeout config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Try not to confuse this with the Kafka Connect framework’s built-in `errors.retry.timeout` config property, which applies only to failures occurring _before_ the framework delivers the record to the Couchbase connector.
 
 * Since: 4.1.4
 * Type: string
@@ -293,8 +301,8 @@ The preferred way to specify an enhanced durability requirement when using Couch
 
 The default value of `NONE` means a write is considered successful as soon as it reaches the memory of the active node.
 
-|  | If you set this to anything other than NONE, then you must not set couchbase.persist.to or couchbase.replicate.to. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you set this to anything other than `NONE`, then you must not set `couchbase.persist.to` or `couchbase.replicate.to`.
 
 * Type: string
 * Default: `NONE`
@@ -450,8 +458,8 @@ Any system property recognized by the Couchbase Java SDK may be specified in the
 
 For example, the Couchbase Java SDK recognizes the system property `com.couchbase.env.timeout.kvTimeout`. To specify this setting in the connector config, use the property name `couchbase.env.timeout.kvTimeout`.
 
-|  | If you’re thinking about increasing the KV timeout to handle transient error conditions, consider using the connector’s couchbase.retry.timeout config property instead. The retry timeout is a more robust way to handle all kinds of write failures. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If you’re thinking about increasing the KV timeout to handle transient error conditions, consider using the connector’s `couchbase.retry.timeout` config property instead. The retry timeout is a more robust way to handle all kinds of write failures.
 
 For a list of recognized properties, see [Java SDK Client Settings](../../java-sdk/current/ref/client-settings.md).
 

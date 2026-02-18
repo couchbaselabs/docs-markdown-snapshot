@@ -1,4 +1,15 @@
+---
+title: Distributed ACID Transactions
+description: A <em>transaction</em> is an atomic unit of work that contains one
+  or more operations. It is a group of operations that are either committed to
+  the database together or they are all undone from the database.
+editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/distributed-acid-transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sdk-extensions/distributed-acid-transactions.html)
+
+# Distributed ACID Transactions
 
 > A _transaction_ is an atomic unit of work that contains one or more operations. It is a group of operations that are either committed to the database together or they are all undone from the database. 
 
@@ -14,8 +25,8 @@ Couchbase provides Distributed ACID Transactions for K-V (data) and Query operat
 * [Python](../python-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)
 * [Scala](../scala-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)
 
-|  | Couchbase Distributed ACID Transactions were initially implemented as a separate library. For all of the SDKs listed above they are now fully integrated into the SDK. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Couchbase Distributed ACID Transactions were initially implemented as a separate library. For all of the SDKs listed above they are now fully integrated into the SDK.
 
 ## [](#overview)Overview
 
@@ -38,8 +49,8 @@ Couchbase transactions support ACID properties for protected actions on the data
 
 `persistToMajority` provides the strongest protection from failures but is the least performant amongst the Durability levels. For more information, see [Durability Levels](../server/current/learn/data/durability.md#durability-requirements).
 
-|  | Statement Level Atomicity is provided for N1QL statements that are executed inside a transaction. This means that if a query statement fails during execution for a reason like a unique key violation that statement is completely rolled back and the rest of the transaction continues. It is as though the statement is not part of the transaction. No other work in the transaction is affected by the failure of this statement. If the query statement succeeds, it would be committed or rolled back based on the outcome of the overall transaction. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Statement Level Atomicity is provided for N1QL statements that are executed inside a transaction. This means that if a query statement fails during execution for a reason like a unique key violation that statement is completely rolled back and the rest of the transaction continues. It is as though the statement is not part of the transaction. No other work in the transaction is affected by the failure of this statement. If the query statement succeeds, it would be committed or rolled back based on the outcome of the overall transaction.
 
 ### [](#distributed-transactions-multi-node-and-multi-bucket)Distributed Transactions: Multi-node and Multi-Bucket
 
@@ -93,8 +104,8 @@ The Java example above is a classic example to transfer money between two accoun
 
 The application supplies the logic for the transaction inside a lambda, including any conditional logic required, and the transactions API takes care of getting the transaction committed. If the transactions API encounters a transient error, such as a temporary conflict with another transaction, then it can rollback what has been done so far and run the lambda again. The application does not have to do these retries and error handling itself.
 
-|  | Use transactions only on documents less than 10 MB in size. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> Use transactions only on documents less than 10 MB in size.
 
 For application-level transactions, create and use transactions through Couchbase SDK APIs.
 
@@ -120,8 +131,8 @@ COMMIT ;
 
 For more information on using Query statements in transactions, see [SQL++ Support for Couchbase Transactions](../server/current/n1ql/n1ql-language-reference/transactions.md).
 
-|  | Take a look at the [Query Transaction Simulator](https://transactions.couchbase.com) which demonstrates how query statements work in transactions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Take a look at the [Query Transaction Simulator](https://transactions.couchbase.com) which demonstrates how query statements work in transactions.
 
 ## [](#structure-of-a-transaction)Structure of a Transaction
 

@@ -1,4 +1,13 @@
+---
+title: Install Couchbase Lite for C
+description: Installing Couchbase Lite for C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/gs-install.html)
+
+# Install Couchbase Lite for C
 
 > Description — _Installing Couchbase Lite for C_  
 
@@ -24,8 +33,12 @@ The binary release download comprises a root directory (libcblite-community), wh
   * `bin` — the Couchbase Lite for C `.dll` files (Microsoft Windows-only) .
 * For iOS, an xcframework.
 
-|  | Debug Symbols Debug symbol versions are available for all desktop variants of C (Windows, macOS, Debian, Ubuntu and Raspbian) - see: [downloads table](#lbl-downloads). For Android and iOS the symbols are incorporated in the standard release package. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Debug Symbols
+> 
+> Debug symbol versions are available for all desktop variants of C (Windows, macOS, Debian, Ubuntu and Raspbian) - see: [downloads table](#lbl-downloads).
+> 
+> For Android and iOS the symbols are incorporated in the standard release package.
 
 ### [](#downloading-vector-search)Downloading Vector Search
 
@@ -33,8 +46,8 @@ You can obtain the download for the Vector Search extension here:
 
 * _Vector Search Extension_ — [Download Vector Search](#vs-release-2-0-0)
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 Installation:
 
@@ -139,8 +152,8 @@ if (!CBL_EnableVectorSearch(FLStr("/path/to/extension_dir"), &error)) {
 }
 ```
 
-|  | Couchbase Lite Vector Search does not have any preferred installation path for the .dll. It is up to you to determine where best to place it so it is available during execution. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite Vector Search does not have any preferred installation path for the `.dll`. It is up to you to determine where best to place it so it is available during execution.
 
 ## [](#lbl-macos)Install for macOS
 
@@ -293,8 +306,14 @@ At this point, you are ready to start building the [Getting Started](gs-build.md
 
 Couchbase Lite for C is available on the platforms shown in the tables below.
 
-|  | Deprecation Notice Support for the following will be deprecated in this release and will be removed in a future release: macOS 13 (Ventura) Please plan to migrate your apps to use an appropriate alternative version. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Deprecation Notice
+> 
+> Support for the following will be deprecated in this release and will be removed in a future release:
+> 
+> * macOS 13 (Ventura)
+> 
+> Please plan to migrate your apps to use an appropriate alternative version.
 
 ### [](#android)Android
 
@@ -497,8 +516,8 @@ Available platforms are:
 
 [Android](#android-1-0-0) | [MacOS](#macos-1-0-0) | [iOS](#ios-1-0-0) | [Windows](#windows-1-0-0) | [Linux](#linux-1-0-0) |
 
-|  | You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature.
 
 #### [](#android-1-0-0)Android
 

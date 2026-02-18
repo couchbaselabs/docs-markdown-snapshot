@@ -1,4 +1,14 @@
+---
+title: Advanced Settings for App Endpoints
+description: App Endpoints possess a variety of advanced settings to customize
+  your applications.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/advanced-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/advanced-settings.html)
+
+# Advanced Settings for App Endpoints
 
 > App Endpoints possess a variety of advanced settings to customize your applications. 
 
@@ -20,8 +30,8 @@ You can store channels and roles as user extended attributes (XATTRs). This is a
 
 You can configure CORS per App Endpoint to relax the [Same-Origin](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin%5Fpolicy) access policy and enable granular access controls across different areas of your applications.
 
-|  | At least one Origin must be configured upon confirmation of the CORS configuration. |
-|  | ----------------------------------------------------------------------------------- |
+> [!CAUTION]
+> At least one Origin must be configured upon confirmation of the CORS configuration.
 
 ## [](#see-also)See Also
 

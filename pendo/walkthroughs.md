@@ -1,4 +1,12 @@
+---
+title: Walkthrough Guides
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/walkthroughs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/pendo/walkthroughs.html)
+
+# Walkthrough Guides
 
 Use the following guidance to write text for a Walkthrough Guide.
 
@@ -32,8 +40,8 @@ All Walkthroughs must be assigned the **Education > Onboarding** Guide Category.
 
 Use the following guidelines for Walkthrough Guide settings.
 
-|  | You must configure the [Styling](#styling), [Location](#location) and [Behavior](#behavior) settings for each Step in a Walkthrough. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You must configure the [Styling](#styling), [Location](#location) and [Behavior](#behavior) settings for each Step in a Walkthrough.
 
 ### [](#styling)Styling
 
@@ -115,8 +123,8 @@ Use the following guidelines for developing Guide content.
 
 Every Walkthrough Guide should contain a progress tracker at the top of the Guide dialog.
 
-|  | Finalize the progress tracker when you’re finished designing the rest of your guide. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> Finalize the progress tracker when you’re finished designing the rest of your guide.
 
 Fill in the template with the Step number the user is currently on, out of the total number of Steps, for each Step.
 

@@ -1,4 +1,14 @@
+---
+title: Manage Logging
+description: The <em>Logging</em> facility allows a record to be maintained of
+  important events that occur on Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-logging/manage-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-logging/manage-logging.html)
+
+# Manage Logging
 
 > The _Logging_ facility allows a record to be maintained of important events that occur on Couchbase Server. 
 
@@ -289,8 +299,13 @@ set sla '{"version":1, "DELETE_BUCKET":{"slow":"100 ms"}}'
 
 In this example, the threshold for the `DELETE_BUCKET` operation is being set to 100ms. If a bucket deletion operation takes longer than this, then an message will be logged.
 
-|  | As an added minor convenience, the time interval can also be specified without a space: /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \\ set sla '{"version":1, "DELETE\_BUCKET":{"slow":"100ms"}}' |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As an added minor convenience, the time interval can also be specified without a space:
+> 
+> ```bash
+> /opt/couchbase/bin/mcctl --host localhost -u Administrator -P password \
+> set sla '{"version":1, "DELETE_BUCKET":{"slow":"100ms"}}'
+> ```
 
 It is also possible to set the threshold for all the op-codes in a single command by using the `default` code:
 
@@ -361,5 +376,5 @@ cp opcode-attributes.json opcode-attributes.d
 
 Edit `/opt/couchbase/etc/couchbase/kv/opcode-attributes.d/opcode-attributes.json` with the new settings.
 
-|  | These settings only apply to the node where the changes are made. To change the threshold across the cluster, then all the configurations must be applied to each node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These settings only apply to the node where the changes are made. To change the threshold across the cluster, then all the configurations must be applied to each node.

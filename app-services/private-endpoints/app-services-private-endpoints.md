@@ -1,4 +1,15 @@
+---
+title: Private Endpoints for App Services
+description: Private endpoints for App Services enable you to connect a client
+  app directly to Couchbase App Services, assuming that they both use the same
+  cloud service provider (CSP).
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/private-endpoints/app-services-private-endpoints.html)
+
+# Private Endpoints for App Services
 
 > Private endpoints for App Services enable you to connect a client app directly to Couchbase App Services, assuming that they both use the same cloud service provider (CSP). 
 
@@ -6,8 +17,8 @@ This feature allows your mobile or IoT infrastructure to connect to the network 
 
 Currently, private endpoints for App Services are only available using Amazon Web Services (AWS).
 
-|  | To use private endpoints for App Services, the client VPC and App Services VPC must be within the same region, for example us-east-1. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To use private endpoints for App Services, the client VPC and App Services VPC must be within the same region, for example `us-east-1`.
 
 ## [](#procedures)Procedures
 

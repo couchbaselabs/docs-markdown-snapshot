@@ -1,4 +1,14 @@
+---
+title: "Examples: Using the Eventing Service"
+description: This page contains examples of how to use the Eventing Service,
+  using the Couchbase Web Console.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-examples.html)
+
+# Examples: Using the Eventing Service
 
 > This page contains examples of how to use the Eventing Service, using the Couchbase Web Console. 
 

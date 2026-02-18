@@ -1,4 +1,13 @@
+---
+title: Common Errors
+description: Common errors that occur during management of Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/troubleshoot/common-errors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/troubleshoot/common-errors.html)
+
+# Common Errors
 
 > Common errors that occur during management of Couchbase Server. 
 

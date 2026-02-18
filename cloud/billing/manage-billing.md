@@ -1,9 +1,18 @@
+---
+title: Manage Billing Information
+description: Manage and audit billing information for your organization and clusters.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/manage-billing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/manage-billing.html)
+
+# Manage Billing Information
 
 > Manage and audit billing information for your organization and clusters. 
 
-|  | If you do not have a Couchbase Capella account, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you do not have a Couchbase Capella account, see [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md).
 
 You can [view your billing and usage information](#access-billing) for Couchbase Capella from your organization’s **Billing** tab.
 
@@ -21,8 +30,8 @@ If you use Couchbase Capella Credits, Couchbase sends invoices and other billing
 
 To update your billing contact information, contact [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html).
 
-|  | If you use a credit card to pay for your Capella usage, Couchbase sends invoices and billing notifications to the [Organization Owner](../organizations/manage-organizations.md) that added that credit card to your organization. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you use a credit card to pay for your Capella usage, Couchbase sends invoices and billing notifications to the [Organization Owner](../organizations/manage-organizations.md) that added that credit card to your organization.
 
 ## [](#update-default-cc)Update Your Default Credit Card
 

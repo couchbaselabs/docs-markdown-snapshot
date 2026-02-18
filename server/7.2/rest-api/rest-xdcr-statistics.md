@@ -1,4 +1,13 @@
+---
+title: Getting Statistics
+description: XDCR replication-statistics can be returned by the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-xdcr-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-xdcr-statistics.html)
+
+# Getting Statistics
 
 > XDCR replication-statistics can be returned by the REST API. 
 

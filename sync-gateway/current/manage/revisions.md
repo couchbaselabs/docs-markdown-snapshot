@@ -1,4 +1,14 @@
+---
+title: Revisions
+description: About Sync Gateway's revision tracking using version vectors and
+  revision caches in 4.0+.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/revisions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/revisions.html)
+
+# Revisions
 
 > About Sync Gateway’s revision tracking using version vectors and revision caches in 4.0+.  
 > Revisions are at the heart of Couchbase Mobile’s ability to respond flexibly and securely to changing data from server to edge.
@@ -67,8 +77,8 @@ In the section
 
 Pruning is the process of removing obsolete revisions. It automatically runs whenever a new revision is generated.
 
-|  | Use the Admin Rest API endpoint for [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the Admin Rest API endpoint for [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) to provision any configuration changes to properties described in this content.
 
 ### [](#lbl-alg)Version Vector Pruning (4.0+)
 
@@ -134,13 +144,13 @@ By adjusting this setting you can fine-tune Sync Gateway’s memory consumption.
 
 You can use the [rev\_cache.max\_memory\_count\_mb](../configuration/configuration-schema-database.md#cache-rev%5Fcache-max%5Fmemory%5Fcount%5Fmb) setting to specify the maximum amount of memory the revision cache should take up in MB. Setting the value to `0` disables any eviction based on memory at rev cache.
 
-|  | rev\_cache.max\_memory\_count\_mb is an Enterprise only setting. |
-|  | ---------------------------------------------------------------- |
+> [!IMPORTANT]
+> `rev_cache.max_memory_count_mb` is an Enterprise only setting.
 
 ### [](#lbl-sharding)Sharding
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 The **Community Edition** is configured with the default value and ignores any [rev\_cache.shard\_count](../configuration/configuration-schema-database.md#database-cache-rev%5Fcache-shard%5Fcount) value in the configuration file.
 
@@ -148,13 +158,13 @@ You can control the number of shards into which Sync Gateway will split its revi
 
 More shards means lower cache contention when accessing distinct revisions, at the cost of some memory overhead per-shard.
 
-|  | Do not change the default [database.cache.rev\_cache.shard\_count](../configuration/configuration-schema-database.md#database-cache-rev%5Fcache-shard%5Fcount) unless advised to do so by Couchbase Support — see: [Couchbase Support Policy](https://www.couchbase.com/support-policy). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Do not change the default [database.cache.rev\_cache.shard\_count](../configuration/configuration-schema-database.md#database-cache-rev%5Fcache-shard%5Fcount) unless advised to do so by Couchbase Support — see: [Couchbase Support Policy](https://www.couchbase.com/support-policy).
 
 ### [](#lbl-deltasync)Delta Sync
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 When executing a write operation with delta\_sync enabled the revision body is backed up in the bucket and retained for [database.delta\_sync.rev\_max\_age\_seconds](../configuration/configuration-schema-database.md#database-delta%5Fsync-rev%5Fmax%5Fage%5Fseconds), during which time it is available for the calculation of future revision deltas.
 
@@ -177,13 +187,13 @@ Setting [database.delta\_sync.rev\_max\_age\_seconds](../configuration/configura
 
 ### [](#lbl-disable)Disabling the Cache
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 Disabling the revision cache can be useful when there are large documents or if you expect a low cache hit rate. Otherwise it can negatively impact the latency of replications.
 
-|  | Do not disable the revision cache, unless advised to do so by Couchbase Support — see: [Couchbase Support Policy](https://www.couchbase.com/support-policy). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Do not disable the revision cache, unless advised to do so by Couchbase Support — see: [Couchbase Support Policy](https://www.couchbase.com/support-policy).
 
 To disable the revision cache entirely, set [rev\_cache.size](../configuration/configuration-schema-database.md#database-cache-rev%5Fcache-size) to zero. Community Edition ignores a zero setting.
 

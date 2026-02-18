@@ -1,4 +1,14 @@
+---
+title: Statistics
+description: Eventing Statistics, for each deployed Function, can be fetched
+  from an Eventing node using the Web Console or using the REST API.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-statistics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-statistics.html)
+
+# Statistics
 
 > Eventing Statistics, for each deployed Function, can be fetched from an Eventing node using the Web Console or using the REST API. 
 
@@ -47,8 +57,8 @@ Note, you may click and expand any of the above graphs for any deployed Eventing
 
 **Via the REST API**
 
-|  | The Functions REST API endpoints on this page are fully supported, as long as the content of the Eventing Function body is not created or modified externally (as the internal format of the body is not yet standardized). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Functions REST API endpoints on this page are fully supported, as long as the content of the Eventing Function body is not created or modified externally (as the internal format of the body is not yet standardized).
 
 Eventing statistics can be fetched from each eventing node using REST API bound to localhost. The resulting JSON based responses are local to the node, and suitable for further aggregation across nodes of the cluster.
 

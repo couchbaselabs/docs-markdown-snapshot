@@ -1,4 +1,13 @@
+---
+title: Transaction Concepts
+description: A high-level overview of Distributed ACID Transactions with Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/concept-docs/transactions.html)
+
+# Transaction Concepts
 
 > A high-level overview of Distributed ACID Transactions with Couchbase. 
 
@@ -34,8 +43,8 @@ collection := scope.Collection("airport")
 transactions := cluster.Transactions()
 ```
 
-|  | Multiple calls to cluster.Transactions() will yield the same Transactions object. This is because the Transactions object performs automated [background processes](transactions-cleanup.md) that should not be duplicated. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Multiple calls to `cluster.Transactions()` will yield the same `Transactions` object. This is because the `Transactions` object performs automated [background processes](transactions-cleanup.md) that should not be duplicated.
 
 ```go
 result, err := cluster.Transactions().Run(func(ctx *gocb.TransactionAttemptContext) error {

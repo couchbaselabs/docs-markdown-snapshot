@@ -1,4 +1,12 @@
+---
+title: Tooltip Guides
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/tooltips.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/pendo/tooltips.html)
+
+# Tooltip Guides
 
 Use the following guidance to write text for a Tooltip Guide.
 

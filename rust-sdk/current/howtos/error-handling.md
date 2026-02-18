@@ -1,4 +1,14 @@
+---
+title: Handling Errors
+description: Errors are inevitable. Rust offers several flexible approaches to
+  handling them.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/error-handling.html)
+
+# Handling Errors
 
 > Errors are inevitable. Rust offers several flexible approaches to handling them. 
 
@@ -240,8 +250,8 @@ The application can write similar wrappers for the other operations — replace,
 
 ### [](#idempotent-and-non-idempotent-operations)Idempotent and Non-Idempotent Operations
 
-|  | Idempotent operations are those that can be applied multiple times and only have one effect. Repeatedly setting an email field is idempotent — increasing a counter by one is not. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Idempotent operations are those that can be applied multiple times and only have one effect. Repeatedly setting an email field is idempotent — increasing a counter by one is not.
 
 Some operations we can view as idempotent as they will fail with no effect after the first success — such as inserts.
 

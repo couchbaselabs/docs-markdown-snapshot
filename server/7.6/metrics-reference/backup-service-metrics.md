@@ -1,4 +1,13 @@
+---
+title: Backup Service Metrics
+description: A list of the metrics provided by the Backup Service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/backup-service-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/metrics-reference/backup-service-metrics.html)
+
+# Backup Service Metrics
 
 > A list of the metrics provided by the Backup Service. 
 
@@ -14,8 +23,9 @@ Note that each histogram metric will generate three time series, with the follow
 
 Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs/practices/histograms/) for more information.
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | backup\_data\_size7.0.0gauge / bytes Repository backed up data size                                     |
 | ------------------------------------------------------------------------------------------------------- |

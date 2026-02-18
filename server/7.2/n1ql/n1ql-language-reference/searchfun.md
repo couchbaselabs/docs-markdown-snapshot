@@ -1,4 +1,14 @@
+---
+title: Search Functions
+description: Search functions enable you to use full text search (FTS) queries
+  directly within a SQL++ query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/searchfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/searchfun.html)
+
+# Search Functions
 
 Search functions enable you to use full text search ([FTS](../../fts/fts-introduction.md)) queries directly within a SQL++ query.
 
@@ -6,8 +16,8 @@ Search functions enable you to use full text search ([FTS](../../fts/fts-introdu
 
 To use any of the search functions, the Search service must be available on the cluster. It is also recommended, but not required, that you should create suitable full text indexes for the searches that you need to perform. For more information, refer to [Preparing for Full Text Searches](../../fts/fts-quickstart-guide.md#preparing-for-full-text-searches).
 
-|  | The examples in this page all assume that demonstration full text indexes have been created, as described in [Demonstration Indexes](#fts:fts-demonstration-indexes.adoc). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The examples in this page all assume that demonstration full text indexes have been created, as described in [Demonstration Indexes](#fts:fts-demonstration-indexes.adoc).
 
 ### Authorization
 
@@ -27,8 +37,8 @@ This function enables you to use a full text search to filter a result set, or a
 
 If a query contains a SEARCH function, the Query engine analyzes the entire query, including the search specification, to select the best index to use with this search, taking any index hints into account. The Query engine then passes the search specification over to the Search engine to perform the search.
 
-|  | If no suitable full text index can be selected, or no full text index exists, the Query engine falls back on a Primary index or qualified GSI index to produce document keys, and then fetches the documents. The Search service then creates a temporary index in memory to perform the search. This process may be slower than using a suitable full text index. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If no suitable full text index can be selected, or no full text index exists, the Query engine falls back on a Primary index or qualified GSI index to produce document keys, and then fetches the documents. The Search service then creates a temporary index in memory to perform the search. This process may be slower than using a suitable full text index.
 
 ### [](#arguments)Arguments
 
@@ -36,8 +46,11 @@ identifier
 
 \[Required\] An expression in the form `_keyspaceAlias_[._path_]`, consisting of the keyspace or keyspace alias in which to search, followed by the path to a field in which to search, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, and the identifier contains a path, the keyspace or keyspace alias may be omitted. However, if the path is omitted, the keyspace or keyspace alias is mandatory. When the identifier contains a path, it is used as the default field in the _query_ argument, as long as the _query_ argument is a query string. If the path is omitted, the default field is set to \_all. If the _query_ argument is a query string which specifies a field, this field takes priority, and the path in the identifier is ignored. Similarly, if the _query_ argument is a query object, the path is ignored. The path must use Search syntax rather than SQL++ syntax; in other words, you cannot specify array locations such as \[\*\] or \[3\] in the path. If the keyspace, keyspace alias, or path contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, and the identifier contains a path, the keyspace or keyspace alias may be omitted. However, if the path is omitted, the keyspace or keyspace alias is mandatory.
+> * When the identifier contains a path, it is used as the default field in the _query_ argument, as long as the _query_ argument is a query string. If the path is omitted, the default field is set to `_all`. If the _query_ argument is a query string which specifies a field, this field takes priority, and the path in the identifier is ignored. Similarly, if the _query_ argument is a query object, the path is ignored.
+> * The path must use Search syntax rather than SQL++ syntax; in other words, you cannot specify array locations such as `[*]` or `[3]` in the path.
+> * If the keyspace, keyspace alias, or path contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 The _identifier_ argument cannot be replaced by a SQL++ query parameter.
 
@@ -264,8 +277,11 @@ identifier
 
 \[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the full text search operation was performed, followed by the outname of the full text search operation, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
+> * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-2)Return Value
 
@@ -375,8 +391,11 @@ identifier
 
 \[Optional\] An expression in the form `[_keyspaceAlias_.]_outname_`, consisting of the keyspace or keyspace alias in which the full text search operation was performed, followed by the outname of the full text search operation, using dot notation.
 
-|  | The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted. The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether. The outname is specified by the out field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to "out". If the keyspace or keyspace alias contains any characters such as \-, you must surround that part of the identifier with backticks \`\`. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> * The identifier must contain the keyspace or keyspace alias if there is more than one input source in the FROM clause. If there is only one input source in the FROM clause, the keyspace or keyspace alias may be omitted.
+> * The identifier must contain the outname if there is more than one [SEARCH()](#search) function in the query. If there is only one [SEARCH()](#search) function in the query, the identifier may be omitted altogether.
+> * The outname is specified by the `out` field within the [SEARCH()](#search) function’s _options_ argument. If an outname was not specified by the [SEARCH()](#search) function, the outname defaults to `"out"`.
+> * If the keyspace or keyspace alias contains any characters such as `-`, you must surround that part of the identifier with backticks ``` `` ```.
 
 ### [](#return-value-3)Return Value
 

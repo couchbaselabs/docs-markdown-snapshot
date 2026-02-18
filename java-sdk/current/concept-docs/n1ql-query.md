@@ -1,4 +1,14 @@
+---
+title: Query
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/concept-docs/n1ql-query.html)
+
+# Query
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
@@ -108,9 +118,9 @@ With default query options, the query service will rely on the current index sta
 
 The following options are available:
 
-* `not_bounded`: Executes the query immediately, without requiring any consistency for the query. If index-maintenance is running behind, out-of-date results may be returned.
-* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update. If index-maintenance is running behind, the query waits for it to catch up.
-* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query-request. If index-maintenance is running behind, the query waits for it to catch up.
+* `not_bounded`: Executes the query immediately, without requiring any consistency for the query. If index maintenance is running behind, out-of-date results may be returned.
+* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update. If index maintenance is running behind, the query waits for it to catch up.
+* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query request. If index maintenance is running behind, the query waits for it to catch up.
 * `statement_plus`: Executes the query with strong consistency per statement. Before processing each statement, the service obtains a current vector timestamp and uses it as a lower bound for that statement.
 
 For SQL++, the default consistency is `not_bounded`.

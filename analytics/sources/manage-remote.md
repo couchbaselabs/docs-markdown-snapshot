@@ -1,4 +1,12 @@
+---
+title: Stream Data from Remote Sources
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-remote.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/manage-remote.html)
+
+# Stream Data from Remote Sources
 
 > If you want to stream data to your Capella Analytics database, you create a remote data source. 
 

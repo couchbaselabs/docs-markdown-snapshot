@@ -1,4 +1,13 @@
+---
+title: Manual Failover
+description: Manual failover can be managed by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-manualfailover-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-cluster-manualfailover-intro.html)
+
+# Manual Failover
 
 > Manual failover can be managed by means of the REST API. 
 

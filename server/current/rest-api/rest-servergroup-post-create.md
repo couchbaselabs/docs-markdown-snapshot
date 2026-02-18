@@ -1,4 +1,14 @@
+---
+title: Creating Groups
+description: Server groups are created with the <code>POST
+  /pools/default/serverGroups</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-servergroup-post-create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-servergroup-post-create.html)
+
+# Creating Groups
 
 > Server groups are created with the `POST /pools/default/serverGroups` HTTP method and URI. 
 

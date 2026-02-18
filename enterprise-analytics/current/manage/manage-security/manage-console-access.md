@@ -1,4 +1,13 @@
+---
+title: Manage Console Access
+description: Administrators can connect securely with Enterprise Analytics Web Console.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-console-access.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/manage-console-access.html)
+
+# Manage Console Access
 
 > Administrators can connect securely with Enterprise Analytics Web Console. 
 

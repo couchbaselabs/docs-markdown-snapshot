@@ -1,4 +1,14 @@
+---
+title: Who Am I?
+description: A Couchbase-Server user can check their id (or <em>username</em>),
+  domain, roles, and other details.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-whoami.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-whoami.html)
+
+# Who Am I?
 
 > A Couchbase-Server user can check their id (or _username_), domain, roles, and other details. 
 

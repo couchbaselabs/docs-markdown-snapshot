@@ -1,4 +1,14 @@
+---
+title: CREATE INDEX Statements
+description: This topic describes how to use a <code>CREATE</code> statement to
+  create an index on a remote or standalone collection.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5_ddl_index.html)
+
+# CREATE INDEX Statements
 
 > This topic describes how to use a `CREATE` statement to create an index on a remote or standalone collection. 
 
@@ -128,5 +138,5 @@ The `IndexUnknown` modifier enables you to specify whether you want the system t
 
 If you omit this modifier, then the default is INCLUDE UNKNOWN KEY.
 
-|  | Array indexes cannot include NULL or MISSING values. For this reason, you must specify EXCLUDE UNKNOWN KEY when defining an array index. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Array indexes cannot include NULL or MISSING values. For this reason, you must specify EXCLUDE UNKNOWN KEY when defining an array index.

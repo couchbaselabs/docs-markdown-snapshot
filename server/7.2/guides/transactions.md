@@ -1,4 +1,13 @@
+---
+title: Couchbase Transactions
+description: How to create Couchbase transactions using SQL++.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/transactions.html)
+
+# Couchbase Transactions
 
 > How to create Couchbase transactions using SQL++.  
 > This guide is for Couchbase Server.
@@ -14,8 +23,8 @@ If you want to try out the examples in this section, follow the instructions giv
 * [cbq: The Command Line Shell for SQL++](../tools/cbq-shell.md)
 * [Query Workbench](../tools/query-workbench.md)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#settings)Transaction Parameters
 
@@ -224,8 +233,8 @@ To execute a transaction containing multiple statements, create the transaction 
 
 Once you have started a transaction, all statements within the cbq shell session are assumed to be part of the same transaction until you rollback or commit the transaction.
 
-|  | You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must be using cbq shell version 2.0 or above to use the automatic transaction ID functionality.
 
 ---
 
@@ -354,8 +363,8 @@ For more information, see [BEGIN TRANSACTION](../n1ql/n1ql-language-reference/be
 
 To specify transaction settings, use the `SET TRANSACTION` statement.
 
-|  | Currently, the only available transaction setting is ISOLATION LEVEL READ COMMITTED. This setting is enabled by default. The SET TRANSACTION statement is therefore optional and may be omitted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Currently, the only available transaction setting is `ISOLATION LEVEL READ COMMITTED`. This setting is enabled by default. The `SET TRANSACTION` statement is therefore optional and may be omitted.
 
 The following statement specifies transaction settings.
 

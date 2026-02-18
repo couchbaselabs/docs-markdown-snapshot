@@ -1,4 +1,13 @@
+---
+title: Read Documents
+description: How to read documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/reading-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/reading-data.html)
+
+# Read Documents
 
 > How to read documents with a command line tool or an SDK. 
 
@@ -11,8 +20,8 @@ Read the following for further information about the clients available:
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.
 
 ## [](#reading-a-document)Reading a Document
 
@@ -51,8 +60,8 @@ Result
 ╰───┴───────────┴────────────────────┴─────────────────────┴───────┴─────────╯
 ```
 
-|  | If the document cannot be found, Couchbase Shell returns a Key not found error. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document cannot be found, Couchbase Shell returns a `Key not found` error.
 
 For more information, see [Reading](https://couchbase.sh/docs/#%5Freading) in the Couchbase Shell documentation.
 
@@ -72,8 +81,8 @@ Console.WriteLine($"CAS: {getResult.Cas}");
 Console.WriteLine($"Data: {getResult.ContentAs<JObject>()}");
 ```
 
-|  | If the document does not exist, the SDK returns a DocumentNotFoundException error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK returns a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -94,8 +103,8 @@ GetResult getResult = hotelCollection.get("hotel-123");
 System.out.println("CAS:" + getResult.cas());
 ```
 
-|  | If the document does not exist, the SDK returns a DocumentNotFoundException error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK returns a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -117,8 +126,8 @@ console.log('CAS:', getResult.cas)
 console.log('Data:', JSON.stringify(getResult.content, null, '  '))
 ```
 
-|  | If the document does not exist, the SDK returns a DocumentNotFoundError error. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document does not exist, the SDK returns a `DocumentNotFoundError` error.
 
 Click the  View button to see this code in context.
 
@@ -140,8 +149,8 @@ print("CAS:", get_result.cas)
 print("Data: {}".format(get_result.content_as[dict]))
 ```
 
-|  | If the document does not exist, the SDK returns a DocumentNotFoundException error. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document does not exist, the SDK returns a `DocumentNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -358,8 +367,8 @@ Result
 ╰───┴────────────────────┴─────────┴────────╯
 ```
 
-|  | If the field containing the Sub-Document cannot be found, the get command returns a Cannot find column error. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the field containing the Sub-Document cannot be found, the `get` command returns a `Cannot find column` error.
 
 For more information, see [get for filters](https://www.nushell.sh/commands/docs/get.html) in the Nushell documentation.
 
@@ -402,8 +411,8 @@ System.out.println("CAS:" + lookupInResult.cas());
 System.out.println("Geo:" + lookupInResult.contentAsObject(0));
 ```
 
-|  | If the document path cannot be found, the SDK returns a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document path cannot be found, the SDK returns a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 
@@ -447,8 +456,8 @@ print("CAS:", lookup_in_result.cas)
 print("Data:", lookup_in_result.content_as[dict](0))
 ```
 
-|  | If the document path cannot be found, the SDK returns a PathNotFoundException error. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If the document path cannot be found, the SDK returns a `PathNotFoundException` error.
 
 Click the  View button to see this code in context.
 

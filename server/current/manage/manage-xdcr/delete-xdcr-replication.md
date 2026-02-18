@@ -1,4 +1,14 @@
+---
+title: Delete a Replication
+description: Deleting an XDCR <em>replication</em> stops the replication of
+  data, and removes the defined replication from Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/delete-xdcr-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-xdcr/delete-xdcr-replication.html)
+
+# Delete a Replication
 
 > Deleting an XDCR _replication_ stops the replication of data, and removes the defined replication from Couchbase Server. 
 

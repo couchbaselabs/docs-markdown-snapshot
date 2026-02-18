@@ -1,4 +1,12 @@
+---
+title: Couchbase Upgrades
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-upgrade.html)
+
+# Couchbase Upgrades
 
 > The Operator allows a managed Couchbase cluster to be upgraded. This includes upgrading the Couchbase Server version and also related Kubernetes resources. 
 
@@ -36,8 +44,14 @@ The upgrade example explanation is as follows:
 | **4** | previousVersionPodCount instructs the Operator to keep a fixed number of pods running the previous cluster version. This setting supports rollbacks or an extended StabilizationPeriod for the final pods during a cluster upgrade. Couchbase Server considers the upgrade process complete only when all pods are running the new cluster version. During this time, the Operator marks the cluster as Mixed Mode, which may restrict some features.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **5** | upgradeOrderType defines the sequence the Operator uses to upgrade pods to the new cluster version. It determines how the Operator interprets upgradeOrder and must be set to Nodes, ServerGroups, ServerClasses, or Services. The Operator follows the sequence specified in upgradeOrder and applies the default ordering to any items not listed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
-|  | InPlaceUpgrade can interrupt service and increase the risk of data loss. Use this process only when the cluster has at least two nodes running the Data Service. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Important information about `InPlaceUpgrade`.
+> 
+> `InPlaceUpgrade` can interrupt service and increase the risk of data loss. Use this process only when the cluster has at least two nodes running the Data Service.
+> 
+> InplaceUpgrades can only be done performed one pod at a time. This is due to restrictions by Couchbase Server’s delta recovery logic, which fails if any pod topology changes occur since the pod was gracefully failed.
+> 
+> InPlaceUpgrades cannot be performed on single node clusters. This is considered an “offline” upgrade, and will only work in 2.7.0+ (See [K8S-3542](https://jira.issues.couchbase.com/browse/K8S-3542)).
 
 ### [](#how-to-upgrade-a-cluster)How to Upgrade a Cluster
 
@@ -60,8 +74,8 @@ During an upgrade or when the cluster runs in Mixed Mode through `PreviousVersio
 
 See [Upgrade Paths](#server:install/upgrade.adoc#supported-upgrade-paths) for more information about the permitted upgrade paths in Couchbase Server.
 
-|  | You can modify the Couchbase Server version during an upgrade only to roll back to the previous cluster version. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can modify the Couchbase Server version during an upgrade only to roll back to the previous cluster version.
 
 ### [](#rollback)Rollback
 
@@ -86,8 +100,8 @@ spec:
 
 The Operator lets you control the upgrade process by using the fields in `couchbasecluster.spec.upgrade`. For example, as an Administrator, you can use these fields to upgrade pods based on their availability region or the Couchbase Server services they run. Also, you can upgrade pods running the Data Service before those running the Query Service, or upgrade specific pods in a defined order.
 
-|  | While the cluster runs pods on two versions, the Operator marks the cluster as Mixed Mode and restricts features such as bucket migration and sidecar changes. Keep the time spent in this mode to a minimum. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While the cluster runs pods on two versions, the Operator marks the cluster as Mixed Mode and restricts features such as bucket migration and sidecar changes. Keep the time spent in this mode to a minimum.
 
 ### [](#upgrading-pods)Upgrading Pods
 

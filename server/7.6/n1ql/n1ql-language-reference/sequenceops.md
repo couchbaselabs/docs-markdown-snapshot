@@ -1,4 +1,13 @@
+---
+title: Sequence Operators
+description: Sequence operators enable you to return a value from a sequence.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/sequenceops.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/sequenceops.html)
+
+# Sequence Operators
 
 > Sequence operators enable you to return a value from a sequence. 
 
@@ -83,8 +92,12 @@ For a sequence that has been referenced already, the next value operator increme
 
 Subqueries operate on independent documents from their containing queries, so subqueries increment the sequence independently.
 
-|  | A sequence is not guaranteed to generate unique values. For example, in the following circumstances, it may generate a value that it has generated before: If the sequence cycles. If the sequence is restarted with a value that overlaps with previously-generated values. If the sequence is restarted to change the direction of the increment: for example, descending instead of ascending. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A sequence is not guaranteed to generate unique values. For example, in the following circumstances, it may generate a value that it has generated before:
+> 
+> * If the sequence cycles.
+> * If the sequence is restarted with a value that overlaps with previously-generated values.
+> * If the sequence is restarted to change the direction of the increment: for example, descending instead of ascending.
 
 ### [](#restrictions)Restrictions
 

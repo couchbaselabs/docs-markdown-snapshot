@@ -1,9 +1,20 @@
+---
+title: INFER
+description: The INFER statement enables you to infer the metadata of documents
+  in a keyspace, for example the structure of documents, data types of various
+  attributes, sample values, and so on.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/infer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/infer.html)
+
+# INFER
 
 The INFER statement enables you to infer the metadata of documents in a keyspace, for example the structure of documents, data types of various attributes, sample values, and so on. Since a keyspace can contain documents with varying structures, the INFER statement is statistical in nature rather than deterministic. You can specify the sample size that must be used to analyze and identify the structure of documents in a keyspace.
 
-|  | The describe statement introduced in the Couchbase Server 4.1 release has been renamed to INFER. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `describe` statement introduced in the Couchbase Server 4.1 release has been renamed to INFER.
 
 The Query Workbench in the Couchbase Web console (available under the **Query** tab) uses the INFER statement to display the structure of documents in the [Data Insights](../../tools/query-workbench.md#bucket-analyzer) area when you expand the keyspace name.
 

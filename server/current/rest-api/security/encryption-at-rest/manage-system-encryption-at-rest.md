@@ -1,4 +1,14 @@
+---
+title: Manage Audit, Config, and Log Encryption at Rest
+description: You can use the REST API to view and change the state of encryption
+  at rest for non-bucket data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/manage-system-encryption-at-rest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/manage-system-encryption-at-rest.html)
+
+# Manage Audit, Config, and Log Encryption at Rest
 
 > You can use the REST API to view and change the state of encryption at rest for non-bucket data. 
 
@@ -347,8 +357,8 @@ The output of the previous example looks like this:
 }
 ```
 
-|  | In the example, you may notice that audit.info.dataStatus indicates the data’s status is unknown. It reports this state because Couchbase Server was still encrypting the data when the call to the encryptionAtRest endpoint returned the JSON message. Eventually, this status becomes encrypted once Couchbase Server finishes encrypting the audit data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In the example, you may notice that `audit.info.dataStatus` indicates the data’s status is `unknown`. It reports this state because Couchbase Server was still encrypting the data when the call to the `encryptionAtRest` endpoint returned the JSON message. Eventually, this status becomes `encrypted` once Couchbase Server finishes encrypting the audit data.
 
 Disable Encryption-at-Rest for Logs and Audit
 
@@ -405,5 +415,5 @@ The output from the previous example looks like this:
 }
 ```
 
-|  | As with the previous example, the values of the audit.info.dataStatus and log.info.dataStatus do not match the encryptionMethod setting. It takes time for Couchbase Server to decrypt the data when you turn off encryption-at-rest. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As with the previous example, the values of the `audit.info.dataStatus` and `log.info.dataStatus` do not match the `encryptionMethod` setting. It takes time for Couchbase Server to decrypt the data when you turn off encryption-at-rest.

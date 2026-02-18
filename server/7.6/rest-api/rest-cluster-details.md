@@ -1,4 +1,14 @@
+---
+title: Viewing Cluster Details
+description: Cluster details are retrieved with <code>GET /pools/default</code>
+  HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-details.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-cluster-details.html)
+
+# Viewing Cluster Details
 
 > Cluster details are retrieved with `GET /pools/default` HTTP method and URI. 
 
@@ -20,8 +30,8 @@ X-memcachekv-Store-Client-Specification-Version: 0.1
 
 At the highest level, the response for this request describes a cluster, as mentioned previously. The response contains a number of properties which define attributes of the cluster and _controllers_ which enable you to make certain requests of the cluster.
 
-|  | Since buckets could be renamed and there is no way to determine the name for the default bucket for a cluster, the system attempts to connect non-SASL, non-proxied to a bucket named "default". If it does not exist, Couchbase Server drops the connection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Since buckets could be renamed and there is no way to determine the name for the default bucket for a cluster, the system attempts to connect non-SASL, non-proxied to a bucket named "default". If it does not exist, Couchbase Server drops the connection.
 
 Do not rely on the server list returned by this request to connect to Couchbase Server. Instead, issue an HTTP GET call to the bucket to get the node list for that specific bucket.
 

@@ -1,4 +1,13 @@
+---
+title: Databases
+description: Working with Couchbase Lite Databases
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/c/database.html)
+
+# Databases
 
 > Description — _Working with Couchbase Lite Databases_  
 > Related Content — [Blobs](blob.md) | [Documents](document.md) | [Indexing](indexing.md)
@@ -61,8 +70,8 @@ You are advised to incorporate the closing of all open databases into your appli
 
 To close a database, use [CBLDatabase\_Close()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga4d448b2d6809d6f9633d810d3ac6dcfa) — see: [Example 2](#ex-dbclose). This also closes active replications, listeners and-or live queries connected to the database.
 
-|  | Closing a database soon after starting a replication involving it can cause an exception as the asynchronous replicator (start) may not yet be connected. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Closing a database soon after starting a replication involving it can cause an exception as the asynchronous `replicator (start)` may not yet be `connected`.
 
 Example 2\. Close a Database
 
@@ -76,8 +85,8 @@ CBLDatabase_Close(db, &err);
 
 Database Full Sync will prevent the loss of transactional data due to an unexpected system crash or loss of power. This feature is not enabled by default and must be manually set in your database configuration.
 
-|  | Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Database Full Sync is a safe method to prevent data loss but will incur a significant degredation of performance.
 
 Example 3\. Enable Database Full Sync
 
@@ -86,13 +95,13 @@ Example 3\. Enable Database Full Sync
 config.fullSync = true;
 ```
 
-|  | Once a Database is created, its configuration is immutable — modifying the DatabaseConfiguration property afterwards has no effect on the existing instance. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Once a Database is created, its configuration is immutable — modifying the `DatabaseConfiguration` property afterwards has no effect on the existing instance.
 
 ## [](#database-encryption)Database Encryption
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 _Couchbase Lite on C_ includes the ability to encrypt Couchbase Lite databases. This allows mobile applications to secure the data at rest, when it is being stored on the device. The algorithm used to encrypt the database is 256-bit AES.
 

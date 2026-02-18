@@ -1,4 +1,15 @@
+---
+title: Sizing Guidelines
+description: Evaluate the overall performance and capacity goals that you have
+  for Couchbase, and use that information to determine the necessary resources
+  that you'll need in your deployment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/sizing-general.html)
+
+# Sizing Guidelines
 
 > Evaluate the overall performance and capacity goals that you have for Couchbase, and use that information to determine the necessary resources that you’ll need in your deployment. 
 
@@ -8,8 +19,8 @@ With the increasing number of Couchbase services and the flexibility of the Couc
 
 If you want detailed recommendations for your specific deployment, you can contact Couchbase Support.
 
-|  | The sizing recommendations and calculations discussed in this guide are based on an analysis of performance data and common use-cases. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The sizing recommendations and calculations discussed in this guide are based on an analysis of performance data and common use-cases.
 
 ## [](#general-considerations)General Considerations
 
@@ -141,8 +152,8 @@ __Table 5\. Suggested Sizing Guideline__
 
 This tells you that the RAM requirement for the whole cluster is 7 GB.
 
-|  | This amount is in addition to the RAM requirements for the operating system and any other software that runs on the cluster nodes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This amount is in addition to the RAM requirements for the operating system and any other software that runs on the cluster nodes.
 
 ### [](#disk-sizing-for-data-service-nodes)Disk Sizing for Data Service Nodes
 
@@ -271,8 +282,8 @@ __Table 9\. Suggested Sizing Guideline__
 
 The previous example shows the memory requirement of a secondary index with 10M index entries, each with a 50 bytes secondary key and a 30 bytes DocumentID. The memory usage requirements are 2.5 GB (Nitro, 100% resident), 1 GB (plasma, 20% resident), 800 MB (ForestDB, 20% resident).
 
-|  | The storage engine used in the sizing calculation corresponds to the storage mode chosen for Index Service as explained in the table below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The storage engine used in the sizing calculation corresponds to the storage mode chosen for Index Service as explained in the table below.
 
 __Table 10\. Storage engine and storage mode__
 | Storage Engine                        | Storage Mode |
@@ -355,8 +366,8 @@ A 200-byte context results in 1 KB of storage per active timer. 100,000 active t
 
 As a best practice, keep this collection fully resident in-memory to make sure you have constant availability.
 
-|  | All Eventing functions use this collection. |
-|  | ------------------------------------------- |
+> [!NOTE]
+> All Eventing functions use this collection.
 
 ## [](#sizing-backup-service-nodes)Sizing Backup Service Nodes
 

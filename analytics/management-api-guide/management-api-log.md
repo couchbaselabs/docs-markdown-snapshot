@@ -1,4 +1,13 @@
+---
+title: Capella Analytics Management API Change Log
+description: The change log for the Capella Analytics Management API.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/management-api-guide/pages/management-api-log.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/management-api-guide/management-api-log.html)
+
+# Capella Analytics Management API Change Log
 
 This page is for Capella Analytics. For Capella operational, see [Management API Change Log](../../cloud/management-api-guide/management-api-log.md).
 

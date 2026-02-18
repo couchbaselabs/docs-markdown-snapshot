@@ -1,4 +1,12 @@
+---
+title: Configure Public Networking
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-public-networking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-public-networking.html)
+
+# Configure Public Networking
 
 > This guide shows you how to configure Couchbase Server to be accessible from the public internet. 
 

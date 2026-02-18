@@ -1,4 +1,13 @@
+---
+title: Connect to Couchbase Server
+description: How to connect to a Couchbase Cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/connect.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/connect.html)
+
+# Connect to Couchbase Server
 
 > How to connect to a Couchbase Cluster. 
 
@@ -20,8 +29,15 @@ Clients access data by connecting to a Couchbase cluster over the network. The m
 
 The command line clients also provide a quick and streamlined interface for simple access and are suitable if you just want to access an item without writing any code.
 
-|  | With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system: Linux /opt/couchbase/bin Windows C:\\Program Files\\Couchbase\\Server\\bin macOS /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin If the command line client is not provided with your installation of Couchbase Server, you must install the C SDK in order to use the command line clients. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system:
+> 
+> | Linux   | /opt/couchbase/bin                                                       |
+> | ------- | ------------------------------------------------------------------------ |
+> | Windows | C:\\Program Files\\Couchbase\\Server\\bin                                |
+> | macOS   | /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin |
+> 
+> If the command line client is not provided with your installation of Couchbase Server, you must install the C SDK in order to use the command line clients.
 
 Read the following for further information about the clients available:
 
@@ -83,8 +99,8 @@ Result
 -------------------------------------------------------------------------------
 ```
 
-|  | If the user credentials are invalid, cbc will return a LCB\_ERR\_AUTHENTICATION\_FAILURE error. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the user credentials are invalid, `cbc` will return a `LCB_ERR_AUTHENTICATION_FAILURE` error.
 
 For further details, refer to [cbc(1)](https://docs.couchbase.com/sdk-api/couchbase-c-client/md%5Fdoc%5F2cbc.html).
 
@@ -138,8 +154,8 @@ Collection widgets = customerA.collection("widgets");
 cluster.disconnect();
 ```
 
-|  | If the user credentials provided are invalid, the SDK will return a AuthenticationFailureException error. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the user credentials provided are invalid, the SDK will return a `AuthenticationFailureException` error.
 
 Click the  View button to see this code in context.
 
@@ -158,8 +174,8 @@ var cluster = await couchbase.connect('couchbase://localhost', {
 })
 ```
 
-|  | If the user credentials provided are invalid, the SDK will return a AuthenticationFailureError error. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the user credentials provided are invalid, the SDK will return a `AuthenticationFailureError` error.
 
 Click the  View button to see this code in context.
 
@@ -186,8 +202,8 @@ customer_a = bucket.scope("customer-a")
 widgets = customer_a.collection("widgets")
 ```
 
-|  | If the user credentials provided are invalid, the SDK will return a AuthenticationException error. |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the user credentials provided are invalid, the SDK will return a `AuthenticationException` error.
 
 Click the  View button to see this code in context.
 

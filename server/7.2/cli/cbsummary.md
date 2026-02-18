@@ -1,4 +1,14 @@
+---
+title: cbsummary
+description: The <code>cbsummary</code> tool connects to a set of Couchbase
+  clusters, and generates a summary report.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbsummary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbsummary.html)
+
+# cbsummary
 
 > The `cbsummary` tool connects to a set of Couchbase clusters, and generates a summary report. 
 

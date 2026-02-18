@@ -1,4 +1,15 @@
+---
+title: Upgrade-Procedure Selection
+description: Multiple procedures are available for the upgrade of Couchbase
+  Server. An appropriate procedure should be selected, based on a variety of
+  factors.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-procedure-selection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/upgrade-procedure-selection.html)
+
+# Upgrade-Procedure Selection
 
 > Multiple procedures are available for the upgrade of Couchbase Server. An appropriate procedure should be selected, based on a variety of factors. 
 
@@ -33,8 +44,12 @@ _Swap Rebalance_ is automatically performed by Couchbase Server when all the fol
 
 Since the introduced nodes are recognized by Couchbase Server to have equivalent capacities and configurations to those that have been taken out, rebalance is performed as a _swap rebalance_; which largely confines its activity to the incoming and outgoing nodes. Thus, for example, if one Data Service node is removed and another added, the swap rebalance ensures that the vBucket layout of the outgoing node is created identically on the incoming node; with the layouts of other Data Service nodes not requiring modification.
 
-|  | Node Removal and Swap Rebalancing If you are removing a data node, then there is no need to perform a [failover operation](../manage/manage-nodes/failover-graceful.md). Remove the node using the [UI](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-ui), the [REST API](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-rest-api), or the [CLI](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-cli), and then trigger a rebalance. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Node Removal and Swap Rebalancing
+> 
+> If you are removing a data node, then there is no need to perform a [failover operation](../manage/manage-nodes/failover-graceful.md).
+> 
+> Remove the node using the [UI](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-ui), the [REST API](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-rest-api), or the [CLI](../manage/manage-nodes/remove-node-and-rebalance.md#remove-a-node-with-the-cli), and then trigger a rebalance.
 
 By contrast, if two Data Service nodes are taken out, and one Data Service node and one Search Service node are introduced, since the incoming and outgoing nodes differ in configuration, when rebalance is triggered by the administrator, Couchbase Server performs a _full_ rebalance; involving more nodes than those in transit; and indeed, potentially involving the entire cluster.
 

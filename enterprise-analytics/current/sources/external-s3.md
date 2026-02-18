@@ -1,4 +1,12 @@
+---
+title: Query Data in External Data Sources
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/external-s3.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sources/external-s3.html)
+
+# Query Data in External Data Sources
 
 > To provide query access to OLAP data in an Amazon S3 and S3-compatible storage, you create an external link and associate it with an external collection. 
 
@@ -16,20 +24,20 @@ You can specify a session token to indicate that the credentials are temporary. 
 
 You do not need credentials for publicly available data in supported [object storage](../install/supported-platform.md#supported-object-storage-solutions).
 
-|  | When you create an external link, be sure to follow best practices for security. Couchbase recommends that you grant the minimum possible permissions to perform the required operations, and allow access only to the required data and resources. You should never use root account credentials. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you create an external link, be sure to follow best practices for security. Couchbase recommends that you grant the minimum possible permissions to perform the required operations, and allow access only to the required data and resources. You should never use root account credentials.
 
 ### [](#prefix)The Location Path
 
 When you create an external collection based on supported [object storage](../install/supported-platform.md#supported-object-storage-solutions), you can supply a path to the files Enterprise Analytics queries. A path consists of a prefix that defines a hierarchical organization, using a format such as `topLevel/nextLevel/lowestLevel`. The path does not include filenames.
 
-|  | If you use the Amazon S3 console, prefixes are also referred to as folders. |
-|  | --------------------------------------------------------------------------- |
+> [!TIP]
+> If you use the Amazon S3 console, prefixes are also referred to as folders.
 
 To make querying the external data source as efficient as possible, you should supply a path that’s as specific and precise as possible. You can use static prefixes, dynamic prefixes, or a mixture of both to define a path. For information about static and dynamic prefixes, see [Design a Location Path](dynamic-prefixes.md).
 
-|  | Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Because you cannot index the data located in an external store, Couchbase encourages thoughtful design of the paths used in external collections.
 
 For information about using prefixes for data on S3, see [Organizing objects using prefixes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-prefixes.html) in the AWS documentation.
 
@@ -82,8 +90,8 @@ In the **Include** or **Exclude** field, specify files to include in or exclude 
 For example, if the bucket stores both JSON and Parquet files, you can enter **.JSON in the \*Include** field to query only the files that are in JSON format. 
 * Click **Save**. Your collection appears under the scope in the explorer.
 
-|  | You cannot create Secondary indexes on collections that are created on external storage. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot create Secondary indexes on collections that are created on external storage.
 
 ## [](#see-also)See Also
 

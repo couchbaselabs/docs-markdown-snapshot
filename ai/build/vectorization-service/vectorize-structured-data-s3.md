@@ -1,4 +1,15 @@
+---
+title: Vectorize Structured Data from Amazon S3
+description: Use a Capella Structured Data Workflow to automatically generate
+  embedding vectors from JSON data in an Amazon S3 Bucket. Use embedding vectors
+  for similarity searches on your data.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-s3.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/vectorization-service/vectorize-structured-data-s3.html)
+
+# Vectorize Structured Data from Amazon S3
 
 > Use a Capella Structured Data Workflow to automatically generate embedding vectors from JSON data in an Amazon S3 Bucket. Use embedding vectors for similarity searches on your data. 
 
@@ -46,15 +57,15 @@ Workflow names can be a maximum of 128 characters and can include letters (A-Z, 
 13. Verify your workflow configuration.
 14. Click **Run Workflow**.
 
-|  | Do not delete or modify the metadata scope, collections, or Eventing functions created by your new Workflow. If you modify or delete the metadata or functions, you must delete your Workflow and create a new one. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not delete or modify the metadata scope, collections, or Eventing functions created by your new Workflow. If you modify or delete the metadata or functions, you must delete your Workflow and create a new one.
 
 ### [](#configure-s3)Configure Your Amazon S3 Bucket
 
 Choose whether to use a new Amazon S3 bucket or choose an S3 bucket that you have already saved as an integration with Capella AI Services.
 
-|  | You can manage your saved Amazon S3 bucket credentials from the [Integrations page](../../admin/manage-ai-integrations.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can manage your saved Amazon S3 bucket credentials from the [Integrations page](../../admin/manage-ai-integrations.md).
 
 * New Amazon S3 Bucket
 * Use Existing Amazon S3 Bucket
@@ -64,10 +75,9 @@ To configure a new Amazon S3 bucket:
 1. Click **Add New S3 Bucket Integration**.
 2. In the **Integration Name** field, enter a name to use to identify your credentials and make it easier to manage them from the [Integrations page](../../admin/manage-ai-integrations.md).
 3. Enter the details and credentials for accessing your Amazon S3 bucket.  
-It’s recommended to use read-only credentials for your S3 bucket. Make sure you have your **Access Key ID** and its **Secret Access Key**.
-
-|  | You can also choose to use temporary credentials, supported by a session token. For more information about configuring temporary credentials and session tokens, see [the AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Fcredentials%5Ftemp%5Fuse-resources.html). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+It’s recommended to use read-only credentials for your S3 bucket. Make sure you have your **Access Key ID** and its **Secret Access Key**.  
+> [!TIP]  
+> You can also choose to use temporary credentials, supported by a session token. For more information about configuring temporary credentials and session tokens, see [the AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id%5Fcredentials%5Ftemp%5Fuse-resources.html).
 4. Click **Add Credentials**.
 5. In the **S3 Bucket Integration** list, select your new S3 bucket.
 6. In the **Select type of files** list, select the specific format for your JSON data.
@@ -130,10 +140,9 @@ To use an OpenAI model:
   3. Click **Add Key**.
 4. In the **Integrations Name** list, select the OpenAI API Key you want to use.
 5. Click **Next**.
-6. Continue with the rest of the [Procedure](#procedure).
-
-|  | Workflows do not use the OpenAI Batch API. |
-|  | ------------------------------------------ |
+6. Continue with the rest of the [Procedure](#procedure).  
+> [!NOTE]  
+> Workflows do not use the OpenAI Batch API.
 
 ## [](#next-steps)Next Steps
 

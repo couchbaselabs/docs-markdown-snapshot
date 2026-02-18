@@ -1,4 +1,13 @@
+---
+title: Glossary
+description: Couchbase Lite Glossary of Terms
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/refer-glossary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/objc/refer-glossary.html)
+
+# Glossary
 
 ## [](#index)Index
 

@@ -1,4 +1,13 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the SQL++ query language.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/n1ql-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/howtos/n1ql-queries.html)
+
+# Query
 
 > You can query for documents in Couchbase using the SQL++ query language. SQL++ (formerly N1QL) is based on SQL, but designed for structured and flexible JSON documents. 
 
@@ -23,8 +32,10 @@ Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include
 | **1** | The query method returns a Flow<QueryFlowItem>. Nothing happens until you collect the flow. Calling execute is an easy way to collect the flow. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Buckets and Queries Before Couchbase 6.5 If you use a version of Couchbase before 6.5, you must open a bucket before doing a query. It does not need to be the bucket you are searching. If you forget to open a bucket, the SDK throws FeatureNotAvailableException. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Buckets and Queries Before Couchbase 6.5
+> 
+> If you use a version of Couchbase before 6.5, you must open a bucket before doing a query. It does not need to be the bucket you are searching. If you forget to open a bucket, the SDK throws `FeatureNotAvailableException`.
 
 ## [](#search-non-default-collection)Searching a Non-Default Collection
 
@@ -53,8 +64,8 @@ A "query parameter" is like a variable in a SQL++ statement. Query parameters pr
 
 You can give parameters names, or refer to them by position.
 
-|  | Some parts of a SQL++ statement cannot be parameters. If you use a parameter where it is not allowed, the SDK throws an exception. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some parts of a SQL++ statement cannot be parameters. If you use a parameter where it is not allowed, the SDK throws an exception.
 
 ### [](#named-parameters)Named parameters
 
@@ -69,8 +80,8 @@ Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include
 | **1** | As a courtesy to Kotlin users, Couchbase Server 7.2.0 and later let you use either @ or $ when referencing named parameters in SQL++ statements. If you use an older version of Couchbase Server, use $ instead of @. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | When using $ to reference a named parameter, always escape the $. Otherwise, Kotlin does string interpolation, which does not prevent SQL injection. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When using `$` to reference a named parameter, always escape the `$`. Otherwise, Kotlin does string interpolation, which does not prevent SQL injection.
 
 ### [](#positional-parameters)Positional parameters
 
@@ -104,8 +115,8 @@ To use less memory, pass a lambda to `execute` and work on each row one at a tim
 Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
 ```
 
-|  | The streaming version of execute returns QueryMetadata instead of QueryResult. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> The streaming version of `execute` returns `QueryMetadata` instead of `QueryResult`.
 
 ## [](#prepared-statements)Prepared Statements
 

@@ -1,10 +1,18 @@
+---
+title: Configure Prometheus Metrics Collection
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-prometheus.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-prometheus.html)
+
+# Configure Prometheus Metrics Collection
 
 > You can set up the Autonomous Operator to use the Couchbase Server’s native support for metrics collection, for Couchbase Server versions newer than Version 7.0  
 > Couchbase native support for metric collection exposes a Prometheus compatible endpoint on all Pods without the need for third party tools. 
 
-|  | Couchbase native support is available for Couchbase Server versions 7.0 or higher and is the recommended way for collecting metrics with Prometheus. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase native support is available for Couchbase Server versions 7.0 or higher and is the recommended way for collecting metrics with Prometheus.
 
 ## [](#overview)Overview
 
@@ -54,8 +62,12 @@ $ kubectl apply -f couchbase-prometheus-service.yaml
 
 Now create a `ServiceMonitor` resource to direct Prometheus to monitor this metric service.
 
-|  | The ServiceMonitor resources are expected to be in the same namespace as Prometheus Operator. To use password authentication you will also need to add your authentication secret in the same namespace as the ServiceMonitor resource. The default location of the Prometheus Operator is the monitoring namespace. If, for any reason, this is undesirable, or simply not feasible, the Prometheus Operator deployment resource can be modified to select ServiceMonitor resources from a different namespace by modifying the serviceMonitorNamespaceSelector as specified in the ["Prometheus Custom Resource Definition"](https://github.com/prometheus-operator/kube-prometheus/blob/f7d3019a8f1bf8b49402c77ad651c95ef16be68d/manifests/prometheus-prometheus.yaml#L46). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> The `ServiceMonitor` resources are expected to be in the same namespace as Prometheus Operator.
+> 
+> To use password authentication you will also need to add your authentication secret in the same namespace as the `ServiceMonitor` resource.
+> 
+> The default location of the Prometheus Operator is the `monitoring` namespace. If, for any reason, this is undesirable, or simply not feasible, the Prometheus Operator deployment resource can be modified to select `ServiceMonitor` resources from a different namespace by modifying the `serviceMonitorNamespaceSelector` as specified in the ["Prometheus Custom Resource Definition"](https://github.com/prometheus-operator/kube-prometheus/blob/f7d3019a8f1bf8b49402c77ad651c95ef16be68d/manifests/prometheus-prometheus.yaml#L46).
 
 The following is an example `ServiceMonitor` configuration. Save as `couchbase-prometheus-monitor.yaml` after making any necessary modifications as described below:
 
@@ -122,8 +134,8 @@ Try entering `kv_ops` into the metric search bar. If no results are returned, ch
 
 deprecated
 
-|  | Use of Prometheus exporter is deprecated and will be removed in a future release. It is highly recommended that you use the native Couchbase Server Metrics endpoint. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Use of Prometheus exporter is deprecated and will be removed in a future release. It is highly recommended that you use the native Couchbase Server Metrics endpoint.
 
 The Autonomous Operator provides Prometheus integration for collecting and exposing Couchbase Server metrics via the [Couchbase Prometheus Exporter](https://github.com/couchbase/couchbase-exporter).
 
@@ -131,8 +143,8 @@ The Couchbase Exporter is a ["sidecar" container](https://kubernetes.io/docs/con
 
 Prometheus metrics collection is enabled in the `CouchbaseCluster` resource. The configuration allows you to specify a Couchbase-provided container image that contains the Prometheus Exporter. The Autonomous Operator injects the image as a ["sidecar" container](https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/#how-pods-manage-multiple-containers) in each Couchbase Server pod.
 
-|  | The Couchbase-supplied Prometheus Exporter container image is only supported on Kubernetes platforms in conjunction with the Couchbase Autonomous Operator. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase-supplied Prometheus Exporter container image is only supported on Kubernetes platforms in conjunction with the Couchbase Autonomous Operator.
 
 ## [](#couchbase-exporter-configuration)Couchbase Exporter Configuration
 
@@ -156,8 +168,20 @@ spec:
 | **3** | You can optionally specify a Kubernetes Secret that contains a bearer token value that clients will need to use to gain access to the Prometheus metrics.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **4** | refreshRate changes how often the exporter polls Couchbase Server for bucket metrics. In server 7.0+ this can be an expensive operation depending upon the cluster size and number of buckets.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
-|  | If you wish to create a Kubernetes secret with a bearer token, simply edit and create the following definition: apiVersion: v1 kind: Secret metadata:   name: cb-metrics-token type: Opaque stringData:   token: your-plain-text-bearer-token-here The stringData field allows you to put a non-base64 encoded string directly into the Secret, and Kubernetes will then encode the string for you when the Secret is created or updated. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you wish to create a Kubernetes secret with a bearer token, simply edit and create the following definition:
+> 
+> ```yaml
+> apiVersion: v1
+> kind: Secret
+> metadata:
+>   name: cb-metrics-token
+> type: Opaque
+> stringData:
+>   token: your-plain-text-bearer-token-here
+> ```
+> 
+> The `stringData` field allows you to put a non-base64 encoded string directly into the Secret, and Kubernetes will then encode the string for you when the Secret is created or updated.
 
 Important Considerations
 

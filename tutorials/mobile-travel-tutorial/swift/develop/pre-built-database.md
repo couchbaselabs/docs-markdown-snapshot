@@ -1,4 +1,12 @@
+---
+title: Pre-built database
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/pre-built-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/develop/pre-built-database.html)
+
+# Pre-built database
 
 ## [](#starting-with-prebuilt-database)Starting with Prebuilt Database
 

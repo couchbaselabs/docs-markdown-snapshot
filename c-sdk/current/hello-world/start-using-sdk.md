@@ -1,4 +1,14 @@
+---
+title: Install and Start Using the C SDK with Couchbase Server
+description: The Couchbase C SDK (libcouchbase - LCB) enables you to interact
+  with a Couchbase Server cluster from the C language.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/hello-world/start-using-sdk.html)
+
+# Install and Start Using the C SDK with Couchbase Server
 
 > The Couchbase C SDK (libcouchbase - LCB) enables you to interact with a Couchbase Server cluster from the C language. It was used by older versions of the Node.js, PHP, and Python SDKs to communicate with the Couchbase Server. 
 
@@ -202,8 +212,8 @@ Windows binary packages can be found as downloads for each version listed below.
 
 Be sure to select the proper package for the compiler and architecture your application is using. Binaries are linked from the release notes page for each libcouchbase release — we strongly recommend [downloading the latest release](../project-docs/sdk-release-notes.md#latest-release).
 
-|  | If there are no binaries available for your Visual Studio version, then using a binary from any other Visual Studio version is _likely_ to work. Most of the issues related to mixing Visual Studio binary versions involve changing and incompatible C APIs or incompatible C Runtime (CRT) objects and functions. Since the Couchbase C SDK does not expose a C API, and since it does not directly expose any CRT functionality, it should be safe for use so long as your application can link to the library at compile-time. The windows runtime linker will ensure that each binary is using the appropriate version of the Visual C Runtime (MSVCRT.DLL). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there are no binaries available for your Visual Studio version, then using a binary from any other Visual Studio version is _likely_ to work. Most of the issues related to mixing Visual Studio binary versions involve changing and incompatible C APIs or incompatible C Runtime (CRT) objects and functions. Since the Couchbase C SDK does not expose a C API, and since it does not directly expose any CRT functionality, it should be safe for use so long as your application can link to the library at compile-time. The windows runtime linker will ensure that each binary is using the appropriate version of the Visual C Runtime (`MSVCRT.DLL`).
 
 If for some reason you cannot use any of the prebuilt Windows binaries, follow the instructions in [_installation from source_ (above)](#installation-from-source) to build on Windows.
 

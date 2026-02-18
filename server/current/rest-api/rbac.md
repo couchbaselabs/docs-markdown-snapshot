@@ -1,4 +1,14 @@
+---
+title: Role-Based Access Control (RBAC)
+description: Full  and Security Administrators can manage the Couchbase
+  <em>Role-Based Access Control</em> (RBAC) system, using the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rbac.html)
+
+# Role-Based Access Control (RBAC)
 
 > Full and Security Administrators can manage the Couchbase _Role-Based Access Control_ (RBAC) system, using the REST API. 
 
@@ -276,8 +286,8 @@ The specified `password` must conform to the settings established as described i
 
 If successful, the call returns `200 OK`. No object is returned.
 
-|  | In Couchbase Server 7.1.1 and later versions, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the /settings/rbac/users/local URI can be used with the PATCH method: this allows the password parameter to be used, specifying a new password; and the username and roles parameters to be omitted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In Couchbase Server 7.1.1 and later versions, if an existing user’s password is to be changed, and their existing role-assignments are to be kept unchanged, the `/settings/rbac/users/local` URI can be used with the `PATCH` method: this allows the `password` parameter to be used, specifying a new password; and the `username` and `roles` parameters to be omitted.
 
 #### [](#example-create-local-users)Examples: Create Local Users, Assigning Roles
 
@@ -363,8 +373,8 @@ http://10.143.192.101:8091/settings/rbac/users/local/dgreen \
 
 The API request sets the new password to `nextpassword` for the existing local user `dgreen` and prompts them to change their password at the first login.
 
-|  | You can set the attribute temporaryPassword=false to undo this setting; to cancel the forcing of password change on a user. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can set the attribute `temporaryPassword=false` to undo this setting; to cancel the forcing of password change on a user.
 
 #### [](#lock-or-unlock-a-user-account)Lock or Unlock a User Account
 
@@ -627,8 +637,8 @@ The following example backs up all users and groups to a file named `full.backup
 curl -s -X GET -G -u Administrator:password \
     http://localhost:8091/settings/rbac/backup  > full.backup 
 
-|  | The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The backup contains the hashed passwords for users defined in the local authentication domain. Be sure to keep the contents of the backup secure.
 
 Parameters
 

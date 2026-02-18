@@ -1,4 +1,13 @@
+---
+title: Querying with the EF Core Couchbase DB Provider
+description: Querying the database with SQL++.
+editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/efcore-provider/current/entity-framework-core-queries.html)
+
+# Querying with the EF Core Couchbase DB Provider
 
 > Querying the database with SQL++. 
 
@@ -90,8 +99,8 @@ public class Session
 var mySession = await context.FindAsync(pkey);
 ```
 
-|  | Use FindAsync only when the entity might already be tracked by your context, and you want to avoid the database roundtrip. Otherwise, simply use SingleAsync — there is no performance difference between the two when the entity needs to be loaded from the database. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use `FindAsync` only when the entity might already be tracked by your context, and you want to avoid the database roundtrip. Otherwise, simply use `SingleAsync` — there is no performance difference between the two when the entity needs to be loaded from the database.
 
 ## [](#group-by)Group By
 
@@ -136,8 +145,8 @@ Other operators may or may not be supported in the 1.0 release.
 
 `DbContext.SqlRaw` is not implemented as of the EF Core Couchbase DB Provider 1.0 release because it depends on ADO.NET parameters which are minimally supported in the initial release.
 
-|  | DbContext.FromSql will throw a NotImplementedException in EF Core Couchbase DB Provider 1.0\. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `DbContext.FromSql` will throw a `NotImplementedException` in EF Core Couchbase DB Provider 1.0\.
 
 ### [](#fromsqlraw)FromSqlRaw
 
@@ -165,5 +174,5 @@ using (var context = new BloggingContext())
 }
 ```
 
-|  | In addition to META, other SQL++ functions not yet supported in the EF Core Couchbase DB Provider may be executed in a similar way. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In addition to META, other SQL++ functions not yet supported in the EF Core Couchbase DB Provider may be executed in a similar way.

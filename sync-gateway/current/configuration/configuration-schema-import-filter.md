@@ -1,7 +1,19 @@
+---
+title: Import Filter Configuration
+description: Using Sync Gateway's Admin REST API and the Import Filter function
+  to configure access
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-import-filter.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/configuration/configuration-schema-import-filter.html)
 
-|  | Pre-3.0 Legacy Configuration Equivalents This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Import Filter Configuration
+
+> [!IMPORTANT]
+> Pre-3.0 Legacy Configuration Equivalents
+> 
+> This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md)
 
 ## [](#introduction)Introduction
 
@@ -27,8 +39,9 @@ You can provision an import filter using:
 
 ### [](#configuration-structure)Configuration Structure
 
-|  | Custom scopes and collections require Couchbase Lite 3.1 or later and Sync Gateway 3.1 or later.Capella App Services and Sync Gateway releases earlier than version 3.1 do not support custom scopes and collections. When using Couchbase Lite 3.1 or later with earlier Sync Gateway versions, use the default collection as an alternative. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Custom scopes and collections require Couchbase Lite 3.1 or later and Sync Gateway 3.1 or later.  
+> Capella App Services and Sync Gateway releases earlier than version 3.1 do not support custom scopes and collections. When using Couchbase Lite 3.1 or later with earlier Sync Gateway versions, use the default collection as an alternative.
 
 The configuration settings described here are provisioned through the [Database Configuration](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration) endpoints.
 

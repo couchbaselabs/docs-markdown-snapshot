@@ -1,4 +1,14 @@
+---
+title: Establish Limits for User Processes and File Descriptors
+description: You can configure Linux system limits for user processes and file
+  descriptors to meet Enterprise Analytics requirements.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/limits-user-processes-file-descriptors.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/limits-user-processes-file-descriptors.html)
+
+# Establish Limits for User Processes and File Descriptors
 
 The maximum permitted number of concurrent user processes, and currently open file descriptors, are established on Linux systems with default values that are low for running Enterprise Analytics with optimal performance and scale. The maximum number of user processes must be reset to at least 10,000 and the maximum number of file descriptors to at least 200,000.
 

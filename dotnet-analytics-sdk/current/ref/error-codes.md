@@ -1,4 +1,14 @@
+---
+title: Error Messages
+description: The standardized error codes returned by the Analytics .NET SDK,
+  from Capella connection to SQL++ query.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/ref/pages/error-codes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/ref/error-codes.html)
+
+# Error Messages
 
 > The standardized error codes returned by the Analytics .NET SDK, from Capella connection to SQL++ query. 
 

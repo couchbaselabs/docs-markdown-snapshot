@@ -1,4 +1,14 @@
+---
+title: Storage Engines
+description: "Couchbase supports two different backend storage mechanisms:
+  Couchstore and Magma."
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/buckets-memory-and-storage/storage-engines.html)
+
+# Storage Engines
 
 > Couchbase supports two different backend storage mechanisms: Couchstore and Magma. It is important to understand which backend storage is best suited to your requirements. 
 

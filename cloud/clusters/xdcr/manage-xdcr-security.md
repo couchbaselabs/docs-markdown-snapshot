@@ -1,4 +1,14 @@
+---
+title: Manage Replication Security
+description: Configure your Cross Datacenter Replication (XDCR) to securely
+  replicate data between source and destination buckets.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/xdcr/manage-xdcr-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/xdcr/manage-xdcr-security.html)
+
+# Manage Replication Security
 
 > Configure your Cross Datacenter Replication (XDCR) to securely replicate data between source and destination buckets. 
 
@@ -18,8 +28,8 @@ You can secure your replication using 1 of the following approaches:
 
 Choose the option that best fits your cluster’s configuration and security requirements.
 
-|  | Once you create a replication, you cannot modify how its securely routed. To make changes, you need to [create a new replication](manage-xdcr-replications.md#create-replication). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Once you create a replication, you cannot modify how its securely routed. To make changes, you need to [create a new replication](manage-xdcr-replications.md#create-replication).
 
 ## [](#prerequisites)Prerequisites
 
@@ -31,8 +41,8 @@ Choose the option that best fits your cluster’s configuration and security req
 
 Capella supports public Internet-based XDCR for all replication configurations with self-managed clusters. Replicating data over the public Internet provides the broadest compatibility, but it does not offer network-level isolation.
 
-|  | If your replication is between a Capella operational cluster and a self-managed cluster with a different cloud provider or in an on-premises environment, you can only connect through the public Internet. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If your replication is between a Capella operational cluster and a self-managed cluster with a different cloud provider or in an on-premises environment, you can only connect through the public Internet.
 
 ### [](#enable-replication-over-the-public-internet)Enable Replication Over the Public Internet
 
@@ -49,8 +59,8 @@ To enable replication over the public Internet:
 
 VPC Peering can secure XDCR by replicating data over a private network. This approach avoids exposure to the public Internet and provides stronger network isolation than public Internet connectivity.
 
-|  | You can only use VPC Peering when your replication is between an Capella operational cluster and a self-managed cluster with the same CSP. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can only use VPC Peering when your replication is between an Capella operational cluster and a self-managed cluster with the same CSP.
 
 ### [](#enable-replication-over-vpc-peering)Enable Replication Over VPC Peering
 
@@ -64,8 +74,8 @@ To enable replication over VPC Peering:
 
 ## [](#private-endpoints)Replicate Data Over a Private Endpoint Connection
 
-|  | This is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is only available upon request from Capella Support. To open a Support ticket, see [Create a Support Ticket](../../support/manage-support.md#create-support-ticket).
 
 Private endpoints expose a service-specific endpoint for XDCR, allowing clusters to replicate without network-level peering or public Internet exposure. [Enabling XDCR over a private endpoint connection](#enable-pe-xdcr) is only available through the [Management REST API](../../management-api-reference/index.md#tag/Private-Endpoint-Service).
 

@@ -1,10 +1,23 @@
+---
+title: Using the Legacy Logging API for Troubleshooting
+description: Couchbase Lite on Android -- Using Logs for Troubleshooting
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/troubleshooting-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/android/troubleshooting-logs.html)
+
+# Using the Legacy Logging API for Troubleshooting
 
 > Description — _Couchbase Lite on Android — Using Logs for Troubleshooting_  
 > Related Content — [Troubleshooting Queries](troubleshooting-queries.md)
 
-|  | Constraints The value returned by LogLevel.getValue() is not useful. It’s not the Android log level. The retrieval of logs from the device is out of scope of this feature. This content applies to the post 2.5 versions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Constraints
+> 
+> * The value returned by `LogLevel.getValue()` is not useful. It’s not the Android log level.
+> * The retrieval of logs from the device is out of scope of this feature.
+> * This content applies to the post 2.5 versions.
 
 ## [](#introduction)Introduction
 
@@ -21,8 +34,8 @@ For greater flexibility you can implement a custom logging class using the [Logg
 
 In all instances, you control what is logged and at what level using the [Log](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/Log.html) class.
 
-|  | the use of [Database.setLogLevel()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/Database.html#setLogLevel-com.couchbase.lite.LogDomain-com.couchbase.lite.LogLevel-) is now deprecated. Further, you can no longer set a log level for a specific domain. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> the use of [Database.setLogLevel()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-android/com/couchbase/lite/Database.html#setLogLevel-com.couchbase.lite.LogDomain-com.couchbase.lite.LogLevel-) is now deprecated. Further, you can no longer set a log level for a specific domain.
 
 ## [](#lbl-console-logs)Console based logging
 
@@ -180,8 +193,8 @@ Database.log.setCustom(new LogTestLogger(LogLevel.WARNING)); (1)
 
 ## [](#decoding-binary-logs)Decoding binary logs
 
-|  | The latest version of the cbl-log tool is 3.0.0. |
-|  | ------------------------------------------------ |
+> [!NOTE]
+> The latest version of the cbl-log tool is `3.0.0`.
 
 You can use the **cbl-log** tool to decode binary log files — see [Example 5](#eg-cbl-log).
 

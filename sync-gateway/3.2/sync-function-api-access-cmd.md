@@ -1,4 +1,13 @@
+---
+title: Access()
+description: Enabling Sync Gateway data access
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-function-api-access-cmd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/sync-function-api-access-cmd.html)
+
+# Access()
 
 > Enabling Sync Gateway data access  
 
@@ -19,15 +28,15 @@ Use the `access()` function to grant a user access to a channel.
 | username | Must be a string identifying a user, or an array of strings identifying multiple users; the function is applied to each user in the array. If the value resolves to null the function result is a no-op.                                                              |
 | channels | Must be a string identifying a channel name, or an array of strings to specify multiple channel names (for example: (\['channel1', 'channel2'\]); the function is applied to each element in the array. If the value resolves to null the function result is a no-op. |
 
-|  | As a convenience, the resolved value of either argument may be null or undefined, in which case nothing happens. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As a convenience, the resolved value of either argument may be `null` or `undefined`, in which case nothing happens.
 
 ## [](#context)Context
 
 You can invoke this function multiple times from within your Sync Function.
 
-|  | Prefix the username argument value with role: to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Prefix the `username` argument value with `role:` to apply this function to a role rather than a user. This grants access to the specified channel(s) for all users assigned that role.
 
 The effects of all access calls by all active documents are effectively combined in a union, so if _any_ document grants a user access to a channel, that user has access to the channel.
 
@@ -55,8 +64,8 @@ access ("snej", null);
 | **4** | Allow access of multiple channels to multiple users |
 | **5** | The null arguments mean these are treated as no-ops |
 
-|  | If you invoke the access() function multiple times to grant the same user access to the same channel, you could see negative performance effects, such as large fetches or request timeouts. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you invoke the `access()` function multiple times to grant the same user access to the same channel, you could see negative performance effects, such as large fetches or request timeouts.
 
 ---
 

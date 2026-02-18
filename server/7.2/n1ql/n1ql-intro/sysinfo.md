@@ -1,4 +1,14 @@
+---
+title: Getting System Information
+description: SQL++ has a system catalog that stores metadata about a database.
+  The system catalog is a namespace called system.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-intro/sysinfo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-intro/sysinfo.html)
+
+# Getting System Information
 
 > SQL++ has a system catalog that stores metadata about a database. The system catalog is a namespace called _system_. 
 
@@ -108,8 +118,8 @@ The query returns the following attributes:
 | namespace\_id | (string) ID of the namespace to which the scope belongs |
 | path          | (string) Path of the scope                              |
 
-|  | Querying system:scopes only returns named scopes — that is, non-default scopes. To return all scopes, including the default scopes, you can query system:all\_scopes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:scopes` only returns named scopes — that is, non-default scopes. To return all scopes, including the default scopes, you can query `system:all_scopes`.
 
 ## [](#querying-keyspaces)Querying Collections
 
@@ -141,8 +151,8 @@ For a named, non-default collection, the query returns the following attributes:
 | path          | (string) Path of the keyspace                              |
 | scope         | (string) Scope to which the keyspace belongs               |
 
-|  | Querying system:keyspaces only returns non-system keyspaces. To return all keyspaces, including the system keyspaces, you can query system:all\_keyspaces. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:keyspaces` only returns non-system keyspaces. To return all keyspaces, including the system keyspaces, you can query `system:all_keyspaces`.
 
 ## [](#querying-indexes)Querying Indexes
 
@@ -181,8 +191,8 @@ For an index on a named, non-default collection, the query returns the following
 | state         | (string) State of index, for example, online            |
 | using         | (string) Type of index, for example, gsi                |
 
-|  | Querying system:indexes only returns indexes on non-system keyspaces. To return all indexes, including indexes on system keyspaces, you can query system:all\_indexes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Querying `system:indexes` only returns indexes on non-system keyspaces. To return all indexes, including indexes on system keyspaces, you can query `system:all_indexes`.
 
 ## [](#querying-dual)Querying Dual
 

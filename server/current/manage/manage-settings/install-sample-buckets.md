@@ -1,4 +1,14 @@
+---
+title: Sample Buckets
+description: You can install buckets containing example scopes, collections, and
+  documents that you can experiment with.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/install-sample-buckets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-settings/install-sample-buckets.html)
+
+# Sample Buckets
 
 > You can install buckets containing example scopes, collections, and documents that you can experiment with. 
 
@@ -10,8 +20,8 @@ Full and Cluster administrators can install sample buckets using the [Couchbase 
 
 [Scopes and Collections](../../learn/data/scopes-and-collections.md) let you organize data within a bucket by type. The `beer-sample` and `gamesim-sample` sample buckets store all of their data in the default scope. The `travel-sample` bucket contains data in six scopes in addition to the `_default` scope. These additional scopes define several collections. The `inventory` scope has collections that organize travel data such as airlines and airports. The data within the `tenant_agent_00` through `tenant_agent_04` scopes let you experiment with multi-tenancy applications.
 
-|  | The \_default scope of the travel\_sample bucket duplicates all of the data stored in the inventory and tenant\_agent\_00 through tenant\_agent\_04 scopes. This duplication makes the bucket compatible with scripts and applications written for versions of Couchbase Server earlier than 7.0 that did not support scopes and collections. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `_default` scope of the `travel_sample` bucket duplicates all of the data stored in the `inventory` and `tenant_agent_00` through `tenant_agent_04` scopes. This duplication makes the bucket compatible with scripts and applications written for versions of Couchbase Server earlier than 7.0 that did not support scopes and collections.
 
 ## [](#install-sample-buckets-with-the-ui)Install Sample Buckets with the UI
 

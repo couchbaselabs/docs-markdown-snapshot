@@ -1,4 +1,15 @@
+---
+title: Compression
+description: Couchbase Server supports <em>data compression</em> in its
+  communications with internal and external clients, and in its internal
+  handling of items.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/compression.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/compression.html)
+
+# Compression
 
 > Couchbase Server supports _data compression_ in its communications with internal and external clients, and in its internal handling of items. 
 

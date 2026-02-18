@@ -1,4 +1,16 @@
+---
+title: Set Up Capella SSO Using Google Workspace
+description: Configure Single Sign-On (SSO) between Google Workspace and
+  Couchbase Capella to allow your organization's users to authenticate securely
+  without managing separate credentials. This integration enables streamlined
+  access management while maintaining enterprise-grade security.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-google.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/sso-google.html)
+
+# Set Up Capella SSO Using Google Workspace
 
 > Configure Single Sign-On (SSO) between Google Workspace and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
@@ -67,20 +79,18 @@ Create a realm in Capella using information from Google.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 4. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 Complete the configuration in Google Workspace
 
 Now that you have created the realm, you must finish configuring the custom SAML app in Google.
 
 1. Returning to the Google Cloud Console, on the **Add custom SAML app** setup page, click **Continue**.
-2. Copy and paste the following fields from your Capella realm configuration into the Google custom SAML app setup:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+2. Copy and paste the following fields from your Capella realm configuration into the Google custom SAML app setup:  
+> [!TIP]  
+> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |           | Google Field |
 | ------------- | --------- | ------------ |
@@ -101,10 +111,9 @@ Now that you have created the realm, you must finish configuring the custom SAML
 | Relevant Google groups, such as admins. | Groups        |
 6. Click **Finish**.  
 A page for the new custom SAML web app automatically loads with its configuration details.
-7. Turn on the SAML web app for everyone:
-
-|  | To turn on the service for an organizational unit or user group, see [Google Workspace Admin Help](https://support.google.com/a/answer/6087519?hl=en). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+7. Turn on the SAML web app for everyone:  
+> [!NOTE]  
+> To turn on the service for an organizational unit or user group, see [Google Workspace Admin Help](https://support.google.com/a/answer/6087519?hl=en).
 
   1. Click **User access**.
   2. Click **On for everyone**.
@@ -177,20 +186,18 @@ When adding additional scopes, separate each entry with a space.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 6. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 Complete the configuration in Google Workspace
 
 Now that you have created the realm, you need to finish configuring the Google Workspace OAuth client.
 
 1. In the Google Cloud Console, open the OAuth client you [created](#create-google-app-oidc) for Capella.
-2. Copy the following field from your Capella realm configuration to the Google OAuth client configuration:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+2. Copy the following field from your Capella realm configuration to the Google OAuth client configuration:  
+> [!TIP]  
+> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. Listed on this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                          | Google Field |
 | ------------- | ------------------------ | ------------ |

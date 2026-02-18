@@ -1,4 +1,13 @@
+---
+title: vkey
+description: Provides verification for keys.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-vkey.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-vkey.html)
+
+# vkey
 
 > Provides verification for keys. 
 

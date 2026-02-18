@@ -1,16 +1,26 @@
+---
+title: Edge Server Configuration Schema
+description: You can configure Couchbase Edge Server through use of a JSON
+  configuration file.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/edge-server-configuration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/configuration/edge-server-configuration.html)
+
+# Edge Server Configuration Schema
 
 You can configure Couchbase Edge Server through use of a JSON configuration file.
 
-|  | The configuration file is parsed as [JSON5 format](https://json5.org/). |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> The configuration file is parsed as [JSON5 format](https://json5.org/).
 
 ## [](#json-schema)JSON Schema
 
 Below you can find a JSON configuration schema for Couchbase Edge Server. Default values are displayed when they exist, if not, the value type is displayed.
 
-|  | Couchbase does not recommend setting enable\_adhoc\_queries to true for production environments. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Couchbase does not recommend setting `enable_adhoc_queries` to `true` for production environments.
 
 
 {

@@ -1,4 +1,14 @@
+---
+title: Turn App Services Off or On
+description: You can turn your App Services off to save costs. To resume
+  operations, turn it back on.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/turn-on-off.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-services/turn-on-off.html)
+
+# Turn App Services Off or On
 
 > You can turn your App Services off to save costs. To resume operations, turn it back on. 
 
@@ -6,8 +16,8 @@
 
 Turn off an App Service to temporarily deactivate it and reduce its consumption of compute resources. When you turn off an App Service, the App Service itself and its related infrastructure will be removed.
 
-|  | When you turn off your cluster, your linked app services are also turned off. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> When you turn off your cluster, your linked app services are also turned off.
 
 ## [](#turn-app-services-onoff)Turn App Services On/Off
 

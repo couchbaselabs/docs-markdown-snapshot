@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr examine
+description: Searches one or more backups by key for a specific document
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-examine.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/backup-restore/cbbackupmgr-examine.html)
+
+# cbbackupmgr examine
 
 Searches one or more backups by key for a specific document
 

@@ -1,4 +1,12 @@
+---
+title: Couchbase Credential Rotation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-credential-rotation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-credential-rotation.html)
+
+# Couchbase Credential Rotation
 
 > Credentials used for authorization and authentication should be rotated on a regular basis to maintain security. This documents what is supported and how to update credentials. 
 

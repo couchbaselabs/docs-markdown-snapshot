@@ -1,4 +1,14 @@
+---
+title: Get Backup Repository Information
+description: The Backup Service REST API lets you list and get information about
+  the active, imported, and archived backup repositories.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-get-repository-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/backup-get-repository-info.html)
+
+# Get Backup Repository Information
 
 ## [](#description)Description
 
@@ -18,8 +28,8 @@ Get detailed information about a specific backup repository including backup nam
 
 GET /api/v1/cluster/self/repository/{REPO_STATUS}/{REPO_NAME}/info
 
-|  | These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These URIs are only available from the Backup Service port (8097 by default) on nodes running the Backup Service.
 
 __Table 1\. Path Parameters__
 | Name         | Description                           | Schema                                         |

@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced Sub-Document MUTATEIN Array Operation"
+description: Perform the Advanced Sub-Document MUTATEIN operation on an array
+  where Eventing interacts with the Data Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advancedMutateInArray.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-advancedMutateInArray.html)
+
+# Function: Advanced Sub-Document MUTATEIN Array Operation
 
 Perform the Advanced Sub-Document MUTATEIN operation on an array where Eventing interacts with the Data Service.
 

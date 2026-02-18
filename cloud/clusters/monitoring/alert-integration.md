@@ -1,9 +1,19 @@
+---
+title: Alert Integrations
+description: An alert integration lets Capella send metric‑based notifications
+  to a third‑party tool using a webhook.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alert-integration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/alert-integration.html)
+
+# Alert Integrations
 
 > An alert integration lets Capella send metric‑based notifications to a third‑party tool using a webhook. 
 
-|  | Capella only offers alert integrations for clusters and App Services on the paid [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans. Alert integrations are not available for the [Basic](../../billing/billing.md#basic) plan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella only offers alert integrations for clusters and App Services on the paid [Enterprise](../../billing/billing.md#enterprise) or the [Developer Pro](../../billing/billing.md#dev-pro) Support Plans. Alert integrations are not available for the [Basic](../../billing/billing.md#basic) plan.
 
 ## [](#about-alert-integrations)About Alert Integrations
 
@@ -38,8 +48,8 @@ Filtering
 
 You can limit the notifications that an alert integration sends for the project. You can exclude specific clusters or App Services.
 
-|  | By default, an alert integration sends notifications for all of a project’s clusters and App Services that are on the paid Enterprise or Developer Pro plan. For clusters or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> By default, an alert integration sends notifications for all of a project’s clusters and App Services that are on the paid Enterprise or Developer Pro plan. For clusters or App Services that are on the paid Basic plan, alerts are delivered only in the UI or by email.
 
 Authentication and Authorization Options
 

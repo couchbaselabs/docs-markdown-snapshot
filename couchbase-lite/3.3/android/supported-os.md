@@ -1,4 +1,14 @@
+---
+title: Supported Operating System Versions
+description: Couchbase Lite on Android -- the OS and SDK versions on which this
+  framework is supported
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/supported-os.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/android/supported-os.html)
+
+# Supported Operating System Versions
 
 > Description — _Couchbase Lite on Android — the OS and SDK versions on which this framework is supported_  
 > Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)

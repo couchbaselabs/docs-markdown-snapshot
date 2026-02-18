@@ -1,4 +1,15 @@
+---
+title: Creating the Students Collection
+description: Following on from
+  xref:java-tutorial/install-couchbase-java-sdk.adoc[], this tutorial will show
+  you how to connect to Couchbase and add records to the database using the SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-students-collection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/java-tutorial/creating-the-students-collection.html)
+
+# Creating the Students Collection
 
 > Following on from [Installing the Couchbase Java SDK](install-couchbase-java-sdk.md), this tutorial will show you how to connect to Couchbase and add records to the database using the SDK. 
 
@@ -49,8 +60,8 @@ Somewhere in the output, you’ll find the line containing the name of the colle
 
 ![Console showing successful connection to server](../_images/connect-to-cluster-console-output.png) 
 
-|  | As an experiment, try commenting out the bucket.waitUntilReady call, then run the program again. What happens? |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As an experiment, try commenting out the `bucket.waitUntilReady` call, then run the program again. What happens?
 
 Okay, so you’ve connected to the cluster and retrieved your collection. Unfortunately, there’s nothing in there to see at the moment, so the next thing to do is create a few records.
 

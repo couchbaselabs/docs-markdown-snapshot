@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase Go Client.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-columnar-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Couchbase Go Client. 
 
@@ -8,14 +17,14 @@ Columnar SDKs are developed from the ground-up and while they maintain some synt
 
 The Go Columnar SDK has added support for [Go Modules](https://github.com/golang/go/wiki/Modules). You can use `go get` to download the SDK:
 
-|  | go get only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a go.mod file in your working directory. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> `go get` only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a `go.mod` file in your working directory.
 
 ```console
 $ go get github.com/couchbase/gocbcolumnar@v1.0.0
 ```
 
-|  | In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
 
 Information about new features, fixes, and known issues — as well as information about how to install earlier release versions — is in the [release notes](columnar-sdk-release-notes.md).

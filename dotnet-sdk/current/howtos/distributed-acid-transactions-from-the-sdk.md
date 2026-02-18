@@ -1,4 +1,14 @@
+---
+title: Using Couchbase Transactions
+description: A practical guide to using Couchbase's distributed ACID
+  transactions, via the .NET SDK.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 > A practical guide to using Couchbase’s distributed ACID transactions, via the .NET SDK. 
 
@@ -22,8 +32,16 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) page for a 
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
-|  | Single Node Cluster When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a DurabilityImpossibleException. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via: [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket) [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings) [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options) If the bucket already exists, then the server needs to be rebalanced for the setting to take effect. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Single Node Cluster
+> 
+> When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
+> 
+> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
+> * [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
+> * [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options)
+> 
+> If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
 
 ## [](#creating-a-transaction)Creating a Transaction
 
@@ -81,8 +99,8 @@ The transaction lambda gets passed an `AttemptContext` object — generally refe
 
 The result of a transaction is represented by a `TransactionResult` object, which can be used to expose debugging and logging information to help track what happened during a transaction.
 
-|  | As with the Couchbase .NET Client, you should use the transactions library asynchronously using the async/await keywords. The asynchronous API allows you to use the thread pool, which can help you scale with excellent efficiency. However, operations inside an individual transaction should be kept in-order and executed using await immediately. Do not use fire-and-forget tasks under any circumstances. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> As with the Couchbase .NET Client, you should use the transactions library asynchronously using the async/await keywords. The asynchronous API allows you to use the thread pool, which can help you scale with excellent efficiency. However, operations inside an individual transaction should be kept in-order and executed using `await` immediately. Do not use fire-and-forget tasks under any circumstances.
 
 In the event that a transaction fails, your application could run into the following errors:
 
@@ -172,8 +190,8 @@ You can perform transactional database operations using familiar key-value CRUD 
 * **U**pdate - `ReplaceAsync()`
 * **D**elete - `RemoveAsync()`
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as ctx.InsertAsync(), rather than collection.InsertAsync(). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as `ctx.InsertAsync()`, rather than `collection.InsertAsync()`.
 
 ### [](#insert)Insert
 
@@ -244,8 +262,8 @@ await _transactions.RunAsync(async ctx =>
 
 If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), then its use in transactions is very similar. A query returns the same `IQueryResult<T>` you are used to, and takes most of the same options.
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as ctx.QueryAsync(), rather than cluster.QueryAsync() or scope.QueryAsync(). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as `ctx.QueryAsync()`, rather than `cluster.QueryAsync()` or `scope.QueryAsync()`.
 
 Here is an example of selecting some rows from the `travel-sample` bucket:
 
@@ -371,8 +389,10 @@ await transactions.RunAsync(async ctx => {
 | ----- | -------------------------------------------------------------------------------------------------------------------------- |
 | **2** | But the SELECT can view it, as the insert was in the same transaction.                                                     |
 
-|  | Query Mode When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Query Mode
+> 
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
 
 ## [](#configuration)Configuration
 
@@ -393,8 +413,8 @@ var cluster = await Cluster.ConnectAsync("couchbase://your-ip", options).Configu
 
 The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.
 
-|  | A level of None is present but its use is discouraged and unsupported. If durability is set to None, then ACID semantics are not guaranteed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> A level of `None` is present but its use is discouraged and unsupported. If durability is set to `None`, then ACID semantics are not guaranteed.
 
 ## [](#additional-resources)Additional Resources
 

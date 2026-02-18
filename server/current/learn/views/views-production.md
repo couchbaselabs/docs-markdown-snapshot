@@ -1,4 +1,13 @@
+---
+title: Production Views
+description: Production views are used in a deployed environment.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-production.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/views/views-production.html)
+
+# Production Views
 
 > Production views are used in a deployed environment. 
 

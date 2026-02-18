@@ -1,4 +1,13 @@
+---
+title: Organizing Documents
+description: Couchbase documents are organized into buckets, scopes, and collections.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/howtos/pages/organizing-documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/howtos/organizing-documents.html)
+
+# Organizing Documents
 
 > Couchbase documents are organized into buckets, scopes, and collections. Let’s define those words. 
 
@@ -68,8 +77,14 @@ val myCollection = bucket
 
 `Cluster`, `Bucket`, `Scope`, and `Collection` objects are thread-safe. You can get them when the application starts, and share the same objects everywhere.
 
-|  | Avoiding class name conflicts The Couchbase SDK’s Collection class has the same short name as kotlin.collections.Collection. If you need to use both in the same file, an import alias can help avoid confusion. import com.couchbase.client.kotlin.Collection as CouchbaseCollection |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Avoiding class name conflicts
+> 
+> The Couchbase SDK’s `Collection` class has the same short name as `kotlin.collections.Collection`. If you need to use both in the same file, an import alias can help avoid confusion.
+> 
+> ```kotlin
+> import com.couchbase.client.kotlin.Collection as CouchbaseCollection
+> ```
 
 ## [](#summary)Summary
 

@@ -1,4 +1,15 @@
+---
+title: EXPLAIN FUNCTION
+description: For a specified user-defined function, you use EXPLAIN FUNCTION to
+  expose the execution plan for the SQL++ subqueries or embedded statements that
+  it contains.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/explainfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/explainfunction.html)
+
+# EXPLAIN FUNCTION
 
 > For a specified user-defined function, you use EXPLAIN FUNCTION to expose the execution plan for the SQL++ subqueries or embedded statements that it contains. 
 
@@ -47,8 +58,8 @@ To get the plan for a global function in a particular namespace, the function na
 
 You cannot have 2 functions with the same name in the same scope. You can have 2 functions in the same name across different scopes.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created.
 
 ## [](#examples)Examples
 

@@ -1,4 +1,13 @@
+---
+title: View and Query Examples
+description: This section provides general information and query examples.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-query-samples.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/views/views-query-samples.html)
+
+# View and Query Examples
 
 > This section provides general information and query examples. 
 

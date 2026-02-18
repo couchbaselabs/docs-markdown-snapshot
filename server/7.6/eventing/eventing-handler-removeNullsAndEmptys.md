@@ -1,4 +1,13 @@
+---
+title: "Function: removeNullObjectsAndElements"
+description: Recursively remove all nulls and empty items from a document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-removeNullsAndEmptys.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-removeNullsAndEmptys.html)
+
+# Function: removeNullObjectsAndElements
 
 **Goal**: Recursively remove all nulls and empty items from a document.
 

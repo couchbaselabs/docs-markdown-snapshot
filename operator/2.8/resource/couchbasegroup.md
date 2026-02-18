@@ -1,4 +1,12 @@
+---
+title: CouchbaseGroup Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbasegroup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/resource/couchbasegroup.html)
+
+# CouchbaseGroup Resource
 
 CouchbaseGroup allows the automation of Couchbase group management.
 

@@ -1,4 +1,14 @@
+---
+title: Eventing Role-Based Access Control (RBAC)
+description: Full Administrators or users with proper <em>Role-Based Access
+  Control</em> (RBAC) roles can create and manage Eventing Functions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-rbac.html)
+
+# Eventing Role-Based Access Control (RBAC)
 
 > Full Administrators or users with proper _Role-Based Access Control_ (RBAC) roles can create and manage Eventing Functions. 
 
@@ -22,8 +32,8 @@ Only the "Eventing Full Admin" role and also the "Full Admin" role can set the b
 
 Typically you should set Function Scope to the bucket.scope that holds the collection that is the source of your mutations to your Eventing Function. This best practice ensures that you _do not_ inadvertently cause an Eventing Function to undeploy by removing a **Function Scope** pointing to a resource that is not required for the function to run.
 
-|  | A user can be assigned multiple "Eventing / Manage Scope Function" RBAC roles and if any of these roles match an existing Eventing Function’s **Function Scope** then that user can manage, modify, or delete the Eventing Function even if it was created or imported by someone else. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A user can be assigned multiple "Eventing / Manage Scope Function" RBAC roles and if any of these roles match an existing Eventing Function’s **Function Scope** then that user can manage, modify, or delete the Eventing Function even if it was created or imported by someone else.
 
 ## [](#privileged-users)Privileged Users
 
@@ -31,8 +41,8 @@ If a user role of either "Full Admin" or "Eventing Full Admin", then by default 
 
 When creating and Eventing Function either of these roles can set the **Function Scope** to **\*.\***; no other RBAC role is allowed to use this **Function Scope**.
 
-|  | When upgrading to 7.1 all Eventing Functions are assumed to be running as a privileged user and have their **Function Scope** set to **\*.\*** to ensure continuity of your Eventing Functions. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When upgrading to 7.1 all Eventing Functions are assumed to be running as a privileged user and have their **Function Scope** set to **\*.\*** to ensure continuity of your Eventing Functions.
 
 ### [](#full-admin-v-eventing-full-admin)Full Admin v. Eventing Full Admin
 
@@ -42,8 +52,8 @@ For the Function Scope or RBAC grouping, we will use the 'bulk.data' assuming yo
 
 ## [](#eventing-and-rbac-for-non-privileged-users)Eventing and RBAC for Non-privileged Users
 
-|  | If a user role of either "Full Admin" or "Eventing Full Admin", then this user, by default, has all the necessary access to every resource in a cluster required to run the Eventing Service and create and manage Eventing Functions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If a user role of either "Full Admin" or "Eventing Full Admin", then this user, by default, has all the necessary access to every resource in a cluster required to run the Eventing Service and create and manage Eventing Functions.
 
 _In RBAC although you can assign rolls directly to a **USER**, it is generally more flexible if you define a **GROUP** and assign that group or set of roles to a **USER**, this allows reusing a **GROUP** across multiple users._
 

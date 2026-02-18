@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced UPSERT Operation"
+description: Perform the Advanced UPSERT operation where Eventing interacts with
+  the Data Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-advancedUpsertOp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-handler-advancedUpsertOp.html)
+
+# Function: Advanced UPSERT Operation
 
 Perform the Advanced UPSERT operation where Eventing interacts with the Data Service.
 

@@ -1,14 +1,24 @@
+---
+title: INSERT
+description: Use the INSERT statement to insert one or more new documents into
+  an existing keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/insert.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/insert.html)
+
+# INSERT
 
 > Use the INSERT statement to insert one or more new documents into an existing keyspace. Each INSERT statement requires a unique document key and well-formed JSON as values. In Couchbase, documents in a single keyspace must have a unique key. 
 
 The INSERT statement can compute and return any expression based on the actual inserted documents.
 
-|  | Use the [UPSERT](upsert.md) statement if you want to overwrite a document with the same key, in case it already exists. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the [UPSERT](upsert.md) statement if you want to overwrite a document with the same key, in case it already exists.
 
-|  | Please note that the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples below will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#insert-prerequisites)Prerequisites
 
@@ -23,8 +33,8 @@ The INSERT statement must include the following:
 
 You should have read-write permission to the keyspace, to be able to insert documents into a keyspace. Any user who has the keyspace credentials or any Couchbase administrator should be able to insert documents into a keyspace. This includes the keyspace administrator for the specified keyspace, the cluster administrator, and the full administrator roles. See [Roles](../../learn/security/roles.md) for details about access privileges for various administrators.
 
-|  | You cannot insert documents into a SASL bucket if you have a read-only role for the SASL bucket. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> You cannot insert documents into a SASL bucket if you have a read-only role for the SASL bucket.
 
 ### [](#rbac-privileges)RBAC Privileges
 

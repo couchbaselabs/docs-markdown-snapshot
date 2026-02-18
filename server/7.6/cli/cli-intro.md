@@ -1,4 +1,15 @@
+---
+title: CLI Reference
+description: The command-line interface (CLI) tools let you manage and monitor
+  your Couchbase Server installation including clusters, servers, vBuckets, and
+  XDCR.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cli-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cli-intro.html)
+
+# CLI Reference
 
 > The command-line interface (CLI) tools let you manage and monitor your Couchbase Server installation including clusters, servers, vBuckets, and XDCR. 
 
@@ -45,8 +56,8 @@ tar -xf couchbase-server-dev-tools-7.6.8-linux_x86_64.tar.gz
 
 Each package also contains a `README` file and a copy of the software license.
 
-|  | On Windows, you must have a recent version of the Microsoft Visual C++ Redistributable runtime libraries installed. If you do not have these libraries installed, download them from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> On Windows, you must have a recent version of the Microsoft Visual C++ Redistributable runtime libraries installed. If you do not have these libraries installed, download them from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
 
 ### [](#server-admin-tools-package)Server Admin Tools Package
 
@@ -82,8 +93,8 @@ tar -xf couchbase-server-admin-tools-7.6.8-linux_x86_64.tar.gz
 
 Each package also contains a `README` file and a copy of the software license.
 
-|  | On Windows, you must have a recent version of the Microsoft Visual C++ Redistributable runtime libraries installed. If you do not have these libraries installed, download them from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> On Windows, you must have a recent version of the Microsoft Visual C++ Redistributable runtime libraries installed. If you do not have these libraries installed, download them from [Microsoft Visual C++ Redistributable latest supported downloads](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist).
 
 ## [](#version-compatibility)Version Compatibility
 

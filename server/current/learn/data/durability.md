@@ -1,4 +1,14 @@
+---
+title: Durability
+description: Durability improves the chances that data mutations are saved even
+  if nodes fail.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/durability.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/data/durability.html)
+
+# Durability
 
 ## [](#understanding-durability)Understanding Durability
 
@@ -36,8 +46,8 @@ The following table shows the majority requirement for each replica setting:
 | 2                  | 2                                     |
 | 3 or more          | Not supported                         |
 
-|  | As shown by the table, if you configure a bucket with one replica and a node fails, you cannot perform a durable write to any vBucket that has data on the failed node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> As shown by the table, if you configure a bucket with one replica and a node fails, you cannot perform a durable write to any vBucket that has data on the failed node.
 
 ## [](#durability-requirements)Durability Requirements
 
@@ -158,8 +168,8 @@ For automatic failovers in Couchbase Server Enterprise Edition, you have ways to
 
 The following sections explain these two options.
 
-|  | In Couchbase Server Community Edition, you cannot configure either of these settings. The maxCount setting is always 1, and the setting to preserve durable writes is not available. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In Couchbase Server Community Edition, you cannot configure either of these settings. The `maxCount` setting is always `1`, and the setting to preserve durable writes is not available.
 
 ### [](#max-sequential-failovers)Limiting Sequential Automatic Failovers
 
@@ -222,8 +232,12 @@ In some cases, this restriction can be inconvenient. For example, suppose you wa
 
 In these cases, you can have Couchbase Server report that durable writes succeeded even if the majority of nodes are unavailable. To enable this behavior, set the `durabilityImpossibleFallback` setting for the bucket to `true`. This setting has Couchbase Server report a success for a durable write, even if the majority of nodes are unavailable.
 
-|  | Potential Data Loss Enabling durabilityImpossibleFallback degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when durabilityImpossibleFallback is off. Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Potential Data Loss
+> 
+> Enabling `durabilityImpossibleFallback` degrades the guarantee that durable writes offer: that Couchbase Server has persisted the data in a way that should survive node failure. When enabled for a bucket, this setting makes durable writes to it during a failover no more safe from data loss than regular asynchronous writes. Also, because transactions require durable writes, enabling this setting means they do not provide the same guarantees as they do when `durabilityImpossibleFallback` is off.
+> 
+> Use this setting only in special cases such as when you’re performing a graceful failover and you still want durable writes to succeed. Always turn off this setting as soon as possible.
 
 When you enable `durabilityImpossibleFallback`, Couchbase Server reports a success for durable writes even if the majority of nodes are unavailable. The following table shows the effects of the setting on durable writes in a three-node cluster for a bucket with a single replica.
 

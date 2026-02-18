@@ -1,4 +1,14 @@
+---
+title: cbepctl
+description: The <code>cbepctl</code> tool is used to control vBucket states,
+  configuration, and memory and disk persistence behavior.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbepctl-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbepctl-intro.html)
+
+# cbepctl
 
 > The `cbepctl` tool is used to control vBucket states, configuration, and memory and disk persistence behavior. 
 
@@ -8,8 +18,8 @@ This tool is a per-node, per-bucket operation. That means that the IP address of
 
 For example, issue this command twice and provide different hostname and port for each node along with the bucket name, when a bucket is shared by 2 nodes. Similarly, when 2 data buckets are on the same node, issue the command twice for each bucket. If a bucket is not specified, the command applies to the default bucket or returns an error if a default bucket does not exist.
 
-|  | Changes to the cluster configuration using cbepctl are not persisted over a cluster restart. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Changes to the cluster configuration using `cbepctl` are not persisted over a cluster restart.
 
 The tool is found in the following locations:
 

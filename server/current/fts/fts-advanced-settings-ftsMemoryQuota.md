@@ -1,4 +1,12 @@
+---
+title: ftsMemoryQuota
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-advanced-settings-ftsMemoryQuota.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-advanced-settings-ftsMemoryQuota.html)
+
+# ftsMemoryQuota
 
 The `ftsMemoryQuota` setting controls the maximum usable memory, in MiB, available to the Search Service on each node in your cluster. This RAM allocation applies to each node that has the Search Service in 1 of its Service Groups.
 

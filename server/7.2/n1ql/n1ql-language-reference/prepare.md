@@ -1,4 +1,13 @@
+---
+title: PREPARE
+description: The PREPARE statement prepares a query for repeated execution.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/prepare.html)
+
+# PREPARE
 
 > The PREPARE statement prepares a query for repeated execution. 
 
@@ -132,8 +141,8 @@ When you create an anonymous prepared statement, i.e. a prepared statement witho
   * If not found, the statement is created and added to the prepared cache.
   * If found, the existing prepared statement is returned. However, if the FORCE keyword is present, the prepared statement is created again.
 
-|  | When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement.
 
 ## [](#auto-prepare)Auto-Prepare
 

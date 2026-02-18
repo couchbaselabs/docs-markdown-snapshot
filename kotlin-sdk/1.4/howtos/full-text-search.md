@@ -1,4 +1,15 @@
+---
+title: Search
+description: You can use the Full Text Search (FTS) service to find JSON
+  documents that have certain words, phrases, or geographic coordinates -- and
+  for vector searches against Server 7.6.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/howtos/pages/full-text-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.4/howtos/full-text-search.html)
+
+# Search
 
 > You can use the Full Text Search (FTS) service to find JSON documents that have certain words, phrases, or geographic coordinates — and for vector searches against Server 7.6\. 
 
@@ -82,8 +93,8 @@ searchResult.rows.forEach { row ->
 
 Calculating the score takes time. If you don’t need the score, tell the server to give each row a score of zero, like this:
 
-|  | Disabling scoring requires Couchbase Server 6.6.1 or later. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> Disabling scoring requires Couchbase Server 6.6.1 or later.
 
 Disable scoring
 
@@ -104,8 +115,8 @@ val searchResult: SearchResult = cluster
 
 By default, the server does not return any document content. You can tell the server to return stored document fields. Pass `fields = listOf("*")` when calling `searchQuery` to include all stored fields in the result. If you only want fields "foo" and "bar", pass `fields = listOf("foo", "bar")`.
 
-|  | Only stored fields are included. If you’re not getting the results you expect, check the index definition. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Only stored fields are included. If you’re not getting the results you expect, check the index definition.
 
 Include stored fields in result rows
 
@@ -131,8 +142,8 @@ searchResult.rows.forEach { row ->
 
 Couchbase 7.0 and later let you define an index on multiple collections in the same scope. You can limit the search to specific collections using the optional `collections` parameter of the `searchQuery` method.
 
-|  | When searching a multi-index collection, the server always returns a field called \_$c. The value of this field is the name of the matching document’s parent collection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When searching a multi-index collection, the server always returns a field called `_$c`. The value of this field is the name of the matching document’s parent collection.
 
 ```kotlin
 val searchResult: SearchResult = cluster
@@ -154,15 +165,15 @@ searchResult.rows.forEach { row ->
 | ----- | ------------------------------------------------------------------------- |
 | **2** | The \_$c field is always present when searching a multi-collection index. |
 
-|  | Be careful when using [keyset pagination](#keyset-pagination) with a multi-collection index. Documents in different collections can have the same ID, so sorting by ID does not necessarily guarantee a total ordering of the results. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Be careful when using [keyset pagination](#keyset-pagination) with a multi-collection index. Documents in different collections can have the same ID, so sorting by ID does not necessarily guarantee a total ordering of the results.
 
 ### [](#highlight)Highlight (fragments)
 
 You can ask the server to include a fragment of a matching field value, and highlight the search term within the fragment.
 
-|  | Highlighting requires storing the field value and including term vectors. If you’re not getting the results you expect, check the index definition. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Highlighting requires storing the field value and including term vectors. If you’re not getting the results you expect, check the index definition.
 
 Highlight matches
 
@@ -192,8 +203,8 @@ When you request [highlighting](#highlight), the server also return the location
 
 If you want the location information, but don’t need fragments, pass `includeLocations = true` when calling `searchQuery` instead of passing a value for `highlight`.
 
-|  | To get locations, the index must include term vectors for the field. If you’re not getting the results you expect, check the index definition. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To get locations, the index must include term vectors for the field. If you’re not getting the results you expect, check the index definition.
 
 ## [](#sorting)Sorting
 
@@ -304,8 +315,8 @@ val multiLevelSort: SearchSort = SearchSort.of(
 
 First, the rows are sorted by the value of the "country" field. Then, rows with the same country are sorted by document ID.
 
-|  | The example for [Sorting with string syntax](#sorting-by-string-syntax) also creates a multi-level sort. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The example for [Sorting with string syntax](#sorting-by-string-syntax) also creates a multi-level sort.
 
 ## [](#pagination)Pagination
 
@@ -349,8 +360,8 @@ Offset pagination can be expensive if the offset is very large.
 
 ### [](#keyset-pagination)Keyset pagination
 
-|  | Keyset pagination requires Couchbase Server 6.6.1 or later. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> Keyset pagination requires Couchbase Server 6.6.1 or later.
 
 When the server sorts the search results, it assigns a "sort key" to each row. The sort key is also called the "keyset".
 
@@ -398,14 +409,14 @@ val nextPage: SearchResult = cluster
 
 Keyset pagination is less expensive than offset pagination when the offset is large. Keyset pagination is stable if you are careful about sorting. See the cautions below.
 
-|  | For stable keyset pagination, the sort argument must not let any two rows have the same keyset. It’s good to always use a [multi-level sort](#multi-level-sorting) that ends with [SearchSort.byId()](#sorting-by-id), so no two rows have the same keyset. Be careful when searching a multi-collection index, since document IDs are only guaranteed to be unique within a single collection. Also be aware that including score in the sort might cause unstable pagination, since a document’s score can change when other documents are added or removed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> For stable keyset pagination, the `sort` argument must not let any two rows have the same keyset. It’s good to always use a [multi-level sort](#multi-level-sorting) that ends with `[SearchSort.byId()](#sorting-by-id)`, so no two rows have the same keyset. Be careful when searching a multi-collection index, since document IDs are only guaranteed to be unique within a single collection. Also be aware that including score in the sort might cause unstable pagination, since a document’s score can change when other documents are added or removed.
 
-|  | Changing the sort invalidates a keyset (unless the new sort is the total opposite of the old sort). If you use a keyset to search with a different sort, you get bad results. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Changing the sort invalidates a keyset (unless the new sort is the total opposite of the old sort). If you use a keyset to search with a different sort, you get bad results.
 
-|  | keyset.serialize() converts a SearchKeyset to a string, so you can send it to a client. When you receive the string back from the client, pass it to the SearchKeyset.deserialize companion factory method to turn it back into a SearchKeyset. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> `keyset.serialize()` converts a `SearchKeyset` to a string, so you can send it to a client. When you receive the string back from the client, pass it to the `SearchKeyset.deserialize` companion factory method to turn it back into a `SearchKeyset`.
 
 ### [](#total-rows)Total number of rows
 
@@ -455,8 +466,8 @@ val searchResult: SearchResult = cluster
 | **1** | Alice thinks saunas are better than swimming pools, so she boosts this part of the query. |
 | ----- | ----------------------------------------------------------------------------------------- |
 
-|  | Boosting a query has no effect unless the query is part of a compound query. |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Boosting a query has no effect unless the query is part of a compound query.
 
 There are other kinds of compound queries. Use `conjunction` for "and". Use `negation` for "not". Use `boolean` for a complex query with "must", "should", and "mustNot" sub-queries.
 
@@ -468,8 +479,8 @@ The FTS service supports three kinds of facets: `numeric`, `date`, and `term`.
 
 For `numeric` and `date` facets, you specify the categories up front as value ranges. Common use cases include counting the number of documents in certain price ranges, like: $1 to $5, $5 to $20, and $20+, or time ranges like: "today", "yesterday", and "before yesterday".
 
-|  | Unlike a histogram, it’s okay if the ranges overlap. If a field value matches more than one range, each matching range has its count incremented. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Unlike a histogram, it’s okay if the ranges overlap. If a field value matches more than one range, each matching range has its count incremented.
 
 For `term` facets, the server creates one category for each distinct value it sees in the field.
 
@@ -477,15 +488,15 @@ For example, let’s say your documents have a "color" field where the value is 
 
 Facets have a `size` parameter, which is an upper bound on the number of categories reported in the facet result. For example, if you request a `size` of 3, the server does its best to return the 3 largest categories. To be more precise, it selects the top 3 categories from each partition executing the query, and then merges each partition’s result into the final result.
 
-|  | If you are using multiple partitions and require an exact result, the size must be >= the number of categories; otherwise the result should be considered an estimate. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are using multiple partitions and require an exact result, the size must be >= the number of categories; otherwise the result should be considered an estimate.
 
 Facet results are not affected by query pagination.
 
 To create a facet, use one of the `SearchFacet` companion factory methods. To retrieve the result in a type-safe way, pass the facet to `SearchResult.get` (or `SearchMetadata.get`). Alternatively, iterate over `SearchResult.facets` (or `SearchMetadata.facets`) and cast each `FacetResult` to the appropriate type.
 
-|  | Facets and/or ranges with no matching documents are omitted from the results. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> Facets and/or ranges with no matching documents are omitted from the results.
 
 This example uses the `beer-sample` bucket. It requires an index called `beer-sample-index`, with fields "abv" and "category" indexed as stored fields.
 
@@ -546,8 +557,8 @@ As of Couchbase Server 7.6, the FTS service supports vector search in addition t
 
 Suppose you have a scoped index called `vector-index`, and this index says the document field named `vector_field` contains a vector (an array of numbers). The following examples show different ways to do vector searches on this field.
 
-|  | The following examples use cluster/scope.search() and SearchSpec. These bits of the SDK are currently experimental and may change without notice. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The following examples use `cluster/scope.search()` and `SearchSpec`. These bits of the SDK are currently experimental and may change without notice.
 
 ### [](#examples)Examples
 
@@ -673,8 +684,8 @@ val queryResult: SearchResult = cluster
 
 An FTS index can have multiple partitions that live on different Couchbase Server nodes. If there is a problem with a partition, the FTS service gives you the results from only the healthy partitions. Documents indexed by an unhealthy partition are not included in the results.
 
-|  | If no partitions are healthy, the searchQuery method throws an exception. |
-|  | ------------------------------------------------------------------------- |
+> [!NOTE]
+> If no partitions are healthy, the `searchQuery` method throws an exception.
 
 If you want to know if the FTS service was able to search all partitions, check the `SearchMetadata.errors` property. This property is a map where the key is the name of an index partition, and the value is an error reported by that partition.
 
@@ -712,5 +723,5 @@ val searchMetadata: SearchMetadata = cluster
     }
 ```
 
-|  | The streaming version of execute returns SearchMetadata instead of SearchResult. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> The streaming version of `execute` returns `SearchMetadata` instead of `SearchResult`.

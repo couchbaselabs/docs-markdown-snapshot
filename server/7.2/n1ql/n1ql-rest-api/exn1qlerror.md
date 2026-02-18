@@ -1,4 +1,14 @@
+---
+title: SQL++ Error
+description: A SQL++ error happens when there is an error processing the SQL++
+  statement in a request.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exn1qlerror.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/exn1qlerror.html)
+
+# SQL++ Error
 
 A SQL++ error happens when there is an error processing the SQL++ statement in a request.
 

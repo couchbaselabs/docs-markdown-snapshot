@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-php-client/namespaces/couchbase.html). 
 
@@ -16,11 +26,18 @@ Management operations in the SDK may be performed through several interfaces dep
 * CollectionManager — [Bucket::collections()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5Fcollections)
 * ViewIndexManager — [Bucket::viewIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5FviewIndexes)
 
-|  | When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using Cluster::bucket(name) before you can use cluster level managers. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster::bucket(name)` before you can use cluster level managers.
 
-|  | Since SDK 4.0 uses the Couchbase++ library rather than libcouchbase, some management APIs have not been fully implemented, in particular: AnalyticsIndexManager SearchIndexManager ViewIndexManager CollectionManager Any attempt to use them will raise an UnsupportedOperationException error. The APIs will be available in a future 4.x release. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Since SDK 4.0 uses the `Couchbase++` library rather than `libcouchbase`, some management APIs have not been fully implemented, in particular:
+> 
+> * `AnalyticsIndexManager`
+> * `SearchIndexManager`
+> * `ViewIndexManager`
+> * `CollectionManager`
+> 
+> Any attempt to use them will raise an `UnsupportedOperationException` error. The APIs will be available in a future 4.x release.
 
 ## [](#bucket-management)Bucket Management
 
@@ -37,8 +54,8 @@ $bucketMgr = $cluster->buckets();
 
 The `BucketSettings` class is used for creating and updating buckets, and for exposing information about existing buckets.
 
-|  | Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 Here is the list of parameters available:
 
@@ -124,8 +141,8 @@ Applications can use this manager to perform operations such as creating, deleti
 * A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
 * A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
 
-|  | To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.
 
 The example below shows how to create a simple primary index, restricted to a named scope and collection, by calling the `createPrimaryIndex()` method. Note that you cannot provide a named scope or collection separately, both must be set for the `QueryIndexManager` to create an index on the relevant keyspace path.
 

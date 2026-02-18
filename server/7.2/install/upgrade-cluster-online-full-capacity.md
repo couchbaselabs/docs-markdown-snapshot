@@ -1,4 +1,12 @@
+---
+title: Upgrade a Full-Capacity, Online Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-cluster-online-full-capacity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/upgrade-cluster-online-full-capacity.html)
+
+# Upgrade a Full-Capacity, Online Cluster
 
 > A cluster can be upgraded while still online, and maintained at full capacity. 
 

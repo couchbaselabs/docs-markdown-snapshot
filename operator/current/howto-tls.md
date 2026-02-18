@@ -1,4 +1,12 @@
+---
+title: Configure TLS
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-tls.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-tls.html)
+
+# Configure TLS
 
 > How to configure Couchbase Server with basic TLS. 
 
@@ -20,8 +28,8 @@ $ kubectl create secret tls couchbase-server-ca \
   --key example/pki/private/ca.key
 ```
 
-|  | When using Couchbase 7.0 and earlier, only one CA is supported, therefore all server and client certificates must be signed by the same root CA. Specifying multiple CA certificates with Couchbase Server 7.0 and earlier will result in undefined behavior. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When using Couchbase 7.0 and earlier, only one CA is supported, therefore all server and client certificates must be signed by the same root CA. Specifying multiple CA certificates with Couchbase Server 7.0 and earlier will result in undefined behavior.
 
 ### [](#server-secret)Server Secret
 

@@ -1,4 +1,15 @@
+---
+title: XDCR with Scopes and Collections
+description: When XDCR is established between a source bucket and a target
+  bucket, data can be either <em>implicitly</em> or <em>explicitly</em> mapped
+  between <em>collections</em>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-with-scopes-and-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/clusters-and-availability/xdcr-with-scopes-and-collections.html)
+
+# XDCR with Scopes and Collections
 
 > When XDCR is established between a source bucket and a target bucket, data can be either _implicitly_ or _explicitly_ mapped between _collections_. 
 

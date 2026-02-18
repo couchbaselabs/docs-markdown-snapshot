@@ -1,9 +1,17 @@
+---
+title: Prerequisites and System Requirements
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/prerequisite-and-setup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/prerequisite-and-setup.html)
+
+# Prerequisites and System Requirements
 
 > CMOS supports both on-premise and Kubernetes deployments using a standard container deployment in each case. 
 
-|  | For all supported software versions listed on this page, maintenance/patch releases (x.x**.X**) inherit the same support level, unless noted otherwise. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For all supported software versions listed on this page, maintenance/patch releases (x.x**.X**) inherit the same support level, unless noted otherwise.
 
 ## [](#couchbase-server-compatibility)Couchbase Server Compatibility
 

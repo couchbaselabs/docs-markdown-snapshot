@@ -1,4 +1,13 @@
+---
+title: "Function: removeObjectStubs"
+description: Recursively remove all empty object stubs from a document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-removeObjectStubs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-removeObjectStubs.html)
+
+# Function: removeObjectStubs
 
 **Goal**: Recursively remove all empty object stubs from a document.
 

@@ -1,4 +1,12 @@
+---
+title: Download and API Reference
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/download-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/download-links.html)
+
+# Download and API Reference
 
 > All production-ready Couchbase Spark connector artifacts are downloadable through Maven Central. Prerelease versions are available through our Couchbase Maven repository for easy consumption. The same Couchbase Spark connector library is used for both Scala and PySpark. 
 

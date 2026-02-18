@@ -1,4 +1,14 @@
+---
+title: Index Settings REST API
+description: The Index Settings REST API is provided by the Index Service. This
+  API enables you to retrieve or set Index Service settings.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/index-rest-settings/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/index-rest-settings/index.html)
+
+# Index Settings REST API
 
 ## [](#overview)Overview
 

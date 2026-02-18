@@ -1,4 +1,14 @@
+---
+title: Vector Search Using Search Vector Indexes
+description: Use Couchbase Capella's Vector Search features to add fast and
+  accurate semantic search to your applications.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-search/vector-search.html)
+
+# Vector Search Using Search Vector Indexes
 
 > Use Couchbase Capella’s Vector Search features to add fast and accurate semantic search to your applications. 
 
@@ -29,8 +39,8 @@ In addition to supporting integrations with frameworks like LangChain and LlamaI
 
 You can also use [Capella AI Services](../../ai/build/model-service/deploy-embed-model.md) to generate and store embeddings in your Capella operational cluster.
 
-|  | When you create a Search Vector Index, the [dimension](../search/type-mapping-options.md#dimension) of your data vector embeddings must match the dimension for any search query vectors. Otherwise, a Vector Search query fails to return any results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create a Search Vector Index, the [dimension](../search/type-mapping-options.md#dimension) of your data vector embeddings must match the dimension for any search query vectors. Otherwise, a Vector Search query fails to return any results.
 
 For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).
 

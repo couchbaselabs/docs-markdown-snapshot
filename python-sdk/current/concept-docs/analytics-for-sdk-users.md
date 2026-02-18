@@ -1,4 +1,14 @@
+---
+title: Analytics
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL++ syntax.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/analytics-for-sdk-users.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/current/concept-docs/analytics-for-sdk-users.html)
+
+# Analytics
 
 > Parallel data management for complex queries over many records, using a familiar SQL++ syntax. 
 

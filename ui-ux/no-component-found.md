@@ -1,4 +1,12 @@
+---
+title: Empty States
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/no-component-found.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/no-component-found.html)
+
+# Empty States
 
 When the user has not yet created a database component, such as an index or a bucket, the UI should display a message stating **No <components> found** or **No <components>**:
 

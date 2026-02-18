@@ -1,4 +1,12 @@
+---
+title: Getting System Events
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-get-system-events.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-get-system-events.html)
+
+# Getting System Events
 
 > System events that occur on the cluster can be retrieved. 
 

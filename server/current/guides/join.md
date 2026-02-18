@@ -1,4 +1,13 @@
+---
+title: Query Across Relationships
+description: How to join data sources for a SQL++ selection query.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/join.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/guides/join.html)
+
+# Query Across Relationships
 
 > How to join data sources for a SQL++ selection query. 
 
@@ -21,8 +30,8 @@ To create a join:
 2. Use the JOIN clause to specify the data source on the right-hand side of the join. For ANSI joins, this may be a keyspace identifier, a subquery, or a generic expression.
 3. Use the ON keyword to specify the join predicate. This is a condition that must be met to join an object on the right-hand side to an object on the left-hand side.
 
-|  | To use a [document key](../learn/data/data.md#keys) in the join predicate, use the [META()](../n1ql/n1ql-language-reference/metafun.md#meta) function to return the id field from the document metadata. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To use a [document key](../learn/data/data.md#keys) in the join predicate, use the [META()](../n1ql/n1ql-language-reference/metafun.md#meta) function to return the `id` field from the document metadata.
 
 For example, the following query selects a route and the associated airline.
 

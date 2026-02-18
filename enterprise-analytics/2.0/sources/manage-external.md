@@ -1,4 +1,12 @@
+---
+title: Set Up an External Data Source
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/manage-external.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/manage-external.html)
+
+# Set Up an External Data Source
 
 > To provide query access to data that resides in external object storage, you create an external link and associate it with an external collection. 
 

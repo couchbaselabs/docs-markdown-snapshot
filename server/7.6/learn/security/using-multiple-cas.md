@@ -1,4 +1,14 @@
+---
+title: Using Multiple Root Certificates
+description: Couchbase Server supports use of multiple CA (or 'root')
+  certificates, for a single cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/using-multiple-cas.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/security/using-multiple-cas.html)
+
+# Using Multiple Root Certificates
 
 > Couchbase Server supports use of multiple CA (or 'root') certificates, for a single cluster. 
 

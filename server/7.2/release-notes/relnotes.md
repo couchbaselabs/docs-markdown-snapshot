@@ -1,4 +1,12 @@
+---
+title: Release Notes for Couchbase Server 7.2
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/release-notes/relnotes.html)
+
+# Release Notes for Couchbase Server 7.2
 
 ## [](#release-729)Release 7.2.9 (January 2026)
 
@@ -221,14 +229,12 @@ This maintenance release contains new features and fixes.
 
 * Prometheus now records information related to disk usage over time:
 * REST interface added to set the retention period of audit files
-* In response to [CVE-2023-5363](https://nvd.nist.gov/vuln/detail/CVE-2023-5363) and [CVE-2023-5678](https://nvd.nist.gov/vuln/detail/CVE-2023-5678), OpenSSL upgraded to version 3.1.4.
-
-|  | This update changes the available ciphers for TLS connections. If you have not updated your client applications to use recent TLS libraries, you may experience an inability to connect and TLS handshake failures. Before upgrading, we recommend testing compatibility in a separate environment – especially if you are unsure that your platform TLS (OpenSSL, Java Secure Socket Extensions, .NET Security Provider, etc.) has compatible ciphers. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-* Erlang upgraded to version 25.
-
-|  | The Erlang upgrade requires that users have installed Couchbase Server 7.1.0 or later, before upgrading to 7.2.4\. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+* In response to [CVE-2023-5363](https://nvd.nist.gov/vuln/detail/CVE-2023-5363) and [CVE-2023-5678](https://nvd.nist.gov/vuln/detail/CVE-2023-5678), OpenSSL upgraded to version 3.1.4.  
+> [!NOTE]  
+> This update changes the available ciphers for TLS connections. If you have not updated your client applications to use recent TLS libraries, you may experience an inability to connect and TLS handshake failures. Before upgrading, we recommend testing compatibility in a separate environment – especially if you are unsure that your platform TLS (OpenSSL, Java Secure Socket Extensions, .NET Security Provider, etc.) has compatible ciphers.
+* Erlang upgraded to version 25.  
+> [!NOTE]  
+> The Erlang upgrade requires that users have installed Couchbase Server 7.1.0 or later, before upgrading to 7.2.4\.
 * Added `Memcached` alert.
 * Power BI Connector version 1.0 released. (See the [What’s New in Version 7.2](../introduction/whats-new.md#power-bi-connector-1-0-release) for details.)
 
@@ -286,8 +292,10 @@ This maintenance release contains new features and fixes.
 
 Couchbase Server Release 7.2.3 was released in November 2023
 
-|  | **Fixed Security Vulnerabilities** For complete details of fixed security vulnerabilities in Couchbase Enterprise Server, see the [Enterprise Security Alerts page](https://www.couchbase.com/alerts/). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> **Fixed Security Vulnerabilities**
+> 
+> For complete details of fixed security vulnerabilities in Couchbase Enterprise Server, see the [Enterprise Security Alerts page](https://www.couchbase.com/alerts/).
 
 This release contains:
 
@@ -305,8 +313,9 @@ This release contains:
 
 Couchbase Server 7.2.2 was released in September 2023
 
-|  | **Couchbase release 7.2.1 is no longer available for download.**Customers upgrading from 7.2.0 should upgrade to 7.2.2, which contains all 7.2.1 fixes and several additional critical fixes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> **Couchbase release 7.2.1 is no longer available for download.**  
+> Customers upgrading from 7.2.0 should upgrade to 7.2.2, which contains all 7.2.1 fixes and several additional critical fixes.
 
 This release contains:
 
@@ -329,8 +338,9 @@ This release contains:
 
 ## [](#release-721)Release 7.2.1 (September 2023)
 
-|  | **Couchbase release 7.2.1 is no longer available for download.**Customers upgrading from 7.2.0 should upgrade to 7.2.2, which contains all 7.2.1 fixes and several additional critical fixes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> **Couchbase release 7.2.1 is no longer available for download.**  
+> Customers upgrading from 7.2.0 should upgrade to 7.2.2, which contains all 7.2.1 fixes and several additional critical fixes.
 
 Couchbase Server 7.2.1 was released in September 2023.
 

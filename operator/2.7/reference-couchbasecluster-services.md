@@ -1,4 +1,12 @@
+---
+title: <code>CouchbaseCluster</code> Services
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-couchbasecluster-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/reference-couchbasecluster-services.html)
+
+# <code>CouchbaseCluster</code> Services
 
 When creating a Couchbase cluster the Operator is responsible for creating services to allow various functionality. This documents what they are and what they are used for.
 
@@ -12,8 +20,8 @@ It is responsible for generating stable DNS names which can persist across pod f
 
 DNS addresses are in the form `couchbase-0000.couchbase.default.srv.cluster.local.` where the first element is the name of a Couchbase node, the second is the cluster name, the third is the name space, with the suffix telling you this is a service in the domain of the Kubernetes cluster.
 
-|  | Pods will be created with the cluster.local suffix in the search path, so you may use the short form couchbase-0000.couchbase.default.srv to reference individual pods. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Pods will be created with the `cluster.local` suffix in the search path, so you may use the short form `couchbase-0000.couchbase.default.srv` to reference individual pods.
 
 ## [](#couchbase-srv)`couchbase-srv`
 
@@ -23,8 +31,8 @@ This is the service that should be used for service discovery when boot-strappin
 
 The SRV record used in a Couchbase client is in the form `_couchbase._tcp.couchbase.default.srv.cluster.local.` or `_couchbases._tcp.couchbase.default.srv.cluster.local.` if using the TLS scheme. Again this allows you to access a specific Couchbase cluster in a specific name space.
 
-|  | For further information on connecting clients please refer to the [full documentation](howto-client-sdks.md). |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For further information on connecting clients please refer to the [full documentation](howto-client-sdks.md).
 
 ## [](#couchbase-ui)`couchbase-ui`
 
@@ -32,8 +40,8 @@ This service again references the admin ports to offer access to the admin UI. T
 
 This service is optional and is enabled with the `spec.exposeAdminConsole` property of the cluster manifest. By default it references all Couchbase nodes in the cluster, however you may choose to restrict the set of Couchbase nodes referenced by explicitly requiring the node has a specific service enabled. This is done via the `spec.adminConsoleServices` property of the cluster manifest. The admin port is also reported in the cluster status for convenience and can be accessed via the `kubectl describe couchbaseclusters` command.
 
-|  | For further information on configuring the admin console please refer to the [full documentation](howto-ui.md). |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For further information on configuring the admin console please refer to the [full documentation](howto-ui.md).
 
 ## [](#couchbase-0000)`couchbase-0000`
 
@@ -43,5 +51,5 @@ These services are optional and are enabled with the `spec.exposedFeatures` prop
 
 These ports are not intended for use by the end user, but rather clients who cannot route directly into the pod network, but can reach the cluster network, or those who do not have DNS resolution outside of the Kubernetes cluster.
 
-|  | For further information on networking and exposed features, please refer to the [full documentation](concept-couchbase-networking.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For further information on networking and exposed features, please refer to the [full documentation](concept-couchbase-networking.md).

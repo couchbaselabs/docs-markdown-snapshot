@@ -1,4 +1,14 @@
+---
+title: Aggregate Functions
+description: Aggregate functions take multiple values from documents, perform
+  calculations, and return a single value as the result.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/aggregatefun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/aggregatefun.html)
+
+# Aggregate Functions
 
 Aggregate functions take multiple values from documents, perform calculations, and return a single value as the result. The function names are case insensitive.
 
@@ -68,8 +78,8 @@ cond
 
 The conditional expression is subject to the same rules as the conditional expression in the query WHERE clause, and the same rules as aggregation operands. It may not contain a subquery, a window function, or an outer reference.
 
-|  | If the query block contains an aggregate function which uses the FILTER clause, the aggregation is not pushed down to the indexer. Refer to [Grouping and Aggregate Pushdown](groupby-aggregate-performance.md#filter-clause) for more details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the query block contains an aggregate function which uses the FILTER clause, the aggregation is not pushed down to the indexer. Refer to [Grouping and Aggregate Pushdown](groupby-aggregate-performance.md#filter-clause) for more details.
 
 ### [](#over-clause)OVER Clause
 
@@ -726,8 +736,8 @@ Query
 SELECT SUM(stops) AS SumOfStops FROM route;
 ```
 
-|  | In the route keyspace, nearly all flights are non-stop (0 stops) and only six flights have 1 stop, so we expect 6 flights of 1 stop each, a total of 6\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the `route` keyspace, nearly all flights are non-stop (0 stops) and only six flights have 1 stop, so we expect 6 flights of 1 stop each, a total of 6\.
 
 Results
 

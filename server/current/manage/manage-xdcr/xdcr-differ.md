@@ -1,4 +1,15 @@
+---
+title: xdcrDiffer Utility
+description: The <code>xdcrDiffer</code> utility helps you verify data
+  consistency between XDCR clusters by comparing document metadata and values,
+  and reporting missing or mismatched documents.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/xdcr-differ.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-xdcr/xdcr-differ.html)
+
+# xdcrDiffer Utility
 
 > The `xdcrDiffer` utility helps you verify data consistency between XDCR clusters by comparing document metadata and values, and reporting missing or mismatched documents. 
 
@@ -22,8 +33,8 @@ The utility includes these files:
 
 To run the utility, use the `runDiffer.sh` script.
 
-|  | Run the xdcrDiffer utility on a cluster node that does not serve Data service, as the utility can consume significant resources. You can also run it on an arbiter node, which does not run any services. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Run the xdcrDiffer utility on a cluster node that does not serve Data service, as the utility can consume significant resources. You can also run it on an arbiter node, which does not run any services.
 
 ## [](#how-the-xdcrdiffer-utility-works)How the xdcrDiffer Utility Works
 
@@ -37,8 +48,8 @@ Each mutation from DCP is stored with its metadata. Each mutation typically uses
 
 Storage needed = (102 bytes + key size) × number of documents in the source and target buckets being replicated
 
-|  | Ensure you check the details of usage, limitations, and information about how to read the output reports in the [xdcrDiffer ReadMe](https://github.com/couchbase/xdcrDiffer?tab=readme-ov-file#readme). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Ensure you check the details of usage, limitations, and information about how to read the output reports in the [xdcrDiffer ReadMe](https://github.com/couchbase/xdcrDiffer?tab=readme-ov-file#readme).
 
 The following is an example of running the `runDiffer.sh` file with an option to compare both metadata and body during the report generation portion of the utility run.
 

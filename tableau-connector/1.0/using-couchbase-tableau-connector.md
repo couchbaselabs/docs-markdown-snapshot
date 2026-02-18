@@ -1,4 +1,12 @@
+---
+title: Using the Couchbase Tableau Connector
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/1.0/using-couchbase-tableau-connector.html)
+
+# Using the Couchbase Tableau Connector
 
 > The Couchbase Analytics Connector for Tableau is compatible with Couchbase Server running version 7.1 or higher. 
 
@@ -42,8 +50,8 @@ You will then be prompted to sign in to your Tableau Server account. Once signed
 
 ![Verify Tableau Server Connection](_images/verify-connection-to-tableau-server.png) 
 
-|  | If you’re using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and going to **Configuration** **Security** **External SSL**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you’re using an on-premise instance of Tableau Server, you will need to configure SSL. This can be done by logging into the Tableau Services Manager UI and going to **Configuration** **Security** **External SSL**.
 
 ![Tableau Server SSL Configuration](_images/tableau-server-ssl-config.png) 
 
@@ -99,8 +107,8 @@ To use Analytics queries, go to the Data Source tab and select New Custom SQL. H
 
 ![New Custom Query](_images/new-custom-query.png) 
 
-|  | The default scope is set based on the scope if specified in the connection dialog. If no scope is explicitly mentioned, it is set to Default, however users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use \`travel-sample\`.inventory.airline. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The default scope is set based on the scope if specified in the connection dialog. If no scope is explicitly mentioned, it is set to `Default`, however users can provide any other scope when setting up the connection. To run Analytics queries, you may specify the Analytics scope along with the collection in your queries. If no scope is specified in a query, the scope set in the connection dialog will be used. For example, to use the airline Analytics collection, use `` `travel-sample`.inventory.airline ``.
 
 ### [](#run-analytics-queries-on-tableau)Run Analytics Queries on Tableau
 

@@ -1,4 +1,14 @@
+---
+title: Analytics Service
+description: The Analytics Service provides a parallel data-management
+  capability, allowing the running of complex analytical queries.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/analytics-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/services-and-indexes/services/analytics-service.html)
+
+# Analytics Service
 
 > The Analytics Service provides a parallel data-management capability, allowing the running of complex analytical queries. 
 
@@ -23,8 +33,12 @@ For more information about:
 * How to add or remove services on an existing node of a cluster, see [Modify Services and Rebalance](../../../manage/manage-nodes/modify-services-and-rebalance.md).
 * How to run analytic queries, see the [Introduction](../../../analytics/introduction.md) to Couchbase Analytics.
 
-|  | Non-Uniform Memory Access (NUMA) Non-Uniform Memory Access (NUMA) can significantly impact the performance and stability of the Couchbase Analytics Service. NUMA architectures divide memory into different zones, each with a specific CPU, and accessing memory across zones can lead to latency. Couchbase Analytics is not configured to align with the NUMA architecture. Deploying Couchbase Analytics on a server with the NUMA architecture may result in uneven memory distribution, increased latency, and degraded performance. Specifically, queries can become slower, and overall system efficiency can drop as memory access times vary significantly. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Non-Uniform Memory Access (NUMA)
+> 
+> Non-Uniform Memory Access (NUMA) can significantly impact the performance and stability of the Couchbase Analytics Service. NUMA architectures divide memory into different zones, each with a specific CPU, and accessing memory across zones can lead to latency.
+> 
+> Couchbase Analytics is not configured to align with the NUMA architecture. Deploying Couchbase Analytics on a server with the NUMA architecture may result in uneven memory distribution, increased latency, and degraded performance. Specifically, queries can become slower, and overall system efficiency can drop as memory access times vary significantly.
 
 ## [](#see-also)See Also
 

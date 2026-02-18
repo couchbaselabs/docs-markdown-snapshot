@@ -1,9 +1,19 @@
+---
+title: Tracing
+description: Tracing and Metrics provide fine-grained insight into how an
+  application is performing, and helps to diagnose when it is not.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/concept-docs/pages/response-time-observability.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/concept-docs/response-time-observability.html)
+
+# Tracing
 
 > Tracing and Metrics provide fine-grained insight into how an application is performing, and helps to diagnose when it is not. 
 
-|  | In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operational exposes these metrics through the UI.
 
 Health indicators can tell you a lot about the performance of an application. Monitoring them is vital both during its development and production lifecycle.
 

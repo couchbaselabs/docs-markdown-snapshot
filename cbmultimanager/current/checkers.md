@@ -1,4 +1,12 @@
+---
+title: Cluster Monitor checkers
+editUrl: https://github.com/couchbaselabs/cbmultimanager/edit/master/docs/modules/ROOT/pages/checkers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cbmultimanager/current/checkers.html)
+
+# Cluster Monitor checkers
 
 ## [](#cluster-checkers)Cluster Checkers
 
@@ -388,8 +396,8 @@ Note that this list of ports is different to the ports needed for application cl
 
 **Condition**: A node detects that it cannot establish TCP connections to another node.
 
-|  | Not all internal ports are currently checked, so there may still be intra-cluster communication issues even if this health check is good. You should ensure that all ports on the below page are unblocked between all nodes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Not all internal ports are currently checked, so there may still be intra-cluster communication issues even if this health check is good. You should ensure that all ports on the below page are unblocked between all nodes.
 
 (Requires the Couchbase Health Agent to be installed.)
 

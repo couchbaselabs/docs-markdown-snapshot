@@ -1,4 +1,14 @@
+---
+title: Process Your Data For Capella AI Services
+description: Use Capella AI Services Workflows to prepare, process, and
+  vectorize text for use with other Capella AI Services.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/data-processing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/vectorization-service/data-processing.html)
+
+# Process Your Data For Capella AI Services
 
 > Use Capella AI Services Workflows to prepare, process, and vectorize text for use with other Capella AI Services. 
 
@@ -8,8 +18,8 @@ The following Workflows are available through Capella AI Services:
 * **Structured Data from External Sources**: Use when your data has already been pre-processed and stored in JSON format on an Amazon S3 bucket.
 * **Data from Capella**: Use when your data has already been pre-processed and stored in a Capella operational cluster.
 
-|  | All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the Capella Model Service](../model-service/deploy-embed-model.md) or [OpenAI](https://openai.com/). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> All Workflows require an embedding model to generate vectors. You can use an embedding model [hosted by the Capella Model Service](../model-service/deploy-embed-model.md) or [OpenAI](https://openai.com/).
 
 You must configure specific [data preprocessing options](#data-preprocess) when using an Unstructured Data Workflow. Keep the [Unstructured Data Processing Limitations](#limitations) in mind when processing unstructured data.
 
@@ -29,8 +39,8 @@ Workflows create dedicated metadata collections and [Eventing functions](../../.
   * `vec_ctr_$WORKFLOW_ID`
   * `vec_wkr_$WORKFLOW_ID`
 
-|  | Do not modify or delete the Workflows metadata scope, its collections, or the Eventing functions. If you delete or modify the scope, collections, or Eventing functions, you must delete your Workflow and create a new one. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not modify or delete the Workflows metadata scope, its collections, or the Eventing functions. If you delete or modify the scope, collections, or Eventing functions, you must delete your Workflow and create a new one.
 
 ## [](#data-preprocess)Data Preprocessing Options
 

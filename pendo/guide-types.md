@@ -1,4 +1,12 @@
+---
+title: Guide Types
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/guide-types.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/pendo/guide-types.html)
+
+# Guide Types
 
 A Guide in Pendo can fall under one of the following main Guide types.
 

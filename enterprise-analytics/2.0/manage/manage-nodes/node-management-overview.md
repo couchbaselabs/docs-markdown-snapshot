@@ -1,4 +1,15 @@
+---
+title: Manage Nodes and Clusters
+description: A Couchbase-Server <em>cluster</em> consists of one or more
+  <em>nodes</em>, each of which is a system running an instance of Enterprise
+  Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/node-management-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/node-management-overview.html)
+
+# Manage Nodes and Clusters
 
 > A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Enterprise Analytics. 
 

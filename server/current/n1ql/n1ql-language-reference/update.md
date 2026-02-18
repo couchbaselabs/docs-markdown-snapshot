@@ -1,9 +1,18 @@
+---
+title: UPDATE
+description: UPDATE replaces a document that already exists with updated values.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/update.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/update.html)
+
+# UPDATE
 
 > UPDATE replaces a document that already exists with updated values. 
 
-|  | Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples on this page will alter the data in your sample buckets. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 ## [](#prerequisites)Prerequisites
 
@@ -11,8 +20,8 @@
 
 User executing the UPDATE statement must have the _Query Update_ privilege on the target keyspace. If the statement has any clauses that needs data read, such as SELECT clause, or RETURNING clause, then _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
-|  | A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
 
 RBAC Examples 
 
@@ -66,8 +75,8 @@ Couchbase Server 8.0
 
 You can supply hints to the optimizer within a specially formatted hint comment. For more information, see [Optimizer Hints](optimizer-hints.md).
 
-|  | UPDATE statements support only index hints. Other hints, such as join hints and ORDERED hints, are not supported. For an example of using an optimizer hint, see [Example 12](#example-12). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> UPDATE statements support only index hints. Other hints, such as join hints and ORDERED hints, are not supported. For an example of using an optimizer hint, see [Example 12](#example-12).
 
 ### [](#update-target)Update Target
 
@@ -115,8 +124,8 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 You can use a `USE KEYS` hint on the update target to specify the keys of the data items to be updated. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
 
-|  | You cannot specify a hint for the same update target using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You cannot specify a hint for the same update target using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
 
 ### [](#set-clause)SET Clause
 
@@ -154,8 +163,8 @@ Removes the specified attribute from the document.
 | update-for | [FOR Clause](#update-for)                                                                                                                                                                                                                                                                                                                                                       |
 | meta-xattr | An expression specifying the extended attribute (XATTR) to be removed. The format is [META().xattrs.<attribute>\[.<path>\]](metafun.md#meta), where: <attribute> is a top-level attribute name or key of the XATTR object. <path> is an optional subpath within that attribute. You can directly reference individual fields in composite XATTR values through the nested path. |
 
-|  | You cannot use the UNSET clause to unset the document expiration. To unset the document expiration, set the document expiration to 0. Alternatively, if the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter is set to false, simply update the document without specifying the document expiration. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot use the UNSET clause to unset the document expiration. To unset the document expiration, set the document expiration to `0`. Alternatively, if the request-level [preserve\_expiry](../n1ql-manage/query-settings.md#preserve%5Fexpiry) parameter is set to `false`, simply update the document without specifying the document expiration.
 
 ### [](#update-for)FOR Clause
 
@@ -210,8 +219,8 @@ Specifies the information to be returned by the operation as a query result. For
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | For some of these examples, the Query Workbench may warn you that the query has no WHERE clause and will update all documents. In this case, you can ignore the warning: the USE KEYS hint in these examples ensures that the query updates only one document. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For some of these examples, the Query Workbench may warn you that the query has no WHERE clause and will update all documents. In this case, you can ignore the warning: the USE KEYS hint in these examples ensures that the query updates only one document.
 
 Example 1\. Set an attribute
 

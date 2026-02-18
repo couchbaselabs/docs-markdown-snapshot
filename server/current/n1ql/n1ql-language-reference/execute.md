@@ -1,4 +1,13 @@
+---
+title: EXECUTE
+description: The EXECUTE statement executes a prepared statement.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/execute.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/execute.html)
+
+# EXECUTE
 
 > The EXECUTE statement executes a prepared statement. 
 
@@ -31,8 +40,8 @@ The name of the prepared statement. This has the format `[host:port]local-name-o
 
 If present, the host and port are used for [Statement Retrieval](#statement-retrieval).
 
-|  | If the name of the prepared statement contains hyphens, wrap the entire name in backticks (\`) or double quotation marks ("). |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If the name of the prepared statement contains hyphens, wrap the entire name in backticks (`` ` ``) or double quotation marks (`"`).
 
 ### [](#using-clause)USING Clause
 
@@ -77,8 +86,10 @@ EXECUTE NumParam
 USING ["Paris", "France"];
 ```
 
-|  | Alternatively, you can specify named parameters and positional parameters using the SQL++ REST API (/query/service endpoint), the cbq command line tool, or a software development kit (SDK). Named parameters can be specified as request-level parameters, and positional parameters can be specified using the args parameter. See [Configure Queries](../n1ql-manage/query-settings.md) for more information. When you specify parameters with the USING clause, you cannot also specify parameters at the same time using the SQL++ REST API, the cbq command line tool, or an SDK. When you do this, the query service returns error 5003: "cannot have both USING clause and request parameters". |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Alternatively, you can specify named parameters and positional parameters using the SQL++ REST API (`/query/service` endpoint), the `cbq` command line tool, or a software development kit (SDK). Named parameters can be specified as request-level parameters, and positional parameters can be specified using the `args` parameter. See [Configure Queries](../n1ql-manage/query-settings.md) for more information.
+> 
+> When you specify parameters with the USING clause, you cannot also specify parameters at the same time using the SQL++ REST API, the `cbq` command line tool, or an SDK. When you do this, the query service returns error `5003`: "cannot have both USING clause and request parameters".
 
 ## [](#examples)Examples
 

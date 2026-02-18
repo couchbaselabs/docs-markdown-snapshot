@@ -1,7 +1,16 @@
+---
+title: New in 4.0
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/cbl-whatsnew.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/cbl-whatsnew.html)
 
-|  | Couchbase Lite 4.0 introduces some breaking changes.If you’re upgrading from 3.x, see the appropriate upgrade page — [Upgrading](#lbl-upgrade). You cannot downgrade from 4.0 to earlier versions of Couchbase Lite. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# New in 4.0
+
+> [!NOTE]
+> Couchbase Lite 4.0 introduces some breaking changes.  
+> If you’re upgrading from 3.x, see the appropriate upgrade page — [Upgrading](#lbl-upgrade). You cannot downgrade from 4.0 to earlier versions of Couchbase Lite.
 
 ## [](#release-4-0)Release 4.0
 

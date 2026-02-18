@@ -1,4 +1,11 @@
+---
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-source-config-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/generated-source-config-reference.html)
+
+# undefined
 
 ## [](#connection)Connection
 
@@ -193,8 +200,8 @@ For example, if you want to write messages from collection "scope-a.invoices" to
 
 Defaults to an empty map. For collections not present in this map, the destination topic is determined by the `couchbase.topic` config property.
 
-|  | **DEPRECATED.** Instead, please use couchbase.topic with contextual overrides. |
-|  | ------------------------------------------------------------------------------ |
+> [!WARNING]
+> **DEPRECATED.** Instead, please use `couchbase.topic` with contextual overrides.
 
 * Since: 4.1.8
 * Type: list
@@ -443,11 +450,11 @@ To enable this feature, specify a non-zero persistence polling interval. The int
 
 To disable this feature, specify a zero duration (`0`). In this mode the connector publishes changes to Kafka immediately, without waiting for replication. This is fast and uses less network bandwidth, but can result in publishing "phantom changes" that don’t reflect the actual state of a document in Couchbase after a failover.
 
-|  | Documents written to Couchbase with enhanced durability are never published to Kafka until the durability requirements are met, regardless of whether persistence polling is enabled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Documents written to Couchbase with enhanced durability are never published to Kafka until the durability requirements are met, regardless of whether persistence polling is enabled.
 
-|  | When connecting to an ephemeral bucket, always disable persistence polling by setting this config option to 0, otherwise the connector will never publish any changes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When connecting to an ephemeral bucket, always disable persistence polling by setting this config option to `0`, otherwise the connector will never publish any changes.
 
 * Type: string
 * Default: `100ms`
@@ -458,8 +465,8 @@ To disable this feature, specify a zero duration (`0`). In this mode the connect
 
 The flow control buffer limits how much data Couchbase will send before waiting for the connector to acknowledge the data has been processed. The recommended size is between 10 MiB ("10m") and 50 MiB ("50m").
 
-|  | Make sure to allocate enough memory to the Kafka Connect worker process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Make sure to allocate enough memory to the Kafka Connect worker process to accommodate the flow control buffer, otherwise the connector might run out of memory under heavy load. Read on for details.
 
 There’s a separate buffer for each node in the Couchbase cluster. When calculating how much memory to allocate to the Kafka Connect worker, multiply the flow control buffer size by the number of Couchbase nodes, then multiply by 2\. This is how much memory a single connector task requires for the flow control buffer (not counting the connector’s baseline memory usage).
 

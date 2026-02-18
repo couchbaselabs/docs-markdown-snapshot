@@ -1,4 +1,14 @@
+---
+title: Upgrade Your Account
+description: Add an Activation ID or a credit card to upgrade from a free tier
+  plan and access all Couchbase Capella features for your operational clusters.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/upgrade-account.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/upgrade-account.html)
+
+# Upgrade Your Account
 
 > Add an Activation ID or a credit card to upgrade from a free tier plan and access all Couchbase Capella features for your operational clusters. 
 
@@ -9,8 +19,8 @@ To upgrade from a free tier plan to a paid Support plan in Capella, you need to 
 
 You must keep a valid credit card on your account or use an Activation ID to keep using a paid Support Plan and other paid features.
 
-|  | You can switch from credit card payments to purchasing credits through Couchbase Sales with an Activation ID at any time. You cannot switch your organization to credit card payments after you add an Activation ID to your account. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can switch from credit card payments to purchasing credits through Couchbase Sales with an Activation ID at any time. You cannot switch your organization to credit card payments after you add an Activation ID to your account.
 
 You can also go to one of the Capella Cloud Service Provider marketplaces to purchase credits and start using paid Support Plans without an Activation ID or adding a credit card to Capella:
 
@@ -76,8 +86,8 @@ If you have already deployed a free tier cluster, your current free tier cluster
 
 Capella allows only one free tier operational cluster per organization at any time.
 
-|  | When you upgrade to a paid Support Plan, Couchbase deletes your old free tier operational cluster. |
-|  | -------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When you upgrade to a paid Support Plan, Couchbase deletes your old free tier operational cluster.
 
 With your paid plan, you can choose to deploy another free tier operational cluster alongside your paid operational clusters.
 

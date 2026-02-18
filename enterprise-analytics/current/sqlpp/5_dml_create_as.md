@@ -1,4 +1,15 @@
+---
+title: CREATE COLLECTION AS Statements
+description: This topic describes how you use the <code>CREATE COLLECTION
+  AS</code> statement to both create a standalone collection and populate it
+  with the results of a query.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_create_as.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_dml_create_as.html)
+
+# CREATE COLLECTION AS Statements
 
 > This topic describes how you use the `CREATE COLLECTION AS` statement to both create a standalone collection and populate it with the results of a query. 
 

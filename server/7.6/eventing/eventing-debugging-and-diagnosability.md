@@ -1,4 +1,14 @@
+---
+title: Debugging and Diagnosability
+description: Debugging and diagnostics in the Eventing Service comprises of
+  debugging functions, functions log, and log redaction.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-debugging-and-diagnosability.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-debugging-and-diagnosability.html)
+
+# Debugging and Diagnosability
 
 > Debugging and diagnostics in the Eventing Service comprises of debugging functions, functions log, and log redaction. 
 
@@ -17,10 +27,9 @@ The default Eventing debug port is **9140**. To change the default port settings
 * Using the Debug option, you can place breakpoints in the code and run the Function execution, step through your code one line at a time, and inspect values of your variables. The step-step execution helps while troubleshooting the deployed Eventing Function under real world constraints.
 * If the debugged event-instance completes execution, no further event-instances get trapped for debugging. If you wish to debug a second event-instance you need to stop and restart the debugger in the Function’s code editor.
 * If a debug session gets terminated during execution, then the mutation may be abruptly processed or canceled.
-* Debugging is a convenience-feature intended to help during Function development: it is highly discouraged for use in production environments.
-
-|  | Debug mode should be avoided in production environments, as it affects the in-order processing of the document mutations as well as introducing timing related issues. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* Debugging is a convenience-feature intended to help during Function development: it is highly discouraged for use in production environments.  
+> [!WARNING]  
+> Debug mode should be avoided in production environments, as it affects the in-order processing of the document mutations as well as introducing timing related issues.
 
 ### [](#enable-debugging-of-eventing-functions)Enable Debugging of Eventing Functions
 
@@ -44,10 +53,9 @@ Below we have expanded the deployed Eventing Function "case\_2\_enrich\_ips" fro
 * Because we enabled debugging we now have a button, **Debug**, in the lower left of the code editor
 * From the **View JavaScript** page, click **Debug**. This will activate a one-time debug session. As a result, the next event-instance will get trapped and is forwarded to the Debugger.  
 ![debugger 05 debugger waiting](_images/debugger_05_debugger_waiting.png)
-* In the above screen, you can notice the message: "Waiting for mutation."
-
-|  | During a debugging session this window must remain active. When you are presented a debug URL you must copy then paste it into a new browser window (described below). If you are using the UI to create the mutation, you must use a different browser tab/window to create the mutation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* In the above screen, you can notice the message: "Waiting for mutation."  
+> [!NOTE]  
+> During a debugging session this window must remain active. When you are presented a debug URL you must copy then paste it into a new browser window (described below). If you are using the UI to create the mutation, you must use a different browser tab/window to create the mutation.
 * Since we are using an Example we need to trigger a mutation in another tab/window, _\*do not close this browser tab/window with your debugging dialog\*_.  
 If you are debugging an Eventing Function that has a constant stream of mutations you would not need to make your own mutation.
 * **In tab/another window** access the **Couchbase Web Console** \> **Buckets** page and click the **Scopes and Collections** link of the **bulk** bucket.
@@ -112,10 +120,9 @@ There are currently three known URL variants from the oldest Chrome release to n
   * chrome-devtools://devtools/bundled/js\_app.html
   * devtools://devtools/bundled/js\_app.html
   * \*devtools://devtools/bundled/inspector.html
-* Potential issue with debugging International Components for Unicode (ICU)
-
-|  | In earlier versions 6.5.0, 6.5.1, and 6.6.0 users might experience bug MB-41508 a Chrome "WebSocket Disconnected" when debugging Eventing functions that call either toLocaleString() or Intl.DateTimeFormat. Essentially the file "icudtl.dat" which provides support for International Components for Unicode (ICU) is not in the needed location. The following step (copying the Chrome "icudtl.dat" file) is necessary only for development or staging clusters as users aren’t expected to spawn a debugger in a live production environment. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+* Potential issue with debugging International Components for Unicode (ICU)  
+> [!WARNING]  
+> In earlier versions 6.5.0, 6.5.1, and 6.6.0 users might experience bug MB-41508 a Chrome "WebSocket Disconnected" when debugging Eventing functions that call either toLocaleString() or Intl.DateTimeFormat. Essentially the file "icudtl.dat" which provides support for International Components for Unicode (ICU) is not in the needed location. The following step (copying the Chrome "icudtl.dat" file) is necessary only for development or staging clusters as users aren’t expected to spawn a debugger in a live production environment.  
 Typically this issue will occur when the debugger hits an ICU function like _Intl.DateTimeFormat_ or _toLocaleString_, the result is your debugging session is disconnected as follows:  
 ![debug websocket disconnected](_images/debug_websocket_disconnected.png)  
 To fix the issue in Chrome you merely need to copy a file on the server to the expected file system location.
@@ -154,8 +161,8 @@ The Eventing Service Debugger port, `eventing_debug_port` (9140), is an internal
 
 For detailed information on the modifying **ns\_server** port mappings, refer to [Custom Port Mapping](../install/install-ports.md#map-custom-ports).
 
-|  | Changing port mappings should only be done at the time of initial node/cluster setup as the required reset and reconfiguration will also purge all data on the node. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Changing port mappings should only be done at the time of initial node/cluster setup as the required reset and reconfiguration will also purge all data on the node.
 
 ## [](#logging-functions)Logging Functions
 
@@ -292,8 +299,8 @@ Couchbase Server creates an individual log file for every Function in the cluste
 
 By default, the maximum size of a node’s Application log file is 40MB, and the number of log files before rotation is 10\. Unlike system logs, the Application logs are user-configurable in number and size.
 
-|  | The **cbcollect\_info** tool does not collect the Application log files. |
-|  | ------------------------------------------------------------------------ |
+> [!NOTE]
+> The **cbcollect\_info** tool does not collect the Application log files.
 
 __Table 2\. Eventing Application Logs Location by Platform__
 | Platform | Location                                                                                                            |
@@ -302,8 +309,8 @@ __Table 2\. Eventing Application Logs Location by Platform__
 | Windows  | C:\\Program Files\\Couchbase\\Server\\var\\lib\\couchbase\\data\\@eventing\\(Assumes default installation location) |
 | Mac OS X | /Users/<user>/Library/Application\\ Support/Couchbase/var/lib/couchbase/data/@eventing/                             |
 
-|  | During Cluster setup, if you have chosen a custom path, then the path for Application logs is same as that of the selected Indexes Path. The @eventing folder in the selected Indexes Path stores the Application logs. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> During Cluster setup, if you have chosen a custom path, then the path for Application logs is same as that of the selected Indexes Path. The @eventing folder in the selected Indexes Path stores the Application logs.
 
 To configure an Application log, use the REST endpoint settings option. Note you must always specify deployment\_status (deployed/undeployed) and processing\_status (paused/not-paused) when using this REST endpoint.
 
@@ -335,7 +342,7 @@ Organizations can implement log redaction as part of their legal compliance and 
 
 Couchbase Server provides a capability to redact sensitive user data from getting captured in the logs.
 
-|  | Log redaction is applicable only for System logs and not for Application logs. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> Log redaction is applicable only for System logs and not for Application logs.
 
 For details, see [Understanding Redaction](../manage/manage-logging/manage-logging.md#understanding%5Fredaction).

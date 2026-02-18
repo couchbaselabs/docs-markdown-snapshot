@@ -1,4 +1,12 @@
+---
+title: Dropdowns/Lists
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/dropdowns.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/dropdowns.html)
+
+# Dropdowns/Lists
 
 A dropdown is a UI element that presents a list of options to a user, and lets them select 1 or more options.
 

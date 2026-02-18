@@ -1,16 +1,24 @@
+---
+title: Backup with VMware Velero
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-velero-backup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-velero-backup.html)
+
+# Backup with VMware Velero
 
 > How-to backup your Operator and Couchbase clusters against deletion. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 [Velero](https://velero.io/) is a full system backup and restore tool. Unlike a Couchbase backup — that is only concerned with data and requires duplication — [Velero](https://velero.io/) allows an almost instantaneous backup of your data and Kubernetes resources. It achieves this by combining volume snapshots with resource archival to an external bucket.
 
 This tutorial will step through a procedure to backup a Couchbase cluster, simulate a disaster and how to successfully recover.
 
-|  | Use of [Velero](https://velero.io/) backup will only work with Operator version 2.0.0 or greater. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Use of [Velero](https://velero.io/) backup will only work with Operator version 2.0.0 or greater.
 
 ## [](#installing-velero)Installing Velero
 

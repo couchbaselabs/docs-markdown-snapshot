@@ -1,4 +1,14 @@
+---
+title: How to Create a User
+description: How to create a Sync Gateway user for secure access control in
+  cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how-create-users.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/access-control-how-create-users.html)
+
+# How to Create a User
 
 > How to create a Sync Gateway user for secure access control in cloud-to-edge enterprise data synchronization.  
 > Sync Gateway _users_ are a key part of a flexible approach to data routing and access control.
@@ -23,8 +33,8 @@ Example 1\. How to Create Users
 
 Admin REST API
 
-|  | This is the default recommended option starting 3.0\. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> This is the default recommended option starting 3.0\.
 
 Create a new user by sending a POST request to the Admin Rest Api `_user` endpoint ([{db}/\_user/{name}](rest-api-admin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name)). Update existing users by sending a PUT request ([/{db}/\_user/{name}](rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name)); in this case include the user name at the end of the url.
 

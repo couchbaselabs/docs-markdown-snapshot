@@ -1,4 +1,12 @@
+---
+title: Data Operations
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/howtos/kv-operations.html)
+
+# Data Operations
 
 ## [](#documents)Documents
 
@@ -74,8 +82,10 @@ let result = await collection.upsert(key, document,
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration, and the default level of safety provided by Couchbase will be reasonable for the majority of situations.
 
-|  | Sub-Document Operations All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Sub-Document Operations
+> 
+> All of these operations involve fetching the complete document from the Cluster. Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with [Sub-Document Operations](subdocument-operations.md).
 
 ## [](#retrieving-full-documents)Retrieving full documents
 
@@ -128,15 +138,15 @@ const result = await collection.touch(key, 100,  // 100 seconds
 );
 ```
 
-|  | If the absolute value of the expiry is less than 30 days (such as 60 \* 60 \* 24 \* 30), it is considered an _offset_. If the value is greater, it is considered an _absolute time stamp_. For more on expiration see the [expiration section](../concept-docs/documents.md#setting-document-expiration) of our documents discussion doc. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the absolute value of the expiry is less than 30 days (such as `60 * 60 * 24 * 30`), it is considered an _offset_. If the value is greater, it is considered an _absolute time stamp_. For more on expiration see the [expiration section](../concept-docs/documents.md#setting-document-expiration) of our documents discussion doc.
 
 ## [](#atomic-counters)Atomic Counters
 
 The value of a document can be increased or decreased atomically using `binary().increment()` and `binary().decrement()`.
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
 
 Increment
 
@@ -174,8 +184,8 @@ const result = await collection.binary().decrement(binValKey, 1,
 );
 ```
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 
@@ -187,8 +197,8 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

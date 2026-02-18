@@ -1,4 +1,13 @@
+---
+title: Vector Search Release Notes
+description: Couchbase Lite on Objective-C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/vs-releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/objc/vs-releasenotes.html)
+
+# Vector Search Release Notes
 
 ## [](#vs-maint-1-0-0-beta-1)1.0.0 — August 2024
 
@@ -21,5 +30,5 @@ None for this release
 
 None for this release
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)

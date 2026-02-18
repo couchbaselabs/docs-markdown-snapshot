@@ -1,4 +1,15 @@
+---
+title: VPC Peering with AWS
+description: To secure network traffic, you can configure a private network
+  connection between a Capella Analytics cluster and an Amazon Web Services
+  (AWS) account through virtual private cloud (VPC) peering.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/vpc-peering.html)
+
+# VPC Peering with AWS
 
 > To secure network traffic, you can configure a private network connection between a Capella Analytics cluster and an Amazon Web Services (AWS) account through virtual private cloud (VPC) peering. 
 
@@ -29,10 +40,9 @@ To configure VPC peering between your Capella Analytics cluster and Amazon Web S
 2. Click **Settings** **VPC Peering**.
 3. Click **Set Up VPC**.
 4. Confirm that the prerequisite AWS services are set up: **Virtual Network Peering** and **Route 53**. Click **Next**.
-5. Enter the following network details:
-
-|  | You can use the [Amazon VPC console](https://console.aws.amazon.com/vpc/) to locate most of this information. |
-|  | ------------------------------------------------------------------------------------------------------------- |  
+5. Enter the following network details:  
+> [!TIP]  
+> You can use the [Amazon VPC console](https://console.aws.amazon.com/vpc/) to locate most of this information.  
 Name  
 Enter an identifying name for display in Capella.  
 AWS Account ID  
@@ -45,10 +55,9 @@ CIDR Block
 The AWS VPC CIDR block of network in which your application runs. This CIDR block cannot overlap with the CIDR block of your Capella Analytics cluster.
 6. Click **Set Up VPC**.  
 Capella sets up the private network. It typically takes up to a minute.  
-On success, the private network appears on the list of private networks. You may briefly see the cluster enter a "Deploying" state while Capella sets up the new connection.
-
-|  | While the network status is "Complete," there are some final steps you must carry out before you can access your Capella Analytics cluster from your VPC using VPC peering. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+On success, the private network appears on the list of private networks. You may briefly see the cluster enter a "Deploying" state while Capella sets up the new connection.  
+> [!CAUTION]  
+> While the network status is "Complete," there are some final steps you must carry out before you can access your Capella Analytics cluster from your VPC using VPC peering.
 7. Click the name of the new private network.
 8. A page opens with commands that you must run in the AWS CLI. These commands:
 
@@ -180,8 +189,8 @@ $ curl -k https://9qvj8x-f2oxhahtz.a-lxzt-gdkzoqfuu.cloud.couchbase.com:18091
 
 ## [](#troubleshooting)Troubleshooting
 
-|  | Tools such as the [AWS VPC Reachability Analyzer](https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html) can be useful for verifying communications. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Tools such as the [AWS VPC Reachability Analyzer](https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html) can be useful for verifying communications.
 
 If you entered an incorrect CIDR block, application VPC, VPC ID, or other information when creating a VPC peering connection, you must delete that connection and create a new one with the correct values.
 

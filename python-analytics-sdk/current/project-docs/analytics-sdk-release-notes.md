@@ -1,4 +1,14 @@
+---
+title: Analytics SDK Release Notes
+description: Release notes, brief installation instructions, and download
+  archive for the Enterprise Analytics Python Client.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/project-docs/pages/analytics-sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-analytics-sdk/current/project-docs/analytics-sdk-release-notes.html)
+
+# Analytics SDK Release Notes
 
 > Release notes, brief installation instructions, and download archive for the Enterprise Analytics Python Client. 
 

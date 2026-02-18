@@ -1,4 +1,12 @@
+---
+title: Date Range Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-date-range.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-date-range.html)
+
+# Date Range Query
 
 A _date\_range_ query finds documents containing a date value, in the specified field within the specified range.
 

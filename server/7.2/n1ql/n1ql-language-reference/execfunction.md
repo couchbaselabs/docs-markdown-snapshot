@@ -1,4 +1,13 @@
+---
+title: EXECUTE FUNCTION
+description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/execfunction.html)
+
+# EXECUTE FUNCTION
 
 > The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. 
 
@@ -40,8 +49,8 @@ The name of the function. This is usually an unqualified identifier, such as `fu
 
 To execute a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to execute a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
 
 ### [](#expression)Arguments
 

@@ -1,4 +1,12 @@
+---
+title: Couchbase Operator Architecture
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-operator.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-operator.html)
+
+# Couchbase Operator Architecture
 
 > This section gives a high level overview of the Operator architecture. 
 
@@ -16,11 +24,21 @@ Another benefit is that Couchbase specific configuration errors are synchronousl
 
 For these reasons the DAC is a required component of the Operator and must be installed. The DAC is a standalone service and processes Couchbase cluster resources for the entire Kubernetes cluster, therefore only a single instance is required.
 
-|  | Dynamic Admission Controller Security Models The recommended — and default — deployment model is to run a single instance of the DAC per Kubernetes cluster. The DAC is backward compatible with all previous CRD versions, therefore you only need to deploy the most recent version, regardless of the Operator versions running on the platform. The DAC may also be deployed at the namespace scope for more security conscious environments. This limits the DAC so that it is only able to see Kubernetes resources within the namespace in which it is deployed, for example secrets. With this security model, one instance of the DAC is required per namespace in which the Operator is deployed. In the following [DAC architecture section](#dynamic-admission-controller-architecture), when running the DAC namespaced, ClusterRoles and ClusterRoleBindings are replaced with Roles and RoleBindings respectively. Regardless of chosen security model, the DAC will require cluster administrator privileges to deploy. The roles and role bindings require privilege escalation. Additionally the validating webhook affects the Kubernetes API, so must be installed by an administrator. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Dynamic Admission Controller Security Models
+> 
+> The recommended — and default — deployment model is to run a single instance of the DAC per Kubernetes cluster. The DAC is backward compatible with all previous CRD versions, therefore you only need to deploy the most recent version, regardless of the Operator versions running on the platform.
+> 
+> The DAC may also be deployed at the namespace scope for more security conscious environments. This limits the DAC so that it is only able to see Kubernetes resources within the namespace in which it is deployed, for example secrets. With this security model, one instance of the DAC is required per namespace in which the Operator is deployed. In the following [DAC architecture section](#dynamic-admission-controller-architecture), when running the DAC namespaced, `ClusterRoles` and `ClusterRoleBindings` are replaced with `Roles` and `RoleBindings` respectively.
+> 
+> Regardless of chosen security model, the DAC will require cluster administrator privileges to deploy. The roles and role bindings require privilege escalation. Additionally the validating webhook affects the Kubernetes API, so must be installed by an administrator.
 
-|  | Dynamic Admission Controller Security Rules By default the DAC will check that Kubernetes secrets and storage classes exist and have not been misconfigured. This is important because the validity of things like TLS certificates can be checked before attempting to create the cluster. If the required permissions are too permissive for your environment then you can selectively remove them with the [cao](tools/cao.md) installer tool. You may also use this opt-out feature to avoid the DAC rejecting configuration when the ordering of resource creation cannot be guaranteed, for example secrets are created after the Couchbase cluster resource. This is however not recommended as any configuration errors are reflected in resource status conditions and logs, not immediately reported to the console. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Dynamic Admission Controller Security Rules
+> 
+> By default the DAC will check that Kubernetes secrets and storage classes exist and have not been misconfigured. This is important because the validity of things like TLS certificates can be checked before attempting to create the cluster. If the required permissions are too permissive for your environment then you can selectively remove them with the [cao](tools/cao.md) installer tool.
+> 
+> You may also use this opt-out feature to avoid the DAC rejecting configuration when the ordering of resource creation cannot be guaranteed, for example secrets are created after the Couchbase cluster resource. This is however not recommended as any configuration errors are reflected in resource status conditions and logs, not immediately reported to the console.
 
 ## [](#dynamic-admission-controller-architecture)Dynamic Admission Controller Architecture
 
@@ -61,8 +79,12 @@ Polling the Kubernetes API continually to check for resource statuses is a costl
 
 The Operator is designed to run in the same namespace as the Couchbase clusters it is managing. The Operator therefore needs one instance per namespace where Couchbase clusters are required to be provisioned. The Operator is a statically compiled binary, so does not require an operating system image. The Operator does not require any elevated privileges and may be run as any user.
 
-|  | Operator Security Models The recommended deployment method for the Operator is a single instance per-namespace. This allows staged upgrades of the Operator, only affecting a subset of Couchbase clusters at any one time. The Operator may be deployed at the cluster scope, where a single Operator controls all Couchbase clusters on the platform. While requiring less operational overhead, and upgrade of the Operator will affect all Couchbase clusters running on the platform, so use this deployment method with caution. In the following [operator resources section](#operator-resources), Roles and RoleBindings are replaced with ClusterRoles and ClusterRoleBindings respectively. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Operator Security Models
+> 
+> The recommended deployment method for the Operator is a single instance per-namespace. This allows staged upgrades of the Operator, only affecting a subset of Couchbase clusters at any one time.
+> 
+> The Operator may be deployed at the cluster scope, where a single Operator controls all Couchbase clusters on the platform. While requiring less operational overhead, and upgrade of the Operator will affect all Couchbase clusters running on the platform, so use this deployment method with caution. In the following [operator resources section](#operator-resources), `Roles` and `RoleBindings` are replaced with `ClusterRoles` and `ClusterRoleBindings` respectively.
 
 ### [](#operator-resources)Operator Resources
 
@@ -72,8 +94,8 @@ The Operator is a basic application that uses a `Deployment` to provide high-ava
 
 Figure 2\. Operator Resources
 
-|  | The dotted box in the diagram denotes namespaced resources. Resources highlighted in red must be created by an administrator who has permission to create cluster scoped resources, or those that grant privilege escalation. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The dotted box in the diagram denotes namespaced resources. Resources highlighted in red must be created by an administrator who has permission to create cluster scoped resources, or those that grant privilege escalation.
 
 The Operator `Deployment` is associated with a `ServiceAccount` that grants the Operator permissions to discover, create, modify and delete resources required to manage a Couchbase cluster. Detailed role requirements are documented in the [Operator RBAC reference guide](reference-operator-rbac.md).
 

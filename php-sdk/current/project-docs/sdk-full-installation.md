@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions, and download archive for the Couchbase PHP Client.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/current/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions, and download archive for the Couchbase PHP Client. 
 
@@ -20,8 +29,14 @@ Before installing the PHP SDK, the following dependencies must be installed. We 
 
 For more details regarding platform support refer to the [Compatibility page](compatibility.md#os-compatibility).
 
-|  | When installing OpenSSL via brew install on **macOS**, the command will not be sufficient to be able to build. The easiest way to fix this is to add the OPENSSL\_ROOT\_DIR env variable to your exports (e.g., .zshenv). $ export OPENSSL\_ROOT\_DIR=/usr/local/opt/openssl/ If you have any issues setting this up, see the tips mentioned when you run brew info openssl. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When installing OpenSSL via `brew install` on **macOS**, the command will not be sufficient to be able to build. The easiest way to fix this is to add the `OPENSSL_ROOT_DIR` env variable to your exports (e.g., .zshenv).
+> 
+> ```console
+> $ export OPENSSL_ROOT_DIR=/usr/local/opt/openssl/
+> ```
+> 
+> If you have any issues setting this up, see the tips mentioned when you run `brew info openssl`.
 
 Now, install the Couchbase PHP SDK through your PHP distribution’s `pecl` command:
 
@@ -37,8 +52,14 @@ $ pecl install https://packages.couchbase.com/clients/php/couchbase-4.0.0.tgz
 
 Then follow the [post-installation steps](#post-installation).
 
-|  | New SDK Versions on Old Operating System Versions This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions. Older versions of Debian and Ubuntu ship with an older version of GCC — and RHEL and CentOS also lack a supported version of PHP. Workarounds are available for installing a newer build chain for RHEL and CentOS with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> New SDK Versions on Old Operating System Versions
+> 
+> This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions.
+> 
+> Older versions of Debian and Ubuntu ship with an older version of GCC — and RHEL and CentOS also lack a supported version of PHP.
+> 
+> Workarounds are available for installing a newer build chain for RHEL and CentOS with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options.
 
 #### [](#alpine-linux)Alpine Linux
 
@@ -77,10 +98,9 @@ Additional .ini files parsed:      (none)
 ```ini  
 extension=json      ; not needed with PHP 8.0.0+  
 extension=couchbase  
-```
-
-|  | On PHP version 7.2.0 and up, simply using the extension name is preferred. Previously, you might have used couchbase.so or couchbase.dll, depending on your platform. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+```  
+> [!NOTE]  
+> On PHP version 7.2.0 and up, simply using the extension name is preferred. Previously, you might have used `couchbase.so` or `couchbase.dll`, depending on your platform.
 
 ### [](#php-composer)PHP Composer
 

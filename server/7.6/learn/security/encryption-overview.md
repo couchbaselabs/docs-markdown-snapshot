@@ -1,4 +1,13 @@
+---
+title: Encryption
+description: Couchbase Server uses <em>encryption</em>, to protect data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/encryption-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/security/encryption-overview.html)
+
+# Encryption
 
 > Couchbase Server uses _encryption_, to protect data. 
 

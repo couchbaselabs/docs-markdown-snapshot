@@ -1,4 +1,14 @@
+---
+title: Swap Space and Kernel Swappiness
+description: On Linux, the kernel's <em>swappiness</em> level indicates how
+  likely the system is to swap pages out of physical memory based on RAM usage.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-swap-space.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install-swap-space.html)
+
+# Swap Space and Kernel Swappiness
 
 > On Linux, the kernel’s _swappiness_ level indicates how likely the system is to swap pages out of physical memory based on RAM usage. Swappiness should be set to 1 or 0 on most Linux systems to achieve optimal Couchbase Server performance. 
 
@@ -36,8 +46,8 @@ sudo sh -c 'echo "vm.force_cgroup_v2_swappiness = 1" >> /etc/sysctl.conf'
 ```
 3. Restart the system.
 
-|  | For more information, see <https://access.redhat.com/solutions/6785021> |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> For more information, see <https://access.redhat.com/solutions/6785021>
 
 ### [](#non-RHEL8-section)Other Linux (non-RHEL8) Users
 

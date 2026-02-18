@@ -1,4 +1,13 @@
+---
+title: JSON Functions
+description: This topic describes the builtin SQL++ for Capella Analytics JSON functions.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_json.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/8_builtin_json.html)
+
+# JSON Functions
 
 > This topic describes the builtin SQL++ for Capella Analytics JSON functions. 
 

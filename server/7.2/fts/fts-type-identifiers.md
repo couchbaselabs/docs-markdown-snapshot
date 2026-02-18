@@ -1,4 +1,12 @@
+---
+title: Specifying Type Identifiers
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-type-identifiers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-type-identifiers.html)
+
+# Specifying Type Identifiers
 
 A _type identifier_ allows the documents in a bucket to be identified filtered for inclusion into the index according to their _type_. When the **Add Index, Edit Index**, or **Clone Index** screen is accessed, a **Type Identifier** panel is displayed:
 
@@ -10,15 +18,17 @@ There are three options, each of which gives the index a particular way of deter
 
 It is the name of a document field. The value specified for this field is used by the index to determine the type of document.
 
-|  | FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding a dot (. or period) in the field name. **Unsupported field names**: field.name or country.name. For example, { "database.name": "couchbase"} **Supported field names**: fieldname or countryname. For example, { "databasename": "couchbase"} |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> FTS Indexing does not work for fields having a dot (. or period) in the field name. Users must avoid adding a dot (. or period) in the field name.  
+> **Unsupported field names**: `field.name` or `country.name`. For example, `{ "database.name": "couchbase"}`  
+> **Supported field names**: `fieldname` or `countryname`. For example, `{ "databasename": "couchbase"}`
 
 The default value is type: meaning that the index searches for a field in each document whose name is type.
 
 Each document that contains a field with that name is duly included in the index, with the value of the field specifying the type of the document.
 
-|  | The value of the field should be of text type and cannot be an array or JSON object. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The value of the field should be of text type and cannot be an array or JSON object.
 
 ## [](#doc-id-up-to-separator)Doc ID up to separator
 

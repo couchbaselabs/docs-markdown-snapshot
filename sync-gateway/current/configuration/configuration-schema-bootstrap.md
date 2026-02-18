@@ -1,11 +1,23 @@
+---
+title: Bootstrap Configuration
+description: Reference data on the contents of Sync Gateway's bootstrap
+  configuration, which determines its run time behavior.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-bootstrap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/configuration/configuration-schema-bootstrap.html)
+
+# Bootstrap Configuration
 
 > Reference data on the contents of Sync Gateway’s bootstrap configuration, which determines its run time behavior.  
 
 _Related topics_: [Overview](configuration-overview.md) | [Bootstrap](configuration-schema-bootstrap.md) | [Database](configuration-schema-database.md) | [Database Security](configuration-schema-db-security.md) | [Access Control](configuration-schema-access-control.md) | [Import](configuration-schema-import-filter.md) | [Inter-Sync Gateway Replication](configuration-schema-isgr.md)
 
-|  | Pre-3.0 Legacy Configuration Equivalents This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Pre-3.0 Legacy Configuration Equivalents
+> 
+> This content describes configuration for Sync Gateway 3.0 and higher — for legacy configuration, see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md)
 
 ## [](#introduction)Introduction
 
@@ -20,8 +32,8 @@ Use the following command to run Sync Gateway with a configuration file:
 sync_gateway sync-gateway-bootstrap.json
 ```
 
-|  | For reliable operation, all the nodes listed in the [bootstrap.server](#bootstrap-server) connection string must be data (KV) nodes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For reliable operation, all the nodes listed in the [bootstrap.server](#bootstrap-server) connection string must be data (KV) nodes.
 
 ## [](#lbl-schema)Bootstrap Configuration Schema
 

@@ -1,4 +1,13 @@
+---
+title: DROP BUCKET
+description: The DROP BUCKET statement enables you to delete a bucket.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropbucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/dropbucket.html)
+
+# DROP BUCKET
 
 > The DROP BUCKET statement enables you to delete a bucket. 
 
@@ -6,8 +15,8 @@
 
 Use the DROP BUCKET statement to permanently delete an existing bucket from your Couchbase cluster. Dropping a bucket deletes all data in the bucket, including documents, scopes, and collections. It also deletes all associated indexes, metadata, and other bucket resources.
 
-|  | This operation is irreversible, so use this statement with caution. |
-|  | ------------------------------------------------------------------- |
+> [!WARNING]
+> This operation is irreversible, so use this statement with caution.
 
 ## [](#rbac-privileges)RBAC Privileges
 

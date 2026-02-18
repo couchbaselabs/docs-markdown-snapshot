@@ -1,4 +1,14 @@
+---
+title: Creating a Replication
+description: To create an XDCR replication, use the <code>POST
+  /controller/createReplication</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-create-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-xdcr-create-replication.html)
+
+# Creating a Replication
 
 > To create an XDCR replication, use the `POST /controller/createReplication` HTTP method and URI. 
 
@@ -85,8 +95,8 @@ The `priority` flag controls resource-allocation to the replication. The value c
 
 Use the `mobile=[Off | Active]` flag to enable the setting _XDCR Active-Active with Sync Gateway 4.0+_ by changing the value to `Active` on the clusters of both sides of the replication. The default value is `Off` , which indicates that the setup supports either _XDCR Active-Passive with Sync Gateway_ or _XDCR Active-Active without Sync Gateway_.
 
-|  | To enable the setting mobile=\[Off \| Active\], ensure you have enabled the property enableCrossClusterVersioning on all the participating buckets, which is a prerequisite. For information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To enable the setting `mobile=[Off | Active]`, ensure you have enabled the property `enableCrossClusterVersioning` on all the participating buckets, which is a prerequisite. For information about the bucket property `enableCrossClusterVersioning`, see [XDCR enableCrossClusterVersioning](../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 For information on all other flags, see [Managing Advanced XDCR Settings](rest-xdcr-adv-settings.md).
 

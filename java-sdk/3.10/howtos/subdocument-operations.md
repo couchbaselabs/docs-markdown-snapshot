@@ -1,4 +1,14 @@
+---
+title: Sub-Document Operations
+description: Sub-Document operations can be used to efficiently access and
+  change parts of documents.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/howtos/subdocument-operations.html)
+
+# Sub-Document Operations
 
 > Sub-Document operations can be used to efficiently access and change parts of documents. 
 
@@ -12,8 +22,9 @@ While full-document retrievals retrieve the entire document and full document up
 
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
-|  | The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) queries.Sub-Document SQL++ queries are explained in the section [Querying with SQL++](sqlpp-queries-with-sdk.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) queries.  
+> Sub-Document SQL++ queries are explained in the section [Querying with SQL++](sqlpp-queries-with-sdk.md).
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [Path syntax](#path-syntax). Considering the document:
 
@@ -124,8 +135,8 @@ try {
 }
 ```
 
-|  | The operation used here is LookupInSpec.get, but we import this static method directly for readability. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The operation used here is `LookupInSpec.get`, but we import this static method directly for readability.
 
 Check existence of Sub-Document path
 
@@ -209,8 +220,8 @@ Dictionary values can also be replaced or removed, and you may combine any numbe
 collection.mutateIn("hotel_1368", List.of(remove("tz"), insert("alt_email", "hotel84@hotmail.com")));
 ```
 
-|  | mutateIn is an _atomic_ operation. If any single operation fails, then the entire document is left unchanged. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `mutateIn` is an _atomic_ operation. If any single operation fails, then the entire document is left unchanged.
 
 ## [](#array-append-and-prepend)Array Append and Prepend
 
@@ -318,8 +329,8 @@ Note that there are several differences as compared to the full-document counter
 
 Multiple Sub-Document operations can be executed at once on the same document, allowing you to retrieve or modify several Sub-Documents at once. When multiple operations are submitted within the context of a single _lookupIn_ or _mutateIn_ command, the server will execute all the operations with the same version of the document.
 
-|  | Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
 
 When submitting multiple _mutation_ operations within a single _mutateIn_ command, those operations are considered to be part of a single transaction: if any of the mutation operations fail, the server will logically roll-back any other mutation operations performed within the _mutateIn_, even if those commands would have been successful had another command not failed.
 
@@ -502,8 +513,8 @@ A path such as \`literal\[\]bracket\`.\`literal.dot\`. You can use double-backti
 
 If you need to combine both JSON _and_ path-syntax literals you can do so by escaping the component from any JSON string characters (e.g. a quote or backslash) and then encapsulating it in backticks (`` `path` ``).
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. DJSON documents with more than 32 nested layers cannot be parsed, atttempting to do so will result in a\`DocumentTooDeepException\` exception. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. DJSON documents with more than 32 nested layers cannot be parsed, atttempting to do so will result in a\`DocumentTooDeepException\` exception.
 
 ## [](#extended-attributes)Extended Attributes
 

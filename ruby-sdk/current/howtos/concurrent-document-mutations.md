@@ -1,4 +1,12 @@
+---
+title: Concurrent Document Mutations
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/concurrent-document-mutations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/current/howtos/concurrent-document-mutations.html)
+
+# Concurrent Document Mutations
 
 > You can use the CAS value to control how concurrent document modifications are handled. It helps avoid and control potential race conditions in which some mutations may be inadvertently lost or overridden by mutations made by other clients. 
 
@@ -126,8 +134,8 @@ __Table 3\. Behavior of various operations on a locked item__
 
 A document can be locked for a maximum of 30 seconds, after which the server will unlock it. This is to prevent misbehaving applications from blocking access to documents inadvertently. You can modify the time the lock is held for (though it can be no longer than 30 seconds).
 
-|  | Setting a lock greater than 30 seconds will cause Couchbase Server to set the lock duration at the Server’s _default_ value, which is 15 seconds. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Setting a lock greater than 30 seconds will cause Couchbase Server to set the lock duration at the Server’s _default_ value, which is 15 seconds.
 
 Be sure to keep note of the _cas_ value when locking a document. You will need it when unlocking or mutating the document. The following blocks show how to use `lock` and `unlock` operations.
 

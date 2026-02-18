@@ -1,4 +1,12 @@
+---
+title: Couchbase Server Groups
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-server-groups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-server-groups.html)
+
+# Couchbase Server Groups
 
 > Couchbase Server Groups are granular, logical groupings of resources that are tolerant of large scale infrastructure faults. This section defines how the Operator can leverage them in your environment. 
 
@@ -22,7 +30,7 @@ The scheduling algorithm attempts to keep the number of pods from each server cl
 
 Server groups are scheduled with pod node selectors and use the well known `topology.kubernetes.io/zone` label defined by default on managed clouds.
 
-|  | It’s good practice to keep each server group equally sized. In the example above, it is recommended that _Server Class 1_ contains 9 pods with 3 scheduled per server group. This keeps data replicas equally balanced across the server groups, as Couchbase server group scheduling of vBuckets is on a best-attempt basis. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> It’s good practice to keep each server group equally sized. In the example above, it is recommended that _Server Class 1_ contains 9 pods with 3 scheduled per server group. This keeps data replicas equally balanced across the server groups, as Couchbase server group scheduling of vBuckets is on a best-attempt basis.
 
 See the [server group how-to](howto-server-groups.md) for a server group configuration guide.

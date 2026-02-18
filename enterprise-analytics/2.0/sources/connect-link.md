@@ -1,4 +1,12 @@
+---
+title: Connect or Disconnect a Remote Link
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/connect-link.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sources/connect-link.html)
+
+# Connect or Disconnect a Remote Link
 
 > This topic describes how you start and stop data event streaming from a remote data source through a link. 
 
@@ -10,8 +18,8 @@ You incur charges when you connect a remote link.
 2. In the explorer, locate the link you want to connect.
 3. Click **Link**.
 
-|  | You can view the link’s status when you hover on the link icon. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> You can view the link’s status when you hover on the link icon.
 
 Enterprise Analytics begins setting up the required infrastructure for the connection. Automatic data ingestion from the connected data source to all linked collections begins as soon as set up is complete. If more than 1 collection uses the link, data ingestion begins for all of them. The link’s status changes to connected.
 
@@ -38,8 +46,8 @@ You can pause a data event stream from continuously updating the collection asso
 2. In the explorer, locate the link you want to disconnect.
 3. Click **Link**.
 
-|  | You can view the link’s status when you hover on the link icon. |
-|  | --------------------------------------------------------------- |
+> [!NOTE]
+> You can view the link’s status when you hover on the link icon.
 
 You can also use an SQL++ for Enterprise Analytics statement to disconnect a remote link. See [DISCONNECT Statements](../sqlpp/5%5Fddl%5Fdisconnect.md).
 

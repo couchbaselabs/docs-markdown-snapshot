@@ -1,7 +1,15 @@
+---
+title: Configure CMOS for On-premises deployment
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/tutorial-onpremise.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/tutorial-onpremise.html)
 
-|  | Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Configure CMOS for On-premises deployment
+
+> [!WARNING]
+> Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#overview)Overview
 
@@ -87,8 +95,8 @@ Figure 8\. Alerts image
 
 Loki, which is shipped with Grafana, allows access to logs of various components. You can configure it via Configuration > Data sources > Loki > Explore.
 
-|  | You will need to install and configure Fluent Bit on your Couchbase Server nodes before logs will be sent to Loki. Refer to the [Fluent Bit install guidance](deployment-fluentbit.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You will need to install and configure Fluent Bit on your Couchbase Server nodes before logs will be sent to Loki. Refer to the [Fluent Bit install guidance](deployment-fluentbit.md).
 
 ![loki explore dashboard](_images/loki-explore-dashboard.png) 
 

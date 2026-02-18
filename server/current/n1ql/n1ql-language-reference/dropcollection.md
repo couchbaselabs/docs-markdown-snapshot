@@ -1,4 +1,14 @@
+---
+title: DROP COLLECTION
+description: The DROP COLLECTION statement enables you to delete a named
+  collection from a scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropcollection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/dropcollection.html)
+
+# DROP COLLECTION
 
 > The `DROP COLLECTION` statement enables you to delete a named collection from a scope. 
 
@@ -17,8 +27,8 @@ drop-collection ::= 'DROP' 'COLLECTION' ( ( namespace ':' )? bucket '.' scope '.
 | scope      | (Optional) An [identifier](identifiers.md) that refers to the scope which contains the collection you want to delete.                                                                                                                                                                                                                       |
 | collection | (Required) An [identifier](identifiers.md) that refers to the name of the collection that you want to delete.                                                                                                                                                                                                                               |
 
-|  | If there is a hyphen (-) inside the bucket name, the scope name, or the collection name, you must wrap that part of the path in backticks (\` \`). For example, default:\`travel-sample\` indicates the travel-sample keyspace in the default namespace. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the bucket name, the scope name, or the collection name, you must wrap that part of the path in backticks (\` \`). For example, `` default:`travel-sample` `` indicates the `travel-sample` keyspace in the `default` namespace.
 
 ### [](#location)Specifying the Location
 

@@ -1,4 +1,14 @@
+---
+title: Buckets, Scopes, and Collections
+description: The data in a Couchbase Capella cluster is categorized and
+  organized into different data containers.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/about-buckets-scopes-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/data-service/about-buckets-scopes-collections.html)
+
+# Buckets, Scopes, and Collections
 
 > The data in a Couchbase Capella cluster is categorized and organized into different data containers. These data containers hold documents, which hold JSON key-value pairs that define your data. 
 
@@ -16,8 +26,8 @@ Store documents in collections and group similar collections with scopes. For ex
 
 ![Diagram](../_images/diag-000acf74d2f2b661d42bdf793571f72906383e34.svg) 
 
-|  | You can create new buckets, scopes, and collections when you import data into your cluster. For more information, see [Import Data with the Capella UI](import-data-documents.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can create new buckets, scopes, and collections when you import data into your cluster. For more information, see [Import Data with the Capella UI](import-data-documents.md).
 
 ## [](#buckets)Buckets
 
@@ -47,8 +57,8 @@ You cannot delete the `_default` scope.
 
 ### [](#%5Fsystem-scope)\_system Scope
 
-|  | The \_system scope is part of all clusters using Couchbase Server 7.6 or later. When you upgrade a cluster to Couchbase Server 7.6, Capella adds the \_system scope to your existing buckets. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `_system` scope is part of all clusters using Couchbase Server 7.6 or later. When you upgrade a cluster to Couchbase Server 7.6, Capella adds the `_system` scope to your existing buckets.
 
 All sample buckets and buckets that you create include a `_system` scope. The `_system` scope contains the `_mobile` and `_query` collections that store system documents for related Couchbases services.
 

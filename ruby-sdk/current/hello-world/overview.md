@@ -1,4 +1,12 @@
+---
+title: Couchbase Ruby SDK 3.7
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/hello-world/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/current/hello-world/overview.html)
+
+# Couchbase Ruby SDK 3.7
 
 # Couchbase Ruby SDK 3.7
 

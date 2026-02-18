@@ -1,4 +1,12 @@
+---
+title: Couchbase Upgrades
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-upgrade.html)
+
+# Couchbase Upgrades
 
 > The Operator allows a managed Couchbase cluster to be upgraded. This includes upgrading the Couchbase Server version and also related Kubernetes resources. 
 
@@ -34,8 +42,8 @@ When using in-place upgrade, the pods and PVCs are updated to use the new versio
 
 You can balance time against risk by tailoring rolling updates with the [couchbaseclusters.spec.rollingUpgrade](resource/couchbasecluster.md#couchbaseclusters-spec-rollingupgrade) configuration parameter. This allows rolling upgrades to upgrade 2 pods at a time, or 20% of the cluster at a time, for example.
 
-|  | In-place upgrades are a volatile process that can lead to interruptions in service. It should not be used when there are less than 2 data nodes defined or data loss may occur. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In-place upgrades are a volatile process that can lead to interruptions in service. It should not be used when there are less than 2 data nodes defined or data loss may occur.
 
 ### [](#couchbase-server-upgrade-constraints)Couchbase Server Upgrade Constraints
 
@@ -53,8 +61,8 @@ Not all upgrade paths are supported by Couchbase Server. The Operator enforces t
 
 Refer to the Couchbase Server [upgrade documentation](../../server/current/install/upgrade.md) for more information about direct upgrade paths.
 
-|  | Modifying the Couchbase Server version during an upgrade is permitted only if the end result is a roll-back to the previous version. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Modifying the Couchbase Server version during an upgrade is permitted only if the end result is a roll-back to the previous version.
 
 ## [](#upgrading-pods)Upgrading Pods
 

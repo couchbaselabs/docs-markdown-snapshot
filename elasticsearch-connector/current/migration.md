@@ -1,4 +1,12 @@
+---
+title: Migration Considerations
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/migration.html)
+
+# Migration Considerations
 
 > Prior to version 4, the Couchbase Elasticsearch connector was implemented as an Elasticsearch plug-in. Here’s what you need to know if you’re migrating from the plug-in to the new standalone connector. 
 
@@ -6,8 +14,8 @@ In this document, version 4 of the connector is referred to as the "standalone c
 
 ## [](#upgrading-from-the-plug-in)Upgrading from the Plug-in
 
-|  | This is a major version upgrade. Because the plug-in and the standalone connector are so different, there is no online upgrade process. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> This is a major version upgrade. Because the plug-in and the standalone connector are so different, there is no online upgrade process.
 
 The standalone connector stores its replication state in a way that is incompatible with the plug-in. Unfortunately, the standalone connector cannot continue replicating from exactly where the plug-in stops.
 

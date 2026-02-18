@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Couchbase Lite Query Introduction"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/query/content/modules/userprofile-query-xamarin/pages/userprofile_query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-query-xamarin/userprofile_query.html)
+
+# User Profile Sample: Couchbase Lite Query Introduction
 
 ## [](#introduction)Introduction
 

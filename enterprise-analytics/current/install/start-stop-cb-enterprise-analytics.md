@@ -1,4 +1,13 @@
+---
+title: Start and Stop Enterprise Analytics
+description: You can start and stop the Enterprise Analytics service and application.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/start-stop-cb-enterprise-analytics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/start-stop-cb-enterprise-analytics.html)
+
+# Start and Stop Enterprise Analytics
 
 > You can start and stop the Enterprise Analytics service and application. 
 

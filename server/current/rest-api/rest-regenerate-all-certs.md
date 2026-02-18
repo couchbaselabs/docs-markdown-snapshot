@@ -1,4 +1,14 @@
+---
+title: Regenerate All Certificates
+description: The REST API can be used to <em>regenerate</em> the cluster's root
+  and node certificates.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-regenerate-all-certs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-regenerate-all-certs.html)
+
+# Regenerate All Certificates
 
 > The REST API can be used to _regenerate_ the cluster’s root and node certificates. 
 

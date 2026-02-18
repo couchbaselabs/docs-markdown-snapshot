@@ -1,4 +1,13 @@
+---
+title: cbworkloadgen
+description: Generates random data and performs reads and writes
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbtools/cbworkloadgen.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbtools/cbworkloadgen.html)
+
+# cbworkloadgen
 
 Generates random data and performs reads and writes
 

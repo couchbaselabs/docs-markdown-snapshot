@@ -1,4 +1,14 @@
+---
+title: Install Couchbase Server on SUSE Linux Enterprise Server
+description: Couchbase Server can be installed on SUSE Linux Enterprise Server
+  for production and development use-cases.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install_suse.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install_suse.html)
+
+# Install Couchbase Server on SUSE Linux Enterprise Server
 
 > Couchbase Server can be installed on SUSE Linux Enterprise Server for production and development use-cases. 
 
@@ -19,10 +29,9 @@ If you’re upgrading an existing installation of Couchbase Server, refer to [Up
   ```shell  
   sudo systemctl show --property DefaultTasksMax  
   ```
-  2. If the value returned is less than 65535, then edit the file: `etc/systemd/system.conf` and set `DefaultTasksMax` to 65535.
-
-|  | The system.conf file may have read-only permissions set; if this is the case, then use the chmod command to set the user permissions to writeable. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. If the value returned is less than 65535, then edit the file: `etc/systemd/system.conf` and set `DefaultTasksMax` to 65535.  
+  > [!NOTE]  
+  > The `system.conf` file may have read-only permissions set; if this is the case, then use the `chmod` command to set the user permissions to writeable.
   3. From the command shell, execute the following command to load the new setting:  
   ```shell  
   sudo systemctl daemon-reload  

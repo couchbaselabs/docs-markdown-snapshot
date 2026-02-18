@@ -1,4 +1,12 @@
+---
+title: Quick Index
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-quick-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-quick-index.html)
+
+# Quick Index
 
 To create a quick index, left-click on the **QUICK INDEX** button, towards the right-hand side:
 
@@ -37,8 +45,8 @@ Additionally, select from the following configuration options corresponding to t
 * **Support phrase matching**: Select this option to match the phrases in the index.
 * **Support sorting and faceting**: Select this option to allow sorting and faceting the index.
 
-|  | Selecting configuration options requires additional storage and makes the index size larger. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Selecting configuration options requires additional storage and makes the index size larger.
 
 ## [](#document-refreshreselection-option)Document Refresh/Reselection option
 
@@ -66,8 +74,8 @@ At this point, you are returned to the Full Text Search screen. A row now appear
 
 ![fts new quick index progress](_images/fts-new-quick-index-progress.png) 
 
-|  | The percentage figure: this appears under the indexing progress column, and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. Search queries will, however, be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The percentage figure: this appears under the indexing progress column, and is incremented in correspondence with the build-progress of the index. When 100% is reached, the index build is said to be complete. Search queries will, however, be allowed as soon as the index is created, meaning partial results can be expected until the index build is complete.
 
 Once the new index has been built, it supports Full Text Searches performed by all available means: the Console UI, the Couchbase REST API, and the Couchbase SDK.
 

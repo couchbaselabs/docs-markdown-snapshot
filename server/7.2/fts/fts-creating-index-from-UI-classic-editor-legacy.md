@@ -1,4 +1,12 @@
+---
+title: Classic Editor
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-from-UI-classic-editor-legacy.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-from-UI-classic-editor-legacy.html)
+
+# Classic Editor
 
 > The classic editor is the most advanced tool where users can directly configure the index mapping with all capabilities. 
 
@@ -43,8 +51,8 @@ In the **Couchbase Web Console** \> **Search** page.
 * Verify you have some results  
 ![fts index default search results](_images/fts-index-default-search-results.png)
 
-|  | Creating default indexes as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Creating default indexes as above indexes across all fields is not recommended for production environments since it creates indexes that may be unnecessarily large, and therefore insufficiently performant.
 
 # [](#advanced-index-settings-and-other-features-in-the-ui)Advanced Index Settings and Other Features in the UI
 

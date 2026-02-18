@@ -1,4 +1,13 @@
+---
+title: Analytics Links REST API
+description: A description of the Links REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/analytics-rest-links/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics-rest-links/index.html)
+
+# Analytics Links REST API
 
 ## [](#overview)Overview
 
@@ -40,8 +49,8 @@ This section describes the operations available with this REST API. The operatio
 
 DELETE /analytics/link
 
-|  | This operation is deprecated, and will be removed in a future release. |
-|  | ---------------------------------------------------------------------- |
+> [!CAUTION]
+> This operation is deprecated, and will be removed in a future release.
 
 ##### [](#delete%5Falt-description)Description
 
@@ -82,8 +91,8 @@ Form Parameters
 
 POST /analytics/link
 
-|  | This operation is deprecated, and will be removed in a future release. |
-|  | ---------------------------------------------------------------------- |
+> [!CAUTION]
+> This operation is deprecated, and will be removed in a future release.
 
 ##### [](#post%5Falt-description)Description
 
@@ -148,8 +157,8 @@ Form Parameters
 
 PUT /analytics/link
 
-|  | This operation is deprecated, and will be removed in a future release. |
-|  | ---------------------------------------------------------------------- |
+> [!CAUTION]
+> This operation is deprecated, and will be removed in a future release.
 
 ##### [](#put%5Falt-description)Description
 
@@ -460,8 +469,8 @@ curl -v -u Administrator:password \
      "http://localhost:8095/analytics/link/travel-sample%2Finventory/myAwsLink"
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 #### [](#get%5Flink)Query Link
 
@@ -515,8 +524,8 @@ curl -v -u Administrator:password \
      "http://localhost:8095/analytics/link/travel-sample%2Finventory/myAwsLink"
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ##### [](#example-http-response-3)Example HTTP Response
 
@@ -557,11 +566,11 @@ When creating or altering a remote link using an alternate address, note the fol
 
 Failure to do so will result in a 400 (Bad Request) error.
 
-|  | The SSL ports are required when the **encryption** mode is set to full; the non-SSL ports are required otherwise. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SSL ports are required when the **encryption** mode is set to `full`; the non-SSL ports are required otherwise.
 
-|  | When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. Grant the minimum possible permissions to perform the required operations, and only allow access to the required data and resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. Grant the minimum possible permissions to perform the required operations, and only allow access to the required data and resources.
 
 ##### [](#post%5Flink-parameters)Parameters
 
@@ -632,8 +641,8 @@ curl -v -u Administrator:password \
      --data-urlencode password=remote.p4ssw0rd
 ```
 
-|  | The username and password parameters are URL-encoded to escape any special characters. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `username` and `password` parameters are URL-encoded to escape any special characters.
 
 The example below creates a Microsoft Azure Blob link named `myBlobLink` in the `Default` scope, with anonymous authentication.
 
@@ -672,8 +681,8 @@ curl -v -u Administrator:password \
      --data-urlencode secretAccessKey=mySecretKey
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. The secretAccessKey parameter is URL-encoded to escape any special characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`. The `secretAccessKey` parameter is URL-encoded to escape any special characters.
 
 The example below creates an Amazon S3 link named `myTempLink` with temporary credentials in the `travel-sample.inventory` scope.
 
@@ -690,8 +699,8 @@ curl -v -u Administrator:password \
      --data-urlencode secretAccessKey=myTempSecretKey
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. The secretAccessKey parameter is URL-encoded to escape any special characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`. The `secretAccessKey` parameter is URL-encoded to escape any special characters.
 
 #### [](#put%5Flink)Edit Link
 
@@ -779,8 +788,8 @@ curl -v -u Administrator:password \
      --data-urlencode "clientKey=$(cat ./cert/client.key)"
 ```
 
-|  | The certificate, clientCertificate, and clientKey parameters use command substitution with the cat command to return the content of the referenced files. The content of these files is then URL-encoded to escape any special characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `certificate`, `clientCertificate`, and `clientKey` parameters use command substitution with the `cat` command to return the content of the referenced files. The content of these files is then URL-encoded to escape any special characters.
 
 The example below edits the Google Cloud Storage link named `myGcsLink` in the `Default` scope to use Google Application Default Credentials for authentication.
 
@@ -834,10 +843,10 @@ This schema has alternative properties, depending on the value of **type**:
 
  Composite Schema
 
-| All of …​                       |                                          | Schema                                                     |
-| ------------------------------- | ---------------------------------------- | ---------------------------------------------------------- |
-| Properties common to all links. | [Links](#ResponseAll)                    |                                                            |
-| and                             | Properties specific to Azure Blob links. | [Azure Blob Specific Response](#ResponseAzureBlobSpecific) |
+| All of …​ |                                          | Schema                                                     |
+| --------- | ---------------------------------------- | ---------------------------------------------------------- |
+|           | Properties common to all links.          | [Links](#ResponseAll)                                      |
+| and       | Properties specific to Azure Blob links. | [Azure Blob Specific Response](#ResponseAzureBlobSpecific) |
 
 #### Azure Blob Specific Response
 
@@ -949,10 +958,10 @@ String
 
  Composite Schema
 
-| All of …​                       |                                                | Schema                                                    |
-| ------------------------------- | ---------------------------------------------- | --------------------------------------------------------- |
-| Properties common to all links. | [Links](#ResponseAll)                          |                                                           |
-| and                             | Properties specific to remote Couchbase links. | [Couchbase Specific Response](#ResponseCouchbaseSpecific) |
+| All of …​ |                                                | Schema                                                    |
+| --------- | ---------------------------------------------- | --------------------------------------------------------- |
+|           | Properties common to all links.                | [Links](#ResponseAll)                                     |
+| and       | Properties specific to remote Couchbase links. | [Couchbase Specific Response](#ResponseCouchbaseSpecific) |
 
 #### Couchbase Specific Response
 
@@ -1101,10 +1110,10 @@ UUID (UUID)
 
  Composite Schema
 
-| All of …​                       |                                                    | Schema                                        |
-| ------------------------------- | -------------------------------------------------- | --------------------------------------------- |
-| Properties common to all links. | [Links](#ResponseAll)                              |                                               |
-| and                             | Properties specific to Google Cloud Storage links. | [GCS Specific Response](#ResponseGCSSpecific) |
+| All of …​ |                                                    | Schema                                        |
+| --------- | -------------------------------------------------- | --------------------------------------------- |
+|           | Properties common to all links.                    | [Links](#ResponseAll)                         |
+| and       | Properties specific to Google Cloud Storage links. | [GCS Specific Response](#ResponseGCSSpecific) |
 
 #### GCS Specific Response
 
@@ -1149,10 +1158,10 @@ String
 
  Composite Schema
 
-| All of …​                       |                                  | Schema                                      |
-| ------------------------------- | -------------------------------- | ------------------------------------------- |
-| Properties common to all links. | [Links](#ResponseAll)            |                                             |
-| and                             | Properties specific to S3 links. | [S3 Specific Response](#ResponseS3Specific) |
+| All of …​ |                                  | Schema                                      |
+| --------- | -------------------------------- | ------------------------------------------- |
+|           | Properties common to all links.  | [Links](#ResponseAll)                       |
+| and       | Properties specific to S3 links. | [S3 Specific Response](#ResponseS3Specific) |
 
 #### S3 Specific Response
 

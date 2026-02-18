@@ -1,4 +1,18 @@
+---
+title: Couchbase Server Privacy FAQ
+description: In connection with Couchbase’s provision of our on-premise
+  products, Couchbase provides functionality that, if enabled, will
+  automatically (1) check the version of the product you have installed against
+  the latest version available, and (2) collect information about use and
+  experience with the product every time an administrator interacts with the
+  administrator user interface (the “Admin UI”) using HTTPS Post.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/ROOT/pages/product-privacy-faq.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/product-privacy-faq.html)
+
+# Couchbase Server Privacy FAQ
 
 In connection with Couchbase’s provision of our on-premise products, Couchbase provides functionality that, if enabled, will automatically (1) check the version of the product you have installed against the latest version available, and (2) collect information about use and experience with the product every time an administrator interacts with the administrator user interface (the “Admin UI”) using HTTPS Post. If you decide to keep this functionality enabled, we will collect configuration, usage and performance data, including cluster information (such as settings and configuration, software version, cluster ID, load levels, and resource quotas), and browser and network information (such as IP address, inferred geolocation only at the city level, and browser type) (collectively with the foregoing, the “Performance Data”). This Performance Data does not allow us to track your specific interactions or usage of the Couchbase products. We use the Performance Data to make our products more useful to all of our customers as a whole. We never access or collect any data stored within the products. Below you can find additional information about what kind of data we collect and how we handle all data securely. You can disable this feature at any time by accessing the Admin UI settings page and deselecting the checkbox.
 

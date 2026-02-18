@@ -1,4 +1,13 @@
+---
+title: Conflict Resolution
+description: Couchbase Sync Gateway's conflict resolution approach
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/conflict-resolution.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/conflict-resolution.html)
+
+# Conflict Resolution
 
 > Couchbase Sync Gateway’s conflict resolution approach  
 

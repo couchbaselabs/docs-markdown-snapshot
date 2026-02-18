@@ -1,4 +1,13 @@
+---
+title: PREPARE
+description: The PREPARE statement prepares a query for repeated execution.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/prepare.html)
+
+# PREPARE
 
 > The PREPARE statement prepares a query for repeated execution. 
 
@@ -81,16 +90,20 @@ You may also use `?` to refer to a positional parameter in a statement. In this 
 
 ## [](#result)Result
 
-A JSON object is returned that contains the following properties:
+A JSON object that contains the following properties:
 
 name
 
 The full name of the prepared statement. This has the format `[host:port]local-name-or-UUID`, and consists of:
 
-* The host and port of the node where the prepared statement was created, in square brackets, followed by
-* The local name that you specified for the prepared statement, or a UUID that was generated from the statement text.
+* The host and port of the node where you created the prepared statement, enclosed in square brackets.
+* The local name you specified for the prepared statement, or a UUID that was generated from the statement text.
 
-The host and port can be used when executing to retrieve the prepared statement from the node where it was created.
+You can use this name to execute a prepared statement without resending the entire statement text. When executing a prepared statement by its name:
+
+* The Query Service first checks whether the executing node contains the prepared statement.
+* If not found, the service uses the host information in the name to retrieve the prepared statement from the node where you originally created it.
+* If the service cannot find the prepared statement on the original node either, it returns an error.
 
 operator
 
@@ -132,8 +145,8 @@ When you create an anonymous prepared statement, i.e. a prepared statement witho
   * If not found, the statement is created and added to the prepared cache.
   * If found, the existing prepared statement is returned. However, if the FORCE keyword is present, the prepared statement is created again.
 
-|  | When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you create an anonymous prepared statement, if there is a named prepared statement in the cache with identical statement text, the named prepared statement is not returned. The anonymous prepared statement is added to the cache in addition to the named prepared statement.
 
 ## [](#auto-prepare)Auto-Prepare
 
@@ -147,9 +160,45 @@ The process is similar to creating a prepared statement without a local name:
   * If found, the existing prepared statement is returned.
   * If not found, the statement is created and added to the prepared cache.
 
-The auto-prepare feature is inactive by default. You can turn the auto-prepare feature on or off using the `auto-prepare` service-level query setting. For more details, refer to [n1ql:n1ql-manage/query-settings.adoc#auto-prepare](../n1ql-manage/query-settings.md#auto-prepare).
+The auto-prepare feature is inactive by default. You can turn the auto-prepare feature on or off using the `auto-prepare` service-level query setting. For more details, refer to [Query Settings](../n1ql-manage/query-settings.md#auto-prepare).
 
 Auto-prepare is disabled for SQL++ requests which contain parameters, if they do not use the PREPARE statement.
+
+## [](#auto-reprepare)Auto-Reprepare
+
+Couchbase Server 7.6.10
+
+The auto-reprepare feature automatically updates (reprepares) a prepared statement’s execution plan whenever the GSI metadata version changes. This typically occurs when you create or drop indexes.
+
+By default, the Query Service only reprepares a statement when an index in its current plan becomes unavailable. With auto-reprepare, statements can use newer and more efficient indexes as they become available.
+
+To enable this feature, set bit 23 (0×800000 or 8388608) of the `n1ql-feat-ctrl` setting. For information about how to set this value, see the table in the [Manage Sequential Scans](../../learn/services-and-indexes/indexes/query-without-index.md#manage-sequential-scans) section.
+
+When the feature is active, the Query Service monitors index changes and flags statements for repreparation. The next time a flagged statement runs, the service generates a new plan for it.
+
+The following example shows how a plan improves as you add new indexes for a statement:
+
+* If you prepare a statement and no suitable indexes exist to support it, the Query Service creates a plan that uses a sequential scan.
+* If you then create a primary index that better supports the statement, the service flags the statement. On the next execution, the service generates a new plan that uses the primary index.
+* If you later create a secondary index that is an even better choice for the statement, the service flags the statement again. On the next execution, the service generates a new plan that uses the secondary index.
+
+If the feature is inactive, the statement continues to use the original plan (such as a sequential scan) even after you create new indexes.
+
+While auto-reprepare generates optimized query plans, it can increase the load on the Query Service. Any index modification, even if it’s unrelated to a statement, can trigger a repreparation. For example, creating or dropping an index that a statement does not use can still flag it for repreparation. In such cases, the statement reprepares only to select the same plan again, resulting in redundant work for the service.
+
+To manage this, you can enable the feature temporarily when you create or drop indexes and disable it after repreparing all statements. If index changes are infrequent, the effect is minimal.
+
+### [](#manual-reprepare)Manual Reprepare
+
+You can also can manually reprepare a specific statement. To do this, update [system:prepareds](../n1ql-manage/monitoring-n1ql-query.md#sys-prepared) and unset the `planPreparedTime` field for the statement.
+
+For example, to reprepare a prepared statement named `NumParam` on a node with the IP address `127.0.0.1` and port `8091`, use the following query:
+
+```sqlpp
+UPDATE system:prepareds USE KEYS ["[127.0.0.1:8091]NumParam"] UNSET planPreparedTime;
+```
+
+You can repeat this operation after creating each relevant index and refresh the prepared statement’s plan.
 
 ## [](#auto-execute)Auto-Execute
 
@@ -157,7 +206,7 @@ When the _auto-execute_ feature is active, a prepared statement is executed auto
 
 When this feature is active, a SQL++ request to prepare a statement returns the [result of the execution step](../n1ql-intro/queriesandresults.md#results). It does not return the full [result of the preparation step](#result), such as the execution plan. However, the output of the SQL++ request does include a `prepared` field, which contains the full name of the prepared statement. You can use this when you need to execute the prepared statement again.
 
-The auto-execute feature is inactive by default. You can turn the auto-execute feature on or off using the `auto_execute` request-level query setting. For more details, refer to [n1ql:n1ql-manage/query-settings.adoc#auto\_execute](../n1ql-manage/query-settings.md#auto%5Fexecute).
+The auto-execute feature is inactive by default. You can turn the auto-execute feature on or off using the `auto_execute` request-level query setting. For more details, refer to [Query Settings](../n1ql-manage/query-settings.md#auto%5Fexecute).
 
 The auto-execute feature only works for SQL++ requests which actually contain the PREPARE statement. Prepared statements created by the [auto-prepare](#auto-prepare) feature are not executed by the auto-execute feature.
 

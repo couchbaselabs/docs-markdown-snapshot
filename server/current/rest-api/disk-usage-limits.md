@@ -1,4 +1,15 @@
+---
+title: Set Data Disk Use Limits
+description: You can have the Data Service stop writing to the data storage path
+  when it fills to a specific percentage. This option helps prevent the data
+  path from running out of disk space and making recovery difficult.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/disk-usage-limits.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/disk-usage-limits.html)
+
+# Set Data Disk Use Limits
 
 > You can have the Data Service stop writing to the data storage path when it fills to a specific percentage. This option helps prevent the data path from running out of disk space and making recovery difficult. 
 
@@ -6,8 +17,8 @@
 
 Allowing any filesystem on a node to become full can cause errors. If the filesystem containing the data storage path becomes full, recovery can be difficult. This endpoint allows you to set a limit on the percentage of disk space that can be used by the data storage path. When the data storage path reaches this limit, the Data Service stops writing to it. See [Filesystem Free Space and Usage Limits](../learn/buckets-memory-and-storage/storage-settings.md#filesystem-free-space-and-usage-limits) for more information.
 
-|  | If other services write to the same filesystem as the data storage path, the filesystem can still become full. |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If other services write to the same filesystem as the data storage path, the filesystem can still become full.
 
 ## [](#http-methods)HTTP Methods
 

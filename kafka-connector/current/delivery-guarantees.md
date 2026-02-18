@@ -1,4 +1,12 @@
+---
+title: Delivery Guarantees
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/delivery-guarantees.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/delivery-guarantees.html)
+
+# Delivery Guarantees
 
 ## [](#source-delivery)Source Connector
 
@@ -12,8 +20,8 @@ The order between changes in different Couchbase partitions is **not** guarantee
 
 When a document is removed from Couchbase due to expiration, the connector does not publish the deletion until the expired document is [purged from Couchbase](../../server/current/learn/data/expiration.md#post-expiration-purging).
 
-|  | The source connector **does not** guarantee every version of a document will be reflected in the Kafka topic. For example, if a Couchbase document value changes rapidly from V1 → V2 → V3, or if the connector is not running when the change occurs, the connector is only guaranteed to publish the latest value (V3). In other words, changes to the same document may be "deduplicated", in which case only the latest version is published. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The source connector **does not** guarantee every version of a document will be reflected in the Kafka topic. For example, if a Couchbase document value changes rapidly from `V1` → `V2` → `V3`, or if the connector is not running when the change occurs, the connector is only guaranteed to publish the latest value (`V3`). In other words, changes to the same document may be "deduplicated", in which case only the latest version is published.
 
 For use cases that require every document version be reflected in the event stream, some possible options are:
 
@@ -25,8 +33,8 @@ For use cases that require every document version be reflected in the event stre
 
 The sink connector guarantees "at least once" delivery of each record in the Kafka topic. In other words, the sink connector guarantees it will write every Kafka record to Couchbase, unless the record is intentionally discarded by a custom sink handler.
 
-|  | To improve the likelihood that every write survives a Couchbase Server failover event, consider configuring the [couchbase.durability config property.](sink-configuration-options.md#couchbase.durability) |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To improve the likelihood that every write survives a Couchbase Server failover event, consider configuring the [couchbase.durability config property.](sink-configuration-options.md#couchbase.durability)
 
 If the sink connector fails to write a record to Couchbase, it will retry up to the timeout specified by the [couchbase.retry.timeout config property](sink-configuration-options.md#couchbase.retry.timeout). If the timeout expires before the write succeeds, the connector terminates.
 
@@ -36,5 +44,7 @@ Unless the sink connector is reprocessing records after a restart, it preserves 
 
 The order between writes for records in different Kafka partitions is **not** guaranteed.
 
-|  | Avoid random partition assignmentTo guarantee documents in Couchbase are eventually consistent with the records in the Kafka topic, avoid random Kafka partition assignment when publishing to the topic. Always use the default partition assignment strategy, or some other strategy that assigns records with the same key to the same partition. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Avoid random partition assignment
+> 
+> To guarantee documents in Couchbase are eventually consistent with the records in the Kafka topic, avoid random Kafka partition assignment when publishing to the topic. Always use the default partition assignment strategy, or some other strategy that assigns records with the same key to the same partition.

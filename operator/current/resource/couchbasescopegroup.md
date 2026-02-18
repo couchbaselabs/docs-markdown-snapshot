@@ -1,4 +1,12 @@
+---
+title: CouchbaseScopeGroup Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasescopegroup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/resource/couchbasescopegroup.html)
+
+# CouchbaseScopeGroup Resource
 
 CouchbaseScopeGroup represents a logical unit of data storage that sits between buckets and collections e.g. a bucket may contain multiple scopes, and a scope may contain multiple collections. At present, scopes are not nested, so provide only a single level of abstraction. Scopes provide a coarser grained basis for role-based access control (RBAC) and cross-datacenter replication (XDCR) than collections, but finer that buckets. In order to be considered by the Operator, a scope must be referenced by either a `CouchbaseBucket` or `CouchbaseEphemeralBucket` resource. Unlike `CouchbaseScope` resources, scope groups represents multiple scopes, with the same common set of collections, to be expressed as a single resource, minimizing required configuration and Kubernetes API traffic. It also forms the basis of Couchbase RBAC security boundaries.
 

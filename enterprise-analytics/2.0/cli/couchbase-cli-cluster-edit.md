@@ -1,4 +1,13 @@
+---
+title: cluster-edit
+description: Edits cluster settings
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-cluster-edit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-cluster-edit.html)
+
+# cluster-edit
 
 Edits cluster settings
 

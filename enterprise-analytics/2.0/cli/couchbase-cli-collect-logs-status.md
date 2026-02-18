@@ -1,4 +1,13 @@
+---
+title: collect-logs-status
+description: Get log collection status
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-collect-logs-status.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-collect-logs-status.html)
+
+# collect-logs-status
 
 Get log collection status
 

@@ -1,9 +1,22 @@
+---
+title: Vector Search Index Architecture
+description: Vector Search indexes use features from traditional Search indexes,
+  with unique indexing algorithms and features that allow you to compare vectors
+  in nearest neighbor searches.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/vector-search-index-architecture.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/vector-search/vector-search-index-architecture.html)
+
+# Vector Search Index Architecture
 
 > Vector Search indexes use features from traditional Search indexes, with unique indexing algorithms and features that allow you to compare vectors in nearest neighbor searches. 
 
-|  | You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2. You can still use other features of the [Search Service](../search/search.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use Vector Search on Windows platforms. You can use Vector Search on Linux from Couchbase Server version 7.6.0 and MacOS from version 7.6.2.
+> 
+> You can still use other features of the [Search Service](../search/search.md).
 
 A Vector Search index still relies on [Synchronization with Database Change Protocol (DCP) and the Data Service](#sync) and uses [Search Index Segments](#segments) to manage merging and persisting data to disk in your cluster. All changes from Database Change Protocol (DCP) and the Data Service are introduced to a Search index in batches, which are further managed by segments.
 

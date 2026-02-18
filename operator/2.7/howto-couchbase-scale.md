@@ -1,4 +1,12 @@
+---
+title: Scale a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-couchbase-scale.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-couchbase-scale.html)
+
+# Scale a Couchbase Deployment
 
 Using the Couchbase Operator, you can easily scale clusters and services up and down. The handling of individual nodes is defined in the servers section of the `CouchbaseCluster` specification. Here is an example of a definition for a Couchbase cluster where all nodes run the data, index, search, and query services.
 

@@ -1,11 +1,20 @@
+---
+title: Indexes
+description: You use indexes to speed up queries on remote and standalone collections.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/7_using_index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/7_using_index.html)
+
+# Indexes
 
 > You use indexes to speed up queries on remote and standalone collections. 
 
 Indexes can speed up queries if you apply them properly. The sections in this topic describe scenarios in which you can use indexes to speed up query processing.
 
-|  | You cannot index external collections. To make your queries on external data stores more efficient, when you create the collection you can choose to specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot index external collections. To make your queries on external data stores more efficient, when you create the collection you can choose to specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md).
 
 ## [](#Indexes)Indexes
 
@@ -54,8 +63,8 @@ The following query uses the index because it has an equality predicate `=` on a
 
 To prevent an available index from being used for a particular query predicate - for example, because there are many, many matching objects - you can include a `skip-index` hint as shown in the following example.
 
-|  | The query optimizer automatically makes these decisions for you in most cases. |
-|  | ------------------------------------------------------------------------------ |
+> [!TIP]
+> The query optimizer automatically makes these decisions for you in most cases.
 
 ```SQL++
  SELECT f.c_x as res
@@ -124,8 +133,8 @@ In Enterprise Analytics, array indexes are **not** meant to serve as covering in
 
 There are also some differences between array indexes and standard indexes concerning how the query optimizer uses them. See [Array Index Parameter](appendix%5F2%5Fparameters.md#ArrayIndexFlag).
 
-|  | Currently, array indexes do not support heterogeneous indexing. This limitation exists because array indexes cannot store NULL or MISSING values. When creating an array index, you have the option to exclude NULL and MISSING values. However, if you choose to do so, the index will not optimize queries that rely on the presence of NULL fields in the documents. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, array indexes do not support heterogeneous indexing. This limitation exists because array indexes cannot store `NULL` or `MISSING` values. When creating an array index, you have the option to exclude `NULL` and `MISSING` values. However, if you choose to do so, the index will not optimize queries that rely on the presence of `NULL` fields in the documents.
 
 ### [](#QuantificationQueries)Quantification Queries
 
@@ -152,8 +161,8 @@ You can create an array index on the `categories` field of the `products` collec
  EXCLUDE UNKNOWN KEY;
 ```
 
-|  | EXCLUDE UNKNOWN KEY is required for array indexes. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> `EXCLUDE UNKNOWN KEY` is required for array indexes.
 
 Suppose you want to find all products that have the category `"Food"`. The following membership query uses the `pCategoriesIdx` index.
 

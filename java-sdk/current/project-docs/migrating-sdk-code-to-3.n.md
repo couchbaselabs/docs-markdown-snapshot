@@ -1,4 +1,14 @@
+---
+title: Migrating to SDK 3 API
+description: The 3.x API breaks the existing 2.x APIs in order to provide a
+  number of improvements. Collections and Scopes are introduced.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)
+
+# Migrating to SDK 3 API
 
 > The 3.x API breaks the existing 2.x APIs in order to provide a number of improvements. Collections and Scopes are introduced. The Document class and structure has been completely removed from the API, and the returned value is now `Result`. Retry behaviour is more proactive, and lazy bootstrapping moves all error handling to a single place. Individual behavior changes across services are explained here. 
 
@@ -44,8 +54,8 @@ Now that you are familiar with the general theme of the migration, the next sect
 
 The Java SDK 3.x is available for download from the same resources as the previous generation. Builds can be found on maven central, pre-releases are available from our own maven repository. In addition, a `zip` file is available with the required jars. Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
 
-|  | Java SDK 3.x has a minimum required Java version of 8, although we recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Java SDK 3.x has a minimum required Java version of 8, although we recommend running the latest LTS version (i.e. at the time of writing JDK 25) with the highest patch version available.
 
 Note that the transitive dependency list has changed. As a refresher, Java SDK 2 depended on the following artifacts:
 
@@ -174,8 +184,8 @@ cluster.disconnect();
 
 `Collections` are generally available from Couchbase Server version 7.0, which the SDK is already compatible with. If you are using a Couchbase Server version which does not support `Collections`, always use the `defaultCollection()` method to access the KV API; it will map to the full bucket.
 
-|  | You’ll notice that bucket(String) returns immediately, even if the bucket resources are not completely opened. This means that the subsequent get operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You’ll notice that `bucket(String)` returns immediately, even if the bucket resources are not completely opened. This means that the subsequent `get` operation may be dispatched even before the connection is opened in the background. The SDK will handle this case transparently, and reschedule the operation until the bucket is opened properly. This also means that if a bucket could not be opened (say, because no server was reachable) the operation will time out. Please check the logs to see the cause of the timeout (in this case, you’ll see socket connect rejections).
 
 Also note, you will now find Query, Search, and Analytics at the `Cluster` level. This is where they logically belong. If you are using Couchbase Server 6.5 or later, you will be able to perform cluster-level queries even if no bucket is open. If you are using an earlier version of the cluster you must open at least one bucket, otherwise cluster-level queries will fail.
 
@@ -260,8 +270,8 @@ These exceptions extend `CouchbaseException`, but both the `TimeoutException` an
 
 One reason why the APIs do not expose a long list of exceptions is that the SDK now retries as many operations as it can if it can do so safely. This depends on the type of operation (idempotent or not), in which state of processing it is (already dispatched or not), and what the actual response code is if it arrived already. As a result, many transient cases — such as locked documents, or temporary failure — are now retried by default and should less often impact applications. It also means, when migrating to the new SDK API, you may observe a longer period of time until an error is returned by default.
 
-|  | Operations are retried by default as described above with the default BestEffortRetryStrategy. Like in SDK 2 you can configure fail-fast retry strategies to not retry certain or all operations. The RetryStrategy interface has been extended heavily in SDK 3 — please see the [error handling documentation](../howtos/error-handling.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations are retried by default as described above with the default `BestEffortRetryStrategy`. Like in SDK 2 you can configure fail-fast retry strategies to not retry certain or all operations. The `RetryStrategy` interface has been extended heavily in SDK 3 — please see the [error handling documentation](../howtos/error-handling.md).
 
 When migrating your SDK 2 exception handling code to SDK 3, make sure to wrap every call with a catch for `CouchbaseException` (or let it bubble up immediately). You can likely remove your user-level retry code for temporary failures, backpressure exception, and so on. One notable exception from this is the `CasMismatchException`, which is still thrown since it requires more app-level code to handle (most likely identical to SDK 2).
 
@@ -309,11 +319,31 @@ __Table 2\. SDK 2.x KV API vs. SDK 3.x KV API__
 | Bucket.append         | BinaryCollection.append                                                         |
 | Bucket.prepend        | BinaryCollection.prepend                                                        |
 
-|  | To migrate code that called MutateInBuilder.upsertDocument(true), specify the operation’s store semantics. For example: SDK 2 bucket.mutateIn("myDocument")     .insert("color", "blue")     .upsertDocument(true)     .execute(); SDK 3 collection.mutateIn(     "myDocument",     Collections.singletonList(MutateInSpec.insert("color", "blue")),     MutateInOptions.mutateInOptions()         .storeSemantics(StoreSemantics.UPSERT) ); |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To migrate code that called `MutateInBuilder.upsertDocument(true)`, specify the operation’s store semantics. For example:
+> 
+> SDK 2
+> 
+> ```java
+> bucket.mutateIn("myDocument")
+>     .insert("color", "blue")
+>     .upsertDocument(true)
+>     .execute();
+> ```
+> 
+> SDK 3
+> 
+> ```java
+> collection.mutateIn(
+>     "myDocument",
+>     Collections.singletonList(MutateInSpec.insert("color", "blue")),
+>     MutateInOptions.mutateInOptions()
+>         .storeSemantics(StoreSemantics.UPSERT)
+> );
+> ```
 
-|  | The unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit) has more Sub-Document API migration examples. It also has source code for temporary bridge classes that can assist with migrating Sub-Document requests from SDK 2 to SDK 3\. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit) has more Sub-Document API migration examples. It also has source code for temporary bridge classes that can assist with migrating Sub-Document requests from SDK 2 to SDK 3\.
 
 In addition, the datastructure APIs have been renamed and moved:
 
@@ -367,8 +397,8 @@ In SDK 2, the `getFromReplica` method had a `ReplicaMode` argument which allowed
 
 Unless you want to build some kind of consensus between the different replica responses, we recommend `getAnyReplica` for a fallback to a regular `get` when the active node times out.
 
-|  | Operations which cannot be performed on JSON documents have been moved to the BinaryCollection, accessible through Collection.binary(). These operations include append, prepend, increment, and decrement (previously called counter in SDK 2). These operations should only be used against non-json data. Similar functionality is available through mutateIn on JSON documents. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Operations which cannot be performed on JSON documents have been moved to the `BinaryCollection`, accessible through `Collection.binary()`. These operations include `append`, `prepend`, `increment`, and `decrement` (previously called `counter` in SDK 2). These operations should only be used against non-json data. Similar functionality is available through `mutateIn` on JSON documents.
 
 ### [](#query)Query
 
@@ -461,8 +491,8 @@ The fluent API feature in SDK 2.x was found not to scale well for larger queries
 
 In most cases, a simple string statement is the best replacement.
 
-|  | You can still use the Query DSL classes with SDK 3 if you want, but you’ll need to add the source code to your project and maintain it yourself. A version of the source code modified to work with SDK 3 is available as part of the unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can still use the Query DSL classes with SDK 3 if you want, but you’ll need to add the source code to your project and maintain it yourself. A version of the source code modified to work with SDK 3 is available as part of the unofficial, unsupported [Couchbase Java SDK 2 Migration Kit](https://github.com/couchbaselabs/couchbase-java-sdk2-migration-kit).
 
 ### [](#analytics)Analytics
 
@@ -640,8 +670,8 @@ The move to Java 8 as a baseline has opened the door to expose `CompletableFutur
 
 Like in SDK 2, the async and reactive APIs provide the same functionality as their blocking counterpart. There are only a couple places in the SDK where it does not make sense (such as the blocking datastructure APIs, which at the collection level implement the Java interfaces which do not have async or reactive counterparts).
 
-|  | if you need to use non-blocking APIs, we recommend using the reactive one. The async API based on CompletableFuture should only be used as a building block for higher level abstractions, or if you absolutely need the last drop of performance. The Flux and Mono types of reactor are very powerful and allow you to build efficient and flexible domain logic without blocking. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> if you need to use non-blocking APIs, we recommend using the reactive one. The async API based on `CompletableFuture` should only be used as a building block for higher level abstractions, or if you absolutely need the last drop of performance. The `Flux` and `Mono` types of reactor are very powerful and allow you to build efficient and flexible domain logic without blocking.
 
 Since `Reactor` implements the reactive stream specification, you can still use `RxJava` through the interoperability interfaces. This is out of scope for the migration guide — please consult the reactor and rxjava documentations for further information.
 

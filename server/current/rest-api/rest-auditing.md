@@ -1,4 +1,13 @@
+---
+title: Configure Auditing
+description: Couchbase Server <em>event auditing</em> can be configured, per node.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-auditing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-auditing.html)
+
+# Configure Auditing
 
 > Couchbase Server _event auditing_ can be configured, per node. 
 

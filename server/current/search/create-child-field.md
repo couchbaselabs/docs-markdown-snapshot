@@ -1,4 +1,14 @@
+---
+title: Create a Child Field
+description: Create a child field with the Couchbase Server Web Console to add
+  or remove a specific field's content from a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-child-field.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/create-child-field.html)
+
+# Create a Child Field
 
 > Create a child field with the Couchbase Server Web Console to add or remove a specific field’s content from a Search index. 
 
@@ -19,10 +29,9 @@ To add or remove a child field from a Search index with the Couchbase Server Web
 4. Expand **Customize Index** **Mappings**.
 5. Point to an existing mapping and click **+**.
 6. Click **insert child field**.
-7. In the **Field** field, enter the name of a field in your documents that you want to add or remove from the index.
-
-|  | The field must contain either a single value or an array. If the field contains a JSON object, [create a child mapping](create-child-mapping.md) instead. Field names must not contain periods (.). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+7. In the **Field** field, enter the name of a field in your documents that you want to add or remove from the index.  
+> [!NOTE]  
+> The field must contain either a single value or an array. If the field contains a JSON object, [create a child mapping](create-child-mapping.md) instead. Field names must not contain periods (`.`).
 8. In the **Type** list, select the data type for the field.  
 For more information about the available data types, see [Field Data Types](field-data-types-reference.md).
 9. Configure optional settings for the child field.  

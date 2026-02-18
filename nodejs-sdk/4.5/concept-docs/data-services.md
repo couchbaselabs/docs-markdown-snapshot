@@ -1,4 +1,12 @@
+---
+title: Service Selection
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/concept-docs/pages/data-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/concept-docs/data-services.html)
+
+# Service Selection
 
 > Data in the Couchbase Data Platform can be accessed through Key Value (KV) Operations (including the Sub-Document API), the Analytics Service, the Query Service, Full Text Search, or even MapReduce Views: how do you pick the right service for your application? 
 

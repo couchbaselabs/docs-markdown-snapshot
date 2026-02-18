@@ -1,4 +1,13 @@
+---
+title: Blobs
+description: Couchbase Lite database data model concepts - blobs
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/blob.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/android/blob.html)
+
+# Blobs
 
 > Description — _Couchbase Lite database data model concepts - blobs_  
 > Related Content — [Databases](database.md) | [Documents](document.md) | [Indexing](indexing.md) |

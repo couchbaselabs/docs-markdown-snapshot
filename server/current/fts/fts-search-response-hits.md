@@ -1,4 +1,12 @@
+---
+title: Hits
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-search-response-hits.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-search-response-hits.html)
+
+# Hits
 
 > Hits return an array containing the matches for the executed query. 
 

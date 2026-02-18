@@ -1,4 +1,12 @@
+---
+title: Delta Sync
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/delta-sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/delta-sync.html)
+
+# Delta Sync
 
 ![Delta Sync](../_images/app-endpoint/delta-sync.png) 
 
@@ -16,8 +24,8 @@ You can enable Delta Sync per App Endpoint. To access Delta Sync, proceed throug
 4. Click the `Enable Delta Sync` checkbox.
 5. Click the **Save** button to confirm your choice.
 
-|  | The App Endpoint will be offline when turning Delta Sync on or off. |
-|  | ------------------------------------------------------------------- |
+> [!NOTE]
+> The App Endpoint will be offline when turning Delta Sync on or off.
 
 ## [](#storage-requirements)Storage Requirements
 

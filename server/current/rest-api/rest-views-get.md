@@ -1,4 +1,14 @@
+---
+title: Getting Views Information
+description: To retrieve views information, access any server node in a cluster
+  on port 8092.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-views-get.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-views-get.html)
+
+# Getting Views Information
 
 > To retrieve views information, access any server node in a cluster on port 8092\. 
 
@@ -54,15 +64,15 @@ To access a view stored within an SASL password-protected bucket, include the bu
 GET http://[bucket-name]:[password]@[localhost]: \
 8092/[bucket-name]/_design/[ddoc-name]/_view/[view-name]
 
-|  | Additional arguments to the URL request can be used to select information from the view, and provide limit, sorting and other options. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Additional arguments to the URL request can be used to select information from the view, and provide limit, sorting and other options.
 
 To output only ten items:
 
 GET http://[localhost]:8092/[bucket-name]/_design/[ddoc-name]/_view/[view-name]?limit=10
 
-|  | The formatting of the URL follows the HTTP specification. The first argument is separated from the base URL using a question mark ( ? ). Additional arguments are separated using an ampersand ( & ). Special characters are quoted or escaped according to the HTTP standard rules. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> The formatting of the URL follows the HTTP specification. The first argument is separated from the base URL using a question mark ( `?` ). Additional arguments are separated using an ampersand ( `&` ). Special characters are quoted or escaped according to the HTTP standard rules.
 
 ## [](#example)Example
 
@@ -111,5 +121,5 @@ In the event of an error or incorrect parameters, the HTTP response is a JSON st
   invalid char in json text.\\n\"}},\n\"Paris\"}"
 }
 
-|  | With client libraries, error response behavior might differ between client SDKs, but in all cases, an invalid query triggers an error or exception. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With client libraries, error response behavior might differ between client SDKs, but in all cases, an invalid query triggers an error or exception.

@@ -1,4 +1,13 @@
+---
+title: Analytics Links REST API
+description: A description of the Links REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/rest-links.html)
+
+# Analytics Links REST API
 
 ## [](#%5Foverview)Overview
 
@@ -61,11 +70,11 @@ When creating or altering a remote link using an alternate address, note the fol
 
 Failure to do so will result in a 400 (Bad Request) error.
 
-|  | The SSL ports are required when the **encryption** mode is set to full; the non-SSL ports are required otherwise. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SSL ports are required when the **encryption** mode is set to `full`; the non-SSL ports are required otherwise.
 
-|  | When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources.
 
 ##### [](#parameters)Parameters
 
@@ -129,8 +138,8 @@ curl -v -u Administrator:password \
      --data-urlencode password=remote.p4ssw0rd
 ```
 
-|  | The username and password parameters are URL-encoded to escape any special characters. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `username` and `password` parameters are URL-encoded to escape any special characters.
 
 The example below creates a Microsoft Azure Blob link named `myBlobLink` in the `Default` scope, with anonymous authentication.
 
@@ -169,8 +178,8 @@ curl -v -u Administrator:password \
      --data-urlencode secretAccessKey=mySecretKey
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. The secretAccessKey parameter is URL-encoded to escape any special characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`. The `secretAccessKey` parameter is URL-encoded to escape any special characters.
 
 The example below creates an Amazon S3 link named `myTempLink` with temporary credentials in the `travel-sample.inventory` scope.
 
@@ -187,8 +196,8 @@ curl -v -u Administrator:password \
      --data-urlencode secretAccessKey=myTempSecretKey
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. The secretAccessKey parameter is URL-encoded to escape any special characters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`. The `secretAccessKey` parameter is URL-encoded to escape any special characters.
 
 #### [](#%5Fget%5Flink)Query Link
 
@@ -231,8 +240,8 @@ curl -v -u Administrator:password \
      "http://localhost:8095/analytics/link/travel-sample%2Finventory/myAwsLink"
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ##### [](#example-http-response)Example HTTP response
 
@@ -321,8 +330,8 @@ curl -v -u Administrator:password \
      --data-urlencode "clientKey=$(cat ./cert/client.key)"
 ```
 
-|  | The certificate, clientCertificate, and clientKey parameters use command substitution with the cat command to return the _content_ of the referenced files. The content of these files is then URL-encoded to escape any special characters. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `certificate`, `clientCertificate`, and `clientKey` parameters use command substitution with the `cat` command to return the _content_ of the referenced files. The content of these files is then URL-encoded to escape any special characters.
 
 The example below edits the Google Cloud Storage link named `myGcsLink` in the `Default` scope to use Google Application Default Credentials for authentication.
 
@@ -387,8 +396,8 @@ curl -v -u Administrator:password \
      "http://localhost:8095/analytics/link/travel-sample%2Finventory/myAwsLink"
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ### [](#%5Fmultiple%5Flinks%5Fresource)Multiple Links
 
@@ -569,8 +578,8 @@ Operations provided for backward compatibility.
 
 POST /analytics/link
 
-|  | operation.deprecated |
-|  | -------------------- |
+> [!CAUTION]
+> operation.deprecated
 
 ##### [](#description-7)Description
 
@@ -625,8 +634,8 @@ An alternative endpoint for [creating a link](#%5Fpost%5Flink), provided for bac
 
 PUT /analytics/link
 
-|  | operation.deprecated |
-|  | -------------------- |
+> [!CAUTION]
+> operation.deprecated
 
 ##### [](#description-8)Description
 
@@ -681,8 +690,8 @@ An alternative endpoint for [editing a link](#%5Fput%5Flink), provided for backw
 
 DELETE /analytics/link
 
-|  | operation.deprecated |
-|  | -------------------- |
+> [!CAUTION]
+> operation.deprecated
 
 ##### [](#description-9)Description
 

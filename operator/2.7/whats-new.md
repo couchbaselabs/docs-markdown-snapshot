@@ -1,4 +1,12 @@
+---
+title: What&#8217;s New?
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/whats-new.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/whats-new.html)
+
+# What&#8217;s New?
 
 Autonomous Operator 2.7 release provides full support for Couchbase Server 7.6, and several improvements to Pod Scheduling and Networking, as well as a number of minor fixes.
 

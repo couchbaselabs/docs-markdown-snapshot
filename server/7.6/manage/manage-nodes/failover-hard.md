@@ -1,4 +1,14 @@
+---
+title: Perform Hard Failover
+description: Hard failover allows a node to be removed from a cluster
+  reactively, because the node has become unresponsive or unstable.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/failover-hard.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-nodes/failover-hard.html)
+
+# Perform Hard Failover
 
 > Hard failover allows a node to be removed from a cluster reactively, because the node has become unresponsive or unstable. 
 
@@ -35,10 +45,9 @@ Two radio buttons are provided, to allow selection of either **Graceful** or **H
 Read the warning message that appears. It explains that a hard failover may interrupt ongoing writes and replications. Therefore, you may want to [remove the node and rebalance](remove-node-and-rebalance.md) instead of performing a hard failover on a still-available Data Service node.  
 If the node contains vBuckets that do not have replicas on other nodes, Couchbase Server shows you an additional warning about data loss:  
 ![hardFailoverWithDataLoss](../_images/manage-nodes/hardFailoverWithDataLoss.png)  
-In this case, you must select **Confirm failover** to continue the hard failover.
-
-|  | Performing a hard failover on a node containing vBuckets that have no replicas on other nodes results in data loss. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+In this case, you must select **Confirm failover** to continue the hard failover.  
+> [!WARNING]  
+> Performing a hard failover on a node containing vBuckets that have no replicas on other nodes results in data loss.
 5. Confirm the hard failover by clicking **Failover Node**.  
 Couchbase Server performs the hard failover on the node. When it finishes, the **Servers** screen appears as follows:  
 ![twoNodeClusterAfterHardFailover](../_images/manage-nodes/twoNodeClusterAfterHardFailover.png)  

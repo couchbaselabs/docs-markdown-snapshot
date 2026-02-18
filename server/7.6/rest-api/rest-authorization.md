@@ -1,4 +1,14 @@
+---
+title: Authorization API
+description: Authorization by means of Role-Based Access Control can be manage
+  with the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-authorization.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-authorization.html)
+
+# Authorization API
 
 > Authorization by means of Role-Based Access Control can be manage with the REST API. 
 

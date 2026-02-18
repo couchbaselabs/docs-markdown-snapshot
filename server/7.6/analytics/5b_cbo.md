@@ -1,4 +1,14 @@
+---
+title: Cost-Based Optimizer for Analytics
+description: The cost-based optimizer for Analytics uses samples to choose the
+  optimal plan to execute a query.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/5b_cbo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/5b_cbo.html)
+
+# Cost-Based Optimizer for Analytics
 
 The execution plan for a query involves many possible operations: scan, join, filter, and so on. When planning for a query’s execution, there are usually several possible choices for each operation, including the use of different indexes or different join methods. Some of the choices will be faster and more efficient than others. The cost-based optimizer (CBO) aims to choose the most efficient option for each.
 

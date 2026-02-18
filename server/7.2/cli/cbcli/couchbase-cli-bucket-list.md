@@ -1,4 +1,13 @@
+---
+title: bucket-list
+description: List all buckets
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-bucket-list.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-bucket-list.html)
+
+# bucket-list
 
 List all buckets
 

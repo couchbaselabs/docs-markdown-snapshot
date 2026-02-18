@@ -1,4 +1,14 @@
+---
+title: SDK Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase Node.js Client.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Node.js Client. 
 

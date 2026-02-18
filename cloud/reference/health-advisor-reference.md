@@ -1,4 +1,14 @@
+---
+title: Health Advisor Reference
+description: Use the following as a reference for the different kinds of advice
+  available in a Health Advisor report.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/health-advisor-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/health-advisor-reference.html)
+
+# Health Advisor Reference
 
 > Use the following as a reference for the different kinds of advice available in a Health Advisor report. 
 
@@ -6,8 +16,8 @@ Capella Health Advisor provides a [health assessment](../clusters/monitoring/hea
 
 The report divides these health checks by [severity level](../clusters/monitoring/health-advisor.md#severity-level) and cluster [category](../clusters/monitoring/health-advisor.md#category). Health Advisor shares advice in the report when it flags a health check with a severity level of **Needs Review** or **Warning**.
 
-|  | All health checks are configured with a **Good** severity level, but not all checks are configured to trigger both the **Needs Review** and **Warning** level. Health Advisor flags some checks with just **Needs Review**, while others are flagged directly with **Warning**. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All health checks are configured with a **Good** severity level, but not all checks are configured to trigger both the **Needs Review** and **Warning** level. Health Advisor flags some checks with just **Needs Review**, while others are flagged directly with **Warning**.
 
 For more information about Health Advisor, see [View Health Advisor](../clusters/monitoring/health-advisor.md).
 

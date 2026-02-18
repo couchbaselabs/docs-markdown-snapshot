@@ -1,4 +1,12 @@
+---
+title: Working With RDDs
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/working-with-rdds.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/working-with-rdds.html)
+
+# Working With RDDs
 
 > Spark operates on resilient distributed datasets (RDDs). Higher level concepts like DataFrames and Datasets are more and more the primary means of access, but RDDs are still very useful to understand. 
 

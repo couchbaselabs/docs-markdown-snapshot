@@ -1,4 +1,14 @@
+---
+title: View Operations
+description: Views create indexes on your information that enable search and
+  select operations on the data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-operation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-operation.html)
+
+# View Operations
 
 > Views create indexes on your information that enable search and select operations on the data. 
 
@@ -180,8 +190,8 @@ If `replicaUpdateMinChanges` is set to 0 (zero), then automatic updates are disa
 
 The trigger level can be configured both globally and for individual design documents for all indexes using the REST API.
 
-|  | The ddocs allow you to set updateMinChanges or replicaUpdateMinChanges only via options. The updateInterval can only be set for the whole cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `ddocs` allow you to set `updateMinChanges` or `replicaUpdateMinChanges` only via options. The `updateInterval` can only be set for the whole cluster.
 
 To obtain the current view update daemon settings, access a node within the cluster on the administration port using the URL `http://nodename:8091/settings/viewUpdateDaemon` :
 

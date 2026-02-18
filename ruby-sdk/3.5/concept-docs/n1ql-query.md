@@ -1,4 +1,14 @@
+---
+title: Querying with SQL++
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/3.5/concept-docs/n1ql-query.html)
+
+# Querying with SQL++
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
@@ -19,8 +29,8 @@ result = cluster.query("SELECT count(*) FROM `travel-sample`.inventory.airport W
 
 The Couchbase query service makes use of [_indexes_](#7.1@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#7.1@server:learn:services-and-indexes/services/services.adoc) topologies.
 
-|  | In order to make a bucket queryable, it must have at least one index defined. |
-|  | ----------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In order to make a bucket queryable, it must have at least one index defined.
 
 You can define a _primary index_ on a bucket. When a _primary_ index is defined you can issue non-covered (see below) queries on the bucket as well. This includes using the `META` function in the queries.
 

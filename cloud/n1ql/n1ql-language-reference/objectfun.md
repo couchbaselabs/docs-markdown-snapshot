@@ -1,4 +1,15 @@
+---
+title: Object Functions
+description: You can use object functions to evaluate objects, perform
+  computations on attributes in an object, and to return a new object based on a
+  transformation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/objectfun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/objectfun.html)
+
+# Object Functions
 
 You can use object functions to evaluate objects, perform computations on attributes in an object, and to return a new object based on a transformation.
 
@@ -706,8 +717,8 @@ An array of objects, each containing the following attributes:
 | **val**  | The value of an attribute in the source object; or an array, containing the collated values of similarly-named attributes in the source objects. | Depends on the value returned. It can be a string, number, boolean, or others. |
 | **type** | The type of an attribute in the source object. Returned only when the types parameter is set to TRUE.                                            | String                                                                         |
 
-|  | Each returned object will have either **val** or **type** (depending on the specified options), and not both. Also, the objects in the array are sorted by attribute name, in SQL++ collation order. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Each returned object will have either **val** or **type** (depending on the specified options), and not both. Also, the objects in the array are sorted by attribute name, in SQL++ collation order.
 
 ### [](#examples-10)Examples
 
@@ -874,8 +885,8 @@ An array of objects, each containing the following attributes:
 | **val**  | The value of a field in the source object; or an array, containing the collated values of similarly-named fields in the source objects.                                                                                                                                                                                      | Depends on the value returned. It can be a string, number, boolean, or others. |
 | **type** | The type of a field in the source object. Returned only when the 'types' parameter is set to 'TRUE'.                                                                                                                                                                                                                         | String                                                                         |
 
-|  | Each returned object will have either **val** or **type** (depending on the specified options), and not both. Also, the objects in the array are sorted by field name, in SQL++ collation order. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Each returned object will have either **val** or **type** (depending on the specified options), and not both. Also, the objects in the array are sorted by field name, in SQL++ collation order.
 
 ### [](#examples-11)Examples
 

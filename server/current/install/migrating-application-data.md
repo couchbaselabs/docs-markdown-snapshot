@@ -1,4 +1,16 @@
+---
+title: Migrating Application Data to a Collections-Based Model
+description: With the introduction of scopes and collections, you can plan for a
+  simpler mapping from RDBMS and consolidate hundreds of microservices and/or
+  tenants in a single Couchbase cluster, resulting in much lower operational
+  cost.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/migrating-application-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/migrating-application-data.html)
+
+# Migrating Application Data to a Collections-Based Model
 
 > With the introduction of scopes and collections, you can plan for a simpler mapping from RDBMS and consolidate hundreds of microservices and/or tenants in a single Couchbase cluster, resulting in much lower operational cost. 
 
@@ -91,8 +103,8 @@ Here is an example of using the CLI (couchbase-cli and cbq) to create a scope, c
 | **1** | Note that the index creation statement does not require you to qualify the data with a type = xxx or key-prefix qualification clause anymore. |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | Ensure that you are conforming to the [naming conventions](../learn/data/scopes-and-collections.md#naming-for-scopes-and-collections) for scopes and collections. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Ensure that you are conforming to the [naming conventions](../learn/data/scopes-and-collections.md#naming-for-scopes-and-collections) for scopes and collections.
 
 ## [](#migrate-your-application-code)Migrate your Application Code
 

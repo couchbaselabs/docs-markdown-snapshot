@@ -1,4 +1,12 @@
+---
+title: Manage Couchbase Server Logging
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-manage-couchbase-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-manage-couchbase-logging.html)
+
+# Manage Couchbase Server Logging
 
 > The Kubernetes Operator can be configured to manage certain aspects of Couchbase Server logging, and comes with tools for collecting Couchbase Server logs. 
 
@@ -18,8 +26,8 @@ Audit records are written as JSON documents to a default file, named `audit.log`
 
 There are two approaches you can choose when it comes to implementing audit logging: [_managed_](#managed-audit-logging) and [_automated_](#automated-audit-logging).
 
-|  | Couchbase Server rotates audit logs, but never expires or deletes them. This is by design, as Couchbase Server intentionally has no facility to modify or delete an audit log file once it has been rotated. As a result, it is the explicit responsibility of the administrator to implement a policy for expiring and/or moving audit logs to a different storage location. _Without active intervention, rotated audit logs will eventually consume all available storage, leading to node and cluster failures._ |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Couchbase Server rotates audit logs, but never expires or deletes them. This is by design, as Couchbase Server intentionally has no facility to modify or delete an audit log file once it has been rotated. As a result, it is the explicit responsibility of the administrator to implement a policy for expiring and/or moving audit logs to a different storage location. _Without active intervention, rotated audit logs will eventually consume all available storage, leading to node and cluster failures._
 
 ### [](#managed-audit-logging)About Managed Audit Logging
 
@@ -29,8 +37,8 @@ Once audit logging is enabled, it’s up to the administrator to manage the resu
 
 ### [](#automated-audit-logging)Configuring Automated Audit Logging
 
-|  | Automated audit logging requires that logs be written to a persistent volume (i.e. the Couchbase deployment’s default or logs volumes are backed by [persistent storage](best-practices.md#storage)). Fully-ephemeral clusters are not supported by this feature. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Automated audit logging requires that logs be written to a persistent volume (i.e. the Couchbase deployment’s `default` or `logs` volumes are backed by [persistent storage](best-practices.md#storage)). Fully-ephemeral clusters are not supported by this feature.
 
 _Automated_ audit logging involves having the Kubernetes Operator handle the audit log configuration and optionally manage the resultant audit log files. An audit logging configuration can be specified in the [CouchbaseCluster](resource/couchbasecluster.md) resource specification, allowing the Kubernetes Operator to set up audit logging in Couchbase Server, and optionally manage the resultant audit log files.
 
@@ -62,8 +70,8 @@ spec:
 
 After enabling automated audit logging, you should take care only to use the [CouchbaseCluster](resource/couchbasecluster.md) resource specification for making further modifications to the audit logging configuration. Manual changes that are made to the configuration via the Couchbase UI, CLI, or REST API (such as changing the audit log directory) are not prevented by the Kubernetes Operator, and can cause audit logging failures.
 
-|  | Changing the location of the audit log is not supported, as it would break the ability for the Kubernetes Operator to [forward](concept-couchbase-logging.md#log-forwarding) audit logs. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Changing the location of the audit log is not supported, as it would break the ability for the Kubernetes Operator to [forward](concept-couchbase-logging.md#log-forwarding) audit logs.
 
 #### [](#sidecar-garbage-collection)Sidecar Garbage Collection
 
@@ -102,8 +110,8 @@ spec:
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | [couchbaseclusters.spec.logging.audit.garbageCollection.sidecar.image](resource/couchbasecluster.md#couchbaseclusters-spec-logging-audit-garbagecollection-sidecar-image): This is the base image of the sidecar helper container that will be added to the server pods for handling the cleanup for rotated logs. This sidecar is a standard Linux container that only needs to find and remove files of the appropriate name and age. Be aware that there are security concerns with using a standard Linux image, such as the potential for arbitrary shell execution and write-access to the volumes, which can potentially be exploited by a malicious image. In order to limit potential abuse, the garbage collection sidecar uses a sub-path to only mount the logs directory. In addition, the commands run by the garbage collector are not configurable, and the filenames of removed logs are printed to the garbage collector’s standard output. |
 
-|  | Use of this configuration mode is deprecated and will be removed in a future release. It is highly recommended that you use, or migrate to, one of the other modes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Use of this configuration mode is deprecated and will be removed in a future release. It is highly recommended that you use, or migrate to, one of the other modes.
 
 ## [](#collecting-logs)Collecting Logs
 
@@ -157,8 +165,12 @@ The [cao](tools/cao.md) tool collects logs from all log volumes in a Couchbase S
 
 When a detached PVC is encountered, [cao](tools/cao.md) will automatically create a temporary Couchbase Server pod, mount the log volume to it, and then run [cbcollect\_info](../../server/current/cli/cbcollect-info-tool.md) to collect the logs. Once the logs have been downloaded, the Kubernetes Operator will delete the temporary pod (but will _not_ delete the PVC).
 
-|  | The [cao](tools/cao.md) tool uses a default Couchbase Server container image when creating the temporary pod. However, this container image may not match the version of the Couchbase Server container that the PVC was previously attached to. To avoid compatibility issues when collecting logs from detached PVCs, make sure to use the [\--server-image](tools/cao.md#cao-collect-logs) flag to specify a matching Couchbase Server container image when running [cao](tools/cao.md). For a Couchbase Server deployment named cb-example, the command would resemble the following: $ cao collect-logs --collectinfo cb-example --server-image couchbase/server:7.6.6 |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The [cao](tools/cao.md) tool uses a default Couchbase Server container image when creating the temporary pod. However, this container image may not match the version of the Couchbase Server container that the PVC was previously attached to. To avoid compatibility issues when collecting logs from detached PVCs, make sure to use the [\--server-image](tools/cao.md#cao-collect-logs) flag to specify a matching Couchbase Server container image when running [cao](tools/cao.md). For a Couchbase Server deployment named `cb-example`, the command would resemble the following:
+> 
+> ```console
+> $ cao collect-logs --collectinfo cb-example --server-image couchbase/server:7.6.6
+> ```
 
 It should be noted that detached PVCs can sometimes be caused by more serious issues. Some of these issues may also cause [cao](tools/cao.md) to encounter errors while attempting to collect and download logs from detached PVCs. If you encounter such errors, you can try to work around the issue by [manually collecting the logs](#manually-collect-logs-from-detached-volumes).
 

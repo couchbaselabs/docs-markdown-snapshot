@@ -1,4 +1,12 @@
+---
+title: Term Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-term.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-term.html)
+
+# Term Query
 
 A term query is the simplest possible query. It performs an exact match in the index for the provided term.
 

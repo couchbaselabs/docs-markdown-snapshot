@@ -1,4 +1,13 @@
+---
+title: Encryption
+description: Couchbase Server lets you use encryption to protect data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/encryption-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/security/encryption-overview.html)
+
+# Encryption
 
 > Couchbase Server lets you use encryption to protect data. You can configure network encryption for communications with clients, between nodes in the cluster, and with other clusters when using Cross-Datacenter Replication (XDCR). Couchbase Server supports encrypting data stored on disk to limit data exposure. You can also have your application store encrypted attributes in documents. This topic provides an overview of the encryption features in Couchbase Server. 
 

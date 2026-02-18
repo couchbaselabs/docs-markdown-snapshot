@@ -1,7 +1,15 @@
+---
+title: Error Information
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-search-response-error-information.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-search-response-error-information.html)
 
-|  | For all errors listed in the table below, the "status" in the search response always show "fail". |
-|  | ------------------------------------------------------------------------------------------------- |
+# Error Information
+
+> [!NOTE]
+> For all errors listed in the table below, the "status" in the search response always show "fail".
 
 __Table 1\. Search Query Response Codes__
 | Error/Reason            | Description                                           | Response Status | Response Description  |

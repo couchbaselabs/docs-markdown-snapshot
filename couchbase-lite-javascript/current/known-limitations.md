@@ -1,4 +1,13 @@
+---
+title: Known Limitations
+description: Couchbase Lite JavaScript -- known limitations and constraints
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/known-limitations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/known-limitations.html)
+
+# Known Limitations
 
 > Description — _Couchbase Lite JavaScript — known limitations and constraints_  
 > _Abstract — This content identifies specific limitations and constraints when using Couchbase Lite JavaScript, including backend compatibility requirements and browser environment restrictions._  

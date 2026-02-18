@@ -1,4 +1,12 @@
+---
+title: Get Involved
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/get-involved.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/project-docs/get-involved.html)
+
+# Get Involved
 
 ## [](#contributing)Contributing
 

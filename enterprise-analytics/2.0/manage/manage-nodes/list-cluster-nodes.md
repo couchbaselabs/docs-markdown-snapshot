@@ -1,4 +1,13 @@
+---
+title: List Cluster Nodes
+description: The nodes of a cluster can be listed, and details on each retrieved.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/list-cluster-nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/list-cluster-nodes.html)
+
+# List Cluster Nodes
 
 > The nodes of a cluster can be listed, and details on each retrieved. 
 

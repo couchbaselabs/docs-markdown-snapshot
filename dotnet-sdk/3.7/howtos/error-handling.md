@@ -1,4 +1,13 @@
+---
+title: Handling Errors
+description: Common errors and exceptions, and how to handle them.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/error-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.7/howtos/error-handling.html)
+
+# Handling Errors
 
 > Common errors and exceptions, and how to handle them. Learn how to keep your application available as best as possible even in the face of (transient) failures. 
 
@@ -114,8 +123,8 @@ new AnalyticsOptions().Readonly(true));
 
 The `RetryStrategy` decides whether or not a request should be retried based on the `RetryReason`. By default, the SDK ships with a `BestEffortRetryStrategy` which, when faced with a retryable error, retries the request until it either succeeds or the timeout expires.
 
-|  | SDK 2 ships with a FailFastRetryStrategy which is intended to be used by an application. SDK 3 also ships with one, but it is marked as @Internal. We recommend extending and customizing the BestEffortRetryStrategy as described in [Customizing the RetryStrategy](#customizing-the-retrystrategy). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> SDK 2 ships with a `FailFastRetryStrategy` which is intended to be used by an application. SDK 3 also ships with one, but it is marked as `@Internal`. We recommend extending and customizing the `BestEffortRetryStrategy` as described in [Customizing the RetryStrategy](#customizing-the-retrystrategy).
 
 The `RetryReasons` provide useful information that gives insight into why an operation was retried. The `ErrorContext` exposes the reasons as a list, since it is certainly possible that a request gets retried more than once because of different reasons. A request might be retried on one occasion because the socket went down during dispatch, and then on another because the response indicated a temporary failure.
 
@@ -230,8 +239,8 @@ public class MyCustomRetryStrategy2 : BestEffortRetryStrategy {
 
 The `RetryAction` indicates what should be done with the request: if you return a `RetryAction.NoRetry()`, the orchestrator will cancel the request, resulting in a `RequestCanceledException`. The other option is to call it through `RetryAction withDuration(Duration duration)`, indicating the duration when the request should be retried next. This allows you to customize not only _if_ a request should be retried, but also _when_.
 
-|  | Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-vs-non-idempotent-requests) in mind. You can check if a request is idempotent through the Idempotent property, and also check if the RetryReason allows for non-idempotent retry through the AllowsNonIdempotentRetries() extension method. If in doubt, check the implementation of the BestEffortRetryStrategy for guidance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-vs-non-idempotent-requests) in mind. You can check if a request is idempotent through the `Idempotent` property, and also check if the `RetryReason` allows for non-idempotent retry through the `AllowsNonIdempotentRetries()` extension method. If in doubt, check the implementation of the `BestEffortRetryStrategy` for guidance.
 
 ## [](#reference)Reference
 

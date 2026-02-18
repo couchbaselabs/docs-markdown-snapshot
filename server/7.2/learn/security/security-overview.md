@@ -1,4 +1,13 @@
+---
+title: Security
+description: Couchbase Server can be rendered highly secure.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/security/security-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/security/security-overview.html)
+
+# Security
 
 > Couchbase Server can be rendered highly secure. 
 

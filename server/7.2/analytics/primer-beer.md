@@ -1,4 +1,13 @@
+---
+title: Tutorial
+description: A tutorial of Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/primer-beer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/primer-beer.html)
+
+# Tutorial
 
 This tutorial introduces the main features of the new Couchbase Analytics through examples.
 
@@ -76,8 +85,8 @@ You can then simply enter the following to obtain the same result as above:
 SELECT VALUE COUNT(*) FROM airline;
 ```
 
-|  | For the rest of this tutorial, it is assumed that the query context is set to travel-sample.inventory. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> For the rest of this tutorial, it is assumed that the query context is set to `travel-sample.inventory`.
 
 The next query retrieves a sample airline:
 
@@ -666,8 +675,8 @@ LIMIT 3;
 
 This SQL++ for Analytics query binds the variable `al` to the objects in airline; for each airline, it constructs a result object containing a "airline" field with the airline’s name, plus a "nonstops" field with a nested collection of objects containing the source and destination airports for the non-stop route. The nested collection field for each airline is created using a correlated subquery.
 
-|  | While it looks like nested loops could be involved in computing the result, Analytics recognizes the equivalence of such a query to an outer join, so it will use an efficient parallel join strategy when actually computing the query’s result. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While it looks like nested loops could be involved in computing the result, Analytics recognizes the equivalence of such a query to an outer join, so it will use an efficient parallel join strategy when actually computing the query’s result.
 
 Below is this example query’s expected output:
 
@@ -1344,8 +1353,8 @@ DELETE FROM hotel ht USE KEYS "hotel_7777";
 
 Finally, if you run the Buena park hotel list query on Analytics once again, you will find that this deletion has been immediately shadowed in Analytics as well. Again, when you switch to the Analytics service, make sure the query context is still set to `travel-sample.inventory`.
 
-|  | Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check the progress of resynchronization. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Changes in the data are usually shadowed in Analytics in almost real time. However, if a Data node fails over, the Analytics service may have to resynchronize data from scratch. When this happens, there is a chance that Analytics queries may return incomplete results until the resynchronization process is complete. You can use the [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench)or the [REST API](rest-analytics.md) to check the progress of resynchronization.
 
 ## [](#Indexing)And of Course, Indexing
 

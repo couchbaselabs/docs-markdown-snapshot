@@ -1,4 +1,15 @@
+---
+title: Nodes
+description: A Couchbase-Server <em>cluster</em> consists of one or more
+  <em>nodes</em>, each of which is a system running an instance of Couchbase
+  Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/clusters-and-availability/nodes.html)
+
+# Nodes
 
 > A Couchbase-Server _cluster_ consists of one or more _nodes_, each of which is a system running an instance of Couchbase Server. 
 

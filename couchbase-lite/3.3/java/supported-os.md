@@ -1,4 +1,14 @@
+---
+title: Supported Operating System Versions
+description: Couchbase Lite on Java -- the OS and SDK versions on which this
+  framework is supported
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/supported-os.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/java/supported-os.html)
+
+# Supported Operating System Versions
 
 > Description — _Couchbase Lite on Java — the OS and SDK versions on which this framework is supported_  
 > Related Content — [What’s New](#cbl-whatsnew.adoc) | [Release Notes](releasenotes.md) | [Compatibility](compatibility.md)
@@ -7,8 +17,14 @@
 
 Couchbase Lite on Java is supported on x86 64-bit platforms. The targeted OS versions are given in [Table 1](#supported-os-versions)
 
-|  | Deprecation Notice Support for the following will be deprecated in this release and will be removed in a future release: macOS - 13 Please plan to migrate your apps to use an appropriate alternative version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Deprecation Notice
+> 
+> Support for the following will be deprecated in this release and will be removed in a future release:
+> 
+> * macOS - 13
+> 
+> Please plan to migrate your apps to use an appropriate alternative version.
 
 __Table 1\. Supported versions__
 | OS                      | Version                                | Type                                   |

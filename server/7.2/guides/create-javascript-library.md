@@ -1,4 +1,13 @@
+---
+title: Creating a JavaScript Library
+description: How to create a JavaScript library.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-javascript-library.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/create-javascript-library.html)
+
+# Creating a JavaScript Library
 
 > How to create a JavaScript library.  
 > This guide is for Couchbase Server.
@@ -95,10 +104,9 @@ function getBusinessDays(startDate, endDate) {
     return count;  
 }  
 ```
-6. Save the library by pressing the **Save** button.
-
-|  | You can, of course, create an empty library and add functions to it later. |
-|  | -------------------------------------------------------------------------- |
+6. Save the library by pressing the **Save** button.  
+> [!TIP]  
+> You can, of course, create an empty library and add functions to it later.
 
 1. Start a shell session.
 2. Run a `curl` command to create a JavaScript library within a desired scope.  

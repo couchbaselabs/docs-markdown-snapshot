@@ -1,4 +1,14 @@
+---
+title: Managing Capella Analytics Collections
+description: This page describes how to manage collections with the Capella
+  Analytics Workbench.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/manage-collections.html)
+
+# Managing Capella Analytics Collections
 
 ## [](#whats-a-collection)What’s a Collection?
 
@@ -30,8 +40,8 @@ Each time you add a collection, Capella Analytics records its metadata in the `S
 
 Capella Analytics supports both column and row storage formats.
 
-|  | The system uses the column format by default and it’s recommended not to exceed 4,000 unique columns across all documents in a collection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The system uses the column format by default and it’s recommended not to exceed 4,000 unique columns across all documents in a collection.
 
 When JSON documents are ingested, each unique leaf node is interpreted as a distinct column.
 

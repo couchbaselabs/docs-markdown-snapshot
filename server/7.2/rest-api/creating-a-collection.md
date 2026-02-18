@@ -1,4 +1,13 @@
+---
+title: Creating and Editing a Collection
+description: Collections can be <em>created</em> by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/creating-a-collection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/creating-a-collection.html)
+
+# Creating and Editing a Collection
 
 > Collections can be _created_ by means of the REST API. 
 

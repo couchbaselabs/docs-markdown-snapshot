@@ -1,4 +1,14 @@
+---
+title: Sample Buckets
+description: Sample buckets contain scopes, collections, and documents that are
+  ready to be experimented with.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-settings/install-sample-buckets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-settings/install-sample-buckets.html)
+
+# Sample Buckets
 
 > Sample buckets contain scopes, collections, and documents that are ready to be experimented with. 
 

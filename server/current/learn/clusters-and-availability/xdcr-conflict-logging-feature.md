@@ -1,4 +1,18 @@
+---
+title: XDCR Conflict Logging
+description: During Active-Active replication, XDCR detects and logs concurrent
+  conflicts created by locally connected applications making independent
+  modifications, in different clusters but on the same document version. The
+  conflict logs are for your information only. The best practice in
+  Active-Active systems is that application environments must be designed to
+  avoid conflicts.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-logging-feature.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-conflict-logging-feature.html)
+
+# XDCR Conflict Logging
 
 > During Active-Active replication, XDCR detects and logs concurrent conflicts created by locally connected applications making independent modifications, in different clusters but on the same document version. The conflict logs are for your information only. The best practice in Active-Active systems is that application environments must be designed to avoid conflicts. 
 
@@ -17,15 +31,20 @@ XDCR performs conflict resolution and replicates the documents whether conflicts
 * XDCR may need to pause or stop the logging process due to resource issues or a delay when writing to the log collection. When it needs to pause or stop logging, XDCR reports the error type for the pipeline and continues replication to avoid High Availability issues.
 * [Conflict Resolution](xdcr-conflict-resolution.md) process remains unchanged.
 
-|  | Even if conflict logging fails, XDCR continues with conflict resolution to make sure of High Availability. Conflict resolution is not changed by conflict logging. Conflict logging is informational only. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Even if conflict logging fails, XDCR continues with conflict resolution to make sure of High Availability. Conflict resolution is not changed by conflict logging. Conflict logging is informational only.
 
 ## [](#using-of-xdcr-conflict-logging)Using the XDCR Conflict Logging Feature
 
 This section summarizes the prerequisites, and how to enable, configure, and use conflict logging in an XDCR replication.
 
-|  | Before enabling conflict logging, make sure that the Eventing functions deployed in replicated buckets do not cause excessive conflicts in an XDCR Active-Active environment. The following can cause conflicts: If you’re using the Eventing functions triggered by both replicated and local mutations, and then the Eventing functions update the same document. If the same Eventing functions are deployed in other replication environments. To prevent the conflicts caused by Eventing updates to the replicated documents, design Eventing functions with appropriate logic. Make sure the Eventing functions avoid updating the same documents (document IDs) at around the same time in different replication locations. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Before enabling conflict logging, make sure that the Eventing functions deployed in replicated buckets do not cause excessive conflicts in an XDCR Active-Active environment. The following can cause conflicts:
+> 
+> * If you’re using the Eventing functions triggered by both replicated and local mutations, and then the Eventing functions update the same document.
+> * If the same Eventing functions are deployed in other replication environments.
+> 
+> To prevent the conflicts caused by Eventing updates to the replicated documents, design Eventing functions with appropriate logic. Make sure the Eventing functions avoid updating the same documents (document IDs) at around the same time in different replication locations.
 
 To log conflicts during an XDCR, follow these steps:
 
@@ -33,20 +52,22 @@ To log conflicts during an XDCR, follow these steps:
 To enable the bucket property `enableCrossClusterVersioning`:
 
   * Using the REST API, see [Example: Turning on enableCrossClusterVersioning, when Editing](../../rest-api/rest-bucket-create.md#example-enablecrossclusterversioning-edit).
-  * From the UI, see [Edit a Bucket to Enable Cross Cluster Versioning](../../manage/manage-buckets/edit-bucket.md#edit-bucket-for-eccv).
-
-|  | Once enableCrossClusterVersioning is enabled, it cannot be disabled. As a result, HLV also cannot be disabled. The conflict logging feature detects and logs conflicts only when the property enableCrossClusterVersioning is set to true for all the buckets in the replication topology. Make sure you set enableCrossClusterVersioning to true in the bucket properties when adding new buckets or new clusters to the existing replication topology. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * From the UI, see [Edit a Bucket to Enable Cross Cluster Versioning](../../manage/manage-buckets/edit-bucket.md#edit-bucket-for-eccv).  
+  > [!NOTE]  
+  > * Once `enableCrossClusterVersioning` is enabled, it cannot be disabled. As a result, HLV also cannot be disabled.  
+  > * The conflict logging feature detects and logs conflicts only when the property `enableCrossClusterVersioning` is set to `true` for all the buckets in the replication topology. Make sure you set `enableCrossClusterVersioning` to `true` in the bucket properties when adding new buckets or new clusters to the existing replication topology.
 2. When creating or updating the XDCR replication, configure and enable conflict logging. You configure conflict logging by specifying the conflict log collections to store the conflict logs and the conflict logging rules. You must specify at least 1 conflict log collection, which is the default.  
 When you do not specify any conflict logging rules, all conflicts detected during the replication are logged into the default conflict log collection. The conflict logging rules allow granular configuration of conflict log collections for specific scopes and collections in the replication. You can override the default conflict log collection by either specifying which scopes and collections must have their conflicts logged, or assigning different conflict log collections for each.  
 For detailed information about how to enable and configure the conflict logging feature while creating or updating a replication, see the following:
 
   * [Replication Settings for XDCR Conflict Logging](../../manage/manage-xdcr/create-xdcr-replication.md#xdcr-ui-settings-for-conflict-logging  
   ), to set from the UI.
-  * [Creating a Replication](../../rest-api/rest-xdcr-create-replication.md) by [Enabling and Configuring Conflict Logging](#configure-conflictlogging-settings), to set through the REST API.
-
-|  | Because conflicts result from race conditions, you must enable conflict logging on all legs of the replications in an XDCR topology. This ensures that at least 1 leg detects and logs the conflict. In a bi-directional replication, configure and enable conflict logging on both legs. In a 3-cluster XDCR ring topology, configure and enable conflict logging on all 6 legs. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * [Creating a Replication](../../rest-api/rest-xdcr-create-replication.md) by [Enabling and Configuring Conflict Logging](#configure-conflictlogging-settings), to set through the REST API.  
+  > [!NOTE]  
+  > Because conflicts result from race conditions, you must enable conflict logging on all legs of the replications in an XDCR topology. This ensures that at least 1 leg detects and logs the conflict.  
+  >  
+  > * In a bi-directional replication, configure and enable conflict logging on both legs.  
+  > * In a 3-cluster XDCR ring topology, configure and enable conflict logging on all 6 legs.
 3. When XDCR logs a conflict, it creates 3 related documents in the conflict log collection specified by you. The 3 documents together is referred to as the [Conflict Record](#conflict-record). As the conflict log collections are regular collections, you can programmatically access and review the documents. For examples about different ways to query or process the conflict log information, see [Viewing Conflict Logs](xdcr-viewing-conflict-logs.md).
 
 ## [](#conflict-collection)Conflict Log Collection
@@ -59,8 +80,8 @@ You can specify any regular collection in the cluster as a conflict log collecti
 
 After XDCR creates conflict record documents in the conflict collection, you are responsible for managing them. XDCR does not update or remove these documents. As these documents are also copies of your application documents, you must use RBAC to make sure of appropriate access to the documents. Make sure to monitor the disk storage use for the conflict log collections and delete documents when they’re no longer needed.
 
-|  | XDCR adds a system extended attribute (xattrs) called \_xdcr\_conflict into each of the 3 documents in the [Conflict Record](#conflict-record), which prevents XDCR from replicating these 3 documents. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> XDCR adds a system extended attribute (xattrs) called `_xdcr_conflict` into each of the 3 documents in the [Conflict Record](#conflict-record), which prevents XDCR from replicating these 3 documents.
 
 ### [](#conflict-record)Conflict Record
 
@@ -158,10 +179,9 @@ By default, the Conflict Logger is tuned to handle a low percentage of conflicts
 
 `xdcr_clog_status` is a Prometheus stat, which indicates the status of the Conflict Logger. The status can be one of the following:
 
-* **Hibernated**: The logger is temporarily disabled due to persistent errors or resource constraints.
-
-|  | Hibernation prevents the degradation of the replication performance. Logging is re-enabled after a set interval, or after the errors are manually resolved and the logger is manually restarted. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* **Hibernated**: The logger is temporarily disabled due to persistent errors or resource constraints.  
+> [!NOTE]  
+> Hibernation prevents the degradation of the replication performance. Logging is re-enabled after a set interval, or after the errors are manually resolved and the logger is manually restarted.
 * **Running**: The logger is actively processing conflict events.
 * **DNE**: The logger does not exist; conflict logging is not enabled.
 
@@ -171,8 +191,8 @@ By default, the [Conflict Logger](#conflict-logger) is tuned to handle a low per
 
 You can retrieve the conflict logging settings for a replication using the REST API `GET /settings/replications/`. For more information, see [Retrieve Conflict Logging Settings](../../rest-api/rest-xdcr-adv-settings.md#rest-api-conflict-logging-replication-tunables). The conflict logger settings start with the prefix `cLog`.
 
-|  | Couchbase recommends that you must not adjust the conflict logger settings unless advised to do so by the Couchbase Support. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Couchbase recommends that you must not adjust the conflict logger settings unless advised to do so by the Couchbase Support.
 
 The following table explains the conflict logger settings. The `conflictLogging` setting, used to enable and configure logging of conflicts, is explained in [Enabling and Configuring Conflict Logging](#configure-conflictlogging-settings).
 
@@ -218,8 +238,8 @@ The types of values for the `conflictLogging` key are as follows:
 * [Enabled with logging rules](#enabled-with-special-logging-rules)
 * [Disabled with logging rules configured](#disabled-with-stored-logging-rules)
 
-|  | The conflict log collections, or conflict collections, can be any collection in the cluster, including a collection in the bucket that’s being replicated. However, the conflict logs are never replicated. XDCR adds a system extended attribute or xattrs called \_xdcr\_conflict into each of the 3 documents in the [Conflict Records](#conflict-record), which prevents these documents, the conflict logs, from being replicated. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The conflict log collections, or conflict collections, can be any collection in the cluster, including a collection in the bucket that’s being replicated. However, the conflict logs are never replicated. XDCR adds a system extended attribute or xattrs called `_xdcr_conflict` into each of the 3 documents in the [Conflict Records](#conflict-record), which prevents these documents, the conflict logs, from being replicated.
 
 The following examples show how to use `conflictLogging` with the `curl` command option `--data-urlencode`. This demonstrates how to specify the conflict logging settings when creating or updating an XDCR replication using the REST API.
 
@@ -230,8 +250,8 @@ To log all conflicts to the same collection for the entire replication:
 1. Enable conflict logging by setting `disabled` to `false`.
 2. Designate a default conflict collection by specifying the conflict log bucket and the conflict log collection in `bucket` and `collection`.
 
-|  | You can designate any regular collection as the conflict collection, including collections that are a part of the replication. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can designate any regular collection as the conflict collection, including collections that are a part of the replication.
 
 **Format**:
 
@@ -304,8 +324,8 @@ You can use `loggingRules` to specify, for any scope or collection in the replic
 
 You can configure `conflictLogging` (specify the default conflict collection and the `loggingRules`) but not enable `conflictLogging` by setting `disabled` to `true`.
 
-|  | You can update the replication and set the conflictLogging status disabled to true or false at any time. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can update the replication and set the `conflictLogging` status `disabled` to `true` or `false` at any time.
 
 When you set `"disabled": true` and have specified other configurations, then the specified values are retained.
 
@@ -345,8 +365,8 @@ When you set `"disabled": true` and have specified other configurations, then th
 
 Use `loggingRules` to override the [default conflict logging settings](#enabled-for-all-conflicts).
 
-|  | Conflict logging rules can be saved without enabling the conflictLogging setting. However, the logging rules come into effect only when the conflictLogging setting is enabled. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Conflict logging rules can be saved without enabling the `conflictLogging` setting. However, the logging rules come into effect only when the `conflictLogging` setting is enabled.
 
 You can use the `loggingRules` JSON object to define granular conflict logging rules for specific scopes and collections within a replication.
 

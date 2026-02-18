@@ -1,4 +1,14 @@
+---
+title: System Requirements
+description: Enterprise Analytics has a basic set of installation and networking
+  requirements that apply to nearly every deployment.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/system-requirements.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/system-requirements.html)
+
+# System Requirements
 
 > Enterprise Analytics has a basic set of installation and networking requirements that apply to nearly every deployment. 
 

@@ -1,4 +1,13 @@
+---
+title: Distributed Transactions from the Kotlin SDK
+description: Distributed ACID Transactions with JVM SDKs.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Distributed Transactions from the Kotlin SDK
 
 > Distributed ACID Transactions with JVM SDKs. Kotlin transactions are available as a developer preview, or use Java ACID transactions within the Kotlin SDK 
 
@@ -11,8 +20,8 @@ If you are interested in trying out the developer preview of Kotlin multi-docume
 * Kotlin [API Reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client-1.4.4/kotlin-client/com.couchbase.client.kotlin.transactions/index.html).
 * Intro guide in [Couchbase Forum post](https://www.couchbase.com/forums/t/kotlin-sdk-1-4-4-adds-experimental-support-for-couchbase-transactions/39307).
 
-|  | The Kotlin transactions API is still "volatile", meaning it could change without notice as we refine it based on your feedback. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The Kotlin transactions API is still "volatile", meaning it could change without notice as we refine it based on your feedback.
 
 ## [](#java-transactions-from-the-kotlin-sdk)Java Transactions from the Kotlin SDK
 

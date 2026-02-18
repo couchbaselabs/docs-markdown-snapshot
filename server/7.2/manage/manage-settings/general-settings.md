@@ -1,4 +1,16 @@
+---
+title: General
+description: <em>General</em> settings allow configuration of <em>cluster
+  name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
+  availability</em> for the cluster; and of <em>advanced settings</em> for the
+  Index and Query Services.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-settings/general-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-settings/general-settings.html)
+
+# General
 
 > _General_ settings allow configuration of _cluster name_, _memory quotas_, _storage modes_, and _node availability_ for the cluster; and of _advanced settings_ for the Index and Query Services. 
 
@@ -106,10 +118,10 @@ Each group has the same, three radio buttons, which are as follows:
 * **Disk i/o optimized**. The number of threads allocated is equal to the number of CPU cores for the node.  
 In order to get maximum performance from Magma for disk-oriented workloads, it is recommended to set the Writer Threads to 'Disk i/o optimized'. This setting will ensure there are enough threads to sustain high write rates.  
 To Learn more about the Magma Storage Engine, see [Storage Engines — Magma Storage Engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma).
-* **Fixed value**. The number of threads allocated is equal to the value selected from the pull-down menu.
-
-|  | A good rule of thumb is to set each of readers and writers equal to the queue depth of the underlying IO subsystem (i.e. readers = queue\_depth and writers = queue\_depth).However, for best performance it is recommended to benchmark with different settings and pick the one that best meets the throughput and latency requirements in your environment. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* **Fixed value**. The number of threads allocated is equal to the value selected from the pull-down menu.  
+> [!NOTE]  
+> A good rule of thumb is to set each of readers and writers equal to the queue depth of the underlying IO subsystem (i.e. readers = queue\_depth and writers = queue\_depth).  
+> However, for best performance it is recommended to benchmark with different settings and pick the one that best meets the throughput and latency requirements in your environment.
 
 ### [](#query-settings)Query Settings
 
@@ -134,10 +146,9 @@ Additional Query settings are provided in the lower section of the panel:
 * **Completed Threshold**: The completed-query duration (in milliseconds) beyond which the query is logged in the completed requests catalog.
 * **Log Level**: The log level used in the logger.
 * **Max Parallelism**: The maximum number of index partitions for parallel aggregation-computing.
-* **SQL++ Feature Controller**: Enables or disables features in the Query engine.
-
-|  | Do not change the **SQL++ Feature Controller** setting without guidance from technical support. |
-|  | ----------------------------------------------------------------------------------------------- |
+* **SQL++ Feature Controller**: Enables or disables features in the Query engine.  
+> [!WARNING]  
+> Do not change the **SQL++ Feature Controller** setting without guidance from technical support.
 * **Transaction Timeout**: The number of milliseconds to elapse before a transaction times out.
 * **Memory Quota**: The amount of memory, in megabytes, allocated to the processing of a query.
 

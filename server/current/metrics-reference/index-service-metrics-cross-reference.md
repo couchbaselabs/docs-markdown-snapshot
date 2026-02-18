@@ -1,4 +1,14 @@
+---
+title: Index Service Cross Reference
+description: A cross-referenced table of the metrics provided by the Index
+  Service as named by various generations of reporting tools.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/index-service-metrics-cross-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/metrics-reference/index-service-metrics-cross-reference.html)
+
+# Index Service Cross Reference
 
 > A cross-referenced table of the metrics provided by the Index Service as named by various generations of reporting tools. 
 

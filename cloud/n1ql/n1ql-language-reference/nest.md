@@ -1,4 +1,14 @@
+---
+title: NEST Clause
+description: The NEST clause creates an input object by producing a single
+  result of nesting keyspaces.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/nest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/nest.html)
+
+# NEST Clause
 
 > The `NEST` clause creates an input object by producing a single result of nesting keyspaces. 
 
@@ -44,8 +54,8 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 ## [](#section%5Ftc1%5Fnnx%5F1db)ANSI NEST Clause
 
-|  | [ANSI JOIN](join.md#section%5Fek1%5Fjnx%5F1db) and [ANSI NEST](#section%5Ftc1%5Fnnx%5F1db) clauses have much more flexible functionality than their earlier INDEX and LOOKUP equivalents. Since these are standard compliant and more flexible, we recommend you to use ANSI JOIN and ANSI NEST exclusively, where possible. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> [ANSI JOIN](join.md#section%5Fek1%5Fjnx%5F1db) and [ANSI NEST](#section%5Ftc1%5Fnnx%5F1db) clauses have much more flexible functionality than their earlier INDEX and LOOKUP equivalents. Since these are standard compliant and more flexible, we recommend you to use ANSI JOIN and ANSI NEST exclusively, where possible.
 
 ANSI NEST supports more nest types than Lookup NEST or Index NEXT. ANSI NEST can nest arbitrary fields of the documents, and can be chained together.
 
@@ -490,8 +500,8 @@ Results
 
 Index NESTs allow you to flip the direction of a Lookup NEST clause. Index NESTs can be used efficiently when Lookup NESTs cannot efficiently nest left-hand side documents with right-to-left nests, and your situation cannot be flipped because your predicate needs to be on the left-hand side, such as [Example 4](#Lookup-NEST-Example-1) above where airline documents have no reference to route documents.
 
-|  | For index nests, the syntax uses ON KEY (singular) instead of ON KEYS (plural). This is because an Index NEST’s ON KEY expression must produce a scalar value; whereas a Lookup NEST’s ON KEYS expression can produce either a scalar or an array value. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For index nests, the syntax uses `ON KEY` (singular) instead of `ON KEYS` (plural). This is because an Index NEST’s `ON KEY` expression must produce a scalar value; whereas a Lookup NEST’s `ON KEYS` expression can produce either a scalar or an array value.
 
 ### [](#syntax-4)Syntax
 

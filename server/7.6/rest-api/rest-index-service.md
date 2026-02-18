@@ -1,4 +1,14 @@
+---
+title: Index Service API
+description: The Index service REST API provides configuration options for the
+  Index service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-index-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-index-service.html)
+
+# Index Service API
 
 > The Index service REST API provides configuration options for the Index service. 
 

@@ -1,4 +1,13 @@
+---
+title: Release Notes
+description: Release notes for the Columnar Superset Connector.
+editUrl: https://github.com/couchbase/docs-connectors-superset/edit/release/1.0/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/superset-connector/current/release-notes.html)
+
+# Release Notes
 
 > Release notes for the Columnar Superset Connector. 
 

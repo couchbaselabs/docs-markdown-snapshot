@@ -1,11 +1,19 @@
+---
+title: Prerequisites and System Requirements
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/prerequisite-and-setup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/prerequisite-and-setup.html)
+
+# Prerequisites and System Requirements
 
 > The Autonomous Operator supports several popular Kubernetes environments and cloud-native utilities. 
 
 To install the Couchbase Autonomous Operator, all you need is a Kubernetes or OpenShift cluster running one of the [compatible versions listed below](#kubernetes-platform-compatibility).
 
-|  | For all supported software versions listed on this page, maintenance/patch releases (x.x**.X**) inherit the same support level, unless noted otherwise. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For all supported software versions listed on this page, maintenance/patch releases (x.x**.X**) inherit the same support level, unless noted otherwise.
 
 ## [](#couchbase-compatibility)Couchbase Compatibility
 
@@ -64,8 +72,8 @@ deprecated
 
 This release is compatible with all versions of the Couchbase Exporter image. The Couchbase Exporter images are all compatible with all versions of Couchbase Server that are supported by this release.
 
-|  | With the release of Couchbase Server 7.0.0, Prometheus endpoints are built into Couchbase Server and as such, the exporter image is no longer required to expose metrics. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> With the release of Couchbase Server 7.0.0, Prometheus endpoints are built into Couchbase Server and as such, the exporter image is no longer required to expose metrics.
 
 ## [](#kubernetes-platform-compatibility)Kubernetes Compatibility
 
@@ -82,8 +90,10 @@ Kubernetes and Red Hat OpenShift Compatibility
 
 ![compatibility kubernetes](_images/compatibility-kubernetes.png)
 
-|  | Where an Operator release is marked as _supported_, this means it has been fully tested for functionality on that platform version. Couchbase Support will actively recreate and diagnose issues. Where relevant, fixes will be made to the affected product and patch releases made. Where an Operator release is marked as _compatible,_ however, this means it has been assessed by the development team to be technically feasible, and may have had rudimentary compatibility testing. You may run the [Operator Self-Certification Lifecycle](concept-platform-certification.md) tooling to verify the Operator will work on a compatible platform. Support will be provided on a best-effort basis, and any issues may not result in fixes and patch releases. We therefore highly encourage the use of a supported platform version. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Where an Operator release is marked as _supported_, this means it has been fully tested for functionality on that platform version. Couchbase Support will actively recreate and diagnose issues. Where relevant, fixes will be made to the affected product and patch releases made.
+> 
+> Where an Operator release is marked as _compatible,_ however, this means it has been assessed by the development team to be technically feasible, and may have had rudimentary compatibility testing. You may run the [Operator Self-Certification Lifecycle](concept-platform-certification.md) tooling to verify the Operator will work on a compatible platform. Support will be provided on a best-effort basis, and any issues may not result in fixes and patch releases. We therefore highly encourage the use of a supported platform version.
 
 ### [](#managed-kubernetes-compatibility)Managed Kubernetes Compatibility
 
@@ -116,8 +126,8 @@ You can read more about pod scheduling in the [best practices](best-practices.md
 
 The Autonomous Operator supports both ARM and AMD64 Kubernetes clusters. The architecture of each node must be uniform across the cluster as the use of mixed architecture nodes is not supported.
 
-|  | The official Couchbase docker repository contains multi-arch images which do not require explicit references to architecture tags when being pulled and deployed. However, when pulling from a private repository, or performing intermediate processing on a machine with a different architecture than the deployed cluster, the use of explicit tags may be required to ensure the correct images are deployed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The official Couchbase docker repository contains multi-arch images which do not require explicit references to architecture tags when being pulled and deployed. However, when pulling from a private repository, or performing intermediate processing on a machine with a different architecture than the deployed cluster, the use of explicit tags may be required to ensure the correct images are deployed.
 
 ## [](#rbac-and-networking-requirements)RBAC and Networking Requirements
 

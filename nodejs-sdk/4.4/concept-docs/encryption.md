@@ -1,4 +1,13 @@
+---
+title: Field Level Encryption
+description: A high-level overview of Field-Level Encryption concepts.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/concept-docs/pages/encryption.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.4/concept-docs/encryption.html)
+
+# Field Level Encryption
 
 > A high-level overview of Field-Level Encryption concepts. 
 
@@ -18,8 +27,8 @@ Figure 1\. Encrypting & decrypting via the FLE library
 
 SDK 3 uses the `AEAD_AES_256_CBC_HMAC_SHA_512` algorithm to provide authenticated symmetric encryption of sensitive JSON fields. This algorithm uses a 64-byte key (known affectionately as a "fat key", since it’s really two 32-byte keys joined together). The key materials for the AES and HMAC steps are distinct, but are managed as a single unit.
 
-|  | Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately. This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption. Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately. This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption. Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility.
 
 Developers may also plug in custom encryption algorithms.
 

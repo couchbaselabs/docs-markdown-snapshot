@@ -1,4 +1,13 @@
+---
+title: Delete a Repository
+description: The Backup Service REST API allows an archived repository to be deleted.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-delete-repository.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/backup-delete-repository.html)
+
+# Delete a Repository
 
 > The Backup Service REST API allows an archived repository to be deleted. 
 

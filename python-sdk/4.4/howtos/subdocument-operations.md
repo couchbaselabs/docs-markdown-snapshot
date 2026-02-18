@@ -1,4 +1,14 @@
+---
+title: Sub-Document Operations
+description: Sub-Document operations can be used to efficiently access and
+  change parts of documents.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/howtos/subdocument-operations.html)
+
+# Sub-Document Operations
 
 > Sub-Document operations can be used to efficiently access and change parts of documents. 
 
@@ -18,8 +28,8 @@ While full-document retrievals retrieve the entire document and full document up
 
 You should use Sub-Document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
-|  | The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ (formerly N1QL) queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](n1ql-queries-with-sdk.md).) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document SQL++ (formerly N1QL) queries. (Sub-Document SQL++ queries are explained in the section [Querying with SQL++](n1ql-queries-with-sdk.md).)
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#path-syntax). Considering the document:
 
@@ -56,8 +66,8 @@ The paths `name`, `addresses.billing.country` and `purchases.complete[0]` are al
 
 ## [](#retrieving)Retrieving
 
-|  | The lookup\_in method expects an Iterable of Sub-Document Spec (see [API reference doc](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fcore.html?highlight=collection%20lookup%5Fin#couchbase.collection.Collection.lookup%5Fin)). The examples below show how either a list or a tuple might be used. If using a tuple with only a single Sub-Document Spec **be sure** to include the trailing comma. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `lookup_in` method expects an `Iterable` of Sub-Document `Spec` (see [API reference doc](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fcore.html?highlight=collection%20lookup%5Fin#couchbase.collection.Collection.lookup%5Fin)). The examples below show how either a list or a tuple might be used. If using a tuple with only a single Sub-Document `Spec` **be sure** to include the trailing comma.
 
 The _lookup\_in_ operations query the document for certain path(s); these path(s) are then returned. You have a choice of actually retrieving the document path using the _get_ Sub-Document operation, or simply querying the existence of the path using the _exists_ Sub-Document operation. The latter saves even more bandwidth by not retrieving the contents of the path if it is not needed.
 
@@ -92,8 +102,8 @@ print('Path exists: {}.'.format(result.exists(1)))
 
 ## [](#mutating)Mutating
 
-|  | The mutate\_in method expects an Iterable of Sub-Document Spec (see [API reference doc](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fcore.html?highlight=collection%20mutate%5Fin#couchbase.collection.Collection.mutate%5Fin)). The examples below show how either a list or a tuple might be used. If using a tuple with only a single Sub-Document Spec **be sure** to include the trailing comma. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The `mutate_in` method expects an `Iterable` of Sub-Document `Spec` (see [API reference doc](https://docs.couchbase.com/sdk-api/couchbase-python-client/couchbase%5Fapi/couchbase%5Fcore.html?highlight=collection%20mutate%5Fin#couchbase.collection.Collection.mutate%5Fin)). The examples below show how either a list or a tuple might be used. If using a tuple with only a single Sub-Document `Spec` **be sure** to include the trailing comma.
 
 Mutation operations modify one or more paths in the document. The simplest of these operations is _upsert_, which, similar to the fulldoc-level _upsert_, will either modify the value of an existing path or create it if it does not exist:
 
@@ -123,8 +133,8 @@ collection.mutate_in('customer123',(SD.remove('addresses.billing'),
                                     SD.replace('email','dougr96@hotmail.com')))
 ```
 
-|  | mutateIn is an _atomic_ operation. If any single ops fails, then the entire document is left unchanged. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `mutateIn` is an _atomic_ operation. If any single `ops` fails, then the entire document is left unchanged.
 
 ## [](#array-append-and-prepend)Array append and prepend
 
@@ -261,8 +271,8 @@ Note that there are several differences as compared to the full-document counter
 
 Multiple Sub-Document operations can be executed at once on the same document, allowing you to retrieve or modify several Sub-Documents at once. When multiple operations are submitted within the context of a single _lookup\_in_ or _mutate\_in_ command, the server will execute all the operations with the same version of the document.
 
-|  | Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Unlike _batched operations_ which is simply a way of sending multiple individual operations efficiently on the network, multiple Sub-Document operations are formed into a single command packet, which is then executed atomically on the server. You can submit up to 16 operations at a time.
 
 When submitting multiple _mutation_ operations within a single _mutate\_in_ command, those operations are considered to be part of a single transaction: if any of the mutation operations fail, the server will logically roll-back any other mutation operations performed within the _mutate\_in_, even if those commands would have been successful had another command not failed.
 
@@ -428,8 +438,8 @@ A path such as \`literal\[\]bracket\`.\`literal.dot\`. You can use double-backti
 
 If you need to combine both JSON _and_ path-syntax literals you can do so by escaping the component from any JSON string characters (e.g. a quote or backslash) and then encapsulating it in backticks (`` `path` ``).
 
-|  | Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
 ## [](#extended-attributes)Extended Attributes
 

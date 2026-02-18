@@ -1,4 +1,14 @@
+---
+title: Start Using the Python SDK
+description: Get up and running quickly, installing the Couchbase Python SDK,
+  and running our Hello World example.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/hello-world/start-using-sdk.html)
+
+# Start Using the Python SDK
 
 > Get up and running quickly, installing the Couchbase Python SDK, and running our Hello World example. 
 
@@ -250,8 +260,8 @@ Now, install the Python SDK:
 $ sudo -H python3 -m pip install couchbase
 ```
 
-|  | Starting with Python 3.11.5, macOS installers from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an ImportError: DLL load failed while importing pycbc\_core error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the PYCBC\_OPENSSL\_DIR environment variable to the path where the OpenSSL 1.1 libraries (libssl.1.1.dylib \` and \`libcrypto.1.1.dylib) can be found. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting with Python 3.11.5, macOS installers from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`` libssl.1.1.dylib ` and `libcrypto.1.1.dylib ``) can be found.
 
 Note, check that you have a [supported version of Python](#compatibility.adoc#python-version-compat). Suggestions for platforms with an outdated build chain, such as CentOS 7, can be found in our [Installation Guide](../project-docs/sdk-full-installation.md). Assuming you have an updated build environment, follow these steps.
 
@@ -291,8 +301,8 @@ $ python3 -m pip install couchbase
 
 Download and install Python from [python.org](https://www.python.org/downloads). Best practice is to use a Python virtual environment such as _venv_ or _pyenv_.
 
-|  | Checkout the [pyenv-win](https://github.com/pyenv-win/pyenv-win) project to manage multiple versions of Python. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Checkout the [pyenv-win](https://github.com/pyenv-win/pyenv-win) project to manage multiple versions of Python.
 
 The Python SDK has wheels available on Windows for [supported versions of Python](#compatibility.adoc#python-version-compat).
 
@@ -300,13 +310,13 @@ The Python SDK has wheels available on Windows for [supported versions of Python
 python -m pip install couchbase
 ```
 
-|  | Starting with Python 3.11.5, Windows builds from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an ImportError: DLL load failed while importing pycbc\_core error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the PYCBC\_OPENSSL\_DIR environment variable to the path where the OpenSSL 1.1 libraries (libssl-1\_1.dll and libcrypto-1\_1.dll) can be found. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting with Python 3.11.5, Windows builds from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`libssl-1_1.dll` and `libcrypto-1_1.dll`) can be found.
 
 The standard Python distributions for Windows include OpenSSL DLLs, as PIP and the inbuilt `ssl` module require it for correct operation. Prior to version 4.1.9 of the Python SDK, the binary wheels for Windows are built against OpenSSL 1.1\. Version 4.1.9 and beyond statically link against BoringSSL thus removing the OpenSSL requirement.
 
-|  | If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 If there are any problems, refer to the full [Installation page](../project-docs/sdk-full-installation.md).
 
@@ -321,15 +331,15 @@ The following code samples assume:
 * You have created your own bucket, or loaded the Travel Sample dataset. Note, the Travel Sample dataset is installed automatically when deploying a Capella free tier cluster.
 * A user is created with permissions to access the cluster (at least Application Access permissions). See the [Capella connection page](../../../cloud/get-started/run-first-queries.md#credentials) for more details.
 
-|  | Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Capella uses [Roles](../../../cloud/organizations/organization-projects-overview.md) to control user access to cluster resources. For the purposes of this guide, you can use the **Organization Owner** role automatically assigned to your account during installation of the Capella cluster. In a production scenario, we strongly recommend setting up users with more granular access roles as a best practice.
 
 * [Couchbase Server](#7.6@server:getting-started/do-a-quick-install.adoc) is installed and accessible locally.
 * You have created your own bucket, or loaded the Travel Sample dataset using the [Web interface](../../../server/7.6/manage/manage-settings/install-sample-buckets.md#install-sample-buckets-with-the-ui).
 * A user is created with permissions to access your cluster (at least Application Access permissions). See [Manage Users, Groups and Roles](../../../server/7.6/manage/manage-security/manage-users-and-roles.md) for more details.
 
-|  | Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/7.6/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server uses [Role Based Access Control (RBAC)](../../../server/7.6/learn/security/roles.md) to control access to resources. In this guide we suggest using the **Full Admin** role created during setup of your local Couchbase Server cluster. For production client code, you will want to use more appropriate, restrictive settings.
 
 ## [](#step-by-step)Step-by-Step
 
@@ -384,8 +394,8 @@ cluster.wait_until_ready(timedelta(seconds=5))
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings. SDK 4.1 introduces a `wan_development` Configuration Profile, which provides pre-configured timeout settings suitable for working in high latency environments. Basic usage is shown in the example above, but if you want to learn more see [Constrained Network Environments](../ref/client-settings.md#constrained-network-environments).
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ```python
 # Update this to your cluster
@@ -429,8 +439,15 @@ cb_coll = cb.scope("inventory").collection("airline")
 
 The code shows how you would use a named collection and scope.
 
-|  | For Local Couchbase Server only The default\_collection must be used when connecting to a 6.6 cluster or earlier. \# Get a reference to the default collection, required for older Couchbase server versions cb\_coll\_default = cb.default\_collection() |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For Local Couchbase Server only
+> 
+> The `default_collection` must be used when connecting to a 6.6 cluster or earlier.
+> 
+> ```python
+> # Get a reference to the default collection, required for older Couchbase server versions
+> cb_coll_default = cb.default_collection()
+> ```
 
 Let’s create a dictionary object in our application that we can add to our `travel-sample` bucket that conforms to the structure of a document of type `airline`.
 

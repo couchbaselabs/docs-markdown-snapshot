@@ -1,9 +1,20 @@
+---
+title: Docker (Local)
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/docker.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/installation/docker.html)
+
+# Docker (Local)
 
 ## [](#prerequisites)Prerequisites
 
-|  | Windows Users If you are developing on Windows, we recommend that you use a Windows 10 machine.Also, note that if you choose the Manual or Docker installation mode, you should also have **administrative privileges on the Windows box** so you can authorize the installation and running of the required executables. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Windows Users
+> 
+> If you are developing on Windows, we recommend that you use a Windows 10 machine.  
+> Also, note that if you choose the Manual or Docker installation mode, you should also have **administrative privileges on the Windows box** so you can authorize the installation and running of the required executables.
 
 * Docker: downloadable from [docker.com](https://www.docker.com/get-docker). Community edition would suffice.
 
@@ -69,8 +80,8 @@ Note that it can take a few minutes for the travel\_sample data set to load.
 
 ## [](#sgw-local-dock)Sync Gateway
 
-|  | If you are running the Sync Gateway in a docker container, please make sure that you have the Couchbase Server running in a container as well. If not, please follow the instructions in [Couchbase Server (above)](#svr-local-dock) to install the server container. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are running the Sync Gateway in a docker container, please make sure that you have the Couchbase Server running in a container as well. If not, please follow the instructions in [Couchbase Server (above)](#svr-local-dock) to install the server container.
 
 * Create a local docker network named "workshop" if one does not exist already. This should not be the case if you had followed the instructions to deploy Couchbase server using docker Open a terminal window and run the following command.  
 ```bash  
@@ -121,8 +132,8 @@ Try it out
 
 ## [](#python-travel-sample-web-backend)Python Travel Sample Web Backend
 
-|  | If you are running the Web App in a docker container, please make sure that you have the Couchbase Server and Sync Gateway running in the same docker network as well. If not, please follow instructions in the [Couchbase Server](#svr-local-dock) section to install the server container using docker and instructions in the [Sync Gateway](#sgw-local-dock) section to install sync gateway container. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you are running the Web App in a docker container, please make sure that you have the Couchbase Server and Sync Gateway running in the same docker network as well. If not, please follow instructions in the [Couchbase Server](#svr-local-dock) section to install the server container using docker and instructions in the [Sync Gateway](#sgw-local-dock) section to install sync gateway container.
 
 * Create a local docker network named "workshop" if one does not exist already. Open a terminal window and run the following command.  
 ```bash  

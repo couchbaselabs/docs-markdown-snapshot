@@ -1,4 +1,14 @@
+---
+title: Backup Service
+description: The Backup Service schedules full and incremental data backups and
+  merges of previous  data-backups.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/backup-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/services-and-indexes/services/backup-service.html)
+
+# Backup Service
 
 > The Backup Service schedules full and incremental data backups and merges of previous data-backups. 
 
@@ -49,8 +59,8 @@ A repository is a location where the Backup Service can store backup data. You a
 
 Once you define the repository, the Backup Service performs backups and optionally merges of the data in the bucket or buckets on the schedule in the plan.
 
-|  | The cbbackupmgr tool takes a lock on the repository to which it’s backing up data. This lock can cause Backup Service tasks to fail if they attempt to back up data to the repository. If you see backup tasks failing due to lock issues, a common cause is that a cbbackupmgr task (either one started directory or by the Backup Service) is using the repository. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `cbbackupmgr` tool takes a lock on the repository to which it’s backing up data. This lock can cause Backup Service tasks to fail if they attempt to back up data to the repository. If you see backup tasks failing due to lock issues, a common cause is that a `cbbackupmgr` task (either one started directory or by the Backup Service) is using the repository.
 
 ## [](#inspecting-and-restoring)Inspecting and Restoring
 

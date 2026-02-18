@@ -1,4 +1,12 @@
+---
+title: RBAC
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/2.9/concept-docs/rbac.html)
+
+# RBAC
 
 > RBAC restrict resources on a Couchbase cluster to an identified user, allocated by role. 
 
@@ -10,8 +18,8 @@ Each user who attempts resource-access is identified by means of the _credential
 
 Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users. The SDK provides APIs to support these activities.
 
-|  | Introductory examples in the SDK documentation use the _Administrator_ user to ensure that developers can quickly get up and running; this _should not be used in production_. Elsewhere we use a general "user" which represents whichever permission levels are appropriate to your application. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Introductory examples in the SDK documentation use the _Administrator_ user to ensure that developers can quickly get up and running; this _should not be used in production_. Elsewhere we use a general "user" which represents whichever permission levels are appropriate to your application.
 
 ## [](#further-information)Further Information
 

@@ -1,4 +1,13 @@
+---
+title: Nodes and Clusters API
+description: The REST API permits management of nodes and clusters.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-cluster-intro.html)
+
+# Nodes and Clusters API
 
 > The REST API permits management of nodes and clusters. 
 

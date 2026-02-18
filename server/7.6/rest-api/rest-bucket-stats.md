@@ -1,11 +1,20 @@
+---
+title: Getting Bucket Statistics
+description: See the IMPORTANT note.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-bucket-stats.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-bucket-stats.html)
+
+# Getting Bucket Statistics
 
 Deprecated
 
 > See the IMPORTANT note. 
 
-|  | As of Couchbase Server 8.0, the REST API endpoint GET /pools/default/buckets/<bucket-name>/stats is deprecated. For retrieving bucket statistics details, use [Getting a Single Statistic](rest-statistics-single.md) or [Getting Multiple Statistics](rest-statistics-multiple.md) instead. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As of Couchbase Server 8.0, the REST API endpoint `GET /pools/default/buckets/<bucket-name>/stats` is deprecated. For retrieving bucket statistics details, use [Getting a Single Statistic](rest-statistics-single.md) or [Getting Multiple Statistics](rest-statistics-multiple.md) instead.
 
 ## [](#http-method-and-uri)HTTP method and URI
 
@@ -32,8 +41,8 @@ The `zoom` parameter provides the following granularity:
 * `zoom=month` \- Every thirty (30) minutes for the last thirty-one (31) days (1488 samples).
 * `zoom=year` \- Every six (6) hours for the last year (1464 samples).
 
-|  | Due to sample frequency, the number of samples returned are plus or minus one (+-1). |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Due to sample frequency, the number of samples returned are plus or minus one (+-1).
 
 To limit the results when using the `zoom` parameter, post-process the results. For example, if you need samples from the last five (5) minutes, set the `zoom` parameter to one hour and retrieve the last 75 entries from the JSON list.
 

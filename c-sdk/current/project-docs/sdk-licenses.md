@@ -1,4 +1,14 @@
+---
+title: SDK License
+description: Couchbase SDKs' source code is licensed under the Apache Licence
+  2.0. Dependencies carry their own licenses.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/sdk-licenses.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/project-docs/sdk-licenses.html)
+
+# SDK License
 
 > Couchbase SDKs' source code is licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
 

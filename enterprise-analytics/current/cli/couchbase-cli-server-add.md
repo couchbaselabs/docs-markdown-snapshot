@@ -1,4 +1,13 @@
+---
+title: server-add
+description: Adds a server to the cluster
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-server-add.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-server-add.html)
+
+# server-add
 
 Adds a server to the cluster
 
@@ -14,8 +23,8 @@ _couchbase-cli server-add_ [--cluster <url>] [--username <username>] [--password
 
 The server-add subcommand is used to add one or more servers to a cluster. Before adding a server it is important to decide which services the server will be running and whether or not the server should be a part of a specific group. Keep in mind that if the index service is being added on one of the servers and the cluster is not currently running the index service that you also need to set the index storage mode. This can be done with the --index-storage-setting option.
 
-|  | The server to be added can not be specified using the http scheme since, in 7.1+, addition must occur over a secure connection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The server to be added can not be specified using the http scheme since, in 7.1+, addition must occur over a secure connection.
 
 ## [](#options)OPTIONS
 
@@ -126,8 +135,8 @@ $ couchbase-cli server-add -c 192.168.1.5:8091 --username Administrator \
  --server-add-username Administrator --server-add-password password
  --services data,index,query
 
-|  | In the example above we set the username and password of the server being added to the same value as the username and password of the servers already in the cluster. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the example above we set the username and password of the server being added to the same value as the username and password of the servers already in the cluster.
 
 This is done if the server being added has not already been initialized. If the server being added has been initialized then you will need to specify an appropriate username and password for the server being added.
 

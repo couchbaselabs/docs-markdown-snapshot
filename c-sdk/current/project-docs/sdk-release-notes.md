@@ -1,4 +1,14 @@
+---
+title: SDK Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase C Client, libcouchbase (LCB).
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase C Client, libcouchbase (LCB). 
 
@@ -204,8 +214,8 @@ Windows binary packages can be found as downloads for each version listed below.
 
 Be sure to select the proper package for the compiler and architecture your application is using. Binaries are linked from the release notes page for each libcouchbase release — we strongly recommend [downloading the latest release](#latest-release).
 
-|  | If there are no binaries available for your Visual Studio version, then using a binary from any other Visual Studio version is _likely_ to work. Most of the issues related to mixing Visual Studio binary versions involve changing and incompatible C APIs or incompatible C Runtime (CRT) objects and functions. Since the Couchbase C SDK does not expose a C API, and since it does not directly expose any CRT functionality, it should be safe for use so long as your application can link to the library at compile-time. The windows runtime linker will ensure that each binary is using the appropriate version of the Visual C Runtime (MSVCRT.DLL). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there are no binaries available for your Visual Studio version, then using a binary from any other Visual Studio version is _likely_ to work. Most of the issues related to mixing Visual Studio binary versions involve changing and incompatible C APIs or incompatible C Runtime (CRT) objects and functions. Since the Couchbase C SDK does not expose a C API, and since it does not directly expose any CRT functionality, it should be safe for use so long as your application can link to the library at compile-time. The windows runtime linker will ensure that each binary is using the appropriate version of the Visual C Runtime (`MSVCRT.DLL`).
 
 If for some reason you cannot use any of the prebuilt Windows binaries, follow the instructions in [_installation from source_ (above)](#installation-from-source) to build on Windows.
 
@@ -873,8 +883,8 @@ Version 3.3.1 is the second release of the 3.3 series.
 
 [API Reference](https://docs.couchbase.com/sdk-api/couchbase-c-client-3.3.1/index.html)
 
-|  | CentOS 7 RPMs depend on OpenSSL 1.1, which is available in EPEL. Make sure that the epel-release package is installed in the system (yum install epel-release). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> CentOS 7 RPMs depend on OpenSSL 1.1, which is available in EPEL. Make sure that the `epel-release` package is installed in the system (`yum install epel-release`).
 
 #### [](#bug-fixes-2)Bug Fixes
 

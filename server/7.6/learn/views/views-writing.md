@@ -1,4 +1,15 @@
+---
+title: Writing MapReduce Views
+description: During the view creation process, the output structure, field
+  order, content, and any summary or grouping information desired in the view is
+  defined.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-writing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/views/views-writing.html)
+
+# Writing MapReduce Views
 
 > During the view creation process, the output structure, field order, content, and any summary or grouping information desired in the view is defined. 
 

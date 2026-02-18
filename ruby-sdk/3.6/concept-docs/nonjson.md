@@ -1,4 +1,13 @@
+---
+title: Non-JSON Documents
+description: Binary formats &amp; Transcoders.
+editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/concept-docs/pages/nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ruby-sdk/3.6/concept-docs/nonjson.html)
+
+# Non-JSON Documents
 
 > Binary formats & Transcoders. 
 

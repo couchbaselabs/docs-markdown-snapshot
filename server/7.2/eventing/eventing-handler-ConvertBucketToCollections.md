@@ -1,4 +1,13 @@
+---
+title: "Function: Convert Bucket to Collections"
+description: Demonstrate Converting "upgraded" Buckets to Collections.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-ConvertBucketToCollections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-handler-ConvertBucketToCollections.html)
+
+# Function: Convert Bucket to Collections
 
 **Goal**: Demonstrate Converting "upgraded" Buckets to Collections.
 
@@ -23,8 +32,8 @@
   * 250M small documents: takes 44 minutes to reorganize a bucket with 80 types into a new bucket with 80 collections.
   * 1B small documents: takes 3 hours to reorganize a bucket with 80 types into a new bucket with 80 collections.
 
-|  | If you alter this function and attempt to run this Eventing function in a single bucket you will have to disable recursion checks. Refer to [Disabling infinite recursion checks](troubleshooting-best-practices.md#recursionchecks). In this case, always test your Eventing Function on a non-production system to ensure you do not mistakenly create an infinite recursion loop. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you alter this function and attempt to run this Eventing function in a single bucket you will have to disable recursion checks. Refer to [Disabling infinite recursion checks](troubleshooting-best-practices.md#recursionchecks). In this case, always test your Eventing Function on a non-production system to ensure you do not mistakenly create an infinite recursion loop.
 
 * ConvertBucketToCollections
 * Input Data/Mutation

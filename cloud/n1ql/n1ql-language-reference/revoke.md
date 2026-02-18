@@ -1,4 +1,14 @@
+---
+title: REVOKE
+description: The REVOKE statement allows revoking of any RBAC roles from
+  specific users or groups.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/revoke.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/revoke.html)
+
+# REVOKE
 
 > The REVOKE statement allows revoking of any RBAC roles from specific users or groups. 
 
@@ -17,8 +27,8 @@ Roles which are defined for the context of the specified keyspace only. Specify 
 For example: `` data_reader ON `travel-sample` ``  
 or `` query_select ON `travel-sample`.`inventory`.`airline` ``
 
-|  | To run the REVOKE statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To run the REVOKE statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role).
 
 ## [](#syntax)Syntax
 

@@ -1,4 +1,13 @@
+---
+title: Access Control Model
+description: An introduction to access control in Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/access-control-model.html)
+
+# Access Control Model
 
 > An introduction to access control in Sync Gateway  
 
@@ -74,8 +83,11 @@ By default, Couchbase Lite gets all the channels to which the configured user ac
 
 ## [](#lbl-access-revocation)Channel Access Revocation
 
-|  | 3.0 Breaking ChangeWhenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> 3.0 Breaking Change
+> 
+> Whenever a user loses access to a channel (or channels) all document in the channel(s) are auto-purged from local Couchbase Lite databases.  
+> In _Sync Gateway_ 2.x these documents remain in the local database on channel access loss.
 
 Users may lose access to documents for many reasons, including:
 

@@ -1,4 +1,13 @@
+---
+title: Fleece C API
+description: Introducing the key concepts of the Fleece C API
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/c_fleece.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/c_fleece.html)
+
+# Fleece C API
 
 > Description — _Introducing the key concepts of the Fleece C API_  
 

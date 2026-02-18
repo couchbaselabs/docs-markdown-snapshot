@@ -1,4 +1,13 @@
+---
+title: Documents
+description: Couchbase Lite concepts -- Data model -- Documents
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/document.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/document.html)
+
+# Documents
 
 > Description — _Couchbase Lite concepts — Data model — Documents_  
 > Related Content — [Databases](database.md) | [Blobs](blob.md) | [Indexing](indexing.md) |
@@ -13,8 +22,8 @@ Each document has an ID or unique identifier. This ID is similar to a primary ke
 
 You can specify the ID programmatically. If you omit it, it will be automatically generated as a UUID.
 
-|  | Couchbase documents are assigned to a [Collection](database.md#database-concepts). The ID of a document must be unique within the Collection it is written to. You cannot change it after you have written the document. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase documents are assigned to a [Collection](database.md#database-concepts). The ID of a document must be unique within the Collection it is written to. You cannot change it after you have written the document.
 
 The document also has a value which contains the actual application data. This value is stored as a dictionary of key-value (k-v) pairs. The values can be made up of several different [Data Types](#data-types) such as numbers, strings, arrays, and nested objects.
 
@@ -124,11 +133,11 @@ await coll.save(doc);
 
 Learn more about [Using Dictionaries](#using-dictionaries) and [Using Arrays](#using-arrays).
 
-|  | Couchbase recommend using a type attribute to define each logical document type. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase recommend using a `type` attribute to define each logical document type.
 
-|  | For information on closing databases, see [Close Database](database.md#close-database). |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For information on closing databases, see [Close Database](database.md#close-database).
 
 ## [](#working-with-data)Working with Data
 
@@ -157,8 +166,10 @@ If you try to access a property which doesn’t exist in the document, JavaScrip
 
 Dates in Couchbase Lite JavaScript are stored as ISO-8601 formatted strings. You can easily convert between JavaScript Date objects and these string representations.
 
-|  | Date precision JavaScript Date objects provide millisecond precision. If you require greater precision, consider storing timestamps as numbers representing microseconds or nanoseconds. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Date precision
+> 
+> JavaScript Date objects provide millisecond precision. If you require greater precision, consider storing timestamps as numbers representing microseconds or nanoseconds.
 
 Example 1\. Date Handling
 
@@ -342,8 +353,8 @@ if (docToUpdate) {
 }
 ```
 
-|  | Any user change to the value of reserved keys (\_id, \_rev or \_deleted) will be detected when a document is saved and will result in an error — see also [Document Constraints](#lbl-doc-constraints). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any user change to the value of reserved keys (`_id`, `_rev` or `_deleted`) will be detected when a document is saved and will result in an error — see also [Document Constraints](#lbl-doc-constraints).
 
 ## [](#document-delete)Deleting Documents
 
@@ -486,8 +497,8 @@ You can also set expiration for a whole Collection.
 
 Couchbase Lite APIs do not explicitly disallow the use of attributes with the underscore prefix at the top level of document. This is to facilitate the creation of documents for use either in _local only_ mode where documents are not synced, or when used exclusively in peer-to-peer sync.
 
-|  | "\_id", "\_rev" and "\_sequence" are reserved keywords and must not be used as top-level attributes — see [Example 10](#res-keys). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> "\_id", "\_rev" and "\_sequence" are reserved keywords and must not be used as top-level attributes — see [Example 10](#res-keys).
 
 Users are cautioned that any attempt to sync such documents to Sync Gateway will result in an error. To be future proof, you are advised to avoid creating such documents. Use of these attributes for user-level data may result in undefined system behavior.
 

@@ -1,4 +1,13 @@
+---
+title: ssl-manage
+description: Manage SSL certificates
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-ssl-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-ssl-manage.html)
+
+# ssl-manage
 
 Manage SSL certificates
 

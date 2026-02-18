@@ -1,4 +1,12 @@
+---
+title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/on-prem-to-capella.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/migrating/on-prem-to-capella.html)
+
+# Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 
 If you are an existing user of Couchbase Mobile, have set up a Couchbase Server cluster, and have attached Sync Gateway, then you may wish to migrate your data and users from your existing self-managed servers to Couchbase Capella. Once the data and users are migrated, you will have to configure the App Services and set it up for remote sync.
 
@@ -18,8 +26,12 @@ If you are an existing user of Couchbase Mobile, have set up a Couchbase Server 
 
 [Set up an XDCR one way data replication](#server:manage:manage-xdcr:create-xdcr-replication.adoc) from the self-managed cluster bucket to the Capella bucket.
 
-|  | If you are replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode then you MUST SETUP the following XDCR filter NOT REGEXP\_CONTAINS(META().id, "^\_sync:dbconfig:\|\_sync:registry") |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you are replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode then you MUST SETUP the following XDCR filter
+> 
+> ```sqlpp
+> NOT REGEXP_CONTAINS(META().id, "^_sync:dbconfig:|_sync:registry")
+> ```
 
 ### [](#step-3-wait-for-replication-to-complete)Step 3\. Wait for replication to complete
 

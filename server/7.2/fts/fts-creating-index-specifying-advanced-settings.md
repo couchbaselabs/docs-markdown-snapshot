@@ -1,4 +1,11 @@
+---
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-specifying-advanced-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-index-specifying-advanced-settings.html)
+
+# undefined
 
 ## [](#specifying-advanced-settings)Specifying Advanced Settings
 

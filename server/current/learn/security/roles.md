@@ -1,4 +1,13 @@
+---
+title: Roles
+description: Roles grant users access to one or more resources.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/security/roles.html)
+
+# Roles
 
 > Roles grant users access to one or more resources. Administrators assign roles to users to enable them to perform the tasks they need to carry out when using Couchbase Server. 
 
@@ -24,8 +33,8 @@ Users with any of the administrator roles can log into Couchbase Server Web Cons
 
 The administrative roles grant their users the ability to carry out specific tasks. For example, a user with the [Cluster Admin](#cluster-admin) role can manage all cluster features except for security. Users with the [Read-Only Admin](#read-only-admin) role can log into the Couchbase Server Web Console to read cluster settings, statistics, and backup plans, but not change them. The Bucket Admin role allows management only of one or more buckets. See [Administrative Roles](#admin-roles) for details.
 
-|  | The user interface of the Couchbase Web Console changes based on the role the user has. For example, Couchbase Server only displays the the entire **Security** page to a user with the Full Admin role. Users with either the Local User Admin or the External User Admin roles can only see the **Users & Groups** tab on this screen. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The user interface of the Couchbase Web Console changes based on the role the user has. For example, Couchbase Server only displays the the entire **Security** page to a user with the Full Admin role. Users with either the Local User Admin or the External User Admin roles can only see the **Users & Groups** tab on this screen.
 
 Applications
 
@@ -39,8 +48,8 @@ Developers require more privileges for greater access to data and to manage reso
 
 The following sections describe the roles defined by Couchbase Server. The list is broken into the same categories that appear within the Couchbase Server Web Console’s **Edit User** dialog. Each description has a table listing what resources a user with the role can access and any limitations on their access. If a resource does not appear in this table, the role does not grant the user any privileges for it.
 
-|  | The majority of roles are only available in Couchbase Server Enterprise Edition. The list indicates when a role is available in Couchbase Server Community Edition. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The majority of roles are only available in Couchbase Server Enterprise Edition. The list indicates when a role is available in Couchbase Server Community Edition.
 
 ## [](#admin-roles)Administrative Roles
 
@@ -60,8 +69,8 @@ The role lets the user log into the Couchbase Server Web Console.
 
 This role is also available in Couchbase Server Community Edition.
 
-|  | Prior to Couchbase Server 8.0, this role allowed the user to read security information including listing users and groups. In 8.0, these permissions were split off into the [Read-Only Security Admin](#ro-security-admin) role. The Read-Only Admin role now does not allow access to any of the security information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Prior to Couchbase Server 8.0, this role allowed the user to read security information including listing users and groups. In 8.0, these permissions were split off into the [Read-Only Security Admin](#ro-security-admin) role. The Read-Only Admin role now does not allow access to any of the security information.
 
 \+ When you upgrade Couchbase Server from a version earlier than 8.0 to 8.0 or later, the upgrade process grants any user with this role the [Read-Only Security Admin](#ro-security-admin) role as well. Granting this role lets the user retain the privileges they had in prior versions.
 
@@ -110,8 +119,8 @@ The Read-Only Security Admin role lets the user view all security settings excep
 
 This role lets the user log into the Couchbase Server Web Console.
 
-|  | This role is new in Couchbase Server 8.0\. It was created to separate security privileges from the Read-Only Admin role. The upgrade process from prior versions to Couchbase Server 8.0 or later grants this role to users that had the Read-Only Admin. This grant ensures the user retains the privileges they had in prior versions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This role is new in Couchbase Server 8.0\. It was created to separate security privileges from the Read-Only Admin role. The upgrade process from prior versions to Couchbase Server 8.0 or later grants this role to users that had the Read-Only Admin. This grant ensures the user retains the privileges they had in prior versions.
 
 | Role: Read-Only Security Admin (ro\_security\_admin) |                                                                                 |                                                                                      |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -133,13 +142,13 @@ This role lets the user log into the Couchbase Server Web Console.
 
 The Local User Admin role lets a user manage users defined in the [local authentication domain](authentication-domains.md#local-domain). It also grants the ability to read all cluster statistics such as the settings, logs, and buckets. It does not grant the ability to read data.
 
-|  | While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it’s intentional behavior. This role is intended to manage all non-administrator roles, including those that can read or write data. You can address any possible privilege escalation concerns by auditing the actions of users with this role to see if they create users to get around the data access limitations. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While this role does not allow the user to read or write data, they can create users that can read and write data. This could be considered a privilege escalation, but it’s intentional behavior. This role is intended to manage all non-administrator roles, including those that can read or write data. You can address any possible privilege escalation concerns by auditing the actions of users with this role to see if they create users to get around the data access limitations.
 
 This role allows users to edit local users, but they cannot grant these users the Full Admin, Read-Only Admin, Local User Admin, or External User Admin roles. They also cannot edit the accounts for any user with those roles (including their own account).
 
-|  | This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the Local User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This role replaced the Local User Security Admin role available in Couchbase Server prior to version 8.0\. The Local User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the Local User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions.
 
 This role lets users log into the Couchbase Server Web Console.
 
@@ -163,8 +172,8 @@ This role lets users log into the Couchbase Server Web Console.
 
 The External User Admin role lets users manage users defined in the [external authentication domain](authentication-domains.md#external%5Fdomain). It also lets the user manage groups and read all cluster statistics. Users with this role cannot grant external users or groups Full Admin, Read-Only Admin, Security Admin, or Local or External User Admin roles. They also cannot edit users with those roles.
 
-|  | This role replaced the External User Security Admin role available in Couchbase Server prior to version 8.0\. The External User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the External User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This role replaced the External User Security Admin role available in Couchbase Server prior to version 8.0\. The External User Security Admin role had additional administration privileges that were split off into the [Security Admin](#security-admin) role. When upgrading to 8.0 or restoring a backup from a pre-8.0 version to Couchbase Server 8.0 or later, users with the External User Security Admin role are granted this role and the [Security Admin](#security-admin) role. This conversion ensures the user retains the privileges they had in prior versions.
 
 This role lets the user log into the Couchbase Server Web Console.
 
@@ -233,8 +242,8 @@ The role lets the user log into the Couchbase Server Web Console.
 
 The Backup Full Admin role lets the user administer backup-related tasks as well as other aspects of Couchbase Server.
 
-|  | This role does not grant the ability to back up or restore users. For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This role does not grant the ability to back up or restore users. For a user to be able to back up both data and users, you must assign them the [Local User Admin](#local-user-security-admin) and the [External User Admin](#external-user-security-admin) roles in addition to this role.
 
 This role lets the user log into Couchbase Server Web Console.
 
@@ -331,8 +340,8 @@ This role does not let the user log into Couchbase Server Web Console.
 
 The Application Access role lets a user read and write data in one or more buckets. This role does not grant the ability to query data via SQL++—the user can only access data via keys. When granting this role, you choose the buckets where the user can read and write data. As its name implies, this role is intended for use by applications instead of interactive users.
 
-|  | This role is deprecated. Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets. To transition away from bucket passwords, the upgrade process to Couchbase Server 5.0 created new users with the bucket’s name and password and assigned this role. Do not grant this role to users. Instead, use one of the query or data roles. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This role is deprecated. Couchbase Server 5.0 added this role to replace an old method of password authentication to access buckets. To transition away from bucket passwords, the upgrade process to Couchbase Server 5.0 created new users with the bucket’s name and password and assigned this role. Do not grant this role to users. Instead, use one of the query or data roles.
 
 Versions of Couchbase Server prior to 5.5 referred to this role as Bucket Full Access.
 
@@ -387,8 +396,8 @@ This role does not let the user log into Couchbase Server Web Console.
 
 The Data Monitor role lets the user read statistics for a bucket, scope, or collection. When granting the role, you decide which statistics the user can read. Use this role for applications that need to read statistics.
 
-|  | In versions of Couchbase Server prior to 5.5, this role was called Data Monitoring. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> In versions of Couchbase Server prior to 5.5, this role was called Data Monitoring.
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -401,8 +410,8 @@ This role does not let the user log into Couchbase Server Web Console.
 
 The following roles grant users privileges with Views. Also see the related administrator role [Views Admin](#views-admin).
 
-|  | Views were deprecated in Couchbase Server 7.0\. See [Views Reference](../views/views-intro.md) for more information. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Views were deprecated in Couchbase Server 7.0\. See [Views Reference](../views/views-intro.md) for more information.
 
 ### [](#views-reader)Views Reader
 
@@ -424,8 +433,8 @@ These roles grant users the ability to perform queries and work with indexes.
 
 The Query CURL Access role lets the user call the SQL++ curl function in their queries.
 
-|  | The Query CURL Access role allows users to run GET and POST requests to any system on the network Couchbase Server uses for client connections. If your cluster is not configured to use a private network for internal communication, they also have access to the entire cluster. They can interact with any system on this network. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Query CURL Access role allows users to run GET and POST requests to any system on the network Couchbase Server uses for client connections. If your cluster is not configured to use a private network for internal communication, they also have access to the entire cluster. They can interact with any system on this network.
 
 This role only grants the user the ability to read data returned by the SQL++ curl function. Usually, you assign additional roles to the user to allow them to read and write data.
 
@@ -555,8 +564,8 @@ This role lets the user log into Couchbase Server Web Console.
 
 The Query Use Sequential Scan role allows users' queries to perform a sequential scan of a keyspace. The query planner only uses a sequential scan when no suitable index exists for the keyspace. Only queries by users with this role can use a sequential scan to query data because scanning a large unindexed keyspace can be expensive. See [Sequential Scans](../../indexes/query-without-index.md#sequential-scans) for more information.
 
-|  | Administrator roles automatically have permission to perform sequential scans when necessary. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Administrator roles automatically have permission to perform sequential scans when necessary.
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -705,8 +714,8 @@ The following roles give users privileges to the [Search Service](../services-an
 
 The Search Admin role lets the user manage the Search Service in one or more buckets. When you grant this role, you choose the buckets where the user can manage search.
 
-|  | In versions of Couchbase Server earlier than 5.5, this role was named FTS Admin. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> In versions of Couchbase Server earlier than 5.5, this role was named FTS Admin.
 
 This role lets the user log into Couchbase Server Web Console.
 
@@ -723,8 +732,8 @@ This role lets the user log into Couchbase Server Web Console.
 
 The Search Reader role lets the user execute searches using Full-Text Search indexes in one or more buckets. When you grant this role, you choose the buckets in which the user can execute searches.
 
-|  | In versions of Couchbase Server prior to 5.5, this role was referred to as FTS Searcher. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In versions of Couchbase Server prior to 5.5, this role was referred to as FTS Searcher.
 
 This role lets the user log into Couchbase Server Web Console.
 
@@ -801,8 +810,8 @@ These roles control a user’s access to the Eventing Service. Also, see [Eventi
 
 The Eventing Manage Scope Functions role lets the user manage the eventing functions in one or more scopes. When you grant this role, you choose the scopes where the user can manage eventing functions.
 
-|  | In addition to this role, the user must have the [Data DCP Reader](#data-dcp-reader) on the collections they want their functions to listen to. They must also have read and write permissions on one or more collections to store the function’s event data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In addition to this role, the user must have the [Data DCP Reader](#data-dcp-reader) on the collections they want their functions to listen to. They must also have read and write permissions on one or more collections to store the function’s event data.
 
 This role lets the user log into Couchbase Server Web Console.
 
@@ -843,8 +852,8 @@ This role lets the user log into Couchbase Server Web Console.
 
 The XDCR Inbound role lets the user create inbound XDCR streams for one or more buckets. When granting this role, you choose the buckets where the user can create inbound XDCR connections. Assign this role to the user that you’ll specify when creating an XDCR reference. See [Create a Reference](../../manage/manage-xdcr/create-xdcr-reference.md) for more information.
 
-|  | Versions of Couchbase Server prior to 5.5 called this role Replication Target. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> Versions of Couchbase Server prior to 5.5 called this role Replication Target.
 
 This role does not let the user log into Couchbase Server Web Console.
 
@@ -861,8 +870,8 @@ The following role gives users the ability to backup and restore data. Also see 
 
 The Data Backup & Restore lets users back up and restore data in one or more buckets. When you grant this role, you choose the buckets the user can back up. This role is not intended for interactive users. Grant this role to users for applications that need to back up and restore data.
 
-|  | This role does not let the user access some important cluster-level data, so it cannot fully backup the cluster. See [Bucket Level](../../backup-restore/cbbackupmgr-backup.md#bucket-level) in the [cbbackupmgr backup](../../backup-restore/cbbackupmgr-backup.md) documentation for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This role does not let the user access some important cluster-level data, so it cannot fully backup the cluster. See [Bucket Level](../../backup-restore/cbbackupmgr-backup.md#bucket-level) in the [cbbackupmgr backup](../../backup-restore/cbbackupmgr-backup.md) documentation for details.
 
 This role does not let the user log into Couchbase Server Web Console.
 

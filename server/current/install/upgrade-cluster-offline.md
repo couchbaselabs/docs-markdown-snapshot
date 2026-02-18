@@ -1,4 +1,14 @@
+---
+title: Upgrade an Offline Cluster
+description: A multi-node cluster can most simply be upgraded when entirely
+  offline; meaning that it is not serving data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-cluster-offline.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/upgrade-cluster-offline.html)
+
+# Upgrade an Offline Cluster
 
 > A multi-node cluster can most simply be upgraded when entirely offline; meaning that it is not serving data. 
 

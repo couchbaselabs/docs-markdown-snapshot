@@ -1,4 +1,14 @@
+---
+title: Getting Cluster Tasks
+description: You can list tasks running on the cluster using the <code>GET
+  /pools/default/tasks</code> HTTP method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-get-cluster-tasks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-get-cluster-tasks.html)
+
+# Getting Cluster Tasks
 
 > You can list tasks running on the cluster using the `GET /pools/default/tasks` HTTP method and URI. In addition, a report on the last-completed rebalance can be returned with `GET /logs/rebalanceReport?reportID=REPORT_ID`. 
 
@@ -108,8 +118,8 @@ The output of this call returns the active sample bucket task which is loading t
 Unresolved include directive in modules/reference/pages/rest-get-cluster-tasks.adoc - include::rest-api:example$sample-bucket-tasks.json[]
 ```
 
-|  | The task for loading the travel-sample does not appear in the previous output because it is not currently running. Only one sample bucket task runs at a time. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The task for loading the `travel-sample` does not appear in the previous output because it is not currently running. Only one sample bucket task runs at a time.
 
 To monitor a sample bucket task specifically, you can call `/pools/default/tasks` with the `taskId` found in either the response from `/sampleBuckets/install` or the list of tasks from `/pools/default/tasks`. The following example demonstrates getting the status of the `travel-sample` bucket task:
 

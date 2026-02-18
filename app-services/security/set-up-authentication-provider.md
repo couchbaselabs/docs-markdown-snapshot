@@ -1,4 +1,14 @@
+---
+title: Set Up an Authentication Provider
+description: Capella supports a number of authentication providers, which can be
+  configured from the Capella UI.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/set-up-authentication-provider.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/security/set-up-authentication-provider.html)
+
+# Set Up an Authentication Provider
 
 > Capella supports a number of authentication providers, which can be configured from the Capella UI. 
 
@@ -16,15 +26,15 @@ Figure 1\. Authentication Provider set-up screen
 
 The authentication credentials are passed through the HTTPS headers of the calling client.
 
-|  | Your [Couchbase Lite SDK](../app-endpoints/connect-apps-to-endpoint.md) will handle the details of this for you. It will pass an HTTPS header like Authorization: Basic c3luY19nYXRld2F5OnBhc3N3b3Jk. This random looking string is simply a Base64 encoded representation of the Username and Password that you have passed in. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Your [Couchbase Lite SDK](../app-endpoints/connect-apps-to-endpoint.md) will handle the details of this for you. It will pass an HTTPS header like `Authorization: Basic c3luY19nYXRld2F5OnBhc3N3b3Jk`. This random looking string is simply a Base64 encoded representation of the Username and Password that you have passed in.
 
 ## [](#anonymous-authentication)Anonymous Authentication
 
 Allowing anonymous authentication is useful for testing as it allows access to the endpoint without the need for authentication. It is also useful for endpoints that might synchronize static information such as information pages which anyone is allowed to access.
 
-|  | It is recommended that either _basic authentication_ or _OIDC_ is used for production environments. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is recommended that either _basic authentication_ or _OIDC_ is used for production environments.
 
 ## [](#openid-connect-oidc)OpenID Connect (OIDC)
 
@@ -78,8 +88,8 @@ You can add multiple OIDC providers in Capella App Services:
 2. Click the **OpenID Connect** checkbox to enable OIDC.
 3. Click the **Add OIDC Provider** button.
 
-|  | After enabling OIDC authentication, you must create a user-defined OIDC provider. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> After enabling OIDC authentication, you must create a user-defined OIDC provider.
 
 Once you have configured an OIDC provider, the **Add OIDC Provider** button is replaced by the **OIDC Providers List** table.
 
@@ -87,8 +97,8 @@ Once you have configured an OIDC provider, the **Add OIDC Provider** button is r
 
 When multiple OIDC providers are configured, the first OIDC provider is automatically designated as the default provider. After you enable OIDC, all client requests will use the default OIDC provider, unless the OIDC provider for the request is explicitly specified. You can then choose which among them is the default provider via selecting the relevant radio button from the **Default OIDC Provider** column in the **OIDC Providers List** table.
 
-|  | Using non-default OIDC providers in Capella App Services requires requests to /db/\_oidc/ to specify the provider parameter. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using non-default OIDC providers in Capella App Services requires requests to `/db/_oidc/` to specify the provider parameter.
 
 ### [](#editing-a-configured-oidc-provider)Editing a Configured OIDC Provider
 
@@ -107,5 +117,5 @@ To delete a configured OIDC provider, the provider must meet the following condi
 * It must not be the only configured provider.
 * It must not be the default provider.
 
-|  | If you want to delete the current default provider, you must select a new default provider first from the **OIDC Providers List** table. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you want to delete the current default provider, you must select a new default provider first from the **OIDC Providers List** table.

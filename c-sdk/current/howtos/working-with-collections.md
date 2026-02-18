@@ -1,11 +1,19 @@
+---
+title: Working with Collections
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/working-with-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/working-with-collections.html)
+
+# Working with Collections
 
 > The 3.x API SDKs all work with all features of Collections and Scopes. 
 
 The [Collections feature](../../../server/current/learn/data/scopes-and-collections.md) in Couchbase Server 7.x is fully implemented in the 3.x API versions of the Couchbase SDKs.
 
-|  | When working with versions earlier than 7.0, the defaultcollection is used from the SDK. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When working with versions earlier than 7.0, the `defaultcollection` is used from the SDK.
 
 Read more about [Collections and Scopes](../concept-docs/collections.md).
 

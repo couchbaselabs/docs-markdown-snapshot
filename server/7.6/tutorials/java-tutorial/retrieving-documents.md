@@ -1,4 +1,14 @@
+---
+title: Retrieve Records
+description: Retrieve records, or documents, from your collections using SQL++,
+  Couchbase's SQL-based query language.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tutorials/java-tutorial/retrieving-documents.html)
+
+# Retrieve Records
 
 > Retrieve records, or documents, from your collections using SQL++, Couchbase’s SQL-based query language. You can retrieve your records using the [query editor](#retrieve-with-query-editor) or the [SDK](#retrieve-with-sdk). 
 

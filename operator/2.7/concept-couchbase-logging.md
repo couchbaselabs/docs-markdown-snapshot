@@ -1,4 +1,12 @@
+---
+title: Couchbase Server Logging
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-couchbase-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-couchbase-logging.html)
+
+# Couchbase Server Logging
 
 > Couchbase Server generates logs that can be used for auditing and troubleshooting purposes. 
 
@@ -29,8 +37,8 @@ There are two primary components that provide log forwarding:
 
 When log forwarding is enabled, the Autonomous Operator uses Couchbase-provided [defaults](#default-log-forwarding-image-and-configuration) for both of these components.
 
-|  | A Kubernetes Secret for configuration per Couchbase cluster is recommended, rather than sharing configuration across clusters in the same Kubernetes namespace. The Kubernetes Secret is owned by the first cluster that creates it, so when that cluster is removed, the Kubernetes Secret is removed as well. Different Kubernetes namespaces require different Kubernetes Secrets, so the same name can be reused across Kubernetes namespaces. If a Kubernetes Secret is used that is created externally (e.g. for custom configuration), then ownership is not transferred so these can be reused in the same Kubernetes namespace. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A Kubernetes Secret for configuration per Couchbase cluster is recommended, rather than sharing configuration across clusters in the same Kubernetes namespace. The Kubernetes Secret is owned by the first cluster that creates it, so when that cluster is removed, the Kubernetes Secret is removed as well. Different Kubernetes namespaces require different Kubernetes Secrets, so the same name can be reused across Kubernetes namespaces. If a Kubernetes Secret is used that is created externally (e.g. for custom configuration), then ownership is not transferred so these can be reused in the same Kubernetes namespace.
 
 ![logging sidecar overview](_images/logging-sidecar-overview.png) 
 
@@ -112,8 +120,10 @@ __Table 1\. Log Forwarding Supported Features__
 | analytics\_debug.log (Includes subsets analytics\_info.log, analytics\_warn.log, and analytics\_error.log) | [_couchbase\_java\_multiline_](https://github.com/couchbase/couchbase-fluent-bit/blob/main/conf/couchbase/in-java-log.conf)                    |
 | analytics\_shutdown.log                                                                                    | None                                                                                                                                           |
 
-|  | Some Couchbase log files contain a subset of events that are found in other log files. For example, analytics\_debug.log includes everything in analytics\_info.log, which in turn includes everything in analytics\_warn.log and analytics\_error.log. Similarly, debug.log includes everything in info.log, which in turn includes everything in error.log. These "subset" logs are not parsed by default, since parsing them would put unnecessary load on the log processor and lead to duplicate log events being forwarded. However, for convenience, these logs are listed in [Table 1](#table-log-support-for-forwarding) under their respective superset logs. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Some Couchbase log files contain a subset of events that are found in other log files. For example, `analytics_debug.log` includes everything in `analytics_info.log`, which in turn includes everything in `analytics_warn.log` and `analytics_error.log`. Similarly, `debug.log` includes everything in `info.log`, which in turn includes everything in `error.log`.
+> 
+> These "subset" logs are not parsed by default, since parsing them would put unnecessary load on the log processor and lead to duplicate log events being forwarded. However, for convenience, these logs are listed in [Table 1](#table-log-support-for-forwarding) under their respective superset logs.
 
 ### [](#log-redaction)Log Redaction
 

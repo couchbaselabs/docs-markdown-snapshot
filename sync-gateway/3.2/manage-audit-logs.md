@@ -1,11 +1,21 @@
+---
+title: Manage Audit Logs
+description: Administrators can manage audit logs to track operational
+  irregularities and to support regulatory and security compliance standards.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/manage-audit-logs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/manage-audit-logs.html)
+
+# Manage Audit Logs
 
 > Administrators can manage audit logs to track operational irregularities and to support regulatory and security compliance standards. 
 
 ## [](#audit-log-configuration)Audit Log Configuration
 
-|  | Audit Logging on Sync Gateway is opt-in functionality and is disabled by default. |
-|  | --------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Audit Logging on Sync Gateway is opt-in functionality and is disabled by default.
 
 Admin users can configure audit logs using the following:
 
@@ -32,8 +42,8 @@ Below you can find the minimal configuration required in your bootstrap config f
 }
 ```
 
-|  | Configuration via the bootstrap config will affect your configuration globally. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> Configuration via the bootstrap config will affect your configuration globally.
 
 To successfully configure audit logging, you must set a file path for your audit logs and set the `enabled` parameter to `true`. Enabling and disabling audit logging is handled by the Admin REST API at a cluster and Sync Gateway database level. Setting enabled to true without any specified enabled events will only enable events with `DefaultEnabled` set to `true`. To view the list of audit events, see [Audit Logging Events Reference](audit-log-events.md)
 
@@ -60,8 +70,8 @@ You can configure audit events at runtime without modifying the entire database 
 
 These request methods apply changes at the database level. Below you can find examples demonstrating use of the above methods.
 
-|  | If you enable audit logging in your bootstrap config it is enabled globally. Conversely, it is important to note that if audit logging is enabled in your database config but **not** your bootstrap config, no audit logging will occur. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you enable audit logging in your bootstrap config it is enabled globally. Conversely, it is important to note that if audit logging is enabled in your database config but **not** your bootstrap config, no audit logging will occur.
 
 Example 1\. Get the database audit configuration
 

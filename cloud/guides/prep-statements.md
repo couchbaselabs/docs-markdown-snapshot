@@ -1,4 +1,14 @@
+---
+title: Prepare Statements for Reuse
+description: How to create and execute prepared statements, including
+  placeholder parameters.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/prep-statements.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/prep-statements.html)
+
+# Prepare Statements for Reuse
 
 > How to create and execute prepared statements, including placeholder parameters. 
 
@@ -93,8 +103,8 @@ To supply values for placeholder parameters using the Query tab:
 * Use the **Positional Parameters** options to specify positional parameters.
 * Use the **Named Parameters** options to specify named parameters.
 
-|  | When you’re executing a prepared statement, the EXECUTE statement provides another, easier way to supply parameter values. See [Executing a Prepared Statement](#execute). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you’re executing a prepared statement, the `EXECUTE` statement provides another, easier way to supply parameter values. See [Executing a Prepared Statement](#execute).
 
 ---
 
@@ -157,8 +167,8 @@ For more information and examples, see [Configure Queries](../n1ql/n1ql-manage/q
 
 To supply values for placeholder parameters, use the `Parameter` method on the `QueryOptions` object.
 
-|  | The SDK has different versions of the Parameter method for supplying a single named parameter, a collection of named parameters, a single positional parameter, or a list of positional parameters. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The SDK has different versions of the `Parameter` method for supplying a single named parameter, a collection of named parameters, a single positional parameter, or a list of positional parameters.
 
 ---
 
@@ -178,8 +188,8 @@ For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-net
 
 To supply values for placeholder parameters, use the `parameter` method on the `QueryOptions` object.
 
-|  | The SDK has different versions of the parameter method for supplying named parameters or positional parameters. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The SDK has different versions of the `parameter` method for supplying named parameters or positional parameters.
 
 ---
 
@@ -203,8 +213,8 @@ For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-jav
 
 To supply values for placeholder parameters, use the `parameters` property on the `QueryOptions` interface.
 
-|  | The parameters property may be an object for supplying named parameters, or an array for supplying positional parameters. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `parameters` property may be an object for supplying named parameters, or an array for supplying positional parameters.
 
 ---
 
@@ -254,8 +264,8 @@ To supply positional parameter values for a query or prepared statement, use the
 
 To supply named parameter values for a query or prepared statement, use the `named_parameters` parameter in the `QueryOptions`.
 
-|  | Alternatively, you can supply positional parameters or named parameters as keyword arguments for the query() function. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Alternatively, you can supply positional parameters or named parameters as keyword arguments for the `query()` function.
 
 ---
 
@@ -293,8 +303,8 @@ For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-pyt
 
 If you need to run a statement more than once, you can prepare the execution plan for the statement and cache it for reuse.
 
-|  | You can include placeholder parameters in the prepared statement, if necessary. |
-|  | ------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can include placeholder parameters in the prepared statement, if necessary.
 
 * SQL++
 * .NET
@@ -431,8 +441,8 @@ For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-pyt
 
 When you execute a prepared statement, the cached execution plan is reused, so the query executes faster.
 
-|  | You can supply parameter values for a prepared statement, just as you can for a query. These can be different to the parameter values that you supplied when you created the prepared statement. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can supply parameter values for a prepared statement, just as you can for a query. These can be different to the parameter values that you supplied when you created the prepared statement.
 
 * SQL++
 * .NET

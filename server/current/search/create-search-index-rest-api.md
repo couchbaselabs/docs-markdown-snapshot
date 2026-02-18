@@ -1,4 +1,13 @@
+---
+title: Create a Search Index with the REST API and curl/HTTP
+description: You can create a Search index with the Search Service API.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-search-index-rest-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/create-search-index-rest-api.html)
+
+# Create a Search Index with the REST API and curl/HTTP
 
 > You can create a Search index with the Search Service API. 
 
@@ -24,15 +33,15 @@ curl -s -XPUT -H "Content-Type: application/json" \
     -u ${CB_USERNAME}:${CB_PASSWORD} http://${CB_HOSTNAME}:8094/api/bucket/travel-sample/scope/inventory/index/landmark-content-index  
     -d \  
 ```  
-To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+To use SSL, use the `https` protocol in the Search Service endpoint URL and port `18094`.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 4. Enter the JSON payload for the settings you want in your index.  
-Do not include the [uuid](search-index-params.md#uuid) or [sourceUUID](search-index-params.md#sourceuuid) parameters.
-
-|  | If you remove the [uuid](search-index-params.md#uuid) and [sourceUUID](search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in your REST API call. For more information about how to create an index with the UI, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Do not include the [uuid](search-index-params.md#uuid) or [sourceUUID](search-index-params.md#sourceuuid) parameters.  
+> [!TIP]  
+> If you remove the [uuid](search-index-params.md#uuid) and [sourceUUID](search-index-params.md#sourceuuid) parameters, you can copy the Search index definition JSON payload from the Couchbase Server Web Console to use in your REST API call. For more information about how to create an index with the UI, see [Create a Basic Search Index with the Web Console](create-search-index-ui.md).
 
 ### [](#example-simple-search-index-with-xattrs)Example: Simple Search Index with XATTRs
 
@@ -110,8 +119,8 @@ curl -s -XPUT -H "Content-Type: application/json" \
     }'
 ```
 
-|  | XATTRs mappings are only available in Couchbase Server version 7.6.2 and later. |
-|  | ------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> XATTRs mappings are only available in Couchbase Server version 7.6.2 and later.
 
 For more information about the available JSON properties for a Search index, see [Search Index JSON Properties](search-index-params.md).
 

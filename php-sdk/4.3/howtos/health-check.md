@@ -1,4 +1,14 @@
+---
+title: Diagnosing and preventing Network Problems with Health Check
+description: In today's distributed and virtual environments, users will often
+  not have full administrative control over their whole network.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/howtos/pages/health-check.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/howtos/health-check.html)
+
+# Diagnosing and preventing Network Problems with Health Check
 
 > In today’s distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces _Ping_ to check nodes are still healthy, and to force idle connections to be kept alive in environments with eager shutdowns of unused resources. _Diagnostics_ requests a report from a node, giving instant health check information. 
 

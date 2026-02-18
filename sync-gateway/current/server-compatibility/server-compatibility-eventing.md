@@ -1,4 +1,13 @@
+---
+title: Eventing&#8201;&#8212;&#8201;Server Compatibility
+description: How Sync Gateway works with Couchbase Server's Eventing feature
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-eventing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/server-compatibility/server-compatibility-eventing.html)
+
+# Eventing&#8201;&#8212;&#8201;Server Compatibility
 
 > How Sync Gateway works with Couchbase Server’s Eventing feature  
 
@@ -6,15 +15,15 @@ _Related topics_: [Buckets](server-compatibility-buckets.md) | [Collections](ser
 
 _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
 ## [](#introduction)Introduction
 
 Couchbase Server provides the backing data store for Sync Gateway.
 
-|  | See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> See: [Compatibility Matrix](../product-notes/compatibility.md) for version compatibility information.
 
 Couchbase Server’s [Couchbase Eventing Service](../../../server/current/eventing/eventing-overview.md) feature provides a framework to operate on changes to data in real time.
 
@@ -22,11 +31,21 @@ This page provides details on how [Couchbase Eventing Service](../../../server/c
 
 ## [](#using-eventing-server-7-6-3)Using Eventing - Server 7.6.3+
 
-|  | Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2 or later. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions experience infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen when you deploy a new Eventing/Sync Gateway function during an upgrade, with some SGW nodes at version 3.2 or later, and others at an earlier version. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Do not deploy Eventing/Sync Gateway until all SGW nodes are at version 3.2 or later. For earlier Sync Gateway versions that do not write import XATTRs, Eventing functions experience infinite recursions and duplicate mutations if deployed in a mixed mode SGW environment. This can only happen when you deploy a new Eventing/Sync Gateway function during an upgrade, with some SGW nodes at version 3.2 or later, and others at an earlier version.
 
-|  | Sync Gateway must be running with [Configuration Overview](../configuration/configuration-overview.md) enabled to support compatibility with Eventing. Databases created via file-based configuration (when running with \-disable\_persistent\_config) are not recorded in the Couchbase Server registry. Without registry records, Eventing cannot: Detect Sync Gateway databases to prevent deployment conflicts Prevent duplicate mutations when processing document changes Persistent configuration is: The **only** option available on Capella The default and **recommended** configuration mode for on-premises deployments since Sync Gateway 3.0 |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Sync Gateway must be running with [Configuration Overview](../configuration/configuration-overview.md) enabled to support compatibility with Eventing.
+> 
+> Databases created via file-based configuration (when running with `-disable_persistent_config`) are not recorded in the Couchbase Server registry. Without registry records, Eventing cannot:
+> 
+> * Detect Sync Gateway databases to prevent deployment conflicts
+> * Prevent duplicate mutations when processing document changes
+> 
+> Persistent configuration is:
+> 
+> * The **only** option available on Capella
+> * The default and **recommended** configuration mode for on-premises deployments since Sync Gateway 3.0
 
 Sync Gateway 3.2.0 and later supports interoperability with Eventing from Couchbase Server version 7.6.3+. You can use Eventing to handle data changes that happen when applications interact and to integrate with other Couchbase services such as Data, Query and Full Text Search.
 
@@ -41,16 +60,15 @@ For Sync Gateway versions that write import XATTRs:
 * Eventing now prevents infinite recursion.
 * Eventing now prevents duplicate mutations with the opt-in `import_mutation_aware` boolean flag.
 
-|  | If the import\_mutation\_aware flag is set to true, the performance of the Eventing function drops. This happens because every mutation processed by Eventing requires a Sub-Document operation to maintain a cursor or state for any function that shares a Sync Gateway endpoint. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the `import_mutation_aware` flag is set to `true`, the performance of the Eventing function drops. This happens because every mutation processed by Eventing requires a Sub-Document operation to maintain a cursor or state for any function that shares a Sync Gateway endpoint.
 
 The procedure to enable Sync Gateway support for an Eventing function is as follows:
 
 1. On Couchbase Server, [pause the function](../../../server/current/eventing-rest-api/index.md#basic%5Fpause).
-2. Using the Eventing REST API, set the `allow_sync_documents` setting for the function to false.
-
-|  | You must also include the deployment\_status and processing\_status settings in the request body. |
-|  | ------------------------------------------------------------------------------------------------- |  
+2. Using the Eventing REST API, set the `allow_sync_documents` setting for the function to false.  
+> [!NOTE]  
+> You must also include the `deployment_status` and `processing_status` settings in the request body.  
 For example, for a global function with a scope of `**.**`:  
 ```shell  
 curl -XPOST -d '{  

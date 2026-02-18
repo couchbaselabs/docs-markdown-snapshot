@@ -1,4 +1,14 @@
+---
+title: Prepare to Install Sync Gateway
+description: Prerequisites for installing <em>Sync Gateway</em>; to synchronize
+  your data from cloud to edge.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/get-started-prepare.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/get-started-prepare.html)
+
+# Prepare to Install Sync Gateway
 
 > Prerequisites for installing _Sync Gateway_; to synchronize your data from cloud to edge.  
 > This is **Step 2** in the _Start Here!_ topic group. It introduces the prerequisites for the installation of _Sync Gateway_
@@ -24,13 +34,17 @@ Once you have all that covered …​ go [Install](get-started-install.md) Sync 
 
 To use Sync Gateway you need an operational Couchbase Server installation. Ensure that you use compatible versions of Couchbase Server and Sync Gateway — see: [Compatibility Requirements](#lbl-req-compat).
 
-|  | You can get Couchbase Server from our [Downloads](https://www.couchbase.com/downloads/?family=mobile) page |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can get Couchbase Server from our [Downloads](https://www.couchbase.com/downloads/?family=mobile) page
 
 You will then need to configure Couchbase Server by adding a Bucket and an RBAC User for Sync Gateway — see: [Configure Server for Sync Gateway](#configure-server).
 
-|  | Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1). The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs. This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
+> 
+> The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs.
+> 
+> This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage.
 
 ## [](#network-port-requirements)Network Port Requirements
 
@@ -54,8 +68,12 @@ Check that any firewall configuration allows communication on the specified port
 
 ## [](#lbl-req-compat)Compatibility with Couchbase Server
 
-|  | Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1). The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs. This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
+> 
+> The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs.
+> 
+> This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage.
 
 Sync Gateway/Couchbase Server
 
@@ -81,11 +99,16 @@ Compatibility Matrix
 | 3.2.0                                                 |                                                | ![no](_images/no.png)                                 | ![no](_images/no.png)                                 | ![no](_images/no.png)   | ![no](_images/no.png)   | ![yes](_images/yes.png) | ![yes](_images/yes.png) | ![yes](_images/yes.png) |
 | 3.2.0                                                 | Using Scopes and Collections                   | ![no](_images/no.png)                                 | ![no](_images/no.png)                                 | ![no](_images/no.png)   | ![no](_images/no.png)   | ![yes](_images/yes.png) | ![yes](_images/yes.png) | ![yes](_images/yes.png) |
 
-|  | Starting from CBS 7.0, the use\_views feature is deprecated. SGW 3.1 will only run with use\_views with a default scope/collection configuration You cannot run use\_views with a defined scope/collection |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Starting from CBS 7.0, the use\_views feature is deprecated.
+> 
+> * SGW 3.1 will only run with `use_views` with a default scope/collection configuration
+> * You cannot run `use_views` with a defined scope/collection
 
-|  | Couchbase Server Bucket TypesUse only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Couchbase Server Bucket Types
+> 
+> Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).
 
 ## [](#compatibility-with-couchbase-lite)Compatibility with Couchbase Lite
 
@@ -172,10 +195,11 @@ We will use this bucket to test the deployment of Sync Gateway, later in the Get
   1. Select the **Buckets** tab
   2. **Add Bucket** to continue  
   ![cb create bucket](_images/cb-create-bucket.png)
-  3. In the pop-up window, enter **get-started-bucket** for the **name** and click **Add Bucket**. You can leave the other options to their defaults.
-
-|  | Couchbase Server Bucket TypesUse only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  3. In the pop-up window, enter **get-started-bucket** for the **name** and click **Add Bucket**. You can leave the other options to their defaults.  
+  > [!IMPORTANT]  
+  > Couchbase Server Bucket Types  
+  >  
+  > Use only **Couchbase** bucket types in _Couchbase Mobile_. We do not support the use of Couchbase Server’s **Ephemeral** or **Memcached** bucket types — for more on bucket types see: Couchbase Server [bucket types](../../server/current/learn/buckets-memory-and-storage/buckets.md).  
 ![cb create bucket popup](_images/cb-create-bucket-popup.png)
 
 ### [](#step-2create-rbac-user)Step 2 — Create RBAC User
@@ -203,10 +227,9 @@ Example 1\. Select RBAC roles
 
   * Couchbase Server 6.6+ (Enterprise)
   * Couchbase Server 5.5 - 7.x
-  * Couchbase Server 5.1
-
-|  | This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions) |
-|  | ---------------------------------------------------------------------------------------------- |
+  * Couchbase Server 5.1  
+> [!IMPORTANT]  
+> This content relates only to [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
   1. In the pop-up window, provide
 
@@ -215,9 +238,8 @@ Example 1\. Select RBAC roles
   2. Assign the _Sync Gateway_ role to the user  
   [Sync Gateway RBAC Role Description](../../server/current/learn/security/roles.md#sync-gateway)  
   ![user settings 6 6](_images/user-settings-6-6.png)  
-
-|  | Users are encouraged to move away from using the _Application Access_ and _Read-Only Admin_ roles for this purpose. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+  > [!NOTE]  
+  > Users are encouraged to move away from using the _Application Access_ and _Read-Only Admin_ roles for this purpose.
 
   1. In the pop-up window, provide:
 

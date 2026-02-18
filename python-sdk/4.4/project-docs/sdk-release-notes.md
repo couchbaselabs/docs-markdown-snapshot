@@ -1,11 +1,21 @@
+---
+title: SDK Release Notes
+description: Release notes, installation instructions, and download archive for
+  the Couchbase Python Client.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Python Client. 
 
 Couchbase Python SDK 4.x is built upon the Couchbase C++ SDK, and SDK 3.x is built upon LCB (libcouchbase), but both conform to the [SDK API 3.x](compatibility.md#api-version). The move to the Couchbase C++ SDK facilitates the introduction of [distributed ACID transactions](../howtos/distributed-acid-transactions-from-the-sdk.md).
 
-|  | Because the Python SDK is written primarily in C using the CPython API, the official SDK will not work on PyPy. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Because the Python SDK is written primarily in C using the CPython API, the official SDK will not work on PyPy.
 
 ## [](#installation)Installation
 

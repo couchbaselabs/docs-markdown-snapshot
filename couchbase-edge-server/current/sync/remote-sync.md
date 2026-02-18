@@ -1,4 +1,14 @@
+---
+title: Remote Sync with App Services / Sync Gateway
+description: Read and write data or listen for data changes from Edge Server
+  over a RESTful interface from any  HTTP client.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/remote-sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/sync/remote-sync.html)
+
+# Remote Sync with App Services / Sync Gateway
 
 ![remote upstream sync diagram](_images/remote-upstream-sync-diagram.png) 
 

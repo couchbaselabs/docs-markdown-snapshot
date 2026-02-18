@@ -1,4 +1,12 @@
+---
+title: Query
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/develop/query.html)
+
+# Query
 
 ## [](#overview)Overview
 

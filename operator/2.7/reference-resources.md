@@ -1,4 +1,12 @@
+---
+title: Resource Documentation
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/reference-resources.html)
+
+# Resource Documentation
 
 > How to access documentation for Couchbase custom resources. 
 

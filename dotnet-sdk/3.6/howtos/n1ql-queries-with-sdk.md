@@ -1,4 +1,15 @@
+---
+title: SQL++ Queries from the SDK
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/howtos/n1ql-queries-with-sdk.html)
+
+# SQL++ Queries from the SDK
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
@@ -12,8 +23,8 @@ CREATE PRIMARY INDEX ON `travel-sample`
 
 or replace _travel-sample_ with a different Bucket name to build an index on a different Bucket.
 
-|  | If you are using _travel-sample_, it comes with a primary index already created. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you are using _travel-sample_, it comes with a primary index already created.
 
 Note that building indexes is covered in more detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building) — and in the [API Reference](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Management.Query.CreateQueryIndexOptions.html).
 
@@ -225,8 +236,8 @@ A complete list of `QueryOptions` can be found in the [API docs](https://docs.co
 
 ## [](#additional-resources)Additional Resources
 
-|  | SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/data-services.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is not the only query option in Couchbase. Be sure to check that [your use case fits your selection of query service](../concept-docs/data-services.md).
 
 * For a deeper dive into SQL++ from the SDK, refer to our [SQL++ SDK concept doc](../concept-docs/n1ql-query.md).
 * The [Server doc SQL++ intro](#7.1@server:n1ql:n1ql-language-reference/index.adoc) introduces a complete guide to the SQL++ language, including all of the latest additions.

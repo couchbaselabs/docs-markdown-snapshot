@@ -1,4 +1,12 @@
+---
+title: Rebalance/Failover
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-rebalance-failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-rebalance-failover.html)
+
+# Rebalance/Failover
 
 ## [](#rebalance)Rebalance
 
@@ -8,8 +16,8 @@ The search service maintains a cluster-wide set of index definitions and metadat
 
 The search service redistributes the index partitions across the available search service nodes for a balanced partition-node assignment during a rebalance operation. The newly assigned index partitions are built utilizing the DCP feed on the new nodes. Once the new partitions are built up to the most current or latest sequence numbers, the partitions are promoted to handle live traffic, and the older partitions are deleted from the system.
 
-|  | During rebalancing, the search service does not wait for all replicas of an index to be built. This is expected behavior since the replica partitions are not used for serving FTS query traffic. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> During rebalancing, the search service does not wait for all replicas of an index to be built. This is expected behavior since the replica partitions are not used for serving FTS query traffic.
 
 ## [](#impacts-on-the-live-traffic-updates)Impacts on the live traffic updates
 

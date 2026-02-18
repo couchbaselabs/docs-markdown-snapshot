@@ -1,4 +1,14 @@
+---
+title: Spring Data Sample Application
+description: Discover how to program interactions with Spring Data and Couchbase
+  via the Data, Query, and Search services.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/spring-data-sample-application.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/hello-world/spring-data-sample-application.html)
+
+# Spring Data Sample Application
 
 > Discover how to program interactions with Spring Data and Couchbase via the Data, Query, and Search services. 
 

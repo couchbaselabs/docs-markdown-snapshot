@@ -1,4 +1,14 @@
+---
+title: Request Tracing
+description: Collecting information about an individual request and its response
+  is an essential feature of every observability stack.
+editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/observability-tracing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/c-sdk/current/howtos/observability-tracing.html)
+
+# Request Tracing
 
 > Collecting information about an individual request and its response is an essential feature of every observability stack. 
 

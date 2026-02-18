@@ -1,4 +1,13 @@
+---
+title: Key-Value Operations
+description: How to perform CRUD key-value operations in Couchbase.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/kv-operations.html)
+
+# Key-Value Operations
 
 > How to perform CRUD key-value operations in Couchbase.  
 > This guide is for Couchbase Server.
@@ -24,8 +33,15 @@ Clients access data by connecting to a Couchbase cluster over the network. The m
 
 The command line clients also provide a quick and streamlined interface for simple access and are suitable if you just want to access an item without writing any code.
 
-|  | With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system: Linux /opt/couchbase/bin Windows C:\\Program Files\\Couchbase\\Server\\bin macOS /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin If the command line client is not provided with your installation of Couchbase Server, you must install the C SDK in order to use the command line clients. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> With some editions, the command line clients are provided as part of the installation of Couchbase Server. Assuming a default installation, you can find them in the following location, depending on your operating system:
+> 
+> | Linux   | /opt/couchbase/bin                                                       |
+> | ------- | ------------------------------------------------------------------------ |
+> | Windows | C:\\Program Files\\Couchbase\\Server\\bin                                |
+> | macOS   | /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin |
+> 
+> If the command line client is not provided with your installation of Couchbase Server, you must install the C SDK in order to use the command line clients.
 
 Read the following for further information about the clients available:
 

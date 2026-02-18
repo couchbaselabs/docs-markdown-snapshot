@@ -1,4 +1,12 @@
+---
+title: Configure Client Certificate Authentication
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-tls-client-certificates.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/howto-tls-client-certificates.html)
+
+# Configure Client Certificate Authentication
 
 > How to configure Couchbase Server and the Operator to use client certificate based authentication. 
 

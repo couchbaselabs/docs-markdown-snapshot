@@ -1,4 +1,15 @@
+---
+title: Types of Primary and Secondary Index
+description: This topic provides an overview of the types of index that you can
+  create using the Index Service, and explains how they help to query for data
+  efficiently and improve query performance.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/indexing-and-query-perf.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/indexes/indexing-and-query-perf.html)
+
+# Types of Primary and Secondary Index
 
 Creating the right index — with the right keys, in the right order, and using the right expressions — is critical to query performance in any database system. This is true for Couchbase as well. This topic provides an overview of the types of index that you can create using the Index Service, and explains how they help to query for data efficiently and improve query performance.
 
@@ -51,8 +62,8 @@ The Couchbase data layer enforces the uniqueness constraint on the document key.
 
 It’s not recommended to use primary keys for your production queries.
 
-|  | A primary index does not index any [transaction records](../learn/data/transactions.md#additional-storage-use) that may be stored in a keyspace. This means that if you’re counting the number of documents in a keyspace, you may see slightly different results, depending on whether you’re using a primary index or not. See [Aggregate Functions](../n1ql/n1ql-language-reference/aggregatefun.md) and [Viewing the Data Insights](../tools/query-workbench.md#bucket-analyzer). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A primary index does not index any [transaction records](../learn/data/transactions.md#additional-storage-use) that may be stored in a keyspace. This means that if you’re counting the number of documents in a keyspace, you may see slightly different results, depending on whether you’re using a primary index or not. See [Aggregate Functions](../n1ql/n1ql-language-reference/aggregatefun.md) and [Viewing the Data Insights](../tools/query-workbench.md#bucket-analyzer).
 
 Example 1\. Metadata for Primary Index
 

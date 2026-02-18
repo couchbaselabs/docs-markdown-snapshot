@@ -1,9 +1,17 @@
+---
+title: Inter-Kubernetes Networking with Forwarded DNS
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-remote-dns.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/tutorial-remote-dns.html)
+
+# Inter-Kubernetes Networking with Forwarded DNS
 
 > How to configure clusters that can be used securely between different regions or clouds. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 It is often desirable to have clients connect to a Couchbase cluster from outside of the hosting Kubernetes cluster. The specific scenario this tutorial will address is where a client resides within another Kubernetes instance. Such a topology may be used in the following situations:
 
@@ -25,8 +33,8 @@ The client uses DNS addresses served by its local Kubernetes DNS server for norm
 
 For the purposes of this tutorial we will use [CoreDNS](https://coredns.io) as a proxy DNS server for Couchbase Server pods. This will then selectively forward requests on to either the local or remote DNS server instances. CoreDNS is readily available, and already powers most of the managed Kubernetes offerings. Other DNS servers may be used (e.g. BIND), provided they can forward specific zones to a remote DNS server.
 
-|  | While this tutorial focuses on Kubernetes to Kubernetes connectivity, the client need not reside in Kubernetes. The same rules however apply; no DNAT between the client and Couchbase server instance, and clients use a local DNS server to separate traffic and forward to the correct recipient. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While this tutorial focuses on Kubernetes to Kubernetes connectivity, the client need not reside in Kubernetes. The same rules however apply; no DNAT between the client and Couchbase server instance, and clients use a local DNS server to separate traffic and forward to the correct recipient.
 
 ## [](#configuring-the-platform)Configuring the Platform
 
@@ -38,8 +46,8 @@ Figure 2\. AWS Platform Configuration
 
 The [eksctl](https://eksctl.io) tool creates clusters similar to those depicted. It uses the [amazon-vpc-cni-k8s](https://github.com/aws/amazon-vpc-cni-k8s) CNI plugin to provision pod network interfaces. Pod interfaces are provisioned using elastic network interfaces, so appear as part of the cluster VPC. No overlay networks are involved and the pod IP addresses can be reached from outside of the Kubernetes cluster without NAT. This fulfills the requirement for [flat, routed networking](concept-kubernetes-networking.md#routed-networking).
 
-|  | Red Hat OpenShift users should be aware that the default is to use an based overlay network. This prohibits you from performing inter-Kubernetes networking, and connecting external Couchbase clients to a cluster securely. Please consult your platform vendor for advice. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Red Hat OpenShift users should be aware that the default is to use an based overlay network. This prohibits you from performing inter-Kubernetes networking, and connecting external Couchbase clients to a cluster securely. Please consult your platform vendor for advice.
 
 A VPC is created to contain the EKS instance, each cluster needs to have a unique, non-overlapping network prefix than can be specified on creation time. In this example Cluster 1 has `10.0.0.0/16` and Cluster 2 `10.1.0.0/16`.
 
@@ -49,8 +57,8 @@ While not depicted, each availability zone within the VPC has its own subnet. Ro
 
 The final part of platform configuration concerns security groups. Kubernetes nodes are firewalled off from everything except each other and their EKS control plane within an [eksctl](https://eksctl.io) deployment. You need to allow ingress traffic from the remote cluster to all Kubernetes nodes in the local cluster. In cluster 1, for example, you would need a security group that allows all protocol from 10.1.0.0/0 to be applied to all Kubernetes EC2 instance.
 
-|  | At present [eksctl](https://eksctl.io) creates the VPC for you, but cannot automatically add custom security groups to that VPC, the cluster scaling group launch template, and therefore the Kubernetes node EC2 instances. It does, however, allow the user to specify their own VPC subnets which may have a security group predefined that can then be used for provisioning. Other cluster provisioning tools may have better support for inter-connectivity and firewalling. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> At present [eksctl](https://eksctl.io) creates the VPC for you, but cannot automatically add custom security groups to that VPC, the cluster scaling group launch template, and therefore the Kubernetes node EC2 instances. It does, however, allow the user to specify their own VPC subnets which may have a security group predefined that can then be used for provisioning. Other cluster provisioning tools may have better support for inter-connectivity and firewalling.
 
 The end goal is to have pods from the local cluster be able to ping those in the remote. For example you can poll Cluster 2 for pods:
 

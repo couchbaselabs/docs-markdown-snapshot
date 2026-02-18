@@ -1,4 +1,14 @@
+---
+title: Data Modelling, Durability, and Consistency
+description: Performance, availability, consistency -- balance your priorities,
+  and model your data to achieve these goals.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/concept-docs/pages/data-durability-acid-transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.0/concept-docs/data-durability-acid-transactions.html)
+
+# Data Modelling, Durability, and Consistency
 
 > Performance, availability, consistency — balance your priorities, and model your data to achieve these goals. 
 
@@ -21,8 +31,10 @@ if (err.ec() == couchbase::errc::key_value::document_not_found) {
 
 At its heart, a database is in the business of storing data and letting you query and retrieve it. Putting a database on the network — in particular a remote network, or another company’s cloud service — and partitioning the data across multiple nodes, with several replicas, does not alter this. It does, however, mean that choices must be made to optimize for consistency or availability of data.
 
-|  | Skipping Ahead This page lays out some of the things you need to consider when designing an app. If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md), and try some of the code snippets there. Or see some of the other links in the [Further Reading](#further-reading) section. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Skipping Ahead
+> 
+> This page lays out some of the things you need to consider when designing an app. If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md), and try some of the code snippets there. Or see some of the other links in the [Further Reading](#further-reading) section.
 
 Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [SDK Query introduction](querying-your-data.md) for choices of SQL++ queries for OLTP (transactional queries) and OLAP (analytics) — including real-time analytics — as well as fuzzy searches and vector search.
 
@@ -82,8 +94,8 @@ Some use cases benefit — for consistency or availability — from accessing bo
 
 ### [](#preferred-server-group-replica-reads)Preferred Server Group Replica Reads
 
-|  | Preferred Server Group Replica Reads are only accessible with the C++ SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Preferred Server Group Replica Reads are only accessible with the C++ SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed).
 
 [Server Groups](../../../server/current/learn/clusters-and-availability/groups.md#understanding-server-group-awareness)can be used to define subsets of nodes within a Couchbase cluster, which contain a complete set of vbuckets (active or replica). As well as high availability use cases, Servre Groups can also be used to keep much traffic within the same cloud Availability Zone.
 
@@ -93,8 +105,14 @@ This may mean the application has to be tolerant of slight inconsistencies, unti
 
 Couchbase does not recommend this feature where read consistency is critical, but with the appropriate durability settings consistency can be favored ahead of availability.
 
-|  | Replicas, Nodes, and Server Groups Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted: Moving servers between Server Groups updates the clustermap immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the vBucketMap may still refer to data in the previous locations. The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: active+num\_replicas). The Admin UI should emit small yellow warning if the configuration is considered unbalanced. Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](transactions.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Replicas, Nodes, and Server Groups
+> 
+> Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted:
+> 
+> * Moving servers between Server Groups updates the `clustermap` immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the `vBucketMap` may still refer to data in the previous locations.
+> * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
+> * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](transactions.md).
 
 ## [](#concurrent-document-mutations)Concurrent Document Mutations
 

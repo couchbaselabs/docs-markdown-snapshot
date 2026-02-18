@@ -1,4 +1,15 @@
+---
+title: Recover a Node and Rebalance
+description: "After a node has been failed over, it can be <em>recovered</em>:
+  that is, added back into the cluster from which it was failed over, by means
+  of the <em>rebalance</em> operation."
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/recover-nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/recover-nodes.html)
+
+# Recover a Node and Rebalance
 
 > After a node has been failed over, it can be _recovered_: that is, added back into the cluster from which it was failed over, by means of the _rebalance_ operation. 
 
@@ -30,8 +41,8 @@ When the process ends, the **Servers** screen indicates that the failover has su
 Similarly, clicking on the **Add Back: Delta Recovery** button displays `REBALANCE to finish delta recovery`. Recovery can be aborted by clicking on the **CANCEL ADD BACK** button.
 6. Click on the **Rebalance** button. Whichever form of recovery you have chosen, _full_ or _delta_, is performed.
 
-|  | that if rebalance fails, notifications are duly provided. |
-|  | --------------------------------------------------------- |
+> [!NOTE]
+> that if rebalance fails, notifications are duly provided.
 
 These are described in [Rebalance Failure Notification](add-node-and-rebalance.md#rebalance-failure-notification). See also the information provided on [Automated Rebalance-Failure Handling](add-node-and-rebalance.md#automated-rebalance-failure-handling), and the procedure for its set-up, described in [Rebalance Settings](../manage-settings/general-settings.md#rebalance-settings).
 
@@ -44,8 +55,8 @@ For a node to be recovered with the CLI, it must first be failed over. Perform f
 --password password \
 --server-failover 10.142.181.102:8091
 
-|  | In this release the "recovery type" is ignored and a "delta" recovery is always performed. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> In this release the "recovery type" is ignored and a "delta" recovery is always performed.
 
 To recover the failed-over node, use the `recovery` command, in either of the following ways:
 

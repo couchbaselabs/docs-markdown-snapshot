@@ -1,10 +1,19 @@
+---
+title: Database Encryption
+description: Encrypting Couchbase Lite Databases in JavaScript
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/encryption.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite-javascript/current/encryption.html)
+
+# Database Encryption
 
 > Description — _Encrypting Couchbase Lite Databases in JavaScript_  
 > Related Content — [Databases](database.md) | [Documents](document.md)
 
-|  | This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 Couchbase Lite JavaScript includes the ability to encrypt databases stored in IndexedDB. This allows browser applications to secure data at rest. The encryption uses the Web Crypto API with AES-GCM algorithm.
 
@@ -65,8 +74,8 @@ await users.save({
 
 Couchbase Lite does not persist the encryption key. It is the application’s responsibility to manage the key.
 
-|  | There is no secure cross-session storage available in browsers. The encryption password must be obtained from the user each time the application loads, or stored using browser-specific mechanisms with appropriate security considerations. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> There is no secure cross-session storage available in browsers. The encryption password must be obtained from the user each time the application loads, or stored using browser-specific mechanisms with appropriate security considerations.
 
 ## [](#opening-encrypted)Opening Encrypted Databases
 

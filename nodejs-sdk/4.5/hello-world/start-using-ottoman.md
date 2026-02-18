@@ -1,4 +1,13 @@
+---
+title: Start Using the Ottoman ODM
+description: Installing the Ottoman ODM &amp; a Hello World program.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/hello-world/pages/start-using-ottoman.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/hello-world/start-using-ottoman.html)
+
+# Start Using the Ottoman ODM
 
 > Installing the Ottoman ODM & a Hello World program. 
 
@@ -6,8 +15,8 @@ Ottoman is an open-source Object Document Mapper(ODM) library, built for Node.js
 
 Ottoman ODM adds an abstraction layer over Couchbase Node.js SDK and significantly reduces the level of boilerplate needed during application development. It provides features such as the ability to define document schemas and perform validations on your data in a NoSQL landscape — which is inherently schema-less or schema-flexible by nature.
 
-|  | Whether you are building your application with JavaScript or TypeScript, Ottoman will work seamlessly with either. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Whether you are building your application with JavaScript or TypeScript, Ottoman will work seamlessly with either.
 
 Ottoman fully supports the [Scopes and Collections](../../../server/7.6/learn/data/scopes-and-collections.md) features introduced in Couchbase Sever 7.0\. We recomend familiarizing yourself with these concepts before proceeding with this guide.
 

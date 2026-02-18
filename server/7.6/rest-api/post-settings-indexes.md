@@ -1,4 +1,14 @@
+---
+title: Set GSI Settings
+description: To set the global secondary index settings use <code>POST
+  /settings/indexes</code>.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/post-settings-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/post-settings-indexes.html)
+
+# Set GSI Settings
 
 > To set the global secondary index settings use `POST /settings/indexes`. 
 
@@ -81,8 +91,8 @@ This response code returns an empty body.
 
 The following command disables the File Transfer Based Rebalance (`enableShardAffinity`) feature in the [Index Storage Mode](../manage/manage-settings/general-settings.md#index-storage-mode).
 
-|  | Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance.
 
 ```bash
 curl -X POST http://<host>:8091/settings/indexes -d enableShardAffinity=false -u Administrator:<password>

@@ -1,4 +1,13 @@
+---
+title: Data Service
+description: The Data Service provides access to data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/data-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/services-and-indexes/services/data-service.html)
+
+# Data Service
 
 > The Data Service provides access to data. 
 

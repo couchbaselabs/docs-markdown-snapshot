@@ -1,4 +1,13 @@
+---
+title: JavaScript Functions with Couchbase
+description: Writing Couchbase extension functions in the JavaScript Language.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/javascript-udfs/javascript-functions-with-couchbase.html)
+
+# JavaScript Functions with Couchbase
 
 > Writing Couchbase extension functions in the JavaScript Language. 
 
@@ -62,8 +71,8 @@ As shown in [Figure 1](#javascript-scopes), a JavaScript function library can ex
 * A global library accessible across the cluster.
 * A library accessible within a scope.
 
-|  | You can find an introduction to scopes in our [Couchbase Tutorials](../tutorials/buckets-scopes-and-collections.md#scopes%5Fand%5Fcollections). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can find an introduction to scopes in our [Couchbase Tutorials](../tutorials/buckets-scopes-and-collections.md#scopes%5Fand%5Fcollections).
 
 Furthermore, access restrictions can be applied to scopes, so that only certain groups of users will be able to access collections and libraries within that scope.
 

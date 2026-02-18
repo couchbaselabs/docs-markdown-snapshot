@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr help
+description: Shows cbbackupmgr documentation
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-help.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/backup-restore/cbbackupmgr-help.html)
+
+# cbbackupmgr help
 
 Shows cbbackupmgr documentation
 

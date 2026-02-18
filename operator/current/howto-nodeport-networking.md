@@ -1,4 +1,12 @@
+---
+title: Configure Node Port Networking
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-nodeport-networking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-nodeport-networking.html)
+
+# Configure Node Port Networking
 
 > This guide shows you how to configure node port networking. 
 

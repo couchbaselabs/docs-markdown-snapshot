@@ -1,4 +1,12 @@
+---
+title: Upgrade an Online Docker Cluster, Full Capacity
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-docker-cluster-online-full-capacity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/upgrade-docker-cluster-online-full-capacity.html)
+
+# Upgrade an Online Docker Cluster, Full Capacity
 
 > A Docker cluster with multiple nodes can be upgraded live, while maintaining full capacity. 
 
@@ -6,8 +14,8 @@
 
 The context and overall requirements for upgrading a live cluster without the introduction of one or more additional nodes are described in [Upgrade-Procedure Selection](upgrade-procedure-selection.md): this explains the node-by-node upgrade of the cluster, using the _swap rebalance_ process to minimize overhead.
 
-|  | It is not possible to upgrade a Docker cluster with a single node. A second node will needed to ensure data is transferred. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is not possible to upgrade a Docker cluster with a single node. A second node will needed to ensure data is transferred.
 
 The precise steps for this procedure are detailed on this page, below. A full understanding of the information in [Upgrade-Procedure Selection](upgrade-procedure-selection.md) should be acquired, before proceeding. Yous should also be familiar with using [Docker commands to create nodes](getting-started-docker.md). The procedure assumes that:
 
@@ -31,15 +39,15 @@ docker run -d --name sparenode -p 28091-28096:8091-8096 -p 11310-11311:11210-112
 
 will create a new node (`sparenode`) using the latest Couchbase server image. Note that the port mappings have been set so as not to clash with the external port settings of the existing node that is managing the cluster.
 
-|  | The node must be created as managing cluster. Later on, the existing managing node will be removed and upgraded, so the new node will be needed to communicate with the cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The node must be created as managing cluster. Later on, the existing managing node will be removed and upgraded, so the new node will be needed to communicate with the cluster.
 
 ## [](#add-the-spare-node-to-the-cluster-and-rebalance-the-cluster)3\. Add the Spare Node to the Cluster and Rebalance the Cluster
 
 The new node must be added to the cluster, then the cluster must be rebalanced. This can be done through the administration console, or the REST-API. (For information on adding nodes and rebalancing, read [Add a Node and Rebalance](../manage/manage-nodes/add-node-and-rebalance.md)).
 
-|  | Ensure that the sparenode can be used to access the cluster through the administration console. It will use the same IP address, but a different port number. (In the [example above](#docker-create-sparenode), this is defined as 28091). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Ensure that the `sparenode` can be used to access the cluster through the administration console. It will use the same IP address, but a different port number. (In the [example above](#docker-create-sparenode), this is defined as `28091`).
 
 ## [](#remove-node-for-upgrading)4\. Remove a Node For Upgrading
 
@@ -91,8 +99,8 @@ Use the `sparenode` to add the new node to the cluster, then rebalance the clust
 
 Now repeat steps from \[[Section 4](#remove-node-for-upgrading)\] to \[[Section 7](#add-new-node-and-rebalance)\] to remove and upgrade each node in the cluster, except the spare node used for administration.
 
-|  | Care should be taken not to remove the spare node by mistake; this is the node that is used for adding the other nodes and rebalancing. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Care should be taken not to remove the spare node by mistake; this is the node that is used for adding the other nodes and rebalancing.
 
 ## [](#remove-the-spare-node)9\. Remove the Spare Node
 

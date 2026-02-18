@@ -1,11 +1,19 @@
+---
+title: Upgrade a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-couchbase-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-couchbase-upgrade.html)
+
+# Upgrade a Couchbase Deployment
 
 > How-to upgrade Couchbase Server to a later version. 
 
 You can upgrade Couchbase Server by changing the `spec.image` field in the cluster manifest to a new version. While the upgrade is in progress and some pods still run the previous version, you can roll back the cluster to that previous version. The `spec.upgrade` section of the cluster manifest provides controls for granular management of the upgrade process. Before you upgrade, review the [upgrade concepts](concept-upgrade.md) and the available controls.
 
-|  | During an upgrade or rollback, when the cluster runs 2 Couchbase Server versions, the Operator marks the cluster as Mixed Mode. In this state, the Operator disables sidecar pod modifications and bucket storage backend migrations. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> During an upgrade or rollback, when the cluster runs 2 Couchbase Server versions, the Operator marks the cluster as Mixed Mode. In this state, the Operator disables sidecar pod modifications and bucket storage backend migrations.
 
 ## [](#upgrading-a-cluster)Upgrading a Cluster
 

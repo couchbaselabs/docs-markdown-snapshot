@@ -1,4 +1,14 @@
+---
+title: Add Search to Your Application
+description: Use the Search Service to create a customizable search experience
+  for your cluster and your end-user applications.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/search.html)
+
+# Add Search to Your Application
 
 > Use the Search Service to create a customizable search experience for your cluster and your end-user applications. 
 
@@ -25,8 +35,10 @@ You need to create a Search index before you can use the Search Service to searc
 
 For more information about how to create a Search index, see [Create a Search Index](create-search-indexes.md).
 
-|  | Updating Search indexes Search indexes are updated automatically, reflecting changes from the Data Service. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Updating Search indexes
+> 
+> Search indexes are updated automatically, reflecting changes from the Data Service.
 
 You can create a Search index:
 

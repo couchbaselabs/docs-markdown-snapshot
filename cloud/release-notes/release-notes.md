@@ -1,7 +1,19 @@
+---
+title: Couchbase Capella Release Notes
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/release-notes/release-notes.html)
+
+# Couchbase Capella Release Notes
 
 ## [](#february-2026-changelog)February 2026 Changelog
 
+* Capella operational clusters now support fine-grained RBAC for cluster access credentials  
+You can now define fine-grained Role-Based Access Control (RBAC) for cluster access using advanced access credentials. Advanced access credentials allow you to assign combinations of fine-grained privileges and roles to cluster access credentials at the bucket, scope, and collection levels.  
+Basic access credentials that assign read, write, or read/write access at the bucket, scope, and collection level are still available.  
+For more information about advanced access credentials, see [Cluster Access](../clusters/cluster-rbac.md).
 * XDCR for Multi-Node Clusters Over Private Link  
 Couchbase Capella has enhanced the security of your multi-cluster topology. Capella can now support XDCR through private endpoint connectivity, allowing you to replicate data between clusters entirely over a private network connection.  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
@@ -36,10 +48,9 @@ Couchbase Server 8.0 on Capella includes the following features:
 
   * Magma with 128 vBuckets is the new default storage engine  
   Operational clusters created with Couchbase Server 8.0 use Magma with 128 vBuckets as the default storage engine. This new storage engine option has a minimum memory quota requirement of 100 MiB compared to the original 1024 vBucket Magma bucket’s requirement of 1 GiB.  
-  For more information about Magma, see [Storage Engines](../clusters/data-service/storage-engines.md).
-
-|  | The new default storage backend for buckets may cause issues if you rely on the previous defaults. Update any deployment scripts to accommodate this change before upgrading. For more information about potential compatibility concerns, see [Before You Upgrade](../../server/current/install/upgrade.md#before-you-upgrade). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  For more information about Magma, see [Storage Engines](../clusters/data-service/storage-engines.md).  
+  > [!IMPORTANT]  
+  > The new default storage backend for buckets may cause issues if you rely on the previous defaults. Update any deployment scripts to accommodate this change before upgrading. For more information about potential compatibility concerns, see [Before You Upgrade](../../server/current/install/upgrade.md#before-you-upgrade).
   * GSI Vector Indexes  
   Couchbase Server 8.0 introduces support for Hyperscale Vector indexes and Composite Vector indexes, along with a new, simplified UI in Capella for creating vector indexes.  
   Use Hyperscale Vector indexes and Composite Vector indexes to perform vector searches in support of AI applications and other uses.
@@ -109,10 +120,9 @@ Couchbase Server 8.0 on Capella includes the following features:
       For more information, see [Set a Document Filter](../search/set-type-identifier.md).
     * New Search Index algorithm Couchbase Server 8.0 supports the `bm25` algorithm for scoring search results. The `bm25` algorithm supports better hybrid searches and richer result rankings, as well as more stable result ordering across Search index partitions.  
       You can now choose to use `tf-idf` or `bm25` from your [Search index settings](../search/set-advanced-settings.md#scoring%5Fmodel).  
-      For more information about how `bm25` scoring works, see [Scoring for Search Queries](../search/run-searches.md#scoring).
-
-|  | For more information about this version of Couchbase Server, see [Couchbase Server 8.0](../../server/current/release-notes/relnotes.md#release-80). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+      For more information about how `bm25` scoring works, see [Scoring for Search Queries](../search/run-searches.md#scoring).  
+  > [!NOTE]  
+  > For more information about this version of Couchbase Server, see [Couchbase Server 8.0](../../server/current/release-notes/relnotes.md#release-80).
 * Expanded AWS region availability  
 Couchbase Capella supports 2 new AWS regions, including:
 
@@ -267,17 +277,15 @@ For additional protection for your sensitive clusters, you can block any attempt
 * Couchbase Server 7.6.3  
 When you create a new cluster with Couchbase Server Version 7.6 selected, it uses Couchbase Server 7.6.3\. This version includes bug fixes.  
 For more information about this version of Couchbase Server, see [Couchbase Server 7.6.3](../../server/7.6/release-notes/relnotes.md#release-7-6-3-september-2024).
-* Private-only access to clusters
-
-|  | The option to create a cluster with restricted public access is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+* Private-only access to clusters  
+> [!IMPORTANT]  
+> The option to create a cluster with restricted public access is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket).  
 The restrict public access option is available when creating a [new cluster](../clusters/create-database.md). When your cluster has restrict public access turned on, you can only connect to it through Capella’s private networking options, including [VPC peering](../clouds/private-network.md) and private endpoints.  
 For example, with this option enabled, only your cloud service provider (CSP) network that’s peered with Capella can access your cluster. This configuration allows direct traffic routing from your on-premises network to Capella through your CSP’s network that’s peered with Capella.  
 For more information, see [Restrict Public Access](../security/security.md#public-access).
-* GCP Private Service Connections
-
-|  | Adding a GCP Private Service Connection is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+* GCP Private Service Connections  
+> [!IMPORTANT]  
+> Adding a GCP Private Service Connection is available only on request. For more information, [contact Couchbase Support](../support/manage-support.md#create-support-ticket).  
 Use [GCP Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) to peer your GCP network with Capella when your cluster uses GCP as its cloud provider. The benefits of this include:
 
   * Private endpoint traffic does not traverse the Internet, allowing services to function as if you hosted them within your GCP network.
@@ -563,10 +571,9 @@ For a list of all 14 Azure regions that Capella now supports, see [Microsoft Azu
     * Google Workspaces
     * OneLogin  
   To configure Capella with any of these supported identity providers, see [Add SSO Authentication](../organizations/ui-auth/add-sso-auth.md).
-  * A generic SAML integration feature that allows integration with your SAML 2.0 provider, even if it’s not in the supported identity provider list.
-
-|  | While you can configure Capella with other SAML identity providers, Couchbase provides instructions and support for only those identity providers on the supported identity provider list. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  * A generic SAML integration feature that allows integration with your SAML 2.0 provider, even if it’s not in the supported identity provider list.  
+  > [!NOTE]  
+  > While you can configure Capella with other SAML identity providers, Couchbase provides instructions and support for only those identity providers on the supported identity provider list.
 * Backups can now be downloaded from Capella  
 You can now [download backups](../clusters/backup-restore.md#downloading-backups) and store or use them outside Capella. Downloads are zip archive files of on-demand bucket backups or completed backup cycles of scheduled bucket backups. When downloaded onto your machine, you can store backups for retention or availability requirements. Use [cbbackupmgr](../reference/command-line-tools.md#cbbackupmgr) to restore data to another Couchbase cluster.
 
@@ -575,8 +582,8 @@ You can now [download backups](../clusters/backup-restore.md#downloading-backups
 * Cluster audit logging is now available for Azure-hosted clusters  
 Capella provides auditing, where you can download cluster audit logs for inspection or archiving. This feature helps with investigations and meeting organizational security or compliance requirements. Cluster auditing is now available on Capella Azure-hosted clusters with the Enterprise plan.
 
-|  | This feature is available on new clusters. Couchbase is upgrading existing clusters so all Azure enterprise customers can use this feature. If auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing Azure clusters as soon as possible. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This feature is available on new clusters. Couchbase is upgrading existing clusters so all Azure enterprise customers can use this feature. If auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing Azure clusters as soon as possible.
 
 * Connect tab in the Capella UI  
 To simplify the developer journey of connecting to Capella, a new Connect tab is now available on Capella UI. The Connect tab has information about the necessary connection parameters, prerequisites, installation instructions, code snippets, full code samples, and examples for different connection methods—​including SDK samples and snippets for three languages, Couchbase Shell, and Couchbase CLI tools for managing the cluster.  
@@ -610,10 +617,9 @@ The system enables Storage Auto-Expansion by default when you create a new Servi
 * Memory Only buckets are now available  
 Use Memory Only buckets in Capella for use cases such as caching where you need low latencies. Please use caution with memory only buckets as the data resides in-memory only and data can be lost on cluster restart. For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
 * Server audit logging is now available for GCP-hosted clusters  
-Capella provides [event auditing](../security/auditing.md), where you can download server-logged events for inspection or archiving. This feature helps with investigations and meeting organizational security or compliance requirements. Server auditing is now available on Capella GCP-hosted clusters with the [Enterprise plan](../support/support.md#support-levels).
-
-|  | This feature is available on new clusters. Couchbase is upgrading existing clusters so all GCP enterprise customers can use this feature. If GCP auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing GCP clusters as soon as possible. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella provides [event auditing](../security/auditing.md), where you can download server-logged events for inspection or archiving. This feature helps with investigations and meeting organizational security or compliance requirements. Server auditing is now available on Capella GCP-hosted clusters with the [Enterprise plan](../support/support.md#support-levels).  
+> [!NOTE]  
+> This feature is available on new clusters. Couchbase is upgrading existing clusters so all GCP enterprise customers can use this feature. If GCP auditing isn’t yet available for your cluster, open a support ticket so we can prioritize your cluster upgrade to get you using audit logging with your existing GCP clusters as soon as possible.
 
 ## [](#march-2023-changelog)March 2023 Changelog
 
@@ -740,10 +746,9 @@ The Cluster screen is now accessible while a cluster is scaling after being reco
 * Expanded activity log  
 Backup, restore, and flush events are now tracked within the [activity log](../clusters/monitoring/activity-log.md), providing increased visibility into key events that affect your clusters.
 * Cluster credentials now provide access to metrics endpoint  
-Cluster credentials that are generated with read access to _all_ buckets now allow users to access the metrics endpoint within their Couchbase Server cluster. For details on how you can use this to integrate your Capella clusters with Prometheus, see [Set up Prometheus to Consume Couchbase Metrics](../../server/current/manage/monitor/set-up-prometheus-for-monitoring.md).
-
-|  | This change only affects newly created or updated cluster credentials. You may need to recreate any existing credentials to provide them access to this functionality. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Cluster credentials that are generated with read access to _all_ buckets now allow users to access the metrics endpoint within their Couchbase Server cluster. For details on how you can use this to integrate your Capella clusters with Prometheus, see [Set up Prometheus to Consume Couchbase Metrics](../../server/current/manage/monitor/set-up-prometheus-for-monitoring.md).  
+> [!NOTE]  
+> This change only affects newly created or updated cluster credentials. You may need to recreate any existing credentials to provide them access to this functionality.
 * Purchase information is now shown in Billing  
 Capella customers can see information for each of their credit plan purchases providing awareness of consumption. This enables customers to take action before credit plan credits expire or are consumed and manage their spending more effectively.
 * Projects can be renamed  
@@ -822,10 +827,9 @@ Private networks provide an added layer of security for organizations by avoidin
 * Couchbase Cloud now available on Microsoft Azure Marketplace  
 Couchbase Cloud can now be discovered, transacted, and deployed directly via the Azure Marketplace.
 * Couchbase Cloud REST API in BETA  
-The Couchbase Cloud REST APIs, currently in restricted BETA, enable you to automate many of the administrative operations using secure REST APIs. Specifically, this release of the Cloud APIs contains functionality that enables you to deploy and destroy clusters, buckets, and cluster users, and to list clouds and to manage projects.
-
-|  | The use of these APIs in production applications is not supported. Refer to the documentation for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+The Couchbase Cloud REST APIs, currently in restricted BETA, enable you to automate many of the administrative operations using secure REST APIs. Specifically, this release of the Cloud APIs contains functionality that enables you to deploy and destroy clusters, buckets, and cluster users, and to list clouds and to manage projects.  
+> [!NOTE]  
+> The use of these APIs in production applications is not supported. Refer to the documentation for more information.
 * Improved in-product Support UX  
 We’ve integrated the support workflow with the core application so you can perform actions such as the following from the Couchbase Cloud Control Plane:
 

@@ -1,4 +1,14 @@
+---
+title: Install or provision the Couchbase server
+description: A short tutorial that will guide the developer in downloading and
+  installing Couchbase, then creating a database to store our student records.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/install-couchbase-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/install-couchbase-server.html)
+
+# Install or provision the Couchbase server
 
 > A short tutorial that will guide the developer in downloading and installing Couchbase, then creating a database to store our student records. 
 
@@ -20,15 +30,15 @@ Pick the **Couchbase server** option for your free trial.
 
 ![Couchbase download page](_images/couchbase-capella-download-page.png) 
 
-|  | You may need to fill out a brief web form before you can download the installation package. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You may need to fill out a brief web form before you can download the installation package.
 
 Select **Couchbase Server**, and from there, download the community edition of the server.
 
 ![Download Couchbase community edition dialog](_images/download-couchbase-community-edition.png) 
 
-|  | Make sure you download the latest version of the server software. |
-|  | ----------------------------------------------------------------- |
+> [!NOTE]
+> Make sure you download the latest version of the server software.
 
 Once you’ve downloaded the software, install it on your machine. (The method for installation will depend on your operating system).
 
@@ -51,8 +61,8 @@ This tutorial is designed for use with standalone or Docker installations of the
 
 Each Couchbase server can run as its own cluster, or join another cluster to form a multi-node system. For the purposes of this basic tutorial, we’re only going to concern ourselves with running as a single node.
 
-|  | You can always find the server’s configuration page by pointing your browser at http://127.0.0.1:8091. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> You can always find the server’s configuration page by pointing your browser at `http://127.0.0.1:8091`.
 
 ![Click button to set up new cluster](_images/launch-couchbase-server-page.png) 
 
@@ -62,8 +72,8 @@ Press **Setup New Cluster** to create your new cluster. The next page will allow
 
 Since we’re going to be housing student records, let’s call the cluster `student-cluster`. You’ll also need an admin username and a strong yet memorable password. Since this is just a demonstration, leave the administrator username as `Administrator`. After you’ve filled in the details, press **Next: Accept Terms**.
 
-|  | Since this is a tutorial, then feel free to use something like password for your password. In a real system, of course, you’ll use something much stronger. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Since this is a tutorial, then feel free to use something like `password` for your password. In a real system, of course, you’ll use something much stronger.
 
 On the next page, you’ll find the terms and conditions for using Couchbase. If you’re happy with them, then check the box and press **Finish with Defaults**.
 

@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Couchbase Lite Data Sync"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/sync/content/modules/userprofile-sync/pages/userprofile_sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-sync/userprofile_sync.html)
+
+# User Profile Sample: Couchbase Lite Data Sync
 
 ## [](#introduction)Introduction
 
@@ -34,10 +42,9 @@ This tutorial assumes familiarity with building Swift apps with Xcode, XCFramewo
   * Fundamentals of using Couchbase Lite as a standalone database — see: [Standalone tutorial](../userprofile-standalone/userprofile%5Fbasic.md).
   * Using queries with a prebuilt version of Couchbase Lite database — see: [Query tutorial](../userprofile-query/userprofile%5Fquery.md).
 * iOS (Xcode 12/13)  
-Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-
-|  | If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+Download the latest version from the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)  
+> [!NOTE]  
+> If you are on an older version of Xcode, which you need to retain for other development needs, make a copy of your existing version of Xcode and install the latest Xcode version. That way you can have multiple versions of Xcode on your Mac.
 * git (Optional)  
 This is required if you would prefer to pull the source code from GitHub repo.
 
@@ -421,8 +428,8 @@ if (expectedDocId != doc._id) {
 | **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that’s not the case. |
 | **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                              |
 
-|  | You can learn more about the Sync Function in the documentation here: [Sync Function API](#3.0@sync-gateway::sync-function.adoc) |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can learn more about the Sync Function in the documentation here: [Sync Function API](#3.0@sync-gateway::sync-function.adoc)
 
 ### [](#lbl-route)Data Routing
 
@@ -562,8 +569,8 @@ if let pushPullReplListener = _pushPullReplListener{
 _pushPullRepl?.stop()  
 ```
 
-|  | When you close a database, any active replicators, listeners and-or live queries are also be closed. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you close a database, any active replicators, listeners and-or live queries are also be closed.
 
 ## [](#lbl-query-events)Query Events / Live Queries
 

@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr restore
+description: Restores data from the backup archive to a Couchbase cluster
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/backup-restore/cbbackupmgr-restore.html)
+
+# cbbackupmgr restore
 
 Restores data from the backup archive to a Couchbase cluster
 
@@ -186,8 +195,8 @@ This flag can be used in conjunction to the overwrite-users flag to overwrite th
 
 Overwrites the already existing users in the cluster as the default behavior of backup/restore of users is to skip already existing users, this flag can be used to overwrite this behavior. As backup/restore of users is only available for CB version 7.6 and upwards, the flag is ignored for previous versions. Note that it should be used with `--enable-users`.
 
-|  | If the user exists on the backup, but does not exist on the cluster, then applying the \--enable-users or \--overwrite-users flag _will not_ alter the user record on the cluster. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the user exists on the backup, but does not exist on the cluster, then applying the `--enable-users` or `--overwrite-users` flag _will not_ alter the user record on the cluster.
 
 \--capella
 
@@ -285,8 +294,11 @@ Multiple cloud providers are supported, see the list below for more information.
 
 When performing an operation on an archive which is located in the cloud such as AWS, the staging directory is used to store local meta data files. This directory can be temporary (it’s not treated as a persistent store) and is only used during the backup.
 
-|  | Do not use /tmp as the obj-staging-dir.See Disk requirements in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information. Bear in mind that deleting individual directories within the staging directory is not supported; doing so may lead to abnormal behavior. If you wish to delete the staging directory, then it must be removed entirely. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not use `/tmp` as the `obj-staging-dir`.  
+> See `Disk requirements` in [cbbackupmgr-cloud](cbbackupmgr-cloud.md) for more information.
+> 
+> Bear in mind that deleting individual directories within the staging directory is not supported; doing so may lead to abnormal behavior. If you wish to delete the staging directory, then it must be removed entirely.
 
 #### [](#optional-2)Optional
 

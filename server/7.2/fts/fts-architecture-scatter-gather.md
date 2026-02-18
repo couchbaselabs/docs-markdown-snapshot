@@ -1,4 +1,12 @@
+---
+title: Scatter Gather Operation
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-architecture-scatter-gather.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-architecture-scatter-gather.html)
+
+# Scatter Gather Operation
 
 All available Search Service nodes in the cluster are individually searchable.
 

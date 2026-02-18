@@ -1,4 +1,17 @@
+---
+title: Automatic Failover
+description: One or more nodes can be failed over automatically when they become
+  unresponsive or experience a configured auto-failover triggering event.  An
+  auto-failover is performed only if all safety check conditions are met and the
+  checks are done to maintain data safety; i.e. that no data loss occurs as a
+  result of failover.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/clusters-and-availability/automatic-failover.html)
+
+# Automatic Failover
 
 > One or more nodes can be failed over automatically when they become unresponsive or experience a configured auto-failover triggering event. An auto-failover is performed only if all safety check conditions are met and the checks are done to maintain data safety; i.e. that no data loss occurs as a result of failover. 
 
@@ -130,10 +143,9 @@ If node #1 becomes unresponsive, auto-failover can be triggered. This is due to 
 | #4   | Index                |  
 If node #1, #2, or #3 becomes unresponsive, auto-failover can be triggered. In each case, this is due to _Data Service Preference_, which applies auto-failover based on the policy for the Data Service, irrespective of other services on the unresponsive node.  
 Note that in the case of node #2, this allows an Index Service node to be automatically failed over.  
-If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn’t result in any indexes or partition loss.
-
-|  | If an index does not have a replica and is co-located on a Data Service node that is failed over, then the index will be lost. |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+If node #4 becomes unresponsive, then the auto-failover of the node will be triggered, as the index service supports Auto-Failover, independent of the Data service. Please note, in this scenario, the Index Service Auto-Failover will only happen if the action doesn’t result in any indexes or partition loss.  
+> [!WARNING]  
+> If an index does not have a replica and is co-located on a Data Service node that is failed over, then the index will be lost.
 
 ## [](#configuring-auto-failover)Configuring Auto-Failover
 
@@ -155,8 +167,8 @@ For practical steps towards auto-failover configuration, see the documentation p
 
 If an auto-failover event occurs during a rebalance, the rebalance is stopped; then, auto-failover is triggered.
 
-|  | Following an auto-failover, rebalance _is not_ automatically re-attempted. |
-|  | -------------------------------------------------------------------------- |
+> [!WARNING]
+> Following an auto-failover, rebalance _is not_ automatically re-attempted.
 
 At this point, the cluster is likely to be in an unbalanced state; therefore, a rebalance should be performed manually, and the unresponsive node fixed and restored to the cluster, as appropriate.
 

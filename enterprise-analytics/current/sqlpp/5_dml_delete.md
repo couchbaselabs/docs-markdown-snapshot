@@ -1,4 +1,14 @@
+---
+title: DELETE Statements
+description: This topic describes how you use <code>DELETE</code> statements to
+  delete objects from a standalone collection.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_dml_delete.html)
+
+# DELETE Statements
 
 > This topic describes how you use `DELETE` statements to delete objects from a standalone collection. 
 

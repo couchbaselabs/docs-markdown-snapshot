@@ -1,4 +1,12 @@
+---
+title: Button Macro
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/button-macro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/button-macro.html)
+
+# Button Macro
 
 Use the Antora `btn:[]` Macro for buttons and named items that the user clicks in the UI. The button can be inside the step for a procedure, but the text does not need to be in a procedure to use the macro.
 
@@ -12,8 +20,8 @@ The following UI elements are considered buttons:
 
 ![buttons examples](_images/buttons-examples.png) 
 
-|  | A button might or might not have a defined border and color. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> A button might or might not have a defined border and color.
 
 When you need to describe a button in the UI:
 

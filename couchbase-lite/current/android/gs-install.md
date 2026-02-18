@@ -1,4 +1,13 @@
+---
+title: Installing Couchbase Lite on Android
+description: How to install Couchbase Lite on Android
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/gs-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/android/gs-install.html)
+
+# Installing Couchbase Lite on Android
 
 > Description — _How to install Couchbase Lite on Android_  
 > _Abstract — Getting you up and running quickly with Couchbase Lite on android_  
@@ -67,8 +76,8 @@ Now, try the [Getting Started](gs-build.md) application, which demonstrates use 
 
 More detailed instructions on getting up and running with Couchbase Lite for Android (Kotlin).
 
-|  | The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies.
 
 Create or open an existing Android Studio project and include the following entries in the app-level `build.gradle` file (typically in the **app** folder).
 
@@ -131,13 +140,13 @@ dependencies {
 
 You can get set up with the Vector Search Extension for Android (Kotlin) by following these instructions.
 
-|  | The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Kotlin download also includes the Java version of Couchbase Lite for Android, along with the other dependencies.
 
 Create or open an existing Android Studio project and include the following entries in the app-level `build.gradle` file (typically in the **app** folder).
 
-|  | You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You must have Couchbase Lite installed before you can use the Vector Search Extension. Vector Search is available only for 64-bit architectures. The Vector Search extension is an **Enterprise-only** feature.
 
 ### [](#installing-the-vector-search-extension)Installing the Vector Search Extension
 
@@ -256,8 +265,8 @@ dependencies {
 
 ## [](#java-vector-search-extension-detailed-installation-instructions)Java Vector Search Extension: Detailed Installation Instructions
 
-|  | The Vector Search extension is an **Enterprise-only** feature. |
-|  | -------------------------------------------------------------- |
+> [!NOTE]
+> The Vector Search extension is an **Enterprise-only** feature.
 
 You can get set up with the Vector Search Extension for Android (Java) by following these instructions.
 
@@ -267,8 +276,8 @@ Include the following entries to the app-level `build.gradle` file (typically in
 
 ### [](#installing-the-vector-search-extension-2)Installing the Vector Search Extension
 
-|  | To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To use Vector Search, you must have Couchbase Lite installed and add the Vector Search extension to your Couchbase Lite application. Vector Search is available only for 64-bit architectures and Intel processors that support the Advanced Vector Extensions 2 (AVX2) instruction set. To verify whether your device supports the AVX2 instructions set, [follow these instructions.](https://www.intel.com/content/www/us/en/support/articles/000090473/processors/intel-core-processors.html)
 
 1. Include the following in the `android {}` section:  
 ```groovy  

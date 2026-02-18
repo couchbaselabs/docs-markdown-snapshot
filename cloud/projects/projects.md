@@ -1,16 +1,20 @@
+---
+title: Projects Overview
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/projects.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/projects/projects.html)
 
-> Projects contain and allow access to Couchbase clusters. 
+# Projects Overview
 
-Within [organizations](../organizations/organizations.md), projects are used to organize and manage groups of Couchbase [clusters](../clusters/databases.md). An organization can contain any number of projects, and a project can contain any number of clusters.
+> Use projects to organize and manage access to [clusters](../clusters/databases.md). An organization can have up to 50 projects. 
 
-A cluster must be contained within a single project. Therefore, you must create at least one project before you can create a cluster. When you create a cluster, you’ll be required to select a project for it to be contained in.
+All clusters must exist within a project. When you create a cluster, you must choose a project where you want to create the cluster.
 
-The main purpose of a project is to manage access to a particular set of clusters. Organization users can access the clusters within a project once they have been added as members of the project.
+Organization users can only access clusters in a project if they’re a member of the project. When you add a user to a project, you assign them 1 or more [project roles](project-roles.md). Project roles determine the privileges those users have within the scope of the project, including any clusters within that project. For example, project roles determine if a project member can create and manage clusters, or access and monitor those clusters.
 
-Members of a project are assigned [_project roles_](project-roles.md) which determine the privileges those users have within the scope of the project. These privileges determine whether a project member can perform activities such as creating and managing clusters in the project, or simply accessing and monitoring those clusters.
-
-By using projects to organize your clusters, you have the flexibility to do things like:
+By using projects to organize your clusters, you can:
 
 * Create separate environments for production and development
 * Group clusters by application or geo-locality
@@ -18,5 +22,5 @@ By using projects to organize your clusters, you have the flexibility to do thin
 
 ## [](#administering-projects)Administering Projects
 
-* For information on how to create and delete projects, refer to [Manage Projects](manage-projects.md).
-* For information on how to manage the members of a project, refer to [Manage Project Users](manage-project-users.md)
+* For information about creating and deleting projects, see [Manage Projects](manage-projects.md).
+* For information about managing the members of a project, see [Manage Project Users](manage-project-users.md).

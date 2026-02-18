@@ -1,4 +1,12 @@
+---
+title: Enterprise Analytics Release Notes
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/release-notes/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/release-notes/release-notes.html)
+
+# Enterprise Analytics Release Notes
 
 ## [](#release-2-1-november-2025)Release 2.1 (November 2025)
 

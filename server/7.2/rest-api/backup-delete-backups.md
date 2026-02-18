@@ -1,4 +1,14 @@
+---
+title: Delete a Backup
+description: The Backup Service REST API supports the deletion of backups, from
+  a specified, active repository.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-delete-backups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/backup-delete-backups.html)
+
+# Delete a Backup
 
 > The Backup Service REST API supports the deletion of backups, from a specified, active repository. 
 

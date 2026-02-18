@@ -1,9 +1,17 @@
+---
+title: MapReduce Views
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/understanding-views.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/concept-docs/understanding-views.html)
+
+# MapReduce Views
 
 > You can use MapReduce views to create queryable indexes in Couchbase Server. 
 
-|  | Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](data-services.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](data-services.md).
 
 # [](#mapreduce-views)MapReduce Views
 

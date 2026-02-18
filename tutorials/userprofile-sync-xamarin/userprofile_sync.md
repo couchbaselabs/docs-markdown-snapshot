@@ -1,4 +1,12 @@
+---
+title: "User Profile Sample: Data Sync Fundamentals"
+editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/sync/content/modules/userprofile-sync-xamarin/pages/userprofile_sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/userprofile-sync-xamarin/userprofile_sync.html)
+
+# User Profile Sample: Data Sync Fundamentals
 
 ## [](#introduction)Introduction
 
@@ -404,8 +412,8 @@ if (expectedDocId != doc._id) {
 | **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::demo@example.com"_). We throw an exception if that’s not the case. |
 | **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                              |
 
-|  | You can learn more about the Sync Function in the documentation here: [Sync Function API](#3.0@sync-gateway::sync-function.adoc) |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can learn more about the Sync Function in the documentation here: [Sync Function API](#3.0@sync-gateway::sync-function.adoc)
 
 ### [](#lbl-route)Data Routing
 
@@ -537,8 +545,8 @@ _replicator.RemoveChangeListener(_replicatorListenerToken);
 _replicator.Stop();  
 ```
 
-|  | When you close a database, any active replicators, listeners and-or live queries are also be closed. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When you close a database, any active replicators, listeners and-or live queries are also be closed.
 
 ## [](#lbl-query-events)Query Events and Live Queries
 
@@ -602,8 +610,13 @@ _userQueryToken = _userQuery.AddChangeListener((object sender, QueryChangedEvent
 
 ## [](#exercises)Exercises
 
-|  | If you are running the application in Android emulator(s) then you will need to change the URL of the remote Sync Gateway in DatabaseManager.cs. Find and uncomment the following line: readonly Uri \_remoteSyncUrl = new Uri("ws://10.0.2.2:4984"); Comment out the standard line: readonly Uri \_remoteSyncUrl = new Uri("ws://localhost:4984"); |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you are running the application in Android emulator(s) then you will need to change the URL of the remote Sync Gateway in `DatabaseManager.cs`.
+> 
+> 1. Find and uncomment the following line:  
+> `readonly Uri _remoteSyncUrl = new Uri("ws://10.0.2.2:4984");`
+> 2. Comment out the standard line:  
+> `readonly Uri _remoteSyncUrl = new Uri("ws://localhost:4984");`
 
 ### [](#exercise-1)Exercise 1
 

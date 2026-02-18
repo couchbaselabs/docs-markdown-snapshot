@@ -1,4 +1,14 @@
+---
+title: Manage Logging
+description: The <em>Logging</em> facility allows a record to be maintained of
+  important events that occur on Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-logging/manage-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-logging/manage-logging.html)
+
+# Manage Logging
 
 > The _Logging_ facility allows a record to be maintained of important events that occur on Enterprise Analytics. 
 
@@ -14,8 +24,8 @@ By default, on Linux systems, log files are saved to `/opt/enterprise-analytics/
 
 On each node within an Enterprise Analytics-cluster, logging is performed continuously. _A subset_ of the results can be reviewed in the Enterprise Analytics Web Console **Logs** screen; while _all_ details are saved to the `logs` directory, as described above.
 
-|  | The logs directory may include audit.log. |
-|  | ----------------------------------------- |
+> [!NOTE]
+> The `logs` directory may include `audit.log`.
 
 This is a special log file, used to manage cluster-security, and is handled separately from the other log files. The information provided throughout the remainder of this page — on collecting, uploading, redacting, and more — _does not_ apply to `audit.log`. For information about `audit.log`, see [Auditing](../../../../server/current/learn/security/auditing.md).
 
@@ -25,8 +35,8 @@ Explicit logging can be performed by means of the Enterprise Analytics CLI utili
 
 Additionally, administrators with either the **Full Admin** or **Cluster Admin** role can perform explicit logging by means of Enterprise Analytics Web Console: on the **Logs** page, click on the **Collect Information** tab, located near the top.
 
-|  | For administrators without either of these roles, this tab does not appear. |
-|  | --------------------------------------------------------------------------- |
+> [!NOTE]
+> For administrators without either of these roles, this tab does not appear.
 
 This opens the **Collect Information** screen, which allows logs and diagnostic information to be collected either from all or from selected nodes within the cluster.
 
@@ -102,8 +112,8 @@ The redacted version of the log file might appear as follows:
 Bucket=<UD>e16d86f91f9fd0b110be28ad00e348664b435e9e</UD>
 ```
 
-|  | Redaction may eliminate some parameters containing non-private data, as well as all parameters containing private. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Redaction may eliminate some parameters containing non-private data, as well as all parameters containing private.
 
 Redaction of log files may have one or both of the following consequences:
 
@@ -125,8 +135,8 @@ Select the **Partial Redaction** radio button to enable redaction. Guidance on r
 
 Click the **Start Collecting** button to begin the process. A notification explains that the collection process is now running. When the process has completed, a notification appears, specifying the location (local or remote) of each created zip file.
 
-|  | When redaction has been specified, two zip files are provided for each node: one file containing redacted data, the other unredacted data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When redaction has been specified, two zip files are provided for each node: one file containing redacted data, the other unredacted data.
 
 ## [](#redacting-log-files-outside-the-cluster)Redacting Log Files Outside the Cluster
 
@@ -200,15 +210,15 @@ This rotates the `debug.log` at 10MB, and keeps ten copies of the log: the curre
 
 Log rotation settings can be changed.
 
-|  | This is not advised, and only the default log rotation settings are supported by Couchbase. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is not advised, and only the default log rotation settings are supported by Couchbase.
 
 ## [](#changing-log-file-locations)Changing Log File Locations
 
 The default log location on Linux systems is _/opt/enterprise-analytics/var/lib/couchbase/logs_. The location can be changed.
 
-|  | This is not advised, and only the default log location is supported by Couchbase. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is not advised, and only the default log location is supported by Couchbase.
 
 To change the location, proceed as follows:
 
@@ -220,8 +230,8 @@ To change the location, proceed as follows:
 
 The default logging level for all log files is _debug_, except for `couchdb`, which is set to _info_. Logging levels can be changed.
 
-|  | This is not advised, and only the default logging levels are supported by Couchbase. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This is not advised, and only the default logging levels are supported by Couchbase.
 
 Either _persistent_ or _dynamic_ changes can be made to logging levels.
 
@@ -265,8 +275,12 @@ To retrieve log information use the `/diag` and `/sasl_logs` [REST endpoints](..
 
 The current settings are retrieved by using the `mcctl` cli to execute the `get sla` command:
 
-|  | These settings only apply to the nodes _where the changes are made._ You must implement the changes on each node to ensure they are applied across the cluster. You must also configure the node to run the data service. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> These settings only apply to the nodes _where the changes are made._
+> 
+> You must implement the changes on each node to ensure they are applied across the cluster.
+> 
+> You must also configure the node to run the `data service`.
 
 Getting threshold details
 

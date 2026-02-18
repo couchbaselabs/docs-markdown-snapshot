@@ -1,4 +1,14 @@
+---
+title: UNION, INTERSECT, and EXCEPT
+description: The set operators UNION, INTERSECT, and EXCEPT combine the
+  resultsets of two or more SELECT statements.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/union.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/union.html)
+
+# UNION, INTERSECT, and EXCEPT
 
 > The set operators [UNION](#union), [INTERSECT](#intersect), and [EXCEPT](#except) combine the resultsets of two or more `SELECT` statements. 
 
@@ -54,8 +64,8 @@ SELECT DISTINCT city FROM hotel;
 
 (274 results)
 
-|  | The SELECT statements in the following examples do not need to use the DISTINCT keyword, since the set operators return distinct results when used without the ALL keyword. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `SELECT` statements in the following examples do not need to use the DISTINCT keyword, since the set operators return distinct results when used without the ALL keyword.
 
 Example 1\. UNION of Q1 and Q2
 

@@ -1,4 +1,14 @@
+---
+title: ALTER BUCKET
+description: The ALTER BUCKET statement enables you to update an existing
+  bucket's configuration.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/alterbucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/alterbucket.html)
+
+# ALTER BUCKET
 
 > The ALTER BUCKET statement enables you to update an existing bucket’s configuration. 
 
@@ -30,8 +40,8 @@ The `BUCKET` and `DATABASE` keywords are synonyms. You can use either of them.
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | with-fields | (Optional) A JSON object containing a list of name-value pairs that specify additional options for the bucket. For a list of valid fields names and values, see [Bucket Parameter Groups](../../rest-api/rest-bucket-create.md#parameter-groups) in the REST API documentation. |
 
-|  | You cannot alter the following fields of a bucket: bucketType, storageBackend, replicaIndex, and conflictResolutionType. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You cannot alter the following fields of a bucket: `bucketType`, `storageBackend`, `replicaIndex`, and `conflictResolutionType`.
 
 ## [](#example)Example
 

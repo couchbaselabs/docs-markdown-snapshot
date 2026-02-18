@@ -1,4 +1,13 @@
+---
+title: Google Cloud Platform (GCP)
+description: Capella Analytics supports deploying clusters onto Google Cloud Platform (GCP).
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/gcp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/reference/gcp.html)
+
+# Google Cloud Platform (GCP)
 
 > Capella Analytics supports deploying clusters onto Google Cloud Platform (GCP). 
 
@@ -38,8 +47,8 @@ Clusters deployed onto GCP can be customized to suit your needs.
 
 Clusters can have a minimum of 1 node and a maximum of 32 nodes.
 
-|  | The option to deploy 1 node is only available for clusters that deploy in a single availability zone and DevPro plan. |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The option to deploy 1 node is only available for clusters that deploy in a single availability zone and DevPro plan.
 
 ### [](#compute)Compute
 

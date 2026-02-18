@@ -1,4 +1,15 @@
+---
+title: Couchbase Server Deployment Options
+description: Couchbase Server can be deployed on a variety of platforms, from
+  traditional bare metal servers, to containers running in a public or private
+  cloud.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/get-started.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/get-started.html)
+
+# Couchbase Server Deployment Options
 
 > Couchbase Server can be deployed on a variety of platforms, from traditional bare metal servers, to containers running in a public or private cloud. 
 

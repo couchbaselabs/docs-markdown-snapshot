@@ -1,4 +1,14 @@
+---
+title: Use the Agent Catalog Tools and Prompts Hub
+description: Use the Tools Hub or the Prompts Hub to view all the tools and
+  prompts published to Agent Catalog from your agent projects.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/tools-prompts-hub.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/build/tools-prompts-hub.html)
+
+# Use the Agent Catalog Tools and Prompts Hub
 
 > Use the Tools Hub or the Prompts Hub to view all the tools and prompts published to Agent Catalog from your agent projects. 
 
@@ -29,10 +39,9 @@ To view published tools in your Agent Catalog project in the Capella UI:
 
   1. In the search bar, choose to search for a **Name**, **Description**, or **Tags** from the specific tool you want to view.
   2. Click the **Bucket**, **Date Range**, or **Type** filters to filter the displayed tools.
-4. Click the name of the tool you want to view.
-
-|  | You can also click to copy the **Catalog ID** or **Source** for a listed tool. |
-|  | ------------------------------------------------------------------------------ |
+4. Click the name of the tool you want to view.  
+> [!TIP]  
+> You can also click to copy the **Catalog ID** or **Source** for a listed tool.
 5. Do any of the following:
 
   1. To view a specific version of your tool, click its Git commit hash.
@@ -50,10 +59,9 @@ To view published prompts in your Agent Catalog project in the Capella UI:
 
   1. In the search bar, choose to search for a **Name**, **Description**, or **Tags** from the specific prompt you want to view.
   2. Click the **Bucket** or **Date Range** filters to filter the displayed prompts.
-4. Click the name of the prompt you want to view.
-
-|  | You can also click to copy the **Catalog ID** or **Source** for a listed prompt. |
-|  | -------------------------------------------------------------------------------- |
+4. Click the name of the prompt you want to view.  
+> [!TIP]  
+> You can also click to copy the **Catalog ID** or **Source** for a listed prompt.
 5. Do any of the following:
 
   1. To view a specific version of your prompt, click its Git commit hash.

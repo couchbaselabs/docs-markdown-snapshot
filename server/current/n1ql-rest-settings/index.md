@@ -1,4 +1,12 @@
+---
+title: Query Settings REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-settings/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql-rest-settings/index.html)
+
+# Query Settings REST API
 
 ## [](#overview)Overview
 

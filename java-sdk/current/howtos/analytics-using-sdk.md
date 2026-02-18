@@ -1,11 +1,25 @@
+---
+title: Analytics
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/analytics-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/howtos/analytics-using-sdk.html)
+
+# Analytics
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
 This page covers using our operational Java SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
-|  | Analytics SDKs SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information. Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Analytics SDKs
+> 
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information.
+> 
+> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information.
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](../../../server/current/analytics/introduction.md). This is the analytic counterpart to our [operational data focussed Query Service](sqlpp-queries-with-sdk.md).
 
@@ -63,8 +77,10 @@ Once a result returns you can iterate the returned rows and/or accessing the `An
 Exception in thread "main" com.couchbase.client.core.error.ParsingFailureException: Parsing of the input failed {"completed":true,"coreId":1,"errors":[{"code":24000,"message":"Syntax error: In line 1 >>select 1=;<< Encountered \"=\" at column 9. "}], ... }
 ```
 
-|  | Open Buckets and Cluster-Level Queries If you are using a cluster older than Couchbase Server 6.5, it is required that there is at least one bucket open before performing a cluster-level query. If you fail to do so, the SDK will return a FeatureNotAvailableException with a descriptive error message asking you to open one. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Open Buckets and Cluster-Level Queries
+> 
+> If you are using a cluster older than Couchbase Server 6.5, it is required that there is at least one bucket open before performing a cluster-level query. If you fail to do so, the SDK will return a `FeatureNotAvailableException` with a descriptive error message asking you to open one.
 
 ## [](#parameterized-queries)Parameterized Queries
 
@@ -199,8 +215,10 @@ In addition to the blocking API on `Cluster`, the SDK provides reactive and asyn
 
 Also, there is another reason you want to use the reactive API: streaming large results with backpressure from the application side. Both the blocking and async APIs have no means of signalling backpressure in a good way, so if you need it the reactive API is your best option.
 
-|  | Advanced Reactive Concepts Ahead Please see the guides on reactive programming for more information on the basics, this guide is diving straight into their impact on querying analytics. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Advanced Reactive Concepts Ahead
+> 
+> Please see the guides on reactive programming for more information on the basics, this guide is diving straight into their impact on querying analytics.
 
 A simple reactive query is similar to the blocking one:
 

@@ -1,4 +1,14 @@
+---
+title: Install Couchbase Server on Windows
+description: Couchbase Server can be installed on Windows Server for production
+  use-cases, and Windows Desktop for development use-cases.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-package-windows.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install-package-windows.html)
+
+# Install Couchbase Server on Windows
 
 > Couchbase Server can be installed on Windows Server for production use-cases, and Windows Desktop for development use-cases. 
 
@@ -50,10 +60,9 @@ The install wizard now appears:
 If you accept the license agreement, check the box next to **I accept the terms in the License Agreement**.  
 Click **Next** to continue.
 8. On the Destination Folder screen, choose the folder where you want the Couchbase Server application to be installed.  
-You can change the folder by clicking the **Change…​** button, or click **Next** to use the default folder.
-
-|  | The destination folder will only contain the Couchbase Server application. Couchbase Server stores database files and other persistent data in C:\\Program Files\\Couchbase. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+You can change the folder by clicking the **Change…​** button, or click **Next** to use the default folder.  
+> [!NOTE]  
+> The destination folder will only contain the Couchbase Server application. Couchbase Server stores database files and other persistent data in `C:\Program Files\Couchbase`.
 9. Enterprise Edition: On the IP Version Selection screen, you can choose to configure Couchbase Server to use IPv6.  
 Unless you’re sure that you need to use IPv6, you should keep the default configuration (IPv4). Refer to the [IPv6 documentation](../manage/manage-nodes/manage-address-families.md) for more information.  
 Click **Next** to continue.
@@ -75,10 +84,9 @@ start /wait msiexec /i package-name.msi /qn
 To install Couchbase Server to a non-standard directory:  
 ```console  
 start /wait msiexec /i package-name.msi /qn INSTALLDIR=C:\ my-install-dir  
-```
-
-|  | If you don’t prepend start /wait to the command, msiexec immediately returns control to the command prompt and doesn’t wait for the installation to complete or report any errors. In this case, you may have to wait a minute or two for the actual installation to complete. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```  
+> [!NOTE]  
+> If you don’t prepend `start /wait` to the command, `msiexec` immediately returns control to the command prompt and doesn’t wait for the installation to complete or report any errors. In this case, you may have to wait a minute or two for the actual installation to complete.
 3. Once the installation completes, a web browser and access the Couchbase Web Console to [verify](testing.md) that the installation was successful and that the node is available.
 
 ## [](#next-steps)Next Steps

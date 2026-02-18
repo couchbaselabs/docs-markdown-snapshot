@@ -1,10 +1,19 @@
+---
+title: QueryBuilder
+description: How to use QueryBuilder to build effective queries with Couchbase Lite on Java
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/querybuilder.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/querybuilder.html)
+
+# QueryBuilder
 
 > Description — _How to use QueryBuilder to build effective queries with Couchbase Lite on Java_  
 > Related Content — [Predictive Queries](#lbl-predquery) | [Live Queries](query-live.md) | [Indexing](indexing.md)
 
-|  | The examples used here are based on the _Travel Sample_ app and data introduced in the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The examples used here are based on the _Travel Sample_ app and data introduced in the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial
 
 ## [](#introduction)Introduction
 
@@ -34,8 +43,8 @@ Query Components
 | [GROUP BY statement](#lbl-group) | The criteria used to group returned items in the result set                                                          |
 | [ORDER BY statement](#lbl-order) | The criteria used to order the items in the result set                                                               |
 
-|  | We recommend working through the query section of the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial as a good way to build your skills in this area. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> We recommend working through the query section of the [Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-tutorial/introduction.html) tutorial as a good way to build your skills in this area.
 
 ## [](#lbl-select)SELECT statement
 
@@ -256,8 +265,9 @@ In this section
 
 The [Like()](https://docs.couchbase.com/mobile/3.2.4/couchbase-lite-java/com/couchbase/lite/Expression.html#like-com.couchbase.lite.Expression-) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
 
-|  | The like operator performs **case sensitive** matches.To perform case insensitive matching, use Function.lower or Function.upper to ensure all comparators have the same case, thereby removing the case issue. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `like` operator performs **case sensitive** matches.  
+> To perform case insensitive matching, use `Function.lower` or `Function.upper` to ensure all comparators have the same case, thereby removing the case issue.
 
 This query returns `landmark` type documents where the `name` matches the string "Royal Engineers Museum", regardless of how it is capitalized (so, it selects "royal engineers museum", "ROYAL ENGINEERS MUSEUM" and so on).
 
@@ -338,8 +348,8 @@ try (ResultSet resultSet = query.execute()) {
 
 Similar to the wildcards in `like` expressions, `regex` based pattern matching allow you to introduce an element of fuzziness in your search string — see the code shown in [Example 10](#ex-regex).
 
-|  | The regex operator is case sensitive, use upper or lower functions to mitigate this if required. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `regex` operator is case sensitive, use `upper` or `lower` functions to mitigate this if required.
 
 Example 10\. Using Regular Expressions
 
@@ -365,8 +375,8 @@ try (ResultSet resultSet = query.execute()) {
 | **1** | The \\b specifies that the match must occur on word boundaries. |
 | ----- | --------------------------------------------------------------- |
 
-|  | For more on the regex spec used by Couchbase Lite see [cplusplus regex reference page](http://www.cplusplus.com/reference/regex/ECMAScript/) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For more on the regex spec used by Couchbase Lite see [cplusplus regex reference page](http://www.cplusplus.com/reference/regex/ECMAScript/)
 
 ### [](#lbl-deleted-ops)Deleted Document
 
@@ -858,8 +868,8 @@ Query listQuery =
 | **1** | Return a maximum of limit results starting from result number offset |
 | ----- | -------------------------------------------------------------------- |
 
-|  | For more on using the QueryBuilder API, see our blog: [Introducing the Query Interface in Couchbase Mobile](https://blog.couchbase.com/sql-for-json-query-interface-couchbase-mobile/) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For more on using the QueryBuilder API, see our blog: [Introducing the Query Interface in Couchbase Mobile](https://blog.couchbase.com/sql-for-json-query-interface-couchbase-mobile/)
 
 ## [](#json-result-sets)JSON Result Sets
 
@@ -914,8 +924,10 @@ If your query selects a sub-set of available properties then the JSON format wil
 
 ## [](#lbl-predquery)Predictive Query
 
-|  | Enterprise Edition onlyPredictive Query is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Enterprise Edition only
+> 
+> Predictive Query is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
 Predictive Query enables Couchbase Lite queries to use machine learning, by providing query functions that can process document data (properties or blobs) via trained ML models.
 

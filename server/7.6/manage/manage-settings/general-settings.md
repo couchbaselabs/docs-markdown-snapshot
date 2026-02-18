@@ -1,4 +1,16 @@
+---
+title: General
+description: <em>General</em> settings allow configuration of <em>cluster
+  name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
+  availability</em> for the cluster; and of <em>advanced settings</em> for the
+  Index and Query Services.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-settings/general-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-settings/general-settings.html)
+
+# General
 
 > _General_ settings allow configuration of _cluster name_, _memory quotas_, _storage modes_, and _node availability_ for the cluster; and of _advanced settings_ for the Index and Query Services. 
 
@@ -107,10 +119,10 @@ Each group has the same, three radio buttons, which are as follows:
 * **Disk i/o optimized**. The number of threads allocated is equal to the number of CPU cores for the node.  
 In order to get maximum performance from Magma for disk-oriented workloads, it is recommended to set the Writer Threads to 'Disk i/o optimized'. This setting will ensure there are enough threads to sustain high write rates.  
 To Learn more about the Magma Storage Engine, see [Storage Engines — Magma Storage Engine](../../learn/buckets-memory-and-storage/storage-engines.md#storage-engine-magma).
-* **Fixed value**. The number of threads allocated is equal to the value selected from the pull-down menu.
-
-|  | A good rule of thumb is to set each of readers and writers equal to the queue depth of the underlying IO subsystem (i.e. readers = queue\_depth and writers = queue\_depth).However, for best performance it is recommended to benchmark with different settings and pick the one that best meets the throughput and latency requirements in your environment. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* **Fixed value**. The number of threads allocated is equal to the value selected from the pull-down menu.  
+> [!NOTE]  
+> A good rule of thumb is to set each of readers and writers equal to the queue depth of the underlying IO subsystem (i.e. readers = queue\_depth and writers = queue\_depth).  
+> However, for best performance it is recommended to benchmark with different settings and pick the one that best meets the throughput and latency requirements in your environment.
 
 ### [](#query-settings)Query Settings
 
@@ -141,10 +153,9 @@ Additional Query settings are provided in the lower section of the panel:
 * **Completed Threshold**: The completed-query duration (in milliseconds) beyond which the query is logged in the completed requests catalog.
 * **Log Level**: The log level used in the logger.
 * **Max Parallelism**: The maximum number of index partitions for parallel aggregation-computing.
-* **N1QL Feature Controller**: Enables or disables features in the Query engine.
-
-|  | Do not change the **N1QL Feature Controller** setting without guidance from technical support. |
-|  | ---------------------------------------------------------------------------------------------- |
+* **N1QL Feature Controller**: Enables or disables features in the Query engine.  
+> [!WARNING]  
+> Do not change the **N1QL Feature Controller** setting without guidance from technical support.
 * **Transaction Timeout**: The number of milliseconds to elapse before a transaction times out.
 * **Memory Quota**: The amount of memory, in megabytes, allocated to the processing of a query.
 * **Use Cost-Based Optimizer**: when checked (as it is by default), specifies that the cost-based optimizer is used for queries: when the checkbox is unchecked, the optimizer is _not_ used.
@@ -176,14 +187,12 @@ The settings under **Advanced Settings** for indexes are:
 From release 7.2.1 onward, Bloom filters for plasma back indexes are enabled by default. During an upgrade, mixed mode clusters with nodes that support bloom filters will enable it for back indexes, even if they was disabled in the past. Users must explicitly disable it again after a cluster setup, or a new node is added.  
 Once bloom filters are disabled in mixed mode, adding a new 7.2.1+ node will not re-enable them.
 
-* **File Transfer Based Rebalance**: Controls whether Couchbase Server rebuilds indexes or copies them between nodes. Use the **Enable File Transfer Based Rebalance** checkbox to enable or disable the File Transfer Based Rebalance from the UI. The default cleared setting has an Index Server node rebuild any newly assigned index during a rebalance. You cannot enable file-based rebalance when you have enabled Memory Optimized Index Storage. When you select this option, Couchbase Server copies the index files from one Index Server node to another during a rebalance instead of rebuilding them. See [Index Rebalance Methods](../../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods).
-
-|  | Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance. |
-|  | ------------------------------------------------------------------------------------------------- |  
-You can disable this feature from the UI or via REST API. To learn about disabling this feature via REST API, see [Curl Command to Disable the File Transfer Based Rebalance](../../rest-api/post-settings-indexes.md#disable-file-transfer-based-rebalance). This feature is disabled by default.
-
-|  | Disabling this feature slows down the Rebalance operation. |
-|  | ---------------------------------------------------------- |
+* **File Transfer Based Rebalance**: Controls whether Couchbase Server rebuilds indexes or copies them between nodes. Use the **Enable File Transfer Based Rebalance** checkbox to enable or disable the File Transfer Based Rebalance from the UI. The default cleared setting has an Index Server node rebuild any newly assigned index during a rebalance. You cannot enable file-based rebalance when you have enabled Memory Optimized Index Storage. When you select this option, Couchbase Server copies the index files from one Index Server node to another during a rebalance instead of rebuilding them. See [Index Rebalance Methods](../../learn/clusters-and-availability/rebalance-and-index-service.md#index-rebalance-methods).  
+> [!NOTE]  
+> Shard Based Rebalance and Rebalance Based on File Transfer are synonyms for File-based Rebalance.  
+You can disable this feature from the UI or via REST API. To learn about disabling this feature via REST API, see [Curl Command to Disable the File Transfer Based Rebalance](../../rest-api/post-settings-indexes.md#disable-file-transfer-based-rebalance). This feature is disabled by default.  
+> [!WARNING]  
+> Disabling this feature slows down the Rebalance operation.
 
 ### [](#xdcr-maximum-processes)XDCR Maximum Processes
 
@@ -294,8 +303,8 @@ Setting value of 1 for `--enable-notifications` enables update-notifications. A 
 SUCCESS: Notification settings updated
 ```
 
-|  | You cannot disable software update notifications in Couchbase Server Community Edition. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot disable software update notifications in Couchbase Server Community Edition.
 
 ### [](#auto-failover-settings-via-cli)Auto-Failover Settings via CLI
 
@@ -572,7 +581,7 @@ This sets the number of _reader_ threads to `12`, and the number of _writer_ thr
 {"num_reader_threads":12,"num_writer_threads":8}
 ```
 
-See [Threading](../../learn/buckets-memory-and-storage/storage-settings.md#threading) for an overview of reader and writer threads. Also see the REST API reference page, [Setting Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
+See [Threading](../../learn/buckets-memory-and-storage/storage-settings.md#threading) for an overview of reader and writer threads. Also see the REST API reference page, [Setting Storage Thread Allocations](../../rest-api/rest-reader-writer-thread-config.md).
 
 ### [](#query-settings-via-rest)Query Settings via REST
 

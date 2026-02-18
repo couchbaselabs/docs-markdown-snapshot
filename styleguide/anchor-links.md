@@ -1,9 +1,17 @@
+---
+title: Anchor Links
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/anchor-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/anchor-links.html)
+
+# Anchor Links
 
 If you need to link to a specific place in a page, whether from another page or on the same page, use an anchor link.
 
-|  | Do not rely on Antora’s automatically generated anchor links. If you need to use an anchor link, create your own. This prevents broken links if header content changes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not rely on Antora’s automatically generated anchor links. If you need to use an anchor link, create your own. This prevents broken links if header content changes.
 
 When creating an anchor link:
 

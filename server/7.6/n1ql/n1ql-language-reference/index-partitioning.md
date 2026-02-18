@@ -1,4 +1,15 @@
+---
+title: Index Partitioning
+description: Index partitioning enables you to increase aggregate query
+  performance by dividing and spreading a large index of documents across
+  multiple nodes, horizontally scaling out an index as needed.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/index-partitioning.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/index-partitioning.html)
+
+# Index Partitioning
 
 Index partitioning enables you to increase aggregate query performance by dividing and spreading a large index of documents across multiple nodes, horizontally scaling out an index as needed. The system partitions the index across a number of index nodes using a hash partitioning strategy in a way that’s transparent to queries.
 
@@ -318,10 +329,12 @@ CREATE INDEX idx_pe12 ON route
  WITH {"nodes": ["192.168.10.10:8091", "192.168.10.11:8091"]};
 ```
 
+When you specify a node list for a partitioned index, the Index Service places the partitions according to the available resources on the specified nodes. For example, if you create an index with 8 partitions and specify a list of 8 nodes, the Index Service does not necessarily place 1 partition on each node. Rather, the Index Service considers the resource usage on each of the specified nodes, and may choose to place the partitions on 4 of them.
+
 If you create a partitioned index on a specific set of nodes, and then decide that you want to specify a different set of nodes for partition placement, you need to remove the partitioned index and then recreate the partitioned index on a smaller or greater number of nodes. However, refer also to the section on [rebalancing a partitioned index](#rebalancing) below.
 
-|  | To avoid any downtime, before removing the partitioned index, first create an equivalent index for your queries to continue using. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To avoid any downtime, before removing the partitioned index, first create an equivalent index for your queries to continue using.
 
 ### [](#sizing-hints)Sizing Hints
 

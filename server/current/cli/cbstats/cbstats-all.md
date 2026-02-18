@@ -1,4 +1,14 @@
+---
+title: all
+description: The <code>all</code> command provides information on memory,
+  queues, persistence, and vBuckets.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-all.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-all.html)
+
+# all
 
 > The `all` command provides information on memory, queues, persistence, and vBuckets. 
 

@@ -1,4 +1,14 @@
+---
+title: ALTER INDEX
+description: The ALTER INDEX statement increases or decreases the number of
+  index replicas and partition replicas.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alterindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/alterindex.html)
+
+# ALTER INDEX
 
 > The ALTER INDEX statement increases or decreases the number of index replicas and partition replicas. 
 
@@ -48,8 +58,8 @@ index-path ::= keyspace-full | keyspace-prefix | keyspace-partial
 
 You can use a dotted notation to specify the index and the keyspace on which the index is built. This syntax provides compatibility with legacy versions of Couchbase Server. The index path may be a [full keyspace path](#keyspace-full-index), a [keyspace prefix](#keyspace-prefix-index), or a [keyspace partial](#keyspace-partial-index).
 
-|  | If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the index path, you must wrap the index name or that part of the index path in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-full-index)Index Path: Full Keyspace
 
@@ -110,8 +120,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 You can use the index name with the `ON` keyword and a keyspace reference to specify the keyspace on which the index is built. The keyspace reference may be a [keyspace path](#keyspace-path) or a [keyspace partial](#keyspace-partial).
 
-|  | If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the index name or any part of the keyspace reference, you must wrap the index name or that part of the keyspace reference in backticks (\` \`). See the examples on this page.
 
 #### [](#keyspace-path)Keyspace Reference: Keyspace Path
 

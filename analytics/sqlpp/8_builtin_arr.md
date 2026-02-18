@@ -1,4 +1,13 @@
+---
+title: Array Functions
+description: This topic describes the builtin SQL++ for Capella Analytics array functions.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_arr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/8_builtin_arr.html)
+
+# Array Functions
 
 > This topic describes the builtin SQL++ for Capella Analytics array functions. Array functions can take multiple arguments—one of which is often an array—and typically produce either another array or a single value. 
 
@@ -567,8 +576,8 @@ array_star(ordered_list)
 }  
 where `"v5"` is MISSING.
 
-|  | In the output object, name-value pairs are ordered by their names, regardless of their original order within the object items in the input array. In example 4, in the output object the pair named "a" comes before the pair named "c". However, in the output object, the items within each array are not ordered: they appear in the sequence in which they are found in the input array. So in example 1, the pair named "a" has the value \[1, 9\]; the first item in the output array (which is 1) is taken from the first object in the input array, and so on. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the output object, name-value pairs are ordered by their names, regardless of their original order within the object items in the input array. In example 4, in the output object the pair named `"a"` comes before the pair named `"c"`. However, in the output object, the items within each array are not ordered: they appear in the sequence in which they are found in the input array. So in example 1, the pair named `"a"` has the value `[1, 9]`; the first item in the output array (which is `1`) is taken from the first object in the input array, and so on.
 
 ## [](#array%5Fsymdiff)array\_symdiff
 
@@ -617,8 +626,8 @@ array_symdiffn([1, 2], [1, 2, 4], [1, 3]);
   3  
 ]
 
-|  | Refer to the following article for more information about the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to the following article for more information about the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ## [](#array%5Funion)array\_union
 

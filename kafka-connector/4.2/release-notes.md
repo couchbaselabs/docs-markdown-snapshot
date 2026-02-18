@@ -1,4 +1,12 @@
+---
+title: Release Notes
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/4.2/release-notes.html)
+
+# Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Kafka Connector. 
 
@@ -62,10 +70,9 @@ In addition to the usual dependency version bumps, this release adds the ability
 ### [](#enhancements-3)Enhancements
 
 * [KAFKAC-362](https://jira.issues.couchbase.com/browse/KAFKAC-362): **Source** The connector can now set Couchbase document metadata headers on Kafka records.  
-Specify the desired headers using [the new couchbase.headers connector config property](source-configuration-options.md#couchbase.headers).
-
-|  | This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Specify the desired headers using [the new couchbase.headers connector config property](source-configuration-options.md#couchbase.headers).  
+> [!NOTE]  
+> This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version.
 * [KAFKAC-363](https://jira.issues.couchbase.com/browse/KAFKAC-363): Upgrade Couchbase Java SDK from `3.7.4` to `3.7.5`.
 
 ## [](#v4.2.4)Version 4.2.4 (31 Oct 2024)
@@ -77,25 +84,22 @@ In addition to the usual dependency version bumps, this release improves some be
 ### [](#enhancements-4)Enhancements
 
 * [KAFKAC-353](https://jira.issues.couchbase.com/browse/KAFKAC-353): **Source** When streaming from `SAVED_OFFSET_OR_NOW`, you can configure the connector to immediately save the "now" source offsets for all Couchbase partitions immediately on startup, instead of waiting for events to arrive for a partition before storing that partition’s source offset.  
-To enable this new behavior, specify a topic name for [the new couchbase.initial.offset.topic connector config property](source-configuration-options.md#couchbase.initial.offset.topic).
-
-|  | This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+To enable this new behavior, specify a topic name for [the new couchbase.initial.offset.topic connector config property](source-configuration-options.md#couchbase.initial.offset.topic).  
+> [!NOTE]  
+> This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version.
 * [KAFKAC-358](https://jira.issues.couchbase.com/browse/KAFKAC-358): **Sink** [The new couchbase.topic.to.document.id connector config property](sink-configuration-options.md#couchbase.topic.to.document.id) lets you override the `couchbase.document.id` property for specific topics. The value is a comma-delimited list of map entries, where each map entry looks like: `topicName=${/json/pointer/to/id/field}`  
-Thank you to community member Hafiz Hussain Haroon Rasheed ([HafizHussain31](https://github.com/HafizHussain31)) for contributing this feature.
-
-|  | This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Thank you to community member Hafiz Hussain Haroon Rasheed ([HafizHussain31](https://github.com/HafizHussain31)) for contributing this feature.  
+> [!NOTE]  
+> This new config property is "uncommitted API", meaning it may change without notice. It may be promoted to "committed API" in a subsequent minor version.
 * [KAFKAC-359](https://jira.issues.couchbase.com/browse/KAFKAC-359): The connector now includes provider configuration files for [KIP-898: Modernize Connect plugin discovery](https://cwiki.apache.org/confluence/display/KAFKA/KIP-898%3A+Modernize+Connect+plugin+discovery).
 * [KAFKAC-361](https://jira.issues.couchbase.com/browse/KAFKAC-361): Upgrade Couchbase Java SDK from `3.7.1` to `3.7.4`.
 * [KAFKAC-360](https://jira.issues.couchbase.com/browse/KAFKAC-360): Upgrade DCP client from `0.51.0` to `0.52.0`.
 
 ### [](#bug-fixes-2)Bug Fixes
 
-* [KAFKAC-352](https://jira.issues.couchbase.com/browse/KAFKAC-352): **Source** The default event filter, `com.couchbase.connect.kafka.filter.AllPassFilter`, now excludes events from Couchbase system scopes. (System scopes store internal metadata that is typically uninteresting to developers.)
-
-|  | If you wish to keep the previous behavior of including system scopes, set the couchbase.event.filter property to com.couchbase.connect.kafka.filter.AllPassIncludingSystemFilter. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* [KAFKAC-352](https://jira.issues.couchbase.com/browse/KAFKAC-352): **Source** The default event filter, `com.couchbase.connect.kafka.filter.AllPassFilter`, now excludes events from Couchbase system scopes. (System scopes store internal metadata that is typically uninteresting to developers.)  
+> [!TIP]  
+> If you wish to keep the previous behavior of including system scopes, set the `couchbase.event.filter` property to `com.couchbase.connect.kafka.filter.AllPassIncludingSystemFilter`.
 
 ## [](#v4.2.3)Version 4.2.3 (25 Jul 2024)
 
@@ -378,8 +382,8 @@ There’s also a new `SinkHandler` extension point, and bug fixes for the Subdoc
 * All other "uncommitted" config options are promoted to "committed" status as well.
 * [KAFKAC-257](https://issues.couchbase.com/browse/KAFKAC-257): **Sink** The connector’s behavior is now completely customizable by implementing the `SinkHandler` interface. The new [couchbase.sink.handler](sink-configuration-options.md#couchbase.sink.handler) config option specifies the class to use. See the [custom extensions example code](https://github.com/couchbase/kafka-connect-couchbase/tree/master/examples/custom-extensions) to see how to implement your own handler.
 
-|  | The [couchbase.document.mode](sink-configuration-options.md#couchbase.document.mode) config option is now **DEPRECATED**. Instead, please use [couchbase.sink.handler](sink-configuration-options.md#couchbase.sink.handler) to specify one of the built-in handler classes. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [couchbase.document.mode](sink-configuration-options.md#couchbase.document.mode) config option is now **DEPRECATED**. Instead, please use [couchbase.sink.handler](sink-configuration-options.md#couchbase.sink.handler) to specify one of the built-in handler classes.
 
 * [KAFKAC-263](https://issues.couchbase.com/browse/KAFKAC-263): **Source** Upgraded DCP client from 0.34.0 to 0.35.0.
 * [KAFKAC-258](https://issues.couchbase.com/browse/KAFKAC-258): **Sink** Upgraded Couchbase Java SDK from 3.1.3 to 3.2.0.
@@ -484,8 +488,8 @@ The leap to 4.0 brings many new features, most notably:
 
 The notes below describe these features, and more.
 
-|  | The new configuration properties related to Couchbase scopes and collections are "uncommitted" and may change without notice in a patch release. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> The new configuration properties related to Couchbase scopes and collections are "uncommitted" and may change without notice in a patch release.
 
 ### [](#enhancements-29)Enhancements
 
@@ -528,8 +532,8 @@ The notes below describe these features, and more.
 
 In this developer preview, both the Sink and Source connector now support Couchbase collections. This preview also brings a handful of fixes and new features, including support for enhanced durability, and optionally omitting document contents.
 
-|  | The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
 
 ### [](#enhancements-30)Enhancements
 
@@ -556,8 +560,8 @@ This developer preview version offers a sneak peek at some features coming in ve
 
 Version 4.0 is a major update that changes how you configure and extend the connector. If you are upgrading from a previous version of the connector, be sure to read the [Migration Guide](migration.md) which will help you with the upgrade process.
 
-|  | The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release. |
-|  | ------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The new features in this pre-release version should be considered "volatile" and may change before the 4.0.0 GA release.
 
 ### [](#enhancements-31)Enhancements
 

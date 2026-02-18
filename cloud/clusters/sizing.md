@@ -1,4 +1,12 @@
+---
+title: Sizing a Cluster
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/sizing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/sizing.html)
+
+# Sizing a Cluster
 
 > Couchbase provides Capella features to help you size your cluster appropriately. 
 
@@ -6,8 +14,8 @@ Sizing a cluster correctly is critical to its overall stability and performance.
 
 You can configure cluster sizing during the [cluster creation process](create-database.md) or [scale a cluster](scale-database.md) after it’s created.
 
-|  | To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certian thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certian thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails).
 
 The following topics can help you understand Couchbase services and how to size them:
 

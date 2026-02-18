@@ -1,4 +1,12 @@
+---
+title: Sync
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/android/develop/sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/android/develop/sync.html)
+
+# Sync
 
 ## [](#channelsdata-routing)Channels/Data Routing
 

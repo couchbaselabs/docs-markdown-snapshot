@@ -1,4 +1,15 @@
+---
+title: Configure LDAP
+description: Couchbase Server can be configured to authenticate users by means
+  of LDAP; and to map the LDAP <em>groups</em> of which a user is a member to
+  roles defined on Couchbase Server.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/configure-ldap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-security/configure-ldap.html)
+
+# Configure LDAP
 
 > Couchbase Server can be configured to authenticate users by means of LDAP; and to map the LDAP _groups_ of which a user is a member to roles defined on Couchbase Server. 
 
@@ -162,8 +173,8 @@ For example, the following template has two regular expressions. The first attem
 ]
 ```
 
-|  | Always double any backslashes (\\) that you use to escape special characters in your regular expressions because JSON also interprets backslash escapes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Always double any backslashes (\\) that you use to escape special characters in your regular expressions because JSON also interprets backslash escapes.
 
 Couchbase Server attempts to match the regular expressions against the username supplied by the user who’s attempting to authenticate. If a regular expression matches the username, Couchbase Server applies any captured portions of the regular expression to the back references in the replacement string. Then it attempts to authenticate the user with LDAP using the DN or LDAP query.
 

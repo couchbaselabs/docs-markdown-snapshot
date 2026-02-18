@@ -1,4 +1,14 @@
+---
+title: Data Modelling, Durability, and Consistency
+description: Performance, availability, consistency -- balance your priorities,
+  and model your data to achieve these goals.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/data-durability-acid-transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/concept-docs/data-durability-acid-transactions.html)
+
+# Data Modelling, Durability, and Consistency
 
 > Performance, availability, consistency — balance your priorities, and model your data to achieve these goals. 
 
@@ -28,8 +38,10 @@ match collection
 
 At its heart, a database is in the business of storing data and letting you query and retrieve it. Putting a database on the network — in particular a remote network, or another company’s cloud service — and partitioning the data across multiple nodes, with several replicas, does not alter this. It does, however, mean that choices must be made to optimize for consistency or availability of data.
 
-|  | Skipping Ahead This page lays out some of the things you need to consider when designing an app. If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md), and try some of the code snippets there. Or see some of the other links in the [Further Reading](#further-reading) section. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Skipping Ahead
+> 
+> This page lays out some of the things you need to consider when designing an app. If you have already reached your decisions, and want to work with the Data API, then skip straight to our pages on [Data Operations](../howtos/kv-operations.md), [Sub-Document Operations](../howtos/subdocument-operations.md), or [Concurrent Document Mutations](../howtos/concurrent-document-mutations.md), and try some of the code snippets there. Or see some of the other links in the [Further Reading](#further-reading) section.
 
 Whether you go through the Data Service, or Query, you’ll find that both follow the typical DML (Data Manipulation Language) patterns that you encounter in the relational database world. See the [SDK Query introduction](querying-your-data.md) for choices of SQL++ queries for OLTP (transactional queries) and OLAP (analytics) — including real-time analytics — as well as fuzzy searches and vector search.
 

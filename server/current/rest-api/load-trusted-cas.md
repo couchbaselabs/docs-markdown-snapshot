@@ -1,4 +1,16 @@
+---
+title: Load Root Certificates
+description: Trusted CA (or 'root') certificates can be loaded into the trust
+  store of the Couchbase-Server cluster; in order to provide authority to the
+  cluster's nodes, and to authenticate clients' access-attempts. Intermediate
+  certificates can also be loaded into the trust store.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/load-trusted-cas.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/load-trusted-cas.html)
+
+# Load Root Certificates
 
 > Trusted CA (or 'root') certificates can be loaded into the trust store of the Couchbase-Server cluster; in order to provide authority to the cluster’s nodes, and to authenticate clients' access-attempts. Intermediate certificates can also be loaded into the trust store. 
 

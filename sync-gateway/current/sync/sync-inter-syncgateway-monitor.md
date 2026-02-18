@@ -1,4 +1,13 @@
+---
+title: Replication Monitoring and Statistics
+description: Monitoring inter-Sync Gateway replications
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-monitor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/sync/sync-inter-syncgateway-monitor.html)
+
+# Replication Monitoring and Statistics
 
 > Monitoring inter-Sync Gateway replications  
 > This content covers the retrieval of status and statistical data relating to replication.
@@ -7,8 +16,10 @@ _Related topics_: [Overview](sync-inter-syncgateway-overview.md) | [Run](sync-in
 
 _Other Topics_: [Legacy Pre-3.0 Configuration](../configuration/configuration-properties-legacy.md) | [Admin REST API](../rest-api/rest-api-admin.md)
 
-|  | Context Clarification This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Context Clarification
+> 
+> This content relates only to inter-Sync Gateway replication in Sync Gateway 2.8+. For documentation on pre-2.8 inter-Sync Gateway replication (also known as SG Replicate) — see the documentation for the appropriate release.
 
 ## [](#overview)Overview
 
@@ -30,9 +41,8 @@ Sync Gateway provides easy access to replication status data through the Admin R
 
 You can obtain the replication status details for a specific replication, or for all replications across all nodes. This option can be useful, for example, to find any auto-generated replication\_id details needed to enable further replication management activities.
 
-[COMMUNITY EDITION](https://www.couchbase.com/products/editions) Only
-
-Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
+> [!TIP]
+> BAD ADMONITION \[COMMUNITY EDITION\](https://www.couchbase.com/products/editions) Only Replications always run on the node on which they are configured. Users can only access replications on the node from which they make the request.
 
 ### [](#retrieving-status-data-for-a-specific-replication)Retrieving Status Data for a Specific Replication
 

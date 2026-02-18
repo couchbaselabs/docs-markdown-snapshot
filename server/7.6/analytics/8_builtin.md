@@ -1,4 +1,13 @@
+---
+title: Builtin Functions
+description: A description of Couchbase SQL++ for Analytics builtin functions.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/8_builtin.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/8_builtin.html)
+
+# Builtin Functions
 
 Some of the examples in this section assume that you are using an Analytics scope called `Commerce`. Refer to [Appendix 4: Example Data](appendix%5F4%5Fexamples.md) to install this example data.
 
@@ -3281,8 +3290,8 @@ array_star(ordered_list)
 }  
 where `"v5"` is MISSING.
 
-|  | In the output object, name-value pairs are ordered by their names, regardless of their original order within the object items in the input array. So in example 4, in the output object, the pair named "a" comes before the pair named "c". However, in the output object, the items within each array are not ordered: they appear in the sequence in which they are found in the input array. So in example 1, the pair named "a" has the value \[1, 9\]; the first item in the output array (which is 1) is taken from the first object in the input array, and so on. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In the output object, name-value pairs are ordered by their names, regardless of their original order within the object items in the input array. So in example 4, in the output object, the pair named `"a"` comes before the pair named `"c"`. However, in the output object, the items within each array are not ordered: they appear in the sequence in which they are found in the input array. So in example 1, the pair named `"a"` has the value `[1, 9]`; the first item in the output array (which is `1`) is taken from the first object in the input array, and so on.
 
 ### [](#array%5Fsymdiff)array\_symdiff
 
@@ -3331,8 +3340,8 @@ array_symdiffn([1, 2], [1, 2, 4], [1, 3]);
   3  
 ]
 
-|  | Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Refer to the following article for more information on the difference between a normal and n-ary symdiff: <https://en.wikipedia.org/wiki/Symmetric%5Fdifference>.
 
 ### [](#array%5Funion)array\_union
 
@@ -3930,10 +3939,9 @@ typename(expr)
 * Syntax:  
 array_infer_schema(collection[, parameters])
 * Infers the schema of an array or multiset, for example the structure of the elements, data types of various attributes, sample values, and so on. Since an array or multiset can contain items with varying structures, the result of this function is statistical in nature rather than deterministic.  
-This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.md).
-
-|  | You can infer the schema of a collection by applying this function to a subquery which returns the documents in that collection, or a representative sample of them. The subquery must use the SELECT VALUE clause to avoid an additional layer of nesting in the result of the subquery. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+This function is the equivalent to the SQL++ for Query [INFER statement](../n1ql/n1ql-language-reference/infer.md).  
+> [!NOTE]  
+> You can infer the schema of a collection by applying this function to a subquery which returns the documents in that collection, or a representative sample of them. The subquery must use the `SELECT VALUE` clause to avoid an additional layer of nesting in the result of the subquery.
 * Arguments:
 
   * `collection`: An array or multiset, or an expression that evaluates to an array or multiset.
@@ -4483,11 +4491,11 @@ encoded_size({"abc":1,"def":2});
 
 All Bit/Binary functions can only operate on 64-bit signed integers.
 
-|  | All non-integer numbers and other data types result in null. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> All non-integer numbers and other data types result in null.
 
-|  | The query language uses two’s complement representation. |
-|  | -------------------------------------------------------- |
+> [!NOTE]
+> The query language uses two’s complement representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -4537,10 +4545,9 @@ This results in 2 (0010 in binary) because only the 2nd bit from the right is 1 
 
 * Syntax:  
 BITCLEAR(int_value, positions)
-* Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.
-
-|  | Specifying a negative or zero bit position makes the function return a null. |
-|  | ---------------------------------------------------------------------------- |
+* Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.  
+> [!NOTE]  
+> Specifying a negative or zero bit position makes the function return a null.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to clear.
@@ -4575,10 +4582,9 @@ This results in 4 (0**00**1**00**) because bits 1, 2, 4, and 5 changed to zero.
 * Syntax:  
 BITNOT(int_value)
 * Returns the results of a bitwise logical NOT operation performed on an integer value.  
-The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.
-
-|  | All bits of the integer will be altered by this operation. |
-|  | ---------------------------------------------------------- |
+The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.  
+> [!NOTE]  
+> All bits of the integer will be altered by this operation.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bits to reverse.
@@ -4633,10 +4639,9 @@ This results in 15 (1111 in binary) because there is at least one 1 in each of t
 
 * Syntax:  
 BITSET(int_value, positions)
-* Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.
-
-|  | Specifying a negative or zero position makes the function return a null. |
-|  | ------------------------------------------------------------------------ |
+* Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.  
+> [!NOTE]  
+> Specifying a negative or zero position makes the function return a null.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to set.
@@ -4733,10 +4738,9 @@ This results in 1 because the 1-bit wrapped left, around to the Least Significan
 
 * Syntax:  
 BITTEST(int_value, positions [, all_set])
-* Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).
-
-|  | Specifying a negative or zero bit position will result in null being returned. |
-|  | ------------------------------------------------------------------------------ |
+* Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).  
+> [!NOTE]  
+> Specifying a negative or zero bit position will result in null being returned.
 * Arguments:
 
   * `int_value`: An integer, or any valid expression which evaluates to an integer, that contains the target bit or bits to test.

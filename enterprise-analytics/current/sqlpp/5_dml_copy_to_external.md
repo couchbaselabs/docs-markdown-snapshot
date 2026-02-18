@@ -1,11 +1,23 @@
+---
+title: COPY TO External Data Store Statements
+description: This topic describes how you use <code>COPY TO</code> statements to
+  structure and write the results of a query--or a copy of an entire
+  collection--out to an external data store such as Amazon S3 or Azure Blob
+  Storage.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_copy_to_external.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_dml_copy_to_external.html)
+
+# COPY TO External Data Store Statements
 
 > This topic describes how you use `COPY TO` statements to structure and write the results of a query—​or a copy of an entire collection—​out to an external data store such as Amazon S3 or Azure Blob Storage. 
 
 Structuring the data in the external store is useful when you plan to query it later using [dynamic prefixes](../sources/dynamic-prefixes.md) for better performance.
 
-|  | To be able to read or write data to or from external cloud storage exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To be able to read or write data to or from external cloud storage exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
 
 Following are the supported output formats:
 

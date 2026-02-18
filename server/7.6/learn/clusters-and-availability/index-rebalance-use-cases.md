@@ -1,9 +1,19 @@
+---
+title: Index Rebalance Use Cases
+description: This page explains a few use cases of different Rebalance
+  operations on Index nodes.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/index-rebalance-use-cases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/clusters-and-availability/index-rebalance-use-cases.html)
+
+# Index Rebalance Use Cases
 
 > This page explains a few use cases of different Rebalance operations on Index nodes. 
 
-|  | This is not a comprehensive list of all possible Index rebalance use cases (examples). |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is not a comprehensive list of all possible Index rebalance use cases (examples).
 
 For more information about rebalance operations on Index nodes, see [Index Rebalance](rebalance-and-index-service.md).
 
@@ -165,8 +175,8 @@ Query Services are automatically redirected to idx\_A-r1 on node N2.
 3. Afterwards, a rebalance is triggered.  
 The system creates a new replica, idx\_A-r0, on another node (for example, N3) to restore the required replica count. This process is known as replica repair.
 
-|  | If the Index Service is under memory pressure, for example, due to insufficient sizing, it may skip replica repair during rebalance. Replica repair also does not occur if you have disabled the feature in the settings or if there are not enough available nodes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the Index Service is under memory pressure, for example, due to insufficient sizing, it may skip replica repair during rebalance. Replica repair also does not occur if you have disabled the feature in the settings or if there are not enough available nodes.
 
 #### [](#failover-without-replica)Failover With No Replica (Index Loss)
 
@@ -201,10 +211,9 @@ The following example explains removing an Index Service node from a cluster and
 ![removal with replica](../_images/clusters-and-availability/removal-with-replica.png) 
 
 1. Consider a cluster with 3 nodes N1, N2, and N3\. Node N3 hosts the replica idx\_C-r1\. The node N3 is healthy but needs to be decommissioned.  
-An administrator marks N3 for removal and starts a rebalance.
-
-|  | Selecting Remove only marks the node for removal. You must start a rebalance for the removal to take effect. |
-|  | ------------------------------------------------------------------------------------------------------------ |
+An administrator marks N3 for removal and starts a rebalance.  
+> [!NOTE]  
+> Selecting Remove only marks the node for removal. You must start a rebalance for the removal to take effect.
 2. The system begins moving idx\_C-r1 to a destination node, for example, N1.
 3. During the transfer, N3 continues to support Query Service for idx\_C-r1 to maintain availability.
 4. After the transfer completes, N3 is safely removed from the cluster with no service interruption.

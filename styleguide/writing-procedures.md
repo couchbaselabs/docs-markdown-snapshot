@@ -1,4 +1,12 @@
+---
+title: Writing Procedures
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/writing-procedures.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/writing-procedures.html)
+
+# Writing Procedures
 
 A procedure can be:
 
@@ -32,13 +40,13 @@ The **Prerequisites** section should be an H2 level heading.
 
 It contains an [unordered list](unordered-list.md) of things the user must do or have before they can proceed with the content in [Procedure](#procedure).
 
-|  | There will always be something the user can do. |
-|  | ----------------------------------------------- |
+> [!NOTE]
+> There will always be something the user can do.
 
 Add links where appropriate, following the appropriate [link formatting guidance](links.md).
 
-|  | If prerequisites change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If prerequisites change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
 
 ### [](#procedure)Procedure
 
@@ -55,8 +63,8 @@ Steps in a **Procedure** section should:
 * Use [monospace font](monospace-highlight.md) for all code outside of code blocks, SQL++ commands, function names, file paths, filenames, and text the user must input.
 * Use [Bold](bold.md) for single menu items, tab names, and dialog names.
 
-|  | If steps in a procedure change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If steps in a procedure change based on the user’s choice of environment, consider if [tabs-set.adoc](#tabs-set.adoc) would help present the information.
 
 Steps in a **Procedure** section should not:
 

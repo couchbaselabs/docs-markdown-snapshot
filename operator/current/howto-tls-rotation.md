@@ -1,4 +1,12 @@
+---
+title: Rotate TLS Certificates
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-tls-rotation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-tls-rotation.html)
+
+# Rotate TLS Certificates
 
 > How-to rotate TLS certificates. 
 
@@ -31,8 +39,8 @@ Compromised certificate
 certificate cannot be verified: x509: certificate signed by unknown authority
 ```
 
-|  | Certificate rotation is fully supported when using client certificate authentication. All certificate rotation occurs over TLS, however due to technical reasons, the rotation of expired certificates must occur over plain text. However when rotating either expired or non-expired certificates, the private keys are never exposed by the Couchbase Operator over the wire since private keys are securely mounted on Couchbase Server pods by Kubernetes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Certificate rotation is fully supported when using client certificate authentication. All certificate rotation occurs over TLS, however due to technical reasons, the rotation of expired certificates must occur over plain text. However when rotating either expired or non-expired certificates, the private keys are never exposed by the Couchbase Operator over the wire since private keys are securely mounted on Couchbase Server pods by Kubernetes.
 
 ## [](#replacing-server-certificates)Replacing Server Certificates
 
@@ -132,8 +140,8 @@ Events:
 | **1** | A successful TLS rotation will update each Couchbase Server pod in the cluster and raise the TLSUpdated event. |
 | ----- | -------------------------------------------------------------------------------------------------------------- |
 
-|  | TLS keys and certificates are securely mounted in the Pod as a Kubernetes Secret, so they are never exposed over the network. When the Secret is updated, it will take a short period of time for kubelet to be notified of the update, and update to be made to the file system in the Pod. As such, there will be a delay — in the order of about a minute — between triggering the rotation and the Operator reporting progress. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> TLS keys and certificates are securely mounted in the `Pod` as a Kubernetes `Secret`, so they are never exposed over the network. When the `Secret` is updated, it will take a short period of time for `kubelet` to be notified of the update, and update to be made to the file system in the `Pod`. As such, there will be a delay — in the order of about a minute — between triggering the rotation and the Operator reporting progress.
 
 ## [](#replacing-the-entire-pki)Replacing the entire PKI
 
@@ -159,11 +167,11 @@ Events:
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | Once all the Server instances are updated, the Operator needs to start using the new CA certificate in order to trust the new server certificates. This is indicated by the ClientTLSUpdated event. |
 
-|  | TLS keys and certificates are securely mounted in the Pod as a Kubernetes Secret, so they are never exposed over the network. When the Secret is updated, it will take a short period of time for kubelet to be notified of the update, and update to be made to the file system in the Pod. As such, there will be a delay — in the order of about a minute — between triggering the rotation and the Operator reporting progress. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> TLS keys and certificates are securely mounted in the `Pod` as a Kubernetes `Secret`, so they are never exposed over the network. When the `Secret` is updated, it will take a short period of time for `kubelet` to be notified of the update, and update to be made to the file system in the `Pod`. As such, there will be a delay — in the order of about a minute — between triggering the rotation and the Operator reporting progress.
 
-|  | A full PKI rotation must not be interrupted once it has begun. Interruption risks severing communication between the Operator and the Couchbase cluster, as some certificates cannot be validated against the active CA. In the unlikely event something does go wrong, don’t restart anything, it may make the problem worse, and seek immediate guidance from Couchbase support. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> A full PKI rotation must not be interrupted once it has begun. Interruption risks severing communication between the Operator and the Couchbase cluster, as some certificates cannot be validated against the active CA. In the unlikely event something does go wrong, don’t restart anything, it may make the problem worse, and seek immediate guidance from Couchbase support.
 
 ## [](#replacing-expired-certificates)Replacing expired Certificates
 
@@ -194,8 +202,8 @@ spec:
       allowPlainTextCertReload: true
 ```
 
-|  | Enabling allowPlainTextCertReload will cause user credentials to be momentarily exposed while the Operator makes plain text http requests to Couchbase Server. Plain text requests are required because the Operator needs to request Couchbase Server to reload its certificates without rejecting invalid TLS client requests. Due to this behavior it is more effective to proactively monitor and rotate certificates prior to rotation in order to ensure security of your cluster. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Enabling `allowPlainTextCertReload` will cause user credentials to be momentarily exposed while the Operator makes plain text `http` requests to Couchbase Server. Plain text requests are required because the Operator needs to request Couchbase Server to reload its certificates without rejecting invalid TLS client requests. Due to this behavior it is more effective to proactively monitor and rotate certificates prior to rotation in order to ensure security of your cluster.
 
 The following calls are made in plain text to the Couchbase when recovering a cluster with only expired server certs:
 
@@ -208,5 +216,5 @@ The following calls are made in plain text to the Couchbase when recovering a cl
 
 When only the client certificates have expired then the Operator can securely rotate the certificates without the need to perform plain text requests to Couchbase Server.
 
-|  | Expired certificates cannot be rotated if Node encryption is enabled due to the security risk caused by the amount of insecure traffic that will be generated when disabling this feature. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Expired certificates cannot be rotated if Node encryption is enabled due to the security risk caused by the amount of insecure traffic that will be generated when disabling this feature.

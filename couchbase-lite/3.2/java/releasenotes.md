@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on Java Desktop
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-3-2-4)3.2.4 — June 2025
 
@@ -21,8 +30,8 @@ None for this release
 
 None for this release
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
 ## [](#maint-3-2-3)3.2.3 — April 2025
 
@@ -46,8 +55,8 @@ None for this release
 
 None for this release
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
 ## [](#maint-3-2-2)3.2.2 — March 2025
 
@@ -71,8 +80,8 @@ None for this release
 
 * [CBL-6679 - Deprecated: Database.log API for Configuring Couchbase Lite Logging — Use LogSink API Instead](https://jira.issues.couchbase.com/browse/CBL-6679)
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
 ## [](#maint-3-2-1)3.2.1 — November 2024
 
@@ -99,8 +108,8 @@ None for this release
 
 No new deprecations for GA release
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
 ## [](#maint-3-2-0)3.2.0 — August 2024
 
@@ -205,8 +214,8 @@ None for this release
 
 No new deprecations for GA release
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
 
 ## [](#maint-3-2-0)3.2.0 — August 2024
 
@@ -309,5 +318,5 @@ None for this release
 * [CBL-1727 - Improved naming for AbstractReplicatorConfiguration.ReplicatorType](https://issues.couchbase.com/browse/CBL-1727)
 * [CBL-4263 - The public type ReplicatorConfiguration.ReplicatorType is not visible from Kotlin](https://issues.couchbase.com/browse/CBL-4263)
 
-|  | For an overview of the latest features offered in Couchbase Lite 3.2.0 Beta 2, see [New in 3.2](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.2.0 Beta 2, see [New in 3.2](../cbl-whatsnew.md)

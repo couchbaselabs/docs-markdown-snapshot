@@ -1,4 +1,12 @@
+---
+title: Metadata Management
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/metadata-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/metadata-management.html)
+
+# Metadata Management
 
 > A Couchbase Cluster’s _metadata_ describes its configuration. Some categories of metadata are maintained by means of a _consensus protocol_; others by means of _gossip replication_. 
 

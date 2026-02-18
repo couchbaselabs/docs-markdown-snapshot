@@ -1,4 +1,14 @@
+---
+title: Edit a Bucket
+description: Full, Cluster, and Bucket Administrators can edit some settings of
+  an existing bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-buckets/edit-bucket.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-buckets/edit-bucket.html)
+
+# Edit a Bucket
 
 > Full, Cluster, and Bucket Administrators can edit some settings of an existing bucket. This section explains how to make changes to existing bucket settings using the Couchbase Web Console and the REST API. It also explains the possible consequences of these configuration changes. 
 
@@ -41,8 +51,8 @@ Replicas
 
 The number of replicas of the bucket to be maintained by the cluster. You can change this number at any time for either type of bucket. However, you must rebalance the cluster to redistribute the replicas across the cluster.
 
-|  | You cannot change the **Replica view indexes** setting after you have created the bucket. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot change the **Replica view indexes** setting after you have created the bucket.
 
 Bucket Max Time to Live
 
@@ -75,8 +85,8 @@ Enable Cross Cluster Versioning
 
 Use this setting to enable the [XDCR enableCrossClusterVersioning](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md) bucket property. When you enable the bucket setting **Enable Cross Cluster Versioning**, for each document processed by XDCR, XDCR stores additional metadata for the document in the extended attributes. This metadata is called, [Hybrid Logical Vector (HLV)](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md#hlv-data-maintained-in-xattr) or a version vector.
 
-|  | Once enabled, the Enable Cross Cluster Versioning bucket setting cannot be disabled. |
-|  | ------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Once enabled, the Enable Cross Cluster Versioning bucket setting cannot be disabled.
 
 To use the following features, enable the bucket setting **Enable Cross Cluster Versioning** on all buckets that are a part of the XDCR topology:
 

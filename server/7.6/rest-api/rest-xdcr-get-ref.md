@@ -1,4 +1,14 @@
+---
+title: Getting a Reference
+description: The REST API can be used to retrieve an existing XDCR reference to
+  a defined, target cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-get-ref.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-xdcr-get-ref.html)
+
+# Getting a Reference
 
 > The REST API can be used to retrieve an existing XDCR reference to a defined, target cluster. 
 

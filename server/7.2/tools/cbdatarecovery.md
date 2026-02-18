@@ -1,4 +1,12 @@
+---
+title: cbdatarecovery(1)
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbdatarecovery.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/cbdatarecovery.html)
+
+# cbdatarecovery(1)
 
 Transfers key value data from a Couchbase Server data directory into an active cluster.
 

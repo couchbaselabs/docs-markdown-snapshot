@@ -1,4 +1,15 @@
+---
+title: REVOKE Statement
+description: The <code>REVOKE</code> statement supports the revocation of
+  privileges on resources from users or roles as well as the removal of roles
+  from users.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_revoke_statement.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_revoke_statement.html)
+
+# REVOKE Statement
 
 The REVOKE statement allows revoking previously granted RBAC privileges or roles from specific users. It’s important to understand that REVOKE is the inverse of GRANT. Its purpose is to undo the effect of a prior GRANT.
 

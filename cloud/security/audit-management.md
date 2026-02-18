@@ -1,4 +1,15 @@
+---
+title: Manage Audits
+description: You can use the Management API to audit actions performed on
+  Capella. This allows users to ensure that system-management tasks are being
+  appropriately performed.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/audit-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/security/audit-management.html)
+
+# Manage Audits
 
 > You can use the Management API to audit actions performed on Capella. This allows users to ensure that system-management tasks are being appropriately performed. 
 
@@ -10,8 +21,8 @@ For an overview of event auditing, see [Auditing](auditing.md).
 
 For lists of auditable events, see [Event Tables](auditing.md#event%5Ftables).
 
-|  | Auditing is available only to clusters with an Enterprise Service Plan. |
-|  | ----------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Auditing is available only to clusters with an Enterprise Service Plan.
 
 ## [](#auditing-api)Auditing API
 
@@ -97,8 +108,8 @@ The value of `disabledUsers` is an array. Each element in the array is an object
 
 The value of `enabledEventIDs` is an array. Each element in the array is the ID of a filterable event. Each filterable event that corresponds to an ID in the array is enabled. If a filterable event does not have its ID in the array, it is disabled.
 
-|  | The API still returns the ID values of enabled filterable events, even when the value of auditEnabled is false and no auditing occurs on the cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The API still returns the ID values of enabled filterable events, even when the value of `auditEnabled` is `false` and no auditing occurs on the cluster.
 
 ### [](#update-cluster-audit-log-configuration)Update Cluster Audit Log Configuraiton
 
@@ -163,8 +174,8 @@ The `auditLogExportId` parameter must be an export ID previously returned by [PO
 
 When the endpoint returns a `status` of `Completed`, the compressed file can be manually downloaded, using the download URL value from `AuditLogDownloadURL`. The `AuditLogDownloadURL` will be active for 1 hour. You must start the download before the URL expires.
 
-|  | Each request generates a new download URL. Multiple download URLs can co-exist and be used to download an export. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Each request generates a new download URL. Multiple download URLs can co-exist and be used to download an export.
 
 Requests for audit logs more than 24 hours in the past may take up to 5 minutes to finish processing. For example:
 

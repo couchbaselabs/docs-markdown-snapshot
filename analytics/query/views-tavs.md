@@ -1,4 +1,14 @@
+---
+title: Save Views or Tabular Views
+description: You can save the results of queries that use selection syntax in a
+  view or tabular view.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/views-tavs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/query/views-tavs.html)
+
+# Save Views or Tabular Views
 
 > You can save the results of queries that use selection syntax in a view or tabular view. 
 

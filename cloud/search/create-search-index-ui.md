@@ -1,4 +1,14 @@
+---
+title: Create a Search Index with the Capella UI
+description: You can create a Search index using the Couchbase Capella UI to
+  generate a properly formatted Search index definition.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-index-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/create-search-index-ui.html)
+
+# Create a Search Index with the Capella UI
 
 > You can create a Search index using the Couchbase Capella UI to generate a properly formatted Search index definition. 
 
@@ -23,10 +33,11 @@ To use the Capella UI to create a Search index:
 3. Go to **Data Tools** **Search**.
 4. Click **Create Search Index**.
 5. (Optional) To add additional customization options to your Search index, click **Enable Advanced Mode**.
-6. In the **Index Name** field, enter a name for the Search index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+6. In the **Index Name** field, enter a name for the Search index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 7. In the **Bucket** and **Scope** lists, choose the bucket and scope where you want to create your Search index.
 8. In the **Collections** list, select the collections you want to include in your Search index, or accept the default of **All**.  
 If you select specific collections, you can only use documents from these collections in your Search index.

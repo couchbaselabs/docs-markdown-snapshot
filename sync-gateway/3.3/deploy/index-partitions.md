@@ -1,4 +1,13 @@
+---
+title: Partitioned Indexes
+description: Partitioning a large index across multiple nodes
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/deploy/pages/index-partitions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/deploy/index-partitions.html)
+
+# Partitioned Indexes
 
 > Partitioning a large index across multiple nodes  
 > Explains how to use partitioned indexes in Sync Gateway
@@ -13,8 +22,10 @@ Partitioned indexes in Sync Gateway offer horizontal scalability for large deplo
 
 Partitioned indexes are an optimization in Sync Gateway intended only for deployments using Memory-Optimized Indexes (MOI) on Couchbase Server, and only when those MOI indexes have grown too large to fit on a single index node.
 
-|  | Recommendation Partitioned indexes should not be used for experimentation or general performance tuning. Partitioning should be configured only after careful evaluation. It increases resource usage (CPU and memory) on Query nodes, and may introduce performance degradation. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Recommendation
+> 
+> Partitioned indexes should not be used for experimentation or general performance tuning. Partitioning should be configured only after careful evaluation. It increases resource usage (CPU and memory) on Query nodes, and may introduce performance degradation.
 
 ### [](#use-case)Appropriate Use Case
 
@@ -61,8 +72,8 @@ Procedure
 5. Run [POST /\_post\_upgrade](../rest-api/rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) to remove old indexes.
 6. Optionally, rebalance index nodes using Couchbase Server. For details, see [Index Redistribution](../../../server/current/learn/clusters-and-availability/rebalance.md#index-redistribution) in the Couchbase Server documentation.
 
-|  | If you are using [configuration groups](../configuration/configuration-overview.md#lbl-config-grp) running on a different index configuration, calling [POST /\_post\_upgrade](../rest-api/rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) can delete indexes out from under a running database. Please ensure that all configuration groups have consistent index configuration. For details, see [Configuration Group Considerations](#config-groups). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you are using [configuration groups](../configuration/configuration-overview.md#lbl-config-grp) running on a different index configuration, calling [POST /\_post\_upgrade](../rest-api/rest%5Fapi%5Fadmin.md#tag/Server/operation/post%5F%5Fpost%5Fupgrade) can delete indexes out from under a running database. Please ensure that all configuration groups have consistent index configuration. For details, see [Configuration Group Considerations](#config-groups).
 
 ### [](#migrate-with-downtime)Option 2: With Downtime
 
@@ -75,8 +86,8 @@ Procedure
 3. Bring the database online using [POST /{db}/\_config](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/post%5Fdb-%5Fconfig) with `index.num_partitions` set to the required number of partitions.
 4. Run integration and performance testing.
 
-|  | Manual index deletion can cause data loss or leave the system in an unstable state. Incorrect deletion of internal indexes can lead to system instability and requires full index rebuilds. We strongly advise using the standard procedure with zero downtime, unless you are fully aware of the implications. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Manual index deletion can cause data loss or leave the system in an unstable state. Incorrect deletion of internal indexes can lead to system instability and requires full index rebuilds. We strongly advise using the standard procedure with zero downtime, unless you are fully aware of the implications.
 
 ## [](#guardrails)Guardrails
 

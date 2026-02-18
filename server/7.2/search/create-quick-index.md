@@ -1,4 +1,14 @@
+---
+title: Create a Search Index with the Quick Editor
+description: Use the Quick Index editor in Couchbase Server's Web Console to
+  create a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-quick-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/create-quick-index.html)
+
+# Create a Search Index with the Quick Editor
 
 > Use the Quick Index editor in Couchbase Server’s Web Console to create a Search index. 
 

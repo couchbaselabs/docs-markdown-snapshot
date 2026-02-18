@@ -1,4 +1,15 @@
+---
+title: Couchbase ODBC and JDBC Drivers
+description: The ODBC and JDBC drivers enable any application based on the
+  ODBC/JDBC standards. For example, Microsoft Excel, QlikView, SAP Lumira, or
+  Tableau, to connect to a Couchbase Server or cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/connectors/pages/odbc-jdbc-drivers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/connectors/odbc-jdbc-drivers.html)
+
+# Couchbase ODBC and JDBC Drivers
 
 The ODBC and JDBC drivers enable any application based on the ODBC/JDBC standards. For example, Microsoft Excel, QlikView, SAP Lumira, or Tableau, to connect to a Couchbase Server or cluster. These drivers enable fast and seamless access to Couchbase data. Using these drivers, the applications can leverage on the powerful SQL++ functionality to efficiently store and process JSON documents at scale.
 

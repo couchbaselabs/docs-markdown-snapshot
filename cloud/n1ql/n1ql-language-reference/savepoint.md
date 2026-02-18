@@ -1,4 +1,13 @@
+---
+title: SAVEPOINT
+description: The SAVEPOINT statement enables you to set a savepoint within a transaction.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/savepoint.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/savepoint.html)
+
+# SAVEPOINT
 
 > The SAVEPOINT statement enables you to set a savepoint within a transaction. 
 

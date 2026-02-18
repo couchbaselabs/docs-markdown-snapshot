@@ -1,4 +1,14 @@
+---
+title: Access and Organize Data in Enterprise Analytics
+description: This topic introduces the database objects that you use to view and
+  organize data in Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/database-objects.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sources/database-objects.html)
+
+# Access and Organize Data in Enterprise Analytics
 
 > This topic introduces the database objects that you use to view and organize data in Enterprise Analytics. 
 
@@ -44,8 +54,8 @@ User-defined functions have the same syntax as built-in functions, with brackets
 
 The name of the function is usually an unqualified identifier, such as func1 or `func-1`. In this case, the path to the function is determined by the current query context.
 
-|  | The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must call the user-defined function using the same case that you used when you created it. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must call the user-defined function using the same case that you used when you created it.
 
 ### [](#scopes)Scopes
 

@@ -1,4 +1,14 @@
+---
+title: Enable Client-Certificate Handling
+description: Couchbase Server can be enabled to support certificate-based client
+  authentication.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/enable-client-certificate-handling.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-security/enable-client-certificate-handling.html)
+
+# Enable Client-Certificate Handling
 
 > Couchbase Server can be enabled to support certificate-based client authentication. 
 

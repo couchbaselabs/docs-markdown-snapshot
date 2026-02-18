@@ -1,4 +1,13 @@
+---
+title: Sync Gateway Quick Start
+description: Start your Couchbase Mobile adventure, get up and running with Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/index.html)
+
+# Sync Gateway Quick Start
 
 # Sync Gateway Quickstart
 

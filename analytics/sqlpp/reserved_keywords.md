@@ -1,4 +1,13 @@
+---
+title: Reserved Keywords
+description: This topic lists the SQL++ for Capella Analytics reserved keywords.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/reserved_keywords.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/reserved_keywords.html)
+
+# Reserved Keywords
 
 > This topic lists the SQL++ for Capella Analytics reserved keywords. 
 
@@ -8,8 +17,8 @@ You must also delimit an identifier if it contains the dash `-` character, which
 
 For an example of the error that occurs when you do not escape a reserved keyword, see [Syntax Errors](4%5Ferror.md#Syntax%5Ferrors).
 
-|  | The following keywords are reserved regardless of the case you use to enter them. Identifiers are case sensitive. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The following keywords are reserved regardless of the case you use to enter them. Identifiers are case sensitive.
 
 |            |               |            |            |            |           |
 | ---------- | ------------- | ---------- | ---------- | ---------- | --------- |

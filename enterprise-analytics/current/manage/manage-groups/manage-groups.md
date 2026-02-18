@@ -1,4 +1,14 @@
+---
+title: Manage Server Groups
+description: Nodes can be assigned to server <em>groups</em>, in order to
+  protect a cluster from large-scale infrastructure failure.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-groups/manage-groups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-groups/manage-groups.html)
+
+# Manage Server Groups
 
 > Nodes can be assigned to server _groups_, in order to protect a cluster from large-scale infrastructure failure. 
 
@@ -6,8 +16,8 @@
 
 Server _groups_ can be administrator-defined to contain a number of the nodes within a Enterprise Analytics Cluster. It protects the cluster against large-scale infrastructure failure.
 
-|  | When you initialize a new Enterprise Analytics cluster, the first node is automatically placed in a server group named Group 1\. Once you create additional server groups, the **Assign Group** field becomes available when adding new server nodes to the cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you initialize a new Enterprise Analytics cluster, the first node is automatically placed in a server group named Group 1\. Once you create additional server groups, the **Assign Group** field becomes available when adding new server nodes to the cluster.
 
 ## [](#examples-on-this-page)Examples on This Page
 
@@ -43,8 +53,8 @@ To move a server between groups, proceed as follows:
 3. Click this option to see a list of available groups that can receive the server.
 4. Select the destination group from the list. Once selected, a **pending move** notification appears, indicating that the move is in the queue but not yet applied.
 
-|  | You can cancel the pending move by clicking the **Cancel move** option in the server’s row. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can cancel the pending move by clicking the **Cancel move** option in the server’s row.
 
 \+ . After selecting the move, you’ll notice that: - A **Reset** option and an **Apply Changes** button become available. - You can cancel the pending move by clicking the **Reset** option. . To complete the move, click the **Apply Changes** button. . After applying changes, you may see warning notifications indicating: - The cluster has unbalanced server groups. For more information see [Unequal Groups](../../../../server/current/learn/clusters-and-availability/groups.md#vbucket-distribution-across-unequal-groups). - Perform a rebalance. . Return to the **Servers** screen to see the updated group assignments and perform a rebalance if recommended. . If you need a rebalance, click the **Rebalance** button to start the rebalancing process.
 
@@ -132,8 +142,8 @@ Added new nodes to a cluster by means of the `server-add` command. [Server-add](
 
 To add an _already provisioned_ node, enter the following. Specifying the administrator username and password of the new, provisioned node.
 
-|  | Adding a provisioned node removes all former provisioning, and reprovisions the node according to what’s specified during addition. Also that if the node is **unprovisioned**, no username or password for the node is required. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Adding a provisioned node removes all former provisioning, and reprovisions the node according to what’s specified during addition. Also that if the node is **unprovisioned**, no username or password for the node is required.
 
 See [Nodes](../../../../server/current/learn/clusters-and-availability/nodes.md), for more information.
 
@@ -218,8 +228,8 @@ The REST API can be used to gather information about existing groups, and to man
 
 Group information can be retrieved with the `GET /pools/default/serverGroups` HTTP method and URI. The following example returns information about groups within the cluster `10.143.190.101`.
 
-|  | The output is piped to jq, to enhance readability. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The output is piped to `jq`, to enhance readability.
 
 curl -u Administrator:password -v -X GET \
 http://10.143.190.101:8091/pools/default/serverGroups | jq
@@ -254,8 +264,8 @@ The URI path is terminated with the _revision integer_ that specifies the curren
 
 The specified file, `groupChangeDefinition.json`, provides the new configuration for group membership. For an example, see [Node-to-Group Assignment](../../reference/rest-servergroup-put-membership.md#configuration-statement).
 
-|  | The content of this file can also be directly specified on the command-line, if required. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The content of this file can also be directly specified on the command-line, if required.
 
 Success gives `200 OK`, and returns an empty array.
 

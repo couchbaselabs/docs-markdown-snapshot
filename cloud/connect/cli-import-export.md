@@ -1,4 +1,13 @@
+---
+title: Import and Export Data with Command Line Tools
+description: Use Couchbase command line tools to import and export large amounts of data.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/connect/pages/cli-import-export.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/connect/cli-import-export.html)
+
+# Import and Export Data with Command Line Tools
 
 > Use Couchbase command line tools to import and export large amounts of data. 
 
@@ -27,8 +36,8 @@ The procedures on this page assume the following:
 5. Update dataset with the `path to the dataset file`.
 6. Set the `cacert` to point to the downloaded CA cert.
 
-|  | You can also import from JSON. See the [examples](#import-json) for more details. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also import from JSON. See the [examples](#import-json) for more details.
 
 ## [](#export-data)Export Data
 

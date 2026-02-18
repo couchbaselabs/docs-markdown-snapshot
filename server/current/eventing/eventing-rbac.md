@@ -1,4 +1,14 @@
+---
+title: Eventing Role-Based Access Control (RBAC)
+description: Full Administrators or users with proper <em>Role-Based Access
+  Control</em> (RBAC) roles can create and manage Eventing Functions.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-rbac.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-rbac.html)
+
+# Eventing Role-Based Access Control (RBAC)
 
 > Full Administrators or users with proper _Role-Based Access Control_ (RBAC) roles can create and manage Eventing Functions. 
 
@@ -20,13 +30,15 @@ A bucket.scope combination is used for identifying functions belonging to the sa
 
 Only the "Eventing Full Admin" role and also the "Full Admin" role can set the bucket.scope to **\*.\***; all other Eventing non-privileged users need to define a **Function Scope** for their Eventing functions that references an existing resource of bucket.scope. This provides role-based isolation of Eventing functions between non-privileged users
 
-|  | Changing the access role (i.e., by revoking write permissions) could impact deployed eventing functions that have been assigned to this role. _This may result in the function being undeployed._In this case, redeploy the function with the correctly assigned role to allow access. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Changing the access role (i.e., by revoking write permissions) could impact deployed eventing functions that have been assigned to this role.  
+> _This may result in the function being undeployed._  
+> In this case, redeploy the function with the correctly assigned role to allow access.
 
 Typically, you should set Function Scope to the bucket.scope that holds the collection that is the source of your mutations to your Eventing Function. This best practice ensures that you _do not_ inadvertently cause an Eventing Function to undeploy by removing a **Function Scope** pointing to a resource that is not required for the function to run.
 
-|  | A user can be assigned multiple "Eventing/Manage Scope Function" RBAC roles. If any of these roles match an existing Eventing Function’s **Function Scope**, then that user can manage, modify, or delete the Eventing Function even if it was created or imported by someone else. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A user can be assigned multiple "Eventing/Manage Scope Function" RBAC roles. If any of these roles match an existing Eventing Function’s **Function Scope**, then that user can manage, modify, or delete the Eventing Function even if it was created or imported by someone else.
 
 ## [](#privileged-users)Privileged Users
 
@@ -34,8 +46,8 @@ If a user role of either "Full Admin" or "Eventing Full Admin", then by default 
 
 When creating an Eventing Function, either of these roles can set the **Function Scope** to **\*.\***; no other RBAC role is allowed to use this **Function Scope**.
 
-|  | When upgrading to 7.1, all Eventing Functions are assumed to be running as a privileged user and have their **Function Scope** set to **\*.\*** to ensure continuity of your Eventing Functions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When upgrading to 7.1, all Eventing Functions are assumed to be running as a privileged user and have their **Function Scope** set to **\*.\*** to ensure continuity of your Eventing Functions.
 
 ### [](#full-admin-v-eventing-full-admin)Full Admin v. Eventing Full Admin
 
@@ -45,8 +57,8 @@ For the Function Scope or RBAC grouping, we will use the 'bulk.data' assuming yo
 
 ## [](#eventing-and-rbac-for-non-privileged-users)Eventing and RBAC for Non-privileged Users
 
-|  | If a user role of either "Full Admin" or "Eventing Full Admin", then this user, by default, has all the necessary access privileges to every resource in a cluster required to run the Eventing Service and create and manage Eventing Functions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If a user role of either "Full Admin" or "Eventing Full Admin", then this user, by default, has all the necessary access privileges to every resource in a cluster required to run the Eventing Service and create and manage Eventing Functions.
 
 _In RBAC, although you can assign rolls directly to a **USER**, it is generally more flexible to define a **GROUP** and then assign that group or set of roles to a **USER**. This allows reusing a **GROUP** across multiple users._
 
@@ -74,10 +86,9 @@ The following minimal resources are required for a non-privileged user to access
 * Configure the group as follows:
 
   * `Data Reader` and `Data Writer` are required for the Eventing Storage or scratchpad.
-  * `Data DCP Reader` is required to fetch the mutations from DCP.
-
-|  | this item was defined as bulk.data which would allow building Evening functions that can listen to any collection under bulk.data. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------- |  
+  * `Data DCP Reader` is required to fetch the mutations from DCP.  
+  > [!NOTE]  
+  > this item was defined as `bulk.data` which would allow building Evening functions that can listen to any collection under `bulk.data`.  
   ![rbac min a](_images/rbac_min_a.png)  
   The final item required is defining the **Function Scope** under "Eventing / Manage Scope Function". Since we will be listing to mutations in a collection under `bulk.data`, it makes sense to use this as our grouping.  
   ![rbac min b](_images/rbac_min_b.png)

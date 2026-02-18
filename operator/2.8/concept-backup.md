@@ -1,4 +1,12 @@
+---
+title: Couchbase Backup and Restore
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/concept-backup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/concept-backup.html)
+
+# Couchbase Backup and Restore
 
 > The Kubernetes Operator provides facilities that allow data to be backed up, restored, and archived in order to aid in cluster disaster recovery. 
 
@@ -10,8 +18,8 @@ Once automated backup is enabled, individual backup policies can be configured u
 
 For information on configuring automated backup and restore, refer to [Configure Automated Backup and Restore](howto-backup.md).
 
-|  | Because backup policies are configured with a separate resource, you can use [custom resource RBAC](concept-rbac.md) to allow individuals who may not have access to [CouchbaseCluster](resource/couchbasecluster.md) resources to still perform backup administration. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Because backup policies are configured with a separate resource, you can use [custom resource RBAC](concept-rbac.md) to allow individuals who may not have access to [CouchbaseCluster](resource/couchbasecluster.md) resources to still perform backup administration.
 
 ## [](#about-the-operator-backup-image)About the `operator-backup` Image
 
@@ -19,8 +27,10 @@ Each version of Couchbase Server is released with a compatible version of the [c
 
 Whenever the Kubernetes Operator gains support for a new version of Couchbase Server, a new and/or compatible version of the [operator-backup](https://hub.docker.com/r/couchbase/operator-backup) image will be made available at the same time that includes a fully compatible version of [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr.md). For a list of compatible images for this release of the Kubernetes Operator, refer to [Couchbase Backup and Restore Compatibility](prerequisite-and-setup.md#couchbase-backup-and-restore-compatibility).
 
-|  | Only the official Couchbase-supplied [operator-backup](https://hub.docker.com/r/couchbase/operator-backup) container image is supported. This image is designed only for use with the Kubernetes Operator, and is not meant for any other context. In addition, you should ensure that your image source is trusted. The backup image requires access to the Couchbase cluster administrative credentials in order to login and perform collection. Granting these credentials to arbitrary code is potentially harmful. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Only the official Couchbase-supplied [operator-backup](https://hub.docker.com/r/couchbase/operator-backup) container image is supported. This image is designed only for use with the Kubernetes Operator, and is not meant for any other context.
+> 
+> In addition, you should ensure that your image source is trusted. The backup image requires access to the Couchbase cluster administrative credentials in order to login and perform collection. Granting these credentials to arbitrary code is potentially harmful.
 
 ## [](#important-considerations)Important Considerations
 
@@ -29,10 +39,9 @@ Whenever the Kubernetes Operator gains support for a new version of Couchbase Se
 You should schedule backup Pods onto Kubernetes nodes that have enough resources to successfully fulfill your backup schedule. It is also recommended that you do not schedule backup Pods onto Kubernetes nodes that host Couchbase cluster Pods, since your Couchbase cluster would be competing for resources with the backup utility. Refer to [Pod Scheduling](howto-backup.md#pod-scheduling) for more information.
 * Backup Pods require access permissions that necessitate the creation of `ServiceAccount`, `Role`, and `RoleBinding` resources. Refer to [Grant Access Permissions](howto-backup.md#grant-backup-permissions) for more information.
 * You can enable and disable automated backup at any time in the [CouchbaseCluster](resource/couchbasecluster.md) resource. Disabling automated backup does not delete [CouchbaseBackup](resource/couchbasebackup.md) resources. When you re-enabled automated backup, any applicable [CouchbaseBackup](resource/couchbasebackup.md) resources that still exist will continue to be used.
-* When your Couchbase cluster is configured with TLS, backups and restores will also occur over TLS to provide end-to-end encryption of your data while in transit.
-
-|  | The [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr.md) tool _does not_ support mutual TLS authentication. If your Couchbase cluster is using mandatory client certificate authentication, the Kubernetes Operator, in an effort to keep the backup from failing, will downgrade the connection between the backup Pod and the cluster to _plain text_. In both server-side TLS and optional client certificate authentication modes of operation, the backup will occur over TLS, using basic HTTP authentication. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* When your Couchbase cluster is configured with TLS, backups and restores will also occur over TLS to provide end-to-end encryption of your data while in transit.  
+> [!IMPORTANT]  
+> The [cbbackupmgr](../../server/current/backup-restore/cbbackupmgr.md) tool _does not_ support mutual TLS authentication. If your Couchbase cluster is using mandatory client certificate authentication, the Kubernetes Operator, in an effort to keep the backup from failing, will downgrade the connection between the backup Pod and the cluster to _plain text_. In both server-side TLS and optional client certificate authentication modes of operation, the backup will occur over TLS, using basic HTTP authentication.
 
 ## [](#additional-resources)Additional Resources
 

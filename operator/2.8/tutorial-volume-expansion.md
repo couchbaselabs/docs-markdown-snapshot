@@ -1,9 +1,17 @@
+---
+title: Online Persistent Volume Expansion
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-volume-expansion.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/tutorial-volume-expansion.html)
+
+# Online Persistent Volume Expansion
 
 > Learn how to use the Kubernetes Operator to perform online persistent volume expansion for Couchbase Server deployments in Kubernetes. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#introduction)Introduction
 
@@ -90,8 +98,12 @@ Now, install the Couchbase chart, making sure to specify the values override fil
 $ helm install -f pvc_resize_values.yaml expand couchbase/couchbase-operator
 ```
 
-|  | The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed: $ helm install -f pvc\_resize\_values.yaml --set install.couchbaseOperator=false,install.admissionController=false expand couchbase/couchbase-operator |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase chart deploys the Kubernetes Operator by default. If you already have the Kubernetes Operator deployed in the current namespace, then you’ll need to specify additional overrides during chart installation so that only the Couchbase cluster is deployed:
+> 
+> ```console
+> $ helm install -f pvc_resize_values.yaml --set install.couchbaseOperator=false,install.admissionController=false expand couchbase/couchbase-operator
+> ```
 
 ### [](#verify-the-installation)Verify the Installation
 

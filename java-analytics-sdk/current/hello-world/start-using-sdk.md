@@ -1,4 +1,14 @@
+---
+title: Java Analytics SDK Quickstart Guide
+description: Install, connect, try. A quick start guide to get you up and
+  running with Enterprise Analytics and the Java Analytics SDK.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-analytics-sdk/current/hello-world/start-using-sdk.html)
+
+# Java Analytics SDK Quickstart Guide
 
 > Install, connect, try. A quick start guide to get you up and running with Enterprise Analytics and the Java Analytics SDK. 
 
@@ -12,8 +22,8 @@ Install and configure an [Enterprise Analytics Cluster](../../../enterprise-anal
 
 The Java Analytics SDK requires Java 8 or later. We recommend using the most recent long-term support (LTS) version of OpenJDK.
 
-|  | Remember to keep your Java installation up to date with the latest patches. |
-|  | --------------------------------------------------------------------------- |
+> [!TIP]
+> Remember to keep your Java installation up to date with the latest patches.
 
 ## [](#maven-project-template)Maven Project Template
 

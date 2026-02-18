@@ -1,4 +1,14 @@
+---
+title: Correlated Subqueries
+description: When a subquery refers to variables, aliases, attributes, or
+  keyspaces in the outer statement, it is called a correlated subquery.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/correlated-subqueries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/correlated-subqueries.html)
+
+# Correlated Subqueries
 
 When a subquery is independent of its parent query, it is called a **non-correlated** subquery. This means the subquery does not depend on any of the variables or aliases defined in the outer query, nor the specific document being processed by the outer query. For instance, in examples [Q1](subqueries.md#Q1), [Q2](subqueries.md#Q2), and [Q3](subqueries.md#Q3) on the Subqueries page, the subquery has no correlation with its outer query.
 
@@ -86,8 +96,8 @@ In example [Q10](#Q10), notice the USE KEYS clause used to establish the correla
 
 It is important to understand the reasoning to include the USE KEYS clause. It is not always mandatory. It entirely depends on how the FROM clause is formulated, which indicates the source of documents for the subquery and hence the correlation with the parent query.
 
-|  | When a keyspace name identifier is used in the FROM clause of a subquery, it refers to a collection of documents referenced by the keyspace identifier. However, when an alias of the keyspace is used in the FROM clause (or any other clauses of the query), it refers to an individual document of the keyspace being considered in the outer query. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When a keyspace name identifier is used in the FROM clause of a subquery, it refers to a collection of documents referenced by the keyspace identifier. However, when an alias of the keyspace is used in the FROM clause (or any other clauses of the query), it refers to an individual document of the keyspace being considered in the outer query.
 
 ### [](#from-clause-with-keyspace-identifier)FROM Clause with Keyspace Identifier
 

@@ -1,4 +1,13 @@
+---
+title: collect-logs-start
+description: Start log collection
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-collect-logs-start.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-collect-logs-start.html)
+
+# collect-logs-start
 
 Start log collection
 
@@ -19,8 +28,8 @@ This command collects all Enterprise Analytics log files from one or more nodes 
 
 To get the location of the collected log files you can run the [collect-logs-status](couchbase-cli-collect-logs-status.md) command either while the log collection task is running or after the log collection task has completed. If the --upload flag is specified then the logs will also be uploaded to the host specified in the --upload-host flag. The upload flag is intended for Enterprise Analytics Enterprise Edition users who need to upload logs to the Couchbase Support Team to aid in diagnosing support tickets that they have filed.
 
-|  | Only one log collection task may be running at any given time in the cluster. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> Only one log collection task may be running at any given time in the cluster.
 
 ## [](#options)OPTIONS
 

@@ -1,4 +1,14 @@
+---
+title: Creating and Editing Buckets
+description: Buckets can be created, and their configurations subsequently
+  edited, with the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-bucket-create.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-bucket-create.html)
+
+# Creating and Editing Buckets
 
 > Buckets can be created, and their configurations subsequently edited, with the REST API. 
 
@@ -18,8 +28,8 @@ A maximum of 30 buckets can be created on a single cluster.
 
 Administrators with either the Full Admin or the Cluster Admin role can create buckets and edit their configurations. Bucket configurations can also be edited by administrators with the Bucket Admin role, provided that its privileges have been extended either to all buckets on the cluster, or to the specific bucket whose configuration is to be edited. See [Roles](../learn/security/roles.md), for information on roles and privileges.
 
-|  | While migrating a bucket from one storage backend to another, you can only edit the bucket’s [ramQuota](#ramQuota) and [storageBackend](#storagebackend) parameters. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While migrating a bucket from one storage backend to another, you can only edit the bucket’s [ramQuota](#ramQuota) and [storageBackend](#storagebackend) parameters. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 ## [](#curl-syntax)Curl Syntax
 
@@ -189,8 +199,8 @@ If successful, the call returns a `200 OK` notification. No object is returned.
 
 The _storage backend_ to be assigned to and used by the bucket. This can be either `couchstore` (which is the default) or `magma`. For information, see [Storage Engines](../learn/buckets-memory-and-storage/storage-engines.md).
 
-|  | You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You can edit this value after initially creating the bucket. Couchbase Server sets the new backend value globally. However, this change does not convert the bucket to the new backend storage engine. Instead, Couchbase Server adds overrides to every node containing the bucket to indicate that their vBuckets are still in the old format. You must take additional steps to complete the migration to the new storage backend. See [Migrate a Bucket’s Storage Backend](../manage/manage-buckets/migrate-bucket.md) for more information.
 
 #### [](#example-storage-backend)Example: Specifying the Storage Backend
 
@@ -805,8 +815,8 @@ Enabling Cross Cluster Versioning is a pre-requisite to a few XDCR features. The
 
 See the example provided in [Example: Turning on enableCrossClusterVersioning, when Editing](#example-enablecrossclusterversioning-edit)
 
-|  | The default value is false. Do not change the value of this property unless instructed by a feature configuration. Once enabled, you cannot turn off the enableCrossClusterVersioning property. The only way for you to undo setting this value to true is to backup your data, create a new bucket, and restore the data, using the option cbbackupmgr restore --disable-hlv to remove the HLV info in the xattrs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The default value is `false`. Do not change the value of this property unless instructed by a feature configuration. Once enabled, you cannot turn off the `enableCrossClusterVersioning` property. The only way for you to undo setting this value to `true` is to backup your data, create a new bucket, and restore the data, using the option `cbbackupmgr restore --disable-hlv` to remove the HLV info in the xattrs.
 
 #### [](#example-enablecrossclusterversioning-edit)Example: Turning on enableCrossClusterVersioning, when Editing
 
@@ -822,8 +832,8 @@ Controls the pruning frequency of the Hybrid Logical Vector (HLV) metadata. The 
 
 See the example provided in [Example: Specifying time value for versionPruningWindowHrs, when Editing](#example-versionpruningwindowhrs-edit)
 
-|  | versionPruningWindowHrs must be set to the same value for all buckets in an XDCR replication topology. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> `versionPruningWindowHrs` must be set to the same value for all buckets in an XDCR replication topology.
 
 #### [](#example-versionpruningwindowhrs-edit)Example: Specifying time value for versionPruningWindowHrs, when Editing
 

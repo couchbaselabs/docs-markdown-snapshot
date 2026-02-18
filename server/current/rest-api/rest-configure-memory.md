@@ -1,4 +1,13 @@
+---
+title: Configuring Memory
+description: Use REST API to configure custom memory allocation per service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-configure-memory.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-configure-memory.html)
+
+# Configuring Memory
 
 > Use REST API to configure custom memory allocation per service. 
 

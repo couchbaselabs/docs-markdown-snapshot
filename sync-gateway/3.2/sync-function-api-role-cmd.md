@@ -1,4 +1,13 @@
+---
+title: role()
+description: Assigning Sync Gateway <em>roles</em>
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-function-api-role-cmd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/sync-function-api-role-cmd.html)
+
+# role()
 
 > Assigning Sync Gateway _roles_  
 
@@ -12,8 +21,8 @@ role(username, rolename)
 
 Use the `role()` function to add a role to a user. This indirectly gives them access to any channels assigned to that role.
 
-|  | Roles, like users, have to be explicitly created by an administrator. |
-|  | --------------------------------------------------------------------- |
+> [!NOTE]
+> Roles, like users, have to be explicitly created by an administrator.
 
 ## [](#arguments)Arguments
 
@@ -28,8 +37,8 @@ This function affects the user’s ability to revise documents, if the access fu
 
 Nonexistent roles don’t cause an error, but have no effect on the user’s access privileges.
 
-|  | You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect. |
-|  | ------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> You can create roles retrospectively. As soon as a role is created, any pre-existing references to it take effect.
 
 ## [](#use)Use
 

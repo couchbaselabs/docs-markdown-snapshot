@@ -1,4 +1,14 @@
+---
+title: Delta Sync
+description: Use Sync Gateway's delta sync feature for secure, resilient and
+  efficient sync from cloud to edge
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/delta-sync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/sync/delta-sync.html)
+
+# Delta Sync
 
 > Use Sync Gateway’s delta sync feature for secure, resilient and efficient sync from cloud to edge  
 > This content introduces Sync Gateway’s delta sync feature; sync only the data that has changed.
@@ -51,8 +61,8 @@ Example 1\. Sample of Database with Delta Sync
 
 Delta sync’s storage of backed-up revision bodies in the Couchbase Server bucket means additional Couchbase Server storage is required. This storage is used by Sync Gateway to generate the deltas between old and new revisions. — see [Example 2](#addl-storage).
 
-|  | Calculate required storage using: (doc\_size \* updates\_per\_day \* 86400) / rev\_max\_age\_seconds |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Calculate required storage using: `(doc_size * updates_per_day * 86400) / rev_max_age_seconds`
 
 With each delta sync write operation the revision body is backed up in the bucket and retained for _rev\_max\_age\_seconds_ to calculate future revision deltas. So new deltas can only be generated for read requests arriving within the _rev\_max\_age\_seconds_ time window.
 

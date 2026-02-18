@@ -1,4 +1,13 @@
+---
+title: runtimes
+description: Provides information about runtime statistics.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-runtimes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-runtimes.html)
+
+# runtimes
 
 > Provides information about runtime statistics. 
 

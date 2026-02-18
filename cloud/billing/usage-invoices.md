@@ -1,4 +1,14 @@
+---
+title: View Capella Usage and Invoices
+description: You can view current and past usage for the clusters and services
+  in your organization, and view and download invoices.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/usage-invoices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/usage-invoices.html)
+
+# View Capella Usage and Invoices
 
 > You can view current and past usage for the clusters and services in your organization, and view and download invoices. 
 
@@ -15,8 +25,10 @@ From your organization’s **Billing** tab, you can:
 
 To get an overview of your monthly cluster and service usage, go to **Billing** **Overview**.
 
-|  | Data refresh periodsUsage data can take up to 5 days to appear in your billing overview and reports. |
-|  | ---------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Data refresh periods
+> 
+> Usage data can take up to 5 days to appear in your billing overview and reports.
 
 The **Overview** page lets you:
 

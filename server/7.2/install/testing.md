@@ -1,4 +1,14 @@
+---
+title: Verifying the Couchbase Server Installation
+description: Testing the connection to Couchbase Server can be performed in a
+  number of different ways.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/testing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/testing.html)
+
+# Verifying the Couchbase Server Installation
 
 > Testing the connection to Couchbase Server can be performed in a number of different ways. 
 
@@ -10,8 +20,8 @@ On all platforms, you can access the Web Console by connecting to the embedded W
 
 If you are logged into the node itself, you can go to `http://localhost:8091`. You can also use the `couchbase-cli` command to query node to confirm that it is available.
 
-|  | The Web Console uses the same port as smart clients when communicating with Couchbase Server. If you can connect to the Web Console from a particular machine, then administration and database clients on the same machine can also connect to the core cluster port and perform operations. The Web Console will provide a warning if the Web browser loses connectivity to the node. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Web Console uses the same port as smart clients when communicating with Couchbase Server. If you can connect to the Web Console from a particular machine, then administration and database clients on the same machine can also connect to the core cluster port and perform operations. The Web Console will provide a warning if the Web browser loses connectivity to the node.
 
 ## [](#detailed-verification)Detailed Verification
 

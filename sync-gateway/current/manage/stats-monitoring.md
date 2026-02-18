@@ -1,4 +1,14 @@
+---
+title: View Statistics and Metrics
+description: This content covers the statistics and metrics collected and made
+  available by Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/stats-monitoring.html)
+
+# View Statistics and Metrics
 
 > This content covers the statistics and metrics collected and made available by Sync Gateway  
 > Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.

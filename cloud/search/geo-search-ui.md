@@ -1,4 +1,14 @@
+---
+title: Run a Geospatial Search Query with the Capella UI
+description: Search for geospatial data in your Couchbase Capella operational
+  cluster with a compatible Search index and the Capella UI.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/geo-search-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/geo-search-ui.html)
+
+# Run a Geospatial Search Query with the Capella UI
 
 > Search for geospatial data in your Couchbase Capella operational cluster with a compatible Search index and the Capella UI. 
 
@@ -24,10 +34,11 @@ To create the Search index in the Capella UI with Advanced Mode:
 1. On the **Operational Clusters** page, select the operational cluster where you want to create a Search index.
 2. Go to **Data Tools** **Search**.
 3. Click **Create Search Index**.
-4. In the **Index Name** field, enter a name for the Search index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+4. In the **Index Name** field, enter a name for the Search index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 5. In the **Bucket** and **Scope** lists, choose the bucket and scope where you want to create your Search index. This bucket and scope should contain the collection and documents that have your geospatial data.
 6. In your document schema, expand the collection that holds the documents with your geospatial data.
 7. Click the name of the field that holds your geospatial data.

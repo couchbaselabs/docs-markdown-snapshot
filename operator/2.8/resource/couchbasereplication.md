@@ -1,4 +1,12 @@
+---
+title: CouchbaseReplication Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbasereplication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/resource/couchbasereplication.html)
+
+# CouchbaseReplication Resource
 
 The CouchbaseReplication resource represents a Couchbase-to-Couchbase, XDCR replication stream from a source bucket to a destination bucket. This provides off-site backup, migration, and disaster recovery.
 

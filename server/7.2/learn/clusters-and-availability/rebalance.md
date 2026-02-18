@@ -1,4 +1,14 @@
+---
+title: Rebalance
+description: <em>Rebalance</em> redistributes data, indexes, event processing,
+  and query processing among available nodes.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/clusters-and-availability/rebalance.html)
+
+# Rebalance
 
 > _Rebalance_ redistributes data, indexes, event processing, and query processing among available nodes. 
 

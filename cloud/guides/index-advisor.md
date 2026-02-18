@@ -1,4 +1,13 @@
+---
+title: Get Index Advice
+description: How to use the Index Advisor to recommend indexes for your queries.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/index-advisor.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/index-advisor.html)
+
+# Get Index Advice
 
 > How to use the Index Advisor to recommend indexes for your queries. 
 
@@ -149,8 +158,8 @@ The `ADVISOR()` function also enables you to get index recommendations for multi
 
 To get advice for multiple queries, use the `ADVISOR()` function with an array argument containing strings which represent each query.
 
-|  | You can query the [system:completed\_requests](../n1ql/n1ql-manage/monitoring-n1ql-query.md#sys-completed-req) catalog to get a list of recently completed queries. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can query the [system:completed\_requests](../n1ql/n1ql-manage/monitoring-n1ql-query.md#sys-completed-req) catalog to get a list of recently completed queries.
 
 The following example gets index advice for recently completed queries.
 
@@ -240,8 +249,8 @@ The query returns a session ID, which you must use to get the results for this s
 3. If you want to stop the session early, use the `ADVISOR()` function with a stop object argument. The object argument must contain the property `"action": "stop"`, and must also contain a `"session"` property, specifying the session ID.
 4. When the session is complete, use the `ADVISOR()` function with a get object argument to get the index recommendations. The object argument must contain the property `"action": "get"`, and must also contain a `"session"` property, specifying the session ID.
 
-|  | You can also use the ADVISOR() function to abandon a session without recording any results; to list active and completed sessions; and to purge the results of an Index Advisor session. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can also use the `ADVISOR()` function to abandon a session without recording any results; to list active and completed sessions; and to purge the results of an Index Advisor session.
 
 The following example starts an Index Advisor session with a duration of 1 hour. All queries taking longer than 0 seconds will be collected.
 

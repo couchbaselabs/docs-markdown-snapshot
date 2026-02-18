@@ -1,4 +1,12 @@
+---
+title: backup-service-plan
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-backup-service-plan.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-backup-service-plan.html)
+
+# backup-service-plan
 
 Manage the backup service plans.
 

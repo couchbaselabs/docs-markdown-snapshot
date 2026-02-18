@@ -1,4 +1,13 @@
+---
+title: Queries
+description: A description of Couchbase SQL++ for Analytics queries.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/3_query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/3_query.html)
+
+# Queries
 
 Most of the examples in this section assume that you are using an Analytics scope called `Commerce`. Refer to [Appendix 4: Example Data](appendix%5F4%5Fexamples.md) to install this example data.
 
@@ -1803,8 +1812,8 @@ This clause is optional. If omitted, all tuples are considered peers, i.e. their
 * The `rank()`, `dense_rank()`, `percent_rank()`, and `cume_dist()` functions return the same result for each tuple.
 * For other functions, if the [window frame](#Window%5Fframe%5Fclause) is defined by `ROWS`, the results may be unpredictable. If the window frame is defined by `RANGE` or `GROUPS`, the results are same for each tuple.
 
-|  | This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query ORDER BY clause. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This clause does not guarantee the overall order of the query results. To guarantee the order of the final results, use the query `ORDER BY` clause.
 
 #### [](#Window%5Fframe%5Fclause)Window Frame Clause
 
@@ -1823,11 +1832,11 @@ The window frame can be defined in the following ways:
 * `RANGE`: Looks for a value offset within the frame. The function produces deterministic results.
 * `GROUPS`: Counts all groups of tied rows within the frame. The function produces deterministic results.
 
-|  | If this clause uses RANGE with either _Expr_ PRECEDING or _Expr_ FOLLOWING, the [window order clause](#Window%5Forder%5Fclause) must have only a single ordering term. The ordering term expression must evaluate to a number. If these conditions are not met, the window frame will be empty, which means the window function will return its default value: in most cases this is null, except for strict\_count() or array\_count(), whose default value is 0\. This restriction does not apply when the window frame uses ROWS or GROUPS. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If this clause uses `RANGE` with either _Expr_ `PRECEDING` or _Expr_ `FOLLOWING`, the [window order clause](#Window%5Forder%5Fclause) must have only a single ordering term. The ordering term expression must evaluate to a number. If these conditions are not met, the window frame will be empty, which means the window function will return its default value: in most cases this is `null`, except for `strict_count()` or `array_count()`, whose default value is 0\. This restriction does not apply when the window frame uses `ROWS` or `GROUPS`.
 
-|  | The RANGE window frame is commonly used to define window frames based on date or time. If you want to use RANGE with either _Expr_ PRECEDING or _Expr_ FOLLOWING, and you want to use an ordering expression based on date or time, the expression in _Expr_ PRECEDING or _Expr_ FOLLOWING must use a data type that can be added to the ordering expression. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The `RANGE` window frame is commonly used to define window frames based on date or time. If you want to use `RANGE` with either _Expr_ `PRECEDING` or _Expr_ `FOLLOWING`, and you want to use an ordering expression based on date or time, the expression in _Expr_ `PRECEDING` or _Expr_ `FOLLOWING` must use a data type that can be added to the ordering expression.
 
 #### [](#Window%5Fframe%5Fextent)Window Frame Extent
 

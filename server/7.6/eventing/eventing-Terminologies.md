@@ -1,4 +1,13 @@
+---
+title: Eventing Terminology
+description: The following terminology is used by the Eventing Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-Terminologies.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-Terminologies.html)
+
+# Eventing Terminology
 
 > The following terminology is used by the Eventing Service. 
 
@@ -24,8 +33,8 @@ Eventing Functions allow you to:
 * Route mutations to the entry points `OnUpdate` and `OnDelete`
 * Route fired timers to a user-defined Timer callback
 
-|  | The JavaScript code in an Eventing Function is compressed in Couchbase Server versions 6.5.0 and later. The compressed size is limited to 128KB. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The JavaScript code in an Eventing Function is compressed in Couchbase Server versions 6.5.0 and later. The compressed size is limited to 128KB.
 
 ### [](#handlers)Handlers
 
@@ -42,8 +51,8 @@ There are two limitations to the `OnUpdate` handler:
 * If you modify a document several times in a short period of time, the handler calls can merge into a single event due to deduplication
 * It is not possible to distinguish between Create and Update operations
 
-|  | To prevent the suppression of binary documents, you must set the language compatibility of your Function to Couchbase Server version 6.6.2 or later. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To prevent the suppression of binary documents, you must set the language compatibility of your Function to Couchbase Server version 6.6.2 or later.
 
 #### [](#ondelete)`OnDelete`
 
@@ -80,8 +89,8 @@ All states in the execution stack are short-lived.
 
 Couchbase does not store every version a document permanently. When a handler receives the mutation history of documents from Eventing, it sees a truncated history of each document.
 
-|  | Because the current state of a document is always available in the database, the final state of a document is always present in the mutation history. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Because the current state of a document is always available in the database, the final state of a document is always present in the mutation history.
 
 To ensure high performance, the KV data engine deduplicates multiple mutations made to an individual document in succession. Handlers might not see all intermediate states of a document when it mutates quickly, but they do see its final state.
 
@@ -107,8 +116,8 @@ You can use a `bucket.scope` to identify Functions that belong to the same group
 
 As a best practice, you should set your Function scope to the `bucket.scope` that contains the collection that’s the source of your Eventing Function mutations. This makes sure that your Function does not undeploy by removing a scope that points to a resource that’s not required for the Function to run.
 
-|  | To set the bucket.scope to +.+, you must have the Eventing Full Admin or the Full Admin role. All other users must use a scope that references an existing resource of their bucket.scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> To set the `bucket.scope` to `+`.`+`, you must have the `Eventing Full Admin` or the `Full Admin` role. All other users must use a scope that references an existing resource of their `bucket.scope`.
 
 ### [](#section%5Fmzd%5Fl1p%5Fm2b)Bindings
 
@@ -131,8 +140,8 @@ You can add bucket aliases by selecting **Bucket alias** and entering an alias-n
   * `read only` lets you read documents from the collection but not write (create, update, or delete) documents in the collection
   * `read and write` lets you read and write documents in the collection
 
-|  | You must have one or more bucket alias bindings for your Eventing Function to perform operations directly against the Data Service. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must have one or more bucket alias bindings for your Eventing Function to perform operations directly against the Data Service.
 
 An Eventing Function can listen to multiple collections when you use the `*` wildcard in its scope or collection. You can also use the `*` wildcard in the scope or collection of the bucket alias code. If the bucket alias has a `*` wildcard, only the Advanced Keyspace Accessors can read or write the Data Service.
 
@@ -179,13 +188,13 @@ The Function’s JavaScript code triggers data mutations on documents through Ba
 
 The Function’s JavaScript code can also trigger mutations on documents through inline SQL++ statements in the Query Service or `N1QL()` function calls. You might need to add additional business logic to terminate or protect the Function against possible recursion.
 
-|  | When you implement multiple Functions, you can create infinite recursions. The Eventing Service prevents the deployment of Functions that might result in recursion loops. For more information abotu cyclic generation of data changes, see [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When you implement multiple Functions, you can create infinite recursions. The Eventing Service prevents the deployment of Functions that might result in recursion loops. For more information abotu cyclic generation of data changes, see [Bucket Allocation Considerations](troubleshooting-best-practices.md#cyclicredun).
 
 To get the `Listen To` keyspace to listen to multiple collections, you can use a `*` wildcard for the scope or collection. If the bucket binding used by the JavaScript code also has a `*` wildcard for its scope or collection, you must use Advanced Keyspace Accessors to read or write the Data Service. For more information about Advanced Keyspace Accessors, see [Eventing Functions that Listen to Multiple Collections](eventing-advanced-keyspace-accessors.md#multiple-collection-functions).
 
-|  | You can have multiple Functions listening to the same collection while running different code. To use less resources, though, you can use only one Function and code an if-then-else or switch statement in your handler’s JavaScript. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can have multiple Functions listening to the same collection while running different code. To use less resources, though, you can use only one Function and code an if-then-else or switch statement in your handler’s JavaScript.
 
 ### [](#eventing-storage)Eventing Storage
 
@@ -195,8 +204,8 @@ When you create an Eventing Function, you must make sure that a separate collect
 
 The Eventing Storage keyspace must be in a Couchbase-type bucket. If this keyspace is not persistent, the Data Service evicts Timer and checkpoint documents when it hits quota, and loses track of Timers and mutations that have been processed.
 
-|  | Do not delete the Eventing metadata collection. Make sure that your Function’s JavaScript code does not perform a write or delete operation on the Eventing metadata collection. If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Do not delete the Eventing metadata collection. Make sure that your Function’s JavaScript code does not perform a write or delete operation on the Eventing metadata collection. If you delete the metadata collection, all deployed Eventing Functions are undeployed and all associated indexes and constructs are dropped.
 
 ### [](#function-settings)Eventing Function Settings
 

@@ -1,4 +1,13 @@
+---
+title: Create a Search Vector Index in Quick Mode
+description: Use Quick Mode to create a Search Vector Index in Couchbase Capella.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/create-vector-search-index-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-search/create-vector-search-index-ui.html)
+
+# Create a Search Vector Index in Quick Mode
 
 > Use Quick Mode to create a Search Vector Index in Couchbase Capella. 
 
@@ -6,8 +15,8 @@ Quick Mode works best when you need to create a basic Search index to start test
 
 For more information about how to create a Search index in Advanced Mode, see [Create a Search Index with the Capella UI](../search/create-search-index-ui.md).
 
-|  | Search Vector Indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Search Vector Indexes can include all the same features and settings as a Search index. For more information about Search indexes, see the [Search documentation](../search/search.md).
 
 You must create a Search Vector Index before you can [run a search](run-vector-search-ui.md) that supports vector comparisons.
 
@@ -15,10 +24,11 @@ You must create a Search Vector Index before you can [run a search](run-vector-s
 
 * You have the Search Service enabled on a node in your operational cluster. For more information about how to change Services on your operational cluster, see [Modify a Paid Cluster](../clusters/modify-database.md).
 * You have a bucket with scopes and collections in your operational cluster. For more information, see [Manage Buckets](../clusters/data-service/manage-buckets.md).
-* You have documents in a keyspace inside your bucket that contain vector embeddings. Embeddings can be an array of floats or a base64 encoded string.
-
-|  | You can import a sample dataset to use with the procedure or examples on this page. Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You have documents in a keyspace inside your bucket that contain vector embeddings. Embeddings can be an array of floats or a base64 encoded string.  
+> [!TIP]  
+> You can import a sample dataset to use with the procedure or examples on this page.  
+>  
+> Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data.
 * You have logged in to the Couchbase Capella UI.
 
 ## [](#procedure)Procedure
@@ -36,8 +46,8 @@ To create a Search Vector Index in Capella:
   1. Use the [Vector Index creation flow](#vector-indexes-flow).
   2. Use the [Search creation flow](#search-flow).
 
-|  | If you use the [Vector Index creation flow](#vector-indexes-flow), you cannot add fields other than vector fields to your index during your initial index creation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you use the [Vector Index creation flow](#vector-indexes-flow), you cannot add fields other than vector fields to your index during your initial index creation.
 
 ### [](#vector-indexes-flow)Create a Search Vector Index from Vector Indexes
 
@@ -46,10 +56,11 @@ To use the **Vector Indexes** creation flow to create a new Search Vector Index:
 1. Go to **Data Tools** **Vector Indexes**.
 2. On the **Vector Indexes** page, click **\+ Create Vector Index**.
 3. Click **Search Vector Index**.
-4. In the **Index Name** field, enter a name for the Search Vector Index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+4. In the **Index Name** field, enter a name for the Search Vector Index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 5. In the **Bucket** and **Scope** lists, choose the bucket and scope where you want to create your Search Vector index.
 6. In the **Collections** list, select the collection or collections that contain documents with vector embeddings.
 7. Under **Type Mappings**, in your document schema, expand a collection that contains these documents.
@@ -72,8 +83,8 @@ To use the **Vector Indexes** creation flow to create a new Search Vector Index:
 11. Click **Review Index**.
 12. Click **Create Index**.
 
-|  | After you create your Search Vector Index, click the index name to go back into the editor and add additional collections or child field type mappings to your index. For example, you could add the text field that you used to generate your vector embeddings. For more information, see [Add Type Mappings and Mappings](../search/create-search-index-ui.md#add-mapping). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> After you create your Search Vector Index, click the index name to go back into the editor and add additional collections or child field type mappings to your index. For example, you could add the text field that you used to generate your vector embeddings. For more information, see [Add Type Mappings and Mappings](../search/create-search-index-ui.md#add-mapping).
 
 ### [](#search-flow)Create a Search Vector Index from Search
 
@@ -81,10 +92,11 @@ To use the **Search** creation flow to create a new Search Vector Index:
 
 1. Go to **Data Tools** **Search**.
 2. Click **Create Search Index**.
-3. In the **Index Name** field, enter a name for the Search Vector Index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+3. In the **Index Name** field, enter a name for the Search Vector Index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 4. In the **Bucket** and **Scope** lists, choose the bucket and scope where you want to create your Search index.
 5. In the **Collections** list, select the collection or collections that contain documents with vector embeddings.
 6. Under **Type Mappings**, in your document schema, expand a collection that contains these documents.
@@ -234,8 +246,8 @@ If you want to use the sample dataset for the examples in [Run a Vector Search w
    }
 ```
 
-|  | Make sure you imported the sample dataset with the recommended settings. |
-|  | ------------------------------------------------------------------------ |
+> [!NOTE]
+> Make sure you imported the sample dataset with the recommended settings.
 
 This Search Vector Index has a type mapping for a `color.rgb` collection and includes the following fields:
 
@@ -252,7 +264,7 @@ For example, if you used the Vector Search sample data, you might want to add an
 
 You can customize your Search Vector Index like any other Search index to add additional data and improve search results. For more information about how to customize an index, see [Search Index Features](../search/customize-index.md).
 
-|  | Some Search index features are only available in Advanced Mode. If you edit your Search index in Advanced Mode, you cannot make any additional edits in Quick Mode without losing all Advanced Mode settings. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Some Search index features are only available in Advanced Mode. If you edit your Search index in Advanced Mode, you cannot make any additional edits in Quick Mode without losing all Advanced Mode settings.
 
 For more information about how to run a search against a Search Vector Index, see [Run a Vector Search with the Capella UI](run-vector-search-ui.md).

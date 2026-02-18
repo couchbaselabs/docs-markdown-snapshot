@@ -1,4 +1,12 @@
+---
+title: Index Partitioning
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-index-partitions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-index-partitions.html)
+
+# Index Partitioning
 
 _Index Partitioning_ increases query performance by dividing and spreading a large index of documents across multiple nodes. This feature is available only in Couchbase Server Enterprise Edition.
 
@@ -17,8 +25,8 @@ The **Index Partitions** interface provides a section to enter the number of par
 
 The default option for this setting is 1\. Note that this number represents the number of active partitions for an index, and the active partitions are distributed across all the nodes in the cluster where the search service is running.
 
-|  | The type of index is saved in its JSON definition, which can be previewed in the _Index Definition Preview_ panel, at the right-hand side. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The type of index is saved in its JSON definition, which can be previewed in the _Index Definition Preview_ panel, at the right-hand side.
 
 See [Using the Index Definition Preview](fts-creating-index-from-UI-classic-editor.md#using-the-index-definition-preview).
 

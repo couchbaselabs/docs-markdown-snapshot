@@ -1,4 +1,13 @@
+---
+title: Negative Keyspace Hints
+description: Negative hints direct the optimizer not to use certain indexes or join methods.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/negative-keyspace-hints.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/negative-keyspace-hints.html)
+
+# Negative Keyspace Hints
 
 > Negative hints direct the optimizer not to use certain indexes or join methods. 
 
@@ -26,8 +35,8 @@ no-gsi-hint-simple ::= ( 'NO_INDEX' | 'AVOID_INDEX' ) '(' keyspace index* ')'
 
 With the simple syntax, this hint specifies a single keyspace expression along with zero, one, or more indexes to avoid. You can either use `NO_INDEX` or `AVOID_INDEX` as the hint keyword. You can also use this hint multiple times within a hint comment to apply it to more than one keyspace.
 
-|  | For this hint to work effectively, you must specify at least one index. The optimizer ignores the hint if you do not specify any indexes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For this hint to work effectively, you must specify at least one index. The optimizer ignores the hint if you do not specify any indexes.
 
 #### [](#arguments)Arguments
 
@@ -166,8 +175,8 @@ no-fts-hint-simple ::= ( 'NO_INDEX_FTS' | 'AVOID_INDEX_FTS' ) '(' keyspace index
 
 With the simple syntax, this hint specifies a single keyspace expression along with zero, one, or more indexes. You can either use `NO_INDEX_FTS` or `AVOID_INDEX_FTS` as the hint keyword. You can also use this hint multiple times within a hint comment to apply it to more than one keyspace.
 
-|  | For this hint to work effectively, you must specify at least one index. The optimizer ignores the hint if you do not specify any indexes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For this hint to work effectively, you must specify at least one index. The optimizer ignores the hint if you do not specify any indexes.
 
 #### [](#arguments-2)Arguments
 
@@ -259,8 +268,8 @@ The optimizer omits the `hotel_state_fts_index` index from the query plan. If a 
 
 This hint is the negative equivalent of the [USE\_NL hint](keyspace-hints.md#use%5Fnl). It directs the optimizer not to use a nested loop join for a specified keyspace. This hint must be specified on the keyspace on the right-hand side of the join. If not specified, the optimizer selects the optimal join method.
 
-|  | This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements.
 
 ### [](#simple-syntax-3)Simple Syntax
 
@@ -385,8 +394,8 @@ This hint is the negative equivalent of the [USE\_HASH hint](keyspace-hints.md#u
 
 Unlike [USE\_HASH](keyspace-hints.md#use%5Fhash), this hint does not allow you to specify whether the keyspace should appear on the build or probe side of the hash join. Instead, you can only specify the keyspace name or alias to which this hint applies.
 
-|  | This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements. |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> This hint is only available in [SELECT](selectclause.md) and [MERGE](merge.md) statements.
 
 ### [](#simple-syntax-4)Simple Syntax
 

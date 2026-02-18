@@ -1,4 +1,13 @@
+---
+title: Analytics Query Responses
+description: A description of query responses for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/query-responses.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/analytics/query-responses.html)
+
+# Analytics Query Responses
 
 When you use [Analytics Workbench](run-query.md#Using%5Fanalytics%5Fworkbench), the Analytics Service returns a JSON array containing just the query results, separate from the query metrics or the query plan.
 
@@ -65,8 +74,8 @@ In addition, the Analytics Service returns the following responses which are uni
 | **expressionTree**optional          | The expression tree.           | String |
 | **job**optional                     | The job details.               | Object |
 
-|  | The structure and content of query plans is expected to change as development of the query processor progresses. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The structure and content of query plans is expected to change as development of the query processor progresses.
 
 ### [](#ResponsesLocalYardsticks)Analytics Metrics
 

@@ -1,4 +1,13 @@
+---
+title: setting-security
+description: Manage security policies
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-setting-security.html)
+
+# setting-security
 
 Manage security policies
 

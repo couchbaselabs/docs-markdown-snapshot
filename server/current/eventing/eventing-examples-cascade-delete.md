@@ -1,4 +1,14 @@
+---
+title: Cascade Delete
+description: This example illustrates how to leverage the Eventing Service to
+  perform a cascade delete operation.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-examples-cascade-delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-examples-cascade-delete.html)
+
+# Cascade Delete
 
 **Goal**: This example illustrates how to leverage the Eventing Service to perform a cascade delete operation. When a user is deleted, Couchbase Functions provide a reliable method to delete all the associated documents related to the deleted user.
 
@@ -16,8 +26,8 @@ _If you run a version of Couchbase prior to 7.0 you can just create the buckets 
 
 For complete details on how to set up your keyspaces refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
-|  | The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions.
 
 **Procedure**:
 

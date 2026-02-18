@@ -1,4 +1,13 @@
+---
+title: DELETE
+description: DELETE immediately removes the specified document from your keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/delete.html)
+
+# DELETE
 
 DELETE immediately removes the specified document from your keyspace.
 
@@ -40,8 +49,8 @@ Couchbase Server 8.0
 
 You can supply hints to the optimizer within a specially formatted hint comment. For more information, see [Optimizer Hints](optimizer-hints.md).
 
-|  | DELETE statements support only index hints. Other hints, such as join hints and ORDERED hints, are not supported. For an example of using an optimizer hint, see [Example 7](#ex-delete-opt-hint). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> DELETE statements support only index hints. Other hints, such as join hints and ORDERED hints, are not supported. For an example of using an optimizer hint, see [Example 7](#ex-delete-opt-hint).
 
 ### [](#delete-target)Delete Target
 
@@ -89,8 +98,8 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 You can use a `USE KEYS` hint on the delete target to specify the keys of the data items to be deleted. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
 
-|  | You cannot specify a hint for the same keyspace using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot specify a hint for the same keyspace using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
 
 ### [](#where-clause)WHERE Clause
 
@@ -141,8 +150,8 @@ Specifies the information to be returned by the operation as a query result. For
 
 To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-|  | Be aware that running the following examples will permanently delete your sample data. To restore your sample data, remove and reinstall the travel-sample bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Be aware that running the following examples will permanently delete your sample data. To restore your sample data, remove and reinstall the `travel-sample` bucket. Refer to [Sample Buckets](../../manage/manage-settings/install-sample-buckets.md) for details.
 
 Example 1\. Delete query containing a WHERE clause
 

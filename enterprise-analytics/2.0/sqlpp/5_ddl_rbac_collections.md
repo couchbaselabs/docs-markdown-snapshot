@@ -1,4 +1,15 @@
+---
+title: Collections
+description: Use `GRANT` and `REVOKE` statements to manage collection privileges
+  including SELECT, INSERT, UPSERT, DELETE, and ANALYZE operations for users and
+  roles.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_rbac_collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_rbac_collections.html)
+
+# Collections
 
 ## [](#grantrevoke-syntax-diagrams)Grant/Revoke Syntax Diagrams
 

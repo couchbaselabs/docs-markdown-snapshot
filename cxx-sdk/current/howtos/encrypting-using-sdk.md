@@ -1,9 +1,21 @@
+---
+title: Field Level Encryption from the SDK
+description: The Field Level Encryption library enables encryption and
+  decryption of JSON fields, to support FIPS-140-2 compliance.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/current/howtos/encrypting-using-sdk.html)
+
+# Field Level Encryption from the SDK
 
 > The Field Level Encryption library enables encryption and decryption of JSON fields, to support FIPS-140-2 compliance. 
 
-|  | Native Encryption at Rest Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Native Encryption at Rest
+> 
+> Server 8.x (and new Capella Operational clusters) offer [encryption at rest](../../../server/current/learn/security/native-encryption-at-rest-overview.md). It’s a comprehensive way of encrypting all data in a non-ephemeral bucket, as well as logs, configuration data, and audit data. However, you may prefer the relative simplicity of key management in Field Level Encryption for use cases where there are a limited number of data to be encrypted.
 
 For a high-level overview of this feature, see [Field Level Encryption](../concept-docs/encryption.md).
 
@@ -11,8 +23,8 @@ For a high-level overview of this feature, see [Field Level Encryption](../conce
 
 The Couchbase C++ SDK works together with the [C++ Couchbase Encryption](https://github.com/couchbase/couchbase-cxx-encryption) library to provide support for encryption and decryption of JSON Object fields. This library makes use of the cryptographic algorithms available on the OpenSSL or BoringSSL libraries linked to the C++ SDK, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration.
 
 To get started with the C++ Field Level Encryption library you can fetch it, for example, using [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake):
 
@@ -50,8 +62,8 @@ Two modes of operation are available out of the box using the provided `couchbas
 * Transparent encryption/decryption by defining which fields are to be encrypted for a custom document type.
 * Manually specifying fields to be encrypted using `couchbase::crypto::document`.
 
-|  | Only fields of JSON Objects can be encrypted. |
-|  | --------------------------------------------- |
+> [!NOTE]
+> Only fields of JSON Objects can be encrypted.
 
 ### [](#custom-document-type-example)Custom document type example
 
@@ -87,8 +99,8 @@ struct person {
 
 Now let’s create a `person` document and save it to Couchbase:
 
-|  | Remember to use a crypto transcoder, such as couchbase::crypto::default\_transcoder, when field encryption is required. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Remember to use a crypto transcoder, such as `couchbase::crypto::default_transcoder`, when field encryption is required.
 
 ```c++
 auto collection = cluster.bucket(bucket_name).scope(scope_name).collection(collection_name);

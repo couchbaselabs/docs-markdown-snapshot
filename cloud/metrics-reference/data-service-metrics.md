@@ -1,9 +1,19 @@
+---
+title: Data Service Metrics
+description: A list of the metrics provided by the Data Service.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/data-service-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/metrics-reference/data-service-metrics.html)
+
+# Data Service Metrics
 
 > A list of the metrics provided by the Data Service. 
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | kv\_audit\_dropped\_events7.0.0counter The number of audit events dropped due to errors while trying to insert them to the audit trail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

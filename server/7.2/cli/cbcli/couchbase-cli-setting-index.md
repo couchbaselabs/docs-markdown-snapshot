@@ -1,4 +1,13 @@
+---
+title: setting-index
+description: Modifies index settings
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-setting-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-setting-index.html)
+
+# setting-index
 
 Modifies index settings
 

@@ -1,4 +1,16 @@
+---
+title: Set Up Capella SSO Using CyberArk
+description: Configure Single Sign-On (SSO) between CyberArk and Couchbase
+  Capella to allow your organization's users to authenticate securely without
+  managing separate credentials. This integration enables streamlined access
+  management while maintaining enterprise-grade security.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/sso-cyberark.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/sso-cyberark.html)
+
+# Set Up Capella SSO Using CyberArk
 
 > Configure Single Sign-On (SSO) between CyberArk and Couchbase Capella to allow your organization’s users to authenticate securely without managing separate credentials. This integration enables streamlined access management while maintaining enterprise-grade security. 
 
@@ -47,10 +59,9 @@ Start by creating a CyberArk web application in the CyberArk Admin Portal. You n
 3. Start the SAML configuration:
 
   1. Click **SAML Response**:
-  2. Use the **Add** button to add the following attributes:
-
-|  | After adding an attribute, you can show the **Add** button again by clearing the checkbox. |
-|  | ------------------------------------------------------------------------------------------ |
+  2. Use the **Add** button to add the following attributes:  
+  > [!TIP]  
+  > After adding an attribute, you can show the **Add** button again by clearing the checkbox.
 
 | Attributes Name | Attribute Value     |
 | --------------- | ------------------- |
@@ -87,10 +98,9 @@ With a CyberArk web application created, you need to create a realm in Capella u
 2. Click **Create Realm** **SAML**.
 3. Complete the **Create Realm** page:
 
-  1. Copy the following information from your CyberArk configuration to Capella:
-
-|  | To find this information in the CyberArk Admin Portal, go to **Apps & Widgets** **Web Apps**. Find and open the web application that you want to view. Click **Trust**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  1. Copy the following information from your CyberArk configuration to Capella:  
+  > [!TIP]  
+  > To find this information in the CyberArk Admin Portal, go to **Apps & Widgets** **Web Apps**. Find and open the web application that you want to view. Click **Trust**.
 
 | CyberArk Field                                   |                          | Capella Field |
 | ------------------------------------------------ | ------------------------ | ------------- |
@@ -110,10 +120,9 @@ With a CyberArk web application created, you need to create a realm in Capella u
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 4. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -126,10 +135,9 @@ Now that you have created the realm, you must finish configuring the CyberArk we
 3. At the end of the page, edit the **Service Provider Configuration** settings:
 
   1. Select **Manual Configuration**.
-  2. Copy the following fields from your Capella realm configuration to the CyberArk configuration:
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. On this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  2. Copy the following fields from your Capella realm configuration to the CyberArk configuration:  
+  > [!TIP]  
+  > To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. On this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                                      | CyberArk Field |
 | ------------- | ------------------------------------ | -------------- |
@@ -189,10 +197,9 @@ With the web application created in CyberArk, you need to create a realm in Cape
 
 1. In Capella, click **Settings** **SSO**.
 2. Click **Create Realm** **OpenID Connect**.
-3. Copy the following information from your CyberArk web application configuration to Capella:
-
-|  | To find this information in the CyberArk Admin Portal, go to **Apps & Widgets** **Web Apps**. Find and open the web application that you want to view. Click **Trust**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Copy the following information from your CyberArk web application configuration to Capella:  
+> [!TIP]  
+> To find this information in the CyberArk Admin Portal, go to **Apps & Widgets** **Web Apps**. Find and open the web application that you want to view. Click **Trust**.
 
 | CyberArk Field               |                              | Capella Field |
 | ---------------------------- | ---------------------------- | ------------- |
@@ -211,10 +218,9 @@ When adding additional scopes, separate each entry with a space.
   Group mapping allows you to assign roles to SSO users based on which teams map to their SSO group.  
   If you do not use group mapping, Capella uses the [default team](manage-role-mapping.md#default-teams) to give SSO users their roles when they first sign in. Without group mapping, you must manage your users' organization roles using the **People** tab and project roles using each project’s **Collaborators** tab.
 6. Click **Create Realm**.  
-Capella creates the new realm with an auto-generated name.
-
-|  | Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Capella creates the new realm with an auto-generated name.  
+> [!IMPORTANT]  
+> Users need to know the realm name to sign in with SSO. You can change the a realm name after you create the realm. For more information, see [Change the Realm Name](manage-identity-providers.md#change-realm-name).
 
 ---
 
@@ -224,10 +230,9 @@ Now that you have created the realm, you must finish configuring the CyberArk we
 
 1. In the CyberArk Portal, open the application you [created](#create-cyberark-app-oidc) for Capella.
 2. Click **Trust**.
-3. Edit the following field with information from your Capella realm.
-
-|  | To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. On this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Edit the following field with information from your Capella realm.  
+> [!TIP]  
+> To find this information for your organization’s Capella realm, open the **Settings** **SSO** page. On this page is the realm you just created with an auto-generated name. Click its listing to open the realm information page.
 
 | Capella Field |                          | CyberArk Field |
 | ------------- | ------------------------ | -------------- |

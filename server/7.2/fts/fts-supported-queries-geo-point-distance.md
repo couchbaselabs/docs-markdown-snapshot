@@ -1,4 +1,12 @@
+---
+title: "Creating a Query: Radius-Based"
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-geo-point-distance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-geo-point-distance.html)
+
+# Creating a Query: Radius-Based
 
 Note that a detailed example for Geopoint index creation and also executing queries can be found at [Geopoint Index Creation](fts-supported-queries-geopoint-spatial.md#creating%5Fa%5Fgeospatial%5Fgeopoint%5Findex) and running queries [Geopoint Radius Queries](fts-supported-queries-geopoint-spatial.md#creating%5Fgeopoint%5Frest%5Fquery%5Fradius%5Fbased).
 

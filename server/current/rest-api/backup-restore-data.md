@@ -1,4 +1,15 @@
+---
+title: Restore Data
+description: The Backup Service REST API supports the restoration of data from
+  an active, imported, or archived repository into either the host cluster or
+  into another cluster running the Backup Service.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-restore-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/backup-restore-data.html)
+
+# Restore Data
 
 > The Backup Service REST API supports the restoration of data from an active, imported, or archived repository into either the host cluster or into another cluster running the Backup Service. 
 
@@ -10,8 +21,12 @@ POST /cluster/self/repository/< "active" | "imported" | "archived" >/<repository
 
 Documents from a specified repository are restored from that repository to the cluster. The repository can be active, imported, or archived. Details of the restoration must be specified as a JSON payload.
 
-|  | When restoring Vector Indexes, you must run the BUILD INDEX command only after the Key-Value Data restoration is complete. The sequence of stages in the restoration process is the same as that of the [backup](../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process. Starting the build before all the data is restored can result in training failure or an inaccurate codebook. This can cause the build to either error-out or produce unreliable query results. Also, re-training the codebook after the build has started is not supported. Couchbase recommends waiting for the restoration of the full dataset. Only after the restoration is complete, run a build to make sure that the codebook generated out of build accurately represents the completely restored dataset. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When restoring Vector Indexes, you must run the BUILD INDEX command only after the Key-Value Data restoration is complete. The sequence of stages in the restoration process is the same as that of the [backup](../backup-restore/cbbackupmgr-backup.md#DISCUSSION) process.
+> 
+> Starting the build before all the data is restored can result in training failure or an inaccurate codebook. This can cause the build to either error-out or produce unreliable query results. Also, re-training the codebook after the build has started is not supported.
+> 
+> Couchbase recommends waiting for the restoration of the full dataset. Only after the restoration is complete, run a build to make sure that the codebook generated out of build accurately represents the completely restored dataset.
 
 ## [](#curl-syntax)Curl Syntax
 

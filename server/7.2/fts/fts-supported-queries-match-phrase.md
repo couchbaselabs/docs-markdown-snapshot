@@ -1,4 +1,12 @@
+---
+title: Match Phrase Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries-match-phrase.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries-match-phrase.html)
+
+# Match Phrase Query
 
 The input text is analyzed, and a phrase query is built with the terms resulting from the analysis. This type of query searches for terms in the target that occur _in the positions and offsets indicated by the input_: this depends on _term vectors_, which must have been included in the creation of the index used for the search.
 

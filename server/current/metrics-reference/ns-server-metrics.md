@@ -1,4 +1,13 @@
+---
+title: Cluster Manager Metrics
+description: A list of the metrics provided by the Cluster Manager.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/ns-server-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/metrics-reference/ns-server-metrics.html)
+
+# Cluster Manager Metrics
 
 > A list of the metrics provided by the Cluster Manager. 
 
@@ -14,8 +23,9 @@ Note that each histogram metric will generate three time series, with the follow
 
 Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs/practices/histograms/) for more information.
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | audit\_queue\_length7.0.0gauge Current number of entries in the audit queue                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |

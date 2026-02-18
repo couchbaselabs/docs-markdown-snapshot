@@ -1,4 +1,14 @@
+---
+title: Server Group Awareness
+description: Individual server-nodes can be assigned to specific
+  <em>groups</em>, within a Couchbase Cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/groups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/clusters-and-availability/groups.html)
+
+# Server Group Awareness
 
 > Individual server-nodes can be assigned to specific _groups_, within a Couchbase Cluster. This allows both _active vBuckets_ and GSI _indexes_ to be maintained on groups different from those of their corresponding _replica vBuckets_ and _index replicas_; so that if a group goes offline, and active vBuckets and indexes are thereby lost, replicas remain available on one or more other groups. 
 
@@ -8,15 +18,16 @@ _Server Group Awareness_ provides enhanced availability. Specifically, it protec
 
 A server group can be automatically _failed over_: thus, if the entire group goes offline, and active vBuckets and indexes are thereby inaccessible, then the replica vBuckets and replica indexes that remain available on another group can be automatically promoted to active status.
 
-|  | For the vBuckets and replica indexes to be automatically promoted to active, the conditions specified in [Auto-failover Constraints](automatic-failover.md#auto-failover-constraints) must apply. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For the vBuckets and replica indexes to be automatically promoted to active, the conditions specified in [Auto-failover Constraints](automatic-failover.md#auto-failover-constraints) must apply.
 
 Note that in 7.1+, automatic failover can fail over more than three nodes concurrently: this has permitted the removal of pre-7.1 interfaces that were specific to triggering auto-failover for server groups.  
 Consequently, for auto-failover of a server group to be possible, the maximum count for auto-failover must be established by the administrator as a value equal to or greater than the number of nodes in the server group.  
 Due to the removal of the pre-7.1 interfaces, applications that attempt to use the interfaces with 7.1+ will _fail._
 
-|  | For auto-failover to occur, all of the auto-failover constraints listed in [Auto-failover Constraints](automatic-failover.md#auto-failover-constraints) must be met, including the majority quorum requirement: i.e., the remaining nodes must be able to form a majority quorum to be able to initiate an auto-failover.If, for example, you have two server groups, with equal number of nodes in each, and if all the nodes in one of the server groups fail at the same time, even if you have the maximum count for auto-failover set to a value equal to or greater than the number of nodes in the server group that failed, auto-failover cannot occur since the remaining nodes in the remaining server group cannot form a majority quorum. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For auto-failover to occur, all of the auto-failover constraints listed in [Auto-failover Constraints](automatic-failover.md#auto-failover-constraints) must be met, including the majority quorum requirement: i.e., the remaining nodes must be able to form a majority quorum to be able to initiate an auto-failover.  
+> If, for example, you have two server groups, with equal number of nodes in each, and if all the nodes in one of the server groups fail at the same time, even if you have the maximum count for auto-failover set to a value equal to or greater than the number of nodes in the server group that failed, auto-failover cannot occur since the remaining nodes in the remaining server group cannot form a majority quorum.
 
 See [Automatic Failover](automatic-failover.md).
 
@@ -63,8 +74,12 @@ Group 2 contains all the replica vBuckets that correspond to active vBuckets in 
 
 However, in order to ensure that replicas of a VBucket must reside in a separate group, then we may have a situation where there are vBuckets from Server 9 replicated to Group 1, but there are no additional vBuckets in Group 1 to provide balance in Group 2.
 
-|  | Smaller server groups will carry more replica vBuckets, which means there is greater memory pressure on memcached so more fetches go to disk which means higher worst case GET latencies. Additionally, more replicas mean more writes to disk and a greater compaction burden which will also affect latencies. Customers will notice this as the smaller server groups will "perform" worse than the later server groups. So for reasons of consistency of performance Couchbase strongly recommends that customers endeavor to maintain an equal number of nodes across server groups. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Smaller server groups will carry more replica vBuckets, which means there is greater memory pressure on memcached so more fetches go to disk which means higher worst case GET latencies.
+> 
+> Additionally, more replicas mean more writes to disk and a greater compaction burden which will also affect latencies.
+> 
+> Customers will notice this as the smaller server groups will "perform" worse than the later server groups. So for reasons of consistency of performance Couchbase strongly recommends that customers endeavor to maintain an equal number of nodes across server groups.
 
 For more information on optimizing your cluster configuration, consult the [Sizing Guidelines](../../install/sizing-general.md).
 

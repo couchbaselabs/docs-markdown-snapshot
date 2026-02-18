@@ -1,4 +1,14 @@
+---
+title: View Activity Logs
+description: Capella Activity Logs provide audit trails of events in your
+  organization, project, and cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/activity-log.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/activity-log.html)
+
+# View Activity Logs
 
 > Capella Activity Logs provide audit trails of events in your organization, project, and cluster. 
 
@@ -21,8 +31,8 @@ To view an activity log in the Capella UI:
 
 Activity Logs show a running log of events for the chosen scope. Each event includes details about when, where, and if relevant, why the event occurred.
 
-|  | Events in the **Activity Log** are automatically deleted after 2 years. |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> Events in the **Activity Log** are automatically deleted after 2 years.
 
 Activity Logs include the following information for each logged event:
 

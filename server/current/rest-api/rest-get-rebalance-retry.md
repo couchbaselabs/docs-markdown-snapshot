@@ -1,4 +1,12 @@
+---
+title: Getting Rebalance-Retry Status
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-get-rebalance-retry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-get-rebalance-retry.html)
+
+# Getting Rebalance-Retry Status
 
 ## [](#http-method-and-uri)HTTP method and URI
 

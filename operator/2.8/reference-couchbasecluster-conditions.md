@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Conditions
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-couchbasecluster-conditions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/reference-couchbasecluster-conditions.html)
+
+# Couchbase Cluster Conditions
 
 This document provides an overview of the possible conditions that a Couchbase cluster can be in. These conditions help in understanding the state and health of the cluster.
 

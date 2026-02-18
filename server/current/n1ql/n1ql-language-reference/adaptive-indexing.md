@@ -1,4 +1,14 @@
+---
+title: Adaptive Index
+description: Adaptive Indexes are a special type of GSI array index that can
+  index all or specified fields of a document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/adaptive-indexing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/adaptive-indexing.html)
+
+# Adaptive Index
 
 Adaptive Indexes are a special type of GSI array index that can index all or specified fields of a document. Such an index is generic in nature, and it can efficiently index and lookup any of the index-key values. This enables efficient ad hoc queries (that may have WHERE clause predicates on any of the index-key fields) without requiring to create various composite indexes for different combinations of fields. Adaptive Index is a functional array index created using the SQL++ function [PAIRS()](metafun.md#pairs).
 
@@ -62,8 +72,11 @@ A SQL++ expression that is allowed in [CREATE INDEX](createindex.md). This must 
 
 When the value expression is an identifier directly referring to a named document field, then you may omit the name expression. In this case, the name of the field in the data source will be used as the name of the field in the object constructor.
 
-|  | When using [PAIRS()](metafun.md#pairs) with an object constructor, you need to keep in mind: If two fields have the same name, such as {a, c.a} — when evaluated, both will inherit the same name of a, causing one value to overwrite the other. Neither value will be indexed. A better way to handle this is to name one field explicitly, such as {a, "ca":c.a}. If the value expression is _not_ an identifier directly referring to a named document field, such as {abs(a)} — the name of the object field is null, and this will generate an error. A better way to handle this is to use a field name explicitly, such as {"abs\_a":abs(a)}. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using [PAIRS()](metafun.md#pairs) with an object constructor, you need to keep in mind:
+> 
+> * If two fields have the same name, such as `{a, c.a}` — when evaluated, both will inherit the same name of `a`, causing one value to overwrite the other. Neither value will be indexed. A better way to handle this is to name one field explicitly, such as `{a, "ca":c.a}`.
+> * If the value expression is _not_ an identifier directly referring to a named document field, such as `{abs(a)}` — the name of the object field is null, and this will generate an error. A better way to handle this is to use a field name explicitly, such as `{"abs_a":abs(a)}`.
 
 ## [](#examples)Examples
 

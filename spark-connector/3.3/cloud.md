@@ -1,9 +1,17 @@
+---
+title: Couchbase Cloud Support
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.3/modules/ROOT/pages/cloud.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/3.3/cloud.html)
+
+# Couchbase Cloud Support
 
 > Connecting to Couchbase Cloud is very similar to connecting to any Couchbase cluster over an encrypted connection. This section explains how. 
 
-|  | Since connector version 3.2.1, downloading the certificate is no longer needed since it comes bundled with the underlying SDK. As a result, the "Certificate Download" step can be skipped and only TLS needs to be enabled in the Spark configuration (no trustCertificate needs to be provided). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Since connector version 3.2.1, downloading the certificate is no longer needed since it comes bundled with the underlying SDK. As a result, the "Certificate Download" step can be skipped and only TLS needs to be enabled in the Spark configuration (no `trustCertificate` needs to be provided).
 
 ## [](#certificate-download)Certificate Download
 

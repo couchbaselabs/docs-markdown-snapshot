@@ -1,4 +1,14 @@
+---
+title: CREATE a Remote Collection
+description: This topic describes how you use the `CREATE` statement to create a
+  collection that shadows OLTP data from a remote data source.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_remote.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_remote.html)
+
+# CREATE a Remote Collection
 
 > This topic describes how you use the \`CREATE\` statement to create a collection that shadows OLTP data from a remote data source. 
 
@@ -8,8 +18,8 @@ You use different statement syntax to create collections that shadow data locate
 
 ## [](#createcb)Create a Remote Couchbase Collection
 
-|  | To create a link to a remote data source, you use the Enterprise Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To create a link to a remote data source, you use the Enterprise Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md).
 
 ### [](#syntax)Syntax
 
@@ -101,8 +111,8 @@ WHERE
 
 The optional **`WHERE`** clause provides the option to filter the documents in the collection. The `Expr` in this clause must be deterministic, and it cannot contain a user-defined function. For example, you could filter content by specifying a predicate on the values for one or more of the fields in the objects.
 
-|  | The WHERE clause and the APPLY FUNCTION clause are mutually exclusive; you can use one or the other, but not both when creating a remote collection. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `WHERE` clause and the `APPLY FUNCTION` clause are mutually exclusive; you can use one or the other, but not both when creating a remote collection.
 
 APPLY FUNCTION
 
@@ -127,8 +137,8 @@ To create a link to a remote data source, you use the Enterprise Analytics UI. S
 
 ## [](#createkafka)Create a Remote Kafka Collection
 
-|  | To create a link to a remote data source, you use the Enterprise Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To create a link to a remote data source, you use the Enterprise Analytics UI. See [Stream Data from Remote Sources](../sources/manage-remote.md).
 
 ### [](#syntax-2)Syntax
 
@@ -283,8 +293,8 @@ WHERE
 
 The optional `WHERE` clause provides the option to filter the documents in the collection. The `Expr` in this clause must be deterministic, and it cannot contain a user-defined function. For example, you could filter content by specifying a predicate on the values for one or more of the fields in the objects.
 
-|  | The WHERE clause and the APPLY FUNCTION clause are mutually exclusive; you can use one or the other, but not both when creating a remote collection. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `WHERE` clause and the `APPLY FUNCTION` clause are mutually exclusive; you can use one or the other, but not both when creating a remote collection.
 
 APPLY FUNCTION
 

@@ -1,9 +1,19 @@
+---
+title: Collection Operators
+description: Collection operators enable you to evaluate expressions over every
+  element in an array.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/collectionops.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/collectionops.html)
+
+# Collection Operators
 
 Collection operators enable you to evaluate expressions over every element in an array. The operators include [Range Predicates](#range-cond), [Range Transformations](#range-xform), and [Membership and Existence Tests](#membership-and-existence-tests).
 
-|  | Although collection operators can be used with any array, they are particularly useful when used to evaluate expressions over an array of objects. The term _collection_ is used here in a generic sense to refer to any array of objects, rather than in the specific sense of a [Couchbase collection](../../learn/data/scopes-and-collections.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Although collection operators can be used with any array, they are particularly useful when used to evaluate expressions over an array of objects. The term _collection_ is used here in a generic sense to refer to any array of objects, rather than in the specific sense of a [Couchbase collection](../../learn/data/scopes-and-collections.md).
 
 ## [](#range-cond)Range Predicates
 

@@ -1,4 +1,14 @@
+---
+title: Documents
+description: Couchbase supports CRUD operations, various data structures, and
+  binary documents.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.9/concept-docs/documents.html)
+
+# Documents
 
 > Couchbase supports CRUD operations, various data structures, and binary documents. 
 
@@ -11,10 +21,9 @@ A _document_ refers to an entry in the database (other databases may refer to th
 **Document IDs** (keys) are assigned by application. A valid document ID must:
 
 * Conform to UTF-8 encoding
-* Be no longer than 246 bytes
-
-|  | There is a difference between bytes and characters: most non-Latin characters occupy more than a single byte. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+* Be no longer than 246 bytes  
+> [!NOTE]  
+> There is a difference between bytes and characters: most non-Latin characters occupy more than a single byte.
 
 You are free to choose any ID (key) for your document, so long as it conforms to the above restrictions. Unlike some other databases, Couchbase does not automatically generate IDs for you, though you may use a separate [counter](#counters) to increment a serial number — you can also use UUIDs as keys, the best choice being determined by your use case.
 
@@ -103,8 +112,25 @@ You can also specify additional options when storing a document in Couchbase
 * CAS value to protect against concurrent updates to the same document.
 * [Durability Requirements](durability-replication-failure-considerations.md)
 
-|  | If you wish to only modify certain parts of a document, you can use [Sub-Document](subdocument-operations.md) operations which operate on specific subsets of documents: val result: Try\[MutateInResult\] = collection.mutateIn("customer123", Array(   upsert("email", "dougr96@hotmail.com") )) result match {   case Success(\_)   => println("Success!")   case Failure(err) => println(s"Error: ${err}") } or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria: update \`default\` SET sale\_price = msrp \* 0.75 WHERE msrp < 19.95; |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you wish to only modify certain parts of a document, you can use [Sub-Document](subdocument-operations.md) operations which operate on specific subsets of documents:
+> 
+> ```scala
+> val result: Try[MutateInResult] = collection.mutateIn("customer123", Array(
+>   upsert("email", "dougr96@hotmail.com")
+> ))
+> 
+> result match {
+>   case Success(_)   => println("Success!")
+>   case Failure(err) => println(s"Error: ${err}")
+> }
+> ```
+> 
+> or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
+> 
+> ```n1ql
+> update `default` SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
+> ```
 
 ## [](#retrieving-documents)Retrieving Documents
 
@@ -161,8 +187,8 @@ result match {
 
 You can atomically increment or decrement the numerical value of special counter document — examples can be found in the [practical K-V Howto document](../howtos/kv-operations.md#atomic-counters).
 
-|  | Do not increment or decrement counters if using XDCR. Within a single cluster the incr() is atomic, as is decr(); across XDCR however, if two clients connecting to two different (bidirectional) clusters issue incr concurrently, this may (and most likely will) result in the value only getting incremented once in total. The same is the case for decr(). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not increment or decrement counters if using XDCR. Within a single cluster the `incr()` is atomic, as is `decr()`; across XDCR however, if two clients connecting to two different (bidirectional) clusters issue `incr` concurrently, this may (and most likely will) result in the value only getting incremented once in total. The same is the case for `decr()`.
 
 A document may be used as a counter if its value is a simple ASCII number, like `42`. Couchbase allows you to increment and decrement these values atomically using a special `counter` operation in the `Binary.Collection`. The example below shows a counter being initialised, then being incremented and decremented:
 
@@ -225,12 +251,16 @@ Couchbase offers two additional operations for setting the document’s expirati
 
 Code snippets for setting document expiration can be found on the [data operations page](../howtos/kv-operations.md#document-expiration). This page also covers the nuances of setting relative or absolute document expiry times — all SDKs support duration, but options for setting an absolute timestamp vary by SDK and release version.
 
-|  | Remember If you wish to use the expiration feature, then you should supply the expiry value for every mutation operation. When dealing with expiration, it is important to note that _most operations will implicitly remove any existing expiration_. Thus, when modifying a document with expiration, it is important to pass the desired expiration time. A document is expired as soon as the current time on the Couchbase Server node responsible for the document exceeds the expiration value. Bear this in mind in situations where the time on your application servers differs from the time on your Couchbase Server nodes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Remember
+> 
+> * If you wish to use the expiration feature, then you should supply the expiry value for every mutation operation.
+> * When dealing with expiration, it is important to note that _most operations will implicitly remove any existing expiration_. Thus, when modifying a document with expiration, it is important to pass the desired expiration time.
+> * A document is expired as soon as the current time on the Couchbase Server node responsible for the document exceeds the expiration value. Bear this in mind in situations where the time on your application servers differs from the time on your Couchbase Server nodes.
 
 Note that expired documents are not deleted from the server as soon as they expire. While a request to the server for an expired document will receive a response indicating the document does not exist, expired documents are actually deleted (_i.e._ cease to occupy storage and RAM) when an _expiry pager_ is run. The _expiry pager_ is a routine internal process which scans the cluster for items which have expired and promptly removes them from storage.
 
 When gathering resource usage statistics, note that expired-but-not-purged items (such as the expiry pager has not scanned this item yet) will still be considered with respect to the overall storage size and item count.
 
-|  | Although the API only sets expiry values _per document_, it is possible that elsewhere in the server, an expiry value is being set for [every document in a bucket^](../../../server/current/learn/data/expiration.md). Should this be the case, the document TTL may be reduced, and the document may become unavailable to the app sooner than expected. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Although the API only sets expiry values _per document_, it is possible that elsewhere in the server, an expiry value is being set for [every document in a bucket^](../../../server/current/learn/data/expiration.md). Should this be the case, the document TTL may be reduced, and the document may become unavailable to the app sooner than expected.

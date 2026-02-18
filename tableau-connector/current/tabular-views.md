@@ -1,4 +1,12 @@
+---
+title: Couchbase Analytics Tabular Views
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/tabular-views.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/current/tabular-views.html)
+
+# Couchbase Analytics Tabular Views
 
 ## [](#couchbase-analytics-tabular-views)Couchbase Analytics Tabular Views
 

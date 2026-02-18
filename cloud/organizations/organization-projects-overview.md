@@ -1,4 +1,13 @@
+---
+title: Manage Organizations and Access
+description: All clusters in Couchbase Capella are grouped into organizations and projects.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/organization-projects-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/organization-projects-overview.html)
+
+# Manage Organizations and Access
 
 > All clusters in Couchbase Capella are grouped into organizations and projects. You can add projects to organizations to group related clusters together. Use organization roles and project roles to control your users' access. 
 
@@ -42,8 +51,8 @@ For more information about the available project roles in Capella, see [Project 
 
 You can navigate between the projects you have access to in your organization using the navigation breadcrumbs in the Capella UI. Click your current project name to return to the options and settings available in your current project. Expand the projects breadcrumb to search for and switch to another project.
 
-## [](#database-access)Programmatic and Application Access
+## [](#database-access)About Cluster Access Credentials and Programmatic Access
 
-Control programmatic and application-level access to data for each cluster using [cluster access credentials](../clusters/manage-database-users.md). You can choose specific [buckets, scopes, and collections](../clusters/data-service/about-buckets-scopes-collections.md) for your cluster access credentials to limit access to data.
+Control programmatic and application-level access to data for each cluster using [cluster access credentials](../clusters/manage-database-users.md). Capella offers [basic access credentials](../clusters/cluster-rbac.md#basic-access-credentials) with predefined read, write, or read/write permissions, and [advanced access credentials](../clusters/cluster-rbac.md#advanced-access-credentials) with fine-grained privileges and reusable access roles for more precise access control. You can choose specific [buckets, scopes, and collections](../clusters/data-service/about-buckets-scopes-collections.md) for your cluster access credentials to limit access to data.
 
 Only the [Project Owner](../projects/project-roles.md#project-owner-role) role can create cluster access credentials for their projects.

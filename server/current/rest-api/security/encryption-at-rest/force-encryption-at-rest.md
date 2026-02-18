@@ -1,4 +1,13 @@
+---
+title: Force Encryption of Unencrypted Data
+description: Use these REST APIs to force Couchbase Server to encrypt existing data.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/force-encryption-at-rest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/force-encryption-at-rest.html)
+
+# Force Encryption of Unencrypted Data
 
 > Use these REST APIs to force Couchbase Server to encrypt existing data. 
 
@@ -6,8 +15,8 @@
 
 When you enable encryption at rest for a bucket or a type of data, Couchbase Server begins encrypting newly written data. However, it does not encrypt existing data. These APIs let you force Couchbase Server to encrypt existing data in a bucket or all data of a specific type. See [Native Encryption at Rest](../../../learn/security/native-encryption-at-rest-overview.md) for more information about encryption at rest.
 
-|  | This method is similar to the [/controller/dropEncryptionAtRestDeks](drop-encryption-deks.md) endpoint, but it does not rotate the data encryption keys (DEKs) nor does it re-encrypt already-encrypted data. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This method is similar to the [/controller/dropEncryptionAtRestDeks](drop-encryption-deks.md) endpoint, but it does not rotate the data encryption keys (DEKs) nor does it re-encrypt already-encrypted data.
 
 ## [](#http-methods)HTTP Methods
 
@@ -75,8 +84,8 @@ You must have at least one of the following roles:
 
 The request was successful and Couchbase Server starts encrypting the data. Returns a JSON object with a timestamp of when Couchbase Server started encrypting the data. See [the example in the next section](#bucket-example) for an example of the response.
 
-|  | This endpoint also returns 200 OK for buckets that do not have encryption at rest enabled. In this case, the request does not encrypt any data. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint also returns `200 OK` for buckets that do not have encryption at rest enabled. In this case, the request does not encrypt any data.
 
 `400 Bad Request`
 
@@ -180,8 +189,8 @@ To call this endpoint, you must have at least one of the following roles:
 
 The request was successful and Couchbase Server starts encrypting the data. Returns a JSON object with a timestamp of when Couchbase Server started encrypting the data. See [the example in the next section](#type-example) for an example of the response.
 
-|  | This endpoint also returns 200 OK if you have not enabled encryption at rest for the type of data set by the TYPE path parameter. In this case, the request does not encrypt any data. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint also returns `200 OK` if you have not enabled encryption at rest for the type of data set by the `TYPE` path parameter. In this case, the request does not encrypt any data.
 
 `400 Bad Request`
 

@@ -1,4 +1,13 @@
+---
+title: Memory
+description: Couchbase Server memory-management ensures high performance and scalability.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/memory.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/buckets-memory-and-storage/memory.html)
+
+# Memory
 
 > Couchbase Server memory-management ensures high performance and scalability. 
 
@@ -8,8 +17,8 @@ You must configure your memory quota allocations for each service in Couchbase S
 
 The memory quota you allocate for a service applies to every instance of that service across your cluster. For example, if you allocate 2048 MB to the [Analytics Service](../services-and-indexes/services/analytics-service.md), and you run the Analytics Service on three of a cluster’s five nodes, each instance of the service has 2048 MB of memory.
 
-|  | You can’t allocate different amounts of memory for different instances of the same service in a cluster. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can’t allocate different amounts of memory for different instances of the same service in a cluster.
 
 Couchbase recommends that you allocate no more than 90% of a node’s memory (80% on nodes with a small amount of total memory) to a server and its services.
 
@@ -50,8 +59,8 @@ Set the memory quota based on the expected size of your dataset. The memory quot
 
 For example, if you expect to have about 2TBs of data per node in your cluster and want to use the **Magma** engine, you could set the memory quota for a bucket to 20GiB.
 
-|  | These values are recommendations only. The specific memory quota requirements for your bucket are dependent on access patterns, data density, and other factors. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> These values are recommendations only. The specific memory quota requirements for your bucket are dependent on access patterns, data density, and other factors.
 
 For more information on how to create a bucket and configure its memory quota, see [Create a Bucket](../../manage/manage-buckets/create-bucket.md).
 
@@ -76,15 +85,15 @@ It checks the _resident ratio_ — which is the percentage of items in active an
 * If the ratio is below 95%, the access scanner generates a new _access log_, which records the documents that have been most frequently accessed during the last 24 hours. If and when data-loading subsequently occurs, the new access log is consulted, the recorded document-keys obtained, and the corresponding documents loaded with the highest priority.
 * If the ratio is above 95%, the access scanner does _not_ generate a new access log. Instead, it deletes any existing access log, and exits. If and when data-loading subsequently occurs, since no access log exists, loading occurs with no priority-order (this being, in cases of extremely high resident ratio, the more performative loading procedure).
 
-|  | The settings warmup\_min\_items\_threshold, warmup\_min\_memory\_threshold, and enabling access scanner are no longer supported through cbepctl. These settings are replaced by a new setting warmupBehavior and accessScannerEnabled, which can be configured using REST APIs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The settings `warmup_min_items_threshold`, `warmup_min_memory_threshold`, and enabling access scanner are no longer supported through `cbepctl`. These settings are replaced by a new setting `warmupBehavior` and `accessScannerEnabled`, which can be configured using REST APIs.
 
 ### [](#configuring-the-access-scanner)Configuring the Access Scanner
 
 You can configure the access scanner using the REST API. For more information, see [accessScannerEnabled](../../rest-api/rest-bucket-create.md#accessscannerenabled).
 
-|  | The access scanner is a highly CPU-intensive process. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> The access scanner is a highly CPU-intensive process.
 
 ### [](#configuring-the-warmup-behaviour)Configuring the Warmup Behaviour
 
@@ -94,8 +103,8 @@ You can configure the warmup process using the REST API. For more information, s
 
 If a bucket’s memory use gets close to its memory quota, the Data Service may eject data from memory. See [Memory Watermarks](#watermarks) for more information about how Couchbase Server manages memory use. You assign an ejection policy (also known as an eviction method) to each bucket that determines if and how the Data Service ejects data from memory. Couchbase and Ephemeral buckets each have their own ejection policies.
 
-|  | Capella refers to Couchbase buckets as Memory and Disk buckets, and Ephemeral buckets as Memory Only buckets. |
-|  | ------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella refers to Couchbase buckets as Memory and Disk buckets, and Ephemeral buckets as Memory Only buckets.
 
 The two ejection policies available for Couchbase buckets are:
 
@@ -107,8 +116,8 @@ Full
 
 The Data Service removes the entire document, including its metadata and keys, when it ejects a document from memory. Choose this method if you want to reduce your memory overhead requirement.
 
-|  | Use the Full Ejection policy for buckets using the [Magma storage engine](storage-engines.md#storage-engine-magma). This setting works well when the ratio of memory to data is low. In these cases, retaining just the keys and metadata of documents can still consume significant portions of the allocated memory. Magma allows you to set a memory to data ratio as low as 1%. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Use the Full Ejection policy for buckets using the [Magma storage engine](storage-engines.md#storage-engine-magma). This setting works well when the ratio of memory to data is low. In these cases, retaining just the keys and metadata of documents can still consume significant portions of the allocated memory. Magma allows you to set a memory to data ratio as low as 1%.
 
 For more information about Couchbase bucket ejection policies, see the blog post [A Tale of Two Ejection Methods: Value-only vs. Full](https://blog.couchbase.com/a-tale-of-two-ejection-methods-value-only-vs-full/)
 
@@ -122,8 +131,10 @@ Eject data when RAM is full
 
 If the bucket approaches its memory quota, the Data Service ejects documents to make space for new data. It chooses the documents to eject based on the Not Recently Used (NRU) algorithm. This algorithm uses metadata to determine which documents have not been accessed recently.
 
-|  | Data ejected from an Ephemeral bucket is lost because it’s never persisted to disk. Ejecting data from a Couchbase bucket does not remove the data from disk, so it’s still available. The only effect is that the next access to the data is slower because the Data Service has to read it from disk instead of from memory. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Data ejected from an Ephemeral bucket is lost because it’s never persisted to disk.
+> 
+> Ejecting data from a Couchbase bucket does not remove the data from disk, so it’s still available. The only effect is that the next access to the data is slower because the Data Service has to read it from disk instead of from memory.
 
 ### [](#changing-ejection-policy)Changing the Ejection Policy of a Couchbase Bucket
 
@@ -137,8 +148,8 @@ You can change the ejection policy of an existing bucket. When you change the ej
 
 You may want to change the ejection policy of a bucket if you’re changing the storage engine it uses. For example, suppose you’re changing a bucket from using the [Couchstore](storage-engines.md#storage-engine-couchstore) to the [Magma](storage-engines.md#storage-engine-magma). Then you should consider changing the ejection policy to Full Ejection, which is better for buckets with low memory to storage ratios. See [Migrate a Bucket’s Storage Backend](../../manage/manage-buckets/migrate-bucket.md) for more information about migrating a bucket to a different storage engine.
 
-|  | If you change the ejection policy while performing a backend storage migration, you must use a full recovery when you recover a node after a graceful failover. The storage migration requires the full recovery to complete its migration. You also cannot allow Couchbase Server to restart the bucket after changing the ejection policy during a migration. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you change the ejection policy while performing a backend storage migration, you must use a full recovery when you recover a node after a graceful failover. The storage migration requires the full recovery to complete its migration. You also cannot allow Couchbase Server to restart the bucket after changing the ejection policy during a migration.
 
 See [Change a Bucket’s Ejection Policy](../../manage/manage-buckets/change-ejection-policy.md) for more information about changing a bucket’s ejection policy.
 
@@ -146,8 +157,8 @@ See [Change a Bucket’s Ejection Policy](../../manage/manage-buckets/change-eje
 
 For each bucket, Couchbase Server manages available memory using two watermarks: `memoryLowWatermark` and `memoryHighWatermark`. The `memoryHighWatermark` watermark is the threshold where Couchbase Server takes action to prevent the bucket from exceeding its memory allocation. When memory use reaches this watermark, the Data Service ejects items if the bucket’s ejection policy allows item ejection. It continues ejecting items until the bucket’s memory use drops to the `memoryLowWatermark` watermark. If ejection cannot free enough space, the Data Service stops ingesting data, sends error messages to clients, and displays an insufficient memory notification. When enough memory becomes available, data ingestion resumes.
 
-|  | The settings mem\_high\_wat, and mem\_low\_wat are no longer supported through cbepctl. These settings are replaced by new settings memoryLowWatermark and memoryHighWatermark, which can be configured using REST APIs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The settings `mem_high_wat`, and `mem_low_wat` are no longer supported through `cbepctl`. These settings are replaced by new settings `memoryLowWatermark` and `memoryHighWatermark`, which can be configured using REST APIs.
 
 Couchbase Server selects items for ejection based on metadata that shows whether the item is Not Recently Used (NRU). If an item was not used recently, it becomes a candidate for ejection.
 
@@ -161,8 +172,8 @@ The default setting for `memoryLowWatermark` is 75%. The default setting for `me
 
 Scans for items that have expired, and erases them from memory and disk; after which, a _tombstone_ remains for a default period of 3 days. The expiry pager runs every 10 minutes by default.
 
-|  | The setting exp\_pager\_stime is no longer supported through cbepctl. This setting is replaced by a new setting expiryPagerSleepTime, which can be configured using REST APIs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The setting `exp_pager_stime` is no longer supported through `cbepctl`. This setting is replaced by a new setting `expiryPagerSleepTime`, which can be configured using REST APIs.
 
 For information on changing the interval using the REST API, see [expiryPagerSleepTime](../../rest-api/rest-bucket-create.md#expirypagersleeptime).
 

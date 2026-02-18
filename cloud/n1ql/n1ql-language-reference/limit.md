@@ -1,4 +1,14 @@
+---
+title: LIMIT clause
+description: The LIMIT clause specifies the maximum number of documents to be
+  returned in a resultset by a SELECT statement.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/limit.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/limit.html)
+
+# LIMIT clause
 
 > The LIMIT clause specifies the maximum number of documents to be returned in a resultset by a SELECT statement. 
 
@@ -10,8 +20,8 @@ The `LIMIT` and `OFFSET` clauses are evaluated after the `ORDER BY` clause.
 
 You can use the `OFFSET` and `LIMIT` clauses together to _paginate_ the results — that is, to split the resultset into pages, each containing a specified number of documents, for display purposes.
 
-|  | Starting from version 4.5, the LIMIT clause in INSERT, UPDATE, and DELETE statements is no longer a hint. It indicates that the actual number of mutations will be less than or equal to the specified LIMIT. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting from version 4.5, the LIMIT clause in INSERT, UPDATE, and DELETE statements is no longer a hint. It indicates that the actual number of mutations will be less than or equal to the specified LIMIT.
 
 ## [](#syntax)Syntax
 

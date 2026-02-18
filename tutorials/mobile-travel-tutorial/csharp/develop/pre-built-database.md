@@ -1,4 +1,12 @@
+---
+title: Pre-built database
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/develop/pre-built-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/develop/pre-built-database.html)
+
+# Pre-built database
 
 ## [](#starting-with-prebuilt-database)Starting with Prebuilt Database
 
@@ -26,10 +34,9 @@ Try it out
 1. Log into the Travel Sample Mobile app as “demo” user and password as “password”
 2. Tap on "+\`" button to make a flight reservation
 3. In the “From” airport textfield, enter “San”
-4. Confirm that the first item in the dropdown list of "San Diego Intl"
-
-|  | This is not currently functioning in Xamarin iOS since the custom drop down view has not been implemented |
-|  | --------------------------------------------------------------------------------------------------------- |
+4. Confirm that the first item in the dropdown list of "San Diego Intl"  
+> [!NOTE]  
+> This is not currently functioning in Xamarin iOS since the custom drop down view has not been implemented
 
 The screen recording is for UWP app.
 

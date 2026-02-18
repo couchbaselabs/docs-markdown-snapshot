@@ -1,9 +1,19 @@
+---
+title: Timers
+description: Timers are asynchronous compute, which offers Eventing Functions
+  the ability to execute in reference to wall-clock events.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-timers.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-timers.html)
+
+# Timers
 
 Timers are asynchronous compute, which offers Eventing Functions the ability to execute in reference to wall-clock events. Timers also measure and track the amount of elapsed time and can be used while archiving expired documents at a preconfigured time.
 
-|  | When using timers, it is required that all nodes of the cluster are synchronized at computer startup, and periodically afterwards using a clock synchronization tool like NTP. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When using timers, it is required that all nodes of the cluster are synchronized at computer startup, and periodically afterwards using a clock synchronization tool like NTP.
 
 A few important aspects related to timers are listed below:
 

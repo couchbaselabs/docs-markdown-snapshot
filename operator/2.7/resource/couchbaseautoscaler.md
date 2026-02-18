@@ -1,4 +1,12 @@
+---
+title: CouchbaseAutoscaler Resource
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.7.x/docs/user/modules/ROOT/pages/resource/couchbaseautoscaler.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/resource/couchbaseautoscaler.html)
+
+# CouchbaseAutoscaler Resource
 
 CouchbaseAutoscaler provides an interface for the Kubernetes Horizontal Pod Autoscaler to interact with the Couchbase cluster and provide autoscaling. This resource is not defined by the end user, and is managed by the Operator.
 

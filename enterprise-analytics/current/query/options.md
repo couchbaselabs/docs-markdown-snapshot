@@ -1,4 +1,14 @@
+---
+title: Set Query Options
+description: You can use the <strong>query options</strong> to change the query
+  timeout period, define request-level parameters, and so on.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/options.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/query/options.html)
+
+# Set Query Options
 
 > You can use the **query options** to change the query timeout period, define request-level parameters, and so on. 
 

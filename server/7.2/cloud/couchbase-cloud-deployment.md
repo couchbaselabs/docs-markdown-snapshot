@@ -1,9 +1,19 @@
+---
+title: Cloud and Container Deployment Overview
+description: Couchbase Server is designed to run in the most popular cloud and
+  container environments.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-cloud-deployment.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cloud/couchbase-cloud-deployment.html)
+
+# Cloud and Container Deployment Overview
 
 > Couchbase Server is designed to run in the most popular cloud and container environments. Deploy Couchbase in the cloud for its unique data model flexibility, elastic scalability, high performance, and 24x365 availability. 
 
-|  | Couchbase provides container images as a convenience to deploy our software and the only component in them that is supported for patches, including security fixes, is the Couchbase software itself. Customers who wish to have higher levels of control of the container image are encouraged to build a container image to their needs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Couchbase provides container images as a convenience to deploy our software and the only component in them that is supported for patches, including security fixes, is the Couchbase software itself. Customers who wish to have higher levels of control of the container image are encouraged to build a container image to their needs.
 
 | Platform                    | Documentation                                                                           |
 | --------------------------- | --------------------------------------------------------------------------------------- |
@@ -47,10 +57,9 @@ While any such node works well with Couchbase, some may be more cost effective. 
 Storage
 
 * EBS `gp3` and EBS `io1` are recommended.  
-The persistence of EBS offers a significant advantage. For most deployments, EBS `gp3` provides a good balance of performance and cost.
-
-|  | It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+The persistence of EBS offers a significant advantage. For most deployments, EBS `gp3` provides a good balance of performance and cost.  
+> [!NOTE]  
+> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
 * SSD [instance stores](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) are a viable storage option for Couchbase Server, and are both performant and side-step "noisy neighbor" issues that can potentially plague EBS. However, the instance store is ephemeral, expensive, and not encrypted, and therefore is not typically recommended.
 
 Network
@@ -98,10 +107,9 @@ While any such node works well with Couchbase, some may be more cost effective. 
 Storage
 
 * Azure [Premium Storage](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-types) is recommended for data drives.  
-Ephemeral drives present a risk of data loss. Standard Storage is based on spinning magnetic disks (HDD) and is sufficient for OS disks, but it does not perform well enough for most database applications. The older Azure storage account mechanism should also be avoided for OS and data disks, as it has a higher potential for bottlenecks and is more complex.
-
-|  | It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Ephemeral drives present a risk of data loss. Standard Storage is based on spinning magnetic disks (HDD) and is sufficient for OS disks, but it does not perform well enough for most database applications. The older Azure storage account mechanism should also be avoided for OS and data disks, as it has a higher potential for bottlenecks and is more complex.  
+> [!NOTE]  
+> It is not recommended to exceed 1 TB for data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
 * Microsoft recommends disabling Premium Storage caching for mixed read/write workloads like Couchbase.
 
 Network
@@ -147,17 +155,15 @@ For the majority of deployments, `n1-highmem-16` provides a good balance of pric
 
 Storage
 
-* `pd-ssd` is recommended for the vast majority of deployments. It often outperforms ephemeral storage as it is network-bound and offers persistence that ephemeral does not.
-
-|  | It is not recommended to exceed 1.7 TB for pd-ssd data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* `pd-ssd` is recommended for the vast majority of deployments. It often outperforms ephemeral storage as it is network-bound and offers persistence that ephemeral does not.  
+> [!NOTE]  
+> It is not recommended to exceed 1.7 TB for `pd-ssd` data drives. Large drives can lead to overly dense nodes that suffer from long rebuild times. It’s usually preferable to scale horizontally instead.
 
 Network
 
-* It’s recommended to configure nodes with their private DNS record. This is because the Google network is globally flat, allowing private IPs to be routed around the world without need for VPN or leased line solutions. (Though, when connecting with another cloud or an on-premises cluster in a hybrid scenario, VPN or leased lines are still required.)
-
-|  | It’s not possible to configure a node with its public IP address because that IP is NAT-based and Couchbase cannot bind to it. GCP does not provide public DNS records for the public IPs. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+* It’s recommended to configure nodes with their private DNS record. This is because the Google network is globally flat, allowing private IPs to be routed around the world without need for VPN or leased line solutions. (Though, when connecting with another cloud or an on-premises cluster in a hybrid scenario, VPN or leased lines are still required.)  
+> [!NOTE]  
+> It’s not possible to configure a node with its public IP address because that IP is NAT-based and Couchbase cannot bind to it. GCP does not provide public DNS records for the public IPs.
 
 Security
 

@@ -1,4 +1,16 @@
+---
+title: Recover Data with XDCR
+description: In the event of data-loss, the <strong>cbrecovery</strong> tool can
+  be used to restore data. The tool accesses remotely replicated buckets,
+  previously created with XDCR, and copies appropriate subsets of their data
+  back onto the original source-cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/recover-data-with-xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/manage/manage-xdcr/recover-data-with-xdcr.html)
+
+# Recover Data with XDCR
 
 > In the event of data-loss, the **cbrecovery** tool can be used to restore data. The tool accesses remotely replicated buckets, previously created with XDCR, and copies appropriate subsets of their data back onto the original source-cluster. 
 

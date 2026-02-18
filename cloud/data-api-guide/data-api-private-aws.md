@@ -1,4 +1,14 @@
+---
+title: Manage AWS Private Endpoints for the Data API
+description: How to configure and manage private endpoints for the Data API
+  using Amazon Web Services (AWS).
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-aws.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/data-api-guide/data-api-private-aws.html)
+
+# Manage AWS Private Endpoints for the Data API
 
 > How to configure and manage private endpoints for the Data API using Amazon Web Services (AWS). 
 
@@ -98,8 +108,8 @@ To set up the private endpoint connection for the Data API, run the connection c
 
 The connection command returns a JSON object, giving information about the private endpoint. The most useful information to note is the value of `VpcEndpointId` — this is the private endpoint ID.
 
-|  | The private endpoint connection must be accepted by the Data API before you can use it. |
-|  | --------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The private endpoint connection must be accepted by the Data API before you can use it.
 
 Run the connection command for the Data API
 
@@ -215,10 +225,11 @@ To modify the security groups:
 | ---------- | ------------------------------------------- |
 | Source     | Your VPC IPv4 CIDR.For example: 10.0.0.0/16 |
 | Type       | All traffic                                 |
-| Port range | All                                         |
-
-|  | Before selecting All traffic as an inbound rule, consult with your security team and confirm that your private link meets security standards. For any further questions or concerns, contact [Couchbase Support](../support/manage-support.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Port range | All                                         |  
+  > [!CAUTION]  
+  > Before selecting `All traffic` as an inbound rule, consult with your security team and confirm that your private link meets security standards.  
+  >  
+  > For any further questions or concerns, contact [Couchbase Support](../support/manage-support.md).
   5. Click **Save changes**.
 3. In the [AWS VPC console](https://console.aws.amazon.com/vpc/), configure your network ACL with an outbound rule:
 

@@ -1,4 +1,14 @@
+---
+title: Durability
+description: <em>Durability</em> ensures the greatest likelihood of data-writes
+  surviving unexpected anomalies, such as node-outages.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/durability.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/data/durability.html)
+
+# Durability
 
 > _Durability_ ensures the greatest likelihood of data-writes surviving unexpected anomalies, such as node-outages. 
 
@@ -36,8 +46,8 @@ Durability requirements use the concept of _majority_, to indicate the number of
 | 2                  | 2                                     |
 | 3                  | _Not supported_                       |
 
-|  | In consequence of the correspondences listed above, if a bucket is configured with one replica, and a node fails, durable writes are immediately unavailable for any vBucket whose data resides on the failed node. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> In consequence of the correspondences listed above, if a bucket is configured with one replica, and a node fails, durable writes are immediately unavailable for any vBucket whose data resides on the failed node.
 
 ## [](#durability-requirements)Durability Requirements
 

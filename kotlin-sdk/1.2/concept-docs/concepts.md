@@ -1,4 +1,13 @@
+---
+title: Concepts Guides
+description: A discursive look at the features exposed by the Couchbase Java SDK.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/concept-docs/pages/concepts.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.2/concept-docs/concepts.html)
+
+# Concepts Guides
 
 > A discursive look at the features exposed by the Couchbase Java SDK. 
 

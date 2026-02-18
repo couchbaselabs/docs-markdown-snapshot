@@ -1,4 +1,14 @@
+---
+title: Monitor a Capella Analytics Cluster
+description: Monitor your Capella Analytics cluster through metrics, queries,
+  activity logs, and alerts.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/monitor-cluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/monitoring/monitor-cluster.html)
+
+# Monitor a Capella Analytics Cluster
 
 > Monitor your Capella Analytics cluster through metrics, queries, activity logs, and alerts. 
 
@@ -28,8 +38,8 @@ For more information about query monitoring, see [Use Queries to Monitor a Clust
 
 Activity logs provide a complete timeline of user and control plane system events happening in your Capella Analytics cluster.
 
-|  | Activity logs do not include events involving activities caused to the data in your cluster. |
-|  | -------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Activity logs do not include events involving activities caused to the data in your cluster.
 
 Each event in an activity log includes a summary of the event, the severity of the event, the resource affected by the event, and the time at which the event occurred.
 

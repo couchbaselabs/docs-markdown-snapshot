@@ -1,4 +1,13 @@
+---
+title: Non-JSON Documents
+description: Binary formats &amp; Transcoders
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/concept-docs/pages/nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.0/concept-docs/nonjson.html)
+
+# Non-JSON Documents
 
 > Binary formats & Transcoders 
 

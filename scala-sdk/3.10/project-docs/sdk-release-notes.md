@@ -1,4 +1,14 @@
+---
+title: SDK Release Notes
+description: Release notes, brief installation instructions, and download
+  archive for the Couchbase Scala Client.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/project-docs/pages/sdk-release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/project-docs/sdk-release-notes.html)
+
+# SDK Release Notes
 
 > Release notes, brief installation instructions, and download archive for the Couchbase Scala Client. 
 
@@ -60,8 +70,8 @@ CB SDK Robot <cb-sdk-robot@couchbase.com>
 
 Version 3.9 and 3.10 of the Scala SDK implement the 3.8 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 
-|  | From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version jumped from 1.8.x to 3.9.x. While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method. All other functionality works unchanged and users can upgrade existing applications without issue. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version jumped from 1.8.x to 3.9.x. While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method. All other functionality works unchanged and users can upgrade existing applications without issue.
 
 The major new feature starting in the 3.9 series is the addition of a new version of the SDK, built for Scala 3\. The Scala 3 version of the SDK has some API differences, documented on [migrating to Scala 3](migrating-to-scala-3.md). But we expect the majority of Scala 2 applications will be able to migrate to Scala 3 and the Scala 3 version of the SDK with no-to-minimal differences.
 
@@ -85,10 +95,9 @@ The supported and tested dependencies for this release are:
 #### [](#improvements)Improvements
 
 * [JVMCBC-1707](https://jira.issues.couchbase.com/browse/JVMCBC-1707): Upgraded `Netty` from `4.1.128` to `4.1.130`.
-* [SCBC-500](https://jira.issues.couchbase.com/browse/SCBC-500): Deprecated the Views API.
-
-|  | Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+* [SCBC-500](https://jira.issues.couchbase.com/browse/SCBC-500): Deprecated the Views API.  
+> [!NOTE]  
+> Server-side support for Views has been deprecated since Couchbase Server 7.0, and will be removed in a future server release.
 
 ### [](#version-3-10-0-11-november-2025)Version 3.10.0 (11 November 2025)
 
@@ -125,8 +134,8 @@ The supported and tested dependencies for this release are:
 
 Version 3.9 of the Scala SDK implements the 3.8 [SDK API](compatibility.md#api-version). See the [compatibility pages](compatibility.md#couchbase-feature-availability-matrix) for more information on feature compatibility with different versions of Couchbase Server.
 
-|  | From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x. While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method. All other functionality works unchanged and users can upgrade existing applications without issue. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> From 3.9.0 on, all Couchbase JVM SDKs have an aligned version number to make it easier to users to track changes. So the version has jumped from 1.8.x to 3.9.x. While this is technically an increase in the major, the Scala 2 versions of the SDK have only one very small breaking change made to the API, to remove a long-deprecated transactions method. All other functionality works unchanged and users can upgrade existing applications without issue.
 
 The major new feature in the 3.9 series is the addition of a new version of the SDK, built for Scala 3\. The Scala 3 version of the SDK has some API differences, documented on [migrating to Scala 3](migrating-to-scala-3.md). But we expect the majority of Scala 2 applications will be able to migrate to Scala 3 and the Scala 3 version of the SDK with no-to-minimal differences.
 
@@ -334,10 +343,9 @@ The supported and tested dependencies for this release are:
   * `io.sendBuffer`
   * `io.receiveBuffer`
   * `io.lowWaterMark`
-  * `io.highWaterMark`
-
-|  | We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * `io.highWaterMark`  
+  > [!NOTE]  
+  > We do not currently recommend configuring these settings unless you are working with Couchbase technical support to diagnose a network performance issue.
 
 ### [](#version-1-7-7-08-january-2025)Version 1.7.7 (08 January 2025)
 

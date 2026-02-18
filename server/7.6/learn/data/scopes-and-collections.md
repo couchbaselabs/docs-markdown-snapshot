@@ -1,4 +1,14 @@
+---
+title: Scopes and Collections
+description: Couchbase Server provides <em>scopes</em> and <em>collections</em>;
+  allowing documents to be categorized and organized, within a bucket.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/scopes-and-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/data/scopes-and-collections.html)
+
+# Scopes and Collections
 
 > Couchbase Server provides _scopes_ and _collections_; allowing documents to be categorized and organized, within a bucket. 
 
@@ -44,8 +54,8 @@ The default scope cannot be dropped. The default collection _can_ be dropped, by
 
 In Couchbase Server Version 7.6+, in each user-created or sample bucket, a `_system` scope is created and maintained by default. This scope contains collections used by Couchbase services, for service-specific data. The scope and its collections _cannot_ be dropped.
 
-|  | Users should NOT rely on the content of those collections. Their structure is subject to change without warning. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Users should NOT rely on the content of those collections. Their structure is subject to change without warning.
 
 For reference, the collections are as follows:
 

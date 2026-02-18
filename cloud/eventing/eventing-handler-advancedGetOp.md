@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced GET Operation"
+description: Perform the Advanced GET operation where Eventing interacts with
+  the Data Service.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advancedGetOp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-advancedGetOp.html)
+
+# Function: Advanced GET Operation
 
 Perform the Advanced GET operation where Eventing interacts with the Data Service.
 

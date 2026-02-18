@@ -1,4 +1,15 @@
+---
+title: Cutover Steps and Post-Migration Validation
+description: This section outlines the cutover plan and post-migration
+  validation steps to verify a smooth transition from Couchbase Analytics
+  Service (CBAS) to Couchbase Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/migration/pages/post-migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/migration/post-migration.html)
+
+# Cutover Steps and Post-Migration Validation
 
 > This section outlines the cutover plan and post-migration validation steps to verify a smooth transition from Couchbase Analytics Service (CBAS) to Couchbase Enterprise Analytics. 
 

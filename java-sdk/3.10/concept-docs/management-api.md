@@ -1,4 +1,13 @@
+---
+title: Managing Couchbase Clusters from the SDK
+description: Cluster management from the SDK.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/concept-docs/pages/management-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/concept-docs/management-api.html)
+
+# Managing Couchbase Clusters from the SDK
 
 > Cluster management from the SDK. 
 

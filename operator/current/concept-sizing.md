@@ -1,4 +1,12 @@
+---
+title: Couchbase Sizing
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-sizing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-sizing.html)
+
+# Couchbase Sizing
 
 > When planning your cluster deployments you need to be aware of resources that the Operator requires to ensure stable operation. You also need to be aware of how memory allocations will affect database performance. 
 

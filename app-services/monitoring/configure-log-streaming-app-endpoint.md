@@ -1,4 +1,14 @@
+---
+title: Configure Log Streaming for an App Endpoint
+description: Enhance your App Services log streaming with a granular set of Log
+  Filters and Levels for each App Endpoint.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-streaming-app-endpoint.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/configure-log-streaming-app-endpoint.html)
+
+# Configure Log Streaming for an App Endpoint
 
 > Enhance your App Services log streaming with a granular set of Log Filters and Levels for each App Endpoint. 
 
@@ -10,8 +20,8 @@ You can configure Log Streaming on a per-App Endpoint basis. This allows you to 
 
 Changing configuration of Log Level or Log Filters causes your App Endpoint to go offline briefly. This can result in temporary downtime for client applications.
 
-|  | Schedule your updates to log streaming configuration to coincide with maintenance windows or periods of low activity, to reduce the impact on client connectivity. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Schedule your updates to log streaming configuration to coincide with maintenance windows or periods of low activity, to reduce the impact on client connectivity.
 
 ### [](#log-levels)Log Levels
 
@@ -99,5 +109,5 @@ SyncMsg
 
 Additional information about Sync logs.
 
-|  | Only enable non-default filters per-App Endpoint to cover specific observability and troubleshooting needs. |
-|  | ----------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Only enable non-default filters per-App Endpoint to cover specific observability and troubleshooting needs.

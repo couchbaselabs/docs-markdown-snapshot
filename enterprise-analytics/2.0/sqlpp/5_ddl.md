@@ -1,4 +1,14 @@
+---
+title: DDL Statements
+description: This section describes the SQL++ for Enterprise Analytics Data
+  Definition Language (DDL) statements.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl.html)
+
+# DDL Statements
 
 > This section describes the SQL++ for Enterprise Analytics Data Definition Language (DDL) statements. 
 
@@ -6,8 +16,8 @@
 
 In addition to [queries](3%5Fquery.md), SQL++ for Enterprise Analytics supports statements for data definition.
 
-|  | In Enterprise Analytics, the keyword ANALYTICS is optional in DDL statements. |
-|  | ----------------------------------------------------------------------------- |
+> [!TIP]
+> In Enterprise Analytics, the keyword `ANALYTICS` is optional in DDL statements.
 
 ## [](#syntax)Syntax
 

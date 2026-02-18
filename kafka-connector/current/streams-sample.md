@@ -1,4 +1,12 @@
+---
+title: Couchbase Sample with Kafka Streams
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/streams-sample.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/streams-sample.html)
+
+# Couchbase Sample with Kafka Streams
 
 Sample application which uses Couchbase connector with Kafka Streams.
 

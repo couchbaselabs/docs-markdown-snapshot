@@ -1,9 +1,17 @@
+---
+title: Using a Certificate Manager
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/tutorial-cert-manager.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/tutorial-cert-manager.html)
+
+# Using a Certificate Manager
 
 > This tutorial demonstrates how to set up a certificate manager ([cert-manager](https://cert-manager.io/)) to be used with the Operator dynamic admission controller (DAC) and managed Couchbase clusters. Certificate managers like cert-manager provide native Kubernetes support for TLS certificate generation and rotation. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#what-is-cert-manager)What is cert-manager?
 
@@ -28,10 +36,9 @@ Certificates are stored in a Kubernetes `Secret` resource, broadly similar to th
 Before continuing with this tutorial, please ensure the following:
 
 * You have installed cert-manager. Follow the official installation guides at [cert-manager.io](https://cert-manager.io/docs/installation/).
-* You have installed Kubernetes Operator 2.2 or higher. This tutorial assumes that the installed resources are present, and also leverages the [cao](tools/cao.md) command line tool that comes with the Kubernetes Operator binary package.
-
-|  | You can actually integrate/perform the steps in this tutorial as part of the process of installing the Kubernetes Operator. However, for the sake of making the tutorial more straightforward, it is assumed that you’ve already performed a basic [installation](install-kubernetes.md) of the Kubernetes Operator. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* You have installed Kubernetes Operator 2.2 or higher. This tutorial assumes that the installed resources are present, and also leverages the [cao](tools/cao.md) command line tool that comes with the Kubernetes Operator binary package.  
+> [!NOTE]  
+> You can actually integrate/perform the steps in this tutorial as part of the process of installing the Kubernetes Operator. However, for the sake of making the tutorial more straightforward, it is assumed that you’ve already performed a basic [installation](install-kubernetes.md) of the Kubernetes Operator.
 
 Another thing to note is that all of the commands in this tutorial are run from the same, default, namespace. cert-manager runs cluster scoped, and can see Issuers and Certificates in any namespace, so you can use any namespace you desire. Before you begin the tutorial, make sure to configure your Kubernetes context to point to the namespace where you deploy Couchbase resources, or ensure you use the `--namespace` configuration flag with the given commands.
 
@@ -157,8 +164,8 @@ Run the following command to create the `Certificate` resource:
 $ kubectl apply -f admission-certificate-resource.yaml
 ```
 
-|  | This command will not succeed if the DAC is already installed. Ensure that you’ve followed the instructions in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac) before running this command. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This command will not succeed if the DAC is already installed. Ensure that you’ve followed the instructions in the section [Uninstall the Existing DAC](#uninstall-the-existing-dac) before running this command.
 
 You can run the following command to check the status of the resource:
 

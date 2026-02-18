@@ -1,4 +1,13 @@
+---
+title: server-info
+description: Displays information and statistics about the Couchbase Server specified.
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-server-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-server-info.html)
+
+# server-info
 
 Displays information and statistics about the Couchbase Server specified.
 

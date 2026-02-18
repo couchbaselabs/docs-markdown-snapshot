@@ -1,4 +1,14 @@
+---
+title: Backup and Restore&#8201;&#8212;&#8201;Server Compatibility
+description: Important details concerning the use of backup and restore in
+  conjunction with Sync Gateway.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/server-compatibility/pages/server-compatibility-backups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/server-compatibility/server-compatibility-backups.html)
+
+# Backup and Restore&#8201;&#8212;&#8201;Server Compatibility
 
 > Important details concerning the use of backup and restore in conjunction with Sync Gateway.  
 
@@ -8,8 +18,12 @@ _Other Topics_: [Compatibility Matrix](../product-notes/compatibility.md)
 
 ## [](#backups)Backups
 
-|  | Partial backups and restores. Sync Gateway does not support partial backups/restores. Make sure that you perform full backups if you’re planning to use them in conjunction with Sync Gateway |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Partial backups and restores.
+> 
+> Sync Gateway does not support partial backups/restores.
+> 
+> Make sure that you perform full backups if you’re planning to use them in conjunction with Sync Gateway
 
 ---
 

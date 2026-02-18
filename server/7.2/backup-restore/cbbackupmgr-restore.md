@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr restore
+description: Restores data from the backup archive to a Couchbase cluster
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-restore.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/backup-restore/cbbackupmgr-restore.html)
+
+# cbbackupmgr restore
 
 Restores data from the backup archive to a Couchbase cluster
 

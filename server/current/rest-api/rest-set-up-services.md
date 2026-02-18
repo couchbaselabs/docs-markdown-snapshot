@@ -1,4 +1,12 @@
+---
+title: Assigning Services to a New Single Node
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-set-up-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-set-up-services.html)
+
+# Assigning Services to a New Single Node
 
 > Use the REST API to assign services to a new, single-node cluster. 
 

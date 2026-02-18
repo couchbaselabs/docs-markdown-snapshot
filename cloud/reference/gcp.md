@@ -1,4 +1,13 @@
+---
+title: Google Cloud Platform (GCP)
+description: Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP).
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/gcp.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/gcp.html)
+
+# Google Cloud Platform (GCP)
 
 > Couchbase Capella supports deploying clusters onto Google Cloud Platform (GCP). 
 
@@ -70,8 +79,8 @@ Each GCP region contains a number of independent zones. These consist of 1 or mo
 
 The **Multiple Zones** option is the default when creating clusters using the Developer Pro or Enterprise [Support Plans](../billing/billing.md#support-plans).
 
-|  | The option to deploy across multiple GCP zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same zone. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The option to deploy across multiple GCP zones is only available for clusters that use the Developer Pro or Enterprise Support Plans. Clusters using the Basic Support Plan deploy all nodes to the same zone.
 
 ## [](#configuration-options)Configuration Options
 
@@ -79,8 +88,8 @@ Clusters deployed onto GCP have several configuration options that allow you to 
 
 ### [](#nodes)Nodes
 
-|  | As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node. |
-|  | ----------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As they’re intended for evaluation purposes only, free tier operational clusters only include 1 node.
 
 Clusters have a minimum of 3 nodes and a maximum of 27.
 
@@ -120,8 +129,8 @@ Capella clusters deployed onto Google Cloud Platform use SSD persistent disks (P
 
 The amount of storage available per node in your cluster is configurable from a minimum of 50 GB.
 
-|  | Free tier operational clusters include 8 GB of data storage. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> Free tier operational clusters include 8 GB of data storage.
 
 Clusters deployed on GCP support disk auto-expansion. For details, see [Storage Auto-Expansion](../clusters/scale-database.md#Storage-Auto-Expansion).
 

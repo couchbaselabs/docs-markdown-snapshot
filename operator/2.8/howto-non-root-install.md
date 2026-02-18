@@ -1,11 +1,19 @@
+---
+title: Configure a Non-Root Install
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-non-root-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-non-root-install.html)
+
+# Configure a Non-Root Install
 
 > Prevent Couchbase Server containers from running as root. 
 
 When using Kubernetes all pods are run as root by default. This is a security concern for many enterprises, so they enforce pods be run as a non-root user. By default, Couchbase server pods will change their user to `couchbase` (UID 1000), however performing a `kubectl exec` into a pod still runs as root. This how-to shows how to run as a non-root user in all circumstances.
 
-|  | Red Hat OpenShift users should already have mandatory user randomization, so can ignore this guide. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Red Hat OpenShift users should already have mandatory user randomization, so can ignore this guide.
 
 ## [](#couchbase-cluster-configuration)Couchbase Cluster Configuration
 

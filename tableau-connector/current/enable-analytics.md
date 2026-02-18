@@ -1,4 +1,12 @@
+---
+title: Enable Couchbase Analytics Service
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/enable-analytics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/current/enable-analytics.html)
+
+# Enable Couchbase Analytics Service
 
 > To get started with the Couchbase Tableau connector, set up the Couchbase Analytics Service on Couchbase Server and add the Couchbase Tableau connector to Tableau Desktop. 
 

@@ -1,4 +1,12 @@
+---
+title: Boosting
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-supported-queries-boosting-the-score-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-supported-queries-boosting-the-score-query.html)
+
+# Boosting
 
 When you specify multiple query-clauses, you can specify the relative importance to a given clause by suffixing it with the `^` operator, followed by a number or by specifying the `boost` parameter with the number to boost the search.
 

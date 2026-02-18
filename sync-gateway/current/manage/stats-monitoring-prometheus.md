@@ -1,4 +1,14 @@
+---
+title: Prometheus Metrics
+description: This content covers the Prometheus statistics and metrics collected
+  and made available by Sync Gateway
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring-prometheus.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/manage/stats-monitoring-prometheus.html)
+
+# Prometheus Metrics
 
 > This content covers the Prometheus statistics and metrics collected and made available by Sync Gateway  
 > Sync Gateway’s statistics and metrics provide under-the-hood data on the performance, resource utilization and health of it nodes. This is increasingly important as deployments scale to support a large numbers of connected mobile and edge components.
@@ -21,8 +31,10 @@ This endpoint’s data will be scraped at configurable interval, when the `metri
 
 The response in Prometheus format is defined as follows:
 
-| Tip | The x.y.z badge shows the Sync Gateway version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). The Database and Collection badges show the scope of the metric. If not scoped to Database or Collection, the metric applies to the Sync Gateway as a whole. |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Sync Gateway version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
+> * The Database and Collection badges show the scope of the metric. If not scoped to Database or Collection, the metric applies to the Sync Gateway as a whole.
 
 | sgw\_audit\_num\_audits\_filtered\_by\_role3.2.1 counter The total number of audit events filtered by role.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

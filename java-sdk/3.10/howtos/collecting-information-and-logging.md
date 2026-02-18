@@ -1,4 +1,14 @@
+---
+title: Logging
+description: Configuring logging; working with the event bus; and log redaction
+  for data security.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.10/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > Configuring logging; working with the event bus; and log redaction for data security. 
 
@@ -10,8 +20,16 @@ The Couchbase Java SDK uses [SLF4J](https://www.slf4j.org), a logging façade th
 
 To see log messages from the Couchbase SDK, add an SLF4J binding as a dependency of your project.
 
-|  | SLF4J API versions At the time of writing, there are two different versions of the SLF4J API: **Version 2** is the modern version of SLF4J. It is actively maintained, and recommended for most users. **Version 1.7** is no longer maintained, but you can still use it if your preferred SLF4J binding does not support version 2. The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK’s Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SLF4J API versions
+> 
+> At the time of writing, there are two different versions of the SLF4J API:
+> 
+> **Version 2** is the modern version of SLF4J. It is actively maintained, and recommended for most users.
+> 
+> **Version 1.7** is no longer maintained, but you can still use it if your preferred SLF4J binding does not support version 2.
+> 
+> The Couchbase SDK is compatible with both versions of the SLF4J API. The SDK’s Maven POM has a dependency on version 1.7, but you can override this by using version 2 in your project.
 
 ### [](#using-log4j-2)Using Log4j 2
 
@@ -44,8 +62,8 @@ Add these as children of the `dependencies` element.
 </dependency>
 ```
 
-|  | An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on log4j-slf4j2-impl **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on `log4j-slf4j2-impl` **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts.
 
 `**build.gradle**`
 
@@ -54,8 +72,8 @@ Add these as children of the `dependencies` element.
 implementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.22.0")
 ```
 
-|  | Gradle automatically uses the correct SLF4J API 2.x dependency required by log4j-slf4j2-impl, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Gradle automatically uses the correct SLF4J API 2.x dependency required by `log4j-slf4j2-impl`, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\.
 
 #### [](#configuring-log4j-2-output)Configuring Log4j 2 Output
 
@@ -63,8 +81,8 @@ Log4j 2 needs a configuration file to tell it which messages to log, where to wr
 
 Here’s an example `log4j2.xml` configuration file you can use to get started. It tells Log4j 2 to log messages to the console, and sets some reasonable logging levels.
 
-|  | If your project uses the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), this file should live in the src/main/resources directory. This makes it available at runtime as a class path resource. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If your project uses the [Maven Standard Directory Layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html), this file should live in the `src/main/resources` directory. This makes it available at runtime as a class path resource.
 
 src/main/resources/log4j2.xml
 
@@ -129,8 +147,8 @@ Add these as children of the `dependencies` element.
 </dependency>
 ```
 
-|  | An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on slf4j-jdk14 **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> An alternate way to ensure Maven uses the correct version of the SLF4J API is to declare the dependency on `slf4j-jdk14` **before** the dependency on the Couchbase SDK. See the Maven documentation on [Transitive Dependencies](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Transitive%5FDependencies) to learn more about how Maven resolves transitive dependency version conflicts.
 
 `**build.gradle**`
 
@@ -139,8 +157,8 @@ Add these as children of the `dependencies` element.
 implementation("org.slf4j:slf4j-jdk14:2.0.9")
 ```
 
-|  | Gradle automatically uses the correct SLF4J API 2.x dependency required by slf4j-jdk14, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Gradle automatically uses the correct SLF4J API 2.x dependency required by `slf4j-jdk14`, even though the Couchbase SDK declares a dependency on SLF4J API 1.7\.
 
 #### [](#configuring-a-jul-logger)Configuring a JUL Logger
 
@@ -156,13 +174,15 @@ for (Handler h : logger.getParent().getHandlers()) {
 }
 ```
 
-|  | We do not recommend using JUL in production. Dedicated logging frameworks like Log4j 2 and Logback are more configurable, and tend to perform better than JUL. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> We do not recommend using JUL in production. Dedicated logging frameworks like Log4j 2 and Logback are more configurable, and tend to perform better than JUL.
 
 ## [](#the-event-bus)The Event Bus
 
-|  | Event Bus Stability While the event bus functionality itself is considered stable, the events themselves may not be. Please only consume the events you are interested in, and add error handling code in case of unexpected behavior. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Event Bus Stability
+> 
+> While the event bus functionality itself is considered stable, the events themselves may not be. Please only consume the events you are interested in, and add error handling code in case of unexpected behavior.
 
 Log files are neither fun to wade through, nor do they have any kind of real-time aspect. To make them usable, normally their content is piped into systems such as [Graphite](http://graphite.wikidot.com) or [Logstash](https://www.elastic.co/products/logstash). Since most setups interleave all different kinds of log messages, it makes it very hard to see whats going on, let alone perform post-disaster analysis.
 
@@ -200,8 +220,10 @@ BucketOpenedEvent{severity=INFO, category=com.couchbase.core, duration=PT0.28162
 
 We recommend filtering on the specific events you are interested in, since most of the time only a subset of the published ones will be of use to you. Also, there are new events added between releases so make sure these new events do not break your functionality.
 
-|  | Blocking Warning If you consume the EventBus you MUST NOT block inside the consumer callback. It will stall all other consumers. If you must write into a blocking sink like a blocking HTTP API you MUST write it onto a different thread with a non-blocking queue first. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Blocking Warning
+> 
+> If you consume the `EventBus` you MUST NOT block inside the consumer callback. It will stall all other consumers. If you must write into a blocking sink like a blocking HTTP API you MUST write it onto a different thread with a non-blocking queue first.
 
 ## [](#log-redaction)Log Redaction
 

@@ -1,4 +1,12 @@
+---
+title: What&#8217;s New?
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/whats-new.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/whats-new.html)
+
+# What&#8217;s New?
 
 Couchbase Kubernetes Operator 2.9 was released in December 2025\. New features and improvements are described below.
 

@@ -1,4 +1,13 @@
+---
+title: collect-logs-stop
+description: Stop the current log collection task
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-collect-logs-stop.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-collect-logs-stop.html)
+
+# collect-logs-stop
 
 Stop the current log collection task
 

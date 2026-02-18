@@ -1,4 +1,12 @@
+---
+title: Searching from the UI
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-from-the-UI.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-searching-from-the-UI.html)
+
+# Searching from the UI
 
 > Full Text Search can be performed from the Couchbase Web Console. 
 
@@ -67,5 +75,5 @@ Finally, note the **query syntax help** link that now appears under the **Search
 
 This link takes the user to the documentation on [Supported Queries](fts-supported-queries.md). Such a query can be specified in the **Search** interactive text-field, thereby allowing a search of considerable complexity to be accomplished within Couchbase Web Console.
 
-|  | Any supported query can be executed from the UI, meaning the UI can accept a valid string (query string syntax) or a JSON object conforming to a supported syntax (query or search request). However the result set will only contain document IDs along with the requested fields and scores (if applicable). Any array positions or facets' results will _NOT_ be displayed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Any supported query can be executed from the UI, meaning the UI can accept a valid string (query string syntax) or a JSON object conforming to a supported syntax (query or search request). However the result set will only contain document IDs along with the requested fields and scores (if applicable). Any array positions or facets' results will _NOT_ be displayed.

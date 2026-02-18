@@ -1,4 +1,12 @@
+---
+title: Images and Diagrams
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/images-diagrams.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/images-diagrams.html)
+
+# Images and Diagrams
 
 Adding a visual asset, like a screenshot, graphic, or diagram to documentation can:
 
@@ -11,8 +19,8 @@ In general, Couchbase style tries to limit the number of images added to the doc
 
 For guidance on image file naming conventions, see [Filenames](filenames.md).
 
-|  | All images included in Couchbase Documentation must have alt text. For more information, see [Alt Text](alt-text.md). |
-|  | --------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All images included in Couchbase Documentation must have alt text. For more information, see [Alt Text](alt-text.md).
 
 ## [](#screenshots)Screenshots
 

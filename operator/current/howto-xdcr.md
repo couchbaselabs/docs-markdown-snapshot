@@ -1,4 +1,12 @@
+---
+title: Configure XDCR
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-xdcr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/howto-xdcr.html)
+
+# Configure XDCR
 
 > How to set up unidirectional replication to another Couchbase cluster in a different Kubernetes cluster. 
 
@@ -196,8 +204,8 @@ The exact outcome depends on the Kubernetes CNI (Container Networking Interface)
 * Single-node Couchbase cluster: When the node’s NodePort changes, XDCR cannot reconnect automatically. In this case, you must manually update the replication configuration at couchbaseclusters.spec.xdcr.remoteClusters.hostname with the new IP:NodePort of the Couchbase node.
 * Multi-node Couchbase cluster: When a node’s NodePort changes, XDCR reconnects to another node that still exposes a valid NodePort. However, if XDCR tries to reconnect through the updated node, you may still need to update couchbaseclusters.spec.xdcr.remoteClusters.hostname with the new port.
 
-|  | When using Istio or another service mesh, remember that strict mode mTLS cannot be used with Kubernetes node ports. This means XDCR will be unable to replicate when using IP based addressing with strict mode mTLS. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When using Istio or another service mesh, remember that strict mode mTLS cannot be used with Kubernetes node ports. This means XDCR will be unable to replicate when using IP based addressing with strict mode mTLS.
 
 ### [](#remote-cluster-3)Remote Cluster
 
@@ -278,11 +286,11 @@ spec:
 
 With Couchbase Server version 7 and greater, scope and collections support is now present for XDCR. The Couchbase Kubernetes Operator fully supports the various options available to the Couchbase Server version it’s running with, full details can be found in the [official documentation](#server:manage:manage-xdcr/replicate-using-scopes-and-collections.html).
 
-|  | If scopes and collections are not used then XDCR maintains the previous approach of replicating the full bucket by default. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If scopes and collections are not used then XDCR maintains the previous approach of replicating the full bucket by default.
 
-|  | These options are all only valid if the version of Couchbase Server deployed in the Couchbase Cluster is 7+. The target bucket must be set up with the correct scopes and collections to support XDCR. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> These options are all only valid if the version of Couchbase Server deployed in the Couchbase Cluster is 7+. The target bucket must be set up with the correct scopes and collections to support XDCR.
 
 ### [](#replication)Replication
 

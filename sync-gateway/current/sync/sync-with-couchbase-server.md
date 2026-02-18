@@ -1,12 +1,25 @@
+---
+title: Sync with Couchbase Server
+description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-with-couchbase-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/sync/sync-with-couchbase-server.html)
+
+# Sync with Couchbase Server
 
 > Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge  
 > This content explains how Sync Gateway synchronizes document changes made through Couchbase SDKs and SQL++ queries.
 
 Related _Sync_ topics: [Sync Using App](sync-using-app.md) | [Inter Sync Gateway Sync - Overview](sync-inter-syncgateway-overview.md) | [Delta Sync](delta-sync.md) | [Resync](../manage/resync.md)
 
-|  | Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1). The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs. This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Users of Couchbase Server 6.0 should ensure they have addressed the known issue ([MB-41255](https://issues.couchbase.com/browse/MB-41255)) by upgrading to one of the recommended Couchbase Server versions (6.0.5, 6.5.2, or 6.6.1).
+> 
+> The known issue can cause re-balance failures and/or failed replica writes of deleted or expired documents that use Xattrs.
+> 
+> This impacts Sync Gateway deployments running with shared bucket access enabled, which use Xattrs for metadata storage.
 
 ## [](#introduction)Introduction
 
@@ -35,8 +48,8 @@ Mobile applications require additional metadata in order to manage security and 
 
 Sync Gateway stores this information using Couchbase Server XATTRs (see Couchbase Server documentation on [Extended Attributes](../../../server/current/learn/data/extended-attributes-fundamentals.md)).
 
-|  | Bi-directional XDCR is only supported in Sync Gateway 4.0\. For earlier versions, upgrade to 4.0 to use bi-directional XDCR. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Bi-directional XDCR is only supported in Sync Gateway 4.0\. For earlier versions, upgrade to 4.0 to use bi-directional XDCR.
 
 ### [](#extended-attributes-xattrs)Extended Attributes (XATTRs)
 
@@ -57,8 +70,8 @@ Both Sync Gateway and Couchbase Server use a System extended attribute, with the
 * Shares lifetime with the document metadata - when a document is deleted, system xattrs are preserved with the tombstone.
 * Allocated 1MB of storage, independent of the 20MB available for the document
 
-|  | The sync metadata is maintained internally by Sync Gateway and its structure can change at any time. It should not be used to drive business logic of applications. The direct use of the SQL++ query is unsupported and must not be used in production environments. The \_raw endpoint (/db/\_raw/{docid}) on Sync Gateway’s Admin REST API returns both the document and its associated mobile metadata. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The sync metadata is maintained internally by Sync Gateway and its structure can change at any time. It should not be used to drive business logic of applications. The direct use of the SQL++ query is unsupported and must not be used in production environments. The `_raw` endpoint (/db/\_raw/{docid}) on Sync Gateway’s Admin REST API returns both the document and its associated mobile metadata.
 
 ### [](#documents)Documents
 
@@ -104,8 +117,8 @@ Example 1\. Querying XATTRS-based sync metadata
 SELECT meta().xattrs._sync FROM scope.collection WHERE meta().id = "mydocId"
 ```
 
-|  | sync gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. WARNING: Sync Gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. The sync metadata includes the \_sync extended attribute (XATTR) in use case documents and all \_sync: prefixed documents in Sync Gateway connected Buckets. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> sync gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. WARNING: Sync Gateway maintains the sync metadata internally, and its structure can change at any time. Applications must not use it for business logic. The direct use of the SQL++ query or modifying the internal sync metadata contents to drive the business logic is unsupported and must not be used in production environments. The sync metadata includes the `_sync` extended attribute (XATTR) in use case documents and all `_sync:` prefixed documents in Sync Gateway connected Buckets.
 
 ### [](#enable-shared-bucket-access)Enable Shared Bucket Access
 
@@ -141,8 +154,8 @@ Any non-Sync Gateway change is eligible for import. The document is first run th
 
 You can specify a filter function using the [import\_filter](../configuration/configuration-schema-database.md#import%5Ffilter) property, which will only import specific documents.
 
-|  | Use the [logging.console.log\_keys](../configuration/configuration-schema-bootstrap.md#logging-console-log%5Fkeys) log key to troubleshoot import processing issues in the logs. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Use the [logging.console.log\_keys](../configuration/configuration-schema-bootstrap.md#logging-console-log%5Fkeys) log key to troubleshoot import processing issues in the logs.
 
 ### [](#configuration)Configuration
 

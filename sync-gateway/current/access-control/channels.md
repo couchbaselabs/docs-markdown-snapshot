@@ -1,4 +1,14 @@
+---
+title: Channels
+description: About Sync Gateway <em>Channels</em> and their part in data routing
+  and access control for secure cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/channels.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/channels.html)
+
+# Channels
 
 > About Sync Gateway _Channels_ and their part in data routing and access control for secure cloud-to-edge enterprise data synchronization.  
 
@@ -105,8 +115,8 @@ Replications by users with _all channels_ wildcard access will pull **all** docu
 
 **Note:** Users granted access using the _all channels_ wildcard **do not** inherit [requireAccess()](sync-function/sync-function-api-require-access-cmd.md) rights to any specific channel.
 
-|  | Always use a filter in conjunction with the _all channels_ wildcard, to avoid sync unnecessarily pulling large numbers of documents to mobile devices. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Always use a filter in conjunction with the _all channels_ wildcard, to avoid sync unnecessarily pulling large numbers of documents to mobile devices.
 
 You assign documents to channels in the [Sync Function](sync-function/sync-function.md).
 

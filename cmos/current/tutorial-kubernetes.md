@@ -1,7 +1,15 @@
+---
+title: Configure CMOS for Kubernetes deployment
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/tutorial-kubernetes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/tutorial-kubernetes.html)
 
-|  | Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Configure CMOS for Kubernetes deployment
+
+> [!WARNING]
+> Tutorials are provided to demonstrate how a particular problem may be solved. Tutorials are accurate at the time of writing but rely heavily on third party software. The third party software is not directly supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#overview)Overview
 
@@ -324,13 +332,13 @@ EOF
 | **1** | We recommend specifying a stronger password. |
 | ----- | -------------------------------------------- |
 
-|  | If you already have the Couchbase operator deployed using helm or are considering a new deployment, the below command can be used with custom values to enable CMOS. If it is deployed using command line tools, you have to update the existing service using the [kubectl patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/) with custom values mentioned above. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you already have the Couchbase operator deployed using helm or are considering a new deployment, the below command can be used with custom values to enable CMOS. If it is deployed using command line tools, you have to update the existing service using the [kubectl patch](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/update-api-object-kubectl-patch/) with custom values mentioned above.
 
 By using the command below, you can upgrade the existing version of an already deployed Couchbase operator. If the operator is not yet installed, it will install it.
 
-|  | Upgrades to an installed version of operator should be handled with extreme caution. Invalid custom-values.yaml can cause issues in the operator installation. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Upgrades to an installed version of operator should be handled with extreme caution. Invalid `custom-values.yaml` can cause issues in the operator installation.
 
 In the command below, the default values can in turn be overridden by a user-supplied values file specified using the --set parameters.
 
@@ -394,8 +402,8 @@ You can access the Couchbase cluster from the CMOS dashboard using the “Add Cl
 
 By default the username is “admin” and password is “password”. We recommend specifying a stronger password in the `custom-values.yaml` file during CMOS installation.
 
-|  | Remove the check from “Add to Prometheus” option, because prometheus scraping will be configured using service discovery. |
-|  | ------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Remove the check from “Add to Prometheus” option, because prometheus scraping will be configured using service discovery.
 
 ![add cluster k8s](_images/add-cluster-k8s.png) 
 

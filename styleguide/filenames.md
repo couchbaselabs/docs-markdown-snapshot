@@ -1,4 +1,12 @@
+---
+title: Filenames
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/filenames.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/filenames.html)
+
+# Filenames
 
 When naming a new file, use dashes to separate words (`-`).
 
@@ -18,8 +26,8 @@ For example:
 * `creating-buckets.adoc`
 * `run-N1QL-queries.adoc`
 
-|  | Do not retroactively change filenames for published topics. This causes tooling issues and means that we have to create and maintain more redirects. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Do not retroactively change filenames for published topics. This causes tooling issues and means that we have to create and maintain more redirects.
 
 ## [](#image-files)Image Files
 

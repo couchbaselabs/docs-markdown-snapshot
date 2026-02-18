@@ -1,4 +1,12 @@
+---
+title: Editing/ Cloning Full Text Indexes
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-editing-cloning-full-text-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/fts/fts-editing-cloning-full-text-indexes.html)
+
+# Editing/ Cloning Full Text Indexes
 
 Full Text Indexes, once created can be cloned, edited and/or deleted. They are accessed from the **Search** tab: left-click on this to display the **Full Text Search** panel, which contains a tabular presentation of currently existing indexes, with a row for each index.
 

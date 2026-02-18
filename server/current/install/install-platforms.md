@@ -1,4 +1,15 @@
+---
+title: Supported Platforms
+description: Couchbase Server supports several popular operating systems and
+  virtual environments. The Couchbase Server Web Console supports most recent
+  major browsers.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-platforms.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/install-platforms.html)
+
+# Supported Platforms
 
 > Couchbase Server supports several popular operating systems and virtual environments. The Couchbase Server Web Console supports most recent major browsers. 
 
@@ -6,8 +17,8 @@
 
 Choose an operating system from the following list for your Couchbase Server deployment.
 
-|  | Couchbase clusters do not support mixed platforms. Nodes in a Couchbase cluster must all run on the same OS and the same version. When updating the OS, apply the updates to all nodes the cluster. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase clusters do not support mixed platforms. Nodes in a Couchbase cluster must all run on the same OS and the same version. When updating the OS, apply the updates to all nodes the cluster.
 
 For hardware requirements, see [System Resource Requirements](pre-install.md).
 

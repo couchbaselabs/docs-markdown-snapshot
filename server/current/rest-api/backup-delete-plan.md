@@ -1,4 +1,13 @@
+---
+title: Delete a Plan
+description: The Backup Service API allows plans to be deleted.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-delete-plan.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/backup-delete-plan.html)
+
+# Delete a Plan
 
 > The Backup Service API allows plans to be deleted. 
 

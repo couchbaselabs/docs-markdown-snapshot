@@ -1,4 +1,16 @@
+---
+title: Services
+description: Couchbase Server Services provide data access and maintenance. You
+  can deploy services flexibly across available hardware to support
+  Multi-Dimensional Scaling, which allows the tuning of the cluster for optimal
+  performance as workloads change.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/services-and-indexes/services/services.html)
+
+# Services
 
 > Couchbase Server Services provide data access and maintenance. You can deploy services flexibly across available hardware to support Multi-Dimensional Scaling, which allows the tuning of the cluster for optimal performance as workloads change. 
 

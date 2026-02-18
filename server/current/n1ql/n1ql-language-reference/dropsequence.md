@@ -1,4 +1,13 @@
+---
+title: DROP SEQUENCE
+description: The DROP SEQUENCE statement enables you to drop a sequence in a given scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropsequence.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/dropsequence.html)
+
+# DROP SEQUENCE
 
 > The DROP SEQUENCE statement enables you to drop a sequence in a given scope. 
 

@@ -1,4 +1,14 @@
+---
+title: Enterprise Analytics Ports
+description: Enterprise Analytics uses multiple TCP ports for communication
+  between components and with Couchbase clients.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/cb-enterprise-analytics-ports.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/cb-enterprise-analytics-ports.html)
+
+# Enterprise Analytics Ports
 
 > Enterprise Analytics uses multiple TCP ports for communication between components and with Couchbase clients. You must leave these ports open to use Enterprise Analytics. 
 
@@ -13,8 +23,8 @@ __Table 1\. All Enterprise Analytics Ports, Listed by Communication Path__
 | Node-to-node       | **Unencrypted**: 4369, 8091, 9110-9118, 9120, 11209-11210, 21100 **Encrypted**: 11206, 11207, 18091, 21150                                                  |
 | Client-to-node     | **Unencrypted**: 8091, 8095, 9123, 11210, 11280 **Encrypted**: 18091, 18095, 11207                                                                          |
 
-|  | Certain support and diagnostic requests might run against ports other than the administration port (8091). These requests execute locally on a node and do not require external access. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Certain support and diagnostic requests might run against ports other than the administration port (8091). These requests execute locally on a node and do not require external access.
 
 ## [](#detailed-port-description)Detailed Port Description
 
@@ -50,8 +60,8 @@ Most, but not all, port numbers used by Enterprise Analytics can be remapped fro
 
 Changing the port mappings requires a reset and reconfiguration of any Enterprise Analytics node.
 
-|  | You should change port mappings at the time of initial node and cluster setup. The required reset and reconfiguration also deletes all data on the node. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> You should change port mappings at the time of initial node and cluster setup. The required reset and reconfiguration also deletes all data on the node.
 
 ### [](#change-a-port-mapping)Change a Port Mapping
 

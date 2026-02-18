@@ -1,4 +1,14 @@
+---
+title: Deleting Buckets
+description: To delete buckets, use the <code>DELETE
+  /pools/default/buckets/[bucket-name]</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-bucket-delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-bucket-delete.html)
+
+# Deleting Buckets
 
 > To delete buckets, use the `DELETE /pools/default/buckets/[bucket-name]` HTTP method and URI. 
 
@@ -11,8 +21,8 @@ Bucket deletion is a synchronous operation. When a cluster has multiple servers,
 * If the bucket is not deleted on all servers and another request is made to delete the bucket, a `404` error code is returned.
 * If the bucket is not deleted on all servers and a request is made to create a new bucket with the same name, an error might be returned indicating that the bucket is still being deleted.
 
-|  | This operation is data destructive. The service makes no attempt to double check with the user. It simply moves forward. Clients applications performing the delete operation are advised to double check with the end user before sending the request. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> This operation is data destructive. The service makes no attempt to double check with the user. It simply moves forward. Clients applications performing the delete operation are advised to double check with the end user before sending the request.
 
 ## [](#http-method-and-uri)HTTP method and URI
 

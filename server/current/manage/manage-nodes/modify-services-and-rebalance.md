@@ -1,4 +1,14 @@
+---
+title: Modify Services and Rebalance
+description: Add or remove non-Data Services on existing nodes in a cluster and
+  rebalance the cluster without adding or removing nodes.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/modify-services-and-rebalance.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-nodes/modify-services-and-rebalance.html)
+
+# Modify Services and Rebalance
 
 > Add or remove non-Data Services on existing nodes in a cluster and rebalance the cluster without adding or removing nodes. 
 
@@ -15,11 +25,13 @@ Then a rebalance operation is automatically triggered to distribute the service 
 
 You do not have to add or remove a node to add or remove a non-Data Service on a node in a cluster.
 
-|  | You cannot add or remove the Data Service (kv) using this method. Adding or removing of the Data Service on an existing node is supported only through adding or removing nodes. For more information about adding or removing the Data Service on an existing node, see [Adding or Removing the Data Service on Existing Nodes](manage-data-service-and-rebalance.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You cannot add or remove the Data Service (kv) using this method. Adding or removing of the Data Service on an existing node is supported only through adding or removing nodes. For more information about adding or removing the Data Service on an existing node, see [Adding or Removing the Data Service on Existing Nodes](manage-data-service-and-rebalance.md).
 
-|  | When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster’s capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail. Removing all instances of a service deletes all data and metadata associated with that service, which means effectively removing the service from the cluster. For example, removing the last Index Service node deletes all indexes. For the Backup Service, physical backup repositories outside the cluster remain, but the Backup Service metadata about those repositories is deleted. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When you modify (add or remove) services on existing nodes in a cluster, rebalance is triggered immediately to apply the changes. Removing a service instance reduces the cluster’s capacity for that service. For certain services, such as the Index Service, removing the service may result in loss of replicas or entire indexes if no replicas exist, which can cause queries to fail.
+> 
+> Removing all instances of a service deletes all data and metadata associated with that service, which means effectively removing the service from the cluster. For example, removing the last Index Service node deletes all indexes. For the Backup Service, physical backup repositories outside the cluster remain, but the Backup Service metadata about those repositories is deleted.
 
 ## [](#prerequisites)Prerequisites
 
@@ -32,10 +44,9 @@ Before modifying non-data services on nodes, make sure you have the following:
 Verify that the memory quota for the new service meets your requirements using one of the following:
 
   * The REST API from [Getting Memory Information](../../rest-api/rest-get-memory-information.md).
-  * The UI from [Configure General Settings with the UI](../manage-settings/general-settings.md#configure-general-settings-with-the-ui).
-
-|  | The service memory quota setting is per server node and is reflected in the GET /pools/default REST API response. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+  * The UI from [Configure General Settings with the UI](../manage-settings/general-settings.md#configure-general-settings-with-the-ui).  
+  > [!NOTE]  
+  > The service memory quota setting is per server node and is reflected in the `GET /pools/default` REST API response.
 * Node Disk Storage Paths: The node disk storage paths are set for all services that require disk storage paths (Data, Indexes, Eventing, Analytics) when a node is initialized. These storage paths cannot be changed after the node becomes a part of a cluster. This means that if you are adding a service (Index, Search, Analytics, Eventing) to an existing node, that service is using the disk storage path that was specified when the node was initialized. Ensure that you know the node disk storage path set for the service that you are adding. For information on how to view the node disk storage paths, see [List Nodes with the REST API](list-cluster-nodes.md#list-nodes-with-the-rest-api). Use the `GET /pools/default` REST API to find the otpNode value for the node and then use the `GET /nodes/<otpNode>` REST API to view the disk storage paths.
 
 ## [](#modify-mds-services-from-ui)Modify Services from the UI
@@ -55,10 +66,9 @@ Services that can be modified are:
   * **eventing** (Eventing Service)
   * **backup** (Backup Service).  
 kv (Data Service) cannot be modified.
-4. Select the services you want to add for each node and deselect the services you want to remove from each node.
-
-|  | Adding or removing any service triggers a rebalance operation. |
-|  | -------------------------------------------------------------- |
+4. Select the services you want to add for each node and deselect the services you want to remove from each node.  
+> [!NOTE]  
+> Adding or removing any service triggers a rebalance operation.
 5. Click **Rebalance and Change Services**.  
 If you’re only removing services, adding new instances of services that already exist on the cluster, or adding the backup service, then rebalancing is triggered immediately.
 6. If you are adding a service that is not already on the cluster, and if that service has a memory quota setting option, then the **New Service Settings** dialog appears. This dialog lists the services you selected to add, the existing active services, and their current memory quotas.

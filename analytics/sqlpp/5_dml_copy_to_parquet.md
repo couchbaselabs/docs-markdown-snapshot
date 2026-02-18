@@ -1,4 +1,14 @@
+---
+title: Parquet
+description: This topic explains how to use the COPY TO statement to export data
+  from a database to Amazon S3 or Google Cloud Storage (GCS) in Parquet format.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_parquet.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5_dml_copy_to_parquet.html)
+
+# Parquet
 
 > This topic explains how to use the COPY TO statement to export data from a database to Amazon S3 or Google Cloud Storage (GCS) in Parquet format. 
 
@@ -10,8 +20,8 @@ The optimized format is for read-heavy workloads making it ideal for big data pr
 
 For more information, see [Query Data in Amazon S3](../sources/external-s3.md) and [Query Data in Google Cloud Storage (GCS)](../sources/external-gcs.md).
 
-|  | To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To be able to read or write data to or from external cloud storage, exclusive permissions are required. For more information see [Cloud Read/Write Permissions](../reference/cloud%5Fread%5Fwrite%5Fpermissions.md).
 
 ## [](#supported-methods)Supported Methods
 
@@ -189,8 +199,8 @@ OutputClause
 
 The **`OutputClause`** defines the destination path for the output objects. You supply one or more `OutputPathExpr` expressions to identify the path prefixes. You can include aliases. If you supply more than one expression, Capella Analytics concatenates the values of all `OutputPathExpr` and supplies `/` characters as the path separators. As a result, you do not need to include slash characters between `OutputPathExpr` expressions.
 
-|  | The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The target directory that you specify in the destination path must be empty. The operation fails if the target directory is not empty.
 
 OverClause
 

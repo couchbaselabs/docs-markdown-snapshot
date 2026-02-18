@@ -1,10 +1,21 @@
+---
+title: Logging
+description: Introducing Couchbase Sync Gateway's logging functionality
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/logging.html)
+
+# Logging
 
 > Introducing Couchbase Sync Gateway’s logging functionality  
 > Sync Gateway’s \_Continuous Logging\_ feature delivers flexible log generation and retention, without compromising the availability of diagnostic information necessary to provide effective support and maintenance.
 
-|  | Constraints Do not use the logs directory as a storage location for files that should not be there. Permission issues with those files can prevent Sync Gateway from starting. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Constraints
+> 
+> Do not use the `logs` directory as a storage location for files that should not be there. Permission issues with those files can prevent Sync Gateway from starting.
 
 ## [](#overview)Overview
 
@@ -73,8 +84,8 @@ You enable this feature by setting the [logging.redaction\_level](configuration-
 
 **In this section**: [Log Levels](#lbl-log-levels) | [Admin REST API](#lbl-log-api) | [Log Keys](#lbl-log-keys) | [Set Log Color](#lbl-log-color) | [Redirect Console Log](#lbl-log-redirect)
 
-|  | By default only HTTP logging is enabled |
-|  | --------------------------------------- |
+> [!TIP]
+> By default only HTTP logging is enabled
 
 Console logs are your go-to resource for diagnostic information. You can easily fine-tune their diagnostic content to meet the needs of a particular debugging scenario, perhaps by increasing the verbosity and filtering out unnecessary log\_keys to better focus on the problem area.
 
@@ -117,8 +128,8 @@ The console log will show the following after this command:
 
 ### [](#lbl-log-levels)Log Levels
 
-|  | When debugging, setting the _console log’s_ log-level to debug or trace can provide valuable additional information |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When debugging, setting the _console log’s_ log-level to `debug` or `trace` can provide valuable additional information
 
 Console logs have six levels of verbosity — see: [Table 1](#tbl-loglevels). The default _log level_ is **`none`**
 
@@ -140,8 +151,8 @@ __Table 1\. Console Logging — Available Log Levels__
 
 ### [](#lbl-log-keys)Log Keys
 
-|  | Select log keys relevant to the area you are debugging, providing them as a comma-delimited list, such as: "log\_keys": \["HTTP", "CRUD", "Import"\] in the config or see [Example 2](#eg-setloggingwithapi) for how to provide them using the Admin REST API. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Select log keys relevant to the area you are debugging, providing them as a comma-delimited list, such as: `"log_keys": ["HTTP", "CRUD", "Import"]` in the config or see [Example 2](#eg-setloggingwithapi) for how to provide them using the Admin REST API.
 
 Log keys provide fine-grained control over the information types that Sync Gateway outputs to the console log. By default, only **`HTTP`** related information is enabled, but a range of other keys are available to meet specific diagnostic needs — see: [Table 2](#tbl-logkeylist).
 
@@ -179,8 +190,8 @@ __Table 2\. List of Available Log Keys__
 
 To use color for log output based on log level, set [logging.console.color\_enabled](configuration-schema-bootstrap.md#logging-console-color%5Fenabled) to `true`
 
-|  | This setting is always disabled on Windows for compatibility reasons. |
-|  | --------------------------------------------------------------------- |
+> [!NOTE]
+> This setting is always disabled on Windows for compatibility reasons.
 
 ### [](#lbl-log-redirect)Redirect Console Log
 
@@ -208,8 +219,8 @@ With continuous logging the logs for each level are written to [separate log fil
 
 The log files output from continuous logging are intended **solely** for the use of _Couchbase Support_.
 
-|  | If you require special log handling, for example for centralized logging, then use the [Redirect Console Log](#lbl-log-redirect) feature to create a log file for this purpose from the console output stream. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you require special log handling, for example for centralized logging, then use the [Redirect Console Log](#lbl-log-redirect) feature to create a log file for this purpose from the console output stream.
 
 Sync Gateway produces four separate log files, split by log level. Each log file has its own guaranteed retention period - as shown in [Table 3](#tbl-contlogoutputs)
 
@@ -223,8 +234,8 @@ __Table 3\. Continuos Logging - Log File Outputs__
 | INFO     | Important diagnostics for support and customers      | sg\_info.log  | true            | 6 Days           | 3 Days           |
 | DEBUG    | Lower level development analysis                     | sg\_debug.log | false           | 2 Days           | 1 Day            |
 
-|  | Each log level and its parameters are defined using the [logging.console.log\_level](configuration-schema-bootstrap.md#logging-console-log%5Flevel) property. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Each log level and its parameters are defined using the [logging.console.log\_level](configuration-schema-bootstrap.md#logging-console-log%5Flevel) property.
 
 ### [](#lbl-logrotate)Log File Rotation
 

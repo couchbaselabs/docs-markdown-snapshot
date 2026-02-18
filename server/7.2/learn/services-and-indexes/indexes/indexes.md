@@ -1,4 +1,14 @@
+---
+title: Indexes
+description: Couchbase Server indexes enhance the performance of query and
+  search operations.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/services-and-indexes/indexes/indexes.html)
+
+# Indexes
 
 > Couchbase Server indexes enhance the performance of query and search operations. 
 

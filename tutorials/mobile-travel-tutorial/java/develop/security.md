@@ -1,11 +1,19 @@
+---
+title: Security
+editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/mobile-travel-tutorial/java/develop/security.html)
+
+# Security
 
 ## [](#user-creation)User Creation
 
 User is created via the Travel sample web app. When a user is created, a corresponding user profile document is created on Couchbase Server associated with the user. In addition, the web app automatically registers the user with the Sync Gateway via the Sync Gateway [user admin REST endpoint](../../../../sync-gateway/current/rest-api/rest-api-admin.md#/user/post<em>db</em><em>user</em>)
 
-|  | The Sync Gateway user corresponds to users who are authenticated to replicate with the Sync Gateway and are different from the RBAC users created on Couchbase Server. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Sync Gateway user corresponds to users who are authenticated to replicate with the Sync Gateway and are different from the RBAC users created on Couchbase Server.
 
 Try it out (Web App)
 

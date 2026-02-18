@@ -1,4 +1,12 @@
+---
+title: Couchbase Pod Templating
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-pod-templating.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-pod-templating.html)
+
+# Couchbase Pod Templating
 
 > The Kubernetes Operator allows users to define a pod template to use when creating pods for a Couchbase Server class. Modifying pod metadata such as labels and annotations will update the pod in-place. Any other modification will result in a cluster upgrade in order to fulfill the request. The Operator reserves the right to modify or replace any field. 
 

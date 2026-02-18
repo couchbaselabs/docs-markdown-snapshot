@@ -1,4 +1,13 @@
+---
+title: Data Types
+description: This topic describes the data types that Capella Analytics operates on.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/10_data_type.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/10_data_type.html)
+
+# Data Types
 
 > This topic describes the data types that Capella Analytics operates on. 
 
@@ -147,8 +156,8 @@ Results in:
 
 Since a field with value `missing` means the field is also absent, the result is an empty object.
 
-|  | The query results convert a missing value to null. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> The query results convert a `missing` value to `null`.
 
 ## [](#CompositeTypes)Composite Types
 
@@ -174,12 +183,12 @@ Example
 
 ["alice", 123, "bob", null]
 
-|  | An array can appear in the incoming JSON, and a query can construct an array. Each SELECT statement with an ORDER BY clause returns an array. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An array can appear in the incoming JSON, and a query can construct an array. Each SELECT statement with an ORDER BY clause returns an array.
 
 ### [](#CompositeTypesMultiset)Multiset
 
 A `multiset` is an unordered collection of items. A multiset allows multiple instances of its elements.
 
-|  | A multiset cannot appear in the incoming JSON. The query results convert a multiset into a JSON array with an undefined order of elements. The order of the items in the result might change from one query execution to another. Each SELECT statement without an ORDER BY clause returns a multiset. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A multiset cannot appear in the incoming JSON. The query results convert a multiset into a JSON array with an undefined order of elements. The order of the items in the result might change from one query execution to another. Each SELECT statement without an ORDER BY clause returns a multiset.

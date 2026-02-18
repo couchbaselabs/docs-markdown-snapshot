@@ -1,4 +1,14 @@
+---
+title: Query without Indexes
+description: Sequential scans enable you to query a keyspace, even if the
+  keyspace has no indexes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/query-without-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/query-without-index.html)
+
+# Query without Indexes
 
 > Sequential scans enable you to query a keyspace, even if the keyspace has no indexes. 
 
@@ -14,8 +24,8 @@ Sequential scans are intended for easy access to data, and are not intended as a
 
 Sequential scans are best suited to small collections where key order is unimportant, or where the overhead of maintaining an index cannot be justified. For larger collections and greater performance, define the appropriate indexes to speed up your queries. For ordered document key operations, a primary index provides the same functionality, and will outperform a sequential scan.
 
-|  | Sequential scans are unavailable on ephemeral buckets. |
-|  | ------------------------------------------------------ |
+> [!NOTE]
+> Sequential scans are unavailable on ephemeral buckets.
 
 ## [](#use-sequential-scans)Use Sequential Scans
 

@@ -1,4 +1,12 @@
+---
+title: Introduction to UI and UX Style
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/index.html)
+
+# Introduction to UI and UX Style
 
 This guide outlines how to write in Couchbase style for all UI copy inside Couchbase products.
 
@@ -6,5 +14,5 @@ This guide outlines how to write in Couchbase style for all UI copy inside Couch
 
 Use this guide as a reference for Couchbase style when you need to make style decisions for UI copy.
 
-|  | If you do not agree with an element of the Couchbase Style Guide, raise a pull request against this repository or bring it up to the Couchbase Documentation or UX Design teams for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you do not agree with an element of the Couchbase Style Guide, raise a pull request against this repository or bring it up to the Couchbase Documentation or UX Design teams for discussion. This guide contains guidelines that can change to suit our needs, not unbreakable laws.

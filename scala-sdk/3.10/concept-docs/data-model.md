@@ -1,4 +1,14 @@
+---
+title: Data Model
+description: Couchbase's use of JSON as a storage format allows powerful search
+  and query over documents.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/data-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/concept-docs/data-model.html)
+
+# Data Model
 
 > Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
@@ -20,8 +30,8 @@ Using the data structures API may help your application in two ways:
 * **Simplicity**: Data structures provide high level operations by which you can deal with documents as if they were container data structures. Adding an item to a dictionary is expressed as `MapAdd`, rather than retrieving the entire document, modifying it locally, and then saving it back to the server.
 * **Efficiency**: Data structure operations don’t transfer the entire document across the network. Only the relevant data is exchanged between client and server, allowing for less network overhead and shorter latency.
 
-|  | Besides the IBucket level data structure methods, there is a new namespace called Couchbase.Collections which contains implementations of some of the core interfaces in System.Collection.Generics such as ISet<TValue>, IList<TValue>, IDictionary<Tkey, TValue> and a CouchbaseQueue class. See section [The Couchbase.Collections Namespace](#couchbase-collections) below for more details. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Besides the `IBucket` level data structure methods, there is a new namespace called `Couchbase.Collections` which contains implementations of some of the core interfaces in `System.Collection.Generics` such as `ISet<TValue>`, `IList<TValue>`, `IDictionary<Tkey, TValue>` and a `CouchbaseQueue` class. See section [The Couchbase.Collections Namespace](#couchbase-collections) below for more details.
 
 ## [](#data-and-good-schema-design)Data and Good Schema Design
 

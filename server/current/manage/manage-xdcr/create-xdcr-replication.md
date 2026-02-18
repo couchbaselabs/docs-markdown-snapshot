@@ -1,4 +1,14 @@
+---
+title: Create a Replication
+description: An XDCR replication allows data to be replicated continuously from
+  a specified bucket on the source cluster to a specified bucket on the target.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/create-xdcr-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-xdcr/create-xdcr-replication.html)
+
+# Create a Replication
 
 > An XDCR replication allows data to be replicated continuously from a specified bucket on the source cluster to a specified bucket on the target. 
 
@@ -33,10 +43,9 @@ This displays the **XDCR Replications** screen, which lists the following:
 
   * **Remote Clusters**: Lists the remote clusters that have been registered as references on the current cluster.
   * **Outgoing Replications**: Lists the details of replications created on the current cluster.
-  * **Incoming Replications**: Lists the details of replications created on the remote clusters, which are incoming to the current cluster.
-
-|  | If the remote cluster is the same as the current cluster, the replications are not listed in the Incoming Replications section. For information about incoming replications, see [Incoming Replications](incoming-xdcr-replications.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |  
+  * **Incoming Replications**: Lists the details of replications created on the remote clusters, which are incoming to the current cluster.  
+  > [!NOTE]  
+  > If the remote cluster is the same as the current cluster, the replications are not listed in the Incoming Replications section. For information about incoming replications, see [Incoming Replications](incoming-xdcr-replications.md).  
   ![xdcr outgoing replications initial](../_images/manage-xdcr/xdcr-outgoing-replications-initial.png)
 2. To start creating a replication, left-click on the **ADD REPLICATION** button:  
 ![left click on add replication button](../_images/manage-xdcr/left-click-on-add-replication-button.png)  
@@ -88,8 +97,8 @@ The values displayed in the fields are defaults, which can be modified interacti
 
 The **XDCR Add Replication** page displays additional settings, which are specific to logging conflicts during an XDCR replication.
 
-|  | To configure and enable XDCR Conflict Logging, you must enable the bucket property enableCrossClusterVersioning on all buckets of the XDCR topology. This bucket property cannot be disabled once it is enabled. For more information about the bucket property enableCrossClusterVersioning, see [XDCR enableCrossClusterVersioning](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> To configure and enable XDCR Conflict Logging, you must enable the bucket property `enableCrossClusterVersioning` on all buckets of the XDCR topology. This bucket property cannot be disabled once it is enabled. For more information about the bucket property `enableCrossClusterVersioning`, see [XDCR enableCrossClusterVersioning](../../learn/clusters-and-availability/xdcr-enable-crossclusterversioning.md).
 
 The additional settings are as follows:
 
@@ -105,8 +114,8 @@ Default Conflict Log Collection
 
 Use this setting to specify the default bucket, scope, and collection for conflict logging. If a custom collection is not specified, the default collection is used.
 
-|  | By default, conflicts are logged in the bucket, scope, and collection of the **Default Conflict Log Collection**. Use **Customise Conflict Logging at scope level** and **Customise Conflict Logging at collection level** to override the default settings. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> By default, conflicts are logged in the bucket, scope, and collection of the **Default Conflict Log Collection**. Use **Customise Conflict Logging at scope level** and **Customise Conflict Logging at collection level** to override the default settings.
 
 Customise Conflict Logging at scope level
 

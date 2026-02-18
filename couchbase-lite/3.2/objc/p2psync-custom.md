@@ -1,12 +1,23 @@
+---
+title: Integrate a Custom Built Listener
+description: Couchbase Lite database peer-to-peer sync- integrate a custom built listener
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/p2psync-custom.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/objc/p2psync-custom.html)
+
+# Integrate a Custom Built Listener
 
 > Description — _Couchbase Lite database peer-to-peer sync- integrate a custom built listener_  
 > Related Content — [Peer-to-Peer](p2psync-websocket.md)
 
 ## [](#overview)Overview
 
-|  | Enterprise Edition onlyPeer-to-Peer Synchronization is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. You must purchase the Enterprise License, which includes official [Couchbase Support](https://www.couchbase.com/support-policy). To use it in production (also see the [FAQ](https://www.couchbase.com/licensing-and-support-faq)). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> Enterprise Edition only
+> 
+> Peer-to-Peer Synchronization is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. You must purchase the Enterprise License, which includes official [Couchbase Support](https://www.couchbase.com/support-policy). To use it in production (also see the [FAQ](https://www.couchbase.com/licensing-and-support-faq)).
 
 This content covers how to integrate a custom _MessageEndpointListener_ solution with Couchbase Lite to handle the data transfer, which is the sending and receiving of data. Where applicable, we discuss how to integrate Couchbase Lite into the workflow.
 

@@ -1,9 +1,20 @@
+---
+title: INFER
+description: The INFER statement enables you to infer the metadata of documents
+  in a keyspace, for example the structure of documents, data types of various
+  attributes, sample values, and so on.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/infer.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/infer.html)
+
+# INFER
 
 The INFER statement enables you to infer the metadata of documents in a keyspace, for example the structure of documents, data types of various attributes, sample values, and so on. Since a keyspace can contain documents with varying structures, the INFER statement is statistical in nature rather than deterministic. You can specify the sample size that must be used to analyze and identify the structure of documents in a keyspace.
 
-|  | The describe statement introduced in the Couchbase Server 4.1 release has been renamed to INFER. |
-|  | ------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The `describe` statement introduced in the Couchbase Server 4.1 release has been renamed to INFER.
 
 The Query tab in the Couchbase Capella UI (available under the **Data Tools** tab) uses the INFER statement to display the structure of documents in the [Data Insights](../../clusters/query-service/query-workbench.md#bucket-analyzer) area when you expand the keyspace name.
 
@@ -177,8 +188,8 @@ By default, the INFER statement includes this attribute in the output. However, 
 * If you do not use `flags`, INFER automatically includes the `~meta` attribute.
 * If you add any value for `flags`, INFER will not return `~meta` unless you explicitly specify the `include_key` flag. For more information about the available flags, see [flags](#infer-flags).
 
-|  | The \~meta attribute is only available in Couchbase Server 8.0 and later. |
-|  | ------------------------------------------------------------------------- |
+> [!NOTE]
+> The `~meta` attribute is only available in Couchbase Server 8.0 and later.
 
 ## [](#examples)Examples
 

@@ -1,4 +1,13 @@
+---
+title: warmup
+description: Shows statistics related to the node warmup.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-warmup.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbstats/cbstats-warmup.html)
+
+# warmup
 
 > Shows statistics related to the node warmup. 
 

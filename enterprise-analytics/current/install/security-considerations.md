@@ -1,4 +1,14 @@
+---
+title: Security Considerations
+description: Ensure that you follow security best practices throughout the
+  deployment lifecycle.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/security-considerations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/security-considerations.html)
+
+# Security Considerations
 
 > Ensure that you follow security best practices throughout the deployment lifecycle. 
 

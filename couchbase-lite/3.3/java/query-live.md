@@ -1,4 +1,14 @@
+---
+title: Live Query
+description: Working with Couchbase Lite's data model  -- Querying database data
+  using live queries
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/query-live.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/java/query-live.html)
+
+# Live Query
 
 > Description — _Working with Couchbase Lite’s data model — Querying database data using live queries_  
 > Related Content — [Predictive Queries](querybuilder.md#lbl-predquery) | [Indexing](indexing.md) | [QueryBuilder](querybuilder.md)

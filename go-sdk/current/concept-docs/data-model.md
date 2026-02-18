@@ -1,4 +1,14 @@
+---
+title: Data Model
+description: Couchbase's use of JSON as a storage format allows powerful search
+  and query over documents.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/data-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/concept-docs/data-model.html)
+
+# Data Model
 
 > Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 

@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>ClusterOptions</code> struct enables you to configure
+  Rust SDK options for bootstrapping, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/ref/client-settings.html)
+
+# Client Settings
 
 > The `ClusterOptions` struct enables you to configure Rust SDK options for bootstrapping, reliability, and performance. 
 
@@ -55,8 +65,8 @@ Default: `0.83`
 
 A floating point value between 0 and 1\. Specifies how "compressible" a document must be in order for the compressed form to be sent to the server.
 
-|  | Increasing the value allows compression to be used with less-compressible documents. |
-|  | ------------------------------------------------------------------------------------ |
+> [!TIP]
+> Increasing the value allows compression to be used with less-compressible documents.
 
 If the compressed document size divided by the uncompressed document size is greater than this value, then the uncompressed version of the document will be sent to Couchbase Server instead of the compressed version.
 
@@ -66,8 +76,8 @@ For example, with a `min_ratio` of `0.83`, compression will only be used if the 
 
 By default, the client will connect to (self-managed) Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition of self-managed Couchbase Server, it’s possible to secure the connection using TLS.
 
-|  | Unless you use the couchbases:// connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unless you use the `couchbases://` connection string scheme, none of the other security settings in this section have any effect. If you are using Capella, secure connection is the only option.
 
 Name: **TLS Certificates**
 

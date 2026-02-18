@@ -1,4 +1,14 @@
+---
+title: Provisioning Cluster Resources
+description: Provisioning cluster resources is managed at the collection or
+  bucket level, depending upon the service affected.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/provisioning-cluster-resources.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/howtos/provisioning-cluster-resources.html)
+
+# Provisioning Cluster Resources
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-php-client/namespaces/couchbase.html). 
 
@@ -16,11 +26,18 @@ Management operations in the SDK may be performed through several interfaces dep
 * CollectionManager — [Bucket::collections()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5Fcollections)
 * ViewIndexManager — [Bucket::viewIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5FviewIndexes)
 
-|  | When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using Cluster::bucket(name) before you can use cluster level managers. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `Cluster::bucket(name)` before you can use cluster level managers.
 
-|  | Since SDK 4.0 uses the Couchbase++ library rather than libcouchbase, some management APIs have not been fully implemented, in particular: AnalyticsIndexManager SearchIndexManager ViewIndexManager CollectionManager Any attempt to use them will raise an UnsupportedOperationException error. The APIs will be available in a future 4.x release. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Since SDK 4.0 uses the `Couchbase++` library rather than `libcouchbase`, some management APIs have not been fully implemented, in particular:
+> 
+> * `AnalyticsIndexManager`
+> * `SearchIndexManager`
+> * `ViewIndexManager`
+> * `CollectionManager`
+> 
+> Any attempt to use them will raise an `UnsupportedOperationException` error. The APIs will be available in a future 4.x release.
 
 ## [](#bucket-management)Bucket Management
 

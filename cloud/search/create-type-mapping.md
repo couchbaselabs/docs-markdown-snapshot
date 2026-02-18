@@ -1,4 +1,14 @@
+---
+title: Create a New Mapping or Type Mapping
+description: Create a type mapping with the Couchbase Capella UI to control what
+  documents are included or excluded from a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-type-mapping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/create-type-mapping.html)
+
+# Create a New Mapping or Type Mapping
 
 > Create a type mapping with the Couchbase Capella UI to control what documents are included or excluded from a Search index. 
 
@@ -54,8 +64,8 @@ To add a document filter to a mapping, see [Set a Document Filter](set-type-iden
 
 ### [](#xattrs)Add an XATTRs Mapping
 
-|  | XATTRs mappings can only be created with **Advanced Mode**. |
-|  | ----------------------------------------------------------- |
+> [!NOTE]
+> XATTRs mappings can only be created with **Advanced Mode**.
 
 Add an [XATTRs mapping](about-mappings.md#xattrs) to index document metadata from a specific collection.
 
@@ -90,8 +100,8 @@ To add only a single field from your documents as a new mapping:
 
 ### [](#future)Add a Mapping or Type Mapping for a Future Object or Field
 
-|  | Mappings for objects that do not yet exist in your documents can only be created in **Advanced Mode**. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Mappings for objects that do not yet exist in your documents can only be created in **Advanced Mode**.
 
 You can choose to add a mapping or type mapping for a JSON object or field that does not yet exist in your document schema. If you know the name of the object or field, the Search Service can search these fields after they have been added to the documents in your Search index.
 

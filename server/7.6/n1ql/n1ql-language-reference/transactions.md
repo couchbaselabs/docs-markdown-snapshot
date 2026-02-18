@@ -1,4 +1,14 @@
+---
+title: SQL++ Support for Couchbase Transactions
+description: SQL++ offers full support for Couchbase ACID transactions based on
+  optimistic concurrency.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/transactions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/transactions.html)
+
+# SQL++ Support for Couchbase Transactions
 
 > SQL++ offers full support for Couchbase ACID transactions based on optimistic concurrency. 
 
@@ -77,8 +87,10 @@ Similarly, to run a query statement within a transaction, users must have the re
 
 Refer to [Roles](../../learn/security/roles.md) for details.
 
-|  | Query ModeWhen a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Query Mode
+> 
+> When a transaction executes a query statement, the transaction enters query mode, which means that the query is executed with the user’s query permissions. Any key-value operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
 
 ## [](#worked-example)Worked Example
 

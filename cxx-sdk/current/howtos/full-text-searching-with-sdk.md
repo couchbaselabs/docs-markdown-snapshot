@@ -1,8 +1,18 @@
+---
+title: Search
+description: You can use the Full Text Search service (FTS) to create queryable
+  full-text indexes in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/current/howtos/full-text-searching-with-sdk.html)
+
+# Search
 
 > You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The {C++} SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#examples)Examples
 

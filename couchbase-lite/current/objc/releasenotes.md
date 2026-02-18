@@ -1,4 +1,13 @@
+---
+title: Couchbase Lite Release Notes
+description: Couchbase Lite on Objective-C
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/releasenotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/objc/releasenotes.html)
+
+# Couchbase Lite Release Notes
 
 ## [](#maint-4-0-1)4.0.1 — November 2025
 
@@ -75,5 +84,5 @@ Version 4.0.0 for Objective-C delivers the following features and enhancements:
 
 None for this release
 
-|  | For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md) |
-|  | ------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md)

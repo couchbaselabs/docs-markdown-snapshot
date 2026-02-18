@@ -1,4 +1,14 @@
+---
+title: Two-Node and Single-Node Clusters
+description: The number of nodes in a Couchbase-Server deployment may impact
+  both maintenance-requirements and feature-availability.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/deployment-considerations-lt-3nodes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/deployment-considerations-lt-3nodes.html)
+
+# Two-Node and Single-Node Clusters
 
 > The number of nodes in a Couchbase-Server deployment may impact both maintenance-requirements and feature-availability. 
 

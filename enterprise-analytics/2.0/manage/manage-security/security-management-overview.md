@@ -1,4 +1,13 @@
+---
+title: Security Management Overview
+description: Enterprise Analytics can be rendered highly secure.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/security-management-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/manage/manage-security/security-management-overview.html)
+
+# Security Management Overview
 
 > Enterprise Analytics can be rendered highly secure. 
 

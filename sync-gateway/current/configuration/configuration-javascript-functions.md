@@ -1,4 +1,13 @@
+---
+title: Using External Javascript Functions
+description: How to use Javascript functions to customize data sync between cloud-and-edge.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-javascript-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/configuration/configuration-javascript-functions.html)
+
+# Using External Javascript Functions
 
 > How to use Javascript functions to customize data sync between cloud-and-edge.  
 
@@ -32,19 +41,17 @@ Inline or external Javascript functions can be provided for any or all of the fo
 
 ## [](#configuration)Configuration
 
-|  | Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
 
 Prior to this, configuration was done within the database configuration file — see: [Example 1](#ex-jsfunc-opts)
 
 * Inline Javascript functions provided within the database configuration must be enclosed by a backtick pair (\`\`).
-* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.
-
-|  | You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
-
-|  | For testing purposes you may use the unsupported configuration option [unsupported.remote\_config\_tls\_skip\_verify](configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     ). Setting this true will side-step essential security checks. Do not use in Production deployments. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.  
+> [!NOTE]  
+> You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints.  
+> [!TIP]  
+> For testing purposes you may use the unsupported configuration option `[unsupported.remote_config_tls_skip_verify](configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     )`. Setting this `true` will side-step essential security checks. Do not use in Production deployments.
 
 Example 1\. Configuring a Javascript Sync Function
 

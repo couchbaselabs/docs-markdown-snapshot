@@ -1,7 +1,15 @@
+---
+title: SDK Compatibility With Capella
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/sdk-compatibility.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/reference/sdk-compatibility.html)
 
-|  | If you are connecting from _IPv6-only_ environment, you cannot connect to Couchbase Capella as you are unable to use the IPv4 records published for Capella clusters. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# SDK Compatibility With Capella
+
+> [!IMPORTANT]
+> If you are connecting from _IPv6-only_ environment, you cannot connect to Couchbase Capella as you are unable to use the IPv4 records published for Capella clusters.
 
 Couchbase Capella works with the latest versions of _all_ supported [Couchbase SDKs](#home:ROOT:sdk.adoc).
 

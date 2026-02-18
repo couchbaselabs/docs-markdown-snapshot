@@ -1,4 +1,13 @@
+---
+title: Monitor Changes with Edge Server
+description: You can monitor changes in a keyspace using the keyspaces's changes feed.
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/changes-feed.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/rest-based-access/changes-feed.html)
+
+# Monitor Changes with Edge Server
 
 > You can monitor changes in a keyspace using the keyspaces’s changes feed. 
 

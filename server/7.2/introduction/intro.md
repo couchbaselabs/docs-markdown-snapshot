@@ -1,4 +1,12 @@
+---
+title: Couchbase Server
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/introduction/pages/intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/introduction/intro.html)
+
+# Couchbase Server
 
 # Couchbase Server
 

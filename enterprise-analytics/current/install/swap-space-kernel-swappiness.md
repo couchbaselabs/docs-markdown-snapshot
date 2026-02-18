@@ -1,4 +1,14 @@
+---
+title: Swap Space and Kernel Swappiness
+description: pass:On Linux, the kernel's swappiness level indicates how likely
+  the system is to swap pages out of physical memory based on RAM usage.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/swap-space-kernel-swappiness.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/install/swap-space-kernel-swappiness.html)
+
+# Swap Space and Kernel Swappiness
 
 > pass:On Linux, the kernel’s swappiness level indicates how likely the system is to swap pages out of physical memory based on RAM usage. You should set Swappiness to 1 or 0 on most Linux systems to achieve optimal Enterprise Analytics performance. 
 
@@ -34,8 +44,8 @@ sudo sh -c 'echo "vm.force_cgroup_v2_swappiness = 1" >> /etc/sysctl.conf'
 ```
 3. Restart the system.
 
-|  | For more information, see <https://access.redhat.com/solutions/6785021> |
-|  | ----------------------------------------------------------------------- |
+> [!NOTE]
+> For more information, see <https://access.redhat.com/solutions/6785021>
 
 ### [](#non-RHEL8-section)Other Linux (non-RHEL8) Users
 

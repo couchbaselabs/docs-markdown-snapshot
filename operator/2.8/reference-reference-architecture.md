@@ -1,4 +1,12 @@
+---
+title: <code>CouchbaseCluster</code> Reference Architecture
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/reference-reference-architecture.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/reference-reference-architecture.html)
+
+# <code>CouchbaseCluster</code> Reference Architecture
 
 > How to configure a reference production deployment of Couchbase Server. 
 
@@ -6,8 +14,8 @@ Couchbase clusters can be configured in many different ways. We advertise featur
 
 This page collects together and aggregates those best practices into a single architecture. While it may not suit your environment completely, it may form the basis of your clusters.
 
-|  | The majority of this page can be copied and used verbatim without modification. Non-dynamic elements of the configuration will be highlighted using admonitions such as this one. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The majority of this page can be copied and used verbatim without modification. Non-dynamic elements of the configuration will be highlighted using admonitions such as this one.
 
 ## [](#prerequisites)Prerequisites
 
@@ -110,8 +118,8 @@ Security is extremely important when working in a Cloud based environment such a
 
 TLS is managed by 3rd party tooling, rather than manually. By doing this we simplify the process by removing manual steps, and also secure it by using policy based certificate rotation.
 
-|  | The TLS subject alternative names described in this section contain the namespace of the cluster. In this example, that namespace is default. If you wish to deploy in a different namespace, then this will need to be updated to reflect that change. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The TLS subject alternative names described in this section contain the namespace of the cluster. In this example, that namespace is `default`. If you wish to deploy in a different namespace, then this will need to be updated to reflect that change.
 
 ```yaml
 # Admin password is required by the Operator.  Like user secrets, this should be
@@ -189,11 +197,11 @@ Cluster configuration is quite complicated, so will not be discussed at length h
 
 In general, the cluster is designed to be stable, fault tolerant and secure.
 
-|  | Cluster scheduling requires on Kubernetes node being manually labeled for exclusive use by the Couchbase cluster. An example of how to perform this is documented in the cluster definition’s comments. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Cluster scheduling requires on Kubernetes node being manually labeled for exclusive use by the Couchbase cluster. An example of how to perform this is documented in the cluster definition’s comments.
 
-|  | There is no one-size-fits-all cluster topology. This documents an arbitrary selection of services and server class sizes. Consult Couchbase solutions engineering to determine the correct cluster sizing for your workload. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> There is no one-size-fits-all cluster topology. This documents an arbitrary selection of services and server class sizes. Consult Couchbase solutions engineering to determine the correct cluster sizing for your workload.
 
 ```yaml
 apiVersion: couchbase.com/v2

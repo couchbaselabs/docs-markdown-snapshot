@@ -1,4 +1,14 @@
+---
+title: Quick Index Supported Languages
+description: When you create an index and add a text field with the Quick Index
+  editor, you need to specify a language for the text.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/quick-index-supported-languages.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/search/quick-index-supported-languages.html)
+
+# Quick Index Supported Languages
 
 > When you create an index and add a text field with the Quick Index editor, you need to specify a language for the text. 
 

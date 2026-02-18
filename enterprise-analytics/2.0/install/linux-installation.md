@@ -1,4 +1,13 @@
+---
+title: Install Enterprise Analytics on Linux
+description: You can install Enterprise Analytics and run it on Red Hat, Ubuntu and Debian.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/linux-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/install/linux-installation.html)
+
+# Install Enterprise Analytics on Linux
 
 > You can install Enterprise Analytics and run it on Red Hat, Ubuntu and Debian. 
 

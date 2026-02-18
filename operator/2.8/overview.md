@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/overview.html)
+
+# Introduction
 
 The integration of Couchbase Server with cloud-native technologies, facilitated by the Couchbase Kubernetes (Autonomous) Operator provides a truly cloud-native database solution. This integration empowers organizations to build and run scalable stateful applications in modern, dynamic environments such as public, private, and hybrid clouds. Containers, service meshes, microservices, immutable infrastructure, and declarative APIs exemplify this approach.
 
@@ -16,15 +24,15 @@ The Operator is certified on the following platforms:
 * Google GKE
 * Microsoft AKS
 
-|  | For more information on supported platforms and versions see the [system requirements documentation](prerequisite-and-setup.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For more information on supported platforms and versions see the [system requirements documentation](prerequisite-and-setup.md).
 
 ## [](#how-does-it-work)How Does it Work?
 
 The Operator extends Kubernetes by defining types that represent Couchbase clusters and resources. These types are declarative; they define what the cluster should look like. The Operator monitors Kubernetes for Couchbase resources, creating or updating Couchbase clusters to match the declarative specification.
 
-|  | For more information on what the Operator does, its behavior and its architecture see the [Operator architecture concepts documentation](concept-operator.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For more information on what the Operator does, its behavior and its architecture see the [Operator architecture concepts documentation](concept-operator.md).
 
 ## [](#what-features-does-it-provide)What Features Does it Provide?
 

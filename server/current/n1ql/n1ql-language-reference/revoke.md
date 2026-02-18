@@ -1,4 +1,14 @@
+---
+title: REVOKE
+description: The REVOKE statement allows revoking of any RBAC roles from
+  specific users or groups.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/revoke.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/revoke.html)
+
+# REVOKE
 
 > The REVOKE statement allows revoking of any RBAC roles from specific users or groups. 
 
@@ -17,8 +27,8 @@ Roles which are defined for the context of the specified keyspace only. Specify 
 For example: `` data_reader ON `travel-sample` ``  
 or `` query_select ON `travel-sample`.`inventory`.`airline` ``
 
-|  | Only Full Administrators can run the REVOKE statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only Full Administrators can run the REVOKE statement. For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 
@@ -48,8 +58,8 @@ revoke-group ::= 'REVOKE' role ( ',' role )* ( 'ON' keyspace-ref ( ',' keyspace-
 | user         | A user name created by the Couchbase Server RBAC system.                                                                                                                                                                                                                 |
 | group        | A group name created by the Couchbase Server RBAC system.                                                                                                                                                                                                                |
 
-|  | When revoking roles from users, the keyword USER or USERS is optional. However, when revoking roles from groups, you must include the keyword GROUP or GROUPS. You can use either the singular or plural form of these keywords as this does not affect the number of users or groups from which the role is revoked. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When revoking roles from users, the keyword `USER` or `USERS` is optional. However, when revoking roles from groups, you must include the keyword `GROUP` or `GROUPS`. You can use either the singular or plural form of these keywords as this does not affect the number of users or groups from which the role is revoked.
 
 ### [](#keyspace-ref)Keyspace Reference
 

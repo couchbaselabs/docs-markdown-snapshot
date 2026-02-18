@@ -1,4 +1,14 @@
+---
+title: Installing the Couchbase Java SDK
+description: In this tutorial, you're going to create a skeleton application for
+  interacting with the student database you created previously.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tutorials/java-tutorial/install-couchbase-java-sdk.html)
+
+# Installing the Couchbase Java SDK
 
 > In this tutorial, you’re going to create a skeleton application for interacting with the student database you created previously. 
 
@@ -11,8 +21,8 @@ You will need a few things installed on your machine before you begin:
 * The Java Software Development Kit (version 8+)
 * Apache Maven (version 3+)
 
-|  | [SDKMan](https://sdkman.io/) is the easiest way to install and manage JDKs and Maven on your host machine. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [SDKMan](https://sdkman.io/) is the easiest way to install and manage JDKs and Maven on your host machine.
 
 ## [](#set-up)Set up
 

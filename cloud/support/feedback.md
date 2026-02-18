@@ -1,4 +1,12 @@
+---
+title: Provide Feedback
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/feedback.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/support/feedback.html)
+
+# Provide Feedback
 
 > You can provide feedback through the Couchbase Capella UI. 
 

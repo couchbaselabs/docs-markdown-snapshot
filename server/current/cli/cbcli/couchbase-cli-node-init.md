@@ -1,4 +1,13 @@
+---
+title: node-init
+description: Initializes a node
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-node-init.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-node-init.html)
+
+# node-init
 
 Initializes a node
 
@@ -9,7 +18,7 @@ _couchbase-cli node-init_ [--cluster <url>] [--username <user>] [--password <pas
     [--client-key-password <password>] [--node-init-data-path <path>]
     [--node-init-index-path <path>] [--node-init-analytics-path <path>]
     [--node-init-eventing-path <path>] [--node-init-hostname <hostname>]
-    [--node-init-java-home <path>] [--ipv4] [--ipv6]
+    [--node-init-java-home <path>] [--ipv4] [--ipv6] [--ipv4only] [--ipv6only]
 
 ## [](#description)DESCRIPTION
 
@@ -84,6 +93,14 @@ Switch the node to use ipv4 for node to node communication
 \--ipv6
 
 Switch the node to use ipv6 for node to node communication
+
+\--ipv4only
+
+Switch the node to use ipv4 only for node to node communication. The node will only listen on that address.
+
+\--ipv6only
+
+Switch the node to use ipv6 only for node to node communication. The node will only listen on that address.
 
 ## [](#host-formats)HOST FORMATS
 

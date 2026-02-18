@@ -1,4 +1,14 @@
+---
+title: ORDER BY clause
+description: The ORDER BY clause sorts the result-set by one or more columns, in
+  ascending or descending order.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/orderby.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/orderby.html)
+
+# ORDER BY clause
 
 > The ORDER BY clause sorts the result-set by one or more columns, in ascending or descending order. 
 
@@ -80,8 +90,12 @@ When a field has a mix of data types, the different JSON types are sorted in the
 | OBJECT          | MISSING        | TRUE             | NULL            |
 | BINARY          | NULL           | FALSE            | MISSING         |
 
-|  | NULL values include JSON NULL. String comparison is done using a raw byte collation of UTF8 encoded strings. The ascending order is lowercase, then uppercase, then accented letters. Arrays are sorted in order of the first element in each array, then the second element in each array, and so on. In an ascending sort, longer arrays are sorted after shorter arrays, where all the elements are equal as far as the end of the shorter array. Objects are first sorted in order of size. In an ascending sort, larger objects are sorted after shorter objects. Where objects are the same size, objects are sorted in order of the first key in each object, then the first value in each object, then the second key in each object, then the second value in each object, and so on. SQL++ always sorts the key-value pairs _within each object_ by key in ascending string order before comparison or ordering. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * NULL values include JSON NULL.
+> * String comparison is done using a raw byte collation of UTF8 encoded strings. The ascending order is lowercase, then uppercase, then accented letters.
+> * Arrays are sorted in order of the first element in each array, then the second element in each array, and so on. In an ascending sort, longer arrays are sorted after shorter arrays, where all the elements are equal as far as the end of the shorter array.
+> * Objects are first sorted in order of size. In an ascending sort, larger objects are sorted after shorter objects. Where objects are the same size, objects are sorted in order of the first key in each object, then the first value in each object, then the second key in each object, then the second value in each object, and so on.
+> * SQL++ always sorts the key-value pairs _within each object_ by key in ascending string order before comparison or ordering.
 
 ## [](#examples)Examples
 

@@ -1,4 +1,14 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Java Columnar SDK to a
+  Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-columnar-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Java Columnar SDK to a Couchbase cluster. It contains best practices as well as advanced connection options. 
 
@@ -33,11 +43,11 @@ public class Example {
 }
 ```
 
-|  | The above example uses a try-with-resources block to ensure the Cluster instance gets closed at the end. It’s important to either use a try-with-resources block, or make sure to call cluster.close() when you’re done with the cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The above example uses a `try-with-resources` block to ensure the `Cluster` instance gets closed at the end. It’s important to either use a `try-with-resources` block, or make sure to call `cluster.close()` when you’re done with the cluster.
 
-|  | Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known Certificate Authority. However, the certificate is bundled with the SDK, and is automatically trusted unless you specify a different certificate to trust.
 
 ### [](#connection-strings)Connection Strings
 

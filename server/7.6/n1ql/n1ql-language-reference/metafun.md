@@ -1,4 +1,14 @@
+---
+title: Miscellaneous Utility Functions
+description: Miscellaneous utility functions enable you to perform tasks beyond
+  the usual evaluation and transformation of data.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/metafun.html)
+
+# Miscellaneous Utility Functions
 
 Miscellaneous utility functions enable you to perform tasks beyond the usual evaluation and transformation of data. For example, there are functions to retrieve information about a document or item, perform base64 encoding and decoding, generate UUIDs, and control the flow of a query.
 
@@ -335,8 +345,8 @@ For each error, the function returns the following fields.
 | **user\_action** _optional_ | List of possible steps a user can take to mitigate the error.                                                                                                         | String array             |
 | **user\_error** _optional_  | One of the following: Yes: The error was caused by the user. No: The error was caused by other services, or was internal to the server. Maybe: A combination of both. | enum (Yes, No, Maybe)    |
 
-|  | The error details also include a symbol field, which contains a representation string for the error. This field is for internal use only, and is not shown in the results. However, the FINDERR function does search this field when the find expression is a string or a regular expression. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The error details also include a `symbol` field, which contains a representation string for the error. This field is for internal use only, and is not shown in the results. However, the FINDERR function does search this field when the find expression is a string or a regular expression.
 
 ### [](#examples-2)Examples
 
@@ -989,8 +999,8 @@ Result
 
 This function generates an array of arrays of \[`field_name`, `value`\] pairs of all possible fields in the given JSON object `obj`.
 
-|  | Nested sub-object fields are explored recursively. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> Nested sub-object fields are explored recursively.
 
 ### [](#arguments-14)Arguments
 
@@ -1008,8 +1018,11 @@ Array of \[`field_name`, `value`\] arrays for each field in the input object `ob
 * If `obj` is an array of primitive data types, then it returns an empty array `[]`.
 * If `obj` is an array of objects, then it returns an array of objects.
 
-|  | If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns \[\]. For example, in [PAIRS() Example 2](#pairs-example2): PAIRS(public\_likes) returns \[\] PAIRS({public\_likes}) returns an array |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you wrap an array of primitive data types in an [object constructor](constructionops.md#object-construction), it’s treated as an object and returns an array; without the object constructor, it’s treated as an array of primitive data types and returns `[]`. For example, in [PAIRS() Example 2](#pairs-example2):
+> 
+> * `PAIRS(public_likes)` returns `[]`
+> * `PAIRS({public_likes})` returns an array
 
 ### [](#examples-7)Examples
 

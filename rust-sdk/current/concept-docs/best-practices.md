@@ -1,4 +1,14 @@
+---
+title: Best Practices
+description: Speed up your application development, with some best practices for
+  using Couchbase SDKs.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/best-practices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/concept-docs/best-practices.html)
+
+# Best Practices
 
 > Speed up your application development, with some best practices for using Couchbase SDKs. 
 
@@ -24,8 +34,8 @@ Each user who attempts resource-access is identified by means of the _credential
 
 Users who have been assigned the **Admin** role for the cluster are able to create, edit, and remove users. The SDK provides APIs to support these activities.
 
-|  | Introductory examples in the SDK documentation use the _Administrator_ user to ensure that developers can quickly get up and running; this _should not be used in production_. Elsewhere we use a general "user" which represents whichever permission levels are appropriate to your application. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Introductory examples in the SDK documentation use the _Administrator_ user to ensure that developers can quickly get up and running; this _should not be used in production_. Elsewhere we use a general "user" which represents whichever permission levels are appropriate to your application.
 
 ## [](#performance)Performance
 

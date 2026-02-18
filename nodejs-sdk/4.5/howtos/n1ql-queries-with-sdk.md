@@ -1,4 +1,15 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/nodejs-sdk/4.5/howtos/n1ql-queries-with-sdk.html)
+
+# Query
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, Facebook login, or user ID. 
 
@@ -117,8 +128,8 @@ async function queryNamed() {
 
 ## [](#additional-resources)Additional Resources
 
-|  | SQL++ is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is not the only query option in Couchbase. Be sure to check that your use case fits your selection of query service.
 
 The [SQL++ Language Reference](../../../server/7.6/n1ql/n1ql-language-reference/index.md) introduces up a complete guide to the SQL++ language, including all of the latest additions.
 

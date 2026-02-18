@@ -1,4 +1,13 @@
+---
+title: "Function: cascadeKvDeleteWithDoc"
+description: Perform a cascade delete operation using just the Data Service (or KV).
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-cascadeKvDeleteWithDoc.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-cascadeKvDeleteWithDoc.html)
+
+# Function: cascadeKvDeleteWithDoc
 
 **Goal**: Perform a cascade delete operation using just the Data Service (or KV).
 

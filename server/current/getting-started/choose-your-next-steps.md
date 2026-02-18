@@ -1,4 +1,14 @@
+---
+title: Choose Your Next Steps
+description: To complete the Getting Started sequence, consider your options as
+  to what to do next to continue improving your knowledge.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/choose-your-next-steps.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/getting-started/choose-your-next-steps.html)
+
+# Choose Your Next Steps
 
 > To complete the Getting Started sequence, consider your options as to what to do next to continue improving your knowledge. The Couchbase documentation set provides detailed information on all aspects of the platform; and this topic lists some of the important areas you can visit. 
 

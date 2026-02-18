@@ -1,4 +1,14 @@
+---
+title: Disabling Transparent Huge Pages (THP)
+description: Transparent huge pages (THP) is a memory management system that is
+  enabled by default in most Linux operating systems.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/thp-disable.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/thp-disable.html)
+
+# Disabling Transparent Huge Pages (THP)
 
 > Transparent huge pages (THP) is a memory management system that is enabled by default in most Linux operating systems.
 > 
@@ -12,8 +22,8 @@ Since we tend to have more random, sparse data access, we allocate pages that ca
 
 Therefore, you must disable THP on Linux systems to ensure the optimal performance of Couchbase Server.
 
-|  | If you are using Rocky Linux, then [use the instructions to install the THP disabler as a system service.](#using-thp-service) |
-|  | ------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If you are using Rocky Linux, then [use the instructions to install the THP disabler as a system service.](#using-thp-service)
 
 ## [](#init-script)Using Init Script
 

@@ -1,4 +1,12 @@
+---
+title: Sorting Query Results
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-sorting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts/fts-sorting.html)
+
+# Sorting Query Results
 
 > The FTS results are returned as objects. FTS query includes options to order the results. 
 
@@ -121,8 +129,8 @@ The example below shows how to specify the object-sort.
 }
 ```
 
-|  | The above sample assumes that the travel-sample bucket has been loaded, and a default index has been created on it. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The above sample assumes that the `travel-sample` bucket has been loaded, and a default index has been created on it.
 
 For information on loading sample buckets, see [Sample Buckets](../manage/manage-settings/install-sample-buckets.md). For instructions on creating a default Full Text Index by means of the Couchbase Web Console, see [Creating Index from UI](../search/create-search-index-ui.md).
 

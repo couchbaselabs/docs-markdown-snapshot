@@ -1,12 +1,24 @@
+---
+title: Install Sync Gateway
+description: Install a <em>Sync Gateway</em> instance; securely sync enterprise
+  data from cloud to edge.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/start-here/pages/get-started-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/start-here/get-started-install.html)
+
+# Install Sync Gateway
 
 > Install a _Sync Gateway_ instance; securely sync enterprise data from cloud to edge.  
 > This is **Step 3** in the _Start Here!_ topic group. It installs the _Sync Gateway_ binary distribution
 
 Related _Start Here!_ topics: [Introduction](../introduction.md) | [Prepare](get-started-prepare.md) | [Verify](get-started-verify-install.md)
 
-|  | Preparatory StepsEnsure you have read — and acted-upon — the information in [Prepare](get-started-prepare.md). |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Preparatory Steps
+> 
+> Ensure you have read — and acted-upon — the information in [Prepare](get-started-prepare.md).
 
 Steps in Getting Started
 

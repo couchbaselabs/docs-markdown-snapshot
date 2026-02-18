@@ -1,4 +1,14 @@
+---
+title: Document Expiry
+description: When a document in an existing collection is about to expire, a new
+  document is created in a different collection.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-docexpiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-examples-docexpiry.html)
+
+# Document Expiry
 
 **Goal**: When a document in an existing collection is about to expire, a new document is created in a different collection.
 
@@ -16,8 +26,8 @@ _If you run a version of Couchbase prior to 7.0 you can just create the buckets 
 
 For complete details on how to set up your keyspaces refer to [creating buckets](../manage/manage-buckets/create-bucket.md) and [creating scopes and collections](../manage/manage-scopes-and-collections/manage-scopes-and-collections.md).
 
-|  | The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Eventing Storage keyspace, in this case **'rr100.eventing.metadata'**, is for the sole use of the Eventing system, do not add, modify, or delete documents from it. In addition do not drop or flush or delete the containing bucket (or delete this collection) while you have any deployed Eventing functions. In a single tenancy deployment this collection can be shared with other Eventing functions.
 
 You will need to run a special SQL++ statement, a _cbc_ (the command-line KV client), or alternatively an SDK python script or Java program to create or update a document in the 'source' bucket with an expiration time of 600 seconds.
 
@@ -194,10 +204,9 @@ The final result, is a new document containing a copy of the data from the origi
 ![docexpiry 05 buckets](_images/docexpiry_05_buckets.png)
 15. Now look at the **Documents** in the UI again you will see one (1) document in the `bulk`.`data`.`target` keyspace (this will persist)  
 ![docexpiry 05a buckets](_images/docexpiry_05a_buckets.png)
-16. Wait a few more minutes (actual just bit more than two minutes) past the 120 second window, then check the document in the `bulk`.`data`.`source` keyspace', you will find that it is missing and will not be accessible as it has expired due to the defined TTL on the document.
-
-|  | If you don’t actually try to access the document by clicking on the \*Documents" link the UI and specifying the keyspace bulk.data.source the UI may indicate it still exists until the expiry pager removes the tombstone for the deleted or expired documents (or an actual attempt to access it is made). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |  
+16. Wait a few more minutes (actual just bit more than two minutes) past the 120 second window, then check the document in the `bulk`.`data`.`source` keyspace', you will find that it is missing and will not be accessible as it has expired due to the defined TTL on the document.  
+> [!NOTE]  
+> If you don’t actually try to access the document by clicking on the \*Documents" link the UI and specifying the keyspace `bulk`.`data`.`source` the UI may indicate it still exists until the expiry pager removes the tombstone for the deleted or expired documents (or an actual attempt to access it is made).  
 ![docexpiry 06 buckets](_images/docexpiry_06_buckets.png)
 
 **Cleanup**:

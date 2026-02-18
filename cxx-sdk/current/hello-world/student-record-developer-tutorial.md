@@ -1,4 +1,14 @@
+---
+title: "Couchbase Tutorial: A Student Record System"
+description: A short tutorial that will guide the developer in downloading and
+  installing Couchbase, then creating a database to store student records.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/hello-world/pages/student-record-developer-tutorial.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/current/hello-world/student-record-developer-tutorial.html)
+
+# Couchbase Tutorial: A Student Record System
 
 > A short tutorial that will guide the developer in downloading and installing Couchbase, then creating a database to store student records. 
 
@@ -57,8 +67,11 @@ Student Record
 
 The document is stored in JSON format, which allows for the storage of complex types such as arrays without decomposing them to a second table. JSON also allows the flexibility to change the structure of the document without having to rebuild schemas (as you would in a relational database system). A new field, let’s say to store email addresses, could be added to new documents without having to migrate existing data to a new schema. In this case, the list of `enrollment` records is stored with the student record. Each `enrollment` record holds a reference to the course it relates to.
 
-|  | It would be a very bad idea to store the course record with each student: It would lead to massive data duplication. It would make it very difficult to maintain the data. If the credit-points for a course needed to be changed, then you would need to access every student record to make the change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> It would be a very bad idea to store the course record with each student:
+> 
+> 1. It would lead to massive data duplication.
+> 2. It would make it very difficult to maintain the data. If the `credit-points` for a course needed to be changed, then you would need to access every student record to make the change.
 
 Art History Course Record
 
@@ -142,8 +155,8 @@ Within the `scope` we set up two collections:
 | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **course-record-collection**  | The enrollment records will carry a link to the course record it applies to, so we can retrieve other details such as the full name of the course and the number of credit points the student receives for completing it.                                                                                                               |
 
-|  | Of course, it’s possible to just add the details of the course to the student’s enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student’s enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Of course, it’s possible to just add the details of the course to the student’s enrollment records, but this may have downsides. Changing the credit points on the course, for example, would involve running through every student’s enrollments and changing the credit details on each one. This is why the document model and relational model are used in conjunction to get the best combination of robust design and performance.
 
 Now that you understand the basics of scopes and collections, return to your administration screen so we can add them to your bucket.
 
@@ -175,8 +188,8 @@ You should now have the `art-school-scope` containing your two collections.
 
 ![Screen showing new collections added](completed-art-school-scope.png) 
 
-|  | We’re sticking with the Capella GUI for this stage of the tutorial, but management options for creating resources are available through the SDK, the command line, the REST API, or through Infrastructure-as-Code (IAC) with Terraform. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> We’re sticking with the Capella GUI for this stage of the tutorial, but management options for creating resources are available through the SDK, the command line, the REST API, or through Infrastructure-as-Code (IAC) with Terraform.
 
 ## [](#writing-your-first-app)Writing Your First App
 
@@ -191,8 +204,8 @@ You will need a few things installed on your machine before you begin:
 * The Java Software Development Kit (8, 11, 17, or 21)
 * Apache Maven (version 3+)
 
-|  | [SDKMan](https://sdkman.io/) is the easiest way to install and manage JDKs and Maven on your host machine. |
-|  | ---------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> [SDKMan](https://sdkman.io/) is the easiest way to install and manage JDKs and Maven on your host machine.
 
 ### [](#installing-the-sdk)Installing the SDK
 
@@ -282,8 +295,8 @@ Somewhere in the output, you’ll find the line containing the name of the colle
 
 ![Console showing successful connection to server](connect-to-cluster-console-output.png) 
 
-|  | As an experiment, try commenting out the bucket.waitUntilReady call, then run the program again. What happens? |
-|  | -------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As an experiment, try commenting out the `bucket.waitUntilReady` call, then run the program again. What happens?
 
 Okay, so you’ve connected to the cluster and retrieved your collection. Unfortunately, there’s nothing in there to see at the moment, so the next thing to do is create a few records.
 
@@ -353,8 +366,8 @@ Unresolved directive in student-record-developer-tutorial.adoc - include::{java-
 | **1** | Note that you’re now writing to a different collection. |
 | ----- | ------------------------------------------------------- |
 
-|  | Make sure that you’ve created the course-collection in the admin console before you attempt to run the program. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Make sure that you’ve created the `course-collection` in the admin console before you attempt to run the program.
 
 You can use maven to run the application:
 
@@ -388,8 +401,8 @@ Type the following query into the query editor field:
 select crc.* from `course-record-collection` crc
 ```
 
-|  | SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ is very similar to standard SQL. Once you have mastered the document database model, you’ll find it very easy to adapt.
 
 ![Query to retrieve the course collection](attempt-first-query.png) 
 
@@ -422,8 +435,8 @@ create primary index course_idx on `course-record-collection`
 
 This will create a single index (`course_idx`) on your `course-record-collection`.
 
-|  | The error message returned from the search statement provides an example command for creating the primary index. You can copy the example command and run it in the query editor to create your primary index. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The error message returned from the search statement provides an example command for creating the primary index. You can copy the example command and run it in the query editor to create your primary index.
 
 Okay, now if you run the `select` query again …
 

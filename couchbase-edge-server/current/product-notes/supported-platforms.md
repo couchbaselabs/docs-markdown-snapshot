@@ -1,4 +1,12 @@
+---
+title: Supported Platforms
+editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/product-notes/pages/supported-platforms.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-edge-server/current/product-notes/supported-platforms.html)
+
+# Supported Platforms
 
 ## [](#supported-versions)Supported Versions
 

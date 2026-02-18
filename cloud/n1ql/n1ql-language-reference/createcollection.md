@@ -1,4 +1,14 @@
+---
+title: CREATE COLLECTION
+description: The CREATE COLLECTION statement enables you to create a named
+  collection within a scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createcollection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/createcollection.html)
+
+# CREATE COLLECTION
 
 > The `CREATE COLLECTION` statement enables you to create a named collection within a scope. 
 
@@ -17,8 +27,8 @@ create-collection ::= 'CREATE' 'COLLECTION' ( ( namespace ':' )? bucket '.' scop
 | scope      | (Optional) An [identifier](identifiers.md) that refers to the scope in which you want to create the collection.                                                                                                                                                                                                                       |
 | collection | (Required) An [identifier](identifiers.md) that refers to the name of the collection that you want to create. Refer to [Naming for Scopes and Collections](../../../server/current/learn/data/scopes-and-collections.md#naming-for-scopes-and-collections) for restrictions on collection names.                                      |
 
-|  | If there is a hyphen (-) inside the bucket name, the scope name, or the collection name, you must wrap that part of the path in backticks (\` \`). For example, default:\`travel-sample\` indicates the travel-sample keyspace in the default namespace. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the bucket name, the scope name, or the collection name, you must wrap that part of the path in backticks (\` \`). For example, `` default:`travel-sample` `` indicates the `travel-sample` keyspace in the `default` namespace.
 
 ### [](#location)Specifying the Location
 

@@ -1,4 +1,12 @@
+---
+title: Writing References
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/writing-references.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/writing-references.html)
+
+# Writing References
 
 A reference can be:
 
@@ -34,5 +42,5 @@ The **See Also** section in a reference should be an H2 level heading.
 
 It contains an [unordered list](unordered-list.md) of links to tasks, concepts, or other references that the user can read to continue in their learning journey.
 
-|  | There will always be somewhere the user can go next or view after reading your reference. |
-|  | ----------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There will always be somewhere the user can go next or view after reading your reference.

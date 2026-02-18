@@ -1,4 +1,12 @@
+---
+title: Kubernetes Networking
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-kubernetes-networking.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-kubernetes-networking.html)
+
+# Kubernetes Networking
 
 > Networking in a Kubernetes environment is complex. It’s up to the end user to select a container network interface (CNI) compatible plugin to provide connectivity between pods and the wider world. The choice of plugin has effects on how Couchbase Server can be used and how it must be configured via the Operator. 
 
@@ -30,11 +38,11 @@ Routed Network Architecture
 
 ![Routed network architecture](_images/NetworkDocsRouted-Routed.png)
 
-|  | Some CNI plugins may use BGP peering between nodes to learn pod network prefixes. This has the benefit that routing can be performed at the node layer and not at a specialized router. This avoids an extra network hop, improving latency and throughput. However, unless those prefixes are also shared with the router, you will not be able to directly address pods over a VPN connection. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Some CNI plugins may use BGP peering between nodes to learn pod network prefixes. This has the benefit that routing can be performed at the node layer and not at a specialized router. This avoids an extra network hop, improving latency and throughput. However, unless those prefixes are also shared with the router, you will not be able to directly address pods over a VPN connection.
 
-|  | Some cloud providers may have CNI plugins which allow virtual network adapters to be directly attached to pods. These are allocated from the same IP address pool as the host nodes which provides even more simplicity, removing the need for separate node and pod network prefixes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Some cloud providers may have CNI plugins which allow virtual network adapters to be directly attached to pods. These are allocated from the same IP address pool as the host nodes which provides even more simplicity, removing the need for separate node and pod network prefixes.
 
 ### [](#overlay-networking)Overlay Networking
 

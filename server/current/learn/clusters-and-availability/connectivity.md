@@ -1,4 +1,14 @@
+---
+title: Connectivity
+description: Couchbase Server handles client-to-cluster, node-to-node, and
+  cluster-to-cluster communications.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/connectivity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/clusters-and-availability/connectivity.html)
+
+# Connectivity
 
 > Couchbase Server handles client-to-cluster, node-to-node, and cluster-to-cluster communications. It also provides connectivity to a number of third-party products. 
 

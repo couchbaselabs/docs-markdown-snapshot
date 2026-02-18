@@ -1,4 +1,13 @@
+---
+title: Analytics Administration REST APIs
+description: A description of the Administration REST APIs for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-admin.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/rest-admin.html)
+
+# Analytics Administration REST APIs
 
 ## [](#%5Foverview)Overview
 
@@ -409,15 +418,15 @@ Response 200
 
 GET /analytics/node/agg/stats/remaining
 
-|  | operation.deprecated |
-|  | -------------------- |
+> [!CAUTION]
+> operation.deprecated
 
 #### [](#description-6)Description
 
 Shows the number of mutations in the DCP queue that have not yet been ingested by the Analytics service, for each Analytics collection.
 
-|  | This endpoint may not return meaningful results in Couchbase Server 7.0 and later. The reported number of mutations may be different to the actual number of mutations in the Analytics collection. For this reason, this endpoint has been deprecated, and you should use the [Ingestion Status](#%5Fingestion%5Fstatus) endpoint instead. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This endpoint may not return meaningful results in Couchbase Server 7.0 and later. The reported number of mutations may be different to the actual number of mutations in the Analytics collection. For this reason, this endpoint has been deprecated, and you should use the [Ingestion Status](#%5Fingestion%5Fstatus) endpoint instead.
 
 #### [](#responses-6)Responses
 

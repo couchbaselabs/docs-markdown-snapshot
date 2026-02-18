@@ -1,4 +1,14 @@
+---
+title: Service Error
+description: "A service error means there is a problem that prevents the request
+  being fulfilled:"
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/n1ql/pages/n1ql-rest-api/exserviceerror.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-rest-api/exserviceerror.html)
+
+# Service Error
 
 A service error means there is a problem that prevents the request being fulfilled:
 

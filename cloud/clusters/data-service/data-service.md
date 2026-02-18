@@ -1,4 +1,12 @@
+---
+title: Manage Your Data
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/data-service.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/data-service/data-service.html)
+
+# Manage Your Data
 
 > The Data Service provides access to data. It supports the storing, setting, and retrieving of data-items, specified by key. 
 

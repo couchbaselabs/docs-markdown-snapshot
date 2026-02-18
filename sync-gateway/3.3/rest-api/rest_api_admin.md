@@ -1,4 +1,12 @@
+---
+title: Sync Gateway Admin API Reference
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/rest-api/pages/rest_api_admin.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/rest-api/rest_api_admin.html)
+
+# Sync Gateway Admin API Reference
 
 * Introduction
 * Authentication

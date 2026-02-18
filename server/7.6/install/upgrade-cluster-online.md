@@ -1,4 +1,12 @@
+---
+title: Upgrade an Online Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-cluster-online.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/install/upgrade-cluster-online.html)
+
+# Upgrade an Online Cluster
 
 > A cluster can be upgraded while continuing to serve data. 
 
@@ -8,10 +16,9 @@ A Couchbase-Server cluster can be upgraded while continuing to serve data. A _sp
 
 * [Upgrade a Reduced-Capacity, Online Cluster](upgrade-cluster-online-reduced-capacity.md)
 * [Upgrade a Full-Capacity, Online Cluster](upgrade-cluster-online-full-capacity.md)
-* [Upgrade an Online Docker Cluster, Full Capacity](upgrade-docker-cluster-online-full-capacity.md)
-
-|  | It is not possible to upgrade a Docker cluster with a single node. A second node will needed to ensure data is transferred. |
-|  | --------------------------------------------------------------------------------------------------------------------------- |
+* [Upgrade an Online Docker Cluster, Full Capacity](upgrade-docker-cluster-online-full-capacity.md)  
+> [!NOTE]  
+> It is not possible to upgrade a Docker cluster with a single node. A second node will needed to ensure data is transferred.
 
 ### [](#tls-address-family-restriction-and-node-addition)TLS, Address-Family Restriction, and Node Addition
 

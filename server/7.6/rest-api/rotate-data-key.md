@@ -1,4 +1,13 @@
+---
+title: Rotating the Data Key
+description: The data key can be rotated, by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rotate-data-key.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rotate-data-key.html)
+
+# Rotating the Data Key
 
 > The data key can be rotated, by means of the REST API. 
 

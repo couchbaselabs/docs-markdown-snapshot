@@ -1,4 +1,12 @@
+---
+title: System Event Reference
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/system-event-reference/pages/system-event-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/system-event-reference/system-event-reference.html)
+
+# System Event Reference
 
 > A complete list of Couchbase-Server system events. 
 

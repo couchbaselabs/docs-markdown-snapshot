@@ -1,4 +1,13 @@
+---
+title: Travel Sample Data Model
+description: An overview of the travel sample application data model and documents.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/ref/pages/travel-app-data-model.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/current/ref/travel-app-data-model.html)
+
+# Travel Sample Data Model
 
 > An overview of the travel sample application data model and documents. 
 
@@ -194,13 +203,13 @@ To try this out you need Couchbase Server 7.0 or later and the [travel-sample](#
 
 The updated bucket introduces tenant `agent` scopes, `users` and `bookings` collections to allocate data into more logical groupings.
 
-|  | the inventory scope isn’t multi-tenanted as it shares its collection data across the tenant agents. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> the `inventory` scope isn’t multi-tenanted as it shares its collection data across the tenant agents.
 
 Following is a brief overview of the collections within the new tenant scopes.
 
-|  | The following documents are for example only and don’t exist by default in the travel-sample bucket. The travel sample application creates/updates documents within these new collections when using the flight planner. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> The following documents are for example only and don’t exist by default in the `travel-sample` bucket. The travel sample application creates/updates documents within these new collections when using the flight planner.
 
 The `users` collection stores user related data such as login details and flights booked:
 

@@ -1,4 +1,14 @@
+---
+title: Search
+description: You can use the Full Text Search service (FTS) to create queryable
+  full-text indexes in Couchbase Server.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/full-text-searching-with-sdk.html)
+
+# Search
 
 > You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
 

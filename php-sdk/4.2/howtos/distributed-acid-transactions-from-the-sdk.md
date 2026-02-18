@@ -1,4 +1,13 @@
+---
+title: Using Couchbase Transactions
+description: Distributed ACID Transactions in Couchbase SDKs
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 > Distributed ACID Transactions in Couchbase SDKs 
 
@@ -97,8 +106,8 @@ You can perform transactional database operations using familiar key-value CRUD 
 * **U**pdate - `replace()`
 * **D**elete - `remove()`
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as ctx.insert(), rather than collection.insert(). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as `ctx.insert()`, rather than `collection.insert()`.
 
 ### [](#insert)Insert
 
@@ -175,8 +184,8 @@ $cluster->transactions()->run(
 
 If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), then its use in transactions is very similar. It returns the same `QueryResult` you are used to, and takes most of the same options.
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as ctx.query(), rather than cluster.query() or scope.query(). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as `ctx.query()`, rather than `cluster.query()` or `scope.query()`.
 
 Here is an example of selecting some rows from the `travel-sample` bucket:
 

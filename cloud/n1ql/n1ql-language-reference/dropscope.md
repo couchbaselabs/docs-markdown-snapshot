@@ -1,4 +1,13 @@
+---
+title: DROP SCOPE
+description: The DROP SCOPE statement enables you to delete a scope.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropscope.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/dropscope.html)
+
+# DROP SCOPE
 
 > The `DROP SCOPE` statement enables you to delete a scope. 
 
@@ -15,8 +24,8 @@ drop-scope ::= 'DROP' 'SCOPE' ( namespace ':' )? bucket '.' scope ( 'IF' 'EXISTS
 | bucket    | (Required) An [identifier](identifiers.md) that refers to the bucket which contains the scope you want to delete.                                                                                                                                                                                                                      |
 | scope     | (Required) An [identifier](identifiers.md) that refers to the name of the scope that you want to delete.                                                                                                                                                                                                                               |
 
-|  | If there is a hyphen (-) inside the bucket name or the scope name, you must wrap that part of the path in backticks (\` \`). For example, default:\`travel-sample\` indicates the travel-sample keyspace in the default namespace. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If there is a hyphen (-) inside the bucket name or the scope name, you must wrap that part of the path in backticks (\` \`). For example, `` default:`travel-sample` `` indicates the `travel-sample` keyspace in the `default` namespace.
 
 ### [](#if-exists)IF EXISTS Clause
 

@@ -1,4 +1,14 @@
+---
+title: Migration
+description: This section provides a step-by-step guide for migrating your data
+  and applications to Couchbase Capella Analytics or Enterprise Analytics.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/migration/pages/migration-process.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/migration/migration-process.html)
+
+# Migration
 
 > This section provides a step-by-step guide for migrating your data and applications to Couchbase Capella Analytics or Enterprise Analytics. 
 
@@ -90,15 +100,15 @@ For example inventory.airline,
 
 Capella Analytics or Enterprise Analytics naming conventions allow migration without requiring immediate renaming of entities.
 
-|  | Couchbase Analytics bucket names permit periods (.) and percent symbols (%). However, Capella Analytics and Enterprise Analytics database and scope names explicitly forbid the use of the period (.) character. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Analytics bucket names permit periods (.) and percent symbols (%). However, Capella Analytics and Enterprise Analytics database and scope names explicitly forbid the use of the period (.) character.
 
 For more information about requirements for Identifiers, see [Requirements for Identifiers](../sqlpp/1a%5Fentities.md#names).
 
 Capella Analytics and Enterprise Analytics has connectivity to Business Intelligence tools for data visualization.
 
-|  | No changes are being made to JDBC and ODBC drivers |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> No changes are being made to JDBC and ODBC drivers
 
 For more information about Business Intelligence tools, see [BI Tools](../query/bi.md).
 
@@ -144,8 +154,8 @@ To use them, you must include the analytics libraries described later on and re-
 
 For more information, see [Migrate Code to Use the new Analytics SDK](#migratecodenewanalytics)
 
-|  | Differences include using async APIs or reactor compared to Java virtual threads. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> Differences include using async APIs or reactor compared to Java virtual threads.
 
 ### [](#migratecodenewanalytics)Migrate Code to Use the new Analytics SDK
 
@@ -187,8 +197,8 @@ Cluster cluster = Cluster.newInstance(
    Credential.of("uname","pwd");  
 ```
 
-|  | The URL begins with https:// instead of couchbases:// |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> The URL begins with `https://` instead of `couchbases://`
 
 * Operational SDK  
 ```java  
@@ -264,8 +274,8 @@ try { } catch (CouchbaseException e)
 try { } catch (AnalyticsException e)  
 ```
 
-|  | There are more exception handling classes such as TimeoutException which you will also need to refactor. |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> There are more exception handling classes such as `TimeoutException` which you will also need to refactor.
 
 ### [](#sparkpyspark-migration)Spark/PySpark Migration
 

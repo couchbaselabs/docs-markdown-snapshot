@@ -1,4 +1,12 @@
+---
+title: Set up the Couchbase Tableau Connector
+editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/setup-tableau-connector.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tableau-connector/1.0/setup-tableau-connector.html)
+
+# Set up the Couchbase Tableau Connector
 
 Before you can set up the Couchbase Tableau Connector, you must download the Tableau Connector package from one of the following locations.
 

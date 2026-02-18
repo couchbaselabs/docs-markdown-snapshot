@@ -1,4 +1,12 @@
+---
+title: Action Buttons
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/action-buttons.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/action-buttons.html)
+
+# Action Buttons
 
 An action button is anything the user clicks that causes something to happen in the UI.
 
@@ -12,8 +20,8 @@ Start button text with an action verb that clearly describes what happens after 
 
 For example, the button to create a project could say **Create Project**.
 
-|  | This is unnecessary if the action button is a navigation button. Name the page that the user navigates to, instead, or use navigation words like Next or Back. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This is unnecessary if the action button is a navigation button. Name the page that the user navigates to, instead, or use navigation words like `Next` or `Back`.
 
 ## [](#align-the-button-text-to-the-surrounding-text)Align the Button Text to the Surrounding Text
 

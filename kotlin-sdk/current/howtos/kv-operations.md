@@ -1,4 +1,14 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. 
 
@@ -81,8 +91,8 @@ Updating an existing document
 Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
 ```
 
-|  | When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> When you replace a document, it’s usually good to use [optimistic locking](#optimistic-locking). Otherwise, changes might get lost if two people change the same document at the same time.
 
 ### [](#remove)Remove (Delete)
 
@@ -144,13 +154,17 @@ Calling the `Collection.bulkGet` extension function
 Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
 ```
 
-|  | You can copy the bulkGet extension function and change it to do other operations, like upsert. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can copy the `bulkGet` extension function and change it to do other operations, like upsert.
 
 ## [](#locking)Locking
 
-|  | What is an "atomic" operation? An atomic operation succeeds completely or fails completely. When Couchbase Server works on an atomic operation, you never see the result of incomplete work. A failed atomic operation never changes a document. If two or more atomic operations use the same document, Couchbase Server works on only one of the operations at a time. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> What is an "atomic" operation?
+> 
+> An atomic operation succeeds completely or fails completely. When Couchbase Server works on an atomic operation, you never see the result of incomplete work. A failed atomic operation never changes a document.
+> 
+> If two or more atomic operations use the same document, Couchbase Server works on only one of the operations at a time.
 
 A KV operation is atomic. However, a _sequence_ of KV operations is _not_ atomic.
 
@@ -183,8 +197,18 @@ Unresolved include directive in modules/howtos/pages/kv-operations.adoc - includ
 | **1** | This example keeps trying until the coroutine is cancelled. Another choice would be to set a time limit, or limit the number of tries. |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
 
-|  | You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this: Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt\[\] Now the optimistic locking example from before looks like this: Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt\[\] |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
+> 
+> ```kotlin
+> Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+> ```
+> 
+> Now the optimistic locking example from before looks like this:
+> 
+> ```kotlin
+> Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+> ```
 
 ### [](#pessimistic-locking)Pessimistic Locking
 
@@ -219,8 +243,8 @@ This feature is implemented by internally using our subdocument API, which you c
 
 ## [](#preferred-server-group-replica-reads)Preferred Server Group Replica Reads
 
-|  | Preferred Server Group Replica Reads are only accessible with the Kotlin SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed), from SDK version 1.4.8\. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Preferred Server Group Replica Reads are only accessible with the Kotlin SDK working with Couchbase Server 7.6.2 or newer (Capella or self-managed), from SDK version 1.4.8\.
 
 [Server Groups](../../../server/current/learn/clusters-and-availability/groups.md#understanding-server-group-awareness)can be used to define subsets of nodes within a Couchbase cluster, which contain a complete set of vbuckets (active or replica). As well as high availability use cases, Servre Groups can also be used to keep much traffic within the same cloud Availability Zone.
 
@@ -230,15 +254,21 @@ This may mean the application has to be tolerant of slight inconsistencies, unti
 
 Couchbase does not recommend this feature where read consistency is critical, but with the appropriate durability settings consistency can be favored ahead of availability.
 
-|  | Replicas, Nodes, and Server Groups Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted: Moving servers between Server Groups updates the clustermap immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the vBucketMap may still refer to data in the previous locations. The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: active+num\_replicas). The Admin UI should emit small yellow warning if the configuration is considered unbalanced. Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](#concept-docs:transactions.adoc). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Replicas, Nodes, and Server Groups
+> 
+> Implicit in the rules for durability, and the process of setting up Server Groups, is the following information — which we mention here explicitly to ensure it is all noted:
+> 
+> * Moving servers between Server Groups updates the `clustermap` immediately, but to move the data, an administrator **must** perform rebalance. Until the rebalance is complete, the SDK will see and be able to 'use' the new server groups, but the `vBucketMap` may still refer to data in the previous locations.
+> * The cluster should have enough nodes and group to make sure that copies of the same document are not stored on the same node, and each group has nodes that cover all 1024 vbuckets (in other words, the number of the groups does not exceeds number of the copies: `active+num_replicas`). The Admin UI should emit small yellow warning if the configuration is considered unbalanced.
+> * Setting **three** replicas for the bucket [disables durability for sync writes](../../../server/current/learn/data/durability.md#majority), also precluding the use of [multi-document ACID transactions](#concept-docs:transactions.adoc).
 
 ## [](#kv-range-scan)KV Range Scan
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

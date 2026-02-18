@@ -1,4 +1,15 @@
+---
+title: Install Couchbase Server on Red Hat Enterprise Linux, Oracle Linux, or
+  Amazon Linux 2023
+description: Couchbase Server can be installed on Red Hat Enterprise Linux,
+  Oracle Linux, or Amazon Linux 2023 for production and development use cases.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/rhel-suse-install-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/rhel-suse-install-intro.html)
+
+# Install Couchbase Server on Red Hat Enterprise Linux, Oracle Linux, or Amazon Linux 2023
 
 > Couchbase Server can be installed on Red Hat Enterprise Linux, Oracle Linux, or Amazon Linux 2023 for production and development use cases. 
 
@@ -20,8 +31,9 @@ If you’re upgrading an existing installation of Couchbase Server, see [Upgradi
 
 ## [](#basic-installation)Basic Installation
 
-|  | You must be logged in as root user (superuser) or use sudo to run the installation commands. dnf is the default package manager on Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only yum is available, you can replace dnf with yum in all commands. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> * You must be logged in as root user (superuser) or use `sudo` to run the installation commands.
+> * `dnf` is the default package manager on Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only `yum` is available, you can replace `dnf` with `yum` in all commands.
 
 This section explains the following installations using the `dnf` or `yum` package managers, and RPM package methods:
 
@@ -32,8 +44,8 @@ This section explains the following installations using the `dnf` or `yum` packa
 
 The Red Hat package managers `dnf` and `yum` provide the simplest and most comprehensive way to install Couchbase Server on Red Hat Enterprise Linux or Oracle Linux. This method involves downloading and installing a small meta package from Couchbase, which `dnf` or `yum` can then use to automatically download and install Couchbase Server and all of its dependencies.
 
-|  | All commands in this section use dnf for Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only yum is available, you can replace dnf with yum in all commands. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All commands in this section use `dnf` for Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only `yum` is available, you can replace `dnf` with `yum` in all commands.
 
 1. Download the meta package.  
 ```console  
@@ -101,8 +113,8 @@ After the installation is complete, Couchbase Server starts automatically. Couch
 
 Install Couchbase Server on Red Hat Enterprise Linux or Oracle Linux or Amazon Linux 2023 using a full RPM package provided by Couchbase.
 
-|  | All commands in this section use dnf for Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only yum is available, you can replace dnf with yum in all commands. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All commands in this section use `dnf` for Red Hat Enterprise Linux 8 and later versions, the corresponding Oracle Linux releases, and Amazon Linux 2023\. On earlier versions where only `yum` is available, you can replace `dnf` with `yum` in all commands.
 
 1. Download the appropriate package from the Couchbase [downloads page](https://www.couchbase.com/downloads).
 2. Install Couchbase Server.

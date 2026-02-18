@@ -1,4 +1,12 @@
+---
+title: Upgrade a Full-Capacity, Online Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/upgrade-cluster-online-full-capacity.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/upgrade-cluster-online-full-capacity.html)
+
+# Upgrade a Full-Capacity, Online Cluster
 
 > A cluster can be upgraded while still online, and maintained at full capacity. 
 
@@ -14,8 +22,8 @@ The precise steps for this procedure are detailed on this page, below. A full un
 For information on node-addition, see [Clusters](../learn/clusters-and-availability/nodes.md#clusters). For information on node-removal, see [Removal](../learn/clusters-and-availability/removal.md). For information on _swap rebalance_, see [Swap Rebalance](upgrade-procedure-selection.md#swap-rebalance).
 * Nodes will be upgraded _one at a time_.
 
-|  | Running Eventing functions during a rolling upgrade increases rebalance duration. To reduce rebalance time, pause all your Eventing functions before starting the upgrade, and resume them after the upgrade completes. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Running Eventing functions during a rolling upgrade increases rebalance duration. To reduce rebalance time, pause all your Eventing functions before starting the upgrade, and resume them after the upgrade completes.
 
 The overall procedure is described in seven stages, below.
 

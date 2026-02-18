@@ -1,4 +1,12 @@
+---
+title: Eventing REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/eventing-rest-api/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing-rest-api/index.html)
+
+# Eventing REST API
 
 ## [](#overview)Overview
 
@@ -1661,8 +1669,14 @@ Consumes
 
 * application/json
 
-|  | Interbucket Recursion If you need to turn off infinite recursion protection for Eventing functions, you can use an alternative REST API endpoint to enable interbucket recursion. For details, see [Troubleshooting and Best Practices](../eventing/troubleshooting-best-practices.md#cyclicredun). Allowing interbucket recursion is highly discouraged unless you have an advanced use case and follow strict non-production coding and verification. You can only enable or disable interbucket recursion globally, not for specified function scopes. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Interbucket Recursion
+> 
+> If you need to turn off infinite recursion protection for Eventing functions, you can use an alternative REST API endpoint to enable interbucket recursion. For details, see [Troubleshooting and Best Practices](../eventing/troubleshooting-best-practices.md#cyclicredun).
+> 
+> Allowing interbucket recursion is highly discouraged unless you have an advanced use case and follow strict non-production coding and verification.
+> 
+> You can only enable or disable interbucket recursion globally, not for specified function scopes.
 
 ##### [](#config%5Fupdate-parameters)Parameters
 
@@ -2124,26 +2138,26 @@ This section describes the properties consumed and returned by this REST API.
 [Function Settings](#settings%5Fschema)  
 [Service Config](#UnivConfig)
 
-|  | Changes to the Eventing function definition files made outside of this REST API or the interactive UI are only supported if you adhere to the Eventing schemas described here. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Changes to the Eventing function definition files made outside of this REST API or the interactive UI are only supported if you adhere to the Eventing schemas described here.
 
 ### [](#AddFunction)Function Request
 
  Composite Schema
 
-| One of …​                           |                                                                                                    | Schema                                         |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| An object which defines a function. | [Function Definition](#handler%5Fschema)                                                           |                                                |
-| or                                  | An array containing a single function definition object. **Minimum items:** 1 **Maximum items:** 1 | [Function Definition](#handler%5Fschema) array |
+| One of …​ |                                                                                                    | Schema                                         |
+| --------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+|           | An object which defines a function.                                                                | [Function Definition](#handler%5Fschema)       |
+| or        | An array containing a single function definition object. **Minimum items:** 1 **Maximum items:** 1 | [Function Definition](#handler%5Fschema) array |
 
 ### [](#AddFunctions)Functions Request
 
  Composite Schema
 
-| One of …​                           |                                                                                   | Schema                                         |
-| ----------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------- |
-| An object which defines a function. | [Function Definition](#handler%5Fschema)                                          |                                                |
-| or                                  | An array containing one or more function definition objects. **Minimum items:** 1 | [Function Definition](#handler%5Fschema) array |
+| One of …​ |                                                                                   | Schema                                         |
+| --------- | --------------------------------------------------------------------------------- | ---------------------------------------------- |
+|           | An object which defines a function.                                               | [Function Definition](#handler%5Fschema)       |
+| or        | An array containing one or more function definition objects. **Minimum items:** 1 | [Function Definition](#handler%5Fschema) array |
 
 ### [](#depcfg%5Fschema)Deployment Config
 

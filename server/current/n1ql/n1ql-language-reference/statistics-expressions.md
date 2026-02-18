@@ -1,4 +1,14 @@
+---
+title: Update Statistics for Index Expressions
+description: You can use the UPDATE STATISTICS statement to gather statistics
+  for an index key expression.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/statistics-expressions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/statistics-expressions.html)
+
+# Update Statistics for Index Expressions
 
 > You can use the UPDATE STATISTICS statement to gather statistics for an index key expression. 
 

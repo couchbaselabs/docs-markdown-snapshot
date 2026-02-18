@@ -1,4 +1,15 @@
+---
+title: Couchbase Search Advanced API
+description: The Search Advanced REST APIs are provided by the Search Service.
+  These APIs enable you to manage and monitor advanced settings of your Search
+  indexes.
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-advanced/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/fts-rest-advanced/index.html)
+
+# Couchbase Search Advanced API
 
 ## [](#overview)Overview
 

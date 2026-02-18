@@ -1,4 +1,12 @@
+---
+title: Configure Server Groups
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-server-groups.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/howto-server-groups.html)
+
+# Configure Server Groups
 
 > How to configure server groups to provide high availability across data centers. 
 

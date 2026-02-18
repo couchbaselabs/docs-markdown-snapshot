@@ -1,4 +1,13 @@
+---
+title: collections
+description: Provides information on collections.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-collections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbstats/cbstats-collections.html)
+
+# collections
 
 > Provides information on collections. 
 

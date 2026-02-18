@@ -1,4 +1,15 @@
+---
+title: Manage Deployments with the Management API
+description: The Couchbase Capella Management API is a secure REST API that
+  enables you to provision, deploy, and configure Capella deployments across all
+  supported cloud service providers.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/management-api-guide/management-api-intro.html)
+
+# Manage Deployments with the Management API
 
 > The Couchbase Capella Management API is a secure REST API that enables you to provision, deploy, and configure Capella deployments across all supported cloud service providers. 
 
@@ -8,8 +19,8 @@ Clients do not need any special tools, SDKs, or libraries to access the Manageme
 
 To get started quickly, [create an API key and make an API call](#see-also).
 
-|  | The Couchbase Capella Management API is not available for free tier operational clusters. [Upgrade your account](../billing/upgrade-account.md) to manage deployments with the Management API. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Couchbase Capella Management API is not available for free tier operational clusters. [Upgrade your account](../billing/upgrade-account.md) to manage deployments with the Management API.
 
 ## [](#versioning)Versioning
 

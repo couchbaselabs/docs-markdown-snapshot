@@ -1,9 +1,19 @@
+---
+title: Do a Quick Install
+description: First-time users can get Couchbase Server running simply and
+  rapidly by using Docker.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/do-a-quick-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/getting-started/do-a-quick-install.html)
+
+# Do a Quick Install
 
 > First-time users can get Couchbase Server running simply and rapidly by using Docker. Once you install Docker, you can use a single command to download and install a pre-configured version of Couchbase Server Enterprise Edition on your computer. 
 
-|  | The Docker container image that is used in this topic is meant to set up a 'sandbox' version of Couchbase Server. It’s based on the Enterprise Edition and contains scripts that automatically configure several Couchbase components during installation. Although this particular image works great for a demo, it is not meant for production. For information about installing Couchbase Server in production, see [Couchbase Server Deployment Options](../install/get-started.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Docker container image that is used in this topic is meant to set up a 'sandbox' version of Couchbase Server. It’s based on the Enterprise Edition and contains scripts that automatically configure several Couchbase components during installation. Although this particular image works great for a demo, it is not meant for production. For information about installing Couchbase Server in production, see [Couchbase Server Deployment Options](../install/get-started.md).
 
 ## [](#initialize-cluster-web-console)Install Couchbase Server
 
@@ -11,8 +21,8 @@ Prerequisite
 
 Ensure that you have Docker set up on your computer before proceeding to install Couchbase Server. Refer to the [Docker documentation](https://www.docker.com/get-docker) for instructions to set up Docker.
 
-|  | You may need administrative or root privileges on your computer to complete the installation. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You may need administrative or root privileges on your computer to complete the installation.
 
 Open a console window on your computer and enter the following command:
 

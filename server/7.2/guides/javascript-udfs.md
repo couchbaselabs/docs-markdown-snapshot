@@ -1,4 +1,14 @@
+---
+title: User-defined Functions with JavaScript
+description: How to extend the SQL++ query language by adding your own functions
+  written in JavaScript.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/javascript-udfs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/javascript-udfs.html)
+
+# User-defined Functions with JavaScript
 
 > How to extend the SQL++ query language by adding your own functions written in JavaScript.  
 > This guide is for Couchbase Server.

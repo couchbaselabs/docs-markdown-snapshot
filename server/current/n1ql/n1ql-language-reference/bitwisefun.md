@@ -1,12 +1,21 @@
+---
+title: Bitwise Functions
+description: All Bit/Binary functions can only operate on 64-bit signed integers.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/bitwisefun.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/bitwisefun.html)
+
+# Bitwise Functions
 
 All Bit/Binary functions can only operate on 64-bit signed integers.
 
-|  | All non-integer numbers and other data types result in null. |
-|  | ------------------------------------------------------------ |
+> [!NOTE]
+> All non-integer numbers and other data types result in null.
 
-|  | Couchbase Server uses two’s complement representation. |
-|  | ------------------------------------------------------ |
+> [!NOTE]
+> Couchbase Server uses two’s complement representation.
 
 When looking at the value in binary form, bit 1 is the Least Significant Bit (LSB) and bit 32 is the Most Significant Bit (MSB).
 
@@ -122,8 +131,8 @@ This results in 2 (0010 in binary) because only the 2nd bit from the right is 1 
 
 Returns the result after clearing the specified bit, or array of bits in `int_value` using the given `positions`.
 
-|  | Specifying a negative or zero bit position makes the function return a null. |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> Specifying a negative or zero bit position makes the function return a null.
 
 ### [](#arguments-2)Arguments
 
@@ -213,8 +222,8 @@ Returns the results of a bitwise logical NOT operation performed on an integer v
 
 The bitwise logical NOT operation reverses the bits in the value. For each value bit that is 1, the corresponding result bit will be set to 0 (zero); and for each value bit that is 0 (zero), the corresponding result bit will be set to 1.
 
-|  | All bits of the integer will be altered by this operation. |
-|  | ---------------------------------------------------------- |
+> [!NOTE]
+> All bits of the integer will be altered by this operation.
 
 ### [](#arguments-3)Arguments
 
@@ -342,8 +351,8 @@ This results in 15 (1111 in binary) because there is at least one 1 in each of t
 
 Returns the result after setting the specified bit `position`, or array of bit positions, to 1 in the given `int_value`.
 
-|  | Specifying a negative or zero position makes the function return a null. |
-|  | ------------------------------------------------------------------------ |
+> [!NOTE]
+> Specifying a negative or zero position makes the function return a null.
 
 ### [](#arguments-5)Arguments
 
@@ -564,8 +573,8 @@ This function has a synonym [ISBITSET()](#IsBitSET).
 
 Returns TRUE if the specified bit, or bits, is a 1; otherwise, returns FALSE if the specified bit, or bits, is a 0 (zero).
 
-|  | Specifying a negative or zero bit position will result in NULL being returned. |
-|  | ------------------------------------------------------------------------------ |
+> [!NOTE]
+> Specifying a negative or zero bit position will result in NULL being returned.
 
 ### [](#arguments-7)Arguments
 

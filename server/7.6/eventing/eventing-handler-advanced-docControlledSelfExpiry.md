@@ -1,4 +1,14 @@
+---
+title: "Function: Advanced Document Controlled Expiry"
+description: Purge a document automatically based on the document's
+  self-contained start and duration fields.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-advanced-docControlledSelfExpiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-advanced-docControlledSelfExpiry.html)
+
+# Function: Advanced Document Controlled Expiry
 
 Purge a document automatically based on the document’s self-contained start and duration fields.
 

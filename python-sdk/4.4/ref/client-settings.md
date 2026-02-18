@@ -1,4 +1,14 @@
+---
+title: Client Settings
+description: The <code>ClusterOptions</code> class enables you to configure
+  Python SDK options for bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/ref/pages/client-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/ref/client-settings.html)
+
+# Client Settings
 
 > The `ClusterOptions` class enables you to configure Python SDK options for bootstrapping, timeouts, reliability, and performance. 
 
@@ -43,8 +53,8 @@ Default: `TLSVerifyMode.PEER`
 
 Set this to `TLSVerifyMode.NONE` to disable certificate verification.
 
-|  | The Python 3.x SDK allowed for ssl=no\_verify to be passed in as part of the connection string. While this is still permitted in the 4.x SDK, the preferred method would be to pass in tls\_verify=TLSVerifyMode.NONE in the ClusterOptions. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Python 3.x SDK allowed for `ssl=no_verify` to be passed in as part of the connection string. While this is still permitted in the 4.x SDK, the preferred method would be to pass in tls\_verify=TLSVerifyMode.NONE in the `ClusterOptions`.
 
 Name: **TLS Certificate Location**
 
@@ -96,8 +106,8 @@ Parameter: `network: Optional[str]`
 
 Default: `auto`
 
-|  | The network value should be one of auto, default, or external (lower case). |
-|  | --------------------------------------------------------------------------- |
+> [!NOTE]
+> The network value should be one of `auto`, `default`, or `external` (lower case).
 
 Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
 
@@ -123,8 +133,8 @@ Parameter: `tcp_keep_alive_interval: Optional[timedelta]`
 
 Default: `None`
 
-|  | This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval).
 
 Name: **Max HTTP Endpoints per Service per Node**
 
@@ -234,8 +244,8 @@ Key/Value operations with enhanced durability requirements may take longer to co
 
 **Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
 
-|  | The kv\_durable\_timeout property is not part of the stable API and may change or be removed at any time. |
-|  | --------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> The `kv_durable_timeout` property is not part of the stable API and may change or be removed at any time.
 
 Name: **View Timeout**
 
@@ -614,8 +624,8 @@ Though [wide area network](../project-docs/compatibility.md#network-requirements
 * Config Poll Interval to 10s
 * Circuit Breaker ErrorThresholdPercentage to 75
 
-|  | As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
 
@@ -623,8 +633,8 @@ A program using the SDK can also use the `waitUntilReady()` API call to handle a
 
 Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
 
-|  | The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
 
 ### [](#wan-development)WAN Development
 
@@ -647,7 +657,13 @@ __Table 1\. Profile Settings__
 | resolve\_timeout     | 2s            | 20s               |
 | bootstrap\_timeout   | 10s           | 120s              |
 
-|  | Bootstrap Timeout For the SDKs built upon the core C++ SDK, the bootstrap timeouts are picked up from the C++ SDK, and include the following: The bootstrap\_timeout is the overall timeout for the bootstrap process. The resolve\_timeout and connect\_timeout are connected to steps within the bootstrap process. The DNS SRV lookup occurs before we start the bootstrap process — while technically a part of bootstrapping (and dns\_srv\_timeout’s default value is inherited from the C++ SDK), the timeout is actually outside the \`bootstrap\_timeout. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Bootstrap Timeout
+> 
+> For the SDKs built upon the core C++ SDK, the bootstrap timeouts are picked up from the C++ SDK, and include the following:
+> 
+> * The `bootstrap_timeout` is the overall timeout for the bootstrap process.
+> * The `resolve_timeout` and `connect_timeout` are connected to steps within the bootstrap process.
+> * The DNS SRV lookup occurs before we start the bootstrap process — while technically a part of bootstrapping (and `` dns_srv_timeout’s default value is inherited from the C++ SDK), the timeout is actually outside the `bootstrap_timeout ``.
 
 **Do not** set `key_value_durable_timeout` above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.

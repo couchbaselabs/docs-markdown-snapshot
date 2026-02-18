@@ -1,11 +1,23 @@
+---
+title: Passive Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/p2psync-websocket-using-passive.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.3/c/p2psync-websocket-using-passive.html)
+
+# Passive Peer
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
 > Related Content — [API Reference](https://docs.couchbase.com/mobile/3.3.4/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
-|  | Code SnippetsAll code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
 
 ## [](#introduction)Introduction
 
@@ -15,8 +27,10 @@ Couchbase’s Passive Peer (also referred to as the server, or Listener) will ac
 
 Subsequent sections provide additional details and examples for the main configuration options.
 
-|  | Secure StorageThe use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage).
 
 ## [](#configuration-summary)Configuration Summary
 
@@ -454,8 +468,8 @@ Example 15\. Stop listener using `stop` method
 CBLURLEndpointListener_Stop(listener);
 ```
 
-|  | Closing the database will also close the Listener. |
-|  | -------------------------------------------------- |
+> [!NOTE]
+> Closing the database will also close the Listener.
 
 ## [](#related-content)Related Content
 

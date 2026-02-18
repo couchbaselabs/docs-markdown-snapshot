@@ -1,4 +1,14 @@
+---
+title: Analytics
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL++ syntax.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/analytics-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.2/howtos/analytics-using-sdk.html)
+
+# Analytics
 
 > Parallel data management for complex queries over many records, using a familiar SQL++ syntax. 
 
@@ -46,8 +56,8 @@ $options->namedParameters(['$country' => "France"]);
 $result = $cluster->analyticsQuery('SELECT airportname, country FROM airports WHERE country = $country;', $options);
 ```
 
-|  | As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources. See example in the next section. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources. See example in the next section.
 
 ## [](#options)Options
 

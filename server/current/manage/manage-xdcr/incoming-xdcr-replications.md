@@ -1,11 +1,21 @@
+---
+title: Incoming Replications
+description: Incoming replications details for a target cluster in XDCR are
+  listed in the UI and can be retrieved using the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/incoming-xdcr-replications.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/manage/manage-xdcr/incoming-xdcr-replications.html)
+
+# Incoming Replications
 
 > Incoming replications details for a target cluster in XDCR are listed in the UI and can be retrieved using the REST API. 
 
 A cluster is identified as a target cluster in XDCR when it receives replicated data from a remote cluster. Then the replicating remote cluster is identified as a source cluster. When a replication is created, on the source cluster, the replication is called an outgoing replication, and on the target cluster, the same replication is called an incoming replication.
 
-|  | A replication is always created on a cluster that’s the source of data being replicated. |
-|  | ---------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A replication is always created on a cluster that’s the source of data being replicated.
 
 ## [](#view-incoming-replications)View Incoming Replications
 

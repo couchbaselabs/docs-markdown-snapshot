@@ -1,4 +1,14 @@
+---
+title: Manage Log Streaming with the Management API
+description: You can configure and manage log streaming for App Services using
+  the Couchbase Capella Management API.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-log-streaming.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/monitoring/manage-log-streaming.html)
+
+# Manage Log Streaming with the Management API
 
 > You can configure and manage log streaming for App Services using the Couchbase Capella Management API. 
 
@@ -95,8 +105,8 @@ curl -X POST "https://cloudapi.cloud.couchbase.com/v4/organizations/$organizatio
 
 #### [](#elasticsearch)Elasticsearch
 
-|  | Capella App Services supports only Elasticsearch versions 8+ with basic auth. |
-|  | ----------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella App Services supports only Elasticsearch versions 8+ with basic auth.
 
 In this example:
 
@@ -205,8 +215,8 @@ In this example:
 * `$YOUR_COLLECTOR_USER` is the username of the account for your custom log collector.
 * `$YOUR_COLLECTOR_PASSWORD` is the password of your custom log collector account.
 
-|  | The username and password fields are optional for custom HTTP collectors. |
-|  | ------------------------------------------------------------------------- |
+> [!NOTE]
+> The username and password fields are optional for custom HTTP collectors.
 
 Request
 
@@ -355,8 +365,8 @@ To change the log streaming configuration for a specified App Endpoint:
 2. Pass the App Service ID and App Endpoint name as path parameters.
 3. Pass the log level and filters configuration as the request body. For details, see the [request body schema](../../cloud/management-api-reference/index.md#tag/App-Services-Log-Streaming/operation/putAppEndpointLogStreaming).
 
-|  | Changing log streaming configuration for an App Endpoint causes it to go offline briefly, which may result in temporary downtime for client applications. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Changing log streaming configuration for an App Endpoint causes it to go offline briefly, which may result in temporary downtime for client applications.
 
 Example 6\. Configure App Endpoint with Info level and default filters
 

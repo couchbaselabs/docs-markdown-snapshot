@@ -1,4 +1,12 @@
+---
+title: Release Notes for Couchbase Kubernetes Operator 2.8
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/release-notes.html)
+
+# Release Notes for Couchbase Kubernetes Operator 2.8
 
 Autonomous Operator 2.8 introduces our new Cluster Migration functionality well as a number of other improvements and minor fixes.
 
@@ -63,8 +71,14 @@ In a previous version of the Operator, `enablePageBloomFilter` was unfortunately
 
 Until CAO 2.8.0, Bucket Compaction settings were only available to be set in the [CouchbaseCluster](resource/couchbasecluster.md) resource, at [couchbaseclusters.spec.cluster.autoCompaction](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-autocompaction). These settings have now been added to the [CouchbaseBucket](resource/couchbasebucket.md) resource at [couchbasebuckets.spec.autoCompaction](resource/couchbasebucket.md#couchbasebuckets-spec-autocompaction).
 
-|  | Prior to Operator 2.8.0, the above settings could still be set directly on the cluster. To avoid these being reset to default values during the CAO upgrade, any of the above settings that have been changed must be added to the appropriate resource during the upgrade. Specifically, this needs to be done _after_ updating the CRDs, and _before_ installing the new Operator For further information see [Update Existing Resources](howto-operator-upgrade.md#update-existing-resources). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Prior to Operator 2.8.0, the above settings could still be set directly on the cluster.
+> 
+> To avoid these being reset to default values during the CAO upgrade, any of the above settings that have been changed must be added to the appropriate resource during the upgrade.
+> 
+> Specifically, this needs to be done _after_ updating the CRDs, and _before_ installing the new Operator
+> 
+> For further information see [Update Existing Resources](howto-operator-upgrade.md#update-existing-resources).
 
 #### [](#metrics-changes)Metrics Changes
 

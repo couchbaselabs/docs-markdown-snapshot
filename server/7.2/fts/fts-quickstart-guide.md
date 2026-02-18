@@ -1,4 +1,14 @@
+---
+title: Search Service Quick Start Guide
+description: Following appropriate preparations, full text searches can be
+  performed in a number of ways.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-quickstart-guide.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-quickstart-guide.html)
+
+# Search Service Quick Start Guide
 
 > Following appropriate preparations, full text searches can be performed in a number of ways. 
 
@@ -33,8 +43,8 @@ To install the `travel-sample` sample dataset, refer to [Install Sample Buckets 
 
 For a more detailed explanation of the available Query options, refer to [Searching from the UI](fts-searching-from-the-UI.md)
 
-|  | During index creation, in support of most query-types, you can select (or create) and use an _analyzer_. This is optional: if you do not specify an analyzer, a default analyzer is provided. Analyzers can be created by means of the Couchbase Web Console, during index creation, as described in [Creating Search Indexes](fts-creating-indexes.md). Their functionality and inner components are described in detail in [Understanding Analyzers](fts-index-analyzers.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> During index creation, in support of most query-types, you can select (or create) and use an _analyzer_. This is optional: if you do not specify an analyzer, a default analyzer is provided. Analyzers can be created by means of the Couchbase Web Console, during index creation, as described in [Creating Search Indexes](fts-creating-indexes.md). Their functionality and inner components are described in detail in [Understanding Analyzers](fts-index-analyzers.md).
 
 ## [](#performing-full-text-searches)Methods to Access the Search service
 

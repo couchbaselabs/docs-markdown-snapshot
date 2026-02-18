@@ -1,4 +1,12 @@
+---
+title: Admonitions
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/admonitions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/admonitions.html)
+
+# Admonitions
 
 Antora has 5 admonition types:
 
@@ -12,8 +20,8 @@ Do not use more than 2 admonitions back-to-back on a page, and do not overuse th
 
 Remember: if everything is important, nothing is.
 
-|  | If you need to add block or "compound" content to an admonition block, use a compound admonition, as described in the [Admonitions](#home:contribute:basics.adoc#admonitions). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If you need to add block or "compound" content to an admonition block, use a compound admonition, as described in the [Admonitions](#home:contribute:basics.adoc#admonitions).
 
 ## [](#notes)Notes
 
@@ -25,11 +33,11 @@ Use a note when you:
 
 For example:
 
-|  | If you used the default installation for Couchbase Server, you can find the command line clients inside your installation. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you used the default installation for Couchbase Server, you can find the command line clients inside your installation.
 
-|  | The document key must be unique for each document you insert. |
-|  | ------------------------------------------------------------- |
+> [!NOTE]
+> The document key must be unique for each document you insert.
 
 Use other admonition types, like [cautions](#cautions) and [warnings](#warnings) for critical information.
 
@@ -45,14 +53,16 @@ You should also use a tip to let a user know when they can also accomplish a tas
 
 For example:
 
-|  | The maximum allowed value is 2147483648 seconds (68.096 years). |
-|  | --------------------------------------------------------------- |
+> [!TIP]
+> The maximum allowed value is 2147483648 seconds (68.096 years).
 
-|  | You can also press ENTER to submit your query. |
-|  | ---------------------------------------------- |
+> [!TIP]
+> You can also press ENTER to submit your query.
 
-|  | You can also foo the bar from the [Public Management API](#tips): [FOO](#tips) |
-|  | ------------------------------------------------------------------------------ |
+> [!TIP]
+> You can also foo the bar from the [Public Management API](#tips):
+> 
+> * [FOO](#tips)
 
 ## [](#warnings)Warnings
 
@@ -63,11 +73,11 @@ Use a warning when you:
 
 For example:
 
-|  | Dropping a bucket is an irreversible action. You cannot recover the data from a dropped bucket. |
-|  | ----------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Dropping a bucket is an irreversible action. You cannot recover the data from a dropped bucket.
 
-|  | A deleted repository and its back-up data cannot be recovered. |
-|  | -------------------------------------------------------------- |
+> [!WARNING]
+> A deleted repository and its back-up data cannot be recovered.
 
 ## [](#cautions)Cautions
 
@@ -78,11 +88,11 @@ Use a caution when you:
 
 For example:
 
-|  | **Memcached** buckets are deprecated. Use a **Couchbase** or **Ephemeral** bucket, instead. |
-|  | ------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> **Memcached** buckets are deprecated. Use a **Couchbase** or **Ephemeral** bucket, instead.
 
-|  | You must modify the default number of replicas for a bucket. Otherwise, all key-value writes with durability enabled will fail. |
-|  | ------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> You must modify the default number of replicas for a bucket. Otherwise, all key-value writes with durability enabled will fail.
 
 ## [](#importants)Important
 
@@ -94,5 +104,5 @@ Try to use an important at the top of a page or section.
 
 For example:
 
-|  | In version 3.3 of the .NET SDK, foo no longer requires the bar parameter. |
-|  | ------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In version 3.3 of the .NET SDK, `foo` no longer requires the `bar` parameter.

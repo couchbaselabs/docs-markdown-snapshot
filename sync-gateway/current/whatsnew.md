@@ -1,10 +1,19 @@
+---
+title: New In 4.0
+description: Couchbase Sync Gateway -- What's new in the latest release
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/whatsnew.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/whatsnew.html)
+
+# New In 4.0
 
 > Couchbase Sync Gateway — What’s new in the latest release  
 > This content covers the new features introduced in Sync Gateway 4.0
 
-|  | Sync Gateway 4.0 introduces some breaking changes. If you’re upgrading from 3.x, see [Upgrading Sync Gateway](upgrading.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Sync Gateway 4.0 introduces some breaking changes. If you’re upgrading from 3.x, see [Upgrading Sync Gateway](upgrading.md).
 
 ## [](#overview-of-sync-gateway-4-0)Overview of Sync Gateway 4.0
 
@@ -35,8 +44,10 @@ For more information, see [Version vectors](server-compatibility/server-compatib
 * Couchbase Lite 4.0 provides full compatibility with Sync Gateway 4.0, including the ability to switch between clusters while maintaining consistency.
 * Earlier Couchbase Lite versions (3.x and 2.x) can synchronize with Sync Gateway 4.0 but cannot switch between clusters without potential consistency issues.
 
-|  | **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.** Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported. Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. Fixes for SGW 3.2.0 and 3.3.0 will be available in versions 3.2.7 and 3.3.1. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> **Couchbase Lite 4.0 with Sync Gateway 3.2.0 and 3.3.0 is unsupported.**
+> 
+> Connecting Couchbase Lite 4.0 to Sync Gateway versions before 4.0 is not supported. Use Sync Gateway 4.0 for Couchbase Lite 4.0 compatibility. Fixes for SGW 3.2.0 and 3.3.0 will be available in versions 3.2.7 and 3.3.1.
 
 ## [](#performance-improvements)Performance improvements
 
@@ -54,8 +65,8 @@ Sync Gateway 4.0.3 optimizes channel cache processing to improve throughput in h
 
 [Upgrading Sync Gateway](upgrading.md).
 
-|  | Upgrading to version 4.0 is a one way process. |
-|  | ---------------------------------------------- |
+> [!IMPORTANT]
+> Upgrading to version 4.0 is a one way process.
 
 ---
 

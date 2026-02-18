@@ -1,4 +1,14 @@
+---
+title: Release Notes for Couchbase Server 8.0
+description: Couchbase Server 8.0.0 introduces many fixes, as well as some
+  deprecations and removals.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/release-notes/pages/relnotes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/release-notes/relnotes.html)
+
+# Release Notes for Couchbase Server 8.0
 
 ## [](#new-features)New Features
 
@@ -189,8 +199,8 @@ As part of improving background task scheduling, we have replaced the legacy imp
 
 Previously, task scheduling relied on a basic two-priority queue (high and low), which had limitations—such as busy polling. The new scheduling mechanism (introduced in MB-36956) eliminates these issues.
 
-|  | Bucket priority settings are still available via the REST API and CLI to maintain compatibility with existing customer scripts and tooling. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Bucket priority settings are still available via the REST API and CLI to maintain compatibility with existing customer scripts and tooling.
 
 ### [](#dlist-fixed-issues-80-xdcr)XDCR
 
@@ -359,8 +369,8 @@ As part of improving background task scheduling, we have replaced the legacy imp
 
 Previously, task scheduling relied on a basic two-priority queue (high and low), which had limitations—such as busy polling. The new scheduling mechanism (introduced in MB-36956) eliminates these issues.
 
-|  | Bucket priority settings are still available via the REST API and CLI to maintain compatibility with existing customer scripts and tooling. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Bucket priority settings are still available via the REST API and CLI to maintain compatibility with existing customer scripts and tooling.
 
 ### [](#index-service)Index Service
 

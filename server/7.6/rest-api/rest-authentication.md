@@ -1,4 +1,13 @@
+---
+title: Authentication API
+description: Couchbase Server supports authentication via local and external domains.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-authentication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/rest-authentication.html)
+
+# Authentication API
 
 > Couchbase Server supports authentication via local and external domains. 
 

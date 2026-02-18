@@ -1,4 +1,14 @@
+---
+title: How to Assign Users to Roles
+description: How to assign a Sync Gateway <em>User</em> one or more roles for
+  secure access control in cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how-assign-users-to-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.2/access-control-how-assign-users-to-roles.html)
+
+# How to Assign Users to Roles
 
 > How to assign a Sync Gateway _User_ one or more roles for secure access control in cloud-to-edge enterprise data synchronization.  
 > Sync Gateway _Users_ and _Roles_ are a key part of a flexible approach to data routing and access control.
@@ -13,9 +23,10 @@ You can assign (or remove) users to (or from) roles using any of the following m
 Assign a user to a role via the [Admin REST API](rest-api-admin.md)
 * Configuration Properties file (Pre v3.x+)  
 Roles can be configured within using the DB section — see: [Legacy Pre-3.0 Configuration](configuration-properties-legacy.md).  
-
-|  | Persistent Configuration is enabled by default from 3.0. To continue using legacy Pre-3.0 configuration you should start _Sync Gateway_ with [disable-persistent-config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set true either in the configuration file or in [Command Line Options](command-line-options.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]  
+> Persistent Configuration is enabled by default from 3.0.  
+>  
+> To continue using legacy Pre-3.0 configuration you should start _Sync Gateway_ with [disable-persistent-config](configuration-properties-legacy.md#disable%5Fpersistent%5Fconfig) set `true` either in the configuration file or in [Command Line Options](command-line-options.md).
 * Sync Function  
 Programmatically assign users to roles.
 
@@ -25,8 +36,8 @@ Example 1\. Assign user to role
 
 Admin REST API
 
-|  | The recommended method from 3.0 |
-|  | ------------------------------- |
+> [!NOTE]
+> The recommended method from 3.0
 
 Assign a user to a role by sending a PUT request to the Admin REST API `_user` endpoint ([/{db}/\_user/{name}](rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/put%5Fdb-%5Fuser-name) ).
 

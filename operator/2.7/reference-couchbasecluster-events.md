@@ -1,4 +1,12 @@
+---
+title: <code>CouchbaseCluster</code> Events
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/reference-couchbasecluster-events.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/reference-couchbasecluster-events.html)
+
+# <code>CouchbaseCluster</code> Events
 
 > Kubernetes events that are raised by the Operator for `CouchbaseCluster` resources. 
 
@@ -62,8 +70,8 @@ UpgradeFinished
 
 An upgrade operation has successfully completed.
 
-|  | Upgrade events are raised in relation to an upgrade of the entire cluster and not individual nodes. Individual node upgrades will raise NewMemberAdded, RebalanceStarted, MemberRemoved and RebalanceCompleted member lifecycle events as members are swapped out for upgraded replacements. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Upgrade events are raised in relation to an upgrade of the entire cluster and not individual nodes. Individual node upgrades will raise `NewMemberAdded`, `RebalanceStarted`, `MemberRemoved` and `RebalanceCompleted` member lifecycle events as members are swapped out for upgraded replacements.
 
 ## [](#bucket-lifecycle)Bucket Lifecycle
 

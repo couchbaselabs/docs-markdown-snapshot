@@ -1,4 +1,12 @@
+---
+title: Creating Index Alias
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-full-text-aliases.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-full-text-aliases.html)
+
+# Creating Index Alias
 
 > Full Text Index Alias is the name that can be used in place of the actual full text index name. You can perform the searches across multiple buckets and multiple scopes by means of index aliases. 
 

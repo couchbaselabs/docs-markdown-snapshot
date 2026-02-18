@@ -1,4 +1,14 @@
+---
+title: "Function: Basic SQL++ SELECT Statement"
+description: Iterate through a basic N1QL SELECT where Eventing interacts with
+  the Data service via an inline {sqlpp} statement.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-basicN1qlSelectStmt.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/eventing-handler-basicN1qlSelectStmt.html)
+
+# Function: Basic SQL++ SELECT Statement
 
 **Goal**: Iterate through a basic N1QL SELECT where Eventing interacts with the Data service via an inline {sqlpp} statement.
 

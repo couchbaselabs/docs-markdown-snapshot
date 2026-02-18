@@ -1,4 +1,14 @@
+---
+title: Cluster Scaling
+description: Clusters can be multi-dimensionally scaled by adding or removing
+  Service instances and whole Services, and by adjusting Service instance sizes.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/scale-database.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/scale-database.html)
+
+# Cluster Scaling
 
 > Clusters can be multi-dimensionally scaled by adding or removing Service instances and whole Services, and by adjusting Service instance sizes. 
 
@@ -10,11 +20,11 @@ The dimensions of Multi-Dimensional Scaling are:
 2. Increasing and decreasing the size of Service instances
 3. Adding and removing whole Services
 
-|  | To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certian thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> To minimize the risk and severity of cluster outages, Couchbase Capella clusters using Couchbase Server 7.6 or later have guardrails that limit some cluster operations when cluster conditions meets certian thresholds. To learn more, see [Couchbase Server Guardrails](databases.md#guardrails).
 
-|  | For scaling a Single Node cluster, see the limitations of different [cluster configuration options](modify-database.md#modify-existing-service). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For scaling a Single Node cluster, see the limitations of different [cluster configuration options](modify-database.md#modify-existing-service).
 
 ## [](#cluster-services)Cluster Services
 
@@ -27,8 +37,14 @@ You can determine the capacity of an individual Service by multiplying these fac
 
 Each of these factors can be independently scaled. Adding additional instances to a Service is scaling out. Increasing the size of a Service’s instances is scaling up. Removing instances is scaling in. Reducing the size of instances is scaling down. These scaling techniques, together with the ability to add and remove whole Services within a cluster, enable Multi-Dimensional Scaling.
 
-|  | Node RAM Allocations If you deploy multiple Services in a Service Group, Capella distributes the memory allocated to each node in that group between the operating system and all deployed Services. Capella gives 20% of the available RAM on a node to the operating system. It divides the remaining RAM evenly between Services in the Service Group. For example, if there was 25 GB of RAM available on a node in a Service Group that needed to run 3 Services, each Service would get 8.3 GB of RAM (25/3). If you plan to run more than 1 Service on the nodes in your Service Groups, make sure to size your nodes with appropriate compute resources. For production clusters, consider running each of your Services with their own dedicated nodes to give them enough RAM. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Node RAM Allocations
+> 
+> If you deploy multiple Services in a Service Group, Capella distributes the memory allocated to each node in that group between the operating system and all deployed Services.
+> 
+> Capella gives 20% of the available RAM on a node to the operating system. It divides the remaining RAM evenly between Services in the Service Group. For example, if there was 25 GB of RAM available on a node in a Service Group that needed to run 3 Services, each Service would get 8.3 GB of RAM (25/3).
+> 
+> If you plan to run more than 1 Service on the nodes in your Service Groups, make sure to size your nodes with appropriate compute resources. For production clusters, consider running each of your Services with their own dedicated nodes to give them enough RAM.
 
 ## [](#rebalance)Rebalance
 
@@ -53,8 +69,10 @@ When deploying a new cluster with AWS or GCP, storage auto-expansion is always o
 
 With storage auto-expansion turned on, Couchbase bills you only for the additional storage capacity when the limit increase triggers.
 
-|  | To minimize the risk of disruptions to your cluster, review all cloud provider limitations before making any storage configuration changes. Monitor your systems after making adjustments to make sure they function as expected. If you have questions about storage auto-expansion for your cluster, contact [Support](../support/manage-support.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> To minimize the risk of disruptions to your cluster, review all cloud provider limitations before making any storage configuration changes. Monitor your systems after making adjustments to make sure they function as expected.
+> 
+> If you have questions about storage auto-expansion for your cluster, contact [Support](../support/manage-support.md).
 
 ### [](#AWS-Only-Storage-Limitations)AWS Storage Scaling Limitations
 
@@ -62,13 +80,13 @@ If you’re hosting your cluster on AWS, you must be aware of the storage scalin
 
 If you need to scale your storage during these 6 hours, Capella replaces and [rebalances](../../server/current/learn/clusters-and-availability/rebalance.md) the nodes. Rebalancing can result in data movement. Depending on the size of your data and available computing resources, this can affect performance until the process completes.
 
-|  | Couchbase Capella does not automatically decrease storage capacity. However, Capella allows for manual decreases in storage capacity by replacing and rebalancing nodes. While this approach provides greater flexibility, it can result in data movement and a slower process depending on the size of your data and available computing resources. It’s essential to consider the effects of decreasing storage capacity before making any changes to make sure the stability and performance of your systems are not compromised. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Couchbase Capella does not automatically decrease storage capacity. However, Capella allows for manual decreases in storage capacity by replacing and rebalancing nodes. While this approach provides greater flexibility, it can result in data movement and a slower process depending on the size of your data and available computing resources. It’s essential to consider the effects of decreasing storage capacity before making any changes to make sure the stability and performance of your systems are not compromised.
 
 ### [](#Azure-Only-Storage-Limitations)Azure Storage Scaling Limitations
 
-|  | Auto-expansion for Azure requires replacing and rebalancing nodes, which results in data movement. Depending on the amount of your data and available computing, this may affect performance until the auto-scaling process completes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Auto-expansion for Azure requires replacing and rebalancing nodes, which results in data movement. Depending on the amount of your data and available computing, this may affect performance until the auto-scaling process completes.
 
 All Azure clusters have auto-expansion turned off by default. You can turn on Azure storage auto-expansion during cluster creation or after you create a cluster. To change the storage auto-expansion settings for an existing cluster in the Capella UI, open the cluster page and click **Settings** **Services**. Each Service Group has its own Auto-Expansion toggle.
 
@@ -78,8 +96,8 @@ When a cluster hosted with Azure auto expands, Capella doubles the current stora
 
 The following tables contain recommended default IOPS values for [AWS gp3, AWS io2](#aws-iops), and [Azure Ultra Disk](#azure-iops). These defaults are based on disk utilization for typical enterprise workloads. When creating or modifying a cluster and choosing a storage option, Capella uses these defaults for the IOPS field. You can replace the default IOPS value with one higher than the default but not lower.
 
-|  | Couchbase recommends that you review your current IOPS values for your existing clusters against these default values. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Couchbase recommends that you review your current IOPS values for your existing clusters against these default values.
 
 __Table 1\. AWS gp3 and AWS io2 default IOPS values__
 | Storage Size Range (GB) | IOPS                     |

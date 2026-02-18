@@ -1,4 +1,14 @@
+---
+title: Search Request JSON Properties
+description: You can add additional properties to a Search request to control
+  how the Search Service returns results.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-request-params.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/search-request-params.html)
+
+# Search Request JSON Properties
 
 > You can add additional properties to a Search request to control how the Search Service returns results. 
 
@@ -240,8 +250,8 @@ Query String queries let you express more complex queries with a special syntax.
 
 If you do not add any additional Query String syntax to a query, the Search Service interprets the query as a match query. It searches for an exact match to the provided term in any fields that have been added to the `default` field. For more information about how to configure the default field for your Search index, see [Set Search Index General Settings](set-advanced-settings.md#all-field) or the [default\_field property](search-index-params.md#all-field).
 
-|  | Query String syntax is not recommended for use in production environments. |
-|  | -------------------------------------------------------------------------- |
+> [!CAUTION]
+> Query String syntax is not recommended for use in production environments.
 
 | Operator          | Property                                                                                           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Examples                                                                                                                                                                                                                                                                                                                                        |
 | ----------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -382,8 +392,8 @@ For example, the following query searches for any IP addresses in the range `2.7
 }
 ```
 
-|  | If your IP range includes over 1024 IP addresses, you must update the bleveMaxResultWindow setting to accommodate your results. For more information about how to change this setting, see [bleveMaxResultWindow](../../current/fts/fts-advanced-settings-bleveMaxResultWindow.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If your IP range includes over 1024 IP addresses, you must update the `bleveMaxResultWindow` setting to accommodate your results. For more information about how to change this setting, see [bleveMaxResultWindow](../../current/fts/fts-advanced-settings-bleveMaxResultWindow.md).
 
 | Property | Type                                         | Required? | Description                                                                                                                                                                                                   |
 | -------- | -------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,4 +1,12 @@
+---
+title: Couchbase Cluster Auto-scaling Best Practices
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-couchbase-autoscaling-best-practices.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/concept-couchbase-autoscaling-best-practices.html)
+
+# Couchbase Cluster Auto-scaling Best Practices
 
 > Recommended best practices, derived from tested performance metrics, for configuring Couchbase cluster auto-scaling using the Couchbase Autonomous Operator. 
 
@@ -97,10 +105,9 @@ A general rule of thumb is to set this field to `0s` until a high degree of conf
 The following are general best practices that should be considered when configuring the [HorizontalPodAutoscaler](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#horizontalpodautoscaler-v2-autoscaling) resource for cluster auto-scaling:
 
 * Setting a value for `maxReplicas` is required because it provides important protection against runaway scaling events. Due to the highly-configurable nature of cluster auto-scaling, setting a cap on the maximum number scaling nodes is the simplest, most valuable protection you can give yourself against a potentially costly misconfiguration.
-* Setting `minReplicas` is important for maintaining service availability. If left undefined, Kubernetes uses the [default value of 1 pod](https://pkg.go.dev/k8s.io/api/autoscaling/v1#HorizontalPodAutoscalerSpec), which may be fine for your non-production deployments. However, when using auto-scaling in production, it is recommended that you set `minReplicas` to at least `2` or greater (`3` or greater for the Data Service). This ensures a minimum level of protection against single-node failures.
-
-|  | You can technically set minReplicas to 0 by enabling the HPAScaleToZero [feature gate](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/). You should never do this, as the Autonomous Operator prevents server class configurations from having sizes less than 1\. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* Setting `minReplicas` is important for maintaining service availability. If left undefined, Kubernetes uses the [default value of 1 pod](https://pkg.go.dev/k8s.io/api/autoscaling/v1#HorizontalPodAutoscalerSpec), which may be fine for your non-production deployments. However, when using auto-scaling in production, it is recommended that you set `minReplicas` to at least `2` or greater (`3` or greater for the Data Service). This ensures a minimum level of protection against single-node failures.  
+> [!CAUTION]  
+> You can technically set `minReplicas` to `0` by enabling the `HPAScaleToZero` [feature gate](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/). You should never do this, as the Autonomous Operator prevents server class configurations from having sizes less than 1\.
 * Depending on the cloud provider, provisioning of persistent volumes may take significantly longer than pods. Therefore, the chances of exceeding a metric threshold while trying to reach its desired value is higher when using persistent volumes. All disk-space related thresholds should rely on volume expansion rather than pod auto-scaling.
 
 ## [](#data-service)Data Service
@@ -137,8 +144,8 @@ Based on internal benchmark testing, we believe the following settings provide a
 | ----------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
 | cbbucketinfo\_basic\_quota\_user\_percent | 70%       | scaleUp: 30s scaleDown: [default](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#default-behavior) | 0s                             |
 
-|  | A [_label selector_](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-more-specific-metrics) must be used with cbbucketinfo\_basic\_quota\_user\_percent in order to scale the cluster based on the memory utilization of individual buckets. When configured to scale on this metric _without_ a label selector, the Horizontal Pod Autoscaler will take the _sum_ memory utilization across buckets. (For example, if a cluster has two buckets — bucket1 and bucket2 — and both are utilizing 40% of their individual memory quotas, the Horizontal Pod Autoscaler will read the metric as 80% and thus scale the cluster if the threshold is set to 70%.) Refer to the **Example Configs** tab for an example of how to define a label selector for this metric. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> A [_label selector_](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-more-specific-metrics) must be used with `cbbucketinfo_basic_quota_user_percent` in order to scale the cluster based on the memory utilization of individual buckets. When configured to scale on this metric _without_ a label selector, the Horizontal Pod Autoscaler will take the _sum_ memory utilization across buckets. (For example, if a cluster has two buckets — `bucket1` and `bucket2` — and both are utilizing 40% of their individual memory quotas, the Horizontal Pod Autoscaler will read the metric as 80% and thus scale the cluster if the threshold is set to 70%.) Refer to the **Example Configs** tab for an example of how to define a label selector for this metric.
 
 General notes:
 
@@ -155,8 +162,8 @@ Notes on Ephemeral buckets:
 * Lower compaction thresholds result in fewer auto-scaling events, but higher rebalance times since there is more data per node. Therefore, the memory quota threshold may need to be adjusted down for workloads with set rates higher than 30%.
 * Higher compaction thresholds will result in more auto-scaling events, which is less cost efficient but leads to faster rebalances since less data exists per node.
 
-|  | The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Data Service](tutorial-autoscale-data.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Data Service](tutorial-autoscale-data.md).
 
 Example `CouchbaseCluster` Recommended Settings
 
@@ -252,8 +259,8 @@ General notes:
   * Using a `300s` HPA Stabilization Window (both `scaleUp` and `scaleDown`) is recommended in order to mitigate quick directional changes in scaling.
   * A high `600s` Couchbase Stabilization Period ensures additional nodes are fully acclimated to the workload.
 
-|  | The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Query Service](tutorial-autoscale-query.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Query Service](tutorial-autoscale-query.md).
 
 Example `CouchbaseCluster` Recommended Settings
 
@@ -352,8 +359,8 @@ General notes:
 * Index RAM distribution is uncertain and clusters may perform better when an even number of Index nodes are available.
 * Testing revealed that Index Service RAM usage didn’t always drop immediately when a single `index` node was added, but when a pair of nodes were added then RAM usage dropped.
 
-|  | The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Index Service](tutorial-autoscale-index.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The examples below are incomplete configurations that are meant to show the implementation of the recommended settings within the relevant resources. For a more complete example of how to implement the recommended auto-scaling settings, refer to [Auto-scaling the Couchbase Index Service](tutorial-autoscale-index.md).
 
 Example `CouchbaseCluster` Recommended Settings
 

@@ -1,7 +1,15 @@
+---
+title: Creating Search Indexes
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-creating-indexes.html)
 
-|  | Full Text Searches are supported by specially purposed indexes, which can be created either from the Couchbase Web Console, or by means of the REST API. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+# Creating Search Indexes
+
+> [!NOTE]
+> Full Text Searches are supported by specially purposed indexes, which can be created either from the Couchbase Web Console, or by means of the REST API.
 
 The PUT request is the only way to create/update indexes.
 
@@ -9,8 +17,8 @@ If the user does it from the UI/SDK - it will be translated to HTTP PUT requests
 
 Specifying the "uuid" parameter in the index definition is required for the index introduction to be treated as a valid update.
 
-|  | This uuid has to match the one in the system already. Upon a successful index creation/updation, the uuid of the index will be re-initialized. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This uuid has to match the one in the system already. Upon a successful index creation/updation, the uuid of the index will be re-initialized.
 
 ## [](#indexes-and-full-text-search)Indexes and Full Text Search
 

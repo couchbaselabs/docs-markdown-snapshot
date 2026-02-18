@@ -1,4 +1,15 @@
+---
+title: Identifying the Orchestrator Node
+description: The node currently running the <em>orchestrator</em> (sometimes
+  referred to as the <em>Master Services</em>) can be identified by means of the
+  REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-identify-orchestrator.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-identify-orchestrator.html)
+
+# Identifying the Orchestrator Node
 
 > The node currently running the _orchestrator_ (sometimes referred to as the _Master Services_) can be identified by means of the REST API. 
 

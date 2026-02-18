@@ -1,4 +1,12 @@
+---
+title: maxFeedsPerDCPAgent
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-advanced-settings-maxFeedsPerDCPAgent.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-advanced-settings-maxFeedsPerDCPAgent.html)
+
+# maxFeedsPerDCPAgent
 
 The `maxFeedsPerDCPAgent` setting refers to the number of index partitions a single physical connection to KV will handle. This setting controls the sharing of feed Agent or the underlying connection per feed of various index partitions belonging to the same bucket.
 

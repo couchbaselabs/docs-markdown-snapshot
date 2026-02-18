@@ -1,4 +1,13 @@
+---
+title: Cluster Addressing and Topology Management
+description: ""
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/cluster-connectivity-topology-management.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/cluster-connectivity-topology-management.html)
+
+# Cluster Addressing and Topology Management
 
 This section describes the addressing models supported by the Analytics SDKs for access to Enterprise Analytics clusters, outlines pros and cons for each, and provides best-practice operational procedures for handling cluster topology changes such as adding or removing nodes. It also covers configuration settings that can help ensure smooth failover and rebalance operations.
 
@@ -16,8 +25,10 @@ A Layer-7 load balancer actively probes the health of Enterprise Analytics nodes
 https://ea-cluster.example.com
 ```
 
-|  | Recommended to configure load balancer listeners on :80 for HTTP and :443 for HTTPS, so SDK clients can omit the port in the connection string. The ea-cluster.example.com hostname should resolve only to the load balancer VIP (or redundant IPs), not directly to backend node IPs. In the event [legacy SDK connectivity](#legacy-sdks) is required, compatible access to the cluster (exposing memcached ports for all nodes) will also need to be provided. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Recommended to configure load balancer listeners on `:80` for HTTP and `:443` for HTTPS, so SDK clients can omit the port in the connection string.
+> * The `ea-cluster.example.com` hostname should resolve only to the load balancer VIP (or redundant IPs), not directly to backend node IPs.
+> * In the event [legacy SDK connectivity](#legacy-sdks) is required, compatible access to the cluster (exposing memcached ports for all nodes) will also need to be provided.
 
 #### [](#pros)Pros
 
@@ -42,8 +53,10 @@ A Layer-4 or TCP-level load balancer that distributes connections without active
 https://ea-cluster.example.com
 ```
 
-|  | As with Active Load Balancer, :80 or :443 recommended for default SDK behavior. The ea-cluster.example.com hostname should resolve only to the load balancer VIP (or redundant IPs), not directly to backend node IPs. In the event [legacy SDK connectivity](#legacy-sdks) is required, compatible access to the cluster (exposing memcached ports for all nodes) will also need to be provided. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * As with Active Load Balancer, `:80` or `:443` recommended for default SDK behavior.
+> * The `ea-cluster.example.com` hostname should resolve only to the load balancer VIP (or redundant IPs), not directly to backend node IPs.
+> * In the event [legacy SDK connectivity](#legacy-sdks) is required, compatible access to the cluster (exposing memcached ports for all nodes) will also need to be provided.
 
 #### [](#pros-2)Pros
 
@@ -67,8 +80,8 @@ Clients resolve a DNS hostname that resolves configured cluster nodes via multip
 https://<dns hostname>:18095
 ```
 
-|  | Enterprise Analytics nodes listen on :8095 for HTTP and :18095 for HTTPS. |
-|  | ------------------------------------------------------------------------- |
+> [!NOTE]
+> Enterprise Analytics nodes listen on `:8095` for HTTP and `:18095` for HTTPS.
 
 #### [](#pros-3)Pros
 
@@ -131,8 +144,8 @@ Configure `rebalanceEjectDelaySeconds` according to your cluster’s addressing 
 
 Set to at least `load balancer health check interval × (load balancer unhealthy threshold + 1)`This accounts for the time needed by the load balancer to detect the node as unhealthy and stop routing requests before the node is removed.
 
-|  | The extra +1 ensures worst-case timing when the health check just occurred before the node starts returning 503. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The extra `+1` ensures worst-case timing when the health check just occurred before the node starts returning `503`.
 
 #### [](#passive-load-balancer-3)Passive Load Balancer
 
@@ -173,8 +186,8 @@ A rebalance in operation is used to add one or more nodes to the Enterprise Anal
 3. Add node’s IP to DNS A records.
 4. It may take up to DNS TTL seconds for client applications to start to use new node.
 
-|  | All mentions of "node" in this section can refer to any quantity of nodes being added in the rebalance operation. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All mentions of "node" in this section can refer to any quantity of nodes being added in the rebalance operation.
 
 ### [](#rebalance-out-scale-in)Rebalance Out (Scale-In)
 
@@ -201,8 +214,10 @@ A rebalance out operation is used to remove one or more nodes from the Enterpris
 3. Node will remain usable for a minimum of `rebalanceEjectDelaySeconds` ([details](#rebalanceEjectDelaySeconds)).
 4. Node terminates upon rebalance completion.
 
-|  | All mentions of "node" in this section can refer to any quantity of nodes being removed in the rebalance operation. The rebalance process respects active connections and allows them to complete gracefully, so no additional wait is required after removing the node from the load balancer pool. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All mentions of "node" in this section can refer to any quantity of nodes being removed in the rebalance operation.
+> 
+> The rebalance process respects active connections and allows them to complete gracefully, so no additional wait is required after removing the node from the load balancer pool.
 
 ### [](#failover-node-reachable-by-quorum)Failover - Node Reachable by Quorum
 
@@ -215,8 +230,9 @@ Failover Procedures by Addressing Model
 3. Once failed health check thresholds are met, load balancer stops routing traffic to the failed node.
 4. Remove node from load balancer backend pool unless it is being added back to the cluster.
 
-|  | Until the failed health check thresholds are met and the load balancer removes the failed node from the backend pool, any requests that are routed to the failed node will get connection refused. Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Until the failed health check thresholds are met and the load balancer removes the failed node from the backend pool, any requests that are routed to the failed node will get connection refused.
+> * Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover.
 
 #### [](#passive-load-balancer-6)Passive Load Balancer
 
@@ -225,8 +241,9 @@ Failover Procedures by Addressing Model
 3. Requests routed to the failed node will get connection refused, which will trigger the load balancer to remove the node from the active backend pool.
 4. Remove node from load balancer backend pool unless it is being added back to the cluster.
 
-|  | Depending on the specific load balancer and its configuration, some client requests may experience errors (e.g. 503) for requests that get routed to the failed node, until the load balancer removes the node from the active backend pool. Other configurations may retry the refused connections on another node. Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Depending on the specific load balancer and its configuration, some client requests may experience errors (e.g. `503`) for requests that get routed to the failed node, until the load balancer removes the node from the active backend pool. Other configurations may retry the refused connections on another node.
+> * Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover.
 
 #### [](#dns-only-6)DNS-Only
 
@@ -251,8 +268,9 @@ Failover Procedures by Addressing Model
 5. Once failed health check thresholds are met, load balancer stops routing traffic to the failed node.
 6. Remove node from load balancer backend pool unless it is being added back to the cluster.
 
-|  | Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover. Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include 503 errors, or requests that will timeout or abort once the node terminates. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover.
+> * Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include `503` errors, or requests that will timeout or abort once the node terminates.
 
 #### [](#passive-load-balancer-7)Passive Load Balancer
 
@@ -265,8 +283,10 @@ Failover Procedures by Addressing Model
 4. Requests routed to the failed node will then get connection refused, which will trigger the load balancer to remove the node from the active backend pool.
 5. Remove node from load balancer backend pool unless it is being added back to the cluster.
 
-|  | Depending on the specific load balancer and its configuration, some client requests may experience errors (e.g. 503) for requests that get routed to the failed node, until the load balancer removes the node from the active backend pool. Other configurations may retry the refused connections on another node. Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover. Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include 503 errors, or requests that will timeout or abort once the node terminates. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Depending on the specific load balancer and its configuration, some client requests may experience errors (e.g. `503`) for requests that get routed to the failed node, until the load balancer removes the node from the active backend pool. Other configurations may retry the refused connections on another node.
+> * Running queries involving the failed node will fail upon node failover. Note that most queries utilize all nodes on the cluster, and therefore will fail on the failover.
+> * Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include `503` errors, or requests that will timeout or abort once the node terminates.
 
 #### [](#dns-only-7)DNS-Only
 
@@ -279,8 +299,9 @@ Failover Procedures by Addressing Model
 4. Requests routed to the failed node will get connection refused, which will trigger the SDK to retry another IP in the DNS record.
 5. Remove the node’s IP from the DNS record unless it is being added back to the cluster.
 
-|  | Running queries involving the failed node will fail upon node failover. Most queries utilize all nodes on the cluster, and therefore will fail on the failover. Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include 503 errors, or requests that will timeout or abort once the node terminates. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * Running queries involving the failed node will fail upon node failover. Most queries utilize all nodes on the cluster, and therefore will fail on the failover.
+> * Requests accepted by the failed node before it realizes it has been failed over will fail. Depending on the specifics of the network partition, this can include `503` errors, or requests that will timeout or abort once the node terminates.
 
 ## [](#recommendations)Recommendations
 
@@ -303,8 +324,13 @@ These connectors utilize legacy Couchbase SDKs which require the ability to dire
 
 An Active Load Balancer setup, which performs Layer-7 (HTTP/HTTPS) routing for Enterprise Analytics APIs, can have a complimentary Layer-4 (TCP) load balancer configured on the same or different hosts to enable access from legacy SDKs. This Layer-4 load balancer can be configured for legacy SDK access as described [here](#legacy-sdks-passive-lb).
 
-|  | Colocating the Layer-4 load balancer on the same hosts as the Layer-7 load balancer is recommended to simplify connection string management. Given a DNS-name of ea-cluster.example.com, the connection strings for secure (TLS) access would be as follows: Analytics SDKs: <https://ea-cluster.example.com>+ Legacy SDKs: couchbases://ea-cluster.example.com Otherwise, use the corresponding DNS name of the Layer-4 load balancer for the legacy SDK usages. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Colocating the Layer-4 load balancer on the same hosts as the Layer-7 load balancer is recommended to simplify connection string management. Given a DNS-name of `ea-cluster.example.com`, the connection strings for secure (TLS) access would be as follows:
+> 
+> * Analytics SDKs: `<https://ea-cluster.example.com>`+
+> * Legacy SDKs: `couchbases://ea-cluster.example.com`
+> 
+> Otherwise, use the corresponding DNS name of the Layer-4 load balancer for the legacy SDK usages.
 
 ### [](#legacy-sdks-passive-lb)Passive Load Balancer
 

@@ -1,4 +1,12 @@
+---
+title: Searching with the REST API (cURL/HTTP)
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-with-curl-http-requests.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-searching-with-curl-http-requests.html)
+
+# Searching with the REST API (cURL/HTTP)
 
 > Full Text Search can be performed using the Couchbase REST API (cURL/HTTP), at the command-line, through the `curl` utility. 
 

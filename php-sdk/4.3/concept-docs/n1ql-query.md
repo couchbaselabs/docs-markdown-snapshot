@@ -1,4 +1,14 @@
+---
+title: Querying with SQL++
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/php-sdk/4.3/concept-docs/n1ql-query.html)
+
+# Querying with SQL++
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
@@ -32,15 +42,15 @@ foreach ($result->rows() as $row) {
 }
 ```
 
-|  | **When running an application using Prepared Statements through the PHP SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the PHP SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#7.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> **When running an application using Prepared Statements through the PHP SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the PHP SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#7.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour.
 
 ## [](#indexes)Indexes
 
 The Couchbase query service makes use of [_indexes_](#7.1@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#7.1@server:learn:services-and-indexes/services/services.adoc) topologies.
 
-|  | In order to make a bucket queryable, it must have at least one index defined. |
-|  | ----------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In order to make a bucket queryable, it must have at least one index defined.
 
 You can define a _primary index_ on a bucket. When a _primary_ index is defined you can issue non-covered (see below) queries on the bucket as well. This includes using the `META` function in the queries.
 

@@ -1,4 +1,15 @@
+---
+title: Logging
+description: The Scala SDK logs events and also provides an event bus that
+  transmits information about the behavior of your database system, including
+  system and metric events.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/current/howtos/collecting-information-and-logging.html)
+
+# Logging
 
 > The Scala SDK logs events and also provides an event bus that transmits information about the behavior of your database system, including system and metric events. It has no hard dependency on a specific logger implementation, but you should add one you are comfortable with. 
 
@@ -145,8 +156,10 @@ INFO: [com.couchbase.core][CoreCreatedEvent] {"clientVersion":"1.0.0","clientGit
 
 ## [](#the-event-bus)The Event Bus
 
-|  | Event Bus Stability While the event bus functionality itself is considered stable, the events itself may not be. Please only consume the events you are interested in, and add error handling code in case of unexpected behaviour. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Event Bus Stability
+> 
+> While the event bus functionality itself is considered stable, the events itself may not be. Please only consume the events you are interested in, and add error handling code in case of unexpected behaviour.
 
 Log files are neither fun to wade through, nor do they have any kind of real-time aspect. To make them usable, normally their content is piped into systems such as [Graphite](http://graphite.wikidot.com) or [Logstash](https://www.elastic.co/products/logstash). Since most setups interleave all different kinds of log messages, it makes it very hard to see whats going on, let alone perform post-disaster analysis.
 
@@ -198,8 +211,10 @@ BucketOpenedEvent{severity=INFO, category=com.couchbase.core, duration=PT0.28162
 
 We recommend filtering on the specific events you are interested in, since most of the time only a subset of the published ones will be of use to you. Also, there are new events added between releases so make sure these new events do not break your functionality.
 
-|  | Blocking Warning If you consume the EventBus you MUST NOT block inside the consumer callback. It will stall all other consumers. If you must write into a blocking sink like a blocking HTTP API you MUST write it onto a different thread with a non-blocking queue first. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Blocking Warning
+> 
+> If you consume the `EventBus` you MUST NOT block inside the consumer callback. It will stall all other consumers. If you must write into a blocking sink like a blocking HTTP API you MUST write it onto a different thread with a non-blocking queue first.
 
 ## [](#sdk-telemetry-from-the-server)SDK Telemetry from the Server
 

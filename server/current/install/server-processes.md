@@ -1,4 +1,13 @@
+---
+title: Couchbase Server Processes
+description: Couchbase Server spawns a number of different processes on each node.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/server-processes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/install/server-processes.html)
+
+# Couchbase Server Processes
 
 > Couchbase Server spawns a number of different processes on each node. These processes vary in type and number depending on which Couchbase services are running on a particular node. 
 

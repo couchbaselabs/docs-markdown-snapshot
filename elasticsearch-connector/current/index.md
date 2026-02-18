@@ -1,4 +1,12 @@
+---
+title: Introduction
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/index.html)
+
+# Introduction
 
 The Couchbase Elasticsearch Connector replicates your documents from Couchbase Server to Elasticsearch or OpenSearch in near real time. The connector uses the high-performance Database Change Protocol (DCP) to receive notifications when documents change in Couchbase.
 

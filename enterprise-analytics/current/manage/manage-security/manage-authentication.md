@@ -1,4 +1,14 @@
+---
+title: Manage Authentication
+description: To access Enterprise Analytics, administrators and applications
+  must be authenticated.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/manage-authentication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-security/manage-authentication.html)
+
+# Manage Authentication
 
 > To access Enterprise Analytics, administrators and applications must be authenticated. _Authentication_ is a process for identifying a user who is attempting to access a system. 
 

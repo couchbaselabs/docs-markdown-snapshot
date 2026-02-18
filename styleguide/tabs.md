@@ -1,4 +1,12 @@
+---
+title: Tabs
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabs.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/styleguide/tabs.html)
+
+# Tabs
 
 A tab is a named clickable element in the UI. It appears in a horizontal sequence of other tabs.
 
@@ -21,5 +29,5 @@ For example, the **Data Tools** tab.
 * Bold the tab name.
 * If you need to tell the user to select a [Menu item](menus.md) after they select a tab, use the [Menu UI Macro](menu-ui-macro.md), instead.
 
-|  | A user selects a tab to open a page in the UI. For more information, see [Page](pages.md). |
-|  | ------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> A user selects a tab to open a page in the UI. For more information, see [Page](pages.md).

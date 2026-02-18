@@ -1,12 +1,21 @@
+---
+title: Data Definition Language (DDL)
+description: A description of the DDLs in Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/5_ddl.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/analytics/5_ddl.html)
+
+# Data Definition Language (DDL)
 
 This section lists all supported DDL statements in Couchbase Analytics.
 
-|  | A user must have one of the following RBAC roles to be able to execute DDL statements: Admin, Cluster Admin, Analytics Admin, or Analytics Manager. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A user must have one of the following RBAC roles to be able to execute DDL statements: Admin, Cluster Admin, Analytics Admin, or Analytics Manager.
 
-|  | No CREATE/DROP or CONNECT/DISCONNECT statement can be executed while the cluster topology changes (e.g. during rebalance). The evaluation of such DDL statements will fail and it can be reattempted after the topology change has completed. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> No `CREATE`/`DROP` or `CONNECT`/`DISCONNECT` statement can be executed while the cluster topology changes (e.g. during rebalance). The evaluation of such DDL statements will fail and it can be reattempted after the topology change has completed.
 
 ## [](#Entities)Entities
 
@@ -37,8 +46,8 @@ You can also create Analytics collections on remote links and external links. Th
 * An Analytics collection on a remote link shadows the data from a remote Couchbase cluster to a local Analytics collection.
 * An external Analytics collection reads data directly from an external source, such as Amazon S3, without shadowing it locally.
 
-|  | Backup and restore only operates on Analytics collections on the local link. Only the Analytics collection definition is backed up or restored, not the actual data. Backup and restore excludes Analytics collections on remote links and external links entirely. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Backup and restore only operates on Analytics collections on the local link. Only the Analytics collection definition is backed up or restored, not the actual data. Backup and restore excludes Analytics collections on remote links and external links entirely.
 
 Before you can create an external Analytics collection, or an Analytics collection on a remote link, you must first create the appropriate link for your Analytics collection to use.
 
@@ -62,8 +71,8 @@ The `Local` link represents a connection to the Data service on the local Couchb
 
 In Couchbase Server 7.0 and later, the `Local` link for each Analytics scope is connected by default. When you create a new Analytics collection on a connected link, data ingestion to that collection begins immediately. You can disconnect the `Local` link to pause data ingestion to the local Analytics collections in that scope.
 
-|  | You can always create or drop an Analytics collection on any link, even if the link is already connected, and even if the data source already has existing shadow Analytics collections. If the link is connected when you create a new Analytics collection, data ingestion to the new shadow Analytics collection starts at once. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can always create or drop an Analytics collection on any link, even if the link is already connected, and even if the data source already has existing shadow Analytics collections. If the link is connected when you create a new Analytics collection, data ingestion to the new shadow Analytics collection starts at once.
 
 Refer to [Connect Statements](#Connecting%5Fand%5Fdisconnecting) and [Disconnect Statements](#Disconnect%5Fstatements).
 
@@ -349,8 +358,8 @@ The `IndexUnknown` modifier enables you to specify whether to make an entry or n
 
 If you omit this modifier, then the default is INCLUDE UNKNOWN KEY.
 
-|  | Array indexes cannot include NULL or MISSING values. You must specify EXCLUDE UNKNOWN KEY when defining an array index. |
-|  | ----------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Array indexes cannot include NULL or MISSING values. You must specify EXCLUDE UNKNOWN KEY when defining an array index.
 
 ##### [](#examples-3)Examples
 
@@ -493,8 +502,8 @@ The name of the automatically-created Analytics scope is made up of the name of 
 
 If you specify the default collection within the default scope within the Data service bucket, the ALTER COLLECTION statement also creates a synonym for the collection within the `Default` Analytics scope. The name of the synonym is the same as the specified Data service bucket. This is equivalent to running CREATE ANALYTICS SYNONYM, and enables you to refer to the collection using just the bucket name.
 
-|  | If an Analytics scope already exists with the same name as the specified Data service scope, and it contains an Analytics collection with the same name as the specified Data service collection, the ALTER COLLECTION statement fails. Similarly, if an Analytics synonym already exists in the Default scope with the same name as the specified Data service bucket, the ALTER COLLECTION statement fails. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If an Analytics scope already exists with the same name as the specified Data service scope, and it contains an Analytics collection with the same name as the specified Data service collection, the ALTER COLLECTION statement fails. Similarly, if an Analytics synonym already exists in the `Default` scope with the same name as the specified Data service bucket, the ALTER COLLECTION statement fails.
 
 When used with the DISABLE ANALYTICS keywords, the ALTER COLLECTION statement drops the Analytics collection, and the synonym for the Analytics collection if it exists, but does not drop the Analytics scope. This is equivalent to running DROP ANALYTICS COLLECTION, and if necessary DROP ANALYTICS SYNONYM.
 
@@ -534,8 +543,8 @@ The `WITH` clause enables you to provide parameters for the connection. The `Obj
 
 Only one parameter is currently supported for the connection: the `force` parameter, which takes a Boolean value (true / false). In Couchbase Server 7.0 and later, this parameter is ignored and has no effect.
 
-|  | This parameter is deprecated and will generate a warning if used. It will be removed in a future version of Couchbase Server. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This parameter is deprecated and will generate a warning if used. It will be removed in a future version of Couchbase Server.
 
 ##### Examples
 
@@ -587,5 +596,5 @@ The following example returns information about all array indexes.
 SELECT * FROM Metadata.`Index`
 WHERE IndexStructure = "ARRAY";
 
-|  | While Analytics scopes, Analytics collections, and indexes are created and removed by the corresponding CREATE and DROP statements, and remote links and external links are created and removed by the command-line interface or the REST API, the lifecycle of local links is managed by the system — they are created and removed as needed. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> While Analytics scopes, Analytics collections, and indexes are created and removed by the corresponding CREATE and DROP statements, and remote links and external links are created and removed by the command-line interface or the REST API, the lifecycle of local links is managed by the system — they are created and removed as needed.

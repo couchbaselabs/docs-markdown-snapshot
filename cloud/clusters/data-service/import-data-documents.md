@@ -1,4 +1,14 @@
+---
+title: Import Data with the Capella UI
+description: Use the Capella Import page to import data from your local drive
+  into your cluster.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/import-data-documents.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/data-service/import-data-documents.html)
+
+# Import Data with the Capella UI
 
 > Use the Capella Import page to import data from your local drive into your cluster. The Capella Import page guides you through each step of the process, prompting you to select source files and identify target locations. Capella prepares a preview of your import, displaying real-time updates as you explore options for refining your import. Using preview, you can ensure you’re satisfied with the import before importing data into your cluster. 
 
@@ -70,8 +80,8 @@ Follow the steps in the Capella UI to populate your cluster.
 
 To access the **Import** tool, go to **Data Tools** **Import**.
 
-|  | In free tier accounts, the **Home** tab also has a link to the Import tool. |
-|  | --------------------------------------------------------------------------- |
+> [!TIP]
+> In free tier accounts, the **Home** tab also has a link to the Import tool.
 
 ### [](#import-data-from-your-browser)Import Data from Your Browser
 

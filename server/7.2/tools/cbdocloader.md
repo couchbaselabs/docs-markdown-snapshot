@@ -1,4 +1,12 @@
+---
+title: cbdocloader
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbdocloader.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/cbdocloader.html)
+
+# cbdocloader
 
 (Deprecated) A utility to import sample buckets into Couchbase Server.
 

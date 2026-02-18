@@ -1,11 +1,21 @@
+---
+title: Couchbase Rust SDK 1.0
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/hello-world/overview.html)
+
+# Couchbase Rust SDK 1.0
 
 # Couchbase Rust SDK 1.0
 
 The Couchbase Rust SDK allows Rust applications to access a Couchbase cluster — Capella or self-managed.
 
-|  | Developer Preview This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Developer Preview
+> 
+> This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only.
 
 [Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) | [Rust SDK source code](https://github.com/couchbaselabs/couchbase-rs/)
 
@@ -115,5 +125,9 @@ Deployment
 
 This page covers using our operational Rust SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
-|  | Analytics SDKs SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information. Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Analytics SDKs
+> 
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the .NET, Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information.
+> 
+> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information.

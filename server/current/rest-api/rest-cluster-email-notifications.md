@@ -1,4 +1,15 @@
+---
+title: Setting Alerts
+description: Alerts can be configured; to be dispatched or displayed
+  automatically by Couchbase Server, in order to notify users of specific issues
+  and problems.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-email-notifications.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-cluster-email-notifications.html)
+
+# Setting Alerts
 
 > Alerts can be configured; to be dispatched or displayed automatically by Couchbase Server, in order to notify users of specific issues and problems. 
 
@@ -88,10 +99,9 @@ curl -X POST http://<ip-address-or-domain-name>:8091/settings/alert/sendTestEmai
 * `memoryNoticeThreshold`, `memoryWarningThreshold`, and `memoryCriticalThreshold`. Thresholds for memory-usage. These are all disabled until the `memory_threshold` alert is enabled — for email or for pop-up display, or for both — by means of `POST /settings/alerts` (see [Available Alerts](../manage/manage-settings/configure-alerts.md#available-alerts) for the full list of alerts). Note that even when `memory_threshold` is enabled, any of these thresholds can be individually disabled, by setting its value to `-1`. When a threshold is fully enabled, its value is an integer between `1` and `100`: the integer specifies the percentage of total system memory that must have been consumed for an email and/or pop-up alert to be correspondingly generated. Thresholds are enabled, disabled, and configured by means of `POST /settings/alerts/limits`; and their values are retrieved by means of `GET /settings/alerts/limits`.  
 The thresholds are intended to be assigned values in ascending order; with `memoryNoticeThreshold` the lowest, and `memoryCriticalThreshold` the highest. The default values are, for `memoryNoticeThreshold` `-1` (meaning disabled), for `memoryWarningThreshold` `85`, and for `memoryCriticalThreshold` `90`.
 
-* `memcachedSystemConnectionWarningThreshold`. Trigger the `[memcached_connections](../manage/manage-settings/configure-alerts.md#memcached-alert )` alert if the number of `system` connections in use exceeds the given percentage of connections available. (E.g., set this value to `90` to trigger an alert if the system connections used by the data service exceed 90% of the connections available.)
-
-|  | If the node exceeds 90% of the available system connections, then contact [Couchbase Support](https://support.couchbase.com). |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+* `memcachedSystemConnectionWarningThreshold`. Trigger the `[memcached_connections](../manage/manage-settings/configure-alerts.md#memcached-alert )` alert if the number of `system` connections in use exceeds the given percentage of connections available. (E.g., set this value to `90` to trigger an alert if the system connections used by the data service exceed 90% of the connections available.)  
+> [!NOTE]  
+> If the node exceeds 90% of the available system connections, then contact [Couchbase Support](https://support.couchbase.com).
 * `memcachedUserConnectionWarningThreshold`. Trigger the `[memcached_connections](../manage/manage-settings/configure-alerts.md#memcached-alert)` alert if the number of `user` connections in use exceeds the given percentage of connections available. (E.g., if this value is set to `90`, the system will trigger an alert if the number of user connections used by the data service exceeds 90% of the available connections.)
 * `stuckRebalanceThresholdIndex` and `stuckRebalanceThresholdKV`. Sets the timeout threshold for a data or index service rebalance to make no identified progress to be considered stuck. If this period elapses and no progress has been made, Couchbase Server triggers an alert. The value must be an integer that represents a number of seconds. The default value is `1800` seconds (30 minutes).
 
@@ -173,8 +183,8 @@ If successful, the command returns `200 OK` and the following object, which cont
   ]
 }
 
-|  | For security reasons, the pass field within the emailServer sub-document is always returned as blank, irrespective of its actual setting. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For security reasons, the `pass` field within the `emailServer` sub-document is always returned as blank, irrespective of its actual setting.
 
 The following example sets a shorter alert list for pop-up, and none for email:
 

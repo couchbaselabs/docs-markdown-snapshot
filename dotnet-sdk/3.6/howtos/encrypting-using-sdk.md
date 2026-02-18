@@ -1,4 +1,14 @@
+---
+title: Encrypting Your Data
+description: A practical guide for getting started with Field-Level Encryption,
+  showing how to encrypt and decrypt JSON fields using the .NET SDK.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-sdk/3.6/howtos/encrypting-using-sdk.html)
+
+# Encrypting Your Data
 
 > A practical guide for getting started with Field-Level Encryption, showing how to encrypt and decrypt JSON fields using the .NET SDK. 
 
@@ -8,8 +18,8 @@ For a high-level overview of this feature, see the [Field-Level Encryption discu
 
 The Couchbase .NET SDK works together with the [.NET Couchbase Encryption](https://github.com/couchbase/dotnet-couchbase-encryption) library to provide support for encryption and decryption of JSON fields. This library makes use of the cryptographic algorithms available on your platform, and provides a framework for implementing your own crypto components.
 
-|  | The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The encryption code is packaged as an optional library and is subject to the Couchbase [License](https://www.couchbase.com/LA03012021) and [Enterprise Subscription License](https://www.couchbase.com/ESLA08042020) agreements. To use the encryption library, you have to explicitly include this dependency in your project configuration. Refer to the [dependencies section](#maven-coordinates).
 
 ## [](#requirements)Requirements
 
@@ -148,8 +158,8 @@ var cryptoManager = DefaultCryptoManager.Builder()
 
 ## [](#migration-from-sdk2)Migrating from SDK 2
 
-|  | SDK 2 cannot read fields encrypted by SDK 3\. |
-|  | --------------------------------------------- |
+> [!WARNING]
+> SDK 2 cannot read fields encrypted by SDK 3\.
 
 It’s inadvisable to have both the old and new versions of your application active at the same time. The simplest way to migrate is to do an offline upgrade during a scheduled a maintenance window. For an online upgrade without downtime, consider a [blue-green deployment](https://en.wikipedia.org/wiki/Blue-green%5Fdeployment).
 
@@ -170,8 +180,8 @@ var cryptoManager = DefaultCryptoManager.Builder()
 
 Alternatively, you can [rename the existing fields using a SQL++ statement](https://forums.couchbase.com/t/replacing-field-name-prefix/28786) (formerly N1QL).
 
-|  | In SDK 2, only top-level fields could be encrypted. SDK 3 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> In SDK 2, only top-level fields could be encrypted. SDK 3 allows encrypting fields at any depth. If you decide to rename the existing fields, make sure to do so _before_ writing any encrypted fields below the top level, otherwise it may be difficult to rename the nested fields using a generic SQL++ statement.
 
 ### [](#configure-legacy-decrypters)Enabling decrypters for legacy algorithms
 
@@ -185,5 +195,5 @@ var cryptoManager = DefaultCryptoManager.Builder()
     .Build();
 ```
 
-|  | The legacy decrypters require a mapping function. For AES, this function accepts an encryption key name and returns the corresponding signing key name. For RSA, this function accepts a public key name and returns the corresponding private key name. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The legacy decrypters require a mapping function. For AES, this function accepts an encryption key name and returns the corresponding signing key name. For RSA, this function accepts a public key name and returns the corresponding private key name.

@@ -1,9 +1,18 @@
+---
+title: Upgrade App Services
+description: Scheduling for Capella App Services.
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/maintenance/upgrading-app-services.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/maintenance/upgrading-app-services.html)
+
+# Upgrade App Services
 
 > Scheduling for Capella App Services. 
 
-|  | From App Services 3.1.8, all configurations previously defined in bucket mode will now be under the **\_default** scope and collection. For example, Access Control functions or Import Filters created in bucket mode prior to App Services 3.1.8 will be listed under the **\_default** scope and collection. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> From App Services 3.1.8, all configurations previously defined in bucket mode will now be under the **\_default** scope and collection. For example, Access Control functions or Import Filters created in bucket mode prior to App Services 3.1.8 will be listed under the **\_default** scope and collection.
 
 The underlying framework used by App Services will require periodic upgrading as new versions are rolled out. These upgrade maintenance jobs can be scheduled on a per-App Service basis to ensure that they occur at the time best suited to maintain high availability for your App Services. You can also log incidents and maintenance requests.
 
@@ -41,8 +50,8 @@ For more details about the different types of App Service maintenance jobs and t
 | **App Services Framework Minor Release**                | A new App Services minor version release.                                                                            | From launch on Capella to end of support on Capella.                                                                                                                                                 |
 | **App Services Framework Major Release**                | A new App Services major release version.                                                                            | From launch on Capella to end of support on Capella.                                                                                                                                                 |
 
-|  | A shorter than best practice period might apply depending on particular circumstances. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A shorter than best practice period might apply depending on particular circumstances.
 
 ## [](#maintenance-jobs)Maintenance Jobs
 
@@ -57,8 +66,15 @@ For each individual maintenance job, you can:
 
 When a maintenance job runs, the App Service is moved to a `pending` state. Maintenance redeployments are not time-bound, and the time taken varies depending on the size of framework upgrade.
 
-|  | Maintenance and App Service Status Keep the following in mind while using your App Service: Your App Service must be in a **Healthy** state and [turned on](../app-services/turn-on-off.md#turn-app-services-onoff) to run an upgrade. If your App Service is turned off or in an unhealthy state when a maintenance job is set to run, Capella automatically reschedules the maintenance job for an hour later. The maintenance can be repeatedly rescheduled until the App Service is turned on and healthy. If you try to [turn your App Service off on-demand](../app-services/turn-on-off.md) and the App Service is running or due to run maintenance within the next hour, Capella returns an error and the App Service does not turn off. You cannot schedule a maintenance job when your App Service is turned off. Turn your App Service back on to schedule an upgrade maintenance job. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Maintenance and App Service Status
+> 
+> Keep the following in mind while using your App Service:
+> 
+> * Your App Service must be in a **Healthy** state and [turned on](../app-services/turn-on-off.md#turn-app-services-onoff) to run an upgrade.
+> * If your App Service is turned off or in an unhealthy state when a maintenance job is set to run, Capella automatically reschedules the maintenance job for an hour later. The maintenance can be repeatedly rescheduled until the App Service is turned on and healthy.
+> * If you try to [turn your App Service off on-demand](../app-services/turn-on-off.md) and the App Service is running or due to run maintenance within the next hour, Capella returns an error and the App Service does not turn off.
+> * You cannot schedule a maintenance job when your App Service is turned off. Turn your App Service back on to schedule an upgrade maintenance job.
 
 ### [](#view-individual-maintenance-jobs)View Individual Maintenance Jobs
 
@@ -76,8 +92,15 @@ The **Created By** field indicates whether the maintenance job was scheduled by 
 
 When certain upgrade maintenance jobs become available, if you have the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../cloud/projects/project-roles.md#project-owner-role) role, you can schedule these jobs for your App Service.
 
-|  | Scheduling Upgrades You cannot self-schedule all maintenance jobs for your App Service. Some maintenance jobs can only be scheduled by Capella Support. To see if a maintenance job is available for you to schedule: Go to **App Services** and find your App Service. In the **Activities** column, look for the upgrade icon ![arrow circle up](../_images/maintenance/arrow_circle_up.png). This indicates an upgrade is available. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Scheduling Upgrades
+> 
+> You cannot self-schedule all maintenance jobs for your App Service. Some maintenance jobs can only be scheduled by Capella Support.
+> 
+> To see if a maintenance job is available for you to schedule:
+> 
+> 1. Go to **App Services** and find your App Service.
+> 2. In the **Activities** column, look for the upgrade icon ![arrow circle up](../_images/maintenance/arrow_circle_up.png). This indicates an upgrade is available.
 
 To schedule a maintenance job for your App Service:
 
@@ -112,8 +135,8 @@ To reschedule your maintenance job:
 
 You cannot reschedule a maintenance job while it’s **Running**.
 
-|  | When you create a new maintenance schedule for your App Service, you’re overriding the existing one. This cancels the previous maintenance job and applies the new schedule you set. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> When you create a new maintenance schedule for your App Service, you’re overriding the existing one. This cancels the previous maintenance job and applies the new schedule you set.
 
 ### [](#cancelled-maintenance-job)Cancel a Maintenance Job
 
@@ -157,8 +180,8 @@ When a maintenance job is scheduled, email notifications are sent to:
 
 Capella sends these emails when the maintenance job is scheduled and, when applicable, 1 week, 24 hours, and 1 hour prior to the target start time. These notifications include details about the App Service, the upgrade, and the upgrade schedule.
 
-|  | Those with notifications turned OFF will not receive these emails. For more information about how to turn your email notifications on or off, see [Get Alerts through Email](../../cloud/clusters/monitoring/alerts.md#get-alerts-through-email). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Those with notifications turned OFF will not receive these emails. For more information about how to turn your email notifications on or off, see [Get Alerts through Email](../../cloud/clusters/monitoring/alerts.md#get-alerts-through-email).
 
 ### [](#create-support-tickets)Create Support Tickets
 

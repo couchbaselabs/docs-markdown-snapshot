@@ -1,4 +1,12 @@
+---
+title: MultiPolygon Query
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-queryshape-multipolygon.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-queryshape-multipolygon.html)
+
+# MultiPolygon Query
 
 > A GeoJSON MultiPolygon Query against any GeoJSON type. 
 
@@ -132,8 +140,8 @@ The within rules are similar to that of the Polygon Query shape described earlie
 
 ## [](#example-multipolygon-query-against-points)Example MultiPolygon Query (against Points)
 
-|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example.
 
 Matches when the multipolygon in the query contains the point in the document including points on the edge or coinciding with the vertices of the multipolygon.
 
@@ -317,8 +325,8 @@ The output of five (5) hits (from a total of 45 matching docs) is as follows
 
 ## [](#example-multipolygon-query-against-circles)Example MultiPolygon Query (against Circles)
 
-|  | It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is assumed that you your cluster has 1) a modified [travel-sample with GeoJSON data](fts-supported-queries-geojson-spatial.md#prerequisites-dataset) and 2) a Search index as per [Creating a GeoJSON Index via the REST API](fts-creating-index-from-REST-geojson.md) prior to running this example.
 
 The MultiPolygon contains a two polygons one for Utah and one for Colorado. Intersects when the query multipolygon intersects the circular region in the document.
 

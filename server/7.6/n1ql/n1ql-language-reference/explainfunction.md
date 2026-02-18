@@ -1,4 +1,15 @@
+---
+title: EXPLAIN FUNCTION
+description: For a specified user-defined function, you use EXPLAIN FUNCTION to
+  expose the execution plan for the SQL++ subqueries or embedded statements that
+  it contains.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/explainfunction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/explainfunction.html)
+
+# EXPLAIN FUNCTION
 
 > For a specified user-defined function, you use EXPLAIN FUNCTION to expose the execution plan for the SQL++ subqueries or embedded statements that it contains. 
 
@@ -52,8 +63,8 @@ The name of the function. This is usually an unqualified identifier, such as `fu
 
 To get the plan for a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to get the plan for a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
 
-|  | The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created.
 
 ## [](#examples)Examples
 

@@ -1,21 +1,29 @@
+---
+title: Install the Operator on OpenShift
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/install-openshift.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/install-openshift.html)
+
+# Install the Operator on OpenShift
 
 > This guide walks through the recommended procedure for installing the Couchbase Kubernetes Operator on a Red Hat OpenShift project. 
 
-|  | If you are looking to upgrade an existing installation of the Operator, see [Upgrading the Kubernetes Operator](howto-operator-upgrade.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are looking to upgrade an existing installation of the Operator, see [Upgrading the Kubernetes Operator](howto-operator-upgrade.md).
 
 ## [](#prerequisites)Prerequisites
 
 Download the Operator [package](https://www.couchbase.com/downloads) and unpack it on the same computer where you normally run `oc`. The Operator package contains YAML configuration files and command-line tools that you will use to install the Operator.
 
-|  | After you unpack the download, the resulting directory will be titled something like couchbase-autonomous-operator-openshift.x.x-linux\_x86\_64. Make sure to cd into this directory before you run the commands in this guide. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> After you unpack the download, the resulting directory will be titled something like `couchbase-autonomous-operator-openshift.x.x-linux_x86_64`. Make sure to `cd` into this directory before you run the commands in this guide.
 
 All commands in this guide are run as a system administrator account; they require the creation of cluster scoped resources or the granting of roles to service accounts (privilege escalation).
 
-|  | It may be tempting to use the container images hosted on Docker Hub as they are dramatically smaller, and more secure, than those offered for use on the Red Hat Container Catalog. However, it is a Red Hat requirement for OpenShift users that Red Hat Container Catalog images be used. Use of Kubernetes images hosted on Docker Hub are not guaranteed to work, and are not supported, on the OpenShift platform. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> It may be tempting to use the container images hosted on Docker Hub as they are dramatically smaller, and more secure, than those offered for use on the Red Hat Container Catalog. However, it is a Red Hat requirement for OpenShift users that Red Hat Container Catalog images be used. Use of Kubernetes images hosted on Docker Hub are not guaranteed to work, and are not supported, on the OpenShift platform.
 
 ## [](#install-the-crd)Install the CRD
 
@@ -29,8 +37,8 @@ $ oc create -f crd.yaml
 
 The operator is composed of two components; a per-cluster dynamic admission controller (DAC) and a per-namespace Operator. Refer to the [operator architecture document](concept-operator.md) for additional information on what is required and security considerations.
 
-|  | If you use the Openshift Marketplace UI to deploy the Couchbase Kubernetes Operator, the dynamic admission controller (DAC) will not be deployed. It is recommended that you use the cao create admission command to deploy the DAC after installing the Operator. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> If you use the Openshift Marketplace UI to deploy the Couchbase Kubernetes Operator, the dynamic admission controller (DAC) will not be deployed. It is recommended that you use the `cao create admission` command to deploy the DAC after installing the Operator.
 
 The DAC and Operator will be installed into the current project/namespace selected by the `oc` command. Ensure you have created and selected the correct namespace to install into.
 
@@ -41,8 +49,8 @@ $ oc create secret docker-registry rh-catalog --docker-server=registry.connect.r
   --docker-username=<rhel-username> --docker-password=<rhel-password> --docker-email=<docker-email>
 ```
 
-|  | This command uses 3rd party resources and is subject to change. Consult the documentation provided by Red Hat for up to date instructions. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> This command uses 3rd party resources and is subject to change. Consult the documentation provided by Red Hat for up to date instructions.
 
 The following command will install both the DAC and the Operator in the current project:
 
@@ -102,8 +110,8 @@ You can now login as the user `merlin` and manage Couchbase resources in the `ca
 
 Uninstalling the DAC and Operator is the reverse of the installation process:
 
-|  | If you are performing an uninstall in order to upgrade the Operator to a newer version, do not delete the CRDs as this is only relevant for a full uninstall. Failure to do so will result in the deletion of all Couchbase clusters. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you are performing an uninstall in order to upgrade the Operator to a newer version, do not delete the CRDs as this is only relevant for a full uninstall. Failure to do so will result in the deletion of all Couchbase clusters.
 
 ```console
 $ bin/cao delete operator

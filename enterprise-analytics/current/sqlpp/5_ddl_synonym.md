@@ -1,4 +1,14 @@
+---
+title: CREATE SYNONYM Statements
+description: This topic describes how you can use <code>CREATE</code> statements
+  to create synonyms for your Enterprise Analytics collections.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl_synonym.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl_synonym.html)
+
+# CREATE SYNONYM Statements
 
 > This topic describes how you can use `CREATE` statements to create synonyms for your Enterprise Analytics collections. 
 

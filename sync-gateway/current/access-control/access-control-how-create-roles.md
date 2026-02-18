@@ -1,4 +1,14 @@
+---
+title: How to Create a Role
+description: How to create a Sync Gateway <em>Role</em> for secure access
+  control in cloud-to-edge enterprise data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-how-create-roles.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/access-control-how-create-roles.html)
+
+# How to Create a Role
 
 > How to create a Sync Gateway _Role_ for secure access control in cloud-to-edge enterprise data synchronization.  
 > Sync Gateway _Roles_ are a key part of a flexible approach to data routing and access control.
@@ -27,8 +37,8 @@ Example 1\. How to Create a Role
 * Admin REST API
 * File-based Configuration Properties
 
-|  | This is the default recommended option starting 3.0.. |
-|  | ----------------------------------------------------- |
+> [!NOTE]
+> This is the default recommended option starting 3.0..
 
 Create a new role using the [/{db}/\_role/](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Security/operation/post%5Fdb-%5Frole-) endpoint.
 

@@ -1,4 +1,14 @@
+---
+title: Manage AI Integration Settings
+description: Use the Capella UI to manage settings for your integrations between
+  an operational database, Capella AI Services, and OpenAI or Amazon S3.
+editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/manage-ai-integrations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ai/admin/manage-ai-integrations.html)
+
+# Manage AI Integration Settings
 
 > Use the Capella UI to manage settings for your integrations between an operational database, Capella AI Services, and OpenAI or Amazon S3\. 
 

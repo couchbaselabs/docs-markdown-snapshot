@@ -1,4 +1,14 @@
+---
+title: Getting information about Nodes
+description: information about a cluster's individual nodes can be retrieved, by
+  means of the REST API.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-node-get-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-node-get-info.html)
+
+# Getting information about Nodes
 
 > information about a cluster’s individual nodes can be retrieved, by means of the REST API. 
 
@@ -25,8 +35,8 @@ Success returns `200 OK`, and a JSON object containing information about the nod
 
 The following example returns information about the nodes of a two-node cluster.
 
-|  | The output is piped to the [jq](https://stedolan.github.io/jq/) program, to enhance output-readability. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The output is piped to the [jq](https://stedolan.github.io/jq/) program, to enhance output-readability.
 
 curl -u Administrator:password -X GET http://localhost:8091/pools/nodes | jq '.'
 

@@ -1,4 +1,13 @@
+---
+title: "Function: genericRename"
+description: Recursively and Generically Rename Keys in a document.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-genericRename.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/eventing/eventing-handler-genericRename.html)
+
+# Function: genericRename
 
 **Goal**: Recursively and Generically Rename Keys in a document.
 

@@ -1,4 +1,12 @@
+---
+title: Release Notes for Couchbase Kubernetes Operator 2.9
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/release-notes.html)
+
+# Release Notes for Couchbase Kubernetes Operator 2.9
 
 This page summarizes the fixes and known issues in Couchbase Kubernetes Operator 2.9, and links to the associated issues.
 

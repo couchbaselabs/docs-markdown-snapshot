@@ -1,4 +1,14 @@
+---
+title: Encryption At Rest
+description: Understand encryption at rest in Couchbase Server and how to
+  configure it using the Autonomous Operator.
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-encryption-at-rest.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-encryption-at-rest.html)
+
+# Encryption At Rest
 
 > Understand encryption at rest in Couchbase Server and how to configure it using the Autonomous Operator. 
 
@@ -15,8 +25,14 @@ Encryption at rest supports encrypting multiple types of data within your Couchb
 * **Logs** \- Server log files (note: encrypting logs will break fluent-bit log streaming)
 * **Audit logs** \- Security audit trail data
 
-|  | Field-Level Encryption in Applications Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example: Go SDK: [Encrypting Your Data](../../go-sdk/current/howtos/encrypting-using-sdk.md) Java SDK: [Encrypting Your Data](../../java-sdk/current/howtos/encrypting-using-sdk.md) Python SDK: [Encrypting Your Data](../../python-sdk/current/howtos/encrypting-using-sdk.md) |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Field-Level Encryption in Applications
+> 
+> Applications can use the SDK to encrypt specific fields. Depending on your application’s requirements, field-level encryption may be more appropriate than encrypting the entire bucket. See the SDK documentation for your development language for more information. For example:
+> 
+> * Go SDK: [Encrypting Your Data](../../go-sdk/current/howtos/encrypting-using-sdk.md)
+> * Java SDK: [Encrypting Your Data](../../java-sdk/current/howtos/encrypting-using-sdk.md)
+> * Python SDK: [Encrypting Your Data](../../python-sdk/current/howtos/encrypting-using-sdk.md)
 
 ## [](#key-types)Key Types
 

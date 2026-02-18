@@ -1,4 +1,14 @@
+---
+title: cbcollect_info
+description: The <code class="cmd">cbcollect_info</code> tool provides detailed
+  statistics for a specific node.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/cbcollect-info-tool.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/cli/cbcollect-info-tool.html)
+
+# cbcollect_info
 
 > The `cbcollect_info` tool provides detailed statistics for a specific node. 
 
@@ -20,8 +30,8 @@ A root account is required to run this command and collect all the server inform
 
 To use this command, remotely connect to the machine which contains the Enterprise Analytics then issue the command with appropriate options. This command is typically run under the direction of technical support at Couchbase and generates a large .zip file. This archive contains files which contain performance statistics and server logs.
 
-|  | cbcollect\_info is one of the most important diagnostic tools. Run cbcollect\_info on all nodes in the cluster, and upload all of the resulting files to Couchbase technical support. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> `cbcollect_info` is one of the most important diagnostic tools. Run `cbcollect_info` on all nodes in the cluster, and upload all of the resulting files to Couchbase technical support.
 
 This tool is at the following locations:
 

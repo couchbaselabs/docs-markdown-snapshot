@@ -1,4 +1,14 @@
+---
+title: Vector Search
+description: Use Vector Search to build adaptive and user-focused applications
+  using Generative AI.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/vector-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/csharp/vector-search.html)
+
+# Vector Search
 
 > Use Vector Search to build adaptive and user-focused applications using Generative AI. 
 
@@ -52,8 +62,8 @@ Be aware that vector index training can affect query performance. If a query is 
 
 ### [](#about-lazy-vector-indexes)About Lazy Vector Indexes
 
-|  | Lazy index is not an automatic process, you will need to manually schedule the index updates. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Lazy index is not an automatic process, you will need to manually schedule the index updates.
 
 Lazy vector indexes (lazy index) is Couchbase Lite specific functionality that updates indexes asynchronously, satisfying the following use cases:
 
@@ -66,8 +76,8 @@ Lazy indexing is an asynchronous process that provides developers full control o
 * The number of vectors to update to the index.
 * Whether to cancel or skip certain indexes when the model is unavailable or has failed.
 
-|  | Updating in lazy index is an independent process from saving document operations. |
-|  | --------------------------------------------------------------------------------- |
+> [!NOTE]
+> Updating in lazy index is an independent process from saving document operations.
 
 See here for examples of how to [use lazy index in your applications](working-with-vector-search.md#create-a-lazy-vector-index).
 
@@ -94,8 +104,8 @@ Vector Search for Couchbase Lite supports the following encoding algorithms:
 * Scalar Quantizer - This reduces the number of bits used for each number in a vector. The number of bits per component can be set to 4, 6, or 8 bits. The default setting in Couchbase Lite is 8 bits Scalar Quantizer or SQ-8.
 * Product Quantizer - This reduces the number of dimensions and bits per dimension. It splits the vectors into multiple subspaces and performing scalar quantization on each space independently before compression. This can produce higher quality results than Scalar Quantization at the cost of greater complexity.
 
-|  | Quantizers are algorithmic processes that map input values from a larger set to output values in a smaller set, common quantization processes can include operations such as rounding and truncation. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Quantizers are algorithmic processes that map input values from a larger set to output values in a smaller set, common quantization processes can include operations such as rounding and truncation.
 
 ### [](#about-centroids)About Centroids
 
@@ -113,8 +123,8 @@ The number of Probes refers to the maximum number of Centroid buckets that the s
 
 Vector dimensions describes the amount of numbers in a given vector embedding, commonly known as its width. The greater the number of dimensions, the greater accuracy of results. However, a greater number of dimensions also results in greater compute and memory costs and an increase in the latency of the search. Vector dimensions are dependent on the LLM used to generate the Vector Embeddings.
 
-|  | Couchbase Lite supports dimension sizes in the range of 2 - 4096. |
-|  | ----------------------------------------------------------------- |
+> [!NOTE]
+> Couchbase Lite supports dimension sizes in the range of `2 - 4096`.
 
 ### [](#about-distance-metrics)About Distance Metrics
 

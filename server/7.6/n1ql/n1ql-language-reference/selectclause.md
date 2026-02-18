@@ -1,4 +1,13 @@
+---
+title: SELECT Clause
+description: The SELECT clause determines the result set.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/selectclause.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/selectclause.html)
+
+# SELECT Clause
 
 > The `SELECT` clause determines the result set. 
 
@@ -49,8 +58,8 @@ SELECT ALL retrieves all of the data specified and will result in all of the spe
 
 SELECT DISTINCT removes duplicate result objects from the query’s result set.
 
-|  | The DISTINCT clause is not blocking in nature, since it streams the input and produces the output in parallel, while consuming less memory. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The DISTINCT clause is not blocking in nature, since it streams the input and produces the output in parallel, while consuming less memory.
 
 In general, `SELECT ALL` results in more returned documents than `SELECT DISTINCT` due to `DISTINCT`'s extra step of removing duplicates. Since `DISTINCT` is purely run in memory, it executes quickly, making the overhead of removing duplicates more noticeable as your recordset gets larger. Refer to [Example 4](#ex-all-distinct).
 
@@ -89,8 +98,8 @@ The star expression `*` enables you to select _all_ the fields from the source s
 
 The star expression may be preceded by a [path](nestedops.md), to select all the nested fields from within an array.
 
-|  | Omitting the keyspace name before a star expression adds the keyspace name to the result set; whereas if you include the keyspace name before a star expression, the keyspace name will not appear in the result set. Refer to [Example 10](#ex-star). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Omitting the keyspace name before a star expression adds the keyspace name to the result set; whereas if you include the keyspace name before a star expression, the keyspace name will not appear in the result set. Refer to [Example 10](#ex-star).
 
 #### [](#field-expression)Select Expression
 
@@ -147,8 +156,9 @@ An EXCLUDE term can be:
 * An identifier, such as `hotel.name`.
 * A string expression with one or more fields separated by commas, such as `"hotel.name, address"`.
 
-|  | If the field has an alias, you must use the alias as the term. When your query includes only one FROM term, fields are automatically qualified with it. You can use the field name without the full identifier. For example, name instead of hotel.name. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> * If the field has an alias, you must use the alias as the term.
+> * When your query includes only one FROM term, fields are automatically qualified with it. You can use the field name without the full identifier. For example, `name` instead of `hotel.name`.
 
 ## [](#sec%5FBestPractices)Best Practices
 

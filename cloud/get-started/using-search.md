@@ -1,4 +1,14 @@
+---
+title: Search Capella
+description: You can search for clusters, App Services, users, and projects in
+  your organization using the Capella UI.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/using-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/get-started/using-search.html)
+
+# Search Capella
 
 > You can search for clusters, App Services, users, and projects in your organization using the Capella UI. 
 
@@ -6,10 +16,9 @@ On every page in the Couchbase Capella UI is the search box. The search box prov
 
 ## [](#search-for-a-service-feature-cluster-app-service-or-project)Search for a Service, Feature, Cluster, App Service, or Project
 
-1. In the search box on the navigation bar of the Capella UI, begin entering your search terms.
-
-|  | Add #user:, #project:, #op:, #col:, or #app: to the start of your search to filter your results. |
-|  | ------------------------------------------------------------------------------------------------ |  
+1. In the search box on the navigation bar of the Capella UI, begin entering your search terms.  
+> [!TIP]  
+> Add `#user:`, `#project:`, `#op:`, `#col:`, or `#app:` to the start of your search to filter your results.  
 Try searching for the following:
 
   * A cluster name
@@ -18,5 +27,5 @@ Try searching for the following:
   * A user name to see what they created
 2. Select a link from the results to open a relevant cluster, App Service, project, or user.
 
-|  | You can also use your keyboard to open and navigate the search box. To activate the search box, press Shift+⌘+K (MacOS) or Shift+Ctrl+K (Windows). Type your search term. Use the arrow keys to select a result and open it by pressing Enter. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can also use your keyboard to open and navigate the search box. To activate the search box, press Shift+⌘+K (MacOS) or Shift+Ctrl+K (Windows). Type your search term. Use the arrow keys to select a result and open it by pressing Enter.

@@ -1,4 +1,13 @@
+---
+title: Create a Search Index
+description: Create a Search index to get started with the Search Service in your database.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/search/create-search-indexes.html)
+
+# Create a Search Index
 
 > Create a Search index to get started with the Search Service in your database. 
 
@@ -7,8 +16,8 @@ You can create a Search index with:
 * The [Couchbase Server Web Console](#ui).
 * The [Search Service REST API](#api).
 
-|  | If you’re new to developing with the Search Service, [create a Search index with the UI](create-search-index-ui.md). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re new to developing with the Search Service, [create a Search index with the UI](create-search-index-ui.md). You can copy the Search index definition JSON payload from the UI to create your index [with the REST API](create-search-index-rest-api.md).
 
 ## [](#ui)Creating a Search Index with the Web Console
 

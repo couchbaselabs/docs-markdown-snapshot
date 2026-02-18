@@ -1,4 +1,15 @@
+---
+title: Vector Search Index Architecture
+description: Vector Search indexes use features from traditional Search indexes,
+  with unique indexing algorithms and features that allow you to compare vectors
+  in nearest neighbor searches.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/vector-search-index-architecture.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-search/vector-search-index-architecture.html)
+
+# Vector Search Index Architecture
 
 > Vector Search indexes use features from traditional Search indexes, with unique indexing algorithms and features that allow you to compare vectors in nearest neighbor searches. 
 

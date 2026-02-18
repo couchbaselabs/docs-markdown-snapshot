@@ -1,4 +1,15 @@
+---
+title: Query
+description: You can query for documents in Couchbase using the SQL++ query
+  language, a language based on SQL, but designed for structured and flexible
+  JSON documents.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/n1ql-queries-with-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-sdk/current/howtos/n1ql-queries-with-sdk.html)
+
+# Query
 
 > You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. Querying can solve typical programming tasks such as finding a user profile by email address, facebook login, or user ID. 
 
@@ -12,8 +23,8 @@ CREATE PRIMARY INDEX ON `travel-sample`
 
 or replace _travel-sample_ with a different Bucket name to build an index on a different dataset.
 
-|  | The default installation places cbq in /opt/couchbase/bin/ on Linux, /Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbq on OS X, and C:\\Program Files\\Couchbase\\Server\\bin\\cbq.exe on Microsoft Windows. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The default installation places cbq in `/opt/couchbase/bin/` on Linux, `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/cbq` on OS X, and `C:\Program Files\Couchbase\Server\bin\cbq.exe` on Microsoft Windows.
 
 Note that building indexes is covered in more detail on the [Query concept page](../concept-docs/n1ql-query.md#index-building) — and in the [API Reference](https://pkg.go.dev/github.com/couchbase/gocb/v2#CollectionQueryIndexManager).
 
@@ -67,8 +78,8 @@ After familiarizing yourself with the basics on how the SQL++ query language wor
 	}
 ```
 
-|  | When using a Couchbase version < 6.5 you must create a valid Bucket connection using cluster.Bucket(name) before you can use SQL++. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use SQL++.
 
 Let’s break it down. A query is always performed at the `Cluster` level, using the `Query` method. It takes the statement as a required argument and then allows to provide additional options if needed (in the example above, no options are specified).
 
@@ -218,8 +229,8 @@ __Table 2\. Available Query Options__
 | ScanCap uint32                           | Specifies a maximum cap on the query scan size.                                     |
 | ScanConsistency QueryScanConsistency     | Sets a different scan consistency for this query.                                   |
 
-|  | Unlike other SDKs the Go SDK defaults to sending queries as [prepared statements](https://docs.couchbase.com/server/current/guides/prep-statements.html). Care should be taken to set Adhoc to true for any queries that are not explicitly intended to be prepared. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Unlike other SDKs the Go SDK defaults to sending queries as [prepared statements](https://docs.couchbase.com/server/current/guides/prep-statements.html). Care should be taken to set `Adhoc` to true for any queries that are not explicitly intended to be prepared.
 
 ## [](#scan-consistency)Scan Consistency
 

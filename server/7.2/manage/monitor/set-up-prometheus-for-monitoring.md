@@ -1,4 +1,12 @@
+---
+title: Configure Prometheus to Collect Couchbase Metrics
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/monitor/set-up-prometheus-for-monitoring.html)
+
+# Configure Prometheus to Collect Couchbase Metrics
 
 > Couchbase Server provides an API endpoint that helps you configure Prometheus to collect data from it. 
 
@@ -8,8 +16,8 @@ For a general introduction to using Prometheus with Couchbase, see the blog post
 
 To collect metrics from your Couchbase Server database, Prometheus must connect to the nodes in its cluster. Therefore, it needs to have a list of the cluster’s nodes. To make this process easier and help automate updating Prometheus’s list of nodes, Couchbase Server provides a discovery API endpoint named `/prometheus_sd_config`. Calling this endpoint returns a list of the nodes in the cluster in a format that Prometheus can use.
 
-|  | Prior to version 7.2.1, an endpoint named /prometheus\_sd\_config.yaml was the best way to configure Prometheus to collect metrics from Couchbase Server. This endpoint is now deprecated because the new /prometheus\_sd\_config discovery API endpoint offers more features. See [Replicate the Earlier Discovery API](../../rest-api/rest-discovery-api.md#old-api) to learn how to call the new API to generate the same output as the now-deprecated /prometheus\_sd\_config.yaml endpoint. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Prior to version 7.2.1, an endpoint named `/prometheus_sd_config.yaml` was the best way to configure Prometheus to collect metrics from Couchbase Server. This endpoint is now deprecated because the new `/prometheus_sd_config` discovery API endpoint offers more features. See [Replicate the Earlier Discovery API](../../rest-api/rest-discovery-api.md#old-api) to learn how to call the new API to generate the same output as the now-deprecated `/prometheus_sd_config.yaml` endpoint.
 
 ## [](#prerequisites)Prerequisites
 
@@ -63,8 +71,8 @@ The following example defines a new job to collect metrics from a Couchbase Serv
         - "/etc/prometheus/couchbase_nodes.json"  
 ```
 
-|  | As mentioned earlier, the file-based configuration does not automatically update if there are changes in your Couchbase Server cluster. Prometheus cannot automatically update its configuration if you add or remove nodes. However, it does monitor the file containing the list of nodes for changes. You can automate updates to this file by having a task that periodically calls the Couchbase Server discovery API endpoint and updates the list file. However, it’s easier to just configure Prometheus to call the discovery API itself and let it manage the updates. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As mentioned earlier, the file-based configuration does not automatically update if there are changes in your Couchbase Server cluster. Prometheus cannot automatically update its configuration if you add or remove nodes. However, it does monitor the file containing the list of nodes for changes. You can automate updates to this file by having a task that periodically calls the Couchbase Server discovery API endpoint and updates the list file. However, it’s easier to just configure Prometheus to call the discovery API itself and let it manage the updates.
 
 ## [](#configure-http-service-discovery)Configure HTTP Service Discovery
 

@@ -1,4 +1,12 @@
+---
+title: Stream Data from Remote Sources
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-remote.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/sources/manage-remote.html)
+
+# Stream Data from Remote Sources
 
 > If you want to stream data to your Enterprise Analytics database, you create a remote data source. 
 

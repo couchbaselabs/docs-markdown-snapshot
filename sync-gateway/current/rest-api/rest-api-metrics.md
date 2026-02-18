@@ -1,4 +1,13 @@
+---
+title: Metrics REST API
+description: Description of the Sync Gateway Metrics Rest API
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest-api-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/rest-api/rest-api-metrics.html)
+
+# Metrics REST API
 
 > Description of the Sync Gateway Metrics Rest API  
 

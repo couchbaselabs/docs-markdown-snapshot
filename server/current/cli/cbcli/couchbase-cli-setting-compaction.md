@@ -1,4 +1,13 @@
+---
+title: setting-compaction
+description: Modifies compaction settings
+editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-compaction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-setting-compaction.html)
+
+# setting-compaction
 
 Modifies compaction settings
 

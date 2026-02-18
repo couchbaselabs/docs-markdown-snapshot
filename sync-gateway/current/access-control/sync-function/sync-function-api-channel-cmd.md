@@ -1,4 +1,13 @@
+---
+title: channel()
+description: Assigning Sync Gateway <em>channels</em>
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/sync-function/sync-function-api-channel-cmd.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/access-control/sync-function/sync-function-api-channel-cmd.html)
+
+# channel()
 
 > Assigning Sync Gateway _channels_  
 
@@ -52,13 +61,15 @@ Here is the default Sync Function when you have upgraded; it remains the same as
 
 The channel function can be called zero or more times from the sync function, for any document.
 
-|  | Channels don’t have to be predefined.A channel implicitly comes into existence when a document is routed to it. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Channels don’t have to be predefined.  
+> A channel implicitly comes into existence when a document is routed to it.
 
 Routing changes have no effect until the document is actually saved in the database, so if the sync function first calls `channel()` or `access()`, but then rejects the update, the channel and access changes will not occur.
 
-|  | As a convenience, it is legal to call channel with a null or undefined argument; it simply does nothing.This allows you to do something like channel(doc.channels) without having to first check whether doc.channels exists. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> As a convenience, it is legal to call `channel` with a `null` or `undefined` argument; it simply does nothing.  
+> This allows you to do something like `channel(doc.channels)` without having to first check whether `doc.channels` exists.
 
 ## [](#use)Use
 

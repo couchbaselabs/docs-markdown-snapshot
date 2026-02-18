@@ -1,4 +1,13 @@
+---
+title: cblogredaction
+description: Redacts log files
+editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/cblogredaction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/cli/cbcli/cblogredaction.html)
+
+# cblogredaction
 
 Redacts log files
 

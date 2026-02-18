@@ -1,18 +1,27 @@
+---
+title: Transcoders and Non-JSON Documents
+description: The Python SDK supports common JSON document requirements out-of-the-box.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/transcoders-nonjson.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.3/howtos/transcoders-nonjson.html)
+
+# Transcoders and Non-JSON Documents
 
 > The Python SDK supports common JSON document requirements out-of-the-box. Custom transcoders and serializers provide support for applications needing to perform advanced operations, including supporting non-JSON data. 
 
 The Python SDK uses the concepts of transcoders and serializers, which are used whenever data is sent to or retrieved from Couchbase Server.
 
-|  | Transcoders are only available for the Couchbase Python Client version 3.2.2 or later. Also, transcoders are only available to key value operations. Operations using search, analytics, query, or views will use the [Python Standard Libary json package](https://docs.python.org/3.8/library/json.html) for serializing and deserializing data. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Transcoders are only available for the Couchbase Python Client version `3.2.2` or later. Also, transcoders are only available to key value operations. Operations using search, analytics, query, or views will use the [Python Standard Libary json package](https://docs.python.org/3.8/library/json.html) for serializing and deserializing data.
 
 When sending data to Couchbase, the SDK passes the Object being sent to a transcoder. The transcoder can either reject the Object as being unsupported, or convert it into a `bytes` object and a Common Flag. The Common Flag specifies whether the data is JSON, a non-JSON string, or raw binary data.
 
 On retrieving data from Couchbase, the fetched `bytes` object and Common Flag are passed to a transcoder. The transcoder converts the bytes into an object (the application specifies the required object) if possible.
 
-|  | Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Many applications will not need to be aware of transcoders and serializers, as the defaults support most standard JSON use cases. The information in this page is only needed if the application has an advanced use-case, likely involving either non-JSON data, or a requirement for a particular JSON serialization library.
 
 ## [](#default-behaviour)Default Behaviour
 
@@ -78,8 +87,8 @@ assert decoded == user
 
 It is most common to store JSON with Couchbase. However, it is possible to store non-JSON documents, such as raw binary data.
 
-|  | It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS (Search), analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It’s important to note that the Couchbase Data Platform includes multiple components other than the Key-Value store — including Query and its indexes, FTS (Search), analytics, and eventing — and these are optimized for JSON and will either ignore or provide limited functionality with non-JSON documents.
 
 Also note that some simple data types can be stored directly as JSON, without recourse to non-JSON transcoding. A valid JSON document can be a simple integer (`42`), string (`"hello"`), array (`[1,2,3]`), boolean (`true`, `false`) and the JSON `null` value.
 

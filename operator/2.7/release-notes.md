@@ -1,4 +1,12 @@
+---
+title: Release Notes for Couchbase Autonomous Operator 2.7
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.7/release-notes.html)
+
+# Release Notes for Couchbase Autonomous Operator 2.7
 
 Autonomous Operator 2.7 release provides full support for Couchbase Server 7.6, and several improvements to Pod Scheduling and Networking, as well as a number of minor fixes.
 
@@ -23,8 +31,10 @@ There is no direct upgrade path from versions prior to 2.2.0\. To upgrade from a
 
 There are no additional upgrade steps when upgrading from these versions, and you may follow the [standard upgrade process](howto-operator-upgrade.md). However, due to [K8S-3097](https://issues.couchbase.com/browse/K8S-3097), all users will encounter a mandatory upgrade cycle when upgrading from a release older than 2.5.0, to versions 2.5.0, 2.5.1, or 2.6.0 through 2.6.3, to expose the missing Indexer HTTPS Port (see [Detailed Port Description](../../server/current/install/install-ports.md#detailed-port-description) for network port requirements). This behavior has changed in versions 2.5.2, 2.6.4, and 2.7.0, and there is no mandatory upgrade cycle — the missing port is added the next time there is a regular maintenance activity that involves Pod creation.
 
-|  | An upgrade cycle is a relatively heavyweight operation that requires all pods in the cluster to be replaced, and data transferred between the old and new pods. The time taken to perform this operation is dependent on network bandwidth, disk IO and the amount of data resident in the database. For large, production databases, ensure an adequate maintenance window is scheduled as to minimize any disruption to clients and other business critical functions. For further information read the [Couchbase Upgrade](concept-upgrade.md) concepts page. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> An upgrade cycle is a relatively heavyweight operation that requires all pods in the cluster to be replaced, and data transferred between the old and new pods. The time taken to perform this operation is dependent on network bandwidth, disk IO and the amount of data resident in the database. For large, production databases, ensure an adequate maintenance window is scheduled as to minimize any disruption to clients and other business critical functions.
+> 
+> For further information read the [Couchbase Upgrade](concept-upgrade.md) concepts page.
 
 ## [](#release-271)Release 2.7.1
 
@@ -67,8 +77,14 @@ Note that `queryNodeQuota` is being exposed via the existing [spec.cluster.query
 
 Note that `queryNumCpus` requires a restart of the Query Service to take effect. In practice in a Kubernetes environment, this means that this will only affect Pods started after the setting has been updated.
 
-|  | Prior to Operator 2.7.0, the above Query Service settings could still be set directly on the cluster. To avoid these being reset to default values during the CAO upgrade, any of the above settings that have been changed must be added to the CouchbaseCluster resource during the upgrade. Specifically, this needs to be done _after_ updating the CRDs, and _before_ installing the new Operator For further information see [Update Existing Resources](howto-operator-upgrade.md#update-existing-resources). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Prior to Operator 2.7.0, the above Query Service settings could still be set directly on the cluster.
+> 
+> To avoid these being reset to default values during the CAO upgrade, any of the above settings that have been changed must be added to the `CouchbaseCluster` resource during the upgrade.
+> 
+> Specifically, this needs to be done _after_ updating the CRDs, and _before_ installing the new Operator
+> 
+> For further information see [Update Existing Resources](howto-operator-upgrade.md#update-existing-resources).
 
 #### [](#audit-log-pruning)Audit Log Pruning
 

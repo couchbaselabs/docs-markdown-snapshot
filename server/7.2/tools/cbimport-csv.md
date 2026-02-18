@@ -1,4 +1,13 @@
+---
+title: cbimport csv
+description: Imports CSV data into Couchbase
+editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbimport-csv.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/tools/cbimport-csv.html)
+
+# cbimport csv
 
 Imports CSV data into Couchbase
 

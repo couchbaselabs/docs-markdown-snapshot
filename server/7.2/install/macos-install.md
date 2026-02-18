@@ -1,4 +1,13 @@
+---
+title: Install Couchbase Server on macOS
+description: Couchbase Server can be installed on macOS for development use-cases.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/macos-install.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/install/macos-install.html)
+
+# Install Couchbase Server on macOS
 
 > Couchbase Server can be installed on macOS for development use-cases. 
 
@@ -22,10 +31,11 @@ Although macOS is not supported for production deployments, you should still rev
 Couchbase Server for macOS is packaged as a standalone application in a compressed disk image.
 2. Mount the the downloaded `.dmg` file.  
 Locate the downloaded Couchbase Server `.dmg` file (typically located in the default `~/Downloads` folder) and double-click it. Opening the file will automatically mount a volume in Finder containing the `Couchbase Server.app` application file.
-3. Drag-and-drop the `Couchbase Server.app` file into the system `/Applications` folder.
-
-|  | macOS has a security policy that requires downloaded software to be run directly from the /Applications folder. Attempting to open Couchbase Server.app from any other folder or sub-folder will result in a "Problem Running Couchbase" error. ![Problem Running Couchbase](_images/error-macos-problem-running.png) |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+3. Drag-and-drop the `Couchbase Server.app` file into the system `/Applications` folder.  
+> [!NOTE]  
+> macOS has a security policy that requires downloaded software to be run directly from the `/Applications` folder. Attempting to open `Couchbase Server.app` from any other folder or sub-folder will result in a "Problem Running Couchbase" error.  
+>  
+> ![Problem Running Couchbase](_images/error-macos-problem-running.png)
 4. Double-click `Couchbase Server.app` to start Couchbase Server.  
 A macOS Gatekeeper [dialogue](https://support.apple.com/en-us/HT202491) will appear asking if you want to open `Couchbase Server.app`. Click **Open** to continue.  
 Couchbase Server runs as a background application. When Couchbase Server starts, the Couchbase Server icon ![Couchbase Server menu bar icon](_images/macos-menu-bar-icon-light.png) will appear in the menu bar.

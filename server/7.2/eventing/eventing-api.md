@@ -1,9 +1,20 @@
+---
+title: Eventing REST API
+description: The Eventing REST API, available by default at port 8096, provides
+  the methods available to work with and manipulate Couchbase Eventing
+  Functions.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-api.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/eventing/eventing-api.html)
+
+# Eventing REST API
 
 > The Eventing REST API, available by default at port 8096, provides the methods available to work with and manipulate Couchbase Eventing Functions. 
 
-|  | Changes to the Eventing Function definition files made outside of this REST API or the interactive UI are only supported for version 7.0 (and above) if the Eventing schemas located in <https://github.com/couchbase/eventing/tree/master/parser> are adhered to. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Changes to the Eventing Function definition files made outside of this REST API or the interactive UI are only supported for version 7.0 (and above) if the Eventing schemas located in <https://github.com/couchbase/eventing/tree/master/parser> are adhered to.
 
 As of version 7.1 Eventing now supports full [Eventing Role-Based Access Control](eventing-rbac.md) (RBAC).
 

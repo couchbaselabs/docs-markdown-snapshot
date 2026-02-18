@@ -1,4 +1,12 @@
+---
+title: Lists and Menus
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/lists.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/lists.html)
+
+# Lists and Menus
 
 Lists can be:
 

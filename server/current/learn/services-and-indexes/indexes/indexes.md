@@ -1,4 +1,14 @@
+---
+title: Indexes
+description: Couchbase Server uses indexes to improve the performance of queries
+  and searches.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/indexes/indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/learn/services-and-indexes/indexes/indexes.html)
+
+# Indexes
 
 > Couchbase Server uses indexes to improve the performance of queries and searches. Each index makes a specific subset of data available for searching. 
 
@@ -32,8 +42,8 @@ Views
 
 [Couchbase Views](../../views/views-intro.md) extract fields and information from documents to create their own index.
 
-|  | Views were deprecated in Couchbase Server 7.0 and will be removed in a future release. |
-|  | -------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Views were deprecated in Couchbase Server 7.0 and will be removed in a future release.
 
 ## [](#vector-indexes)Vector Indexes
 

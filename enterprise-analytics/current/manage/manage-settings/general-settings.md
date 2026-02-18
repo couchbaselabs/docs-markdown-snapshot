@@ -1,4 +1,15 @@
+---
+title: General Settings
+description: <em>General</em> settings allow configuration of <em>cluster
+  name</em>, <em>memory quotas</em>, <em>storage modes</em>, and <em>node
+  availability</em> for the cluster.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-settings/general-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-settings/general-settings.html)
+
+# General Settings
 
 > _General_ settings allow configuration of _cluster name_, _memory quotas_, _storage modes_, and _node availability_ for the cluster. 
 
@@ -28,8 +39,8 @@ Additionally, if the checkbox is checked, Enterprise Analytics Web Console commu
 * Information about data-size and performance.
 * The cluster-configuration, including which services are deployed.
 
-|  | Data is transmitted to Couchbase from the browser accessing the Enterprise Analytics Web Console, not from the cluster itself. The update-notification process works anonymously: data cannot be tracked. No identifiable information is transmitted. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Data is transmitted to Couchbase from the browser accessing the Enterprise Analytics Web Console, not from the cluster itself. The update-notification process works anonymously: data cannot be tracked. No identifiable information is transmitted.
 
 ### [](#node-availability)Node Availability
 

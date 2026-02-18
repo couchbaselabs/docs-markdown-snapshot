@@ -1,4 +1,14 @@
+---
+title: Hello Columnar&#8201;&#8212;&#8201;Java SDK Quickstart Guide
+description: Install, connect, try. A quick start guide to get you up and
+  running with Columnar and the Java Columnar SDK.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-columnar-sdk/current/hello-world/start-using-sdk.html)
+
+# Hello Columnar&#8201;&#8212;&#8201;Java SDK Quickstart Guide
 
 > Install, connect, try. A quick start guide to get you up and running with Columnar and the Java Columnar SDK. 
 
@@ -14,8 +24,8 @@ After creating the cluster, add your IP address to the list of allowed IP addres
 
 The Java Columnar SDK requires Java 17 or later. We recommend using the most recent long-term support (LTS) version of OpenJDK.
 
-|  | Remember to keep your Java installation up to date with the latest patches. |
-|  | --------------------------------------------------------------------------- |
+> [!TIP]
+> Remember to keep your Java installation up to date with the latest patches.
 
 ## [](#maven-project-template)Maven Project Template
 

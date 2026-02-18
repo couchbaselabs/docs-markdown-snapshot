@@ -1,4 +1,12 @@
+---
+title: Monitoring the Connector
+editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/monitoring.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kafka-connector/current/monitoring.html)
+
+# Monitoring the Connector
 
 > Resources for monitoring the connector’s performance. 
 

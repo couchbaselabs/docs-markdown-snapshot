@@ -1,4 +1,12 @@
+---
+title: Quick Start
+editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/quickstart.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cmos/current/quickstart.html)
+
+# Quick Start
 
 You will need a Docker daemon - on Linux use your respective package manager, on macOS or Windows you can use [Docker Desktop](https://www.docker.com/products/docker-desktop).
 

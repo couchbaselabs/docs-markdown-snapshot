@@ -1,4 +1,12 @@
+---
+title: Supported Queries
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-supported-queries.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-supported-queries.html)
+
+# Supported Queries
 
 > With Full Text Search you can perform queries on Full Text Indexes. You can perform the queries either by using Couchbase Web Console, the Couchbase REST API, SQL++ (using search functions in the Query service), or the Couchbase SDK. 
 

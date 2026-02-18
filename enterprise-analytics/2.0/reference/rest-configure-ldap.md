@@ -1,4 +1,15 @@
+---
+title: Configure LDAP
+description: Enterprise Analytics can be configured to authenticate the user by
+  means of an LDAP server; and to recognize the LDAP <em>groups</em> of which
+  the user is a member.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-configure-ldap.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-configure-ldap.html)
+
+# Configure LDAP
 
 > Enterprise Analytics can be configured to authenticate the user by means of an LDAP server; and to recognize the LDAP _groups_ of which the user is a member. 
 

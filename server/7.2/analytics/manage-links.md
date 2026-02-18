@@ -1,4 +1,13 @@
+---
+title: Managing Links
+description: Managing Remote Links and External Links with the Analytics Workbench.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/manage-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/manage-links.html)
+
+# Managing Links
 
 The Analytics Workbench enables you to create or edit remote links and external links. Refer to [Remote Links and External Links](5%5Fddl.md#Remote%5Fexternal%5Flinks) for further details on remote links and external links.
 
@@ -69,8 +78,8 @@ When creating or altering a remote link using an alternate address, note the fol
 
 Failure to do so will result in an error.
 
-|  | The SSL ports are required when the encryption mode is set to **Full**; the non-SSL ports are required otherwise. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SSL ports are required when the encryption mode is set to **Full**; the non-SSL ports are required otherwise.
 
 You can also create a remote link using the command-line interface or the REST API. Refer to [couchbase-cli analytics-link-setup](../cli/cbcli/couchbase-cli-analytics-link-setup.md) or [Analytics Links REST API](rest-links.md).
 
@@ -92,8 +101,8 @@ The **S3** link options are displayed.
 8. If necessary, in the **Endpoint** box, enter the Amazon S3 service endpoint.
 9. Choose **Save** to create the link, or **Cancel** to cancel.
 
-|  | When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources.
 
 You can also create an external link to the Amazon S3 service using the command-line interface or the REST API. Refer to [couchbase-cli analytics-link-setup](../cli/cbcli/couchbase-cli-analytics-link-setup.md) or [Analytics Links REST API](rest-links.md).
 
@@ -143,8 +152,8 @@ The **Azure Blob** link options are displayed.
       2. In the **Client Certificate Password** box, enter the client certificate password for the registered application.
 7. Choose **Save** to create the link, or **Cancel** to cancel.
 
-|  | When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources.
 
 You can also create an external link to Microsoft Azure Blob storage using the command-line interface or the REST API. Refer to [couchbase-cli analytics-link-setup](../cli/cbcli/couchbase-cli-analytics-link-setup.md) or [Analytics Links REST API](rest-links.md).
 
@@ -166,8 +175,8 @@ The **Google Cloud Storage** link options are displayed.
 5. If you specified JSON Credentials authorization, in the **JSON Credentials** box, enter the JSON credentials.
 6. Choose **Save** to create the link, or **Cancel** to cancel.
 
-|  | When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When creating an external link, be sure to follow best practices for security. Root account credentials should never be used. It is recommended to grant the minimum possible permissions to perform the required operations, and only to allow access to the required data and resources.
 
 You can also create an external link to Google Cloud Storage using the command-line interface or the REST API. Refer to [couchbase-cli analytics-link-setup](../cli/cbcli/couchbase-cli-analytics-link-setup.md) or [Analytics Links REST API](rest-links.md).
 

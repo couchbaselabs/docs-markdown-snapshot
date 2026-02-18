@@ -1,4 +1,14 @@
+---
+title: "Function: Document Controlled Expiry"
+description: Purge a document automatically based on self-contained start and
+  duration fields.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-docControlledSelfExpiry.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/eventing/eventing-handler-docControlledSelfExpiry.html)
+
+# Function: Document Controlled Expiry
 
 **Goal**: Purge a document automatically based on self-contained start and duration fields.
 
@@ -21,8 +31,8 @@
 * The recursion from the N1QL(…​) statement is ignored via the _if (meta.expiration !== 0) { …​ }_ filter.
 * This is different than setting a TTL on a bucket which will typically update (or extend) the TTL of a document on each mutation.
 
-|  | You must use the function _N1QL(…​)_ with great caution when updating the source bucket of your Eventing handler as you can easily create infinite recursion which may crash your server. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> You must use the function _N1QL(…​)_ with great caution when updating the source bucket of your Eventing handler as you can easily create infinite recursion which may crash your server.
 
 * docControlledSelfExpiry
 * Input Data/Mutation

@@ -1,4 +1,14 @@
+---
+title: Index Lifecycle
+description: An overview of the lifecycle of a Global Secondary Index, from
+  creation and building to updates and scans.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/learn/pages/services-and-indexes/indexes/index-lifecycle.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/services-and-indexes/indexes/index-lifecycle.html)
+
+# Index Lifecycle
 
 > An overview of the lifecycle of a Global Secondary Index, from creation and building to updates and scans. 
 
@@ -8,8 +18,8 @@ In Couchbase Server 7.0 and later, a Global Secondary Index is created on a sing
 
 Index creation happens in 2 phases: the creation phase and the build phase. During the creation phase, the Index Service validates the user input, decides the host node for the index, and creates the index metadata on the host node. The build phase cannot start until the creation phase is complete.
 
-|  | When migrating data using XDCR, avoid creating any indexes before the migration to achieve higher throughput. You can create the indexes after the migration to assist with query performance. For more information, see [Migration](../../clusters-and-availability/xdcr-with-scopes-and-collections.md#migration). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When migrating data using XDCR, avoid creating any indexes before the migration to achieve higher throughput. You can create the indexes after the migration to assist with query performance. For more information, see [Migration](../../clusters-and-availability/xdcr-with-scopes-and-collections.md#migration).
 
 ## [](#index-building)Index Building
 

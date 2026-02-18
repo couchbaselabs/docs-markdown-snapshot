@@ -1,4 +1,12 @@
+---
+title: Couchbase Helm Chart Specification
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/helm-couchbase-config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/2.8/helm-couchbase-config.html)
+
+# Couchbase Helm Chart Specification
 
 > The official Couchbase Helm Chart for the Kubernetes Operator comes with a default configuration that can be customized to fit your deployment needs. 
 
@@ -6,8 +14,8 @@ This page describes the parameters of the official Couchbase Helm Chart. In part
 
 For instructions on how to install and use the chart, including how to override and customize the chart’s values, refer to [Helm Deployment](helm-setup-guide.md).
 
-|  | The official Couchbase Helm Chart may only be used with Enterprise Edition products, such as Couchbase Server Enterprise Edition and Sync Gateway Enterprise Edition. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The official Couchbase Helm Chart may only be used with Enterprise Edition products, such as Couchbase Server Enterprise Edition and Sync Gateway Enterprise Edition.
 
 __Table 1\. Helm Chart Values__
 | Key                                                                                                                                                                                                                                           | Type                                        | Default                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
@@ -385,8 +393,8 @@ _Value rules:_ The `couchbaseCluster.name` value defaults to the name of the cha
 
 The username to use as the cluster admin.
 
-|  | This should only be used for experimental and test clusters. Consider using adminSecret to provide a secret containing your own username and password. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> This should only be used for experimental and test clusters. Consider using `adminSecret` to provide a secret containing your own username and password.
 
 _Value rules:_ The `couchbaseCluster.username` value is a string set to `Administrator` by default.
 
@@ -394,8 +402,8 @@ _Value rules:_ The `couchbaseCluster.username` value is a string set to `Adminis
 
 The password to use as the cluster admin.
 
-|  | This should only be used for experimental and test clusters. Consider using adminSecret to provide a secret containing your own username and password. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> This should only be used for experimental and test clusters. Consider using `adminSecret` to provide a secret containing your own username and password.
 
 _Value rules:_ The `couchbaseCluster.password` value is a string that is auto-generated by default.
 
@@ -519,8 +527,8 @@ buckets:
     kind: CouchbaseBucket
 ```
 
-|  | Buckets are automatically provisioned with [label selectors](concept-label-selection.md) matching the corresponding Couchbase cluster. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Buckets are automatically provisioned with [label selectors](concept-label-selection.md) matching the corresponding Couchbase cluster.
 
 At least one bucket will be created whenever `install.CouchbaseCluster` is set to `true` (if you don’t actively configure at least one bucket, then a default bucket is created automatically). If zero buckets are desired, then you must disable bucket creation completely by setting the contents to `null`.
 
@@ -528,8 +536,8 @@ At least one bucket will be created whenever `install.CouchbaseCluster` is set t
 buckets: null
 ```
 
-|  | The buckets field must be explicitly set to null in order to avoid bucket creation. Even if the section is completely empty, unless buckets: null is specified, the default bucket will be created. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The `buckets` field must be explicitly set to `null` in order to avoid bucket creation. Even if the section is completely empty, unless `buckets: null` is specified, the default bucket will be created.
 
 ### [](#name-2)`name`
 
@@ -574,8 +582,8 @@ _Value rules:_ The `user.<name>.autobind` value is a boolean. If `autobind` is s
 
 The user password.
 
-|  | This should only be used for experimental and test clusters. Consider using authSecret or setting authDomain: external to improve security . |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> This should only be used for experimental and test clusters. Consider using `authSecret` or setting `authDomain: external` to improve security .
 
 _Value rules:_ The `user.<name>.password` value is a string. This value is required when `authDomain` is `local`.
 
@@ -674,8 +682,8 @@ syncGateway:
   configSecret:
 ```
 
-|  | If you install a bucket with a name other than default then you will need to update databases.db.bucket accordingly. |
-|  | -------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you install a bucket with a name other than `default` then you will need to update `databases.db.bucket` accordingly.
 
 ### [](#exposeservicetype)`exposeServiceType`
 

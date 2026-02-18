@@ -1,4 +1,14 @@
+---
+title: reset
+description: For dev and test use only. Resets the following reset and reset
+  histogram statistics.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-reset.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/cli/cbstats/cbstats-reset.html)
+
+# reset
 
 > For dev and test use only. Resets the following reset and reset histogram statistics. 
 
@@ -12,8 +22,8 @@ cbstats [host]:11210 reset [options]
 
 For dev and test use only. This command resets the following `reset` and `reset histogram` statistics.
 
-|  | Using the reset command in production can cause production problems, as well as the inability to diagnose issues due to lack of stats. The reset command is not a single atomic operation; therefore, threads may keep updating some stats while the reset operation is causing others to be cleared. This can cause overflows for calculated values and other stats used by the cluster. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using the reset command in production can cause production problems, as well as the inability to diagnose issues due to lack of stats. The reset command is not a single atomic operation; therefore, threads may keep updating some stats while the reset operation is causing others to be cleared. This can cause overflows for calculated values and other stats used by the cluster.
 
 __Table 1\. Reset stats__
 | Reset Stats                      |

@@ -1,4 +1,14 @@
+---
+title: Query
+description: Parallel data management for complex queries over many records,
+  using a familiar SQL-like syntax.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/concept-docs/n1ql-query.html)
+
+# Query
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
@@ -28,15 +38,15 @@ result = cluster.query(
     'London', QueryOptions(adhoc=false))
 ```
 
-|  | **When running an application using Prepared Statements through the Python SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the Python SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#6.5@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> **When running an application using Prepared Statements through the Python SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the Python SDK with an underlying LCB prior to 2.10.6, you will need to [restart the app or otherwise work around](#6.5@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour.
 
 ## [](#indexes)Indexes
 
 The Couchbase query service makes use of [_indexes_](../../../server/7.6/learn/services-and-indexes/indexes/indexes.md) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](../../../server/7.6/learn/services-and-indexes/services/services.md) topologies.
 
-|  | In order to make a bucket queryable, it must have at least one index defined. |
-|  | ----------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> In order to make a bucket queryable, it must have at least one index defined.
 
 You can define a _primary index_ on a bucket. When a _primary_ index is defined you can issue non-covered (see below) queries on the bucket as well. This includes using the `META` function in the queries.
 
@@ -104,9 +114,9 @@ With default query options, the query service will rely on the current index sta
 
 The following options are available:
 
-* `not_bounded`: Executes the query immediately, without requiring any consistency for the query. If index-maintenance is running behind, out-of-date results may be returned.
-* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update. If index-maintenance is running behind, the query waits for it to catch up.
-* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query-request. If index-maintenance is running behind, the query waits for it to catch up.
+* `not_bounded`: Executes the query immediately, without requiring any consistency for the query. If index maintenance is running behind, out-of-date results may be returned.
+* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update. If index maintenance is running behind, the query waits for it to catch up.
+* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query request. If index maintenance is running behind, the query waits for it to catch up.
 * `statement_plus`: Executes the query with strong consistency per statement. Before processing each statement, the service obtains a current vector timestamp and uses it as a lower bound for that statement.
 
 For SQL++, the default consistency is `not_bounded`.

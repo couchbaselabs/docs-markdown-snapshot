@@ -1,4 +1,12 @@
+---
+title: Naming a Cluster
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-name-cluster.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-name-cluster.html)
+
+# Naming a Cluster
 
 > A cluster can be named, by means of the REST API. 
 

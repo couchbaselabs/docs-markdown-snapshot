@@ -1,4 +1,14 @@
+---
+title: CREATE PRIMARY INDEX
+description: The CREATE PRIMARY INDEX statement allows you to create a primary
+  index. Primary indexes contain a full set of keys in a given keyspace.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/createprimaryindex.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/createprimaryindex.html)
+
+# CREATE PRIMARY INDEX
 
 The `CREATE PRIMARY INDEX` statement allows you to create a primary index. Primary indexes contain a full set of keys in a given keyspace. Primary indexes are optional and are only required for running ad hoc queries on a keyspace that is not supported by a secondary index.
 
@@ -31,8 +41,8 @@ index-name
 
 Valid GSI index names can contain any of the following characters: `A-Z` `a-z` `0-9` `#` `_`, and must start with a letter, \[`A-Z` `a-z`\]. The minimum length of an index name is 1 character and there is no maximum length set for an index name. When querying, if the index name contains a `#` or `_` character, you must enclose the index name within backticks.
 
-|  | Unnamed primary indexes are dropped by using the DROP PRIMARY INDEX statement, and named primary indexes are dropped by using the DROP INDEX statement. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Unnamed primary indexes are dropped by using the `DROP PRIMARY INDEX` statement, and named primary indexes are dropped by using the `DROP INDEX` statement.
 
 keyspace-ref
 
@@ -67,8 +77,8 @@ keyspace-ref ::= keyspace-path | keyspace-partial
 
 Specifies the keyspace for which the index needs to be created. The keyspace reference may be a [keyspace path](#keyspace-path) or a [keyspace partial](#keyspace-partial).
 
-|  | If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). Refer to the examples below. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> If there is a hyphen (-) inside any part of the keyspace reference, you must wrap that part of the keyspace reference in backticks (\` \`). Refer to the examples below.
 
 #### [](#keyspace-path)Keyspace Path
 
@@ -152,18 +162,20 @@ nodes
 
 [COMMUNITY EDITION](https://www.couchbase.com/products/editions)
 
-In Couchbase Server Community Edition, a single primary index of type `GSI` can be placed on a single node that runs the indexing service. The `nodes` property allows you to specify the node that the index is placed on. If `nodes` is not specified, one of the nodes running the indexing service is randomly picked for the index.
+In Couchbase Server Community Edition, a single primary index of type `GSI` can be placed on a single node that runs the Indexing Service. The `nodes` property enables you to specify the node that the index is placed on. If `nodes` is not specified, the Index planner may place the index on any of the nodes running the Indexing Service.
 
 [ENTERPRISE EDITION](https://www.couchbase.com/products/editions)
 
-In Couchbase Server Enterprise Edition, you can specify multiple nodes to distribute replicas of an index across nodes running the indexing service: for example, `WITH {"nodes": ["node1:8091", "node2:8091", "node3:8091"]}`. For details and examples, refer to [Index Replication](../../learn/services-and-indexes/indexes/index-replication.md#index-replication).
+In Couchbase Server Enterprise Edition, you can specify multiple nodes to distribute replicas of an index across nodes running the Indexing Service: for example, `WITH {"nodes": ["node1:8091", "node2:8091", "node3:8091"]}`. For details and examples, refer to [Index Replication](../../learn/services-and-indexes/indexes/index-replication.md#index-replication).
 
-If specifying both `nodes` and `num_replica`, the number of nodes in the array must be one greater than the specified number of replicas otherwise the index creation will fail.
+If `nodes` is not specified, then the system places the new index and any replicas on any of the nodes running the Indexing Service, in order to achieve the best resource utilization. This is done by taking into account the current resource usage statistics of index nodes.
 
-If `nodes` is not specified, then the system chooses nodes on which to place the new index and any replicas, in order to achieve the best resource utilization across nodes running the indexing service. This is done by taking into account the current resource usage statistics of index nodes.
+If you specify the `nodes` property by itself, the index is placed on one of the destination nodes, and a replica is placed on each of the others.
 
-|  | A node name passed to the nodes property must include the cluster administration port, by default 8091\. For example WITH {"nodes": \["192.0.2.0:8091"\]} instead of WITH {"nodes": \["192.0.2.0"\]}. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If you specify both `nodes` and `num_replica`, the Index planner chooses from the set of specified nodes to place the index and its replicas. In this case, the number of nodes in the array must be greater than the specified number of replicas. Otherwise, the index creation fails.
+
+> [!IMPORTANT]
+> A node name passed to the `nodes` property must include the cluster administration port, by default 8091\. For example `WITH {"nodes": ["192.0.2.0:8091"]}` instead of `WITH {"nodes": ["192.0.2.0"]}`.
 
 defer\_build
 
@@ -187,7 +199,7 @@ This property is only available in Couchbase Server Enterprise Edition.
 
 The indexer will automatically distribute these replicas amongst index nodes in the cluster for load-balancing and high availability purposes. The indexer will attempt to distribute the replicas based on the server groups in use in the cluster where possible.
 
-If the value of this property is not less than the number of index nodes in the cluster, then the index creation will fail.
+The number of replicas must be lower than the number of index nodes in the cluster. If `nodes` is specified, the number of replicas must be lower than the number of nodes in the array. Otherwise, the index creation fails.
 
 Partitioned indexes support further options. See [Index Partitioning](index-partitioning.md).
 
@@ -197,8 +209,20 @@ Partitioned indexes support further options. See [Index Partitioning](index-part
 
 Index metadata provides a state field. This state field and other index metadata can be queried using [system:indexes](../n1ql-intro/sysinfo.md#querying-indexes). The index state may be `scheduled for creation`, `deferred`, `building`, `pending`, `online`, `offline`, or `abridged`. You can also monitor the index state using the Couchbase Web Console.
 
-|  | If you kick off multiple index creation operations concurrently, you may sometimes see transient errors similar to the following. If this error occurs, the Index Service tries to run the failed operation again in the background until it succeeds, up to a maximum of 1000 retries. \[   {     "code": 5000,     "msg": "GSI CreateIndex() - cause: Encountered transient error.  Index creation will be retried in background.  Error: Index ... will retry building in the background for reason: Build Already In Progress. Keyspace ...",     "query": "..."   } \] If the Index Service still cannot create the index after the maximum number of retries, the index state is marked as offline. You must drop the failed index using the DROP INDEX command. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> If you kick off multiple index creation operations concurrently, you may sometimes see transient errors similar to the following. If this error occurs, the Index Service tries to run the failed operation again in the background until it succeeds, up to a maximum of 1000 retries.
+> 
+> ```json
+> [
+>   {
+>     "code": 5000,
+>     "msg": "GSI CreateIndex() - cause: Encountered transient error.  Index creation will be retried in background.  Error: Index ... will retry building in the background for reason: Build Already In Progress. Keyspace ...",
+>     "query": "..."
+>   }
+> ]
+> ```
+> 
+> If the Index Service still cannot create the index after the maximum number of retries, the index state is marked as `offline`. You must drop the failed index using the `DROP INDEX` command.
 
 ### [](#primary-scan-timeout)Primary Scan Timeout
 

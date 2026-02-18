@@ -1,4 +1,13 @@
+---
+title: group-manage
+description: Manage server groups
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-group-manage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-group-manage.html)
+
+# group-manage
 
 Manage server groups
 

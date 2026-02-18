@@ -1,4 +1,13 @@
+---
+title: Create Documents
+description: How to create documents with a command line tool or an SDK.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/creating-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/guides/creating-data.html)
+
+# Create Documents
 
 > How to create documents with a command line tool or an SDK. 
 
@@ -13,8 +22,8 @@ Read the following for further information about the clients available:
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
 * [SDK Clients](#home::sdk.adoc)
 
-|  | Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.
 
 ## [](#inserting-a-document)Inserting a Document
 
@@ -74,8 +83,8 @@ Result
 ╰───┴───────────┴─────────┴────────┴──────────┴─────────╯
 ```
 
-|  | If the document already exists, Couchbase Shell returns a Key already exists error. |
-|  | ----------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, Couchbase Shell returns a `Key already exists` error.
 
 For more information, see [Mutating](https://couchbase.sh/docs/#%5Fmutating) in the Couchbase Shell documentation.
 
@@ -124,8 +133,8 @@ var insertResult = await hotelCollection.InsertAsync("hotel-123", document);
 Console.WriteLine($"Cas: {insertResult.Cas}");
 ```
 
-|  | If the document already exists, the SDK returns a DocumentExistsException error. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, the SDK returns a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 
@@ -173,8 +182,8 @@ MutationResult insertResult = hotelCollection.insert("hotel-123", document);
 System.out.println("CAS:" + insertResult.cas());
 ```
 
-|  | If the document already exists, the SDK returns a DocumentExistsException error. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, the SDK returns a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 
@@ -223,8 +232,8 @@ const insertResult = await hotelCollection.insert('hotel-123', document)
 console.log('CAS:', insertResult.cas)
 ```
 
-|  | If the document already exists, the SDK returns a DocumentExistsError error. |
-|  | ---------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, the SDK returns a `DocumentExistsError` error.
 
 Click the  View button to see this code in context.
 
@@ -272,8 +281,8 @@ insert_result = hotel_collection.insert("hotel-123", document)
 print("CAS:", insert_result.cas)
 ```
 
-|  | If the document already exists, the SDK returns a DocumentExistsException error. |
-|  | -------------------------------------------------------------------------------- |
+> [!NOTE]
+> If the document already exists, the SDK returns a `DocumentExistsException` error.
 
 Click the  View button to see this code in context.
 

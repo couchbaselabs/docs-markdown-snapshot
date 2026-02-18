@@ -1,4 +1,14 @@
+---
+title: Glossary
+description: Unpicking the tangled alphabet soup of the Capella Columnar
+  Platform, from an SDK perspective.
+editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/ref/pages/glossary.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/go-columnar-sdk/current/ref/glossary.html)
+
+# Glossary
 
 > Unpicking the tangled alphabet soup of the Capella Columnar Platform, from an SDK perspective. 
 

@@ -1,4 +1,14 @@
+---
+title: USING AI
+description: The USING AI statement allows you to generate SQL++ queries from
+  natural language prompts.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/using-ai.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql/n1ql-language-reference/using-ai.html)
+
+# USING AI
 
 > The USING AI statement allows you to generate SQL++ queries from natural language prompts. 
 
@@ -10,8 +20,8 @@ For example, you can input prompts such as `How many airlines are based in Europ
 
 If the generated statement is a SELECT query, the Query Service automatically executes it and returns the results. For all other query types, it returns the generated statement as a string without executing it. However, you can modify this behavior by using the [execute](#optional-parameters) option.
 
-|  | The word AI is recognized as a keyword, but only when used as part of the USING AI statement. When used by itself as a field name or identifier, you do not need to escape the word AI by enclosing it in backticks. For example, in a query like SELECT ai FROM XYZ, you can use ai as a field name without needing to escape it. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The word `AI` is recognized as a keyword, but only when used as part of the `USING AI` statement. When used by itself as a field name or identifier, you do not need to escape the word `AI` by enclosing it in backticks. For example, in a query like `SELECT ai FROM XYZ`, you can use `ai` as a field name without needing to escape it.
 
 ## [](#prerequisites)Prerequisites
 
@@ -20,8 +30,8 @@ Before using the USING AI statement, make sure you have:
 * A Couchbase Capella account.
 * Your Capella account credentials and organization ID readily available.
 
-|  | Although the USING AI statement requires a Capella account, you can use it with any Couchbase Server 8.0 instances. |
-|  | ------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Although the USING AI statement requires a Capella account, you can use it with any Couchbase Server 8.0 instances.
 
 ## [](#syntax)Syntax
 
@@ -55,8 +65,8 @@ Use the optional `FLEXINDEX` or `FTS` keyword to generate a query that uses an F
 | **execute** _optional_   | Indicates if the generated statement should be executed automatically. If TRUE, the Query Service executes the generated statement and returns the results. This applies only if the statement is a SELECT query. For other statement types, such as INSERT, UPDATE, DELETE, UPSERT, or CREATE FUNCTION, the statement is not executed, even if execute is TRUE. See [Example 5](#example-5). If FALSE, the generated statement is returned, but not executed. **Default:** TRUE                                                                                                                                                                                                                                                                 | Boolean                       |
 | **output** _optional_    | A string specifying the type of output to generate. Possible values are: sql — Generates a standard SQL++ query. jsudf — Generates a CREATE FUNCTION statement. You can use this to create a SQL++ managed JavaScript user-defined function. The Query Service does not execute the CREATE FUNCTION, even if execute is TRUE. You must run the generated statement separately to create the function. ftssql — Generates a SQL++ query optimized for FTS or flex indexes. The Query Service appends a USE INDEX (USING FTS) clause to all FROM keyspaces in the generated query. This enables the query to use a flex index if it’s available. The statement returns an error if you specify a value not included in this list. **Default:** sql | String                        |
 
-|  | You can prefix a USING AI statement with EXPLAIN or ADVISE to get the query plan or index recommendations for your generated query. See [Example 9](#example-9). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can prefix a USING AI statement with EXPLAIN or ADVISE to get the query plan or index recommendations for your generated query. See [Example 9](#example-9).
 
 ## [](#usage)Usage
 

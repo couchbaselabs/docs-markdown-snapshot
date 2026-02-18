@@ -1,16 +1,24 @@
+---
+title: Kubernetes Network Policies Using Deny-All Default
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-kubernetes-network-policy.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/tutorial-kubernetes-network-policy.html)
+
+# Kubernetes Network Policies Using Deny-All Default
 
 > The Kubernetes Operator and Couchbase Server can be used with Kubernetes network policies although this is not officially supported currently. 
 
-|  | Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Tutorials are accurate at the time of writing but rely heavily on third party software. Tutorials are provided to demonstrate how a particular problem may be solved. Use of third party software is not supported by Couchbase. For further help in the event of a problem, contact the relevant software maintainer.
 
 ## [](#overview)Overview
 
 Refer to the [concepts page on Kubernetes networking](concept-kubernetes-networking.md#network-policies) for an introduction to network policies and the rules required for Couchbase.
 
-|  | Network policies should work with Couchbase Kubernetes Operator deployments but are currently unsupported officially. This information is provided to document a functional set up for those that need it prior to official support. The assumption is standard Kubernetes configuration is used rather than any specific to a particular network plugin. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Network policies should work with Couchbase Kubernetes Operator deployments but are currently unsupported officially. This information is provided to document a functional set up for those that need it prior to official support. The assumption is standard Kubernetes configuration is used rather than any specific to a particular network plugin.
 
 This example uses the Calico network plugin to show how to enable network policies on a local development cluster. It shows examples of how to configure the various information required, actual deployments may differ.
 
@@ -45,8 +53,8 @@ $ kubectl -n kube-system set env daemonset/calico-node FELIX_IGNORELOOSERPF=true
 $ kubectl -n kube-system set env daemonset/calico-node FELIX_XDPENABLED=false
 ```
 
-|  | The example above is purely for demonstration purposes and is not guaranteed to be functional or recommended to be used in production. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> The example above is purely for demonstration purposes and is not guaranteed to be functional or recommended to be used in production.
 
 ## [](#couchbase-dynamic-admission-controller)Couchbase Dynamic Admission Controller
 
@@ -66,8 +74,8 @@ $ export API_SERVER_PORT=$(kubectl get endpoints --namespace default kubernetes 
 $ export NAMESPACE=test
 ```
 
-|  | The variables above will be used for substitution in the following steps. |
-|  | ------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The variables above will be used for substitution in the following steps.
 
 To provide a functional network policy we need to enable the rules specified in the [Kubernetes networking](concept-kubernetes-networking.md#network-policies) page.
 

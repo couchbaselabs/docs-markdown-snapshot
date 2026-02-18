@@ -1,4 +1,13 @@
+---
+title: Creating a User-Defined Function
+description: How to create a user-defined function to call your JavaScript function.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/create-user-defined-function.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/create-user-defined-function.html)
+
+# Creating a User-Defined Function
 
 > How to create a user-defined function to call your JavaScript function.  
 > This guide is for Couchbase Server.
@@ -25,10 +34,9 @@ which will display the `Add Function` screen.
 ![add function dialog](_images/javascript-udfs/add-function-dialog.png)
 3. Use the `Namespace` drop-down lists to select the bucket and scope where your Javascript function resides.
 4. Fill in the `Function Name` of your SQL++ User-Defined Function.
-5. Leave the `Parameters` as they are.
-
-|  | The …​ in the parameters box denotes a variable length list of parameters. This is why you don’t have to fill in this field. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+5. Leave the `Parameters` as they are.  
+> [!NOTE]  
+> The `…​` in the parameters box denotes a variable length list of parameters. This is why you don’t have to fill in this field.
 6. Select `Javascript` for the function type. A field will appear in the dialog with a list of available libraries in the namespace you selected.  
 ![add function dialog switch to javascript](_images/javascript-udfs/add-function-dialog-switch-to-javascript.png)  
 From this list select the library containing your function.
@@ -49,7 +57,7 @@ Execute the `CREATE FUNCTION` in the CBQ Shell to create the SQL++ User-Defined 
 CREATE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays(...) LANGUAGE JAVASCRIPT as "getBusinessDays" AT "travel-sample/inventory/my-library";
 ```
 
-|  | The SQL++ User-Defined Function will take the same scope as the JavaScript UDF it is referencing. |
-|  | ------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SQL++ User-Defined Function will take the same scope as the JavaScript UDF it is referencing.
 
 Having created your SQL++ User-Defined Function, the [next step](call-user-defined-function.md) is to use a SQL++ statement to call the function.

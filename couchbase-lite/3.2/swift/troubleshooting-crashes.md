@@ -1,4 +1,13 @@
+---
+title: Crash Logs
+description: Couchbase Lite on Swift -- Using symbolicate to decode crash logs
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/troubleshooting-crashes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/swift/troubleshooting-crashes.html)
+
+# Crash Logs
 
 > Description — _Couchbase Lite on Swift — Using symbolicate to decode crash logs_  
 > Related Content — [Using Logs](troubleshooting-logs.md) | [Troubleshooting Queries](troubleshooting-queries.md)
@@ -15,8 +24,8 @@ To locate the local dSYM files:
 * For the target based builds, they are located in the configuration build directory path, as specified in the _target_ setting
 * For archives, they are located in `.xcarchive`.
 
-|  | If you still cannot locate the file, then use mdfind as described in the _Symbolication Troubleshooting_ section of the _Apple Technical Note TN2151 — Understanding and Analyzing Application Crash Reports_: <https://developer.apple.com/library/archive/technotes/tn2151/%5Findex.html> |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you still cannot locate the file, then use `mdfind` as described in the _Symbolication Troubleshooting_ section of the _Apple Technical Note TN2151 — Understanding and Analyzing Application Crash Reports_: <https://developer.apple.com/library/archive/technotes/tn2151/%5Findex.html>
 
 ## [](#the-couchbaselite-dsym)The CouchbaseLite dSYM
 
@@ -69,8 +78,8 @@ Example 3\. De-obfuscation using xcrun
 xcrun dsymutil -symbol-map <pathToApplicationArchieve>.xcarchive/BCSymbolMaps <pathToDownloadedDSYMs>/3B15C133-88AA-35B0-B8BA-84AF76826CE0.dSYM
 ```
 
-|  | See Translating 'hidden' symbol names back to their original names: <https://developer.apple.com/library/archive/technotes/tn2151/%5Findex.html> |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> See Translating 'hidden' symbol names back to their original names: <https://developer.apple.com/library/archive/technotes/tn2151/%5Findex.html>
 
 ## [](#related-content)Related Content
 

@@ -1,4 +1,12 @@
+---
+title: Connect or Disconnect a Remote Link
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/connect-link.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/connect-link.html)
+
+# Connect or Disconnect a Remote Link
 
 > This topic describes how you start and stop data event streaming from a remote data source through a link. 
 

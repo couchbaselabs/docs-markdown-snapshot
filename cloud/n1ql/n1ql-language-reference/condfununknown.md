@@ -1,4 +1,14 @@
+---
+title: Conditional Functions for Unknowns
+description: Conditional functions evaluate expressions to determine if the
+  values and formulas meet the specified condition.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/condfununknown.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/condfununknown.html)
+
+# Conditional Functions for Unknowns
 
 Conditional functions evaluate expressions to determine if the values and formulas meet the specified condition.
 

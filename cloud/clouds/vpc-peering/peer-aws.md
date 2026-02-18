@@ -1,4 +1,14 @@
+---
+title: Create a VPC Peering Connection with AWS
+description: Use this procedure to create a VPC Peering connection between
+  Capella hosted with AWS and your application's VPC on AWS.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-aws.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clouds/vpc-peering/peer-aws.html)
+
+# Create a VPC Peering Connection with AWS
 
 > Use this procedure to create a VPC Peering connection between Capella hosted with AWS and your application’s VPC on AWS. 
 
@@ -31,10 +41,9 @@ You must also preconfigure your AWS VPC by completing the following steps:
 3. Click **Settings** **VPC Peering**.
 4. Click **Set Up VPC**.
 5. Confirm the prerequisites and click **Next**.
-6. In Capella, fill out the Network Details fields.
-
-|  | You can find most of the required info for these fields on the page for your chosen VPC in AWS. |
-|  | ----------------------------------------------------------------------------------------------- |  
+6. In Capella, fill out the Network Details fields.  
+> [!TIP]  
+> You can find most of the required info for these fields on the page for your chosen VPC in AWS.  
 Name  
 Enter a name.  
 AWS Account ID  
@@ -47,10 +56,9 @@ CIDR Block
 The AWS VPC CIDR block of network in which your application runs. This cannot overlap with your Capella CIDR Block.
 7. Click **Set Up VPC**.  
 Capella sets up the private network. This typically takes up to a minute. When successful, Capella adds the private network to the list of private networks. You may briefly see the cluster enter a Deploying state while Capella sets up the new connection.  
-When setup is complete, you can see the new network listed.
-
-|  | While the network status is Complete, there are some final steps you must carry out before you can access your Capella cluster from your VPC using VPC peering. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+When setup is complete, you can see the new network listed.  
+> [!CAUTION]  
+> While the network status is Complete, there are some final steps you must carry out before you can access your Capella cluster from your VPC using VPC peering.
 8. Click the name of the new private network.
 9. Run the two AWS CLI commands shown in Capella.  
 You must run the two AWS CLI commands to accept the peering request and link your VPC to the appropriate DNS server for hostname resolution. Once you execute these commands, their output should be similar to the following example:  

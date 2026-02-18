@@ -1,11 +1,25 @@
+---
+title: Run a Vector Search with a Couchbase SDK
+description: Using a Couchbase SDK, you can run a simple or more complex vector
+  search against a Search Vector Index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/run-vector-search-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/vector-search/run-vector-search-sdk.html)
+
+# Run a Vector Search with a Couchbase SDK
 
 > Using a Couchbase SDK, you can run a simple or more complex vector search against a Search Vector Index. 
 
 For more information about how the Search Service scores documents in search results, see [Scoring for Search Queries](../search/run-searches.md#scoring).
 
-|  | Not all available Couchbase SDK languages are covered by the examples on this page. For additional Vector Search examples, see the SDK documentation: [.NET](../../dotnet-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) \| [C++](../../cxx-sdk/current/howtos/vector-searching-with-sdk.md) | [Kotlin](../../kotlin-sdk/current/howtos/full-text-search.md#vector-search) | [Node.js](../../nodejs-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [PHP](../../php-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [Ruby](../../ruby-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [Scala](../../scala-sdk/current/howtos/vector-searching-with-sdk.md) |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+> [!TIP]
+> Not all available Couchbase SDK languages are covered by the examples on this page.
+> 
+> For additional Vector Search examples, see the SDK documentation:
+> 
+> [.NET](../../dotnet-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [C++](../../cxx-sdk/current/howtos/vector-searching-with-sdk.md) | [Kotlin](../../kotlin-sdk/current/howtos/full-text-search.md#vector-search) | [Node.js](../../nodejs-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [PHP](../../php-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [Ruby](../../ruby-sdk/current/howtos/full-text-searching-with-sdk.md#vector-search) | [Scala](../../scala-sdk/current/howtos/vector-searching-with-sdk.md)
 
 ## [](#prerequisites)Prerequisites
 
@@ -19,10 +33,13 @@ Choose your preferred programming language to view the applicable prerequisites 
 * You have the hostname for the node in your operational cluster that’s running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
-For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).
-
-|  | You can import a sample dataset to use with the procedure or examples on this page. Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data. For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
+> [!TIP]  
+> You can import a sample dataset to use with the procedure or examples on this page.  
+>  
+> Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data.  
+>  
+> For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example).
 * You have installed the Couchbase Go SDK.  
 For more information about installing and using the Couchbase Go SDK, see [Start Using the Go SDK](../../go-sdk/current/hello-world/start-using-sdk.md).
 
@@ -30,10 +47,13 @@ For more information about installing and using the Couchbase Go SDK, see [Start
 * You have the hostname for the node in your operational cluster that’s running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
-For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).
-
-|  | You can import a sample dataset to use with the procedure or examples on this page. Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data. For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
+> [!TIP]  
+> You can import a sample dataset to use with the procedure or examples on this page.  
+>  
+> Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data.  
+>  
+> For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example).
 * You have installed the Couchbase Java SDK.  
 For more information about installing and using the Couchbase Java SDK, see [Hello World](../../java-sdk/current/hello-world/start-using-sdk.md).
 
@@ -41,10 +61,13 @@ For more information about installing and using the Couchbase Java SDK, see [Hel
 * You have the hostname for the node in your operational cluster that’s running the Search Service.  
 Go to your operational cluster settings and click **Nodes** to view node hostnames.
 * You have created a Search Vector Index.  
-For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).
-
-|  | You can import a sample dataset to use with the procedure or examples on this page. Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data. For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+For more information about how to create a Search Vector Index, see [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md).  
+> [!TIP]  
+> You can import a sample dataset to use with the procedure or examples on this page.  
+>  
+> Go to **Data Tools** **Import** from your cluster and [import the color-vector-sample](../clusters/data-service/import-data-documents.md#import-sample-data) sample data.  
+>  
+> For the best results, consider using the sample Search Vector Index from [Create a Search Vector Index in Quick Mode](create-vector-search-index-ui.md#example).
 * You have installed the Couchbase Python SDK.  
 For more information about installing and using the Couchbase Python SDK, see [Start Using the Python SDK](../../python-sdk/current/hello-world/start-using-sdk.md).
 * You have created and activated a virtual environment using `venv` and installed packages.  
@@ -251,8 +274,10 @@ except CouchbaseException as ex:
 
 ## [](#semantic)Example: Semantic Search with Color Descriptions
 
-|  | The following code sample requires you to have a paid subscription to the OpenAI API to generate an embedding vector from a sample text string. For more information about pricing for the OpenAI API, see [OpenAI’s Pricing page](https://openai.com/pricing) for embedding models. The rgb.json sample data contains ready-made embedding vectors for each color’s description text. For an example of how to use a ready-made vector with Vector Search, see [Run a Vector Search with the Capella UI](run-vector-search-ui.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The following code sample requires you to have a paid subscription to the OpenAI API to generate an embedding vector from a sample text string. For more information about pricing for the OpenAI API, see [OpenAI’s Pricing page](https://openai.com/pricing) for embedding models.
+> 
+> The `rgb.json` sample data contains ready-made embedding vectors for each color’s `description` text. For an example of how to use a ready-made vector with Vector Search, see [Run a Vector Search with the Capella UI](run-vector-search-ui.md).
 
 If you use the sample dataset inside `rgb.json`, you can use the OpenAI API to generate an embedding from any text string.
 

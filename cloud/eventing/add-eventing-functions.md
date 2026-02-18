@@ -1,4 +1,14 @@
+---
+title: Add Eventing Functions
+description: Use the Capella UI to add Eventing Functions to the Eventing
+  Service in your cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/add-eventing-functions.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/eventing/add-eventing-functions.html)
+
+# Add Eventing Functions
 
 > Use the Capella UI to add Eventing Functions to the Eventing Service in your cluster. 
 

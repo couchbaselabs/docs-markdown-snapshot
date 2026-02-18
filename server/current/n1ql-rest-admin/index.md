@@ -1,4 +1,12 @@
+---
+title: Query Admin REST API
+editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-admin/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/n1ql-rest-admin/index.html)
+
+# Query Admin REST API
 
 ## [](#overview)Overview
 
@@ -732,8 +740,8 @@ Produces
 
 * application/json
 
-|  | For more information, see [Configure Queries](../n1ql/n1ql-manage/query-settings.md). |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For more information, see [Configure Queries](../n1ql/n1ql-manage/query-settings.md).
 
 ##### [](#get%5Fsettings-responses)Responses
 
@@ -764,8 +772,8 @@ Produces
 
 * application/json
 
-|  | For more information, see [Configure Queries](../n1ql/n1ql-manage/query-settings.md). |
-|  | ------------------------------------------------------------------------------------- |
+> [!NOTE]
+> For more information, see [Configure Queries](../n1ql/n1ql-manage/query-settings.md).
 
 ##### [](#post%5Fsettings-parameters)Parameters
 
@@ -970,10 +978,10 @@ This section describes the properties consumed and returned by this REST API.
 
  Composite Schema
 
-| One of …​                                           |                                                                     | Schema                                                          |
-| --------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------- |
-| An object containing one or more field:value pairs. | [Field:Value Pairs](#Logging%5FParameters%5FPlan%5FPairs)           |                                                                 |
-| or                                                  | An array of objects, each containing one or more field:value pairs. | [Field:Value Pairs](#Logging%5FParameters%5FPlan%5FPairs) array |
+| One of …​ |                                                                     | Schema                                                          |
+| --------- | ------------------------------------------------------------------- | --------------------------------------------------------------- |
+|           | An object containing one or more field:value pairs.                 | [Field:Value Pairs](#Logging%5FParameters%5FPlan%5FPairs)       |
+| or        | An array of objects, each containing one or more field:value pairs. | [Field:Value Pairs](#Logging%5FParameters%5FPlan%5FPairs) array |
 
 #### Field:Value Pairs
 

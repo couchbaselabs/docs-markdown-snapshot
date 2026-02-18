@@ -1,4 +1,15 @@
+---
+title: Migrating your Data from MySQL to Couchbase Server
+description: Using MySQL as a starting point, this guide demonstrates how to
+  migrate your existing data from SQL tables to documents stored in a Couchbase
+  bucket.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/tutorials/pages/migration-tutorial/sql-migration-tutorial-couchbase-server.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/tutorials/migration-tutorial/sql-migration-tutorial-couchbase-server.html)
+
+# Migrating your Data from MySQL to Couchbase Server
 
 > Using MySQL as a starting point, this guide demonstrates how to migrate your existing data from SQL tables to documents stored in a Couchbase bucket. 
 
@@ -14,8 +25,8 @@ To use `cbimport`, you will need to install the Couchbase `CLI` package. You wil
 
 If you’re running through the examples, then you will also need an existing MySQL installation with the preexisting table structure defined in [the following section](#student-record-sql-database-section).
 
-|  | This tutorial makes use of the MySQL JSON functions that were introduced in version 5.7.22. Make sure you have installed MySQL version 5.7.22 or later. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This tutorial makes use of the MySQL JSON functions that were introduced in version `5.7.22`. Make sure you have installed MySQL version `5.7.22` or later.
 
 ## [](#student-record-sql-database-section)Student Record database
 
@@ -60,8 +71,10 @@ SELECT JSON_OBJECT(
 INTO OUTFILE '/var/lib/mysql-files/courses.json'
 ```
 
-|  | for Windows users. When setting out the OUTFILE portion of the query, remember to use forward slashes (\\) in the file path name. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> for Windows users.
+> 
+> When setting out the `OUTFILE` portion of the query, remember to use forward slashes (\\) in the file path name.
 
 Using the `JSON_OBJECT` function, the command will `SELECT` every record in the table and output it to a file. Each line of the file will correspond to a single record:
 
@@ -72,8 +85,8 @@ Using the `JSON_OBJECT` function, the command will `SELECT` every record in the 
 {"faculty": "English", "course-id": 4, "course-name": "Creative Writing", "credit-points": 70}
 ```
 
-|  | Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, cbimport will read each line as a separate record. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Strictly speaking, the JSON output is not a well-formed JSON document because it isn’t structured as an array. Nevertheless, `cbimport` will read each line as a separate record.
 
 ## [](#extract-your-student-data-from-mysql)Extract your Student data from MySQL
 

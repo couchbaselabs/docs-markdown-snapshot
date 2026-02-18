@@ -1,11 +1,20 @@
+---
+title: Run a Search With a Search Index
+description: Run a Search query to search and return the contents of a Search index.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/run-searches.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/run-searches.html)
+
+# Run a Search With a Search Index
 
 > Run a Search query to search and return the contents of a Search index. 
 
 If you use the default search result [sorting](search-request-params.md#sort) of `_score`, a document’s [score](#scoring) determines where it appears in your search results.
 
-|  | You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You must [create a Search index](create-search-indexes.md) before you can run a search with the Search Service.
 
 You can run a search against a Search index with:
 
@@ -26,8 +35,8 @@ As of Couchbase Server version 8.0, you can choose between 2 scoring algorithms 
 
 For more information about how to set your scoring model, see [Set Search Index Advanced Settings](set-advanced-settings.md#scoring%5Fmodel).
 
-|  | Scoring can also change based on whether you’re using synonyms in your Search index. For more information, see [Running a Search for Synonyms](synonyms/synonyms-search.md#run-synonym-search). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Scoring can also change based on whether you’re using synonyms in your Search index. For more information, see [Running a Search for Synonyms](synonyms/synonyms-search.md#run-synonym-search).
 
 ### [](#tf-idf)tf-idf Search Scoring
 
@@ -45,8 +54,8 @@ hit_score = (query_1_boost * query_1_hit_score) + (knn_boost * knn_distance)
 
 When running a hybrid search with the [Server Web Console](#ui) or [REST API](#api), the Search Service displays results as a disjunct (`OR`) between your regular Search and Vector Search queries.
 
-|  | When running a hybrid Search query and the tf-idf algorithm, you should add a boost value to your regular Search query to level the tf-idf score with the knn distance. Otherwise, you might see unexpected search results. This is because of the differences in the scoring algorithms between the 2 query types. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> When running a hybrid Search query and the `tf-idf` algorithm, you should add a `boost` value to your regular Search query to level the `tf-idf` score with the knn distance. Otherwise, you might see unexpected search results. This is because of the differences in the scoring algorithms between the 2 query types.
 
 ### [](#bm25)bm25 Search Scoring
 

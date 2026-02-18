@@ -1,9 +1,21 @@
+---
+title: Platform Introduction
+description: A simple Java orientation intro for <em>non-Java</em> folk who are
+  evaluating the Couchbase Scala SDK.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/hello-world/pages/platform-help.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/3.9/hello-world/platform-help.html)
+
+# Platform Introduction
 
 > A simple Java orientation intro for _non-Java_ folk who are evaluating the Couchbase Scala SDK. 
 
-|  | Is This Page for You? This page is to help evaluate the Couchbase Java SDK, if Java is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the Java SDK without necessarily being comfortable with the Java environment. If this is not you, head back to the [rest of the Couchbase Java SDK documentation](overview.md). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Is This Page for You?
+> 
+> This page is to help evaluate the Couchbase Java SDK, if Java is not where you spend the majority of your working day. It is aimed at Software Architects, QE folk, managers, and anyone else who needs to run through using the Java SDK without necessarily being comfortable with the Java environment. If this is not you, head back to the [rest of the Couchbase Java SDK documentation](overview.md).
 
 ## [](#jvm-installation)JVM Installation
 

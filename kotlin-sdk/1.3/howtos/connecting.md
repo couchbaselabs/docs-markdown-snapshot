@@ -1,4 +1,13 @@
+---
+title: Connecting
+description: Connecting to a Couchbase Server cluster and configuring client settings.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/howtos/pages/connecting.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/1.3/howtos/connecting.html)
+
+# Connecting
 
 > Connecting to a Couchbase Server cluster and configuring client settings. 
 
@@ -44,8 +53,8 @@ The simplest connection string is a single hostname or literal IP address, like 
 
 With DNS SRV, one address is enough. The SDK uses the address to look up the DNS SRV record, then inspects the record to discover the addresses of all the nodes.
 
-|  | Couchbase Capella always uses DNS SRV. |
-|  | -------------------------------------- |
+> [!NOTE]
+> Couchbase Capella always uses DNS SRV.
 
 If you’re not using DNS SRV, it’s good to include the addresses of multiple nodes in the connection string. The more addresses you provide, the more likely the SDK is able to connect when some nodes are unavailable. To specify multiple addresses, join them with commas:
 
@@ -89,8 +98,10 @@ val connectionString = "foo.example.com?io.enableDnsSrv=false"
 
 (It’s usually not necessary to disable support for DNS SRV, even if you’re not using it — we’re just using `io.enableDnsSrv` as an example client setting.)
 
-|  | Connection string parameters don’t like sharingIf you decide to share a ClusterEnvironment by calling Cluster.connectUsingSharedEnvironment, the connection string must not have parameters. Environment sharing is an advanced topic we’ll cover later. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Connection string parameters don’t like sharing
+> 
+> If you decide to share a `ClusterEnvironment` by calling `Cluster.connectUsingSharedEnvironment`, the connection string must not have parameters. Environment sharing is an advanced topic we’ll cover later.
 
 To include multiple parameters, join them with `&`, like:
 
@@ -117,8 +128,8 @@ The `couchbases://` prefix uses secure connections with TLS.
 
 The `couchbase://` prefix uses insecure connections by default, but you can still enable TLS with the `security.enableTls` client setting.
 
-|  | The [Secure Connections](secure-connections.md) documentation describes additional client settings that might be required when TLS is enabled. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [Secure Connections](secure-connections.md) documentation describes additional client settings that might be required when TLS is enabled.
 
 Omitting the scheme is equivalent to specifying the `couchbase://` prefix.
 
@@ -152,8 +163,8 @@ There are some different behaviors seen with this protocol:
 
 You’ve already seen how a client setting like `io.enableDnsSrv` can be [included in the connection string](#connection-string-params). Here are some other ways to configure client settings.
 
-|  | It’s fine to mix the different ways of specifying client settings. Just keep in mind the [precedence rules](#client-settings-precedence). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> It’s fine to mix the different ways of specifying client settings. Just keep in mind the [precedence rules](#client-settings-precedence).
 
 ### [](#client-settings-system-property)System properties
 
@@ -175,8 +186,8 @@ Just make sure to set the property _before_ calling `Cluster.connect`, otherwise
 
 Finally, you can specify client settings by passing another argument to `Cluster.connect`. The extra argument configures the cluster’s `ClusterEnvironment`. We’ll talk more about cluster environments later, but for now you can think of an environment as something that holds client settings.
 
-|  | Client settings whose values are Kotlin/Java objects can _only_ be set programmatically. This includes settings like the default JSON serializer, the default retry strategy, etc. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Client settings whose values are Kotlin/Java objects can _only_ be set programmatically. This includes settings like the default JSON serializer, the default retry strategy, etc.
 
 There is a Domain-Specific Language (DSL) for configuring the environment, with a traditional builder as an alternative.
 
@@ -208,8 +219,8 @@ val cluster = Cluster.connect(connectionString, username, password) {
 }
 ```
 
-|  | If you type this. inside one of the DSL blocks, IntelliJ IDEA’s code completion popup displays the settings available in that block. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> If you type `this.` inside one of the DSL blocks, IntelliJ IDEA’s code completion popup displays the settings available in that block.
 
 #### [](#cluster-env-builder)Cluster Environment builder
 

@@ -1,4 +1,15 @@
+---
+title: Disabling Consistent View Query Results on Rebalance
+description: Ensuring view query results consistency is performed with the
+  <code>POST /internalSettings -d indexAwareRebalanceDisabled</code> HTTP
+  method, URI, and parameter.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-disable-query.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-cluster-disable-query.html)
+
+# Disabling Consistent View Query Results on Rebalance
 
 > Ensuring view query results consistency is performed with the `POST /internalSettings -d indexAwareRebalanceDisabled` HTTP method, URI, and parameter. 
 
@@ -6,8 +17,8 @@
 
 If view queries are performed during rebalance, this setting ensures that query results are consistent with the original bucket and data organization prior to rebalancing. In other words, the query results reflect the data on an original node prior to rebalance rather than data on a node after rebalance started. By default, this functionality is enabled.
 
-|  | Be aware that rebalance may take significantly more time if you implemented views for indexing and querying. If rebalance time becomes a critical factor for your application, this feature can be disabled, however, it is not recommend. Do not disable this functionality for production applications without thorough testing. To do so may lead to unpredictable query results during rebalance. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Be aware that rebalance may take significantly more time if you implemented views for indexing and querying. If rebalance time becomes a critical factor for your application, this feature can be disabled, however, it is not recommend. Do not disable this functionality for production applications without thorough testing. To do so may lead to unpredictable query results during rebalance.
 
 ## [](#http-method-and-uri)HTTP method and URI
 

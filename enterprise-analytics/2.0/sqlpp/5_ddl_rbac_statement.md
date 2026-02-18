@@ -1,4 +1,14 @@
+---
+title: RBAC Statements
+description: Use `GRANT` and `REVOKE` statements to manage user privileges and
+  role assignments across Enterprise Analytics database objects.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_rbac_statement.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_rbac_statement.html)
+
+# RBAC Statements
 
 The GRANT statement supports the granting of privileges on resources to users or roles as well as the assignment of roles to users.
 

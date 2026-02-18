@@ -1,4 +1,14 @@
+---
+title: Indexing Metadata Information
+description: Couchbase Capella allows indexing on selected metadata fields, for
+  example the expiration and CAS properties.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/indexing-meta-info.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/indexing-meta-info.html)
+
+# Indexing Metadata Information
 
 Couchbase Capella allows indexing on selected metadata fields, for example the expiration and CAS properties. This improves performance of queries involving predicates on the metadata fields, such as expired documents or recently modified documents.
 
@@ -33,8 +43,8 @@ To access XATTRs, use the syntax `META().xattrs.<attribute>[.<path>]`, where:
 
 While you can create an index on a specific extended attribute like `META().xattrs.attr1`, you cannot create an index on the entire `META().xattrs` object itself.
 
-|  | Starting with Couchbase Server 8.0, you can index any number of XATTR fields using the [CREATE INDEX](createindex.md) statement. |
-|  | -------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting with Couchbase Server 8.0, you can index any number of XATTR fields using the [CREATE INDEX](createindex.md) statement.
 
 The `META()` function does not require a keyspace parameter when creating an index, since it implicitly uses the keyspace being indexed.
 

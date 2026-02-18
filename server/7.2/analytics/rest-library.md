@@ -1,4 +1,13 @@
+---
+title: Analytics Library REST API
+description: A description of the Library REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-library.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/rest-library.html)
+
+# Analytics Library REST API
 
 ## [](#%5Foverview)Overview
 
@@ -126,8 +135,8 @@ http://localhost:8095/analytics/library/travel-sample%2Finventory/mylib \
 -d data=lib.pyz
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ### [](#%5Fdelete%5Flibrary)Delete a Library
 
@@ -170,8 +179,8 @@ http://localhost:8095/analytics/library/travel-sample%2Finventory/mylib \
 -u Administrator:password
 ```
 
-|  | The dot separator within the scope name is converted to a slash (/), which is then URL-encoded as %2F. |
-|  | ------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The dot separator within the scope name is converted to a slash (`/`), which is then URL-encoded as `%2F`.
 
 ## [](#%5Fdefinitions)Definitions
 

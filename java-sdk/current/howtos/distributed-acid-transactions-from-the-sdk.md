@@ -1,9 +1,19 @@
+---
+title: Using Couchbase Transactions
+description: A practical guide on using Couchbase Distributed ACID transactions,
+  via the Java SDK.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/java-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
+
+# Using Couchbase Transactions
 
 > A practical guide on using Couchbase Distributed ACID transactions, via the Java SDK. 
 
-|  | The Couchbase transactions feature was previously distributed as a separate library, before being integrated into the SDK from version 3.3.0. Users of the transactions library are recommended to follow the [Transactions Migration Guide](../project-docs/distributed-acid-transactions-migration-guide.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The Couchbase transactions feature was previously distributed as a separate library, before being integrated into the SDK from version `3.3.0`. Users of the transactions library are recommended to follow the [Transactions Migration Guide](../project-docs/distributed-acid-transactions-migration-guide.md).
 
 This guide will show you examples of how to perform multi-document ACID (atomic, consistent, isolated, and durable) database transactions within your application, using the Couchbase Java SDK.
 
@@ -25,8 +35,16 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) page for a 
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
-|  | Single Node Cluster When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a DurabilityImpossibleException. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via: [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket) [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings) [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options) If the bucket already exists, then the server needs to be rebalanced for the setting to take effect. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> Single Node Cluster
+> 
+> When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
+> 
+> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
+> * [Couchbase Server UI](../../../server/current/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
+> * [Command Line](../../../server/current/cli/cbcli/couchbase-cli-bucket-create.md#options)
+> 
+> If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
 
 ## [](#creating-a-transaction)Creating a Transaction
 
@@ -215,8 +233,8 @@ You can perform transactional database operations using familiar key-value CRUD 
 * **U**pdate - `replace()`
 * **D**elete - `remove()`
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as ctx.insert(), rather than collection.insert(). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional key-value operations inside the lambda — such as `ctx.insert()`, rather than `collection.insert()`.
 
 ### [](#insert)Insert
 
@@ -325,15 +343,17 @@ cluster.reactive().transactions().run((ctx) -> {
 });
 ```
 
-|  | Reactor Mono<Void>Some ctx methods, notably ctx.remove(), return Mono<Void>. There is a common "gotcha" with Mono<Void> in that it does not trigger a "next" reactive event - only a "completion" event. This means that some reactive operators chained afterwards, including the common flatMap, will not trigger. Generally, you will need to do ctx.remove(…​).then(…​) rather than ctx.remove(…​).flatMap(…​). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Reactor Mono<Void>
+> 
+> Some `ctx` methods, notably `ctx.remove()`, return `Mono<Void>`. There is a common "gotcha" with `Mono<Void>` in that it does not trigger a "next" reactive event - only a "completion" event. This means that some reactive operators chained afterwards, including the common `flatMap`, will not trigger. Generally, you will need to do `ctx.remove(…​).then(…​)` rather than `ctx.remove(…​).flatMap(…​)`.
 
 ## [](#sql-queries)SQL++ Queries
 
 If you already use [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql), then its use in transactions is very similar. A query returns a `TransactionQueryResult` that is very similar to the `QueryResult` you are used to, and takes most of the same options.
 
-|  | As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as ctx.query(), rather than cluster.query() or scope.query(). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> As mentioned [previously](#lambda-ops), make sure your application uses the transactional query operations inside the lambda — such as `ctx.query()`, rather than `cluster.query()` or `scope.query()`.
 
 Here is an example of selecting some rows from the `travel-sample` bucket:
 
@@ -450,8 +470,10 @@ cluster.transactions().run((ctx) -> {
 | ----- | -------------------------------------------------------------------------------------------------------------------------- |
 | **2** | But the SELECT can view it, as the insert was in the same transaction.                                                     |
 
-|  | Query Mode When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Query Mode
+> 
+> When a transaction executes a query statement, the transaction enters **query mode**, which means that the query is executed with the user’s query permissions. Any **key-value** operations which are executed by the transaction _after_ the query statement are _also_ executed with the user’s query permissions. These may or may not be different to the user’s data permissions; if they are different, you may get unexpected results.
 
 ## [](#concurrent-operations)Concurrent Operations
 
@@ -478,8 +500,10 @@ var result = cluster.reactive().transactions().run((ctx) -> {
 }).block();
 ```
 
-|  | Query ConcurrencyOnly one query statement will be performed by the Query service at a time. Non-blocking mechanisms can be used to perform multiple concurrent query statements, but this may result internally in some added network traffic due to retries, and is unlikely to provide any increased performance. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Query Concurrency
+> 
+> Only one query statement will be performed by the Query service at a time. Non-blocking mechanisms can be used to perform multiple concurrent query statements, but this may result internally in some added network traffic due to retries, and is unlikely to provide any increased performance.
 
 ### [](#non-transactional-writes)Non-Transactional Writes
 
@@ -540,8 +564,8 @@ cluster.disconnect();
 
 The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.
 
-|  | A level of None is present but its use is discouraged and unsupported. If durability is set to None, then ACID semantics are not guaranteed. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> A level of `None` is present but its use is discouraged and unsupported. If durability is set to `None`, then ACID semantics are not guaranteed.
 
 ## [](#additional-resources)Additional Resources
 

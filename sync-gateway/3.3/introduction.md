@@ -1,4 +1,14 @@
+---
+title: Sync Gateway
+description: Sync Gateway is a secure, high-performance gateway designed for
+  cloud-to-edge data synchronization.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/introduction.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/introduction.html)
+
+# Sync Gateway
 
 Sync Gateway is a secure, high-performance gateway designed for cloud-to-edge data synchronization. It serves as the synchronization server in a Couchbase Mobile deployment, enabling mobile, web, and IoT applications to view and sync data with Couchbase Server.
 
@@ -37,8 +47,8 @@ The business logic behind the validation and authorization of document access is
 
 # 
 
-|  | For more information about the latest changes to Sync Gateway, see [New In 3.3](whatsnew.md). |
-|  | --------------------------------------------------------------------------------------------- |
+> [!TIP]
+> For more information about the latest changes to Sync Gateway, see [New In 3.3](whatsnew.md).
 
 ## Get Started
 

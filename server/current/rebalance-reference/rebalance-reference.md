@@ -1,4 +1,15 @@
+---
+title: Rebalance Reference
+description: Couchbase Server creates a <em>report</em> for every rebalance that
+  is performed. This section explains how to obtain the report, and how to read
+  it.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rebalance-reference/pages/rebalance-reference.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rebalance-reference/rebalance-reference.html)
+
+# Rebalance Reference
 
 > Couchbase Server creates a _report_ for every rebalance that is performed. This section explains how to obtain the report, and how to read it. 
 

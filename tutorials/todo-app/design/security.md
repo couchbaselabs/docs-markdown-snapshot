@@ -1,4 +1,12 @@
+---
+title: Security and Access Control
+editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/design/security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/tutorials/todo-app/design/security.html)
+
+# Security and Access Control
 
 In this lesson you’ll learn how to secure your data model using Couchbase Mobile’s built-in security framework.
 
@@ -26,8 +34,8 @@ Once the document is mapped to the channel you can give the user access to it. I
 
 ![03 read access](../_images/03-read-access.png)
 
-|  | As shown above, you can route documents of different types to the same channel. The access method can then be invoked once since the list and its tasks are in the same channel. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> As shown above, you can route documents of different types to the same channel. The `access` method can then be invoked once since the list and its tasks are in the same channel.
 
 ### [](#multiple-users)Multiple users
 

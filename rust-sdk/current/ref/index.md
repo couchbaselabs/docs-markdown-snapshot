@@ -1,4 +1,13 @@
+---
+title: Reference Pages
+description: Essential reference infomation for developing with Couchbase.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/ref/index.html)
+
+# Reference Pages
 
 > Essential reference infomation for developing with Couchbase. 
 

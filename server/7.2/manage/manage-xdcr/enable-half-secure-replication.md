@@ -1,4 +1,14 @@
+---
+title: Enable Half-Secure Replications
+description: "<em>Half-Secure</em> replication secures the specified password
+  only: it does not secure data."
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/enable-half-secure-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/manage-xdcr/enable-half-secure-replication.html)
+
+# Enable Half-Secure Replications
 
 > _Half-Secure_ replication secures the specified password only: it does not secure data. 
 

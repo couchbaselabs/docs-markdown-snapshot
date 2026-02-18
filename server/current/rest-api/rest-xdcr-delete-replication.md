@@ -1,4 +1,14 @@
+---
+title: Deleting a Replication
+description: To delete an XDCR replication, use the <code>DELETE
+  /controller/cancelXDCR</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-delete-replication.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-xdcr-delete-replication.html)
+
+# Deleting a Replication
 
 > To delete an XDCR replication, use the `DELETE /controller/cancelXDCR` HTTP method and URI. 
 

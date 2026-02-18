@@ -1,4 +1,14 @@
+---
+title: Overview
+description: A Couchbase Cluster can be created and managed by means of the
+  Couchbase Web Console, the CLI, and the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/management-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/manage/management-overview.html)
+
+# Overview
 
 > A Couchbase Cluster can be created and managed by means of the Couchbase Web Console, the CLI, and the REST API. 
 

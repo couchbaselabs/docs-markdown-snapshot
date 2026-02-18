@@ -1,4 +1,12 @@
+---
+title: Release Notes
+editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/elasticsearch-connector/current/release-notes.html)
+
+# Release Notes
 
 > Release notes, installation instructions, and download archive for the Couchbase Elasticsearch Connector. 
 
@@ -12,16 +20,15 @@ Scroll down to the version you want, then click the "Download" link to get the f
 
 This version adds additional tags to connector metrics, and updates dependencies.
 
-|  | Watch out for a change to the network detection heuristic. If the connector is unable to connect to Couchbase Server after the upgrade, you might need to specify network = 'default' in the \[couchbase\] section of your connector config. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> Watch out for a change to the network detection heuristic. If the connector is unable to connect to Couchbase Server after the upgrade, you might need to specify `network = 'default'` in the `[couchbase]` section of your connector config.
 
 ### [](#behavioral-changes)Behavioral Changes
 
 * [JVMCBC-1660](https://jira.issues.couchbase.com/browse/JVMCBC-1660): The `auto` network selection heuristic has been changed to fall back to the `external` network if there is no exact address match and the `external` network is present.  
-Previously, if there was no exact match between an address in the connection string and an address in the cluster topology reported by the server, the connector would select the `default` network. Now, if there is no match and an `external` network is present, the connector selects the `external` network.
-
-|  | If this change causes the connector to select the incorrect network for your deployment (you’ll know because the connector will be unable to connect to the Couchbase Server cluster), specify network = 'default' in the \[couchbase\] section of your connector config to force the connector to use the same network as before. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+Previously, if there was no exact match between an address in the connection string and an address in the cluster topology reported by the server, the connector would select the `default` network. Now, if there is no match and an `external` network is present, the connector selects the `external` network.  
+> [!TIP]  
+> If this change causes the connector to select the incorrect network for your deployment (you’ll know because the connector will be unable to connect to the Couchbase Server cluster), specify `network = 'default'` in the `[couchbase]` section of your connector config to force the connector to use the same network as before.
 
 ### [](#enhancements)Enhancements
 
@@ -222,10 +229,9 @@ Elasticsearch 8.4 joins the list of supported versions.
 
 ### [](#behavioral-changes-2)Behavioral Changes
 
-* [CBES-240](https://issues.couchbase.com/browse/CBES-240): **Autonomous Operations Mode** When the connector shuts down gracefully in response to an interrupt signal, it now deregisters its Consul service definition before exiting. For ungraceful shutdowns, Consul automatically deregisters a service definition that remains in "critical" state for 7 days.
-
-|  | You can customize these behaviors in the connector’s Consul-specific configuration, specified with the command-line option: |
-|  | --------------------------------------------------------------------------------------------------------------------------- |  
+* [CBES-240](https://issues.couchbase.com/browse/CBES-240): **Autonomous Operations Mode** When the connector shuts down gracefully in response to an interrupt signal, it now deregisters its Consul service definition before exiting. For ungraceful shutdowns, Consul automatically deregisters a service definition that remains in "critical" state for 7 days.  
+> [!TIP]  
+> You can customize these behaviors in the connector’s Consul-specific configuration, specified with the command-line option:  
 ```shell
 --consul <path/to/consul.toml>  
 ```
@@ -317,8 +323,8 @@ This is a maintenance released focused on upgrading dependencies to the latest v
 * [CBES-238](https://issues.couchbase.com/browse/CBES-238): Resolved an incompatibility with Consul 1.10.
 * [CBES-241](https://issues.couchbase.com/browse/CBES-241): Upgraded Log4j from 2.17.0 to 2.17.1.
 
-|  | **Regarding CVE-2021-44832:** The connector’s out-of-the-box logging configuration does not use Log4j’s JDBC appender. You may still wish to upgrade to avoid false positives from vulnerability scanners. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> **Regarding CVE-2021-44832:** The connector’s out-of-the-box logging configuration does not use Log4j’s JDBC appender. You may still wish to upgrade to avoid false positives from vulnerability scanners.
 
 * [CBES-245](https://issues.couchbase.com/browse/CBES-245): Upgraded Couchbase DCP client from 0.38.0 to 0.39.0:
 
@@ -331,8 +337,8 @@ This is a maintenance released focused on upgrading dependencies to the latest v
 
 This release upgrades Log4j again (sigh).
 
-|  | **Regarding CVE-2021-44832:** The connector’s out-of-the-box logging configuration does not use Log4j’s JDBC appender. You may still wish to upgrade to avoid false positives from vulnerability scanners. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> **Regarding CVE-2021-44832:** The connector’s out-of-the-box logging configuration does not use Log4j’s JDBC appender. You may still wish to upgrade to avoid false positives from vulnerability scanners.
 
 ### [](#enhancements-21)Enhancements
 
@@ -348,8 +354,8 @@ This release makes it easier to [deploy the connector in Kubernetes](kubernetes.
 
 * [CBES-232](https://issues.couchbase.com/browse/CBES-232): Upgraded Log4j from 2.15.0 to 2.17.0\. This prevents vulnerability scanners from flagging Log4j 2.15.0 as a potential security risk.
 
-|  | All versions of the connector are immune to CVE-2021-45046 and CVE-2021-45105 because the connector does not use the Thread Context Map / Mapped Diagnostic Context (MDC) feature of Log4j. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All versions of the connector are immune to CVE-2021-45046 and CVE-2021-45105 because the connector does not use the Thread Context Map / Mapped Diagnostic Context (MDC) feature of Log4j.
 
 * [CBES-200](https://issues.couchbase.com/browse/CBES-200): Added basic Kubernetes integration. See the new documentation page, [Deploying in Kubernetes](kubernetes.md).
 * [CBES-226](https://issues.couchbase.com/browse/CBES-226): Added a LICENSE file to the distribution archive (Apache License Version 2.0, same as before).
@@ -366,8 +372,8 @@ This release upgrades Log4j from 2.15.0 to 2.17.0.
 
 * [CBES-232](https://issues.couchbase.com/browse/CBES-232): Upgraded Log4j from 2.15.0 to 2.17.0\. This prevents vulnerability scanners from flagging Log4j 2.15.0 as a potential security risk.
 
-|  | All versions of the connector are immune to CVE-2021-45046 and CVE-2021-45105 because the connector does not use the Thread Context Map / Mapped Diagnostic Context (MDC) feature of Log4j. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All versions of the connector are immune to CVE-2021-45046 and CVE-2021-45105 because the connector does not use the Thread Context Map / Mapped Diagnostic Context (MDC) feature of Log4j.
 
 ## [](#v4.3.3)Version 4.3.3 (2021-12-10)
 
@@ -706,8 +712,8 @@ This maintenance release improves the stability of the connector and adds new co
 
 #### [](#things-to-be-aware-of)Things to be aware of
 
-|  | This is a major version upgrade. Because the plug-in and the standalone connector are so different, there is no online upgrade process. See the [Migration](migration.md) documentation for details. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> This is a major version upgrade. Because the plug-in and the standalone connector are so different, there is no online upgrade process. See the [Migration](migration.md) documentation for details.
 
 * Parent-child relationships are no longer supported, as this feature was removed in ES 6.
 * Routing documents to specific Elasticsearch shards is not implemented. Please let us know if this feature is still relevant for your deployment.

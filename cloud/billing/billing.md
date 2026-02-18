@@ -1,4 +1,14 @@
+---
+title: Manage Your Billing
+description: Couchbase Capella bills you for the size and number of operational
+  clusters in your organization.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/billing/billing.html)
+
+# Manage Your Billing
 
 > Couchbase Capella bills you for the size and number of operational clusters in your organization. 
 
@@ -141,8 +151,10 @@ You’ll be charged for Data API access based on the following costs:
 * A fixed hourly connection cost, with an hourly rate that varies based on the region where the load balancer is deployed. Charges are for each clock hour that the Data API is enabled, regardless of usage or the state of your operational cluster (on or off).
 * A per GiB data processing charge for data processed through the load balancer, with a per GiB rate that varies based on the region where the Data API is used.
 
-|  | When [VPC Peering](../clouds/private-network.md) support is enabled for the Data API, you’ll be charged an incremental extra cost for Data API access, regardless of whether any VPC Peering connections are currently established. Enabling private endpoint support with the Data API has no additional cost beyond the regular charges associated with the Data API. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> When [VPC Peering](../clouds/private-network.md) support is enabled for the Data API, you’ll be charged an incremental extra cost for Data API access, regardless of whether any VPC Peering connections are currently established.
+> 
+> Enabling private endpoint support with the Data API has no additional cost beyond the regular charges associated with the Data API.
 
 ### [](#ai-services)AI Services
 
@@ -184,8 +196,8 @@ Couchbase charges by the clock hour for the Model Service. It bases this hourly 
 
 The Model Service only becomes billable once a Capella hosted model deploys and is in a running state.
 
-|  | Billing for the Model Service follows the [Enterprise Plan pricing](https://www.couchbase.com/pricing). If your account uses a different plan, Couchbase bills your Model Service usage with Enterprise [On-Demand credits](#pay-as-you-go-credits). |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Billing for the Model Service follows the [Enterprise Plan pricing](https://www.couchbase.com/pricing). If your account uses a different plan, Couchbase bills your Model Service usage with Enterprise [On-Demand credits](#pay-as-you-go-credits).
 
 Integrated LLM Cache
 
@@ -239,8 +251,8 @@ For [pre-paid credits](#pre-paid-credits), you can choose to purchase credits ah
 
 For [pay-as-you-go](#pay-as-you-go-credits), you can choose to pay for those credits through a monthly invoice from Couchbase Capella.
 
-|  | If you currently pay for your usage with a [credit card](#credit-cards), you can switch to the direct invoice payment method at any time. After you have switched to paying for your credits with a sales agreement, you cannot switch back to credit card payments. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you currently pay for your usage with a [credit card](#credit-cards), you can switch to the direct invoice payment method at any time. After you have switched to paying for your credits with a sales agreement, you cannot switch back to credit card payments.
 
 To enable credit purchases for your organization, you must add an [Activation ID](#billing/upgrade-account.adoc) to your account. Contact [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html) to get an Activation ID and start using paid operational clusters through the direct invoice payment option.
 
@@ -266,8 +278,8 @@ For [pay-as-you-go](#pay-as-you-go-credits), you can choose to pay for those cre
 
 After you purchase credits through your CSP, you must add an [Activation ID](#billing/upgrade-account.adoc) to your account to start using paid operational clusters.
 
-|  | If you currently pay for your usage with a [credit card](#credit-cards), you can switch to the CSP payment method at any time. After you have switched to paying credits with your CSP, you cannot switch back to credit card payments through Capella. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you currently pay for your usage with a [credit card](#credit-cards), you can switch to the CSP payment method at any time. After you have switched to paying credits with your CSP, you cannot switch back to credit card payments through Capella.
 
 ### [](#credit-cards)Credit Card Payments
 
@@ -275,8 +287,8 @@ You can choose to add a credit card to your organization to get billed directly 
 
 If you choose to pay for your Capella usage through a credit card, you can deploy clusters and services on a [Basic](#basic) or [Developer Pro](#dev-pro) Support Plan.
 
-|  | You can switch your payment method from credit card billing to a contract with [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html) at any time. You must have a contract to deploy clusters and services on the [Enterprise](#enterprise) Support Plan. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You can switch your payment method from credit card billing to a contract with [Couchbase Sales](https://info.couchbase.com/Capella-Contact.html) at any time. You must have a contract to deploy clusters and services on the [Enterprise](#enterprise) Support Plan.
 
 All usage charges are billed in USD ($). All payments are automatic.
 

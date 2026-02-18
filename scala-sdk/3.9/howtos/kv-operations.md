@@ -1,4 +1,15 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known. Here we cover CRUD operations, document expiration,
+  and optimistic locking with CAS.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.9/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
@@ -22,8 +33,8 @@ import scala.concurrent.duration._
 import scala.util.{Failure, Success, Try}
 ```
 
-|  | The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
@@ -39,8 +50,8 @@ You can also directly encode and decode Scala case classes to and from the SDK.
 
 To make things easy and to help get you started, the Scala SDK also bundles a home-grown small JSON library, which you are free to use instead of or alongside any of the other supported JSON libraries. The philosophy behind this library is to provide a very easy-to-use API and the fastest JSON implementation possible.
 
-|  | The Scala 3 version of the SDK removes direct support for external JSON libraries and direct handling of case classes, though it remains easy to integrate both. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> The Scala 3 version of the SDK removes direct support for external JSON libraries and direct handling of case classes, though it remains easy to integrate both. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes.
 
 ### [](#using-jsonobject-and-jsonarray)Using JsonObject and JsonArray
 
@@ -100,8 +111,8 @@ r match {
 
 A `JsonArraySafe` counterpart for `JsonArray` also exists. Note that `JsonObjectSafe`, though presenting a more functional interface, is still mutable.
 
-|  | Using JsonObject and JsonArray is 100% optional. If you would rather use a purely functional JSON library, with immutable data, lenses, cursors and other functional goodies, then the Scala SDK includes full support for the excellent [Circe](https://circe.github.io/circe/), among other great JSON libraries. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Using JsonObject and JsonArray is 100% optional. If you would rather use a purely functional JSON library, with immutable data, lenses, cursors and other functional goodies, then the Scala SDK includes full support for the excellent [Circe](https://circe.github.io/circe/), among other great JSON libraries.
 
 ## [](#upsert)Upsert
 
@@ -116,8 +127,8 @@ collection.upsert("document-key", json) match {
 }
 ```
 
-|  | All the examples here use the Scala SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala Future, and a reactive API. See [Choosing an API](concurrent-async-apis.md#choosing-an-api) for more details. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All the examples here use the Scala SDK’s simplest API, which blocks until the operation is performed. There’s also an asynchronous API that is based around Scala `Future`, and a reactive API. See [Choosing an API](concurrent-async-apis.md#choosing-an-api) for more details.
 
 ## [](#handling-single-errors)Handling Single Errors
 
@@ -129,8 +140,8 @@ Pattern matching can be used to handle a `Try`, as above.
 
 Don’t worry about cluttering up your code with explicit error handling for every operation: Scala provides useful methods to chain multiple `Try` together, and we’ll go into these later.
 
-|  | We will use println to simply print any errors in these samples, but the application will of course want to perform better error handling. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> We will use `println` to simply print any errors in these samples, but the application will of course want to perform better error handling.
 
 ## [](#insert)Insert
 
@@ -481,11 +492,11 @@ collection.binary.decrement("document-key6", delta = 1, initial = Some(10)) matc
 
 Note that a counter cannot be below 0.
 
-|  | Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 
@@ -499,8 +510,8 @@ A range scan gives you documents from a collection, even if you don’t know the
 
 This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ instead of KV range scan. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

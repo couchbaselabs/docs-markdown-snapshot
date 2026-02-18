@@ -1,4 +1,14 @@
+---
+title: Bi-directional XDCR with Mobile Clusters
+description: Enable active-active deployments between mobile clusters using
+  bi-directional Cross Data Center Replication (XDCR) with Sync Gateway 4.0.
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-xdcr-mobile.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/current/server-compatibility/server-compatibility-xdcr-mobile.html)
+
+# Bi-directional XDCR with Mobile Clusters
 
 > Enable active-active deployments between mobile clusters using bi-directional Cross Data Center Replication (XDCR) with Sync Gateway 4.0.  
 > Sync Gateway 4.0 introduces bi-directional XDCR support between mobile clusters through a fundamental architectural change from revision trees to version vectors.
@@ -98,8 +108,8 @@ Different Couchbase Lite versions exhibit varying levels of support for bi-direc
 
 Couchbase Lite 4.0 provides full support, including the ability to switch between clusters while maintaining consistency. Earlier versions (3.x and 2.x) can synchronize with Sync Gateway 4.0 but cannot switch between clusters without potential consistency issues.
 
-|  | XDCR does not replicate Sync Gateway users, roles, or channel access grants between clusters. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> XDCR does not replicate Sync Gateway users, roles, or channel access grants between clusters.
 
 ---
 

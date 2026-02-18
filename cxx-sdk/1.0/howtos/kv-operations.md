@@ -1,4 +1,15 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known. Here we cover CRUD operations, document expiration,
+  and optimistic locking with CAS.
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cxx-sdk/1.0/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
@@ -23,8 +34,8 @@ The code samples below will use these imports:
 #include <iostream>
 ```
 
-|  | The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
 
 ## [](#json)JSON
 
@@ -48,8 +59,8 @@ auto content = tao::json::value{
 auto [err, result] = collection.upsert("document-key", content).get();
 ```
 
-|  | All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an std::future. There’s also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> All of the examples here use the simplest of the two asynchronous APIs provided by the C++ SDK, which returns an `std::future`. There’s also a callback-based asynchronous API. See [Choosing an API](#concurrent-async-apis) for more details.
 
 The C++ SDK returns a `couchbase::error` instance that wraps an `std::error_code` rather than throwing exceptions. You can check whether an error occurred like this:
 
@@ -61,8 +72,8 @@ if (err) {
 }
 ```
 
-|  | We will use fmt::println to simply print any errors in these samples, but the application will of course want to perform better error handling. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> We will use `fmt::println` to simply print any errors in these samples, but the application will of course want to perform better error handling.
 
 ## [](#insert)Insert
 
@@ -374,11 +385,11 @@ To support counter use-cases, a Couchbase document can be treated as an integer 
 
 Note that a counter cannot be below 0.
 
-|  | Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 
@@ -390,8 +401,8 @@ A counter must be incremented or decremented by only a single datacenter. Each d
 
 A range scan gives you documents from a collection, even if you don’t know the document IDs. This feature requires Couchbase Server 7.6 or newer.
 
-|  | KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> KV range scan is suitable for use cases that require relatively low concurrency and tolerate relatively high latency. If your application does many scans at once, or requires low latency results, we recommend using SQL++ (with a primary index on the collection) instead of KV range scan.
 
 ### [](#kv-range-scan-range)Range scan
 

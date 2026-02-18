@@ -1,9 +1,19 @@
+---
+title: View Monitoring Dashboards
+description: Couchbase Capella provides monitoring dashboards with metrics for
+  each cluster so you can view and monitor cluster performance.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/metrics-dashboard.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/clusters/monitoring/metrics-dashboard.html)
+
+# View Monitoring Dashboards
 
 > Couchbase Capella provides monitoring dashboards with metrics for each cluster so you can view and monitor cluster performance. 
 
-|  | The [Metrics Explorer](#metrics-explorer-dashboard) dashboard is still available for you to view cluster metrics. Use this dashboard to add or remove specific metrics according to your monitoring needs. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The [Metrics Explorer](#metrics-explorer-dashboard) dashboard is still available for you to view cluster metrics. Use this dashboard to add or remove specific metrics according to your monitoring needs.
 
 The metrics available on the **Monitoring** dashboards provide insight into your cluster’s performance and can help identify runtime outliers. These dashboards can help you investigate intermittent issues with multi-metric views and adjustable timeframes.
 
@@ -91,8 +101,16 @@ Couchbase Capella categorizes slow queries as those running [longer than 1000ms]
 
 Data on slow queries is sourced from [system keyspaces](../../n1ql/n1ql-intro/sysinfo.md#querying-keyspaces), which provide real-time monitoring details and statistics about individual queries and the Query Service. This data is transient, tied to the current Query Service instance and not saved to disk. If the Service restarts, this data may change or be lost. For more information, see [Manage and Monitor Queries](../../n1ql/n1ql-manage/monitoring-n1ql-query.md).
 
-|  | Viewing Slow Queries Capella provides built-in safeguards and optimizations for **Slow Queries** and their data in the **Query Service** dashboard. This helps the data remain efficient and responsive, even under heavy workloads. If you do not see any **Slow Queries**, it may be because of 1 of the following limits: Capella only retains the most recent [4,000 completed requests](../../../server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md#completed-limit) with run times longer than 1000 ms. If no slow query data is available, your queries might not meet the criteria or your filter settings need adjustment. Capella sets a default query memory quota of 30 MB for the **Slow Queries** displayed in the dashboard. If you encounter a query memory quota error, it indicates that the system queries used to populate **Slow Queries** in the dashboard require more memory than the current limit allows. To adjust this limit: If your cluster has enough available memory, try doubling the current limit. For example, you can adjust it from 30 MB to 60 MB. If your query nodes are operating under memory constraints, try increasing the limit incrementally. For example, you can increase the limit by 10 MB at a time, until the **Slow Queries** load and display in the dashboard. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Viewing Slow Queries
+> 
+> Capella provides built-in safeguards and optimizations for **Slow Queries** and their data in the **Query Service** dashboard. This helps the data remain efficient and responsive, even under heavy workloads. If you do not see any **Slow Queries**, it may be because of 1 of the following limits:
+> 
+> * Capella only retains the most recent [4,000 completed requests](../../../server/current/n1ql/n1ql-manage/monitoring-n1ql-query.md#completed-limit) with run times longer than 1000 ms. If no slow query data is available, your queries might not meet the criteria or your filter settings need adjustment.
+> * Capella sets a default query memory quota of 30 MB for the **Slow Queries** displayed in the dashboard. If you encounter a query memory quota error, it indicates that the system queries used to populate **Slow Queries** in the dashboard require more memory than the current limit allows. To adjust this limit:
+> 
+>   * If your cluster has enough available memory, try doubling the current limit. For example, you can adjust it from 30 MB to 60 MB.
+>   * If your query nodes are operating under memory constraints, try increasing the limit incrementally. For example, you can increase the limit by 10 MB at a time, until the **Slow Queries** load and display in the dashboard.
 
 ### [](#node-metrics)Node Metrics
 
@@ -133,8 +151,15 @@ Metrics appear highlighted when on the dashboard.
 
 ### [](#chart-resolution)Chart Resolution
 
-|  | Capella draws metrics charts down to 60-second (1-minute) resolution. This resolution is available for graphs using the **30m**, **1h**, and **2h** timeframes. When you select a longer timeframe, Capella automatically adjusts the chart data resolution. These chart data resolutions are: **1d** \- 360 seconds (6 minutes) **2d** \- 720 seconds (12 minutes) **7d** \- 2520 seconds (42 minutes) **30d** \- 10800 seconds (3 hours) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> Capella draws metrics charts down to 60-second (1-minute) resolution. This resolution is available for graphs using the **30m**, **1h**, and **2h** timeframes.
+> 
+> When you select a longer timeframe, Capella automatically adjusts the chart data resolution. These chart data resolutions are:
+> 
+> * **1d** \- 360 seconds (6 minutes)
+> * **2d** \- 720 seconds (12 minutes)
+> * **7d** \- 2520 seconds (42 minutes)
+> * **30d** \- 10800 seconds (3 hours)
 
 Moving your mouse pointer over a metric chart provides date, time, and resource information for the part of the chart you’re pointing at. You can also zoom in on areas of a chart by clicking and dragging your pointer over the region you want to focus on.
 

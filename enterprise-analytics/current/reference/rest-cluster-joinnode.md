@@ -1,4 +1,14 @@
+---
+title: Joining Nodes to Clusters
+description: Nodes can be added to clusters with the <code>POST
+  /node/controller/doJoinCluster</code> HTTP method and URI.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-joinnode.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-joinnode.html)
+
+# Joining Nodes to Clusters
 
 > Nodes can be added to clusters with the `POST /node/controller/doJoinCluster` HTTP method and URI. 
 

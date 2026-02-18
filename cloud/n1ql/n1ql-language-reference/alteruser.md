@@ -1,4 +1,13 @@
+---
+title: ALTER USER
+description: The ALTER USER statement enables you to alter the details of an existing user.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alteruser.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/n1ql/n1ql-language-reference/alteruser.html)
+
+# ALTER USER
 
 > The ALTER USER statement enables you to alter the details of an existing user. 
 
@@ -8,8 +17,8 @@ Use the ALTER USER statement to update a local user’s attributes, such as thei
 
 This statement helps manage access control and keeps user information up to date within Couchbase Server.
 
-|  | When you add new groups to a user, the ALTER USER statement replaces the user’s existing group assignments with the new ones you provide. It updates the entire group list, so any existing groups not included in the new list will be removed. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> When you add new groups to a user, the ALTER USER statement replaces the user’s existing group assignments with the new ones you provide. It updates the entire group list, so any existing groups not included in the new list will be removed.
 
 ## [](#rbac-privileges)RBAC Privileges
 
@@ -31,8 +40,12 @@ alter-user ::= 'ALTER' 'USER' username ( 'PASSWORD' password )?
 | name     | (Optional) A quoted string containing the user’s updated name.                                        |
 | group    | (Optional) The group you want to assign the user to.                                                  |
 
-|  | When altering a user, you can update their group using one of the following options: GROUP, GROUPS, or NO GROUPS. You can specify only one of these options per statement. GROUP assigns the user to a single group. GROUPS assigns the user to multiple groups (the names must be separated by commas). NO GROUPS removes the user from all groups. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When altering a user, you can update their group using one of the following options: `GROUP`, `GROUPS`, or `NO GROUPS`. You can specify only one of these options per statement.
+> 
+> * `GROUP` assigns the user to a single group.
+> * `GROUPS` assigns the user to multiple groups (the names must be separated by commas).
+> * `NO GROUPS` removes the user from all groups.
 
 ## [](#examples)Examples
 

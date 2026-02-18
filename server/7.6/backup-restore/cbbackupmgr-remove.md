@@ -1,4 +1,13 @@
+---
+title: cbbackupmgr remove
+description: Removes a backup repository from the backup archive
+editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-remove.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/backup-restore/cbbackupmgr-remove.html)
+
+# cbbackupmgr remove
 
 Removes a backup repository from the backup archive
 

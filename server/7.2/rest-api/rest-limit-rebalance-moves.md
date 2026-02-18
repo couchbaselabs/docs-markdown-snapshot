@@ -1,4 +1,15 @@
+---
+title: Limiting Concurrent vBucket Moves
+description: Couchbase Server places a limit on the number of concurrent vBucket
+  moves that can occur during rebalance, applying the limit to every node in the
+  cluster.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-limit-rebalance-moves.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/rest-api/rest-limit-rebalance-moves.html)
+
+# Limiting Concurrent vBucket Moves
 
 > Couchbase Server places a limit on the number of concurrent vBucket moves that can occur during rebalance, applying the limit to every node in the cluster. This limit can be inspected and reset by means of the REST API. 
 

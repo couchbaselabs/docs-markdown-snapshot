@@ -1,4 +1,14 @@
+---
+title: cbrecovery
+description: Restores data to a local cluster, from a bucket on a remote cluster
+  that was previously established as an XDCR remote replica
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbtools/cbrecovery.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbtools/cbrecovery.html)
+
+# cbrecovery
 
 The `cbrecovery` tool restores data to a local cluster, from a bucket on a remote cluster that was previously established as an XDCR remote replica.
 

@@ -1,4 +1,12 @@
+---
+title: Manage Organization Users
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-organization-users.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/manage-organization-users.html)
+
+# Manage Organization Users
 
 > Invite users to an organization and manage their roles within the organization. 
 
@@ -31,8 +39,16 @@ The organization roles assigned to the account:
 
 ## [](#invite-organization-users)Add/Invite Users to an Organization
 
-|  | Social Sign In and Single Sign-On (SSO) People you invite to an organization can sign in using third-party accounts such as Google or GitHub if they’re associated with the same email address used for Capella. When using SSO with your organization, make sure only authorized SSO users can access your organization by only inviting Organization Owners. Configure all other users using your SSO provider. Users with SSO do not need an invitation and can sign in using the organization’s realm name. For more information, see [Sign in to Capella with SSO](ui-auth/sign-in-with-sso.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Social Sign In and Single Sign-On (SSO)
+> 
+> People you invite to an organization can sign in using third-party accounts such as Google or GitHub if they’re associated with the same email address used for Capella.
+> 
+> When using SSO with your organization, make sure only authorized SSO users can access your organization by only inviting Organization Owners. Configure all other users using your SSO provider.
+> 
+> Users with SSO do not need an invitation and can sign in using the organization’s realm name.
+> 
+> For more information, see [Sign in to Capella with SSO](ui-auth/sign-in-with-sso.md).
 
 To add users to your organization, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role. You must also have the email address of the person you plan to invite.
 
@@ -66,8 +82,10 @@ Alternatively, if you do not want to add the user to your organization, you can 
 
 To change a user’s organization role, you must have the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) organization role.
 
-|  | An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times. If you are the only [Organization Owner](organization-user-roles.md#organization-role-organization-owner) user, you cannot edit your own role until you grant the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role to at least one other user. If you remove the Organization Owner role from a user, they also lose the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in their organization. They keep their other project roles. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times. If you are the only [Organization Owner](organization-user-roles.md#organization-role-organization-owner) user, you cannot edit your own role until you grant the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role to at least one other user.
+> 
+> If you remove the Organization Owner role from a user, they also lose the [Project Owner](../projects/project-roles.md#project-owner-role) role for all projects in their organization. They keep their other project roles.
 
 1. In the navigation breadcrumbs in the Capella UI, click your organization name.
 2. Go to **People**.
@@ -78,11 +96,11 @@ To change a user’s organization role, you must have the [Organization Owner](o
 
 ## [](#remove-user)Remove a User (or Yourself) from an Organization
 
-|  | Organization Owners can remove one or more SSO users from an organization through the [realm in the Capella UI](#remove-user-sso), or through their identity provider. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Organization Owners can remove one or more SSO users from an organization through the [realm in the Capella UI](#remove-user-sso), or through their identity provider.
 
-|  | Removing a user from an organization removes all organization roles assigned to this user and removes their access to all projects contained in that organization. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> Removing a user from an organization removes all organization roles assigned to this user and removes their access to all projects contained in that organization.
 
 Use this procedure to remove either yourself or another non-SSO user from an organization. To remove someone other than yourself from an organization, you must have [Organization Owner](organization-user-roles.md) privileges. An organization must have at least one user with the [Organization Owner](organization-user-roles.md#organization-role-organization-owner) role at all times.
 

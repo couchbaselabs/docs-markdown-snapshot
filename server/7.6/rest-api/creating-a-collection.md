@@ -1,4 +1,13 @@
+---
+title: Creating and Editing a Collection
+description: Collections can be created by means of the REST API.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/creating-a-collection.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/rest-api/creating-a-collection.html)
+
+# Creating and Editing a Collection
 
 > Collections can be created by means of the REST API. 
 
@@ -75,8 +84,8 @@ This parameter is ignored unless the following settings have been made _at bucke
 
 See [Creating and Editing Buckets](rest-bucket-create.md), for information about bucket parameters. For an overview of change history, see [Change History](../learn/data/change-history.md).
 
-|  | history and maxTTL are the only parameters that you can edit after you create the collection. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `history` and `maxTTL` are the only parameters that you can edit after you create the collection.
 
 ## [](#responses)Responses
 

@@ -1,4 +1,12 @@
+---
+title: Manage Organizations
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-organizations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/manage-organizations.html)
+
+# Manage Organizations
 
 ## [](#create-an-organization)Create an Organization
 

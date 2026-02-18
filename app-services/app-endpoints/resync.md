@@ -1,4 +1,12 @@
+---
+title: Resync your App Endpoint
+editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/resync.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/app-services/app-endpoints/resync.html)
+
+# Resync your App Endpoint
 
 All document changes made on the Couchbase Lite client app or on the Capella server are automatically synchronized with App Services. Every change is processed by the [Access Control function](access-control-data-validation.md).
 
@@ -14,8 +22,8 @@ You can access the Access Control function from two locations:
 
   * The ****Resync** button lets you resync one or multiple collections
 
-|  | Only one Resync can be in progress at a given time for a collection or a batch of collections. |
-|  | ---------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Only one Resync can be in progress at a given time for a collection or a batch of collections.
 
 * The ****Resync** button directly within the Access Control function of a given linked collection.
 
@@ -23,8 +31,8 @@ You can access the Access Control function from two locations:
 
 To manually resync an App Endpoint, click on the ****Resync** button. If the App Endpoint is running, you will be prompted to ****Pause Endpoint** first. The resync will then proceed automatically. Once the resync is complete, you can ****Resume App Endpoint** from the same page.
 
-|  | Resuming the App Endpoint cancels any ongoing Resync operation. |
-|  | --------------------------------------------------------------- |
+> [!CAUTION]
+> Resuming the App Endpoint cancels any ongoing Resync operation.
 
 ## [](#resync-considerations)Resync Considerations
 
@@ -34,8 +42,8 @@ If the Access Control Function is changed, App Services can reprocess all existi
 * You only want the changes to channel or access rules to apply to documents written after the change was made.
 * In the Resync state, no user’s full access privileges are known until all documents have been scanned.
 
-|  | During the resync process the App Endpoint will be offline, during this period no end user requests will be processed, which will impact data synchronization between your mobile and IoT applications and Server. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> During the resync process the App Endpoint will be offline, during this period no end user requests will be processed, which will impact data synchronization between your mobile and IoT applications and Server.
 
 ## [](#see-also)See Also
 

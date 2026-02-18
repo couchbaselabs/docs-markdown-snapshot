@@ -1,4 +1,14 @@
+---
+title: Getting Bucket Streaming URI
+description: To retrieve the streaming URI, use <code>GET
+  /pools/default/buckets/default</code> HTTP method and URI.
+editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-buckets-streamingURI.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/rest-api/rest-buckets-streamingURI.html)
+
+# Getting Bucket Streaming URI
 
 > To retrieve the streaming URI, use `GET /pools/default/buckets/default` HTTP method and URI. 
 

@@ -1,4 +1,13 @@
+---
+title: Nodes and Clusters API
+description: The REST API permits management of nodes and clusters.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cluster-intro.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/2.0/reference/rest-cluster-intro.html)
+
+# Nodes and Clusters API
 
 > The REST API permits management of nodes and clusters. 
 

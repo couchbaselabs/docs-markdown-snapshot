@@ -1,4 +1,15 @@
+---
+title: Built-in _sum Function
+description: The built-in <code>_sum</code> function sums the values from the
+  <code>map()</code> function call by summing up the information in the value
+  for each row.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-writing-sum.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/views/views-writing-sum.html)
+
+# Built-in _sum Function
 
 > The built-in `_sum` function sums the values from the `map()` function call by summing up the information in the value for each row. 
 

@@ -1,4 +1,12 @@
+---
+title: Migration Guide
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/migration.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/migration.html)
+
+# Migration Guide
 
 > Helpful information when migrating from the Spark 2.x connector to the Spark 3.x connector. 
 

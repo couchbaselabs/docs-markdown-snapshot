@@ -1,4 +1,13 @@
+---
+title: Configuration Overview
+description: How to configure <em>Sync&#160;Gateway</em> for secure cloud-to-edge data sync
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/configuration/pages/configuration-overview.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/configuration/configuration-overview.html)
+
+# Configuration Overview
 
 > How to configure _Sync Gateway_ for secure cloud-to-edge data sync  
 

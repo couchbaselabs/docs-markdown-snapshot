@@ -1,4 +1,13 @@
+---
+title: Analytics Configuration REST API
+description: A description of the Configuration REST API for Couchbase Analytics.
+editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-config.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/analytics/rest-config.html)
+
+# Analytics Configuration REST API
 
 ## [](#%5Foverview)Overview
 
@@ -126,8 +135,8 @@ PUT /analytics/config/service
 
 Modifies service-level parameters, which apply to all nodes running the Analytics service.
 
-|  | For the configuration changes to take effect, you must restart the Analytics cluster using the [Cluster Restart API](rest-admin.html#%5Frestart%5Fcluster). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> For the configuration changes to take effect, you must restart the Analytics cluster using the [Cluster Restart API](rest-admin.html#%5Frestart%5Fcluster).
 
 #### [](#parameters)Parameters
 
@@ -211,8 +220,8 @@ PUT /analytics/config/node
 
 Views node-specific parameters, which apply to the node receiving the request.
 
-|  | For the configuration changes to take effect, you must restart the node using the [Node Restart API](rest-admin.html#%5Frestart%5Fnode), or restart the Analytics cluster using the [Cluster Restart API](rest-admin.html#%5Frestart%5Fcluster). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> For the configuration changes to take effect, you must restart the node using the [Node Restart API](rest-admin.html#%5Frestart%5Fnode), or restart the Analytics cluster using the [Cluster Restart API](rest-admin.html#%5Frestart%5Fcluster).
 
 #### [](#parameters-2)Parameters
 

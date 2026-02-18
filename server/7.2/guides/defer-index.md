@@ -1,4 +1,13 @@
+---
+title: Deferring Indexes
+description: How to create deferred indexes and build them later.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/defer-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/guides/defer-index.html)
+
+# Deferring Indexes
 
 > How to create deferred indexes and build them later.  
 > This guide is for Couchbase Server.
@@ -16,8 +25,8 @@ If you want to try out the examples in this section, follow the instructions giv
 
 You can defer an index to be built later using a SQL++ statement or an SDK call.
 
-|  | The SDK calls only enable you to create indexes in the default collection and default scope within a bucket. A N1QL statement enables you to create indexes in _any_ collection and scope within a bucket. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SDK calls only enable you to create indexes in the default collection and default scope within a bucket. A N1QL statement enables you to create indexes in _any_ collection and scope within a bucket.
 
 * SQL++
 * .NET
@@ -186,8 +195,8 @@ For more information, see [SQL++ Index Management](https://docs.couchbase.com/sd
 
 You can build one or more deferred primary or secondary indexes using a SQL++ statement. You can also build all deferred indexes in a keyspace using an SDK call.
 
-|  | The SDK calls only enable you to build indexes in the default collection and default scope within a bucket. A N1QL statement enables you to build indexes in _any_ collection and scope within a bucket. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The SDK calls only enable you to build indexes in the default collection and default scope within a bucket. A N1QL statement enables you to build indexes in _any_ collection and scope within a bucket.
 
 * SQL++
 * .NET

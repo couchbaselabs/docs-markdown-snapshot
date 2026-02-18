@@ -1,9 +1,19 @@
+---
+title: Search Service Metrics
+description: A list of the metrics provided by the Search Service.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/search-service-metrics.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/metrics-reference/search-service-metrics.html)
+
+# Search Service Metrics
 
 > A list of the metrics provided by the Search Service. 
 
-| Tip | The x.y.z badge shows the Couchbase Server version the metric was added in. The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present). |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> * The x.y.z badge shows the Couchbase Server version the metric was added in.
+> * The type / unit badge shows shows the Prometheus [type](https://prometheus.io/docs/tutorials/understanding%5Fmetric%5Ftypes/) and [unit](https://prometheus.io/docs/practices/naming/#base-units) (if present).
 
 | fts\_avg\_grpc\_queries\_latency7.2.0gauge / milliseconds Average latency per query, using gRPC for streaming, for an index                                                                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

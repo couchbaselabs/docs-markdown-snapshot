@@ -1,4 +1,13 @@
+---
+title: Working with Vector Search
+description: Use Vector Search with Full Text Search and Query.
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/working-with-vector-search.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/current/java/working-with-vector-search.html)
+
+# Working with Vector Search
 
 > Use Vector Search with Full Text Search and Query. 
 
@@ -6,8 +15,8 @@
 
 To configure a project to use vector search, follow the [installation instructions](gs-install.md) to add the Vector Search extension.
 
-|  | You must install Couchbase Lite to use the Vector Search extension. |
-|  | ------------------------------------------------------------------- |
+> [!NOTE]
+> You must install Couchbase Lite to use the Vector Search extension.
 
 ## [](#create-a-vector-index)Create a Vector Index
 
@@ -34,8 +43,8 @@ First, initialize the `config` object with the `VectorIndexConfiguration()` meth
 
 You can also alter some optional config settings such as `encoding`. From there, you create an index within a given collection, in this case `colors_index`, using the previously generated `config` object.
 
-|  | The number of vectors, the width or dimensions of the vectors and the training size can incur high CPU and memory costs as the size of each variable increases. This is because the training vectors have to be resident on the machine. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The number of vectors, the width or dimensions of the vectors and the training size can incur high CPU and memory costs as the size of each variable increases. This is because the training vectors have to be resident on the machine.
 
 ### [](#vector-index-configuration)Vector Index Configuration
 
@@ -53,8 +62,8 @@ __Table 1\. Vector Index Configuration Options__
 | NumProbes            | ![no](../_images/no.png)   | The default value is 0\. The number of Probes is calculated based on the number of Centroids                                                                       | A guideline for setting a custom number of probes is at least 8 or 0.5% the number of Centroids                                                                                                                                                                         |
 | isLazy               | ![no](../_images/no.png)   | False                                                                                                                                                              | Setting the value to true will enable lazy mode for the vector index                                                                                                                                                                                                    |
 
-|  | Altering the default training sizes could be detrimental to the accuracy of returned results produced by the model and total computation time. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Altering the default training sizes could be detrimental to the accuracy of returned results produced by the model and total computation time.
 
 ## [](#generating-vectors)Generating Vectors
 
@@ -96,8 +105,8 @@ This method generates vectors to be indexed for each document at the index time 
                 3L, 100L));
 ```
 
-|  | You can use less storage by using the prediction() function as the encoded vectors will only be stored in the index. However, the index time will be longer as vector embedding generation is occurring at run time. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You can use less storage by using the `prediction()` function as the encoded vectors will only be stored in the index. However, the index time will be longer as vector embedding generation is occurring at run time.
 
 ## [](#create-a-lazy-vector-index)Create a Lazy Vector Index
 
@@ -112,8 +121,8 @@ Lazy indexing is an alternate approach to using the standard predictive model wi
 
 You can enable lazy vector indexing by setting the `isLazy` property to `true` in your vector index configuration.
 
-|  | Lazy Vector Indexing is opt-in functionality, the isLazy property is set to false by default. |
-|  | --------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Lazy Vector Indexing is opt-in functionality, the `isLazy` property is set to `false` by default.
 
 ### [](#updating-the-lazy-index)Updating the Lazy Index
 
@@ -149,31 +158,30 @@ The update process follows the following sequence:
 
 1. Get a value for the updater.
 
-  1. If the there is no value for the vector, handle it. In this case, the vector will be skipped and considered the next time `beginUpdate()` is called.
-
-|  | A key benefit of lazy indexing is that the indexing process continues if a vector fails to generate. For standard vector indexing, this will cause the affected documents to be dropped from the indexing process. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  1. If the there is no value for the vector, handle it. In this case, the vector will be skipped and considered the next time `beginUpdate()` is called.  
+  > [!NOTE]  
+  > A key benefit of lazy indexing is that the indexing process continues if a vector fails to generate. For standard vector indexing, this will cause the affected documents to be dropped from the indexing process.
 2. Set the vector from the computed vector derived from the updater value and your ML model.
 
   1. If there is no value for the vector, this will result in the underlying document to not be indexed.
 3. Once all vectors have completed the update loop, finish updating.
 
-|  | updater.finish() will throw an error if any values inside the updater have not been set or skipped. |
-|  | --------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> `updater.finish()` will throw an error if any values inside the updater have not been set or skipped.
 
 ## [](#vector-search-sql-support)Vector Search SQL++ Support
 
 Couchbase Lite currently supports Hybrid Vector Search and the `APPROX_VECTOR_DISTANCE()` function.
 
-|  | Similar to the [Full Text Search](fts.md) match() function, the APPROX\_VECTOR\_DISTANCE() function and Hybrid Vector Search cannot use the OR expression with the other expressions in the related WHERE clause. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Similar to the [Full Text Search](fts.md) `match()` function, the `APPROX_VECTOR_DISTANCE()` function and Hybrid Vector Search cannot use the `OR` expression with the other expressions in the related `WHERE` clause.
 
 ## [](#use-hybrid-vector-search)Use Hybrid Vector Search
 
 You can use Hybrid Vector Search (Hybrid Search) to perform vector search in conjunction with regular SQL++ queries. With Hybrid Search, you perform vector search on documents that have already been filtered based on criteria specified in the `WHERE` clause.
 
-|  | A LIMIT clause is required for non-hybrid Vector Search, this avoids a slow, exhaustive unlimited search of all possible vectors. |
-|  | --------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> A `LIMIT` clause is required for non-hybrid Vector Search, this avoids a slow, exhaustive unlimited search of all possible vectors.
 
 ### [](#hybrid-vector-search-with-full-text-match)Hybrid Vector Search with Full Text Match
 
@@ -221,8 +229,8 @@ Below is an example of using Hybrid Search with an array of vectors generated by
 
 ## [](#approx%5Fvector%5Fdistancevector-expr-target-vector-metric-nprobes-accurate)`APPROX_VECTOR_DISTANCE(vector-expr, target-vector, [metric], [nprobes], [accurate])`
 
-|  | If you use a different distance metric in the APPROX\_VECTOR\_DISTANCE() function from the one configured in the index, you will receive an error when compiling the query. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> If you use a different distance metric in the `APPROX_VECTOR_DISTANCE()` function from the one configured in the index, you will receive an error when compiling the query.
 
 | Parameter     | Is Required                | Description                                                                                                                                                                                                                                                                                                                  |
 | ------------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

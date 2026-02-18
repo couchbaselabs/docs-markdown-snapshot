@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Kotlin SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Kotlin SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
 
@@ -42,8 +51,8 @@ In a production environment, your connection string should include the addresses
 val connectionString = "foo.example.com,bar.example.com"
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ## [](#connection-strings)Connection Strings
 
@@ -91,8 +100,8 @@ Connection string with non-standard Manager port
 val connectionString = "foo.example.com:4567=manager"
 ```
 
-|  | In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
 In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
@@ -105,15 +114,15 @@ Couchbase Server Enterprise Edition and Couchbase Capella support full encryptio
 
 The Kotlin SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 As of SDK 1.1, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings.
 
 The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
-|  | The JVM’s trust store is represented by a file named cacerts, which can be found inside your installation folder. |
-|  | ----------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The JVM’s trust store is represented by a file named `cacerts`, which can be found inside your installation folder.
 
 You can still provide a certificate explicitly if necessary:
 

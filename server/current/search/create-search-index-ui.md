@@ -1,4 +1,13 @@
+---
+title: Create a Basic Search Index with the Web Console
+description: You can create a Search index with the Couchbase Server Web Console.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-search-index-ui.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/search/create-search-index-ui.html)
+
+# Create a Basic Search Index with the Web Console
 
 > You can create a Search index with the Couchbase Server Web Console. 
 
@@ -21,10 +30,11 @@ To create a Search index with the Couchbase Server Web Console:
 
 1. Go to **Search**.
 2. Click **Add Index**.
-3. In the **Index Name** field, enter a name for the index.
-
-|  | Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_). For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+3. In the **Index Name** field, enter a name for the index.  
+> [!NOTE]  
+> Your index name must start with an alphabetic character (a-z or A-Z). It can only contain alphanumeric characters (a-z, A-Z, or 0-9), hyphens (-), or underscores (\_).  
+>  
+> For Couchbase Server version 7.6 and later, your index name must be unique inside your selected bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope.
 4. In the **Bucket** list, select the bucket where you want to create the index.
 5. Expand **Customize Index**.
 6. (Optional) To create the index on a scope other than `_default`, select **Use non-default scope/collection(s)**.

@@ -1,4 +1,13 @@
+---
+title: Expressions
+description: A description of SQL++ for Capella Analytics expressions.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/2_expr.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/2_expr.html)
+
+# Expressions
 
 > A description of SQL++ for Capella Analytics expressions. 
 
@@ -283,8 +292,8 @@ customer_name
 
 A very simple kind of SQL++ for Capella Analytics expression is a variable, which is simply an identifier. As in SQL, a variable can be bound to a value, which can be an input dataset, some intermediate result during processing of a query, or the final result of a query. For more information about variables, see [sqlpp:3\_query.adoc#Select\_clauses](3%5Fquery.md#Select%5Fclauses).
 
-|  | SQL++ for Capella Analytics has different rules for delimiting strings and identifiers than the SQL rules. In SQL, you use single quotes to enclose strings, and double quotes to enclose delimited identifiers. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> SQL++ for Capella Analytics has different rules for delimiting strings and identifiers than the SQL rules. In SQL, you use single quotes to enclose strings, and double quotes to enclose delimited identifiers.
 
 ### [](#Parameter%5Freferences)Parameter References
 

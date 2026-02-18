@@ -1,12 +1,23 @@
+---
+title: Webhooks
+description: Introducing Sync Gateway events and event handling with Webhooks
+editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/deploy/pages/webhooks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/sync-gateway/3.3/deploy/webhooks.html)
+
+# Webhooks
 
 > Introducing Sync Gateway events and event handling with Webhooks  
 > You can configure webhooks to detect document\_changed events and post the changed documents to specified URLs.
 
 Related _integration_ topics: [Changes Feed](changes-feed.md) | [Prometheus Integration](stats-prometheus.md)
 
-|  | Caveats Webhooks post your application’s data, which might include user data, to URLs. Consider the security implications. |
-|  | -------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Caveats
+> 
+> Webhooks post your application’s data, which might include user data, to URLs. Consider the security implications.
 
 ## [](#introduction)Introduction
 
@@ -58,19 +69,17 @@ Sync Gateway supports the use of Javascript functions to customize the sync proc
 
 Learn more about this property ($db.event\_handlers) in the Configuration Schema Reference — see: [database.event\_handlers](../configuration/configuration-schema-database.md#database-event%5Fhandlers).
 
-|  | Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Sync gateway 3.x configuration of Javascript functions is done using the [Admin REST API](../rest-api/rest-api-admin.md); specifically the [Authentication](../rest-api/rest%5Fapi%5Fadmin.md#tag/Authentication) and [/{keyspace}/\_config/import\_filter](../rest-api/rest%5Fapi%5Fadmin.md#tag/Database-Configuration/operation/put%5Fkeyspace-%5Fconfig-import%5Ffilter) endpoints.
 
 Prior to this, configuration was done within the database configuration file — see: [Example 1](#ex-jsfunc-opts)
 
 * Inline Javascript functions provided within the database configuration must be enclosed by a backtick pair (\`\`).
-* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.
-
-|  | You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
-
-|  | For testing purposes you may use the unsupported configuration option [unsupported.remote\_config\_tls\_skip\_verify](../configuration/configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     ). Setting this true will side-step essential security checks. Do not use in Production deployments. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+* To use an external Javascript function for any of the eligible options, you need to specify the absolute path to the Javascript. The format and content of the external Javascript is the same as that provided inline.  
+> [!NOTE]  
+> You must register a CA certificate for the appropriate server if external Javascript functions are hosted on HTTPS endpoints.  
+> [!TIP]  
+> For testing purposes you may use the unsupported configuration option `[unsupported.remote_config_tls_skip_verify](../configuration/configuration-schema-database.md#database-unsupported-remote%5Fconfig%5Ftls%5Fskip%5Fverify     )`. Setting this `true` will side-step essential security checks. Do not use in Production deployments.
 
 Example 1\. Configuring a Javascript Sync Function
 

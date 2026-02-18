@@ -1,11 +1,21 @@
+---
+title: "Developer Tutorial: Student Record System"
+description: Learn how to create and deploy a student records database on
+  Capella Operational and connect it to your application, using the Kotlin SDK.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/hello-world/pages/student-record-developer-tutorial.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/kotlin-sdk/current/hello-world/student-record-developer-tutorial.html)
+
+# Developer Tutorial: Student Record System
 
 > Learn how to create and deploy a student records database on Capella Operational and connect it to your application, using the Kotlin SDK. 
 
 Couchbase is a schema-less JSON document database designed for high performance, scalability, and fast development. This tutorial teaches you about the key concepts behind Couchbase and how they differ from traditional SQL database systems like MySQL and Oracle.
 
-|  | This tutorial is designed for use with Capella Operational cloud services. If you wish to use a standalone or Docker installation of Couchbase, see the [Server Developer Tutorial](../../../server/current/tutorials/couchbase-tutorial-student-records.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> This tutorial is designed for use with Capella Operational cloud services. If you wish to use a standalone or Docker installation of Couchbase, see the [Server Developer Tutorial](../../../server/current/tutorials/couchbase-tutorial-student-records.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -15,8 +25,10 @@ Couchbase is a schema-less JSON document database designed for high performance,
   * The recommended version is the latest JDK LTS release, which is currently [JDK 21](https://adoptium.net/en-GB/). Ensure you install the highest available patch for the LTS version.
 * Install Apache Maven (version 3+)
 
-|  | The easiest way to install and manage Java JDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install). After following the instructions to install SDKMan, open a terminal window and run the commands sdk install java and sdk install maven to install the latest versions of Kotlin and Maven. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The easiest way to install and manage Java JDKs and Maven on your machine is through [SDKMan](https://sdkman.io/install).
+> 
+> After following the instructions to install SDKMan, open a terminal window and run the commands `sdk install java` and `sdk install maven` to install the latest versions of Kotlin and Maven.
 
 ## [](#database-design)Data Model
 
@@ -96,8 +108,8 @@ Graphic design course record
 
 Hilary’s enrollment is stored in the same document as her student details, which means child information is stored with its parent. This structure lets you access and retrieve all of Hilary’s details with one search and without the need for complex table joins.
 
-|  | You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the credit-points. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> You should not store a student with their course record as it can lead to data duplication and make it difficult to maintain your data. For example, you would need to access every single student record in your cluster to change the `credit-points`.
 
 ## [](#create-and-deploy-a-cluster)Create and Deploy a Cluster
 
@@ -112,10 +124,9 @@ To create and deploy a cluster:
 5. In the **Cluster Name** field, enter **student-cluster**.
 6. (Optional) Provide a description of your cluster.
 7. Select one of the available cloud service providers.
-8. Select an available geographic region for your cluster.
-
-|  | If you are unsure which cloud provider and region to choose, select the default options, for example **AWS** and **US East**. |
-|  | ----------------------------------------------------------------------------------------------------------------------------- |
+8. Select an available geographic region for your cluster.  
+> [!TIP]  
+> If you are unsure which cloud provider and region to choose, select the default options, for example **AWS** and **US East**.
 9. Accept the default **CIDR Block** for your cluster.
 10. Click **Create Cluster** to deploy the cluster.
 
@@ -158,8 +169,10 @@ The `student-record-collection` contains student records, and each student recor
 
 The `course-record-collection`, on the other hand, uses the relational model to link the enrollment records to the course records they apply to. This allows you to retrieve other details like the full title of the course or the number of credits students receive upon completing the course.
 
-|  | Scopes and Schools For this tutorial we have a single scope, art-school-scope. In a larger application, you may have other faculties, such as engineering-school-scope — or possibly have a scope for each art school across a district, repeating the course collections within each one, as appropriate. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Scopes and Schools
+> 
+> For this tutorial we have a single scope, `art-school-scope`. In a larger application, you may have other faculties, such as `engineering-school-scope` — or possibly have a scope for each art school across a district, repeating the course collections within each one, as appropriate.
 
 ## [](#connecting-the-java-sdk)Connecting the Java SDK
 
@@ -270,10 +283,9 @@ To connect to the cluster:
 ```java  
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::devguide:example$java/ConnectStudent.java[]  
 ```
-3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
-
-|  | You must re-run mvn install in your student directory whenever you make a change to a java file to rebuild your application. |
-|  | ---------------------------------------------------------------------------------------------------------------------------- |
+3. In the `ConnectStudent.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.  
+> [!IMPORTANT]  
+> You must re-run `mvn install` in your `student` directory whenever you make a change to a java file to rebuild your application.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.
 6. Run the following command to check that the connection works:  
@@ -506,10 +518,9 @@ To add enrollment details to a student record:
 2. Paste the following code block into your `AddEnrollments.java` file:  
 ```java  
 Unresolved include directive in modules/hello-world/pages/student-record-developer-tutorial.adoc - include::devguide:example$java/AddEnrollments.java[]  
-```
-
-|  | Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, error checks must be made to prevent errors and keep the application running. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+```  
+> [!NOTE]  
+> Because this is a tutorial, you do not need to add an error check to make sure that your collection has returned an item. In a live application, error checks must be made to prevent errors and keep the application running.
 3. In the `AddEnrollments.java` file, replace the `<<connection-string>>`, `<<username>>`, and `<<password>>` placeholders with the connection string, username, and password that you noted when configuring the cluster connection.
 4. Open a terminal window and navigate to your `student` directory.
 5. Run the command `mvn install` to pull in all the dependencies and rebuild your application.

@@ -1,4 +1,12 @@
+---
+title: Documentation and External Resource Links
+editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/documentation-links.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/ui-ux/documentation-links.html)
+
+# Documentation and External Resource Links
 
 All links in the UI should provide sufficient context for the user, so they know where they will go after they click a link.
 
@@ -6,8 +14,8 @@ It should never be a surprise where a user goes after they click a link in the U
 
 ## [](#documentation-links)Documentation Links
 
-|  | The issue of documentation links will still need to be revisited at a future date. |
-|  | ---------------------------------------------------------------------------------- |
+> [!NOTE]
+> The issue of documentation links will still need to be revisited at a future date.
 
 To link out to documentation from inside the UI:
 

@@ -1,4 +1,14 @@
+---
+title: Place Indexes
+description: How to place indexes on specified nodes, create index replicas, and
+  partition indexes.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/place-index.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/guides/place-index.html)
+
+# Place Indexes
 
 > How to place indexes on specified nodes, create index replicas, and partition indexes. 
 
@@ -11,8 +21,8 @@ If you want to try out the examples in this section, follow the instructions giv
 * [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
 * [Query Workbench](../tools/query-workbench.md)
 
-|  | This how-to guide focuses on index placement, partitioning, and replication using SQL++ queries. The SDKs do not currently support all of these features fully. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> This how-to guide focuses on index placement, partitioning, and replication using SQL++ queries. The SDKs do not currently support all of these features fully.
 
 ## [](#placing-a-single-index)Placing a Single Index
 
@@ -114,8 +124,8 @@ CREATE INDEX country_idx ON airport(country, city)
 WITH {"nodes": ["node1:8091", "node2:8091", "node3:8091"]};
 ```
 
-|  | If you specify both num\_replica and nodes, the number of nodes must be one greater than the number of replicas. |
-|  | ---------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you specify both `num_replica` and `nodes`, the number of nodes must be one greater than the number of replicas.
 
 For more information and examples, see [Index Replication](../learn/services-and-indexes/indexes/index-replication.md#index-replication).
 

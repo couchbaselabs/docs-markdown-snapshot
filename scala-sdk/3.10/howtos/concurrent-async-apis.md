@@ -1,4 +1,14 @@
+---
+title: Async &amp; Reactive APIs
+description: "The Couchbase Scala SDK allows the use, and mixing, of three
+  distinct APIs: blocking, asynchronous, and reactive."
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/concurrent-async-apis.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/3.10/howtos/concurrent-async-apis.html)
+
+# Async &amp; Reactive APIs
 
 > The Couchbase Scala SDK allows the use, and mixing, of three distinct APIs: blocking, asynchronous, and reactive. 
 
@@ -8,8 +18,8 @@ The Scala SDK provides three APIs, which can be freely mixed:
 * An asynchronous one, that returns `Future`.
 * A reactive one, that returns reactive primitives from the [Project Reactor](https://projectreactor.io/) library, e.g. `Mono` and `Flux`.
 
-|  | The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> The Scala 3 version of the SDK does not carry forward support for the reactive API, since it depends on an external library that is end-of-life. Please see [Migrating to Scala 3](../project-docs/migrating-to-scala-3.md) for guidance on these and other changes.
 
 ## [](#using-the-blocking-api)Using the Blocking API
 

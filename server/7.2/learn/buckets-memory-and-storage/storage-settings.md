@@ -1,4 +1,14 @@
+---
+title: Storage Properties
+description: Couchbase Server provides persistence, whereby certain items are
+  stored on disk as well as in memory; and reliability is thereby enhanced.
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/storage-settings.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/learn/buckets-memory-and-storage/storage-settings.html)
+
+# Storage Properties
 
 > Couchbase Server provides persistence, whereby certain items are stored on disk as well as in memory; and reliability is thereby enhanced. 
 
@@ -101,8 +111,8 @@ __Table 1\. Ejection policies__
 
 The policy can be set using the [REST API](../../rest-api/rest-bucket-create.md#evictionpolicy) when the bucket is created. For more information on ejection policies, read <https://blog.couchbase.com/a-tale-of-two-ejection-methods-value-only-vs-full/>
 
-|  | Full Ejection is recommended when the [Magma storage engine](storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Full Ejection is recommended when the [Magma storage engine](storage-engines.md#storage-engine-magma) is used as the storage engine for a bucket. This is especially the case when the ratio of memory to data is very low (Magma allows you to go as low as 1% of memory to data ratio).
 
 ---
 

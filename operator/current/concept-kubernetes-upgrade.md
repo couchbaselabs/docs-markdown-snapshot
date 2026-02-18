@@ -1,4 +1,12 @@
+---
+title: Kubernetes Automated Upgrade
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-kubernetes-upgrade.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/operator/current/concept-kubernetes-upgrade.html)
+
+# Kubernetes Automated Upgrade
 
 During your normal course of operations, you’ll no doubt need to upgrade the Kubernetes cluster on which your Couchbase deployment resides. This page details the requirements and considerations that you’ll need to take into account when performing an online upgrade of a Kubernetes cluster that’s hosting a stateful application like Couchbase Server.
 
@@ -10,8 +18,8 @@ Once the upgrades to the master components are complete, the next step is to man
 
 When upgrading Kubernetes nodes that are running Couchbase pods, there are certain requirements that you need to adhere to before and after each node has been drained. These requirements, detailed in the following sections, must be met for each node before you can move on to another node.
 
-|  | The exact upgrade process is dependent on your Kubernetes installation method or cloud provider. Consult the relevant third-party documentation for full instructions. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> The exact upgrade process is dependent on your Kubernetes installation method or cloud provider. Consult the relevant third-party documentation for full instructions.
 
 ## [](#operator-and-couchbase-cluster-considerations)Operator and Couchbase Cluster Considerations
 
@@ -19,8 +27,8 @@ Kubernetes provides some resources that help with upgrades to minimize disruptio
 
 For a stateful application, like Couchbase Server, a pod being _ready_ (responding to API requests on the admin port) after it has been evicted and recreated by the Operator, does not mean that the environment is safe to evict another pod. Instead, you must ensure that all data is safely rebalanced and replicated across the Couchbase cluster before you can evict another. Failure to do so may result in data loss.
 
-|  | It is possible that multiple Couchbase Server pods may be resident on the same node that is being evicted. This depends on your specific deployment configuration. If the pods belong to the same cluster, they may need to be manually failed over via the [Couchbase Web Console](howto-ui.md) in order for the Operator to recover and rebalance. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> It is possible that multiple Couchbase Server pods may be resident on the same node that is being evicted. This depends on your specific deployment configuration. If the pods belong to the same cluster, they may need to be manually failed over via the [Couchbase Web Console](howto-ui.md) in order for the Operator to recover and rebalance.
 
 The Operator itself is a stateless application typically managed by a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/). When an Operator pod is evicted, the Deployment controller will automatically recreate a replacement pod that will begin managing `CouchbaseCluster` resources in its name space.
 
@@ -32,8 +40,8 @@ Before beginning an upgrade to your Kubernetes cluster, review the following con
 * To minimize disruption, ensure that a short failover period is configured with the [couchbaseclusters.spec.cluster.autoFailoverTimeout](resource/couchbasecluster.md#couchbaseclusters-spec-cluster-autofailovertimeout) parameter to reduce down time before another node takes over the load.
 * Ensure that there is [capacity](concept-sizing.md) in your Kubernetes cluster to handle the scheduling of replacement Couchbase pods. For example, if a Couchbase cluster were running on Kubernetes nodes marked exclusively for use by Couchbase, and anti-affinity were enabled as per the deployment [best practices](best-practices.md), the Kubernetes cluster would require at least one other node capable of scheduling and running your Couchbase workload. For clusters deployed with server group support, this would require another node per availability zone.
 
-|  | The Kubernetes cluster should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](https://docs.couchbase.com/operator/current/concept-hibernation.html) documentation. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!WARNING]
+> The Kubernetes cluster should not be upgraded while any Couchbase clusters are in hibernation. Instructions to wake the cluster can be found in the [hibernation](https://docs.couchbase.com/operator/current/concept-hibernation.html) documentation.
 
 ## [](#performing-the-upgrade)Performing the Upgrade
 

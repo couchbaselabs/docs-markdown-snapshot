@@ -1,4 +1,14 @@
+---
+title: AWS PrivateLink Connection
+description: Add an AWS PrivateLink connection that connects your Amazon Web
+  Service (AWS) network with a Capella Analytics cluster.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/private-endpoint.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/private-endpoint.html)
+
+# AWS PrivateLink Connection
 
 > Add an AWS PrivateLink connection that connects your Amazon Web Service (AWS) network with a Capella Analytics cluster. 
 
@@ -21,8 +31,8 @@ To use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what
 
 ## [](#set-up-the-private-endpoint)Set Up the Private Endpoint
 
-|  | Enabling private endpoints bills your account hourly for AWS PrivateLink until you disable this option. |
-|  | ------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Enabling private endpoints bills your account hourly for AWS PrivateLink until you disable this option.
 
 To add a connection using AWS PrivateLink, you use both the Capella UI and the AWS command line interface. Use an authorized account to access each one.
 
@@ -31,10 +41,9 @@ To add a connection using AWS PrivateLink, you use both the Capella UI and the A
 3. Click **Enable Private Endpoints**.  
 It can take several minutes for Capella to enable private endpoints. When private endpoints are available, the page shows all the controls you need to manage private endpoints in Capella.
 4. Click **Add Private Endpoint**.
-5. Complete the **Private Endpoint Details** fields.
-
-|  | You can use the [Amazon VPC console](https://console.aws.amazon.com/vpc/) to locate most of this information. |
-|  | ------------------------------------------------------------------------------------------------------------- |  
+5. Complete the **Private Endpoint Details** fields.  
+> [!TIP]  
+> You can use the [Amazon VPC console](https://console.aws.amazon.com/vpc/) to locate most of this information.  
 VPC ID  
 The AWS VPC ID.  
 Subnet IDs  

@@ -1,4 +1,15 @@
+---
+title: Manage Capella Analytics Services Scopes
+description: Scopes are intermediary containers within a database to group
+  related objects like collections, indexes, links, and functions. You can add
+  or delete scopes using the UI or SQL++ for Capella Analytics statements.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-scopes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sources/manage-scopes.html)
+
+# Manage Capella Analytics Services Scopes
 
 > Scopes are intermediary containers within a database to group related objects like collections, indexes, links, and functions. You can add or delete scopes using the UI or SQL++ for Capella Analytics statements. 
 
@@ -31,8 +42,8 @@ Each time you add a scope, Capella Analytics records its metadata in the `System
 
 When you delete a scope, Capella Analytics deletes all of the collections and other objects in that scope.
 
-|  | You cannot delete the system-supplied Default scope. |
-|  | ---------------------------------------------------- |
+> [!TIP]
+> You cannot delete the system-supplied `Default` scope.
 
 1. In the Capella UI, select the **Capella Analytics** tab.
 2. Click a cluster name. The workbench opens.

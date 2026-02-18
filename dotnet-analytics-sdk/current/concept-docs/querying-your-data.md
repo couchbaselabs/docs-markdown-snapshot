@@ -1,4 +1,13 @@
+---
+title: Querying Your Data
+description: Querying Enterprise Analytics from the .NET SDK, with SQL++.
+editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/dotnet-analytics-sdk/current/concept-docs/querying-your-data.html)
+
+# Querying Your Data
 
 > Querying Enterprise Analytics from the .NET SDK, with SQL++. 
 

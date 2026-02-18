@@ -1,4 +1,13 @@
+---
+title: cluster-init
+description: Initializes a Couchbase Server cluster
+editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-cluster-init.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-cluster-init.html)
+
+# cluster-init
 
 Initializes a Couchbase Server cluster
 

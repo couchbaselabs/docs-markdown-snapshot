@@ -1,4 +1,14 @@
+---
+title: Configure Allowed IP Addresses
+description: Before a client can connect to a Capella Analytics cluster, you
+  must add the client's IP address to the cluster's allowed IP list.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/ip-allowed-list.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/ip-allowed-list.html)
+
+# Configure Allowed IP Addresses
 
 > Before a client can connect to a Capella Analytics cluster, you must add the client’s IP address to the cluster’s allowed IP list. 
 
@@ -12,8 +22,8 @@ Capella Analytics only allows trusted IP addresses to connect to a cluster. For 
 
 Capella automatically denies any connection attempts to and from an IP address that’s not in the list.
 
-|  | You configure the list of IP addresses that can access a Capella Analytics cluster and the list of IP addresses that can access a Couchbase Capella operational database separately. To configure access to a Capella operational database, see [Configure Allowed IP Addresses](../../cloud/clusters/allow-ip-address.md). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> You configure the list of IP addresses that can access a Capella Analytics cluster and the list of IP addresses that can access a Couchbase Capella operational database separately. To configure access to a Capella operational database, see [Configure Allowed IP Addresses](../../cloud/clusters/allow-ip-address.md).
 
 ## [](#prerequisites)Prerequisites
 

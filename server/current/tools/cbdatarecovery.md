@@ -1,4 +1,12 @@
+---
+title: cbdatarecovery
+editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/tools/pages/cbdatarecovery.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/current/tools/cbdatarecovery.html)
+
+# cbdatarecovery
 
 Transfers key value data from a Couchbase Server data directory into an active cluster.
 

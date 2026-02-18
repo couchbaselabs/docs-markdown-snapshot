@@ -1,9 +1,17 @@
+---
+title: Databricks Support
+editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/databricks.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/spark-connector/current/databricks.html)
+
+# Databricks Support
 
 > This section describes how to use the Couchbase Spark Connector in the Databricks environment. 
 
-|  | To avoid classpath issues in the Databricks environment, the assembly jar needs to be used as a dependency. See the next section on how to load it properly. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> To avoid classpath issues in the Databricks environment, the assembly jar needs to be used as a dependency. See the next section on how to load it properly.
 
 ## [](#compute-cluster-configuration)Compute Cluster Configuration
 

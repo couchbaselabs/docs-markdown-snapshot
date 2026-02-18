@@ -1,4 +1,13 @@
+---
+title: Delete Statistics
+description: You can use the UPDATE STATISTICS statement to delete statistics.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/statistics-delete.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/statistics-delete.html)
+
+# Delete Statistics
 
 > You can use the UPDATE STATISTICS statement to delete statistics. 
 

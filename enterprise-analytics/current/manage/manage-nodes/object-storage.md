@@ -1,4 +1,14 @@
+---
+title: Setting Up With Object Storage
+description: This page describes how to set up Couchbase Enterprise Analytics
+  with Object Storage.
+editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/object-storage.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/object-storage.html)
+
+# Setting Up With Object Storage
 
 Enterprise Analytics employs compute-storage separation architecture that allows for scaling compute and storage independently. As a result, it requires an object store as its persistent storage. The certified supported object storage solutions are:
 

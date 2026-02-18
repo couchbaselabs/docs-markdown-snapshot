@@ -1,11 +1,21 @@
+---
+title: Cost-Based Optimizer for Capella Analytics Services
+description: The cost-based optimizer for Capella Analytics uses samples to
+  choose the optimal plan to execute a query.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5b_cbo.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/sqlpp/5b_cbo.html)
+
+# Cost-Based Optimizer for Capella Analytics Services
 
 > The cost-based optimizer for Capella Analytics uses samples to choose the optimal plan to execute a query. 
 
 Capella Analytics uses rule-based optimization to query your collections until you run an `ANALYZE COLLECTION` statement on each collection involved in a query. The ANALYZE statement samples the data in a collection so that cost-based optimization (CBO) can be applied. As the data in a collection changes, you can run `ANALYZE COLLECTION` periodically to update the information used for CBO.
 
-|  | You cannot use the cost-based optimizer with external collections. To make queries on external data stores more efficient, when you create an external collection you specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md). |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> You cannot use the cost-based optimizer with external collections. To make queries on external data stores more efficient, when you create an external collection you specify a location path that is as specific as possible. See [Design a Location Path](../sources/dynamic-prefixes.md).
 
 ## [](#about-the-cost-based-optimizer)About the Cost-Based Optimizer
 
@@ -25,8 +35,8 @@ The optimizer uses these results to estimate the cardinality of each predicate. 
 
 The cost-based optimizer is on by default. To turn it off or on, use the `compiler.cbo` configuration parameter.
 
-|  | In general, the SET statement only sets configuration parameters for the current query. It does not enable you to turn off the cost-based optimizer and leave it off permanently. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> In general, the `SET` statement only sets configuration parameters for the current query. It does not enable you to turn off the cost-based optimizer and leave it off permanently.
 
 For more details, see [Cost-Based Optimizer Parameters](appendix%5F2%5Fparameters.html#CBO%5Fparameters).
 

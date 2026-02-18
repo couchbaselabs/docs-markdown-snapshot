@@ -1,4 +1,13 @@
+---
+title: Managing Connections
+description: This section describes how to connect the Scala SDK to a Couchbase cluster.
+editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/scala-sdk/current/howtos/managing-connections.html)
+
+# Managing Connections
 
 > This section describes how to connect the Scala SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections. 
 
@@ -95,8 +104,8 @@ val connectionString = "192.168.56.101,192.168.56.102"
 val cluster = Cluster.connect(connectionString, "username", "password")
 ```
 
-|  | You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
 ### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
@@ -153,8 +162,8 @@ Connection string with two parameters
 
 The full list of recognized parameters is documented in the client settings reference. Any client setting with a system property name may also be specified as a connection string parameter (without the `com.couchbase.env.` prefix).
 
-|  | When creating a Cluster using a custom ClusterEnvironment, **_connection string parameters are ignored_**, since client settings are frozen when the cluster environment is built. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!WARNING]
+> When creating a `Cluster` using a custom `ClusterEnvironment`, **_connection string parameters are ignored_**, since client settings are frozen when the cluster environment is built.
 
 ### [](#cluster-environment)Cluster Environment
 
@@ -195,8 +204,8 @@ This is a verbose example for simplicity, and the user may prefer to use `flatMa
 
 Note there are `com.couchbase.client.scala.env` and `com.couchbase.client.core.env` versions of all environment parameters: be sure to import the `.scala` versions.
 
-|  | If you create a Cluster without specifying a custom environment, the client creates a default environment used exclusively by that Cluster. This default ClusterEnvironment is managed completely by the Scala SDK, and is automatically shut down when the associated Cluster is disconnected. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you create a `Cluster` without specifying a custom environment, the client creates a default environment used exclusively by that `Cluster`. This default `ClusterEnvironment` is managed completely by the Scala SDK, and is automatically shut down when the associated `Cluster` is disconnected.
 
 ### [](#connection-lifecycle)Connection Lifecycle
 
@@ -254,15 +263,15 @@ Both Couchbase Capella, and the [Enterprise Edition](../../../server/current/int
 
 The Scala SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
-|  | Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
 As of SDK 1.4, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings.
 
 The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
-|  | The JVM’s trust store is represented by a file named cacerts, which can be found inside your Java installation folder. |
-|  | ---------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> The JVM’s trust store is represented by a file named `cacerts`, which can be found inside your Java installation folder.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -338,13 +347,13 @@ val seedNodes = Set(
 val cluster = Cluster.connect(seedNodes, ClusterOptions.create("username", "password"))
 ```
 
-|  | In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
 In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
-|  | Any TLS certificates must be set up at the point where the connections are being made. |
-|  | -------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 

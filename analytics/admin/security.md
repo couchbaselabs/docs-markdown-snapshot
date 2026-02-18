@@ -1,4 +1,15 @@
+---
+title: Security Best Practices
+description: Security is a process and Capella Analytics strives to achieve the
+  best ways to protect your data, from Zero Trust, through adaptive access, to
+  centralized management and proactive monitoring.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/security.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/security.html)
+
+# Security Best Practices
 
 > Security is a process and Capella Analytics strives to achieve the best ways to protect your data, from Zero Trust, through adaptive access, to centralized management and proactive monitoring. Best practices in the way you work with Capella Analytics further protect you from malicious attacks. 
 

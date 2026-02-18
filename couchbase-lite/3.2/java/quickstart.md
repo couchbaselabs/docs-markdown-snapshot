@@ -1,4 +1,14 @@
+---
+title: Couchbase Lite on Java
+description: Start your Couchbase for Mobile and Edge adventure, get up and
+  running with Couchbase Lite
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/quickstart.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/couchbase-lite/3.2/java/quickstart.html)
+
+# Couchbase Lite on Java
 
 Couchbase Lite is an embedded, NoSQL JSON Document Style database for your mobile apps.
 

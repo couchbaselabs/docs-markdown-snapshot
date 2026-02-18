@@ -1,4 +1,13 @@
+---
+title: Full Installation
+description: Installation instructions for the Couchbase Python Client.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/python-sdk/4.4/project-docs/sdk-full-installation.html)
+
+# Full Installation
 
 > Installation instructions for the Couchbase Python Client. 
 
@@ -14,8 +23,12 @@ Couchbase Python SDK bundles Couchbase++ automatically, so no need to install it
 
 The Python SDK 4.x requires Python 3\. See the [Python Version Compatibility](compatibility.md#python-version-compat) section for details on supported versions of Python.
 
-|  | Currently the Python Client source distribution requires the OpenSSL headers and libraries that the Python client itself was built against to be installed prior to the client itself. Additionally the installer relies on PEP517 which older versions of PIP do not support. If you experience issues installing it is advised to upgrade your PIP/setuptools installation as follows: $ python3 -m pip install --upgrade pip setuptools wheel |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> Currently the Python Client source distribution requires the OpenSSL headers and libraries that the Python client itself was built against to be installed prior to the client itself. Additionally the installer relies on PEP517 which older versions of PIP do not support. If you experience issues installing it is advised to upgrade your PIP/setuptools installation as follows:
+> 
+> ```console
+> $ python3 -m pip install --upgrade pip setuptools wheel
+> ```
 
 ## [](#installation)Installation
 
@@ -31,13 +44,13 @@ Best practice is to use a Python virtual environment such as _venv_ or _pyenv_ t
 
 The Python SDK has wheels available on macOS for [supported versions of Python](compatibility.md#python-version-compat).
 
-|  | There can be a problem when using the Python (3.8.2) that ships with Xcode on Catalina. It is advised to install Python via [pyenv](https://github.com/pyenv/pyenv#homebrew-on-macos)(see the Python SDK [Github README](https://github.com/couchbase/couchbase-python-client#mac-os-pyenv-install) for further details on pyenv installation), [Homebrew](http://brew.sh/), or [python.org](https://www.python.org/downloads) |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> There can be a problem when using the Python (3.8.2) that ships with Xcode on Catalina. It is advised to install Python via [pyenv](https://github.com/pyenv/pyenv#homebrew-on-macos)(see the Python SDK [Github README](https://github.com/couchbase/couchbase-python-client#mac-os-pyenv-install) for further details on pyenv installation), [Homebrew](http://brew.sh/), or [python.org](https://www.python.org/downloads)
 
 To install the library on Mac OS, first install [Homebrew](http://brew.sh/).
 
-|  | Later versions of Mac OS can break the python3 homebrew installer. Simple mitigating steps may be found [here](https://stackoverflow.com/questions/47255517/brew-install-python3-didnt-install-pip3). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Later versions of Mac OS can break the python3 homebrew installer. Simple mitigating steps may be found [here](https://stackoverflow.com/questions/47255517/brew-install-python3-didnt-install-pip3).
 
 The following example uses the Python supplied by the _Homebrew_ package manager and not the vendor-supplied Python which ships with Mac OS. Once _Homebrew_ is configured:
 
@@ -69,13 +82,13 @@ Install the latest Python SDK:
 $ sudo -H python3 -m pip install couchbase
 ```
 
-|  | Starting with Python 3.11.5, macOS installers from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an ImportError: DLL load failed while importing pycbc\_core error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the PYCBC\_OPENSSL\_DIR environment variable to the path where the OpenSSL 1.1 libraries (libssl.1.1.dylib \` and \`libcrypto.1.1.dylib) can be found. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting with Python 3.11.5, macOS installers from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`` libssl.1.1.dylib ` and `libcrypto.1.1.dylib ``) can be found.
 
 This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions. Older versions of Debian and Ubuntu ship with an older version of GCC.
 
-|  | While workarounds are available for installing a newer build chain, some may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> While workarounds are available for installing a newer build chain, some may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
 
 Check that you have a new enough release of Python.
 
@@ -99,8 +112,8 @@ $ python3 -m pip install couchbase
 
 This SDK runs on top of the C++ core, Couchbase++, which requires a C++ 17 compiler, such as GCC 8.0, or more recent versions. Older versions of Debian and Ubuntu ship with an older version of GCC.
 
-|  | Workarounds are available for installing a newer build chain with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Workarounds are available for installing a newer build chain with [EPEL](https://fedoraproject.org/wiki/EPEL), but this may not be within your company’s policy, so also take a look at container options — such as the unofficial Docker builds provided in the Python SDK 4.x examples folder [here](https://github.com/couchbase/couchbase-python-client/tree/master/examples/dockerfiles), which can at least be used as a reference to a known working set-up.
 
 Check that you have a new enough release of Python, and if not then investigate the [EPEL](https://fedoraproject.org/wiki/EPEL) repository.
 
@@ -114,11 +127,11 @@ During first-time setup:
 $ sudo yum install gcc gcc-c++ python3-devel python3-pip
 ```
 
-|  | You may need to update your installed version of CMake. For example, by following the steps [here](https://idroot.us/install-cmake-centos-8). |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> You may need to update your installed version of CMake. For example, by following the steps [here](https://idroot.us/install-cmake-centos-8).
 
-|  | RHEL/CentOS distributions may not provide the python3-pip package in the base repositories. It may be found in the [EPEL](https://fedoraproject.org/wiki/EPEL) repository. |
-|  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> RHEL/CentOS distributions may not provide the `python3-pip` package in the base repositories. It may be found in the [EPEL](https://fedoraproject.org/wiki/EPEL) repository.
 
 First, make sure the [requirements](#linux) have been installed.
 
@@ -136,15 +149,15 @@ $ python3 -m pip install --force-reinstall --no-cache couchbase
 
 Download and install Python from [python.org](https://www.python.org/downloads). Best practice is to use a Python virtual environment such as _venv_ or _pyenv_.
 
-|  | Checkout the [pyenv-win](https://github.com/pyenv-win/pyenv-win) project to manage multiple versions of Python. |
-|  | --------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Checkout the [pyenv-win](https://github.com/pyenv-win/pyenv-win) project to manage multiple versions of Python.
 
 The Python SDK has wheels available on Windows for [supported versions of Python](compatibility.md#python-version-compat).
 
 First, make sure the [requirements](#microsoft-windows) have been installed.
 
-|  | Commands assume user is working within a virtual environment. |
-|  | ------------------------------------------------------------- |
+> [!NOTE]
+> Commands assume user is working within a virtual environment.
 
 Install the latest Python SDK:
 
@@ -152,13 +165,13 @@ Install the latest Python SDK:
 python -m pip install couchbase
 ```
 
-|  | Starting with Python 3.11.5, Windows builds from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an ImportError: DLL load failed while importing pycbc\_core error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the PYCBC\_OPENSSL\_DIR environment variable to the path where the OpenSSL 1.1 libraries (libssl-1\_1.dll and libcrypto-1\_1.dll) can be found. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Starting with Python 3.11.5, Windows builds from python.org now use [OpenSSL 3.0](https://docs.python.org/3/whatsnew/3.11.html#notable-changes-in-3-11-5). If using a version prior to 4.1.9 of the Python SDK, a potential side-effect of this change is an `ImportError: DLL load failed while importing pycbc_core` error. Upgrade the SDK to a version >= 4.1.9 to avoid this side-effect. If unable to upgrade, a work-around is to set the `PYCBC_OPENSSL_DIR` environment variable to the path where the OpenSSL 1.1 libraries (`libssl-1_1.dll` and `libcrypto-1_1.dll`) can be found.
 
 The standard Python distributions for Windows include OpenSSL DLLs, as PIP and the inbuilt `ssl` module require it for correct operation. Prior to version 4.1.9 of the Python SDK, the binary wheels for Windows are built against OpenSSL 1.1\. Version 4.1.9 and beyond statically link against BoringSSL thus removing the OpenSSL requirement.
 
-|  | If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 To use the SDK within the Anaconda / Miniconda platform, make sure the prerequisites for the desired Operating System are met:
 
@@ -182,8 +195,8 @@ Install the SDK:
 python -m pip install couchbase
 ```
 
-|  | If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> If you require a version that doesn’t have a suitable binary wheel on PyPI, follow the [build instructions](https://github.com/couchbase/couchbase-python-client#alternative-installation-methods) on the GitHub repo.
 
 ### [](#pypy-support)PyPy support
 

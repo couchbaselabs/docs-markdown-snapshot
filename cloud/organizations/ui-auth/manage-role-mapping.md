@@ -1,4 +1,14 @@
+---
+title: Map User Roles
+description: After adding federated and SSO authentication to your organization,
+  you can map IdP groups to permission sets.
+editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/manage-role-mapping.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/organizations/ui-auth/manage-role-mapping.html)
+
+# Map User Roles
 
 > After adding federated and SSO authentication to your organization, you can map IdP groups to permission sets. 
 
@@ -15,10 +25,9 @@ Role mapping defines an SSO user’s level of access to Capella. You can add one
 
   * If you’ve defined role mappings for an SSO group so that they’re part of one or more teams, those team permissions apply to all users in that SSO group.
   * If you haven’t defined role mappings for an SSO group, Capella assigns those users to the [default team](#default-teams).
-  * If you remove an SSO user from all SSO groups that are mapped to a team, Capella assigns that user to the [default team](#default-teams).
-
-|  | For example, imagine a user belonging to an SSO group named dev. In Capella, you’ve role mapped the dev SSO group to the Developers team. If you remove that user from the dev SSO group, Capella removes their Developers team roles when they next sign in. Instead, they’re given the team roles as configured by the default team set by the Realm. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  * If you remove an SSO user from all SSO groups that are mapped to a team, Capella assigns that user to the [default team](#default-teams).  
+  > [!TIP]  
+  > For example, imagine a user belonging to an SSO group named `dev`. In Capella, you’ve role mapped the `dev` SSO group to the `Developers` team. If you remove that user from the `dev` SSO group, Capella removes their `Developers` team roles when they next sign in. Instead, they’re given the team roles as configured by the default team set by the Realm.
 
 ### [](#default-teams)Default Team
 
@@ -26,8 +35,10 @@ When you create an organization, Capella automatically creates "My First Team". 
 
 ## [](#access-teams)Access Teams in the Capella UI
 
-|  | Permissions RequiredAll members of an organization can view team information. |
-|  | ----------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> All members of an organization can view team information.
 
 To manage teams for SSO, you first need to open the **Teams** page.
 
@@ -40,8 +51,12 @@ The **Teams** page lists any existing teams in your organization.
 
 ## [](#create-a-team)Create a Team
 
-|  | Prerequisites You must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to create a team. A realm must exist before mapping SSO groups to a team. If you haven’t yet created a realm, see [Add SSO Authentication](add-sso-auth.md). You must turn on group mapping in your realm to add SSO group mappings to a team. |
-|  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Prerequisites
+> 
+> * You must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to create a team.
+> * A realm must exist before mapping SSO groups to a team. If you haven’t yet created a realm, see [Add SSO Authentication](add-sso-auth.md).
+> * You must turn on group mapping in your realm to add SSO group mappings to a team.
 
 1. On the [Teams page](#access-teams), click **Create Team**.
 2. On the **Create Team** page, complete the following fields:
@@ -50,10 +65,9 @@ The **Teams** page lists any existing teams in your organization.
   2. **SSO Groups**: Enter the user groups from your IdP that you would like to map to this team. You must separate multiple SSO groups by a comma.
 
     1. _Okta_: Enter the group name as it’s shown in Okta into the **SSO Groups** text area.
-    2. _Azure AD_: Enter the group’s object ID into the **SSO Groups** text area instead of the group’s name.
-
-|  | Using the Azure portal, you can find a group’s object ID by clicking **Azure Active Directory** **Groups** **GROUP\_NAME**. Or, you can use Microsoft Graph Powershell to search for a group’s display name: Get-MgGroup -ConsistencyLevel eventual -Search '"DisplayName:GROUP\_NAME"'. The output includes the group ID (Id). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    2. _Azure AD_: Enter the group’s object ID into the **SSO Groups** text area instead of the group’s name.  
+      > [!TIP]  
+      > Using the Azure portal, you can find a group’s object ID by clicking **Azure Active Directory** **Groups** **GROUP\_NAME**. Or, you can use Microsoft Graph Powershell to search for a group’s display name: `Get-MgGroup -ConsistencyLevel eventual -Search '"DisplayName:GROUP_NAME"'`. The output includes the group ID (`Id`).
     3. _Ping_: Enter the group name as it’s shown in Ping into the **SSO Groups** text area.
     4. _CyberArk_: Enter the group name as it’s shown in CyberArk into the **SSO Groups** text area.
     5. _Google Workspace_: Enter the group name as it’s shown in Google Workspace into the **SSO Groups** text area.
@@ -69,8 +83,10 @@ The **Teams** page lists any existing teams in your organization.
 
 ## [](#edit-a-team)Edit a Team
 
-|  | Permissions RequiredYou must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to edit a team. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> You must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to edit a team.
 
 You can change the following team settings:
 
@@ -90,8 +106,8 @@ The team page in question opens to the **General** page.
 
 ### [](#add-an-sso-group)Add an SSO Group
 
-|  | A realm must exist before mapping SSO groups to a team. If you haven’t yet created a realm, see [Add SSO Authentication](add-sso-auth.md). |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!IMPORTANT]
+> A realm must exist before mapping SSO groups to a team. If you haven’t yet created a realm, see [Add SSO Authentication](add-sso-auth.md).
 
 1. On the [**Teams** page](#access-teams), click the name of the team you’re editing.  
 The team page in question opens to the **General** page.
@@ -107,8 +123,8 @@ The team page in question opens to the **General** page.
 
 ### [](#remove-an-sso-group)Remove an SSO Group
 
-|  | This action revokes the current team privileges from all SSO users within the removed SSO group. If you remove an SSO group that isn’t mapped to another team, Capella assigns it to the default team. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!CAUTION]
+> This action revokes the current team privileges from all SSO users within the removed SSO group. If you remove an SSO group that isn’t mapped to another team, Capella assigns it to the default team.
 
 1. On the [**Teams** page](#access-teams), click the name of the team you’re editing.  
 The team page in question opens to the **General** page.
@@ -160,11 +176,13 @@ The action displays the **Remove Project From team** dialog.
 
 ## [](#delete-a-team)Delete a Team
 
-|  | Permissions RequiredYou must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to create a team. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!IMPORTANT]
+> Permissions Required
+> 
+> You must have the [Organization Owner](../organization-user-roles.md#organization-role-organization-owner) role to create a team.
 
-|  | Deleting a team removes that team’s permissions from users in its mapped SSO groups. If an SSO user of a deleted team isn’t mapped to another team, Capella assigns them the [default team](#default-teams), and they get its associated role mappings. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!CAUTION]
+> Deleting a team removes that team’s permissions from users in its mapped SSO groups. If an SSO user of a deleted team isn’t mapped to another team, Capella assigns them the [default team](#default-teams), and they get its associated role mappings.
 
 1. On the [**Teams** page](#access-teams), click the name of the team you’re deleting.  
 The team page in question opens to the **General** page.

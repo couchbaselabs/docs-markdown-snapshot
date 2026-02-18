@@ -1,4 +1,13 @@
+---
+title: Turn a Cluster Off or On
+description: You can turn a Capella Analytics services cluster off to save costs.
+editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/off-on.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/analytics/admin/off-on.html)
+
+# Turn a Cluster Off or On
 
 > You can turn a Capella Analytics services cluster off to save costs. To resume operations, turn it back on. 
 
@@ -89,8 +98,8 @@ Capella turns your cluster on at the specified **From** time, until the **To** t
 6. To add a new time range for a different set of days, click **Add Scheduling Row**.
 7. To save and start your schedule, click **Start Schedule**.
 
-|  | Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that’s off requires maintenance, the maintenance begins when it turns on. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Capella will not turn off the cluster if a cluster backup is running, if maintenance is running, or if maintenance is scheduled within 1 hour. If a cluster that’s off requires maintenance, the maintenance begins when it turns on.
 
 ### [](#edit-cluster-schedule)Edit Cluster Schedule
 
@@ -106,8 +115,8 @@ To add a new time range for a different set of days, click **Add Scheduling Row*
 
 ### [](#delete-cluster-schedule)Delete Cluster Schedule
 
-|  | You cannot recover a deleted schedule. |
-|  | -------------------------------------- |
+> [!NOTE]
+> You cannot recover a deleted schedule.
 
 To delete your cluster schedule:
 

@@ -1,4 +1,15 @@
+---
+title: Data Operations
+description: Data service offers the simplest way to retrieve or mutate data
+  where the key is known. Here we cover CRUD operations, document expiration,
+  and optimistic locking with CAS.
+editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/rust-sdk/current/howtos/kv-operations.html)
+
+# Data Operations
 
 > Data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
@@ -8,8 +19,8 @@ A _document_ refers to an entry in the database (other databases may refer to th
 
 Before proceeding, make sure you’re familiar with the basics of authorization and connecting to a Cluster from the [Start Using the SDK](../hello-world/start-using-sdk.md) section.
 
-|  | The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!TIP]
+> The Query Service can also be used to perform many single-document operations, but we very strongly recommend using the key-value API for this instead. It can be much more efficient as the request can go directly to the correct node, there’s no query parsing overhead, and it’s over the highly optimized memcached binary protocol.
 
 ## [](#upsert)Upsert
 
@@ -31,8 +42,10 @@ match collection.upsert("document-key", doc, None).await {
 }
 ```
 
-|  | Handling Single Errors We will use println to simply print any errors in these samples, but the application will of course want to perform better error handling. |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Handling Single Errors
+> 
+> We will use `println` to simply print any errors in these samples, but the application will of course want to perform better error handling.
 
 ## [](#insert)Insert
 
@@ -334,11 +347,11 @@ collection
 
 Note that a counter cannot be below 0.
 
-|  | Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change |
-|  | -------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> Increment & Decrement are considered part of the 'binary' API and as such may still be subject to change
 
-|  | Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the Touch() method. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
 ### [](#atomicity-across-data-centers)Atomicity Across Data Centers
 

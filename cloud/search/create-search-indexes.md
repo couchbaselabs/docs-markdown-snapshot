@@ -1,4 +1,14 @@
+---
+title: Create a Search Index
+description: Create a Search index to get started with the Search Service in
+  your operational cluster.
+editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-indexes.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/cloud/search/create-search-indexes.html)
+
+# Create a Search Index
 
 > Create a Search index to get started with the Search Service in your operational cluster. 
 
@@ -9,8 +19,8 @@ You can create a Search index with:
 
 All Search indexes are built from a JSON payload. For more information about the available properties for a Search index JSON payload, see [Search Index JSON Properties](search-index-params.md).
 
-|  | If you’re new to developing with the Search Service, [create a Search index with the UI](#ui). You can export the Search index definition JSON payload from the UI to [Import a Search Index Definition with the Capella UI](import-search-index.md). |
-|  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> [!TIP]
+> If you’re new to developing with the Search Service, [create a Search index with the UI](#ui). You can export the Search index definition JSON payload from the UI to [Import a Search Index Definition with the Capella UI](import-search-index.md).
 
 ## [](#ui)Creating a Search Index with the Capella UI
 
@@ -41,8 +51,12 @@ If you select **Enable Advanced Options** to enable Advanced Mode in the Search 
 
 All initial editing options remain available in Advanced Mode editing.
 
-|  | For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Capella operational cluster running version 7.6 or later. The Capella UI marks indexes as scoped or not scoped to a specific bucket and scope. Indexes created with a previous version of Couchbase Server are not scoped. |
-|  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+> [!NOTE]
+> For indexes created with Couchbase Server version 7.6 and later, index names must be unique inside a bucket and scope. You cannot have 2 indexes with the same name inside the same bucket and scope on a Capella operational cluster running version 7.6 or later.
+> 
+> The Capella UI marks indexes as scoped or not scoped to a specific bucket and scope.
+> 
+> Indexes created with a previous version of Couchbase Server are not scoped.
 
 After you create a Search index, the Search Service streams data from your chosen collection or collections, and any document mutations, into the index builder. Before your index finishes building, you can run a search and return partial results.
 

@@ -1,4 +1,12 @@
+---
+title: Search Facets
+editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-search-facets.adoc
+pubDate: 2026-02-18T18:09:36.163Z
+---
+
 [View original HTML](/server/7.2/fts/fts-search-facets.html)
+
+# Search Facets
 
 Facets are aggregate information collected on a particular result set. For any search, the user can collect additional facet information along with it.
 
@@ -8,8 +16,8 @@ All the facet examples below, are for the query "`water`" on the beer-sample dat
 
 A term facet counts how many matching documents have a particular term for a specific field.
 
-|  | When building a term facet, use the keyword analyzer. Otherwise, multi-term values get tokenized, and the user gets unexpected results. |
-|  | --------------------------------------------------------------------------------------------------------------------------------------- |
+> [!NOTE]
+> When building a term facet, use the keyword analyzer. Otherwise, multi-term values get tokenized, and the user gets unexpected results.
 
 ### [](#example)Example
 
