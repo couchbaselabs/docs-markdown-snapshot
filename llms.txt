@@ -1,11 +1,14 @@
 # Couchbase
 
 > This is the official documentation for Couchbase, a leading NoSQL distributed database platform
-> designed for high performance, scalability, and flexibility. The documentation covers comprehensive
-> guides for developers and operations teams, including installation and configuration, development
-> tutorials, API references, administration, security, cloud deployment, and integration with various
-> programming languages and frameworks. Couchbase enables applications to handle massive data volumes
-> and high concurrency with its memory-first architecture and flexible JSON document model.
+> designed for high performance, scalability, and flexibility.
+> The documentation covers comprehensive guides for developers and operations
+> teams, including installation and configuration, development tutorials, API
+> references, administration, security, cloud deployment, and integration with
+> various  programming languages and frameworks.
+> Couchbase enables applications to handle massive data volumes and high
+> concurrency with its memory-first architecture and flexible JSON document
+> model.
 
 
 ## Docs
@@ -846,7 +849,7 @@
         - [Data API vs. SDKs](/cloud/data-api-guide/data-api-sdks.md)
         - [REST API Reference](/cloud/data-api-reference/index.md)
 - Administer Capella
-    - [Manage Organizations and Access](/cloud/organizations/organization-projects-overview.md)
+    - [Manage Users and Cluster Access](/cloud/organizations/organization-projects-overview.md)
         - [Organizations](/cloud/organizations/organizations.md)
             - [Manage Organizations](/cloud/organizations/manage-organizations.md)
             - [Manage Organization Users](/cloud/organizations/manage-organization-users.md)
@@ -855,6 +858,9 @@
             - [Manage Projects](/cloud/projects/manage-projects.md)
             - [Manage Project Users](/cloud/projects/manage-project-users.md)
             - [Project Roles](/cloud/projects/project-roles.md)
+        - [Cluster Access](/cloud/clusters/cluster-rbac.md)
+            - [Manage Allowed IPs](/cloud/clusters/allow-ip-address.md)
+            - [Manage Cluster Access](/cloud/clusters/manage-database-users.md)
         - [Capella UI Authentication](/cloud/organizations/ui-auth/capella-ui-auth.md)
             - [Add SSO Authentication](/cloud/organizations/ui-auth/add-sso-auth.md)
                 - [Microsoft Entra ID](/cloud/organizations/ui-auth/sso-entra-id.md)
