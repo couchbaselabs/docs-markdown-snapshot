@@ -1,82 +1,82 @@
 ---
 title: Auto-Compaction
-description: Auto-Compaction settings determine the <em>compaction process</em>;
-  whereby databases and their respective view-indexes are compacted.
+description: pass:The auto-Compaction settings control if and when Couchbase
+  Server compacts data files and view indexes.]
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-compact-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-19T03:45:18.041Z
 ---
 
 [View original HTML](/server/current/manage/manage-settings/configure-compact-settings.html)
 
 # Auto-Compaction
 
-> Auto-Compaction settings determine the _compaction process_; whereby databases and their respective view-indexes are compacted. 
+> pass:The auto-Compaction settings control if and when Couchbase Server compacts data files and view indexes.\] 
 
 ## [](#understanding-auto-compaction)Understanding Auto-Compaction
 
-Auto-Compaction is enabled by default for all Couchbase buckets. However, settings can be overridden on a per bucket basis.
+Auto-compaction reclaims disk space by removing stale and deleted data from on-disk storage files. By default, Couchbase Server performs auto-compaction on all Couchbase buckets. You can override the auto-compaction settings on a per-bucket basis. You can also change the default auto-compaction settings which apply to all buckets that do not have overrides.
 
-Auto-compaction settings affect _on-disk_ data, and therefore do not apply to Ephemeral buckets.
+Auto-compaction settings affect on-disk data, and therefore do not apply to Ephemeral buckets.
 
-Full and Cluster administrators can configure compaction settings with [Couchbase Web Console](#configure-auto-compaction-with-the-ui), the Couchbase [CLI](#configure-auto-compaction-with-the-cli), or the [REST](#configure-auto-compaction-with-the-rest-api) API.
+Users with the Full or Cluster administrator roles can configure compaction settings using [the Couchbase Server Web Console](#configure-auto-compaction-with-the-ui), the [command line tools](#configure-auto-compaction-with-the-cli), or the [REST API](#configure-auto-compaction-with-the-rest-api).
 
-Note that in Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage, and there are no settings necessary for configuring the auto-compaction of Global Secondary Indexes using standard index storage. See [Standard Index Storage](../../indexes/storage-modes.md#standard-index-storage) for information.
+In Couchbase Server Enterprise Edition, auto-compaction does not apply to memory-optimized index storage. Also, unlike Couchbase Server Community Edition, it does not have settings for configuring the auto-compaction of Global Secondary Indexes using standard index storage. See [Standard Index Storage](../../indexes/storage-modes.md#standard-index-storage) for information.
 
 ## [](#configure-auto-compaction-with-the-ui)Configure Auto-Compaction with the UI
 
-Instructions on accessing Auto-Compaction settings are provided below.
+You can override the global auto-compaction settings for a bucket either when you create or edit it using the Couchbase Server Web Console.
 
-### [](#for-a-new-bucket)For a New Bucket
+### [](#for-a-new-bucket)Configure Auto-Compaction for a New Bucket
 
-To access the auto-compaction settings-panel for an new, individual bucket, proceed as follows:
+To configure auto-compaction for an new bucket:
 
-1. Access the **Buckets** screen provided by the Couchbase Web Console. Left-click on the **ADD BUCKET** tab:  
-![addBucketButton](../_images/manage-settings/addBucketButton.png)
-2. When the **Add Data Bucket** dialog appears, add appropriate data into the initial fields; then left-click on the **Advanced bucket settings** tab:  
-![show advanced settings](../_images/manage-settings/show-advanced-settings.png)  
-The dialog now expands, and displays additional configuration-options.
-3. Access the **Auto-Compaction** panel, and check the **Override the default auto-compaction settings?** checkbox:  
-![override default auto compaction](../_images/manage-settings/override-default-auto-compaction.png)  
-The dialog expands again, and displays Auto-Compaction settings available for this bucket.
+1. In the main menu, click **Buckets**. . Click **ADD BUCKET**
+2. In the **Add Data Bucket** dialog, enter a name and select other options for your new bucket. Under **Bucket Type**, you must select **Couchbase** to be able to edit the auto-compaction settings. You cannot set the auto-compaction settings for Ephemeral buckets.
+3. Click **Advanced bucket settings** to expand the dialog.
+4. Under **Auto-Compaction**, select **Override the default auto-compaction settings?**. The dialog expands again, and displays auto-compaction settings available for this bucket. The fields you see depend on the storage backend you selected:  
+![bucket auto compaction settings](../_images/manage-settings/bucket-auto-compaction-settings.png)  
+Figure 1\. Magma Bucket Auto-Compaction Settings  
+![bucket auto compaction settings couchstore](../_images/manage-settings/bucket-auto-compaction-settings-couchstore.png)  
+Figure 2\. Couchstore Bucket Auto-Compaction Settings  
+See [Auto-Compaction Settings](#configure-auto-compaction-settings) for descriptions of the available settings.
 
-### [](#for-an-existing-bucket)For an Existing Bucket
+### [](#for-an-existing-bucket)Configure Auto-Compaction for an Existing Bucket
 
-To access the auto-compaction settings-panel for an individual, existing bucket, proceed as follows:
+To change the auto-compaction settings for an existing bucket:
 
-1. Left-click on the information-row for the bucket, on the **Buckets** screen of Couchbase Web Console. When the **Edit** button appears, left-click on it:  
-![edit bucket definition button](../_images/manage-settings/edit-bucket-definition-button.png)  
-This brings up the **Edit Bucket Settings** dialog.
-2. Left-click on the **Show advanced bucket settings** tab.
-3. Access the **Auto-Compaction** panel, and check the **Override the default auto-compaction settings?** checkbox. The dialog expands, thereby showing the available Auto-Compaction settings.
+1. In the **Buckets** page’s list of buckets, click the entry for the bucket you want to edit.
+2. Click **Edit**.
+3. In the **Edit Bucket Settings** dialog, click **Show advanced bucket settings**.
+4. Under **Auto-Compaction**, select **Override the default auto-compaction settings?** if it’s not already selected. The dialog expands to show the Auto-Compaction settings. The settings are the same as those available in the [dialog for a new bucket](#auto%5Fcompact%5Fmagma). They depend on the storage backend used by the bucket.  
+See [Auto-Compaction Settings](#configure-auto-compaction-settings) for descriptions of the available settings.
 
-### [](#for-no-override-buckets)To Establish Defaults for All Buckets
+### [](#for-no-override-buckets)Configure Default Auto-Compaction Settings
 
-To access the auto-compaction settings-screen that provides defaults for all buckets not otherwise assigned customized settings, proceed as follows:
+To set the default the auto-compaction settings that apply to all buckets that do not override them:
 
-1. Left-click on the **Settings** tab, in the vertical navigation-bar at the left-hand side.
-2. When the **Settings** screen appears, left-click on the **Auto-Compaction** tab, on the horizontal control-bar at the top:  
-![auto compaction tab](../_images/manage-settings/auto-compaction-tab.png)  
-This brings up the **Auto-Compaction** screen.
+1. In the main menu, click **Settings**.
+2. In the **Settings** page, click the **Auto-Compaction** tab.
 
-### [](#establishing-auto-compaction-settings)Establishing Auto-Compaction Settings
+See [Auto-Compaction Settings](#configure-auto-compaction-settings) for descriptions of the available settings.
 
-The **Auto-Compaction** view of the **Settings** screen appears as follows. (Note that the **Index Fragmentation** settings are only displayed for Couchbase Server Community Edition.)
+### [](#configure-auto-compaction-settings)Auto-Compaction Settings
+
+The default auto-compaction settings page appears as follows:
 
 ![auto compact defaultNewUI](../_images/manage-settings/auto-compact-defaultNewUI.png) 
 
-All settings on this screen are also provided on the dialogs whereby you establish custom-settings for an individual new or existing bucket — with the exception of the settings for [Index Fragmentation](#index-fragmentation), which can only be established on a cluster-wide basis.
+The auto-compaction settings for individual buckets is similar to the default settings page, but the available fields depend on the bucket’s storage-backend.
 
-Settings constitute _conditions_, which must be met for the compaction-process to be triggered. The settings are described below.
+> [!NOTE]
+> The Couchbase Server Community Edition auto-compaction settings contains fields to control [Index Fragmentation](#index-fragmentation). Couchbase Server Enterprise Edition does not have these settings.
 
-### [](#database-fragmentation)Database Fragmentation
+All of the auto-compaction settings are conditions which must be met to trigger the auto-compaction process. The following sections describe the settings in both the default auto-compaction settings and the individual bucket settings dialogs.
 
-The **Database Fragmentation** panel appears as follows:
+#### [](#database-fragmentation)Database Fragmentation
 
-![database fragmentationNewUI](../_images/manage-settings/database-fragmentationNewUI.png) 
+When database-fragmentation reaches the point specified by means of this interface. You can specify the fragmentation-level as a percentage (the upper field, selected by checking the adjacent checkbox); or as a number of megabytes (the lower).
 
-Compaction is triggered when database-fragmentation reaches the point specified by means of this interface. You can specify the fragmentation-level as a percentage (the upper field, selected by checking the adjacent checkbox); or as a number of megabytes (the lower).
-
-### [](#view-fragmentation)View Fragmentation
+#### [](#view-fragmentation)View Fragmentation
 
 The **View Fragmentation** panel appears as follows:
 
@@ -84,9 +84,9 @@ The **View Fragmentation** panel appears as follows:
 
 Compaction is triggered when view-fragmentation reaches the point specified by means of this interface. You can specify the fragmentation-level as a percentage (the upper field, selected by checking the adjacent checkbox); or as a number of megabytes (the lower).
 
-### [](#time-interval)Time Interval
+#### [](#time-interval)Time Interval
 
-The **Time Interval** pane provides a number of settings whereby compaction is scheduled:
+The **Time Interval** section lets you limit he thours where Couchbase Server can compact Couchstore buckets. This setting only appears for buckets using the Couchstore storage engine. It does not appear for Magma buckets.
 
 ![time interval interface](../_images/manage-settings/time-interval-interface.png) 
 
@@ -98,9 +98,11 @@ For example, the following, completed **Time Interval** pane specifies that comp
 
 ![time interval interface completed](../_images/manage-settings/time-interval-interface-completed.png) 
 
-### [](#index-fragmentation)Index Fragmentation
+#### [](#index-fragmentation)Index Fragmentation
 
-The **Index Fragmentation** panel, which is only available in Couchbase Server Community Edition, provides settings that cannot be overridden at individual bucket-level. The panel appears as follows:
+[COMMUNITY EDITION](https://www.couchbase.com/products/editions)
+
+The **Index Fragmentation** settings are only available in Couchbase Server Community Edition. It provides settings that cannot be overridden at individual bucket-level.
 
 ![index fragmentation](../_images/manage-settings/index-fragmentation.png) 
 
@@ -110,21 +112,22 @@ Select from the following options:
 
 * **Append-only write mode with index fragmentation level trigger**. Turns on _append only_ writes for index-storage, and triggers the compaction-job based on the fragmentation-level of each index file. Check the checkbox, then specify a fragmentation-level as a percentage, in the interactive text-field.
 * **Circular write mode with day + time interval trigger**. Turns on writes with _circular reuse_ for index-storage, and triggers the compaction-job based on a time-interval. To specify when compaction is permitted to run, select appropriate _days of the week_, by checking the appropriate checkboxes; then, select the start-time on each of those days; and optionally, an end-time.  
-Optionally, check the **Abort compaction if run time exceeds the set time interval** checkbox: if you do so, compaction is aborted if the specified end-time is exceeded.
+Optionally, select the **Abort compaction if run time exceeds the set time interval** if you want Couchbase Server to abort compaction if it exceeds the end-time you set.
 
-Note that whenever you change the compaction settings for the index, the system starts the global secondary index process on all the nodes.
+> [!NOTE]
+> whenever you change the compaction settings for the index, the system starts the global secondary index process on all the nodes.
 
-See [Standard Index Storage](../../indexes/storage-modes.md#standard-index-storage) for information on append-only and circular write modes.
+See [Standard Index Storage](../../indexes/storage-modes.md#standard-index-storage) for information about append-only and circular write modes.
 
-### [](#tombstone-purge-interval)Metadata Purge Interval
+#### [](#tombstone-purge-interval)Metadata Purge Interval
 
-Sets the frequency of the metadata (or _tombstone_) purge interval, for _Couchbase_ buckets only. The default value is three days.
+Sets the frequency of the metadata (or tombstone) purge interval, for Couchbase buckets only. The default value is 3 days.
 
 The panel appears as follows:
 
 ![meta data purge interface](../_images/manage-settings/meta-data-purge-interface.png) 
 
-_Tombstones_ are records of expired or deleted items. They include key and metadata. Tombstones are used in Couchbase Server to provide eventual consistency of data between clusters. The specified number of days will elapse before tombstones for expired or deleted items are _permanently_ removed. The default value is three days. The permitted range of values is `0.04` to `60` (where `0.04` equals one hour, and `1` equals one day.
+Tombstones are records of expired or deleted items. They include key and metadata. Tombstones are used in Couchbase Server to provide eventual consistency of data between clusters. The specified number of days will elapse before tombstones for expired or deleted items are _permanently_ removed. The default value is 3 days. The permitted range of values is `0.04` to `60` (where `0.04` equals one hour, and `1` equals one day.
 
 > [!CAUTION]
 > If you set this value too low, you may see inconsistent results in Views queries, such as deleted items appearing in a result set. You may also see inconsistent items across clusters, if XDCR has been set up between the clusters.
@@ -239,6 +242,6 @@ curl -i -X POST http://10.143.192.101:8091/controller/setAutoCompaction \
 -d indexCircularCompaction[interval][abortOutside]=true
 ```
 
-This example establishes fragmentation thresholds and sizes for database and view, and specifies the time-period during which compaction should occur. It specifies that compaction be aborted if it should overrun this time-period. Parallel compaction for database and view is switched _off_. The tombstone purge interval is set to 3 days; and _circular_ standard compaction is specified for particular days and hours.
+This example establishes fragmentation thresholds and sizes for database and view, and specifies the time-period during which compaction should occur. It specifies that compaction be aborted if it should overrun this time-period. Parallel compaction for database and view is switched off. The tombstone purge interval is set to 3 days; and circular standard compaction is specified for particular days and hours.
 
 See [Setting Auto-Compaction](../../rest-api/rest-memory-and-storage.md), for more information.
