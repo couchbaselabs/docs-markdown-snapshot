@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-19T08:54:56.182Z
 ---
 
 [View original HTML](/server/7.6/introduction/whats-new.html)
@@ -29,7 +29,7 @@ For information about platform support changes, deprecation notifications, notab
 
 The following new features are provided in this release.
 
-## [](#new-features-7610-query)Query Service
+### [](#new-features-7610-query)Query Service
 
 * **[MB-69387](https://jira.issues.couchbase.com/browse/MB-69387):**Couchbase Server 7.6.10 now includes an auto-reprepare feature for PREPARE statements. When enabled, a prepared statement automatically updates its query plan whenever GSI metadata version changes, ensuring it always uses newer, more efficient indexes as they become available. For more information, see [PREPARE](../n1ql/n1ql-language-reference/prepare.md).
 
@@ -41,7 +41,7 @@ The following new features are provided in this release.
 
   * Windows Server 2025
 
-## [](#new-features-766-xdcr)XDCR
+### [](#new-features-766-xdcr)XDCR
 
 * **[MB-57921](https://jira.issues.couchbase.com/browse/MB-57921):**Created provision to set up XDCR bidirectional replication with Sync Gateway (SGW) 4.0 or a later version. In the versions earlier than Server 7.6.6 and Sync Gateway (SGW) 4.0.0, only an active-passive setup was supported with both XDCR and SGW. XDCR active-active replication with Sync Gateway for XDCR-Mobile interoperability configuration is introduced in the Server 7.6.6 version, where you can configure an active-active XDCR setup with Sync Gateway and mobile applications both on the XDCR source and target clusters. You need to have at least a Server 7.6.6 version and SGW 4.0.0 version to use this setup. For more info, see [XDCR Active-Active with Sync Gateway](../learn/clusters-and-availability/xdcr-active-active-sgw.md).
 
