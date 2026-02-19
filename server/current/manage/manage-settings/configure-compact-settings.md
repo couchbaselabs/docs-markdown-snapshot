@@ -1,16 +1,16 @@
 ---
 title: Auto-Compaction
-description: pass:The auto-Compaction settings control if and when Couchbase
-  Server compacts data files and view indexes.]
+description: The auto-Compaction settings control if and when Couchbase Server
+  compacts data files and view indexes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-compact-settings.adoc
-pubDate: 2026-02-19T03:45:18.041Z
+pubDate: 2026-02-19T08:54:56.182Z
 ---
 
 [View original HTML](/server/current/manage/manage-settings/configure-compact-settings.html)
 
 # Auto-Compaction
 
-> pass:The auto-Compaction settings control if and when Couchbase Server compacts data files and view indexes.\] 
+> The auto-Compaction settings control if and when Couchbase Server compacts data files and view indexes. 
 
 ## [](#understanding-auto-compaction)Understanding Auto-Compaction
 
