@@ -2,7 +2,7 @@
 title: Management API Change Log
 description: The change log for the Couchbase Capella Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-log.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T03:41:06.033Z
 ---
 
 [View original HTML](/cloud/management-api-guide/management-api-log.html)
@@ -17,11 +17,12 @@ Initial release.
 
 ### [](#february-2026-changes)February 2026 Changes
 
-| Operation                                                                                                                                                 | Details                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [Get Private Endpoint Service Status](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/getPrivateEndpointServiceStatus)        | You can now use this operation to verify the status of XDCR and Prometheus metrics on your private endpoint.                       |
-| [Enable Private Endpoint Service](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService)               | You can now use this operation to enable XDCR and Prometheus metrics when you enable the private endpoint service on your cluster. |
-| [Update Private Endpoint Service Configuration](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/updatePrivateEndpointService) | Use this operation to enable or disable XDCR and Prometheus metrics access on an already enabled private endpoint service.         |
+| Operation                                                                                                                                                                                                                                                                                                                                                                       | Details                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [Get Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/getOnOffSchedule) [Pause Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/pauseClusterOnOffSchedule) [Unpause Cluster On/Off Schedule](../management-api-reference/index.md#tag/OnOff-Schedule/operation/unpauseClusterOnOffSchedule) | Added endpoints to the On/Off Schedule API. Use these operations to pause and unpause your cluster’s on/off schedule.              |
+| [Get Private Endpoint Service Status](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/getPrivateEndpointServiceStatus)                                                                                                                                                                                                                              | You can now use this operation to verify the status of XDCR and Prometheus metrics on your private endpoint.                       |
+| [Enable Private Endpoint Service](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService)                                                                                                                                                                                                                                     | You can now use this operation to enable XDCR and Prometheus metrics when you enable the private endpoint service on your cluster. |
+| [Update Private Endpoint Service Configuration](../management-api-reference/index.md#tag/Private-Endpoint-Service/operation/updatePrivateEndpointService)                                                                                                                                                                                                                       | Use this operation to enable or disable XDCR and Prometheus metrics access on an already enabled private endpoint service.         |
 
 ### [](#december-2025-changes)December 2025 Changes
 
