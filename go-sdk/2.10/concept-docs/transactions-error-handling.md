@@ -2,7 +2,8 @@
 title: Error Handling
 description: Handling transaction errors with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/transactions-error-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:concept-docs:transactions-error-handling.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/concept-docs/transactions-error-handling.html)

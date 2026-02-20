@@ -6,7 +6,8 @@ description: The expiration setting for a document determines if and when it
   default expiration on their documents. It also imposes an upper limit on
   explicitly-set expiration times.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/expiration.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:data/expiration.adoc[]
 ---
 
 [View original HTML](/server/current/learn/data/expiration.html)

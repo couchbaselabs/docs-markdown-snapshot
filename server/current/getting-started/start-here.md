@@ -3,7 +3,8 @@ title: Start Here!
 description: If you are a first-time user, you can get a quick introduction to
   using Couchbase Server just by reading this section.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/start-here.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:getting-started:start-here.adoc[]
 ---
 
 [View original HTML](/server/current/getting-started/start-here.html)

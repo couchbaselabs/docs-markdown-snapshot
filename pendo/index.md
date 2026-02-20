@@ -1,7 +1,8 @@
 ---
 title: Welcome to the Couchbase Pendo Style Guide
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:pendo::index.adoc[]
 ---
 
 [View original HTML](/pendo/index.html)

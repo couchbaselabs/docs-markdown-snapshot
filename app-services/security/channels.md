@@ -3,7 +3,8 @@ title: Add Security with Channels
 description: Channels and their part in data routing and access control for
   secure cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/security/channels.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::security/channels.adoc[]
 ---
 
 [View original HTML](/app-services/security/channels.html)

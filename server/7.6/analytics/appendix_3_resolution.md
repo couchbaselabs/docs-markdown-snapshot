@@ -2,7 +2,8 @@
 title: "Appendix 3: Variable Bindings and Name Resolution"
 description: A description of variable bindings and name resolution.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_3_resolution.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:analytics:appendix_3_resolution.adoc[]
 ---
 
 [View original HTML](/server/7.6/analytics/appendix_3_resolution.html)

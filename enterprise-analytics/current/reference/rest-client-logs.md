@@ -2,7 +2,8 @@
 title: Logging Client-Side Errors
 description: Client-side errors can be written to a log file.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-client-logs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-client-logs.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-client-logs.html)

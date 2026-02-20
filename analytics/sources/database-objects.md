@@ -3,7 +3,8 @@ title: Access and Organize Data in Capella Analytics Services
 description: This topic introduces the database objects that you use to access
   and organize data in Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/database-objects.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sources:database-objects.adoc[]
 ---
 
 [View original HTML](/analytics/sources/database-objects.html)

@@ -2,7 +2,8 @@
 title: List Cluster Nodes
 description: The nodes of a cluster can be listed, and details on each retrieved.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/list-cluster-nodes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-nodes/list-cluster-nodes.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-nodes/list-cluster-nodes.html)

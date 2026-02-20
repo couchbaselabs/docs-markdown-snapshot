@@ -2,7 +2,8 @@
 title: Analytics Administration REST APIs
 description: A description of the Administration REST APIs for Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/rest-admin.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:analytics:rest-admin.adoc[]
 ---
 
 [View original HTML](/server/7.2/analytics/rest-admin.html)

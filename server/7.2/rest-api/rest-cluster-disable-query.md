@@ -4,7 +4,8 @@ description: Ensuring view query results consistency is performed with the
   <code>POST /internalSettings -d indexAwareRebalanceDisabled</code> HTTP
   method, URI, and parameter.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-disable-query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-cluster-disable-query.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-cluster-disable-query.html)

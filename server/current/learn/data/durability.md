@@ -3,7 +3,8 @@ title: Durability
 description: Durability improves the chances that data mutations are saved even
   if nodes fail.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/data/durability.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:data/durability.adoc[]
 ---
 
 [View original HTML](/server/current/learn/data/durability.html)

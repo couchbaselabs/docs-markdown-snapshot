@@ -3,7 +3,8 @@ title: View Concepts
 description: Views allow you to extract specific fields and information from
   data and create an index.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-basics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:views/views-basics.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/views/views-basics.html)

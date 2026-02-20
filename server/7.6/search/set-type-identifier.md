@@ -3,7 +3,8 @@ title: Set the Type Identifier for a Search Index
 description: Use a type identifier with a type mapping to add an extra filter to
   the documents you want to include in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/set-type-identifier.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:search:set-type-identifier.adoc[]
 ---
 
 [View original HTML](/server/7.6/search/set-type-identifier.html)

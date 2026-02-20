@@ -3,7 +3,8 @@ title: Eventing Service Memory Quota
 description: The Eventing Service memory quota does not enforce a hard memory
   limit on the Eventing subsystem, including worker processes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-memory-quota.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-memory-quota.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-memory-quota.html)

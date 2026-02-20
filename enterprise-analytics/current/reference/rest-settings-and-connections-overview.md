@@ -3,7 +3,8 @@ title: Settings and Connections
 description: Settings and connections for the cluster can be managed by means of
   the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-settings-and-connections-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-settings-and-connections-overview.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-settings-and-connections-overview.html)

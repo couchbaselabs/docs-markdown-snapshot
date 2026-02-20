@@ -4,7 +4,8 @@ description: Use a Capella Structured Data Workflow to automatically generate
   embedding vectors from JSON data in an Amazon S3 Bucket. Use embedding vectors
   for similarity searches on your data.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-s3.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:build:vectorization-service/vectorize-structured-data-s3.adoc[]
 ---
 
 [View original HTML](/ai/build/vectorization-service/vectorize-structured-data-s3.html)

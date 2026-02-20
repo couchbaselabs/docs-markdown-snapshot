@@ -3,7 +3,8 @@ title: Vector Search
 description: Use Vector Search to build adaptive and user-focused applications
   using Generative AI.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/vector-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:c:vector-search.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/c/vector-search.html)

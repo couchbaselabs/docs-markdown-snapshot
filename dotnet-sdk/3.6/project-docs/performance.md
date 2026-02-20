@@ -2,7 +2,8 @@
 title: Performance Best Practices
 description: Performance best practices for Couchbase .NET applications.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/performance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:project-docs:performance.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/project-docs/performance.html)

@@ -3,7 +3,8 @@ title: Back Up and Restore An Entire Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore an
   entire cluster and all of its buckets in a single backup.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cloud-snapshots.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:cloud-snapshots.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/cloud-snapshots.html)

@@ -3,7 +3,8 @@ title: Search Index Features
 description: Search indexes in Couchbase Capella have multiple features that you
   can configure to improve performance and fine tune your search results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/customize-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:customize-index.adoc[]
 ---
 
 [View original HTML](/cloud/search/customize-index.html)

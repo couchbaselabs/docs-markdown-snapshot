@@ -3,7 +3,8 @@ title: How to Assign Users to Roles
 description: How to assign a Sync Gateway <em>User</em> one or more roles for
   secure access control in cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/access-control-how-assign-users-to-roles.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@sync-gateway:access-control:access-control-how-assign-users-to-roles.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.3/access-control/access-control-how-assign-users-to-roles.html)

@@ -3,7 +3,8 @@ title: Primary and Secondary Index Reference
 description: Primary Indexes and Global Secondary Indexes (GSI) support queries
   made by the Query Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/global-secondary-indexes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:services-and-indexes/indexes/global-secondary-indexes.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/global-secondary-indexes.html)

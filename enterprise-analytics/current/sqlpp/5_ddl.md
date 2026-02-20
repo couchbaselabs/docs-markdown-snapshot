@@ -3,7 +3,8 @@ title: DDL Statements
 description: This section describes the SQL++ for Enterprise Analytics Data
   Definition Language (DDL) statements.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_ddl.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:sqlpp:5_ddl.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/sqlpp/5_ddl.html)

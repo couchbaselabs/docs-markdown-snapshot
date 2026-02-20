@@ -3,7 +3,8 @@ title: Create a User-Defined Function Library
 description: Create an user-defined function (UDF) library to store and organize
   your JavaScript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:create-javascript-library.adoc[]
 ---
 
 [View original HTML](/cloud/guides/create-javascript-library.html)

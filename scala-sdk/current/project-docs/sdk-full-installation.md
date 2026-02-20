@@ -2,7 +2,8 @@
 title: Couchbase Scala SDK Installation
 description: Installation instructions for the Couchbase Scala Client.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:scala-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [View original HTML](/scala-sdk/current/project-docs/sdk-full-installation.html)

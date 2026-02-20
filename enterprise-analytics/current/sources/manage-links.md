@@ -3,7 +3,8 @@ title: Managing Enterprise Analytics Links
 description: This page describes how to manage remote links and external links
   using the Analytics Workbench.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sources/pages/manage-links.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:sources:manage-links.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/sources/manage-links.html)

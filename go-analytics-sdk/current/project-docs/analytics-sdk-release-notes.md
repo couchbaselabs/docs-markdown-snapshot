@@ -3,7 +3,8 @@ title: Enterprise Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Go Analytics Client.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/analytics-sdk-release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-analytics-sdk:project-docs:analytics-sdk-release-notes.adoc[]
 ---
 
 [View original HTML](/go-analytics-sdk/current/project-docs/analytics-sdk-release-notes.html)

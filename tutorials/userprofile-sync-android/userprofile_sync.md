@@ -1,7 +1,8 @@
 ---
 title: "User Profile Sample: Data Sync Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/sync/content/modules/userprofile-sync-android/pages/userprofile_sync.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:userprofile-sync-android:userprofile_sync.adoc[]
 ---
 
 [View original HTML](/tutorials/userprofile-sync-android/userprofile_sync.html)

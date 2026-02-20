@@ -4,7 +4,8 @@ description: Private endpoints for the Data API enable you to connect a client
   app directly to the Couchbase Data API, assuming that they both use the same
   cloud service provider (CSP).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:data-api-guide:data-api-private.adoc[]
 ---
 
 [View original HTML](/cloud/data-api-guide/data-api-private.html)

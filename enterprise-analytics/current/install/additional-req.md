@@ -3,7 +3,8 @@ title: Additional Requirements
 description: Depending on your local configuration, you might need to install or
   configure some additional system requirements to use Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/additional-req.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:install:additional-req.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/install/additional-req.html)

@@ -3,7 +3,8 @@ title: Initialize a Node
 description: A new Couchbase Server node can be <em>initialized</em>, to
   establish node-specific paths for local storage.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/initialize-node.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-nodes/initialize-node.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-nodes/initialize-node.html)

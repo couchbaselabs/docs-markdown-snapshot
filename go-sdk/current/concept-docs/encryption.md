@@ -2,7 +2,8 @@
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-sdk:concept-docs:encryption.adoc[]
 ---
 
 [View original HTML](/go-sdk/current/concept-docs/encryption.html)

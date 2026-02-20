@@ -3,7 +3,8 @@ title: Field Level Encryption
 description: Fields within a document can be securely encrypted by the SDK, to
   support FIPS-140-2 compliance.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/concept-docs/pages/encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ruby-sdk:concept-docs:encryption.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/current/concept-docs/encryption.html)

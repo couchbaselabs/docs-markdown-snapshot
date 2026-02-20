@@ -2,7 +2,8 @@
 title: Analytics Configuration Parameters
 description: A description of all configurable parameters for Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/config.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:analytics:config.adoc[]
 ---
 
 [View original HTML](/server/7.2/analytics/config.html)

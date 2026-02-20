@@ -1,7 +1,8 @@
 ---
 title: MapReduce Views
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.3/modules/concept-docs/pages/understanding-views.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.3@php-sdk:concept-docs:understanding-views.adoc[]
 ---
 
 [View original HTML](/php-sdk/4.3/concept-docs/understanding-views.html)

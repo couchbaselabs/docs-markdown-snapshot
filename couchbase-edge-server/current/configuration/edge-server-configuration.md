@@ -3,7 +3,8 @@ title: Edge Server Configuration Schema
 description: You can configure Couchbase Edge Server through use of a JSON
   configuration file.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/configuration/pages/edge-server-configuration.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-edge-server:configuration:edge-server-configuration.adoc[]
 ---
 
 [View original HTML](/couchbase-edge-server/current/configuration/edge-server-configuration.html)

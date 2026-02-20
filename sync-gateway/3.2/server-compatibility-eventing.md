@@ -3,7 +3,8 @@ title: Eventing&#8201;&#8212;&#8201;Server Compatibility
 description: How <em>Sync Gateway</em> works with <em>Couchbase Server's</em>
   <em>Eventing</em> feature
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/server-compatibility-eventing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::server-compatibility-eventing.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/server-compatibility-eventing.html)

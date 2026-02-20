@@ -3,7 +3,8 @@ title: Getting Bucket Information
 description: Information on buckets defined on the cluster can be retrieved, by
   means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-buckets-summary.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-buckets-summary.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-buckets-summary.html)

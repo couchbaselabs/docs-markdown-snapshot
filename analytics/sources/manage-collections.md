@@ -3,7 +3,8 @@ title: Managing Capella Analytics Collections
 description: This page describes how to manage collections with the Capella
   Analytics Workbench.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/manage-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sources:manage-collections.adoc[]
 ---
 
 [View original HTML](/analytics/sources/manage-collections.html)

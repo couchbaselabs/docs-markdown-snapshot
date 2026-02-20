@@ -3,7 +3,8 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:java:p2psync-websocket-using-passive.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/java/p2psync-websocket-using-passive.html)

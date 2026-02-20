@@ -4,7 +4,8 @@ description: One or more instances of Couchbase Server constitute a
   <em>cluster</em>, which replicates data across server-instances, and across
   clusters; and so ensures high availability.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/clusters-and-availability.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:clusters-and-availability/clusters-and-availability.adoc[]
 ---
 
 [View original HTML](/server/current/learn/clusters-and-availability/clusters-and-availability.html)

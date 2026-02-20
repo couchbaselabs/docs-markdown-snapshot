@@ -4,7 +4,8 @@ description: With the SELECT statement, you can query and manipulate JSON data.
   You can select, join, project, nest, unnest, group, and sort in a single
   SELECT statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/selectintro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:n1ql:n1ql-language-reference/selectintro.adoc[]
 ---
 
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/selectintro.html)

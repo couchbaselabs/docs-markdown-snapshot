@@ -2,7 +2,8 @@
 title: Load Balancer
 description: Load balancing replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/load-balancer.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:deploy:load-balancer.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/deploy/load-balancer.html)

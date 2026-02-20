@@ -3,7 +3,8 @@ title: Plan Your Agentic App
 description: Before you start building, you should plan the tools, framework,
   and structure of your agent application.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/plan-agentic-app.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:agent-tutorial:plan-agentic-app.adoc[]
 ---
 
 [View original HTML](/ai/agent-tutorial/plan-agentic-app.html)

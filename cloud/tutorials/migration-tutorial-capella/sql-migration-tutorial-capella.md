@@ -3,7 +3,8 @@ title: "Migration Tutorial: Migrate your Data from MySQL to Couchbase Capella"
 description: Using MySQL as a starting point, this guide demonstrates how to
   migrate your existing data from SQL tables to a Couchbase Capella instance.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/migration-tutorial-capella/sql-migration-tutorial-capella.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:tutorials:migration-tutorial-capella/sql-migration-tutorial-capella.adoc[]
 ---
 
 [View original HTML](/cloud/tutorials/migration-tutorial-capella/sql-migration-tutorial-capella.html)

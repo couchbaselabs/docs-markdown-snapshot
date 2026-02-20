@@ -2,7 +2,8 @@
 title: Managing Couchbase Clusters from the SDK
 description: Cluster management from the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/concept-docs/pages/management-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@scala-sdk:concept-docs:management-api.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.10/concept-docs/management-api.html)

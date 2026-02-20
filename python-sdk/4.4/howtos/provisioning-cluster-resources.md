@@ -3,7 +3,8 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.4@python-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
 [View original HTML](/python-sdk/4.4/howtos/provisioning-cluster-resources.html)

@@ -2,7 +2,8 @@
 title: "Function: Convert Bucket to Collections"
 description: Demonstrate Converting "upgraded" Buckets to Collections.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-ConvertBucketToCollections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:eventing:eventing-handler-ConvertBucketToCollections.adoc[]
 ---
 
 [View original HTML](/server/7.2/eventing/eventing-handler-ConvertBucketToCollections.html)

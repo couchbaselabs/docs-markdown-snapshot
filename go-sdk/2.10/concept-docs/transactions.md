@@ -2,7 +2,8 @@
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/transactions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:concept-docs:transactions.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/concept-docs/transactions.html)

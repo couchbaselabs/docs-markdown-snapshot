@@ -3,7 +3,8 @@ title: Retrieve Records
 description: Retrieve records or documents from your collections using SQL++,
   Couchbase's SQL-based query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:tutorials:java-tutorial/retrieving-documents.adoc[]
 ---
 
 [View original HTML](/cloud/tutorials/java-tutorial/retrieving-documents.html)

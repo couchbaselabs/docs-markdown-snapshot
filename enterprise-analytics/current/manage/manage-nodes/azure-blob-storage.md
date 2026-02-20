@@ -3,7 +3,8 @@ title: Configuring Azure Blob Storage
 description: You can set up Couchbase Enterprise Analytics to use Azure Blob
   Storage as its storage solution.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/azure-blob-storage.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-nodes/azure-blob-storage.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/azure-blob-storage.html)

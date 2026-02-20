@@ -4,7 +4,8 @@ description: To perform Cross Datacenter Replication (XDCR), you start by
   creating a <em>reference</em> to the target cluster and bucket that will
   receive the replicated data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/create-xdcr-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:manage:manage-xdcr/create-xdcr-reference.adoc[]
 ---
 
 [View original HTML](/server/7.2/manage/manage-xdcr/create-xdcr-reference.html)

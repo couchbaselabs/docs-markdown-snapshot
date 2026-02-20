@@ -3,7 +3,8 @@ title: Install Couchbase Server on Oracle Linux
 description: Couchbase Server can be installed on Oracle Linux for production
   and development use-cases. Root and non-root installations are supported.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/install-oracle.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:install-oracle.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/install-oracle.html)

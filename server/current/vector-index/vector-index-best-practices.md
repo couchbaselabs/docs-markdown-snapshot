@@ -4,7 +4,8 @@ description: When creating and querying Hyperscale and Composite Vector indexes,
   you have several options to set that can affect the speed and accuracy of your
   results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vector-index-best-practices.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:vector-index:vector-index-best-practices.adoc[]
 ---
 
 [View original HTML](/server/current/vector-index/vector-index-best-practices.html)

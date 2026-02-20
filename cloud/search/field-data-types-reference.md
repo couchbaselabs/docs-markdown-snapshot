@@ -3,7 +3,8 @@ title: Field Data Types
 description: You can assign a data type to a field to tell the Search Service
   how to analyze its data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/field-data-types-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:field-data-types-reference.adoc[]
 ---
 
 [View original HTML](/cloud/search/field-data-types-reference.html)

@@ -3,7 +3,8 @@ title: Use a Couchbase SDK with Enterprise Analytics [WIP]
 description: The Analytics SDKs enable you to connect client code written in
   popular languages to Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/use-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:query:use-sdk.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/query/use-sdk.html)

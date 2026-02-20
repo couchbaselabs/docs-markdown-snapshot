@@ -3,7 +3,8 @@ title: The Eventing Lifecycle
 description: This page shows how to add a new Eventing Function and briefly
   explores the Eventing Lifecycle.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-lifecycle.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:eventing:eventing-lifecycle.adoc[]
 ---
 
 [View original HTML](/server/7.2/eventing/eventing-lifecycle.html)

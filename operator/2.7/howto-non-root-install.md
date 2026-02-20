@@ -1,7 +1,8 @@
 ---
 title: Configure a Non-Root Install
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-non-root-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.7@operator::howto-non-root-install.adoc[]
 ---
 
 [View original HTML](/operator/2.7/howto-non-root-install.html)

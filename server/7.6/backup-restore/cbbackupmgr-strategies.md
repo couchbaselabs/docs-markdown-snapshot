@@ -2,7 +2,8 @@
 title: cbbackupmgr strategies
 description: Recommended backup strategies for cbbackupmgr
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-strategies.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:backup-restore:cbbackupmgr-strategies.adoc[]
 ---
 
 [View original HTML](/server/7.6/backup-restore/cbbackupmgr-strategies.html)

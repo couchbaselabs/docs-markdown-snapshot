@@ -2,7 +2,8 @@
 title: setting-autofailover
 description: Modifies auto-failover settings
 editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-setting-autofailover.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:cli:cbcli/couchbase-cli-setting-autofailover.adoc[]
 ---
 
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-setting-autofailover.html)

@@ -3,7 +3,8 @@ title: Certificate Error Handling
 description: "Specific errors can arise from use of X.509 certificates: these
   should be recognized and appropriately dealt with."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/handle-certificate-errors.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-security/handle-certificate-errors.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-security/handle-certificate-errors.html)

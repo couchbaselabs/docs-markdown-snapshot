@@ -2,7 +2,8 @@
 title: Logging API
 description: Introduced in Couchbase Lite 3.2.2.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/new-logging-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:android:new-logging-api.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/android/new-logging-api.html)

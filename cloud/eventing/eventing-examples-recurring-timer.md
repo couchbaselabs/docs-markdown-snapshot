@@ -2,7 +2,8 @@
 title: Create a Recurring Timer
 description: Create a Timer that continues to execute until you manually cancel it.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-recurring-timer.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-examples-recurring-timer.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-examples-recurring-timer.html)

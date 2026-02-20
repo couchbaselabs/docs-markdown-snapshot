@@ -3,7 +3,8 @@ title: Create a Search Index Alias with the Web Console
 description: Use a Search index alias to run a Search query across multiple
   buckets, scopes, or Search indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-search-index-alias.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:search:create-search-index-alias.adoc[]
 ---
 
 [View original HTML](/server/7.6/search/create-search-index-alias.html)

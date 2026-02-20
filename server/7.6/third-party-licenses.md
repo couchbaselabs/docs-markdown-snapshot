@@ -3,7 +3,8 @@ title: Licenses for Third-Party Components
 description: This section contains licensing information for some third-party
   components that are used by Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/ROOT/pages/third-party-licenses.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server::third-party-licenses.adoc[]
 ---
 
 [View original HTML](/server/7.6/third-party-licenses.html)

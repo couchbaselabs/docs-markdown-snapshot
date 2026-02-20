@@ -3,7 +3,8 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/howtos/encrypting-using-sdk.html)

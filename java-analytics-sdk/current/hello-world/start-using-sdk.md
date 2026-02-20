@@ -3,7 +3,8 @@ title: Java Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Java Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/java-analytics-sdk/current/hello-world/start-using-sdk.html)

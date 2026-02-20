@@ -3,7 +3,8 @@ title: Index Placement
 description: How to place indexes on specified nodes, create index replicas, and
   partition indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/place-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:place-index.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/place-index.html)

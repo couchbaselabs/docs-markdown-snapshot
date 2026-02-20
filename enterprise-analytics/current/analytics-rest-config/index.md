@@ -2,7 +2,8 @@
 title: Analytics Configuration REST API
 description: A description of the Configuration REST API for Couchbase Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/analytics-rest-config/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:analytics-rest-config:index.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/analytics-rest-config/index.html)

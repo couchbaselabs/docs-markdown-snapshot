@@ -3,7 +3,8 @@ title: Prometheus Metrics
 description: This content covers the Prometheus statistics and metrics collected
   and made available by Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/stats-monitoring-prometheus.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:manage:stats-monitoring-prometheus.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/manage/stats-monitoring-prometheus.html)

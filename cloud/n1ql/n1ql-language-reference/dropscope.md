@@ -2,7 +2,8 @@
 title: DROP SCOPE
 description: The DROP SCOPE statement enables you to delete a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropscope.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/dropscope.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/dropscope.html)

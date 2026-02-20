@@ -3,7 +3,8 @@ title: Getting Rebalance Progress
 description: The progress of rebalance can be ascertained with the <code>GET
   /pools/default/rebalanceProgress</code> HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-get-rebalance-progress.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-get-rebalance-progress.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-get-rebalance-progress.html)

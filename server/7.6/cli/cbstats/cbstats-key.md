@@ -2,7 +2,8 @@
 title: key
 description: Provides information on keys.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-key.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:cli:cbstats/cbstats-key.adoc[]
 ---
 
 [View original HTML](/server/7.6/cli/cbstats/cbstats-key.html)

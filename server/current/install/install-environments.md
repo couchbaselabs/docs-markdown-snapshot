@@ -3,7 +3,8 @@ title: Additional Requirements
 description: Depending on your local configuration, some components of Couchbase
   Server may have additional system requirements.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-environments.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:install:install-environments.adoc[]
 ---
 
 [View original HTML](/server/current/install/install-environments.html)

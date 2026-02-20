@@ -1,7 +1,8 @@
 ---
 title: New in 3.3
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/cbl-whatsnew.html)

@@ -2,7 +2,8 @@
 title: Logging
 description: Setting log levels.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@ruby-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.6/howtos/collecting-information-and-logging.html)

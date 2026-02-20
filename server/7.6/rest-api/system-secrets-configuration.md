@@ -3,7 +3,8 @@ title: Configuring System Secrets
 description: By means of the REST API, System Secrets can be configured, and the
   current configuration can be retrieved.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/system-secrets-configuration.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:system-secrets-configuration.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/system-secrets-configuration.html)

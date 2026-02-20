@@ -1,7 +1,8 @@
 ---
 title: Stream Data from Couchbase Server
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-server.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sources:remote-cb-server.adoc[]
 ---
 
 [View original HTML](/analytics/sources/remote-cb-server.html)

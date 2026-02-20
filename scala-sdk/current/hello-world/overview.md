@@ -1,7 +1,8 @@
 ---
 title: Couchbase Scala SDK 3.11
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:scala-sdk:hello-world:overview.adoc[]
 ---
 
 [View original HTML](/scala-sdk/current/hello-world/overview.html)

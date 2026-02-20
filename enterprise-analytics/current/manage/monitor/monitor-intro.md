@@ -3,7 +3,8 @@ title: Monitor
 description: Monitoring of Enterprise Analytics can be performed by means of
   Enterprise Analytics Web Console, the CLI, and the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/monitor/monitor-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:monitor/monitor-intro.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/monitor/monitor-intro.html)

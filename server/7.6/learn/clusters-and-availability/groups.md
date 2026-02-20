@@ -3,7 +3,8 @@ title: Server Group Awareness
 description: Individual server-nodes can be assigned to specific
   <em>groups</em>, within a Couchbase Cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/groups.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:clusters-and-availability/groups.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/clusters-and-availability/groups.html)

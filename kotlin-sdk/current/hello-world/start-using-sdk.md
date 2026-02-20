@@ -3,7 +3,8 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Kotlin SDK.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/hello-world/start-using-sdk.html)

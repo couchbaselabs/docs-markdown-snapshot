@@ -2,7 +2,8 @@
 title: REST API reference
 description: The REST API supports the management of Couchbase-Server clusters.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-intro.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-intro.html)

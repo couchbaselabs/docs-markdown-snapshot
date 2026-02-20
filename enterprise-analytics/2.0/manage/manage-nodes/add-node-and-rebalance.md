@@ -2,7 +2,8 @@
 title: Add a Node and Rebalance
 description: A new Enterprise Analytics node can be added to an existing cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:manage:manage-nodes/add-node-and-rebalance.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/add-node-and-rebalance.html)

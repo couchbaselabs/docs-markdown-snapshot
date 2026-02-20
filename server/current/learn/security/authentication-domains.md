@@ -4,7 +4,8 @@ description: "To access Couchbase Server, users must be authenticated: this can
   occur in either the <em>local</em> or the <em>external</em> authentication
   domain."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/authentication-domains.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:security/authentication-domains.adoc[]
 ---
 
 [View original HTML](/server/current/learn/security/authentication-domains.html)

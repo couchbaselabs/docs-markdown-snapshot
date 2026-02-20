@@ -2,7 +2,8 @@
 title: Views for Non-JSON Objects
 description: Views on non_JSON data enable range queries on the key data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-nonjson.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:views/views-writing-nonjson.adoc[]
 ---
 
 [View original HTML](/server/current/learn/views/views-writing-nonjson.html)

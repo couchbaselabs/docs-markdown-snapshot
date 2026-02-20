@@ -2,7 +2,8 @@
 title: Manage Eventing Functions
 description: Use the Capella UI to manage the Eventing Functions in your cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/manage-eventing-functions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:manage-eventing-functions.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/manage-eventing-functions.html)

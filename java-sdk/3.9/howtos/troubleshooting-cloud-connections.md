@@ -3,7 +3,8 @@ title: Troubleshooting Cloud Connections
 description: Diagnose DNS-SRV problems. Troubleshoot other network connection
   trouble with SDK doctor.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/troubleshooting-cloud-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.9@java-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.9/howtos/troubleshooting-cloud-connections.html)

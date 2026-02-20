@@ -2,7 +2,8 @@
 title: Prerequisites for Couchbase Lite on Swift
 description: Prerequisites for the installation of Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-prereqs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:swift:gs-prereqs.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/swift/gs-prereqs.html)

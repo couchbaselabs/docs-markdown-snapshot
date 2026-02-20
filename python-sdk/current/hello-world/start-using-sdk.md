@@ -3,7 +3,8 @@ title: Start Using the Python SDK
 description: Get up and running quickly, installing the Couchbase Python SDK,
   and running our Hello World example.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/hello-world/start-using-sdk.html)

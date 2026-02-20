@@ -2,7 +2,8 @@
 title: SQL++ for Analytics vs. SQL++ for Query
 description: A comparison between SQL++ for Analytics and SQL++ for Query.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/6_n1ql.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:analytics:6_n1ql.adoc[]
 ---
 
 [View original HTML](/server/7.6/analytics/6_n1ql.html)

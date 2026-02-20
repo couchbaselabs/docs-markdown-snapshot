@@ -1,7 +1,8 @@
 ---
 title: Get Involved
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.4@nodejs-sdk:project-docs:get-involved.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/4.4/project-docs/get-involved.html)

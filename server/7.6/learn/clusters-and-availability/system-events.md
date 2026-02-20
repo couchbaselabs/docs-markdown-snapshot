@@ -3,7 +3,8 @@ title: System Events
 description: Couchbase Server logs system events for the cluster, and allows
   their retrieval.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/system-events.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:clusters-and-availability/system-events.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/clusters-and-availability/system-events.html)

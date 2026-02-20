@@ -3,7 +3,8 @@ title: Hello Columnar&#8201;&#8212;&#8201;Java SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Java Columnar SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-columnar-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/java-columnar-sdk/current/hello-world/start-using-sdk.html)

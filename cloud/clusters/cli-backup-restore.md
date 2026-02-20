@@ -2,7 +2,8 @@
 title: Back Up and Restore with Command Line Tools
 description: Use Couchbase command line tools to manage ad hoc backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cli-backup-restore.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:cli-backup-restore.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/cli-backup-restore.html)

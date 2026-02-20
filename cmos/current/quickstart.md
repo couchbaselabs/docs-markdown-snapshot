@@ -1,7 +1,8 @@
 ---
 title: Quick Start
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/quickstart.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cmos::quickstart.adoc[]
 ---
 
 [View original HTML](/cmos/current/quickstart.html)

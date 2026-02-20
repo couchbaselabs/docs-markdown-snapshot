@@ -4,7 +4,8 @@ description: When one or more nodes have been brought into or taken out of a
   cluster, <em>rebalance</em> redistributes data, indexes, event processing, and
   query processing among available nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-rebalance-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-rebalance-overview.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-rebalance-overview.html)

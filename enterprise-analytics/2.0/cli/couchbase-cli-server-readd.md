@@ -2,7 +2,8 @@
 title: server-readd
 description: Adds a node back to the cluster after a failover
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-server-readd.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:cli:couchbase-cli-server-readd.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-server-readd.html)

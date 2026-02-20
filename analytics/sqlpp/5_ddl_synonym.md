@@ -3,7 +3,8 @@ title: CREATE SYNONYM Statements
 description: This topic describes how you can use <code>CREATE</code> statements
   to create synonyms for your Capella Analytics collections.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_synonym.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_ddl_synonym.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_ddl_synonym.html)

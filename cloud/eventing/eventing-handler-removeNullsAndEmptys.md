@@ -2,7 +2,8 @@
 title: "Function: removeNullObjectsAndElements"
 description: Recursively remove all nulls and empty items from a document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-removeNullsAndEmptys.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-handler-removeNullsAndEmptys.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-handler-removeNullsAndEmptys.html)

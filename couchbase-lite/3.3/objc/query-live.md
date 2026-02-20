@@ -2,7 +2,8 @@
 title: Live Queries
 description: Couchbase mobile database live query concepts
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/query-live.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:objc:query-live.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/objc/query-live.html)

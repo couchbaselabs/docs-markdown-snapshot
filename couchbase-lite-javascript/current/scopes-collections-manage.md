@@ -2,7 +2,8 @@
 title: Manage Scopes and Collections
 description: Scopes and collections allow you to organize your documents within a database.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/scopes-collections-manage.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::scopes-collections-manage.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/scopes-collections-manage.html)

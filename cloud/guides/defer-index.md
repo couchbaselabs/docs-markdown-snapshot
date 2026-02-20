@@ -2,7 +2,8 @@
 title: Defer Indexes
 description: How to create deferred indexes and build them later.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/defer-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:defer-index.adoc[]
 ---
 
 [View original HTML](/cloud/guides/defer-index.html)

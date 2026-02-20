@@ -2,7 +2,8 @@
 title: Troubleshooting Queries
 description: Couchbase Lite on Swift -- Using query.explain()
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/swift/pages/troubleshooting-queries.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:swift:troubleshooting-queries.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/swift/troubleshooting-queries.html)

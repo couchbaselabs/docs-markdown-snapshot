@@ -3,7 +3,8 @@ title: .NET Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the .NET Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/dotnet-analytics-sdk/current/hello-world/start-using-sdk.html)

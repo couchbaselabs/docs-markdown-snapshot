@@ -2,7 +2,8 @@
 title: Querying Your Data
 description: Querying Enterprise Analytics from the Go SDK, with SQL++.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-analytics-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
 [View original HTML](/go-analytics-sdk/current/concept-docs/querying-your-data.html)

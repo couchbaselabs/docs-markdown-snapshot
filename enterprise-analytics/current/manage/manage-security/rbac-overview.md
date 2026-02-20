@@ -3,7 +3,8 @@ title: Role Based Access Control (RBAC)
 description: For authorizing users, Enterprise Analytics provides <em>Role-Based
   Access Control</em>.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/rbac-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-security/rbac-overview.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-security/rbac-overview.html)

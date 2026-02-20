@@ -2,7 +2,8 @@
 title: Analytics Service REST API
 description: A description of the Service REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/analytics-rest-service/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:analytics-rest-service:index.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/analytics-rest-service/index.html)

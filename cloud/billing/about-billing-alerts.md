@@ -3,7 +3,8 @@ title: About Billing Alerts
 description: Couchbase Capella billing alerts notify you about important
   information related to your usage and billing for operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/about-billing-alerts.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:billing:about-billing-alerts.adoc[]
 ---
 
 [View original HTML](/cloud/billing/about-billing-alerts.html)

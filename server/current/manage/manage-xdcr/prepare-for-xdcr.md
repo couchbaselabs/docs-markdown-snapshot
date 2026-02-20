@@ -3,7 +3,8 @@ title: Prepare for XDCR
 description: Before setting up a replication, make sure you have the appropriate
   administrative roles.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/prepare-for-xdcr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-xdcr/prepare-for-xdcr.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-xdcr/prepare-for-xdcr.html)

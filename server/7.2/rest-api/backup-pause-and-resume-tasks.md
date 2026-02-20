@@ -3,7 +3,8 @@ title: Pause and Resume Tasks
 description: The Backup Service REST API allows the running of tasks for a
   specified, active repository to be paused, and then resumed.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/backup-pause-and-resume-tasks.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:backup-pause-and-resume-tasks.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/backup-pause-and-resume-tasks.html)

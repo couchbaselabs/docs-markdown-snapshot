@@ -1,7 +1,8 @@
 ---
 title: Connect your Apps to an App Endpoint
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/connect-apps-to-endpoint.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::app-endpoints/connect-apps-to-endpoint.adoc[]
 ---
 
 [View original HTML](/app-services/app-endpoints/connect-apps-to-endpoint.html)

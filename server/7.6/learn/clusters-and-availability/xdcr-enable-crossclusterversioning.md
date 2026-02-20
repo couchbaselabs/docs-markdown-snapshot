@@ -3,7 +3,8 @@ title: XDCR enableCrossClusterVersioning
 description: Enabling Cross Cluster Versioning allows XDCR to add metadata to
   each replicated document.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/xdcr-enable-crossclusterversioning.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:clusters-and-availability/xdcr-enable-crossclusterversioning.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/clusters-and-availability/xdcr-enable-crossclusterversioning.html)

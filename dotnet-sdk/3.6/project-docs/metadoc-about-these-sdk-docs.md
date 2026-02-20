@@ -3,7 +3,8 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/project-docs/metadoc-about-these-sdk-docs.html)

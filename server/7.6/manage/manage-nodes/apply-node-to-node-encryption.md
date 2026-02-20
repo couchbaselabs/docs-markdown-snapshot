@@ -3,7 +3,8 @@ title: Manage Node-to-Node Encryption
 description: Network traffic between the individual nodes of a Couchbase-Server
   cluster can be encrypted, in order to optimize cluster-internal security.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/apply-node-to-node-encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-nodes/apply-node-to-node-encryption.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-nodes/apply-node-to-node-encryption.html)

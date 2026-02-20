@@ -2,7 +2,8 @@
 title: Add Private Endpoints
 description: Private endpoints connect a Capella cluster to a chosen resource or service.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/private-endpoints.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:security:private-endpoints.adoc[]
 ---
 
 [View original HTML](/cloud/security/private-endpoints.html)

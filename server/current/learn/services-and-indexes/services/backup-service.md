@@ -3,7 +3,8 @@ title: Backup Service
 description: The Backup Service schedules full and incremental data backups and
   merges of previous  data-backups.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/backup-service.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:services-and-indexes/services/backup-service.adoc[]
 ---
 
 [View original HTML](/server/current/learn/services-and-indexes/services/backup-service.html)

@@ -3,7 +3,8 @@ title: Couchbase Lite on Objective-C
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/quickstart.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:objc:quickstart.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/objc/quickstart.html)

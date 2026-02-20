@@ -3,7 +3,8 @@ title: Introduction
 description: The Couchbase Power BI Connector provides data visualization for
   the Couchbase platform, using Microsoft's data visualization software.
 editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/main/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:power-bi-connector::index.adoc[]
 ---
 
 [View original HTML](/power-bi-connector/current/index.html)

@@ -5,7 +5,8 @@ description: Alternate addresses and port-numbers can be established for and
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-set-up-alternate-address.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-set-up-alternate-address.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-set-up-alternate-address.html)

@@ -1,7 +1,8 @@
 ---
 title: Query Data in Google Cloud Storage (GCS)
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/external-gcs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sources:external-gcs.adoc[]
 ---
 
 [View original HTML](/analytics/sources/external-gcs.html)

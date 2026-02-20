@@ -3,7 +3,8 @@ title: CSV
 description: This topic explains how to use the COPY TO statement to export data
   from a database to Amazon S3 or Google Cloud Storage (GCS) in CSV format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_csv.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_dml_copy_to_csv.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_dml_copy_to_csv.html)

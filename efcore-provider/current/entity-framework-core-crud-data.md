@@ -3,7 +3,8 @@ title: Saving Data
 description: Entity Framework Core (EF Core) supports two fundamental approaches
   for saving data to the database.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-crud-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:efcore-provider::entity-framework-core-crud-data.adoc[]
 ---
 
 [View original HTML](/efcore-provider/current/entity-framework-core-crud-data.html)

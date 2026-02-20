@@ -3,7 +3,8 @@ title: Query Workbench
 description: The Query Workbench provides a rich graphical user interface to
   perform query development.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/tools/pages/query-workbench.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:tools:query-workbench.adoc[]
 ---
 
 [View original HTML](/server/7.6/tools/query-workbench.html)

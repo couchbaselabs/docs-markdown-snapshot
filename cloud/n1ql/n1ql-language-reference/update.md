@@ -2,7 +2,8 @@
 title: UPDATE
 description: UPDATE replaces a document that already exists with updated values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/update.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/update.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/update.html)

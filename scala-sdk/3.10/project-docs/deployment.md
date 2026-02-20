@@ -2,7 +2,8 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@scala-sdk:project-docs:deployment.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.10/project-docs/deployment.html)

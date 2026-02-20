@@ -4,7 +4,8 @@ description: In response to increasing volumes of data being sent over the wire,
   Couchbase Server provides data compression between the SDK and Couchbase
   Server.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.5@ruby-sdk:concept-docs:compression.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.5/concept-docs/compression.html)

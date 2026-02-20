@@ -1,7 +1,8 @@
 ---
 title: Talend Connector
 editUrl: https://github.com/couchbase/docs-connectors-talend/edit/master/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:talend-connector::index.adoc[]
 ---
 
 [View original HTML](/talend-connector/index.html)

@@ -2,7 +2,8 @@
 title: Make an API Call with AI Services APIs
 description: How to make an API call with the Couchbase AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:api-guide:api-use.adoc[]
 ---
 
 [View original HTML](/ai/api-guide/api-use.html)

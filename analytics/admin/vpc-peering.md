@@ -4,7 +4,8 @@ description: To secure network traffic, you can configure a private network
   connection between a Capella Analytics cluster and an Amazon Web Services
   (AWS) account through virtual private cloud (VPC) peering.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/vpc-peering.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:admin:vpc-peering.adoc[]
 ---
 
 [View original HTML](/analytics/admin/vpc-peering.html)

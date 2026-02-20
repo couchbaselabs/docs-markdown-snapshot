@@ -2,7 +2,8 @@
 title: User Authentication
 description: Access {sgw} securely to sync from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/security/pages/authentication-users.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:security:authentication-users.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/security/authentication-users.html)

@@ -1,7 +1,8 @@
 ---
 title: backup-service-nodes-threads-map
 editUrl: https://github.com/couchbase/couchbase-cli/edit/trinity/docs/modules/cli/pages/cbcli/couchbase-cli-backup-service-nodes-threads-map.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:cli:cbcli/couchbase-cli-backup-service-nodes-threads-map.adoc[]
 ---
 
 [View original HTML](/server/7.6/cli/cbcli/couchbase-cli-backup-service-nodes-threads-map.html)

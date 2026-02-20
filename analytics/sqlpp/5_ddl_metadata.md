@@ -3,7 +3,8 @@ title: Querying Metadata
 description: You can review information about your Capella Analytics entities by
   querying the collections in the <code>System.Metadata</code> scope.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_metadata.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_ddl_metadata.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_ddl_metadata.html)

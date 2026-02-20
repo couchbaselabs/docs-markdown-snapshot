@@ -2,7 +2,8 @@
 title: Couchbase Rust SDK Installation
 description: Installation instructions for the Couchbase Rust Client.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/project-docs/sdk-full-installation.html)

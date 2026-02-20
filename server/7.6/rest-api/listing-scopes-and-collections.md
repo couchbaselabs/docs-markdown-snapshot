@@ -2,7 +2,8 @@
 title: Listing Scopes and Collections
 description: Scopes and collections can be <em>listed</em>, by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/listing-scopes-and-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:listing-scopes-and-collections.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/listing-scopes-and-collections.html)

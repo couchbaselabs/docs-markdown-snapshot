@@ -2,7 +2,8 @@
 title: memory
 description: Gets memory-related statistics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-memory.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:cli:cbstats/cbstats-memory.adoc[]
 ---
 
 [View original HTML](/server/7.6/cli/cbstats/cbstats-memory.html)

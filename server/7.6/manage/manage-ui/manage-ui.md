@@ -3,7 +3,8 @@ title: Couchbase Web Console
 description: The features of Couchbase Server can be managed by means of
   Couchbase Web Console.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-ui/manage-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-ui/manage-ui.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-ui/manage-ui.html)

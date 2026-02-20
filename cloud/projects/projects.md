@@ -1,7 +1,8 @@
 ---
 title: Projects Overview
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/projects.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:projects:projects.adoc[]
 ---
 
 [View original HTML](/cloud/projects/projects.html)

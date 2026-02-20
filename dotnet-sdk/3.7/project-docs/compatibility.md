@@ -4,7 +4,8 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.7@dotnet-sdk:project-docs:compatibility.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.7/project-docs/compatibility.html)

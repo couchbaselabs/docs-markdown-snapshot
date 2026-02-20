@@ -2,7 +2,8 @@
 title: Optimizer Hints
 description: Optimizer hints enable you to supply directives to the optimizer.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/optimizer-hints.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/optimizer-hints.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/optimizer-hints.html)

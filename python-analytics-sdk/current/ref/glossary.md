@@ -3,7 +3,8 @@ title: Glossary
 description: Unpicking the tangled alphabet soup of the Enterprise Analytics
   Platform, from an SDK perspective.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-python/edit/release/1.0/modules/ref/pages/glossary.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-analytics-sdk:ref:glossary.adoc[]
 ---
 
 [View original HTML](/python-analytics-sdk/current/ref/glossary.html)

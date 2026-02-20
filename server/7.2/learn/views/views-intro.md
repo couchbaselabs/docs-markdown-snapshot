@@ -2,7 +2,8 @@
 title: Views Reference
 description: Couchbase views enable indexing and querying of data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:views/views-intro.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/views/views-intro.html)

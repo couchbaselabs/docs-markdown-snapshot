@@ -3,7 +3,8 @@ title: Run a Vector Search with the REST API and curl/HTTP
 description: You can use the REST API and a curl command to run a search against
   a Search Vector Index and return similar vectors.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/run-vector-search-rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:vector-search:run-vector-search-rest-api.adoc[]
 ---
 
 [View original HTML](/server/current/vector-search/run-vector-search-rest-api.html)

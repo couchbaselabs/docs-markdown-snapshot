@@ -3,7 +3,8 @@ title: Grouping and Aggregate Pushdowns
 description: SQL++ Pushdowns optimize the performance of SQL++ queries by
   supporting grouping and aggregate expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/groupby-aggregate-performance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:indexes:groupby-aggregate-performance.adoc[]
 ---
 
 [View original HTML](/cloud/indexes/groupby-aggregate-performance.html)

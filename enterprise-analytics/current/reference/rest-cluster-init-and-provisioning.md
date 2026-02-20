@@ -4,7 +4,8 @@ description: The Couchbase REST API can be used to initialize an individual
   node; and to provision it, so that it becomes a single-node cluster, to which
   further nodes can then be added.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-init-and-provisioning.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-cluster-init-and-provisioning.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-init-and-provisioning.html)

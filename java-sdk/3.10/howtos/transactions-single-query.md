@@ -2,7 +2,8 @@
 title: Single Query Transactions
 description: Learn how to perform bulk-loading transactions with the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/transactions-single-query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@java-sdk:howtos:transactions-single-query.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.10/howtos/transactions-single-query.html)

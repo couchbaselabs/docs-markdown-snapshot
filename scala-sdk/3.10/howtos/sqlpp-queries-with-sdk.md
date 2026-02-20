@@ -4,7 +4,8 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@scala-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.10/howtos/sqlpp-queries-with-sdk.html)

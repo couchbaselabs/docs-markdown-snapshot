@@ -3,7 +3,8 @@ title: Platform Introduction
 description: Discover how to get up and running developing applications with the
   Couchbase PHP SDK 4.0+ using <code>Visual Studio Code</code>.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:php-sdk:hello-world:platform-help.adoc[]
 ---
 
 [View original HTML](/php-sdk/current/hello-world/platform-help.html)

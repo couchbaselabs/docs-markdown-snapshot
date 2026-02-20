@@ -2,7 +2,8 @@
 title: Connect Your SDK
 description: Tips for successful connection over unreliable networks.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/connection-troubleshooting.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clouds:connection-troubleshooting.adoc[]
 ---
 
 [View original HTML](/cloud/clouds/connection-troubleshooting.html)

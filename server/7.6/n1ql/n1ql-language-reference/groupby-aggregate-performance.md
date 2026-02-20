@@ -3,7 +3,8 @@ title: Grouping and Aggregate Pushdowns
 description: SQL++ Pushdowns optimize the performance of SQL++ queries by
   supporting grouping and aggregate expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/groupby-aggregate-performance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:n1ql:n1ql-language-reference/groupby-aggregate-performance.adoc[]
 ---
 
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/groupby-aggregate-performance.html)

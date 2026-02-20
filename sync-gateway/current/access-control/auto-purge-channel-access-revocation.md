@@ -2,7 +2,8 @@
 title: Auto-Purge on Channel Access Revocation
 description: Auto-purge behavior on loss of access to document channels
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/auto-purge-channel-access-revocation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:access-control:auto-purge-channel-access-revocation.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/access-control/auto-purge-channel-access-revocation.html)

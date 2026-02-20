@@ -3,7 +3,8 @@ title: String Functions
 description: This topic describes the builtin SQL++ for Enterprise Analytics
   string functions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/8_builtin_str.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sqlpp:8_builtin_str.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sqlpp/8_builtin_str.html)

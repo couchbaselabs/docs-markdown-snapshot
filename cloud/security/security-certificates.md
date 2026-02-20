@@ -3,7 +3,8 @@ title: Capella Root Certificates
 description: Capella automatically generates a root certificate to allow you to
   connect to your cluster from an external application.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security-certificates.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:security:security-certificates.adoc[]
 ---
 
 [View original HTML](/cloud/security/security-certificates.html)

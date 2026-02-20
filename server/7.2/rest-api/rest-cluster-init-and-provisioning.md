@@ -1,7 +1,8 @@
 ---
 title: Cluster Initialization and Provisioning
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-init-and-provisioning.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-cluster-init-and-provisioning.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-cluster-init-and-provisioning.html)

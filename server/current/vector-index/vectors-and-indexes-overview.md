@@ -2,7 +2,8 @@
 title: Use Vector Indexes for AI Applications
 description: This page is a high-level overview of vectors and how they work in indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-index/pages/vectors-and-indexes-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:vector-index:vectors-and-indexes-overview.adoc[]
 ---
 
 [View original HTML](/server/current/vector-index/vectors-and-indexes-overview.html)

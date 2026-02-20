@@ -3,7 +3,8 @@ title: Use a Couchbase SDK with Capella Analytics Services
 description: The Couchbase SDKs enable you to connect client code written in
   popular languages to Capella Analytics services.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/dev/pages/use-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:dev:use-sdk.adoc[]
 ---
 
 [View original HTML](/analytics/dev/use-sdk.html)

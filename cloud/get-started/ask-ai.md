@@ -3,7 +3,8 @@ title: Ask AI
 description: You can ask our AI chatbot questions about Couchbase Capella to get
   personalised responses that are cross-referenced with our documentation.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/ask-ai.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:get-started:ask-ai.adoc[]
 ---
 
 [View original HTML](/cloud/get-started/ask-ai.html)

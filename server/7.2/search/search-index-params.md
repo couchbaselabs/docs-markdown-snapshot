@@ -2,7 +2,8 @@
 title: Search Index JSON Properties
 description: Use a JSON payload to control the settings for a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/search-index-params.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:search:search-index-params.adoc[]
 ---
 
 [View original HTML](/server/7.2/search/search-index-params.html)

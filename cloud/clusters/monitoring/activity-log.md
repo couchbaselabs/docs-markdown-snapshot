@@ -3,7 +3,8 @@ title: View Activity Logs
 description: Capella Activity Logs provide audit trails of events in your
   organization, project, and cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/activity-log.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:monitoring/activity-log.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/monitoring/activity-log.html)

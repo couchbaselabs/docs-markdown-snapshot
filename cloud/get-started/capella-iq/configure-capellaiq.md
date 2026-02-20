@@ -4,7 +4,8 @@ description: Capella iQ harnesses the power of a third-party large language
   model (LLM) to improve your queries. You can turn this tool on or off for your
   organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/configure-capellaiq.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:get-started:capella-iq/configure-capellaiq.adoc[]
 ---
 
 [View original HTML](/cloud/get-started/capella-iq/configure-capellaiq.html)

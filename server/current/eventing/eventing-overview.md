@@ -2,7 +2,8 @@
 title: Run a Function on Data Change
 description: The Eventing Service lets you handle data changes in real time.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-overview.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-overview.html)

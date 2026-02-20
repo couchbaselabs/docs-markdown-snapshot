@@ -3,7 +3,8 @@ title: Generate Credit Card Transaction Alerts
 description: Use an Eventing Function to generate high-risk alerts whenever a
   customer makes certain credit card transactions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-high-risk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-examples-high-risk.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-examples-high-risk.html)

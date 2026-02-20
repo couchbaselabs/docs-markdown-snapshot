@@ -2,7 +2,8 @@
 title: View Metrics for a Capella Analytics Cluster
 description: Capella Analytics provides metrics that allow you to monitor your clusters.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/view-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:admin:monitoring/view-metrics.adoc[]
 ---
 
 [View original HTML](/analytics/admin/monitoring/view-metrics.html)

@@ -1,7 +1,8 @@
 ---
 title: Creating Index from UI
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-creating-index-from-UI.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:fts:fts-creating-index-from-UI.adoc[]
 ---
 
 [View original HTML](/server/current/fts/fts-creating-index-from-UI.html)

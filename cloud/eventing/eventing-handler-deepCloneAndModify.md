@@ -3,7 +3,8 @@ title: "Function: deepCloneAndModify"
 description: Recursively change a type 'string' or 'number' generically via an
   applied function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-deepCloneAndModify.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-handler-deepCloneAndModify.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-handler-deepCloneAndModify.html)

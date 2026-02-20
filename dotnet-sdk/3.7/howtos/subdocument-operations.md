@@ -3,7 +3,8 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.7@dotnet-sdk:howtos:subdocument-operations.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.7/howtos/subdocument-operations.html)

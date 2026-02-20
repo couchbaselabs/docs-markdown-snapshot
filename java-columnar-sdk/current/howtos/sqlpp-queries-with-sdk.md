@@ -4,7 +4,8 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-columnar-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
 [View original HTML](/java-columnar-sdk/current/howtos/sqlpp-queries-with-sdk.html)

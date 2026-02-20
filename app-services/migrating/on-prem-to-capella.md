@@ -1,7 +1,8 @@
 ---
 title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/on-prem-to-capella.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::migrating/on-prem-to-capella.adoc[]
 ---
 
 [View original HTML](/app-services/migrating/on-prem-to-capella.html)

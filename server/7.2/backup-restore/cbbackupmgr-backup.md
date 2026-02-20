@@ -2,7 +2,8 @@
 title: cbbackupmgr backup
 description: Backs up data from a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/backup-restore/pages/cbbackupmgr-backup.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:backup-restore:cbbackupmgr-backup.adoc[]
 ---
 
 [View original HTML](/server/7.2/backup-restore/cbbackupmgr-backup.html)

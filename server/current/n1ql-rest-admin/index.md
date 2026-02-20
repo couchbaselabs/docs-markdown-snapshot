@@ -1,7 +1,8 @@
 ---
 title: Query Admin REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/n1ql-rest-admin/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql-rest-admin:index.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql-rest-admin/index.html)

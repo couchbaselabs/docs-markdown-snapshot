@@ -3,7 +3,8 @@ title: Debugging and Diagnosability
 description: Debugging and diagnostics in the Eventing Service comprises of
   debugging functions, functions log, and log redaction.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-debugging-and-diagnosability.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:eventing:eventing-debugging-and-diagnosability.adoc[]
 ---
 
 [View original HTML](/server/7.2/eventing/eventing-debugging-and-diagnosability.html)

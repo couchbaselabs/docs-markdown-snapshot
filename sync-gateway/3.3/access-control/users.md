@@ -3,7 +3,8 @@ title: Users
 description: About Sync Gateway <em>users</em> and their role in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/users.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@sync-gateway:access-control:users.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.3/access-control/users.html)

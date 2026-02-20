@@ -2,7 +2,8 @@
 title: Create Couchbase Transactions with SQL++
 description: How to create Couchbase transactions using SQL++.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/transactions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:guides:transactions.adoc[]
 ---
 
 [View original HTML](/server/current/guides/transactions.html)

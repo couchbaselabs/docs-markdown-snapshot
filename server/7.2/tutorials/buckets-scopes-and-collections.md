@@ -3,7 +3,8 @@ title: Buckets, Scopes and Collections
 description: In this section, you'll learn how to logically partition your data
   in Couchbase using buckets, scopes and collections.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/buckets-scopes-and-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:tutorials:buckets-scopes-and-collections.adoc[]
 ---
 
 [View original HTML](/server/7.2/tutorials/buckets-scopes-and-collections.html)

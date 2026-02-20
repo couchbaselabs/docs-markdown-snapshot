@@ -2,7 +2,8 @@
 title: Reserved Keywords
 description: This topic lists the SQL++ for Capella Analytics reserved keywords.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/reserved_keywords.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:reserved_keywords.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/reserved_keywords.html)

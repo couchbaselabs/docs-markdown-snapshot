@@ -2,7 +2,8 @@
 title: Prerequisites
 description: View the minimum platform specifications needed to run Couchbase Edge Server.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/get-started/pages/prereqs.adoc
-pubDate: 2026-02-19T08:54:56.182Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-edge-server:get-started:prereqs.adoc[]
 ---
 
 [View original HTML](/couchbase-edge-server/current/get-started/prereqs.html)

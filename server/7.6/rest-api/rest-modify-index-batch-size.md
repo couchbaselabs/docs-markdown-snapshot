@@ -4,7 +4,8 @@ description: Couchbase Server breaks the rebuilding of indexes during a
   rebalance into batches to limit the performance impact. You can use the REST
   API to change the size of these batches.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-modify-index-batch-size.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-modify-index-batch-size.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-modify-index-batch-size.html)

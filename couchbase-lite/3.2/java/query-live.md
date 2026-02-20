@@ -3,7 +3,8 @@ title: Live Query
 description: Working with Couchbase Lite's data model  -- Querying database data
   using live queries
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/query-live.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:java:query-live.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/java/query-live.html)

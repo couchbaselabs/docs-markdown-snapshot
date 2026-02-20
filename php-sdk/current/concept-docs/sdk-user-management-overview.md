@@ -1,7 +1,8 @@
 ---
 title: User Management
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/sdk-user-management-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:php-sdk:concept-docs:sdk-user-management-overview.adoc[]
 ---
 
 [View original HTML](/php-sdk/current/concept-docs/sdk-user-management-overview.html)

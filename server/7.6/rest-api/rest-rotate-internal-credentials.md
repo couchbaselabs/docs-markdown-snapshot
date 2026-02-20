@@ -3,7 +3,8 @@ title: Rotate Internal Credentials
 description: Credentials used for Couchbase-Server internal users can be rotated
   at any time, on a specified node, by means of the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-rotate-internal-credentials.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-rotate-internal-credentials.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-rotate-internal-credentials.html)

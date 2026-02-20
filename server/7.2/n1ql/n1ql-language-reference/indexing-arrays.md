@@ -4,7 +4,8 @@ description: Array Indexing adds the capability to create global indexes on
   array elements and optimizes the execution of queries involving array
   elements.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/indexing-arrays.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:n1ql:n1ql-language-reference/indexing-arrays.adoc[]
 ---
 
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/indexing-arrays.html)

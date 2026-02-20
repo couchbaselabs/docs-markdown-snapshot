@@ -3,7 +3,8 @@ title: External REST via cURL GET
 description: Demonstrate accessing a cURL REST end point via GET to fetch Daily
   Exchange Rate data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-examples-rest-via-curl-get.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:eventing:eventing-examples-rest-via-curl-get.adoc[]
 ---
 
 [View original HTML](/server/7.2/eventing/eventing-examples-rest-via-curl-get.html)

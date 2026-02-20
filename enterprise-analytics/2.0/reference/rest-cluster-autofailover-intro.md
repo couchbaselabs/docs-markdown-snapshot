@@ -2,7 +2,8 @@
 title: Auto-Failover
 description: Auto-failover can be managed by means of the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cluster-autofailover-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-cluster-autofailover-intro.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-cluster-autofailover-intro.html)

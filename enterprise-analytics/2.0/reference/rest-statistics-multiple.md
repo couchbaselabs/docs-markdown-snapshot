@@ -3,7 +3,8 @@ title: Getting Multiple Statistics
 description: The REST API allows cluster-statistics to be retrieved for multiple
   metrics, in a single call.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-statistics-multiple.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-statistics-multiple.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-statistics-multiple.html)

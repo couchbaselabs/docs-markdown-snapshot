@@ -2,7 +2,8 @@
 title: Data Sync Peer-to-Peer
 description: Couchbase Lite database peer-to-peer sync concepts using websockets
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/p2psync-websocket.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:objc:p2psync-websocket.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/objc/p2psync-websocket.html)

@@ -3,7 +3,8 @@ title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:php-sdk:howtos:subdocument-operations.adoc[]
 ---
 
 [View original HTML](/php-sdk/current/howtos/subdocument-operations.html)

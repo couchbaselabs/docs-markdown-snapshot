@@ -2,7 +2,8 @@
 title: Exporting Functions
 description: Couchbase provides an option to export Functions as a JSON document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-function-export.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-function-export.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-function-export.html)

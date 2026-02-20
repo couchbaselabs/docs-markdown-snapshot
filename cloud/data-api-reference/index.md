@@ -1,7 +1,8 @@
 ---
 title: Data API Reference
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-reference/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:data-api-reference:index.adoc[]
 ---
 
 [View original HTML](/cloud/data-api-reference/index.html)

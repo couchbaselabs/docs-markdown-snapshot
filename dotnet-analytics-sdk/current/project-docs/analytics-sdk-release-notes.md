@@ -3,7 +3,8 @@ title: Analytics SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Enterprise Analytics .NET Client.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/project-docs/pages/analytics-sdk-release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-analytics-sdk:project-docs:analytics-sdk-release-notes.adoc[]
 ---
 
 [View original HTML](/dotnet-analytics-sdk/current/project-docs/analytics-sdk-release-notes.html)

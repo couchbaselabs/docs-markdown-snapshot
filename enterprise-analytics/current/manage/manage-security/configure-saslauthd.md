@@ -3,7 +3,8 @@ title: Configure saslauthd
 description: <code>saslauthd</code> is a daemon process that handles plaintext
   authentication requests on behalf of the SASL library.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/configure-saslauthd.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-security/configure-saslauthd.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-security/configure-saslauthd.html)

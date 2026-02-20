@@ -3,7 +3,8 @@ title: XATTR &amp; Virtual XATTR
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/xattr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:concept-docs:xattr.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/concept-docs/xattr.html)

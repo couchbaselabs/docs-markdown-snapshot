@@ -2,7 +2,8 @@
 title: Logging
 description: Logging with <code>gocb.Logger</code> & using other implementations.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.9@go-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.9/howtos/collecting-information-and-logging.html)

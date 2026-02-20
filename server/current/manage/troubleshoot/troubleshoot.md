@@ -2,7 +2,8 @@
 title: Troubleshoot
 description: Common errors, general tips, and an account of how to handle core files.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/troubleshoot/troubleshoot.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:troubleshoot/troubleshoot.adoc[]
 ---
 
 [View original HTML](/server/current/manage/troubleshoot/troubleshoot.html)

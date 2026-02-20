@@ -1,7 +1,8 @@
 ---
 title: cbopcfg
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cbopcfg.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::tools/cbopcfg.adoc[]
 ---
 
 [View original HTML](/operator/current/tools/cbopcfg.html)

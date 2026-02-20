@@ -3,7 +3,8 @@ title: DESCRIBE LINK Statements
 description: This topic describes how you can get information about a link with
   a <code>DESCRIBE LINK</code> statement.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_describe.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_dml_describe.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_dml_describe.html)

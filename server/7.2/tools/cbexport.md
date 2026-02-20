@@ -2,7 +2,8 @@
 title: cbexport
 description: A utility for exporting data from a Couchbase cluster
 editUrl: https://github.com/couchbase/backup/edit/neo/docs/modules/tools/pages/cbexport.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:tools:cbexport.adoc[]
 ---
 
 [View original HTML](/server/7.2/tools/cbexport.html)

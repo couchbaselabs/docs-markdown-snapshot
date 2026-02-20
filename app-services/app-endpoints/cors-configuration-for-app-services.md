@@ -1,7 +1,8 @@
 ---
 title: Cross-Origin Resource Sharing (CORS)
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/cors-configuration-for-app-services.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::app-endpoints/cors-configuration-for-app-services.adoc[]
 ---
 
 [View original HTML](/app-services/app-endpoints/cors-configuration-for-app-services.html)

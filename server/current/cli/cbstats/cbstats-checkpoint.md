@@ -4,7 +4,8 @@ description: The <code>checkpoint</code> command, used by <code>cbstats</code>,
   provides information on the <em>checkpoint</em> data structure for a specified
   bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-checkpoint.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-checkpoint.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-checkpoint.html)

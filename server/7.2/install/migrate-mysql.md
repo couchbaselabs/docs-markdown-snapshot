@@ -3,7 +3,8 @@ title: Migrating from Relational Databases
 description: Migration guidelines for relational database users. In this
   section, we use MySQL as an example relational database.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/migrate-mysql.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:migrate-mysql.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/migrate-mysql.html)

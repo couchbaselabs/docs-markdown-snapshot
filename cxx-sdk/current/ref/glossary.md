@@ -2,7 +2,8 @@
 title: Glossary
 description: Couchbase-specific terms you'll need to understand to develop with the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/ref/pages/glossary.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cxx-sdk:ref:glossary.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/current/ref/glossary.html)

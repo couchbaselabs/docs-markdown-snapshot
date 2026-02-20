@@ -2,7 +2,8 @@
 title: collections-details
 description: Provides low-level details on collections.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/cbstats/cbstats-collections-details.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:cli:cbstats/cbstats-collections-details.adoc[]
 ---
 
 [View original HTML](/server/7.6/cli/cbstats/cbstats-collections-details.html)

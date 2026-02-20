@@ -1,7 +1,8 @@
 ---
 title: Release Notes for Couchbase Kubernetes Operator 2.8
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.8@operator::release-notes.adoc[]
 ---
 
 [View original HTML](/operator/2.8/release-notes.html)

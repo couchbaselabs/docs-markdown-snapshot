@@ -2,7 +2,8 @@
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/concept-docs/pages/encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.5@nodejs-sdk:concept-docs:encryption.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/4.5/concept-docs/encryption.html)

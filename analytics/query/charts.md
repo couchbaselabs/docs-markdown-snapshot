@@ -2,7 +2,8 @@
 title: Visualize Results in Charts
 description: After you run a query, you can visualize its results in graphical format.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/charts.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:charts.adoc[]
 ---
 
 [View original HTML](/analytics/query/charts.html)

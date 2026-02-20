@@ -3,7 +3,8 @@ title: User Roles and Privileges
 description: Learn how to manage user access through Enterprise Analytics'
   role-based security system with predefined roles and granular privileges.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/user-roles-privileges.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-security/user-roles-privileges.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-security/user-roles-privileges.html)

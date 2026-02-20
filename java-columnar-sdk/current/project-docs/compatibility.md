@@ -4,7 +4,8 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-columnar-sdk:project-docs:compatibility.adoc[]
 ---
 
 [View original HTML](/java-columnar-sdk/current/project-docs/compatibility.html)

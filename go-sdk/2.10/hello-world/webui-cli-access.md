@@ -1,7 +1,8 @@
 ---
 title: Browser and CLI Access
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/hello-world/pages/webui-cli-access.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:hello-world:webui-cli-access.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/hello-world/webui-cli-access.html)

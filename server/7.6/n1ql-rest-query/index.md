@@ -1,7 +1,8 @@
 ---
 title: Query Service REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/n1ql-rest-query/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:n1ql-rest-query:index.adoc[]
 ---
 
 [View original HTML](/server/7.6/n1ql-rest-query/index.html)

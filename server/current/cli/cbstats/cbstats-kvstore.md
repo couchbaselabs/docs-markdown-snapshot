@@ -2,7 +2,8 @@
 title: kvstore
 description: Provides low-level stats from the underlying KV storage system.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-kvstore.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-kvstore.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-kvstore.html)

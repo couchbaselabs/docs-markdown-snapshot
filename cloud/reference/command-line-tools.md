@@ -3,7 +3,8 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export large amounts
   of data, and manage ad hoc backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
 [View original HTML](/cloud/reference/command-line-tools.html)

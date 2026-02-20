@@ -3,7 +3,8 @@ title: Managing Sample Buckets
 description: Couchbase Server allows <em>sample buckets</em> to be installed.
   These contain data ready to be used for development and testing.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-sample-buckets.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-sample-buckets.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-sample-buckets.html)

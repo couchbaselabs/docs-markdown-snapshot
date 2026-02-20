@@ -3,7 +3,8 @@ title: How to Verify Access
 description: How to verify Sync Gateway access to data in cloud-to-edge
   enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/access-control/pages/access-control-how-verify-access.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:access-control:access-control-how-verify-access.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/access-control/access-control-how-verify-access.html)

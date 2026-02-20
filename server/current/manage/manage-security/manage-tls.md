@@ -4,7 +4,8 @@ description: To support secure communications between nodes, clusters, and
   clients, Couchbase Server provides interfaces for the configuration of
   on-the-wire security settings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-tls.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-security/manage-tls.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-security/manage-tls.html)

@@ -3,7 +3,8 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/howtos/slow-operations-logging.html)

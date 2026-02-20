@@ -2,7 +2,8 @@
 title: Expressions
 description: A description of SQL++ for Enterprise Analytics expressions.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/2_expr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sqlpp:2_expr.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sqlpp/2_expr.html)

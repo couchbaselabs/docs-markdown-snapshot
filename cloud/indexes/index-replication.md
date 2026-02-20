@@ -4,7 +4,8 @@ description: The Index Service ensures availability and performance through
   replication and partitioning. You can control the scan consistency for
   individual queries.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/index-replication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:indexes:index-replication.adoc[]
 ---
 
 [View original HTML](/cloud/indexes/index-replication.html)

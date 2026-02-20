@@ -3,7 +3,8 @@ title: How to Create a User
 description: How to create a Sync Gateway user for secure access control in
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/access-control-how-create-users.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@sync-gateway:access-control:access-control-how-create-users.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.3/access-control/access-control-how-create-users.html)

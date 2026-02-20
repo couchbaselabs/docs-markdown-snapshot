@@ -3,7 +3,8 @@ title: Query without Indexes
 description: Sequential scans enable you to query a keyspace, even if the
   keyspace has no indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/query-without-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:indexes:query-without-index.adoc[]
 ---
 
 [View original HTML](/server/current/indexes/query-without-index.html)

@@ -3,7 +3,8 @@ title: Use Scalar Columns to Filter Hyperscale Vector Index Scans
 description: You can reduce the number of vectors for a query that uses a
   Hyperscale Vector index by adding scalar values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/hyperscale-filter.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-index:hyperscale-filter.adoc[]
 ---
 
 [View original HTML](/cloud/vector-index/hyperscale-filter.html)

@@ -2,7 +2,8 @@
 title: SQL++ Queries
 description: Couchbase Lite JavaScript -- SQL++ Query API
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-n1ql-mobile.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::query-n1ql-mobile.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/query-n1ql-mobile.html)

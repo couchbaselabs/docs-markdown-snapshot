@@ -2,7 +2,8 @@
 title: Getting Bucket Statistics
 description: See the IMPORTANT note.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-bucket-stats.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-bucket-stats.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-bucket-stats.html)

@@ -4,7 +4,8 @@ description: Evaluate the overall performance and capacity goals that you have
   for Couchbase, and use that information to determine the necessary resources
   that you'll need in your deployment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/sizing-general.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:sizing-general.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/sizing-general.html)

@@ -2,7 +2,8 @@
 title: Variable Bindings and Name Resolution
 description: This topic describes variable bindings and name resolution.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/appendix_3_resolution.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:appendix_3_resolution.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/appendix_3_resolution.html)

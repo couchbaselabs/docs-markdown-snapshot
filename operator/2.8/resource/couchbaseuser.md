@@ -1,7 +1,8 @@
 ---
 title: CouchbaseUser Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.8.x/docs/user/modules/ROOT/pages/resource/couchbaseuser.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.8@operator::resource/couchbaseuser.adoc[]
 ---
 
 [View original HTML](/operator/2.8/resource/couchbaseuser.html)

@@ -2,7 +2,8 @@
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/nonjson.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.9@go-sdk:concept-docs:nonjson.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.9/concept-docs/nonjson.html)

@@ -2,7 +2,8 @@
 title: Collecting Logs
 description: Couchbase-Server logs can be collected, prior to inspection.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-manage-log-collection.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-manage-log-collection.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-manage-log-collection.html)

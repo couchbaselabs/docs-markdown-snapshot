@@ -2,7 +2,8 @@
 title: dcp-vbtakeover
 description: Tracks the progress of rebalance using Database Change Protocol (DCP).
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-dcp-vbtakeover.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-dcp-vbtakeover.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-dcp-vbtakeover.html)

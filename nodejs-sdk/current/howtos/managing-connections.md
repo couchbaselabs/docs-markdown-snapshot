@@ -2,7 +2,8 @@
 title: Managing Connections
 description: This section describes how to connect the Node.js SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:nodejs-sdk:howtos:managing-connections.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/current/howtos/managing-connections.html)

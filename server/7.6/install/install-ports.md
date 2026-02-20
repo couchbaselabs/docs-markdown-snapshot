@@ -3,7 +3,8 @@ title: Couchbase Server Ports
 description: Couchbase Server uses multiple TCP ports to facilitate
   communication between server components, as well as with Couchbase clients.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/install-ports.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:install-ports.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/install-ports.html)

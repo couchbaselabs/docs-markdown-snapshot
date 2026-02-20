@@ -2,7 +2,8 @@
 title: Couchbase Lite JavaScript Release Notes
 description: Couchbase Lite JavaScript release notes
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/releasenotes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::releasenotes.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/releasenotes.html)

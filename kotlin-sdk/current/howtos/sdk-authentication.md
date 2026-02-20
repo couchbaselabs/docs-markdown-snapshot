@@ -3,7 +3,8 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:howtos:sdk-authentication.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/howtos/sdk-authentication.html)

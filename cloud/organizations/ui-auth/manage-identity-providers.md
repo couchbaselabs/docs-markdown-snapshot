@@ -4,7 +4,8 @@ description: After creating a realm, you can change its realm name, rotate its
   certificates, change the default team, turn group mapping on or off, or delete
   it.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/manage-identity-providers.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:organizations:ui-auth/manage-identity-providers.adoc[]
 ---
 
 [View original HTML](/cloud/organizations/ui-auth/manage-identity-providers.html)

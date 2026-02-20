@@ -2,7 +2,8 @@
 title: Handling Errors with the C SDK
 description: How to handle errors when programming with the C SDK.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:c-sdk:howtos:error-handling.adoc[]
 ---
 
 [View original HTML](/c-sdk/current/howtos/error-handling.html)

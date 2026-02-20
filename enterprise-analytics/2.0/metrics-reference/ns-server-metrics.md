@@ -2,7 +2,8 @@
 title: Cluster Manager Metrics
 description: A list of the metrics provided by the Cluster Manager.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/metrics-reference/pages/ns-server-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:metrics-reference:ns-server-metrics.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/metrics-reference/ns-server-metrics.html)

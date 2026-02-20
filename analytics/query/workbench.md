@@ -3,7 +3,8 @@ title: Query and Explore with the Workbench
 description: The workbench for Capella Analytics provides a graphical user
   interface for query development and data exploration.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/workbench.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:workbench.adoc[]
 ---
 
 [View original HTML](/analytics/query/workbench.html)

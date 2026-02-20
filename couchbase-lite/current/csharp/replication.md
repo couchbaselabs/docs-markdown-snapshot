@@ -3,7 +3,8 @@ title: Data Sync using Sync Gateway
 description: Couchbase Lite for C# -- Synchronizing data changes between local
   and remote databases using Sync Gateway
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/replication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:csharp:replication.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/csharp/replication.html)

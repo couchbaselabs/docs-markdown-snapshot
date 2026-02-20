@@ -2,7 +2,8 @@
 title: Run a Search
 description: Run a Search query to search and return the contents of a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/run-searches.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:search:run-searches.adoc[]
 ---
 
 [View original HTML](/server/7.2/search/run-searches.html)

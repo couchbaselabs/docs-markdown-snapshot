@@ -4,7 +4,8 @@ description: The Couchbase Scala SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.9@scala-sdk:project-docs:third-party-integrations.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.9/project-docs/third-party-integrations.html)

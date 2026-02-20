@@ -3,7 +3,8 @@ title: View Operations
 description: Views create indexes on your information that enable search and
   select operations on the data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-operation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:views/views-operation.adoc[]
 ---
 
 [View original HTML](/server/current/learn/views/views-operation.html)

@@ -2,7 +2,8 @@
 title: Import a Search Index Definition with the Capella UI
 description: Use the Couchbase Capella UI to import a JSON Search index definition.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/import-search-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:import-search-index.adoc[]
 ---
 
 [View original HTML](/cloud/search/import-search-index.html)

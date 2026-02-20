@@ -1,7 +1,8 @@
 ---
 title: Go Columnar SDK
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-columnar-sdk:hello-world:overview.adoc[]
 ---
 
 [View original HTML](/go-columnar-sdk/current/hello-world/overview.html)

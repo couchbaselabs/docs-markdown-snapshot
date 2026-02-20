@@ -3,7 +3,8 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.4@nodejs-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/4.4/concept-docs/n1ql-query.html)

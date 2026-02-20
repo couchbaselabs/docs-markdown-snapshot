@@ -4,7 +4,8 @@ description: The React Native plugin for Couchbase Lite is now in public
   preview. This is an open-source, community-supported project developed by
   Couchbase.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/hybrid/pages/react.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:hybrid:react.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/hybrid/react.html)

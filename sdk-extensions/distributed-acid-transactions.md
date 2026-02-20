@@ -4,7 +4,8 @@ description: A <em>transaction</em> is an atomic unit of work that contains one
   or more operations. It is a group of operations that are either committed to
   the database together or they are all undone from the database.
 editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/distributed-acid-transactions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sdk-extensions::distributed-acid-transactions.adoc[]
 ---
 
 [View original HTML](/sdk-extensions/distributed-acid-transactions.html)

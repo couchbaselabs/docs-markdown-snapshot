@@ -2,7 +2,8 @@
 title: server-list
 description: Lists all servers in the cluster
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-server-list.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:cli:couchbase-cli-server-list.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-server-list.html)

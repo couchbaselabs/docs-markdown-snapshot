@@ -3,7 +3,8 @@ title: Release Notes for Couchbase Server 7.6
 description: Couchbase Server 7.6.x introduces multiple new features and fixes,
   as well as some deprecations and removals.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:release-notes:relnotes.adoc[]
 ---
 
 [View original HTML](/server/7.6/release-notes/relnotes.html)

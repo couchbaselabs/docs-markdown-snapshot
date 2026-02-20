@@ -3,7 +3,8 @@ title: cURL
 description: The curl() function provides a way of interacting with external
   entities via a REST endpoint using HTTP or HTTPS.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-curl-spec.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:eventing:eventing-curl-spec.adoc[]
 ---
 
 [View original HTML](/server/7.6/eventing/eventing-curl-spec.html)

@@ -2,7 +2,8 @@
 title: Querying with the EF Core Couchbase DB Provider
 description: Querying the database with SQL++.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-queries.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:efcore-provider::entity-framework-core-queries.adoc[]
 ---
 
 [View original HTML](/efcore-provider/current/entity-framework-core-queries.html)

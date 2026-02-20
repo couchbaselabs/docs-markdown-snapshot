@@ -3,7 +3,8 @@ title: mctimings
 description: The <code class="cmd">mctimings</code> tool displays timing
   information for Data Service operations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/mctimings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cli:mctimings.adoc[]
 ---
 
 [View original HTML](/server/7.2/cli/mctimings.html)

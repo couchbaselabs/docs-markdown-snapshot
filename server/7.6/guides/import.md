@@ -2,7 +2,8 @@
 title: Import Data with an SDK
 description: How to import documents into Couchbase with an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/import.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:guides:import.adoc[]
 ---
 
 [View original HTML](/server/7.6/guides/import.html)

@@ -2,7 +2,8 @@
 title: Eventing Terminology
 description: The following terminology is used by the Eventing Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-Terminologies.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:eventing:eventing-Terminologies.adoc[]
 ---
 
 [View original HTML](/server/7.6/eventing/eventing-Terminologies.html)

@@ -3,7 +3,8 @@ title: Delta Sync
 description: Use Sync Gateway's delta sync feature for secure, resilient and
   efficient sync from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/delta-sync.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:sync:delta-sync.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/sync/delta-sync.html)

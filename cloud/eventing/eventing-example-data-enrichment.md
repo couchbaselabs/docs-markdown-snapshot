@@ -2,7 +2,8 @@
 title: Improve Document Searchability
 description: Make searching documents easier by adding new attributes to existing documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-example-data-enrichment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-example-data-enrichment.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-example-data-enrichment.html)

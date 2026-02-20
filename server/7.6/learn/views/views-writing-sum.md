@@ -4,7 +4,8 @@ description: The built-in <code>_sum</code> function sums the values from the
   <code>map()</code> function call by summing up the information in the value
   for each row.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-writing-sum.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:views/views-writing-sum.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/views/views-writing-sum.html)

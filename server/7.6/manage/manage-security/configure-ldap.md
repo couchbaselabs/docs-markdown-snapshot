@@ -4,7 +4,8 @@ description: Couchbase Server can be configured to authenticate users by means
   of LDAP; and to map the LDAP <em>groups</em> of which a user is a member to
   roles defined on Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/configure-ldap.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-security/configure-ldap.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-security/configure-ldap.html)

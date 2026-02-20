@@ -2,7 +2,8 @@
 title: Resync
 description: Recalculating routing and data access following Sync Function changes
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/resync.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::resync.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/resync.html)

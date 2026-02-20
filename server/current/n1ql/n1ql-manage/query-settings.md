@@ -3,7 +3,8 @@ title: Configure Queries
 description: You can configure the Query Service using cluster-level query
   settings, node-level query settings, and request-level query parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-manage/query-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql:n1ql-manage/query-settings.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql/n1ql-manage/query-settings.html)

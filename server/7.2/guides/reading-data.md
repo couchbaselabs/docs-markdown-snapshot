@@ -2,7 +2,8 @@
 title: Reading Data
 description: How to read documents in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/reading-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:reading-data.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/reading-data.html)

@@ -4,7 +4,8 @@ description: A new Enterprise Analytics node can be <em>provisioned</em>, to
   establish its Full Administrator credentials, its service-assignments, and its
   memory quotas. At this point, it becomes a <em>cluster</em> of one node.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/create-cluster.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:manage:manage-nodes/create-cluster.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/create-cluster.html)

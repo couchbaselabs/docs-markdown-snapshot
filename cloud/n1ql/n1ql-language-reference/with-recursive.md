@@ -3,7 +3,8 @@ title: WITH RECURSIVE Clause
 description: Use the WITH RECURSIVE clause to enable recursive referencing in
   common table expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/with-recursive.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/with-recursive.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/with-recursive.html)

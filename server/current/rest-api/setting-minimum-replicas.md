@@ -3,7 +3,8 @@ title: Setting a Replica-Minimum
 description: A required minimum can be established for the number of replicas
   configured for a bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/setting-minimum-replicas.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:setting-minimum-replicas.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/setting-minimum-replicas.html)

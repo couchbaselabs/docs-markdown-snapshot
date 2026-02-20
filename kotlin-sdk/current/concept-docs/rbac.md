@@ -1,7 +1,8 @@
 ---
 title: RBAC
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/rbac.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:concept-docs:rbac.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/concept-docs/rbac.html)

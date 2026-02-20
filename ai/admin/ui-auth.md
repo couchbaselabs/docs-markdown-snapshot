@@ -3,7 +3,8 @@ title: Manage Roles for UI Access
 description: Your level of access to Capella AI Services using the Capella UI is
   determined by your organization and project roles.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/ui-auth.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:admin:ui-auth.adoc[]
 ---
 
 [View original HTML](/ai/admin/ui-auth.html)

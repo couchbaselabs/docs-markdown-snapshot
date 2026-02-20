@@ -3,7 +3,8 @@ title: Remove a Node and Rebalance
 description: Enterprise Analytics allows a cluster node to be removed, and the
   remaining nodes rebalanced.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-nodes/remove-node-and-rebalance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-nodes/remove-node-and-rebalance.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-nodes/remove-node-and-rebalance.html)

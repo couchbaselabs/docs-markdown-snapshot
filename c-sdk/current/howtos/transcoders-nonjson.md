@@ -2,7 +2,8 @@
 title: Transcoders &amp; Non-JSON Documents
 description: Libcouchbase operates on bare memory, and does not have a transcoders API.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/transcoders-nonjson.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:c-sdk:howtos:transcoders-nonjson.adoc[]
 ---
 
 [View original HTML](/c-sdk/current/howtos/transcoders-nonjson.html)

@@ -1,7 +1,8 @@
 ---
 title: Manage Your Couchbase Capella Account
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/manage-account.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:organizations:manage-account.adoc[]
 ---
 
 [View original HTML](/cloud/organizations/manage-account.html)

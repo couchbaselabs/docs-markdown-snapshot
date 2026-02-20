@@ -2,7 +2,8 @@
 title: Auditing
 description: Couchbase Server provides event-auditing, sending output to a log-file.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/security/auditing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:security/auditing.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/security/auditing.html)

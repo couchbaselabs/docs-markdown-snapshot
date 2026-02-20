@@ -2,7 +2,8 @@
 title: What&#8217;s SQL++ for Analytics?
 description: An introduction to Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/1_intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:analytics:1_intro.adoc[]
 ---
 
 [View original HTML](/server/7.2/analytics/1_intro.html)

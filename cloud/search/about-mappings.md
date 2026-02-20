@@ -3,7 +3,8 @@ title: About Mapping Collections, Objects and Fields
 description: The Search Service has distinct mapping types for collections,
   objects, and fields in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/about-mappings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:about-mappings.adoc[]
 ---
 
 [View original HTML](/cloud/search/about-mappings.html)

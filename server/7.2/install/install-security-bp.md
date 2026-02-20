@@ -3,7 +3,8 @@ title: Security Considerations
 description: Ensure that you follow security best best practices throughout the
   deployment lifecycle.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/install-security-bp.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:install-security-bp.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/install-security-bp.html)

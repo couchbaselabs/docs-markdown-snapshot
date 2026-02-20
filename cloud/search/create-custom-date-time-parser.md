@@ -3,7 +3,8 @@ title: Create a Custom Date/Time Parser
 description: Create a custom date/time parser with the Couchbase Capella UI to
   tell the Search Service how to process a new date/time format.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-date-time-parser.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:create-custom-date-time-parser.adoc[]
 ---
 
 [View original HTML](/cloud/search/create-custom-date-time-parser.html)

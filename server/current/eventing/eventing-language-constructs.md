@@ -2,7 +2,8 @@
 title: Language Constructs
 description: Language constructs are the fundamental units of a language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-language-constructs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-language-constructs.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-language-constructs.html)

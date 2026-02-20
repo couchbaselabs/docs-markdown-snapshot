@@ -3,7 +3,8 @@ title: Adding Nodes to Clusters
 description: Nodes are added to clusters with the <code>POST
   /controller/addNode</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-addnodes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-cluster-addnodes.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-cluster-addnodes.html)

@@ -3,7 +3,8 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:concept-docs:data-model.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/concept-docs/data-model.html)

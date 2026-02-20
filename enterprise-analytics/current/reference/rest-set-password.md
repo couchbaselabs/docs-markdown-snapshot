@@ -2,7 +2,8 @@
 title: Change Password
 description: A local user of Enterprise Analytics can change their password.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-set-password.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-set-password.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-set-password.html)

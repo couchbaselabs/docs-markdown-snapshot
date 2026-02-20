@@ -3,7 +3,8 @@ title: Handling Errors
 description: Errors are inevitable. Scala offers several flexible approaches to
   handling them.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@scala-sdk:howtos:error-handling.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.10/howtos/error-handling.html)

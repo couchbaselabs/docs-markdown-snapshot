@@ -2,7 +2,8 @@
 title: Roles
 description: Roles grant users access to one or more resources.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/security/roles.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:security/roles.adoc[]
 ---
 
 [View original HTML](/server/current/learn/security/roles.html)

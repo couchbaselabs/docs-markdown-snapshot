@@ -3,7 +3,8 @@ title: Start Here!
 description: If you are a first-time user, you can get a quick introduction to
   using Enterprise Analytics just by reading this section.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/intro/pages/start-here.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:intro:start-here.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/intro/start-here.html)

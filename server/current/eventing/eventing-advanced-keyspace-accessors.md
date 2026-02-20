@@ -2,7 +2,8 @@
 title: Advanced Keyspace Accessors
 description: Use Advanced Keyspace Accessors to access advanced Key Value functionality.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-advanced-keyspace-accessors.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-advanced-keyspace-accessors.html)

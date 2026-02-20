@@ -2,7 +2,8 @@
 title: Logging
 description: Configuring logging with the .NET Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/howtos/pages/logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-analytics-sdk:howtos:logging.adoc[]
 ---
 
 [View original HTML](/dotnet-analytics-sdk/current/howtos/logging.html)

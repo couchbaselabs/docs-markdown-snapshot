@@ -2,7 +2,8 @@
 title: Install the SDK
 description: How to install the .NET Analytics SDK from NuGet.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [View original HTML](/dotnet-analytics-sdk/current/project-docs/sdk-full-installation.html)

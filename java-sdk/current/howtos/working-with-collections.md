@@ -1,7 +1,8 @@
 ---
 title: Working with Collections
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/working-with-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-sdk:howtos:working-with-collections.adoc[]
 ---
 
 [View original HTML](/java-sdk/current/howtos/working-with-collections.html)

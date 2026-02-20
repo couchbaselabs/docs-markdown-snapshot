@@ -4,7 +4,8 @@ description: When a document in an existing collection is about to expire, use
   the Eventing Service to create an archived copy of that document in a
   different collection.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-docarchive.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-examples-docarchive.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-examples-docarchive.html)

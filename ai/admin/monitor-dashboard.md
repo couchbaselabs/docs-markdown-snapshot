@@ -4,7 +4,8 @@ description: Couchbase Capella provides metrics for Workflows and the Model
   Service for you to discover and trend model performance, identify performance
   issues, and more.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/monitor-dashboard.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:admin:monitor-dashboard.adoc[]
 ---
 
 [View original HTML](/ai/admin/monitor-dashboard.html)

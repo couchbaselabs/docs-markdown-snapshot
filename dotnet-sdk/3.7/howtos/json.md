@@ -1,7 +1,8 @@
 ---
 title: Choosing &amp; Using a JSON Library
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/howtos/pages/json.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.7@dotnet-sdk:howtos:json.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.7/howtos/json.html)

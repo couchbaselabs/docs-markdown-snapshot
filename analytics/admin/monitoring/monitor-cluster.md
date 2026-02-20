@@ -3,7 +3,8 @@ title: Monitor a Capella Analytics Cluster
 description: Monitor your Capella Analytics cluster through metrics, queries,
   activity logs, and alerts.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/monitoring/monitor-cluster.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:admin:monitoring/monitor-cluster.adoc[]
 ---
 
 [View original HTML](/analytics/admin/monitoring/monitor-cluster.html)

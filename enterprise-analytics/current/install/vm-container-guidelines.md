@@ -4,7 +4,8 @@ description: Use virtualized platforms such as AWS and Docker containers to get
   hardware scalability and complement Enterprise Analytics's software
   scalability.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/vm-container-guidelines.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:install:vm-container-guidelines.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/install/vm-container-guidelines.html)

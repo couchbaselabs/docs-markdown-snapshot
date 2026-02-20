@@ -3,7 +3,8 @@ title: CREATE DATABASE Statements
 description: This topic describes how you use the <code>CREATE</code> statement
   to create Capella Analytics databases.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_ddl_database.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_ddl_database.html)

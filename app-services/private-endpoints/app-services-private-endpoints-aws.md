@@ -3,7 +3,8 @@ title: Manage AWS Private Endpoints for App Services
 description: How to configure and manage private endpoints for App Services
   using Amazon Web Services (AWS).
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints-aws.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::private-endpoints/app-services-private-endpoints-aws.adoc[]
 ---
 
 [View original HTML](/app-services/private-endpoints/app-services-private-endpoints-aws.html)

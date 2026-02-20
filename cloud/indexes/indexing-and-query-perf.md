@@ -4,7 +4,8 @@ description: This topic provides an overview of the types of index that you can
   create using the Index Service, and explains how they help to query for data
   efficiently and improve query performance.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/indexing-and-query-perf.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:indexes:indexing-and-query-perf.adoc[]
 ---
 
 [View original HTML](/cloud/indexes/indexing-and-query-perf.html)

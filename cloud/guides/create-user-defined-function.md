@@ -3,7 +3,8 @@ title: Create a User-Defined Function
 description: Create a user-defined function (UDF) to call an inline function or
   a specific JavaScript function stored in a library.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:create-user-defined-function.adoc[]
 ---
 
 [View original HTML](/cloud/guides/create-user-defined-function.html)

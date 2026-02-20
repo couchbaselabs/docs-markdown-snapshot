@@ -3,7 +3,8 @@ title: Use the Query History
 description: The workbench for Capella Analytics maintains a history of all the
   queries you've executed.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/history.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:history.adoc[]
 ---
 
 [View original HTML](/analytics/query/history.html)

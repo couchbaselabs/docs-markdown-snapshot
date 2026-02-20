@@ -1,7 +1,8 @@
 ---
 title: Search
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/current/concept-docs/full-text-search-overview.html)

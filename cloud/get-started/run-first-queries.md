@@ -2,7 +2,8 @@
 title: Explore Sample Data with Data Tools
 description: Use Couchbase Capella's Data Tools to explore and work with your data.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/run-first-queries.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:get-started:run-first-queries.adoc[]
 ---
 
 [View original HTML](/cloud/get-started/run-first-queries.html)

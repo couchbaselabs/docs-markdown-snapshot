@@ -2,7 +2,8 @@
 title: Initializing a Node
 description: A node can be initialized, by means of the REST API.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-initialize-node.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-initialize-node.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-initialize-node.html)

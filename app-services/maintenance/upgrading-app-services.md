@@ -2,7 +2,8 @@
 title: Upgrade App Services
 description: Scheduling for Capella App Services.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/maintenance/upgrading-app-services.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::maintenance/upgrading-app-services.adoc[]
 ---
 
 [View original HTML](/app-services/maintenance/upgrading-app-services.html)

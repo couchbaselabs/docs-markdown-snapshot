@@ -3,7 +3,8 @@ title: Create a New Mapping or Type Mapping
 description: Create a type mapping with the Couchbase Capella UI to control what
   documents are included or excluded from a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-type-mapping.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:create-type-mapping.adoc[]
 ---
 
 [View original HTML](/cloud/search/create-type-mapping.html)

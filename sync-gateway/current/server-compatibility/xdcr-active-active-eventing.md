@@ -3,7 +3,8 @@ title: XDCR Active-Active and Eventing
 description: Understand how to safely use Couchbase Eventing functions in
   bi-directional XDCR environments, including Sync Gateway 4.0 compatibility.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/xdcr-active-active-eventing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:server-compatibility:xdcr-active-active-eventing.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/server-compatibility/xdcr-active-active-eventing.html)

@@ -2,7 +2,8 @@
 title: cbbackupmgr generate
 description: Generate documents and send them to a 'sink', primarily for testing purposes.
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-generate.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:backup-restore:cbbackupmgr-generate.adoc[]
 ---
 
 [View original HTML](/server/current/backup-restore/cbbackupmgr-generate.html)

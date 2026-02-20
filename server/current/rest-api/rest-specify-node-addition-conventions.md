@@ -4,7 +4,8 @@ description: The REST API allows node-naming conventions to be configured such
   that only nodes whose names conform to those conventions can be added to the
   cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-specify-node-addition-conventions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-specify-node-addition-conventions.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-specify-node-addition-conventions.html)

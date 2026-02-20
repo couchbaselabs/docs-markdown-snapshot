@@ -3,7 +3,8 @@ title: Error Messages
 description: The standardized error codes returned by the Columnar Go SDK, from
   Capella connection to SQL++ query.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/ref/pages/error-codes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-columnar-sdk:ref:error-codes.adoc[]
 ---
 
 [View original HTML](/go-columnar-sdk/current/ref/error-codes.html)

@@ -2,7 +2,8 @@
 title: Data Service Metrics
 description: A list of the metrics provided by the Data Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/data-service-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:metrics-reference:data-service-metrics.adoc[]
 ---
 
 [View original HTML](/server/7.6/metrics-reference/data-service-metrics.html)

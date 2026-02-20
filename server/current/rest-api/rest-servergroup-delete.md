@@ -3,7 +3,8 @@ title: Deleting Groups
 description: Server groups can be deleted with the <code>DELETE
   /pools/default/serverGroups/<:uuid></code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-servergroup-delete.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-servergroup-delete.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-servergroup-delete.html)

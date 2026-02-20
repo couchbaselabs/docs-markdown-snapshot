@@ -2,7 +2,8 @@
 title: Supported Browsers
 description: Couchbase Lite JavaScript -- browser versions on which this SDK is supported
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/supported-browsers.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::supported-browsers.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/supported-browsers.html)

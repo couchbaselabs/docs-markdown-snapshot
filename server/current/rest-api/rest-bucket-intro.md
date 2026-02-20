@@ -3,7 +3,8 @@ title: Buckets API
 description: The Buckets REST API creates, deletes, flushes, and retrieves
   information about buckets and bucket operations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-bucket-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-bucket-intro.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-bucket-intro.html)

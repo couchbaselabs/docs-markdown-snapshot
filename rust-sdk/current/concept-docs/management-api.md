@@ -2,7 +2,8 @@
 title: Managing Couchbase Clusters from the SDK
 description: Cluster management from the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/management-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:concept-docs:management-api.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/concept-docs/management-api.html)

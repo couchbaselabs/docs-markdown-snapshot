@@ -3,7 +3,8 @@ title: Use Vector Search for AI Applications
 description: Use Couchbase Server's Vector Search features to add fast and
   accurate semantic search to your applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/vector-search/pages/vector-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:vector-search:vector-search.adoc[]
 ---
 
 [View original HTML](/server/7.6/vector-search/vector-search.html)

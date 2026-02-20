@@ -1,7 +1,8 @@
 ---
 title: Capella AI Services Release Notes
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:reference:release-notes.adoc[]
 ---
 
 [View original HTML](/ai/reference/release-notes.html)

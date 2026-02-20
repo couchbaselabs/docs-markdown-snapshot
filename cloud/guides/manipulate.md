@@ -2,7 +2,8 @@
 title: Manipulate Data with Queries
 description: These guides explain how to create, update, and delete data with a SQL++ query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/manipulate.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:manipulate.adoc[]
 ---
 
 [View original HTML](/cloud/guides/manipulate.html)

@@ -3,7 +3,8 @@ title: cbcollect_info
 description: The <code class="cmd">cbcollect_info</code> tool provides detailed
   statistics for a specific node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbcollect-info-tool.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbcollect-info-tool.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbcollect-info-tool.html)

@@ -3,7 +3,8 @@ title: Getting Views Information
 description: To retrieve views information, access any server node in a cluster
   on port 8092.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-views-get.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-views-get.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-views-get.html)

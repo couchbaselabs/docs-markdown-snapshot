@@ -4,7 +4,8 @@ description: The Search Statistics REST API is provided by the Search Service.
   This API enables you to get statistics for the Search Service and your Search
   indexes.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/fts-rest-stats/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:fts-rest-stats:index.adoc[]
 ---
 
 [View original HTML](/server/7.6/fts-rest-stats/index.html)

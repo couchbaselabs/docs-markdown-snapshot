@@ -3,7 +3,8 @@ title: Joining Nodes to Clusters
 description: Nodes can be added to clusters with the <code>POST
   /node/controller/doJoinCluster</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-cluster-joinnode.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-cluster-joinnode.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-cluster-joinnode.html)

@@ -3,7 +3,8 @@ title: Add SSO Authentication
 description: Add federated authentication with single sign-on (SSO) to your
   Couchbase Capella organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/add-sso-auth.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:organizations:ui-auth/add-sso-auth.adoc[]
 ---
 
 [View original HTML](/cloud/organizations/ui-auth/add-sso-auth.html)

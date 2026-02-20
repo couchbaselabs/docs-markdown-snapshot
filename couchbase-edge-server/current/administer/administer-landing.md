@@ -1,7 +1,8 @@
 ---
 title: Administer
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/administer/pages/administer-landing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-edge-server:administer:administer-landing.adoc[]
 ---
 
 [View original HTML](/couchbase-edge-server/current/administer/administer-landing.html)

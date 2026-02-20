@@ -3,7 +3,8 @@ title: Alert Reference
 description: Use this reference for the kinds of alerts that Capella AI Services
   can send you, including their alert conditions and descriptions.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/reference/pages/alert-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:reference:alert-reference.adoc[]
 ---
 
 [View original HTML](/ai/reference/alert-reference.html)

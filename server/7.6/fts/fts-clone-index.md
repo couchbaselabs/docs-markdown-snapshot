@@ -1,7 +1,8 @@
 ---
 title: Clone Index
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-clone-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:fts:fts-clone-index.adoc[]
 ---
 
 [View original HTML](/server/7.6/fts/fts-clone-index.html)

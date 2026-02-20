@@ -1,7 +1,8 @@
 ---
 title: Tabs
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:styleguide::tabs.adoc[]
 ---
 
 [View original HTML](/styleguide/tabs.html)

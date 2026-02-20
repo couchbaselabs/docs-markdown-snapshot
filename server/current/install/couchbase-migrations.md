@@ -3,7 +3,8 @@ title: Migrating your Data to Couchbase
 description: Couchbase offers a number of options for migrating your data from
   other platforms to Couchbase Server/Capella.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/couchbase-migrations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:install:couchbase-migrations.adoc[]
 ---
 
 [View original HTML](/server/current/install/couchbase-migrations.html)

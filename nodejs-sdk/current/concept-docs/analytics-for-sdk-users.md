@@ -3,7 +3,8 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/concept-docs/pages/analytics-for-sdk-users.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:nodejs-sdk:concept-docs:analytics-for-sdk-users.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/current/concept-docs/analytics-for-sdk-users.html)

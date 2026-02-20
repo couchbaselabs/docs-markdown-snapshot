@@ -3,7 +3,8 @@ title: Hyperscale Vector Index Reranking and Full Vector Persistence
 description: You can enable reranking in queries using a Hyperscale Vector index
   to potentially improve the query results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/hyperscale-reranking.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-index:hyperscale-reranking.adoc[]
 ---
 
 [View original HTML](/cloud/vector-index/hyperscale-reranking.html)

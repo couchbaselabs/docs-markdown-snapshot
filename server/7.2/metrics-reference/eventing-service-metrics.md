@@ -2,7 +2,8 @@
 title: Eventing Service Metrics
 description: A list of the metrics provided by the Eventing Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/metrics-reference/pages/eventing-service-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:metrics-reference:eventing-service-metrics.adoc[]
 ---
 
 [View original HTML](/server/7.2/metrics-reference/eventing-service-metrics.html)

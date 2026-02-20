@@ -3,7 +3,8 @@ title: Graceful Failover
 description: Graceful failover takes a Data Service node out of a healthy
   cluster, in an orderly and controlled fashion.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/clusters-and-availability/graceful-failover.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:clusters-and-availability/graceful-failover.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/clusters-and-availability/graceful-failover.html)

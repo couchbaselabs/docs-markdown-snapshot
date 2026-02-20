@@ -1,7 +1,8 @@
 ---
 title: Get Involved
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-analytics-sdk:project-docs:get-involved.adoc[]
 ---
 
 [View original HTML](/java-analytics-sdk/current/project-docs/get-involved.html)

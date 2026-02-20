@@ -2,7 +2,8 @@
 title: "Function: convertXMLtoJSON"
 description: Recursively and generically convert simple XML strings into JSON.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-convertXMLtoJSON.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:eventing:eventing-handler-convertXMLtoJSON.adoc[]
 ---
 
 [View original HTML](/server/7.6/eventing/eventing-handler-convertXMLtoJSON.html)

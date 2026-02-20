@@ -2,7 +2,8 @@
 title: Build and Run
 description: Build and run a starter app to validate your install of Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/gs-build.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:c:gs-build.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/c/gs-build.html)

@@ -2,7 +2,8 @@
 title: node-to-node-encryption
 description: Changes node-to-node encryption
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-node-to-node-encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbcli/couchbase-cli-node-to-node-encryption.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-node-to-node-encryption.html)

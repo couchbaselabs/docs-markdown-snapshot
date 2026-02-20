@@ -2,7 +2,8 @@
 title: Vector Search Release Notes
 description: Couchbase Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/vs-releasenotes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:objc:vs-releasenotes.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/objc/vs-releasenotes.html)

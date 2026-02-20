@@ -3,7 +3,8 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.9@scala-sdk:howtos:observability-metrics.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.9/howtos/observability-metrics.html)

@@ -3,7 +3,8 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/howtos/vector-searching-with-sdk.html)

@@ -2,7 +2,8 @@
 title: Working with Vector Search
 description: Use Vector Search with Full Text Search and Query.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/working-with-vector-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:c:working-with-vector-search.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/c/working-with-vector-search.html)

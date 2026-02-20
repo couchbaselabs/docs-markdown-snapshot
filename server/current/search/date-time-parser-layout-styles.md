@@ -4,7 +4,8 @@ description: When you create a custom date/time parser with the Couchbase Server
   Web Console, you must choose a specific layout style for your date/time
   layouts.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/date-time-parser-layout-styles.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:search:date-time-parser-layout-styles.adoc[]
 ---
 
 [View original HTML](/server/current/search/date-time-parser-layout-styles.html)

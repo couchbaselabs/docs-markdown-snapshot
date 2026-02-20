@@ -3,7 +3,8 @@ title: Statistics
 description: Eventing Statistics, for each deployed Function, can be fetched
   from an Eventing node using the Web Console or using the REST API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-statistics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-statistics.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-statistics.html)

@@ -2,7 +2,8 @@
 title: Cost-Based Optimizer
 description: How to use the Cost-Based Optimizer and manage optimizer statistics.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/cbo.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:cbo.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/cbo.html)

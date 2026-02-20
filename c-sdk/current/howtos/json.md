@@ -1,7 +1,8 @@
 ---
 title: Choosing &amp; Using a JSON Library
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/json.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:c-sdk:howtos:json.adoc[]
 ---
 
 [View original HTML](/c-sdk/current/howtos/json.html)

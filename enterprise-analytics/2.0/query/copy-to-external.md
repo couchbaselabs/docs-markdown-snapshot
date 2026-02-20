@@ -3,7 +3,8 @@ title: Copy Results to External Storage
 description: In Enterprise Analytics, you can write query results or entire
   collections to an external file system or data store.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/copy-to-external.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:query:copy-to-external.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/query/copy-to-external.html)

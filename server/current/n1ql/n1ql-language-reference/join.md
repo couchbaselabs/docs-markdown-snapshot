@@ -3,7 +3,8 @@ title: JOIN Clause
 description: The JOIN clause enables you to create new input objects by
   combining two or more source objects.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/join.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql:n1ql-language-reference/join.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql/n1ql-language-reference/join.html)

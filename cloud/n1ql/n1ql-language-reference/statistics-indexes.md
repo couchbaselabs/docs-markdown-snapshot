@@ -3,7 +3,8 @@ title: Update Statistics for Multiple Indexes
 description: You can use the UPDATE STATISTICS statement to gather statistics
   for multiple indexes at once.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/statistics-indexes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/statistics-indexes.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/statistics-indexes.html)

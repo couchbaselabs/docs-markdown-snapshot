@@ -4,7 +4,8 @@ description: Alerts can be configured; to be dispatched or displayed
   automatically by Enterprise Analytics, in order to notify users of specific
   issues and problems.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-cluster-email-notifications.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-cluster-email-notifications.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-cluster-email-notifications.html)

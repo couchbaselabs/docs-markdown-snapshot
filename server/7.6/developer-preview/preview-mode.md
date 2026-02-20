@@ -4,7 +4,8 @@ description: Developer Preview mode (“Preview Mode”), provides early access 
   features which may become generally available (“GA”) in future releases and
   enables you to play with these features to get a sense of how they work.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/developer-preview/pages/preview-mode.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:developer-preview:preview-mode.adoc[]
 ---
 
 [View original HTML](/server/7.6/developer-preview/preview-mode.html)

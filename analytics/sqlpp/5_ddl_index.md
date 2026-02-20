@@ -3,7 +3,8 @@ title: CREATE INDEX Statements
 description: This topic describes how to use a <code>CREATE</code> statement to
   create an index on a remote or standalone collection.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_ddl_index.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_ddl_index.html)

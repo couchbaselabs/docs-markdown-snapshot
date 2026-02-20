@@ -2,7 +2,8 @@
 title: cbbackupmgr info
 description: Return information about the backup archive
 editUrl: https://github.com/couchbase/backup/edit/morpheus/docs/modules/backup-restore/pages/cbbackupmgr-info.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:backup-restore:cbbackupmgr-info.adoc[]
 ---
 
 [View original HTML](/server/current/backup-restore/cbbackupmgr-info.html)

@@ -1,7 +1,8 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query Introduction"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/query/content/modules/userprofile-query-android/pages/userprofile_query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:userprofile-query-android:userprofile_query.adoc[]
 ---
 
 [View original HTML](/tutorials/userprofile-query-android/userprofile_query.html)

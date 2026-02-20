@@ -2,7 +2,8 @@
 title: Metrics Reference
 description: A list of the metrics used by Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/metrics-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:metrics-reference:metrics-reference.adoc[]
 ---
 
 [View original HTML](/server/current/metrics-reference/metrics-reference.html)

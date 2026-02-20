@@ -4,7 +4,8 @@ description: Alerts can be configured; to be dispatched or displayed
   automatically by Couchbase Server, in order to notify users of specific issues
   and problems.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-email-notifications.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-cluster-email-notifications.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-cluster-email-notifications.html)

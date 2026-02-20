@@ -3,7 +3,8 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/howtos/slow-operations-logging.html)

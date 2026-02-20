@@ -2,7 +2,8 @@
 title: Get Involved
 description: Get involved with Couchbase's Open Source SDKs.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:project-docs:get-involved.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/project-docs/get-involved.html)

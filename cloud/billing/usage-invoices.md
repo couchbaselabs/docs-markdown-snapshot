@@ -3,7 +3,8 @@ title: View Capella Usage and Invoices
 description: You can view current and past usage for the clusters and services
   in your organization, and view and download invoices.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/usage-invoices.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:billing:usage-invoices.adoc[]
 ---
 
 [View original HTML](/cloud/billing/usage-invoices.html)

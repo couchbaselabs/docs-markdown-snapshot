@@ -1,7 +1,8 @@
 ---
 title: .NET Analytics SDK
 editUrl: https://github.com/couchbase/docs-analytics-sdk-dotnet/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-analytics-sdk:hello-world:overview.adoc[]
 ---
 
 [View original HTML](/dotnet-analytics-sdk/current/hello-world/overview.html)

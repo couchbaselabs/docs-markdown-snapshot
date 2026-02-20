@@ -2,7 +2,8 @@
 title: Managing Connections
 description: This section describes how to connect the Ruby SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.5@ruby-sdk:howtos:managing-connections.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.5/howtos/managing-connections.html)

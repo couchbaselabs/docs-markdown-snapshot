@@ -1,7 +1,8 @@
 ---
 title: Choosing &amp; Using a JSON Library
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/howtos/pages/json.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@ruby-sdk:howtos:json.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.6/howtos/json.html)

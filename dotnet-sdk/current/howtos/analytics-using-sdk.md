@@ -3,7 +3,8 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/current/howtos/analytics-using-sdk.html)

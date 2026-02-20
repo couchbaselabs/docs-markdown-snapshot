@@ -1,7 +1,8 @@
 ---
 title: Download Tableau
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.0/modules/ROOT/pages/download-tableau.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.0@tableau-connector::download-tableau.adoc[]
 ---
 
 [View original HTML](/tableau-connector/1.0/download-tableau.html)

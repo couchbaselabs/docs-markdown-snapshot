@@ -3,7 +3,8 @@ title: Automatic Workload Repository
 description: Monitor and optimize query performance and workload using Automatic
   Workload Repository (AWR).
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-manage/query-awr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql:n1ql-manage/query-awr.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql/n1ql-manage/query-awr.html)

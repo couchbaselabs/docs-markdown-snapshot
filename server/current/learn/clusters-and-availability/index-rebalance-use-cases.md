@@ -3,7 +3,8 @@ title: Index Rebalance Use Cases
 description: This page explains a few use cases of different Rebalance
   operations on Index nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/index-rebalance-use-cases.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:clusters-and-availability/index-rebalance-use-cases.adoc[]
 ---
 
 [View original HTML](/server/current/learn/clusters-and-availability/index-rebalance-use-cases.html)

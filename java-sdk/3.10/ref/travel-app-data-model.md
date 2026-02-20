@@ -2,7 +2,8 @@
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@java-sdk:ref:travel-app-data-model.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.10/ref/travel-app-data-model.html)

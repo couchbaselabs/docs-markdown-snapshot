@@ -2,7 +2,8 @@
 title: Compatibility
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/compatibility.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:product-notes:compatibility.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/product-notes/compatibility.html)

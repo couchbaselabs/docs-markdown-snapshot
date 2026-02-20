@@ -1,7 +1,8 @@
 ---
 title: Searching with SDK
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-searching-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:fts:fts-searching-with-sdk.adoc[]
 ---
 
 [View original HTML](/server/7.2/fts/fts-searching-with-sdk.html)

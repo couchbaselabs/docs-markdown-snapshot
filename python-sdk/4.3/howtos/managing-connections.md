@@ -2,7 +2,8 @@
 title: Managing Connections
 description: This section describes how to connect the Python SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.3@python-sdk:howtos:managing-connections.adoc[]
 ---
 
 [View original HTML](/python-sdk/4.3/howtos/managing-connections.html)

@@ -3,7 +3,8 @@ title: INSERT
 description: Use the INSERT statement to insert one or more new documents into
   an existing keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/insert.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/insert.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/insert.html)

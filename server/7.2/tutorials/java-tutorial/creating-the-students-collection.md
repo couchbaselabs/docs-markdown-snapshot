@@ -4,7 +4,8 @@ description: Following on from
   xref:java-tutorial/install-couchbase-java-sdk.adoc[], this tutorial will show
   you how to connect to Couchbase and add records to the database using the SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/creating-the-students-collection.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:tutorials:java-tutorial/creating-the-students-collection.adoc[]
 ---
 
 [View original HTML](/server/7.2/tutorials/java-tutorial/creating-the-students-collection.html)

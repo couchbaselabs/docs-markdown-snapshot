@@ -1,7 +1,8 @@
 ---
 title: Java Analytics SDK
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-analytics-sdk:hello-world:overview.adoc[]
 ---
 
 [View original HTML](/java-analytics-sdk/current/hello-world/overview.html)

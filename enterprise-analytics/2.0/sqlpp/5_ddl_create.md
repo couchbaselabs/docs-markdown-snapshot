@@ -3,7 +3,8 @@ title: CREATE Statements
 description: This topic introduces how you use <code>CREATE</code> statements to
   create different Enterprise Analytics objects.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_create.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sqlpp:5_ddl_create.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_create.html)

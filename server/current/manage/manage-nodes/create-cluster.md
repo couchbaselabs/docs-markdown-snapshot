@@ -1,7 +1,8 @@
 ---
 title: Create a Cluster
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/create-cluster.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-nodes/create-cluster.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-nodes/create-cluster.html)

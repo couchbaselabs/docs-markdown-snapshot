@@ -2,7 +2,8 @@
 title: Install Couchbase Server on macOS
 description: Couchbase Server can be installed on macOS for development use-cases.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/macos-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:macos-install.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/macos-install.html)

@@ -2,7 +2,8 @@
 title: durability-monitor
 description: Provides durability statistics in relation to vBuckets.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-durability-monitor.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-durability-monitor.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-durability-monitor.html)

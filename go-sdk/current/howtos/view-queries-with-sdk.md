@@ -3,7 +3,8 @@ title: MapReduce Views
 description: Our legacy MapReduce Views Service is best replaced by the scalable
   Query Service.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/view-queries-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-sdk:howtos:view-queries-with-sdk.adoc[]
 ---
 
 [View original HTML](/go-sdk/current/howtos/view-queries-with-sdk.html)

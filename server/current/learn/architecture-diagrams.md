@@ -3,7 +3,8 @@ title: List of Architecture Diagrams
 description: A quick reference to some of the architecture diagrams in Couchbase
   documentation.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/architecture-diagrams.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:architecture-diagrams.adoc[]
 ---
 
 [View original HTML](/server/current/learn/architecture-diagrams.html)

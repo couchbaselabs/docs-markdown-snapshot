@@ -3,7 +3,8 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.7/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.7@dotnet-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.7/concept-docs/n1ql-query.html)

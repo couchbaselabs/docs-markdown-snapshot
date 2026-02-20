@@ -4,7 +4,8 @@ description: An XDCR replication can be <em>filtered</em>, by means of
   <em>expressions</em>; so that only selected documents are replicated from the
   source to the target cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/filter-xdcr-replication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:manage:manage-xdcr/filter-xdcr-replication.adoc[]
 ---
 
 [View original HTML](/server/7.2/manage/manage-xdcr/filter-xdcr-replication.html)

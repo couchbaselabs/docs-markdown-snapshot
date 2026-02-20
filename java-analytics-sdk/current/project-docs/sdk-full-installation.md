@@ -2,7 +2,8 @@
 title: Maven Coordinates
 description: How to get the Java Analytics SDK from Maven Central.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [View original HTML](/java-analytics-sdk/current/project-docs/sdk-full-installation.html)

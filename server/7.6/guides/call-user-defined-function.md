@@ -2,7 +2,8 @@
 title: Calling a User-Defined Function
 description: How to call a user-defined function from SQL++ statements.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/call-user-defined-function.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:guides:call-user-defined-function.adoc[]
 ---
 
 [View original HTML](/server/7.6/guides/call-user-defined-function.html)

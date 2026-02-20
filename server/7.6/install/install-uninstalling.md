@@ -3,7 +3,8 @@ title: Uninstall Couchbase Server
 description: The Couchbase Server application and its associated data can be
   removed from supported systems.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/install-uninstalling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:install-uninstalling.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/install-uninstalling.html)

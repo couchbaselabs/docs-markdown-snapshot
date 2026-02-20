@@ -1,7 +1,8 @@
 ---
 title: Edit Index
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-edit-index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:fts:fts-edit-index.adoc[]
 ---
 
 [View original HTML](/server/current/fts/fts-edit-index.html)

@@ -2,7 +2,8 @@
 title: Delete Documents
 description: How to delete documents with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/deleting-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:guides:deleting-data.adoc[]
 ---
 
 [View original HTML](/server/7.6/guides/deleting-data.html)

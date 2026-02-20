@@ -2,7 +2,8 @@
 title: host-list
 description: Lists all hosts in the cluster
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/cli/pages/couchbase-cli-host-list.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:cli:couchbase-cli-host-list.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/cli/couchbase-cli-host-list.html)

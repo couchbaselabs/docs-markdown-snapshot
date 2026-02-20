@@ -4,7 +4,8 @@ description: You can choose to authorize Couchbase Capella Support to
   automatically take remedial actions to a specific cluster, in case a failure
   is detected.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/support-pre-auth.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:billing:support-pre-auth.adoc[]
 ---
 
 [View original HTML](/cloud/billing/support-pre-auth.html)

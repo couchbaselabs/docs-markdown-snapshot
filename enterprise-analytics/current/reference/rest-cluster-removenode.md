@@ -3,7 +3,8 @@ title: Removing Nodes from Clusters
 description: Remove nodes from clusters with the <code>POST
   /controller/ejectNode</code> HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-removenode.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-cluster-removenode.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-removenode.html)

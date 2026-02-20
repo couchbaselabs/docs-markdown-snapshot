@@ -3,7 +3,8 @@ title: Index Scans
 description: This section discusses how index spans are generated from query
   predicates and provides a number of examples.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/indexes/pages/index-scans.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:indexes:index-scans.adoc[]
 ---
 
 [View original HTML](/server/current/indexes/index-scans.html)

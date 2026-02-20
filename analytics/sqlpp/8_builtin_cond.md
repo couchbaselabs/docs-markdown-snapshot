@@ -3,7 +3,8 @@ title: Conditional Functions
 description: This topic describes the builtin SQL++ conditional functions for
   Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_cond.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:8_builtin_cond.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/8_builtin_cond.html)

@@ -2,7 +2,8 @@
 title: Conflict Resolution
 description: How Sync Gateway resolves document conflicts during synchronization
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/ROOT/pages/conflict-resolution.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway::conflict-resolution.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/conflict-resolution.html)

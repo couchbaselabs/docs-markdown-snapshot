@@ -4,7 +4,8 @@ description: Couchbase Server can be installed on Ubuntu Linux and Debian Linux
   for production and development use-cases. Root and non-root installations are
   supported.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/ubuntu-debian-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:ubuntu-debian-install.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/ubuntu-debian-install.html)

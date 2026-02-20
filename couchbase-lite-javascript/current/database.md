@@ -2,7 +2,8 @@
 title: Databases
 description: Working with Couchbase Lite Databases in JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::database.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/database.html)

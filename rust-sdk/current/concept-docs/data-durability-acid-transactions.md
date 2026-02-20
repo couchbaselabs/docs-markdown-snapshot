@@ -3,7 +3,8 @@ title: Data Modelling, Durability, and Consistency
 description: Performance, availability, consistency -- balance your priorities,
   and model your data to achieve these goals.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/data-durability-acid-transactions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:concept-docs:data-durability-acid-transactions.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/concept-docs/data-durability-acid-transactions.html)

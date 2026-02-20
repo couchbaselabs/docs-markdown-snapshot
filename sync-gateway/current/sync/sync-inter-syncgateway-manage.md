@@ -2,7 +2,8 @@
 title: Manage Inter-Sync Gateway Replications
 description: Managing inter-Sync Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/sync/pages/sync-inter-syncgateway-manage.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:sync:sync-inter-syncgateway-manage.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/sync/sync-inter-syncgateway-manage.html)

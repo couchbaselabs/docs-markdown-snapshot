@@ -3,7 +3,8 @@ title: Manage Scopes and Collections
 description: Scopes and collections, which allow documents to be categorized and
   organized within a bucket, can be created and deleted within the Capella UI.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/data-service/scopes-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:data-service/scopes-collections.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/data-service/scopes-collections.html)

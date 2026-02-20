@@ -3,7 +3,8 @@ title: CREATE a Standalone Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a standalone collection in Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_ddl_standalone.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_ddl_standalone.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_ddl_standalone.html)

@@ -2,7 +2,8 @@
 title: Release Notes
 description: Release notes for the Couchbase Power BI Connector.
 editUrl: https://github.com/couchbase/docs-connectors-power-bi/edit/main/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:power-bi-connector::release-notes.adoc[]
 ---
 
 [View original HTML](/power-bi-connector/current/release-notes.html)

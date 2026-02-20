@@ -1,7 +1,8 @@
 ---
 title: Tooltip Guides
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/tooltips.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:pendo::tooltips.adoc[]
 ---
 
 [View original HTML](/pendo/tooltips.html)

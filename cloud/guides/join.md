@@ -2,7 +2,8 @@
 title: Query Across Relationships
 description: How to join data sources for a SQL++ selection query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/join.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:join.adoc[]
 ---
 
 [View original HTML](/cloud/guides/join.html)

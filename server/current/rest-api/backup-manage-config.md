@@ -2,7 +2,8 @@
 title: Manage Backup Configuration
 description: This method lets you get and set the rotation size for Backup Service history.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-manage-config.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:backup-manage-config.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/backup-manage-config.html)

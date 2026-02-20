@@ -3,7 +3,8 @@ title: XDCR Metrics Cross Reference
 description: A cross-referenced table of the metrics provided by XDCR as named
   by various generations of reporting tools.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/metrics-reference/pages/xdcr-metrics-cross-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:metrics-reference:xdcr-metrics-cross-reference.adoc[]
 ---
 
 [View original HTML](/server/current/metrics-reference/xdcr-metrics-cross-reference.html)

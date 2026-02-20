@@ -4,7 +4,8 @@ description: Security is a process and Couchbase Capella strives to achieve the
   best ways to protect your data, from Zero Trust, through adaptive access, to
   centralized management and proactive monitoring.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:security:security.adoc[]
 ---
 
 [View original HTML](/cloud/security/security.html)

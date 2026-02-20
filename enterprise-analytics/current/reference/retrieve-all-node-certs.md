@@ -3,7 +3,8 @@ title: Retrieve All Node Certificates
 description: The REST API can be used to retrieve the node certificate for each
   node in the cluster.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/retrieve-all-node-certs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:retrieve-all-node-certs.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/retrieve-all-node-certs.html)

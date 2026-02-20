@@ -3,7 +3,8 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Python Client.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.3@python-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
 [View original HTML](/python-sdk/4.3/project-docs/sdk-release-notes.html)

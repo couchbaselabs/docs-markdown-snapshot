@@ -5,7 +5,8 @@ description: With the introduction of scopes and collections, you can plan for a
   tenants in a single Couchbase cluster, resulting in much lower operational
   cost.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/migrating-application-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:migrating-application-data.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/migrating-application-data.html)

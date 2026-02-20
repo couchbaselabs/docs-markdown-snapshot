@@ -4,7 +4,8 @@ description: When you create a Search index in the Capella UI, you must set
   options for each collection, object, Extended Attributes (XATTRs) object, or
   field mapping you add to your index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/type-mapping-options.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:type-mapping-options.adoc[]
 ---
 
 [View original HTML](/cloud/search/type-mapping-options.html)

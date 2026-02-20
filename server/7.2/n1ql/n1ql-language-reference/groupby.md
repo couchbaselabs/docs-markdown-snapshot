@@ -3,7 +3,8 @@ title: GROUP BY Clause
 description: The GROUP BY clause arranges aggregate values into groups, based on
   one or more fields.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/groupby.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:n1ql:n1ql-language-reference/groupby.adoc[]
 ---
 
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/groupby.html)

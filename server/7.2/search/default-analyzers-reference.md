@@ -3,7 +3,8 @@ title: Default Analyzers
 description: Use an analyzer to filter and modify search strings to improve
   matches for search results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/default-analyzers-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:search:default-analyzers-reference.adoc[]
 ---
 
 [View original HTML](/server/7.2/search/default-analyzers-reference.html)

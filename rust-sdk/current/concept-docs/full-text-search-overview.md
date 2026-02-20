@@ -1,7 +1,8 @@
 ---
 title: Search
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:rust-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/concept-docs/full-text-search-overview.html)

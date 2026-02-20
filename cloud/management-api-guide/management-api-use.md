@@ -2,7 +2,8 @@
 title: Make an API Call with the Management API
 description: How to make an API call with the Couchbase Capella Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-use.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:management-api-guide:management-api-use.adoc[]
 ---
 
 [View original HTML](/cloud/management-api-guide/management-api-use.html)

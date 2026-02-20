@@ -2,7 +2,8 @@
 title: Create a Search Vector Index with the REST API and curl/HTTP
 description: You can create a Search Vector Index with the Search Service API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/create-vector-search-index-rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:vector-search:create-vector-search-index-rest-api.adoc[]
 ---
 
 [View original HTML](/server/current/vector-search/create-vector-search-index-rest-api.html)

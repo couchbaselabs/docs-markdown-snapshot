@@ -2,7 +2,8 @@
 title: Getting Started
 description: Learn how to install the Elasticsearch Connector.
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:elasticsearch-connector::getting-started.adoc[]
 ---
 
 [View original HTML](/elasticsearch-connector/current/getting-started.html)

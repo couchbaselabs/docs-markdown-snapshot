@@ -4,7 +4,8 @@ description: Create a custom tokenizer with the Couchbase Capella UI to change
   how the Search Service creates tokens for matching Search index content to a
   Search query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-tokenizer.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:create-custom-tokenizer.adoc[]
 ---
 
 [View original HTML](/cloud/search/create-custom-tokenizer.html)

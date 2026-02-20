@@ -3,7 +3,8 @@ title: Configure Prometheus to Collect Couchbase Metrics
 description: Enterprise Analytics provides an API endpoint that helps you
   configure Prometheus to collect data from it.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:manage:monitor/set-up-prometheus-for-monitoring.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/manage/monitor/set-up-prometheus-for-monitoring.html)

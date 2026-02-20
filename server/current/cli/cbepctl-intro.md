@@ -3,7 +3,8 @@ title: cbepctl
 description: The <code>cbepctl</code> tool is used to control vBucket states,
   configuration, and memory and disk persistence behavior.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbepctl-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbepctl-intro.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbepctl-intro.html)

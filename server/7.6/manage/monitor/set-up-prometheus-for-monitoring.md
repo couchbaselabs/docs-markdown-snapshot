@@ -1,7 +1,8 @@
 ---
 title: Configure Prometheus to Collect Couchbase Metrics
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:monitor/set-up-prometheus-for-monitoring.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/monitor/set-up-prometheus-for-monitoring.html)

@@ -4,7 +4,8 @@ description: XDCR Regular Expressions can be used to specify character-matches,
   and thereby determine which documents should be included in filtered XDCR
   replications.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/xdcr-reference/pages/xdcr-regular-expressions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:xdcr-reference:xdcr-regular-expressions.adoc[]
 ---
 
 [View original HTML](/server/7.6/xdcr-reference/xdcr-regular-expressions.html)

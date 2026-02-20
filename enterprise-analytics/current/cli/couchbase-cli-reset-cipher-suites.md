@@ -2,7 +2,8 @@
 title: reset-cipher-suites
 description: Resets the Enterprise Analytics cipher suites to the default
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-reset-cipher-suites.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:cli:couchbase-cli-reset-cipher-suites.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-reset-cipher-suites.html)

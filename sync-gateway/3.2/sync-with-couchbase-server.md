@@ -2,7 +2,8 @@
 title: Sync with Couchbase Server
 description: Use Sync Gateway to sync Couchbase Server changes securely from cloud to edge
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-with-couchbase-server.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::sync-with-couchbase-server.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/sync-with-couchbase-server.html)

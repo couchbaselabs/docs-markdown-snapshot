@@ -2,7 +2,8 @@
 title: Errors
 description: This topic describes SQL++ for Capella Analytics errors.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/4_error.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:4_error.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/4_error.html)

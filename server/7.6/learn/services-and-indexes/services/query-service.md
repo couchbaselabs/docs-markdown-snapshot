@@ -2,7 +2,8 @@
 title: Query Service
 description: The Query Service supports the querying of data by means of SQL++.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/query-service.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:services-and-indexes/services/query-service.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/services-and-indexes/services/query-service.html)

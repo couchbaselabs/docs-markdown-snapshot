@@ -3,7 +3,8 @@ title: Add Search to Your Application
 description: Use the Search Service to create a customizable search experience
   for your operational cluster and your end-user applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:search.adoc[]
 ---
 
 [View original HTML](/cloud/search/search.html)

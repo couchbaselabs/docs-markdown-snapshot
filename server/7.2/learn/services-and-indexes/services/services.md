@@ -2,7 +2,8 @@
 title: Services
 description: Couchbase <em>Services</em> support access to and maintenance of data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/services-and-indexes/services/services.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:services-and-indexes/services/services.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/services-and-indexes/services/services.html)

@@ -3,7 +3,8 @@ title: Set a Document Filter
 description: Use a document filter with a type mapping to add an extra filter to
   the documents you want to include in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/set-type-identifier.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:set-type-identifier.adoc[]
 ---
 
 [View original HTML](/cloud/search/set-type-identifier.html)

@@ -3,7 +3,8 @@ title: Cost-Based Optimizer for Capella Analytics Services
 description: The cost-based optimizer for Capella Analytics uses samples to
   choose the optimal plan to execute a query.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5b_cbo.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5b_cbo.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5b_cbo.html)

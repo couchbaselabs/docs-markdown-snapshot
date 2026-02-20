@@ -1,7 +1,8 @@
 ---
 title: Ports Used by FTS
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-architecture-ports-used.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:fts:fts-architecture-ports-used.adoc[]
 ---
 
 [View original HTML](/server/7.2/fts/fts-architecture-ports-used.html)

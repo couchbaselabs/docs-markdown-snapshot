@@ -3,7 +3,8 @@ title: Auto-Compaction
 description: The auto-Compaction settings control if and when Couchbase Server
   compacts data files and view indexes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/configure-compact-settings.adoc
-pubDate: 2026-02-19T08:54:56.182Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-settings/configure-compact-settings.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-settings/configure-compact-settings.html)

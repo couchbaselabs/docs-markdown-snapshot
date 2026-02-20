@@ -2,7 +2,8 @@
 title: Management API Change Log
 description: The change log for the Couchbase Capella Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-log.adoc
-pubDate: 2026-02-20T03:41:06.033Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:management-api-guide:management-api-log.adoc[]
 ---
 
 [View original HTML](/cloud/management-api-guide/management-api-log.html)

@@ -4,7 +4,8 @@ description: A transaction is an atomic unit of work that contains one or more
   operations. It is a group of operations that is either committed to the
   database together, or undone from the database.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/data/transactions.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:data/transactions.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/data/transactions.html)

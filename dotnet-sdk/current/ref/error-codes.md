@@ -3,7 +3,8 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase .NET SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/ref/pages/error-codes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-sdk:ref:error-codes.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/current/ref/error-codes.html)

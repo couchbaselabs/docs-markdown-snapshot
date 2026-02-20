@@ -2,7 +2,8 @@
 title: Installing Couchbase Lite on .Net
 description: How to install Couchbase Lite on .Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/csharp/pages/gs-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:csharp:gs-install.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/csharp/gs-install.html)

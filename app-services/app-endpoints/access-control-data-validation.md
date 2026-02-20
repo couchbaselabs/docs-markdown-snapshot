@@ -3,7 +3,8 @@ title: Configure Access Control and Data Validation
 description: Access Control and Data Validation is vital to the security of your
   App Endpoint.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/access-control-data-validation.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::app-endpoints/access-control-data-validation.adoc[]
 ---
 
 [View original HTML](/app-services/app-endpoints/access-control-data-validation.html)

@@ -1,7 +1,8 @@
 ---
 title: Security
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/develop/security.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:mobile-travel-tutorial:java/develop/security.adoc[]
 ---
 
 [View original HTML](/tutorials/mobile-travel-tutorial/java/develop/security.html)

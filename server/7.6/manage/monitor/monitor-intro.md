@@ -3,7 +3,8 @@ title: Monitor
 description: Monitoring of Couchbase Server can be performed by means of
   Couchbase Web Console, the CLI, and the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/monitor/monitor-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:monitor/monitor-intro.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/monitor/monitor-intro.html)

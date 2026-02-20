@@ -2,7 +2,8 @@
 title: Cluster Manager Metrics
 description: A list of the metrics provided by the Cluster Manager.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/metrics-reference/pages/ns-server-metrics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:metrics-reference:ns-server-metrics.adoc[]
 ---
 
 [View original HTML](/cloud/metrics-reference/ns-server-metrics.html)

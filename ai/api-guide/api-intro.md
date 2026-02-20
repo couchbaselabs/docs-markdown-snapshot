@@ -4,7 +4,8 @@ description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure Capella
   AI Services.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:api-guide:api-intro.adoc[]
 ---
 
 [View original HTML](/ai/api-guide/api-intro.html)

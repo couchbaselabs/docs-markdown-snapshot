@@ -3,7 +3,8 @@ title: Run a Geospatial Search Query with the Web Console
 description: Search for geospatial data in your Couchbase Server cluster with a
   compatible Search index and the Couchbase Server Web Console.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/geo-search-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:search:geo-search-ui.adoc[]
 ---
 
 [View original HTML](/server/7.6/search/geo-search-ui.html)

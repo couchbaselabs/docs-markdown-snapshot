@@ -3,7 +3,8 @@ title: Upgrading a Cluster
 description: Upgrades are scheduled as needed on Capella Analytics clusters to
   provide a reliable service with the latest features.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/upgrade-cluster.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:admin:upgrade-cluster.adoc[]
 ---
 
 [View original HTML](/analytics/admin/upgrade-cluster.html)

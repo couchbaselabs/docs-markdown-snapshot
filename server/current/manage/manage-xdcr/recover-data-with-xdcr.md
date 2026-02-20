@@ -5,7 +5,8 @@ description: In the event of data-loss, the <strong>cbrecovery</strong> tool can
   previously created with XDCR, and copies appropriate subsets of their data
   back onto the original source-cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/recover-data-with-xdcr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-xdcr/recover-data-with-xdcr.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-xdcr/recover-data-with-xdcr.html)

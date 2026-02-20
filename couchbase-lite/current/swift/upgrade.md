@@ -2,7 +2,8 @@
 title: Upgrade
 description: ""
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/upgrade.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:swift:upgrade.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/swift/upgrade.html)

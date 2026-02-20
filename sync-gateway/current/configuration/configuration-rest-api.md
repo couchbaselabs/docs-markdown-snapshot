@@ -3,7 +3,8 @@ title: Configuration Rest API
 description: How to use the Config REST API to configure Sync Gateway for secure
   cloud-to-edge data sync
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:configuration:configuration-rest-api.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/configuration/configuration-rest-api.html)

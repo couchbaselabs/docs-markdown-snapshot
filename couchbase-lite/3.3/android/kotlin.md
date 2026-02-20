@@ -2,7 +2,8 @@
 title: Kotlin
 description: Couchbase Lite for Android -- Kotlin support
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/kotlin.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:android:kotlin.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/android/kotlin.html)

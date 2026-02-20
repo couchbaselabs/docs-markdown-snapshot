@@ -2,7 +2,8 @@
 title: Numeric Functions
 description: This topic describes the builtin SQL++ for Capella Analytics numeric functions.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_num.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:8_builtin_num.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/8_builtin_num.html)

@@ -3,7 +3,8 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase's distributed ACID
   transactions, via the .NET SDK.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)

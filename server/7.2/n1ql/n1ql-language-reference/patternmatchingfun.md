@@ -3,7 +3,8 @@ title: Pattern-Matching Functions
 description: Pattern-matching functions allow you to find regular expression
   patterns in strings or attributes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/patternmatchingfun.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:n1ql:n1ql-language-reference/patternmatchingfun.adoc[]
 ---
 
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/patternmatchingfun.html)

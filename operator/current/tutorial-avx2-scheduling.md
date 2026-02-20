@@ -1,7 +1,8 @@
 ---
 title: AVX2-Aware Scheduling for Couchbase Server
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/tutorial-avx2-scheduling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::tutorial-avx2-scheduling.adoc[]
 ---
 
 [View original HTML](/operator/current/tutorial-avx2-scheduling.html)

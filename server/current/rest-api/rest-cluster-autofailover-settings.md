@@ -3,7 +3,8 @@ title: Retrieving Auto-Failover Settings
 description: Use the  <code>/settings/autoFailover</code> endpoint to get the
   current auto-failover settings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-autofailover-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-cluster-autofailover-settings.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-cluster-autofailover-settings.html)

@@ -4,7 +4,8 @@ description: Learn how to create custom roles in Enterprise Analytics to
   implement granular access control that matches your organization's specific
   security requirements.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/user-defined-role.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-security/user-defined-role.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-security/user-defined-role.html)

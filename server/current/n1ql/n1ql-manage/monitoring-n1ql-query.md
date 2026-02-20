@@ -4,7 +4,8 @@ description: Monitoring and profiling SQL++ queries, Query Service nodes, and
   corresponding system resources is important for smoother operational
   performance and efficiency of the system.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-manage/monitoring-n1ql-query.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql:n1ql-manage/monitoring-n1ql-query.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql/n1ql-manage/monitoring-n1ql-query.html)

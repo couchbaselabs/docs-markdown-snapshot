@@ -1,7 +1,8 @@
 ---
 title: Transactions Release Notes
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/project-docs/pages/distributed-transactions-dotnet-release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:project-docs:distributed-transactions-dotnet-release-notes.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/project-docs/distributed-transactions-dotnet-release-notes.html)

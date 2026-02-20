@@ -2,7 +2,8 @@
 title: Manage Billing Information
 description: Manage and audit billing information for your organization and clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/manage-billing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:billing:manage-billing.adoc[]
 ---
 
 [View original HTML](/cloud/billing/manage-billing.html)

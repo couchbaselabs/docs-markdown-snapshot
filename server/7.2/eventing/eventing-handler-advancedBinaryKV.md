@@ -2,7 +2,8 @@
 title: "Function: Advanced Binary KV"
 description: Show and Advanced Accessor Binary Write.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-advancedBinaryKV.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:eventing:eventing-handler-advancedBinaryKV.adoc[]
 ---
 
 [View original HTML](/server/7.2/eventing/eventing-handler-advancedBinaryKV.html)

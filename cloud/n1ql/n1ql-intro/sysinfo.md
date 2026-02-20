@@ -4,7 +4,8 @@ description: SQL++ has a system namespace that stores metadata about data
   containers, the Query service, and the system as a whole. You can query the
   system namespace to get this information.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-intro/sysinfo.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-intro/sysinfo.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-intro/sysinfo.html)

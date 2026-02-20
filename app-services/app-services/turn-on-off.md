@@ -3,7 +3,8 @@ title: Turn App Services Off or On
 description: You can turn your App Services off to save costs. To resume
   operations, turn it back on.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/turn-on-off.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::app-services/turn-on-off.adoc[]
 ---
 
 [View original HTML](/app-services/app-services/turn-on-off.html)

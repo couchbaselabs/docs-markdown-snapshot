@@ -3,7 +3,8 @@ title: Map User Roles
 description: After adding federated and SSO authentication to your organization,
   you can map IdP groups to permission sets.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/manage-role-mapping.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:organizations:ui-auth/manage-role-mapping.adoc[]
 ---
 
 [View original HTML](/cloud/organizations/ui-auth/manage-role-mapping.html)

@@ -2,7 +2,8 @@
 title: cbtransfer
 description: Enables the transfer of Couchbase data from clusters and various file formats
 editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbtools/cbtransfer.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cli:cbtools/cbtransfer.adoc[]
 ---
 
 [View original HTML](/server/7.2/cli/cbtools/cbtransfer.html)

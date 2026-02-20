@@ -3,7 +3,8 @@ title: CLI Reference
 description: Couchbase Server command-line interface (CLI) tools are provided to
   manage and monitor clusters, servers, vBuckets, XDCR, and so on.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cli-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cli:cli-intro.adoc[]
 ---
 
 [View original HTML](/server/7.2/cli/cli-intro.html)

@@ -1,7 +1,8 @@
 ---
 title: Monitoring
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/monitoring.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:elasticsearch-connector::monitoring.adoc[]
 ---
 
 [View original HTML](/elasticsearch-connector/current/monitoring.html)

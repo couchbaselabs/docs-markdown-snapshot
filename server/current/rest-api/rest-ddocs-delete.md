@@ -4,7 +4,8 @@ description: To delete a design document, use the <code>DELETE
   /buckets/_design/[ddocs-name]</code> HTTP request and URI on the
   <code>8092</code> port.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-ddocs-delete.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-ddocs-delete.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-ddocs-delete.html)

@@ -4,7 +4,8 @@ description: Multiple procedures are available for the upgrade of Enterprise
   Analytics. An appropriate procedure should be selected, based on a variety of
   factors.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/upgrade-procedure-selection.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:install:upgrade-procedure-selection.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/install/upgrade-procedure-selection.html)

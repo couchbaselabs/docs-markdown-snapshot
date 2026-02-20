@@ -2,7 +2,8 @@
 title: Modifying Data with SQL++
 description: How to modify documents using SQL++.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/update.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:update.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/update.html)

@@ -3,7 +3,8 @@ title: How to Create a Role
 description: How to create a Sync Gateway <em>Role</em> for secure access
   control in cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/access-control-how-create-roles.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::access-control-how-create-roles.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/access-control-how-create-roles.html)

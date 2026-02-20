@@ -2,7 +2,8 @@
 title: Databases
 description: Working with Couchbase Lite on Java databases
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:java:database.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/java/database.html)

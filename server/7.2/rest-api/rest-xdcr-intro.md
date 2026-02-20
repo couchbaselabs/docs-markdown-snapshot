@@ -3,7 +3,8 @@ title: XDCR API
 description: The XDCR REST API is used to manage Cross Datacenter Replication
   (XDCR) operations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-xdcr-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-xdcr-intro.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-xdcr-intro.html)

@@ -1,7 +1,8 @@
 ---
 title: Eventing REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/eventing-rest-api/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:eventing-rest-api:index.adoc[]
 ---
 
 [View original HTML](/server/7.6/eventing-rest-api/index.html)

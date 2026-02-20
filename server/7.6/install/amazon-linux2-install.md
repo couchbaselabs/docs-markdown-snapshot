@@ -3,7 +3,8 @@ title: Install Couchbase Server on Amazon Linux 2
 description: Couchbase Server can be installed on Amazon Linux 2 for production
   and development use-cases. Root and non-root installations are supported.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/amazon-linux2-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:amazon-linux2-install.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/amazon-linux2-install.html)

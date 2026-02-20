@@ -1,7 +1,8 @@
 ---
 title: Download and API Reference
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/download-links.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:spark-connector::download-links.adoc[]
 ---
 
 [View original HTML](/spark-connector/current/download-links.html)

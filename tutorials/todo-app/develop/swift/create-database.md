@@ -1,7 +1,8 @@
 ---
 title: Create a Database
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/swift/create-database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:todo-app:develop/swift/create-database.adoc[]
 ---
 
 [View original HTML](/tutorials/todo-app/develop/swift/create-database.html)

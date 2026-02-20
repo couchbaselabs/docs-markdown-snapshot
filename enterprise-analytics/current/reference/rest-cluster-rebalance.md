@@ -3,7 +3,8 @@ title: Rebalancing the Cluster
 description: A cluster is rebalanced with the <code>POST
   /controller/rebalance</code> HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-rebalance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-cluster-rebalance.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-rebalance.html)

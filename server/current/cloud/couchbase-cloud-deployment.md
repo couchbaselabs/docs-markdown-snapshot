@@ -3,7 +3,8 @@ title: Cloud and Container Deployment Overview
 description: Couchbase Server is designed to run in the most popular cloud and
   container environments.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cloud/pages/couchbase-cloud-deployment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cloud:couchbase-cloud-deployment.adoc[]
 ---
 
 [View original HTML](/server/current/cloud/couchbase-cloud-deployment.html)

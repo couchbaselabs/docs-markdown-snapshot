@@ -4,7 +4,8 @@ description: Audit Logging provides tools for administrators to track
   operational irregularities and to support regulatory and security compliance
   standards.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/audit-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::audit-logging.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/audit-logging.html)

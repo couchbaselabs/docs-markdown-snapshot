@@ -5,7 +5,8 @@ description: You can apply features available for visualizing and analyzing data
   interactive data visualization platforms to the query results you obtain in
   Capella Analytics.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/bi.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:bi.adoc[]
 ---
 
 [View original HTML](/analytics/query/bi.html)

@@ -3,7 +3,8 @@ title: Manage Connections and Disks
 description: Couchbase-Server security can be enhanced by proper management of
   connections and disks.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/manage-connections-and-disks.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-security/manage-connections-and-disks.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-security/manage-connections-and-disks.html)

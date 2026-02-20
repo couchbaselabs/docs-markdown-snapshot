@@ -2,7 +2,8 @@
 title: JavaScript Functions with Couchbase
 description: Writing Couchbase extension functions in the JavaScript Language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
 [View original HTML](/server/7.2/javascript-udfs/javascript-functions-with-couchbase.html)

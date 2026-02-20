@@ -3,7 +3,8 @@ title: Configure an Autocomplete Search Index
 description: Create a Search index with the Capella UI or import a JSON Search
   index payload to start using autocomplete with the Search Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/search-query-auto-complete-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:search-query-auto-complete-ui.adoc[]
 ---
 
 [View original HTML](/cloud/search/search-query-auto-complete-ui.html)

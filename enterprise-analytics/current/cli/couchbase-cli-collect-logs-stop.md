@@ -2,7 +2,8 @@
 title: collect-logs-stop
 description: Stop the current log collection task
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-collect-logs-stop.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:cli:couchbase-cli-collect-logs-stop.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-collect-logs-stop.html)

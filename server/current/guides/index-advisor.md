@@ -2,7 +2,8 @@
 title: Get Index Advice
 description: How to use the Index Advisor to recommend indexes for your queries.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/index-advisor.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:guides:index-advisor.adoc[]
 ---
 
 [View original HTML](/server/current/guides/index-advisor.html)

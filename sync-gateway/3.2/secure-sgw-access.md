@@ -2,7 +2,8 @@
 title: Secure Sync Gateway Access
 description: Couchbase Sync Gateway TLS encryption and verification
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/secure-sgw-access.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::secure-sgw-access.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/secure-sgw-access.html)

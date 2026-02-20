@@ -1,7 +1,8 @@
 ---
 title: Request Support
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/manage-support.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:support:manage-support.adoc[]
 ---
 
 [View original HTML](/cloud/support/manage-support.html)

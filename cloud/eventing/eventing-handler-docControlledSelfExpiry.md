@@ -3,7 +3,8 @@ title: "Function: Document Controlled Expiry"
 description: Purge a document automatically based on self-contained start and
   duration fields.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-docControlledSelfExpiry.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-handler-docControlledSelfExpiry.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-handler-docControlledSelfExpiry.html)

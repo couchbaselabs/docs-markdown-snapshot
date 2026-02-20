@@ -5,7 +5,8 @@ description: Audit Logging provides tools for administrators to track
   standards, such as link:https://www.hhs.gov/hipaa/index.html[HIPAA] and
   link:https://soc2.co.uk/soc2[SOC-2]. Below is a list of possible Audit Events.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/audit-log-events.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::audit-log-events.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/audit-log-events.html)

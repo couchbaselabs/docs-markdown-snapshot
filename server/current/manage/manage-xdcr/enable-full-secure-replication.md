@@ -3,7 +3,8 @@ title: Enable Fully Secure Replications
 description: <em>Fully</em> secure replications handle both authentication and
   data-transfer via TLS.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-xdcr/enable-full-secure-replication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-xdcr/enable-full-secure-replication.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-xdcr/enable-full-secure-replication.html)

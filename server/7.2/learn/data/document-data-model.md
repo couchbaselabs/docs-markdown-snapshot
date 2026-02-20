@@ -3,7 +3,8 @@ title: The Couchbase Data Model
 description: The Couchbase Data Model provides a lightweight, flexible schema;
   which can be progressively evolved by applications, over time.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/data/document-data-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:data/document-data-model.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/data/document-data-model.html)

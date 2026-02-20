@@ -3,7 +3,8 @@ title: Migrating to SDK 3 API
 description: The 3.x API breaks the existing 2.x APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
 [View original HTML](/java-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)

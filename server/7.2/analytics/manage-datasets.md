@@ -2,7 +2,8 @@
 title: Managing Collections
 description: Managing Collections with the Analytics Workbench.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.2/modules/analytics/pages/manage-datasets.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:analytics:manage-datasets.adoc[]
 ---
 
 [View original HTML](/server/7.2/analytics/manage-datasets.html)

@@ -3,7 +3,8 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase’s distributed ACID
   transactions, via the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.10@go-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.10/howtos/distributed-acid-transactions-from-the-sdk.html)

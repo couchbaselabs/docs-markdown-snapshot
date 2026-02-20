@@ -3,7 +3,8 @@ title: Reduce Function
 description: Reduce functions are used to summarize the content generated during
   the map phase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-writing-reduce.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:views/views-writing-reduce.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/views/views-writing-reduce.html)

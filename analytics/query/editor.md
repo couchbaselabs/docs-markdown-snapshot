@@ -3,7 +3,8 @@ title: Write and Run Queries
 description: To query data in Capella Analytics collections you use SQL++, a
   SQL-for-JSON language specification that is similar to SQL.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/editor.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:editor.adoc[]
 ---
 
 [View original HTML](/analytics/query/editor.html)

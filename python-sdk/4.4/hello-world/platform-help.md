@@ -3,7 +3,8 @@ title: Setting Up Couchbase Python SDK with pyenv
 description: Discover how to get up and running developing applications with the
   Couchbase Python SDK 4.0+ using a virtual python installation
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.4@python-sdk:hello-world:platform-help.adoc[]
 ---
 
 [View original HTML](/python-sdk/4.4/hello-world/platform-help.html)

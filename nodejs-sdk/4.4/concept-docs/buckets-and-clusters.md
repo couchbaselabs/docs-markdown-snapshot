@@ -3,7 +3,8 @@ title: Buckets and Clusters
 description: The Couchbase Node.js SDK provides an API for managing a Couchbase
   cluster programmatically.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/concept-docs/pages/buckets-and-clusters.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.4@nodejs-sdk:concept-docs:buckets-and-clusters.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/4.4/concept-docs/buckets-and-clusters.html)

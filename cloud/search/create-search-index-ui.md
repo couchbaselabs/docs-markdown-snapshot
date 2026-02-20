@@ -3,7 +3,8 @@ title: Create a Search Index with the Capella UI
 description: You can create a Search index using the Couchbase Capella UI to
   generate a properly formatted Search index definition.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-search-index-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:create-search-index-ui.adoc[]
 ---
 
 [View original HTML](/cloud/search/create-search-index-ui.html)

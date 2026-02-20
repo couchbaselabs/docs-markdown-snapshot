@@ -1,7 +1,8 @@
 ---
 title: Upgrade an Online Docker Cluster, Full Capacity
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-docker-cluster-online-full-capacity.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:upgrade-docker-cluster-online-full-capacity.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/upgrade-docker-cluster-online-full-capacity.html)

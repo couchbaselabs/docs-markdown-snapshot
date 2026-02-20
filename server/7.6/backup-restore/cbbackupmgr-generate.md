@@ -2,7 +2,8 @@
 title: cbbackupmgr generate
 description: Generate documents and send them to a 'sink', primarily for testing purposes.
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/backup-restore/pages/cbbackupmgr-generate.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:backup-restore:cbbackupmgr-generate.adoc[]
 ---
 
 [View original HTML](/server/7.6/backup-restore/cbbackupmgr-generate.html)

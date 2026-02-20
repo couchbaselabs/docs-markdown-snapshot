@@ -4,7 +4,8 @@ description: In order to maintain a high level of security, the REST APIs used
   to administer App Services can only be accessed from a set of defined IP
   addresses.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-services/accessing-admin-apis.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:app-services::app-services/accessing-admin-apis.adoc[]
 ---
 
 [View original HTML](/app-services/app-services/accessing-admin-apis.html)

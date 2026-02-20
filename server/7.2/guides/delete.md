@@ -2,7 +2,8 @@
 title: Deleting Data with SQL++
 description: How to delete documents using SQL++.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/delete.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:delete.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/delete.html)

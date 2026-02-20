@@ -4,7 +4,8 @@ description: REST API endpoints are provided for retrieving log and diagnostic
   information, for collecting logs for upload and review, and for logging
   client-side errors.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/logs-rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:logs-rest-api.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/logs-rest-api.html)

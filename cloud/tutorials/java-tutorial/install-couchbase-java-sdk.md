@@ -3,7 +3,8 @@ title: Set Up and Connect the Couchbase Java SDK
 description: Learn how to configure the cluster connection and set up the
   Couchbase Java SDK to connect and interact with your student cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:tutorials:java-tutorial/install-couchbase-java-sdk.adoc[]
 ---
 
 [View original HTML](/cloud/tutorials/java-tutorial/install-couchbase-java-sdk.html)

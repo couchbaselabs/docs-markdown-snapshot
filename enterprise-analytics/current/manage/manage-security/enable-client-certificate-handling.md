@@ -3,7 +3,8 @@ title: Enable Client-Certificate Handling
 description: Enterprise Analytics can be enabled to support certificate-based
   client authentication.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-security/enable-client-certificate-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-security/enable-client-certificate-handling.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-security/enable-client-certificate-handling.html)

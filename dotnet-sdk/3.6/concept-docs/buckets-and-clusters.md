@@ -3,7 +3,8 @@ title: Buckets and Clusters
 description: The Couchbase .NET SDK provides an API for managing a Couchbase
   cluster programmatically.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/concept-docs/pages/buckets-and-clusters.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:concept-docs:buckets-and-clusters.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/concept-docs/buckets-and-clusters.html)

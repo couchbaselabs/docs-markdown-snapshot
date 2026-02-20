@@ -5,7 +5,8 @@ description: This section provides a comprehensive checklist and best practices
   Capella Operational Analytics Service to Capella Analytics or Enterprise
   Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/migration/pages/pre-migration.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:migration:pre-migration.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/migration/pre-migration.html)

@@ -2,7 +2,8 @@
 title: Nesting and Unnesting Documents
 description: How to nest and unnest arrays of embedded objects.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/nest-unnest.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:guides:nest-unnest.adoc[]
 ---
 
 [View original HTML](/server/7.2/guides/nest-unnest.html)

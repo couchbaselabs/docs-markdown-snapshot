@@ -5,7 +5,8 @@ description: "Using this model as a template, it is possible to write the full
   <code>_count</code> when working with the sales data and the standard
   <code>map()</code> function below:"
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/views-writing-rewriting.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:views/views-writing-rewriting.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/views/views-writing-rewriting.html)

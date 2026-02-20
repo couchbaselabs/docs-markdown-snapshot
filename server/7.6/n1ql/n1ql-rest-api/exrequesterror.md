@@ -3,7 +3,8 @@ title: Request Error
 description: A request error happens when there is a problem with the REST
   request itself, e.g. missing a required parameter.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/n1ql/pages/n1ql-rest-api/exrequesterror.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:n1ql:n1ql-rest-api/exrequesterror.adoc[]
 ---
 
 [View original HTML](/server/7.6/n1ql/n1ql-rest-api/exrequesterror.html)

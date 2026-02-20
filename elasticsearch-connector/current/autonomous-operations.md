@@ -1,7 +1,8 @@
 ---
 title: Autonomous Operations
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/autonomous-operations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:elasticsearch-connector::autonomous-operations.adoc[]
 ---
 
 [View original HTML](/elasticsearch-connector/current/autonomous-operations.html)

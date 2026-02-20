@@ -2,7 +2,8 @@
 title: diskinfo
 description: Provides data and file size information.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-diskinfo.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-diskinfo.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-diskinfo.html)

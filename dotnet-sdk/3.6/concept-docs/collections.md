@@ -2,7 +2,8 @@
 title: Collections and Scopes
 description: Fully supported from Couchbase Server version 7.0.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.6/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.6@dotnet-sdk:concept-docs:collections.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/3.6/concept-docs/collections.html)

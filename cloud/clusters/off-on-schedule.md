@@ -2,7 +2,8 @@
 title: Schedule Cluster On or Off
 description: You can schedule when your cluster is on and off to save costs.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-schedule.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:off-on-schedule.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/off-on-schedule.html)

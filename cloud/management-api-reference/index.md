@@ -1,7 +1,8 @@
 ---
 title: Management API Reference
 editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/AV-120497-link-service-desc/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
 [View original HTML](/cloud/management-api-reference/index.html)

@@ -3,7 +3,8 @@ title: Getting Cluster Tasks
 description: A list of ongoing cluster tasks can be returned with the <code>GET
   /pools/default/tasks</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-get-cluster-tasks.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-get-cluster-tasks.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-get-cluster-tasks.html)

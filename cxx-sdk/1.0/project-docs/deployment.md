@@ -2,7 +2,8 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.0@cxx-sdk:project-docs:deployment.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/1.0/project-docs/deployment.html)

@@ -2,7 +2,8 @@
 title: Using Couchbase Transactions
 description: Distributed ACID Transactions in Couchbase SDKs
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.2@php-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [View original HTML](/php-sdk/4.2/howtos/distributed-acid-transactions-from-the-sdk.html)

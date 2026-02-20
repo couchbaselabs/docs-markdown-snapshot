@@ -1,7 +1,8 @@
 ---
 title: Query Data in External Data Sources
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/external-s3.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sources:external-s3.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sources/external-s3.html)

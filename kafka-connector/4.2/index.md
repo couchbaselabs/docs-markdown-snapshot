@@ -1,7 +1,8 @@
 ---
 title: Introduction
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.2@kafka-connector::index.adoc[]
 ---
 
 [View original HTML](/kafka-connector/4.2/index.html)

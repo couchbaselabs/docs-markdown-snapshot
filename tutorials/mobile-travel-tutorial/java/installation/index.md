@@ -1,7 +1,8 @@
 ---
 title: Backend Installation
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/java/installation/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:mobile-travel-tutorial:java/installation/index.adoc[]
 ---
 
 [View original HTML](/tutorials/mobile-travel-tutorial/java/installation/index.html)

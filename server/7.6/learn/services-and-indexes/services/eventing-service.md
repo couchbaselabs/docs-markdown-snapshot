@@ -4,7 +4,8 @@ description: The <em>Eventing Service</em> provides near real-time handling of
   changes to data; whereby code is executed either in response to mutations, or
   as scheduled by timers.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/eventing-service.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:services-and-indexes/services/eventing-service.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/services-and-indexes/services/eventing-service.html)

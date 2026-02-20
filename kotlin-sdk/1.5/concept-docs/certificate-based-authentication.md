@@ -1,7 +1,8 @@
 ---
 title: Certificate-Based Authentication
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.5/modules/concept-docs/pages/certificate-based-authentication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.5@kotlin-sdk:concept-docs:certificate-based-authentication.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/1.5/concept-docs/certificate-based-authentication.html)

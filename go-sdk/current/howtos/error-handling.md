@@ -3,7 +3,8 @@ title: Handling Errors
 description: Errors are inevitable. The developer’s job is to be prepared for
   whatever is likely to come up
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-sdk:howtos:error-handling.adoc[]
 ---
 
 [View original HTML](/go-sdk/current/howtos/error-handling.html)

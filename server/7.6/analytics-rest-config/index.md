@@ -2,7 +2,8 @@
 title: Analytics Configuration REST API
 description: A description of the Configuration REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/7.6/docs/modules/analytics-rest-config/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:analytics-rest-config:index.adoc[]
 ---
 
 [View original HTML](/server/7.6/analytics-rest-config/index.html)

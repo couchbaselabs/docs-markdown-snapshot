@@ -2,7 +2,8 @@
 title: Reference Pages
 description: Essential reference infomation for developing with Columnar.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/ref/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:nodejs-columnar-sdk:ref:index.adoc[]
 ---
 
 [View original HTML](/nodejs-columnar-sdk/current/ref/index.html)

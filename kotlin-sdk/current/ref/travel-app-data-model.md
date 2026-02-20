@@ -1,7 +1,8 @@
 ---
 title: Travel App Data Model
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:ref:travel-app-data-model.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/ref/travel-app-data-model.html)

@@ -4,7 +4,8 @@ description: <em>Cross Data Center Replication</em> (XDCR) allows data to be
   replicated across clusters that are potentially located in different data
   centers.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:clusters-and-availability/xdcr-overview.adoc[]
 ---
 
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-overview.html)

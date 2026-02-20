@@ -3,7 +3,8 @@ title: Fine-Tuning a Vector Search Query
 description: Add additional parameters to a Vector Search query object to tune
   the search for recall or accuracy.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/fine-tune-vector-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-search:fine-tune-vector-search.adoc[]
 ---
 
 [View original HTML](/cloud/vector-search/fine-tune-vector-search.html)

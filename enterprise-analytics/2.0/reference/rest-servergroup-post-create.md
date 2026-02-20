@@ -3,7 +3,8 @@ title: Creating Groups
 description: Server groups are created with the <code>POST
   /pools/default/serverGroups</code> HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-servergroup-post-create.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-servergroup-post-create.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-servergroup-post-create.html)

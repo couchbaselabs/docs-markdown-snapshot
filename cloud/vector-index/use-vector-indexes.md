@@ -3,7 +3,8 @@ title: Choose the Right Vector Index
 description: Use Couchbase Capella's vector indexes to find documents based on
   content similarity or semantic meaning.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-index/pages/use-vector-indexes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-index:use-vector-indexes.adoc[]
 ---
 
 [View original HTML](/cloud/vector-index/use-vector-indexes.html)

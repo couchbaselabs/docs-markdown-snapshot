@@ -4,7 +4,8 @@ description: Network Time Protocol (NTP) is used to synchronize time across
   multiple servers. The purpose of NTP is to keep an individual node's clock
   accurate.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/synchronize-clocks-using-ntp.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:install:synchronize-clocks-using-ntp.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/install/synchronize-clocks-using-ntp.html)

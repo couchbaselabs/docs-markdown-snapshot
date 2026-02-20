@@ -2,7 +2,8 @@
 title: Create a Search Vector Index in Quick Mode
 description: Use Quick Mode to create a Search Vector Index in Couchbase Capella.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/create-vector-search-index-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-search:create-vector-search-index-ui.adoc[]
 ---
 
 [View original HTML](/cloud/vector-search/create-vector-search-index-ui.html)

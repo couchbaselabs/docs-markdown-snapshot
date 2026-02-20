@@ -3,7 +3,8 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase Scala SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.10/modules/ref/pages/error-codes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@scala-sdk:ref:error-codes.adoc[]
 ---
 
 [View original HTML](/scala-sdk/3.10/ref/error-codes.html)

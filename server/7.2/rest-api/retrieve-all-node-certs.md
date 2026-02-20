@@ -3,7 +3,8 @@ title: Retrieve All Node Certificates
 description: The REST API can be used to retrieve the node certificate for each
   node in the cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/retrieve-all-node-certs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:retrieve-all-node-certs.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/retrieve-all-node-certs.html)

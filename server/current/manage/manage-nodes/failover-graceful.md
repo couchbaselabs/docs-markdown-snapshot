@@ -3,7 +3,8 @@ title: Perform Graceful Failover
 description: Graceful failover allows a node to be removed from a cluster
   proactively, when the cluster is healthy, and all data is available.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/failover-graceful.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-nodes/failover-graceful.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-nodes/failover-graceful.html)

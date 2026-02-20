@@ -3,7 +3,8 @@ title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-sdk:concept-docs:documents.adoc[]
 ---
 
 [View original HTML](/java-sdk/current/concept-docs/documents.html)

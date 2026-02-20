@@ -2,7 +2,8 @@
 title: Microsoft Azure
 description: Couchbase Capella supports deploying clusters onto Microsoft Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/azure.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:reference:azure.adoc[]
 ---
 
 [View original HTML](/cloud/reference/azure.html)

@@ -4,7 +4,8 @@ description: This topic describes how you use <code>COPY TO</code> statements to
   structure and write the results of a query--or a copy of an entire
   collection--out to an external data store such as Amazon S3 and GCS.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_copy_to_json.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:5_dml_copy_to_json.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/5_dml_copy_to_json.html)

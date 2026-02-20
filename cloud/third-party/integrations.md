@@ -3,7 +3,8 @@ title: Integrations, Connectors, and Tools
 description: Integrate Couchbase with your development ecosystem and production
   and deployment tools.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/third-party/pages/integrations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:third-party:integrations.adoc[]
 ---
 
 [View original HTML](/cloud/third-party/integrations.html)

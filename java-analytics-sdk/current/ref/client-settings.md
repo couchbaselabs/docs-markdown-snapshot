@@ -2,7 +2,8 @@
 title: Client Settings
 description: Change the SDK's behavior by configuring client settings.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/ref/pages/client-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-analytics-sdk:ref:client-settings.adoc[]
 ---
 
 [View original HTML](/java-analytics-sdk/current/ref/client-settings.html)

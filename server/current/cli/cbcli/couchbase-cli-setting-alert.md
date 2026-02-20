@@ -2,7 +2,8 @@
 title: setting-alert
 description: Modifies alert settings
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-setting-alert.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbcli/couchbase-cli-setting-alert.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-setting-alert.html)

@@ -3,7 +3,8 @@ title: Client Settings
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/ref/pages/client-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.9@java-sdk:ref:client-settings.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.9/ref/client-settings.html)

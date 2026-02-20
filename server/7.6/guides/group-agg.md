@@ -2,7 +2,8 @@
 title: Calculate Aggregates and Group Results
 description: How to calculate aggregates and group the results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/group-agg.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:guides:group-agg.adoc[]
 ---
 
 [View original HTML](/server/7.6/guides/group-agg.html)

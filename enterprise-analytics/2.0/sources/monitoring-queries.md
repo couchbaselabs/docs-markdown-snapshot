@@ -2,7 +2,8 @@
 title: Monitoring Queries
 description: This page explains how to monitor queries in Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/monitoring-queries.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sources:monitoring-queries.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sources/monitoring-queries.html)

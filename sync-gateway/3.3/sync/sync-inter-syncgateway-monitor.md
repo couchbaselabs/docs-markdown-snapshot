@@ -2,7 +2,8 @@
 title: Replication Monitoring and Statistics
 description: Monitoring inter-Sync Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/sync/pages/sync-inter-syncgateway-monitor.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@sync-gateway:sync:sync-inter-syncgateway-monitor.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.3/sync/sync-inter-syncgateway-monitor.html)

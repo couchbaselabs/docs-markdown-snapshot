@@ -3,7 +3,8 @@ title: Manage Users, Groups, and Roles
 description: Couchbase Server allows defined <em>users</em> to be assigned
   roles, which permit access to resources.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/manage-users-and-roles.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:manage:manage-security/manage-users-and-roles.adoc[]
 ---
 
 [View original HTML](/server/7.2/manage/manage-security/manage-users-and-roles.html)

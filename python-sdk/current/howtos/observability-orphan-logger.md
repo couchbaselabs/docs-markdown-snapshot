@@ -1,7 +1,8 @@
 ---
 title: Orphaned Requests Logging
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/observability-orphan-logger.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:howtos:observability-orphan-logger.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/howtos/observability-orphan-logger.html)

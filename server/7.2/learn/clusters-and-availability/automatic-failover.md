@@ -5,7 +5,8 @@ description: One or more nodes can be failed over automatically when they become
   long as data safety is maintained;i.e. no data loss occurs as a result of
   failover.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/automatic-failover.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:clusters-and-availability/automatic-failover.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/clusters-and-availability/automatic-failover.html)

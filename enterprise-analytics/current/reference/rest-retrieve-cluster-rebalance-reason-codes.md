@@ -1,7 +1,8 @@
 ---
 title: Getting Cluster Rebalance Reason Codes
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-retrieve-cluster-rebalance-reason-codes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:rest-retrieve-cluster-rebalance-reason-codes.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/rest-retrieve-cluster-rebalance-reason-codes.html)

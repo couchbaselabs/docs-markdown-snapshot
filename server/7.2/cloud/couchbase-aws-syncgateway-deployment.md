@@ -3,7 +3,8 @@ title: Deploy Couchbase Sync Gateway Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-aws-syncgateway-deployment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cloud:couchbase-aws-syncgateway-deployment.adoc[]
 ---
 
 [View original HTML](/server/7.2/cloud/couchbase-aws-syncgateway-deployment.html)

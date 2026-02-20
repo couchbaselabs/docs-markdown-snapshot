@@ -3,7 +3,8 @@ title: Connector Guides
 description: Couchbase connectors enable you to exchange data with a number of
   other platforms.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/connectors/pages/intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:connectors:intro.adoc[]
 ---
 
 [View original HTML](/server/current/connectors/intro.html)

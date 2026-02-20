@@ -2,7 +2,8 @@
 title: Known Limitations
 description: Couchbase Lite JavaScript -- known limitations and constraints
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/known-limitations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::known-limitations.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/known-limitations.html)

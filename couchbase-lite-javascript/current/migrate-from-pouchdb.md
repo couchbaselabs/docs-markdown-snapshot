@@ -2,7 +2,8 @@
 title: Migrating from PouchDB
 description: Couchbase Lite JavaScript -- Migrating from PouchDB to Couchbase Lite
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/migrate-from-pouchdb.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite-javascript::migrate-from-pouchdb.adoc[]
 ---
 
 [View original HTML](/couchbase-lite-javascript/current/migrate-from-pouchdb.html)

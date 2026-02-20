@@ -3,7 +3,8 @@ title: "Couchbase Tutorial: A Student Record System"
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store student records.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/hello-world/pages/student-record-developer-tutorial.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.0@cxx-sdk:hello-world:student-record-developer-tutorial.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/1.0/hello-world/student-record-developer-tutorial.html)

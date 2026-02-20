@@ -3,7 +3,8 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@java-sdk:howtos:subdocument-operations.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.10/howtos/subdocument-operations.html)

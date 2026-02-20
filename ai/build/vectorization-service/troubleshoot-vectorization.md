@@ -4,7 +4,8 @@ description: If your Capella AI Services Workflows complete with errors or have
   documents that cannot be processed, you can query a document's extended
   attributes (XATTRs) data for more information.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/troubleshoot-vectorization.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:build:vectorization-service/troubleshoot-vectorization.adoc[]
 ---
 
 [View original HTML](/ai/build/vectorization-service/troubleshoot-vectorization.html)

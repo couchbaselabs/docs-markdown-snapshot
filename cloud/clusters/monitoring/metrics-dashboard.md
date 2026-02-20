@@ -3,7 +3,8 @@ title: View Monitoring Dashboards
 description: Couchbase Capella provides monitoring dashboards with metrics for
   each cluster so you can view and monitor cluster performance.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/metrics-dashboard.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:monitoring/metrics-dashboard.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/monitoring/metrics-dashboard.html)

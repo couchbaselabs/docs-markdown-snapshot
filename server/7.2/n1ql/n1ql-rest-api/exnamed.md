@@ -1,7 +1,8 @@
 ---
 title: Request with Named Parameters
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/n1ql/pages/n1ql-rest-api/exnamed.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:n1ql:n1ql-rest-api/exnamed.adoc[]
 ---
 
 [View original HTML](/server/7.2/n1ql/n1ql-rest-api/exnamed.html)

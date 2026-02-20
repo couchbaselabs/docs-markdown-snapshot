@@ -3,7 +3,8 @@ title: Hadoop Connector
 description: The Couchbase Hadoop Connector has reached End-of-Life (EOL),
   <em>and is no longer supported</em>.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/connectors/pages/hadoop-1.2/hadoop.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:connectors:hadoop-1.2/hadoop.adoc[]
 ---
 
 [View original HTML](/server/7.6/connectors/hadoop-1.2/hadoop.html)

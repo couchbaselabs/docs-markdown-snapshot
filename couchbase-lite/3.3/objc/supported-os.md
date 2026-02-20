@@ -3,7 +3,8 @@ title: Supported Operating System Versions
 description: Couchbase Lite on Objective-C -- the OS and SDK versions on which
   this framework is supported
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/supported-os.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:objc:supported-os.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/objc/supported-os.html)

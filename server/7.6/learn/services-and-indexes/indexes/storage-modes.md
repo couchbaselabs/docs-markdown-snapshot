@@ -3,7 +3,8 @@ title: Index Storage Settings
 description: "A Secondary Index can be saved in either of two ways:
   memory-optimized or standard."
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/learn/pages/services-and-indexes/indexes/storage-modes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:services-and-indexes/indexes/storage-modes.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/services-and-indexes/indexes/storage-modes.html)

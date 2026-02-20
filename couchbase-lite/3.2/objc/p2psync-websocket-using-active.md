@@ -3,7 +3,8 @@ title: Active Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/p2psync-websocket-using-active.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:objc:p2psync-websocket-using-active.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/objc/p2psync-websocket-using-active.html)

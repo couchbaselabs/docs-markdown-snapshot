@@ -3,7 +3,8 @@ title: Pause a Replication
 description: Pausing an XDCR <em>replication</em> temporarily suspends the
   replication of data from the source bucket to the target.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-xdcr/pause-xdcr-replication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:manage:manage-xdcr/pause-xdcr-replication.adoc[]
 ---
 
 [View original HTML](/server/7.6/manage/manage-xdcr/pause-xdcr-replication.html)

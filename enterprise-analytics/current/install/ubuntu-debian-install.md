@@ -4,7 +4,8 @@ description: Enterprise Analytics can be installed on Ubuntu Linux and Debian
   Linux for production and development use-cases. Root installation is
   supported.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/ubuntu-debian-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:install:ubuntu-debian-install.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/install/ubuntu-debian-install.html)

@@ -2,7 +2,8 @@
 title: Configuration Environment Variables
 description: Using environment variables in the configuration of Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/configuration-environment-variables.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@sync-gateway::configuration-environment-variables.adoc[]
 ---
 
 [View original HTML](/sync-gateway/3.2/configuration-environment-variables.html)

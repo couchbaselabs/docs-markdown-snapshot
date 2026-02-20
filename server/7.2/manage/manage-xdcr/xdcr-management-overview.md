@@ -3,7 +3,8 @@ title: XDCR Management Overview
 description: Cross Datacenter Replication (XDCR) provides an easy way to
   replicate data from one cluster to another.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-xdcr/xdcr-management-overview.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:manage:manage-xdcr/xdcr-management-overview.adoc[]
 ---
 
 [View original HTML](/server/7.2/manage/manage-xdcr/xdcr-management-overview.html)

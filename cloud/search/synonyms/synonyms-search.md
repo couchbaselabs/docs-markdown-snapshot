@@ -3,7 +3,8 @@ title: Add Synonyms to a Search Index
 description: Add synonyms to a Search index to return matches for words with
   similar meanings when running a Search with the Search Service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/synonyms/synonyms-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:synonyms/synonyms-search.adoc[]
 ---
 
 [View original HTML](/cloud/search/synonyms/synonyms-search.html)

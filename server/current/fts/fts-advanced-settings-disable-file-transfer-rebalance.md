@@ -1,7 +1,8 @@
 ---
 title: disableFileTransferRebalance
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-advanced-settings-disable-file-transfer-rebalance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:fts:fts-advanced-settings-disable-file-transfer-rebalance.adoc[]
 ---
 
 [View original HTML](/server/current/fts/fts-advanced-settings-disable-file-transfer-rebalance.html)

@@ -2,7 +2,8 @@
 title: Number Functions
 description: Number functions are functions that are performed on a numeric field.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/numericfun.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/numericfun.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/numericfun.html)

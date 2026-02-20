@@ -1,7 +1,8 @@
 ---
 title: Prerequisites and System Requirements
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/prerequisite-and-setup.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.7@operator::prerequisite-and-setup.adoc[]
 ---
 
 [View original HTML](/operator/2.7/prerequisite-and-setup.html)

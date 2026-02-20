@@ -3,7 +3,8 @@ title: Timers
 description: Timers are asynchronous compute, which offers Eventing Functions
   the ability to execute in reference to wall-clock events.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-timers.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:eventing:eventing-timers.adoc[]
 ---
 
 [View original HTML](/cloud/eventing/eventing-timers.html)

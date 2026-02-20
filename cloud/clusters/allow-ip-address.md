@@ -3,7 +3,8 @@ title: Configure Allowed IP Addresses
 description: Before a client can connect to the cluster, you must add the
   client's IP address to the cluster's Allowed IP list.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/allow-ip-address.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:allow-ip-address.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/allow-ip-address.html)

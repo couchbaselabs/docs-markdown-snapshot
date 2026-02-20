@@ -4,7 +4,8 @@ description: Use a Capella AI Services Unstructured Data Workflow to
   automatically preprocess data for a Retrieval Augmented Generation (RAG)
   application or other use cases inside Capella.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-unstructured-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:build:vectorization-service/vectorize-unstructured-data.adoc[]
 ---
 
 [View original HTML](/ai/build/vectorization-service/vectorize-unstructured-data.html)

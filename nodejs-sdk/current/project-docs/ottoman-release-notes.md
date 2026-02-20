@@ -3,7 +3,8 @@ title: Ottoman ODM Release Notes and Archives
 description: Release notes, installation instructions, and download archive for
   the Ottoman ODM.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/project-docs/pages/ottoman-release-notes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:nodejs-sdk:project-docs:ottoman-release-notes.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/current/project-docs/ottoman-release-notes.html)

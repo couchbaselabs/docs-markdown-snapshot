@@ -1,7 +1,8 @@
 ---
 title: Enable Couchbase Analytics Service
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/enable-analytics.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tableau-connector::enable-analytics.adoc[]
 ---
 
 [View original HTML](/tableau-connector/current/enable-analytics.html)

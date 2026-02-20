@@ -2,7 +2,8 @@
 title: Troubleshooting Queries
 description: Couchbase Lite on Android -- Using query.explain()
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/troubleshooting-queries.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:android:troubleshooting-queries.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/android/troubleshooting-queries.html)

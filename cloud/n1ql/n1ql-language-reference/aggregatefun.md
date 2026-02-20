@@ -3,7 +3,8 @@ title: Aggregate Functions
 description: Aggregate functions take multiple values from documents, perform
   calculations, and return a single value as the result.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/aggregatefun.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:n1ql:n1ql-language-reference/aggregatefun.adoc[]
 ---
 
 [View original HTML](/cloud/n1ql/n1ql-language-reference/aggregatefun.html)

@@ -1,7 +1,8 @@
 ---
 title: Access the Couchbase Server User Interface
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-ui.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::howto-ui.adoc[]
 ---
 
 [View original HTML](/operator/current/howto-ui.html)

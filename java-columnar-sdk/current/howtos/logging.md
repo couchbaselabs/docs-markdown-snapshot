@@ -2,7 +2,8 @@
 title: Logging
 description: Configuring logging with the Columnar Java SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/howtos/pages/logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-columnar-sdk:howtos:logging.adoc[]
 ---
 
 [View original HTML](/java-columnar-sdk/current/howtos/logging.html)

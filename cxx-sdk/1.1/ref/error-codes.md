@@ -3,7 +3,8 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase C&#43;&#43;
   SDK, from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.1/modules/ref/pages/error-codes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.1@cxx-sdk:ref:error-codes.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/1.1/ref/error-codes.html)

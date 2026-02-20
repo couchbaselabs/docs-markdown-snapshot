@@ -4,7 +4,8 @@ description: Errors are inevitable. The developer's job is to be prepared for
   whatever is likely to come up -- and to try and be prepared for anything that
   conceivably could come up.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:howtos:error-handling.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/howtos/error-handling.html)

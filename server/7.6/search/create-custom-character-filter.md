@@ -4,7 +4,8 @@ description: Create a custom character filter with the Couchbase Server Web
   Console to remove unwanted characters from a Search query or the contents of a
   Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/create-custom-character-filter.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:search:create-custom-character-filter.adoc[]
 ---
 
 [View original HTML](/server/7.6/search/create-custom-character-filter.html)

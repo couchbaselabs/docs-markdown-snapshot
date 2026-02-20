@@ -3,7 +3,8 @@ title: Do a Quick Install
 description: First-time users can get Couchbase Server running simply and
   rapidly by using Docker.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/getting-started/pages/do-a-quick-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:getting-started:do-a-quick-install.adoc[]
 ---
 
 [View original HTML](/server/current/getting-started/do-a-quick-install.html)

@@ -2,7 +2,8 @@
 title: Field Level Encryption
 description: Client-side Field Level Encryption on Couchbase Lite C Clients
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/c/pages/field-level-encryption.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:c:field-level-encryption.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/c/field-level-encryption.html)

@@ -1,7 +1,8 @@
 ---
 title: Service Selection
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/data-services.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:concept-docs:data-services.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/concept-docs/data-services.html)

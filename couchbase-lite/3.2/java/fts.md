@@ -3,7 +3,8 @@ title: Using Full-Text Search
 description: Working with Couchbase Lite's data model  -- Querying the database
   using full text search
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/fts.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:java:fts.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/java/fts.html)

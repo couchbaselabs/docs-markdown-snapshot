@@ -3,7 +3,8 @@ title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the Java SDK.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.10/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.10@java-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.10/howtos/encrypting-using-sdk.html)

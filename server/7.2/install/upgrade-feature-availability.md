@@ -2,7 +2,8 @@
 title: Feature Availability During Upgrade
 description: During the cluster-upgrade procedure, some features may not be available.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-feature-availability.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:install:upgrade-feature-availability.adoc[]
 ---
 
 [View original HTML](/server/7.2/install/upgrade-feature-availability.html)

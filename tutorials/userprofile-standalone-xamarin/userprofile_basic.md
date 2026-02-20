@@ -1,7 +1,8 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/standalone/content/modules/userprofile-standalone-xamarin/pages/userprofile_basic.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:userprofile-standalone-xamarin:userprofile_basic.adoc[]
 ---
 
 [View original HTML](/tutorials/userprofile-standalone-xamarin/userprofile_basic.html)

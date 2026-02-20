@@ -3,7 +3,8 @@ title: Settings and Parameters
 description: You can configure the Query service using cluster-level query
   settings, node-level query settings, and request-level query parameters.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/settings/pages/query-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:settings:query-settings.adoc[]
 ---
 
 [View original HTML](/server/7.2/settings/query-settings.html)

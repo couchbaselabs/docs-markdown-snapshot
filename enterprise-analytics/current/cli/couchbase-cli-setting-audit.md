@@ -2,7 +2,8 @@
 title: setting-audit
 description: Modifies audit log settings (EE only)
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/cli/pages/couchbase-cli-setting-audit.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:cli:couchbase-cli-setting-audit.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/cli/couchbase-cli-setting-audit.html)

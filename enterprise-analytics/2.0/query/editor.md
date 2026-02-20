@@ -3,7 +3,8 @@ title: Write and Run Queries
 description: To query data in Enterprise Analytics collections you use SQL++, a
   SQL-for-JSON language specification that is similar to SQL.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/editor.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:query:editor.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/query/editor.html)

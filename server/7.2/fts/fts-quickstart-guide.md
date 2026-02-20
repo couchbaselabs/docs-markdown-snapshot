@@ -3,7 +3,8 @@ title: Search Service Quick Start Guide
 description: Following appropriate preparations, full text searches can be
   performed in a number of ways.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-quickstart-guide.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:fts:fts-quickstart-guide.adoc[]
 ---
 
 [View original HTML](/server/7.2/fts/fts-quickstart-guide.html)

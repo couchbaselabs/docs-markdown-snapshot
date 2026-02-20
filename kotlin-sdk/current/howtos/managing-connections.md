@@ -2,7 +2,8 @@
 title: Managing Connections
 description: This section describes how to connect the Kotlin SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:kotlin-sdk:howtos:managing-connections.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/current/howtos/managing-connections.html)

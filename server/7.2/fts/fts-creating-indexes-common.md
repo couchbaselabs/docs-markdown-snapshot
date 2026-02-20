@@ -1,7 +1,8 @@
 ---
 title: Classic Editor Examples
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-indexes-common.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:fts:fts-creating-indexes-common.adoc[]
 ---
 
 [View original HTML](/server/7.2/fts/fts-creating-indexes-common.html)

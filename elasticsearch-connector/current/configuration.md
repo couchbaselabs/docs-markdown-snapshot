@@ -1,7 +1,8 @@
 ---
 title: Configuration
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/configuration.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:elasticsearch-connector::configuration.adoc[]
 ---
 
 [View original HTML](/elasticsearch-connector/current/configuration.html)

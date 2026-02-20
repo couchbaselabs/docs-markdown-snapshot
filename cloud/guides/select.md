@@ -3,7 +3,8 @@ title: Read Data and Return Results
 description: How to use a SQL++ selection query to read data from a data source
   and return results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/select.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:select.adoc[]
 ---
 
 [View original HTML](/cloud/guides/select.html)

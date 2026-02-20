@@ -3,7 +3,8 @@ title: Enabling and Disabling Auto-Failover
 description: Auto-failover is enabled and disabled by means of the <code>POST
   /settings/autoFailover</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-cluster-autofailover-enable.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-cluster-autofailover-enable.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-cluster-autofailover-enable.html)

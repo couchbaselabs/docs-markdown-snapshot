@@ -3,7 +3,8 @@ title: Add an AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that peers your Amazon Web
   Service (AWS) network with AI Services using AWS as its cloud provider.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/security/pages/add-aws-privatelink.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:security:add-aws-privatelink.adoc[]
 ---
 
 [View original HTML](/ai/security/add-aws-privatelink.html)

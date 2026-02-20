@@ -2,7 +2,8 @@
 title: Analytics Query Responses
 description: A description of query responses for Couchbase Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/query-responses.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:analytics:query-responses.adoc[]
 ---
 
 [View original HTML](/server/7.6/analytics/query-responses.html)

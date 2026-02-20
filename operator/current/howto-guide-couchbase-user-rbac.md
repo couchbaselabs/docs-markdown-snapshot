@@ -3,7 +3,8 @@ title: "How-to Guide: Couchbase User RBAC"
 description: A how-to guide on configuring Couchbase user authentication and
   authorization using the Kubernetes Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::howto-guide-couchbase-user-rbac.adoc[]
 ---
 
 [View original HTML](/operator/current/howto-guide-couchbase-user-rbac.html)

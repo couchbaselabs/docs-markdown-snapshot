@@ -3,7 +3,8 @@ title: Pre-filtering Vector Searches
 description: You can specify filters as part of a Vector Search query object to
   restrict the documents searched in a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/vector-search/pages/pre-filtering-vector-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:vector-search:pre-filtering-vector-search.adoc[]
 ---
 
 [View original HTML](/cloud/vector-search/pre-filtering-vector-search.html)

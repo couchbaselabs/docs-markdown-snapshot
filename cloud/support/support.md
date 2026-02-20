@@ -2,7 +2,8 @@
 title: Support Overview
 description: Couchbase Capella offers multiple levels of support for each cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/support/pages/support.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:support:support.adoc[]
 ---
 
 [View original HTML](/cloud/support/support.html)

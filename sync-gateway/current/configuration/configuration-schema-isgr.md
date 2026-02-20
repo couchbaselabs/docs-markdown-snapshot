@@ -3,7 +3,8 @@ title: Inter-Sync&#160;Gateway Replication Configuration
 description: Using Sync Gateway's Admin REST API to configure and manage
   inter-Sync&#160;Gateway replications
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/configuration/pages/configuration-schema-isgr.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:sync-gateway:configuration:configuration-schema-isgr.adoc[]
 ---
 
 [View original HTML](/sync-gateway/current/configuration/configuration-schema-isgr.html)

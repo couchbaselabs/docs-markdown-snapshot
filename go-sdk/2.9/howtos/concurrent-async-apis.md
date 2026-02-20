@@ -4,7 +4,8 @@ description: The Go SDK offers a synchronous blocking interface but this does
   not stop you from using it asynchronously, or from performing bulk operations
   concurrently.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.9@go-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
 [View original HTML](/go-sdk/2.9/howtos/concurrent-async-apis.html)

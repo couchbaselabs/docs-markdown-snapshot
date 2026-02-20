@@ -2,7 +2,8 @@
 title: scopes
 description: Provides information on scopes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-scopes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:cli:cbstats/cbstats-scopes.adoc[]
 ---
 
 [View original HTML](/server/current/cli/cbstats/cbstats-scopes.html)

@@ -2,7 +2,8 @@
 title: Work with Documents
 description: How to perform CRUD key-value operations in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/kv-operations.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:guides:kv-operations.adoc[]
 ---
 
 [View original HTML](/server/current/guides/kv-operations.html)

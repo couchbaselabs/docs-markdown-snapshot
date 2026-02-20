@@ -5,7 +5,8 @@ description: You can query for documents in Couchbase using the
   a language based on SQL, but designed for structured and flexible JSON
   documents.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
 [View original HTML](/java-sdk/current/howtos/sqlpp-queries-with-sdk.html)

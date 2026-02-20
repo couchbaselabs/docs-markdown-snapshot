@@ -3,7 +3,8 @@ title: CREATE PRIMARY INDEX
 description: The CREATE PRIMARY INDEX statement allows you to create a primary
   index. Primary indexes contain a full set of keys in a given keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createprimaryindex.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:n1ql:n1ql-language-reference/createprimaryindex.adoc[]
 ---
 
 [View original HTML](/server/current/n1ql/n1ql-language-reference/createprimaryindex.html)

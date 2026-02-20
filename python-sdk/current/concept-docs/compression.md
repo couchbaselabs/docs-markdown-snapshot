@@ -4,7 +4,8 @@ description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform now provides data compression between the SDK and
   Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:concept-docs:compression.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/concept-docs/compression.html)

@@ -4,7 +4,8 @@ description: To create a new design document, use the <code>PUT
   /[bucket-name]/_design/[ddoc-name]</code> HTTP method and URI on the
   <code>8092</code> port.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-ddocs-create.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-ddocs-create.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-ddocs-create.html)

@@ -3,7 +3,8 @@ title: Add Spans and Callbacks to Your Agent
 description: Add spans and callbacks to your agentic app code to generate logs
   through the Agent Catalog.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/agent-tracer/add-spans-callbacks.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:build:agent-tracer/add-spans-callbacks.adoc[]
 ---
 
 [View original HTML](/ai/build/agent-tracer/add-spans-callbacks.html)

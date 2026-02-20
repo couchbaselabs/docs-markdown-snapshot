@@ -3,7 +3,8 @@ title: Default Date/Time Parsers
 description: Use a date/time parser to tell the Search Service how to interpret
   date and time data in your documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/default-date-time-parsers-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:search:default-date-time-parsers-reference.adoc[]
 ---
 
 [View original HTML](/server/current/search/default-date-time-parsers-reference.html)

@@ -4,7 +4,8 @@ description: When an index includes the actual values of all the fields
   specified in the query, the index covers the query and does not require an
   additional step to fetch the actual values from the data service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/covering-indexes.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:indexes:covering-indexes.adoc[]
 ---
 
 [View original HTML](/cloud/indexes/covering-indexes.html)

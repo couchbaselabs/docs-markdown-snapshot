@@ -3,7 +3,8 @@ title: Data Structures Reference
 description: You can use complex data structures such as dictionaries and lists
   in Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/ref/pages/data-structures.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.9@java-sdk:ref:data-structures.adoc[]
 ---
 
 [View original HTML](/java-sdk/3.9/ref/data-structures.html)

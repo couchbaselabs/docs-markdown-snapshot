@@ -2,7 +2,8 @@
 title: Deprecated Certificate Management APIs
 description: A number of certificate management APIs are deprecated.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/deprecated-security-apis/deprecated-certificate-management-apis.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:deprecated-security-apis/deprecated-certificate-management-apis.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/deprecated-security-apis/deprecated-certificate-management-apis.html)

@@ -1,7 +1,8 @@
 ---
 title: Index Statistics REST API
 editUrl: https://github.com/couchbaselabs/cb-swagger/edit/release/8.0/docs/modules/index-rest-stats/pages/index.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:index-rest-stats:index.adoc[]
 ---
 
 [View original HTML](/server/current/index-rest-stats/index.html)

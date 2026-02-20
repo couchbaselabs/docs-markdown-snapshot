@@ -1,7 +1,8 @@
 ---
 title: Inference API Reference
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/model-service-api-reference/pages/rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:model-service-api-reference:rest-api.adoc[]
 ---
 
 [View original HTML](/ai/model-service-api-reference/rest-api.html)

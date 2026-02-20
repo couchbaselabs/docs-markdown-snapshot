@@ -1,7 +1,8 @@
 ---
 title: backup-service
 editUrl: https://github.com/couchbase/couchbase-cli/edit/neo/docs/modules/cli/pages/cbcli/couchbase-cli-backup-service.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cli:cbcli/couchbase-cli-backup-service.adoc[]
 ---
 
 [View original HTML](/server/7.2/cli/cbcli/couchbase-cli-backup-service.html)

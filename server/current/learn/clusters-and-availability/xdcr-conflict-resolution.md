@@ -4,7 +4,8 @@ description: <em>XDCR Conflict Resolution</em> automatically synchronizes
   document-copies that have been modified in different ways at different
   locations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-conflict-resolution.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:clusters-and-availability/xdcr-conflict-resolution.adoc[]
 ---
 
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-conflict-resolution.html)

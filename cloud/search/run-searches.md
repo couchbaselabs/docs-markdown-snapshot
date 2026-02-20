@@ -2,7 +2,8 @@
 title: Run a Search With a Search Index
 description: Run a Search query to search and return the contents of a Search index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/run-searches.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:search:run-searches.adoc[]
 ---
 
 [View original HTML](/cloud/search/run-searches.html)

@@ -2,7 +2,8 @@
 title: "Function: convertAdvXMLtoJSON"
 description: Recursively and generically convert advanced XML strings into JSON.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-convertAdvXMLtoJSON.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-handler-convertAdvXMLtoJSON.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-handler-convertAdvXMLtoJSON.html)

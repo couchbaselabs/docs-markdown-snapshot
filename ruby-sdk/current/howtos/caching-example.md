@@ -2,7 +2,8 @@
 title: Caching Example
 description: A walk-through of the steps to use Couchbase as a caching layer for Rails.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/caching-example.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ruby-sdk:howtos:caching-example.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/current/howtos/caching-example.html)

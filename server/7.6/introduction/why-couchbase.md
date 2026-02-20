@@ -4,7 +4,8 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase is a distributed, JSON document database, with all the desired
   capabilities of a relational DBMS.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/why-couchbase.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:introduction:why-couchbase.adoc[]
 ---
 
 [View original HTML](/server/7.6/introduction/why-couchbase.html)

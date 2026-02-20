@@ -1,7 +1,8 @@
 ---
 title: Full Text Search
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/develop/full-text-search.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:tutorials:mobile-travel-tutorial:swift/develop/full-text-search.adoc[]
 ---
 
 [View original HTML](/tutorials/mobile-travel-tutorial/swift/develop/full-text-search.html)

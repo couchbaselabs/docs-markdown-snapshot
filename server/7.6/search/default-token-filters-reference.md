@@ -3,7 +3,8 @@ title: Default Token Filters
 description: Use a token filter to filter a tokenizer's results and get better
   search result matches.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/default-token-filters-reference.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:search:default-token-filters-reference.adoc[]
 ---
 
 [View original HTML](/server/7.6/search/default-token-filters-reference.html)

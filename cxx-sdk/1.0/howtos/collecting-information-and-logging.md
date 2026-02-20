@@ -2,7 +2,8 @@
 title: Logging
 description: ""
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.0@cxx-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/1.0/howtos/collecting-information-and-logging.html)

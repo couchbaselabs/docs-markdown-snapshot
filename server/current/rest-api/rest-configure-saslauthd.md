@@ -3,7 +3,8 @@ title: Configuring saslauthd
 description: The Couchbase REST API supports enablement of <em>saslauthd</em>
   and the establishment of saslauthd administrators for the cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-configure-saslauthd.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-configure-saslauthd.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-configure-saslauthd.html)

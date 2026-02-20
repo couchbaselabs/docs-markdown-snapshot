@@ -3,7 +3,8 @@ title: CSV
 description: This topic explains how to use the COPY TO statement to export data
   from a database to Amazon S3 or Azure Blob Storage in CSV format.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/sqlpp/pages/5_dml_copy_to_csv.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:sqlpp:5_dml_copy_to_csv.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/sqlpp/5_dml_copy_to_csv.html)

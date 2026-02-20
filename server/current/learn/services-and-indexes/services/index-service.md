@@ -3,7 +3,8 @@ title: Index Service
 description: The Index Service supports the creation of primary and secondary
   indexes on items stored within the Data Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/services/index-service.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:services-and-indexes/services/index-service.adoc[]
 ---
 
 [View original HTML](/server/current/learn/services-and-indexes/services/index-service.html)

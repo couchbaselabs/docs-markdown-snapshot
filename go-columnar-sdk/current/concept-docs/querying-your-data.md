@@ -2,7 +2,8 @@
 title: Querying Your Data
 description: Querying Capella Columnar from the Go SDK, with SQL++.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:go-columnar-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
 [View original HTML](/go-columnar-sdk/current/concept-docs/querying-your-data.html)

@@ -3,7 +3,8 @@ title: Aggregate Functions
 description: This topic contains detailed descriptions of the built-in aggregate
   functions in the query language.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/8_builtin_agg.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:sqlpp:8_builtin_agg.adoc[]
 ---
 
 [View original HTML](/analytics/sqlpp/8_builtin_agg.html)

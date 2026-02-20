@@ -2,7 +2,8 @@
 title: Import and Export Data
 description: How to import data from files, and how to export data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/load.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:guides:load.adoc[]
 ---
 
 [View original HTML](/cloud/guides/load.html)

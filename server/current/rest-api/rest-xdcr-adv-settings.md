@@ -2,7 +2,8 @@
 title: Managing Advanced Settings
 description: XDCR advanced settings can be used to configure replications.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-xdcr-adv-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:rest-xdcr-adv-settings.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/rest-xdcr-adv-settings.html)

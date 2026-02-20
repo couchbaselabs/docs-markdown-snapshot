@@ -3,7 +3,8 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.5@ruby-sdk:concept-docs:data-model.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.5/concept-docs/data-model.html)

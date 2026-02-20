@@ -2,7 +2,8 @@
 title: Create a Search Index with the REST API and curl/HTTP
 description: You can create a Search index with the Search Service API.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/search/pages/create-search-index-rest-api.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:search:create-search-index-rest-api.adoc[]
 ---
 
 [View original HTML](/server/7.2/search/create-search-index-rest-api.html)

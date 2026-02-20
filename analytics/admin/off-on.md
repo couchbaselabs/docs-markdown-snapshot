@@ -2,7 +2,8 @@
 title: Turn a Cluster Off or On
 description: You can turn a Capella Analytics services cluster off to save costs.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/off-on.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:admin:off-on.adoc[]
 ---
 
 [View original HTML](/analytics/admin/off-on.html)

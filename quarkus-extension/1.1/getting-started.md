@@ -3,7 +3,8 @@ title: Getting Started
 description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
   within the Quarkus ecosystem.
 editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.1/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.1@quarkus-extension::getting-started.adoc[]
 ---
 
 [View original HTML](/quarkus-extension/1.1/getting-started.html)

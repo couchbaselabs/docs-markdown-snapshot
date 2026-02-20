@@ -2,7 +2,8 @@
 title: Creating a JavaScript Library
 description: How to create a JavaScript library.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:guides:create-javascript-library.adoc[]
 ---
 
 [View original HTML](/server/current/guides/create-javascript-library.html)

@@ -3,7 +3,8 @@ title: Turn Clusters Off or On
 description: You can turn your cluster off to save costs. To resume operations,
   turn it back on.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/off-on-database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:clusters:off-on-database.adoc[]
 ---
 
 [View original HTML](/cloud/clusters/off-on-database.html)

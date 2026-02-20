@@ -1,7 +1,8 @@
 ---
 title: Delete a Collection or Link
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/delete-entity.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:sources:delete-entity.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/sources/delete-entity.html)

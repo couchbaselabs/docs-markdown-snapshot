@@ -2,7 +2,8 @@
 title: Start and Stop Couchbase Server
 description: Start and stop the Couchbase Server service and application.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/startup-shutdown.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:startup-shutdown.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/startup-shutdown.html)

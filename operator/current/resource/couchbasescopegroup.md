@@ -1,7 +1,8 @@
 ---
 title: CouchbaseScopeGroup Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbasescopegroup.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::resource/couchbasescopegroup.adoc[]
 ---
 
 [View original HTML](/operator/current/resource/couchbasescopegroup.html)

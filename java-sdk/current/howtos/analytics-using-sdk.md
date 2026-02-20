@@ -3,7 +3,8 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:java-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
 [View original HTML](/java-sdk/current/howtos/analytics-using-sdk.html)

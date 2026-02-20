@@ -4,7 +4,8 @@ description: iQ Insights uses the power of AI to provide you with key insights
   into your query results. Use it to better understand your data with generated
   questions and visualizations.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq-insights.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:analytics:query:iq-insights.adoc[]
 ---
 
 [View original HTML](/analytics/query/iq-insights.html)

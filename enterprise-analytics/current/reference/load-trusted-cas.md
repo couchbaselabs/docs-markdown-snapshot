@@ -5,7 +5,8 @@ description: Trusted CA (or 'root') certificates can be loaded into the trust
   cluster's nodes, and to authenticate clients' access-attempts. Intermediate
   certificates can also be loaded into the trust store.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/load-trusted-cas.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:load-trusted-cas.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/load-trusted-cas.html)

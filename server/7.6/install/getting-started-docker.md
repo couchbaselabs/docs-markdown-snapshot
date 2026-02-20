@@ -3,7 +3,8 @@ title: Install Couchbase Server Using Docker
 description: Couchbase Server can be installed using official Couchbase images
   from Docker Hub.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/getting-started-docker.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:install:getting-started-docker.adoc[]
 ---
 
 [View original HTML](/server/7.6/install/getting-started-docker.html)

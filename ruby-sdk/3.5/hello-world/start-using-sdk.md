@@ -2,7 +2,8 @@
 title: Start Using the Ruby SDK
 description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.5@ruby-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
 [View original HTML](/ruby-sdk/3.5/hello-world/start-using-sdk.html)

@@ -3,7 +3,8 @@ title: "How-to Guide: XDCR with Scopes and Collections"
 description: A how-to guide on configuring cross data center replication (XDCR)
   using the Autonomous Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/howto-guide-xdcr-scopes-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.7@operator::howto-guide-xdcr-scopes-collections.adoc[]
 ---
 
 [View original HTML](/operator/2.7/howto-guide-xdcr-scopes-collections.html)

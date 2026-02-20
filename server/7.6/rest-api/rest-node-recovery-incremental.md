@@ -3,7 +3,8 @@ title: Setting Recovery Type
 description: Node recover type is set with the <code>POST
   /controller/setRecoverType</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-node-recovery-incremental.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-node-recovery-incremental.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-node-recovery-incremental.html)

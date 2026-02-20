@@ -2,7 +2,8 @@
 title: Change Password
 description: A local user of Couchbase Server can change their password.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-set-password.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-set-password.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-set-password.html)

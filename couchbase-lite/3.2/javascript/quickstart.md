@@ -1,7 +1,8 @@
 ---
 title: Couchbase Lite on Javascript
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/javascript/pages/quickstart.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:javascript:quickstart.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/javascript/quickstart.html)

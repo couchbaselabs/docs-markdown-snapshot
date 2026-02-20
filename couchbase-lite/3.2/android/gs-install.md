@@ -2,7 +2,8 @@
 title: Installing Couchbase Lite on Android
 description: How to install Couchbase Lite on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/android/pages/gs-install.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.2@couchbase-lite:android:gs-install.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.2/android/gs-install.html)

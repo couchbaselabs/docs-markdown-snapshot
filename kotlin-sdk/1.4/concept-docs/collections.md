@@ -2,7 +2,8 @@
 title: Collections &amp; Scopes
 description: Fully supported in Couchbase Server 7.x
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:1.4@kotlin-sdk:concept-docs:collections.adoc[]
 ---
 
 [View original HTML](/kotlin-sdk/1.4/concept-docs/collections.html)

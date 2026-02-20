@@ -1,7 +1,8 @@
 ---
 title: Instruction Text
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/ui-ux/modules/ROOT/pages/instruction-text.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ui-ux::instruction-text.adoc[]
 ---
 
 [View original HTML](/ui-ux/instruction-text.html)

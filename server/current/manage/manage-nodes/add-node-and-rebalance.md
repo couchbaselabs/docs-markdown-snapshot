@@ -2,7 +2,8 @@
 title: Add a Node and Rebalance
 description: A new Couchbase Server node can be added to an existing cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/add-node-and-rebalance.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-nodes/add-node-and-rebalance.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-nodes/add-node-and-rebalance.html)

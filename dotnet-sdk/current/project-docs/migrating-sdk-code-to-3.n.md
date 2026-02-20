@@ -3,7 +3,8 @@ title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
 [View original HTML](/dotnet-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)

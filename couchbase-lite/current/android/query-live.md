@@ -2,7 +2,8 @@
 title: Live Query&#8201;&#8212;&#8201;Working with Queries
 description: Couchbase Lite database data querying concepts -- live queries
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-live.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:couchbase-lite:android:query-live.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/current/android/query-live.html)

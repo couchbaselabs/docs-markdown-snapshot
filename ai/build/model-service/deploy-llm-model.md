@@ -3,7 +3,8 @@ title: Deploy a Large Language Model (LLM)
 description: The Capella Model Service can deploy Large Language Models (LLMs)
   close to your data in Capella to power your AI applications.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-llm-model.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:ai:build:model-service/deploy-llm-model.adoc[]
 ---
 
 [View original HTML](/ai/build/model-service/deploy-llm-model.html)

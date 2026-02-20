@@ -3,7 +3,8 @@ title: Regenerate All Certificates
 description: The REST API can be used to <em>regenerate</em> the cluster's root
   and node certificates.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-regenerate-all-certs.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-regenerate-all-certs.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-regenerate-all-certs.html)

@@ -2,7 +2,8 @@
 title: User-Defined Functions
 description: A description of user-defined functions in Couchbase SQL++ for Analytics.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/9_udf.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:analytics:9_udf.adoc[]
 ---
 
 [View original HTML](/server/current/analytics/9_udf.html)

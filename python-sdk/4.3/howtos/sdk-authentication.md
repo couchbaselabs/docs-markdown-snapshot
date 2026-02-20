@@ -3,7 +3,8 @@ title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.3/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:4.3@python-sdk:howtos:sdk-authentication.adoc[]
 ---
 
 [View original HTML](/python-sdk/4.3/howtos/sdk-authentication.html)

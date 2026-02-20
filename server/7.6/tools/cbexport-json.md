@@ -2,7 +2,8 @@
 title: cbexport json
 description: Exports JSON data from Couchbase
 editUrl: https://github.com/couchbase/backup/edit/trinity/docs/modules/tools/pages/cbexport-json.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:tools:cbexport-json.adoc[]
 ---
 
 [View original HTML](/server/7.6/tools/cbexport-json.html)

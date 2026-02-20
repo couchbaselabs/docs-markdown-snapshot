@@ -3,7 +3,8 @@ title: Delete Root Certificates
 description: Trusted CA (or 'root') certificates previously loaded into the
   Couchbase-Server cluster can be deleted.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/delete-trusted-cas.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:reference:delete-trusted-cas.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/reference/delete-trusted-cas.html)

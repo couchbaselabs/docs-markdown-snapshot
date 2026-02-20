@@ -4,7 +4,8 @@ description: The <code>_count</code> function provides a simple count of the
   input rows from the <code>map()</code> function, using the keys and group
   level.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-count.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:learn:views/views-writing-count.adoc[]
 ---
 
 [View original HTML](/server/current/learn/views/views-writing-count.html)

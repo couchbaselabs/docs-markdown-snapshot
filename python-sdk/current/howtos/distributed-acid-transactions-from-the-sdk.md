@@ -3,7 +3,8 @@ title: Using Couchbase Transactions
 description: A practical guide to using Couchbase distributed ACID transactions
   with the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:python-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [View original HTML](/python-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)

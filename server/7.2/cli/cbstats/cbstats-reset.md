@@ -2,7 +2,8 @@
 title: reset
 description: Resets the following reset and reset histogram statistics.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cli/pages/cbstats/cbstats-reset.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:cli:cbstats/cbstats-reset.adoc[]
 ---
 
 [View original HTML](/server/7.2/cli/cbstats/cbstats-reset.html)

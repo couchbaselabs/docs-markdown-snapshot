@@ -4,7 +4,8 @@ description: Actions performed on Enterprise Analytics can be <em>audited</em>.
   This allows administrators to ensure that system-management tasks are being
   appropriately performed.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-security/manage-auditing.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:manage:manage-security/manage-auditing.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/manage/manage-security/manage-auditing.html)

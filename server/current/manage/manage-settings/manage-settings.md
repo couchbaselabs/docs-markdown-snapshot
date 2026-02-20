@@ -2,7 +2,8 @@
 title: Manage Settings
 description: Couchbase-Server <em>settings</em> can be established by the administrator.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-settings/manage-settings.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:manage:manage-settings/manage-settings.adoc[]
 ---
 
 [View original HTML](/server/current/manage/manage-settings/manage-settings.html)

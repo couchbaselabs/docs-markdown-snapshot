@@ -3,7 +3,8 @@ title: "Function: Basic SQL++ SELECT Statement"
 description: Iterate through a basic N1QL SELECT where Eventing interacts with
   the Data service via an inline {sqlpp} statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-handler-basicN1qlSelectStmt.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:eventing:eventing-handler-basicN1qlSelectStmt.adoc[]
 ---
 
 [View original HTML](/server/7.6/eventing/eventing-handler-basicN1qlSelectStmt.html)

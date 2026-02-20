@@ -3,7 +3,8 @@ title: Translating SQL to MapReduce
 description: This section provides information on how to translate SQL to a
   MapReduce environment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/views/views-trans-sql.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:learn:views/views-trans-sql.adoc[]
 ---
 
 [View original HTML](/server/7.6/learn/views/views-trans-sql.html)

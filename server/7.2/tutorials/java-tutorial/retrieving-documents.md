@@ -6,7 +6,8 @@ description: "In this section, you're going to look at two methods of retrieving
   certain criteria. Both of the methods will introduce SQL++, Couchbase's
   SQL-based query language."
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/retrieving-documents.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:tutorials:java-tutorial/retrieving-documents.adoc[]
 ---
 
 [View original HTML](/server/7.2/tutorials/java-tutorial/retrieving-documents.html)

@@ -4,7 +4,8 @@ description: In Couchbase Server 6.5 and later, view indexes are not supported
   in SQL++. New view indexes cannot be created, and existing view indexes are
   not accessible.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/views/view-indexes-for-n1ql.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:learn:views/view-indexes-for-n1ql.adoc[]
 ---
 
 [View original HTML](/server/7.2/learn/views/view-indexes-for-n1ql.html)

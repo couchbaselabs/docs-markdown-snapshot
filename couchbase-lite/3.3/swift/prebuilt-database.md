@@ -2,7 +2,8 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on Swift app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/swift/pages/prebuilt-database.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:3.3@couchbase-lite:swift:prebuilt-database.adoc[]
 ---
 
 [View original HTML](/couchbase-lite/3.3/swift/prebuilt-database.html)

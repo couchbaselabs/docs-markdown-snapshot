@@ -4,7 +4,8 @@ title: Install Couchbase Server on Red Hat Enterprise Linux, Oracle Linux, or
 description: Couchbase Server can be installed on Red Hat Enterprise Linux,
   Oracle Linux, or Amazon Linux 2023 for production and development use cases.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/rhel-suse-install-intro.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:install:rhel-suse-install-intro.adoc[]
 ---
 
 [View original HTML](/server/current/install/rhel-suse-install-intro.html)

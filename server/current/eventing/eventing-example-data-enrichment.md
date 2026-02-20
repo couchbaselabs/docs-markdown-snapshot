@@ -4,7 +4,8 @@ description: Given a legacy document set containing attributes whose format
   makes them difficult to search on. In order to correct this search deficiency,
   new searchable attributes will be added to the document.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-example-data-enrichment.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:eventing:eventing-example-data-enrichment.adoc[]
 ---
 
 [View original HTML](/server/current/eventing/eventing-example-data-enrichment.html)

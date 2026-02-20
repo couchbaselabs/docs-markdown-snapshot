@@ -4,7 +4,8 @@ description: Capella iQ is your partner in getting started with Couchbase
   Capella. Use it to generate SQL++ queries, sample data, build indexes, and
   more.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/capella-iq/get-started-with-iq.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cloud:get-started:capella-iq/get-started-with-iq.adoc[]
 ---
 
 [View original HTML](/cloud/get-started/capella-iq/get-started-with-iq.html)

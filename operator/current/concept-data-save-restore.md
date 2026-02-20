@@ -1,7 +1,8 @@
 ---
 title: Data Topology Save, Restore and Synchronization
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-data-save-restore.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:operator::concept-data-save-restore.adoc[]
 ---
 
 [View original HTML](/operator/current/concept-data-save-restore.html)

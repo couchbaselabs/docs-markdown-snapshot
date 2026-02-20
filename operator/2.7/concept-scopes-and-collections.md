@@ -1,7 +1,8 @@
 ---
 title: Couchbase Scopes and Collections
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/concept-scopes-and-collections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.7@operator::concept-scopes-and-collections.adoc[]
 ---
 
 [View original HTML](/operator/2.7/concept-scopes-and-collections.html)

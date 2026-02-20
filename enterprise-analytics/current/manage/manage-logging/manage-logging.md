@@ -3,7 +3,8 @@ title: Manage Logging
 description: The <em>Logging</em> facility allows a record to be maintained of
   important events that occur on Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:enterprise-analytics:manage:manage-logging/manage-logging.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/current/manage/manage-logging/manage-logging.html)

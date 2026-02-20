@@ -3,7 +3,8 @@ title: Using Couchbase Transactions
 description: A practical guide on using Couchbase Distributed ACID transactions,
   via the Node.js API.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:nodejs-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
 [View original HTML](/nodejs-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)

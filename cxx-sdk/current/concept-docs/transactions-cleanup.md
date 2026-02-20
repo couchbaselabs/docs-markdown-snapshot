@@ -3,7 +3,8 @@ title: Cleanup
 description: The SDK takes care of failed or lost transactions, using an
   asynchronous cleanup background task.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/transactions-cleanup.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:cxx-sdk:concept-docs:transactions-cleanup.adoc[]
 ---
 
 [View original HTML](/cxx-sdk/current/concept-docs/transactions-cleanup.html)

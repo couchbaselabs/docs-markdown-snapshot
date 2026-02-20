@@ -4,7 +4,8 @@ description: By means of the REST API, the maximum permitted numbers of
   connections can be established and retrieved for memcached connections, and
   for system-user connections, for the cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-manage-cluster-connections.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.2@server:rest-api:rest-manage-cluster-connections.adoc[]
 ---
 
 [View original HTML](/server/7.2/rest-api/rest-manage-cluster-connections.html)

@@ -5,7 +5,8 @@ description: Alternate addresses and port-numbers can be established for and
   HTTP methods, using the
   <code>/node/controller/setupAlternateAddresses/external</code> URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-set-up-alternate-address.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-set-up-alternate-address.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-set-up-alternate-address.html)

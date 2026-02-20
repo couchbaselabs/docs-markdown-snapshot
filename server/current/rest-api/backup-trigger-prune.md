@@ -2,7 +2,8 @@
 title: Perform an Immediate Prune
 description: The Backup Service REST API allows an immediate prune to be triggered.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-trigger-prune.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:server:rest-api:backup-trigger-prune.adoc[]
 ---
 
 [View original HTML](/server/current/rest-api/backup-trigger-prune.html)

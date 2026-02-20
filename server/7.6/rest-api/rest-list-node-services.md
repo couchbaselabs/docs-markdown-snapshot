@@ -4,7 +4,8 @@ description: The services running on a specific node can be listed, with their
   respective port numbers, by means of the <code>GET
   /pools/default/nodeServices</code> method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-list-node-services.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:7.6@server:rest-api:rest-list-node-services.adoc[]
 ---
 
 [View original HTML](/server/7.6/rest-api/rest-list-node-services.html)

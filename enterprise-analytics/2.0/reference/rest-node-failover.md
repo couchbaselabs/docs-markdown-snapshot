@@ -3,7 +3,8 @@ title: Performing Hard Failover
 description: <em>Hard</em> failover can be used to take a node out of a cluster,
   when the node has become unresponsive.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/rest-node-failover.adoc
-pubDate: 2026-02-18T18:09:36.163Z
+pubDate: 2026-02-20T16:52:32.702Z
+link: xref:2.0@enterprise-analytics:reference:rest-node-failover.adoc[]
 ---
 
 [View original HTML](/enterprise-analytics/2.0/reference/rest-node-failover.html)
