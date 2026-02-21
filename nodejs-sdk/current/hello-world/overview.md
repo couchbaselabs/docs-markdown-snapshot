@@ -1,7 +1,7 @@
 ---
 title: Couchbase Node.js SDK 4.6
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:nodejs-sdk:hello-world:overview.adoc[]
 ---
 
@@ -97,8 +97,6 @@ Project Docs
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [Migrating to SDK API 3](../project-docs/migrating-sdk-code-to-3.n.md)
 * [Full Installation](../project-docs/sdk-full-installation.md)
-
-This page covers using our operational Node.js SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs

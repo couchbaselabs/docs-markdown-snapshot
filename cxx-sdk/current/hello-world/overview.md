@@ -1,7 +1,7 @@
 ---
 title: Couchbase C++ SDK 1.2
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:cxx-sdk:hello-world:overview.adoc[]
 ---
 
@@ -131,8 +131,6 @@ Deployment
 * [Compatibility](../project-docs/compatibility.md)
 * [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
 * [Full Installation of the C++ SDK](../project-docs/sdk-full-installation.md)
-
-This page covers using our operational C++ SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs

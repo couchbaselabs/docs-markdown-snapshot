@@ -1,7 +1,7 @@
 ---
 title: Couchbase C SDK 3.3
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:c-sdk:hello-world:overview.adoc[]
 ---
 
@@ -69,8 +69,6 @@ Community
 For community help, visit the [Couchbase forums](https://forums.couchbase.com/c/c-sdk/7).
 
 Documentation on older, unsupported versions of the SDK — that have reached end-of-life — can be found in the [archive](https://docs-archive.couchbase.com/home/index.html).
-
-This page covers using our operational C SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs

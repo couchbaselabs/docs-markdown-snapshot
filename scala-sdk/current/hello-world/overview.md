@@ -1,7 +1,7 @@
 ---
 title: Couchbase Scala SDK 3.11
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:scala-sdk:hello-world:overview.adoc[]
 ---
 
@@ -111,8 +111,6 @@ Deployment
 * [Compatibility](../project-docs/compatibility.md)
 * [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
 * [Couchbase Scala SDK Installation](../project-docs/sdk-full-installation.md)
-
-This page covers using our operational Scala SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs

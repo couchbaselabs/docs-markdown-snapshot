@@ -1,7 +1,7 @@
 ---
 title: Data Operations
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:nodejs-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -352,7 +352,7 @@ const sampleBucket = sampleCluster.bucket("travel-sample");
 const sampleScope = sampleBucket.scope("tenant_agent_00");
 sampleColl = sampleScope.collection("users");
 
-[data-source-url=https://github.com/couchbase/docs-sdk-nodejs/blob/37628dcb5632392154953789d34a6ab98991c351/modules/devguide/examples/nodejs/kv-operations.js#L584-L585]
+[data-source-url=https://github.com/couchbase/docs-sdk-nodejs/blob/177cc4f2fb92e4bc53c2eed4cc897d4d137b5c5f/modules/devguide/examples/nodejs/kv-operations.js#L584-L585]
 let collDocument = { name: 'John Doe', preferred_email: 'johndoe111@test123.test' };
 result = await sampleColl.upsert(user, collDocument);
 ```

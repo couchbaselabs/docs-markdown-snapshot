@@ -1,7 +1,7 @@
 ---
 title: Couchbase .NET SDK 3.8
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-21T03:37:39.956Z
 link: xref:dotnet-sdk:hello-world:overview.adoc[]
 ---
 
@@ -99,8 +99,6 @@ Project Docs
 * [Older Versions Archive](https://docs-archive.couchbase.com/home/index.html)
 * [Migrating to SDK 3 API](../project-docs/migrating-sdk-code-to-3.n.md)
 * [Full Installation](../project-docs/sdk-full-installation.md)
-
-This page covers using our operational .NET SDK to connect to the Analytics Service of a Capella Operational or self-managed Couchbase Server cluster. As well as this row-based analytics service, a speedy, column-based analytics database is available for real-time analytics.
 
 > [!TIP]
 > Analytics SDKs
