@@ -5,7 +5,9 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 == A
 
-*ACID*:: A set of properties that guarantee database transactions are processed reliably. ACID stands for Atomicity, Consistency, Isolation, and Durability. Couchbase supports ACID transactions across multiple documents.
+*ACID*:: A set of properties that guarantee database transactions are processed reliably.
+ACID stands for Atomicity, Consistency, Isolation, and Durability.
+Couchbase supports ACID transactions across multiple documents.
 
 *Adaptive Index*:: An index type that adjusts its structure based on query patterns and data distribution, providing flexibility for evolving workloads.
 
@@ -17,7 +19,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Aggregation*:: The process of combining multiple data values into a single result using SQL++ operations like SUM, COUNT, AVG, MIN, and MAX with GROUP BY clauses.
 
-*Analytics Service*:: A distributed query processing service in Couchbase that analyzes structured, semi-structured, and unstructured data using SQL++. Designed for large, long-running queries that are highly consumptive of memory and CPU resources.
+*Analytics Service*:: A distributed query processing service in Couchbase that analyzes structured, semi-structured, and unstructured data using SQL++.
+Designed for large, long-running queries that are highly consumptive of memory and CPU resources.
 
 *Apache Kafka*:: A distributed streaming platform that integrates with Capella Analytics to provide real-time data ingestion through Kafka pipeline links and collections.
 
@@ -31,7 +34,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Asynchronous API*:: SDK interfaces that allow non-blocking operations, enabling applications to perform multiple tasks concurrently without waiting for each operation to complete.
 
-*Authentication*:: The process of verifying the identity of users, applications, or devices connecting to Couchbase. Supports methods including username/password, certificates, LDAP, and SSO.
+*Authentication*:: The process of verifying the identity of users, applications, or devices connecting to Couchbase.
+Supports methods including username/password, certificates, LDAP, and SSO.
 
 *Auto-Failover*:: An automatic process that detects node failures and fails over services to healthy nodes without manual intervention, ensuring high availability.
 
@@ -39,7 +43,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 == B
 
-*Backup*:: The process of creating point-in-time snapshots of data for disaster recovery and data protection. The Backup Service allows scheduling and management of backups.
+*Backup*:: The process of creating point-in-time snapshots of data for disaster recovery and data protection.
+The Backup Service allows scheduling and management of backups.
 
 *Backup Service*:: A Couchbase service that manages backup and restore operations, providing scheduled backups, incremental backups, and data recovery capabilities.
 
@@ -47,7 +52,9 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Bloom Filter*:: A space-efficient probabilistic data structure used by index services to quickly determine whether a key might exist in an index, reducing unnecessary disk reads.
 
-*Bucket*:: A logical container that stores JSON documents and serves as the fundamental space for data storage. Buckets can be Couchbase type (data in memory and on disk) or Ephemeral (data in memory only). Buckets contain scopes and collections.
+*Bucket*:: A logical container that stores JSON documents and serves as the fundamental space for data storage.
+Buckets can be Couchbase type (data in memory and on disk) or Ephemeral (data in memory only).
+Buckets contain scopes and collections.
 
 *Bucket Alias*:: A binding in Eventing Functions that provides JavaScript access to Couchbase collections, enabling functions to read and write data.
 
@@ -63,7 +70,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Capella AI Services*:: Artificial intelligence capabilities in Capella that provide vectorization, model deployment, agent catalog, and AI functions for building AI-powered applications integrated with your data.
 
-*Capella Analytics*:: A JSON-native NoSQL analytical database within Capella that enables complex analytical queries across multiple data sources. Features a column-oriented storage engine, MPP-based computation, and Zero ETL capabilities.
+*Capella Analytics*:: A JSON-native NoSQL analytical database within Capella that enables complex analytical queries across multiple data sources.
+Features a column-oriented storage engine, MPP-based computation, and Zero ETL capabilities.
 
 *Capella App Services*:: See App Services.
 
@@ -73,7 +81,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Cardinality*:: The number of unique values in a dataset or index field, which impacts index performance, storage requirements, and query optimization.
 
-*CAS (Compare and Swap)*:: A value associated with each document that changes with every mutation. Used in optimistic locking to prevent lost updates during concurrent document modifications.
+*CAS (Compare and Swap)*:: A value associated with each document that changes with every mutation.
+Used in optimistic locking to prevent lost updates during concurrent document modifications.
 
 *Certificate-Based Authentication*:: An authentication method using digital certificates to verify client identity when connecting to Couchbase, providing enhanced security.
 
@@ -81,7 +90,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Cluster*:: A group of one or more Couchbase servers working together to provide high availability, scalability, and data distribution, forming a unified system with a single management interface.
 
-*Collection*:: A logical container within a scope that stores related JSON documents. Collections provide data organization similar to tables in relational databases and serve as the unit of authorization and resource allocation.
+*Collection*:: A logical container within a scope that stores related JSON documents.
+Collections provide data organization similar to tables in relational databases and serve as the unit of authorization and resource allocation.
 
 *Columnar Collection*:: A collection in Capella Analytics optimized for columnar storage, suitable for analytical workloads with efficient storage and query processing.
 
@@ -117,13 +127,17 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Data Manipulation Language*:: See DML.
 
-*Data Model*:: The structure and organization of data within Couchbase, including documents, keys, values, collections, scopes, and buckets. Couchbase uses a flexible JSON document model that supports schema-less design.
+*Data Model*:: The structure and organization of data within Couchbase, including documents, keys, values, collections, scopes, and buckets.
+Couchbase uses a flexible JSON document model that supports schema-less design.
 
-*Data Service*:: The core Couchbase service providing key-value operations and document management capabilities. Stores, sets, and retrieves data items specified by key with high performance and low latency.
+*Data Service*:: The core Couchbase service providing key-value operations and document management capabilities.
+Stores, sets, and retrieves data items specified by key with high performance and low latency.
 
 *Database Change Protocol (DCP)*:: The protocol used to stream bucket-level mutations for high-speed replication, maintaining replica vBuckets, indexes, XDCR, backups, and external connections.
 
-*DBaaS*:: Database-as-a-Service. A cloud computing service model that provides managed database capabilities. Couchbase Capella is a DBaaS offering.
+*DBaaS*:: Database-as-a-Service.
+A cloud computing service model that provides managed database capabilities.
+Couchbase Capella is a DBaaS offering.
 
 *DDL (Data Definition Language)*:: SQL++ statements used to define and manage database structures, including CREATE, ALTER, and DROP statements for databases, scopes, collections, and indexes.
 
@@ -131,13 +145,17 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *DML (Data Manipulation Language)*:: SQL++ statements used to manipulate data, including SELECT, INSERT, UPDATE, UPSERT, DELETE, and MERGE operations.
 
-*Document*:: A JSON value stored in Couchbase, consisting of one or more attributes. Documents are the fundamental unit of data storage, referenced by a unique key within a collection.
+*Document*:: A JSON value stored in Couchbase, consisting of one or more attributes.
+Documents are the fundamental unit of data storage, referenced by a unique key within a collection.
 
-*Document Key*:: A unique identifier for a document within a collection. Also called document ID. Can be any UTF-8 string up to 250 bytes.
+*Document Key*:: A unique identifier for a document within a collection.
+Also called document ID.
+Can be any UTF-8 string up to 250 bytes.
 
-*Dot Product*:: A vector similarity metric that measures the similarity between vectors by calculating the sum of the products of corresponding elements. Used in vector search operations.
+*Dot Product*:: A vector similarity metric that measures the similarity between vectors by calculating the sum of the products of corresponding elements.
+Used in vector search operations.
 
-*Durable Writes*:: Write operations that ensure data is persisted to disk and/or replicated before acknowledging success, providing configurable durability guarantees.
+*Durable Writes*:: Write operations that ensure data is persisted to disk or replicated before acknowledging success, providing configurable durability guarantees.
 
 *Durability Level*:: A configuration specifying how many replicas must acknowledge a write before it is considered successful, balancing performance with data durability requirements.
 
@@ -145,13 +163,16 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Embedding*:: See Vector Embedding.
 
-*Embedding Model*:: A machine learning model that converts text, images, or other data into vector embeddings. Deployable in Capella Model Service for use in vector search and RAG applications.
+*Embedding Model*:: A machine learning model that converts text, images, or other data into vector embeddings.
+Deployable in Capella Model Service for use in vector search and RAG applications.
 
 *Ephemeral Bucket*:: A bucket type that retains data only in memory without persistence to disk, providing maximum performance for temporary data.
 
-*ETL (Extract, Transform, Load)*:: The traditional process of extracting data from sources, transforming it, and loading it into a data warehouse. Capella Analytics enables Zero ETL by allowing direct queries on operational data.
+*ETL (Extract, Transform, Load)*:: The traditional process of extracting data from sources, transforming it, and loading it into a data warehouse.
+Capella Analytics enables Zero ETL by allowing direct queries on operational data.
 
-*Euclidean Distance*:: A vector similarity metric that calculates the straight-line distance between vectors in multi-dimensional space. Used in vector search to find similar items.
+*Euclidean Distance*:: A vector similarity metric that calculates the straight-line distance between vectors in multi-dimensional space.
+Used in vector search to find similar items.
 
 *Eventing Function*:: User-defined JavaScript code that executes in response to document mutations or timer events, enabling event-driven architectures and automated workflows.
 
@@ -163,7 +184,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 == F
 
-*Failover*:: The process of transferring service responsibilities from a failed node to a healthy node in a cluster, ensuring continued availability. Can be automatic or manual.
+*Failover*:: The process of transferring service responsibilities from a failed node to a healthy node in a cluster, ensuring continued availability.
+Can be automatic or manual.
 
 *Field Level Encryption*:: Encryption applied to specific fields within documents rather than entire documents, protecting sensitive data while allowing operations on non-encrypted fields.
 
@@ -175,7 +197,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 == G
 
-*Global Secondary Index (GSI)*:: An index that supports queries on document attributes, containing a filtered or full set of keys in a collection. Built and maintained by the Index Service to increase query efficiency.
+*Global Secondary Index (GSI)*:: An index that supports queries on document attributes, containing a filtered or full set of keys in a collection.
+Built and maintained by the Index Service to increase query efficiency.
 
 *GROUP BY*:: A SQL++ clause that groups query results by one or more fields, typically combined with aggregate functions to calculate statistics for each group.
 
@@ -225,9 +248,11 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 == L
 
-*Large Language Model (LLM)*:: An AI model trained on vast amounts of text data that can generate human-like text, answer questions, and perform language tasks. Deployable in Capella Model Service.
+*Large Language Model (LLM)*:: An AI model trained on vast amounts of text data that can generate human-like text, answer questions, and perform language tasks.
+Deployable in Capella Model Service.
 
-*LDAP*:: Lightweight Directory Access Protocol. An authentication method that integrates with existing enterprise directory services for user management.
+*LDAP*:: Lightweight Directory Access Protocol.
+An authentication method that integrates with existing enterprise directory services for user management.
 
 *LIMIT*:: A SQL++ clause that restricts the number of results returned by a query, commonly used for pagination.
 
@@ -247,15 +272,18 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Multi-Tenancy*:: An architecture where a single Couchbase deployment serves multiple independent tenants, separated using buckets, scopes, and collections with appropriate access controls.
 
-*Mutation*:: Any operation that changes document data, including inserts, updates, deletes, and sub-document modifications. Mutations trigger DCP streams and can activate Eventing Functions.
+*Mutation*:: Any operation that changes document data, including inserts, updates, deletes, and sub-document modifications.
+Mutations trigger DCP streams and can activate Eventing Functions.
 
 == N
 
-*N1QL*:: The former name of SQL++, Couchbase's query language. N1QL stands for "Non-first Normal Form Query Language."
+*N1QL*:: The former name of SQL++, Couchbase's query language.
+N1QL stands for "Non-first Normal Form Query Language."
 
 *Namespace*:: The hierarchical organization of data in Couchbase following the pattern `bucket.scope.collection`.
 
-*NoSQL*:: A category of databases that don't rely on traditional relational schemas and SQL, providing flexible data models. Couchbase is a NoSQL database that also supports SQL-like querying.
+*NoSQL*:: A category of databases that do not rely on traditional relational schemas and SQL, providing flexible data models.
+Couchbase is a NoSQL database that also supports SQL-like querying.
 
 == O
 
@@ -263,7 +291,7 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Optimistic Locking*:: A concurrency control method using CAS values to detect conflicts, allowing operations to proceed assuming conflicts are rare and checking only at commit time.
 
-*Orphan Request Logging*:: A diagnostic feature that tracks requests that don't receive responses within expected timeframes, helping identify timeout issues.
+*Orphan Request Logging*:: A diagnostic feature that tracks requests that do not receive responses within expected timeframes, helping identify timeout issues.
 
 == P
 
@@ -283,7 +311,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *PrivateLink*:: A cloud provider feature (AWS PrivateLink, GCP Private Service Connect) that enables private connectivity to Capella without exposing traffic to the internet.
 
-*Prompt*:: In AI applications, the input text provided to a large language model that guides its response generation. Capella Agent Catalog helps manage prompts.
+*Prompt*:: In AI applications, the input text provided to a large language model that guides its response generation.
+Capella Agent Catalog helps manage prompts.
 
 *Provisioning*:: The process of creating and configuring Couchbase clusters, buckets, scopes, collections, and other resources through UI, SDK, or REST API.
 
@@ -353,7 +382,8 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Span*:: In distributed tracing, a unit of work representing an operation, used by Agent Tracer to track and visualize agent activity.
 
-*SQL++*:: The Couchbase query language based on SQL with extensions for JSON and flexible schemas, formerly known as N1QL. Supports querying, full CRUD operations, transactions, and analytics.
+*SQL++*:: The Couchbase query language based on SQL with extensions for JSON and flexible schemas, formerly known as N1QL.
+Supports querying, full CRUD operations, transactions, and analytics.
 
 *SSO (Single Sign-On)*:: An authentication method allowing users to access Capella with credentials from identity providers like Okta, Azure AD, or Google Workspace.
 
@@ -393,13 +423,14 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *UPDATE*:: A DML statement that modifies existing documents in a collection, failing if the document does not exist.
 
-*UPSERT*:: A DML operation that inserts a document if it doesn't exist or updates it if it does, combining INSERT and UPDATE behavior.
+*UPSERT*:: A DML operation that inserts a document if it does not exist or updates it if it does, combining INSERT and UPDATE behavior.
 
 *URL Alias*:: A binding in Eventing Functions that enables access to external REST APIs through the cURL language construct, specifying endpoints and credentials.
 
 == V
 
-*vBucket*:: A virtual bucket shard that serves as the unit of data distribution within a Couchbase bucket. Multiple vBuckets are distributed across cluster nodes for load balancing.
+*vBucket*:: A virtual bucket shard that serves as the unit of data distribution within a Couchbase bucket.
+Multiple vBuckets are distributed across cluster nodes for load balancing.
 
 *Vector*:: A dense numerical representation of data, typically produced by embedding models, used for similarity search and finding semantically related items.
 
@@ -407,13 +438,15 @@ This glossary provides definitions for key terms and concepts used throughout th
 
 *Vector Functions*:: SQL++ built-in functions that operate on vector data types, including functions for computing distance metrics and similarity scores.
 
-*Vector Index*:: A specialized index for storing and searching vector embeddings, enabling AI-powered similarity searches. Couchbase supports Hyperscale, Composite, and Search Vector Indexes.
+*Vector Index*:: A specialized index for storing and searching vector embeddings, enabling AI-powered similarity searches.
+Couchbase supports Hyperscale, Composite, and Search Vector Indexes.
 
 *Vector Search*:: Queries that find the most similar vectors to a query vector, typically used in AI applications for semantic search, RAG, and recommendation systems.
 
 *Vectorization*:: See Vector Embedding.
 
-*View*:: In MapReduce Views, a saved query result created by map and reduce functions. In Query Workbench, a saved query definition for reuse.
+*View*:: In MapReduce Views, a saved query result created by map and reduce functions.
+In Query Workbench, a saved query definition for reuse.
 
 *Virtual XATTR*:: Dynamically generated extended attributes providing document metadata without being stored, such as expiration time and CAS values.
 
