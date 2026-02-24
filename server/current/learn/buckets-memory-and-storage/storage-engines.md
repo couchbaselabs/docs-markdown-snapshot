@@ -3,7 +3,7 @@ title: Storage Engines
 description: "Couchbase supports two different backend storage engines:
   Couchstore and Magma."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/storage-engines.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:server:learn:buckets-memory-and-storage/storage-engines.adoc[]
 ---
 
@@ -44,7 +44,7 @@ To learn more about configuring the Writer Thread settings for your Magma bucket
 
 ## [](#couchstore)Couchstore
 
-Couchstore is the original storage engine for Couchbase Server. It’s the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a ecommended minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
+Couchstore is the original storage engine for Couchbase Server. It’s the only storage engine available in Couchbase Server Community Edition. Couchstore is designed for high performance with datasets that fit in memory. It has a minimum memory requirement of 100 MB per node, and a minimum memory-to-data ratio of 10%. If you have a small dataset whose working set (frequently accessed data) can fit in memory, then you should consider using Couchstore.
 
 ## [](#couchstore-verses-magma-at-a-glance)Couchstore verses Magma at a Glance
 

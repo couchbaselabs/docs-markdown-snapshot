@@ -1,7 +1,7 @@
 ---
 title: Public Cloud Prerequisites
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/prerequisite-cloud.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:2.8@operator::prerequisite-cloud.adoc[]
 ---
 
@@ -9,15 +9,15 @@ link: xref:2.8@operator::prerequisite-cloud.adoc[]
 
 # Public Cloud Prerequisites
 
-> Vendor specific tasks to perform before installing the Operator. 
+> Vendor-specific tasks to perform before installing the Operator. 
 
-Kubernetes is supposed to be portable so a workload can be moved seamlessly from one cloud to another. There is however, scope in Kubernetes that allows for implementations to differ in ways that are not generic. This page details any tasks that need to be performed before deploying the Operator on public cloud infrastructure.
+Kubernetes is supposed to be portable so a workload can be moved seamlessly from one cloud to another. There is, however, scope in Kubernetes that allows for implementations to differ in ways that are not generic. This page details any tasks that need to be performed before deploying the Operator on public cloud infrastructure.
 
 ## [](#amazon-eks)Amazon EKS
 
 ### [](#authentication)Authentication
 
-Amazon EKS uses proprietary authentication based on IAM. The use of Couchbase provided tools ([cao](tools/cao.md)) will require your Kubernetes configuration file to be setup to use IAM authentication. Instructions for installing the authenticator can be found in the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+Amazon EKS uses proprietary authentication based on IAM. The use of Couchbase provided tools ([cao](tools/cao.md)) will require your Kubernetes configuration file to be set up to use IAM authentication. Instructions for installing the authenticator can be found in the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 
 ### [](#configuring-for-xdcr)Configuring for XDCR
 
@@ -42,7 +42,7 @@ Next, find the security groups for the worker node CloudFormation stacks and edi
 
 Storage classes
 
-The EBS volume type `io2` is recommended over `gp3` for any Storage Classes due to its performance characteristics. However, `gp3` at times could be more cost effective and flexible in terms of storage provisioning. Follow the [official AWS user guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) for more details on recommendations relating “Large database workloads”.
+The EBS volume type `io2` is recommended over `gp3` for any Storage Classes due to its performance characteristics. However, `gp3` at times could be more cost-effective and flexible in terms of storage provisioning. Follow the [official AWS user guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) for more details on recommendations relating to "large database workloads".
 
 ## [](#google-gke)Google GKE
 
@@ -81,7 +81,7 @@ For most users, it will suffice to use automatic subnet provisioning with the fo
 $ gcloud compute networks create my-network
 ```
 
-For the purposes of this document we will manually configure our subnets so we are able to add in the necessary firewall rules to allow XDCR between Couchbase clusters in different GKE clusters. We create two non-overlapping subnets in the 10.0.0.0/8 [RFC-1918](https://tools.ietf.org/html/rfc1918) private address space in different regions, then allow all ingress traffic from the 10.0.0.0/8 prefix via a firewall rule. By default network traffic is dropped between different GKE clusters.
+For the purposes of this document, we will manually configure our subnets so we are able to add in the necessary firewall rules to allow XDCR between Couchbase clusters in different GKE clusters. We create two non-overlapping subnets in the 10.0.0.0/8 [RFC-1918](https://tools.ietf.org/html/rfc1918) private address space in different regions, then allow all ingress traffic from the 10.0.0.0/8 prefix via a firewall rule. By default, network traffic is dropped between different GKE clusters.
 
 ```console
 $ gcloud compute networks create my-network \
@@ -125,10 +125,10 @@ $ kubectl create clusterrolebinding \
   --user john.doe@acme.com (3)
 ```
 
-| **1** | The ClusterRoleBinding name can be anything you wish.                                            |
-| ----- | ------------------------------------------------------------------------------------------------ |
-| **2** | The \--clusterorle name refers to a preinstalled role provided by GKE.                           |
-| **3** | The \--user parameter is the same as your Google Cloud account name used to login to the system. |
+| **1** | The ClusterRoleBinding name can be anything you wish.                                             |
+| ----- | ------------------------------------------------------------------------------------------------- |
+| **2** | The \--clusterorle name refers to a preinstalled role provided by GKE.                            |
+| **3** | The \--user parameter is the same as your Google Cloud account name used to log in to the system. |
 
 ### [](#firewalling)Firewalling
 
@@ -158,11 +158,11 @@ Consider the limitations of Azure Disks
 
 Azure Disks are attached to VMs when pods are created. There are several [known issues](#aks-known-issues) related to this behavior, most notably that manual intervention is required on node failure, as well as the occurrence of failures related to slow detach/attach times when pods are moved.
 
-Third-party storage providers like Portworx decouple volume-to-node attachment by instead creating a replicating pool of storage. Storage nodes may also be run separately from compute nodes. Most issues with persistent volumes on AKS are the result of nodes being attached and moved between nodes.
+Third-party storage providers like Portworx decouple volume-to-node attachment by instead creating a replicating pool of storage. Storage nodes may also be run separately from compute nodes. Most issues with persistent volumes on AKS are the result of disks being attached and moved between nodes.
 
 ### [](#create-a-network)Create a Network
 
-In order for XDCR to work, a layer 3 tunnel between the two cluster networks is required. This is so that nodes on one network can talk to nodes on the other, which are in turn port-forwarded onto your Couchbase nodes. As such, these must be non-overlapping. If we use the default setting, the first cluster would get the prefix 10.0.0.0/8, as would the second.
+In order for XDCR to work, a layer 3 tunnel between the two cluster networks is required. This is so that nodes on one network can talk to nodes on the other, which are, in turn, port-forwarded onto your Couchbase nodes. As such, these must be non-overlapping. If we use the default setting, the first cluster would get the prefix 10.0.0.0/8, as would the second.
 
 ### [](#install-kubectl)Install `kubectl`
 
@@ -188,7 +188,7 @@ AKS doesn’t support Azure Availability Zones
 
 At the time of this writing, AKS doesn’t support Azure Availability Zones. Rather, AKS supports Azure Availability Sets to achieve high availability.
 
-Availability Sets are labeled numerically (e.g. `0` and `1`). This means that [server groups](concept-server-groups.md) also have to be named “0” and “1".
+Availability Sets are labeled numerically (e.g. `0` and `1`). This means that [server groups](concept-server-groups.md) also have to be named "0" and "1".
 
 Failed nodes require manual volume failover
 

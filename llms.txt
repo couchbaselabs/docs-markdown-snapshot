@@ -927,7 +927,7 @@
     - Manage Security
         - [Security Best Practices](/cloud/security/security.md)
         - [Capella Root Certificates](/cloud/security/security-certificates.md)
-        - [Use Customer-Managed Encryption Keys (CMEK) at Rest](/cloud/security/cmek.md)
+        - [Use Customer-Managed Encryption Keys (CMEK)](/cloud/security/cmek.md)
         - [Audit Events](/cloud/security/auditing.md)
             - [Manage Audits](/cloud/security/audit-management.md)
         - [Add Private Endpoints](/cloud/security/private-endpoints.md)

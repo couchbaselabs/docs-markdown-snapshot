@@ -3,7 +3,7 @@ title: Manage Logging
 description: The Logging facility allows a record to be maintained of important
   events that occur on Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-logging/manage-logging.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:server:manage:manage-logging/manage-logging.adoc[]
 ---
 
@@ -102,9 +102,17 @@ If neither of these options meet your needs, you can change the log location by 
 
 Couchbase Server rotates log files to prevent them from consuming too much disk space. It keeps a limited number of past log files in compressed format for reference. Once it reaches the limit on the number of logs files to keep, Couchbase Server deletes the oldest log file.
 
-By default, Couchbase Server rotates the `memcached` log file when it reaches 10 MB in size. In addition to the current uncompressed log file, it keeps 19 past logs.
+In Couchbase Server 8.0 and later, Memcached log retention is based on total disk usage (aggregated size) rather than a fixed number of rotated files. By default, the Memcached log rotates when it reaches \~10 MB.
 
-Couchbase Server rotates other log files automatically when they reach 40 MB. It keeps the current version of the log, plus up to 9 compressed past logs.
+Couchbase Server retains multiple rotated Memcached log files until the combined size of all retained files exceeds a configured aggregate limit. When you exceed the aggregated size limit, Couchbase Server removes the oldest rotated files as part of the next rotation cycle. The default aggregate retention cap is 200 MB.
+
+In addition to size-based rotation, Couchbase Server starts a new Memcached log file when:
+
+* You restart a Memcached process
+* You enable or disable encryption for Memcached logs
+* You enable encryption for Memcached logs and a key rotation occurs
+
+Couchbase Server versions earlier than 8.0 rotates non-Memcached log files automatically when they reach 40 MB. It keeps the current version of the log, plus up to 9 compressed past logs.
 
 #### [](#changing-log-rotation-settings)Changing Log Rotation Settings
 
@@ -113,7 +121,9 @@ You can change log rotation settings by editing the `static_config` configuratio
 > [!NOTE]
 > Couchbase Server upgrades can overwrite `static_config`, losing any of your modifications.
 
-To change log rotation settings, follow these steps:
+In Couchbase 8.0+, Memcached log rotation uses internal configuration and an aggregate‑size retention limit, which you may not be able to configure in all releases.
+
+To change log rotation settings for non-Memcached logs, follow these steps:
 
 1. Log into a node as `root` or the user who owns the Couchbase Server files. You can also use `sudo` to gain the necessary permissions.
 2. Edit the `static_config` file with your preferred text editor. This file is in the `etc/couchbase` subdirectory of the Couchbase Server installation directory. For example: `/opt/couchbase/etc/couchbase/static_config` on Linux systems.

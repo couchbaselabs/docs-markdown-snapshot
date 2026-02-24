@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1771818624612,
+  "generated": 1771904802847,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -5720,7 +5720,7 @@
               "module": "security",
               "path": "cmek.adoc",
               "url": "/cloud/security/cmek.md",
-              "title": "Use Customer-Managed Encryption Keys (CMEK) at Rest"
+              "title": "Use Customer-Managed Encryption Keys (CMEK)"
             },
             {
               "alias": true,

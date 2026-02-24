@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -11,6 +11,12 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#february-2026-changelog)February 2026 Changelog
 
+* Custom Subdomains in Capella Endpoints  
+You can now customize endpoints for Capella resources, such as URLs for clusters, private links, and nodes, with unique identifiers. This option is now also available for GCP and Azure clusters through the [Capella Management API](../management-api-reference/index.md#tag/Organizations/operation/putOrganizationConfiguration).  
+This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).
+* Couchbase Capella Customer-Managed Encryption Keys (CMEK) for Azure now supports unique Entra ID applications per Capella project and is now generally available.  
+You can now configure specific Azure Key Vault connections for each project individually, rather than relying on a single Entra ID application across your entire organization.  
+For more information, see [Use Customer-Managed Encryption Keys (CMEK)](../security/cmek.md).
 * Capella operational clusters now support fine-grained RBAC for cluster access credentials  
 You can now define fine-grained Role-Based Access Control (RBAC) for cluster access using advanced access credentials. Advanced access credentials allow you to assign combinations of fine-grained privileges and roles to cluster access credentials at the bucket, scope, and collection levels.  
 Basic access credentials that assign read, write, or read/write access at the bucket, scope, and collection level are still available.  
@@ -27,7 +33,7 @@ For more information, see [Add a Capella Cluster to a Prometheus Server](../clus
 ## [](#december-2025-changelog)December 2025 Changelog
 
 * Couchbase Capella now supports Customer-Managed Encryption Keys (CMEK) for clusters running in Microsoft Azure. With CMEK, you can use your own keys stored in Azure Key Vault to protect data-at-rest, giving you tighter control over your encryption lifecycle and compliance.  
-This feature is currently only available upon request. For more information, see [Use Customer-Managed Encryption Keys (CMEK) at Rest](../security/cmek.md).
+This feature is currently only available upon request. For more information, see [Use Customer-Managed Encryption Keys (CMEK)](../security/cmek.md).
 
 ## [](#november-2025-changelog)November 2025 Changelog
 
@@ -434,7 +440,7 @@ This version includes the following features:
   For more information about Eventing updates, see [Language Constructs](../../server/current/eventing/eventing-language-constructs.md) and [Advanced Keyspace Accessors](../../server/current/eventing/eventing-advanced-keyspace-accessors.md).
 * Support for Customer Managed Encryption Keys (CMEK) is now available for clusters deploying with AWS and GCP  
 Use Customer-Managed Encryption Keys (CMEK) to control the encryption keys you use to secure your data. In Capella clusters using CMEK, data is encrypted using encryption keys that you generate and manage in your own Key Management System (KMS) instead of the Capella-managed KMS. CMEK gives you greater control over data security, enabling you to manage key creation, key rotation, access control, and allow for independent auditing. For organizations with strict compliance and regulatory requirements, CMEK can help meet data protection standards.  
-For more information, see [Use Customer-Managed Encryption Keys (CMEK) at Rest](../security/cmek.md).
+For more information, see [Use Customer-Managed Encryption Keys (CMEK)](../security/cmek.md).
 
 ## [](#february-2024-changelog)February 2024 Changelog
 

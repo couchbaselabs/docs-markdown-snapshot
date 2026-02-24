@@ -3,7 +3,7 @@ title: Back Up and Restore An Entire Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore an
   entire cluster and all of its buckets in a single backup.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cloud-snapshots.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:cloud:clusters:cloud-snapshots.adoc[]
 ---
 
@@ -64,7 +64,7 @@ You cannot choose to use CMEK for a cluster backup if your cluster is not alread
 > 
 > To view the CMEK ID and Key IDs currently used by your backups, use the Management API or go to **Backup** **Cluster Backups** and expand the entry for a backup.
 
-For more information about CMEK in Capella, see [Use Customer-Managed Encryption Keys (CMEK) at Rest](../security/cmek.md).
+For more information about CMEK in Capella, see [Use Customer-Managed Encryption Keys (CMEK)](../security/cmek.md).
 
 ## [](#cross-region)Cluster Backup Creation and Cross-Region Copies
 

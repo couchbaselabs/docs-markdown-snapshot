@@ -3,7 +3,7 @@ title: Capella Root Certificates
 description: Capella automatically generates a root certificate to allow you to
   connect to your cluster from an external application.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/security-certificates.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-24T03:43:07.775Z
 link: xref:cloud:security:security-certificates.adoc[]
 ---
 
@@ -35,5 +35,5 @@ To download or copy the root certificate from your Capella cluster:
 ## [](#see-also)See Also
 
 * [Security Best Practices](security.md)
-* [Use Customer-Managed Encryption Keys (CMEK) at Rest](cmek.md)
+* [Use Customer-Managed Encryption Keys (CMEK)](cmek.md)
 * [Audit Events](auditing.md)
