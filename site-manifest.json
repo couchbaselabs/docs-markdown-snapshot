@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1771904802847,
+  "generated": 1771991328869,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -56393,6 +56393,12 @@
             },
             {
               "module": "rest-api",
+              "path": "application-telemetry.adoc",
+              "url": "/server/current/rest-api/application-telemetry.md",
+              "title": "Application Telemetry"
+            },
+            {
+              "module": "rest-api",
               "path": "backup-archive-a-repository.adoc",
               "url": "/server/current/rest-api/backup-archive-a-repository.md",
               "title": "Archive a Repository"
@@ -57855,6 +57861,12 @@
               "path": "search-facets.adoc",
               "url": "/server/current/search/search-facets.md",
               "title": "Collect Additional Information with Search Facets"
+            },
+            {
+              "module": "search",
+              "path": "search-index-architecture.adoc",
+              "url": "/server/current/search/search-index-architecture.md",
+              "title": "Search Index Architecture"
             },
             {
               "module": "search",

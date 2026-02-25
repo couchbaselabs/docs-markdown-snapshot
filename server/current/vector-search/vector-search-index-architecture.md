@@ -4,7 +4,7 @@ description: Search Vector Indexes use features from traditional Search indexes,
   with unique indexing algorithms and features that allow you to compare vectors
   in nearest neighbor searches.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/vector-search-index-architecture.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:server:vector-search:vector-search-index-architecture.adoc[]
 ---
 
@@ -19,23 +19,31 @@ link: xref:server:vector-search:vector-search-index-architecture.adoc[]
 > 
 > You can still use other features of the [Search Service](../search/search.md).
 
-A Search Vector Index still relies on [Synchronization with Database Change Protocol (DCP) and the Data Service](#sync) and uses [Search Index Segments](#segments) to manage merging and persisting data to disk in your cluster. All changes from Database Change Protocol (DCP) and the Data Service are introduced to a Search index in batches, which are further managed by segments.
+Like a [Search index](../search/search-index-architecture.md), a Search Vector Index still relies on [Synchronization with Database Change Protocol (DCP) and the Data Service](#sync) and uses [Search Index Segments](#segments) to manage merging and persisting data to disk in your cluster. All changes from Database Change Protocol (DCP) and the Data Service are introduced to a Search index in batches, which are further managed by segments.
+
+![Diagram](_images/diag-caa133ef8e6e512716925870b4782ac7ac839b1d.svg) 
 
 ## [](#sync)Synchronization with Database Change Protocol (DCP) and the Data Service
 
-The Search Service uses batches to process data that comes in from [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol) and the [Data Service](#server:learn:services-and-indexes:services/data-service.adoc). DCP and Data Service changes are introduced gradually, based on available memory on Search Service nodes, until reindexing operations for an index are complete.
+The Search Service uses batches to process data that comes in from [DCP](../learn/clusters-and-availability/intra-cluster-replication.md#database-change-protocol) and the [Data Service](#server:learn:services-and-indexes:services/data-service.adoc). DCP and Data Service changes are introduced gradually, based on available memory on Search Service nodes.
 
 The Search Service can merge batches into a single batch before they’re sent to the disk write queue, to reduce the resources required for batch processing.
 
 The Search Service maintains index snapshots on each Search index partition. These snapshots contain a representation of document mutations on either a write queue, or in storage.
 
-If the Search Service loses connection to the Data Service, the Search Service compares its rollback sequence numbers in its snapshots with the Data Service when the connection is reestablished. If the index snapshots on the Search Service are too far ahead, the Search Service performs a full rollback to get back in sync with the Data Service.
+### [](#lost-connection)Losing Connection with the Data Service
+
+If the Search Service loses connection to the Data Service, the Search Service sends a connection request from the last update, or sequence number, of updates it persisted.
+
+If the index snapshots on the Search Service are too far ahead compared to the Data Service’s sequence numbers, the Search Service recovers sequence numbers from earlier index snapshots. The Search Service then creates stream requests to bring the data in your Search indexes back in sync with the Data Service.
 
 ## [](#segments)Search Index Segments
 
-Search and Vector Search indexes are built with index snapshots, which contain data segments.
+Search and Vector Search indexes are built with data segments.
 
-All Search indexes contain a root index snapshot. This snapshot maps to all segments that contain the latest version of data for your Search index. The data in newer segments can overwrite the data in older segments. The Search Service maintains time-spaced snapshots to support partial index rollbacks, in case of data sync issues between the Data Service and the Search Service.
+All Search indexes contain a root index snapshot, or the collection of segments that hold only the latest version of available data from the Data Service.
+
+The data in newer segments can overwrite the data in older segments. The Search Service maintains time-spaced snapshots to support partial index rollbacks, in case of data sync issues between the Data Service and the Search Service. See [Losing Connection with the Data Service](#lost-connection).
 
 The stale segments in a snapshot are eventually removed by the Search Service’s persister or merger routines — unless these segments are needed to restore an index snapshot.
 

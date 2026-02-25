@@ -1,7 +1,7 @@
 ---
 title: New in 3.3
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:3.3@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -14,11 +14,23 @@ link: xref:3.3@couchbase-lite::cbl-whatsnew.adoc[]
 > If you’re upgrading from 2.x, refer to the appropriate upgrade page — see: [Upgrading](#lbl-upgrade).  
 > You should be able to upgrade from 3.2.x to 3.3.x without manual intervention.
 
+## [](#release-3-3-2-february-2026)Release 3.3.2 (February 2026)
+
+Couchbase Lite Release 3.3.2 introduces fixes and enhancements for:
+
+[Android](android/releasenotes.md#maint-latest)| [Objective-C](objc/releasenotes.md#maint-latest)| [Swift](swift/releasenotes.md#maint-latest)
+
+## [](#release-3-3-1-december-2025)Release 3.3.1 (December 2025)
+
+Couchbase Lite Release 3.3.1 introduces fixes and enhancements for:
+
+[Android](android/releasenotes.md#maint-3-3-1)| [Objective-C](objc/releasenotes.md#maint-3-3-1)| [Swift](swift/releasenotes.md#maint-3-3-1)
+
 ## [](#release-3-3-0-october-2025)Release 3.3.0 (October 2025)
 
 ### [](#new-features)New Features
 
-### [](#multipeer-replicator)Multipeer Replicator
+#### [](#multipeer-replicator)Multipeer Replicator
 
 Couchbase Lite 3.3.0 introduces the new Multipeer Replicator API for bidirectional peer-to-peer synchronization in both Swift and Kotlin platforms. This replicator enables secure, direct synchronization between devices without the need for a centralized Sync Gateway.
 

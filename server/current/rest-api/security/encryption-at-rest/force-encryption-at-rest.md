@@ -2,7 +2,7 @@
 title: Force Encryption of Unencrypted Data
 description: Use these REST APIs to force Couchbase Server to encrypt existing data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/force-encryption-at-rest.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:server:rest-api:security/encryption-at-rest/force-encryption-at-rest.adoc[]
 ---
 
@@ -57,11 +57,11 @@ The name of a user who has one of the roles listed in [Required Privileges](#buc
 
 The password for the `user`.
 
-`HOST`
+`host`
 
-Hostname or IP address of a Couchbase Server.
+Hostname or IP address of a Couchbase Server node.
 
-`PORT`
+`port`
 
 Port number for the REST API. Defaults are 8091 for unencrypted and 18901 for encrypted connections.
 
@@ -161,11 +161,11 @@ The name of a user who has one of the roles listed in [Required Privileges](#typ
 
 The password for the `user`.
 
-`HOST`
+`host`
 
-Hostname or IP address of a Couchbase Server.
+Hostname or IP address of a Couchbase Server node.
 
-`PORT`
+`port`
 
 Port number for the REST API. Defaults are 8091 for unencrypted and 18901 for encrypted connections.
 

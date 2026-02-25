@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, brief installation instructions, and download
   archive for the Couchbase C&#43;&#43; Client.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:cxx-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -48,13 +48,54 @@ CPMAddPackage(
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-1-2-2-19-february-2026)Version 1.2.2 (19 February 2026)
+
+This is a second patch release of the 1.2 C++ SDK.
+
+[API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.2) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.2.1...1.2.2)
+
+#### [](#downloads)Downloads
+
+| Platform             | Architecture | File                                                                                                                                                       |
+| -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Checksums            | Any          | [couchbase-cxx-client-1.2.2.sha256.txt](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2.sha256.txt)                                  |
+| Source Archive       | Any          | [couchbase-cxx-client-1.2.2.tar.gz](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2.tar.gz)                                          |
+| Amazon Linux 2023    | x86\_64      | [couchbase-cxx-client-1.2.2-1.amzn2023.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.amzn2023.x86%5F64.tar)         |
+| Amazon Linux 2023    | aarch64      | [couchbase-cxx-client-1.2.2-1.amzn2023.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.amzn2023.aarch64.tar)          |
+| Enterprise Linux 10  | x86\_64      | [couchbase-cxx-client-1.2.2-1.el10.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el10.x86%5F64.tar)                 |
+| Enterprise Linux 10  | aarch64      | [couchbase-cxx-client-1.2.2-1.el10.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el10.aarch64.tar)                  |
+| Enterprise Linux 9   | x86\_64      | [couchbase-cxx-client-1.2.2-1.el9.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el9.x86%5F64.tar)                   |
+| Enterprise Linux 9   | aarch64      | [couchbase-cxx-client-1.2.2-1.el9.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el9.aarch64.tar)                    |
+| Enterprise Linux 8   | x86\_64      | [couchbase-cxx-client-1.2.2-1.el8.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el8.x86%5F64.tar)                   |
+| Enterprise Linux 8   | aarch64      | [couchbase-cxx-client-1.2.2-1.el8.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.el8.aarch64.tar)                    |
+| Debian 13 (Trixie)   | x86\_64      | [couchbase-cxx-client-1.2.2-1.trixie.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.trixie.x86%5F64.tar)             |
+| Debian 13 (Trixie)   | aarch64      | [couchbase-cxx-client-1.2.2-1.trixie.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.trixie.aarch64.tar)              |
+| Debian 12 (Bookworm) | x86\_64      | [couchbase-cxx-client-1.2.2-1.bookworm.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.bookworm.x86%5F64.tar)         |
+| Debian 12 (Bookworm) | aarch64      | [couchbase-cxx-client-1.2.2-1.bookworm.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.bookworm.aarch64.tar)          |
+| Ubuntu 24.04 (Noble) | x86\_64      | [couchbase-cxx-client-1.2.2-1.el8.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.noble.x86%5F64.tar)                 |
+| Ubuntu 24.04 (Noble) | aarch64      | [couchbase-cxx-client-1.2.2-1.el8.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.noble.aarch64.tar)                  |
+| Ubuntu 22.04 (Jammy) | x86\_64      | [couchbase-cxx-client-1.2.2-1.jammy.x86\_64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.jammy.x86%5F64.tar)               |
+| Ubuntu 22.04 (Jammy) | aarch64      | [couchbase-cxx-client-1.2.2-1.jammy.aarch64.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-1.jammy.aarch64.tar)                |
+| Alpine Linux 3.23    | x86\_64      | [couchbase-cxx-client-1.2.2-r1-x86\_64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-x86%5F64-alpine-3.23.tar) |
+| Alpine Linux 3.23    | aarch64      | [couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.23.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.23.tar)  |
+| Alpine Linux 3.22    | x86\_64      | [couchbase-cxx-client-1.2.2-r1-x86\_64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-x86%5F64-alpine-3.22.tar) |
+| Alpine Linux 3.22    | aarch64      | [couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.22.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.22.tar)  |
+| Alpine Linux 3.21    | x86\_64      | [couchbase-cxx-client-1.2.2-r1-x86\_64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-x86%5F64-alpine-3.21.tar) |
+| Alpine Linux 3.21    | aarch64      | [couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.21.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.21.tar)  |
+| Alpine Linux 3.20    | x86\_64      | [couchbase-cxx-client-1.2.2-r1-x86\_64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-x86%5F64-alpine-3.20.tar) |
+| Alpine Linux 3.20    | aarch64      | [couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.2-r1-aarch64-alpine-3.20.tar)  |
+
+#### [](#fixes-and-enhancements)Fixes and Enhancements
+
+* [CXXCBC-768](https://jira.issues.couchbase.com/browse/CXXCBC-768): Prevent DNS-SRV refresh loop on `bucket_not_found` bootstrap errors ([#897](https://github.com/couchbase/couchbase-cxx-client/pull/897)).
+
 ### [](#version-1-2-1-23-january-2026)Version 1.2.1 (23 January 2026)
 
-This is a second GA release of the 1.2 C++ SDK.
+This is a first patch release of the 1.2 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.1) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.2.0...1.2.1)
 
-#### [](#downloads)Downloads
+#### [](#downloads-2)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -85,7 +126,7 @@ This is a second GA release of the 1.2 C++ SDK.
 | Alpine Linux 3.20    | x86\_64      | [couchbase-cxx-client-1.2.1-r1-x86\_64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.1-r1-x86%5F64-alpine-3.20.tar) |
 | Alpine Linux 3.20    | aarch64      | [couchbase-cxx-client-1.2.1-r1-aarch64-alpine-3.20.tar](https://packages.couchbase.com/clients/cxx/couchbase-cxx-client-1.2.1-r1-aarch64-alpine-3.20.tar)  |
 
-#### [](#fixes-and-enhancements)Fixes and Enhancements
+#### [](#fixes-and-enhancements-2)Fixes and Enhancements
 
 * [CXXCBC-766](https://jira.issues.couchbase.com/browse/CXXCBC-766): Make sure BoringSSL headers take priority over system distribution ([#889](https://github.com/couchbase/couchbase-cxx-client/pull/889)).
 
@@ -95,7 +136,7 @@ This is a first GA release of the 1.2 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.2.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.1.0...1.2.0)
 
-#### [](#downloads-2)Downloads
+#### [](#downloads-3)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -140,7 +181,7 @@ This is a first GA release of the 1.2 C++ SDK.
 * [CXXCBC-692](https://jira.issues.couchbase.com/browse/CXXCBC-692): The SDK now prevents connection to Enterprise Analytics cluster ([#792](https://github.com/couchbase/couchbase-cxx-client/pull/792), [#807](https://github.com/couchbase/couchbase-cxx-client/pull/807), [#810](https://github.com/couchbase/couchbase-cxx-client/pull/810)). There is a set of specialized SDKs for Enterprise Analytics clusters.
 * [CXXCBC-707](https://jira.issues.couchbase.com/browse/CXXCBC-707): Updated network selection heuristic ([#809](https://github.com/couchbase/couchbase-cxx-client/pull/809)). The logic is improved in certain cloud-specific cases.
 
-#### [](#fixes-and-enhancements-2)Fixes and Enhancements
+#### [](#fixes-and-enhancements-3)Fixes and Enhancements
 
 * [CXXCBC-715](https://jira.issues.couchbase.com/browse/CXXCBC-715): Fixed Hard Failover Intermittent Crash in HTTP connection manager ([#818](https://github.com/couchbase/couchbase-cxx-client/pull/818)).
 * [CXXCBC-693](https://jira.issues.couchbase.com/browse/CXXCBC-693): Handle empty/null `` indexDef`s for `search_index_get_all `` ([#800](https://github.com/couchbase/couchbase-cxx-client/pull/800)).
@@ -186,7 +227,7 @@ This is a second GA release of the 1.1 C++ SDK. It contains features and fixes b
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.1.1) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.1.0...1.1.1)
 
-#### [](#downloads-3)Downloads
+#### [](#downloads-4)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -217,7 +258,7 @@ This is a second GA release of the 1.1 C++ SDK. It contains features and fixes b
 
 * [CXXCBC-699](https://jira.issues.couchbase.com/browse/CXXCBC-699): By default the SDK will now shuffle the node list (including lists received via DNS-SRV request). To disable this behavior use the `preserve_bootstrap_nodes_order` option ([#778](https://github.com/couchbase/couchbase-cxx-client/pull/778)).
 
-#### [](#fixes-and-enhancements-3)Fixes and Enhancements
+#### [](#fixes-and-enhancements-4)Fixes and Enhancements
 
 * [CXXCBC-715](https://jira.issues.couchbase.com/browse/CXXCBC-715): An HTTP workload could potentially use an invalid node index to access a node in the config in scenarios to where a node in the cluster has been failed over. This potential intermittent crash during hard failover has now been fixed ([#817](https://github.com/couchbase/couchbase-cxx-client/pull/817)).
 * [CXXCBC-651](https://jira.issues.couchbase.com/browse/CXXCBC-651): Cached node labels are now preserved after generating reports in app telemetry meter ([#804](https://github.com/couchbase/couchbase-cxx-client/pull/804)).
@@ -232,7 +273,7 @@ This is a first GA release of the 1.1 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.1.0) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.1.0)
 
-#### [](#downloads-4)Downloads
+#### [](#downloads-5)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -264,7 +305,7 @@ This is a first GA release of the 1.1 C++ SDK.
 * [CXXCBC-665](https://jira.issues.couchbase.com/browse/CXXCBC-665): The SDK will now always return partial results for `*_all_replica` operations if some `get_replica` requests succeeded ([#742](https://github.com/couchbase/couchbase-cxx-client/pull/742)).
 * [CXXCBC-626](https://jira.issues.couchbase.com/browse/CXXCBC-626): Application Service Telemetry, for future Server releases ([#712](https://github.com/couchbase/couchbase-cxx-client/pull/712), [#719](https://github.com/couchbase/couchbase-cxx-client/pull/719), [#739](https://github.com/couchbase/couchbase-cxx-client/pull/739), [#750](https://github.com/couchbase/couchbase-cxx-client/pull/750)).
 
-#### [](#fixes-and-enhancements-4)Fixes and Enhancements
+#### [](#fixes-and-enhancements-5)Fixes and Enhancements
 
 * [CXXCBC-694](https://jira.issues.couchbase.com/browse/CXXCBC-694): Handle case where requestID is missing from query response payload ([#768](https://github.com/couchbase/couchbase-cxx-client/pull/768)).
 * Added CAS to core append/prepend ([#737](https://github.com/couchbase/couchbase-cxx-client/pull/737)).
@@ -299,7 +340,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.7) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.0.7)
 
-#### [](#downloads-5)Downloads
+#### [](#downloads-6)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -334,7 +375,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.6) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.5...1.0.6)
 
-#### [](#downloads-6)Downloads
+#### [](#downloads-7)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -370,7 +411,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.5) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.4...1.0.5)
 
-#### [](#downloads-7)Downloads
+#### [](#downloads-8)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -411,7 +452,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.4) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.3...1.0.4)
 
-#### [](#downloads-8)Downloads
+#### [](#downloads-9)Downloads
 
 | Platform             | Architecture | File                                                                                                                                                       |
 | -------------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -462,7 +503,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.3) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.2...1.0.3)
 
-#### [](#downloads-9)Downloads
+#### [](#downloads-10)Downloads
 
 | Platform           | Architecture | File                                                                                                                                               |
 | ------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -511,7 +552,7 @@ This is a maintenance release of the 1.0 C++ SDK.
 
 [API reference](https://docs.couchbase.com/sdk-api/couchbase-cxx-client-1.0.2) | [Full Changelog](https://github.com/couchbase/couchbase-cxx-client/compare/1.0.1...1.0.2)
 
-#### [](#downloads-10)Downloads
+#### [](#downloads-11)Downloads
 
 | Platform           | Architecture | File                                                                                                                                               |
 | ------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |

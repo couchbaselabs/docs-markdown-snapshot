@@ -1,7 +1,7 @@
 ---
 title: cao
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cao.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:operator::tools/cao.adoc[]
 ---
 
@@ -756,7 +756,7 @@ How many pods to collect logs from at the same time
 
 **Type**: string
 
-**Default**: couchbase/server:7.1.3
+**Default**: couchbase/server:8.0.0
 
 Couchbase server image
 

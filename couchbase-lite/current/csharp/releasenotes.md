@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C#.Net
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/csharp/pages/releasenotes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:couchbase-lite:csharp:releasenotes.adoc[]
 ---
 
@@ -10,13 +10,65 @@ link: xref:couchbase-lite:csharp:releasenotes.adoc[]
 
 # Couchbase Lite Release Notes
 
+## [](#maint-4-0-3)4.0.3 — February 2026
+
+Version 4.0.3 for C#.Net delivers the following features and enhancements:
+
+### [](#enhancements)Enhancements
+
+* [CBL-7750 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7750)
+* [CBL-7775 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7775)
+
+### [](#fixed-issues)Fixed Issues
+
+* [CBL-5298 — Fix SQL++ parser failure for IN operator](https://jira.issues.couchbase.com/browse/CBL-5298)
+* [CBL-7661 — Increase Replicator Database Pool Borrow Timeout](https://jira.issues.couchbase.com/browse/CBL-7661)
+* [CBL-7799 — "Invalid version string" exception from replicator when pulling a merged conflict version](https://jira.issues.couchbase.com/browse/CBL-7799)
+
+### [](#known-issues)Known Issues
+
+None for this release
+
+### [](#deprecations)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0, see [New in 4.0](../cbl-whatsnew.md)
+
+## [](#maint-4-0-2)4.0.2 — December 2025
+
+Version 4.0.2 for C#.Net delivers the following features and enhancements:
+
+### [](#enhancements-2)Enhancements
+
+None for this release
+
+### [](#fixed-issues-2)Fixed Issues
+
+* [CBL-7681 — Crash with 'Can’t retain immutable Value' Error after upgrading from 3.0.3 to 4.0.0](https://jira.issues.couchbase.com/browse/CBL-7681)
+* [CBL-7731 — WinUI has no console logging implementation registered](https://jira.issues.couchbase.com/browse/CBL-7731)
+
+### [](#known-issues-2)Known Issues
+
+None for this release
+
+### [](#breaking-changes)Breaking Changes
+
+None for this release
+
+### [](#deprecations-2)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 4.0, see [New in 4.0](../cbl-whatsnew.md)
+
 ## [](#maint-4-0-0)4.0.0 — November 2025
 
 Version 4.0.0 for C#.Net delivers the following features and enhancements:
 
-## [](#couchbase-lite-release-notes)Couchbase Lite Release Notes
-
-### [](#enhancements)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [CBL-5368 — Support Proxy Authenticator API for .NET Android](https://jira.issues.couchbase.com/browse/CBL-5368)
 * [CBL-6569 — Disabled SQLite’s mmap by default](https://jira.issues.couchbase.com/browse/CBL-6569)
@@ -26,9 +78,7 @@ Version 4.0.0 for C#.Net delivers the following features and enhancements:
 * [CBL-7416 — Update Database APIs to Return or Throw NotOpen Error for Closed Database Cases](https://jira.issues.couchbase.com/browse/CBL-7416)
 * [CBL-7568 — New Version Vector Database](https://jira.issues.couchbase.com/browse/CBL-7568)
 
-### [](#issues-and-resolutions)Issues and Resolutions
-
-#### [](#fixed-issues)Fixed Issues
+### [](#fixed-issues-3)Fixed Issues
 
 * [CBL-6482 — Unpackaged apps on net8.0-windows cannot create databases](https://jira.issues.couchbase.com/browse/CBL-6482)
 * [CBL-6504 — Query parser regression related to brackets](https://jira.issues.couchbase.com/browse/CBL-6504)
@@ -36,12 +86,12 @@ Version 4.0.0 for C#.Net delivers the following features and enhancements:
 * [CBL-6798 — Release c4log\_getDomain C# string bytes](https://jira.issues.couchbase.com/browse/CBL-6798)
 * [CBL-7413 — FWrong error shown when using mismatch collections in Replicator](https://jira.issues.couchbase.com/browse/CBL-7413)
 
-#### [](#known-issues)Known Issues
+### [](#known-issues-3)Known Issues
 
 * [CBL-7572 — Database.Copy() doesn’t convert Self-Source-ID to the original Source ID](https://jira.issues.couchbase.com/browse/CBL-7572)
 * [CBL-7573 — Couchbase Lite 4.0 is allowed to connect to Sync Gateway 3.2.6/3.3.0](https://jira.issues.couchbase.com/browse/CBL-7573)
 
-### [](#breaking-changes)Breaking Changes
+### [](#breaking-changes-2)Breaking Changes
 
 * [CBL-1946 — Enhanced .NET Configuration API with Init-Only and Required Properties](https://jira.issues.couchbase.com/browse/CBL-1946)
 * [CBL-6596 — Vector Search Extension 2.0.0 Required for Couchbase Lite 4.0.0](https://jira.issues.couchbase.com/browse/CBL-6596)
@@ -56,9 +106,9 @@ Version 4.0.0 for C#.Net delivers the following features and enhancements:
 * [CBL-7392 — Removed : Deprecated Default Constants](https://jira.issues.couchbase.com/browse/CBL-7392)
 * [CBL-7570 — Removed : Deprecated Replicator and Listener API](https://jira.issues.couchbase.com/browse/CBL-7570)
 
-### [](#deprecations)Deprecations
+### [](#deprecations-3)Deprecations
 
 * [CBL-7306 — Deprecate TLSIdentity.createIdentity() with isServer boolean flag](https://jira.issues.couchbase.com/browse/CBL-7306)
 
 > [!NOTE]
-> For an overview of the latest features offered in Couchbase Lite 4.0.0, see [New in 4.0](../cbl-whatsnew.md)
+> For an overview of the latest features offered in Couchbase Lite 4.0, see [New in 4.0](../cbl-whatsnew.md)

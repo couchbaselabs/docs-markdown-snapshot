@@ -1,7 +1,7 @@
 ---
 title: Configure Prometheus to Collect Couchbase Metrics
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/monitor/set-up-prometheus-for-monitoring.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:server:manage:monitor/set-up-prometheus-for-monitoring.adoc[]
 ---
 
@@ -82,7 +82,7 @@ The following example defines a new job to collect metrics from a Couchbase Serv
 
 ## [](#configure-http-service-discovery)Configure HTTP Service Discovery
 
-You can configure Prometheus to call the Couchbase Server discovery API itself. With this method, has the benefit that Prometheus defaults to periodically calling the endpoint so it automatically learns of any added or removed nodes.
+You can configure Prometheus to call the Couchbase Server discovery API itself. This method has the benefit that Prometheus defaults to periodically calling the endpoint so it automatically learns of any added or removed nodes.
 
 To use the HTTP service discovery method, add a job to your Prometheus hosts’s `prometheus.yml` configuration file to collect data from your Couchbase Database. In this job, add an `http_sd_configs` section that tells Prometheus to call your database’s discovery API endpoint. You must also provide authentication in this section in addition to the authentication Prometheus uses to retrieve the metrics. If you’re using encrypted connections, add the path to your Couchbase Server’s certificate.
 
@@ -106,3 +106,15 @@ The following example shows a job configuration to collect metrics from a Couchb
 ```
 
 You can change the list that the discovery API returns by adding query parameters to the URL in the `http_sd_configs` section. See [Prometheus Discovery API](../../rest-api/rest-discovery-api.md).
+
+## [](#app-telemetry)Include Application Telemetry in Prometheus Metrics
+
+You can enable application telemetry to have Couchbase Server collect metrics from your applications that use the Couchbase SDKs. When you enable application telemetry, Couchbase Server collects telemetry data from your applications.
+
+Couchbase Server reports the collected data as metrics through the same Prometheus endpoint that it uses to report its own metrics. The application telemetry metrics are aggregated across all clients instead of being reported separately for each client.
+
+Enabling this feature lets you use Prometheus to monitor the health of both your Couchbase Server cluster and your applications that use the Couchbase SDKs. The application telemetry metrics can help you troubleshoot client issues such as poor performance or timeouts.
+
+Application telemetry is disabled by default in Couchbase Server 8.0\. A future version of Couchbase Server may enable it by default.
+
+See [Application Telemetry](../../rest-api/application-telemetry.md) to learn how to enable application telemetry.

@@ -2,7 +2,7 @@
 title: Vector Search Release Notes
 description: Vector Search on Android
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/android/pages/vs-releasenotes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:3.3@couchbase-lite:android:vs-releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 1.0.1 for Android delivers the following features and enhancements:
 
 None for this release
 
-### [](#issues-and-resolutions)Issues and Resolutions
+### [](#fixed-issues)Fixed Issues
 
 None for this release
 
@@ -38,7 +38,7 @@ Version 1.0.0 for Android delivers the following features and enhancements:
 
 None for this release
 
-### [](#issues-and-resolutions-2)Issues and Resolutions
+### [](#fixed-issues-2)Fixed Issues
 
 None for this release
 
@@ -52,4 +52,4 @@ None for this release
 None for this release
 
 > [!NOTE]
-> For an overview of the latest features offered in Couchbase Lite 3.2.0, see [New in 3.2](../cbl-whatsnew.md)
+> For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)

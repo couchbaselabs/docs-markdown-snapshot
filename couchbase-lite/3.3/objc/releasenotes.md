@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/releasenotes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:3.3@couchbase-lite:objc:releasenotes.adoc[]
 ---
 
@@ -10,26 +10,21 @@ link: xref:3.3@couchbase-lite:objc:releasenotes.adoc[]
 
 # Couchbase Lite Release Notes
 
-## [](#maint-3-3-1)3.3.1 — December 2025
+## [](#maint-3-3-2)3.3.2 — February 2026
 
-Version 3.3.1 for Objective-C delivers the following features and enhancements:
+Version 3.3.2 for Objective-C delivers the following features and enhancements:
 
 ### [](#enhancements)Enhancements
 
-None for this release
+* [CBL-7751 — Update mbedTLS to 3.6.5](https://jira.issues.couchbase.com/browse/CBL-7751)
+* [CBL-7776 — Increase Replicator’s WebSocket PING / PONG timeout](https://jira.issues.couchbase.com/browse/CBL-7776)
 
-### [](#issues-and-resolutions)Issues and Resolutions
+### [](#fixed-issues)Fixed Issues
 
-#### [](#fixed-issues)Fixed Issues
-
-* [CBL-7657 — Peer IP resolution may time out when the service is discovered on an IPv6 link-local interface](https://jira.issues.couchbase.com/browse/CBL-7657)
-* [CBL-7678 — Intermittent replicator crash during pusher destruction](https://jira.issues.couchbase.com/browse/CBL-7678)
+* [CBL-7762 — Increase Replicator Database Pool Borrow Timeout](https://jira.issues.couchbase.com/browse/CBL-7762)
+* [CBL-7781 — Fix SQL++ parser failure for IN operator](https://jira.issues.couchbase.com/browse/CBL-7781)
 
 ### [](#known-issues)Known Issues
-
-None for this release
-
-### [](#breaking-changes)Breaking Changes
 
 None for this release
 
@@ -37,22 +32,51 @@ None for this release
 
 None for this release
 
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)
+
+## [](#maint-3-3-1)3.3.1 — December 2025
+
+Version 3.3.1 for Objective-C delivers the following features and enhancements:
+
+### [](#enhancements-2)Enhancements
+
+None for this release
+
+### [](#fixed-issues-2)Fixed Issues
+
+* [CBL-7657 — Peer IP resolution may time out when the service is discovered on an IPv6 link-local interface](https://jira.issues.couchbase.com/browse/CBL-7657)
+* [CBL-7678 — Intermittent replicator crash during pusher destruction](https://jira.issues.couchbase.com/browse/CBL-7678)
+
+### [](#known-issues-2)Known Issues
+
+None for this release
+
+### [](#breaking-changes)Breaking Changes
+
+None for this release
+
+### [](#deprecations-2)Deprecations
+
+None for this release
+
+> [!NOTE]
+> For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)
+
 ## [](#maint-3-3-0)3.3.0 — October 2025
 
 Version 3.3.0 for Objective-C delivers the following features and enhancements:
 
-### [](#enhancements-2)Enhancements
+### [](#enhancements-3)Enhancements
 
 * [CBL-6733 — Multipeer Replicator for Peer-to-Peer Sync over Wi-Fi](https://jira.issues.couchbase.com/browse/CBL-6733)
 * [CBL-7195 — Upgrade SQLite to 3.50.3](https://jira.issues.couchbase.com/browse/CBL-7195)
-* [CBL-7206 — Update Minimum Supported iOS to 15.0 and macOS to 13.0](https://jira.issues.couchbase.com/browse/CBL-7206)
-* [CBL-7234 — Add API for creating ReplicatorConfiguration with collection configs and endpoint](https://jira.issues.couchbase.com/browse/CBL-7234)
 * [CBL-7360 — Update mbedTLS to 3.6.4](https://jira.issues.couchbase.com/browse/CBL-7360)
 * [CBL-7409 — Improve conflict resolution with multiple remotes](https://jira.issues.couchbase.com/browse/CBL-7409)
+* [CBL-7206 — Update Minimum Supported iOS to 15.0 and macOS to 13.0](https://jira.issues.couchbase.com/browse/CBL-7206)
+* [CBL-7234 — Add API for creating ReplicatorConfiguration with collection configs and endpoint](https://jira.issues.couchbase.com/browse/CBL-7234)
 
-### [](#issues-and-resolutions-2)Issues and Resolutions
-
-#### [](#fixed-issues-2)Fixed Issues
+### [](#fixed-issues-3)Fixed Issues
 
 * [CBL-6791 — Starting a Live Query in the Background May Crash the App](https://jira.issues.couchbase.com/browse/CBL-6791)
 * [CBL-6799 — Potential crash in URLEndpointListener due to accessing a NULL responseTimer during stop](https://jira.issues.couchbase.com/browse/CBL-6799)
@@ -64,11 +88,11 @@ Version 3.3.0 for Objective-C delivers the following features and enhancements:
 * [CBL-7429 — Swift Codable Result.data(as:) decoding fails for some ISO8601 formats](https://jira.issues.couchbase.com/browse/CBL-7429)
 * [CBL-7468 — TLS ClientHello missing Server Name when network interface is specified](https://jira.issues.couchbase.com/browse/CBL-7468)
 
-### [](#known-issues-2)Known Issues
+### [](#known-issues-3)Known Issues
 
 None for this release
 
-### [](#deprecations-2)Deprecations
+### [](#deprecations-3)Deprecations
 
 * [CBL-6813 — Deprecate: removeChangeListenerWithToken for Replicator, Query and MessageEndpointListener](https://jira.issues.couchbase.com/browse/CBL-6813)
 * [CBL-7008 — Deprecate: Create Identity API with Server Flag](https://jira.issues.couchbase.com/browse/CBL-7008)
@@ -77,4 +101,4 @@ None for this release
 * [CBL-7240 — Deprecate: CollectionConfiguration constructor without collection](https://jira.issues.couchbase.com/browse/CBL-7240)
 
 > [!NOTE]
-> For an overview of the latest features offered in Couchbase Lite 3.3.0, see [New in 3.3](../cbl-whatsnew.md)
+> For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)

@@ -2,7 +2,7 @@
 title: Couchbase Lite Release Notes
 description: Couchbase Lite on C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/c/pages/releasenotes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:3.3@couchbase-lite:c:releasenotes.adoc[]
 ---
 
@@ -18,7 +18,7 @@ Version 3.2.4 for C delivers the following features and enhancements:
 
 * [CBL-7004 — Add API to Access the TLSIdentity Used by CBLURLEndpointListener](https://jira.issues.couchbase.com/browse/CBL-7004)
 
-### [](#issues-and-resolutions)Issues and Resolutions
+### [](#fixed-issues)Fixed Issues
 
 * [CBL-7006 — Blobs Not Downloaded on Update with Delta Sync in Peer-to-Peer Replication](https://jira.issues.couchbase.com/browse/CBL-7006)
 * [CBL-7048 — Anonymous TLSIdentity Not Regenerated on Listener Restart](https://jira.issues.couchbase.com/browse/CBL-7048)
@@ -37,4 +37,4 @@ None for this release
 None for this release
 
 > [!NOTE]
-> For an overview of the latest features offered in Couchbase Lite 3.3.0, see [New in 3.3](../cbl-whatsnew.md)
+> For an overview of the latest features offered in Couchbase Lite 3.3, see [New in 3.3](../cbl-whatsnew.md)

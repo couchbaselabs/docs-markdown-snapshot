@@ -3,7 +3,7 @@ title: Ottoman ODM Release Notes and Archives
 description: Release notes, installation instructions, and download archive for
   the Ottoman ODM.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/project-docs/pages/ottoman-release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:4.4@nodejs-sdk:project-docs:ottoman-release-notes.adoc[]
 ---
 
@@ -17,6 +17,21 @@ These pages cover the 2._x_ versions of the Ottoman ODM.
 
 The Ottoman ODM will run on any [supported LTS version of Node.js](https://github.com/nodejs/Release).
 
+## [](#version-2-5-4-23-february-2026)Version 2.5.4 (23 February 2026)
+
+Version 2.5.4 is a patch release of the Ottoman ODM. This release bumps the underlying Couchbase SDK to `v4.6.1`, and updates vulnurable dependencies.
+
+```console
+$ npm install ottoman@2.5.4
+```
+
+[Ottoman installation](https://ottomanjs.com/#installation)
+
+### [](#fixed-issues)Fixed Issues
+
+* Bumped underlying Couchbase SDK version to latest (4.6.1).
+* Bumped other project dependencies with reported vulnurabilities.
+
 ## [](#version-2-5-3-20-october-2025)Version 2.5.3 (20 October 2025)
 
 Version 2.5.3 is a patch release of the Ottoman ODM. This release bumps the underlying Couchbase SDK to `v4.6.0`.
@@ -27,7 +42,7 @@ $ npm install ottoman@2.5.3
 
 [Ottoman installation](https://ottomanjs.com/#installation)
 
-### [](#fixed-issues)Fixed Issues
+### [](#fixed-issues-2)Fixed Issues
 
 * Preserve null/undefined values instead of casting to unix timestamp in [#804](https://github.com/couchbaselabs/node-ottoman/pull/804)
 * Bumped underlying Couchbase SDK version to latest.
@@ -42,7 +57,7 @@ $ npm install ottoman@2.5.2
 
 [Ottoman installation](https://ottomanjs.com/#installation)
 
-### [](#fixed-issues-2)Fixed Issues
+### [](#fixed-issues-3)Fixed Issues
 
 * Bump underlying Couchbase SDK version to latest.
 
@@ -56,7 +71,7 @@ $ npm install ottoman@2.5.1
 
 [Ottoman installation](https://ottomanjs.com/#installation)
 
-### [](#fixed-issues-3)Fixed Issues
+### [](#fixed-issues-4)Fixed Issues
 
 * Replaced synchronous batch processing with asynchronous batch processing: [#790](https://github.com/couchbaselabs/node-ottoman/issues/790).
 
@@ -74,7 +89,7 @@ $ npm install ottoman@2.5.0
 
 * Adds Ottoman support for [Couchbase Transactions](../howtos/distributed-acid-transactions-from-the-sdk.md).
 
-### [](#fixed-issues-4)Fixed Issues
+### [](#fixed-issues-5)Fixed Issues
 
 * Bumped `couchbase` dependency to `v4.3.1`.
 * [#748](https://github.com/couchbaselabs/node-ottoman/issues/748), [#754](https://github.com/couchbaselabs/node-ottoman/issues/754), [#755](https://github.com/couchbaselabs/node-ottoman/issues/755), [#760](https://github.com/couchbaselabs/node-ottoman/issues/760): Minor documentation fixes.
@@ -93,7 +108,7 @@ $ npm install ottoman@2.4.0
 
 * Adds Ottoman support for [Couchbase Full Text Search](../../../server/current/search/search.md).
 
-### [](#fixed-issues-5)Fixed Issues
+### [](#fixed-issues-6)Fixed Issues
 
 * [#742](https://github.com/couchbaselabs/node-ottoman/issues/742): Fixed depopulating for nested objects.
 
@@ -107,7 +122,7 @@ $ npm install ottoman@2.3.4
 
 [Ottoman installation](https://ottomanjs.com/docs/intro#installation)
 
-### [](#fixed-issues-6)Fixed Issues
+### [](#fixed-issues-7)Fixed Issues
 
 * [#724](https://github.com/couchbaselabs/node-ottoman/issues/724): Added `undefined` to `stringType` Validator.
 * [#726](https://github.com/couchbaselabs/node-ottoman/issues/726): Updated Merge Doc Behavior.
@@ -123,7 +138,7 @@ $ npm install ottoman@2.3.3
 
 [Ottoman installation](https://ottomanjs.com/docs/intro#installation)
 
-### [](#fixed-issues-7)Fixed Issues
+### [](#fixed-issues-8)Fixed Issues
 
 * `ArrayType` not handling options correctly.
 
@@ -137,7 +152,7 @@ $ npm install ottoman@2.3.2
 
 [Ottoman installation](https://ottomanjs.com/docs/intro#installation)
 
-### [](#fixed-issues-8)Fixed Issues
+### [](#fixed-issues-9)Fixed Issues
 
 * TypeScript no longer needs `skipLibCheck` flag.
 
@@ -155,7 +170,7 @@ $ npm install ottoman@2.3.0
 
 [Ottoman installation](https://ottomanjs.com/docs/intro#installation)
 
-### [](#fixed-issues-9)Fixed Issues
+### [](#fixed-issues-10)Fixed Issues
 
 * Bumped `couchbase` dependency to `v4.2.0`.
 
@@ -173,7 +188,7 @@ $ npm install ottoman@2.2.2
 
 [Ottoman installation](https://ottomanjs.com/#installation)
 
-### [](#fixed-issues-10)Fixed Issues
+### [](#fixed-issues-11)Fixed Issues
 
 * Bumped `couchbase` dependency to `v3.2.6`.
 
@@ -187,7 +202,7 @@ $ npm install ottoman@2.2.1
 
 [Ottoman installation](https://ottomanjs.com/#installation)
 
-### [](#fixed-issues-11)Fixed Issues
+### [](#fixed-issues-12)Fixed Issues
 
 * Updated index naming to include the model’s name.
 * `options.strict` is now set to true by default.
@@ -224,7 +239,7 @@ $ npm install ottoman@2.1.0
 * Added ability to set `keyGeneratorDelimiter` to an empty string to use ID as key with no delimiter.
 * Updated Couchbase Node.js SDK to version 3.2.4.
 
-### [](#fixed-issues-12)Fixed Issues
+### [](#fixed-issues-13)Fixed Issues
 
 * Fixed model inconsistency in find method.
 * Bumped `shelljs` and `follow-redirects` dependencies.
@@ -254,7 +269,7 @@ $ npm install ottoman@2.0.0
 * Improved from clause value escape behavior in the QueryBuilder.
 * Upgraded embedded Couchbase SDK to version `3.2.2`.
 
-### [](#fixed-issues-13)Fixed Issues
+### [](#fixed-issues-14)Fixed Issues
 
 * Refactored lean and populate code.
 * Fixed broken links.

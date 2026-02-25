@@ -1,7 +1,7 @@
 ---
 title: cbopinfo
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cbopinfo.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-25T03:45:01.178Z
 link: xref:operator::tools/cbopinfo.adoc[]
 ---
 
@@ -318,7 +318,7 @@ The address and port of the Kubernetes API server
 
 **Type**: string
 
-**Default**: couchbase/server:7.1.3
+**Default**: couchbase/server:8.0.0
 
 Couchbase server image
 
