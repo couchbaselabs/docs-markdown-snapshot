@@ -1537,7 +1537,7 @@
             - [Storage Settings](/server/current/indexes/storage-modes.md)
         - [JavaScript Functions for Query Reference](/server/current/javascript-udfs/javascript-functions-with-couchbase.md)
             - [User-Defined Functions UI](/server/current/tools/udfs-ui.md)
-            - [Calling JavaScript from SQL++](/server/current/javascript-udfs/calling-javascript-from-n1ql.md)
+            - [Call JavaScript from SQL++](/server/current/javascript-udfs/calling-javascript-from-n1ql.md)
             - [Calling SQL++ from JavaScript](/server/current/javascript-udfs/calling-n1ql-from-javascript.md)
             - [Handling Errors in JavaScript Functions](/server/current/javascript-udfs/handling-errors-javascript-udf.md)
     - [Use Vector Indexes for AI Applications](/server/current/vector-index/vectors-and-indexes-overview.md)

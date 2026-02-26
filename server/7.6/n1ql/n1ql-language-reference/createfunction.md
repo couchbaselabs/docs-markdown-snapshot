@@ -3,7 +3,7 @@ title: CREATE FUNCTION
 description: The <code>CREATE FUNCTION</code> statement enables you to create a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-26T03:43:25.790Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/createfunction.adoc[]
 ---
 
@@ -15,10 +15,10 @@ link: xref:7.6@server:n1ql:n1ql-language-reference/createfunction.adoc[]
 
 ## [](#purpose)Purpose
 
-There are two types of user-defined function in SQL++ for Query:
+Couchbase Server supports two types of user-defined function in SQL++ for Query:
 
-* Inline functions are defined using SQL++ expressions. They enable you to name and reuse complex or repetitive expressions, including subqueries, in order to simplify your queries.
-* External functions are defined using an external language. They enable you to create functions that may be difficult or impossible to define using built-in SQL++ expressions. The only supported language is JavaScript.
+* **Inline functions** are defined using SQL++ expressions. Use an inline function to reuse complex or repetitive expressions, including subqueries, and simplify your SQL++ queries.
+* **External functions** are defined using an external language. They enable you to create functions that may be difficult or impossible to define using built-in SQL++ expressions. The only supported language is JavaScript.
 
 External functions in SQL++ support most of the language constructs available in ECMAScript. For more information about the restrictions and extensions that come with the Couchbase implementation, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
 
@@ -43,17 +43,17 @@ You can store JavaScript functions in external libraries. This enables you to sh
 
 You must create the external library and the external function code using the [Query Workbench](../../tools/udfs-ui.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md).
 
-External libraries, like SQL++ user-defined functions, may be scoped or global. This enables you to keep the code for external functions separate where required.
+External libraries, like SQL++ user-defined functions, may be scoped or global. Set an external library or user-defined function as **Scoped** to keep the code for external functions separate.
 
 Code which is stored in a scoped library is private to users of that scope, and is not visible or available to users of another scope. Code which is stored in a global library is available to users of all scopes.
 
-A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you may have a global `math` library, and a `math` library in each scope.
+A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you can have a global `math` library, and a `math` library in each scope.
 
 ### [](#sql-managed-user-defined-functions)SQL++ Managed User-Defined Functions
 
-_(Introduced in Couchbase Server 7.6)_
+Couchbase Server 7.6
 
-In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you don’t have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
+In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you do not have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
 
 With a SQL++ managed user-defined function, the external function code is stored inline, along with the SQL++ user-defined function. You cannot share this external function code with other user-defined functions, or access it from any external libraries.
 

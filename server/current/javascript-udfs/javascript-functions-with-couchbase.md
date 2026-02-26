@@ -1,9 +1,9 @@
 ---
 title: JavaScript Functions for Query Reference
-description: This reference guide describes how to write extension functions for
-  SQL++ for Query using the JavaScript language.
+description: You can write extension functions for SQL++ for Query in Couchbase
+  Server, using the JavaScript programming language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-26T03:43:25.790Z
 link: xref:server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -11,16 +11,14 @@ link: xref:server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 
 # JavaScript Functions for Query Reference
 
-> This reference guide describes how to write extension functions for SQL++ for Query using the JavaScript language. 
+> You can write extension functions for SQL++ for Query in Couchbase Server, using the JavaScript programming language. 
 
-## [](#introduction)Introduction
+## [](#about-user-defined-functions-in-sql-for-query)About User-Defined Functions in SQL++ for Query
 
-There are two types of user-defined function in SQL++ for Query:
+Couchbase Server supports two types of user-defined function in SQL++ for Query:
 
-* Inline functions are defined using SQL++ expressions. They enable you to name and reuse complex or repetitive expressions, including subqueries, in order to simplify your queries.
-* External functions are defined using an external language. They enable you to create functions that may be difficult or impossible to define using built-in SQL++ expressions. The only supported language is JavaScript.
-
-This reference includes details of external functions using JavaScript.
+* **Inline functions** are defined using SQL++ expressions. Use an inline function to reuse complex or repetitive expressions, including subqueries, and simplify your SQL++ queries.
+* **External functions** are defined using an external language. They enable you to create functions that may be difficult or impossible to define using built-in SQL++ expressions. The only supported language is JavaScript.
 
 ### [](#libraries-and-scopes)External Libraries
 
@@ -28,9 +26,12 @@ You can store JavaScript functions in external libraries. This enables you to sh
 
 You must create the external library and the external function code using the [Query Workbench](../tools/udfs-ui.md) or the SQL++ [Functions REST API](../n1ql-rest-functions/index.md).
 
-You do not call the external function code directly from SQL++. Instead, when you have created an external library and added a JavaScript function to it, you must define a SQL++ user-defined function to call the JavaScript function.
+You cannot call external function code directly from SQL++. If you want to manage your external function code with a library, you must:
 
-External libraries, like SQL++ user-defined functions, may be scoped or global. This enables you to keep the code for external functions separate where required.
+* [Create an external library](../guides/create-javascript-library.md) and add a JavaScript function or functions to that library.
+* [Create a user-defined function](../guides/create-user-defined-function.md) to call a specific JavaScript function from that library.
+
+External libraries, like SQL++ user-defined functions, may be scoped or global. Set an external library or user-defined function as **Scoped** to keep the code for external functions separate.
 
 ![Global and scoped external libraries](_images/javascript-scopes-d2be9d48307d11d2ed9dfe25c52f4ffd387a18ac.svg) 
 
@@ -43,27 +44,27 @@ You can apply access restrictions to scopes, so that only certain groups of user
 
 Code which is stored in a scoped library is private to users of that scope, and is not visible or available to users of another scope. Code which is stored in a global library is available to users of all scopes.
 
-A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you may have a global `math` library, and a `math` library in each scope.
+A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you can have a global `math` library, and a `math` library in each scope.
 
 ![Calling a function in a scoped external library](_images/udf-scopes-diagram-3c4a25786bbff6f64ee29380a93b4b65796da01e.svg) 
 
 Figure 2\. Calling a function in a scoped external library
 
-In order to use a SQL++ user-defined function which calls external JavaScript code in a scoped library, you must set the [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to the same bucket and scope as the scoped library.
+When you want to use a SQL++ user-defined function which calls external JavaScript code in a scoped library, you must set the [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to the same bucket and scope as the scoped library.
 
 ### [](#sql-managed-user-defined-functions)SQL++ Managed User-Defined Functions
 
-In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you don’t have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
+In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you do not have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
 
 With a SQL++ managed user-defined function, the external function code is stored inline, along with the SQL++ user-defined function. You cannot share this external function code with other user-defined functions, or access it from any external libraries.
 
-## [](#added-constructs)Added Constructs
+## [](#added-language-constructs)Added Language Constructs
 
-JavaScript functions in SQL++ for Query support most of the language constructs available in [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript), though there are a number of restrictions related to the Couchbase environment. There are also additions that have been made to the language for working specifically with Couchbase.
+User-defined functions in SQL++ for Query support most of the language constructs available in [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript). Couchbase’s implementation makes specific changes to support working with JavaScript through SQL++.
 
 ### [](#sql-embedded-statements)SQL++ Embedded Statements
 
-Top level SQL++ keywords, such as SELECT, UPDATE, INSERT and DELETE, are available as inline keywords in functions. Operations that return values such as SELECT are accessible through a returned iterable handle. SQL++ Query results, via a SELECT, are streamed in batches to the iterable handle as the iteration progresses through the result set.
+Top level SQL++ keywords, such as `SELECT`, `UPDATE`, `INSERT` and `DELETE`, are available as inline keywords in functions. Operations that return values such as `SELECT` are accessible through a returned iterable handle. SQL++ Query results, through `SELECT`, are streamed in batches to the iterable handle as the iteration progresses through the result set.
 
 Example 1\. JavaScript code with embedded SQL++ statements
 
@@ -90,23 +91,25 @@ function selectAirline(country) {
 }
 ```
 
-| **1** | The SQL++ is written directly into the JavaScript code without having to be used as part of a function call. You can even provide parameters that can be used in the SQL++ statement. |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | A standard JavaScript iterator is used to access the values returned from the SQL++ statement.                                                                                        |
+You can even provide parameters in your JavaScript code that can be used in the SQL++ statement.
 
-For more details, see [Calling SQL++ from JavaScript](calling-n1ql-from-javascript.md).
+For more information, see [Calling SQL++ from JavaScript](calling-n1ql-from-javascript.md).
 
-## [](#unsupported-features)Unsupported Features
+## [](#unsupported-javascript-features)Unsupported JavaScript Features
 
-The following features are not supported in JavaScript functions for Query.
+The following features are not supported in JavaScript functions for Query:
+
+* [Browser Extensions](#browser-extensions)
+* [Global State](#global-state)
+* [Logging](#logging)
 
 ### [](#browser-extensions)Browser Extensions
 
-Because JavaScript functions in SQL++ for Query do not execute in the context of a browser, the extensions that browsers add to the core language, such as window methods, DOM events, and so on, are not available.
+JavaScript functions in SQL++ for Query do not execute in the context of a browser. The extensions that browsers add to the core language, such as window methods, DOM events, and so on, are not available.
 
 ### [](#global-state)Global State
 
-All variables must be local to the function; global state is not permitted.
+All variables must be local to the function. Global state is not permitted.
 
 Example 2\. JavaScript code with global variable
 
@@ -123,9 +126,12 @@ Along with global state, global [arrow functions](https://developer.mozilla.org/
 
 Logging using the `console.log(..)` function is not supported.
 
-## [](#restricted-features)Restricted Features
+## [](#restricted-javascript-features)Restricted JavaScript Features
 
-The following features are restricted in JavaScript functions for Query.
+The following features are restricted in JavaScript functions for Query:
+
+* [Code Injection](#code-injection)
+* [Date Granularity](#date-granularity)
 
 ### [](#code-injection)Code Injection
 
@@ -210,11 +216,11 @@ SQL++ User-Defined Function Commands
 
 External Libraries
 
-* [User-Defined Functions UI](../tools/udfs-ui.md)
+* [Creating a JavaScript Library](../guides/create-javascript-library.md)
 * [Query Functions REST API](../n1ql-rest-functions/index.md)
 
 JavaScript Functions
 
-* [Calling JavaScript from SQL++](calling-javascript-from-n1ql.md)
+* [Call JavaScript from SQL++](calling-javascript-from-n1ql.md)
 * [Calling SQL++ from JavaScript](calling-n1ql-from-javascript.md)
 * [Handling Errors in JavaScript Functions](handling-errors-javascript-udf.md)

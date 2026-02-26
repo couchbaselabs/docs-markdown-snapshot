@@ -1,9 +1,9 @@
 ---
 title: Handling Errors in JavaScript Functions
-description: Error handling in JavaScript user-defined functions use the same
-  standard exception mechanism as part of the language standard.
+description: You can handle errors in JavaScript user-defined functions with the
+  same standard exception mechanism you would use in any JavaScript code.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/handling-errors-javascript-udf.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-26T03:43:25.790Z
 link: xref:7.6@server:javascript-udfs:handling-errors-javascript-udf.adoc[]
 ---
 
@@ -11,11 +11,19 @@ link: xref:7.6@server:javascript-udfs:handling-errors-javascript-udf.adoc[]
 
 # Handling Errors in JavaScript Functions
 
-> Error handling in JavaScript user-defined functions use the same standard exception mechanism as part of the language standard. 
+> You can handle errors in JavaScript user-defined functions with the same standard exception mechanism you would use in any JavaScript code. 
 
-## [](#handle-errors-with-the-runtime)Handle Errors with the Runtime
+For more information about user-defined functions in Capella, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
 
-Errors that occur during the execution of a SQL++ statement are usually handled by the runtime, which will return a JSON object giving details of the error. For example, if you execute a record insertion function with a key that already exists:
+You can also choose to handle errors [with the runtime](#runtime) or [with your JavaScript function](#function).
+
+SQL++ also supports using the [ABORT()](../n1ql/n1ql-language-reference/metafun.md#abort) function inside a query or a user-defined function to return an error.
+
+## [](#runtime)Handle Errors with the Runtime
+
+If you run into an error during the execution of a SQL++ statement, you can handle those errors with the runtime.
+
+The runtime returns a JSON object with the details of the error that occurred. For example, if you execute a record insertion function with a key that already exists:
 
 ```sqlpp
 EXECUTE FUNCTION AddAirlineWithDate(1220, 'Raz Air', 'RAZ-AIR', 'United Kingdom');
@@ -54,11 +62,11 @@ then an error object is returned:
 ]
 ```
 
-## [](#handle-errors-with-the-function)Handle Errors with the Function
+## [](#function)Handle Errors with the Function
 
-In most cases, it’s a lot better if the JavaScript function itself can handle errors that are likely to occur. This gives the developer the option of responding with a more user-friendly message, or taking an alternative course of action.
+In most cases, it’s better to use your JavaScript function to handle likely errors. You can provide a more user-friendly message or take an alternative course of action.
 
-The following function will add an airline record, but will return an `failure` message if the attempt isn’t successful.
+For example, the following function will add an airline record, but will return a `failure` message if the `try` SQL++ statement fails:
 
 ```javascript
 function addAirlineWithCheckReturn(id, name, callsign, country) {
@@ -88,7 +96,7 @@ function addAirlineWithCheckReturn(id, name, callsign, country) {
 }
 ```
 
-If the record key already exists, then calling this method with `EXECUTE FUNCTION` will produce the following result:
+If the document with the given `id` value already exists in the `travel-sample`.`inventory`.`airline` collection, then the function would return the following:
 
 ```json
 [
@@ -96,7 +104,7 @@ If the record key already exists, then calling this method with `EXECUTE FUNCTIO
 ]
 ```
 
-Alternatively, you can simply throw the error, rather than returning it as a string:
+You can also choose to throw the error, rather than returning it as a string:
 
 ```javascript
 function addAirlineWithCheckThrow(id, name, callsign, country) {
@@ -126,7 +134,7 @@ function addAirlineWithCheckThrow(id, name, callsign, country) {
 }
 ```
 
-which will produce the following result:
+Running the preceding function with an `id` value that already exists would return the following:
 
 ```javascript
 [
@@ -145,21 +153,21 @@ which will produce the following result:
 ]
 ```
 
-As well as wrapping the expection in a detailed JSON object, there is another fundamental difference between throwing an error or returning it.
+When you throw the error, the exception is returned as a detailed JSON object.
 
-### [](#throw-vs-return)Throw vs Return
+### [](#throwing-or-returning-errors)Throwing or Returning Errors
 
-Aside from the data returned, throwing an error or returning a value/error will affect how subsequent SQL++ operations are processed.
+The data the JavaScript engine returns is different on a throw vs. a return. Throw and return also affect how subsequent SQL++ operations are processed in a function.
 
 **Returning an error**
 
-If the JavaScript function _returns_ any value, then the SQL++ runtime will assume that the function completed successfully, and the caller will continue to run subsequent statements.
+If the JavaScript function returns any value, including an error, then the SQL++ runtime will assume that the function completed successfully, and the caller will continue to run subsequent statements.
 
 **Throwing an error**
 
-If an error is _thrown_ then this is treated as an error condition, so further statements in the request will not be run.
+If an error is thrown, then this is treated as an error condition. Further statements in the request will not run.
 
-You can, of course, throw the error object itself, rather than just a string.
+You can also choose to throw the error object, rather than just the string. For example, the following function throws the entire error object, rather than just a string:
 
 ```javascript
 function addAirlineWithCheckThrowObject(id, name, callsign, country) {
@@ -189,7 +197,7 @@ function addAirlineWithCheckThrowObject(id, name, callsign, country) {
 }
 ```
 
-which deliver a lot more useful information than just posting back a string:
+Throwing the error object returns more useful information than just returning a string. For example, the following response makes it clear that the function failed to run because of a duplicate key value:
 
 ```json
 [
@@ -222,9 +230,11 @@ which deliver a lot more useful information than just posting back a string:
 ]
 ```
 
-### [](#parse-the-error)Parse the Error
+### [](#parsing-errors)Parsing Errors
 
-Another approach is to parse the error using the `JSON.parse()` function and return the resulting object:
+You can also choose to parse the error with the `JSON.parse()` function and return the resulting object.
+
+For example, the following function takes the object from `error.message` and returns that if an error occurs:
 
 ```javascript
 function addAirlineWithCheck(id, name, callsign, country) {
@@ -255,8 +265,7 @@ function addAirlineWithCheck(id, name, callsign, country) {
 }
 ```
 
-| **1** | The error object contains a JSON string (message) detailing the nature of the error. It is much easier to interrogate the message if it’s converted back into a JSON object on its own. This code will send back the entire message structure. |
-| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+If you ran the function on an `id` value that already exists in your operational cluster, the function would return a JSON object like the following:
 
 ```json
 [
@@ -277,9 +286,13 @@ function addAirlineWithCheck(id, name, callsign, country) {
 ]
 ```
 
-### [](#carry-out-alternative-actions)Carry Out Alternative Actions
+### [](#complex-error-handling)Complex Error Handling
 
-Once you know the structure of the error message, there’s no reason why you can’t carry out alternative actions depending on the type of error encountered:
+Using the structure of the error message returned by `catch (error)`, you can also use `JSON.parse()` to add more complex error handling to your JavaScript function.
+
+You could parse out the specific cause of an error, and display a more user-friendly error message that tells the user of your function how to resolve their error, or other, more complex logic.
+
+For example, in this function, if the error returned has a `message.cause.key` value of `dml.statement.duplicatekey`, the function returns only the duplicate key, without the `Duplicate Key:` part of the message:
 
 ```javascript
 function addAirlineWithCheck(id, name, callsign, country) {
@@ -322,7 +335,3 @@ function addAirlineWithCheck(id, name, callsign, country) {
     }
 }
 ```
-
-| **1** | Check to see if this is a message that can be handled by the function itself.         |
-| ----- | ------------------------------------------------------------------------------------- |
-| **2** | Strips out the "Duplicate Key: " part of the message, leaving just the duplicate key. |

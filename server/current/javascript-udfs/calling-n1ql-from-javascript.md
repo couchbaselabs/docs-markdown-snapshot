@@ -1,8 +1,9 @@
 ---
 title: Calling SQL++ from JavaScript
-description: Executing SQL++ statements from JavaScript functions.
+description: You can run SQL++ statements from inside the JavaScript code you
+  use for a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-26T03:43:25.790Z
 link: xref:server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
@@ -10,11 +11,11 @@ link: xref:server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 
 # Calling SQL++ from JavaScript
 
-> Executing SQL++ statements from JavaScript functions. 
+> You can run SQL++ statements from inside the JavaScript code you use for a user-defined function. 
 
-## [](#introduction)Introduction
+User-defined functions support calling JavaScript and executing SQL++ statements together.
 
-As well as being able to call JavaScript functions from SQL++, you can also call SQL++ statements from inside your JavaScript functions.
+For more information about user-defined functions in Couchbase Server, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
 
 ## [](#calling-statements-inline)Calling SQL++ Statements Inline
 
@@ -34,7 +35,7 @@ function addAirline() {
 
 ## [](#executing-sql-statements-using-the-n1ql-call)Executing SQL++ Statements Using the N1QL() Call
 
-In addition, you can also execute a SQL++ statement by calling it from the `N1QL(…)` function.
+You can also execute a SQL++ statement by calling it from the `N1QL(…)` function.
 
 ```javascript
 function addAirline() {
@@ -50,26 +51,28 @@ function addAirline() {
 ```
 
 > [!NOTE]
-> Behind the scenes, the inline call method will generate the equivalent `SQL++` call, so whichever you choose to use will come down to personal preference.
+> The `N1QL()` function generates the equivalent SQL++ call. You can choose to use either method and get the same results. The `N1QL()` function changes your available parameter support. See [Passing Parameters to SQL++ Statements](#pass-parameters).
 
 ## [](#side-effects)Side Effects
 
-Functions executed as part of expressions cannot have side effects that will change data stored by the Couchbase engine. For example, this statement:
+If you choose to use a SQL++ statement inside a JavaScript function, that function cannot have side effects that change data stored by Couchbase Server.
+
+For example, in this SQL++ statement, the `AddAirline()` function attempts to alter data, which may be an unintended side effect. The statement returns an error:
 
 ```sqlpp
 SELECT "true" AS response WHERE AddAirline() = "missing";
 ```
-
-will generate an error because the `AddAirline()` function will attempt to alter data, which the caller may be unaware of.
 
 > [!IMPORTANT]
 > Functions that change data must be called using the `EXECUTE FUNCTION` statement.
 
 ## [](#returning-values-from-sql-statements)Returning Values from SQL++ Statements
 
-As shown in the [examples above](#calling-statements-inline), embedded SQL++ statements return values which can be used later on in your code.
+An embedded SQL++ statement can return values that you can use later in your JavaScript code for a user-defined function.
 
-The values returned from the statement calls are JavaScript [iterators](https://www.w3schools.com/js/js%5Fobject%5Fiterables.asp): lists of values or documents returned from the database. In the next example, you’re going to retrieve a list of the hotels stored in the `travel-sample` database:
+The values returned from statement calls are JavaScript [iterators](https://www.w3schools.com/js/js%5Fobject%5Fiterables.asp). Iterators are lists of values or documents returned from your operational cluster.
+
+In the following example, the function `selectHotels()` retrieves a list of hotels stored in the `travel-sample`.`inventory`.`hotel` collection. It returns the list of hotels as an iterator. The iterator is stored in the variable, `q`. The function then iterates through each item in `q` to create and return a new result array, `res`:
 
 ```javascript
 function selectHotels() {
@@ -88,26 +91,20 @@ function selectHotels() {
 }
 ```
 
-| **1** | The SQL++ statement returns an iterator containing the items retrieved by the query.    |
-| ----- | --------------------------------------------------------------------------------------- |
-| **2** | Using the standard JavaScript iterator pattern to loop through the items returned in q. |
-| **3** | Add the current document from the iterator to the result array res.                     |
-| **4** | Once all the items have been retrieved, return the result array.                        |
-
 > [!IMPORTANT]
-> If an inline statement/SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. i.e. the runtime will wait until the statement completes before moving on to the next line of JavaScript.
+> If an inline statement or SQL++ call does not return a value, then the associated SQL++ statement is executed as part of a synchronous operation. This means the runtime will wait until the statement completes before moving on to the next line of JavaScript.
 > 
-> If the inline statement/SQL++ call returns a value then it is executed _asynchronously_: execution continues before the iterator is returned. Each document is fetched from the bucket as it requested by the iterator.
+> If the inline statement or SQL++ call returns a value, then it’s executed asynchronously. Execution of the JavaScript continues before the iterator is returned. Each document is fetched from the bucket as it’s requested by the iterator.
 > 
 > ![inline-call-sequence](_images/inline-call-sequence-519984698fa53bcd24f4a50467d4acdeb4ec8965.svg)
 
-## [](#passing-parameters-to-sql-statements)Passing Parameters to SQL++ Statements
+## [](#pass-parameters)Passing Parameters to SQL++ Statements
 
-You can pass parameters from your JavaScript to your SQL++ statements. Parameters can either be _positional_ or _named_.
+You can pass parameters from your JavaScript code to your SQL++ statements. Parameters can either be **positional** or **named**.
 
 Positional
 
-The parameters are applied to the statement in the order they appear in the list.
+The parameters are applied to the statement in the order they appear in the list. For example, in the following `addAirlineWithPositionalParameters` function, the `id` would be set as `1600`, type as `airline`, `name` to the supplied value of the `name` variable, and so on:
 
 ```javascript
 function addAirlineWithPositionalParameters(name, callsign, country) {
@@ -125,7 +122,7 @@ function addAirlineWithPositionalParameters(name, callsign, country) {
 
 Named
 
-The parameters are given a mnemonic name attached to the value, so they can be included directly in the SQL++ statement.
+The parameters are given a mnemonic name attached to the value, so they can be included directly in the SQL++ statement. For example, in the following `addAirlineWithNamedParameters` function, the names of the parameters passed into the JavaScript function are used in the SQL++ statement, without needing to assign the parameters in a separate step. The parameters are assigned by prefixing the parameter names with a `$`:
 
 ```javascript
 function addAirlineWithNamedParameters(name, callsign, country) {
@@ -140,36 +137,41 @@ function addAirlineWithNamedParameters(name, callsign, country) {
 }
 ```
 
-> [!NOTE]
-> The names of the parameters passed into the JavaScript function are used in the SQL++ statement without any need to assign the parameters in a separate step.
+Calling SQL++ from the `N1QL()` function supports both **named** and **positional** parameters. Calling a SQL++ statement or expression inline supports only **named** parameters.
 
-SQL++ calls support both _named_ and _positional_ parameters. Inline calls only support named parameters.
-
-| Call         | Named Parameters | Positional Parameters |
-| ------------ | ---------------- | --------------------- |
-| SQL++ calls  | ✔️               | ✔                     |
-| Inline Calls | ✔️               | ❌                     |
+| Call                       | Named Parameters | Positional Parameters |
+| -------------------------- | ---------------- | --------------------- |
+| Calling SQL++ using N1QL() | ✔️               | ✔️                    |
+| Inline Calls               | ✔️               | ❌                     |
 
 ## [](#transactions)Transactions
 
 Transactions are supported from SQL++ statements called from JavaScript functions.
 
-* The function can run statements in a transaction that was started before the function was executed.
-* The function can run a statement that starts the transaction.
-* The function can run a statement that rolls back a transaction.
+Functions can:
+
+* Run statements in a transaction that was started before the function was executed.
+* Run a statement that starts the transaction.
+* Run a statement that rolls back a transaction.
 
 > [!NOTE]
 > A SQL++ statement and its corresponding iterator must live entirely within the scope of a transaction. If a transaction is started during the iteration process, then the transaction cannot be rolled back entirely.
 > 
 > ![transactions-and-iterators](_images/transactions-and-iterators-e7a0ef29da863605ec653086aaa015f5fb6002f3.svg)
 
-## [](#role-based-access-control)Role-Based Access Control
+## [](#role-based-access-control-and-functions)Role-Based Access Control and Functions
 
-In order to execute SQL++ statements as part of a JavaScript function, the user executing the function must have the appropriate privileges to perform the action on any objects referenced in the SQL++ statement.
+To execute a SQL++ statement from a JavaScript function, you must have the correct permissions on your account to perform actions on any objects referenced in the SQL++ statement.
 
-## [](#executing-sql-statements-that-call-functions)Executing SQL++ Statements that Call Functions
+For more information about roles that control data access in Couchbase Server, see [Authorization](../learn/security/authorization-overview.md).
 
-It is often the case that JavaScript function will call a SQL++ statement that may itself call another JavaScript function. However, it is important to be aware that each JavaScript function call executed from a parent call will use a new JavaScript worker process to run. The deeper the calls are nested, the fewer JavaScript workers are available to run, so the calling chain will eventually fail and throw an error. This can be demonstrated using a recursive call sequence as shown below:
+## [](#executing-sql-statements-that-call-functions)Executing SQL++ Statements That Call Functions
+
+You can also create a JavaScript function that calls a SQL++ statement, which then calls another JavaScript function.
+
+Be careful when nesting calls to multiple JavaScript functions. Each function call executed from a parent call uses a new JavaScript worker process to run. The deeper you nest your calls, the fewer JavaScript workers you will have available to execute those calls. Your calling chain will eventually fail and throw an error.
+
+For example, if you used the following user-defined function, `doRecursion()`:
 
 ```javascript
 function doRecursion() {
@@ -179,13 +181,13 @@ function doRecursion() {
 }
 ```
 
-Then executing the function:
+Executing the function with the `EXECUTE FUNCTION` call would start an infinite recursion:
 
 ```sqlpp
 EXECUTE FUNCTION doRecursion();
 ```
 
-returns the following result:
+The function call would eventually return the following result, stopping the call after too many nested function calls exhausted the JavaScript workers:
 
 ```json
 [
@@ -210,19 +212,17 @@ returns the following result:
 ]
 ```
 
-| **1** | The call failed after 10 nested call, which exhausted the number of JavaScript workers available during the call sequence. |
-| ----- | -------------------------------------------------------------------------------------------------------------------------- |
-
 > [!NOTE]
-> The JavaScript workers are created when the Couchbase server is started up.
+> JavaScript workers are created on your Couchbase cluster based on the following formula:
 > 
 > \\$"Number of JavaScript Workers" = 4 xx "Number of CPUs"\\$
 > 
-> The service will automatically prevent recursive calls if there are fewer than 50% JavaScript workers available.
+> Couchbase Server will automatically prevent recursive calls if there are fewer than 50% of the total JavaScript workers available.
 
-## [](#further-reading)Further Reading
+## [](#see-also)See Also
 
-* [SELECT Clause](../n1ql/n1ql-language-reference/selectclause.md)
+* [Call JavaScript from SQL++](calling-javascript-from-n1ql.md)
+* [Handling Errors in JavaScript Functions](handling-errors-javascript-udf.md)
 * [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)
-* [Transactions](../learn/data/transactions.md)
-* [Role-Based Access Control (RBAC)](../rest-api/rbac.md)
+* [SQL++ for Query Reference](../n1ql/n1ql-language-reference/index.md)
+* [Create Couchbase Transactions with SQL++](../guides/transactions.md)

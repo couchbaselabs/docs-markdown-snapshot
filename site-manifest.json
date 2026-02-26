@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1771991328869,
+  "generated": 1772077650767,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -53831,7 +53831,7 @@
               "module": "javascript-udfs",
               "path": "calling-javascript-from-n1ql.adoc",
               "url": "/server/current/javascript-udfs/calling-javascript-from-n1ql.md",
-              "title": "Calling JavaScript from SQL++"
+              "title": "Call JavaScript from SQL++"
             },
             {
               "module": "javascript-udfs",
@@ -63237,7 +63237,7 @@
               "module": "javascript-udfs",
               "path": "calling-javascript-from-n1ql.adoc",
               "url": "/server/7.6/javascript-udfs/calling-javascript-from-n1ql.md",
-              "title": "Calling JavaScript from SQL++"
+              "title": "Call JavaScript from SQL++"
             },
             {
               "module": "javascript-udfs",
