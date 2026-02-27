@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1772107994897,
+  "generated": 1772163879179,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -53683,6 +53683,12 @@
               "path": "synchronize-clocks-using-ntp.adoc",
               "url": "/server/current/install/synchronize-clocks-using-ntp.md",
               "title": "Clock Sync with NTP"
+            },
+            {
+              "module": "install",
+              "path": "tcp_mem_settings.adoc",
+              "url": "/server/current/install/tcp_mem_settings.md",
+              "title": "Linux Kernel TCP/IP Memory Settings"
             },
             {
               "module": "install",

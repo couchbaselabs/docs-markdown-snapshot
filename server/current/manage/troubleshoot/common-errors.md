@@ -2,7 +2,7 @@
 title: Common Errors
 description: Common errors that occur during management of Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/troubleshoot/common-errors.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-27T03:40:23.294Z
 link: xref:server:manage:troubleshoot/common-errors.adoc[]
 ---
 
@@ -174,6 +174,18 @@ sudo echo '' >> /etc/sysctl.conf
        sudo echo '#Set swappiness to 0 to avoid swapping' >> /etc/sysctl.conf  
        sudo echo 'vm.swappiness = 0' >> /etc/sysctl.conf  
 Make sure that you either have or modify your process that builds your OSs to do this. This is especially critical for public/private clouds where it is so easy to bring up new instances. You need to make this part of your build process for a Couchbase node.
+
+Kernel TCP/IP memory settings
+
+The Linux kernel has a global parameter named `tcp_mem` that sets limits on the TCP/IP stack’s memory use. With an intense network workload, the TCP/IP stack could reach 1 of the thresholds defined by this setting. When it reaches the pressure threshold, the TCP/IP stack starts taking steps to reduce its memory use. These steps could cause the node to experience higher network latency and limited throughput.
+
+If the TCP/IP stack’s memory use continues to increase to the maximum threshold, the node could start dropping packets or refusing connections. In addition, the kernel logs Out Of Memory (OOM) errors to the system logs, such as:
+
+```console
+TCP: out of memory -- consider tuning tcp_mem
+```
+
+To prevent or resolve these issues, you may need to adjust the `tcp_mem` settings. See [Linux Kernel TCP/IP Memory Settings](../../install/tcp%5Fmem%5Fsettings.md) for more information.
 
 ## [](#severe-performance-degradation-on-linux-hosts)Severe Performance Degradation on Linux Hosts
 

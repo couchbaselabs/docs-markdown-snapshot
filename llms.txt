@@ -1904,6 +1904,7 @@
         - [Clock Synchronization Requirements](/server/current/install/synchronize-clocks-using-ntp.md)
         - [Disable THP](/server/current/install/thp-disable.md)
         - [Configure Kernel Swappiness](/server/current/install/install-swap-space.md)
+        - [Linux Kernel TCP/IP Memory Settings](/server/current/install/tcp_mem_settings.md)
         - [Security Considerations](/server/current/install/install-security-bp.md)
         - [How to mitigate Split Lock Issues](/server/current/install/install-splitlock-mitigation.md)
         - [Couchbase Server Process List](/server/current/install/server-processes.md)

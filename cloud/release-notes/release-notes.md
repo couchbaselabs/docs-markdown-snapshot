@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-02-24T03:43:07.775Z
+pubDate: 2026-02-27T03:40:23.294Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -29,6 +29,12 @@ For more information, see [Replicate Data Across a Private Endpoint Connection](
 Couchbase Capella is announcing native support for scraping Prometheus metrics endpoints through private endpoint connectivity. This capability allows you to collect observability data from your internal resources without exposing endpoints to the public Internet.  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).  
 For more information, see [Add a Capella Cluster to a Prometheus Server](../clusters/monitoring/prometheus.md).
+
+## [](#january-2026-changelog)January 2026 Changelog
+
+* Couchbase Server 7.6.9  
+Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.9 maintenance release. This version includes bug fixes.  
+For more information about this version of Couchbase Server, see [Couchbase Server 7.6.9](../../server/7.6/release-notes/relnotes.md#release-769).
 
 ## [](#december-2025-changelog)December 2025 Changelog
 
