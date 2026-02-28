@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1772163879179,
+  "generated": 1772249941263,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -3498,7 +3498,7 @@
               "module": "eventing",
               "path": "eventing-rbac.adoc",
               "url": "/cloud/eventing/eventing-rbac.md",
-              "title": "Eventing Role-Based Access Control (RBAC)"
+              "title": "Eventing Access Control"
             },
             {
               "module": "eventing",

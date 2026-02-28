@@ -1,7 +1,7 @@
 ---
 title: Stream Data from Couchbase Capella
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-capella.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-02-28T03:34:55.737Z
 link: xref:analytics:sources:remote-cb-capella.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:analytics:sources:remote-cb-capella.adoc[]
 
 ## [](#encryption)Requirements for Couchbase Capella Links
 
-The Capella operational cluster must be in the same organization as your Capella Analytics cluster. You must have RBAC access to the operational database to be able to create a link to it. See [Eventing Role-Based Access Control (RBAC)](../../cloud/eventing/eventing-rbac.md).
+The Capella operational cluster must be in the same organization as your Capella Analytics cluster. You must have RBAC access to the operational database to be able to create a link to it. See [Eventing Access Control](../../cloud/eventing/eventing-rbac.md).
 
 Your Capella Analytics account must have either the [Project Owner](../admin/auth/auth-ui.md#project-owner-role) or [Project Manager](../admin/auth/auth-ui.md#project-cluster-manager-role) role to be able to create a link and its associated collection.
 

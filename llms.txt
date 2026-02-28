@@ -765,7 +765,7 @@
             - [Timers](/cloud/eventing/eventing-timers.md)
             - [cURL](/cloud/eventing/eventing-curl-spec.md)
         - [Buckets vs Collections](/cloud/eventing/eventing-buckets-to-collections.md)
-        - [Eventing Role-Based Access Control](/cloud/eventing/eventing-rbac.md)
+        - [Eventing Access Control](/cloud/eventing/eventing-rbac.md)
         - [Eventing Function Examples](/cloud/eventing/eventing-examples.md)
             - Step-by-Step Examples
                 - [Improve Document Searchability](/cloud/eventing/eventing-example-data-enrichment.md)

@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-02-27T03:40:23.294Z
+pubDate: 2026-02-28T03:34:55.737Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -11,6 +11,9 @@ link: xref:cloud:release-notes:release-notes.adoc[]
 
 ## [](#february-2026-changelog)February 2026 Changelog
 
+* Couchbase Server 7.6.10  
+Creating a new operational cluster with Couchbase Server 7.6 now deploys the Couchbase Server 7.6.10 maintenance release. This version includes bug fixes.  
+For more information about this version of Couchbase Server, see [Couchbase Server 7.6.10](../../server/7.6/release-notes/relnotes.md#release-7610).
 * Custom Subdomains in Capella Endpoints  
 You can now customize endpoints for Capella resources, such as URLs for clusters, private links, and nodes, with unique identifiers. This option is now also available for GCP and Azure clusters through the [Capella Management API](../management-api-reference/index.md#tag/Organizations/operation/putOrganizationConfiguration).  
 This feature is currently only available upon request from [Couchbase Capella Support](../support/manage-support.md#create-support-ticket).

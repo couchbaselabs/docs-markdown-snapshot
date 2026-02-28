@@ -3,7 +3,7 @@ title: Command Line Tools
 description: Use Couchbase command line tools to import and export large amounts
   of data, and manage ad hoc backups.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/reference/pages/command-line-tools.adoc
-pubDate: 2026-02-27T03:40:23.294Z
+pubDate: 2026-02-28T03:34:55.737Z
 link: xref:cloud:reference:command-line-tools.adoc[]
 ---
 
@@ -21,48 +21,48 @@ Download the version of the command line tools package for your platform through
 
 Linux
 
-<https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools-7.6.9-linux%5Fx86%5F64.tar.gz>
+<https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-linux%5Fx86%5F64.tar.gz>
 
 Linux aarch64
 
-<https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools-7.6.9-linux%5Faarch64.tar.gz>
+<https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-linux%5Faarch64.tar.gz>
 
 macOS
 
-<https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools-7.6.9-macos%5Fx86%5F64.zip>
+<https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-macos%5Fx86%5F64.zip>
 
 macOS arm64
 
-<https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools-7.6.9-macos%5Farm64.zip>
+<https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-macos%5Farm64.zip>
 
 Windows
 
-<https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools-7.6.9-windows%5Famd64.zip>
+<https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools-7.6.10-windows%5Famd64.zip>
 
 Unzip or untar the packages, and the binaries are ready to run. The zipped package also contains a `README` file, and a copy of the software licenses.
 
 For example, for Linux x86\_64:
 
 ```console
-$ mkdir capella_server_tools_7.6.9
+$ mkdir capella_server_tools_7.6.10
 ```
 
 ```console
-$ cd capella_server_tools_7.6.9
+$ cd capella_server_tools_7.6.10
 ```
 
 ```console
-$ wget https://packages.couchbase.com/releases/7.6.9/couchbase-server-dev-tools_7.6.9-linux_x86_64.tar.gz
+$ wget https://packages.couchbase.com/releases/7.6.10/couchbase-server-dev-tools_7.6.10-linux_x86_64.tar.gz
 ```
 
 ```console
-$ tar -xf couchbase-server-dev-tools_7.6.9-linux_x86_64.tar.gz
+$ tar -xf couchbase-server-dev-tools_7.6.10-linux_x86_64.tar.gz
 ```
 
 ```console
 $ ls -1
 bin
-couchbase-server-dev-tools_7.6.9-linux_x86_64.tar.gz
+couchbase-server-dev-tools_7.6.10-linux_x86_64.tar.gz
 lib
 LICENSE.txt
 NOTICES.txt
@@ -85,28 +85,28 @@ cbq
 
 ```console
 $ ./cbimport --version
-cbimport version 7.6.9-7600 (9580f312)
+cbimport version 7.6.10-8025 (5abcd8c5)
 ```
 
 ```console
 $ ./cbexport --version
-cbexport version 7.6.9-7600 (9580f312)
+cbexport version 7.6.10-8025 (5abcd8c5)
 ```
 
 ```console
 $ ./cbbackupmgr --version
-cbbackupmgr version 7.6.9-7600 (9580f312)
+cbbackupmgr version 7.6.10-8025 (5abcd8c5)
 ```
 
 ```console
 $ ./cbdatarecovery --version
-cbdatarecovery version 7.6.9-7600 (9580f312)
+cbdatarecovery version 7.6.10-8025 (5abcd8c5)
 ```
 
 ```console
 $ ./cbq --version
- GO VERSION : go1.24.7
- SHELL VERSION : 7.6.9-7600
+ GO VERSION : go1.25.5
+ SHELL VERSION : 7.6.10-8025
 
  Use N1QL queries select version(); or select min_version(); to display server version.
 ```
