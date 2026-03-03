@@ -1,9 +1,9 @@
 ---
 title: Search
-description: You can use the Full Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+description: You can use the Search Service to create queryable full-text
+  indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-03T03:45:18.597Z
 link: xref:java-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -11,13 +11,13 @@ link: xref:java-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 # Search
 
-> You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search Service to create queryable full-text indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
+The Search Service allows you to create, manage and query full-text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for indexing and querying documents, provides relevance scoring on the results of your queries and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query-types include simple queries like Match and Term queries, range queries like Date Range and Numeric Range and compound queries for conjunctions, disjunctions and/or boolean queries.
 
-The Full Text Search service also supports vector search from Couchbase Server 7.6 onwards.
+The Search Service also supports vector search from Couchbase Server 7.6 onwards.
 
 ## [](#getting-started)Getting Started
 
@@ -50,6 +50,15 @@ Once a result returns you can iterate over the returned rows, and/or access the 
 ```console
 Exception in thread "main" com.couchbase.client.core.error.IndexNotFoundException: Index not found {"completed":true,"coreId":1,"httpStatus":400,"idempotent":true,"lastDispatchedFrom":"127.0.0.1:53818","lastDispatchedTo":"127.0.0.1:8094","requestId":3,"requestType":"SearchRequest","service":{"indexName":"unknown-index","type":"search"},"status":"INVALID_ARGS","timeoutMs":75000,"timings":{"dispatchMicros":18289,"totalMicros":1359398}}
 ```
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#search-queries)Search Queries
 
