@@ -2,7 +2,7 @@
 title: Add Private Endpoints
 description: Private endpoints connect a Capella cluster to a chosen resource or service.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/private-endpoints.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-04T03:42:46.143Z
 link: xref:cloud:security:private-endpoints.adoc[]
 ---
 
@@ -14,12 +14,12 @@ link: xref:cloud:security:private-endpoints.adoc[]
 
 A private endpoint peers your cloud service provider (CSP) with a Capella cluster using the same CSP. This connection can reduce latency and egress costs for applications hosted in the same region.
 
-Private endpoints do not support [cross data center replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). If you require XDCR or Prometheus metrics, use VPC Peering.
-
-> [!TIP]
-> VPC Peering
+> [!IMPORTANT]
+> XDCR and Prometheus Metrics
 > 
-> A VPC Peering connection provides an added layer of security for organizations by avoiding communication over the Internet. For details, see [Configure a VPC Peering Connection](../clouds/private-network.md).
+> AWS PrivateLink and GCP Private Service Connect can support [Cross Datacenter Replication (XDCR)](../clusters/xdcr/xdcr.md) or [Prometheus metrics](../clusters/monitoring/prometheus.md). These features are only available upon request and are subject to specific conditions.
+> 
+> For more information about the XDCR conditions, see [Replicate Data Across a Private Endpoint Connection](../clusters/xdcr/manage-xdcr-security.md#private-endpoints). For more information about the Prometheus conditions, see [Prometheus metrics](../clusters/monitoring/prometheus.md).
 
 ## [](#procedures)Procedures
 

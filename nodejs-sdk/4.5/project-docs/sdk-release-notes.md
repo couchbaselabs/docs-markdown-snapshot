@@ -3,7 +3,7 @@ title: SDK Release Notes
 description: Release notes, installation instructions, and download archive for
   the Couchbase Node.js Client.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-04T03:42:46.143Z
 link: xref:4.5@nodejs-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
@@ -29,6 +29,34 @@ $ npm install couchbase@4.5.0
 
 We always recommend using the latest version of the SDK — it contains all of the latest security patches and support for new and upcoming features. All patch releases for each dot minor release should be API compatible, and safe to upgrade; any changes to expected behavior are noted in the release notes that follow.
 
+### [](#version-4-6-1-20-february-2026)Version 4.6.1 (20 February 2026)
+
+Version 4.6.1 is the next patch release of the fourth generation Node.js SDK, bringing a number of improvements.
+
+```bash
+$ npm install couchbase@4.6.1
+```
+
+**API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.6.1/>
+
+#### [](#enhancements)Enhancements
+
+[JSCBC-1345](https://jira.issues.couchbase.com/browse/JSCBC-1345): Updated ESLint to `9.39.2`.
+
+[JSCBC-1382](https://jira.issues.couchbase.com/browse/JSCBC-1382): Improved build scripts.
+
+[JSCBC-1387](https://jira.issues.couchbase.com/browse/JSCBC-1387): Upgrade to `cmake-js` to `8.0`.
+
+#### [](#known-issues)Known Issues
+
+[JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
+
+[JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
+
+#### [](#underlying-c-sdk-core-changes)Underlying C++ SDK Core Changes
+
+* [CXXCBC-768](https://jira.issues.couchbase.com/browse/CXXCBC-768): Prevent DNS-SRV refresh loop on `bucket_not_found` bootstrap errors ([#897](https://github.com/couchbase/couchbase-cxx-client/pull/897)).
+
 ### [](#version-4-6-0-29-september-2025)Version 4.6.0 (29 September 2025)
 
 Version 4.6.0 is the next minor release of the fourth generation Node.js SDK, bringing a number of improvements. Most notably the 4.6.0 release adds support for Vector Search pre-filters.
@@ -45,7 +73,7 @@ For operations that allow an expiry to be specifed, using a Unix timestamp (e.g.
 
 The "auto" network selection heuristic in the underyling C++ core has been changed to fall back to the "external" network if the "external" network is present. Previously, if there was no exact match between an address in the connection string and an address in the cluster topology reported by the server, the SDK would select the "default" network. Now, if there is no match and an "external" network is present, the SDK selects the "external" network.
 
-#### [](#enhancements)Enhancements
+#### [](#enhancements-2)Enhancements
 
 * [JSCBC-1329](https://jira.issues.couchbase.com/browse/JSCBC-1329): Added support "access\_deleted" for replica reads.
 * [JSCBC-1330](https://jira.issues.couchbase.com/browse/JSCBC-1330): Updated supported bucket & storage types.
@@ -60,12 +88,12 @@ The "auto" network selection heuristic in the underyling C++ core has been chang
 
 * [JSCBC-1357](https://jira.issues.couchbase.com/browse/JSCBC-1357): Fixed how client handles KV expiry.
 
-#### [](#known-issues)Known Issues
+#### [](#known-issues-2)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-2)Underlying C++ SDK Core Changes
 
 ##### [](#new-features)New Features
 
@@ -101,16 +129,16 @@ $ npm install couchbase@4.5.1
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.5.1/>
 
-#### [](#enhancements-2)Enhancements
+#### [](#enhancements-3)Enhancements
 
 * [JSCBC-1359](https://jira.issues.couchbase.com/browse/JSCBC-1359): Added Graviton 3 and 4 executors to test pipeline matrices.
 
-#### [](#known-issues-2)Known Issues
+#### [](#known-issues-3)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-2)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-3)Underlying C++ SDK Core Changes
 
 ##### [](#new-features-2)New Features
 
@@ -133,7 +161,7 @@ $ npm install couchbase@4.5.0
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.5.0/>
 
-#### [](#enhancements-3)Enhancements
+#### [](#enhancements-4)Enhancements
 
 * [JSCBC-1273](https://jira.issues.couchbase.com/browse/JSCBC-1273): Added support for Node.js v22.
 * [JSCBC-1300](https://jira.issues.couchbase.com/browse/JSCBC-1300), [JSCBC-1324](https://jira.issues.couchbase.com/browse/JSCBC-1324): Added support for SDK Telemetry Collection in Server.
@@ -155,12 +183,12 @@ $ npm install couchbase@4.5.0
 * [JSCBC-1344](https://jira.issues.couchbase.com/browse/JSCBC-1344): Fixed collection management `createCollection` operation to omit `maxExpiry` if not set.
 * [JSCBC-1350](https://jira.issues.couchbase.com/browse/JSCBC-1350): Fixed transactional errors raised to application to be in line with the transactions RFC.
 
-#### [](#known-issues-3)Known Issues
+#### [](#known-issues-4)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-3)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-4)Underlying C++ SDK Core Changes
 
 ##### [](#new-features-3)New Features
 
@@ -201,7 +229,7 @@ $ npm install couchbase@4.4.6
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.4.6/>
 
-#### [](#enhancements-4)Enhancements
+#### [](#enhancements-5)Enhancements
 
 * [JSCBC-1347](https://jira.issues.couchbase.com/browse/JSCBC-1347): Added experimental use of the Electron runtime.
 * [JSCBC-1348](https://jira.issues.couchbase.com/browse/JSCBC-1348): Updated transaction errors to provide more information in error messages.
@@ -212,12 +240,12 @@ $ npm install couchbase@4.4.6
 * [JSCBC-1341](https://jira.issues.couchbase.com/browse/JSCBC-1341): Console logger is now disabled when the file logger is specified.
 * [JSCBC-1344](https://jira.issues.couchbase.com/browse/JSCBC-1344): Fixed collection management `createCollection` operation to omit `maxExpiry` if not set.
 
-#### [](#known-issues-4)Known Issues
+#### [](#known-issues-5)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-4)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-5)Underlying C++ SDK Core Changes
 
 ##### [](#fixes-4)Fixes
 
@@ -235,7 +263,7 @@ $ npm install couchbase@4.4.5
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.4.5/>
 
-#### [](#enhancements-5)Enhancements
+#### [](#enhancements-6)Enhancements
 
 * [JSCBC-1308](https://jira.issues.couchbase.com/browse/JSCBC-1308), [JSCBC-1309](https://jira.issues.couchbase.com/browse/JSCBC-1309), [JSCBC-1310](https://jira.issues.couchbase.com/browse/JSCBC-1310), [JSCBC-1313](https://jira.issues.couchbase.com/browse/JSCBC-1313), [JSCBC-1314](https://jira.issues.couchbase.com/browse/JSCBC-1314), [JSCBC-1315](https://jira.issues.couchbase.com/browse/JSCBC-1315): Added improvments to CI integration tests.
 
@@ -246,14 +274,14 @@ $ npm install couchbase@4.4.5
 * [JSCBC-1311](https://jira.issues.couchbase.com/browse/JSCBC-1311), [JSCBC-1312](https://jira.issues.couchbase.com/browse/JSCBC-1312): Fixed `PromiseHelper` utility to prevent uncaught exception.
 * [JSCBC-1318](https://jira.issues.couchbase.com/browse/JSCBC-1318): Fixed `LookupIn` replica methods to have correct option type and return type.
 
-#### [](#known-issues-5)Known Issues
+#### [](#known-issues-6)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-5)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-6)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-6)Enhancements
+##### [](#enhancements-7)Enhancements
 
 * [CXXCBC-638](https://jira.issues.couchbase.com/browse/CXXCBC-638): Switched SDK to use bundled `fmtlib` for `spdlog` ([#705](https://github.com/couchbase/couchbase-cxx-client/pull/705)).
 * [CXXCBC-640](https://jira.issues.couchbase.com/browse/CXXCBC-640): Debug symbols are no longer forced for release builds ([#708](https://github.com/couchbase/couchbase-cxx-client/pull/708)).
@@ -272,7 +300,7 @@ $ npm install couchbase@4.4.4
 
 **API Docs:** <http://docs.couchbase.com/sdk-api/couchbase-node-client-4.4.4/>
 
-#### [](#enhancements-7)Enhancements
+#### [](#enhancements-8)Enhancements
 
 * [JSCBC-1261](https://jira.issues.couchbase.com/browse/JSCBC-1261): Support added for Binary Objects in Transactions.
 * [JSCBC-1282](https://jira.issues.couchbase.com/browse/JSCBC-1282): Updated user management API to use C++ core.
@@ -295,13 +323,13 @@ $ npm install couchbase@4.4.4
 * [JSCBC-1296](https://jira.issues.couchbase.com/browse/JSCBC-1296): User management `` getUser’s `passwordChanged `` field for an external user war returning an `Invalid Date`. The internal logic for this has been updated, with an undefined field now allowed, and the problem is fixed.
 * [JSCBC-1298](https://jira.issues.couchbase.com/browse/JSCBC-1298): Removing the chained `promise.then().callback()` in `PromiseHelper` will now prevent the double invocation of the callback.
 
-#### [](#known-issues-6)Known Issues
+#### [](#known-issues-7)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 * [JSCBC-1311](http://jira.issues.couchbase.com/browse/JSCBC-1311): `PromiseHelper` utility can trigger uncaught exception.
 
-#### [](#underlying-c-sdk-core-changes-6)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-7)Underlying C++ SDK Core Changes
 
 ##### [](#fixes-8)Fixes
 
@@ -325,18 +353,18 @@ $ npm install couchbase@4.4.3
 
 * [JSCBC-1281](https://jira.issues.couchbase.com/browse/JSCBC-1281): Updated C++ core to include fix to allow detection of dysfunctional node.
 
-#### [](#enhancements-8)Enhancements
+#### [](#enhancements-9)Enhancements
 
 * [JSCBC-1280](https://jira.issues.couchbase.com/browse/JSCBC-1280): Added ability to use C++ core file logger.
 
-#### [](#known-issues-7)Known Issues
+#### [](#known-issues-8)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-7)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-8)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-9)Enhancements
+##### [](#enhancements-10)Enhancements
 
 * [CXXCBC-552](http://jira.issues.couchbase.com/browse/CXXCBC-582): Cleaned up network selection options ([#677](https://github.com/couchbase/couchbase-cxx-client/pull/677), [#682](https://github.com/couchbase/couchbase-cxx-client/pull/682)). Added cluster labels and system tag to spans. Added cluster labels, keyspace, and outcome to metrics.
 
@@ -361,17 +389,17 @@ $ npm install couchbase@4.4.2
 
 * [JSCBC-1252](https://jira.issues.couchbase.com/browse/JSCBC-1252): Fixed `npm install` failure after checking out couchnode for local development.
 
-#### [](#enhancements-10)Enhancements
+#### [](#enhancements-11)Enhancements
 
 * [JSCBC-1272](https://jira.issues.couchbase.com/browse/JSCBC-1272): Updated prebuild processing to only allow supported runtimes.
 * [JSCBC-1279](https://jira.issues.couchbase.com/browse/JSCBC-1279): Updated prebuild scripts.
 
-#### [](#known-issues-8)Known Issues
+#### [](#known-issues-9)Known Issues
 
 * [JSCBC-1011](http://jira.issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://jira.issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-8)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-9)Underlying C++ SDK Core Changes
 
 ##### [](#fixes-12)Fixes
 
@@ -387,18 +415,18 @@ $ npm install couchbase@4.4.1
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.4.1/)
 
-#### [](#enhancements-11)Enhancements
+#### [](#enhancements-12)Enhancements
 
 * [JSCBC-1268](https://issues.couchbase.com/browse/JSCBC-1268): Added Support for Alpine ARM Prebuilds.
 
-#### [](#known-issues-9)Known Issues
+#### [](#known-issues-10)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-9)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-10)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-12)Enhancements
+##### [](#enhancements-13)Enhancements
 
 * Improved logging of DNS client ([#634](https://github.com/couchbase/couchbase-cxx-client/pull/634)).
 * [CXXCBC-568](https://issues.couchbase.com/browse/CXXCBC-568/): Cancel deferred operations when closing HTTP session manager ([#643](https://github.com/couchbase/couchbase-cxx-client/pull/643)).
@@ -425,18 +453,18 @@ $ npm install couchbase@4.4.0
 
 * [JSCBC-1263](https://issues.couchbase.com/browse/JSCBC-1263): Fixed `VectorQuery` validation to prevent empty `fieldName`.
 
-#### [](#enhancements-13)Enhancements
+#### [](#enhancements-14)Enhancements
 
 * [JSCBC-1262](https://issues.couchbase.com/browse/JSCBC-1262): Added support for base64 encoded vector types.
 
-#### [](#known-issues-10)Known Issues
+#### [](#known-issues-11)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-10)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-11)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-14)Enhancements
+##### [](#enhancements-15)Enhancements
 
 * [CXXCBC-381](https://issues.couchbase.com/browse/CXXCBC-381): Updated `transactions_context` and `attempt_context` to use `std::shared_ptr` ([#590](https://github.com/couchbaselabs/couchbase-cxx-client/pull/590)).
 
@@ -473,18 +501,18 @@ Version 4.6.0 addresses this behavioral change by allowing an absolute expiry to
 * [JSCBC-1243](https://issues.couchbase.com/browse/JSCBC-1243): Fixed how the SDK handles binary documents within a transactions lambda.
 * [JSCBC-1245](https://issues.couchbase.com/browse/JSCBC-1245): Fixed how the SDK handles the expiry value for mutation operations (if available for that operation).
 
-#### [](#enhancements-15)Enhancements
+#### [](#enhancements-16)Enhancements
 
 * [JSCBC-1253](https://issues.couchbase.com/browse/JSCBC-1253): Added support for scoped eventing functions.
 
-#### [](#known-issues-11)Known Issues
+#### [](#known-issues-12)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-11)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-12)Underlying C++ SDK Core Changes
 
-##### [](#enhancements-16)Enhancements
+##### [](#enhancements-17)Enhancements
 
 * [CXXCBC-470](https://issues.couchbase.com/browse/CXXCBC-470): Distinguish between 'unset' and 'off' query\_profile ([#551](https://github.com/couchbaselabs/couchbase-cxx-client/pull/551)).
 * [CXXCBC-489](https://issues.couchbase.com/browse/CXXCBC-489): Added support for scoped eventing functions ([#548](https://github.com/couchbaselabs/couchbase-cxx-client/pull/548), ([#554](https://github.com/couchbaselabs/couchbase-cxx-client/pull/554))).
@@ -507,23 +535,23 @@ $ npm install couchbase@4.3.0
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.3.0/)
 
-#### [](#known-issues-12)Known Issues
+#### [](#known-issues-13)Known Issues
 
 * [CXXCBC-447](https://issues.couchbase.com/browse/CXXCBC-447): This version of the SDK will not be able to connect to a cluster utilizing alternate addressing. The recommendation is to wait to upgrade to a version of the Node.js SDK that contains C++ 1.0.0-dp.15 (or later).
 
-#### [](#enhancements-17)Enhancements
+#### [](#enhancements-18)Enhancements
 
 * [JSCBC-1226](https://issues.couchbase.com/browse/JSCBC-1226): Added support for Vector Search.
 * [JSCBC-1241](https://issues.couchbase.com/browse/JSCBC-1241): Updated C++ core for transactions metadata bucket improvements.
 * [JSCBC-1251](https://issues.couchbase.com/browse/JSCBC-1251): Updated search API for SDK API 3.5 support.
 
-#### [](#known-issues-13)Known Issues
+#### [](#known-issues-14)Known Issues
 
 * [CXXCBC-447](https://issues.couchbase.com/browse/CXXCBC-447): This version of the SDK will not be able to connect to a cluster utilizing alternate addressing. The recommendation is to wait to upgrade to a version of the Node.js SDK that contains C++ 1.0.0-dp.15 (or later).
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-12)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-13)Underlying C++ SDK Core Changes
 
 * [CXXCBC-336](https://issues.couchbase.com/browse/CXXCBC-336): Updated DNS config to not fallback to 8.8.8.8 if SDK cannot obtain system DNS server ([#533](https://github.com/couchbaselabs/couchbase-cxx-client/pull/533)).
 * [CXXCBC-461](https://issues.couchbase.com/browse/CXXCBC-461): Updated ping operation to not send to nodes that have not completed bootstrap ([#540](https://github.com/couchbaselabs/couchbase-cxx-client/pull/540)).
@@ -550,7 +578,7 @@ $ npm install couchbase@4.2.11
 * [JSCBC-1193](https://issues.couchbase.com/browse/JSCBC-1193): Fixed mutateIn sub-document \`MutateInMacro\`s.
 * [JSCBC-1202](https://issues.couchbase.com/browse/JSCBC-1202): Updated `ViewQueryOptions` to include `full_set` and `raw` options.
 
-#### [](#enhancements-18)Enhancements
+#### [](#enhancements-19)Enhancements
 
 * [JSCBC-1081](https://issues.couchbase.com/browse/JSCBC-1081): Updated Query Index Management Create Index Key Encoding.
 * [JSCBC-1233](https://issues.couchbase.com/browse/JSCBC-1233): Added support for Scoped Search Indexes.
@@ -558,13 +586,13 @@ $ npm install couchbase@4.2.11
 * [JSCBC-1214](https://issues.couchbase.com/browse/JSCBC-1214): Fixed `ViewRow` parsing when handling results from C++ core.
 * [JSCBC-1238](https://issues.couchbase.com/browse/JSCBC-1238): Updated view index management API to use C++ core.
 
-#### [](#known-issues-14)Known Issues
+#### [](#known-issues-15)Known Issues
 
 * [CXXCBC-447](https://issues.couchbase.com/browse/CXXCBC-447): This version of the SDK will not be able to connect to a cluster utilizing alternate addressing. The recommendation is to wait to upgrade to a version of the Node.js SDK that contains C++ 1.0.0-dp.15 (or later).
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-13)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-14)Underlying C++ SDK Core Changes
 
 * [CXXCBC-284](https://issues.couchbase.com/browse/CXXCBC-284): Updated config polling to not use session that is not bootstrapped ([#528](https://github.com/couchbaselabs/couchbase-cxx-client/pull/528)).
 * [CXXCBC-345](https://issues.couchbase.com/browse/CXXCBC-345): Added range scan improvements and resolved concurrency issues ([#525](https://github.com/couchbaselabs/couchbase-cxx-client/pull/525)).
@@ -587,16 +615,16 @@ $ npm install couchbase@4.2.10
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.10/)
 
-#### [](#enhancements-19)Enhancements
+#### [](#enhancements-20)Enhancements
 
 * [JSCBC-1227](https://issues.couchbase.com/browse/JSCBC-1227): Added support for `maxTTL` value of -1 for collection "no expiry".
 
-#### [](#known-issues-15)Known Issues
+#### [](#known-issues-16)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-14)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-15)Underlying C++ SDK Core Changes
 
 * [CXXCBC-284](https://issues.couchbase.com/browse/CXXCBC-284): Reduced network traffic when polling for cluster configuration ([#504](https://github.com/couchbaselabs/couchbase-cxx-client/pull/504)).
 * [CXXCBC-421](https://issues.couchbase.com/browse/CXXCBC-421): Updated query response to return `feature_not_available` when query preserve expiry is not supported ([#510](https://github.com/couchbaselabs/couchbase-cxx-client/pull/510)).
@@ -614,17 +642,17 @@ $ npm install couchbase@4.2.9
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.9/)
 
-#### [](#enhancements-20)Enhancements
+#### [](#enhancements-21)Enhancements
 
 * [JSCBC-1163](https://issues.couchbase.com/browse/JSCBC-1163): Added improvements for Faster Failover and Config Push.
 * [JSCBC-1221](https://issues.couchbase.com/browse/JSCBC-1221): Added support for new KV error code to raise `DocumentNotLockedError`.
 
-#### [](#known-issues-16)Known Issues
+#### [](#known-issues-17)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-15)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-16)Underlying C++ SDK Core Changes
 
 * [CXXCBC-100](https://issues.couchbase.com/browse/CXXCBC-100): Added support for using a timeout with `ping` operation ([#486](https://github.com/couchbaselabs/couchbase-cxx-client/pull/486)).
 * [CXXCBC-368](https://issues.couchbase.com/browse/CXXCBC-368): Added support for subscribing to clustermap notifications to speedup failover ([#490](https://github.com/couchbaselabs/couchbase-cxx-client/pull/490)).
@@ -653,7 +681,7 @@ The Couchbase Node.js SDK now publishes prebuilt binaries that statically link a
 * [JSCBC-1187](https://issues.couchbase.com/browse/JSCBC-1187): Fixed connstr `trust_store_path` override if `trustStorePath` is not provided in `ConnectOptions`.
 * [JSCBC-1194](https://issues.couchbase.com/browse/JSCBC-1194): Fixed transactions `QueryMode` KV insert.
 
-#### [](#enhancements-21)Enhancements
+#### [](#enhancements-22)Enhancements
 
 * [JSCBC-1203](https://issues.couchbase.com/browse/JSCBC-1203): Updated published source tarball to only include necessary files for source install.
 * [JSCBC-1200](https://issues.couchbase.com/browse/JSCBC-1200): Updated published prebuilds to statically link against BoringSSL.
@@ -662,12 +690,12 @@ The Couchbase Node.js SDK now publishes prebuilt binaries that statically link a
 * [JSCBC-1179](https://issues.couchbase.com/browse/JSCBC-1179): Reduced default HTTP Idle Timeout.
 * [JSCBC-1016](https://issues.couchbase.com/browse/JSCBC-1016): Removed subdocument exists workaround.
 
-#### [](#known-issues-17)Known Issues
+#### [](#known-issues-18)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
 
-#### [](#underlying-c-sdk-core-changes-16)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-17)Underlying C++ SDK Core Changes
 
 * [CXXCBC-387](https://issues.couchbase.com/browse/CXXCBC-387): Optimising tags for `noop_tracer` and cache formatted `mbcp_session` endpoints ([#461](https://github.com/couchbaselabs/couchbase-cxx-client/pull/461), [#462](https://github.com/couchbaselabs/couchbase-cxx-client/pull/462), [#464](https://github.com/couchbaselabs/couchbase-cxx-client/pull/464)).
 * [CXXCBC-383](https://issues.couchbase.com/browse/CXXCBC-383): Map `subdoc_doc_too_deep` KV status to `path_too_deep` error code ([#455](https://github.com/couchbaselabs/couchbase-cxx-client/pull/455)).
@@ -690,17 +718,17 @@ $ npm install couchbase@4.2.7
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.7/)
 
-#### [](#enhancements-22)Enhancements
+#### [](#enhancements-23)Enhancements
 
 * [JSCBC-1162](https://issues.couchbase.com/browse/JSCBC-1162): Added support for Sub-Document Read from Replica.
 
-#### [](#underlying-c-sdk-core-changes-17)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-18)Underlying C++ SDK Core Changes
 
 * [CXXCBC-362](https://issues.couchbase.com/browse/CXXCBC-362): Removed node hostname port stripping logic from config parsing ([#438](https://github.com/couchbaselabs/couchbase-cxx-client/pull/438)).
 * [CXXCBC-340](https://issues.couchbase.com/browse/CXXCBC-340): Added support for Query Read from Replica ([#435](https://github.com/couchbaselabs/couchbase-cxx-client/pull/435)).
 * [CXXCBC-341](https://issues.couchbase.com/browse/CXXCBC-341), [CXXCBC-365](https://issues.couchbase.com/browse/CXXCBC-365): Added support for Sub-Document Read from Replica ([#436](https://github.com/couchbaselabs/couchbase-cxx-client/pull/436), [#441](https://github.com/couchbaselabs/couchbase-cxx-client/pull/441), [#443](https://github.com/couchbaselabs/couchbase-cxx-client/pull/443)).
 
-#### [](#known-issues-18)Known Issues
+#### [](#known-issues-19)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -720,13 +748,13 @@ $ npm install couchbase@4.2.6
 * [JSCBC-1160](https://issues.couchbase.com/browse/JSCBC-1160): Fixed WAN Config profile to use system defaults for DNS configuration.
 * [JSCBC-1174](https://issues.couchbase.com/browse/JSCBC-1174): Fixed Node.js v18 linux prebuilds to use glibc 2.28.
 
-#### [](#enhancements-23)Enhancements
+#### [](#enhancements-24)Enhancements
 
 * [JSCBC-1104](https://issues.couchbase.com/browse/JSCBC-1104): Added support for Native KV Range Scans.
 * [JSCBC-1161](https://issues.couchbase.com/browse/JSCBC-1161): Added support for Query with Read from Replica.
 * [JSCBC-1177](https://issues.couchbase.com/browse/JSCBC-1177): Added CONTRIBUTING.md to provide contributing guidelines.
 
-#### [](#underlying-c-sdk-core-changes-18)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-19)Underlying C++ SDK Core Changes
 
 * [CXXCBC-349](https://issues.couchbase.com/browse/CXXCBC-349): Allow to pass trust certificate by value ([#430](https://github.com/couchbaselabs/couchbase-cxx-client/pull/430)).
 
@@ -739,7 +767,7 @@ $ npm install couchbase@4.2.6
   * The library might not ignore trailing characters when reading nameserver address from the file.
 * [CXXCBC-242](https://issues.couchbase.com/browse/CXXCBC-242): SDK Support for Native KV Range Scans ([#419](https://github.com/couchbaselabs/couchbase-cxx-client/pull/419), [#423](https://github.com/couchbaselabs/couchbase-cxx-client/pull/423), [#424](https://github.com/couchbaselabs/couchbase-cxx-client/pull/424), [#426](https://github.com/couchbaselabs/couchbase-cxx-client/pull/426), [#428](https://github.com/couchbaselabs/couchbase-cxx-client/pull/428), [#431](https://github.com/couchbaselabs/couchbase-cxx-client/pull/431), [#432](https://github.com/couchbaselabs/couchbase-cxx-client/pull/432), [#433](https://github.com/couchbaselabs/couchbase-cxx-client/pull/433), [#434](https://github.com/couchbaselabs/couchbase-cxx-client/pull/434)).
 
-#### [](#known-issues-19)Known Issues
+#### [](#known-issues-20)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -754,7 +782,7 @@ $ npm install couchbase@4.2.5
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.5/)
 
-#### [](#enhancements-24)Enhancements
+#### [](#enhancements-25)Enhancements
 
 * [JSCBC-1109](https://issues.couchbase.com/browse/JSCBC-1109): Reduced the size of prebuilt binaries.
 * [JSCBC-1149](https://issues.couchbase.com/browse/JSCBC-1149): Updated build system to download Node.js headers when using cmake-js >= v7.0.
@@ -762,7 +790,7 @@ $ npm install couchbase@4.2.5
 * [JSCBC-1152](https://issues.couchbase.com/browse/JSCBC-1152): Added support for Node.js v18.
 * [JSCBC-1170](https://issues.couchbase.com/browse/JSCBC-1170): Added support for Node.js v20.
 
-#### [](#known-issues-20)Known Issues
+#### [](#known-issues-21)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -777,11 +805,11 @@ $ npm install couchbase@4.2.4
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.4/)
 
-#### [](#enhancements-25)Enhancements
+#### [](#enhancements-26)Enhancements
 
 * [JSCBC-1158](https://issues.couchbase.com/browse/JSCBC-1158): Bundled Mozilla certificates with the library. Source: <https://curl.se/docs/caextract.html>. Use the `disable_mozilla_ca_certificates` connection string option to disable the bundled certificates. See [Secure Connections](https://docs.couchbase.com/nodejs-sdk/current/howtos/managing-connections.html#ssl) for more details.
 
-#### [](#underlying-c-sdk-core-changes-19)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-20)Underlying C++ SDK Core Changes
 
 * [CXXCBC-328](https://issues.couchbase.com/browse/CXXCBC-328): Fix socket reconnection during rebalance process ([#406](https://github.com/couchbaselabs/couchbase-cxx-client/pull/406)).
 
@@ -791,7 +819,7 @@ $ npm install couchbase@4.2.4
     * Replacing node index tracking with hostname/port matching when restarting the connections — this way the library ensures that no duplicate connections will be left, or live connections replaced by restarted session.
     * Improved logging of critial events during rebalance: restarting, preservation, and removing connections.
 
-#### [](#known-issues-21)Known Issues
+#### [](#known-issues-22)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -806,11 +834,11 @@ $ npm install couchbase@4.2.3
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-4.2.3/)
 
-#### [](#enhancements-26)Enhancements
+#### [](#enhancements-27)Enhancements
 
 * [JSCBC-1154](https://issues.couchbase.com/browse/JSCBC-1154): Exposed C++ client metadata (open SSL info, txns info, etc.) as `cbppMetadata`, for use by client applications — particularly useful when working through environment setup issues.
 
-#### [](#underlying-c-sdk-core-changes-20)Underlying C++ SDK Core Changes
+#### [](#underlying-c-sdk-core-changes-21)Underlying C++ SDK Core Changes
 
 * [CXXCBC-324](https://issues.couchbase.com/browse/CXXCBC-324): Port and network name now checked on session restart, improving performance during rebalance ([#401](https://github.com/couchbaselabs/couchbase-cxx-client/pull/401)).
 * [CXXCBC-323](https://issues.couchbase.com/browse/CXXCBC-323): `bootstrap_timeout` and `resolve_timeout` can now be used in the connection string ([#400](https://github.com/couchbaselabs/couchbase-cxx-client/pull/400)).
@@ -821,7 +849,7 @@ $ npm install couchbase@4.2.3
 * [CXXCBC-145](https://issues.couchbase.com/browse/CXXCBC-145): Search query request raw option now used ([#380](https://github.com/couchbaselabs/couchbase-cxx-client/pull/380)).
 * [CXXCBC-144](https://issues.couchbase.com/browse/CXXCBC-144): Search query on collections now no longer requires `scope_name`, as it can be inferred from the index ([#379](https://github.com/couchbaselabs/couchbase-cxx-client/pull/379)).
 
-#### [](#known-issues-22)Known Issues
+#### [](#known-issues-23)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -840,13 +868,13 @@ $ npm install couchbase@4.2.2
 
 * [JSCBC-1141](https://issues.couchbase.com/browse/JSCBC-1141): Fixed Query Index Management `watchIndexes` to raise `QueryIndexNotFound` if provided index(es) not found.
 
-#### [](#enhancements-27)Enhancements
+#### [](#enhancements-28)Enhancements
 
 * [JSCBC-1118](https://issues.couchbase.com/browse/JSCBC-1118): Updated the SDK to handle new `query_context` changes.
 * [JSCBC-1137](https://issues.couchbase.com/browse/JSCBC-1137): Created `CppClusterCredentials` and `CppDnsConfig` interfaces for use in connecting.
 * [JSCBC-1129](https://issues.couchbase.com/browse/JSCBC-1129): Updated the SDK to only populate `allowed_sasl_mechanisms` if user explicitly chooses.
 
-#### [](#known-issues-23)Known Issues
+#### [](#known-issues-24)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -868,12 +896,12 @@ $ npm install couchbase@4.2.1
 * [JSCBC-1124](https://issues.couchbase.com/browse/JSCBC-1124): Fixed configuration profile implementation.
 * [JSCBC-1126](https://issues.couchbase.com/browse/JSCBC-1126): Added mutation token to MutateInResult.
 
-#### [](#enhancements-28)Enhancements
+#### [](#enhancements-29)Enhancements
 
 * [JSCBC-1079](https://issues.couchbase.com/browse/JSCBC-1079): Implemented `ChangePassword` feature in user management API.
 * [JSCBC-1123](https://issues.couchbase.com/browse/JSCBC-1123): Updated C++ core to include patch fixing OpenSSL and multithreading.
 
-#### [](#known-issues-24)Known Issues
+#### [](#known-issues-25)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -894,12 +922,12 @@ $ npm install couchbase@4.2.0
 * [JSCBC-1107](https://issues.couchbase.com/browse/JSCBC-1107): Fixed mutation token construction.
 * [JSCBC-1108](https://issues.couchbase.com/browse/JSCBC-1108): Added support for consistentWith query option.
 
-#### [](#enhancements-29)Enhancements
+#### [](#enhancements-30)Enhancements
 
 * [JSCBC-926](https://issues.couchbase.com/browse/JSCBC-926): Added Support for Serverless Execution Environments
 * [JSCBC-1006](https://issues.couchbase.com/browse/JSCBC-1006): Removed collection exists operation workaround.
 
-#### [](#known-issues-25)Known Issues
+#### [](#known-issues-26)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -922,7 +950,7 @@ $ npm install couchbase@4.1.3
 * [JSCBC-1098](https://issues.couchbase.com/browse/JSCBC-1098): Fixed incorrect Authentication Error Type raised.
 * [JSCBC-1101](https://issues.couchbase.com/browse/JSCBC-1101): Fixed `CreateBucket`/`GetBucket` APIs to match spec.
 
-#### [](#enhancements-30)Enhancements
+#### [](#enhancements-31)Enhancements
 
 * [JSCBC-1099](https://issues.couchbase.com/browse/JSCBC-1099): Updated Node.js SDK to included latests Couchbase++ client changes.
 * [JSCBC-1100](https://issues.couchbase.com/browse/JSCBC-1100): Added support for Configuration Profiles.
@@ -930,7 +958,7 @@ $ npm install couchbase@4.1.3
 * [JSCBC-1042](https://issues.couchbase.com/browse/JSCBC-1042): Added support for legacy durable operations.
 * [JSCBC-1096](https://issues.couchbase.com/browse/JSCBC-1096): Added support for LDAP authentication.
 
-#### [](#known-issues-26)Known Issues
+#### [](#known-issues-27)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -955,7 +983,7 @@ $ npm install couchbase@4.1.2
 * [JSCBC-1054](http://issues.couchbase.com/browse/JSCBC-1054): Fixed issue with UTF-8 handling of binary documents.
 * Updated to latest dependencies.
 
-#### [](#known-issues-27)Known Issues
+#### [](#known-issues-28)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -976,7 +1004,7 @@ $ npm install couchbase@4.1.1
 
 * Updated to latest dependencies.
 
-#### [](#known-issues-28)Known Issues
+#### [](#known-issues-29)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -1009,7 +1037,7 @@ $ npm install couchbase@4.1.0
 * Updated to latest dependencies.
 * Various minor fixes.
 
-#### [](#known-issues-29)Known Issues
+#### [](#known-issues-30)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -1043,7 +1071,7 @@ $ npm install couchbase@4.0.0
 * The view query reduce option used to take a string in error, and now takes a boolean.
 * Following with Node.js EOL, v12 is now the minimum version.
 
-#### [](#known-issues-30)Known Issues
+#### [](#known-issues-31)Known Issues
 
 * [JSCBC-1011](http://issues.couchbase.com/browse/JSCBC-1011): Core IO logging is not forwarded through to Node.js.
 * [JSCBC-1040](http://issues.couchbase.com/browse/JSCBC-1040): Distributed tracing is not yet supported.
@@ -1063,7 +1091,7 @@ $ npm install couchbase@3.2.7
 
 [API Reference](http://docs.couchbase.com/sdk-api/couchbase-node-client-3.2.7/)
 
-#### [](#enhancements-31)Enhancements
+#### [](#enhancements-32)Enhancements
 
 * [JSCBC-1120](https://issues.couchbase.com/browse/JSCBC-1120): Updated libcouchbase dependency to 3.3.4
 
@@ -1100,7 +1128,7 @@ $ npm install couchbase@3.2.5
 * [JSCBC-1019](https://issues.couchbase.com/browse/JSCBC-1019): Updated dependancies to pick up critical fixes.
 * [JSCBC-1046](https://issues.couchbase.com/browse/JSCBC-1046): Fixed build system for Windows environments.
 
-#### [](#enhancements-32)Enhancements
+#### [](#enhancements-33)Enhancements
 
 * [JSCBC-969](https://issues.couchbase.com/browse/JSCBC-969): Updated FTS Rate Limit Parsing.
 * [JSCBC-982](https://issues.couchbase.com/browse/JSCBC-982): Resolved vulnerability in dependencies (prebuild-install/simple-get).
@@ -1452,7 +1480,7 @@ $ npm install couchbase@3.0.3
 * Updated to libcouchbase 3.0.2
 * Various other minor fixes.
 
-#### [](#known-issues-31)Known Issues
+#### [](#known-issues-32)Known Issues
 
 * [JSCBC-759](http://issues.couchbase.com/browse/JSCBC-759): Buffer objects containing non-UTF8 data can become mangled when inserting them into a bucket or collection. This has been corrected in 3.0.4.
 
@@ -1481,7 +1509,7 @@ $ npm install couchbase@3.0.2
 * Updated to libcouchbase 3.0.1
 * Various other minor fixes.
 
-#### [](#known-issues-32)Known Issues
+#### [](#known-issues-33)Known Issues
 
 * [JSCBC-759](http://issues.couchbase.com/browse/JSCBC-759): Buffer objects containing non-UTF8 data can become mangled when inserting them into a bucket or collection. This has been corrected in 3.0.4.
 
@@ -1514,7 +1542,7 @@ $ npm install couchbase@3.0.1
 * Updated to latest version of all dependencies.
 * Adjusted prebuilt binaries to match currently support Node.js versions.
 
-#### [](#known-issues-33)Known Issues
+#### [](#known-issues-34)Known Issues
 
 * [JSCBC-759](http://issues.couchbase.com/browse/JSCBC-759): Buffer objects containing non-UTF8 data can become mangled when inserting them into a bucket or collection. This has been corrected in 3.0.4.
 
@@ -1545,7 +1573,7 @@ $ npm install couchbase@3.0.0
 * [JSCBC-647](http://issues.couchbase.com/browse/JSCBC-647): Marked all error contexts as uncommitted.
 * [JSCBC-596](http://issues.couchbase.com/browse/JSCBC-596): Marked defaultScope, scope, and collection methods uncommitted.
 
-#### [](#known-issues-34)Known Issues
+#### [](#known-issues-35)Known Issues
 
 * [JSCBC-759](http://issues.couchbase.com/browse/JSCBC-759): Buffer objects containing non-UTF8 data can become mangled when inserting them into a bucket or collection. This has been corrected in 3.0.4.
 
