@@ -3,7 +3,7 @@ title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-05T03:41:02.175Z
 link: xref:cloud:billing:billing.adoc[]
 ---
 
@@ -224,11 +224,28 @@ Couchbase Capella bills you for your operational cluster usage with a credit-bas
 
 Every Couchbase Capella [Support Plan](#support-plans) has different pricing and rates for these credits. For more information, see [Capella Plans and Pricing](https://www.couchbase.com/pricing).
 
+> [!NOTE]
+> If you [deploy a new paid operational cluster](../clusters/create-database.md) that does not have a credit balance for your chosen [Support Plan](#support-plans), Capella automatically bills you under the pay-as-you-go system. Capella will [warn you before you deploy a new cluster if you choose a Support Plan that could incur pay-as-you-go charges](#low-credits) within your first 30 days of usage.
+
 ### [](#pre-paid-credits)Pre-Paid (Up-Front) Credits
 
 With pre-paid credits, you purchase a set number of credits upfront, which are then used over time to cover your cluster usage based on resource consumption. Capella automatically draws from your available credit balance for your cluster usage. You can monitor your remaining credits and purchase more at any time.
 
+Capella displays the available pre-paid credit balance you have for each [Support Plan](#support-plans) when you [deploy a new paid operational cluster](../clusters/create-database.md).
+
 You can buy pre-paid credits through [the Couchbase Sales team with a direct invoice](#direct-invoice) or your [cloud service provider (CSP)](#marketplaces).
+
+### [](#low-credits)Low Credit Warning Calculations
+
+To help with managing costs and getting the best use out of your prepaid credits, Capella tries to estimate your credit usage for new clusters. Capella displays warnings when you [create a new cluster](../clusters/create-database.md) or [change a cluster’s Support Plan](change-support-plan.md), if your projected credit usage would be greater than your available prepaid credit balance and cause pay-as-you-go charges.
+
+Capella looks at your credit usage from the last 7-30 days to project how long credits for a new cluster will last, based on an average daily credit burn rate, and the fixed costs for a new cluster.
+
+If your projected usage will consume all of your available pre-paid credits in the next 30 days, Capella warns you that you do not have enough credits to avoid pay-as-you-go charges.
+
+You can still choose to deploy a cluster and accrue pay-as-you-go charges.
+
+If you do not have at least 7 days of usage data for a cluster, Capella does not show any low credit warnings for new clusters.
 
 ### [](#pay-as-you-go-credits)Pay-As-You-Go (On-Demand) Credits
 

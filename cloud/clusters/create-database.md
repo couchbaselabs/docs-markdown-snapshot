@@ -2,7 +2,7 @@
 title: Create A Paid Cluster
 description: Create a cluster to store and access data in Couchbase Capella.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/create-database.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-05T03:41:02.175Z
 link: xref:cloud:clusters:create-database.adoc[]
 ---
 
@@ -49,7 +49,8 @@ To create a new cluster in a Capella project:
   3. For a **Multi-Node** cluster, choose a base node template, then customize your node’s compute, storage, and IOPS configuration.
   4. For a **Custom** cluster, add Service Groups, then assign nodes with a specific compute, storage, and IOPS configuration to each Group.  
 For more information, see [Services and Service Groups](databases.md#couchbase-services), [Node Configuration](databases.md#nodes), [Compute Configuration](databases.md#compute), or [Storage Configuration](databases.md#storage).
-11. Choose a **Support Plan** for your cluster. For more information about support plans, see [Support Plan](databases.md#plan).
+11. Choose a **Support Plan** for your cluster. For more information about Support Plans, see [Support Plan](databases.md#plan).  
+If you pay for your usage with [pre-paid credits](../billing/billing.md#pre-paid-credits), Couchbase recommends choosing a plan where you have an available pre-paid credit balance. Capella displays a warning if you choose a plan with no pre-paid credits, or that has a [low credit balance](../billing/billing.md#low-credits) and might incur [pay-as-you-go credit charges](../billing/billing.md#pay-as-you-go-credits).
 12. Choose the **Availability Zone** configuration for your cluster. For more information about Availability Zone configurations, see [Availability Zones](databases.md#availability).
 13. Click **Create Cluster**.
 

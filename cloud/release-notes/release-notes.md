@@ -1,13 +1,20 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-02-28T03:34:55.737Z
+pubDate: 2026-03-05T03:41:02.175Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes
+
+## [](#march-2026-changelog)March 2026 Changelog
+
+* Default Billing Alerts and Low Credit Warnings for Prepaid Accounts  
+If you use pre-paid credits to pay for your usage in Capella, Capella now creates default billing alerts automatically when new pre-paid credits are applied to your account.  
+When you [create a new cluster](../clusters/create-database.md) or [change a cluster’s Support Plan](#billing:change-support-plan) and your pre-paid credit balance is depleted or running low, Capella also shows warnings to help you avoid unexpected [pay-as-you-go charges](../billing/billing.md#pay-as-you-go-credits) and choose the right Support Plan with confidence.  
+For more information, see [Default Billing Alerts](../billing/about-billing-alerts.md#default-billing-alerts) and [Low Credit Warning Calculations](../billing/billing.md#low-credits).
 
 ## [](#february-2026-changelog)February 2026 Changelog
 

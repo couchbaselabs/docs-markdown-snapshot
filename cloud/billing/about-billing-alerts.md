@@ -3,7 +3,7 @@ title: About Billing Alerts
 description: Couchbase Capella billing alerts notify you about important
   information related to your usage and billing for operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/about-billing-alerts.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-05T03:41:02.175Z
 link: xref:cloud:billing:about-billing-alerts.adoc[]
 ---
 
@@ -13,16 +13,35 @@ link: xref:cloud:billing:about-billing-alerts.adoc[]
 
 > Couchbase Capella billing alerts notify you about important information related to your usage and billing for operational clusters. 
 
-You can [create and manage your own custom alerts](manage-billing-alerts.md).
-
-## [](#alert-conditions)Alert Conditions
+When you [upgrade your account with a prepaid credit purchase](upgrade-account.md) or purchase additional prepaid credits for your organization, Capella automatically creates [\[default-alerts\]](#default-alerts). You can also [create and manage your own custom alerts](manage-billing-alerts.md).
 
 > [!NOTE]
 > Alert timing
 > 
 > Alerts can be delayed by up to a day after usage meets alerting conditions.
 
-The following conditions are available for billing alerts:
+## [](#default-billing-alerts)Default Billing Alerts
+
+Capella automatically creates default billing alerts when you [upgrade your account with a prepaid credit purchase](upgrade-account.md) or purchase additional prepaid credits.
+
+Capella does not create default alerts if you:
+
+* Choose to use [pay-as-you-go](billing.md#pay-as-you-go-credits) for your usage.
+* Purchase Capella credits through your [cloud service provider](billing.md#marketplaces).
+* Upgrade your account by [adding a credit card](billing.md#credit-cards).
+
+These default billing alerts are sent to the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner):
+
+| Alert Type                                | Condition                                                                         | Description                                                                                                                                                        |
+| ----------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Available credits go below**            | <5% of purchased credit balance for each [Support Plan](billing.md#support-plans) | Capella will send an alert when the available pre-paid credit balance for any of your Support Plans is less than 5% of your total purchased credits for that plan. |
+| **Pay as you go usage exceeds threshold** | $10 of pay-as-you-go usage                                                        | Capella will send a daily alert if pay-as-you-go usage exceeds $10.                                                                                                |
+
+You can modify or delete these alerts at any time.
+
+## [](#alert-conditions)Custom Alert Conditions
+
+The following conditions are available for creating custom billing alerts:
 
 | Condition                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

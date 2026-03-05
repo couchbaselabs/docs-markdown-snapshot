@@ -3,7 +3,7 @@ title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-05T03:41:02.175Z
 link: xref:cloud:clusters:databases.adoc[]
 ---
 
@@ -226,13 +226,17 @@ Choose the Support Plan for your cluster to change the level of support you rece
 
 Your Support Plan affects the hourly billing price for your cluster and can affect your access to some Capella features.
 
-For more information about the available Support Plans, see [Support Overview](../support/support.md).
+If you pay for your cluster usage with [pre-paid credits](../billing/billing.md#pre-paid-credits), by default, Capella chooses a [Support Plan](../billing/billing.md#support-plans) where you have an available pre-paid credit balance.
 
-| Cluster Option  | Available Support Plans                  |
-| --------------- | ---------------------------------------- |
-| **Single Node** | Basic Developer Pro (default)            |
-| **Multi-Node**  | Basic Developer Pro (default) Enterprise |
-| **Custom**      | Basic Developer Pro Enterprise (default) |
+If you use pre-paid credits and you deploy a new paid operational cluster that does not have a pre-paid credit balance for your chosen Support Plan, Capella automatically bills you under the [pay-as-you-go system](../billing/billing.md#pay-as-you-go-credits). Capella will warn you before you deploy a new cluster if you choose a Support Plan that [could incur pay-as-you-go charges within your first month of usage](../billing/billing.md#low-credits).
+
+For more information about how to change your Support Plan after you have already deployed a cluster, see [Change a Cluster’s Plan and Support Timezone](../billing/change-support-plan.md).
+
+| Cluster Option  | Available Support Plans                                                           |
+| --------------- | --------------------------------------------------------------------------------- |
+| **Single Node** | Basic Developer Pro (default selection if no available credit balance)            |
+| **Multi-Node**  | Basic Developer Pro (default selection if no available credit balance) Enterprise |
+| **Custom**      | Basic Developer Pro Enterprise (default selection if no available credit balance) |
 
 ### [](#availability)Availability Zones
 
