@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1772682312070,
+  "generated": 1772768485777,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -1834,8 +1834,7 @@
             {
               "module": "project-docs",
               "path": "metadoc-about-these-sdk-docs.adoc",
-              "url": "/c-sdk/current/project-docs/metadoc-about-these-sdk-docs.md",
-              "title": "About These Docs"
+              "url": "/c-sdk/current/project-docs/metadoc-about-these-sdk-docs.md"
             },
             {
               "module": "project-docs",

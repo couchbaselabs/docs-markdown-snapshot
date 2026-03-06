@@ -3,7 +3,7 @@ title: Ottoman ODM Release Notes and Archives
 description: Release notes, installation instructions, and download archive for
   the Ottoman ODM.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.5/modules/project-docs/pages/ottoman-release-notes.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-06T03:38:20.844Z
 link: xref:4.5@nodejs-sdk:project-docs:ottoman-release-notes.adoc[]
 ---
 
@@ -16,6 +16,16 @@ link: xref:4.5@nodejs-sdk:project-docs:ottoman-release-notes.adoc[]
 These pages cover the 2._x_ versions of the Ottoman ODM.
 
 The Ottoman ODM will run on any [supported LTS version of Node.js](https://github.com/nodejs/Release).
+
+## [](#version-2-5-5-4-march-2026)Version 2.5.5 (4 March 2026)
+
+Version 2.5.5 is a patch release of the Ottoman ODM. This release adds telemetry for tracking installs. It does not change the package’s codebase or any functionality.
+
+```console
+$ npm install ottoman@2.5.5
+```
+
+[Ottoman installation](https://ottomanjs.com/#installation)
 
 ## [](#version-2-5-4-23-february-2026)Version 2.5.4 (23 February 2026)
 
