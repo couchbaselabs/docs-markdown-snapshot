@@ -5,7 +5,7 @@ description: Add an AWS PrivateLink connection that peers your Amazon Web
   This connection can reduce latency and egress costs for applications hosted in
   the same region.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-aws-private-link.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-07T03:34:43.923Z
 link: xref:cloud:security:add-aws-private-link.adoc[]
 ---
 
@@ -174,7 +174,9 @@ To add an inbound rule for the private endpoint:
 3. In the **Edit inbound rules** dialog, add the VPC IPv4 CIDR you recorded earlier and use the following port ranges:
 
   * 18091-18203
-  * 11207-11308
+  * 11207-11308  
+> [!NOTE]  
+> If you [enabled private endpoints over XDCR](../clusters/xdcr/manage-xdcr-security.md#private-endpoints), you need to add an additional inbound rule allowing ports `20091-20117` from the same VPC IPv4 CIDR.
 4. Click **Save rules**.
 
 #### [](#config-in-out-rules)Configure Inbound and Outbound Network ACL Rules
