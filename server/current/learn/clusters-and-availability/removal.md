@@ -4,7 +4,7 @@ description: Node <em>removal</em> allows a node to be taken out of a cluster in
   a highly controlled fashion, using <em>rebalance</em> to redistribute data,
   indexes, event processing, and query processing among available nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/removal.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-08T03:42:10.247Z
 link: xref:server:learn:clusters-and-availability/removal.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:server:learn:clusters-and-availability/removal.adoc[]
 
 _Removal_ provides the most highly controlled means of taking a node out of a cluster. Any node, whatever its service-configuration, can be removed. However, removal should be used only when all nodes in the cluster are responsive, and those intended to remain in the cluster after removal have the capacity to support the results.
 
-Removal essentially means using [Rebalance](rebalance.md) to redistribute data across a subset of pre-existing cluster-nodes. It can be performed with the UI, the CLI, or the REST API. When the CLI or REST API is used, a single command initiates a rebalance, specifying which nodes are to be excluded. When the UI is used, nodes to be removed are first identified, then rebalance is initiated. When the rebalance is complete, the _cluster map_ is correspondingly updated and distributed to clients. The process occurs while the cluster continues to service requests for data.
+Removal essentially means using [Rebalance](rebalance.md) to redistribute data across a subset of pre-existing cluster-nodes. It can be performed with the UI, the CLI, or the REST API. When the CLI or REST API is used, a single command initiates a rebalance, specifying which nodes are to be excluded. When the UI is used, nodes to be removed are first identified; then rebalance is initiated. When the rebalance is complete, the _cluster map_ is correspondingly updated and distributed to clients. The process occurs while the cluster continues to service requests for data.
 
 Note that when a node is removed from a cluster, its configuration is deleted. If the removed node is subsequently re-added to the cluster, it is added as a new node, with a new definition of its configuration.
 
@@ -47,7 +47,7 @@ __Table 1\. Four Data Service Nodes, One Bucket with 31,591 Items, Two Replicas_
 
 As Table 1 shows, each of the four nodes takes a roughly equal share of the bucket-items kept in _active_ vBuckets. It also takes a roughly equal share of the replica bucket-items, kept in _replica_ vBuckets. Since the bucket has two replicas, the ratio of _active_ to _replica_ items, both on each node and in the total for the cluster, is approximately _1:2_.
 
-Table 2 shows the results on the cluster of the removal of node 4 and subsequent rebalance.
+Table 2 shows the results on the cluster when node 4 is removed and the cluster is rebalanced.
 
 __Table 2\. Three Surviving Data Service Nodes, One Bucket with 31,591 Items, Two Replicas__
 | Host   | Active Items | Replica Items |
@@ -79,6 +79,19 @@ Note that since multiple buckets may have been configured, and different replica
 
 For further examples of rebalance, in the context of _failover_, see [Failover](failover.md).
 
+### [](#changing-the-ip-address-of-a-node)Changing the IP address of a node
+
+If you are changing the IP address of a node:
+
+1. Remove the node from the cluster.
+2. Stop the server.
+3. Change the IP address of the node.
+4. Remove all the configuration files for the cluster affected by the IP change. The configuration files are located in `/opt/couchbase`. To delete the files, run the terminal command:  
+```shell  
+rm -r /opt/couchbase  
+```
+5. Restart the server.
+
 ## [](#removal-versus-graceful-failover)Removal versus Graceful Failover
 
-As an alternative to removal, a responsive Data Service node can be taken out of a cluster by means of _Graceful Failover_. This may be faster, but the consequences do not maintain previous availability-levels. An account of the advantages and disadvantages is provided in [Graceful Failover](graceful-failover.md#advantages-and-disadvantages).
+As an alternative to removal, a responsive Data Service node can be taken out of a cluster by means of _Graceful Failover_. This may be faster, but the consequences do not maintain previous availability levels. An account of the advantages and disadvantages is provided in [Graceful Failover](graceful-failover.md#advantages-and-disadvantages).
