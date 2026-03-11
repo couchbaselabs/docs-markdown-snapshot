@@ -3,7 +3,7 @@ title: Miscellaneous Utility Functions
 description: Miscellaneous utility functions enable you to perform tasks beyond
   the usual evaluation and transformation of data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/metafun.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-11T03:40:04.044Z
 link: xref:server:n1ql:n1ql-language-reference/metafun.adoc[]
 ---
 
@@ -1771,7 +1771,7 @@ Each object can include the following fields:
 | **exact** _optional_       | Specifies whether the pattern must match the entire field name or just a portion of it. If true, the pattern must match the entire field name. If false, the pattern can match any part of the field name. **Default:** false                                                                                                                                                                                             | Boolean |
 | **ignorecase** _optional_  | Specifies whether pattern matching is case-sensitive. If true, the pattern matching ignores case. If false, the pattern matching is case-sensitive. **Default:** false                                                                                                                                                                                                                                                    | Boolean |
 | **name** _optional_        | Specifies whether to redact field names in addition to field values. If true, redacts both field names and values. If false, redacts only field values. **Default:** false                                                                                                                                                                                                                                                | Boolean |
-| **strict** _optional_      | Specifies whether to apply strict value redaction. If true, the redaction replaces the entire value with the mask and does not preserve whitespace or formatting. If false, the redaction preserves whitespace and formatting. **Default:** false                                                                                                                                                                         | Boolean |
+| **strict** _optional_      | Specifies whether to apply strict value redaction. If true, applies the mask to all characters including whitespaces and special characters. See [Example 6](#redact-ex6). If false, applies the mask only to alphanumeric characters and preserves whitespaces and special characters. **Default:** false                                                                                                                | Boolean |
 | **omit** _optional_        | Specifies whether to omit fields entirely from the output. If true, removes matching fields entirely. If false, the fields remain in the output but their values are redacted according to the other filters. **Default:** false                                                                                                                                                                                          | Boolean |
 | **mask** _optional_        | The string to mask the redacted string values. **Default:** "x"                                                                                                                                                                                                                                                                                                                                                           | String  |
 | **fixedlength** _optional_ | Specifies whether to replace string values with a single instance of the mask. If true, replaces the entire string with one instance of the mask. If false, replaces each character in the string with the mask, preserving the original length of the string. **Default:** false                                                                                                                                         | Boolean |
@@ -1779,7 +1779,9 @@ Each object can include the following fields:
 
 ### [](#usage)Usage
 
-If you do not specify a filter object, the function applies a default behavior that redacts only field values. In this case, the field names remain visible, and the function replaces values with a default mask, `"x"`. See [Example 1](#redact-ex1).
+The function applies redaction based on the filter objects you specify. If you do not specify a filter object, it redacts only field values. The field names remain visible and the function replaces values with a default mask, `"x"`. See [Example 1](#redact-ex1).
+
+By default, the function masks only to alphanumeric characters while preserving whitespaces and special characters (such as `@`, `#`). To redact all characters in a value, including symbols and spaces, set `"strict": true` in the filter object. See [Example 6](#redact-ex6).
 
 To redact both field names and values, set `"name": true` in the filter object. See [Example 3](#redact-ex3).
 
@@ -1956,6 +1958,35 @@ Results
         "flight": "xxxxx",
         "passenger": "Alex Johnson",
         "passport": "X12345678"
+    }]
+}]
+```
+
+Redact all values including spaces and special characters
+
+Query
+
+```sqlpp
+WITH sample AS ([
+  {
+    "email": "alex.johnson@example.com",
+    "password": "P@ssw0rd!",
+    "address": "123 Maple Street, New York, NY"
+  }
+])
+SELECT REDACT(sample,
+    {"pattern": ".*", "regex": true, "strict": true}
+) AS redacted_data;
+```
+
+Results
+
+```json
+[{
+    "redacted_data": [{
+        "address": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "email": "xxxxxxxxxxxxxxxxxxxxxxxx",
+        "password": "xxxxxxxxx"
     }]
 }]
 ```
