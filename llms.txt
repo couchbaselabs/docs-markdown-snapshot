@@ -153,7 +153,7 @@
 - Advanced Data Operations
     - [Async &amp; Batching APIs](/c-sdk/current/howtos/concurrent-async-apis.md)
     - [Concurrent Document Mutations](/c-sdk/current/howtos/concurrent-document-mutations.md)
-    - [C&#43;&#43; Distributed ACID Transactions](#1.0@cxx-txns::distributed-acid-transactions-from-the-sdk.adoc)
+    - [Couchbase ACID Transactions](/c-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.md)
 - Managing Couchbase
     - [Managing Connections](/c-sdk/current/howtos/managing-connections.md)
         - [Authentication](/c-sdk/current/howtos/sdk-authentication.md)

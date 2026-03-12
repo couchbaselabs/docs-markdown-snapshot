@@ -4,7 +4,7 @@ description: When an index includes the actual values of all the fields
   specified in the query, the index covers the query and does not require an
   additional step to fetch the actual values from the data service.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/indexes/pages/covering-indexes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-12T03:41:48.873Z
 link: xref:cloud:indexes:covering-indexes.adoc[]
 ---
 
@@ -24,13 +24,13 @@ To use the examples on this page, you must set the query context to the `invento
 
 The following diagram illustrates the query execution work flow without covering indexes:
 
-![Query execution workflow including fetch request from Data service](_images/n1ql-query-workflow-fe141cf05c7ee81543f0597f6ae898507319b4c6.svg) 
+![Query execution workflow including fetch request from Data service](_images/n1ql-query-workflow-ee9ce0c170a16aeab9f56143e7db11275f4439d2.svg) 
 
 Figure 1\. Query execution workflow including fetch request from Data service
 
 The following diagram illustrates the query execution work flow with covering indexes:
 
-![Query execution workflow with no fetch request from Data service](_images/n1ql-query-workflow-cover-idx-6b03613ee20e415823261dd680e96278e9e5e51a.svg) 
+![Query execution workflow with no fetch request from Data service](_images/n1ql-query-workflow-cover-idx-13f48cb6ff946cf4af3ec681c38d61e4721afa25.svg) 
 
 Figure 2\. Query execution workflow with no fetch request from Data service
 

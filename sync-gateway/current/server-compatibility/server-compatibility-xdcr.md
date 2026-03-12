@@ -3,7 +3,7 @@ title: XDCR&#8201;&#8212;&#8201;Server Compatibility
 description: How Sync Gateway works with Couchbase Server's <em>Cross Data
   Center Replication</em> (<em>XDCR</em>).
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/server-compatibility/pages/server-compatibility-xdcr.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-12T03:41:48.873Z
 link: xref:sync-gateway:server-compatibility:server-compatibility-xdcr.adoc[]
 ---
 
@@ -117,9 +117,12 @@ Set Up
 
 To set up and maintain a disaster recovery cluster:
 
-1. \[**Optional step — for optimization**\] Start Sync Gateway with `offline: true` in the Disaster Recovery cluster to asynchronously create indexes. Creating all indexes beforehand reduces switching costs.  
-If you skip this test, you’ll incur latency when Sync Gateway switches to the Disaster Recovery cluster and Sync Gateway rebuilds its indexes.
-2. Connect Sync Gateway to your Primary cluster.
+1. Connect Sync Gateway to your Primary cluster.
+2. \[**Optional step — for optimization**\] Pre-initialize Sync Gateway indexes on the Disaster Recovery cluster:
+
+  1. Temporarily reconfigure the Sync Gateway cluster to connect to the Disaster Recovery cluster with the database in offline mode (`offline: true` in the database configuration) so that indexes are built asynchronously.
+  2. After the indexes are created, reconfigure the Sync Gateway cluster to connect back to the Primary cluster.  
+  Creating all indexes beforehand reduces switching costs. If you skip this step, you’ll incur latency when Sync Gateway switches to the Disaster Recovery cluster and Sync Gateway rebuilds its indexes.
 3. Start the **unidirectional** XDCR from the Primary cluster to the Disaster Recovery cluster.
 
 ![sgw xdcr dr same regn setup](../_images/sgw-xdcr-dr-same-regn-setup.png) 
@@ -131,8 +134,8 @@ Activation
 When you’re ready to switch to Disaster Recovery operations:
 
 1. Stop the replication (XDCR) from the Primary cluster to Disaster Recovery cluster.
-2. **After you stop XDCR:** Switch the Load Balancer to point to the Sync Gateway on the Disaster Recovery cluster. This approach keeps the deployment of Sync Gateway at only 1 end of the XDCR replication.
-3. Promote the Disaster Recovery cluster to Primary and the **old** Primary to Disaster Recovery.
+2. Reconfigure the Sync Gateway cluster to connect to the Disaster Recovery cluster instead of the Primary cluster.
+3. Make the Disaster Recovery cluster the **new** Primary and the **old** Primary the **new** Disaster Recovery.
 4. Flush all replicated buckets in the Primary cluster as a precaution against any spurious writes that enter the Primary cluster and XDCR fails to replicate when you stop it.
 5. Reverse the XDCR to replicate from the newly promoted Primary to the old Primary to set up a new Backup.
 
@@ -148,8 +151,13 @@ Set Up
 
 To set up and maintain a disaster recovery cluster - see: [Figure 6](#fig-dr-diff-regn-setup):
 
-1. \[**Optional step — for optimization**\] Start Sync Gateway with `offline: true` in the Disaster Recovery cluster to asynchronously create indexes. If you skip this test, you’ll incur latency when you switch Sync Gateway to the Disaster Recovery cluster and Sync Gateway rebuilds its indexes.
-2. \[**Critical step**\] Turn off **all** the Sync Gateways in the Disaster Recovery cluster.
+1. \[**Optional step — for optimization**\] Initialize Sync Gateway indexes on the Disaster Recovery cluster:
+
+  1. Configure Sync Gateway to point to the Disaster Recovery cluster.
+  2. Start the database in offline mode (`offline: true` in the database configuration) to build indexes asynchronously.
+  3. Once indexes are created, shut down Sync Gateway on the Disaster Recovery cluster.  
+  This pre-initialization allows XDCR to maintain the indexes in the background during normal operations, reducing latency during disaster recovery activation. If you skip this step, you’ll incur latency when switching to the Disaster Recovery cluster as Sync Gateway rebuilds its indexes from scratch.
+2. \[**Critical step**\] Ensure **all** Sync Gateways in the Disaster Recovery cluster remain offline.
 3. Start the **unidirectional** XDCR from the Primary cluster to the Disaster Recovery cluster.
 
 ![sgw xdcr dr diff regn setup](../_images/sgw-xdcr-dr-diff-regn-setup.png) 

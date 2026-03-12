@@ -1,7 +1,7 @@
 ---
 title: Couchbase C SDK 3.3
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-21T03:37:39.956Z
+pubDate: 2026-03-12T03:41:48.873Z
 link: xref:c-sdk:hello-world:overview.adoc[]
 ---
 
@@ -53,7 +53,6 @@ What’s Hot?
 
 Leverage the new Couchbase Server Scopes and Collection features to build multi-tenant micro-service application.
 
-* [C++ Distributed ACID Transactions from the C SDK](#1.0@cxx-txns::distributed-acid-transactions-from-the-sdk.adoc)
 * [LCB includes our command line tools](cbc.md)
 
 ###### 

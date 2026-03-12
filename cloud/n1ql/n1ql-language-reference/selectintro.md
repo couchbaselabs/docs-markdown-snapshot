@@ -4,7 +4,7 @@ description: With the SELECT statement, you can query and manipulate JSON data.
   You can select, join, project, nest, unnest, group, and sort in a single
   SELECT statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/selectintro.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-12T03:41:48.873Z
 link: xref:cloud:n1ql:n1ql-language-reference/selectintro.adoc[]
 ---
 
@@ -138,7 +138,7 @@ The SELECT statement queries a keyspace and returns a JSON array that contains z
 
 The following diagram shows the query execution workflow at a high level and illustrates the interaction with the query, index, and data services.
 
-![Query Execution Workflow](../_images/query-execution-96a127f1861dd3fb46ef3097c645706451e0e0f1.svg) 
+![Query Execution Workflow](../_images/query-execution-c9ac4075f317b30af7fd8168d9aba27757bc9ce0.svg) 
 
 Figure 1\. Query Execution Workflow
 
