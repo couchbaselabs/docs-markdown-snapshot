@@ -4,17 +4,13 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
 [View original HTML](/rust-sdk/current/howtos/sqlpp-queries-with-sdk.html)
 
 # Querying with SQL++
-
-> You can query for documents in Couchbase using the SQL++ query language, a language based on SQL, but designed for structured and flexible JSON documents. 
-
-On this page we dive straight into using the Query Service API from the Rust SDK. For a deeper look at the concepts, to help you better understand the Query Service, the SQL++ language, and the Index Service, see the links in the [Further Information](#further-information) section at the end of this page.
 
 > You can query for documents in Couchbase using the SQL++ query language (formerly N1QL), a language based on SQL, but designed for structured and flexible JSON documents. 
 
@@ -43,7 +39,7 @@ The examples below will use the travel-sample example bucket. We will also be us
 
 In order to be able to use query on a scope, it is best to at least have a primary index created. The easiest way to create this is through the Couchbase Admin UI. Simply visit the Query tab then write this in the Query Editor and hit Execute:
 
-```n1ql
+```sqlpp
 CREATE PRIMARY INDEX ON `travel-sample`.`inventory`.`airline`
 ```
 
@@ -138,7 +134,7 @@ let mutation_state = {
         .await?;
 
     // MutationState can be created from a token directly.
-    let state = MutationState::from(result.mutation_token().clone().unwrap());
+    let state = MutationState::from(result.mutation_token().unwrap().clone());
 
     state
 };

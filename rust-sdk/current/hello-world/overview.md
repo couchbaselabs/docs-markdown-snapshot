@@ -1,7 +1,7 @@
 ---
 title: Couchbase Rust SDK 1.0
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/overview.adoc
-pubDate: 2026-02-21T03:37:39.956Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:hello-world:overview.adoc[]
 ---
 
@@ -13,12 +13,7 @@ link: xref:rust-sdk:hello-world:overview.adoc[]
 
 The Couchbase Rust SDK allows Rust applications to access a Couchbase cluster — Capella or self-managed.
 
-> [!IMPORTANT]
-> Developer Preview
-> 
-> This SDK is a Developer Preview, providing early access before the generally available (GA) release is ready. It enables you to play with the APIs to get a sense of how they work. Preview Mode features and their use are subject to Couchbase’s “Non-GA Offering Supplemental Terms” set forth in the [License Agreement](https://www.couchbase.com/LA08242020). Preview Mode features may not be functionally complete and are not intended for production use. They are intended for development and testing purposes only.
-
-[Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) | [Rust SDK source code](https://github.com/couchbaselabs/couchbase-rs/)
+[Quickstart Guide](start-using-sdk.md) | [SDK Release Notes](../project-docs/sdk-release-notes.md) | [Rust SDK API Reference](https://docs.rs/couchbase/latest/couchbase/) | [Rust SDK source code](https://github.com/couchbase/couchbase-rs/)
 
 What’s the point of a fast and scalable database if it’s not easy to develop for? Couchbase gives you the Rust APIs to work with Capella, our managed solution, or self-managed options in your private Cloud or datacenter.
 
@@ -115,7 +110,7 @@ Reference
 * [API Reference](https://docs.rs/couchbase/latest/couchbase/)
 * [Client Settings](../ref/client-settings.md)
 * [Error Messages](../ref/error-codes.md)
-* [SDK source code](https://github.com/couchbaselabs/couchbase-rs/)
+* [SDK source code](https://github.com/couchbase/couchbase-rs/)
 
 Deployment
 
@@ -123,7 +118,26 @@ Deployment
 * [Compatibility](../project-docs/compatibility.md)
 * [Integrations & Ecosystem](../project-docs/third-party-integrations.md)
 * [Couchbase Rust SDK Installation](../project-docs/sdk-full-installation.md)
+  
+  
+##  Couchbase Operational Cluster Feature Compatibility
 
+All of the SDKs have API compatibility with most of the features in Couchbase Operational CLusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
+
+__Couchbase Server and SDK Supported Version Matrix__
+|                                  | Server 7.6.x               | Server 8.0       |
+| -------------------------------- | -------------------------- | ---------------- |
+| KV Range Scan                    | All SDK versions           |                  |
+| Vector Search                    | All SDK versions           |                  |
+| Zone aware replica reads         | All SDK versions           |                  |
+| KV preferred server groups reads | All SDK versions           |                  |
+| Vector Query using GSI           | N/A                        | All SDK versions |
+| Distributed ACID Transactions    | N/A                        |                  |
+| Response Time Observability      | All supported SDK versions |                  |
+| Field Level Encryption           | N/A                        |                  |
+| Cloud Native Gateway             | N/A                        |                  |
+
+  
 > [!TIP]
 > Analytics SDKs
 > 

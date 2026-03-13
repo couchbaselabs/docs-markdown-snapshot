@@ -2,7 +2,7 @@
 title: Reference Pages
 description: Essential reference infomation for developing with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:ref:index.adoc[]
 ---
 
@@ -38,7 +38,7 @@ These are interspersed with the howto guides — but the complete set of discuss
 * [Errors and Diagnostics](../concept-docs/best-practices.md)
 
   * [Health Check](../howtos/health-check.md)
-  * [Tracing](#concept-docs:response-time-observability.adoc)
+  * [Tracing](../concept-docs/response-time-observability.md)
 * [Failure Considerations](../concept-docs/durability-replication-failure-considerations.md)
 * [Field Level Encryption](#concept-docs:encryption.adoc)
 * [Service Selection / Querying your Data](../concept-docs/querying-your-data.md)

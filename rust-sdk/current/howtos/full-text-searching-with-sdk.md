@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -99,7 +99,7 @@ let insert_result = scope
     .await?;
 
 // MutationState can be created from a token directly.
-let mutation_state = MutationState::from(insert_result.mutation_token().clone().unwrap());
+let mutation_state = MutationState::from(insert_result.mutation_token().unwrap().clone());
 
 let result = scope
     .search(

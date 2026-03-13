@@ -1,7 +1,7 @@
 ---
 title: Search
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/full-text-search-overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:concept-docs:full-text-search-overview.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:rust-sdk:concept-docs:full-text-search-overview.adoc[]
 
 _Full Text Search_ provides extensive capabilities for _natural-language querying_: this allows special search-constraints to be applied to text-queries. Results can be _scored_, to indicate match-relevancy; and result-sets ordered correspondingly. _Conjunctive_ and _disjunctive_ searches can be performed, whereby common result-subsets from multiple queries can either be returned or omitted.
 
-A full overview of Full Text Search is provided in [Full Text Search: Fundamentals](#7.1@server:fts:full-text-intro.adoc). This includes information on the principal features of Couchbase Full Text Search, its architecture, and the latest feature-additions. Other information-sources include:
+A full overview of Full Text Search is provided in [Full Text Search: Fundamentals](../../../server/current/search/search.md). This includes information on the principal features of Couchbase Full Text Search, its architecture, and the latest feature-additions. Other information-sources include:
 
 * [Performing Searches](../../../server/7.2/fts/fts-perform-searches.md): An explanation of the steps required to prepare for and perform Full Text Search.
 * [Searching from the UI](../../../server/7.2/fts/fts-searching-from-the-UI.md): A brief introduction to the Full Text Search user interface provided by the Couchbase Web Console, with a step-by-step example of how to create a simple Full Text Index, and perform a search on it.

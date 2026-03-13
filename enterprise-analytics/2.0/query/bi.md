@@ -5,7 +5,7 @@ description: You can apply features available for visualizing and analyzing data
   interactive data visualization platforms to the query results you obtain in
   Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/query/pages/bi.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:2.0@enterprise-analytics:query:bi.adoc[]
 ---
 
@@ -36,7 +36,7 @@ For information about setting up the connector, see the [tableau-connector:index
 
 The Couchbase Tableau Connector provides the integration between tabular views of your Enterprise Analytics collections or query results of those tabular views in the Salesforce Tableau interactive data visualization platform
 
-For information about setting up the connector, see the [Introduction](../../../power-bi-connector/current/index.md) documentation.
+For information about setting up the connector, see the [power-bi-connector::index.adoc](#power-bi-connector::index.adoc) documentation.
 
 ## [](#superset-connector)Use the Couchbase Superset Connector
 
@@ -47,5 +47,5 @@ For information about setting up the connector, see the [Introduction](../../../
 ## [](#see-also)See Also
 
 * [Tableau Introduction](../../../tableau-connector/current/index.md)
-* [Power BI Introduction](../../../power-bi-connector/current/index.md)
+* [Power BI Introduction](#power-bi-connector::index.adoc)
 * [Views and Tabular Views](../sqlpp/5a%5Fviews.md)

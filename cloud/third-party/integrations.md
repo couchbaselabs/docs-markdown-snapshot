@@ -3,7 +3,7 @@ title: Integrations, Connectors, and Tools
 description: Integrate Couchbase with your development ecosystem and production
   and deployment tools.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/third-party/pages/integrations.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:cloud:third-party:integrations.adoc[]
 ---
 
@@ -74,7 +74,7 @@ __Table 4\. Big Data Connectors__
 | ------------------ | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------- |
 | Elasticsearch      | Replicate your documents from Couchbase Server or Capella to Elasticsearch or OpenSearch in near real time. | [Getting Started docs](../../elasticsearch-connector/current/getting-started.md) | [Release notes & download links](../../elasticsearch-connector/current/release-notes.md)      | [AO Mode](../../elasticsearch-connector/current/autonomous-operations.md)                      | Couchbase Officially Supported  |
 | Kafka              | A plug-in for the Kafka Connect framework, which provides source and sink components.                       | [Kafka connector docs](../../kafka-connector/current/index.md)                   | [GitHub repo](https://github.com/couchbase/kafka-connect-couchbase)                           | [Use cases](https://kafka.apache.org/uses)                                                     | Couchbase Officially Supported  |
-| Power BI Connector | Connects Couchbase to the Microsoft Business Intelligence Platform.                                         | [Power BI Connector documentation](../../power-bi-connector/current/index.md)    | [Power BI Releases](../../power-bi-connector/current/release-notes.md)                        |                                                                                                | Couchbase Officially Supported  |
+| Power BI Connector | Connects Couchbase to the Microsoft Business Intelligence Platform.                                         | [Power BI Connector documentation](#power-bi-connector::index.adoc)              | [Power BI Releases](#power-bi-connector::release-notes.adoc)                                  |                                                                                                | Couchbase Officially Supported  |
 | Spark              | Connect to the scalable computing engine for Big Data.                                                      | [Couchbase Spark docs](../../spark-connector/current/index.md)                   | [Couchbase Spark Connector on GitHub](https://github.com/couchbase/couchbase-spark-connector) | [Apache Spark Notebook](https://docs.databricks.com/%5Fextras/notebooks/source/couchbase.html) | Couchbase Officially Supported  |
 | Tableau            | Integrate Couchbase Server tabular views and the Tableau interactive data visualization platform.           | [Tableau connector docs](../../tableau-connector/current/index.md)               | [Tableau Desktop Downloads](https://www.tableau.com/products/desktop/download)                | [Other Tableau Integrations](https://www.tableau.com/products/server)                          | Couchbase Officially Supported  |
 

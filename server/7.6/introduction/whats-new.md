@@ -4,7 +4,7 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.6 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:7.6@server:introduction:whats-new.adoc[]
 ---
 
@@ -313,7 +313,7 @@ See [Expiration](../learn/data/expiration.md) for more information.
 
 ### [](#analytics)Analytics
 
-* Power BI Connector version 1.0 released. ([Power BI Connector documentation](../../../power-bi-connector/current/index.md))  
+* Power BI Connector version 1.0 released. ([Power BI Connector documentation](#power-bi-connector:ROOT:index.adoc))  
 You can download the installation package from the following location:  
 
 | Binaries      | [powerbi-connector-1.0.mez](https://packages.couchbase.com/releases/couchbase-powerbi-connector/1.0/couchbase-powerbi-connector-1.0.mez)               |

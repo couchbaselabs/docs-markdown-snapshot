@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -28,14 +28,28 @@ The Rust SDK docs note whenever a shortcut is being taken, but here is a non-exh
 * Geographical separation of app server and database
 * Skipping certificate verification
 
-The best way to accommodate developing an application that is to be deployed to production is to use the platform’s default approach for configuration files.
+The best way to accommodate developing an application that is to be deployed to production is to use toml files.
+
+## [](#couchbase-operational-cluster-feature-compatibility)Couchbase Operational Cluster Feature Compatibility
+
+All of the SDKs have API compatibility with most of the features in Couchbase Operational CLusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
+
+__Table 1\. Couchbase Server and SDK Supported Version Matrix__
+|                                  | Server 7.6.x               | Server 8.0       |
+| -------------------------------- | -------------------------- | ---------------- |
+| KV Range Scan                    | All SDK versions           |                  |
+| Vector Search                    | All SDK versions           |                  |
+| Zone aware replica reads         | All SDK versions           |                  |
+| KV preferred server groups reads | All SDK versions           |                  |
+| Vector Query using GSI           | N/A                        | All SDK versions |
+| Distributed ACID Transactions    | N/A                        |                  |
+| Response Time Observability      | All supported SDK versions |                  |
+| Field Level Encryption           | N/A                        |                  |
+| Cloud Native Gateway             | N/A                        |                  |
 
 ## [](#further-reading)Further Reading
 
-* Integrate Couchbase with your data ecosystem:
-
-  * [SDK Integrations](third-party-integrations.md)
-  * [Integrations across Couchbase](../../../server/current/third-party/integrations.md)
+* [Integrations across Couchbase](../../../server/current/third-party/integrations.md)
 * [Contribute to the SDK](get-involved.md)
 
 ### [](#deploying-couchbase-server)Deploying Couchbase Server

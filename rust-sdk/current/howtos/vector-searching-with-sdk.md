@@ -3,7 +3,7 @@ title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -46,7 +46,7 @@ Hyperscale Index Example
        FROM `vector-sample`.`color`.`rgb-questions` AS d \
        WHERE d.id = '#87CEEB';";
 
-  let mut result = cluster.query(statement, QueryOptions::new().metrics(true).await)?;
+  let mut result = cluster.query(statement, QueryOptions::new().metrics(true)).await?;
 
   let mut rows = result.rows();
   while let Some(row) = rows.next().await {

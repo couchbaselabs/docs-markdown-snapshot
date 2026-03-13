@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1773287127021,
+  "generated": 1773373560250,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -42054,37 +42054,6 @@
       ]
     },
     {
-      "name": "power-bi-connector",
-      "title": "Power BI Connector",
-      "latest": "1.0",
-      "versions": [
-        {
-          "version": "1.0",
-          "url": "/power-bi-connector/current/index.html",
-          "pages": [
-            {
-              "alias": true,
-              "module": "ROOT",
-              "path": "",
-              "url": "/power-bi-connector/current"
-            },
-            {
-              "module": "ROOT",
-              "path": "index.adoc",
-              "url": "/power-bi-connector/current/index.md",
-              "title": "Introduction"
-            },
-            {
-              "module": "ROOT",
-              "path": "release-notes.adoc",
-              "url": "/power-bi-connector/current/release-notes.md",
-              "title": "Release Notes"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "python-analytics-sdk",
       "title": "Python Analytics SDK",
       "latest": "1.0",
@@ -47735,6 +47704,12 @@
             },
             {
               "module": "concept-docs",
+              "path": "response-time-observability.adoc",
+              "url": "/rust-sdk/current/concept-docs/response-time-observability.md",
+              "title": "Tracing"
+            },
+            {
+              "module": "concept-docs",
               "path": "subdocument-operations.adoc",
               "url": "/rust-sdk/current/concept-docs/subdocument-operations.md",
               "title": "Sub-Documents"
@@ -47750,6 +47725,12 @@
               "path": "overview.adoc",
               "url": "/rust-sdk/current/hello-world/overview.md",
               "title": "Couchbase Rust SDK 1.0"
+            },
+            {
+              "module": "hello-world",
+              "path": "platform-help.adoc",
+              "url": "/rust-sdk/current/hello-world/platform-help.md",
+              "title": "Setting Up Couchbase Rust SDK with rustup"
             },
             {
               "alias": true,
@@ -47773,6 +47754,12 @@
               "path": "collecting-information-and-logging.adoc",
               "url": "/rust-sdk/current/howtos/collecting-information-and-logging.md",
               "title": "Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "concurrent-async-apis.adoc",
+              "url": "/rust-sdk/current/howtos/concurrent-async-apis.md",
+              "title": "Async &amp; Reactive APIs"
             },
             {
               "module": "howtos",
@@ -47836,6 +47823,24 @@
               "path": "n1ql-queries-with-sdk.adoc",
               "url": "/rust-sdk/current/howtos/sqlpp-queries-with-sdk.md",
               "title": "Querying with SQL++"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-metrics.adoc",
+              "url": "/rust-sdk/current/howtos/observability-metrics.md",
+              "title": "Metrics Reporting"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-orphan-logger.adoc",
+              "url": "/rust-sdk/current/howtos/observability-orphan-logger.md",
+              "title": "Orphaned Requests Logging"
+            },
+            {
+              "module": "howtos",
+              "path": "observability-tracing.adoc",
+              "url": "/rust-sdk/current/howtos/observability-tracing.md",
+              "title": "Request Tracing"
             },
             {
               "module": "howtos",
@@ -48040,6 +48045,13 @@
             {
               "alias": true,
               "module": "ROOT",
+              "path": "sdk-licenses.adoc",
+              "url": "/rust-sdk/current/project-docs/sdk-licenses.md",
+              "title": "Licenses"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
               "path": "sdk-user-management-example.adoc",
               "url": "/rust-sdk/current/howtos/sdk-user-management-example.md",
               "title": "User Management"
@@ -48050,6 +48062,20 @@
               "path": "sdk-xattr-example.adoc",
               "url": "/rust-sdk/current/howtos/subdocument-operations.md",
               "title": "Sub-Document Operations"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "threshold-logging.adoc",
+              "url": "/rust-sdk/current/concept-docs/response-time-observability.md",
+              "title": "Tracing"
+            },
+            {
+              "alias": true,
+              "module": "ROOT",
+              "path": "tracing-from-the-sdk.adoc",
+              "url": "/rust-sdk/current/howtos/observability-tracing.md",
+              "title": "Request Tracing"
             }
           ]
         }

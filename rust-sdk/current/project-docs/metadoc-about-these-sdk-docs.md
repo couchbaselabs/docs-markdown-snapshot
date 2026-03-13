@@ -3,7 +3,7 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -67,7 +67,7 @@ As with SQL++ queries, ACID transactions may be a familiar tool that you choose 
 
 A distributed world brings challenges not just of node and network failures, but even of operating with uncertain knowledge of those things. Couchbase is architected to give reliable results but as always, taking time to understand the issue can give you a more reliable application, and a better service to your users.
 
-This section also contains details of the [observability](#concept-docs:response-time-observability.adoc) stack available within the SDK, to help to identify problems and profile bottlenecks.
+This section also contains details of the [observability](../concept-docs/response-time-observability.md) stack available within the SDK, to help to identify problems and profile bottlenecks.
 
 ## [](#best-practices)Best Practices
 

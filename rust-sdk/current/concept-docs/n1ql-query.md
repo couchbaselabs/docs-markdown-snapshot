@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -199,7 +199,7 @@ let mutation_state = {
         .await?;
 
     // MutationState can be created from a token directly.
-    let state = MutationState::from(result.mutation_token().clone().unwrap());
+    let state = MutationState::from(result.mutation_token().unwrap().clone());
 
     state
 };

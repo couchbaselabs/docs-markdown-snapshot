@@ -1,8 +1,9 @@
 ---
 title: Licenses
-description: Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
+description: Couchbase SDKs' source code and binaries are licensed under the
+  Apache Licence 2.0.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/sdk-licenses.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:project-docs:sdk-licenses.adoc[]
 ---
 
@@ -10,13 +11,13 @@ link: xref:rust-sdk:project-docs:sdk-licenses.adoc[]
 
 # Licenses
 
-> Couchbase SDKs' source code is licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
+> Couchbase SDKs' source code and binaries are licensed under the Apache Licence 2.0\. Dependencies carry their own licenses. 
 
-The Couchbase Rust Client is distributed as source under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Source and any and all binaries for the Couchbase Rust Client are distributed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-## [](#binary-distribution)Binary Distribution
+## [](#support-level)Support Level
 
-Binary distributions are made under Couchbase’s own license agreements.
+Support level will match the terms of your use of your Couchbase Cluster(s), under Couchbase’s Enterprise or Community license agreements.
 
 * [Enterprise License Agreement](https://www.couchbase.com/license-agreement/)
 * [Community License Agreement](https://www.couchbase.com/community-license-agreement/)

@@ -3,7 +3,7 @@ title: Documents
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -135,9 +135,9 @@ You can also specify additional options when storing a document in Couchbase
 > }
 > ```
 > 
-> or [N1QL UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
+> or [SQL++ UPDATE](../../../server/current/n1ql/n1ql-language-reference/update.md) to update documents based on specific query criteria:
 > 
-> ```n1ql
+> ```sqlpp
 > update `default` SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
 > ```
 
@@ -163,13 +163,13 @@ You can also modify a document’s expiration time while retrieving it; this is 
 
 Documents can also be retrieved with SQL++. While SQL++ is generally used for secondary queries, it can also be used to retrieve documents by their primary keys (ID) (though it is recommended to use the key-value API if the ID is known). Lookups may be done either by comparing the `META(from-term).id` or by using the `USE KEYS` \[...\] keyword:
 
-```n1ql
+```sqlpp
 SELECT * FROM default USE KEYS ["docid"];
 ```
 
 or
 
-```n1ql
+```sqlpp
 SELECT * FROM default WHERE META(default).id = "docid";
 ```
 

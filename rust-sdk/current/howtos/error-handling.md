@@ -3,7 +3,7 @@ title: Handling Errors
 description: Errors are inevitable. Rust offers several flexible approaches to
   handling them.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-13T03:41:17.220Z
 link: xref:rust-sdk:howtos:error-handling.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:rust-sdk:howtos:error-handling.adoc[]
 
 The developer’s job is to be prepared for whatever is likely to come up — and to try and be prepared for anything that conceivably could come up. Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
-How errors are actually returned (e.g. via `Try`, `Future`, or `Mono`) and handled are covered [here](#concurrent-async-apis.adoc), so this document will focus instead on specific errors, along with a broader look at error handling strategies.
+See the [async page](concurrent-async-apis.md#error-handling-in-concurrent-contexts) for information on error handling in concurrent contexts.
 
 ## [](#error-model)Error Model
 
@@ -260,6 +260,76 @@ Idempotent operations are much easier to handle, as on ambiguous error results (
 
 Most key-value operations are idempotent. For those that aren’t, such as a Sub-Document `array_append` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
 
+## [](#customizing-the-retrystrategy)Customizing the RetryStrategy
+
+A custom `RetryStrategy` can be provided on `ClusterOptions` (so it will take effect globally):
+
+```rust
+let opts = ClusterOptions::new(Authenticator::PasswordAuthenticator(
+    PasswordAuthenticator::new("username".to_string(), "password".to_string()),
+))
+.default_retry_strategy(Arc::new(BestEffortRetryStrategy::new(
+    ExponentialBackoffCalculator::default(),
+)));
+```
+
+Or it can be applied on a per-request basis:
+
+```rust
+let opts = UpsertOptions::new().retry_strategy(Arc::new(BestEffortRetryStrategy::new(
+    ExponentialBackoffCalculator::default(),
+)));
+```
+
+Both approaches are valid, although we recommend for most use cases to stick with the defaults and only to override it on a per requests basis.
+
+If you find yourself overriding every request with the same different strategy, it can make sense to apply it locally in order to DRY it up a bit. There are no performance differences with both approaches, but make sure that even if you pass in a custom one on every request that you do not create a new one each time but rather share it across calls.
+
+```rust
+let retry_strategy = Arc::new(BestEffortRetryStrategy::new(
+    ExponentialBackoffCalculator::default(),
+));
+let opts = UpsertOptions::new().retry_strategy(retry_strategy.clone());
+let opts2 = InsertOptions::new().retry_strategy(retry_strategy.clone());
+```
+
+While it is possible to implement the `RetryStrategy` from scratch, we **strongly recommend** that instead the `BestEffortRetryStrategy` is embedded and to only implement handling of specific `RetryReasons`.
+
+In practice, it should look something like this:
+
+```rust
+#[derive(Debug)]
+struct CustomRetryStrategy {
+    base_strategy: BestEffortRetryStrategy<ExponentialBackoffCalculator>,
+}
+
+impl RetryStrategy for CustomRetryStrategy {
+    fn retry_after(&self, request: &RetryRequest, reason: &RetryReason) -> Option<RetryAction> {
+        match reason {
+            RetryReason::KvLocked => {
+                // Override the default and don't retry.
+                None
+            }
+            _ => self.base_strategy.retry_after(request, reason),
+        }
+    }
+}
+
+let base_strategy = BestEffortRetryStrategy::new(ExponentialBackoffCalculator::default());
+
+let retry_strategy = Arc::new(CustomRetryStrategy { base_strategy });
+let opts = UpsertOptions::new().retry_strategy(retry_strategy.clone());
+```
+
+One important rule is that you should never block inside `should_retry`, since it is called on the hot code path and can considerably impact performance.
+
+If you need to call out to third party systems over the network or the file system to make retry decisions, we recommend that you do this from a different thread and communicate via atomics, for example, so that the hot code path only needs to do cheap lookups.
+
+The `RetryAction` indicates what should be done with the request: if you return `None`, the orchestrator will cancel the request, resulting in the underlying error being returned. The other option is to provide an action with `RetryAction::new(duration: Duration)`, indicating the duration when the request should be retried next. This allows you to customize not only _if_ a request should be retried, but also _when_.
+
+> [!IMPORTANT]
+> Not retrying operations is considered safe from a data-loss perspective. If you are changing the retry strategy of individual requests keep the semantics discussed in [Idempotent vs. Non-Idempotent Requests](#idempotent-and-non-idempotent-operations) in mind. You can check if a request is idempotent through the `is_idempotent()` function on `RetryRequest`, and also check if the `RetryReason` allows for non-idempotent retry through `allows_non_idempotent_retry()`. If in doubt, check the implementation of the `BestEffortRetryStrategy` for guidance.
+
 ## [](#query-and-analytics-errors)Query and Analytics Errors
 
 A SQL++ (formerly N1QL) query either returns results or an error as the same way as KV, like so:
@@ -280,7 +350,7 @@ match scope.query(statement, None).await {
 
 Errors & Exception handling is an expansive topic. Here, we have covered examples of the kinds of exception scenarios that you are most likely to face. More fundamentally, you also need to weigh up [concepts of durability](../concept-docs/durability-replication-failure-considerations.md).
 
-Diagnostic methods are available to check on the [health of the cluster](health-check.md), and the [health of the network](#tracing-from-the-sdk.adoc).
+Diagnostic methods are available to check on the [health of the cluster](health-check.md), and the [health of the network](observability-tracing.md).
 
 Logging methods are dependent upon the platform and SDK used. We offer [recommendations and practical examples](collecting-information-and-logging.md).
 
