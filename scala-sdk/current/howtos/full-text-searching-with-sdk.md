@@ -3,7 +3,7 @@ title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-14T03:37:27.095Z
 link: xref:scala-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -47,6 +47,15 @@ result match {
 ```
 
 All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#working-with-results)Working with Results
 
