@@ -481,7 +481,8 @@
     - [Upgrade App Services](/app-services/maintenance/upgrading-app-services.md)
 - Private Endpoints
     - [App Services Private Endpoints](/app-services/private-endpoints/app-services-private-endpoints.md)
-    - [Configure Private Endpoints on AWS](/app-services/private-endpoints/app-services-private-endpoints-aws.md)
+    - [Configure Private Endpoints on AWS Using the UI](/app-services/private-endpoints/app-services-private-endpoints-aws-ui.md)
+    - [Configure Private Endpoints on AWS Using the API](/app-services/private-endpoints/app-services-private-endpoints-aws-api.md)
 - App Services REST APIs
     - [REST API Introduction](/app-services/references/rest-api-introduction.md)
     - [Public REST API](/app-services/references/rest_api_public.md)

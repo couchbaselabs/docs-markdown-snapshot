@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-17T03:44:59.512Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -14,6 +14,13 @@ link: xref:app-services::release-notes/release-notes.adoc[]
 > Release notes for Capella App Services, including new features, enhancements, and updates. 
 
 This page contains release notes specific to Capella App Services. For general Capella release notes, see [Couchbase Capella Release Notes](../../cloud/release-notes/release-notes.md).
+
+## [](#march-2026)March 2026
+
+* Private Endpoint Support via UI for App Services  
+You can now configure Private Endpoints for App Services directly through the Capella UI. This allows you to secure your application traffic by eliminating exposure to the public internet. The UI provides a streamlined, guided experience for setting up private endpoints, making it easier to establish secure connections between your applications and App Services.  
+Currently, private endpoints for App Services are only available using Amazon Web Services (AWS).  
+For more information, see [Manage AWS Private Endpoints Using the Capella UI](../private-endpoints/app-services-private-endpoints-aws-ui.md).
 
 ## [](#december-2025)December 2025
 

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1773633549029,
+  "generated": 1773719341058,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -1316,9 +1316,15 @@
             },
             {
               "module": "ROOT",
-              "path": "private-endpoints/app-services-private-endpoints-aws.adoc",
-              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws.md",
-              "title": "Manage AWS Private Endpoints for App Services"
+              "path": "private-endpoints/app-services-private-endpoints-aws-api.adoc",
+              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws-api.md",
+              "title": "Manage AWS Private Endpoints Using the Management API"
+            },
+            {
+              "module": "ROOT",
+              "path": "private-endpoints/app-services-private-endpoints-aws-ui.adoc",
+              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws-ui.md",
+              "title": "Manage AWS Private Endpoints Using the Capella UI"
             },
             {
               "module": "ROOT",
@@ -2429,9 +2435,16 @@
             {
               "alias": true,
               "module": "app-services",
+              "path": "private-endpoints/app-services-private-endpoints-aws-ui.adoc",
+              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws-ui.md",
+              "title": "Manage AWS Private Endpoints Using the Capella UI"
+            },
+            {
+              "alias": true,
+              "module": "app-services",
               "path": "private-endpoints/app-services-private-endpoints-aws.adoc",
-              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws.md",
-              "title": "Manage AWS Private Endpoints for App Services"
+              "url": "/app-services/private-endpoints/app-services-private-endpoints-aws-api.md",
+              "title": "Manage AWS Private Endpoints Using the Management API"
             },
             {
               "alias": true,

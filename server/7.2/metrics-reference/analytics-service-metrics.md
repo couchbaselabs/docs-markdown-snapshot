@@ -2,7 +2,7 @@
 title: Analytics Service Metrics
 description: A list of the metrics provided by the Analytics Service.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/metrics-reference/pages/analytics-service-metrics.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-17T03:44:59.512Z
 link: xref:7.2@server:metrics-reference:analytics-service-metrics.adoc[]
 ---
 
@@ -26,6 +26,7 @@ The following Analytics Service metrics can be queried by means of the REST APIs
 | cbas\_gc\_count\_total7.0.0 gauge Total number of garbage collections.                                              |
 | cbas\_gc\_time\_milliseconds\_total7.0.0 gauge Total time of garbage collections in milliseconds.                   |
 | cbas\_heap\_memory\_committed\_bytes7.1.0 gauge Heap memory committed in bytes.                                     |
+| cbas\_heap\_memory\_max\_bytes7.2.7 gauge / bytes Heap memory max in bytes.                                         |
 | cbas\_heap\_memory\_used\_bytes7.0.0 gauge Heap memory used in bytes.                                               |
 | cbas\_incoming\_records\_count7.0.0 gauge Number of incoming records.                                               |
 | cbas\_io\_reads\_total7.0.0 gauge Total number of IO reads.                                                         |
