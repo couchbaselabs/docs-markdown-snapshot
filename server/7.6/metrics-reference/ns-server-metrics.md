@@ -2,7 +2,7 @@
 title: Cluster Manager Metrics
 description: A list of the metrics provided by the Cluster Manager.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/ns-server-metrics.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-18T03:49:18.767Z
 link: xref:7.6@server:metrics-reference:ns-server-metrics.adoc[]
 ---
 
@@ -35,9 +35,9 @@ Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs
 | cm\_auth\_cache\_hit\_total7.6.0counter Total number of cbauth auth cache hits                                                                                   |
 | cm\_auth\_cache\_max\_items7.6.0gauge Maximum capacity of cbauth auth cache                                                                                      |
 | cm\_auth\_cache\_miss\_total7.6.0counter Total number of cbauth auth cache misses                                                                                |
-| cm\_auto\_failover\_count7.6.2gauge Number of auto-failovers                                                                                                     |
-| cm\_auto\_failover\_enabled7.6.2gauge Indicates if auto-failover is enabled (1 = true, 0 = false)                                                                |
-| cm\_auto\_failover\_max\_count7.6.2gauge Maximum number of auto-failovers before being disabled                                                                  |
+| cm\_auto\_failover\_count7.2.6gauge Number of auto-failovers                                                                                                     |
+| cm\_auto\_failover\_enabled7.2.6gauge Indicates if auto-failover is enabled (1 = true, 0 = false)                                                                |
+| cm\_auto\_failover\_max\_count7.2.6gauge Maximum number of auto-failovers before being disabled                                                                  |
 | cm\_build\_streaming\_info\_total7.0.0counter Number of streaming requests processed                                                                             |
 | cm\_client\_cert\_cache\_current\_items7.6.0gauge Current number of items available in cbauth client\_cert cache                                                 |
 | cm\_client\_cert\_cache\_hit\_total7.6.0counter Total number of cbauth client\_cert cache hits                                                                   |
@@ -47,12 +47,12 @@ Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs
 | cm\_erlang\_port\_limit7.6.0gauge The maximum number of ports that the erlang VM can use                                                                         |
 | cm\_erlang\_process\_count7.6.0gauge The number of processes in use by the erlang VM                                                                             |
 | cm\_erlang\_process\_limit7.6.0gauge The maximum number of processes that the erlang VM can use                                                                  |
-| cm\_failover\_total7.6.2counter Number of non-graceful failover results                                                                                          |
+| cm\_failover\_total7.2.6counter Number of non-graceful failover results                                                                                          |
 | cm\_gc\_duration\_seconds7.6.0histogram Time to perform erlang garbage collection                                                                                |
-| cm\_graceful\_failover\_total7.6.2counter Number of graceful failover results                                                                                    |
+| cm\_graceful\_failover\_total7.2.6counter Number of graceful failover results                                                                                    |
 | cm\_http\_requests\_seconds7.0.0histogram Number of bucket HTTP requests                                                                                         |
 | cm\_http\_requests\_total7.0.0counter Total number of HTTP requests categorized                                                                                  |
-| cm\_is\_balanced7.6.2gauge Indicates if cluster is balanced (1 = true, 0 = false). Only reported by the orchestrator node and only updated once every 30 seconds |
+| cm\_is\_balanced7.2.6gauge Indicates if cluster is balanced (1 = true, 0 = false). Only reported by the orchestrator node and only updated once every 30 seconds |
 | cm\_logs\_total7.1.0counter Total number of logs logged                                                                                                          |
 | cm\_memcached\_call\_time\_seconds7.0.0histogram Amount of time to call memcached                                                                                |
 | cm\_memcached\_cmd\_total7.6.0gauge Total number of memcached commands                                                                                           |
@@ -67,9 +67,9 @@ Please refer to [Prometheus Histograms and Summaries](https://prometheus.io/docs
 | cm\_odp\_report\_failed7.0.0counter Number of failures to send on-demand pricing report                                                                          |
 | cm\_outgoing\_http\_requests\_seconds7.0.0histogram / seconds Time taken for outgoing HTTP requests                                                              |
 | cm\_outgoing\_http\_requests\_total7.0.0counter Total number of outgoing HTTP requests                                                                           |
-| cm\_rebalance\_in\_progress7.6.2gauge Indicates if a rebalance is running (1 = true, 0 = false). Only reported by the orchestrator node.                         |
-| cm\_rebalance\_progress7.6.2gauge / ratio Estimate of the rebalance progress (0 - 1) for each stage. Only reported by the orchestrator node.                     |
-| cm\_rebalance\_total7.6.2counter Number of rebalance results                                                                                                     |
+| cm\_rebalance\_in\_progress7.2.6gauge Indicates if a rebalance is running (1 = true, 0 = false). Only reported by the orchestrator node.                         |
+| cm\_rebalance\_progress7.2.6gauge / ratio Estimate of the rebalance progress (0 - 1) for each stage. Only reported by the orchestrator node.                     |
+| cm\_rebalance\_total7.2.6counter Number of rebalance results                                                                                                     |
 | cm\_request\_hibernates\_total7.0.0counter Number of times requests were hibernated                                                                              |
 | cm\_request\_unhibernates\_total7.0.0counter Number of times requests were unhibernated                                                                          |
 | cm\_rest\_request\_access\_forbidden\_total7.6.0counter Number of REST requests failing due inadequate permissions                                               |

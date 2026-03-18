@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-14T03:37:27.095Z
+pubDate: 2026-03-18T03:49:18.767Z
 link: xref:scala-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -170,7 +170,7 @@ match {
     println(err)
 }
 
-[data-source-url=https://github.com/couchbase/docs-sdk-scala/blob/c91e176742e5f9daaa33a423557be55672b19eef/modules/devguide/examples/scala/CollectionManagerExample.scala#L110-L118]
+[data-source-url=https://github.com/couchbase/docs-sdk-scala/blob/18d1e7d7f1cbbc2796319d639696a69075117e54/modules/devguide/examples/scala/CollectionManagerExample.scala#L110-L118]
 collectionMgr.dropScope("example-scope")
 match {
   case Success(_) =>
