@@ -3,7 +3,7 @@ title: Query Data with SQL++
 description: The Query Service supports the querying of data by means of the
   SQL++ query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/query.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:7.6@server:n1ql:query.adoc[]
 ---
 
@@ -37,7 +37,7 @@ SQL++ is an expressive, powerful, and complete SQL dialect for querying, updatin
 * [Select Data with Queries](../guides/query.md)
 * [Use Primary and Secondary Indexes](../guides/indexes.md)
 * [Manipulate Data with Queries](../guides/manipulate.md)
-* [User-Defined Functions with JavaScript](../guides/javascript-udfs.md)
+* [User-Defined Functions for Queries](../guides/javascript-udfs.md)
 * [Advanced Query Features](../guides/optimize.md)
 
 ## Query Administration

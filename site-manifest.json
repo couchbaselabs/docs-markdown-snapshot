@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1773806033101,
+  "generated": 1773892519079,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -62609,7 +62609,7 @@
               "module": "guides",
               "path": "call-user-defined-function.adoc",
               "url": "/server/7.6/guides/call-user-defined-function.md",
-              "title": "Calling a User-Defined Function"
+              "title": "Call a User-Defined Function"
             },
             {
               "module": "guides",
@@ -62633,13 +62633,13 @@
               "module": "guides",
               "path": "create-javascript-library.adoc",
               "url": "/server/7.6/guides/create-javascript-library.md",
-              "title": "Creating a JavaScript Library"
+              "title": "Create a JavaScript Library"
             },
             {
               "module": "guides",
               "path": "create-user-defined-function.adoc",
               "url": "/server/7.6/guides/create-user-defined-function.md",
-              "title": "Creating a User-Defined Function"
+              "title": "Create a User-Defined Function"
             },
             {
               "module": "guides",
@@ -62718,7 +62718,7 @@
               "module": "guides",
               "path": "javascript-udfs.adoc",
               "url": "/server/7.6/guides/javascript-udfs.md",
-              "title": "User-Defined Functions with JavaScript"
+              "title": "User-Defined Functions for Queries"
             },
             {
               "module": "guides",

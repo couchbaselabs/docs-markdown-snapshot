@@ -4,7 +4,7 @@ description: The Couchbase Rust SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:rust-sdk:project-docs:third-party-integrations.adoc[]
 ---
 
@@ -23,3 +23,7 @@ Couchbase engineers are involved to a greater or lesser degree with projects tha
 ## [](#see-also)See Also
 
 Couchbase Server (Capella or self-managed) offers many partner and community integrations — the [Integrations, Connectors, and Tools](../../../cloud/third-party/integrations.md) page contains a full listing.
+
+### [](#ide-integrations)IDE Integrations
+
+To make development easier, [Couchbase plugins](../../../server/current/third-party/integrations.md#ide-integrations) are available for [VSCode](https://marketplace.visualstudio.com/items?itemName=Couchbase.vscode-couchbase) and the [IntelliJ](https://plugins.jetbrains.com/plugin/22131-couchbase) family of IDEs and editors.

@@ -3,7 +3,7 @@ title: JavaScript Functions for Query Reference
 description: You can write extension functions for SQL++ for Query in Couchbase
   Server, using the JavaScript programming language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-02-26T03:43:25.790Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:7.6@server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -207,7 +207,7 @@ function sleep(milliseconds) {
 
 User-Defined Function Guides
 
-* [User-Defined Functions with JavaScript](../guides/javascript-udfs.md)
+* [User-Defined Functions for Queries](../guides/javascript-udfs.md)
 * [Monitor Functions](../n1ql/n1ql-intro/sysinfo.md#sys-functions)
 
 SQL++ User-Defined Function Commands
@@ -220,7 +220,7 @@ SQL++ User-Defined Function Commands
 
 External Libraries
 
-* [Creating a JavaScript Library](../guides/create-javascript-library.md)
+* [Create a JavaScript Library](../guides/create-javascript-library.md)
 * [Query Functions REST API](../n1ql-rest-functions/index.md)
 
 JavaScript Functions

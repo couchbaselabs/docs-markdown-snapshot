@@ -3,7 +3,7 @@ title: Calling SQL++ from JavaScript
 description: You can run SQL++ statements from inside the JavaScript code you
   use for a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-02-26T03:43:25.790Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:7.6@server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:7.6@server:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 
 User-defined functions support calling JavaScript and executing SQL++ statements together.
 
-For more information about user-defined functions in Couchbase Server, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
+For more information about user-defined functions in Couchbase Server, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).
 
 ## [](#calling-statements-inline)Calling SQL++ Statements Inline
 

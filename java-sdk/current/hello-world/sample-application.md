@@ -1,9 +1,9 @@
 ---
 title: Quickstart in Couchbase with Spring Boot and Java
 description: Quickstart app to build a REST API using Couchbase Capella in Java
-  using Spring Boot
+  using Spring Boot.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:java-sdk:hello-world:sample-application.adoc[]
 ---
 
@@ -11,7 +11,7 @@ link: xref:java-sdk:hello-world:sample-application.adoc[]
 
 # Quickstart in Couchbase with Spring Boot and Java
 
-> Quickstart app to build a REST API using Couchbase Capella in Java using Spring Boot Discover how to program interactions with Couchbase via the Data, Query, and Search services. 
+> Quickstart app to build a REST API using Couchbase Capella in Java using Spring Boot. Discover how to program interactions with Couchbase via the Data, Query, and Search services. 
 
 After you have navigated through [signing up to Capella](https://cloud.couchbase.com/sign-up), if Java is entered as your chosen language, you will be pointed to a clonable quickstart app on GitHub. If you were not, you can still find it [here](https://github.com/couchbase-examples/java-springboot-quickstart).
 
@@ -81,7 +81,7 @@ You can add environment variables `DB_CONN_STR`, `DB_USERNAME`, and `DB_PASSWORD
 > 
 > Couchbase — including Capella — is designed to run in a LAN-like environment. For development, connecting to a remote cloud instance from a local laptop instead of an application server in the same region, may require you to adjust some timeouts. If you have problems, refer to the [constrained network environments](../ref/client-settings.md#constrained-network-environments) section of the docs.
 
-### [](#directly-on-machine)Directly on Machine
+### [](#directly-on-your-local-machine)Directly on Your Local Machine
 
 At this point, we have installed the dependencies, loaded the travel-sample data and configured the application with the credentials. The application is now ready and you can run it.
 
@@ -108,7 +108,9 @@ $ docker run -d --name springboot-container -p 9440:8080 java-springboot-quickst
 
 ### [](#verifying-the-application)Verifying the Application
 
-Once the application starts, you can see the details of the application on the logs. image::app-startup-spring-boot.png\[\]
+Once the application starts, you can see the details of the application on the logs.
+
+![Startup Logs](_images/app-startup-spring-boot.png) 
 
 The application will run on port 8080 of your local machine — `<http://localhost:8080>`. You will find the interactive Swagger documentation of the API if you go to the URL in your browser. Swagger documentation is used in this demo to showcase the different API endpoints and how they can be invoked. More details on the Swagger documentation can be found in the [Swagger Documentation](#swagger-documentation).
 

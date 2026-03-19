@@ -1,99 +1,200 @@
 ---
-title: Creating a JavaScript Library
-description: How to create a JavaScript library.
+title: Create a JavaScript Library
+description: How to create a JavaScript library to store and organize your
+  JavaScript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-19T03:50:46.889Z
 link: xref:7.6@server:guides:create-javascript-library.adoc[]
 ---
 
 [View original HTML](/server/7.6/guides/create-javascript-library.html)
 
-# Creating a JavaScript Library
+# Create a JavaScript Library
 
-> How to create a JavaScript library. 
+> How to create a JavaScript library to store and organize your JavaScript functions. 
 
 ## [](#introduction)Introduction
 
-You can create an external library for storing JavaScript functions. When you create a new library you can add a new JavaScript function to the library at the same time.
+You can create a JavaScript library for storing JavaScript functions. Creating a JavaScript library for your JavaScript functions is optional, but simplifies organization and access control for user-defined functions.
 
-If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
+A JavaScript library can be **global** or **scoped**.
 
-* [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
-* [Query Workbench](../tools/query-workbench.md)
+* A **global** library is created within the `default:` namespace, at the same level as the buckets in your database. A global library is available to all users.
+* A **scoped** library is created within a scope, at the same level as the collections within the scope. A scoped library is only available to users who have access to that bucket and scope. Use a scoped JavaScript library to keep the code for user-defined functions separate.
 
-## [](#creating-the-library-and-adding-your-first-function)Creating the Library and Adding JavaScript Code
+The name of a JavaScript library must be unique within the specified namespace or scope.
 
-You can use the Query Workbench UI or the REST API to create a library. The process for creating the library is as follows:
+If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset.
 
-![Sequence for Creating a JavaScript Library](_images/diag-2c918624fcce7db7eec25d2cf3db41b669dc807e.svg) 
+## [](#creating-the-library-and-adding-your-first-function)Creating a JavaScript Library and Adding JavaScript Code
 
-Figure 1\. Sequence for Creating a JavaScript Library
+When you create a JavaScript library, you can add JavaScript functions to the library at the same time.
 
-**(1) Create library**
+You can create a JavaScript library with the Couchbase Web Console or a REST API call.
 
-Create the library by creating the logical storage for the library.
-
-**(2) Add the JavaScript function to the library**
-
-Edit the library to add your JavaScript function.
-
-**(3) Create SQL++ User-Defined Function**
-
-The SQL++ User Defined Function is needed so that it can be called as part of SQL++ statements (such as `SELECT` and `EXECUTE FUNCTION`). Creating the SQL++ User-Defined Function is covered in [Creating a User-Defined Function](create-user-defined-function.md).
-
-As shown in [Figure 1](#create-library-udf-sequence), the library is created and the first function is added in the same step.
-
-* Query Workbench
+* Couchbase Web Console
 * REST API
 
-1. Select **Query** to access the Query Workbench, then select **UDF** Query Workbench menu.  
-![route to the user-defined functions screen](_images/javascript-udfs/navigate-to-udf-query.png)
-2. Click on the **\+ add function library** link in the `JavaScript Function Libraries` table to show the `Add Library` screen.
-3. Select your `Namespace` from the drop-down lists. In this example, the namespace has been set to the `inventory` scope inside the `travel-sample` bucket. You also have the option of leaving the Namespace unset, which will the library accessible at the cluster level.  
-![add scoped library](_images/javascript-udfs/add-scoped-library.png)  
-A Note on Namespaces  
-The `Namespace` defines the `scope` of the library within the containing bucket. (You can read about scopes [here](../tutorials/buckets-scopes-and-collections.md).) Setting the namespace means that functions in the library can only be called users who have their context set to the same scope.
-4. Enter a name for the library in the `Library Name` field.
-5. Add your own function to the library, for example:  
-```javascript  
-function getBusinessDays(startDate, endDate) {  
-    let count = 0;  
-    const curDate = new Date(new Date(startDate).getTime());  
-    while (curDate <= new Date(endDate)) {  
-        const dayOfWeek = curDate.getDay();  
-        if(dayOfWeek !== 0 && dayOfWeek !== 6)  
-            count++;  
-        curDate.setDate(curDate.getDate() + 1);  
-    }  
-    return count;  
-}  
-```
-6. Save the library by pressing the **Save** button.  
-> [!TIP]  
-> You can, of course, create an empty library and add functions to it later.
+To create a JavaScript library:
 
-1. Start a shell session.
-2. Run a `curl` command to create a JavaScript library within a desired scope.  
-```console  
+1. In the Couchbase Web Console, go to **Query** **UDF**.
+2. Under **JavaScript Function Libraries**, click **\+ add function library**. The **Add Library** dialog is displayed.
+3. In the **Namespace** drop-down list, select **(global)** for a global library, or select a bucket and scope for a scoped library.
+4. In the **Library Name** box, enter a name for the library.
+5. Specify **Parameters** for the function.
+6. Edit the library to add your own JavaScript functions.
+7. Click **Save**.
+
+---
+
+The following library contains a JavaScript function called `getBusinessDays`.
+
+```javascript
+function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate <= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 && dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;    (1)
+}
+```
+
+To create a JavaScript library with the Query Functions REST API:
+
+1. Use the [POST /evaluator/v1/libraries/{library}](../n1ql-rest-functions/index.md#post%5Flibrary) endpoint.
+2. Pass the name of the library as a path parameter.
+3. To create a scoped library, pass the bucket and scope as query parameters.
+4. Pass a string containing the JavaScript code for all functions in the library as the request body.
+
+---
+
+The following request creates a JavaScript library in the `inventory` scope within the `travel-sample` bucket.
+
+```sh
 curl -v -X POST  'http://localhost:8093/evaluator/v1/libraries/my-library?bucket=travel-sample&scope=inventory' \
  -u Administrator:password \
- -d 'function getBusinessDays(startDate, endDate) {  
-          let count = 0;  
-          const curDate = new Date(new Date(startDate).getTime());  
-          while (curDate <= new Date(endDate)) {  
-              const dayOfWeek = curDate.getDay();  
-              if(dayOfWeek !== 0 && dayOfWeek !== 6)  
-                  count++;  
-              curDate.setDate(curDate.getDate() + 1);  
-          }  
-          return count;  
-      }'  
-```  
-The parameters in the URL denote that the function should reside in the `travel-sample` bucket, under the `inventory` scope within that bucket.
+ -d 'function getBusinessDays(startDate, endDate) {
+          let count = 0;
+          const curDate = new Date(new Date(startDate).getTime());
+          while (curDate <= new Date(endDate)) {
+              const dayOfWeek = curDate.getDay();
+              if(dayOfWeek !== 0 && dayOfWeek !== 6)
+                  count++;
+              curDate.setDate(curDate.getDate() + 1);
+          }
+          return count;
+      }' 
+```
 
-When you have created an external library and added JavaScript code, you must create an SQL++ user-defined function to reference the JavaScript code in the library, so it can be called as part of any SQL++ statement.
+After you create a JavaScript library and add JavaScript code, you must create a SQL++ user-defined function to reference the JavaScript code in the library, so it can be called as part of any SQL++ statement.
+
+## [](#add-functions-later)Updating an Existing JavaScript Library
+
+You can add or edit functions in an existing JavaScript library with the Couchbase Web Console or a REST API call.
+
+* Couchbase Web Console
+* REST API
+
+To add or edit functions in an existing JavaScript library:
+
+1. In the Couchbase Web Console, go to **Query** **UDF**.
+2. Under **JavaScript Function Libraries**, click **edit** next to the library that you want to update. The **Edit Library** dialog is displayed.
+3. Update the library to add new JavaScript functions, edit existing JavaScript functions, or both.
+4. Click **Save**.
+
+---
+
+The following library contains JavaScript functions called `getBusinessDays` and `sumListOfNumbers`.
+
+```javascript
+function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate <= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 && dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;
+}
+
+function sumListOfNumbers(... args) {
+    var sum = 0;
+    args.forEach(value => sum = sum  + value);
+    return sum;
+}
+```
+
+To update an existing JavaScript library with the Query Functions REST API:
+
+1. Use the [POST /evaluator/v1/libraries/{library}](../n1ql-rest-functions/index.md#post%5Flibrary) endpoint.
+2. Pass the name of the library as a path parameter.
+3. To update a scoped library, pass the bucket and scope as query parameters.
+4. Pass a string containing the JavaScript code for all functions, including the added or edited functions, as the request body.
+
+---
+
+The following request updates a JavaScript library in the `inventory` scope within the `travel-sample` bucket.
+
+```sh
+curl -v -X POST 'http://localhost:8093/evaluator/v1/libraries/my-library?bucket=travel-sample&scope=inventory' \
+ -u Administrator:password \
+ -d 'function getBusinessDays(startDate, endDate) {
+          let count = 0;
+          const curDate = new Date(new Date(startDate).getTime());
+          while (curDate <= new Date(endDate)) {
+              const dayOfWeek = curDate.getDay();
+              if(dayOfWeek !== 0 && dayOfWeek !== 6)
+                  count++;
+              curDate.setDate(curDate.getDate() + 1);
+          }
+          return count;
+      }
+      function sumListOfNumbers(... args) {
+          var sum = 0;
+          args.forEach(value => sum = sum + value);
+       return sum;
+      }'
+```
+
+## [](#delete-udf)Deleting a JavaScript Library
+
+Before you can delete a library, you must first drop all SQL++ user-defined functions which point to any of the JavaScript functions within that library. For more information, see [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md).
+
+You can delete a JavaScript library with the Couchbase Web Console or a REST API call.
+
+* Couchbase Web Console
+* REST API
+
+To delete a JavaScript library:
+
+1. In the Couchbase Web Console, go to **Query** **UDF**.
+2. Under **JavaScript Function Libraries**, click **drop** next to the library that you want to delete. The **Confirm Drop Function Library** dialog is displayed.
+3. Click **OK**.
+
+To delete a JavaScript library with the Query Functions REST API:
+
+1. Use the [DELETE /evaluator/v1/libraries/{library}](../n1ql-rest-functions/index.md#delete%5Flibrary) endpoint.
+2. Pass the name of the library as a path parameter.
+3. To delete a scoped library, pass the bucket and scope as query parameters.
+
+---
+
+The following request deletes a JavaScript library in the `inventory` scope within the `travel-sample` bucket.
+
+```sh
+curl -X DELETE 'http://localhost:8093/evaluator/v1/libraries/my-library?bucket=travel-sample&scope=inventory' \
+-u Administrator:password
+```
 
 ## [](#related-links)Related Links
 
-* [REST API: Create or Update Library](../n1ql-rest-functions/index.md#%5Fpost%5Flibrary)
-* [User-Defined Functions UI](../tools/udfs-ui.md)
+Reference:
+
+* [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md)
+* [Query Functions REST API](../n1ql-rest-functions/index.md)
