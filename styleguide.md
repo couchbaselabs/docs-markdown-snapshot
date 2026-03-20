@@ -532,94 +532,333 @@ This is a selection of important terms. For terms not listed here, refer to the 
 | Numbers | Always write as numerals (1, 2, 3…). Use commas every 3 digits. |
 | a / an | See Articles section. `a SQL`, `an FAQ`. |
 | about | Use "information about," not "information on," before a link. |
+| Access List | Do not use. See `allowlist`. |
+| ACID Transactions | See `Transactions`. |
 | admin | Do not use. Write out `administrator`. |
 | ad hoc | Never hyphenate. Use `adhoc` for the SQL++ parameter. No italics. |
 | adapter | Use `adapter`, not `adaptor`. |
 | afterwards | Use `afterwards`, not `afterward`. |
 | allowlist / denylist | One word each. No hyphen. Do not use whitelist/blacklist/blocklist/passlist/access list. |
+| Amazon cloud | Follow official Amazon capitalization. |
+| Amazon Managed Streaming for Apache Kafka (Amazon MSK) | Write out in full for the first use on a page. Use `Amazon MSK` for short on subsequent uses. |
+| Amazon MSK Kafka pipeline | Do not expand `MSK` when referring to a specific pipeline. Do not capitalize `pipeline`. |
+| Amazon S3 | Capitalize `Amazon` and the `S` in `S3`. |
+| amber | Use `amber` for traffic lights or health warning colors. Not `yellow`. |
 | Analytics Service | Legacy. Use `Capella Analytics` or `Enterprise Analytics`. |
+| APAC | Write as a proper acronym. |
 | API | Do not spell out on first use. |
 | app / application | `app` for mobile; `application` for client software like Couchbase Server. |
+| as of | Use only when referring to dates or time. For software versions, use a phrase such as "beginning with Couchbase Server n.n". |
+| AsciiDoc | Follow official Eclipse Foundation capitalization. |
+| autocomplete | One word. No hyphen. |
 | auto-failover | Hyphenate. Verb form: `automatically fails over`. |
+| automatic schema discovery | No hyphen. Do not capitalize. |
+| auto-sharding | Add the hyphen. |
+| Availability Zone | Capitalize `Availability` and `Zone`. |
+| AWS Identity and Access Management (IAM) | Write as `AWS IAM` after the first expanded use. Do not write as just `IAM` when referring to Amazon Web Services IAM. |
 | backend | Noun: `backend`; adjective: `back-end`. |
 | backup | Noun/adjective: `backup`; verb: `back up`. |
+| [Couchbase] Backup Manager | Follow official Couchbase capitalization. |
+| backward-compatible | Add the hyphen. |
 | beta release | Use before the product name. Only `Beta` after the product name. |
+| BI | Abbreviation for Business Intelligence. |
+| bidirectional | One word. No hyphen. |
 | big data | Two words, no hyphen, no capitalization. |
+| Blacklist | Do not use. See `denylist`. |
+| Blocklist | Do not use. See `denylist`. |
+| blog | Do not use `weblog`. |
+| bootstrap | One word. No hyphen. |
+| buckets | Do not capitalize. |
 | bytes | `kB/MB/GB/TB/PB` for decimal; `KiB/MiB/GiB` for binary. |
+| C++ | In AsciiDoc/Antora, use `{cpp}` to avoid markup issues. |
 | Capella Analytics | Proper product name for analytics on Capella. Do not use `Columnar` or `Couchbase Columnar`. |
+| cbbackupmgr | Follow capitalization and spelling set in the code. |
+| cbc | Follow capitalization and spelling set in the code. |
+| cbcollect | Follow capitalization and spelling set in the code. |
+| cbq | Follow capitalization and spelling set in the code. Official product name for the query shell. |
+| cbtransfer | Follow capitalization and spelling set in the code. |
+| CentOS | Follow official Red Hat capitalization. |
+| cheat sheet | Two words. No hyphen. |
+| checkpoint | One word. No hyphen. |
+| cloud | Lowercase unless part of a product name. |
+| cloud native | Noun: `cloud native`; adjective: `cloud-native`. |
+| cloud service provider (CSP) | All lowercase. Include the acronym in brackets. Use the acronym for subsequent uses. |
 | cluster | Preferred term for Couchbase Server or Capella instances (not `instance` or `database`). |
+| Cluster Manager | Follow official Couchbase capitalization. |
+| codebase | One word. No hyphen. |
 | collection | Do not capitalize. |
+| Columnar | Old product name for Capella Analytics. Do not use. |
 | command line | Noun: `command line`; adjective: `command-line`. |
+| Compare and Swap (CAS) | Write out for the first use on a page. Capitalize as a proper product name. |
 | config / configs | Do not use. Use `configuration` (noun) or `configure` (verb). |
+| ConfigProviderBase | Follow capitalization and spelling set in the code. |
+| Confluent Cloud | Capitalize as a proper noun. |
+| Confluent Cloud Kafka pipeline | Capitalize `Confluent`, `Cloud`, and `Kafka` as proper nouns. Do not capitalize `pipeline`. |
+| Couchbase | Follow official Couchbase capitalization. |
+| Couchbase Autonomous Operator (CAO) | Follow official Couchbase capitalization. |
 | Couchbase Capella | Use `operational cluster` to specify vs. Capella Analytics. |
+| Couchbase Cluster Connection Protocol (CCCP) | Write out for the first use on a page. Follow official Couchbase capitalization. |
+| Couchbase Columnar | Old product name for Capella Analytics. Do not use. |
+| (the) Couchbase Data Platform | Write as `data platform` if not preceded by `Couchbase`. |
+| Couchbase Eventing Service | Title case when referring to Couchbase Services. |
+| Couchbase Functions | Follow official Couchbase capitalization. |
+| Couchbase Managed Cloud | Legacy term for Couchbase Capella. |
+| Couchbase Monitoring and Observability Stack (CMOS) | Follow official Couchbase capitalization. |
 | Couchbase Server n.n | Full name first use. `Server n.n` afterwards. Never "the Couchbase Server." |
+| Couchbase Server Enterprise Edition | Write as `Couchbase Server Enterprise Edition`. |
+| Couchstore | Follow official Couchbase capitalization. |
 | cross datacenter replication (XDCR) | Spell out first use, lowercase, no hyphen. |
 | curl | All lowercase. |
 | data center | Two words, no hyphen. |
+| data-centric | Add the hyphen. |
+| data definition language (DDL) | Do not spell out on first use. |
+| data-driven | Add the hyphen. |
+| data manipulation language (DML) | Do not spell out on first use. |
+| data modeling | Two words. No hyphen. |
+| DataOps | Capitalize the `D` and `O`. |
+| data provider | Do not use. Use `data source` instead. |
+| Data Service | Title case when referring to Couchbase Services. |
+| data source | Do not capitalize. Do not use `data provider`. |
+| data store | Two words. No hyphen. |
+| data structure | Two words. No hyphen. |
 | database | Do not capitalize (Capella Analytics context). Do not use to refer to Capella operational clusters. |
+| Database Change Protocol (DCP) | Write out in full on first use. |
+| datacenter replication | Two words. No hyphen. |
+| dataset | One word. No hyphen. |
+| datasheet | One word. No hyphen. |
+| decrypter | Use American English spelling (`decrypter`, not `decryptor`). |
+| deduplicate | One word. No hyphen. |
 | Deprecated | Use to indicate a feature will be removed in a future release. Specify that it will be removed. |
+| design document | Lowercase. No hyphen. |
+| DevOps | Capitalize the `D` and `O`. |
 | different from | Use `different from`, not `different than` or `different to`. |
+| digitization | Use American English spelling with a `z`. |
 | disassociate | Preferred term. Do not use `dissociate` or `unassociate`. |
+| Distributed Transactions | See `Transactions`. |
 | e-commerce | Lowercase with hyphen. Capitalize as `E-commerce` only at start of sentence. |
+| e.g. | Do not use. Write `for example` instead. |
 | earlier / later | Use for software version comparisons. Not `older/newer` or `lower/higher`. |
+| elastic-scale | Add the hyphen when used as an adjective. |
+| Elasticsearch | Follow official Elastic capitalization. |
+| em dash (—) | See punctuation guidelines. |
 | email | No hyphen. |
+| EMEA | Write as a proper acronym. |
+| encrypter | Use American English spelling (`encrypter`, not `encryptor`). |
 | end user | Noun: `end user`; adjective: `end-user`. |
+| Engagement Database | Capitalize as a proper product name. |
 | ensure | Do not use. Use `make sure`. |
 | Enterprise Analytics | On-premises Couchbase Analytics product name. Not `Analytics Service` or `Columnar`. |
+| ePayment | One word. No hyphen. |
+| error-free | Add the hyphen. |
+| etc. | Do not use. Write `and so on` instead. |
+| Event-Condition-Action model | Add the hyphens. Capitalize `Event`, `Condition`, and `Action`. |
+| Eventing Service | Title case when referring to Couchbase Services. |
 | eviction / ejection / expiration | Use precisely: eviction = removed entirely; ejection = removed from one layer but not the system; expiration = deleted after TTL. |
+| external collection | Do not capitalize. |
+| extract, transform, load (ETL) operations | Write out in full on first use. |
 | FAQ | `An FAQ` (spelled out) or `a FAQ` if pronounced as a word. |
 | failover | Noun: one word. Verb: two words (`fail over`). |
 | fewer | For countable nouns. |
 | filename | One word, no hyphen. |
+| filesystem | One word. No hyphen. |
+| fine-grained | Add the hyphen. |
+| five nines | No hyphen as a noun. Add a hyphen when used as an adjective (`five-nines`). |
+| focused | One `s`. Not `focussed`. |
+| ForestDB | Follow official Couchbase capitalization. |
+| FQDN | Fully Qualified Domain Name. Write out in full on first use. |
+| free-form | Add the hyphen. |
+| full-stack | Add the hyphen when used as an adjective. |
 | full-text indexes | Hyphenate. Use `Search Service`, not `Full-Text Search (FTS)`. |
+| Full-Text Search (FTS) | Use `Search Service` instead. Title case when referring to Couchbase Services. |
+| Function-as-a-Service (FaaS) | Write out in full on first use. |
+| geo-distributed | Add the hyphen. |
+| Geofencing | One word. No hyphen. Capitalize `G`. |
 | GitHub | Follow official capitalization. |
+| Global Secondary Indexes (GSI) | Write out for the first use on a page. Capitalize as a proper product name. |
+| Google Cloud Platform | Follow official Google capitalization. |
+| GUID | Globally Unique Identifier. Write in all caps as an acronym. |
+| gzip | All lowercase. Follow Google Developer Style Guide guidance on file type names. |
 | hard-coded / hard-wired | Hyphenate both. |
+| hash key | Two words. No hyphen. |
+| help desk | Two words. No hyphen. |
 | hostname | One word. |
+| HTML | Follow official capitalization. |
+| hybrid cloud | Two words. No hyphen. |
+| hybrid operational and analytic processing (HOAP) | Write out for the first use on a page. |
+| hybrid transaction/analytical processing (HTAP) | Write out for the first use on a page. |
+| i.e. | Do not use. Write `that is` instead. |
 | indexes | Do not use `indices`. |
+| IndexScan | One word. Capitalize `Index` and `Scan`. |
+| industry standard | Two words. No hyphen. |
+| information about / information on | See `about`. |
+| infrastructure as a service (IaaS) | Write out for the first use on a page. |
+| initargs | All lowercase, as in the code. |
 | in-memory | Hyphenate. |
 | install | Verb: `install`; noun: `installation`. |
 | instance | Do not use. See `cluster`. |
 | Internet | Capitalize as a proper noun. |
 | Internet of Things (IoT) | Spell out first use. Lowercase `o` in `of`. |
+| intra-cluster replication | Add the hyphen. |
+| JAR | Follow the Google Developer Style Guide guidance on how to refer to file type names. |
+| Java | Follow official capitalization. |
+| JavaScript | Follow official capitalization. |
+| JIRA | Follow official Atlassian capitalization. |
+| joins | Do not capitalize. |
+| JSON | Follow official capitalization. |
+| Kafka | Follow official Apache capitalization. |
 | key-value | Hyphenate. |
+| keyspace | One word. No hyphen. |
+| KV Service | Do not use. Use `Data Service` instead. |
+| Last Write Wins (LWW) | Write out for the first use on a page. |
+| LDAP | Lightweight Directory Access Protocol. Do not spell out on first use. |
 | less | For uncountable nouns and measured quantities. |
+| libcouchbase (LCB) | Write out for the first use on a page. |
+| link | Do not use `data link`. Do not capitalize. |
+| livestream | One word. No hyphen or space. |
 | log in | Verb: `log in`; adjective: `log-in`; noun: `login`. |
+| low latency | Two words. No hyphen. |
+| low write latency | Three words. No hyphen. |
+| MapReduce | One word. Capitalize `Map` and `Reduce`. |
+| MapReduce views | Use `Views Service`. When referring to Couchbase Services, use title case. |
+| massively parallel processing (MPP) | No hyphen. Write out for the first use on a page. |
 | master / slave | Do not use. Use `primary / secondary`. |
+| Memcached bucket | Only capitalize `Memcached`. Use only in legacy documentation. |
+| memcached | Do not capitalize unless referring to a Memcached bucket. Use in legacy documentation. |
+| memory-optimized indexes (MOI) | Do not capitalize. Hyphenate `memory-optimized`. Write out for the first use on a page. |
 | metadata | One word, no hyphen. |
 | microservices | One word, no hyphen. |
+| microservices applications | One word `microservices`. No hyphen. Do not capitalize. |
+| microservices architecture | One word `microservices`. No hyphen. Do not capitalize. |
+| millisecond (ms) | Write with a space before `ms`. Example: `50 ms`. |
+| mission critical | Noun: `mission critical`; adjective: `mission-critical`. |
+| MongoDB™ | Follow official MongoDB capitalization. Include the trademark symbol ™. |
+| multichannel | One word. No hyphen. |
+| multi-datacenter | Add the hyphen. |
+| Multi-Dimensional Scaling (MDS) | Capitalize as a proper product name. Write out for the first use on a page. |
+| multilingual | One word. No hyphen. |
+| Multi-master | Do not use. See `primary/secondary`. |
+| multi-model | Add the hyphen. |
+| multi-region | Add the hyphen. |
+| multi-threaded | Add the hyphen. |
 | N1QL | Old term for SQL++. Do not use except in legacy documentation. |
+| nameservers | One word. No hyphen. |
+| nginx | Follow official capitalization. |
+| Node.js | Follow official capitalization. |
+| nonpersistent | One word. No hyphen. |
 | note that | Do not use. |
+| not-recently-used (NRU) | Write out for the first use on a page. Add hyphens between each word. |
+| npm | Follow official capitalization. |
+| numReplicas | Use camel case as set in the code. |
+| nxdomain | Follow official capitalization. |
+| OAuth | Capitalize the `O` and the `A`. |
+| Objective-C | Follow official capitalization. |
+| offline | One word. No hyphen. |
+| Omnichannel | Capitalize `O`. One word. No hyphen. |
 | on demand | Noun: `on demand`; adjective: `on-demand`. |
+| online | One word. No hyphen. |
 | on-premises | Noun: `on premises`; adjective: `on-premises`. |
+| on-site/off-site | Add a hyphen. |
 | one can | Do not use. Address the user directly with `you`. |
 | open source | No hyphen. |
+| operational cluster | Use when referring to a cluster on Couchbase Capella operational, as opposed to a Capella Analytics cluster. |
+| opt-out | Add the hyphen. |
+| optimisticReplicationThreshold | Use camel case as set in the code. |
+| Oxford comma | See commas guidelines. |
 | page | Use to refer to what a user accesses from a menu or tab. |
+| parameterized | Use American English spelling with a `z`. |
+| passlist | Do not use. See `allowlist`. |
 | peer to peer | Noun: no hyphens; adjective: `peer-to-peer`. |
+| PDF | Follow the Google Developer Style Guide guidance on file type names. |
+| PLAIN authentication | Write `PLAIN` in all caps. Do not capitalize `authentication`. |
+| Pluggable Authentication Modules (PAM) | Write out for the first use on a page. |
 | plug in | Noun: `plugin`; adjective: `plug-in`; verb: `plug in`. |
+| preload | One word. No hyphen. |
 | primary / secondary | Use instead of master/slave. |
+| query editor | Do not capitalize. |
+| query executor | Do not capitalize. |
+| Query History | Capitalize as a proper product name. |
+| Query Monitor | Capitalize as a proper product name. To refer to the act of monitoring a query, use `query monitoring`. |
+| query plan | Do not capitalize. |
+| query plan visualizer | Do not capitalize. |
+| Query Service | Title case when referring to Couchbase Services. |
+| query shell | Use the product name, CBQ. |
+| Query Workbench | Capitalize as a proper product name. |
+| quick links | Write as two separate words. |
+| quotation marks | Do not use quotation marks outside of code. Do not use fancy quotes characters. |
+| rack awareness (RA) | Write out for the first use on a page. Do not write as Rack/Zone Awareness. |
+| Read Committed | When referring to the isolation level for transactions, do not add a hyphen. Capitalize `Read` and `Committed`. |
+| Read-Your-Own-Writes (RYOW) | Write out for the first use on a page. Add hyphens between each word. |
 | real time | Noun: two words; adjective: `real-time`. |
 | rebalance | One word, no hyphen. |
 | refer to | Do not use. Use `see`. |
+| reindexing | One word. No hyphen. |
+| remote collection | Do not capitalize. |
 | repo | Do not use. Write out `repository`. |
+| retryable | Do not write as `retriable`. |
+| risk-free | Add the hyphen. |
 | Role-Based Access Control (RBAC) | Spell out first use. Capitalize as proper product name. |
+| RxJava | Follow official capitalization. |
 | schema-less | Hyphenate. Lowercase. Or use `flexible schema`. |
+| scope | Do not capitalize. |
+| SCRAM-SHA-256 and SCRAM-SHA-512 | Add hyphens between each word. Write in all caps. |
+| screenshot | One word. No hyphen. |
 | SDK | Do not spell out on first use. Pluralized as `SDKs`. |
+| SDKs | Treat acronyms as regular words when pluralizing. |
+| Search Service | Title case when referring to Couchbase Services. |
 | see | Use instead of `refer to` for introducing links. |
+| Service Group | Capitalize `Service` and `Group`. |
 | setup | Noun: `setup`; adjective: `set-up`; verb: `set up`. |
+| sgcollect | One word. All lowercase. |
 | sign up | Verb: `sign up`; adjective: `sign-up`. |
+| single node | Noun: `single node`; adjective: `single-node`. |
+| Spark | Do not specify as Apache Spark. Follow official Apache capitalization. |
 | SQL++ | The Couchbase query language. Pronounced "sequel plus plus". Use `a SQL++`. |
+| standalone collection | Do not capitalize. |
+| startup | Use `startup` as the noun. |
+| Storm | Do not specify as Apache Storm. Follow official Apache capitalization. |
+| Structured Streaming | Write out as `Structured Streaming API` for the first use on a page. |
+| sub-clause | Add the hyphen. Do not capitalize. |
+| Sub-Document | Add the hyphen. Capitalize `Sub` and `Document`. |
+| sub-millisecond | Add the hyphen. |
+| subqueries | One word. No hyphen. |
+| sudo | All lowercase. |
+| swappiness | |
+| TAP | |
+| tar | Follow Google Developer Style Guide guidance on file type names. |
+| targetNozzlePerNode | Use camel case as set in the code. |
+| tcpdump | Follow official capitalization as set by Tcpdump Team. |
+| THP | |
 | time series | Two words, sentence case, no hyphen. |
 | time to live (TTL) | Lowercase. Spell out on first use. |
+| topology aware | Add the hyphen when used as an adjective. |
+| touchpoint(s) | One word. No hyphen. |
 | towards | Use `towards`, not `toward`. |
 | Transactions | Use `Distributed ACID Transactions` on first use. `Distributed Transactions` or `Transactions` on subsequent uses. |
+| Ubuntu | Follow official Canonical capitalization. Use `an`, not `a`. |
 | under construction | Use for incomplete/in-progress pages. Do not use `wip` or `work in progress`. |
+| uninstall | One word. No hyphen. |
+| UNNEST | Capitalize SQL and SQL++ clauses. |
 | vBucket | Lowercase `v`, capitalize `Bucket`. |
+| vBucketMap | Lowercase `v`. Capitalize `Bucket` and `Map`. |
+| vBucketServerMap | Lowercase `v`. Capitalize `Bucket`, `Server`, and `Map`. |
+| Views Service | Title case when referring to Couchbase Services. |
+| virtualization | Use American English spelling with a `z`. |
+| vmstat | Virtual memory statistics reporter built into Linux. Write in all lowercase. |
+| VMware | Follow the official capitalization as set by VMware. |
+| warmup | One word. No hyphen. |
 | web | Do not use all caps. |
 | web page | Do not use. Use `page`. If must use, two words, no hyphen. |
+| Whitelist | Do not use. See `allowlist`. |
 | whitepaper | One word, no hyphen. |
 | Wi-Fi | Hyphenate. Capitalize `W` and `F`. Do not use `wifi` or `WiFi`. |
+| wip | Do not use. See `under construction`. |
+| work in progress | Do not use as a banner on incomplete or in-progress pages. See `under construction`. |
+| X.509 | Capitalize the `X`. Include the period when referring to X.509 certificates. |
 | XDCR | Cross Data Center Replication. Spell out on first use. |
+| XML | Use the formal name of the file type, as an XML file. Follow the [Google Developer Style Guide](https://developers.google.com/style/filenames#file-type-names) guidance on file type names. |
 | yellow | Use `amber` for traffic lights or health warning colors. |
+| Zendesk | Follow the official capitalization as set by Zendesk. |
+| zip | Follow the [Google Developer Style Guide](https://developers.google.com/style/filenames#file-type-names) guidance on file type names. |
 
 ---
 
