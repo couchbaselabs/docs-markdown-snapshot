@@ -4,10 +4,11 @@ description: The Python SDK lets you create <em>users</em>, assign them
   <em>roles</em> and associated <em>privileges</em>, and remove them from the
   system.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.4/modules/howtos/pages/sdk-user-management-example.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:4.4@python-sdk:howtos:sdk-user-management-example.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/python-sdk/4.4/howtos/sdk-user-management-example.html)
 
 # User Management

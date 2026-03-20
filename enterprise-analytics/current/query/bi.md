@@ -5,10 +5,11 @@ description: You can apply features available for visualizing and analyzing data
   interactive data visualization platforms to the query results you obtain in
   Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/bi.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:enterprise-analytics:query:bi.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/query/bi.html)
 
 # Use Business Intelligence Tools

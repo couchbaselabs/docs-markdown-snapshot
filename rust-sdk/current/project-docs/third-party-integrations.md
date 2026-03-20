@@ -4,10 +4,11 @@ description: The Couchbase Rust SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-03-19T03:50:46.889Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:project-docs:third-party-integrations.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/project-docs/third-party-integrations.html)
 
 # Integrations &amp; Ecosystem

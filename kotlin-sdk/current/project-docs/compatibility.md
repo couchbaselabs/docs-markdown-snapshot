@@ -4,10 +4,11 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:kotlin-sdk:project-docs:compatibility.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/current/project-docs/compatibility.html)
 
 # Compatibility

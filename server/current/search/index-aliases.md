@@ -3,10 +3,11 @@ title: Create Search Index Aliases
 description: A Search index alias lets you run a Search query against a Search
   index without using the original Search index name.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/index-aliases.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:index-aliases.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/index-aliases.html)
 
 # Create Search Index Aliases

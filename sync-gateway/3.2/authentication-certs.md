@@ -2,10 +2,11 @@
 title: TLS Certificate Authentication
 description: Securing Couchbase Sync Gateway with TLS Authentication
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/authentication-certs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@sync-gateway::authentication-certs.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.2/authentication-certs.html)
 
 # TLS Certificate Authentication

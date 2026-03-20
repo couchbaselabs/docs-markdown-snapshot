@@ -3,10 +3,11 @@ title: "Function: Advanced Keep the Last N User Items"
 description: Keep the last N user notifications seen related to a user ID (these
   could be any documents).
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-advanced-keepLastN.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:eventing:eventing-handler-advanced-keepLastN.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/eventing/eventing-handler-advanced-keepLastN.html)
 
 # Function: Advanced Keep the Last N User Items

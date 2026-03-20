@@ -4,10 +4,11 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.10@go-sdk:project-docs:compatibility.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/2.10/project-docs/compatibility.html)
 
 # Compatibility

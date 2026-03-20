@@ -3,10 +3,11 @@ title: Handling Errors
 description: Errors are inevitable. That's why the SDK has very extensive error
   handling and retry capabilties
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.9/modules/howtos/pages/error-handling.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.9@java-sdk:howtos:error-handling.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/java-sdk/3.9/howtos/error-handling.html)
 
 # Handling Errors

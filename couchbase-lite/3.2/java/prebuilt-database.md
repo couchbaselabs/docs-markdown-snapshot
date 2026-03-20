@@ -2,10 +2,11 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on Java app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/java/pages/prebuilt-database.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@couchbase-lite:java:prebuilt-database.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/3.2/java/prebuilt-database.html)
 
 # Pre-built Database

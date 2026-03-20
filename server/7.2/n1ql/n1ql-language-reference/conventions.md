@@ -3,10 +3,11 @@ title: Conventions
 description: The SQL++ syntax descriptions in the documentation use some
   notational conventions that you need to be familiar with.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/n1ql/pages/n1ql-language-reference/conventions.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:n1ql:n1ql-language-reference/conventions.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/n1ql/n1ql-language-reference/conventions.html)
 
 # Conventions

@@ -3,10 +3,11 @@ title: Set Query Options
 description: You can use the <strong>query options</strong> to change the query
   timeout period, define request-level parameters, and so on.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/options.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:query:options.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/query/options.html)
 
 # Set Query Options

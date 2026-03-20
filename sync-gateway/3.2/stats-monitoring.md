@@ -3,10 +3,11 @@ title: View Statistics and Metrics
 description: This content covers the statistics and metrics collected and made
   available by Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/stats-monitoring.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@sync-gateway::stats-monitoring.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.2/stats-monitoring.html)
 
 # View Statistics and Metrics

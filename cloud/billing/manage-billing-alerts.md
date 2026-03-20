@@ -2,10 +2,11 @@
 title: Manage Billing Alerts
 description: Create billing alerts to monitor usage.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/manage-billing-alerts.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:billing:manage-billing-alerts.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/billing/manage-billing-alerts.html)
 
 # Manage Billing Alerts

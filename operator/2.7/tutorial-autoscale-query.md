@@ -1,10 +1,11 @@
 ---
 title: Auto-scaling the Couchbase Query Service
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.7/modules/ROOT/pages/tutorial-autoscale-query.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.7@operator::tutorial-autoscale-query.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/2.7/tutorial-autoscale-query.html)
 
 # Auto-scaling the Couchbase Query Service

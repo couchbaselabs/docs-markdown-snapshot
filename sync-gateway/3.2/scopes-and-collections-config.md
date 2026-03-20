@@ -2,10 +2,11 @@
 title: Scopes and Collections Configuration for Sync Gateway
 description: Configure Scopes and Collections for Sync Gateway - Examples with descriptions.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/scopes-and-collections-config.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@sync-gateway::scopes-and-collections-config.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.2/scopes-and-collections-config.html)
 
 # Scopes and Collections Configuration for Sync Gateway

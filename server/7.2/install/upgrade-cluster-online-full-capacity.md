@@ -1,10 +1,11 @@
 ---
 title: Upgrade a Full-Capacity, Online Cluster
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-cluster-online-full-capacity.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:install:upgrade-cluster-online-full-capacity.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/install/upgrade-cluster-online-full-capacity.html)
 
 # Upgrade a Full-Capacity, Online Cluster

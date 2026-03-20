@@ -2,10 +2,11 @@
 title: Expressions
 description: A description of SQL++ for Capella Analytics expressions.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/2_expr.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:sqlpp:2_expr.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/sqlpp/2_expr.html)
 
 # Expressions

@@ -3,10 +3,11 @@ title: 3.x to 4.x Migration Guide
 description: Couchbase PHP SDK 4.0 brought several improvements to the API; some
   of them involved breaking changes.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/project-docs/pages/migrating-sdk-code-3.x-to-4.x.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:4.2@php-sdk:project-docs:migrating-sdk-code-3.x-to-4.x.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/php-sdk/4.2/project-docs/migrating-sdk-code-3.x-to-4.x.html)
 
 # 3.x to 4.x Migration Guide

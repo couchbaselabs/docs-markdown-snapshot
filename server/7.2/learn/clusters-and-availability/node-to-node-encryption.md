@@ -3,10 +3,11 @@ title: Node-to-Node Encryption
 description: Network traffic between the individual nodes of a Couchbase-Server
   cluster can be encrypted, in order to optimize cluster-internal security.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/node-to-node-encryption.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:learn:clusters-and-availability/node-to-node-encryption.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/learn/clusters-and-availability/node-to-node-encryption.html)
 
 # Node-to-Node Encryption

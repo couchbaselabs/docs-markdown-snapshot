@@ -3,10 +3,11 @@ title: Configure Log Streaming for an App Endpoint
 description: Enhance your App Services log streaming with a granular set of Log
   Filters and Levels for each App Endpoint.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/configure-log-streaming-app-endpoint.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:app-services::monitoring/configure-log-streaming-app-endpoint.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/monitoring/configure-log-streaming-app-endpoint.html)
 
 # Configure Log Streaming for an App Endpoint

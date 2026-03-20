@@ -4,10 +4,11 @@ description: Log Streaming provides a mechanism for real-time streaming of App
   Services operational logs to third-party observability platforms or
   self-hosted HTTP logs collectors.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/log-streaming.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:app-services::monitoring/log-streaming.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/monitoring/log-streaming.html)
 
 # Log Streaming

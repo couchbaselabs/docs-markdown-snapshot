@@ -3,10 +3,11 @@ title: Use Customer-Managed Encryption Keys (CMEK)
 description: Capella encrypts cluster volumes at rest. You can move control of
   the keys from Couchbase to your own key management system (KMS).
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/cmek.adoc
-pubDate: 2026-02-24T03:43:07.775Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:security:cmek.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/security/cmek.html)
 
 # Use Customer-Managed Encryption Keys (CMEK)

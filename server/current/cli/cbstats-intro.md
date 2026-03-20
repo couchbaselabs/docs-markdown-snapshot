@@ -3,10 +3,11 @@ title: cbstats
 description: The <code>cbstats</code> tool provides Data Service statistics, for
   an individual node.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats-intro.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:cli:cbstats-intro.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/cli/cbstats-intro.html)
 
 # cbstats

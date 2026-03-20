@@ -3,10 +3,11 @@ title: Analytics Service
 description: The Analytics Service provides a parallel data-management
   capability, allowing the running of complex analytical queries.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/learn/pages/services-and-indexes/services/analytics-service.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:learn:services-and-indexes/services/analytics-service.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/learn/services-and-indexes/services/analytics-service.html)
 
 # Analytics Service

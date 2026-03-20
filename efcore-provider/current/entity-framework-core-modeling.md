@@ -2,10 +2,11 @@
 title: Configuring the model with the EF Core Couchbase DB Provider
 description: Modeling a document database.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-modeling.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:efcore-provider::entity-framework-core-modeling.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/efcore-provider/current/entity-framework-core-modeling.html)
 
 # Configuring the model with the EF Core Couchbase DB Provider

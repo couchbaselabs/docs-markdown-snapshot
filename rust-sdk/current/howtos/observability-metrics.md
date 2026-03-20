@@ -3,10 +3,11 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:observability-metrics.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/observability-metrics.html)
 
 # Metrics Reporting

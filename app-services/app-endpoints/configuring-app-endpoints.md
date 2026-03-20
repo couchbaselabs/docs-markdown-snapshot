@@ -3,10 +3,11 @@ title: Manage App Endpoints Lifecycle
 description: Pause, resume, and delete App Endpoints for maintenance or to lower
   costs when the service is not required.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/configuring-app-endpoints.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:app-services::app-endpoints/configuring-app-endpoints.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/app-endpoints/configuring-app-endpoints.html)
 
 # Manage App Endpoints Lifecycle

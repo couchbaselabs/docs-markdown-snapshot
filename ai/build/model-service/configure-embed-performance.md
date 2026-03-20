@@ -3,10 +3,11 @@ title: Configure Embedding Model Performance
 description: The Capella Model Service offers options to tweak the performance
   of your embedding model.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-embed-performance.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ai:build:model-service/configure-embed-performance.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/model-service/configure-embed-performance.html)
 
 # Configure Embedding Model Performance

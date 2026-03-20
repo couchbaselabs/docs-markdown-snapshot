@@ -4,10 +4,11 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/n1ql-queries-with-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:dotnet-sdk:howtos:n1ql-queries-with-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/dotnet-sdk/current/howtos/n1ql-queries-with-sdk.html)
 
 # SQL++ Queries from the SDK

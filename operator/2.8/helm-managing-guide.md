@@ -1,10 +1,11 @@
 ---
 title: Helm Management Guide
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/helm-managing-guide.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.8@operator::helm-managing-guide.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/2.8/helm-managing-guide.html)
 
 # Helm Management Guide

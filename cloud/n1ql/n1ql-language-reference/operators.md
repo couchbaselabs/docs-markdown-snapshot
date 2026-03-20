@@ -2,10 +2,11 @@
 title: Operators Overview
 description: Operators perform a specific operation on the input values or expressions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/operators.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:n1ql:n1ql-language-reference/operators.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/n1ql/n1ql-language-reference/operators.html)
 
 # Operators Overview

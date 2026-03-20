@@ -3,10 +3,11 @@ title: Buckets
 description: A <em>bucket</em> is the fundamental space for storing data in
   Couchbase Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/buckets-memory-and-storage/buckets.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:learn:buckets-memory-and-storage/buckets.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/learn/buckets-memory-and-storage/buckets.html)
 
 # Buckets

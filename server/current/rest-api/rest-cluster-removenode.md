@@ -3,10 +3,11 @@ title: Removing Nodes from Clusters
 description: Remove nodes from clusters with the <code>POST
   /controller/ejectNode</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-cluster-removenode.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:rest-cluster-removenode.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/rest-cluster-removenode.html)
 
 # Removing Nodes from Clusters

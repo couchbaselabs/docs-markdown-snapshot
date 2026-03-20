@@ -3,10 +3,11 @@ title: Install or provision the Couchbase server
 description: A short tutorial that will guide the developer in downloading and
   installing Couchbase, then creating a database to store our student records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/install-couchbase-server.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:tutorials:install-couchbase-server.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/tutorials/install-couchbase-server.html)
 
 # Install or provision the Couchbase server

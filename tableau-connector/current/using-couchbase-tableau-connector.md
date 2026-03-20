@@ -1,10 +1,11 @@
 ---
 title: Using the Couchbase Tableau Connector
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/using-couchbase-tableau-connector.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:tableau-connector::using-couchbase-tableau-connector.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tableau-connector/current/using-couchbase-tableau-connector.html)
 
 # Using the Couchbase Tableau Connector

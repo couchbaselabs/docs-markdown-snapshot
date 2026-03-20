@@ -1,10 +1,11 @@
 ---
 title: Index Creation with REST API
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/fts/pages/fts-creating-index-with-rest-api.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:fts:fts-creating-index-with-rest-api.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/fts/fts-creating-index-with-rest-api.html)
 
 # Index Creation with REST API

@@ -1,10 +1,11 @@
 ---
 title: Connecting to Tableau Cloud using the Tableau Bridge
 editUrl: https://github.com/couchbase/docs-tableau/edit/release/1.1/modules/ROOT/pages/connecting-to-tableau-cloud-using-tableau-bridge.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:tableau-connector::connecting-to-tableau-cloud-using-tableau-bridge.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tableau-connector/current/connecting-to-tableau-cloud-using-tableau-bridge.html)
 
 # Connecting to Tableau Cloud using the Tableau Bridge

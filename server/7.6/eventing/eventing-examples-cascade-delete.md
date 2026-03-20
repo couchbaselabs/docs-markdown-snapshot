@@ -3,10 +3,11 @@ title: Cascade Delete
 description: This example illustrates how to leverage the Eventing Service to
   perform a cascade delete operation.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-cascade-delete.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:eventing:eventing-examples-cascade-delete.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/eventing/eventing-examples-cascade-delete.html)
 
 # Cascade Delete

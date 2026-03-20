@@ -2,10 +2,11 @@
 title: "Function: Advanced Keep the Last N User Items"
 description: Keep the last N user notifications related to a user ID.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-advanced-keepLastN.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-handler-advanced-keepLastN.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-handler-advanced-keepLastN.html)
 
 # Function: Advanced Keep the Last N User Items

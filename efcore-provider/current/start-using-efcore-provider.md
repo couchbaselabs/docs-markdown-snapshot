@@ -3,10 +3,11 @@ title: Getting Started with Couchbase EFCore
 description: Get up and running with <code>Couchbase.EntityFrameworkCore</code>
   via a Console application.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/start-using-efcore-provider.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:efcore-provider::start-using-efcore-provider.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/efcore-provider/current/start-using-efcore-provider.html)
 
 # Getting Started with Couchbase EFCore

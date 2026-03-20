@@ -1,10 +1,11 @@
 ---
 title: User Management
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/concept-docs/pages/sdk-user-management-overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.9@go-sdk:concept-docs:sdk-user-management-overview.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/2.9/concept-docs/sdk-user-management-overview.html)
 
 # User Management

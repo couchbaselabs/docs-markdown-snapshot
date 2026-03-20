@@ -3,10 +3,11 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.11/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:scala-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/scala-sdk/current/howtos/analytics-using-sdk.html)
 
 # Analytics

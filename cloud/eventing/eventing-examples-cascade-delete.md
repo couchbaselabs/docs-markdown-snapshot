@@ -3,10 +3,11 @@ title: Cascade Delete Documents
 description: Use the Eventing Service to perform cascade delete operations on
   your documents.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-cascade-delete.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-examples-cascade-delete.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-examples-cascade-delete.html)
 
 # Cascade Delete Documents

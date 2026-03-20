@@ -3,10 +3,11 @@ title: Install Enterprise Analytics on Red Hat Enterprise
 description: Enterprise Analytics can be installed on Red Hat Enterprise Linux
   for production and development use-cases.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/red-hat-installation.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:install:red-hat-installation.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/install/red-hat-installation.html)
 
 # Install Enterprise Analytics on Red Hat Enterprise

@@ -3,10 +3,11 @@ title: Application Telemetry
 description: You can enable application telemetry to have Couchbase Server
   periodically collect telemetry from your clients that use the Couchbase SDK.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/application-telemetry.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:application-telemetry.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/application-telemetry.html)
 
 # Application Telemetry

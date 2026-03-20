@@ -2,10 +2,11 @@
 title: Reference Pages
 description: Essential reference infomation for developing with Columnar.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-go/edit/release/1.0/modules/ref/pages/index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:go-columnar-sdk:ref:index.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-columnar-sdk/current/ref/index.html)
 
 # Reference Pages

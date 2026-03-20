@@ -3,10 +3,11 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/slow-operations-logging.html)
 
 # Slow Operations Logging

@@ -1,10 +1,11 @@
 ---
 title: Alertmanager
 editUrl: https://github.com/couchbaselabs/observability/edit/0.2.x/docs/modules/ROOT/pages/component-alertmanager.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cmos::component-alertmanager.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cmos/current/component-alertmanager.html)
 
 # Alertmanager

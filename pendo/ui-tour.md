@@ -1,10 +1,11 @@
 ---
 title: UI Tour Guides
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/pendo/modules/ROOT/pages/ui-tour.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:pendo::ui-tour.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/pendo/ui-tour.html)
 
 # UI Tour Guides

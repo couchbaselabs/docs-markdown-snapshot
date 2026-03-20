@@ -3,10 +3,11 @@ title: Quickstart in Couchbase with Kotlin and Ktor
 description: Quickstart app to build a REST API using Couchbase Capella in
   Kotlin using Ktor.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/hello-world/pages/sample-application.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:kotlin-sdk:hello-world:sample-application.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/current/hello-world/sample-application.html)
 
 # Quickstart in Couchbase with Kotlin and Ktor

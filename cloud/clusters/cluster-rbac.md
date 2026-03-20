@@ -4,10 +4,11 @@ description: Cluster-level role-based access control (RBAC) defines cluster
   access permissions for programmatic access to your
   xref:clusters:databases.adoc[clusters].
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/cluster-rbac.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:clusters:cluster-rbac.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/clusters/cluster-rbac.html)
 
 # Cluster Access

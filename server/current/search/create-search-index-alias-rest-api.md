@@ -4,10 +4,11 @@ description: Use the REST API to create a Search index alias. Use a Search index
   alias to run a Search query across multiple buckets, scopes, or Search
   indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/create-search-index-alias-rest-api.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:create-search-index-alias-rest-api.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/create-search-index-alias-rest-api.html)
 
 # Create a Search Index Alias with the REST API

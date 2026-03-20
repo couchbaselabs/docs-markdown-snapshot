@@ -4,10 +4,11 @@ description: Multiple procedures are available for the upgrade of Couchbase
   Server. An appropriate procedure should be selected, based on a variety of
   factors.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/upgrade-procedure-selection.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:install:upgrade-procedure-selection.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/install/upgrade-procedure-selection.html)
 
 # Upgrade-Procedure Selection

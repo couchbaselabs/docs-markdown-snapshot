@@ -3,10 +3,11 @@ title: Establish Limits for User Processes and File Descriptors
 description: You can configure Linux system limits for user processes and file
   descriptors to meet Enterprise Analytics requirements.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/limits-user-processes-file-descriptors.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:install:limits-user-processes-file-descriptors.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/install/limits-user-processes-file-descriptors.html)
 
 # Establish Limits for User Processes and File Descriptors

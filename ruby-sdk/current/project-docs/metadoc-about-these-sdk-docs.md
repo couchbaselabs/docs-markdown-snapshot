@@ -3,10 +3,11 @@ title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ruby-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ruby-sdk/current/project-docs/metadoc-about-these-sdk-docs.html)
 
 # About These Docs

@@ -4,10 +4,11 @@ description: Node <em>removal</em> allows a node to be taken out of a cluster in
   a highly controlled fashion, using <em>rebalance</em> to redistribute data,
   indexes, event processing, and query processing among available nodes.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/removal.adoc
-pubDate: 2026-03-08T03:42:10.247Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:clusters-and-availability/removal.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/clusters-and-availability/removal.html)
 
 # Removal

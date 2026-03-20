@@ -2,10 +2,11 @@
 title: Security Management Overview
 description: Couchbase Server can be rendered highly secure.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/security-management-overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:manage:manage-security/security-management-overview.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/manage/manage-security/security-management-overview.html)
 
 # Security Management Overview

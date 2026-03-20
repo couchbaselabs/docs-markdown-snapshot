@@ -7,10 +7,11 @@ description: In connection with Couchbase’s provision of our on-premise
   experience with the product every time an administrator interacts with the
   administrator user interface (the “Admin UI”) using HTTPS Post.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/ROOT/pages/product-privacy-faq.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server::product-privacy-faq.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/product-privacy-faq.html)
 
 # Couchbase Server Privacy FAQ

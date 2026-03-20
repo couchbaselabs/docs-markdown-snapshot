@@ -3,10 +3,11 @@ title: Drop DEKs and Re-encrypt Data
 description: You can use the REST API to drop data encryption keys (DEKs) and
   re-encrypt the data encrypted with the old keys.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/drop-encryption-deks.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:security/encryption-at-rest/drop-encryption-deks.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/drop-encryption-deks.html)
 
 # Drop DEKs and Re-encrypt Data

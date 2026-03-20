@@ -4,10 +4,11 @@ description: Once you have Couchbase Server running, you can log into the
   Couchbase Server Web Console and start to examine the different features that
   it provides.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/look-at-the-results.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:getting-started:look-at-the-results.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/getting-started/look-at-the-results.html)
 
 # Explore the Server Configuration

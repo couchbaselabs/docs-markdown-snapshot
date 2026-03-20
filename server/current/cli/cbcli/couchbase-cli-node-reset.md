@@ -2,10 +2,11 @@
 title: node-reset
 description: Resets a node
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-node-reset.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:cli:cbcli/couchbase-cli-node-reset.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-node-reset.html)
 
 # node-reset

@@ -3,10 +3,11 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-19T03:50:46.889Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/provisioning-cluster-resources.html)
 
 # Provisioning Cluster Resources
@@ -209,7 +210,7 @@ match collection_manager
     },
 }
 
-[data-source-url=https://github.com/couchbase/docs-sdk-rust/blob/6888a11b0c027bd0baf7270f420788e18df587c9/modules/devguide/examples/src/cluster_resources.rs#L128-L138]
+[data-source-url=https://github.com/couchbase/docs-sdk-rust/blob/720aca69a6c001816bd3b55f7c8d56eebbfe2ed1/modules/devguide/examples/src/cluster_resources.rs#L128-L138]
 match collection_manager.drop_scope("example-scope", None).await {
     Ok(_) => println!("Scope dropped successfully"),
     Err(e) => match e.kind() {

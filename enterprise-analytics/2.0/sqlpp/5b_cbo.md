@@ -3,10 +3,11 @@ title: Cost-Based Optimizer for Enterprise Analytics Services
 description: The cost-based optimizer for Enterprise Analytics uses samples to
   choose the optimal plan to execute a query.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5b_cbo.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:sqlpp:5b_cbo.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5b_cbo.html)
 
 # Cost-Based Optimizer for Enterprise Analytics Services

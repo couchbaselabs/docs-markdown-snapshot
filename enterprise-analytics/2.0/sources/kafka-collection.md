@@ -1,10 +1,11 @@
 ---
 title: Create a Kafka Pipeline Collection
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sources/pages/kafka-collection.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:sources:kafka-collection.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/sources/kafka-collection.html)
 
 # Create a Kafka Pipeline Collection

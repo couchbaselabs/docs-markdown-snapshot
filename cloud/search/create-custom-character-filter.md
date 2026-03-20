@@ -4,10 +4,11 @@ description: Create a custom character filter with the Couchbase Capella UI to
   remove unwanted characters from a Search query or the contents of a Search
   index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/create-custom-character-filter.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:search:create-custom-character-filter.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/search/create-custom-character-filter.html)
 
 # Create a Custom Character Filter

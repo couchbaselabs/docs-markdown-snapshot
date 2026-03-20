@@ -1,10 +1,11 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-05T03:41:02.175Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/release-notes/release-notes.html)
 
 # Couchbase Capella Release Notes

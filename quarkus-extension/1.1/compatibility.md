@@ -2,10 +2,11 @@
 title: Compatibility Guide
 description: Quarkus Couchbase 1.1 needs Quarkus 3.20 or newer.
 editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.1/modules/ROOT/pages/compatibility.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.1@quarkus-extension::compatibility.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/quarkus-extension/1.1/compatibility.html)
 
 # Compatibility Guide

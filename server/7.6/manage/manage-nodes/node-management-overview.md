@@ -4,10 +4,11 @@ description: A Couchbase-Server <em>cluster</em> consists of one or more
   <em>nodes</em>, each of which is a system running an instance of Couchbase
   Server.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-nodes/node-management-overview.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:manage:manage-nodes/node-management-overview.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/manage/manage-nodes/node-management-overview.html)
 
 # Manage Nodes and Clusters

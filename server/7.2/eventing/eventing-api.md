@@ -4,10 +4,11 @@ description: The Eventing REST API, available by default at port 8096, provides
   the methods available to work with and manipulate Couchbase Eventing
   Functions.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-api.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:eventing:eventing-api.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/eventing/eventing-api.html)
 
 # Eventing REST API

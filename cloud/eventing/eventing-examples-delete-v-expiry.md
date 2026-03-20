@@ -3,10 +3,11 @@ title: Differentiate between Expiration and Deletion
 description: Differentiate between document deletion and document expiration in
   Eventing Function logs.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-examples-delete-v-expiry.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-examples-delete-v-expiry.html)
 
 # Differentiate between Expiration and Deletion

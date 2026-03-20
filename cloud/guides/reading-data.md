@@ -2,10 +2,11 @@
 title: Read Documents
 description: How to read documents with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/reading-data.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:guides:reading-data.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/guides/reading-data.html)
 
 # Read Documents

@@ -1,10 +1,11 @@
 ---
 title: Public Cloud Prerequisites
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/prerequisite-cloud.adoc
-pubDate: 2026-02-24T03:43:07.775Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::prerequisite-cloud.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/prerequisite-cloud.html)
 
 # Public Cloud Prerequisites

@@ -3,10 +3,11 @@ title: Configure Guardrails and Security
 description: The Capella Model Service provides guardrails and security features
   to help you manage and secure your Large Language Models (LLMs).
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/configure-guardrails-security.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ai:build:model-service/configure-guardrails-security.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/model-service/configure-guardrails-security.html)
 
 # Configure Guardrails and Security

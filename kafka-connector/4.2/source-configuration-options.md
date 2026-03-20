@@ -1,10 +1,11 @@
 ---
 title: Source Configuration Options
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.2/modules/ROOT/pages/source-configuration-options.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:4.2@kafka-connector::source-configuration-options.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kafka-connector/4.2/source-configuration-options.html)
 
 # Source Configuration Options

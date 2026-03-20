@@ -3,10 +3,11 @@ title: Tombstones
 description: Sync Gateway's <em>Tombstones</em> are the means by which mobile
   clients are notified that a document has been deleted.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/managing-tombstones.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@sync-gateway::managing-tombstones.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.2/managing-tombstones.html)
 
 # Tombstones

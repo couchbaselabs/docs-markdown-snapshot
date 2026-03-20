@@ -3,10 +3,11 @@ title: Fine-Tuning a Vector Search Query
 description: Add additional parameters to a Vector Search REST API call to tune
   the search for recall or accuracy.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/vector-search/pages/fine-tune-vector-search.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:vector-search:fine-tune-vector-search.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/vector-search/fine-tune-vector-search.html)
 
 # Fine-Tuning a Vector Search Query

@@ -3,10 +3,11 @@ title: Flushing Buckets
 description: Flushing a bucket, which deletes all data stored within the bucket,
   can be performed with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/rest-api/pages/rest-bucket-flush.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:rest-api:rest-bucket-flush.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/rest-api/rest-bucket-flush.html)
 
 # Flushing Buckets

@@ -3,10 +3,11 @@ title: Install Couchbase Server
 description: Install and set up Couchbase Server to continue following the
   Student Record System tutorial.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/install-couchbase-server.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:tutorials:install-couchbase-server.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/tutorials/install-couchbase-server.html)
 
 # Install Couchbase Server

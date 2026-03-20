@@ -2,10 +2,11 @@
 title: About Agentic Apps
 description: An overview of the key concepts involved in agentic apps.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/agent-tutorial/pages/about-agentic-app.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ai:agent-tutorial:about-agentic-app.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/agent-tutorial/about-agentic-app.html)
 
 # About Agentic Apps

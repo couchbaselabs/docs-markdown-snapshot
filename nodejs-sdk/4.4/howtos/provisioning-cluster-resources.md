@@ -3,10 +3,11 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.4/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:4.4@nodejs-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/nodejs-sdk/4.4/howtos/provisioning-cluster-resources.html)
 
 # Provisioning Cluster Resources

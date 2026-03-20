@@ -3,10 +3,11 @@ title: Linux Kernel TCP/IP Memory Settings
 description: The Linux kernel has a global parameter named <code>tcp_mem</code>
   that limits the TCP/IP stack's RAM use.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/tcp_mem_settings.adoc
-pubDate: 2026-02-27T03:40:23.294Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:install:tcp_mem_settings.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/install/tcp_mem_settings.html)
 
 # Linux Kernel TCP/IP Memory Settings

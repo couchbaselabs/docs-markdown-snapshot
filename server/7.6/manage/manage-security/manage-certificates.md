@@ -2,10 +2,11 @@
 title: Manage Certificates
 description: Couchbase Server supports the use of X.509 certificates.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/manage-certificates.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:manage:manage-security/manage-certificates.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/manage/manage-security/manage-certificates.html)
 
 # Manage Certificates

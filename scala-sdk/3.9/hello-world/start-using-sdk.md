@@ -3,10 +3,11 @@ title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the Scala SDK.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.9@scala-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/scala-sdk/3.9/hello-world/start-using-sdk.html)
 
 # Hello World

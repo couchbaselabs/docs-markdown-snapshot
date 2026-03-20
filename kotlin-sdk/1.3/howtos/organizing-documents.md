@@ -2,10 +2,11 @@
 title: Organizing Documents
 description: Couchbase documents are organized into buckets, scopes, and collections.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/howtos/pages/organizing-documents.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.3@kotlin-sdk:howtos:organizing-documents.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/1.3/howtos/organizing-documents.html)
 
 # Organizing Documents

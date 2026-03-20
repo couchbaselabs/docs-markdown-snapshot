@@ -2,10 +2,11 @@
 title: Metrics Reference
 description: A list of the metrics used by Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/metrics-reference/pages/metrics-reference.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:metrics-reference:metrics-reference.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/metrics-reference/metrics-reference.html)
 
 # Metrics Reference

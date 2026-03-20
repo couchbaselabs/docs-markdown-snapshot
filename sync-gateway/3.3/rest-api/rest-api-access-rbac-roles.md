@@ -2,10 +2,11 @@
 title: RBAC Role&#8201;&#8212;&#8201;Endpoint Cross-reference
 description: Server RBAC Role -- Rest API endpoint cross reference tabley
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/rest-api/pages/rest-api-access-rbac-roles.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.3@sync-gateway:rest-api:rest-api-access-rbac-roles.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.3/rest-api/rest-api-access-rbac-roles.html)
 
 # RBAC Role&#8201;&#8212;&#8201;Endpoint Cross-reference

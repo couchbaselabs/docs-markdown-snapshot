@@ -1,10 +1,11 @@
 ---
 title: Stream Data from Couchbase Capella
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sources/pages/remote-cb-capella.adoc
-pubDate: 2026-02-28T03:34:55.737Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:sources:remote-cb-capella.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/sources/remote-cb-capella.html)
 
 # Stream Data from Couchbase Capella

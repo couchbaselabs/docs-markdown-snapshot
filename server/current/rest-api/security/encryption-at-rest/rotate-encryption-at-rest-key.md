@@ -3,10 +3,11 @@ title: Rotate Data Encryption Keys
 description: You can use the REST API have Couchbase Server immediately rotate
   an encryption-at-rest key that it manages.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/security/encryption-at-rest/rotate-encryption-at-rest-key.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:security/encryption-at-rest/rotate-encryption-at-rest-key.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/security/encryption-at-rest/rotate-encryption-at-rest-key.html)
 
 # Rotate Data Encryption Keys

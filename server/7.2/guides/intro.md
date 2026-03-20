@@ -2,10 +2,11 @@
 title: Developer Guides
 description: This section contains how-to guides for developers.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/intro.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:guides:intro.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/guides/intro.html)
 
 # Developer Guides

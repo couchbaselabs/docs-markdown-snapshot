@@ -4,10 +4,11 @@ description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/sqlpp-queries-with-sdk.html)
 
 # Querying with SQL++

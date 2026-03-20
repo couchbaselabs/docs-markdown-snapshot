@@ -3,10 +3,11 @@ title: Enterprise Analytics Services Alert Reference
 description: This reference lists the alerts that Enterprise Analytics services
   can emit, the conditions in which they occur, and a description for each.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/alerts.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:reference:alerts.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/reference/alerts.html)
 
 # Enterprise Analytics Services Alert Reference

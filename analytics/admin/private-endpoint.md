@@ -3,10 +3,11 @@ title: AWS PrivateLink Connection
 description: Add an AWS PrivateLink connection that connects your Amazon Web
   Service (AWS) network with a Capella Analytics cluster.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/private-endpoint.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:admin:private-endpoint.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/admin/private-endpoint.html)
 
 # AWS PrivateLink Connection

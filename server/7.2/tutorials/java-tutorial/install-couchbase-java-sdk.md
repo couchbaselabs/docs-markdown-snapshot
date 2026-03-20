@@ -3,10 +3,11 @@ title: Installing the Couchbase Java SDK
 description: In this tutorial, you're going to create a skeleton application for
   interacting with the student database you created previously.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/install-couchbase-java-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:tutorials:java-tutorial/install-couchbase-java-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/tutorials/java-tutorial/install-couchbase-java-sdk.html)
 
 # Installing the Couchbase Java SDK

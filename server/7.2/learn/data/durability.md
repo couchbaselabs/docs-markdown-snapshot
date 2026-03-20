@@ -3,10 +3,11 @@ title: Durability
 description: <em>Durability</em> ensures the greatest likelihood of data-writes
   surviving unexpected anomalies, such as node-outages.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/data/durability.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:learn:data/durability.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/learn/data/durability.html)
 
 # Durability

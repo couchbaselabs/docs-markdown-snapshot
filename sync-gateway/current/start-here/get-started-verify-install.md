@@ -3,10 +3,11 @@ title: Verify a Sync Gateway Install
 description: Configure and verify your <em>Sync Gateway</em> installation;
   securely sync enterprise data from cloud to edge!
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/start-here/pages/get-started-verify-install.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sync-gateway:start-here:get-started-verify-install.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/start-here/get-started-verify-install.html)
 
 # Verify a Sync Gateway Install

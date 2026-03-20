@@ -3,10 +3,11 @@ title: Manage Backup Service Threads
 description: You can change the number of threads a Backup Service node uses
   when backing up data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/backup-node-threads.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:rest-api:backup-node-threads.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/rest-api/backup-node-threads.html)
 
 # Manage Backup Service Threads

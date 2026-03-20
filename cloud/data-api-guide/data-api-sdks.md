@@ -2,10 +2,11 @@
 title: Data API vs. Couchbase SDKs
 description: This page explains when to use the Data API and when to use Couchbase SDKs.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-sdks.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:data-api-guide:data-api-sdks.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/data-api-guide/data-api-sdks.html)
 
 # Data API vs. Couchbase SDKs

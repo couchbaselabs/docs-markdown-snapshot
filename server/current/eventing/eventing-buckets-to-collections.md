@@ -4,10 +4,11 @@ description: Now in Couchbase version 7.0 the concept of scopes and collections
   have been introduced allowing greater flexibility in grouping data and also
   the ability to support multitenancy.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-buckets-to-collections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:eventing:eventing-buckets-to-collections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/eventing/eventing-buckets-to-collections.html)
 
 # Buckets vs Collections

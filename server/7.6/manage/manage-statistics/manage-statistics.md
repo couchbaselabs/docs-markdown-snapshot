@@ -3,10 +3,11 @@ title: Manage Statistics
 description: Statistics on Couchbase Server can be monitored; per bucket, per
   node, per service, and per cluster.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-statistics/manage-statistics.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:manage:manage-statistics/manage-statistics.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/manage/manage-statistics/manage-statistics.html)
 
 # Manage Statistics

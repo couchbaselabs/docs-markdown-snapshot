@@ -1,10 +1,11 @@
 ---
 title: CouchbaseAutoscaler Resource
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/resource/couchbaseautoscaler.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::resource/couchbaseautoscaler.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/resource/couchbaseautoscaler.html)
 
 # CouchbaseAutoscaler Resource

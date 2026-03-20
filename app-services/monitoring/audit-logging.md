@@ -3,10 +3,11 @@ title: Audit Logging
 description: Audit logging is the process of recording and storing detailed logs
   of user and system activity within your application.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/audit-logging.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:app-services::monitoring/audit-logging.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/monitoring/audit-logging.html)
 
 # Audit Logging

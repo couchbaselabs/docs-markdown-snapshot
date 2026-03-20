@@ -4,10 +4,11 @@ description: The Backup Service API allows full and incremental data-backups to
   be planned and scheduled; allows the scheduling of <em>merges</em> of
   previously made backups; and allows existing backups to be archived.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/backup-rest-api.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:backup-rest-api.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/backup-rest-api.html)
 
 # Backup Service API

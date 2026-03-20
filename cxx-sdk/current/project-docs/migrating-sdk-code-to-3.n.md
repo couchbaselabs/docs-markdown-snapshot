@@ -3,10 +3,11 @@ title: Migrating from SDK2 to SDK3 API
 description: This is the first major release of the Couchbase C&#43;&#43; SDK --
   you will not have any code based upon older API versions.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cxx-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cxx-sdk/current/project-docs/migrating-sdk-code-to-3.n.html)
 
 # Migrating from SDK2 to SDK3 API

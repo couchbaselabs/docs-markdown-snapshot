@@ -2,10 +2,11 @@
 title: Field Level Encryption
 description: A high-level overview of Field-Level Encryption concepts.
 editUrl: https://github.com/couchbase/docs-sdk-extensions/edit/main/modules/ROOT/pages/field-level-encryption.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sdk-extensions::field-level-encryption.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sdk-extensions/field-level-encryption.html)
 
 # Field Level Encryption

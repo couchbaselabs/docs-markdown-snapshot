@@ -3,10 +3,11 @@ title: Create a VNet Peering Connection with Azure
 description: Use this procedure to create a VNet Peering connection between
   Capella hosted with Azure and your application's VNet on Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clouds/pages/vpc-peering/peer-azure.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:clouds:vpc-peering/peer-azure.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/clouds/vpc-peering/peer-azure.html)
 
 # Create a VNet Peering Connection with Azure

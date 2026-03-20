@@ -2,10 +2,11 @@
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
 editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:dotnet-sdk:ref:travel-app-data-model.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/dotnet-sdk/current/ref/travel-app-data-model.html)
 
 # Travel Sample Data Model

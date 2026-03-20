@@ -1,10 +1,11 @@
 ---
 title: <code>CouchbaseCluster</code> Services
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/reference-couchbasecluster-services.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::reference-couchbasecluster-services.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/reference-couchbasecluster-services.html)
 
 # <code>CouchbaseCluster</code> Services

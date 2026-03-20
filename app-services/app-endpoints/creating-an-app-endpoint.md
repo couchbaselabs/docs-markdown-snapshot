@@ -3,10 +3,11 @@ title: Create App Endpoints
 description: Create an App Endpoint to synchronize data between Couchbase
   Capella and mobile or IoT applications.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/app-endpoints/creating-an-app-endpoint.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:app-services::app-endpoints/creating-an-app-endpoint.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/app-services/app-endpoints/creating-an-app-endpoint.html)
 
 # Create App Endpoints

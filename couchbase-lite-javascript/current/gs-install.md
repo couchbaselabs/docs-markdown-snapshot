@@ -2,10 +2,11 @@
 title: Installing Couchbase Lite JavaScript
 description: How to install Couchbase Lite JavaScript
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/gs-install.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite-javascript::gs-install.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite-javascript/current/gs-install.html)
 
 # Installing Couchbase Lite JavaScript

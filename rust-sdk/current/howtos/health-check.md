@@ -4,10 +4,11 @@ description: Health Check provides <code>ping()</code> and
   <code>diagnostics()</code> tests for the health of the network and the
   cluster.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/health-check.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:health-check.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/health-check.html)
 
 # Health Check

@@ -3,17 +3,18 @@ title: Handling Errors in JavaScript Functions
 description: You can handle errors in JavaScript user-defined functions with the
   same standard exception mechanism you would use in any JavaScript code.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/javascript-udfs/pages/handling-errors-javascript-udf.adoc
-pubDate: 2026-02-26T03:43:25.790Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:javascript-udfs:handling-errors-javascript-udf.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/javascript-udfs/handling-errors-javascript-udf.html)
 
 # Handling Errors in JavaScript Functions
 
 > You can handle errors in JavaScript user-defined functions with the same standard exception mechanism you would use in any JavaScript code. 
 
-For more information about user-defined functions in Capella, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
+For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).
 
 You can also choose to handle errors [with the runtime](#runtime) or [with your JavaScript function](#function).
 

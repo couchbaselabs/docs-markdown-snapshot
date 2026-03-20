@@ -4,10 +4,11 @@ description: Couchbase Server can be deployed on a variety of platforms, from
   traditional bare metal servers, to containers running in a public or private
   cloud.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/get-started.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:install:get-started.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/install/get-started.html)
 
 # Couchbase Server Deployment Options

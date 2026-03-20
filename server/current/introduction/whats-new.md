@@ -2,10 +2,11 @@
 title: What&#8217;s New in Version 8.0
 description: Couchbase is the modern database for enterprise applications.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:introduction:whats-new.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/introduction/whats-new.html)
 
 # What&#8217;s New in Version 8.0

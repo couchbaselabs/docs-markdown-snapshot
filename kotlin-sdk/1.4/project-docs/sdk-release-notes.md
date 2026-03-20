@@ -2,10 +2,11 @@
 title: SDK Release Notes
 description: Release notes for the Couchbase Kotlin Client.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.4/modules/project-docs/pages/sdk-release-notes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.4@kotlin-sdk:project-docs:sdk-release-notes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/1.4/project-docs/sdk-release-notes.html)
 
 # SDK Release Notes

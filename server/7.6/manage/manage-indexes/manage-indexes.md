@@ -3,10 +3,11 @@ title: Manage Indexes
 description: Indexes provided by the Index Service can be managed with Couchbase
   Web Console, with the CLI, and with the REST API.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-indexes/manage-indexes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:manage:manage-indexes/manage-indexes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/manage/manage-indexes/manage-indexes.html)
 
 # Manage Indexes

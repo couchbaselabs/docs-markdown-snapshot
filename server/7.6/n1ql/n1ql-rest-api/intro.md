@@ -5,10 +5,11 @@ description: The Query Service provides REST APIs for executing SQL++
   and managing the JavaScript libraries used to create SQL++ user-defined
   functions.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/n1ql/pages/n1ql-rest-api/intro.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:n1ql:n1ql-rest-api/intro.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/n1ql/n1ql-rest-api/intro.html)
 
 # Query Service API

@@ -6,10 +6,11 @@ description: You can use XDCR with Sync Gateway mobile clusters in a
   XDCR with Sync Gateway buckets in a bi-directional replication can cause data
   corruption.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-active-active-sgw.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:clusters-and-availability/xdcr-active-active-sgw.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-active-active-sgw.html)
 
 # XDCR Active-Active with Sync Gateway

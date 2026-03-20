@@ -1,10 +1,11 @@
 ---
 title: bleveMaxResultWindow
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/fts/pages/fts-advanced-settings-bleveMaxResultWindow.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:fts:fts-advanced-settings-bleveMaxResultWindow.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/fts/fts-advanced-settings-bleveMaxResultWindow.html)
 
 # bleveMaxResultWindow

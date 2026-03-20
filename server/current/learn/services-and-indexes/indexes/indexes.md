@@ -3,10 +3,11 @@ title: Indexes
 description: Couchbase Server uses indexes to improve the performance of queries
   and searches.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/services-and-indexes/indexes/indexes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:services-and-indexes/indexes/indexes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/services-and-indexes/indexes/indexes.html)
 
 # Indexes

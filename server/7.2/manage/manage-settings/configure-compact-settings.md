@@ -3,10 +3,11 @@ title: Auto-Compaction
 description: Auto-Compaction settings determine the <em>compaction process</em>;
   whereby databases and their respective view-indexes are compacted.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-settings/configure-compact-settings.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:manage:manage-settings/configure-compact-settings.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/manage/manage-settings/configure-compact-settings.html)
 
 # Auto-Compaction

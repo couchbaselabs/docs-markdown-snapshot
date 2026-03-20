@@ -1,10 +1,11 @@
 ---
 title: Couchbase Helm Chart Specification
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/helm-couchbase-config.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::helm-couchbase-config.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/helm-couchbase-config.html)
 
 # Couchbase Helm Chart Specification

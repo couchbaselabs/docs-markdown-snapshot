@@ -3,10 +3,11 @@ title: Re-reduce Argument
 description: For <code>reduce()</code> functions, they should be both
   transparent and standalone.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-rereduce.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:views/views-writing-rereduce.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/views/views-writing-rereduce.html)
 
 # Re-reduce Argument

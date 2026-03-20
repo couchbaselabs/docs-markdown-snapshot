@@ -3,10 +3,11 @@ title: Back Up or Restore a Capella Analytics Cluster
 description: With a Cloud Snapshot cluster backup, you can backup and restore
   your entire Capella Analytics cluster with a single backup.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/backup-restore.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:admin:backup-restore.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/admin/backup-restore.html)
 
 # Back Up or Restore a Capella Analytics Cluster

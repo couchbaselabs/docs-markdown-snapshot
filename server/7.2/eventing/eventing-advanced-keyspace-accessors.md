@@ -3,10 +3,11 @@ title: Advanced Keyspace Accessors
 description: <em>Advanced Keyspace Accessors</em> make it possible to access
   advanced KV functionality using the following built-in operators.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-advanced-keyspace-accessors.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:eventing:eventing-advanced-keyspace-accessors.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/eventing/eventing-advanced-keyspace-accessors.html)
 
 # Advanced Keyspace Accessors

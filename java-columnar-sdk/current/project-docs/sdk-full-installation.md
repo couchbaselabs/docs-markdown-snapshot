@@ -2,10 +2,11 @@
 title: Maven Coordinates
 description: How to get the Java Columnar SDK from Maven Central.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-java/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:java-columnar-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/java-columnar-sdk/current/project-docs/sdk-full-installation.html)
 
 # Maven Coordinates

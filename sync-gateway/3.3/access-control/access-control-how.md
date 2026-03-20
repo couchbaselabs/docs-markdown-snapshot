@@ -4,10 +4,11 @@ description: How to implement Sync Gateway access controls using Configuration
   File, Admin REST API and-or the Sync Function to manage documents, users,
   roles and channels
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/access-control/pages/access-control-how.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.3@sync-gateway:access-control:access-control-how.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.3/access-control/access-control-how.html)
 
 # Access Control How-To

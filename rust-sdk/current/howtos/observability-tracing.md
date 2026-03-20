@@ -3,10 +3,11 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:observability-tracing.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/observability-tracing.html)
 
 # Request Tracing

@@ -3,10 +3,11 @@ title: Sub-Document Operations
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.7/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ruby-sdk:howtos:subdocument-operations.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ruby-sdk/current/howtos/subdocument-operations.html)
 
 # Sub-Document Operations

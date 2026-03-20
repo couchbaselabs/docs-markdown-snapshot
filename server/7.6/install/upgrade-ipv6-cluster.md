@@ -4,10 +4,11 @@ description: "All pre-7.0 clusters using the IPv6 address family can be upgraded
   to Couchbase Server Enterprise Edition 7.0: in some cases, additional steps
   are required in the upgrade-procedure."
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/upgrade-ipv6-cluster.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:install:upgrade-ipv6-cluster.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/install/upgrade-ipv6-cluster.html)
 
 # Upgrade an IPv6 Cluster

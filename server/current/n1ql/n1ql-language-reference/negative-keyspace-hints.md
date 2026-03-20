@@ -2,10 +2,11 @@
 title: Negative Keyspace Hints
 description: Negative hints direct the optimizer not to use certain indexes or join methods.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/negative-keyspace-hints.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:n1ql:n1ql-language-reference/negative-keyspace-hints.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/n1ql/n1ql-language-reference/negative-keyspace-hints.html)
 
 # Negative Keyspace Hints

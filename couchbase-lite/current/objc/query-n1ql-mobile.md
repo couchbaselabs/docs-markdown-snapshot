@@ -3,10 +3,11 @@ title: SQL++ Query Strings
 description: How to use SQL++ Query Strings to build effective queries with
   Couchbase Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/query-n1ql-mobile.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite:objc:query-n1ql-mobile.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/current/objc/query-n1ql-mobile.html)
 
 # SQL++ Query Strings

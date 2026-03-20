@@ -3,10 +3,11 @@ title: "How-to Guide: Data Topology Save and Restore"
 description: A how-to guide on using the "Write Once and Create Anywhere"
   capability of Kubernetes Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-save-restore.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.8@operator::howto-guide-save-restore.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/2.8/howto-guide-save-restore.html)
 
 # How-to Guide: Data Topology Save and Restore

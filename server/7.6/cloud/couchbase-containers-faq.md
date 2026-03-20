@@ -2,10 +2,11 @@
 title: Frequently Asked Questions about Couchbase Containers
 description: Frequently asked questions about Couchbase Containers
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cloud/pages/couchbase-containers-faq.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:cloud:couchbase-containers-faq.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/cloud/couchbase-containers-faq.html)
 
 # Frequently Asked Questions about Couchbase Containers

@@ -2,10 +2,11 @@
 title: "Function: Basic Binary KV"
 description: Show Basic Bucket Op Binary Write and Read.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/eventing/pages/eventing-handler-basicBinaryKV.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:eventing:eventing-handler-basicBinaryKV.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/eventing/eventing-handler-basicBinaryKV.html)
 
 # Function: Basic Binary KV

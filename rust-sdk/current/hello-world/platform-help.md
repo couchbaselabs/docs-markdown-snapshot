@@ -3,10 +3,11 @@ title: Setting Up Couchbase Rust SDK with rustup
 description: Discover how to get up and running developing applications with the
   Couchbase Rust SDK -- for those less familiar with Rust.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/hello-world/pages/platform-help.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:hello-world:platform-help.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/hello-world/platform-help.html)
 
 # Setting Up Couchbase Rust SDK with rustup

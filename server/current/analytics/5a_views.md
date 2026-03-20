@@ -2,10 +2,11 @@
 title: Analytics Views
 description: A description of Analytics views and Tabular Analytics views.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/5a_views.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:analytics:5a_views.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/analytics/5a_views.html)
 
 # Analytics Views

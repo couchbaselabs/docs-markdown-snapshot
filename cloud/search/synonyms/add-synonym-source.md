@@ -3,10 +3,11 @@ title: Add a Synonym Source
 description: Add a Synonym Source to set the collection where your synonym
   documents are stored.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/search/pages/synonyms/add-synonym-source.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:search:synonyms/add-synonym-source.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/search/synonyms/add-synonym-source.html)
 
 # Add a Synonym Source

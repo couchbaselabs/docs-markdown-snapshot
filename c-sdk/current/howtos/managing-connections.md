@@ -3,10 +3,11 @@ title: Managing Connections using the C SDK with Couchbase Server
 description: This section describes how to connect the C SDK (libcouchbase) to a
   Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:c-sdk:howtos:managing-connections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/c-sdk/current/howtos/managing-connections.html)
 
 # Managing Connections using the C SDK with Couchbase Server

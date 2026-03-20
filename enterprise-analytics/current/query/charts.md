@@ -2,10 +2,11 @@
 title: Visualize Results in Charts
 description: After you run a query, you can visualize its results in graphical format.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/charts.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:enterprise-analytics:query:charts.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/query/charts.html)
 
 # Visualize Results in Charts

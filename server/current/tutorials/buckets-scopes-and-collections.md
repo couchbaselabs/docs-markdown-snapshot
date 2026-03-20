@@ -3,10 +3,11 @@ title: Implement the Data Model
 description: Create a cluster and use buckets, scopes, and collections to
   partition your data.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/buckets-scopes-and-collections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:tutorials:buckets-scopes-and-collections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/tutorials/buckets-scopes-and-collections.html)
 
 # Implement the Data Model
@@ -28,7 +29,7 @@ A bucket is equivalent to a database in a relational database management system,
 
 To continue this tutorial, you must create a bucket to hold all student data, a scope to narrow down the data into only data related to an art school, and two collections to narrow it down further into art school students and art school courses.
 
-For more information about buckets, scopes, and collections, see [Buckets, Scopes, and Collections](#cloud:data-service:about-buckets-scopes-collections.adoc) in the Capella documentation.
+For more information about scopes and collections, see [Scopes and Collections](../learn/data/scopes-and-collections.md).
 
 ## [](#create-a-bucket)Create a Bucket
 

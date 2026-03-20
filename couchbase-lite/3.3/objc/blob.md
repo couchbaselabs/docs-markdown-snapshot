@@ -2,10 +2,11 @@
 title: Blobs
 description: Couchbase Lite database data model concepts - blobs
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/objc/pages/blob.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.3@couchbase-lite:objc:blob.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/3.3/objc/blob.html)
 
 # Blobs

@@ -3,10 +3,11 @@ title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
 editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.0/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.0@cxx-sdk:howtos:subdocument-operations.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cxx-sdk/1.0/howtos/subdocument-operations.html)
 
 # Sub-Document Operations

@@ -3,10 +3,11 @@ title: Copy Results to External Storage
 description: In Capella Analytics, you can write query results or entire
   collections to an external file system or data store.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/copy-to-external.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:query:copy-to-external.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/query/copy-to-external.html)
 
 # Copy Results to External Storage

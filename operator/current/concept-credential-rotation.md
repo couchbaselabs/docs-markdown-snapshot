@@ -1,10 +1,11 @@
 ---
 title: Couchbase Credential Rotation
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-credential-rotation.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::concept-credential-rotation.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/concept-credential-rotation.html)
 
 # Couchbase Credential Rotation

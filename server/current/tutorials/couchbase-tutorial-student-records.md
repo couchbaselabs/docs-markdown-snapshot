@@ -4,10 +4,11 @@ description: The Student Record System tutorial walks you through downloading
   and installing Couchbase, and then creating a database to store student
   records.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/tutorials/pages/couchbase-tutorial-student-records.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:tutorials:couchbase-tutorial-student-records.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/tutorials/couchbase-tutorial-student-records.html)
 
 # Developer Tutorial: Student Record System

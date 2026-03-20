@@ -3,10 +3,11 @@ title: Adding Course Enrollments
 description: In this section, you're going to add enrollment details to the
   student records using the Couchbase SDK
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/tutorials/pages/java-tutorial/adding-course-enrollments.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:tutorials:java-tutorial/adding-course-enrollments.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/tutorials/java-tutorial/adding-course-enrollments.html)
 
 # Adding Course Enrollments

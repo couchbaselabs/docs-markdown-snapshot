@@ -1,10 +1,11 @@
 ---
 title: Using the Database
 editUrl: https://github.com/couchbaselabs/mobile-training-todo/edit/tutorials/content/modules/todo-app/pages/develop/swift/using-the-database.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:tutorials:todo-app:develop/swift/using-the-database.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tutorials/todo-app/develop/swift/using-the-database.html)
 
 # Using the Database

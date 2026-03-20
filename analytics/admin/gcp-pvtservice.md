@@ -5,10 +5,11 @@ description: Add a Google Coud Platform (GCP) Private Service Connection that
   provider. This connection can reduce latency and egress costs for applications
   hosted in the same region.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/admin/pages/gcp-pvtservice.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:admin:gcp-pvtservice.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/admin/gcp-pvtservice.html)
 
 # GCP Private Service Connection

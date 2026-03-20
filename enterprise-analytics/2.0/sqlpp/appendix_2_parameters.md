@@ -2,10 +2,11 @@
 title: Performance Tuning
 description: This topic describes options for Enterprise Analytics query performance tuning.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/appendix_2_parameters.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:sqlpp:appendix_2_parameters.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/sqlpp/appendix_2_parameters.html)
 
 # Performance Tuning

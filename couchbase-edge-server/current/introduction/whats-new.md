@@ -2,10 +2,11 @@
 title: New In 1.0
 description: Couchbase Edge Server -- What's new in the latest release
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-edge-server:introduction:whats-new.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-edge-server/current/introduction/whats-new.html)
 
 # New In 1.0

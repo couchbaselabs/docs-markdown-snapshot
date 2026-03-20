@@ -3,10 +3,11 @@ title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/prep-statements.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:guides:prep-statements.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/guides/prep-statements.html)
 
 # Prepare Statements for Reuse

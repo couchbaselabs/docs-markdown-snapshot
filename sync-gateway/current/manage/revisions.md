@@ -3,10 +3,11 @@ title: Revisions
 description: About Sync Gateway's revision tracking using version vectors and
   revision caches in 4.0+.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/manage/pages/revisions.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sync-gateway:manage:revisions.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/manage/revisions.html)
 
 # Revisions

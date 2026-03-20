@@ -3,10 +3,11 @@ title: Entity Framework Core Compatibility Guide
 description: Compatibility between EFCore Provider, EF Core, .NET Frameworks,
   and the Couchbase .NET SDK.
 editUrl: https://github.com/couchbase/docs-efcore/edit/release/1.0/modules/ROOT/pages/entity-framework-core-compatibility-guide.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:efcore-provider::entity-framework-core-compatibility-guide.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/efcore-provider/current/entity-framework-core-compatibility-guide.html)
 
 # Entity Framework Core Compatibility Guide

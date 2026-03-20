@@ -4,10 +4,11 @@ description: This topic describes how you use the <code>CREATE COLLECTION
   AS</code> statement to both create a standalone collection and populate it
   with the results of a query.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/5_dml_create_as.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:sqlpp:5_dml_create_as.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/sqlpp/5_dml_create_as.html)
 
 # CREATE COLLECTION AS Statements

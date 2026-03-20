@@ -2,10 +2,11 @@
 title: Querying Your Data
 description: Choosing the right service to query your data.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/querying-your-data.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:concept-docs:querying-your-data.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/concept-docs/querying-your-data.html)
 
 # Querying Your Data

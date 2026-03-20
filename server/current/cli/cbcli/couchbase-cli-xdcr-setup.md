@@ -2,10 +2,11 @@
 title: xdcr-setup
 description: Manage references to remote clusters
 editUrl: https://github.com/couchbase/couchbase-cli/edit/morpheus/docs/modules/cli/pages/cbcli/couchbase-cli-xdcr-setup.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:cli:cbcli/couchbase-cli-xdcr-setup.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/cli/cbcli/couchbase-cli-xdcr-setup.html)
 
 # xdcr-setup

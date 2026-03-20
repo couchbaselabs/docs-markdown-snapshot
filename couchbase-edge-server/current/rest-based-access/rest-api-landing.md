@@ -4,10 +4,11 @@ description: Couchbase Edge Server has a REST API that enables you to get
   database information, perform document operations, run SQL++ queries, and
   manage replication.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/rest-based-access/pages/rest-api-landing.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-edge-server:rest-based-access:rest-api-landing.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-edge-server/current/rest-based-access/rest-api-landing.html)
 
 # Edge Server REST API

@@ -3,10 +3,11 @@ title: Monitor Clusters
 description: Couchbase Capella provides a variety of monitoring tools to assess
   the performance, health, and stability of your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/monitoring.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:clusters:monitoring/monitoring.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/clusters/monitoring/monitoring.html)
 
 # Monitor Clusters

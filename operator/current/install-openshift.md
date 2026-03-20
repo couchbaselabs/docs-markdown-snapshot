@@ -1,10 +1,11 @@
 ---
 title: Install the Operator on OpenShift
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/install-openshift.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::install-openshift.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/install-openshift.html)
 
 # Install the Operator on OpenShift

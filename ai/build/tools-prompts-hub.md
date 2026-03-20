@@ -3,10 +3,11 @@ title: Use the Agent Catalog Tools and Prompts Hub
 description: Use the Tools Hub or the Prompts Hub to view all the tools and
   prompts published to Agent Catalog from your agent projects.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/tools-prompts-hub.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ai:build:tools-prompts-hub.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/tools-prompts-hub.html)
 
 # Use the Agent Catalog Tools and Prompts Hub

@@ -3,10 +3,11 @@ title: 2-Node and Single-Node Clusters
 description: The number of nodes in an Enterprise Analytics deployment may
   impact both maintenance requirements and feature availability.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/single-two-node-clusters.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:enterprise-analytics:install:single-two-node-clusters.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/install/single-two-node-clusters.html)
 
 # 2-Node and Single-Node Clusters

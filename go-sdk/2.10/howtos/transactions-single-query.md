@@ -1,9 +1,10 @@
 ---
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/transactions-single-query.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.10@go-sdk:howtos:transactions-single-query.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/2.10/howtos/transactions-single-query.html)
 
 # undefined

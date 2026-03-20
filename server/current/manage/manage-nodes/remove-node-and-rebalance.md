@@ -3,10 +3,11 @@ title: Remove a Node and Rebalance
 description: Couchbase Server allows a cluster node to be removed, and the
   remaining nodes rebalanced.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-nodes/remove-node-and-rebalance.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:manage:manage-nodes/remove-node-and-rebalance.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/manage/manage-nodes/remove-node-and-rebalance.html)
 
 # Remove a Node and Rebalance

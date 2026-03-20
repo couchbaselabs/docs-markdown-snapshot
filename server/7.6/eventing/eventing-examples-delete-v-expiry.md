@@ -2,10 +2,11 @@
 title: Delete v Expiry
 description: Differentiate between a deletion or an expiration
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/eventing/pages/eventing-examples-delete-v-expiry.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:eventing:eventing-examples-delete-v-expiry.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/eventing/eventing-examples-delete-v-expiry.html)
 
 # Delete v Expiry

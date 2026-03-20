@@ -3,10 +3,11 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:c-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/c-sdk/current/howtos/provisioning-cluster-resources.html)
 
 # Provisioning Cluster Resources

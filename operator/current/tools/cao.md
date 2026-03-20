@@ -1,10 +1,11 @@
 ---
 title: cao
 editUrl: https://github.com/couchbase/couchbase-operator/edit/2.9.x/docs/user/modules/ROOT/pages/tools/cao.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::tools/cao.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/tools/cao.html)
 
 # cao

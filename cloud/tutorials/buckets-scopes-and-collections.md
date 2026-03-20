@@ -3,10 +3,11 @@ title: Implement the Data Model
 description: Learn how to logically partition your data in Capella Operational
   using buckets, scopes, and collections.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/tutorials/pages/buckets-scopes-and-collections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:tutorials:buckets-scopes-and-collections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/tutorials/buckets-scopes-and-collections.html)
 
 # Implement the Data Model

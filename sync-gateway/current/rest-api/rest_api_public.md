@@ -1,10 +1,11 @@
 ---
 title: Sync Gateway Public API Reference
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/rest-api/pages/rest_api_public.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sync-gateway:rest-api:rest_api_public.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/rest-api/rest_api_public.html)
 
 # Sync Gateway Public API Reference

@@ -3,10 +3,11 @@ title: Setting up Disaster Recovery
 description: How to set up a Sync Gateway mobile cluster for Disaster Recovery
   (DR) using Couchbase Server's Cross Data Center Replication (XDCR)
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/setting-up-dr-cluster.adoc
-pubDate: 2026-03-12T03:41:48.873Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sync-gateway:deploy:setting-up-dr-cluster.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/deploy/setting-up-dr-cluster.html)
 
 # Setting up Disaster Recovery

@@ -3,10 +3,11 @@ title: Deploy Couchbase Server Using AWS Marketplace
 description: Couchbase partners with Amazon to provide a packaged solution on
   AWS Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/cloud/pages/couchbase-aws-marketplace.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:cloud:couchbase-aws-marketplace.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/cloud/couchbase-aws-marketplace.html)
 
 # Deploy Couchbase Server Using AWS Marketplace

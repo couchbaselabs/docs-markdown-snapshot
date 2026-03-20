@@ -1,10 +1,11 @@
 ---
 title: Introduction
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite::index.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/current/index.html)
 
 # Introduction

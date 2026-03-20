@@ -1,10 +1,11 @@
 ---
 title: Couchbase Pod Templating
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-pod-templating.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:operator::concept-pod-templating.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/operator/current/concept-pod-templating.html)
 
 # Couchbase Pod Templating

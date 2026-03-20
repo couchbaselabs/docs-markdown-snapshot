@@ -3,10 +3,11 @@ title: Default Analyzers
 description: Use an analyzer to filter and modify search strings to improve
   matches for search results.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/default-analyzers-reference.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:default-analyzers-reference.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/default-analyzers-reference.html)
 
 # Default Analyzers

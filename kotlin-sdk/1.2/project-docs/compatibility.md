@@ -4,10 +4,11 @@ title: Compatibility of Couchbase Features, Couchbase Server Versions, and the
 description: Features available in different SDK versions, and compatibility
   between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.2@kotlin-sdk:project-docs:compatibility.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/1.2/project-docs/compatibility.html)
 
 # Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase Kotlin SDK

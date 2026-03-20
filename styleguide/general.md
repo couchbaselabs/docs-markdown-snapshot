@@ -1,10 +1,11 @@
 ---
 title: General Principles of Couchbase Style
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/general.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:styleguide::general.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/styleguide/general.html)
 
 # General Principles of Couchbase Style

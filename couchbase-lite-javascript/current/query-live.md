@@ -2,10 +2,11 @@
 title: Live Queries
 description: Couchbase Lite JavaScript -- Reactive Live Queries
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/query-live.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite-javascript::query-live.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite-javascript/current/query-live.html)
 
 # Live Queries

@@ -2,10 +2,11 @@
 title: Deprecated Certificate Management APIs
 description: A number of certificate management APIs are deprecated.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/reference/pages/deprecated-security-apis/deprecated-certificate-management-apis.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:reference:deprecated-security-apis/deprecated-certificate-management-apis.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/reference/deprecated-security-apis/deprecated-certificate-management-apis.html)
 
 # Deprecated Certificate Management APIs

@@ -3,10 +3,11 @@ title: Cloud Read/Write Permissions
 description: This page outlines the required read and write permissions when
   copying data to or from external cloud providers.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/reference/pages/cloud_read_write_permissions.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:reference:cloud_read_write_permissions.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/reference/cloud_read_write_permissions.html)
 
 # Cloud Read/Write Permissions

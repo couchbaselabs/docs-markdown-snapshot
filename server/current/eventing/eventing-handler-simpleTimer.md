@@ -2,10 +2,11 @@
 title: "Function: Simple Timer"
 description: Create a Simple Timer that triggers in the future on each mutation.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/eventing/pages/eventing-handler-simpleTimer.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:eventing:eventing-handler-simpleTimer.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/eventing/eventing-handler-simpleTimer.html)
 
 # Function: Simple Timer

@@ -1,10 +1,11 @@
 ---
 title: How to mitigate Split Lock Issues
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/install-splitlock-mitigation.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:install:install-splitlock-mitigation.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/install/install-splitlock-mitigation.html)
 
 # How to mitigate Split Lock Issues

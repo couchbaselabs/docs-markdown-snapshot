@@ -3,10 +3,11 @@ title: Search Index Architecture
 description: The Search Service works together with the Data Service to process
   and index your data for Search.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/search-index-architecture.adoc
-pubDate: 2026-02-25T03:45:01.178Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:search-index-architecture.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/search-index-architecture.html)
 
 # Search Index Architecture

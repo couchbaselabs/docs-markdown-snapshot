@@ -2,10 +2,11 @@
 title: responses
 description: Summarizes the response codes a bucket has returned.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/cli/pages/cbstats/cbstats-responses.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:cli:cbstats/cbstats-responses.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/cli/cbstats/cbstats-responses.html)
 
 # responses

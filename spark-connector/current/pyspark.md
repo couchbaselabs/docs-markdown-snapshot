@@ -3,10 +3,11 @@ title: Getting Started (PySpark)
 description: You can use the Couchbase Spark Connector together with PySpark to
   quickly and easily explore your data.
 editUrl: https://github.com/couchbase/docs-spark/edit/release/3.5/modules/ROOT/pages/pyspark.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:spark-connector::pyspark.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/spark-connector/current/pyspark.html)
 
 # Getting Started (PySpark)

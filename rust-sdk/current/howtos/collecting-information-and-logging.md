@@ -2,10 +2,11 @@
 title: Logging
 description: The Rust SDK logs events via the `tracing` crate.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/collecting-information-and-logging.html)
 
 # Logging

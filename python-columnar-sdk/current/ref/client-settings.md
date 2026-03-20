@@ -2,10 +2,11 @@
 title: Client Settings
 description: Most settings can be changed through the connection string.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/ref/pages/client-settings.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:python-columnar-sdk:ref:client-settings.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/python-columnar-sdk/current/ref/client-settings.html)
 
 # Client Settings

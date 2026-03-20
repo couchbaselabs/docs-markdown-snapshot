@@ -2,10 +2,11 @@
 title: XDCR Metrics
 description: A list of the metrics provided by XDCR.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/metrics-reference/pages/xdcr-metrics.adoc
-pubDate: 2026-03-18T03:49:18.767Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:metrics-reference:xdcr-metrics.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/metrics-reference/xdcr-metrics.html)
 
 # XDCR Metrics

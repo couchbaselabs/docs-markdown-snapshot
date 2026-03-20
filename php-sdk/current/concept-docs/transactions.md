@@ -2,10 +2,11 @@
 title: Transaction Concepts
 description: A high-level overview of Distributed ACID Transactions with Couchbase.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.4/modules/concept-docs/pages/transactions.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:php-sdk:concept-docs:transactions.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/php-sdk/current/concept-docs/transactions.html)
 
 # Transaction Concepts

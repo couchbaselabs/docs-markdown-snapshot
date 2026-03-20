@@ -4,10 +4,11 @@ description: Add an Azure Private Link connection that peers your Azure network
   with a Capella cluster using Azure as its cloud provider. This connection can
   reduce latency and egress costs for applications hosted in the same region.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-azure-private-link.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:security:add-azure-private-link.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/security/add-azure-private-link.html)
 
 # Add an Azure Private Link Connection

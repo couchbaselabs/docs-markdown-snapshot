@@ -3,10 +3,11 @@ title: Collect Additional Information with Search Facets
 description: Use Search facets to collect specific, additional information about
   the documents included in results for a specific search query.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/search/pages/search-facets.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:search:search-facets.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/search/search-facets.html)
 
 # Collect Additional Information with Search Facets

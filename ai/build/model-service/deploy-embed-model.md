@@ -2,10 +2,11 @@
 title: Deploy an Embedding Model
 description: Use the Capella Model Service to deploy embedding models for vectorizing text.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/model-service/deploy-embed-model.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:ai:build:model-service/deploy-embed-model.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/build/model-service/deploy-embed-model.html)
 
 # Deploy an Embedding Model

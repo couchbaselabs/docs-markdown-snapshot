@@ -3,10 +3,11 @@ title: XDCR Advanced Filtering Reference
 description: XDCR Advanced Filtering allows specified subsets of documents to be
   replicated from the source bucket.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/xdcr-reference/pages/xdcr-filtering-reference-intro.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:xdcr-reference:xdcr-filtering-reference-intro.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/xdcr-reference/xdcr-filtering-reference-intro.html)
 
 # XDCR Advanced Filtering Reference

@@ -2,10 +2,11 @@
 title: Analytics Error Codes
 description: A list of Couchbase Analytics error codes.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/8.0/modules/analytics/pages/error-codes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:analytics:error-codes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/analytics/error-codes.html)
 
 # Analytics Error Codes

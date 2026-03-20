@@ -3,10 +3,11 @@ title: Frequently Asked Questions
 description: This section provides answers to commonly asked questions
   pertaining to the Eventing Service and Functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-faq.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-faq.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-faq.html)
 
 # Frequently Asked Questions

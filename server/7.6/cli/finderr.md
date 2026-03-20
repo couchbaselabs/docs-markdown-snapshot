@@ -3,10 +3,11 @@ title: finderr
 description: The <code class="cmd">finderr</code> tool returns the full details
   of any Query service or cbq shell error.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cli/pages/finderr.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:cli:finderr.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/cli/finderr.html)
 
 # finderr

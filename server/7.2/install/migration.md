@@ -3,10 +3,11 @@ title: Enabling Timestamp-based Conflict Resolution for Migrated Data
 description: The Timestamp-based Conflict Resolution is a new conflict
   resolution type added in version 4.6.0.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/migration.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:install:migration.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/install/migration.html)
 
 # Enabling Timestamp-based Conflict Resolution for Migrated Data

@@ -1,10 +1,11 @@
 ---
 title: Sync Gateway 2.1
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/csharp/installation/sync-gateway.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:tutorials:mobile-travel-tutorial:csharp/installation/sync-gateway.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tutorials/mobile-travel-tutorial/csharp/installation/sync-gateway.html)
 
 # Sync Gateway 2.1

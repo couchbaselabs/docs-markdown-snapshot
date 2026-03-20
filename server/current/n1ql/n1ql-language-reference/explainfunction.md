@@ -4,10 +4,11 @@ description: For a specified user-defined function, you use EXPLAIN FUNCTION to
   expose the execution plan for the SQL++ subqueries or embedded statements that
   it contains.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/explainfunction.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:n1ql:n1ql-language-reference/explainfunction.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/n1ql/n1ql-language-reference/explainfunction.html)
 
 # EXPLAIN FUNCTION
@@ -21,7 +22,7 @@ You can request the execution plan for an inline or external user-defined functi
 * For an inline function, EXPLAIN FUNCTION returns the query plans for all of the subqueries present in the function body.  
 For more information about inline functions, see [User-Defined Functions](userfun.md).
 * For an external function, EXPLAIN FUNCTION returns the query plans for all embedded SQL++ queries inside the referenced JavaScript body, or the line number on which a N1QL() call appears. Line numbers are calculated from the beginning of the JavaScript function definition.  
-For more information about user-defined functions with JavaScript, see [User-Defined Functions with JavaScript](../../guides/javascript-udfs.md).
+For more information about user-defined functions with JavaScript, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
 
 The following constraints apply:
 

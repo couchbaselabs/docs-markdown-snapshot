@@ -2,10 +2,11 @@
 title: DROP SEQUENCE
 description: The DROP SEQUENCE statement enables you to drop a sequence in a given scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/dropsequence.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/dropsequence.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/n1ql/n1ql-language-reference/dropsequence.html)
 
 # DROP SEQUENCE

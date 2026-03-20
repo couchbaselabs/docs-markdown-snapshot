@@ -2,10 +2,11 @@
 title: Managing Connections
 description: This section describes how to connect the Go SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.10/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.10@go-sdk:howtos:managing-connections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/2.10/howtos/managing-connections.html)
 
 # Managing Connections

@@ -5,10 +5,11 @@ description: Couchbase Lite JavaScript is a lightweight offline-first embedded
   rich query, indexing and data synchronization capabilities with Capella App
   Services or Sync Gateway.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-js/edit/release/1.0/modules/ROOT/pages/index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite-javascript::index.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite-javascript/current/index.html)
 
 # Introducing Couchbase Lite JavaScript

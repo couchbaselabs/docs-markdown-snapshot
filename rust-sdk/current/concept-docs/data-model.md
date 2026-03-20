@@ -3,10 +3,11 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:concept-docs:data-model.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/concept-docs/data-model.html)
 
 # Data Model

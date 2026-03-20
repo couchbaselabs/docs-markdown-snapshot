@@ -3,10 +3,11 @@ title: Query Data with SQL++
 description: The Query Service supports the querying of data by means of the
   SQL++ query language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/query.adoc
-pubDate: 2026-03-19T03:50:46.889Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:n1ql:query.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/n1ql/query.html)
 
 # Query Data with SQL++

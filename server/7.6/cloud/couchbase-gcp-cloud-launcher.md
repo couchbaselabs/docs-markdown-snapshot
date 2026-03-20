@@ -3,10 +3,11 @@ title: Deploy Couchbase Server Using GCP Marketplace
 description: Couchbase partners with Google to provide a packaged solution on
   GCP Marketplace.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/cloud/pages/couchbase-gcp-cloud-launcher.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:cloud:couchbase-gcp-cloud-launcher.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/cloud/couchbase-gcp-cloud-launcher.html)
 
 # Deploy Couchbase Server Using GCP Marketplace

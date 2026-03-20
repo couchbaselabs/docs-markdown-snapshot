@@ -3,10 +3,11 @@ title: Manage Documents in the Couchbase Web Console
 description: Couchbase Web Console provides a graphical interface that you can
   use to view and edit documents.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-documents/manage-documents.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:manage:manage-documents/manage-documents.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/manage/manage-documents/manage-documents.html)
 
 # Manage Documents in the Couchbase Web Console

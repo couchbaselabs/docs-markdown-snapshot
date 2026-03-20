@@ -4,10 +4,11 @@ description: The Couchbase <em>Cluster Manager</em> runs on all the nodes of a
   cluster, maintaining essential per-node processes, and coordinating
   cluster-wide operations.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/learn/pages/clusters-and-availability/cluster-manager.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:learn:clusters-and-availability/cluster-manager.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/learn/clusters-and-availability/cluster-manager.html)
 
 # Cluster Manager

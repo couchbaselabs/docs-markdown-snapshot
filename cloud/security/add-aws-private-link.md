@@ -5,10 +5,11 @@ description: Add an AWS PrivateLink connection that peers your Amazon Web
   This connection can reduce latency and egress costs for applications hosted in
   the same region.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/add-aws-private-link.adoc
-pubDate: 2026-03-07T03:34:43.923Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:security:add-aws-private-link.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/security/add-aws-private-link.html)
 
 # Add an AWS PrivateLink Connection

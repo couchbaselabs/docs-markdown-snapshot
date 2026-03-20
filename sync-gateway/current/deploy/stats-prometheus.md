@@ -2,10 +2,11 @@
 title: Integrate Prometheus
 description: Integrating Sync Gateway and Prometheus for Stats Monitoring and Alerts
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/deploy/pages/stats-prometheus.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:sync-gateway:deploy:stats-prometheus.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/current/deploy/stats-prometheus.html)
 
 # Integrate Prometheus

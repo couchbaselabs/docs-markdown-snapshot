@@ -2,10 +2,11 @@
 title: Create Indexes
 description: How to create primary indexes and secondary indexes.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/create-index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:guides:create-index.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/guides/create-index.html)
 
 # Create Indexes

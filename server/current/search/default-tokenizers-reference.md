@@ -3,10 +3,11 @@ title: Default Tokenizers
 description: Tokenizers control how the Search Service splits input strings into
   individual tokens.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/default-tokenizers-reference.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:default-tokenizers-reference.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/default-tokenizers-reference.html)
 
 # Default Tokenizers

@@ -3,10 +3,11 @@ title: Memory and Storage
 description: To facilitate high-speed data-access, Couchbase Server provides a
   caching layer and tunable disk I/O priorities.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/buckets-memory-and-storage/memory-and-storage.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:buckets-memory-and-storage/memory-and-storage.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/buckets-memory-and-storage/memory-and-storage.html)
 
 # Memory and Storage

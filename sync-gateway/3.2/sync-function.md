@@ -3,10 +3,11 @@ title: Sync Function
 description: About Sync Gateway <em>Roles</em> and their part in secure
   cloud-to-edge enterprise data synchronization.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/sync-function.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@sync-gateway::sync-function.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.2/sync-function.html)
 
 # Sync Function

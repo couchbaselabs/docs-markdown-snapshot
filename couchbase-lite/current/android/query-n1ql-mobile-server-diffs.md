@@ -2,10 +2,11 @@
 title: SQL++ Differences
 description: Differences between Couchbase Server SQL++ and Couchbase Lite N1QL
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-n1ql-mobile-server-diffs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-lite:android:query-n1ql-mobile-server-diffs.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/current/android/query-n1ql-mobile-server-diffs.html)
 
 # SQL++ Differences

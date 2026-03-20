@@ -2,10 +2,11 @@
 title: Working with Vector Search
 description: Use Vector Search with Full Text Search and Query.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/working-with-vector-search.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.2@couchbase-lite:objc:working-with-vector-search.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/3.2/objc/working-with-vector-search.html)
 
 # Working with Vector Search

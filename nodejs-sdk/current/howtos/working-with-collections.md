@@ -1,10 +1,11 @@
 ---
 title: Working with Collections
 editUrl: https://github.com/couchbase/docs-sdk-nodejs/edit/temp/4.6/modules/howtos/pages/working-with-collections.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:nodejs-sdk:howtos:working-with-collections.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/nodejs-sdk/current/howtos/working-with-collections.html)
 
 # Working with Collections

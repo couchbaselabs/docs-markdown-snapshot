@@ -1,10 +1,11 @@
 ---
 title: Eventing Access Control
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-rbac.adoc
-pubDate: 2026-02-28T03:34:55.737Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-rbac.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-rbac.html)
 
 # Eventing Access Control

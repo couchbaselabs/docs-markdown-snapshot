@@ -2,10 +2,11 @@
 title: "Appendix 2: Performance Tuning"
 description: A description of Couchbase Analytics query performance tuning.
 editUrl: https://github.com/couchbase/docs-analytics/edit/release/7.6/modules/analytics/pages/appendix_2_parameters.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:analytics:appendix_2_parameters.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/analytics/appendix_2_parameters.html)
 
 # Appendix 2: Performance Tuning

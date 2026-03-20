@@ -3,10 +3,11 @@ title: Change a Cluster&#8217;s Plan and Support Timezone
 description: You can change the Support Plan for your Couchbase Capella clusters
   and their support timezones at any time.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/change-support-plan.adoc
-pubDate: 2026-03-05T03:41:02.175Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:billing:change-support-plan.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/billing/change-support-plan.html)
 
 # Change a Cluster&#8217;s Plan and Support Timezone

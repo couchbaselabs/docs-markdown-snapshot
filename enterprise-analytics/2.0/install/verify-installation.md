@@ -2,10 +2,11 @@
 title: Verify the Enterprise Analytics Installation
 description: You can test your connection to Enterprise Analytics in multiple ways.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/install/pages/verify-installation.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:install:verify-installation.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/install/verify-installation.html)
 
 # Verify the Enterprise Analytics Installation

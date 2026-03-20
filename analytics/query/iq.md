@@ -3,10 +3,11 @@ title: Get Assistance from Capella iQ
 description: Capella iQ is a service that leverages a large language model to
   help you write queries.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/query/pages/iq.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:query:iq.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/query/iq.html)
 
 # Get Assistance from Capella iQ

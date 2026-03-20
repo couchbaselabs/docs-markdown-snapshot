@@ -3,10 +3,11 @@ title: Manage Your Billing
 description: Couchbase Capella bills you for the size and number of operational
   clusters in your organization.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/billing.adoc
-pubDate: 2026-03-05T03:41:02.175Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:billing:billing.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/billing/billing.html)
 
 # Manage Your Billing

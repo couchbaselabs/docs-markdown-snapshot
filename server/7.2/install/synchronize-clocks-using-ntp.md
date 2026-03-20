@@ -4,10 +4,11 @@ description: Network Time Protocol (NTP) is used to synchronize time across
   multiple servers. The purpose of NTP is to keep an individual node's clock
   'accurate'.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/install/pages/synchronize-clocks-using-ntp.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:install:synchronize-clocks-using-ntp.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/install/synchronize-clocks-using-ntp.html)
 
 # Clock Sync with NTP

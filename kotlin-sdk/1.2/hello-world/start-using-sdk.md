@@ -3,10 +3,11 @@ title: Start Using the Kotlin SDK
 description: A Kotlin application running on the JVM can use the Couchbase
   Kotlin SDK to access a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/1.2/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:1.2@kotlin-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/kotlin-sdk/1.2/hello-world/start-using-sdk.html)
 
 # Start Using the Kotlin SDK

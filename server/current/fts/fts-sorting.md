@@ -1,10 +1,11 @@
 ---
 title: Sorting Query Results
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/fts/pages/fts-sorting.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:fts:fts-sorting.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/fts/fts-sorting.html)
 
 # Sorting Query Results

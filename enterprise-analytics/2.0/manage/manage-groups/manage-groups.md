@@ -3,10 +3,11 @@ title: Manage Server Groups
 description: Nodes can be assigned to server <em>groups</em>, in order to
   protect a cluster from large-scale infrastructure failure.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-groups/manage-groups.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:manage:manage-groups/manage-groups.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/manage/manage-groups/manage-groups.html)
 
 # Manage Server Groups

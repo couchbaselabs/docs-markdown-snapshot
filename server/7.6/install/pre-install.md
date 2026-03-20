@@ -4,10 +4,11 @@ description: Although resource requirements will largely depend on the size and
   resource demands of your Couchbase deployment, there are some minimum and
   recommended specifications that you should follow.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/pre-install.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:install:pre-install.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/install/pre-install.html)
 
 # System Resource Requirements

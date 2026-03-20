@@ -2,10 +2,11 @@
 title: Viewing Conflict Logs
 description: View and access conflict logs from the conflict collection.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/clusters-and-availability/xdcr-viewing-conflict-logs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:clusters-and-availability/xdcr-viewing-conflict-logs.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/clusters-and-availability/xdcr-viewing-conflict-logs.html)
 
 # Viewing Conflict Logs

@@ -1,10 +1,11 @@
 ---
 title: Project Roles
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/project-roles.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:projects:project-roles.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/projects/project-roles.html)
 
 # Project Roles

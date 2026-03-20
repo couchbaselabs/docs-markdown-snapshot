@@ -2,10 +2,11 @@
 title: SELECT Statements
 description: This topic describes the syntax used by SQL++ for Capella Analytics queries.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/sqlpp/pages/3_query.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:analytics:sqlpp:3_query.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/analytics/sqlpp/3_query.html)
 
 # SELECT Statements

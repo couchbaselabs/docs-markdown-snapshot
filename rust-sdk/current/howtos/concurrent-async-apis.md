@@ -3,10 +3,11 @@ title: Async &amp; Reactive APIs
 description: The Rust SDK uses async/await via Tokio for all operations, giving
   you full control over concurrency and execution.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/howtos/pages/concurrent-async-apis.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:howtos:concurrent-async-apis.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/howtos/concurrent-async-apis.html)
 
 # Async &amp; Reactive APIs

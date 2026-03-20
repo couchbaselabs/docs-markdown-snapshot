@@ -2,10 +2,11 @@
 title: Manage Projects
 description: Create and manage projects to organize and allow access to Couchbase clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/projects/pages/manage-projects.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:projects:manage-projects.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/projects/manage-projects.html)
 
 # Manage Projects

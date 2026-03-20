@@ -3,10 +3,11 @@ title: Data Modelling
 description: <em>Couchbase Sync Gateway's</em> data model; for secure
   cloud-to-edge synchronization of enterprise data.
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.3/modules/ROOT/pages/data-modeling.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.3@sync-gateway::data-modeling.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/sync-gateway/3.3/data-modeling.html)
 
 # Data Modelling

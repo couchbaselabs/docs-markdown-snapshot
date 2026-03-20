@@ -3,10 +3,11 @@ title: Deployment Guidelines
 description: Before you install Couchbase Server, follow the recommended
   deployment guidelines for setting up your production environment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/install/pages/install-production-deployment.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:install:install-production-deployment.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/install/install-production-deployment.html)
 
 # Deployment Guidelines

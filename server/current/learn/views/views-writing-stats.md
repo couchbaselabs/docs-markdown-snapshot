@@ -3,10 +3,11 @@ title: Built-in _stats Function
 description: The built-in <code>_stats</code> reduce function produces
   statistical calculations for the input data.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/views/views-writing-stats.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:learn:views/views-writing-stats.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/learn/views/views-writing-stats.html)
 
 # Built-in _stats Function

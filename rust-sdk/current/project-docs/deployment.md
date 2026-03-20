@@ -2,10 +2,11 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:project-docs:deployment.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/project-docs/deployment.html)
 
 # Deployment
@@ -32,7 +33,7 @@ The best way to accommodate developing an application that is to be deployed to 
 
 ## [](#couchbase-operational-cluster-feature-compatibility)Couchbase Operational Cluster Feature Compatibility
 
-All of the SDKs have API compatibility with most of the features in Couchbase Operational CLusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
+All of the SDKs have API compatibility with most of the features in Couchbase Operational clusters — whether self-managed, or Capella. The following table covers possible exceptions, and gives the version of the Rust SDK and Couchbase Server with which some features were introduced.
 
 __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 |                                  | Server 7.6.x               | Server 8.0       |

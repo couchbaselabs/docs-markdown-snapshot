@@ -6,10 +6,11 @@ description: Deploy multiple Edge Servers at the edge, each serving a subset of
   can also be leveraged to deploy Edge Servers in a primary-secondary
   configuration for High Availability (HA).
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-to-edge-sync.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-edge-server:sync:edge-to-edge-sync.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-edge-server/current/sync/edge-to-edge-sync.html)
 
 # Sync with Edge Server

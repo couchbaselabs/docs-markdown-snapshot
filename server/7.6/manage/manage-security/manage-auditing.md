@@ -4,10 +4,11 @@ description: Actions performed on Couchbase Server can be <em>audited</em>. This
   allows administrators to ensure that system-management tasks are being
   appropriately performed.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/manage/pages/manage-security/manage-auditing.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:manage:manage-security/manage-auditing.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/manage/manage-security/manage-auditing.html)
 
 # Manage Auditing

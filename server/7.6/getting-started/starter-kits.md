@@ -3,10 +3,11 @@ title: Starter Kits
 description: Starter kits are repositories containing example code to get you
   started with various development projects.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/starter-kits.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:getting-started:starter-kits.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/getting-started/starter-kits.html)
 
 # Starter Kits

@@ -3,10 +3,11 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.3/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:3.3@couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-lite/3.3/java/gs-prereqs.html)
 
 # Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites

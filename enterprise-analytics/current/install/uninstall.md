@@ -3,10 +3,11 @@ title: Uninstall Enterprise Analytics
 description: The Enterprise Analytics application and its associated data can be
   removed from supported systems.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/uninstall.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:enterprise-analytics:install:uninstall.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/install/uninstall.html)
 
 # Uninstall Enterprise Analytics

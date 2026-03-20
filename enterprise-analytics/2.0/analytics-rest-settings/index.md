@@ -2,10 +2,11 @@
 title: Analytics Settings REST API
 description: A description of the Settings REST API for Couchbase Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/analytics-rest-settings/pages/index.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:analytics-rest-settings:index.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/analytics-rest-settings/index.html)
 
 # Analytics Settings REST API

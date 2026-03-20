@@ -3,10 +3,11 @@ title: Manage Authentication
 description: To access Couchbase Server, administrators and applications must be
   authenticated.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/manage/pages/manage-security/manage-authentication.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:manage:manage-security/manage-authentication.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/manage/manage-security/manage-authentication.html)
 
 # Manage Authentication

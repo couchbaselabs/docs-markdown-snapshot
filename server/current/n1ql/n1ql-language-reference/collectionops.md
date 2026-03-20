@@ -3,10 +3,11 @@ title: Collection Operators
 description: Collection operators enable you to evaluate expressions over every
   element in an array.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/collectionops.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:n1ql:n1ql-language-reference/collectionops.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/n1ql/n1ql-language-reference/collectionops.html)
 
 # Collection Operators

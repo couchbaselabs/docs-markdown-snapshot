@@ -4,10 +4,11 @@ description: Deploy edge clients in a mixed configuration, with HTTP clients
   accessing data through the REST API and Couchbase Lite clients supporting
   offline-first data synchronization.
 editUrl: https://github.com/couchbaselabs/docs-couchbase-lite-edge-server/edit/release/1.0/modules/sync/pages/edge-sync-cbl.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:couchbase-edge-server:sync:edge-sync-cbl.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/couchbase-edge-server/current/sync/edge-sync-cbl.html)
 
 # Edge Sync with Couchbase Lite

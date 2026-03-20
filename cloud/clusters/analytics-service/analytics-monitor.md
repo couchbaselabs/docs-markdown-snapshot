@@ -3,10 +3,11 @@ title: Analytics Monitor
 description: The Monitor flyout in the Analytics Workbench enables you to
   monitor Analytics queries and metrics.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/analytics-service/analytics-monitor.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:clusters:analytics-service/analytics-monitor.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/clusters/analytics-service/analytics-monitor.html)
 
 # Analytics Monitor

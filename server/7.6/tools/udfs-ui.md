@@ -3,10 +3,11 @@ title: User-Defined Functions UI
 description: The Couchbase Server admin console provides a UI for adding user
   defined functions.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/tools/pages/udfs-ui.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:tools:udfs-ui.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/tools/udfs-ui.html)
 
 # User-Defined Functions UI

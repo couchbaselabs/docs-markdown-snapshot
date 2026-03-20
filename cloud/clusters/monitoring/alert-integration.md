@@ -3,10 +3,11 @@ title: Alert Integrations
 description: An alert integration lets Capella send metric‑based notifications
   to a third‑party tool using a webhook.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/monitoring/alert-integration.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:clusters:monitoring/alert-integration.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/clusters/monitoring/alert-integration.html)
 
 # Alert Integrations

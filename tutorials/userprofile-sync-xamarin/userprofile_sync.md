@@ -1,10 +1,11 @@
 ---
 title: "User Profile Sample: Data Sync Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/sync/content/modules/userprofile-sync-xamarin/pages/userprofile_sync.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:tutorials:userprofile-sync-xamarin:userprofile_sync.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/tutorials/userprofile-sync-xamarin/userprofile_sync.html)
 
 # User Profile Sample: Data Sync Fundamentals

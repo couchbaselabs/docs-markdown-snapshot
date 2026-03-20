@@ -3,10 +3,11 @@ title: CREATE a Standalone Collection
 description: This topic describes how you use the <code>CREATE</code> statement
   to create a standalone collection in Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/sqlpp/pages/5_ddl_standalone.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:sqlpp:5_ddl_standalone.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/sqlpp/5_ddl_standalone.html)
 
 # CREATE a Standalone Collection

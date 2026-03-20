@@ -3,10 +3,11 @@ title: Default Wordlists
 description: A wordlist can contain articles, conjunctions, prepositions, or
   other terms that limit matches in a search.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/search/pages/default-wordlists-reference.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:search:default-wordlists-reference.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/search/default-wordlists-reference.html)
 
 # Default Wordlists

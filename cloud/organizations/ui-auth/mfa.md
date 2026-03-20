@@ -3,10 +3,11 @@ title: Manage Multi-Factor Authentication (MFA)
 description: Couchbase Capella provides the option to enable multi-factor
   authentication (MFA) to further enhance account security.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/organizations/pages/ui-auth/mfa.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:organizations:ui-auth/mfa.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/organizations/ui-auth/mfa.html)
 
 # Manage Multi-Factor Authentication (MFA)

@@ -3,10 +3,11 @@ title: Manage Auditing
 description: You can audit actions performed on Couchbase Server. Auditing helps
   administrators verify that system management tasks are performed correctly.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/manage/pages/manage-security/manage-auditing.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:manage:manage-security/manage-auditing.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/manage/manage-security/manage-auditing.html)
 
 # Manage Auditing

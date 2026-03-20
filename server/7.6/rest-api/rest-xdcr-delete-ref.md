@@ -3,10 +3,11 @@ title: Deleting a Reference
 description: To delete an XDCR reference to a target cluster, use the
   <code>DELETE /pools/default/remoteClusters/</code> HTTP method and URI.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/rest-api/pages/rest-xdcr-delete-ref.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.6@server:rest-api:rest-xdcr-delete-ref.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.6/rest-api/rest-xdcr-delete-ref.html)
 
 # Deleting a Reference

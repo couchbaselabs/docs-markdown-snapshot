@@ -2,10 +2,11 @@
 title: Glossary
 description: Couchbase-specific terms you'll need to understand to develop with the SDK.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/ref/pages/glossary.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:rust-sdk:ref:glossary.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/rust-sdk/current/ref/glossary.html)
 
 # Glossary

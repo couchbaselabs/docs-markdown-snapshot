@@ -4,10 +4,11 @@ description: Distributed ACID Transactions are not available for the C SDK.
   Strong durable gurarantees within a single bucket, and some re-architecture,
   may achieve similar ends within the C SDK.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-12T03:41:48.873Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:c-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/c-sdk/current/howtos/distributed-acid-transactions-from-the-sdk.html)
 
 # Using Couchbase Transactions

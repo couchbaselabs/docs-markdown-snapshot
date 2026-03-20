@@ -2,10 +2,11 @@
 title: "cbq: The Command Line Shell for SQL++"
 description: cbq is a comprehensive command line shell for SQL++.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/tools/pages/cbq-shell.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:tools:cbq-shell.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/tools/cbq-shell.html)
 
 # cbq: The Command Line Shell for SQL++

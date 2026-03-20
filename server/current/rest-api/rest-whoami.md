@@ -3,10 +3,11 @@ title: Who Am I?
 description: A Couchbase-Server user can check their id (or <em>username</em>),
   domain, roles, and other details.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/rest-api/pages/rest-whoami.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:server:rest-api:rest-whoami.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/current/rest-api/rest-whoami.html)
 
 # Who Am I?

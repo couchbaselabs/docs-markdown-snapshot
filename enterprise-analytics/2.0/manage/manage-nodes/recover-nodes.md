@@ -4,10 +4,11 @@ description: "After a node has been failed over, it can be <em>recovered</em>:
   that is, added back into the cluster from which it was failed over, by means
   of the <em>rebalance</em> operation."
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.0/modules/manage/pages/manage-nodes/recover-nodes.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:2.0@enterprise-analytics:manage:manage-nodes/recover-nodes.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/2.0/manage/manage-nodes/recover-nodes.html)
 
 # Recover a Node and Rebalance

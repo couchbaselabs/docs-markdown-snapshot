@@ -3,10 +3,11 @@ title: Viewing Cluster Details
 description: Cluster details are retrieved with <code>GET /pools/default</code>
   HTTP method and URI.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/reference/pages/rest-cluster-details.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:enterprise-analytics:reference:rest-cluster-details.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/enterprise-analytics/current/reference/rest-cluster-details.html)
 
 # Viewing Cluster Details

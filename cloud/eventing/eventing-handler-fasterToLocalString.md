@@ -2,10 +2,11 @@
 title: "Function/Benchmark: fasterToLocalString"
 description: Explore faster local time zone date formating.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/eventing/pages/eventing-handler-fasterToLocalString.adoc
-pubDate: 2026-02-20T16:52:32.702Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:cloud:eventing:eventing-handler-fasterToLocalString.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/eventing/eventing-handler-fasterToLocalString.html)
 
 # Function/Benchmark: fasterToLocalString

@@ -4,10 +4,11 @@ description: Couchbase is the modern database for enterprise applications.
   Couchbase Server 7.2 combines the strengths of relational databases with the
   flexibility, performance, and scale of Couchbase.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/introduction/pages/whats-new.adoc
-pubDate: 2026-03-13T03:41:17.220Z
+pubDate: 2026-03-20T03:41:54.898Z
 link: xref:7.2@server:introduction:whats-new.adoc[]
 ---
 
+[Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/server/7.2/introduction/whats-new.html)
 
 # What&#8217;s New in Version 7.2
