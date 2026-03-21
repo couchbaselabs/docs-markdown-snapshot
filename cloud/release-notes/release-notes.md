@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -162,7 +162,7 @@ For more information, see [Back Up and Restore An Entire Cluster](../clusters/cl
 * Create SQL++ and JavaScript User-Defined Functions (UDFs) from Data Tools  
 You can now create and manage UDFs directly from your cluster’s Data Tools > Query Tab, using either SQL++ inline expressions or JavaScript functions.  
 Use UDFs to write, edit, and manage reusable logic for your cluster. You can define UDFs using the [CREATE FUNCTION statement](#n1ql:n1ql-language-reference/create-function.adoc) or the [Query Tab UI](../guides/create-user-defined-function.md).  
-For more information, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md) or [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md).
+For more information, see [User-Defined Functions for Queries](../guides/javascript-udfs.md) or [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md).
 
 ## [](#september-2025-changelog)September 2025 Changelog
 

@@ -2,7 +2,7 @@
 title: DELETE
 description: DELETE immediately removes the specified document from your keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/delete.adoc[]
 ---
 
@@ -30,7 +30,7 @@ RBAC Examples
 ## [](#syntax)Syntax
 
 ```ebnf
-delete ::= 'DELETE' 'FROM' target-keyspace use-keys-clause? where-clause?
+delete ::= 'DELETE' 'FROM' target-keyspace use-clause? where-clause?
             limit-clause? offset-clause? returning-clause?
 ```
 
@@ -38,7 +38,7 @@ delete ::= 'DELETE' 'FROM' target-keyspace use-keys-clause? where-clause?
 
 | target-keyspace  | [Delete Target](#delete-target)       |
 | ---------------- | ------------------------------------- |
-| use-keys-clause  | [Delete Hint](#delete-hint)           |
+| use-clause       | [Delete Hint](#delete-hint)           |
 | where-clause     | [WHERE Clause](#where-clause)         |
 | limit-clause     | [LIMIT Clause](#limit-clause)         |
 | offset-clause    | [OFFSET Clause](#offset-clause)       |
@@ -88,7 +88,14 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 ### [](#delete-hint)Delete Hint
 
-You can use a `USE KEYS` hint on the delete target to specify the keys of the data items to be deleted. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
+You can use a `USE` clause to provide hints for the delete target.
+
+The clause supports the following hints:
+
+* `USE KEYS`: Specifies the keys of the data items to delete.
+* `USE INDEX`: Specifies the index to use for the delete operation.
+
+For more information, see [USE Clause](hints.md).
 
 ### [](#where-clause)WHERE Clause
 
@@ -371,3 +378,24 @@ Results
 | **1** | Documents with the first 10 ids—​the offset—​remain in the airline collection.     |
 | ----- | ---------------------------------------------------------------------------------- |
 | **2** | After deleting 10 documents—​the limit—​1 more document remains in the collection. |
+
+Example 7\. Delete query with a USE INDEX clause
+
+The following query hints the Query Service to use the index, `def_inventory_hotel_city`.
+
+```sqlpp
+DELETE FROM `hotel`
+USE INDEX (def_inventory_hotel_city)
+WHERE city = "San Francisco";
+```
+
+If you examine the plan for this query, you can see that the query uses the suggested index.
+
+Results
+
+```json
+"index": "def_inventory_hotel_city",
+"index_id": "c31e7f44f9ff274c",
+"keyspace": "hotel",
+"namespace": "default",
+```

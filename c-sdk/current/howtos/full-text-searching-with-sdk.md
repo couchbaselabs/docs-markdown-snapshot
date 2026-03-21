@@ -1,20 +1,20 @@
 ---
-title: Full Text Search (FTS) Using the C SDK with Couchbase Server
-description: You can use the Full-Text Search service (FTS) to create queryable
-  full-text indexes in Couchbase Server.
+title: Search Service Using the C SDK with Couchbase Server
+description: You can use the Search service to create queryable Search indexes
+  in Couchbase Server.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:c-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/c-sdk/current/howtos/full-text-searching-with-sdk.html)
 
-# Full Text Search (FTS) Using the C SDK with Couchbase Server
+# Search Service Using the C SDK with Couchbase Server
 
-> You can use the Full-Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
+> You can use the Search service to create queryable Search indexes in Couchbase Server. 
 
-Full-Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The C SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include queries like Match and Term queries, range queries like Date Range and Numeric Range, compound queries for conjunctions, disjunctions, and boolean queries. The C SDK exposes an API for performing Search queries which abstracts some of the complexity of using the underlying REST API.
 
 > [!NOTE]
 > When using a Couchbase version < 6.5 you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use Search.

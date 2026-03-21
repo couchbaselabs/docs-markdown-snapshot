@@ -3,7 +3,7 @@ title: Call JavaScript from SQL++
 description: You can use user-defined functions (UDFs) to call JavaScript code
   from the Query Tab.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/calling-javascript-from-n1ql.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:javascript-udfs:calling-javascript-from-n1ql.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cloud:javascript-udfs:calling-javascript-from-n1ql.adoc[]
 
 > You can use user-defined functions (UDFs) to call JavaScript code from the Query Tab. 
 
-For more information about user-defined functions in Capella, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
+For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).
 
 ## [](#create-a-scoped-user-defined-function-with-sql)Create a Scoped User-Defined Function with SQL++
 
@@ -85,7 +85,7 @@ For example, you could use the following to call the `GetBusinessDays` function:
 Query
 
 ```sqlpp
-SELECT GetBusinessDays('02/14/2022', '4/16/2022');
+SELECT GetBusinessDays("02/14/2025", "04/16/2025");
 ```
 
 The function would return the following result, in JSON format:
@@ -103,17 +103,17 @@ Result
 You can also use the `EXECUTE FUNCTION` statement to execute the function:
 
 ```sqlpp
-EXECUTE FUNCTION GetBusinessDays("02/14/2022", "04/16/2022");
+EXECUTE FUNCTION GetBusinessDays("02/14/2025", "04/16/2025");
 ```
 
 Or, you can call a function as part of a complex statement:
 
 ```n1ql
-SELECT CASE 
-  WHEN  GetBusinessDays('02/14/2022', '4/16/2022') > 44 THEN "true" 
-  ELSE "false" 
-  END 
-  AS response;    (1)
+SELECT CASE
+  WHEN GetBusinessDays('02/14/2025', '4/16/2025') > 40 THEN "late"
+  ELSE "on time"
+END
+AS response; (1)
 ```
 
 ## [](#variadic-parameters)Create and Call Functions with a Variadic Parameter

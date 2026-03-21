@@ -2,7 +2,7 @@
 title: DELETE
 description: DELETE immediately removes the specified document from your keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/delete.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:n1ql:n1ql-language-reference/delete.adoc[]
 ---
 
@@ -30,7 +30,7 @@ RBAC Examples
 ## [](#syntax)Syntax
 
 ```ebnf
-delete ::= 'DELETE' hint-comment? 'FROM' target-keyspace use-keys-clause? where-clause?
+delete ::= 'DELETE' hint-comment? 'FROM' target-keyspace use-clause? where-clause?
             limit-clause? offset-clause? returning-clause?
 ```
 
@@ -39,7 +39,7 @@ delete ::= 'DELETE' hint-comment? 'FROM' target-keyspace use-keys-clause? where-
 | hint-comment     | [Optimizer Hints](#hint-comment)      |
 | ---------------- | ------------------------------------- |
 | target-keyspace  | [Delete Target](#delete-target)       |
-| use-keys-clause  | [USE KEYS Clause](#use-keys-clause)   |
+| use-clause       | [USE Clause](#use-clause)             |
 | where-clause     | [WHERE Clause](#where-clause)         |
 | limit-clause     | [LIMIT Clause](#limit-clause)         |
 | offset-clause    | [OFFSET Clause](#offset-clause)       |
@@ -96,12 +96,19 @@ Assigns another name to the keyspace reference. For details, refer to [AS Clause
 
 Assigning an alias to the keyspace reference is optional. If you assign an alias to the keyspace reference, the `AS` keyword may be omitted.
 
-### [](#use-keys-clause)USE KEYS Clause
+### [](#use-clause)USE Clause
 
-You can use a `USE KEYS` hint on the delete target to specify the keys of the data items to be deleted. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
+You can use a `USE` clause to provide hints for the delete target.
+
+The clause supports the following hints:
+
+* `USE KEYS`: Specifies the keys of the data items to delete.
+* `USE INDEX`: Specifies the index to use for the delete operation.
+
+For more information, see [USE Clause](hints.md).
 
 > [!NOTE]
-> You cannot specify a hint for the same keyspace using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
+> You cannot specify a hint for the same keyspace using both the `USE` clause and an [optimizer hint](#hint-comment). If you do this, the `USE` clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
 
 ### [](#where-clause)WHERE Clause
 
@@ -392,6 +399,27 @@ The following query hints the optimizer to use the index, `def_inventory_hotel_c
 ```sqlpp
 DELETE /*+ INDEX (hotel def_inventory_hotel_city) */ 
 FROM `hotel`
+WHERE city = "San Francisco";
+```
+
+If you examine the plan for this query, you can see that the query uses the suggested index.
+
+Results
+
+```json
+"index": "def_inventory_hotel_city",
+"index_id": "c31e7f44f9ff274c",
+"keyspace": "hotel",
+"namespace": "default",
+```
+
+Example 8\. Delete query with a USE INDEX clause
+
+The following query hints the Query Service to use the index, `def_inventory_hotel_city`. This is equivalent to [Example 7](#ex-delete-opt-hint) but uses a `USE INDEX` clause instead of an optimizer hint.
+
+```sqlpp
+DELETE FROM `hotel`
+USE INDEX (def_inventory_hotel_city)
 WHERE city = "San Francisco";
 ```
 

@@ -3,7 +3,7 @@ title: Calling SQL++ from JavaScript
 description: You can run SQL++ statements from inside the JavaScript code you
   use for a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/calling-n1ql-from-javascript.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 ---
 
@@ -16,7 +16,7 @@ link: xref:cloud:javascript-udfs:calling-n1ql-from-javascript.adoc[]
 
 User-defined functions support calling JavaScript and executing SQL++ statements together.
 
-For more information about user-defined functions in Capella, see [User-Defined Functions with JavaScript](../guides/javascript-udfs.md).
+For more information about user-defined functions in Capella, see [User-Defined Functions for Queries](../guides/javascript-udfs.md).
 
 ## [](#calling-statements-inline)Calling SQL++ Statements Inline
 

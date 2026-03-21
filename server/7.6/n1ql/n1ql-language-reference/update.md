@@ -2,7 +2,7 @@
 title: UPDATE
 description: UPDATE replaces a document that already exists with updated values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/update.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/update.adoc[]
 ---
 
@@ -55,7 +55,7 @@ RETURNING *;
 ## [](#syntax)Syntax
 
 ```ebnf
-update ::= 'UPDATE' target-keyspace use-keys? set-clause? unset-clause?
+update ::= 'UPDATE' target-keyspace use-clause? set-clause? unset-clause?
             where-clause? limit-clause? returning-clause?
 ```
 
@@ -63,7 +63,7 @@ update ::= 'UPDATE' target-keyspace use-keys? set-clause? unset-clause?
 
 | target-keyspace  | [Update Target](#update-target)       |
 | ---------------- | ------------------------------------- |
-| use-keys         | [Update Hint](#update-hint)           |
+| use-clause       | [Update Hint](#update-hint)           |
 | set-clause       | [SET Clause](#set-clause)             |
 | unset-clause     | [UNSET Clause](#unset-clause)         |
 | where-clause     | [WHERE Clause](#where-clause)         |
@@ -114,7 +114,14 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 ### [](#update-hint)Update Hint
 
-You can use a `USE KEYS` hint on the update target to specify the keys of the data items to be updated. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
+You can use a `USE` clause to provide hints for the update target.
+
+The clause supports the following hints:
+
+* `USE KEYS`: Specifies the keys of the data items to update.
+* `USE INDEX`: Specifies the index to use for the update operation.
+
+For more information, see [USE Clause](hints.md).
 
 ### [](#set-clause)SET Clause
 
@@ -485,4 +492,26 @@ Query
 ```sqlpp
 UPDATE route t USE KEYS "route_10003"
 SET s.codeshare = NULL FOR s IN schedule END;
+```
+
+Example 10\. Update with a USE INDEX hint
+
+The following query hints the Query Service to use the index `def_inventory_airport_city`.
+
+```sqlpp
+UPDATE airport 
+USE INDEX (def_inventory_airport_city)
+SET updated = true 
+WHERE city = "San Jose";
+```
+
+If you examine the plan for this query, you can see that it uses the suggested index.
+
+Result
+
+```json
+"#operator": "IndexScan3",
+"bucket": "travel-sample",           
+"index": "def_inventory_airport_city",
+"index_id": "34798b782a732137",
 ```

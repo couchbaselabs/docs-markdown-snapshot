@@ -2,7 +2,7 @@
 title: Logging
 description: Logging with the Python SDK.
 editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.5/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:python-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -39,7 +39,7 @@ logging.basicConfig(filename='example.log',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
 logger = logging.getLogger()
-couchbase.configure_logging(logger.name, level=logger.level) (1)
+couchbase.configure_logging(logger.name, level=logger.level)
 
 cluster = Cluster('couchbase://your-ip',
                   ClusterOptions(PasswordAuthenticator("Administrator", "password")))

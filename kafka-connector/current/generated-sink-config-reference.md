@@ -1,6 +1,6 @@
 ---
 editUrl: https://github.com/couchbase/docs-kafka/edit/release/4.3/modules/ROOT/pages/generated-sink-config-reference.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:kafka-connector::generated-sink-config-reference.adoc[]
 ---
 
@@ -452,6 +452,8 @@ This property is specific to `SubDocumentSinkHandler`.
 ### [](#couchbase.subdocument.create.path)`couchbase.subdocument.create.path`
 
 Whether to add the parent paths if they are missing in the document.
+
+This property being set to false has no effect if `couchbase.subdocument.create.document` is set to true.
 
 This property is specific to `SubDocumentSinkHandler`.
 

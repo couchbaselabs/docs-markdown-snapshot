@@ -3,7 +3,7 @@ title: JavaScript Functions for Query Reference
 description: You can write extension functions for SQL++ for Query in Couchbase
   Capella, using the JavaScript programming language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -27,7 +27,7 @@ You can use inline or external JavaScript functions to run expressions or querie
 
 You can store JavaScript functions in a user-defined function (UDF) library. This enables you to share external function code for use in more than one SQL++ user-defined function. A library can contain 1 or more JavaScript functions.
 
-For more information about how to create a UDF library, see [Create a User-Defined Function Library](../guides/create-javascript-library.md).
+For more information about how to create a UDF library, see [Create a JavaScript Library](../guides/create-javascript-library.md).
 
 You cannot call external function code directly from SQL++. If you want to manage your external function code with a library, you must:
 
@@ -212,7 +212,7 @@ function sleep(milliseconds) {
 
 User-Defined Function Guides
 
-* [User-Defined Functions with JavaScript](../guides/javascript-udfs.md)
+* [User-Defined Functions for Queries](../guides/javascript-udfs.md)
 * [Monitor Functions](../n1ql/n1ql-intro/sysinfo.md#sys-functions)
 
 SQL++ User-Defined Function Commands
@@ -225,7 +225,7 @@ SQL++ User-Defined Function Commands
 
 External Libraries
 
-* [Create a User-Defined Function Library](../guides/create-javascript-library.md)
+* [Create a JavaScript Library](../guides/create-javascript-library.md)
 
 JavaScript Functions
 

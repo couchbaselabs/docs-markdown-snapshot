@@ -2,7 +2,7 @@
 title: EXECUTE FUNCTION
 description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:n1ql:n1ql-language-reference/execfunction.adoc[]
 ---
 
@@ -81,7 +81,7 @@ For examples, see [CREATE FUNCTION](createfunction.md#examples).
 ## [](#related-links)Related Links
 
 * To create user-defined functions, see [CREATE FUNCTION](createfunction.md).
-* To manage UDF libraries and JavaScript functions, see [Create a User-Defined Function Library](../../guides/create-javascript-library.md).
+* To manage UDF libraries and JavaScript functions, see [Create a JavaScript Library](../../guides/create-javascript-library.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
 * To monitor user-defined functions, see [Monitor Functions](../n1ql-intro/sysinfo.md#sys-functions).

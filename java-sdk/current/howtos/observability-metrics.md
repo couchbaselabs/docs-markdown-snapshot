@@ -3,7 +3,7 @@ title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:java-sdk:howtos:observability-metrics.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Or, sent into the OpenTelemetry or Micrometer libraries, where they can be sent 
 
 The default implementation aggregates and logs request and response metrics.
 
-By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well:
+By default the metrics will be emitted every 10 minutes, but you can customize the emit interval as well. Here is an example with `emitInterval` set at 30 seconds:
 
 ```java
 ClusterEnvironment environment = ClusterEnvironment.builder()
@@ -32,7 +32,7 @@ ClusterEnvironment environment = ClusterEnvironment.builder()
         .build();
 ```
 
-Once enabled, there is no further configuration needed. The `LoggingMeter` will emit the collected request statistics every interval. A possible report looks like this (prettified for better readability):
+Once enabled, there is no further configuration needed. The `LoggingMeter` will emit the collected request statistics every interval. A possible report — in this case for an `emitInterval` of 10 seconds — looks like this (prettified for better readability):
 
 ```json
 {
@@ -115,7 +115,7 @@ To do this, first add this to your Maven, or the equivalent to your build tool o
 
 In addition, you’ll need to get the metrics data into your metrics backend. This is often done by having the metrics backend (such as Prometheus) regularly gather, or 'scrape', the metrics data.
 
-There are multiple approaches here. The `opentelemetry-exporter-prometheus` library makes it possible to open an HTTP server in the application that Prometheus can then scape.
+There are multiple approaches here. The `opentelemetry-exporter-prometheus` library makes it possible to open an HTTP server in the application that Prometheus can then scrape.
 
 As that library is in alpha, here we will instead show how to send OpenTelemetry metrics into `opentelemetry-collector`, where it can be scraped by Prometheus or another metrics backend.
 

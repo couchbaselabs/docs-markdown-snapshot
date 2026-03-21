@@ -1,9 +1,9 @@
 ---
 title: Create a User-Defined Function
-description: Create a user-defined function (UDF) to call an inline function or
-  a specific JavaScript function stored in a library.
+description: How to create a user-defined function (UDF) to call an inline
+  function or a JavaScript function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:guides:create-user-defined-function.adoc[]
 ---
 
@@ -12,105 +12,201 @@ link: xref:cloud:guides:create-user-defined-function.adoc[]
 
 # Create a User-Defined Function
 
-> Create a user-defined function (UDF) to call an inline function or a specific JavaScript function stored in a library. 
+> How to create a user-defined function (UDF) to call an inline function or a JavaScript function. 
 
-For more information about how to create a UDF library, see [Create a User-Defined Function Library](create-javascript-library.md).
+## [](#introduction)Introduction
 
-## [](#prerequisites)Prerequisites
+A user-defined function can be **global** or **scoped**.
 
-* If you want to use cbq to create your user-defined function, you must complete the prerequisites for using cbq. For more information, see [Prerequisites](../n1ql/n1ql-intro/cbq.md#prerequisites).
-* If you want to use libraries to organize your user-defined functions, you need to create a UDF library and add a JavaScript function. For more information, see [Create a User-Defined Function Library](create-javascript-library.md).
+* A **global** user-defined function is created within the `default:` namespace, at the same level as the buckets in your database. A global user-defined function is available to all clients.
+* A **scoped** user-defined function is created within a scope, at the same level as the collections within the scope. A scoped user-defined function is only available to clients that have access to that bucket and scope.
 
-## [](#creating-the-n1ql-udf-function)Create a User-Defined Function From a UDF Library
+The name of a user-defined function must be unique within the specified namespace or scope.
 
-To create a user-defined function that references a JavaScript function from a UDF library:
+When you create a user-defined function, you can specify a list of parameters for any values you need to process or use in your function. If you want to create a user-defined function that can take a variable length list of parameters, you can create a **variadic** function.
 
-* Use the Query Tab.
-* Use the SQL++ [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md) statement, and reference the UDF library and JavaScript function.
+If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
 
-* Query Tab
-* SQL++
+* [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
+* [Query Tab](../clusters/query-service/query-workbench.md)
 
-1. On the **Operational Clusters** page, select the operational cluster where you want to create a user-defined function from a UDF library.
-2. Go to **Data Tools** **Query**.
-3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
-4. Next to the **Functions** section header, go to **Create (+)** **Function**.
-5. In the **Function Name** field, enter a name for your function.
-6. Choose the access level for your user-defined function:
+## [](#create-inline)Creating an Inline User-Defined Function
 
-  1. Choose **Global** to allow all buckets and scopes on this cluster to use this function.
-  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.  
-  > [!TIP]  
-  > Choose the same access level and namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
-7. In the **Parameters** field, enter a list of parameters, separated by commas (`,`) for any values you need to process or use in your function.  
-For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.  
-> [!TIP]  
-> If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add `…​` as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function.
-8. Click the **UDF Library** tab.
-9. Choose the UDF library and specific JavaScript function you want to assign to this user-defined function.
-10. Click **Create Function**.
-
-Execute a `CREATE FUNCTION` statement in cbq to create a user-defined function:
-
-```sqlpp
-CREATE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays(...) LANGUAGE JAVASCRIPT as "getBusinessDays" AT "travel-sample/inventory/my-library";
-```
-
-> [!TIP]
-> Set the same namespace as your UDF library for your user-defined function. Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
-
-For more information on the `CREATE FUNCTION` statement, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
-
-## [](#create-inline)Create an Inline User-Defined Function
-
-To create a user-defined function that uses inline JavaScript or SQL++:
-
-* Use the Query Tab.
-* Use the SQL++ [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md) statement.
+To create a user-defined function that uses inline SQL++, use the Query Tab or a SQL++ statement.
 
 * Query Tab
 * SQL++
+
+To create an inline user-defined function:
 
 1. On the **Operational Clusters** page, select the operational cluster where you want to create a user-defined function.
 2. Go to **Data Tools** **Query**.
 3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
 4. Next to the **Functions** section header, go to **Create (+)** **Function**.
-5. In the **Function Name** field, enter a name for your function.
+5. In the **Function Name** field, enter a name for the user-defined function.
 6. Choose the access level for your user-defined function:
 
-  1. Choose **Global** to allow all buckets and scopes on this cluster to use this function.
-  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this function.  
-  > [!TIP]  
-  > Your function name must be unique in your selected namespace. Users must set this bucket and scope as their [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) to use this function later.
-7. In the **Parameters** field, enter a list of parameters, separated by commas (`,`) for any values you need to process or use in your function.  
-For example, if you created a JavaScript function that has a variable named `a`, you should add a parameter `a`.  
-> [!TIP]  
-> If you want to create a user-defined function that can take a variable length list of parameters, rather than a comma separated list of parameters, add `…​` as a parameter. Your function will accept an array of values as a parameter, and assign each value it receives to the named variables in your function. You can also define your function with a variable length parameter list, by adding a variable to your function definition that starts with `…​` \- such as `…​ args`.
-8. Click the **Inline SQL++** or **Inline JavaScript** tab.
-9. Enter a SQL++ expression or JavaScript function.
+  * Choose **Global** for a global function.
+  * Choose **Specific** and select a bucket and scope for a scoped function.
+7. In the **Parameters** field, enter a list of parameters separated by commas (`,`) or specify `...` for a variadic function.
+8. Click the **Inline SQL++** tab.
+9. Enter a SQL++ expression as the body of the function.
+
+  * If you specified named parameters for the user-defined function, use the same named parameters as identifiers in the SQL++ expression.
+  * If the user-defined function is variadic, any arguments are passed to the SQL++ expression in an array called `args`.
 10. Click **Create Function**.
 
-Execute a `CREATE FUNCTION` statement in cbq to create an inline user-defined function:
+To create an inline user-defined function:
 
-Inline JavaScript
+1. If required, [set the query context](select.md#query-context) for a scoped function, or unset the context for a global function.
+2. Use the `CREATE FUNCTION` statement and specify a name for the function.
+3. Specify a list of parameter names separated by commas (`,`) or specify `...` for a variadic function.
+4. Use the braces syntax `{}` or the `LANGUAGE INLINE AS` clause to specify a SQL++ expression as the body of the function.
+
+  * If you specified named parameters for the user-defined function, use the same named parameters as identifiers in the SQL++ expression.
+  * If the user-defined function is variadic, any arguments are passed to the SQL++ expression in an array called `args`.
+
+---
+
+Queries
+
+The following query creates an inline SQL++ function in the current query context, using the braces syntax.
 
 ```sqlpp
-CREATE FUNCTION celsius(...) LANGUAGE INLINE AS (args[0] - 32) * 5/9;
+CREATE FUNCTION rstr(vString, vLen) { SUBSTR(vString, LENGTH(vString) - vLen, vLen) };
 ```
 
-Inline SQL++
+The following query creates an inline SQL++ function in the current query context, using the `LANGUAGE INLINE` syntax.
 
 ```sqlpp
-CREATE FUNCTION locations(vActivity) { (
-  SELECT id, name, address, city
-  FROM landmark
-  WHERE activity = vActivity) };
+CREATE FUNCTION lstr(vString, vLen) LANGUAGE INLINE AS SUBSTR(vString, 0, vLen);
 ```
 
-You cannot create 2 functions with the same name inside the same namespace.
+For more information, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
 
-For more information about the `CREATE FUNCTION` statement, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
+## [](#create-sqlpp-managed-external-udf)Creating a User-Defined Function with SQL++ Managed JavaScript
 
-## [](#next-steps)Next Steps
+To create a user-defined function that uses SQL++ managed JavaScript, use the Query Tab or a SQL++ statement.
 
-* To use your new user-defined function from SQL++, see [Call a User-Defined Function](call-user-defined-function.md).
+* Query Tab
+* SQL++
+
+To create a user-defined function with SQL++ managed JavaScript:
+
+1. On the **Operational Clusters** page, select the operational cluster where you want to create a user-defined function.
+2. Go to **Data Tools** **Query**.
+3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
+4. Next to the **Functions** section header, go to **Create (+)** **Function**.
+5. In the **Function Name** field, enter a name for the user-defined function.
+6. Choose the access level for your user-defined function:
+
+  * Choose **Global** for a global function.
+  * Choose **Specific** and select a bucket and scope for a scoped function.
+7. In the **Parameters** field, enter a list of parameters separated by commas (`,`) or specify `...` for a variadic function.
+8. Click the **Inline JavaScript** tab.
+9. Enter a JavaScript function. The JavaScript function must have the same name as the SQL++ user-defined function.
+
+  * If the user-defined function has named parameters, specify the same number of parameters for the JavaScript function.
+  * If the user-defined function is variadic, specify a rest parameter for the JavaScript function, such as `... args`.
+10. Click **Create Function**.
+
+To create a user-defined function with SQL++ managed JavaScript:
+
+1. If required, [set the query context](select.md#query-context) for a scoped function, or unset the context for a global function.
+2. Use the `CREATE FUNCTION` statement and specify a name for the function.
+3. Specify a list of parameter names separated by commas (`,`) or specify `...` for a variadic function.
+4. Use the `LANGUAGE JAVASCRIPT AS` clause to define a JavaScript function. The JavaScript function must have the same name as the SQL++ user-defined function.
+
+  * If the user-defined function has named parameters, specify the same number of parameters for the JavaScript function.
+  * If the user-defined function is variadic, specify a rest parameter for the JavaScript function, such as `... args`.
+
+---
+
+Queries
+
+The following query creates a SQL++ managed JavaScript function in the current query context.
+
+```sqlpp
+CREATE FUNCTION add100(num) LANGUAGE JAVASCRIPT AS
+"function add100(param1) {return param1+100;}";
+```
+
+For more information, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
+
+## [](#creating-the-n1ql-udf-function)Creating a User-Defined Function with a JavaScript Library
+
+If you have created a JavaScript function in a JavaScript library (see [Create a JavaScript Library](create-javascript-library.md)), you must create a SQL++ user-defined function to reference it.
+
+If the JavaScript library is scoped, create a scoped user-defined function in the same scope as the library.
+
+To create a user-defined function that references a JavaScript library, use the Query Tab or a SQL++ statement.
+
+* Query Tab
+* SQL++
+
+To create a user-defined function that references a JavaScript library:
+
+1. On the **Operational Clusters** page, select the operational cluster where you want to create a user-defined function.
+2. Go to **Data Tools** **Query**.
+3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
+4. Next to the **Functions** section header, go to **Create (+)** **Function**.
+5. In the **Function Name** field, enter a name for the user-defined function.
+6. Choose the access level for your user-defined function:
+
+  * Choose **Global** for a global function.
+  * Choose **Specific** to select a bucket and scope for a scoped function.
+7. In the **Parameters** field, enter a list of parameters separated by commas (`,`) or specify `...` for a variadic function.
+8. Click the **UDF Library** tab.
+9. Choose the JavaScript library and the specific JavaScript function you want to assign to this user-defined function.
+
+  * If the user-defined function has named parameters, the JavaScript function should accept the same number of parameters.
+  * If the user-defined function is variadic, the JavaScript function should accept a rest parameter, such as `... args`.
+10. Click **Create Function**.
+
+To create a user-defined function that references a JavaScript library:
+
+1. If required, [set the query context](select.md#query-context) for a scoped function, or unset the context for a global function.
+2. Use the `CREATE FUNCTION` statement and specify a name for the function.
+3. Specify a list of parameter names separated by commas (`,`) or specify `...` for a variadic function.
+4. Use the `LANGUAGE JAVASCRIPT AS` clause to specify the name of the JavaScript function.
+
+  * If the user-defined function has named parameters, the JavaScript function should accept the same number of parameters.
+  * If the user-defined function is variadic, the JavaScript function should accept a rest parameter, such as `... args`.
+5. Use the `AT` keyword to specify the library which contains the JavaScript function.
+
+---
+
+Queries
+
+The following query creates a user-defined function within the current query context that references a global JavaScript library.
+
+```sqlpp
+CREATE FUNCTION GetBusinessDays(startDate, endDate)
+LANGUAGE JAVASCRIPT as "getBusinessDays"
+AT "my-library";
+```
+
+The following query creates a user-defined function within the current query context that references a scoped JavaScript library in the same query context.
+
+```sqlpp
+CREATE FUNCTION GetBusinessDays(startDate, endDate)
+LANGUAGE JAVASCRIPT as "getBusinessDays"
+AT "./my-library";
+```
+
+For more information, see [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md).
+
+## [](#related-links)Related Links
+
+Reference:
+
+* [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md)
+* [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)
+* [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)
+* [EXPLAIN FUNCTION](../n1ql/n1ql-language-reference/explainfunction.md)
+* [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md)
+* [User-Defined Functions](../n1ql/n1ql-language-reference/userfun.md) — using user-defined functions (UDFs) in SQL++ statements
+
+Administrator guides:
+
+* [Monitor Functions](../n1ql/n1ql-intro/sysinfo.md#sys-functions)

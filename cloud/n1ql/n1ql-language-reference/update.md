@@ -2,7 +2,7 @@
 title: UPDATE
 description: UPDATE replaces a document that already exists with updated values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/update.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:n1ql:n1ql-language-reference/update.adoc[]
 ---
 
@@ -55,7 +55,7 @@ RETURNING *;
 ## [](#syntax)Syntax
 
 ```ebnf
-update ::= 'UPDATE' hint-comment? target-keyspace use-keys? set-clause? unset-clause?
+update ::= 'UPDATE' hint-comment? target-keyspace use-clause? set-clause? unset-clause?
             where-clause? limit-clause? returning-clause?
 ```
 
@@ -64,7 +64,7 @@ update ::= 'UPDATE' hint-comment? target-keyspace use-keys? set-clause? unset-cl
 | hint-comment     | [Optimizer Hints](#hint-comment)      |
 | ---------------- | ------------------------------------- |
 | target-keyspace  | [Update Target](#update-target)       |
-| use-keys         | [USE KEYS Clause](#update-hint)       |
+| use-clause       | [USE Clause](#use-clause)             |
 | set-clause       | [SET Clause](#set-clause)             |
 | unset-clause     | [UNSET Clause](#unset-clause)         |
 | where-clause     | [WHERE Clause](#where-clause)         |
@@ -122,12 +122,19 @@ Assigns another name to the keyspace reference. For details, refer to [AS Clause
 
 Assigning an alias to the keyspace reference is optional. If you assign an alias to the keyspace reference, the `AS` keyword may be omitted.
 
-### [](#update-hint)USE KEYS Clause
+### [](#use-clause)USE Clause
 
-You can use a `USE KEYS` hint on the update target to specify the keys of the data items to be updated. For details, refer to [USE KEYS Clause](hints.md#use-keys-clause).
+You can use a `USE` clause to provide hints for the update target.
+
+The clause supports the following hints:
+
+* `USE KEYS`: Specifies the keys of the data items to update.
+* `USE INDEX`: Specifies the index to use for the update operation.
+
+For more information, see [USE Clause](hints.md).
 
 > [!NOTE]
-> You cannot specify a hint for the same update target using both the USE KEYS clause and an [optimizer hint](#hint-comment). If you do this, the USE KEYS clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
+> You cannot specify a hint for the same update target using both the `USE` clause and an [optimizer hint](#hint-comment). If you do this, the `USE` clause and the [optimizer hint](#hint-comment) are both marked as erroneous and ignored by the optimizer.
 
 ### [](#set-clause)SET Clause
 
@@ -561,6 +568,28 @@ Result
 ```json
 "#operator": "IndexScan3",
 "bucket": "travel-sample",
+"index": "def_inventory_airport_city",
+"index_id": "34798b782a732137",
+```
+
+Example 13\. Update with a USE INDEX hint
+
+The following query hints the Query Service to use the index `def_inventory_airport_city`. This is equivalent to [Example 12](#example-12) but uses a `USE INDEX` clause instead of an optimizer hint.
+
+```sqlpp
+UPDATE airport 
+USE INDEX (def_inventory_airport_city)
+SET updated = true 
+WHERE city = "San Jose";
+```
+
+If you examine the plan for this query, you can see that it uses the suggested index.
+
+Result
+
+```json
+"#operator": "IndexScan3",
+"bucket": "travel-sample",           
 "index": "def_inventory_airport_city",
 "index_id": "34798b782a732137",
 ```

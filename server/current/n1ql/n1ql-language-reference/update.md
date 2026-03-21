@@ -2,7 +2,7 @@
 title: UPDATE
 description: UPDATE replaces a document that already exists with updated values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/update.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:server:n1ql:n1ql-language-reference/update.adoc[]
 ---
 
@@ -124,12 +124,12 @@ Assigning an alias to the keyspace reference is optional. If you assign an alias
 
 ### [](#use-clause)USE Clause
 
-You can use a `USE` clause to provide hints for the delete target.
+You can use a `USE` clause to provide hints for the update target.
 
 The clause supports the following hints:
 
-* `USE KEYS`: Specifies the keys of the data items to delete.
-* `USE INDEX`: Specifies the index to use for the delete operation.
+* `USE KEYS`: Specifies the keys of the data items to update.
+* `USE INDEX`: Specifies the index to use for the update operation.
 
 For more information, see [USE Clause](hints.md).
 

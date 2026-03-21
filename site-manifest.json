@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1773978388958,
+  "generated": 1774064447271,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -1667,7 +1667,7 @@
               "module": "howtos",
               "path": "full-text-searching-with-sdk.adoc",
               "url": "/c-sdk/current/howtos/full-text-searching-with-sdk.md",
-              "title": "Full Text Search (FTS) Using the C SDK with Couchbase Server"
+              "title": "Search Service Using the C SDK with Couchbase Server"
             },
             {
               "alias": true,
@@ -3700,7 +3700,7 @@
               "module": "guides",
               "path": "create-javascript-library.adoc",
               "url": "/cloud/guides/create-javascript-library.md",
-              "title": "Create a User-Defined Function Library"
+              "title": "Create a JavaScript Library"
             },
             {
               "module": "guides",
@@ -3785,7 +3785,7 @@
               "module": "guides",
               "path": "javascript-udfs.adoc",
               "url": "/cloud/guides/javascript-udfs.md",
-              "title": "User-Defined Functions with JavaScript"
+              "title": "User-Defined Functions for Queries"
             },
             {
               "module": "guides",

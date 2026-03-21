@@ -3,7 +3,7 @@ title: CREATE FUNCTION
 description: The <code>CREATE FUNCTION</code> statement enables you to create a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:n1ql:n1ql-language-reference/createfunction.adoc[]
 ---
 
@@ -46,7 +46,7 @@ You cannot create 2 functions that have the same name inside the same scope. You
 
 You can store JavaScript functions in a user-defined function (UDF) library. This enables you to share external function code for use in more than one SQL++ user-defined function. A library can contain 1 or more JavaScript functions.
 
-For more information about how to create a UDF library, see [Create a User-Defined Function Library](../../guides/create-javascript-library.md).
+For more information about how to create a UDF library, see [Create a JavaScript Library](../../guides/create-javascript-library.md).
 
 UDF libraries, like SQL++ user-defined functions, may be scoped or global. Set a UDF library or user-defined function as **Scoped** to keep the code for external functions separate.
 
@@ -427,9 +427,143 @@ Result
 ]
 ```
 
+Example 8\. External functions
+
+The following code defines two JavaScript functions called `encodeGeoHash` and `calculateAdjacent` in a library called `geohash-js`. \[[2](#%5Ffootnotedef%5F2 "View footnote.")\]
+
+* The function `encodeGeoHash` takes two arguments, a latitude and a longitude, and returns the 12-character [geohash](https://en.wikipedia.org/wiki/Geohash) for the specified location.
+* The function `calculateAdjacent` takes two arguments, a geohash and a direction — `"top"`, `"bottom"`, `"left"`, or `"right"` — and returns the geohash of the location next to the original geohash in the specified direction.
+
+```javascript
+function encodeGeoHash(latitude, longitude) {
+
+  var BITS = [16, 8, 4, 2, 1];
+  var BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";
+
+  var is_even = 1;
+  var i = 0, mid;
+  var lat = []; var lon = [];
+  var bit = 0;
+  var ch = 0;
+  var precision = 12;
+  var geohash = "";
+
+  lat[0] = -90.0; lat[1] = 90.0;
+  lon[0] = -180.0; lon[1] = 180.0;
+
+  while (geohash.length < precision) {
+    if (is_even) {
+      mid = (lon[0] + lon[1]) / 2;
+      if (longitude > mid) {
+        ch |= BITS[bit];
+        lon[0] = mid;
+      } else
+        lon[1] = mid;
+    } else {
+      mid = (lat[0] + lat[1]) / 2;
+      if (latitude > mid) {
+        ch |= BITS[bit];
+        lat[0] = mid;
+      } else
+        lat[1] = mid;
+    }
+
+    is_even = !is_even;
+    if (bit < 4)
+      bit++;
+    else {
+      geohash += BASE32[ch];
+      bit = 0;
+      ch = 0;
+    }
+  }
+
+  return geohash;
+}
+
+function calculateAdjacent(srcHash, dir) {
+
+  var BITS = [16, 8, 4, 2, 1];
+  var BASE32 = "0123456789bcdefghjkmnpqrstuvwxyz";
+
+  var NEIGHBORS = { right  : { even : "bc01fg45238967deuvhjyznpkmstqrwx" },
+                    left   : { even : "238967debc01fg45kmstqrwxuvhjyznp" },
+                    top    : { even : "p0r21436x8zb9dcf5h7kjnmqesgutwvy" },
+                    bottom : { even : "14365h7k9dcfesgujnmqp0r2twvyx8zb" } };
+
+  var BORDERS   = { right  : { even : "bcfguvyz" },
+                    left   : { even : "0145hjnp" },
+                    top    : { even : "prxz" },
+                    bottom : { even : "028b" } };
+
+  NEIGHBORS.bottom.odd = NEIGHBORS.left.even;
+  NEIGHBORS.top.odd = NEIGHBORS.right.even;
+  NEIGHBORS.left.odd = NEIGHBORS.bottom.even;
+  NEIGHBORS.right.odd = NEIGHBORS.top.even;
+
+  BORDERS.bottom.odd = BORDERS.left.even;
+  BORDERS.top.odd = BORDERS.right.even;
+  BORDERS.left.odd = BORDERS.bottom.even;
+  BORDERS.right.odd = BORDERS.top.even;
+
+  srcHash = srcHash.toLowerCase();
+  var lastChr = srcHash.charAt(srcHash.length - 1);
+  var type = (srcHash.length % 2) ? "odd" : "even";
+  var base = srcHash.substring(0, srcHash.length - 1);
+  if (BORDERS[dir][type].indexOf(lastChr) != -1)
+    base = calculateAdjacent(base, dir);
+  return base + BASE32[NEIGHBORS[dir][type].indexOf(lastChr)];
+}
+```
+
+The following statements create two functions:
+
+1. A function called `geohash`, which calls the JavaScript `encodeGeoHash` function from the `geohash-js` library;
+2. A function called `adjacent`, which calls the JavaScript `calculateAdjacent` function from the `geohash-js` library.
+
+```sqlpp
+CREATE FUNCTION geohash(lat, lon)
+  LANGUAGE JAVASCRIPT AS "encodeGeoHash" AT "geohash-js";
+
+CREATE FUNCTION adjacent(src, dir)
+  LANGUAGE JAVASCRIPT AS "calculateAdjacent" AT "geohash-js";
+```
+
+Test `geohash`
+
+```sqlpp
+EXECUTE FUNCTION geohash(53.353744, -2.27495);
+```
+
+Result
+
+```json
+[
+  "gcqrs0z2jfdr"
+]
+```
+
+To view the geohash on a map, go to <http://geohash.org/gcqrs0z2jfdr> and follow one of the links provided. At the specified latitude, the geohash represents an area of approximately 11 𐄂 19 millimeters.
+
+Test `adjacent`
+
+```sqlpp
+EXECUTE FUNCTION adjacent(geohash(53.353744, -2.27495), "top");
+```
+
+Result
+
+```json
+[
+  "gcqrs0z2jff2"
+]
+```
+
+To view the geohash on a map, go to <http://geohash.org/gcqrs0z2jff2> and follow one of the links provided. At this level of precision, the geohash should appear to be in almost exactly the same location as the previous one.
+
 ## [](#related-links)Related Links
 
-* To manage UDF libraries and JavaScript functions, see [Create a User-Defined Function Library](../../guides/create-javascript-library.md).
+* To manage UDF libraries and JavaScript functions, see [Create a JavaScript Library](../../guides/create-javascript-library.md).
 * To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
@@ -438,4 +572,6 @@ Result
 
 ---
 
-[1](#%5Ffootnoteref%5F1). That is, you are creating a global function, and a function with the same name already exists within the same namespace; or, you are creating a scoped function, and a function with the same name already exists within the same scope.
+[1](#%5Ffootnoteref%5F1). That is, you are creating a global function, and a function with the same name already exists within the same namespace; or, you are creating a scoped function, and a function with the same name already exists within the same scope. 
+
+[2](#%5Ffootnoteref%5F2). Credit: <https://github.com/davetroy/geohash-js>

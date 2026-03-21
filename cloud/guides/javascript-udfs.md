@@ -1,20 +1,22 @@
 ---
-title: User-Defined Functions with JavaScript
-description: Couchbase Capella lets you extend the SQL++ query language by
-  adding your own functions written in JavaScript.
+title: User-Defined Functions for Queries
+description: How to extend the SQL++ query language by adding your own
+  user-defined functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/javascript-udfs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:guides:javascript-udfs.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/guides/javascript-udfs.html)
 
-# User-Defined Functions with JavaScript
+# User-Defined Functions for Queries
 
-> Couchbase Capella lets you extend the SQL++ query language by adding your own functions written in JavaScript. 
+> How to extend the SQL++ query language by adding your own user-defined functions. 
 
-On its own, SQL++ includes built-in operations and functions for data manipulation. You can use user-defined functions to create your own extensions to the language.
+## [](#introduction)Introduction
+
+SQL++ includes built-in operations and functions for data manipulation. User-defined functions enable you to create your own extensions to the language.
 
 With user-defined functions, you can:
 
@@ -22,46 +24,48 @@ With user-defined functions, you can:
 * Execute complex logic that may be difficult to do in SQL++.
 * Migrate from Relational Database Management System (RDBMS) stored procedures.
 
-Couchbase Capella’s user-defined functions are defined with JavaScript, specifically the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard, with some restrictions and extensions. For more information, see [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md).
+## [](#user-defined-functions-in-couchbase-server)User-Defined Functions in Couchbase Server
 
-## [](#using-user-defined-functions-in-capella)Using User-Defined Functions in Capella
+You can create 3 types of user-defined functions. User-defined functions can be categorized based on the language used to define them, and the location where the function definitions are stored.
 
-You cannot call JavaScript code directly from a SQL++ query. You must create a user-defined function to call JavaScript code in your queries.
+| Type                                                                      | Language   | Stored                  |
+| ------------------------------------------------------------------------- | ---------- | ----------------------- |
+| [Inline SQL++ Functions](#inline-functions)                               | SQL++      | Internally              |
+| [SQL++ Managed JavaScript Functions](#sqlpp-managed-javascript-functions) | JavaScript | Internally              |
+| [JavaScript Library Functions](#library-functions)                        | JavaScript | In JavaScript libraries |
 
-You can create 2 types of user-defined functions:
+User-defined functions written in JavaScript support the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard, with some restrictions and extensions. For more information, see [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md).
 
-* [Inline SQL++ or JavaScript functions](#inline-functions).
-* [User-defined function (UDF) library functions](#library-functions).
+After you create your user-defined functions, you can call them like any other SQL++ function. For more information, see [Call a User-Defined Function](call-user-defined-function.md).
 
-Creating a UDF library for your JavaScript functions is optional, but simplifies organization and access control for user-defined functions.
+### [](#inline-functions)Inline SQL++ Functions
 
-After you have created your user-defined functions, you can [Call a User-Defined Function](call-user-defined-function.md) like any other SQL++ function.
+An inline SQL++ function is a user-defined function that executes a SQL++ expression. The SQL++ expression is stored internally by the Query Service.
 
-### [](#inline-functions)Inline Functions
+For more information, see [Create an Inline User-Defined Function](create-user-defined-function.md#create-inline).
 
-You can create a user-defined function that executes inline SQL++ commands or inline JavaScript. You do not need to create a UDF library before you can create and use inline functions.
+### [](#sqlpp-managed-javascript-functions)SQL++ Managed JavaScript Functions
 
-If you create a user-defined function this way, you cannot group related functions or change cluster access restrictions for multiple related functions at once.
+A SQL++ managed JavaScript function is a user-defined function that executes a JavaScript function. The JavaScript function is stored internally by the Query Service. You do not need to create a JavaScript library to create and use SQL++ managed JavaScript functions.
 
-For more information about how to create inline functions, see [Create an Inline User-Defined Function](create-user-defined-function.md#create-inline).
+If you create a user-defined function this way, you cannot group related functions or change access restrictions for multiple related functions at once.
 
-### [](#library-functions)Functions From User-Defined Function (UDF) Libraries
+For more information, see [Creating a User-Defined Function with SQL++ Managed JavaScript](create-user-defined-function.md#create-sqlpp-managed-external-udf).
 
-A UDF library is a collection of JavaScript functions. UDF libraries keep your JavaScript functions organized and allow you to set access controls across multiple functions at once.
+### [](#library-functions)JavaScript Library Functions
 
-You can define functions [while creating a library](create-javascript-library.md#add-functions-now) or [add them to an existing library](create-javascript-library.md#add-functions-later).
+A JavaScript library function is a user-defined function that executes a JavaScript function. The JavaScript function is stored in a JavaScript library.
 
-After you have [created a UDF library](create-javascript-library.md), you must [create user-defined functions](create-user-defined-function.md) to use the JavaScript functions in that library. The user-defined function creates a link between the JavaScript function in your library and SQL++, letting you call your JavaScript code.
+A JavaScript library is a collection of JavaScript functions. JavaScript libraries keep your JavaScript functions organized and allow you to set access controls across multiple functions at once.
+
+To create a JavaScript library function, you must first create a JavaScript library and add JavaScript functions to that library. For more information, see [Create a JavaScript Library](create-javascript-library.md).
+
+After you create a JavaScript library, you must create user-defined functions to use the JavaScript functions in that library. The user-defined function creates a link between the JavaScript function in your library and SQL++, letting you call your JavaScript code. For more information, see [Creating a User-Defined Function with a JavaScript Library](create-user-defined-function.md#creating-the-n1ql-udf-function).
 
 ## [](#next-steps)Next Steps
 
-* To get started with a UDF library, see [Create a User-Defined Function Library](create-javascript-library.md).
-* To create inline functions, see [Create a User-Defined Function](create-user-defined-function.md).
-* To start using your functions in the Query Tab, see [Call a User-Defined Function](call-user-defined-function.md).
+User-defined function guides:
 
-For more information about the specifics of JavaScript for user-defined functions in Capella, see:
-
-* [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md)
-* [Call JavaScript from SQL++](../javascript-udfs/calling-javascript-from-n1ql.md)
-* [Calling SQL++ from JavaScript](../javascript-udfs/calling-n1ql-from-javascript.md)
-* [Handling Errors in JavaScript Functions](../javascript-udfs/handling-errors-javascript-udf.md)
+* [Create a JavaScript Library](create-javascript-library.md)
+* [Create a User-Defined Function](create-user-defined-function.md)
+* [Call a User-Defined Function](call-user-defined-function.md)

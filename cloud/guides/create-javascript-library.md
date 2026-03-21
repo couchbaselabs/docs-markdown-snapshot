@@ -1,100 +1,122 @@
 ---
-title: Create a User-Defined Function Library
-description: Create an user-defined function (UDF) library to store and organize
-  your JavaScript functions.
+title: Create a JavaScript Library
+description: How to create a JavaScript library to store and organize your
+  JavaScript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:guides:create-javascript-library.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/guides/create-javascript-library.html)
 
-# Create a User-Defined Function Library
+# Create a JavaScript Library
 
-> Create an user-defined function (UDF) library to store and organize your JavaScript functions. 
+> How to create a JavaScript library to store and organize your JavaScript functions. 
 
-To create a UDF library that you can use to [Create a User-Defined Function](create-user-defined-function.md):
+## [](#introduction)Introduction
 
-1. [Create a User-Defined Function (UDF) Library](#creating-the-library-and-adding-your-first-function)
-2. [Add Functions to a New User-Defined Function (UDF) Library](#add-functions-now)
+You can create a JavaScript library for storing JavaScript functions. Creating a JavaScript library for your JavaScript functions is optional, but simplifies organization and access control for user-defined functions.
 
-Or, you can [Add Functions to an Existing User-Defined Function (UDF) Library](#add-functions-later).
+A JavaScript library can be **global** or **scoped**.
 
-## [](#creating-the-library-and-adding-your-first-function)Create a User-Defined Function (UDF) Library
+* A **global** library is created within the `default:` namespace, at the same level as the buckets in your database. A global library is available to all clients.
+* A **scoped** library is created within a scope, at the same level as the collections within the scope. A scoped library is only available to clients that have access to that bucket and scope. Use a scoped JavaScript library to keep the code for user-defined functions separate.
 
-To create a new UDF library from the Query Tab:
+The name of a JavaScript library must be unique within the specified namespace or scope.
+
+If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset.
+
+## [](#creating-the-library-and-adding-your-first-function)Creating a JavaScript Library and Adding JavaScript Code
+
+When you create a JavaScript library, you can add JavaScript functions to the library at the same time.
+
+To create a JavaScript library:
 
 1. On the **Operational Clusters** page, select the operational cluster where you want to work with user-defined functions.
 2. Go to **Data Tools** **Query**.
 3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
 4. Next to the **Functions** section header, go to **Create (+)** **Library**.
-5. In the **Library Name** field, enter a name for your new UDF library.
-6. Choose the access level for your UDF library:
+5. In the **Library Name** field, enter a name for your new JavaScript library.
+6. Choose the access level for your JavaScript library:
 
-  1. Choose **Global** to allow all buckets and scopes on this cluster to use functions in this library.
-  2. Choose **Specific** to choose a specific bucket and scope on this cluster that can use this library.  
-  Use this bucket and scope as the namespace for [your user-defined function](create-user-defined-function.md) to use this library and its functions later.
-7. (Optional) Add functions to your UDF library.  
-> [!TIP]  
-> Function names must be unique within your selected scope. You cannot have 2 functions with the same name inside your library. See [Add Functions to a New User-Defined Function (UDF) Library](#add-functions-now).
+  * Choose **Global** for a global library.
+  * Choose **Specific** and select a bucket and scope for a scoped library.
+7. (Optional) Add functions to your JavaScript library.
+
+  * To manually define functions for your library, on the **Define Functions** tab, enter the code for each function.
+  * To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.
 8. Click **Create**.
 
-## [](#add-functions-now)Add Functions to a New User-Defined Function (UDF) Library
+The following library contains a JavaScript function called `getBusinessDays`.
 
-To add functions to your new UDF library while you create your library:
+```javascript
+function getBusinessDays(startDate, endDate) {
+    let count = 0;
+    const curDate = new Date(new Date(startDate).getTime());
+    while (curDate <= new Date(endDate)) {
+        const dayOfWeek = curDate.getDay();
+        if(dayOfWeek !== 0 && dayOfWeek !== 6)
+            count++;
+        curDate.setDate(curDate.getDate() + 1);
+    }
+    return count;    (1)
+}
+```
 
-1. Do one of the following:
+After you create a JavaScript library and add JavaScript code, you must create a SQL++ user-defined function to reference the JavaScript code in the library, so it can be called as part of any SQL++ statement.
 
-  1. To manually define functions for your library, on the **Define Functions** tab, enter the code for each function.
-  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.  
-  > [!TIP]  
-  > Each function should have a unique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard.
+## [](#add-functions-later)Updating an Existing JavaScript Library
 
-## [](#add-functions-later)Add Functions to an Existing User-Defined Function (UDF) Library
-
-To add or edit functions in an existing UDF library:
+To add or edit functions in an existing JavaScript library:
 
 1. On the **Operational Clusters** page, select the operational cluster where you want to work with user-defined functions.
 2. Go to **Data Tools** **Query**.
 3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
-4. Next to the user-defined library where you want to add a function, go to **More Options (⋮)** **Edit**.
-5. Do one of the following:
+4. Next to the user-defined library that you want to update, go to **More Options (⋮)** **Edit**.
+5. Update the library to add new JavaScript functions, edit existing JavaScript functions, or both.
 
-  1. To manually define functions for your library, on the **Create Functions** tab, enter or edit the code for each function.
-  2. To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.  
-  > [!TIP]  
-  > Each function should have aunique assigned name inside your library’s chosen scope and follow the [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript) standard.
+  * To manually define functions for your library, on the **Create Functions** tab, enter or edit the code for each function.
+  * To import a `.js` file that contains function definitions, on the **Import Library** tab, drag and drop or choose your `.js` file.
 6. Click **Update**.
 
-## [](#creating-functions-with-variable-length-parameter-lists)Creating Functions with Variable Length Parameter Lists
+The following library contains JavaScript functions called `getBusinessDays` and `sumListOfNumbers`.
 
-If you want to create a JavaScript function that can take a variable length list of parameters, rather than a fixed number of parameters:
+```javascript
+function getBusinessDays(startDate, endDate) {
+  let count = 0;
+  const curDate = new Date(new Date(startDate).getTime());
+  while (curDate <= new Date(endDate)) {
+      const dayOfWeek = curDate.getDay();
+      if(dayOfWeek !== 0 && dayOfWeek !== 6)
+          count++;
+      curDate.setDate(curDate.getDate() + 1);
+  }
+  return count;
+}
 
-1. Add a variable that starts with `…​` to your function - such as `…​ args`.
-2. Define your user-defined function with a `…​` parameter.
+function sumListOfNumbers(... args) {
+  var sum = 0;
+  args.forEach(value => sum = sum  + value);
+  return sum;
+}
+```
 
-You can then pass a variable length list of parameters from your user-defined function to your JavaScript function.
+## [](#delete-udf)Deleting a JavaScript Library
 
-If you define your JavaScript function with all named variables but still want to use a variable length of parameters in your user-defined function:
+Before you can delete a library, you must first drop all SQL++ user-defined functions which point to any of the JavaScript functions within that library. For more information, see [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md).
 
-1. Define your user-defined function with a `…​` parameter.
+To delete a JavaScript library:
 
-Your user-defined function will accept an array of values as a parameter. The user-defined function assigns each value it receives to the named variables in your JavaScript function.
-
-For more information and examples, see [Variadic Parameters](../javascript-udfs/calling-javascript-from-n1ql.md#variadic-parameters).
-
-## [](#delete-udf)Delete a User-Defined Function (UDF) Library
-
-To delete an existing UDF library:
-
-1. On the **Operational Clusters** page, select the operational cluster where you want to delete a UDF library.
+1. On the **Operational Clusters** page, select the operational cluster where you want to delete a JavaScript library.
 2. Go to **Data Tools** **Query**.
 3. In the Data Insights area, to the left of the query editor, find the **Functions** section.
-4. Next to the user-defined library where you want to add a function, go to **More Options (⋮)** **Delete**.
-5. Confirm that you want to delete your UDF library.
+4. Next to the JavaScript library that you want to delete, go to **More Options (⋮)** **Delete**.
+5. Confirm that you want to delete your JavaScript library.
 6. Click **Delete Library**.
 
-## [](#next-steps)Next Steps
+## [](#related-links)Related Links
 
-To use your JavaScript functions from SQL++ after you have added them to a library, see [Create a User-Defined Function](create-user-defined-function.md).
+Reference:
+
+* [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md)

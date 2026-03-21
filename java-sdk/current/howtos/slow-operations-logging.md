@@ -3,7 +3,7 @@ title: Slow Operations Logging
 description: Tracing information on slow operations can be found in the logs as
   threshold logging, orphan logging, and other span metrics.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/slow-operations-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:java-sdk:howtos:slow-operations-logging.adoc[]
 ---
 
@@ -22,7 +22,7 @@ Threshold logging is the recording of slow operations — useful for diagnosing 
 
 ### [](#configuring-threshold-logging)Configuring Threshold Logging
 
-To configure threshold logging, adjust the [ThresholdRequestTracer](../ref/client-settings.md#general-options). You should expect to see output in JSON format in the logs for the services encountering problems:
+To configure threshold logging, adjust the [ThresholdRequestTracer](observability-tracing.md#the-default-thresholdloggingtracer). You should expect to see output in JSON format in the logs for the services encountering problems:
 
 ```json
 {

@@ -1,9 +1,8 @@
 ---
 title: Call a User-Defined Function
-description: Call a user-defined JavaScript function from the Query Tab or cbq
-  and use it with your Capella operational cluster.
+description: How to call a user-defined function from SQL++ statements.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/call-user-defined-function.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:cloud:guides:call-user-defined-function.adoc[]
 ---
 
@@ -12,63 +11,67 @@ link: xref:cloud:guides:call-user-defined-function.adoc[]
 
 # Call a User-Defined Function
 
-> Call a user-defined JavaScript function from the Query Tab or cbq and use it with your Capella operational cluster. 
+> How to call a user-defined function from SQL++ statements. 
+
+## [](#introduction)Introduction
 
 A user-defined function can be called like any other SQL++ function.
 
-## [](#prerequisites)Prerequisites
+* When you call a **global** function, any partial keyspace references within the function definition are resolved against the `default:` namespace, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
+* When you call a **scoped** function, any partial keyspace references within the function definition are resolved against the function’s bucket and scope, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
 
-* If you want to use cbq to run your user-defined function, you must complete the prerequisites for using cbq. For more information, see [Prerequisites](../n1ql/n1ql-intro/cbq.md#prerequisites).
-* You have created a user-defined function. For more information, see [Create a User-Defined Function](create-user-defined-function.md).
+If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
 
-## [](#procedure)Procedure
+* [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
+* [Query Tab](../clusters/query-service/query-workbench.md)
 
-You can run user-defined functions from the Query Tab or cbq.
+## [](#executing-a-sql-user-defined-function)Executing a SQL++ User-Defined Function
 
-* Query Tab
-* cbq
+To execute a user-defined function:
 
-To run a user-defined function from the Query Tab:
+1. If required, [set the query context](select.md#query-context) for a scoped function, or unset the context for a global function.
+2. Use the `EXECUTE FUNCTION` statement and specify the name of the function.
+3. Specify the function parameters within parentheses `()`.
 
-1. On the **Operational Clusters** page, select the operational cluster where you want to work with your user-defined function.
-2. Go to **Data Tools** **Query**.
-3. Enter a SQL++ statement in the query editor to run your function.  
-If you created a scoped user-defined function, make sure your [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context) is set to the same bucket and scope as the namespace for your function.  
-For example, the following statement executes a function called `GetBusinessDays`, which takes 2 dates:  
-```sqlpp  
-EXECUTE FUNCTION GetBusinessDays("02/14/2025", "04/16/2025");  
-```  
-You can also use a user-defined function in any SQL++ statement, just like a standard built-in function. For example:  
-```sqlpp  
-SELECT CASE  
-  WHEN  GetBusinessDays('02/14/2025', '4/16/2025') > 44 THEN "true"  
-  ELSE "false"  
-  END  
-  AS response;  
+The following query executes a function called `GetBusinessDays`, which was created in the current query context.
+
+```sqlpp
+EXECUTE FUNCTION GetBusinessDays("02/14/2025", "04/16/2025");
 ```
 
-To run a user-defined function using the command line tool, cbq:
+## [](#calling-a-sql-user-defined-function)Calling a SQL++ User-Defined Function
 
-1. Open a terminal window.
-2. Navigate to the directory where you installed cbq.
-3. Connect to your Capella operational cluster. For more information, see [Connecting to the Cluster](../n1ql/n1ql-intro/cbq.md#cbq-connect-to-cluster).
-4. Run the `EXECUTE FUNCTION` command with your user-defined function.  
-For example, the following command executes a function called `GetBusinessDays`, which takes 2 dates, on the `travel-sample`/`inventory` keyspace:  
-```sqlpp  
-EXECUTE FUNCTION default:`travel-sample`.`inventory`.GetBusinessDays("03/10/2025", "05/10/2025");  
-```  
-You can also use a user-defined function in any SQL++ statement, just like a standard built-in function. For example:  
-```console  
-cbq> SELECT CASE  
-      WHEN  GetBusinessDays('02/14/2025', '4/16/2025') > 44 THEN "true"  
-      ELSE "false"  
-      END  
-      AS response;  
+The SQL++ user-defined function can be used in any SQL++ statement in exactly the same way as a standard built-in function.
+
+To call a user-defined function in any SQL++ statement:
+
+1. If required, [set the query context](select.md#query-context) for a scoped function, or unset the context for a global function.
+2. Specify the name of the function.
+3. Specify the function parameters within parentheses `()`.
+
+The following query calls the `GetBusinessDays` function, which was created in the current query context, from a `SELECT` statement.
+
+```sqlpp
+SELECT CASE
+  WHEN GetBusinessDays('02/14/2025', '4/16/2025') > 40 THEN "late"
+  ELSE "on time"
+END
+AS response; (1)
 ```
 
-## [](#see-also)See Also
+For more information and examples, see [User-Defined Functions](../n1ql/n1ql-language-reference/userfun.md).
 
-* [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)
-* [User-Defined Functions](../n1ql/n1ql-language-reference/userfun.md)
-* [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)
+## [](#related-links)Related Links
+
+Reference:
+
 * [JavaScript Functions for Query Reference](../javascript-udfs/javascript-functions-with-couchbase.md)
+* [CREATE FUNCTION](../n1ql/n1ql-language-reference/createfunction.md)
+* [EXECUTE FUNCTION](../n1ql/n1ql-language-reference/execfunction.md)
+* [EXPLAIN FUNCTION](../n1ql/n1ql-language-reference/explainfunction.md)
+* [DROP FUNCTION](../n1ql/n1ql-language-reference/dropfunction.md)
+* [User-Defined Functions](../n1ql/n1ql-language-reference/userfun.md) — using user-defined functions (UDFs) in SQL++ statements
+
+Administrator guides:
+
+* [Monitor Functions](../n1ql/n1ql-intro/sysinfo.md#sys-functions)

@@ -1,11 +1,10 @@
 ---
 title: Use Business Intelligence Tools
-description: You can apply features available for visualizing and analyzing data
-  in the Tableau from Salesforce, Microsoft Power BI, or Apache Superset
-  interactive data visualization platforms to the query results you obtain in
-  Enterprise Analytics.
+description: Use business intelligence platforms -- Salesforce Tableau,
+  Microsoft Power BI, Google Looker Studio, and Apache Superset -- to visualize
+  and analyze query results from Enterprise Analytics.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/query/pages/bi.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-21T03:36:33.505Z
 link: xref:enterprise-analytics:query:bi.adoc[]
 ---
 
@@ -14,14 +13,14 @@ link: xref:enterprise-analytics:query:bi.adoc[]
 
 # Use Business Intelligence Tools
 
-> You can apply features available for visualizing and analyzing data in the Tableau from Salesforce, Microsoft Power BI, or Apache Superset interactive data visualization platforms to the query results you obtain in Enterprise Analytics. 
+> Use business intelligence platforms — Salesforce Tableau, Microsoft Power BI, Google Looker Studio, and Apache Superset — to visualize and analyze query results from Enterprise Analytics. 
 
 ## [](#prerequisites)Prerequisites
 
 To make data from Enterprise Analytics services accessible to a third-party business intelligence tool, you:
 
-* Download and configure the [Couchbase Tableau Connector](#tableau-connector), the [Couchbase Power BI Connector](#power-bi-connector), or the [Couchbase Superset Connector](#superset-connector).
-* Create tabular analytics views on your Enterprise Analytics collections, and query those tabular views for consumption by BI tools. See [Tabular Views](../sqlpp/5a%5Fviews.md).
+* Download and configure the [Couchbase Tableau Connector](#tableau-connector), the [Couchbase Power BI Connector](#power-bi-connector), the [Couchbase Superset Connector](#superset-connector), or the [Couchbase Looker Studio Connector](#looker-connector).
+* Create tabular analytics views on your Enterprise Analytics collections and query those tabular views for consumption by BI tools. See [Tabular Views](../sqlpp/5a%5Fviews.md).
 
 ## [](#tableau-connector)Use the Couchbase Tableau Connector
 
@@ -31,7 +30,7 @@ The Couchbase Tableau Connector provides the integration between tabular views o
 > Enterprise Analytics services are only compatible with the Couchbase Tableau Connector for Desktop and Server version 1.1.3 and later.  
 > You can download the latest version of the Couchbase Tableau Connector from the [Release notes](../../../tableau-connector/current/release-notes.md) page.
 
-For information about setting up the connector, see the [tableau-connector:index.adoc](#tableau-connector:index.adoc) documentation.
+For information about setting up the connector, see the [Introduction](../../../tableau-connector/current/index.md) documentation.
 
 ## [](#power-bi-connector)Use the Couchbase Power BI Connector
 
@@ -44,6 +43,12 @@ For information about setting up the connector, see the [power-bi-connector::ind
 The Couchbase Apache Superset Connector lets you visualize data from Tabular Analytics Views (TAV) in Apache Superset. It works by connecting Enterprise Analytics to Apache Superset using SQLAlchemy, allowing you to create interactive visualizations from your tabular data.
 
 For information about setting up the connector, see the [Introduction](../../../superset-connector/current/index.md) documentation.
+
+## [](#looker-connector)Use the Couchbase Looker Studio
+
+The Couchbase Looker Studio lets you visualize data from Tabular Analytics Views (TAV).
+
+For more information, see [Looker Studio with Couchbase Data API](https://developer.couchbase.com/tutorial-looker-studio-dataapi).
 
 ## [](#see-also)See Also
 
