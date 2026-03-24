@@ -1,21 +1,21 @@
 ---
-title: Get Started with AI Services APIs
+title: Get Started with Capella AI Services APIs
 description: To get started with the Couchbase Capella APIs for AI Services, you
   must create an API key. An API key authenticates and authorizes you to access
   the APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-start.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:api-guide:api-start.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-start.html)
 
-# Get Started with AI Services APIs
+# Get Started with Capella AI Services APIs
 
 > To get started with the Couchbase Capella APIs for AI Services, you must create an API key. An API key authenticates and authorizes you to access the APIs. 
 
-This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Get Started with the Management API](../../cloud/management-api-guide/management-api-start.md).
+This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
 
 This page describes how to generate and manage:
 
@@ -26,7 +26,7 @@ Use the Management API to configure and manage AI Services. Use the Model Servic
 
 ## [](#management-api-keys)Management API Keys
 
-To create an initial bootstrap API key to access the Management API, you must use the [Capella UI](#gen-keys-org). Once you have created an initial bootstrap API key, you can use the [Management API](../../cloud/management-api-reference/index.md#tag/Api-Keys) itself to create further API keys.
+To create an initial bootstrap API key to access the Management API, you must use the [Capella UI](#generate-keys). Once you have created an initial bootstrap API key, you can use the [Management API](../../cloud/management-api-reference/index.md#tag/Api-Keys) itself to create further API keys.
 
 ### [](#understand-management-api-keys)Understand Management API Keys
 
@@ -45,13 +45,13 @@ Each API key may have access to 1 or more projects, depending on the organizatio
 You can create an API key at the organization or a project level:
 
 * When you create an API key at the organization level, you may specify the organization roles for the API key, which projects the API key is associated with, and the project roles for the API key within each project.
-* When you create an API key at the project level, the API key has the [Organization Owner](../../cloud/organizations/organization-user-roles.md#organization-role-organization-owner) role for the organization containing the project, and has access to the project where you created it. You may specify project roles for the API key within that project.
+* When you create an API key at the project level, the API key has the [Organization Member](../../cloud/organizations/organization-user-roles.md#organization-role-member) role for the organization containing the project, and has access to the project where you created it. You may specify project roles for the API key within that project.
 
 An API key must have the appropriate Capella roles to access an endpoint. The [Management API reference guide](../../cloud/management-api-reference/index.md) lists the roles that are needed for each endpoint.
 
 #### [](#expiration)Expiration
 
-By default, each API key expires 180 days after creation. You can specify a different expiration, or specify that the API key does not expire. For security, you should let API keys expire and create new API keys regularly.
+By default, each API key expires 180 days after creation. You can specify a different expiration, or specify that the API key does not expire. For security, create new API keys regularly and let old API keys expire after transitioning to the new keys.
 
 #### [](#ip-access)IP Access
 
@@ -82,7 +82,7 @@ To display Management API keys within a project:
 2. Select the project you want to create API keys for.
 3. Go to **Settings** **API Keys**.
 
-### [](#gen-keys-org)Generate Management API Keys
+### [](#generate-keys)Generate Management API Keys
 
 You can generate Management API keys within an organization or within a project.
 
@@ -118,7 +118,7 @@ The Capella UI shows the new API key ID and the new API key token. The API key t
 
 To generate a Management API key at the project level:
 
-1. Display the list of Management API keys [within the project](#display-keys-proj).
+1. Display the list of Management API keys [within the project](#display-keys).
 2. Click **Generate Key**.
 3. In the **Key Name** field, enter a name for the API key.
 4. (Optional) In the **Description** field, enter a description of the API key.
@@ -133,11 +133,11 @@ To generate a Management API key at the project level:
 10. When you’re ready, click **Generate Key**.  
 The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
-> You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
+> You must copy or download the API key token now. After leaving this page, you cannot copy or download the API key token.
 11. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
 12. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 
-### [](#view-management-keys)View Management API Keys
+### [](#view-management-api-keys)View Management API Keys
 
 To view details of a Management API key:
 
@@ -145,7 +145,7 @@ To view details of a Management API key:
 2. Click the name of the API key.  
 The details of the API key are displayed: the name, description, organization roles, expiration, allowed IP addresses, and project access.
 
-### [](#delete-management-keys)Delete Management API Keys
+### [](#delete-management-api-keys)Delete Management API Keys
 
 To delete a Management API key:
 
@@ -246,7 +246,7 @@ To delete a Model Service API key:
 
 ## [](#next-steps)Next Steps
 
-* To make an API call, see [Make an API Call with AI Services APIs](api-use.md).
+* To make an API call, see [Make an API Call with Capella AI Services APIs](api-use.md).
 * For a full reference guide for the Management API, see [Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full reference guide for the Model Service API, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).

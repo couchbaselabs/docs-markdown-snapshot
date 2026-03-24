@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:android:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:couchbase-lite:android:p2psync-websocket-using-passive.adoc[]
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 > [!CAUTION]
 > Android enablers
@@ -129,7 +129,7 @@ thisListener.start(); (9)
 
 ## [](#api-references)API References
 
-You can find [Android API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/) here.
+You can find [Android API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/) here.
 
 ## [](#device-discovery)Device Discovery
 
@@ -156,7 +156,7 @@ final URLEndpointListenerConfiguration thisConfig
     = new URLEndpointListenerConfiguration(collections); (1)
 ```
 
-| **1** | Set the list of local collections using the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html). |
+| **1** | Set the list of local collections using the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html). |
 | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#lbl-set-network-and-port)Set Port and Network Interface
@@ -178,7 +178,7 @@ port = 55990, (1)
 thisConfig.setPort(55990); (1)
 ```
 
-| **1** | To use a canonical port — one known to other applications — specify it explicitly using the [setPort](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setPort-int-) method shown here.Ensure that firewall rules do not block any port you do specify.You can query the port using [getPort](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#getPort-int-). |
+| **1** | To use a canonical port — one known to other applications — specify it explicitly using the [setPort](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setPort-int-) method shown here.Ensure that firewall rules do not block any port you do specify.You can query the port using [getPort](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#getPort-int-). |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#network-interface)Network Interface
@@ -198,7 +198,7 @@ networkInterface = "wlan0", (1)
 thisConfig.setNetworkInterface("wlan0"); (1)
 ```
 
-| **1** | To specify an interface — one known to other applications — identify it explicitly, using the [setNetworkInterface](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setNetworkInterface-java.lang.String-) method shown here. This must be either an IP Address or network interface name such as en0. |
+| **1** | To specify an interface — one known to other applications — identify it explicitly, using the [setNetworkInterface](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setNetworkInterface-java.lang.String-) method shown here. This must be either an IP Address or network interface name such as en0. |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
 ## [](#delta-sync)Delta Sync
@@ -218,7 +218,7 @@ enableDeltaSync = false, (1)
 thisConfig.setEnableDeltaSync(false); (1)
 ```
 
-| **1** | Delta sync replication is not enabled by default. Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setEnableDeltaSync](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setEnableDeltaSync-boolean-) method to activate or deactivate it. |
+| **1** | Delta sync replication is not enabled by default. Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setEnableDeltaSync](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setEnableDeltaSync-boolean-) method to activate or deactivate it. |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ## [](#lbl-tls-security)TLS Security
@@ -235,13 +235,13 @@ When TLS is enabled, Couchbase Lite provides several options on how the Listener
 > To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
 > **This not recommended in production**.
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[setDisableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[setDisableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
@@ -251,7 +251,7 @@ Active peers will use the `wss://` URL scheme to connect to the listener.
 
 Define the credentials the server will present to the client for authentication. Note that the server must always authenticate itself with the client — see: [Authenticate Listener on Active Peer](p2psync-websocket-using-active.md#authenticate-listener) for how the client deals with this.
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setTlsIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setTlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-) method to configure the TLS Identity used in TLS communication.
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
@@ -317,13 +317,13 @@ In this section: [Use Basic Authentication](#use-basic-authentication) | [Using 
 
 Define how the server (Listener) will authenticate the client as one it is prepared to interact with.
 
-Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html) class’s [setAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-) method to specify how the client-supplied credentials are to be authenticated.
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html) class’s [setAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-) method to specify how the client-supplied credentials are to be authenticated.
 
 Valid options are:
 
 * No authentication — If you do not define an Authenticator then all clients are accepted.
-* Basic Authentication — uses the [ListenerPasswordAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/ListenerPasswordAuthenticator.html) to authenticate the client using the client-supplied username and password (from the http authentication header).
-* [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html) — which authenticates the client using a client supplied chain of one or more certificates. You should initialize the authenticator using one of the following constructors:
+* Basic Authentication — uses the [ListenerPasswordAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/ListenerPasswordAuthenticator.html) to authenticate the client using the client-supplied username and password (from the http authentication header).
+* [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html) — which authenticates the client using a client supplied chain of one or more certificates. You should initialize the authenticator using one of the following constructors:
 
   * A root certificate, or a list of intermediate certificates and a root certificate — the client supplied certificate must end at a certificate in this list if it is to be authenticated.
   * A block of code that assumes total responsibility for authentication — it must return a boolean response (true for an authenticated client, or false for a failed authentication).
@@ -362,14 +362,14 @@ Define how the server will authenticate client-supplied certificates.
 
 There are two ways to authenticate a client:
 
-* A chain of one or more certificates that ends at a certificate in the list of certificates supplied to the constructor for [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html) — see: [Example 9](#ex-set-cert-auth)
+* A chain of one or more certificates that ends at a certificate in the list of certificates supplied to the constructor for [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html) — see: [Example 9](#ex-set-cert-auth)
 * Application logic: This method assumes complete responsibility for verifying and authenticating the client — see: [Example 10](#ex-use-app-logic)  
 If the parameter supplied to the constructor for `ListenerCertificateAuthenticator` is of type `ListenerCertificateAuthenticatorDelegate`, all other forms of authentication are bypassed.  
 The client response to the certificate request is passed to the method supplied as the constructor parameter. The logic should take the form of function or block (such as, a closure expression) where the platform allows.
 
 Example 9\. Set Certificate Authorization
 
-Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the the [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html).
+Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the the [ListenerCertificateAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/ListenerCertificateAuthenticator.html).
 
 * Kotlin
 * Java
@@ -500,7 +500,7 @@ __Table 1\. Expected system behavior__
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | true       | Ignored                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | TLS is disabled; all communication is plain text.                                                                                                                                                                            |
 | false      | set to nil                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | The system will auto generate an _anonymous_ self signed cert. Active Peers (clients) should be configured to accept self-signed certificates. Communication is encrypted                                                    |
-| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [createIdentity()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#createIdentity-boolean-java.util.Map-java.util.Date-java.lang.String-) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [getIdentity()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#getIdentity-java.lang.String-) method with the alias you want to retrieve.. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
+| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [createIdentity()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#createIdentity-boolean-java.util.Map-java.util.Date-java.lang.String-) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html) class’s [getIdentity()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/TLSIdentity.html#getIdentity-java.lang.String-) method with the alias you want to retrieve.. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
 
 ## [](#lbl-start-listener)Start Listener
 
@@ -549,9 +549,9 @@ thisListener.start(); (2)
 
 ## [](#monitor-listener)Monitor Listener
 
-Use the Listener’s `[getStatus](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html#getStatus--)` property/method to get counts of total and active connections — see: [Example 13](#get-connection-counts).
+Use the Listener’s `[getStatus](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html#getStatus--)` property/method to get counts of total and active connections — see: [Example 13](#get-connection-counts).
 
-You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the `[ConnectionStatus](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/ConnectionStatus.html)` class returns a result.
+You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the `[ConnectionStatus](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/ConnectionStatus.html)` class returns a result.
 
 Example 13\. Get connection counts
 
@@ -609,7 +609,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#android:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/)
+* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/)
 
 .
 

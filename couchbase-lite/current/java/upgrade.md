@@ -2,7 +2,7 @@
 title: Upgrade
 description: ""
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/upgrade.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:java:upgrade.adoc[]
 ---
 
@@ -15,13 +15,13 @@ link: xref:couchbase-lite:java:upgrade.adoc[]
 > On upgrading from a 2.x release, all Couchbase Lite databases automatically re-index on initial database open.  
 > This can result in a delay before the database is usable.
 
-## [](#4-0-0-upgrade)4.0.0 Upgrade
+## [](#4-0-0-upgrade)4.0.3 Upgrade
 
 Couchbase Lite 4.0 introduces significant architectural changes, most notably the migration from revision trees to version vectors for document versioning.
 
-### [](#major-changes-in-4-0-0)Major Changes in 4.0.0
+### [](#major-changes-in-4-0-3)Major Changes in 4.0.3
 
-**Version Vector Architecture**: CBL 4.0.0 replaces the revision tree system with version vectors, providing improved performance, scalability, and conflict resolution. Documents now use version-based revision IDs in the format `<timestamp>@<source-id>` instead of the previous `<generation>-<document-hash>` format.
+**Version Vector Architecture**: CBL 4.0.3 replaces the revision tree system with version vectors, providing improved performance, scalability, and conflict resolution. Documents now use version-based revision IDs in the format `<timestamp>@<source-id>` instead of the previous `<generation>-<document-hash>` format.
 
 **Enhanced Conflict Resolution**: The default conflict resolution strategy changes from `most active wins` to `last write wins` based on hybrid logical timestamps, providing more intuitive and predictable conflict resolution behavior.
 
@@ -29,15 +29,15 @@ Couchbase Lite 4.0 introduces significant architectural changes, most notably th
 
 ### [](#database-compatibility-40)Database Compatibility
 
-**Automatic Upgrade from 3.x**: CBL 4.0.0 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.0, documents are automatically upgraded to use version vectors when they’re updated and saved.
+**Automatic Upgrade from 3.x**: CBL 4.0.3 databases are compatible with CBL 3.1 and 3.2 databases. When opening a 3.1 or 3.2 database with CBL 4.0.3, documents are automatically upgraded to use version vectors when they’re updated and saved.
 
-**No Configuration Required**: CBL 4.0.0 enables version vectors by default - the feature requires no API configuration.
+**No Configuration Required**: CBL 4.0.3 enables version vectors by default - the feature requires no API configuration.
 
 ### [](#synchronization-compatibility-40)Synchronization Compatibility
 
-**Sync Gateway Requirements**: CBL 4.0.0 requires Sync Gateway 4.x or later for synchronization. Attempting to sync with Sync Gateway versions prior to 4.x results in replication errors with appropriate error messages indicating the incompatibility.
+**Sync Gateway Requirements**: CBL 4.0.3 requires Sync Gateway 4.x or later for synchronization. Attempting to sync with Sync Gateway versions prior to 4.x results in replication errors with appropriate error messages indicating the incompatibility.
 
-**Peer-to-Peer Compatibility**: CBL 4.0.0 can only perform peer-to-peer synchronization with other CBL 4.x instances using either `URLEndpointListener` or `MessageEndpointListener`. Sync attempts with CBL 3.x peers fail with appropriate error messages.
+**Peer-to-Peer Compatibility**: CBL 4.0.3 can only perform peer-to-peer synchronization with other CBL 4.x instances using either `URLEndpointListener` or `MessageEndpointListener`. Sync attempts with CBL 3.x peers fail with appropriate error messages.
 
 ### [](#replication-compatibility)Replication Compatibility
 
@@ -51,14 +51,14 @@ CBL 4.0 introduces strict replication compatibility requirements due to the vers
 
 ### [](#api-changes)API Changes
 
-This section introduces the changes made to the Couchbase Lite for Java API for release 4.0.0.
+This section introduces the changes made to the Couchbase Lite for Java API for release 4.0.3.
 
 #### [](#removed)Removed
 
 ##### [](#resetcheckpoint)ResetCheckpoint
 
 The method [Replicator.resetCheckpoint()](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.html#resetCheckpoint--) method has been removed.  
-Instead, use [Replicator.resetCheckpoint(boolean reset)](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.html#start-boolean-).
+Instead, use [Replicator.resetCheckpoint(boolean reset)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.html#start-boolean-).
 
 Before
 
@@ -98,7 +98,7 @@ Database.log.getFile().setDomains(LogLevel.DEBUG)
 ##### [](#database-compact)Database.compact
 
 The [Database.compact()](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/Database.html#compact--) method has been removed.  
-It’s replaced by the new [Database.performMaintenance(MaintenanceType)](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method, and the maintenance operations represented in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/MaintenanceType.html)
+It’s replaced by the new [Database.performMaintenance(MaintenanceType)](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Database.html#performMaintenance-com.couchbase.lite.MaintenanceType-) method, and the maintenance operations represented in the enum [MaintenanceType](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/MaintenanceType.html)
 
 Before
 
@@ -117,7 +117,7 @@ testdb.performMaintenance(MaintenanceType.COMPACT)
 ##### [](#match)MATCH
 
 The class, [FullTextExpression](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/FullTextExpression.html)has been deprecated.  
-Use [FullTextFunction](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/FullTextFunction.html) instead.
+Use [FullTextFunction](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/FullTextFunction.html) instead.
 
 Before
 
@@ -194,9 +194,9 @@ ReplicatorConfiguration config =
 The enum [AbstractReplicator.ActivityLevel](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.ActivityLevel.html) and the classes [AbstractReplicator.Progress](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.Progress.html) and [AbstractReplicator.Status](https://docs.couchbase.com/mobile/2.8.0/couchbase-lite-java/com/couchbase/lite/AbstractReplicator.Status.html) have all been moved to be top level definitions.  
 They are replaced by these definitions:
 
-* [ReplicatorActivityLevel](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/ReplicatorActivityLevel.html)
-* [ReplicatorProgress](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/ReplicatorProgress.html)
-* [ReplicatorStatus](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/ReplicatorStatus.html)
+* [ReplicatorActivityLevel](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/ReplicatorActivityLevel.html)
+* [ReplicatorProgress](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/ReplicatorProgress.html)
+* [ReplicatorStatus](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/ReplicatorStatus.html)
 
 Before
 

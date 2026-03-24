@@ -2,7 +2,7 @@
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/conflict.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:conflict.adoc[]
 ---
 
@@ -198,7 +198,7 @@ Here’s a typical sequence of events that would create an update conflict:
 
 1. Your code reads the document’s current properties, and constructs a modified copy to save.
 2. Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.
-3. Your code updates the document with its modified properties, for example using [CBLDatabase\_SaveDocument()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#).
+3. Your code updates the document with its modified properties, for example using [CBLDatabase\_SaveDocument()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#).
 
 ### [](#automatic-conflict-resolution-2)Automatic Conflict Resolution
 
@@ -210,7 +210,7 @@ Example 5\. Currency Control Signatures
 
 Save operations
 
-[CBLDatabase\_SaveDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#gae37e21b95f62419762e521f70850b9c7) — attempts to save the document with a concurrency control.
+[CBLDatabase\_SaveDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#gae37e21b95f62419762e521f70850b9c7) — attempts to save the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -222,8 +222,8 @@ Delete operations
 
 As with save operations, delete operation also have two method signatures, which specify how to handle a possible conflict:
 
-* [CBLDatabase\_DeleteDocument()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gad9d878c8636a75898d3993537af7e88c): The last write will win if there is a conflict.
-* [CBLDatabase\_DeleteDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga01b4cf9725de18c41e8bb002255adb9a): attempts to delete the document with a concurrency control.
+* [CBLDatabase\_DeleteDocument()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#gad9d878c8636a75898d3993537af7e88c): The last write will win if there is a conflict.
+* [CBLDatabase\_DeleteDocumentWithConcurrencyControl()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdatabase.html#ga01b4cf9725de18c41e8bb002255adb9a): attempts to delete the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -234,7 +234,7 @@ The concurrency control parameter has two possible values:
 
 Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.
 
-To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase\_SaveDocumentWithConflictHandler()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#ga9c45bcf02e6e2977c702c493a7fe0b54)).
+To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase\_SaveDocumentWithConflictHandler()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fdocuments.html#ga9c45bcf02e6e2977c702c493a7fe0b54)).
 
 The following code snippet shows an example of merging properties from the existing document (`current`) into the one being saved (`new`). In the event of conflicting keys, it will pick the key value from `new`.
 
@@ -292,7 +292,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](p2psync-websocket.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html)
+* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html)
 
 .
 

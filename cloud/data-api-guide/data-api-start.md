@@ -3,7 +3,7 @@ title: Get Started with the Data API
 description: To get started with the Couchbase Capella Data API, you must create
   a cluster access credential and enable the Data API for the cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-start.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:data-api-guide:data-api-start.adoc[]
 ---
 
@@ -63,7 +63,7 @@ In the Management API examples on this page:
 
 The endpoints described on this page all have the same base path: `/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}`. For clarity, this is not shown in the instructions, but it’s included in the examples.
 
-For details, see [Manage Deployments with the Management API](../management-api-guide/management-api-intro.md).
+For details, see [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md).
 
 ## [](#enable-the-data-api)Enable the Data API
 

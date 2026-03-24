@@ -3,7 +3,7 @@ title: Data Sync Peer-to-Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/p2psync-websocket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:couchbase-lite:c:p2psync-websocket.adoc[]
 # Data Sync Peer-to-Peer
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 ## [](#introduction)Introduction
 
@@ -208,7 +208,7 @@ Core functionalities of the listener are:
 * The listener can be started, or can be stopped.
 * Once the listener is started, a total number of connections or active connections can be checked.
 
-API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html)
+API Reference: [URLEndpointListener](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html)
 
 ### [](#urlendpointlistenerconfiguration)URLEndpointListenerConfiguration
 
@@ -234,23 +234,23 @@ The value is null if the listener is not started.
 
 disableTLS
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[disableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
 Active peers will use the `wss://` URL scheme to connect to the listener.
 
-API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177)
+API Reference: [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177)
 
 tlsIdentity
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
@@ -258,7 +258,7 @@ The auto-generated anonymous self-signed identity is saved in secure storage for
 
 When the listener is not started, the identity is null. When TLS is disabled, the identity is always null.
 
-API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae)
+API Reference: [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae)
 
 authenticator
 
@@ -268,7 +268,7 @@ Use this to specify the authenticator the listener uses to authenticate the clie
 * ListenerCertificateAuthenticator
 * Null — there is no authentication.
 
-API Reference: [authenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35)
+API Reference: [authenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35)
 
 readOnly
 
@@ -278,7 +278,7 @@ enableDeltaSync
 
 The option to enable Delta Sync and replicate only changed data also depends on the delta sync settings at database level. The default value is false.
 
-API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)
+API Reference: [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)
 
 ## [](#security-2)Security
 
@@ -341,7 +341,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](p2psync-websocket.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html)
+* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html)
 
 ###### [](#-3)
 

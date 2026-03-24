@@ -1,21 +1,21 @@
 ---
-title: Get Started with the Management API
-description: To get started with the Couchbase Capella Management API, you must
-  create an API key. An API key authenticates and authorizes you to access the
-  Management API.
+title: Get Started with the Capella Operational Management API
+description: To get started with the Couchbase Capella Operational Management
+  API, you must create an API key. An API key authenticates and authorizes you
+  to access the Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-start.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:management-api-guide:management-api-start.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/management-api-guide/management-api-start.html)
 
-# Get Started with the Management API
+# Get Started with the Capella Operational Management API
 
-> To get started with the Couchbase Capella Management API, you must create an API key. An API key authenticates and authorizes you to access the Management API. 
+> To get started with the Couchbase Capella Operational Management API, you must create an API key. An API key authenticates and authorizes you to access the Management API. 
 
-This page is for Capella operational. For Capella Analytics, see [Get Started with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-start.md).
+This page is for Capella operational. For Capella AI Services, see [Get Started with Capella AI Services APIs](../../ai/api-guide/api-start.md). For Capella Analytics, see [Get Started with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-start.md).
 
 This page describes how to create and manage API keys for the Management API only.
 
@@ -27,134 +27,128 @@ Each API key for the Management API has the following characteristics:
 
 * API keys are associated with Couchbase Capella roles and permissions.
 * Every API key has an expiration date.
-* Every API key is associated with an allowed IP Address list.
+* Every API key is associated with an allowed IP address list.
 
 ### [](#organization-roles-and-project-access)Organization Roles and Project Access
 
-Each API key is associated with one or more organization roles, which determine the privileges that the API key has within the organization. For more information about organization roles, see [Organization Roles](../organizations/organization-user-roles.md).
+Each API key is associated with 1 or more organization roles, which determine the privileges that the API key has within the organization. For more information about organization roles, see [Organization Roles](../organizations/organization-user-roles.md).
 
-Each API key may have access to one or more projects, depending on the organization role. For each project, each API key is associated with one or more project roles, which determine the privileges that the API key has within each project. For more information about project roles, see [Project Roles](../projects/project-roles.md).
+Each API key may have access to 1 or more projects, depending on the organization role. For each project, each API key is associated with 1 or more project roles, which determine the privileges that the API key has within each project. For more information about project roles, see [Project Roles](../projects/project-roles.md).
 
-You can create an API key at the level of an organization or a project.
+You can create an API key at the organization or a project level:
 
 * When you create an API key at the organization level, you may specify the organization roles for the API key, which projects the API key is associated with, and the project roles for the API key within each project.
-* When you create an API key at the project level, the API key has the Organization Member role for the organization containing the project, and has access to the project where you created it. You may specify project roles for the API key within that project.
+* When you create an API key at the project level, the API key has the [Organization Member](../organizations/organization-user-roles.md#organization-role-member) role for the organization containing the project, and has access to the project where you created it. You may specify project roles for the API key within that project.
 
-An API key must have the appropriate Capella roles to access an endpoint. The Management API reference guide lists the roles that are needed for each endpoint.
+An API key must have the appropriate Capella roles to access an endpoint. The [Management API reference guide](../management-api-reference/index.md) lists the roles that are needed for each endpoint.
 
 ### [](#expiration)Expiration
 
-By default, each API key expires 180 days after creation. You can specify a different expiration, or specify that the API key does not expire. For security, it’s recommended that you should let API keys expire and create new API keys regularly.
+By default, each API key expires 180 days after creation. You can specify a different expiration, or specify that the API key does not expire. For security, create new API keys regularly and let old API keys expire after transitioning to the new keys.
 
 ### [](#ip-access)IP Access
 
-By default, when you first create an API key, you can use that API key to access the Management API from any IP address. For security, it’s recommended that each API key should only be able to access the Management API from specific IP addresses.
+By default, when you first create an API key, you can use that API key to access the Management API from any IP address. For security, each API key should only be able to access the Management API from specific IP addresses.
 
 For each API key, you can grant access from:
 
-* Individual IP addresses.
-* Blocks of IP addresses using [CIDR notation](https://en.wikipedia.org/wiki/Classless%5FInter-Domain%5FRouting#CIDR%5Fnotation).
+* Individual IP addresses in [IPv4](https://en.wikipedia.org/wiki/IPv4) format.
+* Blocks of IP addresses in [IPv4](https://en.wikipedia.org/wiki/IPv4) format using [CIDR notation](https://en.wikipedia.org/wiki/Classless%5FInter-Domain%5FRouting#CIDR%5Fnotation).
 
-## [](#display-management-api-keys)Display Management API Keys
+## [](#display-keys)Display Management API Keys
 
-You can display Management API keys [within an organization](#display-keys-org) or [within a project](#display-keys-proj).
+You can display Management API keys within an organization or within a project. By default, there are no API keys for the Management API.
 
-### [](#display-keys-org)Within an Organization
+* Organization Level
+* Project Level
 
 To display Management API keys within an organization:
 
-1. In the navigation breadcrumbs in the Capella UI, click your organization name.
-2. Go to **Settings** **API Keys**.
-
-### [](#display-keys-proj)Within a Project
+1. In the Capella UI, click your initials.
+2. Click **Organizations**.
+3. Select the organization you want to create API keys for.
+4. Go to **Settings** **API Keys**.
 
 To display Management API keys within a project:
 
-1. In the navigation breadcrumbs in the Capella UI, do 1 of the following:
+1. In your organization, go to **Projects**.
+2. Select the project you want to create API keys for.
+3. Go to **Settings** **API Keys**.
 
-  1. Click your organization name and go to **Projects**. Select the project where you want to see API keys.
-  2. Click your current project name or search for the project where you want to see API keys.
-2. Go to **Settings** **API Keys**.
+## [](#generate-keys)Generate Management API Keys
 
-The API keys for the Management API are displayed. If you have generated any API keys, they’re listed here. By default, there are no API keys for the Management API.
+You can generate Management API keys within an organization or within a project.
 
-## [](#generate-management-api-keys)Generate Management API Keys
-
-You can generate Management API keys [within an organization](#gen-keys-org) or [within a project](#gen-keys-proj).
-
-### [](#gen-keys-org)Within an Organization
+* Organization Level
+* Project Level
 
 To generate a Management API key at the organization level:
 
-1. Display the list of Management API keys [within the organization](#display-keys-org).
+1. Display the list of Management API keys [within the organization](#display-keys).
 2. Click **Generate Key**.
 3. In the **Key Name** field, enter a name for the API key.
 4. (Optional) In the **Description** field, enter a description of the API key.
-5. In the **Organization Roles** section, select one or more organization roles for the API key.
-6. If the API key has the Organization Member role, configure the projects that the API key can access:
+5. In **Organization Roles**, select 1 or more organization roles for the API key.
+6. If the API key has the `Organization Member` role, configure the projects that the API key can access:
 
   1. Click **Configure Project Access**.
-  2. Use the toggle controls to select each project which you want the API key to access, or click **Select all**.
-  3. For each project which the API key can access, select one or more project roles for the API key.
+  2. Enable the projects you want the API key to access, or click **Select all**.
+  3. For each project which the API key can access, select 1 or more [project roles](../projects/project-roles.md) for the API key.
   4. Click **Save**.
+7. In **Key Expiration**, accept the default expiration, change the expiration, or specify that the key should not expire.
+8. In **Allowed IP Addresses**, click **Added Allowed IP Address** to specify IP access for the API key.
+9. Select 1 of the following options:
 
-Now [specify other details](#gen-keys-cont) and download the Management API key.
-
-### [](#gen-keys-proj)Within a Project
+  1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
+  2. To add your current IP address block, click **Add Current IP Address**.
+10. Click **Add**.
+11. When you’re ready, click **Generate Key**.  
+The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
+> [!WARNING]  
+> You must copy or download the API key token now. When you leave this page, you will not be able to copy or download the API key token again.
+12. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
+13. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 
 To generate a Management API key at the project level:
 
-1. Display the list of Management API keys [within the project](#display-keys-proj).
+1. Display the list of Management API keys [within the project](#display-keys).
 2. Click **Generate Key**.
 3. In the **Key Name** field, enter a name for the API key.
 4. (Optional) In the **Description** field, enter a description of the API key.
-5. Select one or more project roles for the API key.
+5. In **Roles**, select 1 or more [project roles](../projects/project-roles.md) for the API key.
+6. In the **Key Expiration**, accept the default expiration, change the expiration, or specify that the key should not expire.
+7. In **Allowed IP Addresses**, click **Added Allowed IP Address** to specify IP access for the API key.
+8. Select 1 of the following options:
 
-Now [specify other details](#gen-keys-cont) and download the Management API key.
-
-### [](#gen-keys-cont)Specify Details and Download the API Key
-
-To specify other details and download the API key:
-
-1. In the **Key Expiration** section, accept the default expiration, change the expiration, or specify that the key should not expire.
-2. Specify IP access for the API key:
-
-  1. Click **Add Allowed IP Address**.
-  2. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
-  3. To add your current IP address block, click **Add Current IP Address**.
-  4. Click **Add**.
-3. When you’re ready, click **Generate Key**.  
-The Capella UI shows the new API key ID and the new API key secret. The API key secret is hidden to prevent others reading it.  
+  1. To allow a specific IP address or block, in the **Add IP / CIDR Block** field, enter the IP address or CIDR notation.
+  2. To add your current IP address, click **Add Current IP Address**.
+9. Click **Add**.
+10. When you’re ready, click **Generate Key**.  
+The Capella UI shows the new API key ID and the new API key token. The API key token is hidden to prevent others reading it.  
 > [!WARNING]  
-> You must copy or download the API key secret now. When you leave this page, you’ll not be able to copy or download the API key secret again.
-4. To download the API key secret, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
-5. To copy either the API key ID or the API key secret to the clipboard, click the copy icon () next to the field.
-6. When you have copied or downloaded the API key secret, click **Back to API Keys list**.
+> You must copy or download the API key token now. After leaving this page, you cannot copy or download the API key token.
+11. To download the API key token, click **Download Key**. The key is saved by your browser in a file called `<name>-api-key-token.txt`, where `<name>` is the name of the API key.
+12. To copy either the API key ID or the API key token to the clipboard, click the copy icon () next to the field.
 
-The API key is now listed with the Management API Keys.
-
-## [](#view-management-api-keys)View Management API Keys
+## [](#view-management-keys)View Management API Keys
 
 To view details of a Management API key:
 
-1. Display the list of Management API keys [within an organization](#display-keys-org) or [within a project](#display-keys-proj).
+1. Display the list of Management API keys [within an organization or within a project](#display-keys).
 2. Click the name of the API key.  
 The details of the API key are displayed: the name, description, organization roles, expiration, allowed IP addresses, and project access.
-3. When ready, click **Back to the API Keys list**.
 
-## [](#delete-management-api-keys)Delete Management API Keys
+## [](#delete-management-keys)Delete Management API Keys
 
 To delete a Management API key:
 
-1. Display the list of Management API keys [within an organization](#display-keys-org) or [within a project](#display-keys-proj).
+1. Display the list of Management API keys [within an organization or within a project](#display-keys).
 2. Next to the API key you want to delete, click the trash can icon ().
-3. In the confirmation dialog box, click in the provided text field and type `delete`.
+3. In the confirmation dialogue, confirm that you want to delete the API key.
 4. Click **Delete**.
-
-The API key is deleted.
 
 ## [](#next-steps)Next Steps
 
-* To make an API call, see [Make an API Call with the Management API](management-api-use.md).
+* To make an API call, see [Make an API Call with the Capella Operational Management API](management-api-use.md).
 * For a full reference guide, see [Management API Reference](../management-api-reference/index.md).
-* For an error reference, see [Management API Errors](management-api-errors.md).
+* For an error reference, see [Capella Operational Management API Errors](management-api-errors.md).

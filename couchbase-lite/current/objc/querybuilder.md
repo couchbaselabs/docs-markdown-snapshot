@@ -3,7 +3,7 @@ title: QueryBuilder
 description: How to use QueryBuilder to build effective queries with Couchbase
   Lite on Objective-C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/querybuilder.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:objc:querybuilder.adoc[]
 ---
 
@@ -168,7 +168,7 @@ Like SQL, you can use the `WHERE` statement to choose which documents are return
 
 ### [](#lbl-comp-ops)Comparison Operators
 
-The [Expression Comparators](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLQueryExpression.html#/Comparison%20operators:) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
+The [Expression Comparators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLQueryExpression.html#/Comparison%20operators:) can be used in the WHERE statement to specify on which property to match documents. In the example below, we use the `equalTo` operator to query documents where the `type` property equals "hotel".
 
 ```json
 [
@@ -203,11 +203,11 @@ for (CBLQueryResult *result in rs) {
 
 ### [](#lbl-coll-ops)Collection Operators
 
-[ArrayFunction Collection Operators](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLQueryArrayFunction.html) are useful to check if a given value is present in an array.
+[ArrayFunction Collection Operators](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLQueryArrayFunction.html) are useful to check if a given value is present in an array.
 
 #### [](#contains-operator)CONTAINS Operator
 
-The following example uses the `[CBLQueryArrayFunction](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLQueryArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
+The following example uses the `[CBLQueryArrayFunction](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLQueryArrayFunction.html)` to find documents where the `public_likes` array property contains a value equal to "Armani Langworth".
 
 ```json
 {
@@ -259,7 +259,7 @@ In this section
 
 #### [](#lbl-string-match)String Matching
 
-The [Like()](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLQueryExpression.html#/c:objc%28cs%29CBLQueryExpression%28im%29like:) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
+The [Like()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLQueryExpression.html#/c:objc%28cs%29CBLQueryExpression%28im%29like:) operator can be used for string matching — see [Example 7](#ex-like-case-insensitive)
 
 > [!NOTE]
 > The `like` operator performs **case sensitive** matches.  
@@ -833,7 +833,7 @@ Couchbase Lite for Objective-C provides a convenience API to convert query resul
 
 Example 28\. Using JSON Results
 
-Use [CBLResult.toJSON](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLQueryResult.html#/c:objc%28cs%29CBLQueryResult%28im%29toJSON) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
+Use [CBLResult.toJSON](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLQueryResult.html#/c:objc%28cs%29CBLQueryResult%28im%29toJSON) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 28](#ex-json) for a working example.
 
 ```objc
 CBLQueryResultSet *rs = [query execute:&error];

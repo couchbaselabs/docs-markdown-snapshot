@@ -3,7 +3,7 @@ title: Passive Peer
 description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
   to synchronize securely without consuming centralized cloud-server resources
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/p2psync-websocket-using-passive.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:p2psync-websocket-using-passive.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:couchbase-lite:c:p2psync-websocket-using-passive.adoc[]
 
 > Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
 > _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
-> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+> Related Content — [API Reference](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
 
 > [!NOTE]
 > Code Snippets
@@ -90,7 +90,7 @@ CBLURLEndpointListener_Start(listener, &error);
 
 ## [](#api-references)API References
 
-You can find [C API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html) here.
+You can find [C API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html) here.
 
 ## [](#device-discovery)Device Discovery
 
@@ -116,7 +116,7 @@ config.collections = collections;
 config.collectionCount = 1;
 ```
 
-Set the list of local collections using the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html).
+Set the list of local collections using the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html).
 
 ## [](#lbl-set-network-and-port)Set Port and Network Interface
 
@@ -130,7 +130,7 @@ Example 3\. Specify a port
 config.port = 55990;
 ```
 
-To use a canonical port — one known to other applications — specify it explicitly using the [port](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#ae164b791eeeb816b9e3c3b25722a13a6) method shown here. Ensure that firewall rules do not block any port you do specify.
+To use a canonical port — one known to other applications — specify it explicitly using the [port](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#ae164b791eeeb816b9e3c3b25722a13a6) method shown here. Ensure that firewall rules do not block any port you do specify.
 
 ### [](#network-interface)Network Interface
 
@@ -142,7 +142,7 @@ Example 4\. Specify a Network Interface to Use
 config.networkInterface = FLSTR("10.1.1.10");
 ```
 
-To specify an interface — one known to other applications — identify it explicitly, using the [networkInterface](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a5a10543158ed28e4489d1256cb50309f) method shown here. This must be either an IP Address or network interface name such as `en0`.
+To specify an interface — one known to other applications — identify it explicitly, using the [networkInterface](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a5a10543158ed28e4489d1256cb50309f) method shown here. This must be either an IP Address or network interface name such as `en0`.
 
 ## [](#delta-sync)Delta Sync
 
@@ -154,7 +154,7 @@ Example 5\. Enable delta sync
 config.enableDeltaSync = true;
 ```
 
-Delta sync replication is not enabled by default. Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [enableDeltaSync](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a09df56683ec60fadd06b9e7b2c457b36) method to activate or deactivate it.
+Delta sync replication is not enabled by default. Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [enableDeltaSync](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a09df56683ec60fadd06b9e7b2c457b36) method to activate or deactivate it.
 
 ## [](#lbl-tls-security)TLS Security
 
@@ -166,13 +166,13 @@ TLS-based encryption is enabled by default, and this setting ought to be used in
 
 When TLS is enabled, Couchbase Lite provides several options on how the Listener may be configured with an appropriate TLS Identity — see [Configure TLS Identity for Listener](#configure-tls-identity-for-listener).
 
-You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
+You can use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) method to disable TLS communication if necessary.
 
 The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
 
 Basic Authentication can be used with, or without, TLS.
 
-[disableTLS](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+[disableTLS](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a6e12a73664e15fbd503be94e82ca8177) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
 
 * If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
 * If `disableTLS` is false or not specified — TLS communication is enabled.  
@@ -182,7 +182,7 @@ Active peers will use the `wss://` URL scheme to connect to the listener.
 
 Define the credentials the server will present to the client for authentication. Note that the server must always authenticate itself with the client — see: [Authenticate Listener on Active Peer](p2psync-websocket-using-active.md#authenticate-listener) for how the client deals with this.
 
-Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
+Use [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html)'s [tlsIdentity](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a872c060c215290313ab95bb920ad33ae) method to configure the TLS Identity used in TLS communication.
 
 If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
 
@@ -190,7 +190,7 @@ On macOS, iOS, and Windows, the auto-generated anonymous self-signed identity is
 
 On Linux and Android, the auto-generated anonymous self-signed identity is kept in memory and will be regenerated each time the listener is started.
 
-Alternatively, you can use the [CBLTLSIdentity\_CreateIdentityWithKeyPair()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga28cacc360238506e7ea36f058a4bcd23) API with a [CBLKeyPair](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga50d0a2acc3f0d3794164edeed66074c0) object created using [CBLKeyPair\_CreateWithExternalKey()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga78d47a8c2157dad4347709d1adec6b39). This approach enables the use of a developer-provided private key stored in secure key storage of your choice, allowing cryptographic operations to be performed through CBLExternalKeyCallbacks functions without exposing the private key.
+Alternatively, you can use the [CBLTLSIdentity\_CreateIdentityWithKeyPair()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga28cacc360238506e7ea36f058a4bcd23) API with a [CBLKeyPair](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga50d0a2acc3f0d3794164edeed66074c0) object created using [CBLKeyPair\_CreateWithExternalKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga78d47a8c2157dad4347709d1adec6b39). This approach enables the use of a developer-provided private key stored in secure key storage of your choice, allowing cryptographic operations to be performed through CBLExternalKeyCallbacks functions without exposing the private key.
 
 Couchbase Lite for C does not provide a convenience function to import a TLS identity from a secure key and certificate data source. You can generate a TLS identity from existing private key and certificate data in either PEM or DER format.
 
@@ -232,7 +232,7 @@ CBLTLSIdentity_Release(identity);
 
 | **1** | The Common Name (CN) is the only required attribute for generating the certificate.                                                                                                                                                      |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Generate the self-signed TLS identity using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) function. |
+| **2** | Generate the self-signed TLS identity using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) function. |
 | **3** | If a persistent label is specified, the identity (including an RSA key pair and certificate) is also stored in secure key storage.                                                                                                       |
 
 ```c
@@ -260,7 +260,7 @@ CBLTLSIdentity_Release(identity);
 
 | **1** | The Common Name (CN) is the only required attribute for generating the certificate.                                                                                                                                                      |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Generate the self-signed TLS identity using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) function. |
+| **2** | Generate the self-signed TLS identity using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) function. |
 | **3** | The persistent label must be NULL, as identity persistence with a label is not supported. The created identity is stored in memory only.                                                                                                 |
 
 Example 7\. Use Anonymous Self-Signed Certificate
@@ -308,7 +308,7 @@ typedef struct CBLExternalKeyCallbacks
 
 | **1** | The public key is part of an RSA key pair generated by a secure key storage or cryptographic API.                                                                                                                                                                                                                                                   |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | externalKey is an opaque pointer passed to [CBLKeyPair\_CreateWithExternalKey()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga78d47a8c2157dad4347709d1adec6b39), typically representing a reference or token used to access the public / private key within the secure storage system. |
+| **2** | externalKey is an opaque pointer passed to [CBLKeyPair\_CreateWithExternalKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga78d47a8c2157dad4347709d1adec6b39), typically representing a reference or token used to access the public / private key within the secure storage system. |
 | **3** | Use outputMaxLen as a guardrail to ensure the public key data size is within the expected range.                                                                                                                                                                                                                                                    |
 | **4** | Use RSA with PKCS#1 v1.5 padding. Algorithm names may vary — for example, RSA/ECB/PKCS1Padding on Java or Android. Note that depending on the selected key exchange method, the decrypt() function may not be invoked during the TLS handshake.                                                                                                     |
 | **5** | You must use PKCS#1 v1.5 padding algorithm when generating the signature.                                                                                                                                                                                                                                                                           |
@@ -318,13 +318,13 @@ typedef struct CBLExternalKeyCallbacks
 
 Define how the server (Listener) will authenticate the client as one it is prepared to interact with.
 
-Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html) class’s [authenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35) method to specify how the client-supplied credentials are to be authenticated.
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html) class’s [authenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5Fconfiguration.html#a68159e04ec97a47fcbe785709ca54b35) method to specify how the client-supplied credentials are to be authenticated.
 
 Valid options are:
 
 * No authentication — If you do not define an Authenticator then all clients are accepted.
-* Basic Authentication — uses the Listener [passwordAuthenticator](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab289395196d0bbd4b7bd27bfbf1b9157) to authenticate the client using the client-supplied username and password (from the http authentication header).
-* Listener [certificate](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator — which authenticates the client using a client supplied chain of one or more certificates. You should initialize the authenticator using one of the following constructors:
+* Basic Authentication — uses the Listener [passwordAuthenticator](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab289395196d0bbd4b7bd27bfbf1b9157) to authenticate the client using the client-supplied username and password (from the http authentication header).
+* Listener [certificate](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator — which authenticates the client using a client supplied chain of one or more certificates. You should initialize the authenticator using one of the following constructors:
 
   * A root certificate, or a list of intermediate certificates and a root certificate — the client supplied certificate must end at a certificate in this list if it is to be authenticated.
   * A block of code that assumes total responsibility for authentication — it must return a boolean response (true for an authenticated client, or false for a failed authentication).
@@ -353,14 +353,14 @@ Define how the server will authenticate client-supplied certificates.
 
 There are two ways to authenticate a client:
 
-* A chain of one or more certificates that ends at a certificate in the list of certificates supplied to the constructor for the Listener [certificate](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator — see: [Example 10](#ex-set-cert-auth).
+* A chain of one or more certificates that ends at a certificate in the list of certificates supplied to the constructor for the Listener [certificate](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator — see: [Example 10](#ex-set-cert-auth).
 * Application logic: This method assumes complete responsibility for verifying and authenticating the client — see: [Example 11](#ex-use-app-logic).  
 If the parameter supplied to the constructor for the Listener `certificate` authenticator is of type `ListenerCertificateAuthenticatorDelegate`, all other forms of authentication are bypassed.  
 The client response to the certificate request is passed to the method supplied as the constructor parameter. The logic should take the form of function or block (such as, a closure expression) where the platform allows.
 
 Example 10\. Set Certificate Authorization
 
-Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the Listener [certificate](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator.
+Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the Listener [certificate](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Flistener%5Fauthenticator.html#ab772751f6c964814f9c49c934eb9facf) authenticator.
 
 ```c
 // Read intermediate and root cert from a PEM file:
@@ -429,7 +429,7 @@ __Table 1\. Expected system behavior__
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | true       | Ignored                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | TLS is disabled; all communication is plain text.                                                                                                                                                                            |
 | false      | set to nil                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | The system will auto generate an _anonymous_ self signed cert. Active Peers (clients) should be configured to accept self-signed certificates. Communication is encrypted                                                    |
-| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage, if supported. Alternatively, use external key callbacks to access private key stored in secure key storage of your choice. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
+| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [CBLTLSIdentity\_CreateIdentity()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5F%5Ft%5Fl%5Fs%5Fidentity.html#ga7b9afa6f5f3167f7a2af08abc7778883) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage, if supported. Alternatively, use external key callbacks to access private key stored in secure key storage of your choice. | System will use the configured identity. Active Peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#lbl-tls-security)). |
 
 ## [](#lbl-start-listener)Start Listener
 
@@ -448,9 +448,9 @@ CBLURLEndpointListener_Start(listener, &error);
 
 ## [](#monitor-listener)Monitor Listener
 
-Use the Listener’s [CBLURLEndpointListener\_Status()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html#ac5cc57610ce3d6a2fb1e891a8f24a448) property/method to get counts of total and active connections — see: [Example 14](#get-connection-counts).
+Use the Listener’s [CBLURLEndpointListener\_Status()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/%5Fc%5Fb%5Fl%5Fu%5Fr%5Fl%5Fendpoint%5Flistener%5F8h.html#ac5cc57610ce3d6a2fb1e891a8f24a448) property/method to get counts of total and active connections — see: [Example 14](#get-connection-counts).
 
-You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the [ConnectionStatus](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fconnection%5Fstatus.html) class returns a result.
+You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the [ConnectionStatus](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Fconnection%5Fstatus.html) class returns a result.
 
 Example 14\. Get connection counts
 
@@ -487,7 +487,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](p2psync-websocket.md)
-* [API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html)
+* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html)
 
 ### [](#-3)
 

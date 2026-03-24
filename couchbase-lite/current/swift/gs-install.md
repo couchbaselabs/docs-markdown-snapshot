@@ -2,7 +2,7 @@
 title: Install Couchbase Lite on Swift
 description: Installing Couchbase Lite on Swift
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/gs-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:swift:gs-install.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:couchbase-lite:swift:gs-install.adoc[]
 
 ## [](#get-started)Get Started
 
-To get started coding Couchbase Lite for Swift apps, just create or open an existing _XCode_ project and install the required _Couchbase Lite_ version, for example 4.0.1, using one of the [Install Couchbase Lite](#lbl-install-tabs) methods shown.
+To get started coding Couchbase Lite for Swift apps, just create or open an existing _XCode_ project and install the required _Couchbase Lite_ version, for example 4.0.3, using one of the [Install Couchbase Lite](#lbl-install-tabs) methods shown.
 
 Enterprise users can also download the Couchbase Lite Vector Search extension library.
 
@@ -47,14 +47,14 @@ Enterprise users can also download the Couchbase Lite Vector Search extension li
 2. In your **Cartfile**, add the appropriate 'binary' URL:  
 Couchbase Lite Community Edition  
 ```ruby  
-binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Community.json" ~> 4.0.1  
+binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Community.json" ~> 4.0.3  
 ```
 
 | **1** | Specify the required version number, here we use the latest version |
 | ----- | ------------------------------------------------------------------- |  
 Couchbase Lite Enterprise Edition  
 ```ruby  
-binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Enterprise.json" ~> 4.0.1 (1)  
+binary "https://packages.couchbase.com/releases/couchbase-lite-ios/carthage/CouchbaseLite-Enterprise.json" ~> 4.0.3 (1)  
 ```
 
 | **1** | Specify the required version number, here we use the latest version |
@@ -73,7 +73,7 @@ Couchbase Lite Community Edition
 ```ruby  
 target 'Example' do  
   use_frameworks!  
-  pod 'CouchbaseLite-Swift', '4.0.1' (1)  
+  pod 'CouchbaseLite-Swift', '4.0.3' (1)  
 end  
 ```
 
@@ -83,7 +83,7 @@ Couchbase Lite Enterprise Edition
 ```ruby  
 target 'Example' do  
   use_frameworks!  
-  pod 'CouchbaseLite-Swift-Enterprise', '4.0.1' (1)  
+  pod 'CouchbaseLite-Swift-Enterprise', '4.0.3' (1)  
 end  
 ```
 
@@ -119,14 +119,14 @@ Here we will add the `CouchbaseLiteSwift` dependency to your Parent Swift packag
 dependencies: [  
   .package(name: "CouchbaseLiteSwift",  
     url: "insert Couchbase Lite URL", (1)  
-    from: "4.0.1"), (2)  
+    from: "4.0.3"), (2)  
   ],  
 ```
 
 | **1** | Insert appropriate Couchbase Lite URL:For Community Edition use: <https://github.com/couchbase/couchbase-lite-ios.git>For Enterprise Edition use: <https://github.com/couchbase/couchbase-lite-swift-ee.git> |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 
-| **1** | Include the required version number here, for example the latest version is 4.0.1 |
+| **1** | Include the required version number here, for example the latest version is 4.0.3 |
 | ----- | --------------------------------------------------------------------------------- |
 2. Add the dependent package product name, to the target:  
 ```swift  
@@ -160,7 +160,7 @@ products: [
   ],
 dependencies: [
   .package(name: "CouchbaseLiteSwift",
-    url: "https://github.com/couchbase/couchbase-lite-swift-ee.git", from: "4.0.1"),
+    url: "https://github.com/couchbase/couchbase-lite-swift-ee.git", from: "4.0.3"),
   ],
 targets: [
   .target(
@@ -192,7 +192,7 @@ Here we will add `CouchbaseLiteSwift` directly into your app
 **Enter** the appropriate Couchbase Lite URL, **Next** to continue  
 For example: <https://github.com/couchbase/couchbase-lite-swift-ee.git>  
 ![spm 3](_images/spm-3.png)
-4. **Enter** the required **_Version_** (the latest is 4.0.1) and **Next** to continue  
+4. **Enter** the required **_Version_** (the latest is 4.0.3) and **Next** to continue  
 ![spm 4](_images/spm-4.png)
 5. **Finish** to close the _Choose Package Repository_ dialog  
 ![spm 5](_images/spm-5.png)  

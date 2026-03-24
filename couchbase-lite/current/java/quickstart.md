@@ -3,7 +3,7 @@ title: Couchbase Lite on Java
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/quickstart.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:java:quickstart.adoc[]
 ---
 
@@ -24,7 +24,7 @@ Get set up with an account and deploy a free tier operational cluster.
 
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [Browse API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/)
+* [Browse API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/)
 
 ###  Do More
 

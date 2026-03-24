@@ -4,7 +4,7 @@ description: You can use the Management API to audit actions performed on
   Capella. This allows users to ensure that system-management tasks are being
   appropriately performed.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/security/pages/audit-management.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:security:audit-management.adoc[]
 ---
 
@@ -36,7 +36,7 @@ As part of the Management API, the auditing methods and endpoints allow you to:
 * Create an audit log export job. An audit log export job prepares a download of all log files within a user-specified time-period.
 * List recent cluster audit log export jobs or a get cluster audit log export. The output includes a status for each audit log export job, and a URL to a compressed archive of the audit logs once fully processed by Capella.
 
-For more information about how to use the Management API and the calls described on this page, see [Make an API Call with the Management API](../management-api-guide/management-api-use.md).
+For more information about how to use the Management API and the calls described on this page, see [Make an API Call with the Capella Operational Management API](../management-api-guide/management-api-use.md).
 
 ### [](#list-filterable-audit-log-events)List Filterable Audit Log Events
 

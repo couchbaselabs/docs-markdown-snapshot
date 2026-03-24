@@ -3,7 +3,7 @@ title: Use Capella AI Functions
 description: Use AI Functions to summarize text, classify content, detect
   sentiment, explain patterns, and more — all within your SQL++ queries.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/ai-functions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:build:ai-functions.adoc[]
 ---
 
@@ -86,7 +86,7 @@ To enable Capella AI Functions:
 
   1. Select **Capella Model**.
   2. Choose your Capella model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with AI Services APIs](../api-guide/api-start.md).
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.
@@ -184,7 +184,7 @@ To change the model associated with your AI Function:
 
   1. Select **Capella Model**.
   2. Choose your Capella model.
-  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with AI Services APIs](../api-guide/api-start.md).
+  3. Enter your **API Key ID** and **API Key Token**, or upload your `.txt` credentials file. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../api-guide/api-start.md).
   4. Click **Next**.
 
   1. Select **OpenAI Model**.

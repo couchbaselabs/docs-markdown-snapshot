@@ -2,7 +2,7 @@
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/android/pages/query-resultsets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:android:query-resultsets.adoc[]
 ---
 
@@ -271,7 +271,7 @@ try (ResultSet resultSet = listQuery.execute()) {
 
 Example 6\. Using JSON Results
 
-Use [Result.toJSON()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-android/com/couchbase/lite/Result.html#toJSON--) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
+Use [Result.toJSON()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-android/com/couchbase/lite/Result.html#toJSON--) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 6](#ex-json) for a working example.
 
 * Kotlin
 * Java

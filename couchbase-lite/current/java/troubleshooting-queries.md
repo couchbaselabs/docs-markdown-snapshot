@@ -2,7 +2,7 @@
 title: Troubleshooting Queries
 description: Couchbase Lite on Java -- Using query.explain()
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/troubleshooting-queries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:java:troubleshooting-queries.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:couchbase-lite:java:troubleshooting-queries.adoc[]
 
 ### [](#using)Using
 
-Query’s [explain()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Query.html#explain--) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
+Query’s [explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Query.html#explain--) method can provide useful insight when you are trying to diagnose query performance issues and-or optimize queries. To examine how your query is working, either embed the call inside your app (see: [Example 1](#use-qe-app)), or use it interactively within a `cblite` shell (see: [Example 2](#use-qe-cblite)).
 
 Example 1\. Using Query Explain in App
 
@@ -54,7 +54,7 @@ cblite <your-database-name>.cblite2 (1)
 
 ### [](#output)Output
 
-The output from `[explain()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Query.html#explain--)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
+The output from `[explain()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Query.html#explain--)` remains the same whether invoked by an app, or `cblite` — see [Example 3](#qe-output) for an example of how it looks.
 
 Example 3\. Query.explain() Output
 
@@ -213,7 +213,7 @@ Resulting Query Plan
 
 Functions are a very useful tool in building queries, but be aware that they can impact whether the query-optimizer is able to use your index(es).
 
-For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[lower()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-)` function on an indexed property.
+For example, you can observe a similar situation to that shown in [Wildcard and Like-based Queries](#use-like-based-queries) when using the `[lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-)` function on an indexed property.
 
 Query
 
@@ -225,7 +225,7 @@ Query query = QueryBuilder
 Logger.log(query.explain());
 ```
 
-| **1** | Here we use the [lower()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) function in the _Where_ expression |
+| **1** | Here we use the [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) function in the _Where_ expression |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query Plan:
@@ -234,7 +234,7 @@ Query Plan:
 2|0|0| SCAN TABLE kv_default AS _doc
 ```
 
-But removing the `[lower()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-)` function, changes things:
+But removing the `[lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-)` function, changes things:
 
 Query
 
@@ -246,7 +246,7 @@ Query query = QueryBuilder
 Logger.log(query.explain());
 ```
 
-| **1** | Here we have removed [lower()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) from the _Where_ expression |
+| **1** | Here we have removed [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) from the _Where_ expression |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 Query plan
@@ -255,7 +255,7 @@ Query plan
 3|0|0| SEARCH TABLE kv_default AS _doc USING INDEX typeIndex (<expr>=?)
 ```
 
-Knowing this, you can consider how you create the index; for example, using [lower()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) when you create the index and then always using lowercase comparisons.
+Knowing this, you can consider how you create the index; for example, using [lower()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-java/com/couchbase/lite/Function.html#lower-com.couchbase.lite.Expression-) when you create the index and then always using lowercase comparisons.
 
 ## [](#optimization-considerations)Optimization Considerations
 

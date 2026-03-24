@@ -3,7 +3,7 @@ title: Couchbase Lite on Java&#8201;&#8212;&#8201;Prerequisites
 description: Couchbase Lite on Java -- a framework for developing offline-first
   Java applications for mobile and edge
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/java/pages/gs-prereqs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:java:gs-prereqs.adoc[]
 ---
 
@@ -46,13 +46,13 @@ Before proceeding to [Couchbase Lite on Java — Installing](gs-install.md), you
 
 ### [](#steps)Steps
 
-1. Download the _zip_ file from here — <https://packages.couchbase.com/releases/couchbase-lite-java/4.0.0/couchbase-lite-java-linux-supportlibs-4.0.0.zip>.
-2. Unpack the downloaded file to a location accessible to your build and runtime environments, for example `your_dir/couchbase-lite-java-4.0.0`.
+1. Download the _zip_ file from here — <https://packages.couchbase.com/releases/couchbase-lite-java/4.0.3/couchbase-lite-java-linux-supportlibs-4.0.3.zip>.
+2. Unpack the downloaded file to a location accessible to your build and runtime environments, for example `your_dir/couchbase-lite-java-4.0.3`.
 
 1. Set up the Native Libraries for Linux. You will need to add the path of the directory containing the unpacked support libraries to the value of the Java system property `java.library.path`.  
 The simplest way to set this is through the shell variable `LD_LIBRARY_PATH`:  
 ```bash  
-export LD_LIBRARY_PATH=<your_dir>/couchbase-lite-java-4.0.0/:$LD_LIBRARY_PATH  
+export LD_LIBRARY_PATH=<your_dir>/couchbase-lite-java-4.0.3/:$LD_LIBRARY_PATH  
 ```  
 Where `<your_dir>` is the path where you unpacked the support libraries in step 2.  
 > [!NOTE]  

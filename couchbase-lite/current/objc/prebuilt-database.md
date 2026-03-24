@@ -2,7 +2,7 @@
 title: Pre-built Database
 description: How to handle pre-built databases in your Couchbase Lite on Objective-C app
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/prebuilt-database.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:objc:prebuilt-database.adoc[]
 ---
 
@@ -118,13 +118,13 @@ Alternatively you can pull the database from a CDN on launch instead of bundling
 > [!IMPORTANT]
 > This is an [Enterprise Edition](https://www.couchbase.com/products/editions) feature.
 
-If you’re using an encrypted database, [copyFromPath()](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28cm%29copyFromPath:toDatabase:withConfig:error:)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
+If you’re using an encrypted database, [copyFromPath()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28cm%29copyFromPath:toDatabase:withConfig:error:)does not change the encryption key. The encryption key specified in the config when opening the database is the encryption key used for both the original database and copied database.
 
 If you copied an un-encrypted database and want to apply encryption to the copy, or if you want to change (or remove) the encryption key applied to the copy:
 
-1. Provide the original encryption-key (if any) in the database copy’s configuration using [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29encryptionKey)
+1. Provide the original encryption-key (if any) in the database copy’s configuration using [CBLDatabaseConfiguration.encryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabaseConfiguration.html#/c:objc%28cs%29CBLDatabaseConfiguration%28py%29encryptionKey)
 2. Open the database copy
-3. Use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:) on the database copy to set the required encryption key.  
+3. Use [CBLDatabase.changeEncryptionKey()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29changeEncryptionKey:error:) on the database copy to set the required encryption key.  
 NOTE: To remove encryption on the copy, provide a null encryption-key
 
 ## [](#deploy-db)Using Pre-built Database on App Launch
@@ -133,7 +133,7 @@ During the application start-up logic, check if database exists in the required 
 
 1. Locate the pre-packaged database (for example, in the assets or other resource folder)
 2. Copy the pre-packaged database to the required location  
-Use the API’s [copyFromPath()](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28cm%29copyFromPath:toDatabase:withConfig:error:) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
+Use the API’s [copyFromPath()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28cm%29copyFromPath:toDatabase:withConfig:error:) method — see: [Example 1](#lbl-code); This ensures that a UUID is generated for each copy.  
 > [!IMPORTANT]  
 > **Do not copy the database using any other method**  
 > **Otherwise:** Each copy of the app invalidates the other apps' [checkpoints](refer-glossary.md#checkpoint) because a new UUID was not generated.

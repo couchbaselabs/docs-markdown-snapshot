@@ -1,7 +1,7 @@
 ---
 title: Welcome to Couchbase Capella
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:get-started:intro.adoc[]
 ---
 
@@ -54,7 +54,7 @@ Learn how Couchbase Services can power up your workflows.
 
 Ready to dive into development? Explore our APIs and SDKs.
 
-* [Manage Deployments with the Management API](../management-api-guide/management-api-intro.md)
+* [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md)
 * [Manage App Services with the App Services API](../../app-services/references/rest-api-introduction.md)
 * [home::sdk.adoc](#home::sdk.adoc)
 * [SQL++ for Query Reference](../n1ql/n1ql-language-reference/index.md)

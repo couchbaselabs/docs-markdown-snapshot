@@ -3,7 +3,7 @@ title: Manage Azure Private Endpoints for the Data API
 description: How to configure and manage private endpoints for the Data API
   using Microsoft Azure.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-private-azure.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:data-api-guide:data-api-private-azure.adoc[]
 ---
 
@@ -16,9 +16,9 @@ link: xref:cloud:data-api-guide:data-api-private-azure.adoc[]
 
 To configure and manage AWS private endpoints with the Data API, you can use the Capella UI or the Capella Management API.
 
-* For an overview of the Management API, see [Manage Deployments with the Management API](../management-api-guide/management-api-intro.md).
-* To get started with the Management API, see [Get Started with the Management API](../management-api-guide/management-api-start.md).
-* To make an API call, see [Make an API Call with the Management API](../management-api-guide/management-api-use.md).
+* For an overview of the Management API, see [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md).
+* To get started with the Management API, see [Get Started with the Capella Operational Management API](../management-api-guide/management-api-start.md).
+* To make an API call, see [Make an API Call with the Capella Operational Management API](../management-api-guide/management-api-use.md).
 * For a full Management API reference guide, see [Management API Reference](../management-api-reference/index.md).
 
 ## [](#prerequisites)Prerequisites

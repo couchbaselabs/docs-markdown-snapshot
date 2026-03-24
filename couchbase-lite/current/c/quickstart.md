@@ -3,7 +3,7 @@ title: Couchbase Lite on C
 description: Start your Couchbase for Mobile and Edge adventure, get up and
   running with Couchbase Lite
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/quickstart.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:quickstart.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Get set up with an account and deploy a free tier operational cluster.
 * [Download](gs-downloads.md)
 * [Install](gs-install.md)
 * [Build](gs-build.md)
-* [Browse API References](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/modules.html)
+* [Browse API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/modules.html)
 
 ###  Do More
 

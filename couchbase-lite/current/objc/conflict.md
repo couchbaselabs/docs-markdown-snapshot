@@ -2,7 +2,7 @@
 title: Handling Data Conflicts
 description: Couchbase Lite Database Sync -- Handling conflict between data changes
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/objc/pages/conflict.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:objc:conflict.adoc[]
 ---
 
@@ -183,7 +183,7 @@ Here’s a typical sequence of events that would create an update conflict:
 
 1. Your code reads the document’s current properties, and constructs a modified copy to save.
 2. Another thread (perhaps the replicator) updates the document, creating a new revision with different properties.
-3. Your code updates the document with its modified properties, for example using [CBLDatabase saveDocument:error:](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:error:).
+3. Your code updates the document with its modified properties, for example using [CBLDatabase saveDocument:error:](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:error:).
 
 ### [](#automatic-conflict-resolution-2)Automatic Conflict Resolution
 
@@ -195,7 +195,7 @@ Example 5\. Currency Control Signatures
 
 Save operations
 
-[CBLDatabase saveDocument:concurrencyControl:error:](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:concurrencyControl:error:) — attempts to save the document with a concurrency control.
+[CBLDatabase saveDocument:concurrencyControl:error:](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:concurrencyControl:error:) — attempts to save the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -207,8 +207,8 @@ Delete operations
 
 As with save operations, delete operation also have two method signatures, which specify how to handle a possible conflict:
 
-* [CBLDatabase deleteDocument:error:](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29deleteDocument:error:): The last write will win if there is a conflict.
-* [CBLDatabase -deleteDocument:concurrencyControl:error:](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29deleteDocument:concurrencyControl:error:): attempts to delete the document with a concurrency control.
+* [CBLDatabase deleteDocument:error:](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29deleteDocument:error:): The last write will win if there is a conflict.
+* [CBLDatabase -deleteDocument:concurrencyControl:error:](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29deleteDocument:concurrencyControl:error:): attempts to delete the document with a concurrency control.
 
 The concurrency control parameter has two possible values:
 
@@ -219,7 +219,7 @@ The concurrency control parameter has two possible values:
 
 Developers can hook a conflict handler when saving a document so they can easily handle the conflict in a single save method call.
 
-To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase saveDocument:conflictHandler:error:](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:conflictHandler:error:)).
+To implement custom conflict resolution when saving a document, apps must call the `save` method with a conflict handler block ( [CBLDatabase saveDocument:conflictHandler:error:](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc/Classes/CBLDatabase.html#/c:objc%28cs%29CBLDatabase%28im%29saveDocument:conflictHandler:error:)).
 
 The following code snippet shows an example of merging properties from the existing document (`current`) into the one being saved (`new`). In the event of conflicting keys, it will pick the key value from `new`.
 
@@ -258,7 +258,7 @@ How to
 Concepts
 
 * [Peer-to-Peer Sync](#objc:landing-p2psync.adoc)
-* [API References](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-objc)
+* [API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-objc)
 
 .
 

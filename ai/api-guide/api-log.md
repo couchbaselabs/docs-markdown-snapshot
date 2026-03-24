@@ -1,15 +1,15 @@
 ---
-title: AI Services API Change Log
+title: Capella AI Services API Change Log
 description: The change log for AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-log.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:api-guide:api-log.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-log.html)
 
-# AI Services API Change Log
+# Capella AI Services API Change Log
 
 This page is for Capella AI Services. This includes changes to the Management API and the Model Service API.
 

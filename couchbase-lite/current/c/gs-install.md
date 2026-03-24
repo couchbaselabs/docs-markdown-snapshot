@@ -2,7 +2,7 @@
 title: Install Couchbase Lite for C
 description: Installing Couchbase Lite for C
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/gs-install.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:gs-install.adoc[]
 ---
 
@@ -19,7 +19,7 @@ Steps in Getting Started
 
 ## [](#lbl-get-binaries)Download
 
-Couchbase Lite for C 4.0.0 is available for all supported platforms — see: [Platform Availability](#lbl-platforms).
+Couchbase Lite for C 4.0.3 is available for all supported platforms — see: [Platform Availability](#lbl-platforms).
 
 You can obtain the downloads here:
 

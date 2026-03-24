@@ -4,7 +4,7 @@ description: Use a Capella Structured Data Workflow to automatically generate
   embedding vectors from JSON data in an Amazon S3 Bucket. Use embedding vectors
   for similarity searches on your data.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/build/pages/vectorization-service/vectorize-structured-data-s3.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:build:vectorization-service/vectorize-structured-data-s3.adoc[]
 ---
 
@@ -27,7 +27,7 @@ To generate your embeddings, you can use a model [hosted by the Capella Model Se
 * If you want to use a model hosted on Capella, you must have:
 
   * Deployed a Capella embedding model. For more information, see [Deploy an Embedding Model](../model-service/deploy-embed-model.md).
-  * Your model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with AI Services APIs](../../api-guide/api-start.md).
+  * Your model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
 * If you want to use a model hosted by OpenAI, you have your OpenAI API Key. For more information about how to find your OpenAI API Key, see [the OpenAI Help Center](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key).
 * You have deployed an operational cluster that has the following:
 
@@ -126,7 +126,7 @@ To use a Capella Model:
 
 1. Click **Capella Model**.
 2. Select the name of the model you want to use in this workflow.
-3. Upload or manually enter your embedding model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with AI Services APIs](../../api-guide/api-start.md).
+3. Upload or manually enter your embedding model’s **API Key ID** and **API Key Token**. For more information about API keys for Capella models, see [Get Started with Capella AI Services APIs](../../api-guide/api-start.md).
 4. (Optional) Choose whether to set up **Private Networking** for your Capella embedding model. For more information about Private Networking for AI Services, see [Add an AWS PrivateLink Connection](../../security/add-aws-privatelink.md).
 5. Click **Next**.
 6. Continue with the rest of the [Procedure](#procedure).

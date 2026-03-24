@@ -2,7 +2,7 @@
 title: Result Sets
 description: How to use Couchbase Lite Query's Result Sets
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/query-resultsets.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:query-resultsets.adoc[]
 ---
 
@@ -120,7 +120,7 @@ while(CBLResultSet_Next(results)) {
 
 Example 3\. Using JSON Results
 
-Use [FLValue\_ToJSON()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Fjson.html#ga3450acc0690101545d75986b91e4080) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 3](#ex-json) for a working example.
+Use [FLValue\_ToJSON()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Fjson.html#ga3450acc0690101545d75986b91e4080) to transform your result string into a JSON string, which can easily be serialized or used as required in your application. See [Example 3](#ex-json) for a working example.
 
 ```c
 CBLResultSet* results = CBLQuery_Execute(query, &err);

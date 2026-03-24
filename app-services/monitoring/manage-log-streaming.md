@@ -3,7 +3,7 @@ title: Manage Log Streaming with the Management API
 description: You can configure and manage log streaming for App Services using
   the Couchbase Capella Management API.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/monitoring/manage-log-streaming.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:app-services::monitoring/manage-log-streaming.adoc[]
 ---
 
@@ -14,9 +14,9 @@ link: xref:app-services::monitoring/manage-log-streaming.adoc[]
 
 > You can configure and manage log streaming for App Services using the Couchbase Capella Management API. 
 
-* For an overview of the Management API, see [Manage Deployments with the Management API](../../cloud/management-api-guide/management-api-intro.md).
-* To get started with the Management API, see [Get Started with the Management API](../../cloud/management-api-guide/management-api-start.md).
-* To make an API call, see [Make an API Call with the Management API](../../cloud/management-api-guide/management-api-use.md).
+* For an overview of the Management API, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
+* To get started with the Management API, see [Get Started with the Capella Operational Management API](../../cloud/management-api-guide/management-api-start.md).
+* To make an API call, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
 * For a full reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
 
 You can also configure log streaming using the Capella UI. See [Enable Log Streaming](configure-log-collector-app-service.md) and [Configure Log Streaming for an App Endpoint](configure-log-streaming-app-endpoint.md).

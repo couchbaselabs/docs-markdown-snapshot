@@ -1,40 +1,40 @@
 ---
-title: Make an API Call with the Management API
-description: How to make an API call with the Couchbase Capella Management API.
+title: Make an API Call with the Capella Operational Management API
+description: How to make an API call with the Couchbase Capella Operational Management API.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/management-api-guide/pages/management-api-use.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:management-api-guide:management-api-use.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/cloud/management-api-guide/management-api-use.html)
 
-# Make an API Call with the Management API
+# Make an API Call with the Capella Operational Management API
 
-> How to make an API call with the Couchbase Capella Management API. 
+> How to make an API call with the Couchbase Capella Operational Management API. 
 
-This page is for Capella operational. For Capella Analytics, see [Make an API Call with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-use.md).
+This page is for Capella operational. For Capella AI Services, see [Make an API Call with Capella AI Services APIs](../../ai/api-guide/api-use.md). For Capella Analytics, see [Make an API Call with the Capella Analytics Management API](../../analytics/management-api-guide/management-api-use.md).
 
 ## [](#prerequisites)Prerequisites
 
-In order make an API call with the Management API, you must have an API key that was created for the Management API.
+* You have [created an API key](#api-guide:api-start.adoc#generate-keys).
 
-* The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the Management API reference, each endpoint description lists the roles that are needed.
-* The API key must not have expired.
-* The API key must grant access to the Management API from your client’s IP address.
-* You must have saved the API key secret when you created it.
-
-To create an API key for the Management API, see [Get Started with the Management API](management-api-start.md).
+  * The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the [Management API reference](../management-api-reference/index.md), each endpoint description lists the roles that are needed.
+  * The API key is not expired.
+  * You added your connection IP address to your API key’s allowed IP addresses.
+  * You saved the API key token when you created it.
 
 ## [](#make-an-api-call)Make an API Call
 
-You can use a client such as [curl](https://curl.se) or a native SDK call to make an API call with the Management API.
+You can use a client such as [cURL](https://curl.se) or a native SDK call to make an API call with the Management API.
 
 To make an API call:
 
-1. Use the following base URL.  
-`<https://cloudapi.cloud.couchbase.com>`
-2. Pass the API key secret as a Bearer token using the HTTP `Authorization` header.
+1. Use the following base URL:  
+```text  
+https://cloudapi.cloud.couchbase.com  
+```
+2. Pass your API key as a Bearer token using the HTTP `Authorization` header.
 3. If a request body is required, pass it in JSON format.
 
 Alternatively, you can use a client such as [Insomnia](https://insomnia.rest) or [Postman](https://www.postman.com) to explore the details of the REST API, generate code samples, and so on. The Management API uses an [OpenAPI](https://swagger.io/resources/open-api) v3 specification. To download the Management API specification, go to the [Management API Reference](../management-api-reference/index.md) and click **Download**.
@@ -281,4 +281,4 @@ HTTP Response
 ## [](#next-steps)Next Steps
 
 * For a full reference guide, see [Management API Reference](../management-api-reference/index.md).
-* For an error reference, see [Management API Errors](management-api-errors.md).
+* For an error reference, see [Capella Operational Management API Errors](management-api-errors.md).

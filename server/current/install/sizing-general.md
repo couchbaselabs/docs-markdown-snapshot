@@ -4,7 +4,7 @@ description: Evaluate the overall performance and capacity goals that you have
   for Couchbase, and use that information to determine the necessary resources
   that you'll need in your deployment.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/install/pages/sizing-general.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:server:install:sizing-general.adoc[]
 ---
 
@@ -293,6 +293,176 @@ __Table 10\. Storage engine and storage mode__
 | Standard GSI (Community Edition)      | ForestDB     |
 | Standard GSI(Enterprise Edition)      | Plasma       |
 | Memory-Optimized (Enterprise Edition) | Nitro        |
+
+## [](#sizing-search-service-nodes)Sizing Search Service Nodes
+
+Search Service nodes manage Search indexes and serve your Search queries.
+
+Basic Search indexes are lists of all the unique terms that appear in the documents on your cluster. For each term, the Search index also contains a list of the documents where that term appears, known as an inverted index. These lists inside a Search index can cause the Search index to be larger or smaller than your original dataset, depending on the complexity of your data. For more information about the structure of a Search index, see [Search Index Architecture](../search/search-index-architecture.md).
+
+Specific options in your Search index configuration can also increase its size, such as **Store**, **Include in \_all field**, and **Include Term Vectors**. For more information about what options can increase index size and storage requirements, see [Child Field Options](../search/child-field-options-reference.md).
+
+In general, when sizing nodes for a deployment that uses the Search Service, you need to determine the number of vCPUs and the amount of RAM that will support your workload.
+
+### [](#calculating-node-requirements)Calculating Node Requirements
+
+To size the Search Service nodes in your cluster, you need the following information:
+
+* The number of documents you need to include in your Search index or indexes.
+* The average size of the documents that need to be included in your Search index, in KB.
+* A sample document or documents that show the structure of your data.
+* The specific queries per second (QPS) target you need from the Search Service.
+
+You should also consider your replication, recovery, and high availability needs.
+
+With all this information, you can work with Couchbase Support to get the most accurate sizing for your Search workload.
+
+If you want to try sizing your cluster yourself, you can use some of the following guidelines to size your [vCPUS](#search-vcpus) and [RAM](#search-ram), using averages and estimates from other Search deployments.
+
+To size your cluster for a geospatial search or [Vector Search](../vector-search/vector-search.md) workload, or to get the best sizing results for any workload, contact Couchbase Support.
+
+#### [](#search-vcpus)vCPUS
+
+A heavy QPS workload requires more vCPUs. If your workload requires a high QPS, this is the most important part of your sizing for the Search Service.
+
+For example, if your target QPS is 30,000 and your queries are less complex, divide your total QPS target by 200 to get your required vCPUs:
+
+\\\[30,0000\_{\\mathrm{QPS}} \\div 200\_{\\mathrm{Mid}} = 150\_{\\mathrm{vCPUs}}\\\] 
+
+The formula gives a target of 150 vCPUs for a mid range workload with a less complex query.
+
+If your queries were more complex, but the QPS target was the same, the calculation changes to use a value of 150 and a result of 200 vCPUs:
+
+\\\[30,0000\_{\\mathrm{QPS}} \\div 150\_{\\mathrm{Low}} = 200\_{\\mathrm{vCPUs}}\\\] 
+
+You can then divide your result by the vCPU configuration you want to use to calculate the number of nodes you need:
+
+\\\[\\lceil 150\_{\\mathrm{vCPUs}} \\div 32\_{\\mathrm{vCPUs Per Node}} \\rceil = 5\_{\\mathrm{Nodes}}\\\] 
+
+Based on the formula, if you wanted to use nodes with 32 vCPUs and reach a target QPS of 30,000 with less complex queries, you would need 5 nodes in your deployment.
+
+#### [](#search-ram)RAM
+
+In general, you should allocate 65% of the RAM on a node in your cluster where you want to run the Search Service. A Search node needs more RAM if you:
+
+* Are [storing field values](../search/child-field-options-reference.md#store) or [using doc values](../search/child-field-options-reference.md#doc-values).
+* Have [analyzed text fields](../search/customize-index.md#analyzers).
+* Want to use more complex queries than [keyword matches](../search/search-request-params.md#analytic-queries).
+
+To calculate a more precise estimate for the required RAM for the Search Service, you need to:
+
+1. [Calculate Your Per Doc Index Bytes](#index-bytes)
+2. [Calculate Your Total Index GB](#index-gb)
+3. [Add Your Replication Factor](#add-replicas)
+4. [Calculate Your Total Required RAM](#total-ram)
+
+##### [](#index-bytes)Calculate Your Per Doc Index Bytes
+
+Use the following formula first to calculate the number of bytes per document in your Search index:
+
+\\\[\\begin{equation} \\begin{split} \\text{Per Doc Index Bytes} = ( ( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + ( W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw} ) + B ) \\times (1 + D) \\end{split} \\end{equation}\\\] 
+
+You need to know the following variables for the formula:
+
+| Variable                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \\(W\\)                 | The average size of your JSON documents, in KB.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| \\({\\text{f\_text}}\\) | A measure of the analyzed text from your JSON documents. You can omit this value if you’re using primarily keyword searches and do not have longer-form text fields that require an [analyzer](../search/customize-index.md#analyzers). You can use the following value ranges based on the kind of analyzed text you have in your index: **Product descriptions, titles and body snippets, support ticket descriptions**: 0.10-0.20 **Long note fields, email bodies, articles, knowledge-base content**: 0.20-0.40 **Log files, message streams, event payloads with large message fields**: 0.40-0.70 If you’re not sure about the size and complexity of the text fields in your documents and how they match to the example ranges, use a value of 0.25 to get a rough estimate. To get the most accurate values for \\({\\text{f\_text}}\\) and your RAM sizing calculations, contact Couchbase Support. |
+| \\({\\text{m\_text}}\\) | A multiplier for calculating how the bytes in your documents translate into your Search index for analyzed text fields. For a good planning range, try a value between 0.12-0.35, increasing based on the complexity of your analyzed text fields. To get the most accurate values for \\({\\text{m\_text}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| \\({\\text{f\_kw}}\\)   | A measure of the keywords from your JSON documents. For a good planning range for a keyword search use case or a filter-heavy workload, use a value of 0.10. To get the most accurate values for \\({\\text{f\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| \\({\\text{m\_kw}}\\)   | A multiplier for calculating how the bytes in your documents translate into your Search index for keywords. For a good planning range, try a value between 0.10-0.18. To get the most accurate values for \\({\\text{m\_kw}}\\) and your RAM sizing calculations, contact Couchbase Support.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| \\(B\\)                 | The number of bytes needed for storing field values for your documents, if [store](../search/child-field-options-reference.md#store) is enabled for a child field mapping. If you’re not storing any field values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| \\(D\\)                 | The additional overhead from adding [doc values](../search/child-field-options-reference.md#doc-values) to your Search index from a child field mapping. Use a value from 0-1. If you’re not using doc values in your Search index, set this value to 0.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+
+If you want to add numeric and geospatial fields to your sizing estimate, change the formula to the following:
+
+\\$\\text{Per Doc Index Bytes} = ( ( W \\cdot 1024 \\cdot \\text{f\_text} \\cdot \\text{m\_text} ) + ( W \\cdot 1024 \\cdot \\text{f\_kw} \\cdot \\text{m\_kw} )\\$   
+\\$+ ( W \\cdot 1024 \\cdot 0.02\_\\text{f\_numeric} \\cdot 2.0\_\\text{m\_numeric} )\\$   
+\\$+ ( W \\cdot 1024 \\cdot 0.002\_\\text{f\_geo} \\cdot 2.0\_\\text{m\_geo} )+ B ) \\times (1 + D)\\$ 
+
+The values provided in the preceding formula for \\({\\text{f\_numeric}}\\), \\({\\text{m\_numeric}}\\), \\({\\text{f\_geo}}\\) and \\({\\text{m\_geo}}\\) are reasonable defaults for most numeric and geospatial search workloads.
+
+To get the most accurate values for \\({\\text{f\_numeric}}\\), \\({\\text{m\_numeric}}\\), \\({\\text{f\_geo}}\\) and \\({\\text{m\_geo}}\\) and accurately size the RAM for your workload, contact Couchbase Support.
+
+##### [](#index-gb)Calculate Your Total Index GB
+
+After you have calculated your \\({\\text{Per Doc Index Bytes}}\\), calculate the total GB needed for your Search index, where:
+
+* \\(N\\) is the total number of JSON documents you want to include in your Search index.
+* \\(S\\) is a measure of your system overhead. For a rough estimate, use a value of \\(0.10\\).
+
+Use the following formula:
+
+\\\[\\begin{equation} \\begin{split} \\text{Total Index GB} = \\frac{(N \\times \\text{Per Doc Index Bytes})}{10^{9}} \\times (1 + S) \\end{split} \\end{equation}\\\] 
+
+##### [](#add-replicas)Add Your Replication Factor
+
+If you want to add replicas to your Search index, you need to factor that into your \\({\\text{Total Index GB}}\\).
+
+Use the following formula:
+
+\\\[\\begin{equation} \\begin{split} \\text{Total Index GB With Replicas} = \\text{Total Index GB} \\times (\\text{Number Of Replicas} + 1) \\end{split} \\end{equation}\\\] 
+
+##### [](#total-ram)Calculate Your Total Required RAM
+
+Then, you can calculate the total RAM required on a node for your use case with the following formula:
+
+\\\[\\begin{equation} \\begin{split} \\text{Total Node RAM} = \\text{Total Index GB With Replicas} \\times 0.65 \\end{split} \\end{equation}\\\] 
+
+### [](#search-examples)Search Node Sizing Examples
+
+You’ll get the most accurate results by going through sizing with Couchbase Support, but you can use the following examples for a sizing estimate for a Search workload:
+
+* [High QPS and Keyword-Only Searches](#high-qps)
+* [Lower QPS with Higher Storage and a Larger Index](#low-qps)
+
+#### [](#high-qps)High QPS and Keyword-Only Searches
+
+The following sizing scenario assumes a high QPS target, a CPU-bound configuration, and a keyword-only workload for a compact Search index.
+
+This example uses the following variables:
+
+| Number of Documents | Per Doc Index Bytes | QPS Target | System Overhead | Replica Factor    |
+| ------------------- | ------------------- | ---------- | --------------- | ----------------- |
+| 194,000,000         | 258.05              | 87,000     | 0.10            | 2 (1 replica + 1) |
+
+Based on these variables, the required vCPUs could be either:
+
+* \\(580\\), using a value of \\(150\\) in the vCPU calculation.
+* \\(435\\), using a value of \\(200\\) in the vCPU calculation.
+
+The Total Index GB With Replicas is \\(110.13 \\text{ GB}\\).
+
+The vCPUs matter the most in this workload.
+
+Your recommended node configurations could be any of the following:
+
+|            | Number of Nodes | Number of vCPUs | RAM    |
+| ---------- | --------------- | --------------- | ------ |
+| Higher QPS | 14              | 32              | 128 GB |
+| 7          | 64              | 256 GB          |        |
+| Lower QPS  | 18              | 32              | 128 GB |
+| 9          | 64              | 256 GB          |        |
+
+#### [](#low-qps)Lower QPS with Higher Storage and a Larger Index
+
+The following sizing scenario assumes a comparatively lower QPS target, a storage-bound configuration, and a larger Search index.
+
+This example uses the following variables:
+
+| Number of Documents | Per Doc Index Bytes                                      | QPS Target | System Overhead | Replica Factor    |
+| ------------------- | -------------------------------------------------------- | ---------- | --------------- | ----------------- |
+| 500,000,000         | 344.86 (For faceting, sorting, and more complex queries) | 12,000     | 0.10            | 2 (1 replica + 1) |
+
+Based on these variables, the required vCPUs would be \\(60\\), based on the more complex queries needing a higher QPS per vCPU and using a value of \\(200\\) in the calculation.
+
+If you wanted to use nodes with 32 vCPUs, you would need 2 nodes.
+
+The Total Index GB With Replicas is \\(379.34 \\text{ GB}\\).
+
+Each of the 2 nodes would need \\(379.34 \\text{ GB} \\times 0.65 = 123.28 \\text{ GB}\\) of RAM.
+
+As a result, the best configuration for this workload should be 2 nodes with 32 vCPUs and 128 GB of RAM.
 
 ## [](#sizing-query-service-nodes)Sizing Query Service Nodes
 

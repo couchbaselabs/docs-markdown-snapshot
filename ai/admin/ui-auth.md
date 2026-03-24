@@ -3,7 +3,7 @@ title: Manage Roles for UI Access
 description: Your level of access to Capella AI Services using the Capella UI is
   determined by your organization and project roles.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/admin/pages/ui-auth.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:admin:ui-auth.adoc[]
 ---
 
@@ -143,5 +143,5 @@ __Table 8\. Project roles and Agent Catalog__
 
 ## [](#next-steps)Next Steps
 
-* To access and manage AI Services using APIs, see [Get Started with AI Services APIs](../api-guide/api-start.md).
+* To access and manage AI Services using APIs, see [Get Started with Capella AI Services APIs](../api-guide/api-start.md).
 * To set up single sign-on (SSO) for your organization, see [Add SSO Authentication](../../cloud/organizations/ui-auth/add-sso-auth.md).

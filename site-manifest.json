@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generated": 1774238125732,
+  "generated": 1774324047852,
   "url": "https://chatbot-dev.docs-test.couchbase.com",
   "components": [
     {
@@ -65,31 +65,31 @@
               "module": "api-guide",
               "path": "api-errors.adoc",
               "url": "/ai/api-guide/api-errors.md",
-              "title": "AI Services API Errors"
+              "title": "Capella AI Services API Errors"
             },
             {
               "module": "api-guide",
               "path": "api-intro.adoc",
               "url": "/ai/api-guide/api-intro.md",
-              "title": "Manage Deployments with AI Services APIs"
+              "title": "Manage Deployments with Capella AI Services APIs"
             },
             {
               "module": "api-guide",
               "path": "api-log.adoc",
               "url": "/ai/api-guide/api-log.md",
-              "title": "AI Services API Change Log"
+              "title": "Capella AI Services API Change Log"
             },
             {
               "module": "api-guide",
               "path": "api-start.adoc",
               "url": "/ai/api-guide/api-start.md",
-              "title": "Get Started with AI Services APIs"
+              "title": "Get Started with Capella AI Services APIs"
             },
             {
               "module": "api-guide",
               "path": "api-use.adoc",
               "url": "/ai/api-guide/api-use.md",
-              "title": "Make an API Call with AI Services APIs"
+              "title": "Make an API Call with Capella AI Services APIs"
             },
             {
               "module": "build",
@@ -4025,7 +4025,7 @@
               "module": "invpc",
               "path": "invpc-introducing-public-api.adoc",
               "url": "/cloud/management-api-guide/management-api-intro.md",
-              "title": "Manage Deployments with the Management API"
+              "title": "Manage Deployments with the Capella Operational Management API"
             },
             {
               "alias": true,
@@ -4174,31 +4174,31 @@
               "module": "management-api-guide",
               "path": "management-api-errors.adoc",
               "url": "/cloud/management-api-guide/management-api-errors.md",
-              "title": "Management API Errors"
+              "title": "Capella Operational Management API Errors"
             },
             {
               "module": "management-api-guide",
               "path": "management-api-intro.adoc",
               "url": "/cloud/management-api-guide/management-api-intro.md",
-              "title": "Manage Deployments with the Management API"
+              "title": "Manage Deployments with the Capella Operational Management API"
             },
             {
               "module": "management-api-guide",
               "path": "management-api-log.adoc",
               "url": "/cloud/management-api-guide/management-api-log.md",
-              "title": "Management API Change Log"
+              "title": "Capella Operational Management API Change Log"
             },
             {
               "module": "management-api-guide",
               "path": "management-api-start.adoc",
               "url": "/cloud/management-api-guide/management-api-start.md",
-              "title": "Get Started with the Management API"
+              "title": "Get Started with the Capella Operational Management API"
             },
             {
               "module": "management-api-guide",
               "path": "management-api-use.adoc",
               "url": "/cloud/management-api-guide/management-api-use.md",
-              "title": "Make an API Call with the Management API"
+              "title": "Make an API Call with the Capella Operational Management API"
             },
             {
               "module": "management-api-reference",
@@ -5301,21 +5301,21 @@
               "module": "public-api-guide",
               "path": "introducing-public-api.adoc",
               "url": "/cloud/management-api-guide/management-api-intro.md",
-              "title": "Manage Deployments with the Management API"
+              "title": "Manage Deployments with the Capella Operational Management API"
             },
             {
               "alias": true,
               "module": "public-api-guide",
               "path": "public-api-start.adoc",
               "url": "/cloud/management-api-guide/management-api-start.md",
-              "title": "Get Started with the Management API"
+              "title": "Get Started with the Capella Operational Management API"
             },
             {
               "alias": true,
               "module": "public-api-guide",
               "path": "using-cloud-public-api.adoc",
               "url": "/cloud/management-api-guide/management-api-use.md",
-              "title": "Make an API Call with the Management API"
+              "title": "Make an API Call with the Capella Operational Management API"
             },
             {
               "alias": true,

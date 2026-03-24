@@ -1,21 +1,21 @@
 ---
-title: Manage Deployments with AI Services APIs
+title: Manage Deployments with Capella AI Services APIs
 description: The Couchbase Capella Management API and the Model Serving API are
   secure REST APIs that enable you to provision, deploy, and configure Capella
   AI Services.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:api-guide:api-intro.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-intro.html)
 
-# Manage Deployments with AI Services APIs
+# Manage Deployments with Capella AI Services APIs
 
 > The Couchbase Capella Management API and the Model Serving API are secure REST APIs that enable you to provision, deploy, and configure Capella AI Services. 
 
-This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Manage Deployments with the Management API](../../cloud/management-api-guide/management-api-intro.md).
+This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Manage Deployments with the Capella Operational Management API](../../cloud/management-api-guide/management-api-intro.md).
 
 For Capella AI Services, you can use REST APIs to interact with and manage services. This includes:
 
@@ -39,13 +39,13 @@ For a full Management API reference guide, see [Management API Reference](../../
 
 The Management API uses [semantic versioning](https://semver.org). The full version number consists of 3 parts: `major.minor.patch`.
 
-An update to the Management API may be a non-versioned bug fix, a patch update, a minor update, or a major update. When a non-versioned bug fix releases, the version number is not updated. When a patch update, a minor update, or a major update releases, the version number updates as well.
+An update to the Management API may be a non-versioned bug fix, a patch update, a minor update, or a major update. All major, minor, and patch updates increment the version number. Only non-versioned bug fixes do not change the version number as they resolve defects without altering functionality or adding new features.
 
-New versions of the Management API, with some exceptions, are backward compatible, minimizing the effect to existing deployments. In most cases, you’re not required to update your existing infrastructure when a new version of the Management API releases. Features added in a new version of the Management API do not break existing deployments.
+New versions of the Management API, with some [exceptions](#ver-exceptions), are backward compatible, minimizing the effect on existing deployments. In most cases, you do not need to update your existing infrastructure when Couchbase releases a new version of the Management API. Features added in a new version of the Management API do not break existing deployments.
 
 Exceptions to backward compatibility are as follows:
 
-* Critical security fixes. A vulnerable version is marked as unsupported when a fixed version releases. In this case, you must plan to upgrade as soon as possible.
+* Critical security fixes. Couchbase marks a vulnerable version of the Management API as unsupported when it releases a version that fixes the vulnerability. In this case, you must plan to upgrade as soon as possible.
 * Fundamental architectural changes, when unavoidable.
 
 ### [](#management-api-auth)Authentication and Authorization
@@ -54,7 +54,7 @@ The Management API uses API keys for authentication and authorization. They’re
 
 Couchbase Capella associates API keys with [roles and permissions](../../cloud/organizations/organization-projects-overview.md). To access an endpoint, an API key must have the appropriate Capella roles. The [Management API reference guide](../../cloud/management-api-reference/index.md) lists the roles required for each endpoint.
 
-You can configure an allowed IP address list for each API key during its creation. Every API key has an expiration date.
+When you create an API key, you can configure an allowed IP address list. Every API key has an expiration date.
 
 To authenticate a Management API call, pass the API key as a Bearer token in the HTTP `Authorization` header.
 
@@ -110,7 +110,7 @@ The Model Service API uses Model Service API keys for authentication and authori
 
 #### [](#model-service-api-keys)Model Service API Keys
 
-Model Service API keys are different from the API keys required by the Management API. For more information about the difference in API keys, see [Get Started with AI Services APIs](api-start.md).
+Model Service API keys are different from the API keys required by the Management API. For more information about the difference in API keys, see [Get Started with Capella AI Services APIs](api-start.md).
 
 Couchbase Capella associates Model Service API keys with an AWS region. Your Model Service API key must have the same AWS region as the model you want it to connect to.
 
@@ -260,10 +260,10 @@ Retry Configuration
 
 ## [](#see-also)See Also
 
-* To create an API key, see [Get Started with AI Services APIs](api-start.md).
-* To make an API call, see [Make an API Call with AI Services APIs](api-use.md).
+* To create an API key, see [Get Started with Capella AI Services APIs](api-start.md).
+* To make an API call, see [Make an API Call with Capella AI Services APIs](api-use.md).
 * For a full Management API reference guide, see [Management API Reference](../../cloud/management-api-reference/index.md).
 * For a full Model Service API reference guide, see [Inference API Reference](../model-service-api-reference/rest-api.md).
 * For a reference of the Management API errors, see [Management API Error Messages ](api-errors.md#management-api-errors).
 * For a reference of the AI Services Model Service API errors, see [Model Service API Error Messages ](api-errors.md#model-api-errors).
-* For the change log, see [AI Services API Change Log](api-log.md).
+* For the change log, see [Capella AI Services API Change Log](api-log.md).

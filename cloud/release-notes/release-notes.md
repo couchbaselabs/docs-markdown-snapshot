@@ -1,7 +1,7 @@
 ---
 title: Couchbase Capella Release Notes
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/release-notes/pages/release-notes.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:release-notes:release-notes.adoc[]
 ---
 
@@ -539,7 +539,7 @@ To upgrade an existing cluster to Couchbase Server 7.2, please contact Couchbase
 * Management API v4.0  
 The Couchbase Capella Management API v4.0 is now available. The Management API v4.0 is a secure REST API that enables you to provision, deploy, and configure Capella deployments programmatically across all supported cloud service providers. You can use the API within any off-the-shelf HTTP clients, or within your Infrastructure-as-Code (IaC) tools and scripts.  
 The legacy Management API v3.0, formerly known as the Public API, has been deprecated and will be removed in future. Users of the Management API v3.0 must plan to migrate to the Management API v4.0.  
-For more information, see [Manage Deployments with the Management API](../management-api-guide/management-api-intro.md).
+For more information, see [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md).
 
 ## [](#august-2023-changelog)August 2023 Changelog
 

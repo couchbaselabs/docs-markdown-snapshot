@@ -3,7 +3,7 @@ title: Multipeer P2P Replicator
 description: The Multipeer Replicator enables lightweight, self-organizing mesh
   networks for apps running on the same local Wi-Fi.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/swift/pages/p2psync-multipeer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:swift:p2psync-multipeer.adoc[]
 ---
 
@@ -391,4 +391,4 @@ LogSinks.console = ConsoleLogSink(level: .verbose, domains: [.peerDiscovery, .mu
 
 ## [](#api-reference)API Reference
 
-You can find [Swift API References](https://docs.couchbase.com/mobile/4.0.1/couchbase-lite-swift) here.
+You can find [Swift API References](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-swift) here.

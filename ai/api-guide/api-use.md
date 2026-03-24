@@ -1,19 +1,19 @@
 ---
-title: Make an API Call with AI Services APIs
+title: Make an API Call with Capella AI Services APIs
 description: How to make an API call with the Couchbase AI Services APIs.
 editUrl: https://github.com/couchbaselabs/docs-ai/edit/main/modules/api-guide/pages/api-use.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:ai:api-guide:api-use.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/ai/api-guide/api-use.html)
 
-# Make an API Call with AI Services APIs
+# Make an API Call with Capella AI Services APIs
 
 > How to make an API call with the Couchbase AI Services APIs. 
 
-This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Management API](../../cloud/management-api-guide/management-api-use.md).
+This page is for Capella AI Services. It covers the AI Services features in the Management API, and the Model Service API. For more information about the Management API for Capella Operational features, see [Make an API Call with the Capella Operational Management API](../../cloud/management-api-guide/management-api-use.md).
 
 Capella AI Services has different APIs that you can use. You can:
 
@@ -26,11 +26,11 @@ Use the Management API to manage your AI Services.
 
 ### [](#prerequisites)Prerequisites
 
-* You have [created an API key](api-start.md#gen-keys-org).
+* You have [created an API key](api-start.md#generate-keys).
 
   * The API key must have all the organization roles, project access, and project roles required to carry out the API call. In the [Management API reference](../../cloud/management-api-reference/index.md), each endpoint description lists the roles that are needed.
   * The API key is not expired.
-  * You have added the IP address you want to connect from to your API key’s allowed IP addresses.
+  * You added your connection IP address to your API key’s allowed IP addresses.
   * You saved the API key token when you created it.
 
 ### [](#make-an-api-call)Make an API Call

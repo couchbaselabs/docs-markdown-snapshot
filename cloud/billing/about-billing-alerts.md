@@ -3,7 +3,7 @@ title: About Billing Alerts
 description: Couchbase Capella billing alerts notify you about important
   information related to your usage and billing for operational clusters.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/billing/pages/about-billing-alerts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:cloud:billing:about-billing-alerts.adoc[]
 ---
 
@@ -58,11 +58,11 @@ The following conditions are available for creating custom billing alerts:
 
 The following recipients are available for billing alerts:
 
-| Recipient                    | Description                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Organization Role            | Sends an alert to all users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator), or [Organization Member](#organization-user-roles.adoc#organization-role-member) role in your organization. You can choose multiple roles to receive the alert. |
-| User                         | Sends an alert to specific Capella users by email address.                                                                                                                                                                                                                                                                                                                                                     |
-| All Users in My Organization | Sends an alert to all current users in your organization.                                                                                                                                                                                                                                                                                                                                                      |
+| Recipient                    | Description                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Organization Role            | Sends an alert to all users with the [Organization Owner](../organizations/organization-user-roles.md#organization-role-organization-owner), [Project Creator](../organizations/organization-user-roles.md#organization-role-project-creator), or [Organization Member](../organizations/organization-user-roles.md#organization-role-member) role in your organization. You can choose multiple roles to receive the alert. |
+| User                         | Sends an alert to specific Capella users by email address.                                                                                                                                                                                                                                                                                                                                                                   |
+| All Users in My Organization | Sends an alert to all current users in your organization.                                                                                                                                                                                                                                                                                                                                                                    |
 
 ## [](#see-also)See Also
 

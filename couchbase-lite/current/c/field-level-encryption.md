@@ -2,7 +2,7 @@
 title: Field Level Encryption
 description: Client-side Field Level Encryption on Couchbase Lite C Clients
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/4.0/modules/c/pages/field-level-encryption.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-24T03:43:23.693Z
 link: xref:couchbase-lite:c:field-level-encryption.adoc[]
 ---
 
@@ -116,7 +116,7 @@ Server SDK’s field (property) level encryption uses key mangling, by add a pre
 
 ### [](#lbl-encryption-callback)Encryption
 
-Provide an encryption callback function [CBLPropertyEncryptor](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#gab116a23be8bd24b86349379f370ef60c) to encrypt encryptable properties during replication.
+Provide an encryption callback function [CBLPropertyEncryptor](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Freplication.html#gab116a23be8bd24b86349379f370ef60c) to encrypt encryptable properties during replication.
 
 After encryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example encryptor callback function.
 
@@ -124,7 +124,7 @@ If you return a null slice the replicator will fail and log a crypto error messa
 
 ### [](#lbl-decryption-callback)Decryption
 
-Provide a decryption callback function [CBLPropertyDecryptor](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga24a60a3d6f9816e1d32464cc31a15c0c) to decrypt any encryptable properties. After decryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example decryptor callback function.
+Provide a decryption callback function [CBLPropertyDecryptor](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/group%5F%5Freplication.html#ga24a60a3d6f9816e1d32464cc31a15c0c) to decrypt any encryptable properties. After decryption the FLSliceResult is released and the returned value zeroed. See [Example 4](#ex-get-att) for an example decryptor callback function.
 
 If you return a null slice without an error the replicator skips and saves the property as received.
 
@@ -173,7 +173,7 @@ static FLSliceResult property_decryptor(
 
 ## [](#callback-configuration)Callback Configuration
 
-You register the callback function for use by declaring them in the replicator configuration using [propertyEncryptor()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab731bf9f140158d6967c1af645d8744a) and-or [propertyDecryptor()](https://docs.couchbase.com/mobile/4.0.0/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab6a0d9e0830755d284039018a09c27d6) — see: [Example 5](#ex-callback-config)
+You register the callback function for use by declaring them in the replicator configuration using [propertyEncryptor()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab731bf9f140158d6967c1af645d8744a) and-or [propertyDecryptor()](https://docs.couchbase.com/mobile/4.0.3/couchbase-lite-c/C/html/struct%5Fc%5Fb%5Fl%5Freplicator%5Fconfiguration.html#ab6a0d9e0830755d284039018a09c27d6) — see: [Example 5](#ex-callback-config)
 
 If you do not provide an encryption callback:
 
