@@ -1,10 +1,10 @@
 ---
 title: EXPLAIN FUNCTION
-description: For a specified user-defined function, you use EXPLAIN FUNCTION to
-  expose the execution plan for the SQL++ subqueries or embedded statements that
-  it contains.
+description: Use EXPLAIN FUNCTION to expose the execution plan for the SQL++
+  subqueries or embedded statements that a specified user-defined function
+  contains.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/n1ql/pages/n1ql-language-reference/explainfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:n1ql:n1ql-language-reference/explainfunction.adoc[]
 ---
 
@@ -13,16 +13,14 @@ link: xref:7.6@server:n1ql:n1ql-language-reference/explainfunction.adoc[]
 
 # EXPLAIN FUNCTION
 
-> For a specified user-defined function, you use EXPLAIN FUNCTION to expose the execution plan for the SQL++ subqueries or embedded statements that it contains. 
+> Use EXPLAIN FUNCTION to expose the execution plan for the SQL++ subqueries or embedded statements that a specified user-defined function contains. 
 
 ## [](#purpose)Purpose
 
 You can request the execution plan for an inline or external user-defined function.
 
-* For an inline function, EXPLAIN FUNCTION returns the query plans for all of the subqueries present in the function body.  
-For more information about inline functions, see [User-Defined Functions](userfun.md).
-* For an external function, EXPLAIN FUNCTION returns the query plans for all embedded SQL++ queries inside the referenced JavaScript body, or the line number on which a N1QL() call appears. Line numbers are calculated from the beginning of the JavaScript function definition.  
-For more information about user-defined functions with JavaScript, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* Inline functions are defined using SQL++ expressions. For an inline function, EXPLAIN FUNCTION returns the query plans for all of the subqueries present in the function body.
+* External functions are defined using JavaScript. For an external function, EXPLAIN FUNCTION returns the query plans for all embedded SQL++ queries inside the referenced JavaScript body, or the line number on which a N1QL() call appears. Line numbers are calculated from the beginning of the JavaScript function definition.
 
 The following constraints apply:
 
@@ -48,7 +46,7 @@ For more information about user roles, see [Authorization](../../learn/security/
 explain-function ::= 'EXPLAIN' 'FUNCTION' function
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/explain-function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/explain-function.png) 
 
 | function | [Function Name](#name) |
 | -------- | ---------------------- |
@@ -63,12 +61,14 @@ function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 
 The name of the function. This is usually an unqualified identifier, such as `func1` or `` `func-1` ``. In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context).
 
-To get the plan for a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to get the plan for a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
+To get the plan for a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to get the plan for a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. For more information, see [Global Functions and Scoped Functions](createfunction.md#context).
 
 > [!NOTE]
-> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created.
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must get the plan for the user-defined function using the same case that was used when it was created.
 
 ## [](#examples)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
 Example 1\. Inline Function Example
 
@@ -160,9 +160,9 @@ Results
 
 Example 2\. External Function Example
 
-This example assumes that you have defined a JavaScript library named `lib1`.
+This example assumes that you have defined a JavaScript library in the current query context named `lib1`.
 
-You then add a JavaScript function named `function1` to that library as follows:
+Add a JavaScript function named `function1` to that library:
 
 ```javascript
 function function1() {
@@ -175,9 +175,9 @@ function function1() {
 | ----- | ---------------------------------------------- |
 | **2** | A N1QL() call that executes a SQL++ statement. |
 
-You then create the corresponding SQL++ user-defined function for that JavaScript function, named `jsfunction1`, and request the plan information for the statements within the function definition:
+Then create the corresponding SQL++ user-defined function for that JavaScript function, named `jsfunction1`, and request the plan information for the statements within the function definition:
 
-```SQL++
+```sqlpp
 CREATE FUNCTION jsfunction1() 
   LANGUAGE JAVASCRIPT 
   AS "function1" AT "lib1";
@@ -295,9 +295,10 @@ Results
 
 ## [](#related-links)Related Links
 
-* To create user-defined functions, refer to [CREATE FUNCTION](createfunction.md).
-* To manage user-defined functions in the Query Workbench, see [User-Defined Functions UI](../../tools/udfs-ui.md).
-* To manage external libraries and external functions, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* For an introduction to user-defined functions, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* For more information about JavaScript functions, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+* To manage JavaScript libraries, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* To create user-defined functions, see [CREATE FUNCTION](createfunction.md).
 * To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
 * To monitor user-defined functions, see [Monitor Functions](../n1ql-intro/sysinfo.md#sys-functions).

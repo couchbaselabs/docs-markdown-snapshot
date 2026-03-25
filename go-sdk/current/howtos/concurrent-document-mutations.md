@@ -1,7 +1,7 @@
 ---
 title: Concurrent Document Mutations
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/concurrent-document-mutations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/concurrent-document-mutations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:concurrent-document-mutations.adoc[]
 ---
 

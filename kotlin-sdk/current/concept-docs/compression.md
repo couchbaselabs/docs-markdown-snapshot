@@ -3,8 +3,8 @@ title: Compression
 description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform provides data compression between the SDK and
   Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/compression.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:compression.adoc[]
 ---
 
@@ -57,7 +57,11 @@ While the tiniest of documents will not be reduced in size by compressing, there
 To safeguard against the case of several thousand documents stealing CPU time to barely discernable advantage, a threshold for minimum doument size to compress is set in the SDK, with a sensible default value - that value can be seen for your chosen SDK in its API documentation (32 bytes), and you can override this to disable compression of smaller ones:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/compression.adoc - include::example$CompressionExample.java[]
+ClusterEnvironment env = ClusterEnvironment
+    .builder()
+    // start compressing at 1024 bytes
+    .compressionConfig(CompressionConfig.minSize(1024))
+    .build();
 ```
 
 The `CompressionConfig` also allows you to disable compression completely or tune the ratio of when a compressed document (compared to the size of the uncompressed) should be sent over the wire.

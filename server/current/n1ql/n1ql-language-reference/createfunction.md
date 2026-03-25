@@ -3,7 +3,7 @@ title: CREATE FUNCTION
 description: The <code>CREATE FUNCTION</code> statement enables you to create a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/createfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:n1ql:n1ql-language-reference/createfunction.adoc[]
 ---
 
@@ -21,7 +21,25 @@ Couchbase Server supports two types of user-defined function in SQL++ for Query:
 * **Inline functions** are defined using SQL++ expressions. Use an inline function to reuse complex or repetitive expressions, including subqueries, and simplify your SQL++ queries.
 * **External functions** are defined using an external language. They enable you to create functions that may be difficult or impossible to define using built-in SQL++ expressions. The only supported language is JavaScript.
 
-External functions in SQL++ support most of the language constructs available in ECMAScript. For more information about the restrictions and extensions that come with the Couchbase implementation, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+JavaScript functions in the Query Service support most of the language constructs available in ECMAScript. For more information about the restrictions and extensions that come with the Couchbase implementation, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+
+### [](#sql-managed-user-defined-functions)SQL++ Managed User-Defined Functions
+
+In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you do not have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
+
+With a SQL++ managed user-defined function, the external function code is stored inline, along with the SQL++ user-defined function. You cannot share this external function code with other user-defined functions, or access it from any external libraries.
+
+### [](#external-libraries)External Libraries
+
+You can store JavaScript functions in external libraries. This enables you to share external function code for use in more than one SQL++ user-defined function. A library can contain one or more JavaScript functions.
+
+You must create the external library and the external function code using the [Query Workbench](../../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md).
+
+External libraries, like SQL++ user-defined functions, may be scoped or global. Set an external library or user-defined function as **Scoped** to keep the code for external functions separate.
+
+Code which is stored in a scoped library is private to users of that scope, and is not visible or available to users of another scope. Code which is stored in a global library is available to users of all scopes.
+
+A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you can have a global `math` library, and a `math` library in each scope.
 
 ### [](#context)Global Functions and Scoped Functions
 
@@ -32,29 +50,12 @@ For example, when you call a global function `default:global()` which contains t
 * A scoped function is created within a scope, at the same level as the collections within the scope. When you call a scoped function, any partial keyspace references within the function definition are resolved against the function’s scope, regardless of the current [query context](../n1ql-intro/queriesandresults.md#query-context).  
 For example, when you call a scoped function `` default:`travel-sample`.inventory.scope() `` which contains the keyspace reference `route`, the keyspace reference is always resolved within the context of the function to `` default:`travel-sample`.inventory.route ``.
 
-When you create a user-defined function, the current query context determines whether it is created as a global function or a scoped function. If you want to create a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
+When you create a user-defined function, the current query context determines whether it’s created as a global function or a scoped function. If you want to create a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
 
 Similarly, when you call a user-defined function, the current query context determines the path to the function. If you want to call a user-defined function outside of the current query context, you must include the full path to the function when you specify the function name.
 
-Finally, it is important to note that a global function is _not_ the same as a scoped function stored in the default scope in a bucket.
-
-### [](#external-libraries)External Libraries
-
-You can store JavaScript functions in external libraries. This enables you to share external function code for use in more than one SQL++ user-defined function. A library can contain one or more JavaScript functions.
-
-You must create the external library and the external function code using the [Query Workbench](../../tools/udfs-ui.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md).
-
-External libraries, like SQL++ user-defined functions, may be scoped or global. Set an external library or user-defined function as **Scoped** to keep the code for external functions separate.
-
-Code which is stored in a scoped library is private to users of that scope, and is not visible or available to users of another scope. Code which is stored in a global library is available to users of all scopes.
-
-A global library may have the same name as a scoped library, and scoped libraries may have the same name as each other. For example, you can have a global `math` library, and a `math` library in each scope.
-
-### [](#sql-managed-user-defined-functions)SQL++ Managed User-Defined Functions
-
-In Couchbase Server 7.6 and later, you can create the code for an external function and the corresponding SQL++ user-defined function in a single operation. This means that you do not have to specify an external library and create the code for the external function, before creating the SQL++ user-defined function.
-
-With a SQL++ managed user-defined function, the external function code is stored inline, along with the SQL++ user-defined function. You cannot share this external function code with other user-defined functions, or access it from any external libraries.
+> [!NOTE]
+> A global function is not the same as a scoped function stored in the default scope in a bucket.
 
 ## [](#prerequisites)Prerequisites
 
@@ -65,7 +66,7 @@ With a SQL++ managed user-defined function, the external function code is stored
 | Global external functions | **Manage Global External Functions** role.                                                    |
 | Scoped external functions | **Manage Scope External Functions** role, with permissions on the specified bucket and scope. |
 
-Users with the **Manage Scope External Functions** role also have read-only access to any global external library.
+Users with the **Manage Scope External Functions** role also have read-only access to any global JavaScript library.
 
 | To execute …​             | You must have …​                                                                               |
 | ------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -74,21 +75,21 @@ Users with the **Manage Scope External Functions** role also have read-only acce
 | Global external functions | **Execute Global External Functions** role.                                                    |
 | Scoped external functions | **Execute Scope External Functions** role, with permissions on the specified bucket and scope. |
 
-For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
+For more information about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 
-The `CREATE FUNCTION` statement takes a different syntax depending on the type of function you are creating. Refer to [Inline Functions](#create-function-inline) or [External Functions](#create-function-external) below.
+The `CREATE FUNCTION` statement takes a different syntax depending on the type of function you’re creating. See [Inline Functions](#create-function-inline) or [External Functions](#create-function-external) below.
 
 ```ebnf
 create-function ::= create-function-inline | create-function-external
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/create-function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/create-function.png) 
 
 ### [](#create-function-inline)Inline Functions
 
-There are two alternative syntaxes for defining an inline function: a syntax with braces `{}` and a syntax using the `LANGUAGE` keyword. The two syntaxes are synonymous.
+The CREATE FUNCTION statement provides two possible syntaxes for defining an inline function: a syntax with braces `{}` and a syntax using the `LANGUAGE` keyword. The two syntaxes are synonymous.
 
 ```ebnf
 create-function-inline ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
@@ -96,7 +97,7 @@ create-function-inline ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' 
                            ( '{' body '}' | 'LANGUAGE' 'INLINE' 'AS' body )
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/create-function-inline.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/create-function-inline.png) 
 
 | function | [Function Name](#inline-name)            |
 | -------- | ---------------------------------------- |
@@ -122,13 +123,15 @@ When a function with the same name already exists within the same context: \[[1]
 function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
-The function name specifies the name of the function to create. It is recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
+The function name specifies the name of the function to create. It’s recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
 
 To create a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to create a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``.
 
 If the function name is an unqualified identifier, it may not be the same as a reserved keyword. A function name with a specified namespace or scope may have the same name as a reserved keyword.
+
+The function name must be unique within its scope or namespace. You cannot have two functions with the same name inside the same scope or namespace. You can have two functions with the same name across different scopes or namespaces.
 
 #### [](#inline-parameter)Function Parameters
 
@@ -136,9 +139,9 @@ If the function name is an unqualified identifier, it may not be the same as a r
 params ::= identifier ( "," identifier )* | "..."
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/params.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/params.png) 
 
-\[Optional\] The function parameter list specifies parameters for the function. If you specify named parameters for the function, then you must call the function with exactly the same number of arguments at execution time. If you specify no parameters, then you must call the function with no arguments. To create a variadic function, that is, a function which you can call with any number of arguments or none, specify `...` as the only parameter.
+\[Optional\] The function parameter list specifies parameters for the function. If you specify named parameters for the function, then you must call the function with exactly the same number of arguments at execution time. If you specify no parameters, then you must call the function with no arguments. To create a variadic function (a function which you can call with any number of arguments or none), specify `...` as the only parameter.
 
 #### [](#inline-expression)Function Body
 
@@ -150,7 +153,7 @@ The function body defines the function. You can use any valid SQL++ expression. 
 
 ### [](#create-function-external)External Functions
 
-There are two alternative syntaxes for defining an external function: one where the function code is stored in an external library, and one for creating a SQL++ managed user-defined function.
+The CREATE FUNCTION statement provides two possible syntaxes for defining an external function: one that references a function code in a JavaScript library, and one that creates a SQL++ managed JavaScript function.
 
 ```ebnf
 create-function-external ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(' params? ')'
@@ -158,7 +161,7 @@ create-function-external ::= 'CREATE' ( 'OR' 'REPLACE' )? 'FUNCTION' function '(
                              'LANGUAGE' 'JAVASCRIPT' 'AS' ( obj 'AT' library | javascript )
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/create-function-external.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/create-function-external.png) 
 
 | function   | [Function Name](#external-name)            |
 | ---------- | ------------------------------------------ |
@@ -186,13 +189,15 @@ When a function with the same name already exists within the same context: \[[1]
 function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
-The function name specifies the name of the function to create. It is recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
+The function name specifies the name of the function to create. It’s recommended to use an unqualified identifier for the function name, such as `func1` or `` `func-1` ``. In this case, the function is created as a global function or a scoped function, depending on the current query context.
 
 To create a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to create a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``.
 
 If the function name is an unqualified identifier, it may not be the same as a reserved keyword. A function name with a specified namespace or scope may have the same name as a reserved keyword.
+
+The function name must be unique within its scope or namespace. You cannot have two functions with the same name inside the same scope or namespace. You can have two functions with the same name across different scopes or namespaces.
 
 #### [](#external-parameter)Function Parameters
 
@@ -200,29 +205,31 @@ If the function name is an unqualified identifier, it may not be the same as a r
 params ::= identifier ( "," identifier )* | "..."
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/params.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/params.png) 
 
-\[Optional\] The function parameter list specifies parameters for the function. If you specify named parameters for the function, then you must call the function with exactly the same number of arguments at execution time. If you specify no parameters, then you must call the function with no arguments. To create a variadic function, that is, a function which you can call with any number of arguments or none, specify `...` as the only parameter.
+\[Optional\] The function parameter list specifies parameters for the function. If you specify named parameters for the function, then you must call the function with exactly the same number of arguments at execution time. If you specify no parameters, then you must call the function with no arguments. To create a variadic function (a function which you can call with any number of arguments or none), specify `...` as the only parameter.
 
 #### [](#external-object)External Object
 
-\[Optional\] Use this parameter where the function code is stored in an external library.
+\[Optional\] Use this parameter when the function code is stored in a JavaScript library.
 
 The name of the JavaScript function that you want to use for the user-defined function. This parameter is a string and must be wrapped in quotes.
 
 #### [](#external-library)External Library
 
-\[Optional\] Use this parameter where the function code is stored in an external library.
+\[Optional\] Use this parameter when the function code is stored in a JavaScript library.
 
 The name of the JavaScript library that contains the JavaScript function you want to use. This parameter is a string and must be wrapped in quotes.
 
-The name of a scoped external library must include the bucket name, the scope name, and the library name, separated by slashes. For example, to refer to a scoped library called `my-library` located in the `inventory` scope within the `travel-sample` bucket, you would specify the library name as `travel-sample/inventory/my-library`.
+The name of a scoped JavaScript library must include the bucket name, the scope name, and the library name, separated by slashes. For example, to refer to a scoped library called `my-library` located in the `inventory` scope within the `travel-sample` bucket, you would specify the library name as `travel-sample/inventory/my-library`.
 
 #### [](#javascript)Function Body
 
-\[Optional\] Use this parameter to create a SQL++ managed user-defined function.
+\[Optional\] Use this parameter to create a SQL++ managed JavaScript function.
 
 The external JavaScript function code. This must contain a function with the same name and the same number of parameters as the SQL++ user-defined function. This parameter is a string and must be wrapped in quotes.
+
+If you specified named parameters for the function, you can use these in the expression to represent arguments passed to the function at execution time. If you specified that the function is variadic, any arguments passed to the function at execution time are held in an array named `args`.
 
 The JavaScript code can contain multiple function definitions, but these functions can only be referenced within the JavaScript code for this SQL++ user-defined function, and cannot be shared.
 
@@ -230,14 +237,14 @@ The JavaScript code can contain multiple function definitions, but these functio
 
 For simplicity, none of these examples implement any data validation or error checking. If necessary, you can use [conditional operators](conditionalops.md) to check the parameters of a user-defined function, and the [ABORT()](metafun.md#abort) function to generate an error if something is wrong.
 
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
+
 Example 1\. Inline function with the LANGUAGE syntax
 
-This statement creates a function called `celsius`, which converts Fahrenheit to Celsius. The function is variadic.
-
-For purposes of illustration, this expression converts just the first argument supplied at execution time, which is stored in the first member in the `args` array. A more realistic variadic function would make use of all the supplied arguments.
+This statement creates a function called `celsius`, which converts Fahrenheit to Celsius. The function takes a single argument.
 
 ```sqlpp
-CREATE FUNCTION celsius(...) LANGUAGE INLINE AS (args[0] - 32) * 5/9;
+CREATE FUNCTION celsius(fahrenheit) LANGUAGE INLINE AS (fahrenheit - 32) * 5/9;
 ```
 
 Test
@@ -256,18 +263,16 @@ Result
 
 Example 2\. Inline function with the braces syntax
 
-This statement creates a function called `fahrenheit`, which converts Celsius to Fahrenheit. The function is variadic.
-
-For purposes of illustration, this expression converts just the first argument supplied at execution time, which is stored in the first member in the `args` array. A more realistic variadic function would make use of all the supplied arguments.
+This statement creates a function called `fahrenheit`, which converts Celsius to Fahrenheit. The function takes a single argument.
 
 ```sqlpp
-CREATE FUNCTION fahrenheit(...) { (args[0] * 9/5) + 32 };
+CREATE FUNCTION fahrenheit(celsius) { (celsius * 9/5) + 32 };
 ```
 
 Test
 
 ```sqlpp
-EXECUTE FUNCTION fahrenheit(100, "ignore this");
+EXECUTE FUNCTION fahrenheit(100);
 ```
 
 Result
@@ -278,9 +283,7 @@ Result
 ]
 ```
 
-As the function is variadic, you can use any number of arguments when you call the function. Arguments which are not used by the function expression are ignored.
-
-Example 3\. Inline function with named parameters
+Example 3\. Inline function with multiple parameters
 
 The following statement creates a function called `lstr`, which returns the specified number of characters from the left of a string. The expression expects two named arguments: `vString`, which is the string to work with, and `vLen`, which is the number of characters to return.
 
@@ -307,7 +310,7 @@ Result
 
 As the arguments were specified by the function definition, you must use the same number of arguments when you call the function. If you supply the wrong number of arguments, an error is generated.
 
-Example 4\. Inline function with named parameters
+Example 4\. Inline function with multiple parameters
 
 The following statement creates a function called `rstr`, which returns the specified number of characters from the right of a string. The expression expects two named arguments: `vString`, which is the string to work with, and `vLen`, which is the number of characters to return.
 
@@ -363,10 +366,33 @@ Result
       "id": 10061,
       "name": "Monet's House"
     },
-...
+// ...
 ```
 
-Example 6\. Replace a function
+Example 6\. Variadic inline function
+
+The following statement creates a function called `total_length`, which takes a variable number of strings and returns the total length of all the strings. As the function is variadic, you can use any number of arguments when you call the function.
+
+```sqlpp
+CREATE FUNCTION total_length(...)
+{ ARRAY_SUM((SELECT VALUE LEN(a) FROM args AS a)) };
+```
+
+Test
+
+```sqlpp
+EXECUTE FUNCTION total_length("Hello", "Goodbye");
+```
+
+Result
+
+```json
+[
+  12
+]
+```
+
+Example 7\. Replace a function
 
 This statement creates a function which returns the mathematical constant φ. The function takes no arguments.
 
@@ -410,7 +436,7 @@ Result
 ]
 ```
 
-Example 7\. SQL++ managed user-defined function
+Example 8\. SQL++ managed JavaScript function
 
 The following statement creates external JavaScript function code and the corresponding SQL++ user-defined function in one operation.
 
@@ -433,7 +459,7 @@ Result
 ]
 ```
 
-Example 8\. External functions
+Example 9\. External functions
 
 The following command registers two JavaScript functions called `encodeGeoHash` and `calculateAdjacent` in a library called `geohash-js`. \[[2](#%5Ffootnotedef%5F2 "View footnote.")\]
 
@@ -553,7 +579,7 @@ Result
 ]
 ```
 
-To view the geohash on a map, go to <http://geohash.org/gcqrs0z2jfdr> and follow one of the links provided. At the specified latitude, the geohash represents an area of approximately 11 𐄂 19 millimeters.
+To view the geohash on a map, go to [Geohashes](https://www.movable-type.co.uk/scripts/geohash.html) and enter the string in the **Geohash** box. At the specified latitude, the geohash represents an area of approximately 11 𐄂 19 millimeters.
 
 Test `adjacent`
 
@@ -569,12 +595,13 @@ Result
 ]
 ```
 
-To view the geohash on a map, go to <http://geohash.org/gcqrs0z2jff2> and follow one of the links provided. At this level of precision, the geohash should appear to be in almost exactly the same location as the previous one.
+To view the geohash on a map, go to [Geohashes](https://www.movable-type.co.uk/scripts/geohash.html) and enter the string in the **Geohash** box. At this level of precision, the geohash should appear to be in almost exactly the same location as the previous one.
 
 ## [](#related-links)Related Links
 
-* To manage user-defined functions in the Query Workbench, see [User-Defined Functions UI](../../tools/udfs-ui.md).
-* To manage external libraries and external functions, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* For an introduction to user-defined functions, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* For more information about JavaScript functions, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+* To manage JavaScript libraries, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
 * To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
@@ -583,6 +610,6 @@ To view the geohash on a map, go to <http://geohash.org/gcqrs0z2jff2> and follow
 
 ---
 
-[1](#%5Ffootnoteref%5F1). That is, you are creating a global function, and a function with the same name already exists within the same namespace; or, you are creating a scoped function, and a function with the same name already exists within the same scope. 
+[1](#%5Ffootnoteref%5F1). In other words, you’re creating a global function, and a function with the same name already exists within the same namespace; or, you’re creating a scoped function, and a function with the same name already exists within the same scope. 
 
 [2](#%5Ffootnoteref%5F2). Credit: <https://github.com/davetroy/geohash-js>

@@ -2,7 +2,7 @@
 title: Connect To Your Cluster
 description: Use the Connect page to choose how you want to connect to your cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/connect.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:get-started:connect.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:cloud:get-started:connect.adoc[]
 
 This page covers connecting to your cluster from:
 
-* [SDKs](#home::sdk.adoc)
+* [SDKs](../../home/sdk.md)
 * [Couchbase Shell (cbsh)](../reference/command-line-tools.md#couchbase-shell-cbsh)
 * [Command line tools](../reference/command-line-tools.md)
 * [IDE Plugins and Extensions](../third-party/integrations.md#ide-integrations)

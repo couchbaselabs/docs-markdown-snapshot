@@ -1,0 +1,89 @@
+---
+title: Orphaned Requests Logging
+description: In addition to request tracing and metrics reporting, logging
+  orphaned requests provides additional insight into why an operation might have
+  timed out (or got cancelled for a different reason).
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.7/modules/howtos/pages/observability-orphan-logger.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.7@go-sdk:howtos:observability-orphan-logger.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-sdk/2.7/howtos/observability-orphan-logger.html)
+
+# Orphaned Requests Logging
+
+> In addition to request tracing and metrics reporting, logging orphaned requests provides additional insight into why an operation might have timed out (or got cancelled for a different reason). 
+
+While tracing and metrics can also be consumed through external interfaces, getting information about orphaned requests only works through the built-in mechanisms.
+
+The way it works is that every time a response is in the process of being completed, when the SDK detects that the original caller is not listening anymore (likely because of a timeout), it will send this "orphaned" response to a reporting utility which aggregates all responses and in regular intervals logs them in a specific format.
+
+When you spot an `ErrTimeout` in your log file, you can look for the output of the `OrphanReporter` and correlate the information.
+
+## [](#output-format)Output Format
+
+The `OrphanReporter` detects orphaned requests and creates a log entry for each, which in turn are going to be logged alongside all other SDK logs. Since orphans usually indicate a state that is not desirable, the log level for those events is `WARN`. By default, they will be aggregated and logged every 10 seconds, but the event will be skipped if there are no orphans to report. This makes sure that the log line will appear close to the corresponding `ErrTimeout` in the logs, while not spamming the log file if there is nothing to report. See the next section on how to customize this behavior. In the Go SDK `OrphanReporter` is only applicable to the key-value service, other services use HTTP which is a blocking operation and cannot create orphaned requests.
+
+The actual body of the message consists of the text `Orphaned responses observed`, followed by a compact JSON representation of the aggregated orphans. The following code snippet shows a prettified version of such a JSON blob:
+
+```json
+{
+  "kv": {
+    "total_count": 3,
+    "top_requests": [
+      {
+        "last_local_id": "6fc84f6b1e27f9ec/1264152ff6b5299a",
+        "operation_id": "0x7",
+        "last_remote_socket": "10.112.230.102:11210",
+        "last_local_socket": "10.112.230.1:63747",
+        "last_server_duration_us": 243,
+        "operation_name": "CMD_SET"
+      },
+      {
+        "last_local_id": "6fc84f6b1e27f9ec/1264152ff6b5299a",
+        "operation_id": "0x8",
+        "last_remote_socket": "10.112.230.102:11210",
+        "last_local_socket": "10.112.230.1:63747",
+        "last_server_duration_us": 300,
+        "operation_name": "CMD_SET"
+      },
+      {
+        "last_local_id": "6fc84f6b1e27f9ec/1264152ff6b5299a",
+        "operation_id": "0x9",
+        "last_remote_socket": "10.112.230.102:11210",
+        "last_local_socket": "10.112.230.1:63747",
+        "last_server_duration_us": 210,
+        "operation_name": "CMD_SET"
+      }
+    ]
+  }
+}
+```
+
+Please note that we do not provide any stability guarantees on the logging output format and it might change between minor versions.
+
+__Table 1\. JSON Output Format Descriptions__
+| Property                   | Description                                                                                   |
+| -------------------------- | --------------------------------------------------------------------------------------------- |
+| last\_server\_duration\_us | The server duration, if present.                                                              |
+| operation\_name            | The name of the operation.                                                                    |
+| last\_local\_id            | The connection id.                                                                            |
+| operation\_id              | The operation id (this can be used to match up to logged requests using their opaque values). |
+| last\_local\_socket        | The local address, if present.                                                                |
+| last\_remote\_socket       | The remote address, if present.                                                               |
+
+If a field is not available, it will not be included in the output.
+
+## [](#configuration)Configuration
+
+The orphan logger can be configured through the `OrphanReporterConfig`.
+
+The following properties can be configured:
+
+__Table 2\. OrphanReporterConfig Properties__
+| Property     | Default    | Description                                   |
+| ------------ | ---------- | --------------------------------------------- |
+| EmitInterval | 10 seconds | The interval where found orphans are emitted. |
+| SampleSize   | 10         | The number of samples to store per service.   |
+| Disabled     | false      | Whether to disable the OrphanReporter.        |

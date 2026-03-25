@@ -3,7 +3,7 @@ title: Prepare Statements for Reuse
 description: How to create and execute prepared statements, including
   placeholder parameters.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/prep-statements.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:guides:prep-statements.adoc[]
 ---
 
@@ -177,13 +177,19 @@ To supply values for placeholder parameters, use the `Parameter` method on the `
 The following example supplies a single positional parameter.
 
 ```csharp
-Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::3.5@dotnet-sdk:howtos:example$N1qlQueries.csx[]
+var result = await cluster.QueryAsync<dynamic>(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$1",
+    options => options.Parameter("landmark")
+);
 ```
 
 The following example supplies a single named parameter.
 
 ```csharp
-Unresolved include directive in modules/guides/pages/prep-statements.adoc - include::3.5@dotnet-sdk:howtos:example$N1qlQueries.csx[]
+var result = await cluster.QueryAsync<dynamic>(
+    "SELECT t.* FROM `travel-sample` t WHERE t.type=$type",
+    options => options.Parameter("type", "landmark")
+);
 ```
 
 For details, see [QueryOptions](https://docs.couchbase.com/sdk-api/couchbase-net-client/api/Couchbase.Query.QueryOptions.html).
@@ -580,7 +586,7 @@ Reference:
 
 Querying with SDKs:
 
-* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
+* [C](../../../c-sdk/current/howtos/n1ql-queries-with-sdk.md)| [C++](../../../cxx-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [.NET](../../../dotnet-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Go](../../../go-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Java](../../../java-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Kotlin](../../../kotlin-sdk/current/howtos/n1ql-queries.md)| [Node.js](../../../nodejs-sdk/current/howtos/n1ql-queries-with-sdk.md)| [PHP](../../../php-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Python](../../../python-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Ruby](../../../ruby-sdk/current/howtos/n1ql-queries-with-sdk.md)| [Rust](../../../rust-sdk/current/howtos/sqlpp-queries-with-sdk.md)| [Scala](../../../scala-sdk/current/howtos/sqlpp-queries-with-sdk.md)
 
 Prepared statements with SDKs:
 

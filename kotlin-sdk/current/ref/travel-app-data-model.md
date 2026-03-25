@@ -1,7 +1,7 @@
 ---
 title: Travel App Data Model
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/ref/pages/travel-app-data-model.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:ref:travel-app-data-model.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:kotlin-sdk:ref:travel-app-data-model.adoc[]
 
 > An overview of the travel sample application data model and documents. 
 
-The [tutorial introduction to using the SDK](../hello-world/sample-application.md) uses the _Travel Sample_ data bucket.
+The [tutorial introduction to using the SDK](#hello-world:sample-application.adoc) uses the _Travel Sample_ data bucket.
 
 ## [](#the-travel-application-data-model)The Travel Application Data Model
 

@@ -2,8 +2,8 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -31,7 +31,10 @@ For Couchbase Server 6.0 and earlier, the generated plan is not influenced by pl
 If your queries are highly dynamic, we recommend using parameterized queries if possible (epecially when prepared statements are not used). Parameterized queries are more cache efficient and will allow for better performance. The maximum client-side query cache size is 5000 entries.
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$N1qlQueryExample.java[]
+QueryResult result = cluster.query(
+    "select count(*) from `travel-sample`.inventory.airport where country = ?",
+    QueryOptions.queryOptions().adhoc(false).parameters(JsonArray.from("France"))
+);
 ```
 
 ## [](#indexes)Indexes
@@ -65,7 +68,11 @@ Indexes help improve the performance of a query. When an index includes the actu
 You can also create and define indexes in the SDK using:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$N1qlQueryExample.java[]
+QueryIndexManager indexManager = cluster.queryIndexes();
+
+indexManager.createPrimaryIndex(bucketName);
+indexManager.createIndex(bucketName, "ix_name", Collections.singletonList("name"));
+indexManager.createIndex(bucketName, "ix_email", Collections.singletonList("preferred_email"));
 ```
 
 ## [](#index-building)Index Building
@@ -84,7 +91,16 @@ The indexes are not built until the `BUILD INDEX` statement is executed. At this
 Building deferred indexes can also be done via the SDK:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$N1qlQueryExample.java[]
+QueryIndexManager indexManager = cluster.queryIndexes();
+
+indexManager.createPrimaryIndex(bucketName,
+    CreatePrimaryQueryIndexOptions.createPrimaryQueryIndexOptions().deferred(true));
+indexManager.createIndex(bucketName, "ix_name", Collections.singletonList("name"),
+    CreateQueryIndexOptions.createQueryIndexOptions().deferred(true));
+indexManager.createIndex(bucketName, "ix_email", Collections.singletonList("preferred_email"),
+    CreateQueryIndexOptions.createQueryIndexOptions().deferred(true));
+indexManager.buildDeferredIndexes(bucketName);
+indexManager.watchIndexes(bucketName, Arrays.asList("ix_name", "ix_email"), Duration.ofMinutes(5));
 ```
 
 ## [](#index-consistency)Index Consistency
@@ -102,7 +118,17 @@ Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - inc
 Consider the following snippet:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$N1qlQueryExample.java[]
+String id = "user::" + UUID.randomUUID();
+collection.insert(
+    id,
+    JsonObject.create().put("value", true)
+);
+
+cluster.query(
+    "select * from `" + bucketName + "`.inventory.airport where META().id = $id",
+    QueryOptions.queryOptions()
+        .parameters(JsonObject.create().put("id", id))
+);
 ```
 
 The above query may not return the newly inserted document because it has not yet been indexed. The query is issued immediately after document creation, and in this case the Query Engine may process the query before the index has been updated.
@@ -110,7 +136,12 @@ The above query may not return the newly inserted document because it has not ye
 If the above code is modified to use _REQUEST\_PLUS_, query processing will wait until all updates have been processed and recalculated into the index from the point in time the query was received:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::example$N1qlQueryExample.java[]
+cluster.query(
+    "select * from `" + bucketName + "`.inventory.airport where META().id = $id",
+    QueryOptions.queryOptions()
+        .parameters(JsonObject.create().put("id", id))
+        .scanConsistency(QueryScanConsistency.REQUEST_PLUS)
+);
 ```
 
 This gives the application developer more control over the balance between performance (latency) and consistency, and allows optimization on a case-by-case basis.

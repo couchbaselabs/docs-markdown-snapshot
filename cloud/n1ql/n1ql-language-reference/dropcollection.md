@@ -3,7 +3,7 @@ title: DROP COLLECTION
 description: The DROP COLLECTION statement enables you to delete a named
   collection from a scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropcollection.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropcollection.adoc[]
 ---
 
@@ -13,6 +13,15 @@ link: xref:cloud:n1ql:n1ql-language-reference/dropcollection.adoc[]
 # DROP COLLECTION
 
 > The `DROP COLLECTION` statement enables you to delete a named collection from a scope. 
+
+## [](#prerequisites)Prerequisites
+
+To execute this statement, your client must have necessary privileges on the keyspace that contains the collection. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
+
+| Credential Type | Privilege                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Scope Admin](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

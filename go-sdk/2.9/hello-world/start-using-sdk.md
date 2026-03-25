@@ -2,7 +2,7 @@
 title: Start Using the Go SDK
 description: A quick start guide to get you up and running with Couchbase and the Go SDK.
 editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.9/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:2.9@go-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -26,7 +26,7 @@ We will go through the code sample step by step, but for those in a hurry to see
 * Couchbase Capella Sample
 * Local Couchbase Server
 
-To connect to [Couchbase Capella](#cloud::index.adoc), be sure to get the correct endpoint as well as user, password and bucket name.
+To connect to [Couchbase Capella](../../../home/cloud.md), be sure to get the correct endpoint as well as user, password and bucket name.
 
 ```go
 package main

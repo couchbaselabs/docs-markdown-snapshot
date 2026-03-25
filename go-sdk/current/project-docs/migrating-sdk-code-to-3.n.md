@@ -2,8 +2,8 @@
 title: Migrating to SDK 3 API
 description: The SDK 3.x API used in Go SDK 2.x breaks the existing 2.x APIs
   (used in Go SDK 1.6) in order to provide a number of improvements.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 

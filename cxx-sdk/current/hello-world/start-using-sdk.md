@@ -2,8 +2,8 @@
 title: Hello World
 description: Install, connect, try. A quick start guide to get you up and
   running with Couchbase and the C++ SDK.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/hello-world/pages/start-using-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -101,9 +101,9 @@ CPMAddPackage(
   NAME
   couchbase_cxx_client
   GIT_TAG
-  1.2.1
+  1.3.1
   VERSION
-  1.2.1
+  1.3.1
   GITHUB_REPOSITORY
   "couchbase/couchbase-cxx-client"
   OPTIONS

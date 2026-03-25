@@ -3,7 +3,7 @@ title: ALTER BUCKET
 description: The ALTER BUCKET statement enables you to update an existing
   bucket's configuration.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alterbucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/alterbucket.adoc[]
 ---
 
@@ -18,15 +18,16 @@ link: xref:cloud:n1ql:n1ql-language-reference/alterbucket.adoc[]
 
 Use the ALTER BUCKET statement to modify the configuration of a bucket in your Couchbase cluster. You can update only a limited set of bucket settings. You cannot change its core properties such as the bucket name and type. For more information, see the [Syntax](#alterbucket-syntax) section.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-Only administrators with the following roles can execute the ALTER BUCKET statement:
+To execute this statement in the Capella UI, you must have one of the following roles:
 
-* Full Admin
-* Cluster Admin
-* Bucket Admin (if privileges are extended to the specific bucket or all buckets on the cluster)
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
 
-For more information about roles and privileges, see [Roles](#learn:security/roles.adoc).
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#alterbucket-syntax)Syntax
 

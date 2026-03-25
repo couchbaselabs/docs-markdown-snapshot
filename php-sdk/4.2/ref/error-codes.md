@@ -3,7 +3,7 @@ title: Error Messages
 description: The standardized error codes returned by the Couchbase PHP SDK,
   from cloud connection to sub-document.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:ref:error-codes.adoc[]
 ---
 
@@ -14,43 +14,388 @@ link: xref:4.2@php-sdk:ref:error-codes.adoc[]
 
 > The standardized error codes returned by the Couchbase PHP SDK, from cloud connection to sub-document. 
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+All exceptions derive from a common base Couchbase exception. Exceptions (errors) are broken into different classifications:
+
+* Shared Exceptions — exceptions or errors thrown or returned by any service.
+* Specific Exceptions — exceptions or errors thrown by a service and specific to the service that threw or returned them.
+* Internal Exceptions — exceptions intended to be handled internally by the SDK and not exposed to the application.
+
+The base exception, `CouchbaseException`, has two properties — an `ErrorContext` and an optional _Cause_. The `ErrorContext` provides extensive debugging information in JSON format.
+
+Below are the exceptions, categorised by service.
 
 ## [](#shared-error-definitions)Shared Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range: 1-99
+
+### [](#1-timeout)\# 1 Timeout
+
+Raised when a request cannot be completed until the user-defined timeout fires.
+
+Note, this is a base class for #13 and #14 (Ambiguous and Unambiguous).
+
+### [](#2-requestcanceled)\# 2 RequestCanceled
+
+Raised when a request is cancelled and cannot be resolved in a non-ambiguous way. Most likely the request is in-flight on the socket and the socket gets closed.
+
+### [](#3-invalidargument)\# 3 InvalidArgument
+
+Raised when it is unambiguously determined that the error was caused because of invalid arguments from the user. Usually only thrown directly when doing request arg validation on KV and sub-doc. Also commonly used as a parent class for many service-specific exceptions (see below).
+
+### [](#4-servicenotavailable)\# 4 ServiceNotAvailable
+
+Raised when it can be determined from the config unambiguously that a given service is not available. I.e. no query node in the config, or a memcached bucket is accessed and views or queries should be performed.
+
+### [](#5-internalserverfailure)\# 5 InternalServerFailure
+
+Raised when:
+
+* Query: [Error range 5xxx](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#5xxx-codes-exec).
+* Analytics: Error range [25xxx](#7.1@server:analytics:error-codes.adoc).
+* KV: error code ERR\_INTERNAL (0x84).
+* Search: HTTP 500.
+
+### [](#6-authenticationfailure)\# 6 AuthenticationFailure
+
+Raised when:
+
+* Query: [Error range 10xxx](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#10xxx-codes-ds%5Fauth).
+* Analytics: Error range [20xxx](#7.1@server:analytics:error-codes.adoc).
+* View: HTTP status 401.
+* KV: error code `ERR_ACCESS (0x24)`, `ERR_AUTH_ERROR (0x20)`, `AUTH_STALE (0x1f)`.
+* Search: HTTP status 401, 403.
+
+### [](#7-temporaryfailure)\# 7 TemporaryFailure
+
+Raised when:
+
+* Analytics: Errors: [23000, 23003](#7.1@server:analytics:error-codes.adoc).
+* KV: Error code `ERR_TMPFAIL (0x86)`, `ERR_BUSY (0x85)` `ERR_OUT_OF_MEMORY (0x82)`, `ERR_NOT_INITIALIZED (0x25)`.
+
+### [](#8-parsingfailure)\# 8 ParsingFailure
+
+Raised when:
+
+* Query: [code 3000](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#3xxx-codes-parse).
+* Analytics: code [24000](#7.1@server:analytics:error-codes.adoc) raised.
+
+### [](#9-casmismatch)\# 9 CasMismatch
+
+Raised when:
+
+* KV: `ERR_EXISTS (0x02)` when replace or remove with CAS.
+* Query: [code 12009](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#12xxx-codes-ds%5Fcb).
+
+### [](#10-bucketnotfound)\# 10 BucketNotFound
+
+Raised when a request is made but the current bucket is not found.
+
+### [](#11-collectionnotfound)\# 11 CollectionNotFound
+
+Raised when a request is made but the current collection (including scope) is not found.
+
+### [](#12-unsupportedoperation)\# 12 UnsupportedOperation
+
+Raised when:
+
+* KV: `0x81` (unknown command), `0x83` (not supported).
+
+### [](#13-ambiguoustimeout)\# 13 AmbiguousTimeout
+
+Raised when a timeout occurs and we aren’t sure if the underlying operation has completed. This normally occurs because we sent the request to the server successfully, but timed out waiting for the response. Note that idempotent operations should never return this, as they do not have ambiguity.
+
+### [](#14-unambiguoustimeout)\# 14 UnambiguousTimeout
+
+Raised when a timeout occurs and we are confident that the operation could not have succeeded. This normally would occur because we received confident failures from the server, or never managed to successfully dispatch the operation.
+
+### [](#15-featurenotavailable)\# 15 FeatureNotAvailable
+
+Raised when a feature which is not available was used.
+
+### [](#16-scopenotfound)\# 16 ScopeNotFound
+
+Raised when a management API attempts to target a scope which does not exist.
+
+### [](#17-indexnotfound)\# 17 IndexNotFound
+
+Raised when:
+
+* Query:
+
+  * Codes [12004, 12016](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#12xxx-codes-ds%5Fcb).
+  * [Codes 5000](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#5000-9999-codes-errors) AND message contains index .+ not found.
+* Analytics: rised when [24047](#7.1@server:analytics:error-codes.adoc) raised.
+* Search: Http status code 400 AND text contains "index not found".
+
+### [](#18-indexexists)\# 18 IndexExists
+
+* Query: Raised when
+
+  * [Code 5000](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#5000-9999-codes-errors) AND message contains Index .+ already exist
+  * [Code 4300](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#4xxx-codes-plan) AND message contains index .+ already exist
+* Analytics: Raised when [24048](#7.1@server:analytics:error-codes.adoc) raised.
+
+### [](#19-encodingfailure)\# 19 EncodingFailure
+
+Raised when encoding of a user object failed while trying to write it to the cluster.
+
+### [](#20-decodingfailure)\# 20 DecodingFailure
+
+Raised when decoding of the data into the user object failed.
 
 ## [](#keyvalue-error-definitions)KeyValue Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 100 - 199
+
+### [](#101-documentnotfound)\# 101 DocumentNotFound
+
+Raised when the document requested was not found on the server — KV Code `0x01`.
+
+### [](#102-documentunretrievable)\# 102 DocumentUnretrievable
+
+Raised when in `getAnyReplica`, the `getAllReplicas` returns an empty stream because all the individual errors are dropped (i.e. all returned a `DocumentNotFound`).
+
+### [](#103-documentlocked)\# 103 DocumentLocked
+
+Raised when the document requested was locked; KV Code `0x09`.
+
+### [](#104-valuetoolarge)\# 104 ValueTooLarge
+
+Raised when the value that was sent was too large to store (typically > 20MB); KV Code `0x03`.
+
+### [](#105-documentexists)\# 105 DocumentExists
+
+Raised when an operation which relies on the document not existing fails because the document existed; KV Code `0x02`.
+
+### [](#107-durabilitylevelnotavailable)\# 107 DurabilityLevelNotAvailable
+
+Raised when the specified durability level is invalid; KV Code `0xa0`.
+
+### [](#108-durabilityimpossible)\# 108 DurabilityImpossible
+
+Raised when the specified durability requirements are not currently possible (for example, there are an insufficient number of replicas online); KV Code `0xa1`.
+
+### [](#109-durabilityambiguous)\# 109 DurabilityAmbiguous
+
+Raised when A sync-write has not completed in the specified time and has an ambiguous result - it may have succeeded or failed, but the final result is not yet known. A SEQNO OBSERVE operation is performed and the vbucket UUID changes during polling. KV Code 0xa3
+
+### [](#110-durablewriteinprogress)\# 110 DurableWriteInProgress
+
+Raised when A durable write is attempted against a key which already has a pending durable write. KV Code 0xa2
+
+### [](#111-durablewriterecommitinprogress)\# 111 DurableWriteReCommitInProgress
+
+Raised when The server is currently working to synchronize all replicas for previously performed durable operations (typically occurs after a rebalance). KV Code 0xa4
+
+### [](#113-pathnotfound)\# 113 PathNotFound
+
+Raised when the path provided for a sub-document operation was not found; KV Code `0xc0`.
+
+### [](#114-pathmismatch)\# 114 PathMismatch
+
+The path provided for a sub-document operation did not match the actual structure of the document; KV Code `0xc1`.
+
+### [](#115-pathinvalid)\# 115 PathInvalid
+
+Raised when the path provided for a sub-document operation was not syntactically correct; KV Code `0xc2`.
+
+### [](#116-pathtoobig)\# 116 PathTooBig
+
+Raised when the path provided for a sub-document operation is too long, or contains too many independent components; KV Code `0xc3`.
+
+### [](#117-pathtoodeep)\# 117 PathTooDeep
+
+Raised when the document contains too many levels to parse; KV Code `0xc4`.
+
+### [](#118-valuetoodeep)\# 118 ValueTooDeep
+
+Raised when the value provided, if inserted into the document, would cause the document to become too deep for the server to accept; KV Code `0xca`.
+
+### [](#119-valueinvalid)\# 119 ValueInvalid
+
+Raised when the value provided for a sub-document operation would invalidate the JSON structure of the document if inserted as requested; KV Code `0xc5`.
+
+### [](#120-documentnotjson)\# 120 DocumentNotJson
+
+Raised when a Sub-Document operation is performed on a non-JSON document; KV Code `0xc6`.
+
+### [](#121-numbertoobig)\# 121 NumberTooBig
+
+Raised when the existing number is outside the valid range for arithmetic operations; KV Code `0xc7`.
+
+### [](#122-deltainvalid)\# 122 DeltaInvalid
+
+Raised when the delta value specified for an operation is too large; KV Code `0xc8`.
+
+### [](#123-pathexists)\# 123 PathExists
+
+Raised when a sub-document operation which relies on a path not existing encountered a path which exists; KV Code `0xc9`.
+
+### [](#124-xattrunknownmacro)\# 124 XattrUnknownMacro
+
+Raised when a macro was used which the server did not understand; KV Code: `0xd0`.
+
+### [](#126-xattrinvalidkeycombo)\# 126 XattrInvalidKeyCombo
+
+Raised when a Sub-Document operation attempts to access multiple xattrs in one operation; KV Code: `0xcf`.
+
+### [](#127-xattrunknownvirtualattribute)\# 127 XattrUnknownVirtualAttribute
+
+Raised when a sub-document operation attempts to access a virtual attribute; KV Code: `0xd1`.
+
+### [](#128-xattrcannotmodifyvirtualattribute)\# 128 XattrCannotModifyVirtualAttribute
+
+Raised when a Sub-Document operation attempts to modify a virtual attribute; KV Code: `0xd2`.
+
+### [](#130-xattrnoaccess)\# 130 XattrNoAccess
+
+Raised when the user does not have permission to access the attribute. Occurs when the user attempts to read or write a system attribute (name starts with underscore) but does not have the `SystemXattrRead` / `SystemXattrWrite` permission. KV Code: `0x24`.
 
 ## [](#query-error-definitions)Query Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 200 - 299
+
+### [](#201-planningfailure)\# 201 PlanningFailure
+
+Query: Raised when code range [4xxx](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#4xxx-codes-plan) other than those explicitly covered.
+
+### [](#202-indexfailure)\# 202 IndexFailure
+
+Query: Raised when code range [12xxx](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#12xxx-codes-ds%5Fcb) and [14xxx](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#14xxx-codes-ds%5Fgsi) raised (other than 12004 and 12016).
+
+### [](#203-preparedstatementfailure)\# 203 PreparedStatementFailure
+
+Query: Raised when codes [4040, 4050, 4060, 4070, 4080, 4090](#7.1@server:n1ql:n1ql-language-reference/n1ql-error-codes.adoc#4xxx-codes-plan).
 
 ## [](#analytics-error-definitions)Analytics Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 300 - 399
+
+### [](#301-compilationfailure)\# 301 CompilationFailure
+
+Raised when error range [24xxx](#7.1@server:analytics:error-codes.adoc) (excluded are specific codes in the errors below).
+
+### [](#302-jobqueuefull)\# 302 JobQueueFull
+
+Raised when error code [23007](#7.1@server:analytics:error-codes.adoc).
+
+### [](#303-datasetnotfound)\# 303 DatasetNotFound
+
+Raised when error codes [24044, 24045, 24025](#7.1@server:analytics:error-codes.adoc).
+
+### [](#304-dataversenotfound)\# 304 DataverseNotFound
+
+Raised when error code [24034](#7.1@server:analytics:error-codes.adoc).
+
+### [](#305-datasetexists)\# 305 DatasetExists
+
+Raised when [24040](#7.1@server:analytics:error-codes.adoc).
+
+### [](#306-dataverseexists)\# 306 DataverseExists
+
+Raised when [24039](#7.1@server:analytics:error-codes.adoc).
+
+### [](#307-linknotfound)\# 307 LinkNotFound
+
+Raised when [24006](#7.1@server:analytics:error-codes.adoc).
 
 ## [](#search-error-definition)Search Error Definition
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 400 - 499
+
+There are no specific errors for Search; see the [Shared Error Definitions section](#shared-error-definitions) for errors that apply to Search.
 
 ## [](#view-error-definitions)View Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 500 - 599
+
+### [](#501-viewnotfound)\# 501 ViewNotFound
+
+Raised when Http status code 404 — reason or error contains “not\_found”.
+
+### [](#502-designdocumentnotfound)\# 502 DesignDocumentNotFound
+
+Raised on the Management APIs only when:
+
+* Getting a design document;
+* Dropping a design document;
+* And the server returns 404.
 
 ## [](#management-api-error-definitions)Management API Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 600 - 699
+
+### [](#601-collectionexists)\# 601 CollectionExists
+
+Raised from the collection management API.
+
+### [](#602-scopeexists)\# 602 ScopeExists
+
+Raised from the collection management API.
+
+### [](#603-usernotfound)\# 603 UserNotFound
+
+Raised from the user management API.
+
+### [](#604-groupnotfound)\# 604 GroupNotFound
+
+Raised from the user management API.
+
+### [](#605-bucketexists)\# 605 BucketExists
+
+Raised from the bucket management API.
+
+### [](#606-userexists)\# 606 UserExists
+
+Raised from the user management API.
+
+### [](#607-bucketnotflushable)\# 607 BucketNotFlushable
+
+Raised from the bucket management API.
 
 ## [](#field-level-encryption-error-definitions)Field-Level Encryption Error Definitions
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+ID Range 700 - 799
+
+### [](#700-cryptoexception)\# 700 CryptoException
+
+Generic cryptography failure. Inherits from CouchbaseException (=== # 0). Parent Type for all other Field-Level Encryption errors.
+
+### [](#701-encryptionfailure)\# 701 EncryptionFailure
+
+Raised by `CryptoManager.encrypt()` when encryption fails for any reason. Should have one of the other Field-Level Encryption errors as a cause.
+
+### [](#702-decryptionfailure)\# 702 DecryptionFailure
+
+Raised by `CryptoManager.decrypt()` when decryption fails for any reason. Should have one of the other Field-Level Encryption errors as a cause.
+
+### [](#703-cryptokeynotfound)\# 703 CryptoKeyNotFound
+
+Raised when a crypto operation fails because a required key is missing.
+
+### [](#704-invalidcryptokey)\# 704 InvalidCryptoKey
+
+Raised by an encrypter or decrypter when the key does not meet expectations (for example, if the key is the wrong size).
+
+### [](#705-decrypternotfound)\# 705 DecrypterNotFound
+
+Raised when a message cannot be decrypted because there is no decrypter registered for the algorithm.
+
+### [](#706-encrypternotfound)\# 706 EncrypterNotFound
+
+Raised when a message cannot be encrypted because there is no encrypter registered under the requested alias.
+
+### [](#707-invalidciphertext)\# 707 InvalidCiphertext
+
+Raised when decryption fails due to malformed input, integrity check failure, etc.
 
 ## [](#connecting-to-cloud)Connecting to Cloud
 
-Unresolved include directive in modules/ref/pages/error-codes.adoc - include::7.5@sdk:shared:partial$error-ref.adoc\[\]
+Although the SDK and client application should be located in the same LAN-like environment (or cloud availability zone), and this is the only network configuration supported, we recognise that this set-up may not be possible during development. In particular, you may be developing against [Couchbase Capella](https://docs.couchbase.com/cloud/index.html) from a laptop in a small or home office, where DNS-SRV may cause problems.
+
+In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider router that embeds a caching DNS Server.
+
+Below is a list of log messages that you may see if you hit DNS SRV issues. These examples have been created in the circumstance that the SRV record is too long for the DNS provider to handle, and are included here so that they are findable by search, and you can then go to our [cloud connection troubleshooting page](../howtos/troubleshooting-cloud-connections.md#troubleshooting-host-not-found).
 
 Couldn’t look up
 

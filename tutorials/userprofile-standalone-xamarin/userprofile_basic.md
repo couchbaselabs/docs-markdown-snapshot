@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-xamarin/edit/standalone/content/modules/userprofile-standalone-xamarin/pages/userprofile_basic.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:userprofile-standalone-xamarin:userprofile_basic.adoc[]
 ---
 
@@ -141,8 +141,8 @@ Example 1\. A user profile document
 }
 ```
 
-| **1** | The special 'blob' data type associated with the profile image — see: [Working with Blobs](#3.0@couchbase-lite:swift:blob.adoc) |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **1** | The special 'blob' data type associated with the profile image — see: [Working with Blobs](../../couchbase-lite/3.0/swift/blob.md) |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#lbl-user-record)The User Record
 

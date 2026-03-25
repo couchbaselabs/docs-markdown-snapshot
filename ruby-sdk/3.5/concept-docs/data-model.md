@@ -3,7 +3,7 @@ title: Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:concept-docs:data-model.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:3.5@ruby-sdk:concept-docs:data-model.adoc[]
 
 > Couchbase’s use of JSON as a storage format allows powerful search and query over documents. Several data structures are supported by the SDK, including map, list, queue, and set. 
 
-Unresolved include directive in modules/concept-docs/pages/data-model.adoc - include::7.5@sdk:shared:partial$data-model.adoc\[\]
+The power to search, query, and easily work with data in Couchbase, comes from the choice of JSON as a storage format. Non-JSON storage is supported — see the [Binary Storage Documentation](nonjson.md) — including UTF-8 strings, raw sequences of bytes, and language specific serializations, however, only JSON is supported by [Query](n1ql-query.md). In Couchbase, JSON’s key-value structure allows the storage of collection data structures such as lists, maps, sets and queues — _see [below](#data-structures)_. JSON’s tree-like structure allows operations against [specific paths in the Document](subdocument-operations.md), and efficient support for these data structures.
 
 ## [](#data-structures)Data Structures
 

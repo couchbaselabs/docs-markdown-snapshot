@@ -1,8 +1,8 @@
 ---
 title: Non-JSON Documents
 description: Binary formats &amp; Transcoders
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/concept-docs/pages/nonjson.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/nonjson.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:concept-docs:nonjson.adoc[]
 ---
 

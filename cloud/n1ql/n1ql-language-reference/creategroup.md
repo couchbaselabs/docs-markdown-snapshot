@@ -2,7 +2,7 @@
 title: CREATE GROUP
 description: The CREATE GROUP statement enables you to create a group.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/creategroup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/creategroup.adoc[]
 ---
 
@@ -19,9 +19,16 @@ Use the CREATE GROUP statement to define a new group within the Couchbase Server
 
 By creating groups, you can organize users and assign roles collectively. When you add users to a group, they automatically inherit the roles assigned to that group.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-To execute the CREATE GROUP statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role).
+To execute this statement in the Capella UI, you must have one of the following roles:
+
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
+
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

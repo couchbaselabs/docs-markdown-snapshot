@@ -2,8 +2,8 @@
 title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/health-check.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/health-check.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -41,7 +41,9 @@ A `ping` can be performed either at the `Cluster` or at the `Bucket` level. They
 The report can either be analyzed in code or can be turned into JSON and printed:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::example$HealthCheckConcepts.java[]
+PingResult pingResult = cluster.ping();
+
+System.out.println(pingResult.exportToJson());
 ```
 
 You will see an output similar to this:
@@ -75,7 +77,9 @@ You will see an output similar to this:
 On the target system, only the query service has been enabled at the cluster level according to this report. If you have more services configured (for example analytics or search) you could achieve the same effect by asking for only the query service to ping explicitly:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::example$HealthCheckConcepts.java[]
+      PingResult pingResult = cluster.ping(pingOptions().serviceTypes(EnumSet.of(ServiceType.QUERY)));
+
+      System.out.println(pingResult.exportToJson());
 ```
 
 If the ping is performed at the bucket level, the Key/Value and View sockets are also visible:
@@ -149,7 +153,15 @@ Performing a `diagnostics()` call at the `Cluster` level is conceptually differe
 Similar to ping, you can turn a diagnostics result into JSON. The following code and output shows a state directly after bootstrap, without performing any query operations:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::example$HealthCheckConcepts.java[]
+      DiagnosticsResult diagnosticsResult = cluster.diagnostics();
+
+      for (Map.Entry<ServiceType, List<EndpointDiagnostics>> service : diagnosticsResult.endpoints().entrySet()) {
+        for (EndpointDiagnostics ed : service.getValue()) {
+          System.err.println(
+              service.getKey() + ": " + ed.remote() + " last activity  " + ed.lastActivity()
+          );
+        }
+      }
 ```
 
 ```json

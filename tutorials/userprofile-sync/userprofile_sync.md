@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Data Sync"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/sync/content/modules/userprofile-sync/pages/userprofile_sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:userprofile-sync:userprofile_sync.adoc[]
 ---
 
@@ -12,7 +12,7 @@ link: xref:tutorials:userprofile-sync:userprofile_sync.adoc[]
 
 ## [](#introduction)Introduction
 
-Couchbase Sync Gateway is a key component of the Couchbase Mobile stack. It is an Internet-facing synchronization mechanism that securely syncs data across devices as well as between devices and the cloud. Couchbase Mobile 3.0 introduces centralized persistent module configuration of synchronization, which simplifies the administration of Sync Gateway clusters — see [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc)
+Couchbase Sync Gateway is a key component of the Couchbase Mobile stack. It is an Internet-facing synchronization mechanism that securely syncs data across devices as well as between devices and the cloud. Couchbase Mobile 3.0 introduces centralized persistent module configuration of synchronization, which simplifies the administration of Sync Gateway clusters — see [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md)
 
 The core functions of the Sync Gateway include:
 
@@ -25,15 +25,15 @@ What You Will Learn
 In this tutorial you will learn how to:
 
 * Setup a basic Couchbase Sync Gateway configuration to sync content between multiple Couchbase Lite enabled clients — see: [Sync Gateway](#lbl-sync-gateway).  
-We will will cover the basics of the [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc)
+We will will cover the basics of the [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md)
 * Configure your Sync Gateway to enforce data routing, access control and authorization — see: [Sync Function](#lbl-sync-function).  
-We will cover the basics of the [Sync Function API](#3.0@sync-gateway::sync-function.adoc).
+We will cover the basics of the [Sync Function API](../../sync-gateway/3.0/sync-function.md).
 * Configure your Couchbase Lite clients for replication with the Sync Gateway
 * Use "Live Queries" or Query events within your Couchbase Lite clients to be asynchronously notified of changes — see: [Query Events / Live Queries](#lbl-query-events)
 
 We will be using a Swift App as an example of a Couchbase Lite enabled client.
 
-You can learn more about the Sync Gateway here in the [Sync Gateway Documentation](#3.0@sync-gateway::index.adoc).
+You can learn more about the Sync Gateway here in the [Sync Gateway Documentation](../../sync-gateway/3.0/index.md).
 
 ## [](#prerequisites)Prerequisites
 
@@ -84,7 +84,7 @@ git clone -b sync https://github.com/couchbaselabs/userprofile-couchbase-mobile.
 
 Next, we will download the Couchbase Lite 3.0 XCFramework.
 
-The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built XCFramework — see the [Get Started - Install](#3.0@couchbase-lite:swift:gs-install.adoc) documentation for more information.
+The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built XCFramework — see the [Get Started - Install](../../couchbase-lite/3.0/swift/gs-install.md) documentation for more information.
 
 In our example, we will download the pre-built version of the XCFramework, using a script. To do this, type the following in a command terminal:
 
@@ -231,7 +231,7 @@ docker network create -d bridge workshop
 
 We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named “userprofile” and an RBAC user “admin” with “sync gateway” role.
 
-Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](#3.0@sync-gateway::get-started-prepare.adoc), to install Couchbase Server and configure it with the relevant bucket.
+Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](../../sync-gateway/3.0/get-started-prepare.md), to install Couchbase Server and configure it with the relevant bucket.
 
 1. Optionally, remove any existing Docker container  
 ```bash  
@@ -271,9 +271,9 @@ Now we will install, configure and run Sync Gateway.
 
 #### [](#lbl-install)Configuration
 
-When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration — see: [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc). We would then provision database, sync and other configuration using the Admin REST endpoints Alternatively, we can continue to run in legacy-mode, using the Pre-3.0 configuration.
+When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration — see: [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md). We would then provision database, sync and other configuration using the Admin REST endpoints Alternatively, we can continue to run in legacy-mode, using the Pre-3.0 configuration.
 
-In this tutorial — for the purposes of backward compatibility — we will run 3.x using its [legacy configuration option](#3.0@sync-gateway::configuration-properties-legacy.adoc). That is, we will be running with the `disable_persistent_config` option in the configuration file set to `true`. You can, if you wish, run a 2.8 version of Sync Gateway instead.
+In this tutorial — for the purposes of backward compatibility — we will run 3.x using its [legacy configuration option](../../sync-gateway/3.0/configuration-properties-legacy.md). That is, we will be running with the `disable_persistent_config` option in the configuration file set to `true`. You can, if you wish, run a 2.8 version of Sync Gateway instead.
 
 The configuration files corresponding to this sample application are shown in [Table 1](#tbl-config-files). They are available in the "sync" branch of the github repo hosting the app, which you cloned — look in:  
 `/path/to/cloned/repo/userprofile-couchbase-mobile/content/modules/userprofile-sync/examples/`  
@@ -386,7 +386,7 @@ Now you can follow along with the rest of the sections below.
 
 We use _Basic Authentication_ in our application. The Id of the user making the request is specified in the `Authorization` header.
 
-Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function’s [requireUser()](#3.0@sync-gateway::sync-function-api-require-user-cmd.adoc) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 5](#ex-auth).
+Locate the `// Authorization` section of the Sync Function. You will see that we are using the Sync function’s [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md) API to verify that the `email` property specified in the Document matches the Id of the user making the request — see [Example 5](#ex-auth).
 
 Example 5\. Sync function — Authorization
 
@@ -431,13 +431,13 @@ if (expectedDocId != doc._id) {
 | **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                              |
 
 > [!NOTE]
-> You can learn more about the Sync Function in the documentation here: [Sync Function API](#3.0@sync-gateway::sync-function.adoc)
+> You can learn more about the Sync Function in the documentation here: [Sync Function API](../../sync-gateway/3.0/sync-function.md)
 
 ### [](#lbl-route)Data Routing
 
-[Channels](#3.0@sync-gateway::channels.adoc) provide a mechanism to "tag" documents. They are typically used to route/segregate documents based on the contents of those documents — as shown in: [Example 7](#ex-routing).
+[Channels](../../sync-gateway/3.0/channels.md) provide a mechanism to "tag" documents. They are typically used to route/segregate documents based on the contents of those documents — as shown in: [Example 7](#ex-routing).
 
-When combined with the [access()](#3.0@sync-gateway::sync-function-api-access-cmd.adoc) and [requireAccess()](#3.0@sync-gateway::sync-function-api-require-access-cmd.adoc) API, the [channel()](#3.0@sync-gateway::sync-function-api-channel-cmd.adoc) API can also be used to enforce [Access Control](#lbl-access).
+When combined with the [access()](../../sync-gateway/3.0/sync-function-api-access-cmd.md) and [requireAccess()](../../sync-gateway/3.0/sync-function-api-require-access-cmd.md) API, the [channel()](../../sync-gateway/3.0/sync-function-api-channel-cmd.md) API can also be used to enforce [Access Control](#lbl-access).
 
 As we shall see in a later section, clients can use channels to pull just a subset of documents.
 
@@ -461,7 +461,7 @@ channel(channelId); (3)
 
 ### [](#lbl-access)Access Control
 
-We can enforce access control to channels using the [access()](#3.0@sync-gateway::sync-function-api-access-cmd.adoc) API. The approach shown in [Example 8](#ex-access) ensures that only users with access to a specific channel are able to retrieve documents in the channel.
+We can enforce access control to channels using the [access()](../../sync-gateway/3.0/sync-function-api-access-cmd.md) API. The approach shown in [Example 8](#ex-access) ensures that only users with access to a specific channel are able to retrieve documents in the channel.
 
 Example 8\. Controlling access to documents using channel() and access() API
 
@@ -682,9 +682,9 @@ curl -X GET http://localhost:4984/userprofile/user::demo@example.com --user demo
 }  
 ```
 
-| **1** | If you had updated an image via the mobile app, you should see an **"\_attachments"** property. This entry holds an array of attachments corresponding to each image blob entry added by the mobile app. This property is added by the Sync Gateway when it processes the document.You can learn more about how image Blob types are mapped to attachments here in the Couchbase Lite documentation: [Working with Blobs](#3.0@couchbase-lite:swift:blob.adoc). |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **2** | Record the revision Id of the document. You will need this when you update the document                                                                                                                                                                                                                                                                                                                                                                         |
+| **1** | If you had updated an image via the mobile app, you should see an **"\_attachments"** property. This entry holds an array of attachments corresponding to each image blob entry added by the mobile app. This property is added by the Sync Gateway when it processes the document.You can learn more about how image Blob types are mapped to attachments here in the Couchbase Lite documentation: [Working with Blobs](../../couchbase-lite/3.0/swift/blob.md). |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **2** | Record the revision Id of the document. You will need this when you update the document                                                                                                                                                                                                                                                                                                                                                                            |
 4. In the command terminal, issue the following command to update the user profile document via [PUT Document REST API](https://docs.couchbase.com/sync-gateway/3.0/rest-api.html#/document/AddOrUpdateDocument)  
 We chose to update the address field via the REST API. You can choose to update any other profile information if you like. You will be prompted to enter the users password when you submit the curl command.  
 ```bash  
@@ -728,7 +728,7 @@ Check out the following links for further details
 
 Further Reading
 
-* [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc)
+* [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md)
 * [Couchbase Mobile Blog](https://blog.couchbase.com/category/couchbase-mobile/?ref=blog-menu)
 * [Sync function blogs](https://blog.couchbase.com/?s=sync+function)
 * [Overview of Replication Protocol](https://blog.couchbase.com/data-replication-couchbase-mobile/)

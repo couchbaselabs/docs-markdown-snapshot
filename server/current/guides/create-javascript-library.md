@@ -3,7 +3,7 @@ title: Create a JavaScript Library
 description: How to create a JavaScript library to store and organize your
   JavaScript functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/guides/pages/create-javascript-library.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:guides:create-javascript-library.adoc[]
 ---
 
@@ -18,6 +18,10 @@ link: xref:server:guides:create-javascript-library.adoc[]
 
 You can create a JavaScript library for storing JavaScript functions. Creating a JavaScript library for your JavaScript functions is optional, but simplifies organization and access control for user-defined functions.
 
+If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset.
+
+### [](#global-and-scoped-javascript-libraries)Global and Scoped JavaScript Libraries
+
 A JavaScript library can be **global** or **scoped**.
 
 * A **global** library is created within the `default:` namespace, at the same level as the buckets in your database. A global library is available to all users.
@@ -25,7 +29,13 @@ A JavaScript library can be **global** or **scoped**.
 
 The name of a JavaScript library must be unique within the specified namespace or scope.
 
-If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset.
+### [](#javascript-functions)JavaScript Functions
+
+A JavaScript library can contain one or more JavaScript functions. The name of a JavaScript function must be unique within the JavaScript library.
+
+For each JavaScript function, specify named parameters for any values you need to process or use. If you want your JavaScript function to take a variable length list of parameters, specify a rest parameter for the JavaScript function, such as `... args`.
+
+After you create a JavaScript library and add JavaScript functions, you must create SQL++ user-defined functions to reference the JavaScript functions in the library, so they can be called as part of any SQL++ statement. A SQL++ user-defined function passes each argument it receives to the parameters in the JavaScript function.
 
 ## [](#creating-the-library-and-adding-your-first-function)Creating a JavaScript Library and Adding JavaScript Code
 
@@ -90,8 +100,6 @@ curl -v -X POST  'http://localhost:8093/evaluator/v1/libraries/my-library?bucket
           return count;
       }' 
 ```
-
-After you create a JavaScript library and add JavaScript code, you must create a SQL++ user-defined function to reference the JavaScript code in the library, so it can be called as part of any SQL++ statement.
 
 ## [](#add-functions-later)Updating an Existing JavaScript Library
 

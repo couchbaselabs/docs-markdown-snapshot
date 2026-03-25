@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Scala SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-scala/edit/release/3.9/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.9@scala-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -437,7 +437,7 @@ There are some different behaviors seen with this protocol:
 
 ## [](#working-in-the-cloud)Working in the Cloud
 
-For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](#cloud:ROOT:index.adoc) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
 

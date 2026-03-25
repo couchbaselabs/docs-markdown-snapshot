@@ -2,7 +2,7 @@
 title: Glossary
 description: Principal terms and their meanings.
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/learn/pages/glossary.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:learn:glossary.adoc[]
 ---
 
@@ -28,7 +28,7 @@ The following glossary introduces the principal terms used in descriptions of Co
 * [Storage](buckets-memory-and-storage/storage-settings.md): The persistent retention of items on disk, in compressed form, with high-speed threaded access.
 * [Data](data/data.md): Items, each of which consists of a key by which the item is referenced; and an associated value, which must be either binary or a JSON document.
 
-  * Access: The creation, update, and deletion of items, as supported by [Couchbase Web Console](../manage/manage-ui/manage-ui.md) and the [Couchbase SDK](#home:ROOT:sdk.adoc).
+  * Access: The creation, update, and deletion of items, as supported by [Couchbase Web Console](../manage/manage-ui/manage-ui.md) and the [Couchbase SDK](../../../home/sdk.md).
   * [Model](data/document-data-model.md): A lightweight, flexible schema; which can be progressively evolved by applications over time, and allows information to be stored in the form of items.
 * [Node](clusters-and-availability/nodes.md): A computer (potentially, a virtual machine) running an instance of Couchbase Server.
 

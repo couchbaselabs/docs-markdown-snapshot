@@ -1,7 +1,7 @@
 ---
 title: Admonitions
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/admonitions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::admonitions.adoc[]
 ---
 
@@ -23,7 +23,7 @@ Do not use more than 2 admonitions back-to-back on a page, and do not overuse th
 Remember: if everything is important, nothing is.
 
 > [!TIP]
-> If you need to add block or "compound" content to an admonition block, use a compound admonition, as described in the [Admonitions](#home:contribute:basics.adoc#admonitions).
+> If you need to add block or "compound" content to an admonition block, use a compound admonition, as described in the [Admonitions](../home/contribute/basics.md#admonitions).
 
 ## [](#notes)Notes
 

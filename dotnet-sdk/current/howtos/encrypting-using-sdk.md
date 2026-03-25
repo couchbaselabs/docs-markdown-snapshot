@@ -2,8 +2,8 @@
 title: Encrypting Your Data
 description: A practical guide for getting started with Field-Level Encryption,
   showing how to encrypt and decrypt JSON fields using the .NET SDK.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/encrypting-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/encrypting-using-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:howtos:encrypting-using-sdk.adoc[]
 ---
 
@@ -31,12 +31,12 @@ The Couchbase .NET SDK works together with the [.NET Couchbase Encryption](https
 ## [](#requirements)Requirements
 
 * Couchbase .NET SDK version `3.1.3` or later.
-* .NET Couchbase Encryption version `2.0.0-dp.1` or later.
+* .NET Couchbase Encryption version `2.0.0` or later.
 
 ## [](#nuget-package)NuGet Package
 
 ```xml
-<PackageReference Include="Couchbase.Extensions.Encryption" Version="2.0.0-dp.1" />
+<PackageReference Include="Couchbase.Extensions.Encryption" Version="2.0.0" />
 ```
 
 See the [NuGet Package Page](https://www.nuget.org/packages/Couchbase.Extensions.Encryption/) for the latest version.

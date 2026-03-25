@@ -1,7 +1,7 @@
 ---
 title: Get Involved
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/get-involved.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-analytics-sdk:project-docs:get-involved.adoc[]
 ---
 
@@ -19,4 +19,4 @@ Couchbase welcomes community contributions to the Go Analytics SDK. The [Go Anal
 Other Ways to Contribute
 
 * Join the discussion in our [forum](https://forums.couchbase.com/) and on our [Discord server](https://discord.com/invite/sQ5qbPZuTh).
-* Improve the documentation — [bug reports and pull requests are welcome](#home:contribute:index.adoc).
+* Improve the documentation — [bug reports and pull requests are welcome](../../../home/contribute/index.md).

@@ -1,7 +1,7 @@
 ---
 title: Using Couchbase Transactions
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -12,4 +12,12 @@ link: xref:3.5@ruby-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 
 > {description} 
 
-Distributed ACID Transactions are not currently available for the Ruby SDK. Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+Distributed ACID Transactions are not currently available for the Ruby SDK. Nevertheless, you may find that you can achieve the same result with our [strong durable gurarantees within a single bucket](../concept-docs/durability-replication-failure-considerations.md#durable-writes) and some re-architecture.
+
+Currently, Distributed ACID Transactions are available for:
+
+* The [C++ API](#1.0@cxx-txns::distributed-acid-transactions-from-the-sdk.adoc).
+* The [.NET SDK](#3.3@dotnet-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc).
+* The [Go SDK](#2.4@go-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc).
+* The [Java SDK](#3.3@java-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc).
+* The [node.js SDK](#4.0@nodejs-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc).

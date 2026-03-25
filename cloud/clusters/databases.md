@@ -3,7 +3,7 @@ title: Configure Your Cluster
 description: Understand the different configuration options available to
   customize your Couchbase Capella cluster.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/clusters/pages/databases.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:clusters:databases.adoc[]
 ---
 
@@ -78,7 +78,7 @@ You can choose to customize the CIDR block for your Capella cluster or leave it 
 
 ### [](#cluster-version)Supported Couchbase Server Version
 
-For the best experience with your Couchbase Capella cluster, always create and deploy a new cluster with the latest version of [Couchbase Server](#home::server.adoc).
+For the best experience with your Couchbase Capella cluster, always create and deploy a new cluster with the latest version of [Couchbase Server](../../home/server.md).
 
 The latest supported version of Couchbase Server for Capella operational clusters is 8.0.
 

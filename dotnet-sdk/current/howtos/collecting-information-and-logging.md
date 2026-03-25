@@ -5,8 +5,8 @@ description: Couchbase .NET SDK3 relies on the Microsoft.Extensions.Logging API
   <code>Microsoft.Extensions.Logging.ILoggerFactory</code> interface to support
   a wide variety of compatible 3rd party logging implementations such as
   Serilog, NLog, and others.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 

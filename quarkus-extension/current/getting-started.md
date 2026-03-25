@@ -2,8 +2,8 @@
 title: Getting Started
 description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
   within the Quarkus ecosystem.
-editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.2/modules/ROOT/pages/getting-started.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.3/modules/ROOT/pages/getting-started.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:quarkus-extension::getting-started.adoc[]
 ---
 
@@ -15,8 +15,8 @@ link: xref:quarkus-extension::getting-started.adoc[]
 We recommend using SDKMAN to install the JDK, and Mandrel (the Quarkus-recommended version of GraalVM).
 
 ```console
-sdk install java 24.0.2.r22-mandrel
-sdk use java 24.0.2.r22-mandrel
+sdk install java 25.0.1.r25-mandrel
+sdk use java 25.0.1.r25-mandrel
 ```
 
 ## [](#creating-a-quarkus-app)Creating a Quarkus App
@@ -32,13 +32,13 @@ Add this to your `pom.xml`:
 <dependency>
   <groupId>io.quarkiverse.couchbase</groupId>
   <artifactId>quarkus-couchbase</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
 ```groovy
 dependencies {
-    implementation 'io.quarkiverse.couchbase:quarkus-couchbase:1.2.0'
+    implementation 'io.quarkiverse.couchbase:quarkus-couchbase:1.3.0'
 }
 ```
 

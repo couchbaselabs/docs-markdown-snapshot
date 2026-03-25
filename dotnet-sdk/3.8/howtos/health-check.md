@@ -1,0 +1,132 @@
+---
+title: Health Check
+description: In today's distributed and virtual environments, users will often
+  not have full administrative control over their whole network.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/health-check.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:3.8@dotnet-sdk:howtos:health-check.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/dotnet-sdk/3.8/howtos/health-check.html)
+
+# Health Check
+
+> In today’s distributed and virtual environments, users will often not have full administrative control over their whole network. Health Check introduces _Ping_ to check nodes are still healthy, and to force idle connections to be kept alive in environments with eager shutdowns of unused resources. _Diagnostics_ requests a report from a node, giving instant health check information. 
+
+Diagnosing problems in distributed environments is far from easy, so Couchbase provides a _Health Check API_ with `Ping()` for active monitoring. ans `Diagnostics()` for a look at what the client believes is the current state of the cluster. More extensive discussion of the uses of Health Check can be found in the [Health Check Concept Guide](../concept-docs/health-check.md).
+
+## [](#ping)Ping
+
+At its simplest, `ping` provides information about the current state of the connections in the Couchbase Cluster, by actively polling:
+
+```csharp
+async Task PrintPingAsync(IBucket bucket)
+{
+    var pingResult =  await bucket.PingAsync();
+    Console.WriteLine(pingResult.ToString());
+}
+```
+
+Which, for a single-node test cluster, will return a payload similar to this:
+
+```json
+{
+	"id": "0b0b9c07-f202-4218-a9c7-c66d436c1912",
+	"version": 1,
+	"config_rev": 814,
+	"sdk": "couchbase-net-sdk/3.3.3.0 (clr/.NET 6.0.5) (os/Microsoft Windows 10.0.19044)",
+	"services": {
+		"kv": [{
+			"id": "4247429530963144166",
+			"local": "[::1]:29075",
+			"remote": "[::1]:11210",
+			"latency_us": 1544,
+			"scope": "default",
+			"state": "ok"
+		}, {
+			"id": "10567074834237322808",
+			"local": "[::1]:29074",
+			"remote": "[::1]:11210",
+			"latency_us": 1173,
+			"scope": "default",
+			"state": "ok"
+		}],
+		"fts": [{
+			"remote": "your-ip:11210",
+			"latency_us": 2560,
+			"scope": "Cluster",
+			"state": "ok"
+		}],
+		"view": [{
+			"remote": "your-ip:11210",
+			"latency_us": 4749,
+			"scope": "default",
+			"state": "ok"
+		}],
+		"n1ql": [{
+			"remote": "your-ip:11210",
+			"latency_us": 2382,
+			"scope": "Cluster",
+			"state": "ok"
+		}]
+	}
+}
+```
+
+## [](#diagnostics)Diagnostics
+
+`Diagnostics` returns a list of the nodes that the SDK currently has (or had) a connection to, and the current status of the connection. However this call _does not_ actively poll the nodes, reporting instead the state the last time it tried to access each node. If you want the _current_ status, then use [Ping](#ping).
+
+```csharp
+async Task PrintDiagnosticsAsync(IBucket bucket)
+{
+    var diagnosticsResult = await cluster.DiagnosticsAsync();
+    Console.WriteLine(diagnosticsResult.ToString());
+}
+```
+
+Which will print something like this:
+
+```json
+{
+	"id": "d1eda895-ace4-4151-b77f-75b93e01eb60",
+	"version": 1,
+	"sdk": "couchbase-net-sdk/3.3.3.0 (clr/.NET 6.0.5) (os/Microsoft Windows 10.0.19044)",
+	"services": {
+		"kv": [{
+			"id": "12886484481666434437",
+			"local": "[::1]:29613",
+			"remote": "[::1]:11210",
+			"last_activity_us": 421997,
+			"scope": "default",
+			"state": "authenticating"
+		}, {
+			"id": "11904762720158946993",
+			"local": "[::1]:29614",
+			"remote": "[::1]:11210",
+			"last_activity_us": 593999,
+			"scope": "default",
+			"state": "authenticating"
+		}],
+		"view": [{
+			"remote": "your-ip:11210",
+			"last_activity_us": 0,
+			"scope": "default",
+			"state": "new"
+		}],
+		"n1ql": [{
+			"remote": "your-ip:11210",
+			"last_activity_us": 0,
+			"scope": "Cluster",
+			"state": "new"
+		}],
+		"fts": [{
+			"remote": "your-ip:11210",
+			"last_activity_us": 0,
+			"scope": "Cluster",
+			"state": "new"
+		}]
+	}
+}
+```

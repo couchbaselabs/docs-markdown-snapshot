@@ -3,7 +3,7 @@ title: REVOKE
 description: The REVOKE statement allows revoking of any RBAC roles from
   specific users or groups.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/revoke.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/revoke.adoc[]
 ---
 
@@ -29,8 +29,16 @@ Roles which are defined for the context of the specified keyspace only. Specify 
 For example: `` data_reader ON `travel-sample` ``  
 or `` query_select ON `travel-sample`.`inventory`.`airline` ``
 
+## [](#prerequisites)Prerequisites
+
+To execute this statement in the Capella UI, you must have one of the following roles:
+
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
+
 > [!NOTE]
-> To run the REVOKE statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role).
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

@@ -1,7 +1,7 @@
 ---
 title: Headings
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/headings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::headings.adoc[]
 ---
 
@@ -48,4 +48,4 @@ The content of your H1 heading also needs to match the type of topic you’re wr
 | How-to or Tutorial topic | Task headings are short imperative phrases that start with a verb that does something to a noun.                                                                                                     | Delete a Cluster Create an Index Explore Your Data |
 | Reference topic          | Reference headings are short phrases that state what kind of reference content the user finds on a page.                                                                                             | Audit Events Error Messages Rebalance Reports      |
 
-Format headings using an equals sign (=). The number of equals signs corresponds to the heading depth that Antora renders. For more information, see [home:contribute:pages.adoc](#home:contribute:pages.adoc) in the Contributing to the Documentation guide.
+Format headings using an equals sign (=). The number of equals signs corresponds to the heading depth that Antora renders. For more information, see [Standard Document Structure](../home/contribute/pages.md) in the Contributing to the Documentation guide.

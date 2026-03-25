@@ -1,0 +1,520 @@
+---
+title: Passive Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/csharp/pages/p2psync-websocket-using-passive.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.8@couchbase-lite:csharp:p2psync-websocket-using-passive.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/couchbase-lite/2.8/csharp/p2psync-websocket-using-passive.html)
+
+# Passive Peer
+
+> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> _Abstract — How to set up a Listener to accept a Replicator connection and sync using peer-to-peer_  
+> Related Content — [API Reference](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net) | [Passive Peer](../../current/csharp/p2psync-websocket-using-passive.md) | [Active Peer](../../current/csharp/p2psync-websocket-using-active.md)
+
+> [!IMPORTANT]
+> Enterprise Edition only
+> 
+> This an [Enterprise Edition](https://www.couchbase.com/products/editions) feature. Purchase the _Enterprise License_, which includes official [Couchbase Support](https://www.couchbase.com/support-policy), to use it in production (see the license and support <https://www.couchbase.com/licensing-and-support-faq>).
+
+> [!NOTE]
+> Code Snippets
+> 
+> The code examples are indicative only. They demonstrate basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
+
+## [](#introduction)Introduction
+
+This content provides code and configuration examples covering the implementation of [Peer-to-Peer Sync](../../current/csharp/refer-glossary.md#peer-to-peer-sync) over websockets. Specifically it covers the implementation of a [Passive Peer](../../current/csharp/refer-glossary.md#passive-peer).
+
+This _passive peer_ (also referred to as the server, or listener) will accept a connection from an [Active Peer](../../current/csharp/refer-glossary.md#active-peer) (also referred to as the client or replicator) and participate in the replication of database changes to synchronize both databases.
+
+Subsequent sections provide additional details, and examples for the main configuration options.
+
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](../../current/csharp/p2psync-websocket.md#using-secure-storage).
+
+## [](#configuration-summary)Configuration Summary
+
+You should configure and initialize a listener for each Couchbase Lite database instance you want to sync. There is no limit on the number of listeners you may configure — [Example 1](#simple-listener-initialization) shows a simple initialization and configuration process.
+
+Example 1\. Listener configuration and initialization
+
+```C#
+// Initialize the listener config
+var thisConfig = new URLEndpointListenerConfiguration(thisDB); (1)
+
+thisConfig.Port = 55990; (2)
+
+thisConfig.NetworkInterface = "10.1.1.10"; (3)
+
+thisConfig.EnableDeltaSync = true; (4)
+
+thisConfig.DisableTLS = false; (5)
+
+// Use an Anonymous Self-Signed Cert
+thisConfig.TlsIdentity = null; (6)
+
+// Configure the client authenticator
+// Here we are using Basic Authentication) (7)
+SecureString validPassword =  new SecureString(); /* example only */
+// Get SecureString input for validPassword
+var validUser = "valid.username";
+thisConfig.Authenticator = new ListenerPasswordAuthenticator(
+  (sender, validUser, validPassword) =>
+    {
+      return username.equals(validUser)  && password == validPassword);
+    }
+  );
+
+// Initialize the listener
+_thisListener = new URLEndpointListener(thisConfig); (8)
+
+// Start the listener
+thisListener.Start(); (9)
+```
+
+**Notes on example:**
+
+| **1** | Identify the local database to be used — see: [Initialize the Listener Configuration](#initialize-the-listener-configuration)                                                                                                                                                                                                                                                                            |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Optionally, choose a port to use. By default the system will automatically assign a port — to over-ride this, see: [\[set-network-and-port\]](#set-network-and-port)                                                                                                                                                                                                                                     |
+| **3** | Optionally, choose a network-interface to use. By default the system will listen on all network interfaces — to over-ride this see: [\[set-network-and-port\]](#set-network-and-port)                                                                                                                                                                                                                    |
+| **4** | Optionally, choose to sync only changes, the default is not to enable delta-sync — see: [Delta Sync](#delta-sync).                                                                                                                                                                                                                                                                                       |
+| **5** | Set server security. TLS is always enabled out-of-the-box, so you can usually omit this line. But you _can_, optionally, disable TLS (**not** advisable in production) — see: [TLS Security](#tls-security)                                                                                                                                                                                              |
+| **6** | Set the credentials this server will present to the client for authentication. Here we show the default TLS authentication, which is by anonymous self-signed certificate. The server must always authenticate itself to the client.                                                                                                                                                                     |
+| **7** | Set client security — define the credentials the server expects the client to present for authentication. Here we show how basic authentication is configured to authenticate the client-supplied credentials from the http authentication header against valid credentials — see [Authenticating the Client](#authenticating-the-client) for more options. Note that client authentication is optional. |
+| **8** | Initialize the listener using the configuration settings.                                                                                                                                                                                                                                                                                                                                                |
+| **9** | [Start Listener](#start-listener)Unresolved directive in common-p2psync-websocket-using-passive.adoc - include::{example-callouts}\[tags=listener-initialize\]                                                                                                                                                                                                                                           |
+
+## [](#api-references)API References
+
+You can find [C#.Net API References](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net) here.
+
+## [](#device-discovery)Device Discovery
+
+**This phase is optional:** If the listener is initialized on a well known URL endpoint (for example, a static IP Address or well known DNS address) then you can configure active peers to connect to those.
+
+Prior to initiating the listener you may execute a peer discovery phase.
+
+For the passive peer, this involves advertising the service using, for example and waiting for an invite from the active peer.
+
+The connection is established once the passive peer has authenticated and accepted an active peer’s invitation.
+
+## [](#initialize-the-listener-configuration)Initialize the Listener Configuration
+
+Initialize the listener configuration with the local database. All other configuration values take their default setting.
+
+Each Listener instance serves one Couchbase Lite database. Couchbase sets no hard limit on the number of listeners you can initialize.
+
+Example 2\. Specify Local Database
+
+In this example `thisDB` has previously been declared as an object of type Database.
+
+```C#
+// Initialize the listener config
+var thisConfig = new URLEndpointListenerConfiguration(thisDB); (1)
+```
+
+**Notes on example:**
+
+| **1** | Set the local database using the [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html)'s constructor [(Database database)](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5F%5Fctor%5FCouchbase%5FLite%5FDatabase%5F). The database must be opened before the listener is started. |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#set-port-and-network-interface)Set Port and Network Interface
+
+### [](#port-number)Port number
+
+The Listener will automatically select an available port if you do not specify one.
+
+Example 3\. Specify a Port to Use
+
+```C#
+thisConfig.Port = 55990; (1)
+```
+
+**Notes on example:**
+
+| **1** | To use a canonical port — one known to other applications — specify it explicitly using the [Port](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FPort) method shown here. Ensure that any port you do specify is not blocked by firewall rules. |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+### [](#network-interface)Network Interface
+
+The Listener will listen on all network interfaces by default.
+
+Example 4\. Specify a Network Interface to Use
+
+```C#
+thisConfig.NetworkInterface = "10.1.1.10"; (1)
+```
+
+Notes on [Example 4](#specify-a-network-interface-to-use)
+
+| **1** | To specify an interface — one known to other applications — identify it explicitly, using the [NetworkInterface](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FNetworkInterface) method shown here. This must be either an IP Address or network interface name such as en0. |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+> [!TIP]
+> Where necessary, you can identify the available interfaces at runtime, using appropriate platform tools — see [Example 5](#get-network-interfaces).
+
+Example 5\. Identify available network interfaces
+
+```C#
+foreach(NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+{
+  if(ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 ||
+      ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+  {
+    // do something with the interface(s)
+  }
+}
+```
+
+## [](#delta-sync)Delta Sync
+
+Delta Sync allows clients to sync only those parts of a document that have changed. This can result in significant savings in bandwidth consumption as well as throughput improvements. Both valuable benefits, especially when network bandwidth is constrained.
+
+Example 6\. Enable delta sync
+
+```C#
+thisConfig.EnableDeltaSync = true; (1)
+```
+
+**Notes on example:**
+
+| **1** | Delta sync replication is not enabled by default. Use [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html)'s [EnableDeltaSync](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FEnableDeltaSync) method to activate or deactivate it. |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#tls-security)TLS Security
+
+### [](#enable-or-disable-tls)Enable or Disable TLS
+
+Define whether the connection is to use TLS or clear text.
+
+TLS based encryption is enabled by default and this setting ought to be used in any production environment. However, it _can_ be disabled, for example for development and-or test environments.
+
+When TLS is enabled, Couchbase Lite provides several options on how the Listener may be configured with an appropriate TLS Identity — see [Configure TLS Identity for Listener](#configure-tls-identity-for-listener).
+
+You can use [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html)'s [DisableTLS](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FDisableTLS) method to disable TLS communication if necessary
+
+The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
+
+Basic Authentication can be used with, or without, TLS.
+
+[DisableTLS](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FDisableTLS) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+
+* If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
+* If `disableTLS` is false or not specified — TLS communication is enabled.  
+Active peers will use the `wss://` URL scheme to connect to the listener.
+
+### [](#configure-tls-identity-for-listener)Configure TLS Identity for Listener
+
+Define the credentials the server will present to the client for authentication. Note that the server must always authenticate itself with the client — see [Active Peer - authenticating the listener](../../current/csharp/p2psync-websocket-using-active.md#authenticating-the-listener) for how the client deals with this.
+
+Use [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html)'s [TlsIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FTlsIdentity) method to configure the TLS Identity used in TLS communication.
+
+If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
+
+The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
+
+> [!NOTE]
+> Typically, you will configure the listener’s TLS Identity once during initial launch and re-use it (from secure storage on any subsequent starts.
+
+Example 7\. Set Listener’s TLS identity
+
+* Import
+* Create Self-Signed Cert
+* Use Anonymous Self-Signed Certificate
+
+Import an identity from a secure key and certificate data source.
+
+```C#
+thisConfig.DisableTLS = false; (1)
+
+// Use CA Cert
+// Create a TLSIdentity from an imported key-pair
+// . . . previously declared variables include ...
+TLSIdentity thisIdentity;
+X509Store _store =
+  new X509Store(StoreName.My); // create and label x509 store
+
+// Get keys and certificates from PKCS12 data
+byte[] thisIdData =
+  File.ReadAllBytes("c:client.p12"); (2)
+// . . . other user code . . .
+
+thisIdentity = TLSIdentity.ImportIdentity(
+  _store,
+  thisIdData, (3)
+  "123", // Password to access certificate data
+  "couchbase-demo-cert",
+  null); // Label to get cert in certificate map
+    // NOTE: If a null label is supplied then the same
+    // default directory for a Couchbase Lite database
+    // is used for map.
+
+
+// Set the TLS Identity
+thisConfig.TlsIdentity = thisIdentity; (4)
+```
+
+**Notes on example:**
+
+| **1** | Ensure TLS is used                                                        |
+| ----- | ------------------------------------------------------------------------- |
+| **2** | Get key and certificate data                                              |
+| **3** | Use the retrieved data to create and store the TLS identity               |
+| **4** | Set this identity as the one presented in response to the client’s prompt |
+
+Create a TLSIdentity for the server using convenience API. The system generates a self-signed certificate.
+
+```C#
+thisConfig.DisableTLS = false; (1)
+
+
+// Set the TLS Identity
+thisConfig.TlsIdentity = thisIdentity; (2)
+```
+
+**Notes on example:**
+
+| **1** | Ensure TLS is used.                                                                                    |
+| ----- | ------------------------------------------------------------------------------------------------------ |
+| **2** | Map the required certificate attributes, in this case the common name.                                 |
+| **3** | Create the required TLS identity using the attributes. Add to secure storage as 'couchbase-docs-cert'. |
+| **4** | Configure the server to present the defined identity credentials when prompted.                        |
+
+This examples uses an “anonymous” self signed certificate. Generated certificates are held in secure storage.
+
+```C#
+thisConfig.DisableTLS = false; (1)
+
+// Use an Anonymous Self-Signed Cert
+thisConfig.TlsIdentity = null; (2)
+
+// Use an Anonymous Self-Signed Cert
+thisConfig.TlsIdentity = null; (3)
+```
+
+**Notes on example:**
+
+| **1** | These are are the default settings. Authentication using an anonymous self-signed certificate is assumed. |
+| ----- | --------------------------------------------------------------------------------------------------------- |
+
+## [](#authenticating-the-client)Authenticating the Client
+
+In this section: [Use Basic Authentication](#use-basic-authentication) | [Using Client Certificate Authentication](#using-client-certificate-authentication) | [Delete Entry](#delete-tls-identity) | [The Impact of TLS Settings](#the-impact-of-tls-settings)
+
+Define how the server (listener) will authenticate the client as one it is prepared to interact with.
+
+Whilst client authentication is optional, Couchbase lite provides the necessary tools to implement it. Use the [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html) class’s [Authenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListenerConfiguration.html#Couchbase%5FLite%5FP2P%5FURLEndpointListenerConfiguration%5FAuthenticator) method to specify how the client-supplied credentials are to be authenticated.
+
+Valid options are:
+
+* No authentication — If you do not define an Authenticator then all clients are accepted.
+* Basic Authentication — uses the [ListenerPasswordAuthenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerPasswordAuthenticator.html) to authenticate the client using the client-supplied username and password (from the http authentication header).
+* [ListenerCertificateAuthenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerCertificateAuthenticator.html) — which authenticates the client using a client supplied chain of one or more certificates. You should initialize the authenticator using one of the following constructors:
+
+  * A list of one or more root certificates — the client supplied certificate must end at a certificate in this list if it is to be authenticated
+  * A block of code that assumes total responsibility for authentication — it must return a boolean response (true for an authenticated client, or false for a failed authentication).
+
+### [](#use-basic-authentication)Use Basic Authentication
+
+Define how to authenticate client-supplied username and password credentials. To use client-supplied certificates instead — see: [Using Client Certificate Authentication](#using-client-certificate-authentication)
+
+Example 8\. Password authentication
+
+```C#
+// Configure the client authenticator
+// Here we are using Basic Authentication) (1)
+SecureString validPassword =  new SecureString(); /* example only */
+// Get SecureString input for validPassword
+var validUser = "valid.username";
+thisConfig.Authenticator = new ListenerPasswordAuthenticator(
+  (sender, validUser, validPassword) =>
+    {
+      return username.equals(validUser)  && password == validPassword);
+    }
+  );
+```
+
+**Notes on example:**
+
+| **1** | Where 'username'/'password' are the client-supplied values (from the http-authentication header) and validUser/validPassword are the values acceptable to the server. |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### [](#using-client-certificate-authentication)Using Client Certificate Authentication
+
+Define how the server will authenticate client-supplied certificates.
+
+There are two ways to authenticate a client:
+
+* A chain of one or more certificates that ends at a certificate in the list of certificates supplied to the constructor for [ListenerCertificateAuthenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerCertificateAuthenticator.html).
+* Application logic: This method assumes complete responsibility for verifying and authenticating the client.  
+If the parameter supplied to the constructor for `ListenerCertificateAuthenticator` is of type `ListenerCertificateAuthenticatorDelegate`, all other forms of authentication are bypassed.  
+The client response to the certificate request is passed to the method supplied as the constructor parameter. The logic should take the form of function or block (such as, a closure expression) where the platform allows.
+
+Example 9\. Set Certificate Authorization
+
+* Root CA
+* Application Logic
+
+Configure the server (listener) to authenticate the client against a list of one or more certificates provided by the server to the the [ListenerCertificateAuthenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.ListenerCertificateAuthenticator.html).
+
+```C#
+// Configure the client authenticator
+// to validate using ROOT CA
+
+// Get the valid cert chain, in this instance from
+// PKCS12 data containing private key, public key
+// and certificates (1)
+var clientData = File.ReadAllBytes("c:client.p12");
+var ourCaData = File.ReadAllBytes("c:client-ca.der");
+
+// Get the root certs from the data
+var thisRootCert = new X509Certificate2(ourCaData); (2)
+
+// Configure the authenticator to use the root certs
+var thisAuth = new ListenerCertificateAuthenticator(new X509Certificate2Collection(thisRootCert));
+
+thisConfig.Authenticator = thisAuth; (3)
+
+// Initialize the listener using the config
+_listener = new URLEndpointListener(thisConfig);
+```
+
+**Notes on example:**
+
+| **1** | Get the identity data to authenticate against. This can be, for example, from a resource file provided with the app, or an identity previously saved in secure storage.                            |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Configure the authenticator to authenticate the client supplied certificate(s) using these root certs. A valid client will provide one or more certificates that match a certificate in this list. |
+| **3** | Add the authenticator to the listener configuration.                                                                                                                                               |
+
+Configure the server (listener) to authenticate the client using user-supplied logic.
+
+```C#
+// Configure the client authenticator
+// to validate using application logic
+
+// Get the valid cert chain, in this instance from
+// PKCS12 data containing private key, public key
+// and certificates (1)
+clientData = File.ReadAllBytes("c:client.p12");
+ourCaData = File.ReadAllBytes("c:client-ca.der");
+
+// Get the root certs from the data
+var thisRootCert = new X509Certificate2(ourCaData);
+
+// Configure the authenticator to pass the root certs
+// To a user supplied code block for authentication
+var thisAuth =
+  new ListenerCertificateAuthenticator(
+    new X509Certificate2Collection(thisRootCert) => {
+      // . . . user supplied code block
+      // . . . returns boolean value (true=authenticated)
+    }); (2)
+
+thisConfig.Authenticator = thisAuth; (3)
+```
+
+**Notes on example:**
+
+| **1** | Get the identity data to authenticate against. This can be, for example, from a resource file provided with the app, or an identity previously saved in secure storage.                                                                                                                 |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Configure the Authenticator to pass the root certificates to a user supplied code block. This code assumes complete responsibility for authenticating the client supplied certificate(s). It must return a boolean value; with true denoting the client supplied certificate authentic. |
+| **3** | Add the authenticator to the listener configuration.                                                                                                                                                                                                                                    |
+
+### [](#delete-tls-identity)Delete Entry
+
+You can remove unwanted TLS identities from secure storage using the convenience API.
+
+Example 10\. Deleting TLS Identities
+
+```C#
+TLSIdentity.DeleteIdentity(_store, "alias-to-delete", null);
+```
+
+### [](#the-impact-of-tls-settings)The Impact of TLS Settings
+
+The table in this section shows the expected system behavior (in regards to security) depending on the TLS configuration settings deployed.
+
+__Table 1\. Expected system behavior__
+| disableTLS | tlsIdentity (corresponding to server)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Expected system behavior                                                                                                                                                                                                 |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| true       | Ignored                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | TLS is disabled; all communication is plain text.                                                                                                                                                                        |
+| false      | set to null                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | The system will auto generate an _anonymous_ self signed cert. Active peers (clients) should be configured to accept self-signed certificates. Communication is encrypted                                                |
+| false      | Set to server identity generated from a self- or CA-signed certificate On first use — Bring your own certificate and private key; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html) class’s [CreateIdentity()](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html#Couchbase%5FLite%5FP2P%5FTLSIdentity%5FCreateIdentity%5FSystem%5FBoolean%5FSystem%5FCollections%5FGeneric%5FDictionary%5FSystem%5FString%5FSystem%5FString%5F%5FSystem%5FNullable%5FSystem%5FDateTimeOffset%5F%5FSystem%5FSecurity%5FCryptography%5FX509Certificates%5FX509Store%5FSystem%5FString%5FSystem%5FString%5F) method to add it to the secure storage. Each time — Use the server identity from the certificate stored in the secure storage; for example, using the [TLSIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html) class’s [GetIdentity(X509Store, String, String)](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.TLSIdentity.html#Couchbase%5FLite%5FP2P%5FTLSIdentity%5FGetIdentity%5FSystem%5FSecurity%5FCryptography%5FX509Certificates%5FX509Store%5FSystem%5FString%5FSystem%5FString%5F) method with the alias you want to retrieve.. | System will use the configured identity. Active peers will validate the server certificate corresponding to the TLSIdentity (as long as they are configured to not skip validation — see [TLS Security](#tls-security)). |
+
+## [](#start-listener)Start Listener
+
+Once you have completed the Listener’s configuration settings you can initialize the Listener instance and start it running — see: [Example 11](#initialize-and-start-listener)
+
+Example 11\. Initialize and start listener
+
+```C#
+// Initialize the listener
+_thisListener = new URLEndpointListener(thisConfig); (1)
+
+// Start the listener
+thisListener.Start(); (2)
+```
+
+Unresolved directive in common-p2psync-websocket-using-passive.adoc - include::{module-callouts}\[tags=listener-start, indent=0\]
+
+## [](#monitor-listener)Monitor Listener
+
+Use the Listener’s `[Status](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.URLEndpointListener.html#Couchbase%5FLite%5FP2P%5FURLEndpointListener%5FStatus)` property/method to get counts of total and active connections — see: [Example 12](#get-connection-counts).
+
+You should note that these counts can be extremely volatile. So, the actual number of active connections may have changed, by the time the `[ConnectionStatus](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net/api/Couchbase.Lite.P2P.ConnectionStatus.html)` class returns a result.
+
+Example 12\. Get connection counts
+
+```C#
+int connectionCount = thisListener.Status.ConnectionCount; (1)
+int activeConnectionCount = thisListener.Status.ActiveConnectionCount;  (2)
+```
+
+**Notes on example:**
+
+Unresolved directive in common-p2psync-websocket-using-passive.adoc - include::{example\_callouts}\[tags=listener-status-check, indent=0\]
+
+## [](#stop-listener)Stop Listener
+
+It is best practice to check tha status of the listener’s connections and stop only when you have confirmed that there are no active connections — see [Example 12](#get-connection-counts).
+
+Example 13\. Stop listener using `stop` method
+
+```C#
+thisListener.Stop();
+```
+
+> [!NOTE]
+> Closing the database will also close the listener.
+
+## [](#related-content)Related Content
+
+###### [](#)
+
+How to
+
+* [Passive Peer](../../current/csharp/p2psync-websocket-using-passive.md)
+* [Active Peer](../../current/csharp/p2psync-websocket-using-active.md)
+
+###### [](#-2)
+
+Concepts
+
+* [Landing P2Psync](#couchbase-lite:csharp:landing-p2psync.adoc)
+* [API References](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-net).
+
+###### [](#-3)
+
+Community Resources …​
+
+* [Forum](https://forums.couchbase.com/c/mobile/14) **|** [Blog](https://blog.couchbase.com/) **|** [Tutorials](https://docs.couchbase.com/tutorials/index.html)
+
+* [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md)

@@ -3,7 +3,7 @@ title: DROP FUNCTION
 description: The <code>DROP FUNCTION</code> statement enables you to delete a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/dropfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:n1ql:n1ql-language-reference/dropfunction.adoc[]
 ---
 
@@ -23,7 +23,7 @@ link: xref:server:n1ql:n1ql-language-reference/dropfunction.adoc[]
 | Global external functions | **Manage Global External Functions** role.                                                    |
 | Scoped external functions | **Manage Scope External Functions** role, with permissions on the specified bucket and scope. |
 
-For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
+For more information about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 
@@ -31,7 +31,7 @@ For more details about user roles, see [Authorization](../../learn/security/auth
 drop-function ::= 'DROP' 'FUNCTION' function ( 'IF' 'EXISTS' )?
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/drop-function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/drop-function.png) 
 
 | function | [Function Name](#name) |
 | -------- | ---------------------- |
@@ -42,18 +42,18 @@ drop-function ::= 'DROP' 'FUNCTION' function ( 'IF' 'EXISTS' )?
 function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
 The name of the function. This is usually an unqualified identifier, such as `func1` or `` `func-1` ``. In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context).
 
-To delete a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to delete a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
+To delete a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to delete a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. For more information, see [Global Functions and Scoped Functions](createfunction.md#context).
 
 > [!NOTE]
-> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created.
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created.
 
 ### [](#if-exists-clause)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function doesn’t exist.
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function does not exist.
 
 When the function does not exist within the specified context: \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
@@ -62,13 +62,15 @@ When the function does not exist within the specified context: \[[1](#%5Ffootnot
 
 ## [](#usage)Usage
 
-When you drop a user-defined function whose definition is stored in an external library, the external library and function on which the user-defined function depended are not deleted. This enables you to create a new user-defined function with a different name, or a different number of parameters, using the same JavaScript library and function.
+When you drop a user-defined function whose definition is stored in a JavaScript library, the JavaScript library and function on which the user-defined function depended are not deleted. This enables you to create a new user-defined function with a different name, or a different number of parameters, using the same JavaScript library and function.
 
-To change or delete an external library or the external function code, you must use the [Query Workbench](../../tools/udfs-ui.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md).
+To change or delete a JavaScript library or the JavaScript function code, you must use the [Couchbase Web Console](../../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../../n1ql-rest-functions/index.md).
 
-When you drop a SQL++ managed user-defined function, the associated external function code is deleted also.
+When you drop a SQL++ managed JavaScript function, the associated JavaScript function code is also deleted.
 
 ## [](#examples)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
 Example 1\. Drop an inline function
 
@@ -84,9 +86,9 @@ You can run the following query to check that the function is no longer availabl
 SELECT * FROM system:functions;
 ```
 
-Example 2\. Drop a SQL++ managed user-defined function
+Example 2\. Drop a SQL++ managed JavaScript function
 
-This statement deletes a SQL++ managed user-defined function called `add100`.
+This statement deletes a SQL++ managed JavaScript function called `add100`.
 
 ```sqlpp
 DROP FUNCTION add100 IF EXISTS;
@@ -121,9 +123,10 @@ http://localhost:8093/evaluator/v1/libraries/geohash-js \
 
 ## [](#related-links)Related Links
 
-* To create user-defined functions, refer to [CREATE FUNCTION](createfunction.md).
-* To manage user-defined functions in the Query Workbench, see [User-Defined Functions UI](../../tools/udfs-ui.md).
-* To manage external libraries and external functions, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* For an introduction to user-defined functions, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* For more information about JavaScript functions, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+* To manage JavaScript libraries, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* To create user-defined functions, see [CREATE FUNCTION](createfunction.md).
 * To execute a user-defined function, see [EXECUTE FUNCTION](execfunction.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
@@ -131,4 +134,4 @@ http://localhost:8093/evaluator/v1/libraries/geohash-js \
 
 ---
 
-[1](#%5Ffootnoteref%5F1). That is, you are dropping a global function, and the function does not exist within the specified namespace; or, you are dropping a scoped function, and the function does not exist within the specified scope.
+[1](#%5Ffootnoteref%5F1). In other words, you’re dropping a global function, and the function does not exist within the specified namespace; or, you’re dropping a scoped function, and the function does not exist within the specified scope.

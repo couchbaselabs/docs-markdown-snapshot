@@ -1,7 +1,7 @@
 ---
 title: Query Tools
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/tools/pages/tools-ref.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.2@server:tools:tools-ref.adoc[]
 ---
 
@@ -51,4 +51,4 @@ You can configure the temporary working space for the SQL++ engine and its embed
 It is also possible to run a query via the SQL++ REST API, or programmatically via a software development kit (SDK).
 
 * [Query Service REST API](../n1ql/n1ql-rest-api/index.md)
-* [sdk:overview.adoc](#sdk:overview.adoc)
+* [SDKs & Connectors](../../../home/sdk.md)

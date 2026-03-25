@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL++ syntax.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,10 @@ link: xref:4.2@php-sdk:howtos:analytics-using-sdk.adoc[]
 
 > Parallel data management for complex queries over many records, using a familiar SQL++ syntax. 
 
-Unresolved include directive in modules/howtos/pages/analytics-using-sdk.adoc - include::7.5@sdk:shared:partial$columnar-available.adoc\[\]
+> [!TIP]
+> Capella Columnar SDKs
+> 
+> SDKs for [Capella Columnar](../../../analytics/intro/intro.md) — Couchbase’s analytical database (RT-OLAP) for real time apps and operational intelligence — are in development, and will be arriving first for the Java, Node.js, and Python platforms.
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](#7.1@server:analytics:introduction.adoc). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md). The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
 

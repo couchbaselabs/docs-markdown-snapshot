@@ -1,0 +1,64 @@
+---
+title: Field Level Encryption
+description: A high-level overview of Field-Level Encryption concepts.
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/encryption.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.11@go-sdk:concept-docs:encryption.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-sdk/2.11/concept-docs/encryption.html)
+
+# Field Level Encryption
+
+> A high-level overview of Field-Level Encryption concepts. 
+
+For a practical guide, see [Encrypting Your Data](../howtos/encrypting-using-sdk.md).
+
+## [](#architecture)Overview
+
+Fields within a JSON document can be securely encrypted by the SDK to support FIPS 140-2 compliance.
+
+This is a client-side implementation, with encryption and decryption handled by the Couchbase client SDK.
+
+![FLE in app](_images/fle-concept.png) 
+
+Figure 1\. Encrypting & decrypting via the FLE library
+
+## [](#algorithm)Algorithm and Key Store
+
+SDK 3 uses the `AEAD_AES_256_CBC_HMAC_SHA_512` algorithm to provide authenticated symmetric encryption of sensitive JSON fields. This algorithm uses a 64-byte key (known affectionately as a "fat key", since it’s really two 32-byte keys joined together). The key materials for the AES and HMAC steps are distinct, but are managed as a single unit.
+
+> [!NOTE]
+> Previous versions of the Field-Level Encryption library used a variation of this algorithm that managed the AES and HMAC keys separately. This was an obstacle to key rotation, so those algorithms are deprecated in SDK 3 and are no longer used for encryption. Existing data encrypted with the old algorithm can still be read by SDK 3, although additional configuration is required to enable backwards compatibility.
+
+Developers may also plug in custom encryption algorithms.
+
+A `Keyring` provides access to encryption keys. Implementations are provided for native key stores (including Java Key Store and Windows Certificate Store). Developers may provide custom implementations for integration with external key management systems, or to implement key rotation.
+
+## [](#format)Field Encryption Format
+
+Here’s a document that illustrates how an encrypted field is stored in Couchbase. The document has a normal field called "foo", and an encrypted field called "bar". Note that the name of the "bar" field is mangled to indicate it holds an encrypted value:
+
+{
+  "foo": "I am not a secret",
+  "encrypted$bar": {
+    "alg": "AEAD_AES_256_CBC_HMAC_SHA512",
+    "kid": "my-secret-key-name",
+    "ciphertext": "<base64-encoded-ciphertext>"
+  }
+}
+
+See the [sample code page](../howtos/encrypting-using-sdk.md) for examples of reading & writing encrypted fields.
+
+## [](#error)Data Safeguards
+
+To prevent data loss under error conditions, an error in decryption or encryption in any part of an operation will cause the whole operation to fail with an exception.
+
+## [](#packaging)Packaging
+
+Field Level Encryption for all SDKs is a separate package from the Couchbase SDK itself; the APIs are extensions of the SDK, but the SDK does not have a dependency on FLE. This means you can install the relevant SDK without being dependent upon a suite of crypto libraries.
+
+## [](#fips-140-2)FIPS 140-2
+
+The standard `AEAD_AES_256_CBC_HMAC_SHA512` encryption algorithm is composed of FIPS 140-2 "Approved Security Functions."

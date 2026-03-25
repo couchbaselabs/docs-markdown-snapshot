@@ -3,8 +3,8 @@ title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known. Here we cover CRUD operations, document expiration,
   and optimistic locking with CAS.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:howtos:kv-operations.adoc[]
 ---
 

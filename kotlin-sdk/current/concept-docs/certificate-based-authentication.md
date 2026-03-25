@@ -1,7 +1,7 @@
 ---
 title: Certificate-Based Authentication
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/certificate-based-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/certificate-based-authentication.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:certificate-based-authentication.adoc[]
 ---
 
@@ -21,8 +21,8 @@ Couchbase Server supports the use of x.509 certificates, for authentication betw
 * The [Certificate Management Overview](#7.1@server:manage:manage-security/manage-certificates.adoc)…​
 * …​ and [Certificate Configuration](#7.1@server:manage:manage-security/configure-server-certificates.adoc) pages.
 
-As well as our practical guide to [authenticating an SDK client against Couchbase Server by certificate](../howtos/sdk-authentication.md#certificate-authentication.adoc).
+As well as our practical guide to [authenticating an SDK client against Couchbase Server by certificate](#howtos:sdk-authentication.adoc#certificate-authentication.adoc).
 
 ## [](#tls)TLS
 
-Certificates are also used for [secure connection to the Server](#7.1@server:manage:manage-security/configure-client-certificates.adoc#enabling-client-security) — the [SDK guide](../howtos/managing-connections.md#ssl) gives practical details.
+Certificates are also used for [secure connection to the Server](#7.1@server:manage:manage-security/configure-client-certificates.adoc#enabling-client-security) — the [SDK guide](#howtos:managing-connections.adoc#ssl) gives practical details.

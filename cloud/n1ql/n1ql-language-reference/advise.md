@@ -3,7 +3,7 @@ title: ADVISE
 description: The ADVISE statement provides index recommendations to optimize
   query response time.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/advise.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/advise.adoc[]
 ---
 
@@ -38,7 +38,7 @@ The index advisor checks the indexes currently used by the query. If the query i
 
 ## [](#prerequisites)Prerequisites
 
-To execute the ADVISE statement, your client must have the privileges required for the SQL++ statement for which you want advice. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+To execute this statement, your client must have necessary privileges for the SQL++ statement for which you want advice. For more information about cluster access privileges, see [Cluster Access](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

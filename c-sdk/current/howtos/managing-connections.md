@@ -3,7 +3,7 @@ title: Managing Connections using the C SDK with Couchbase Server
 description: This section describes how to connect the C SDK (libcouchbase) to a
   Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:c-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -277,7 +277,7 @@ If the DNS SRV records could not be loaded properly you’ll get an exception lo
 
 81ms [If1e0caf208c1ff41] {11763} [INFO] (instance - L:202) DNS SRV lookup failed: LCB_ERR_UNKNOWN_HOST (1049). Ignore this if not relying on DNS SRV records
 
-For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](#cloud:ROOT:index.adoc) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
 

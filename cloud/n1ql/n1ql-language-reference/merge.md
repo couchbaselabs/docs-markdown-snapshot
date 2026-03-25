@@ -4,7 +4,7 @@ description: A MERGE statement provides the ability to update, insert into, or
   delete from a keyspace based on the results of a join with another keyspace or
   subquery.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/merge.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/merge.adoc[]
 ---
 
@@ -22,16 +22,15 @@ Couchbase Capella supports two types of merge clause, which are described in the
 
 ## [](#privileges)Privileges
 
-The client executing the MERGE statement must have the following privileges:
+To execute this statement, your client must have necessary privileges on the keyspaces referenced in it. The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `RETURNING` clause.
 
-* _Query Select_ privileges on the source keyspace
-* _Query Insert_, _Query Update_, or _Query Delete_ privileges on the target keyspace as per the MERGE actions
-* _Query Select_ privileges on the keyspaces referred in the RETURNING clause
-
-For more details about cluster access privileges, refer to [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege for MERGE                                                                                                                                                                                                                                                                  | Privilege for RETURNING                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on the source keyspace [Write](../../clusters/cluster-rbac.md#basic-access-credentials) on the target keyspace for any MERGE action                                                                                  | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause                           |
+| Advanced        | [Query Select](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on the source keyspace [Query Insert / Query Update / Query Delete](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on the target keyspace for any MERGE action | [Query Select](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |
 
 > [!NOTE]
-> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
+> A user with the `Data Manage` privilege can set documents to expire. When the document expires, the Data Service deletes the document, even though the user may not have the `Query Delete` privilege.
 
 ## [](#syntax)Syntax
 

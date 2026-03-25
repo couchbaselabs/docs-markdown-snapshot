@@ -3,7 +3,7 @@ title: Health Check
 description: Health Check provides ping() and diagnostics() tests for the health
   of the network and the cluster.
 editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/1.3/modules/concept-docs/pages/health-check.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:1.3@kotlin-sdk:concept-docs:health-check.adoc[]
 ---
 
@@ -14,9 +14,23 @@ link: xref:1.3@kotlin-sdk:concept-docs:health-check.adoc[]
 
 > Health Check provides ping() and diagnostics() tests for the health of the network and the cluster. 
 
-Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::7.5@sdk:pages:partial$health-check.adoc\[\]
+Working in distributed environments is _hard_. Latencies come and go, so do connections in their entirety. Is it a network glitch, or is the remote cluster down? Sometimes just knowing the likely cause is enough to get a good start on a workaround, or at least avoid hours wasted on an inappropriate solution.
 
-Unresolved include directive in modules/concept-docs/pages/health-check.adoc - include::7.5@sdk:pages:partial$health-check.adoc\[\]
+Health Check enables useful diagnostics on the state of Couchbase Clusters across networks. `Ping` and `diagnostics` methods on the bucket and cluster objects respectively, can give us information about the current state of nodes, and their connections.
+
+## [](#uses)Uses
+
+'Ping\` provides a raw JSON payload suitable for feeding into reactive log and aggregation components, including monitoring systems like _Splunk_, _ElasticSearch_, and _Nagios_. It can also help keep connections alive if you are operating across an environment which aggressively closes down unused connections.
+
+`Diagnostics` provides a strongly typed API for proactive, pull-based monitoring systems, such as:
+
+* [Kubernetes Liveness and Readiness Probes via HTTP or CLI commands](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
+* [Docker Health Check with CLI commands](https://docs.docker.com/engine/reference/builder/#healthcheck).
+* [AWS ELB through HTTP](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html).
+
+This API does not provide binary yes/no answers about the health of the cluster; rather it summarizes as much information as possible, for the application developer to assemble a complete, contextual view and come to a conclusion.
+
+Note: `Ping` may reopen a connection, so is not without side-effects. `Diagnostics` shows what the SDK _perceives_ as the current state of the network and services — it is without side-effects, but may not be up to date.
 
 ## [](#ping)Ping
 

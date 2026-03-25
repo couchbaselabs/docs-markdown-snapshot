@@ -2,7 +2,7 @@
 title: Call a User-Defined Function
 description: How to call a user-defined function from SQL++ statements.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/call-user-defined-function.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:guides:call-user-defined-function.adoc[]
 ---
 
@@ -17,13 +17,17 @@ link: xref:7.6@server:guides:call-user-defined-function.adoc[]
 
 A user-defined function can be called like any other SQL++ function.
 
-* When you call a **global** function, any partial keyspace references within the function definition are resolved against the `default:` namespace, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
-* When you call a **scoped** function, any partial keyspace references within the function definition are resolved against the function’s bucket and scope, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
-
 If you want to try out the examples in this section, follow the instructions given in [Do a Quick Install](../getting-started/do-a-quick-install.md) to install Couchbase Server, configure a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
 
 * [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
 * [Query Workbench](../tools/query-workbench.md)
+
+### [](#global-and-scoped-user-defined-functions)Global and Scoped User-Defined Functions
+
+A user-defined function can be **global** or **scoped**.
+
+* When you call a **global** function, any partial keyspace references within the function definition are resolved against the `default:` namespace, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
+* When you call a **scoped** function, any partial keyspace references within the function definition are resolved against the function’s bucket and scope, regardless of the current [query context](../n1ql/n1ql-intro/queriesandresults.md#query-context).
 
 ## [](#executing-a-sql-user-defined-function)Executing a SQL++ User-Defined Function
 

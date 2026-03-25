@@ -2,7 +2,7 @@
 title: Explore the Playground
 description: Use the Playground to practice and learn more about SQL++.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/sdk-playground.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:get-started:sdk-playground.adoc[]
 ---
 
@@ -67,7 +67,7 @@ If you want to connect to your cluster:
 1. [Generate your cluster credentials](../clusters/manage-database-users.md) to connect and control access to you cluster.
 2. [Add your current IP address as an allowed IP for you cluster](../clusters/allow-ip-address.md).
 3. [Generate a code snippet](connect.md) to connect your cluster to your application.
-4. Choose and install a [Couchbase SDK](#home:ROOT:sdk.adoc).
+4. Choose and install a [Couchbase SDK](../../home/sdk.md).
 5. (Optional) Download the security certificate for your cluster and add it to your application’s server machine or IDE:
 
   1. In the **Operational** tab, select a cluster.

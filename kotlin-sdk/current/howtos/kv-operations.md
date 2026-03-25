@@ -1,9 +1,9 @@
 ---
 title: Data Operations
-description: Data service offers the simplest way to retrieve or mutate data
-  where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+description: The Key Value (KV) service, sometimes called the "data service", is
+  often the best way to get or change a document when you know its ID.
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -12,13 +12,11 @@ link: xref:kotlin-sdk:howtos:kv-operations.adoc[]
 
 # Data Operations
 
-> Data service offers the simplest way to retrieve or mutate data where the key is known. 
-
-Here we cover CRUD operations, document expiration, and optimistic locking with CAS — as well as KV Range scan, for querying without an index.
+> The Key Value (KV) service, sometimes called the "data service", is often the best way to get or change a document when you know its ID. Here we cover CRUD operations and locking strategies. 
 
 ## [](#prerequisites)Before You Start
 
-You should know [how to connect to a Couchbase cluster](managing-connections.md).
+You should know [how to connect to a Couchbase cluster](connecting.md).
 
 You should know about [documents and collections, and how to get a Couchbase Collection object](organizing-documents.md).
 
@@ -54,7 +52,14 @@ To start, let’s insert a document that represents a character in a story. The 
 Creating a new document
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+try {
+    collection.insert(
+        id = "alice",
+        content = mapOf("favoriteColor" to "blue"), (1)
+    )
+} catch (t: DocumentExistsException) {
+    println("Insert failed because the document already exists.")
+}
 ```
 
 | **1** | The content doesn’t have to be a Map. To learn more, please read [Working with JSON](json.md). |
@@ -73,7 +78,13 @@ If the collection does not have a document with this ID, the `get` method throws
 Reading a document
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+try {
+    val result: GetResult = collection.get(id = "alice")
+    val content = result.contentAs<Map<String, Any?>>()
+    println("The character's favorite color is ${content["favoriteColor"]}")
+} catch (t: DocumentNotFoundException) {
+    println("Get failed because the document does not exist.")
+}
 ```
 
 ### [](#replace)Replace (Update)
@@ -90,7 +101,14 @@ If the collection does not have a document with this ID, the `replace` method th
 Updating an existing document
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+try {
+    collection.replace(
+        id = "alice",
+        content = mapOf("favoriteColor" to "red"),
+    )
+} catch (t: DocumentNotFoundException) {
+    println("Replace failed because there was no document to replace.")
+}
 ```
 
 > [!CAUTION]
@@ -109,7 +127,11 @@ If the collection does not have a document with this ID, the `remove` method thr
 Deleting a document
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+try {
+    collection.remove(id = "alice")
+} catch (t: DocumentNotFoundException) {
+    println("Remove failed because there was no document to remove.")
+}
 ```
 
 ### [](#upsert)Upsert (Create or Update)
@@ -126,7 +148,10 @@ This method has two required parameters:
 Creating or updating a document
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+collection.upsert(
+    id = "alice",
+    content = mapOf("favoriteColor" to "blue"),
+)
 ```
 
 You can run this example many times. It should succeed each time, because the `upsert` method does not care if the document already exists.
@@ -140,7 +165,33 @@ Here is an example `bulkGet` function you can add to your project. This function
 Extension function `Collection.bulkGet`
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+/**
+ * Gets many documents at the same time.
+ *
+ * @param ids The IDs of the documents to get.
+ * @param maxConcurrency Limits how many operations happen
+ * at the same time.
+ * @return A map where the key is a document ID, and the value
+ * is a [kotlin.Result] indicating success or failure.
+ */
+suspend fun com.couchbase.client.kotlin.Collection.bulkGet(
+    ids: Iterable<String>,
+    maxConcurrency: Int = 128,
+): Map<String, Result<GetResult>> {
+    val result = ConcurrentHashMap<String, Result<GetResult>>()
+    val semaphore = kotlinx.coroutines.sync.Semaphore(maxConcurrency)
+
+    coroutineScope { (1)
+        ids.forEach { id ->
+            launch { (2)
+                semaphore.withPermit { (3)
+                    result[id] = runCatching { get(id) }
+                }
+            }
+        }
+    }
+    return result
+}
 ```
 
 | **1** | Starting a new coroutine scope ensures the bulkGet method does not return until all coroutines launched inside the scope finish.                                                                                                                                |
@@ -153,7 +204,11 @@ After adding the `Collection.bulkGet` extension function to your project, call i
 Calling the `Collection.bulkGet` extension function
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val ids = listOf("airline_10", "airline_10123", "airline_10226")
+
+collection.bulkGet(ids).forEach { (id, result) ->
+    println("$id = $result")
+}
 ```
 
 > [!TIP]
@@ -193,7 +248,25 @@ If you pass a CAS value to `replace`, the operation succeeds only if nobody chan
 This example shows how to safely change a document, without losing changes made by somebody else at the same time:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+while (true) { (1)
+    val result: GetResult = collection.get(id = "alice")
+
+    val oldContent = result.contentAs<Map<String, Any?>>()
+    val newContent = oldContent + ("favoriteFood" to "hamburger")
+
+    try {
+        collection.replace(
+            id = "alice",
+            content = newContent,
+            cas = result.cas
+        )
+        return
+
+    } catch (t: CasMismatchException) {
+        // Someone else changed the document after we read it!
+        // Start again.
+    }
+}
 ```
 
 | **1** | This example keeps trying until the coroutine is cancelled. Another choice would be to set a time limit, or limit the number of tries. |
@@ -203,13 +276,49 @@ Unresolved include directive in modules/howtos/pages/kv-operations.adoc - includ
 > You don’t need to write all of that code every time you want to use optimistic locking. Instead, you can define your own extension function like this:
 > 
 > ```kotlin
-> Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+> suspend inline fun <reified T> Collection.mutate(
+>     id: String,
+>     expiry: Expiry = Expiry.none(),
+>     preserveExpiry: Boolean = false,
+>     transcoder: Transcoder? = null,
+>     durability: Durability = Durability.none(),
+>     common: CommonOptions = CommonOptions.Default,
+>     transform: (GetResult) -> T,
+> ): MutationResult {
+>     while (true) {
+>         val old = get(
+>             id = id,
+>             withExpiry = preserveExpiry,
+>             common = common,
+>         )
+> 
+>         val newContent = transform(old)
+>         val newExpiry = if (preserveExpiry) old.expiry else expiry
+> 
+>         try {
+>             return replace(
+>                 id = id,
+>                 content = newContent,
+>                 common = common,
+>                 transcoder = transcoder,
+>                 durability = durability,
+>                 expiry = newExpiry,
+>                 cas = old.cas
+>             )
+>         } catch (_: CasMismatchException) {
+>             // Someone else modified the document. Start again.
+>         }
+>     }
+> }
 > ```
 > 
 > Now the optimistic locking example from before looks like this:
 > 
 > ```kotlin
-> Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+> collection.mutate("alice") { old: GetResult ->
+>     val oldContent = old.contentAs<Map<String, Any?>>()
+>     return@mutate oldContent + ("favoriteFood" to "hamburger")
+> }
 > ```
 
 ### [](#pessimistic-locking)Pessimistic Locking
@@ -223,7 +332,19 @@ The lock is released when you change the document using the correct CAS, or when
 Changing a document safely, using pessimistic locking
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val result: GetResult = collection.getAndLock(
+    id = "alice",
+    lockTime = 15.seconds, (1)
+)
+
+val oldContent = result.contentAs<Map<String, Any?>>()
+val newContent = oldContent + ("favoriteFood" to "hamburger")
+
+collection.replace( (2)
+    id = "alice",
+    content = newContent,
+    cas = result.cas,
+)
 ```
 
 | **1** | The lock is automatically released (unlocked) after this duration. The lock time can be as short as 1 second, or as long as 30 seconds. |
@@ -279,7 +400,10 @@ Here’s an example of a KV range scan that gets all documents in a collection:
 KV Range Scan for all documents in a collection
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val results: Flow<GetResult> = collection.scanDocuments(
+    type = ScanType.range() (1)
+)
+results.collect { println(it) }
 ```
 
 | **1** | The ScanType.range() method has two optional parameters: from and to. If you omit them like in this example, you’ll get all documents in the collection. These parameters are for advanced use cases; you probably won’t need to specify them. Instead, it’s more common to use the "prefix" scan type shown in the next example. |
@@ -296,7 +420,10 @@ For example, to get all documents associated with user "alice", you would write:
 KV Range Scan for all documents in a collection whose IDs start with `alice::`
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val results: Flow<GetResult> = collection.scanDocuments(
+    type = ScanType.prefix("alice::") (1)
+)
+results.collect { println(it) }
 ```
 
 | **1** | Note the scan type is **prefix**. |
@@ -309,7 +436,10 @@ If you want to get random documents from a collection, use a sample scan.
 KV Range Scan for 100 random documents
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val results: Flow<GetResult> = collection.scanDocuments(
+    type = ScanType.sample(limit = 100)
+)
+results.collect { println(it) }
 ```
 
 ### [](#kv-range-scan-only-ids)Get IDs instead of full document
@@ -319,7 +449,10 @@ If you only want the document IDs, call `scanIds()` instead of `scanDocuments()`
 KV Range Scan for all document IDs in a collection
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::example$KvBasic.kt[]
+val ids: Flow<String> = collection.scanIds( (1)
+    type = ScanType.range()
+)
+ids.collect { println(it) }
 ```
 
 | **1** | Note the call to scanIds() instead of scanDocuments(). |

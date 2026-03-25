@@ -1,8 +1,8 @@
 ---
 title: Organizing Documents
 description: Couchbase documents are organized into buckets, scopes, and collections.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/organizing-documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/organizing-documents.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:organizing-documents.adoc[]
 ---
 
@@ -53,7 +53,7 @@ If you’re using Couchbase Server 7 or later, you can add more scopes and colle
 
 ## [](#getting-a-collection)Getting a Collection
 
-Before you start, you’ll need to know [how to get a Cluster object](managing-connections.md).
+Before you start, you’ll need to know [how to get a Cluster object](connecting.md).
 
 Use the `Cluster` object to get a `Collection`.
 

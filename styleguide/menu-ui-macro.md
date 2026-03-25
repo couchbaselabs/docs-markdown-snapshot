@@ -1,7 +1,7 @@
 ---
 title: Menu UI Macro
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/menu-ui-macro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::menu-ui-macro.adoc[]
 ---
 
@@ -34,4 +34,4 @@ For example, if you instruct the user to select the **Data Tools** tab and then 
 
 ![menu nav examples 3](_images/menu-nav-examples-3.png) 
 
-For more information about how to use the Menu UI Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](#home:contribute:basics.adoc#ui-macros) in the Contributing to the Documentation guide.
+For more information about how to use the Menu UI Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](../home/contribute/basics.md#ui-macros) in the Contributing to the Documentation guide.

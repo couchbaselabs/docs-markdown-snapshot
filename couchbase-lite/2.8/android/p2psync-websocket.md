@@ -1,0 +1,315 @@
+---
+title: Data Sync Peer-to-Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/2.8/modules/android/pages/p2psync-websocket.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.8@couchbase-lite:android:p2psync-websocket.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/couchbase-lite/2.8/android/p2psync-websocket.html)
+
+# Data Sync Peer-to-Peer
+
+> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> _Abstract — An introduction to Couchbase Lite’s Peer-to-Peer Synchronization and its concepts._  
+> Related Content — [API Reference](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/) | [Passive Peer](../../current/android/p2psync-websocket-using-passive.md) | [Active Peer](../../current/android/p2psync-websocket-using-active.md)
+
+## [](#introduction)Introduction
+
+Couchbase Lite’s peer-to-peer synchronization solution offers secure storage and bidirectional synchronization of data between edge devices without the need for a centralized cloud-based control point.
+
+The solution provides an out-of-the-box implementation of a websocket based listener for use in peer-to-peer applications communicating over in IP-based networks.
+
+This implementation enables customers to:
+
+* Simplify application development by enabling sync with just a few lines of code
+* Optimize network bandwidth usage and reduce data transfer cost with Delta Sync support
+* Securely sync data with built-in support for TLS encryption and authentication support
+* Significantly reduce complexity of managing document conflicts from concurrent writes with built-in conflict resolution support.
+* Take advantage of built-in network resiliency
+
+## [](#overview)Overview
+
+At its most basic, peer-to-peer synchronization requires one peer to act as the listener to the other peer’s replicator.
+
+![docs listener diagram](../_images/docs-listener-diagram.png) 
+
+So, in order to use peer-to-peer synchronization in your application you must configure one peer to act as this listener using the provided listener API, the most important of which include _URLEndpointListener_ and _URLEndpointListenerConfiguration_. Using these building blocks, developers can quickly implement peer-to-peer synchronization.
+
+Example 1\. Simple workflow
+
+1. Configure the listener (_passive peer_, or _server_)
+2. Initialize the listener, which listens for incoming websocket connections (on a user-defined, or auto-selected, port)
+3. Configure a replicator (_active peer_, or _client_)
+4. Use some form of discovery phase perhaps with a zero-config protocol such as Network Service Discovery — see: <https://developer.android.com/training/connect-devices-wirelessly/nsd>, or use known URL endpoints, to identify a listener
+5. Point the replicator at the listener
+6. Initialize the replicator
+7. Replicator and listener engage in the configured security protocol exchanges to confirm connection
+8. If connection is confirmed then replication will commence, synchronizing the two data stores.
+
+As you can see this involves configuring a [Passive Peer](../../current/android/p2psync-websocket-using-passive.md) and an **\*** [Active Peer](../../current/android/p2psync-websocket-using-active.md); you can find the instructions to do that on those two links and see a simple listener configuration in [Example 2](#simple-configuration)
+
+You can also learn more about how to implement peer-to-peer synchronization by referring to our tutorial — see: [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md).
+
+## [](#features)Features
+
+Couchbase Lite for Android’s peer-to-peer synchronization solution provides support for cross-platform synchronization; for example, between Android and iOS devices.
+
+Each listener instance serves one Couchbase Lite database. But there is no hard limit on the number of listener instances that you can associate with a database.
+
+Nor does having a listener on a database prevent you opening replications to the other clients. So, for example, whilst listening for connections, a listener is able to actively initiate replications to other listeners. This can be for the same or a different database.
+
+The listener will automatically select a port to use or will use a user-specified port. It will also listen on all available networks, unless you specify a specific network to use.
+
+### [](#security)Security
+
+peer-to-peer synchronization supports encryption and authentication over TLS with multiple modes, including:
+
+* No encryption, that-is, clear text.
+* CA Cert
+* Self-signed Cert
+* Anonymous Self-signed — an auto-generated anonymous TLS identity is generated if no identity is specified. This provides encryption but **not** authentication.  
+Any self-signed certificates generated by the convenience API are stored in secure storage.
+
+The replicator (client) can handle certificates pinned by the listener for authentication purposes.
+
+Support is also provided for basic authentication using username and password credentials. Whilst this can be used in clear text mode, developers are strongly advised to use TLS encryption.
+
+For testing and development purposes, support is provided for the client (active, replicator) to skip verification of self-signed certificates; this mode ought not be used in production.
+
+### [](#error-handling)Error Handling
+
+When a listener is stopped, then all connected replicators are notified by a websocket error. Your application should distinguish between transient and permanent connectivity errors.
+
+#### [](#passive-peers)Passive peers
+
+A passive peer losing connectivity with an active peer will clean up any associated endpoint connections to that peer. The active peer may attempt to reconnect to the passive peer.
+
+#### [](#active-peers)Active peers
+
+An active peer permanently losing connectivity with a passive peer will cease replicating.
+
+An active peer temporarily losing connectivity with a passive peer will use exponential backoff functionality to attempt reconnection.
+
+### [](#delta-sync)Delta Sync
+
+Optional delta-sync support is provided but is off by default.
+
+Delta-sync can be enabled on a per-replication basis provided that the databases involved are also configured to permit it. Statistics on delta-sync usage are available, including the total number of revisions sent as deltas.
+
+### [](#conflict-resolution)Conflict Resolution
+
+Conflict resolution for peer-to-peer synchronization works in the same way as it does for Sync Gateway replication, with both custom and automatic resolution available.
+
+## [](#constraints)Constraints
+
+## [](#basic-setup)Basic Setup
+
+You can configure a peer-to-peer synchronization with just a few lines of code as shown in [Example 2](#simple-configuration).
+
+Example 2\. Simple configuration
+
+* Simple Listener
+* Simple Replicator
+
+This simple configuration will give you a listener ready to participate in an encrypted synchronization with a replicator providing a valid user name and password.
+
+```Java
+final URLEndpointListenerConfiguration thisConfig =
+  new URLEndpointListenerConfiguration(thisDB); (1)
+
+thisConfig.setAuthenticator(
+  new ListenerPasswordAuthenticator(
+    (username, password) ->
+      username.equals("valid.User") &&
+      Arrays.equals(password, valid.password.string)
+    )
+  ); (2)
+
+final URLEndpointListener thisListener =
+  new URLEndpointListener(thisConfig); (3)
+
+thisListener.start(); (4)
+```
+
+| **1** | Initialize the listener configuration                              |
+| ----- | ------------------------------------------------------------------ |
+| **2** | Configure the client authenticator to require basic authentication |
+| **3** | Initialize the listener                                            |
+| **4** | Start the listener                                                 |
+
+This simple replicator configuration will give you an encrypted, bi-directional peer-to-peer synchronization with automatic conflict resolution.
+
+```Java
+URI uri = null;
+try {
+    uri = new URI("wss://10.0.2.2:4984/db");
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
+Endpoint theListenerEndpoint = new URLEndpoint(uri); (1)
+
+ReplicatorConfiguration thisConfig =
+  new ReplicatorConfiguration(database, theListenerEndpoint); (2)
+
+thisConfig.setAcceptOnlySelfSignedServerCertificate(true); (3)
+
+final BasicAuthenticator thisAuth
+= new BasicAuthenticator(
+    "valid.user",
+    "valid.password.string"));
+thisConfig.setAuthenticator(thisAuth) (4)
+
+this.replicator = new Replicator(config); (5)
+this.replicator.start(); (6)
+```
+
+| **1** | Get the listener’s endpoint. Here we use a known URL, but it could be established dynamically in a discovery phase.                       |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Initialize the replicator configuration with the database to be synchronized and the listener it is to synchronize with                   |
+| **3** | Configure the replicator to expect a self-signed certificate from the listener                                                            |
+| **4** | Configure the replicator to present basic authentication credentials if the listener prompts for them (client authentication is optional) |
+| **5** | Initialize the replicator                                                                                                                 |
+| **6** | Start the replicator                                                                                                                      |
+
+## [](#api-highlights)API Highlights
+
+### [](#urlendpointlistener)URLEndpointListener
+
+The `URLEndpointListener` is the listener for peer-to-peer synchronization. It acts like a passive replicator, in the same way that Sync Gateway does in a 'standard' replication. On the client side, the listener’s endpoint is used to point the replicator to the listener.
+
+Core functionalities of the listener are:
+
+* Users can initialize the class using a _URLEndpointListenerConfiguration_ object.
+* The listener can be started, or can be stopped.
+* Once the listener is started, a total number of connections or active connections can be checked.
+
+API Reference: [URLEndpointListener](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html)
+
+### [](#urlendpointlistenerconfiguration)URLEndpointListenerConfiguration
+
+Use this to create a configuration object you can then use to initialize the listener.
+
+Port
+
+This is the port that the listener will listen to.
+
+If the port is null or zero, the listener will auto-assign an available port to listen on.
+
+Default value is null or zero depending on platform. When the listener is not started, the port is null (or zero if the platform requires).
+
+Network Interface
+
+Use this to select a specific Network Interface to use, in the form of the IP Address or network interface name.
+
+If the network interface is specified, only that interface wil be used.
+
+If the network interface is not specified, all available network interfaces will be used.
+
+The value is null if the listener is not started.
+
+disableTLS
+
+You can use [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setDisableTLS](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) method to disable TLS communication if necessary
+
+The `disableTLS` setting must be 'false' when _Client Cert Authentication_ is required.
+
+Basic Authentication can be used with, or without, TLS.
+
+[setDisableTLS](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-) works in conjunction with `TLSIdentity`, to enable developers to define the key and certificate to be used.
+
+* If `disableTLS` is true — TLS communication is disabled and TLS identity is ignored. Active peers will use the `ws://` URL scheme used to connect to the listener.
+* If `disableTLS` is false or not specified — TLS communication is enabled.  
+Active peers will use the `wss://` URL scheme to connect to the listener.
+
+API Reference: [setDisableTLS](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setDisableTls-boolean-)
+
+tlsIdentity
+
+Use [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)'s [setTlsIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-) method to configure the TLS Identity used in TLS communication.
+
+If `TLSIdentity` is not set, then the listener uses an auto-generated anonymous self-signed identity (unless `disableTLS = true`). Whilst the client cannot use this to authenticate the server, it will use it to encrypt communication, giving a more secure option than non-TLS communication.
+
+The auto-generated anonymous self-signed identity is saved in secure storage for future use to obviate the need to re-generate it.
+
+When the listener is not started, the identity is null. When TLS is disabled, the identity is always null.
+
+API Reference: [setTlsIdentity](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setTlsIdentity-com.couchbase.lite.TLSIdentity-)
+
+authenticator
+
+Use this to specify the authenticator the listener uses to authenticate the client’s connection request. This should be set to one of the following:
+
+* ListenerPasswordAuthenticator
+* ListenerCertificateAuthenticator
+* Null — there is no authentication.
+
+API Reference: [setAuthenticator](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html#setAuthenticator-com.couchbase.lite.ListenerAuthenticator-)
+
+readOnly
+
+Use this to allow only pull replication. Default value is false.
+
+enableDeltaSync
+
+The option to enable Delta Sync and replicate only changed data also depends on the delta sync settings at database level. The default value is false.
+
+API Reference: [URLEndpointListenerConfiguration](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/com/couchbase/lite/URLEndpointListenerConfiguration.html)
+
+## [](#security-2)Security
+
+### [](#authentication)Authentication
+
+Peer-to-peer sync supports [Basic Authentication](#using-basic-authentication) and [TLS Authentication](#using-tls). For anything other than test deployments, we strongly encourage the use of TLS. In fact, peer-to-peer sync using URLEndpointListener is encrypted using TLS by default.
+
+The authentication mechanism used is defined at endpoint level, meaning that it is independent of the database being replicated. So when replicating multiple database instances you may use basic on one instance an another authentication method on other instances.
+
+> [!NOTE]
+> The Minimum supported version of TLS is TLS 1.2\.
+
+Peer-to-Peer Synchronization using URLEndpointListener supports certificate based authentication of the server and-or listener:
+
+* Replicator certificates can be: self signed, from trusted CA or anonymous (system generated).
+* Listeners certificates may be: self signed or trusted CA signed.  
+Where a TLS certificate is not explicitly specified for the listener, the Listener implementation will generate anonymous certificate to use for encryption
+* The URLEndpointListener supports the ability to opt out of TLS encryption communication.  
+Active clients replicating with a URLEndpointListener have the option to skip validation of server certificates when the listener is configured with self-signed certificates.  
+This option is ignored when dealing with CA certificates.
+
+### [](#using-secure-storage)Using Secure Storage
+
+The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform. [Table 1](#secure-storage-details) summarizes the secure storage used to store keys and certificates for Android.
+
+__Table 1\. Secure storage details__
+| Platform            | Android                                                                                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Key Storage         | Android System KeyStore                                                                                                                                                                                                       |
+| Certificate Storage | Android System KeyStore                                                                                                                                                                                                       |
+| Notes               | Android KeyStore was introduced from Android API 18. Android KeyStore security has evolved over time to provide more secure support. Please check this document for more info: <https://source.android.com/security/keystore> |
+| Reference           | <https://developer.android.com/training/articles/keystore>                                                                                                                                                                    |
+
+## [](#related-content)Related Content
+
+###### [](#)
+
+How to
+
+* [Passive Peer](../../current/android/p2psync-websocket-using-passive.md)
+* [Active Peer](../../current/android/p2psync-websocket-using-active.md)
+
+###### [](#-2)
+
+Concepts
+
+* [Landing P2Psync](#couchbase-lite:android:landing-p2psync.adoc)
+* [API References](http://docs.couchbase.com/mobile/2.8.4/couchbase-lite-android/).
+
+###### [](#-3)
+
+Community Resources …​
+
+* [Forum](https://forums.couchbase.com/c/mobile/14) **|** [Blog](https://blog.couchbase.com/) **|** [Tutorials](https://docs.couchbase.com/tutorials/index.html)
+
+* [Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md)

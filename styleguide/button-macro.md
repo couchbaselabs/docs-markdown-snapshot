@@ -1,7 +1,7 @@
 ---
 title: Button Macro
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/button-macro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::button-macro.adoc[]
 ---
 
@@ -33,4 +33,4 @@ For example, **Submit**.
 
 If a clickable element changes the screen or navigates the user away from their current location in the UI, use the [Menu UI Macro](menu-ui-macro.md), instead.
 
-For more information about how to use the Button Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](#home:contribute:basics.adoc#ui-macros) in the Contributing to the Documentation guide.
+For more information about how to use the Button Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](../home/contribute/basics.md#ui-macros) in the Contributing to the Documentation guide.

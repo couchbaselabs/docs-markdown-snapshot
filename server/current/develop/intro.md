@@ -3,7 +3,7 @@ title: Developer Intro
 description: This section contains tutorials, how-to guides, and information
   about Couchbase Services to help you develop applications.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/develop/pages/intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:develop:intro.adoc[]
 ---
 
@@ -72,7 +72,7 @@ Use the Analytics Service for online analytical processing (OLAP) for large data
 
 Couchbase offers numerous software development kits (SDKs) that provide programmatic access to Couchbase Server.
 
-* [home:ROOT:sdk.adoc](#home:ROOT:sdk.adoc)
+* [SDKs & Connectors](../../../home/sdk.md)
 
 ## Integrations
 

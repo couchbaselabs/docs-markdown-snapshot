@@ -2,7 +2,7 @@
 title: Release Notes
 description: Couchbase Sync Gateway
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/4.0/modules/product-notes/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:sync-gateway:product-notes:release-notes.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:sync-gateway:product-notes:release-notes.adoc[]
 
 Quicklinks
 
-[Release 3.3](../../3.3/product-notes/release-notes.md) | [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](#3.1@sync-gateway::release-notes.adoc) | [Release 3.0](#3.0@sync-gateway::release-notes.adoc) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
+[Release 3.3](../../3.3/product-notes/release-notes.md) | [Release 3.2](../../3.2/release-notes.md) | [Release 3.1](../../3.1/release-notes.md) | [Release 3.0](../../3.0/release-notes.md) | [Archived documentation](https://docs-archive.couchbase.com/home/index.html)
 
 > Couchbase Sync Gateway  
 > This content describes the key features and changes implemented by release 4.0.0 of Couchbase Sync Gateway

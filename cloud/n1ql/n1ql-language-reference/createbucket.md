@@ -2,7 +2,7 @@
 title: CREATE BUCKET
 description: The CREATE BUCKET statement enables you to create a bucket.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createbucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/createbucket.adoc[]
 ---
 
@@ -19,9 +19,16 @@ Use the CREATE BUCKET statement to create a new bucket in your Couchbase cluster
 
 When you create a new bucket, a `_default` scope and a `_default` collection are automatically created within it, providing a basic structure for your data right away. The name of the bucket must be unique within the cluster and you cannot change it once you create the bucket. You can have a maximum of 30 buckets per cluster.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-To execute the CREATE BUCKET statement, you must have either the Full Admin or the Cluster Admin role. For more information about roles and privileges, see [Roles](#learn:security/roles.adoc).
+To execute this statement in the Capella UI, you must have one of the following roles:
+
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
+
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

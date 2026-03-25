@@ -1,0 +1,57 @@
+---
+title: Autonomous Operator Log Attributes
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/reference-operator-logging.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.5@operator::reference-operator-logging.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operator/2.5/reference-operator-logging.html)
+
+# Autonomous Operator Log Attributes
+
+> Autonomous Operator logs contain some fixed attributes that can be reliably used in your logging infrastructure. 
+
+## [](#introduction)Introduction
+
+The Autonomous Operator emits logs on the pod console. Logs are structured as JSON for simple machine parsing (though, they are schemaless). Logs look similar to the following:
+
+```json
+{"level":"info","ts":1580377225.2966235,"logger":"couchbaseutil","msg":"Cluster status","cluster":"default/cb-example","balance":"balanced","rebalancing":false}
+{"level":"info","ts":1580377225.296685,"logger":"couchbaseutil","msg":"Node status","cluster":"default/cb-example","name":"cb-example-0000","version":"6.5.0","class":"all_services","managed":true,"status":"warmup"}
+{"level":"info","ts":1580377225.6940928,"logger":"cluster","msg":"Pods warming up, skipping","cluster":"default/cb-example"}
+{"level":"info","ts":1580377225.892829,"logger":"cluster","msg":"Reconcile completed","cluster":"default/cb-example"}
+{"level":"info","ts":1580377226.7565176,"logger":"cluster","msg":"Creating XDCR remote cluster","cluster":"default/cb-example","remote":"remote"}
+```
+
+The Autonomous Operator uses the [zap](https://pkg.go.dev/go.uber.org/zap) library to generate logging information. Each entry is organized as a JSON object with key/value pairs of information.
+
+Some attributes are fixed and can be reliably used in your logging infrastructure and are documented in the following sections.
+
+## [](#zap-attributes)Zap Attributes
+
+`level`
+
+This is the log level at which the message was emitted at. Valid values are `info`, `error`, `debug`, and `-N` (where N is an integer value based on debug level). Levels that are emitted depend on the level that is specified in the Autonomous Operator [deployment settings](reference-operator-configuration.md).
+
+`ts`
+
+This is the message time stamp. It is given in seconds since the UNIX epoch (1 Jan 1970, 00:00:00).
+
+`logger`
+
+This is the logger that generated the message. It gives information as to which module was responsible for generating the message. This attribute is of little use outside of Couchbase Support requests.
+
+`msg`
+
+This is the log message. Each log entry will have a short message explaining what is being reported. The message will not contain any contextual information about what raised the message; context is provided by other key/value pairs.
+
+## [](#operator-attributes)Operator Attributes
+
+`cluster`
+
+This is the cluster that the message relates to. It is only present when a message relates to a specific [CouchbaseCluster](resource/couchbasecluster.md) resource, and is formatted as `namespace/cluster-name`. This attribute is useful as a label to identify and separate log streams for specific clusters.
+
+## [](#other-attributes)Other Attributes
+
+Other attributes are context-specific and will be relevant to a specific message. The meaning of these attributes is, in most cases, intended to be simple and obvious.

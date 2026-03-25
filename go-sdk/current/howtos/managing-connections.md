@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the Go SDK to a Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -11,11 +11,41 @@ link: xref:go-sdk:howtos:managing-connections.adoc[]
 
 # Managing Connections
 
-> This section describes how to connect the Go SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and other advanced connection options. 
+> This section describes how to connect the Go SDK to a Couchbase cluster. It contains best practices as well as information on TLS/SSL and advanced connection options, and a sub-page on troubleshooting Cloud connections. 
+
+Our [Getting Started pages](#hello-world:start-using-sdk) cover the basics of making a connection to a Capella or self-managed Couchbase cluster. This page is a wider look at the topic.
 
 ## [](#connecting-to-a-cluster)Connecting to a Cluster
 
-A connection to a Couchbase Server cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `gocb.Connect()` with a [connection string](#connection-strings), username, and password:
+A connection to a Couchbase Operational cluster is represented by a `Cluster` object. A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces. The simplest way to create a `Cluster` object is to call `gocb.Connect()` with a [connection string](#connection-strings), username, and password:
+
+* Couchbase Capella
+* Self-Managed Couchbase Server
+* Cloud Native Gateway (CNG)
+
+```golang
+options := gocb.ClusterOptions{
+	Authenticator: gocb.PasswordAuthenticator{
+		Username: username,
+		Password: password,
+	},
+}
+
+// Sets a pre-configured profile called "wan-development" to help avoid latency issues
+// when accessing Capella from a different Wide Area Network
+// or Availability Zone (e.g. your laptop).
+if err := options.ApplyProfile(gocb.ClusterConfigProfileWanDevelopment); err != nil {
+	log.Fatal(err)
+}
+
+// Initialize the Connection
+cluster, err := gocb.Connect("couchbases://"+connectionString, options)
+if err != nil {
+	log.Fatal(err)
+}
+```
+
+Note, the client certificate for connecting to a Capella operational cluster is included in the SDK installation.
 
 ```golang
 opts := gocb.ClusterOptions{
@@ -28,8 +58,17 @@ if err != nil {
 }
 ```
 
-> [!NOTE]
-> If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes. You will in any case, with 6.0 and earlier, need to open a `Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
+Couchbase’s large number of ports across the URLs of many services can be proxied by using a `couchbase2://` endpoint as the connection string — currently only compatible with recent versions of [Couchbase Autonomous Operator](../../../operator/current/concept-cloud-native-gateway.md):
+
+```golang
+	cluster, err := gocb.Connect("couchbase2://"+connectionString, gocb.ClusterOptions{
+		Authenticator: gocb.PasswordAuthenticator{
+			Username: username,
+			Password: password,
+		}
+```
+
+Read more on the [Connections](#cloud-native-gateway) page.
 
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable. Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -47,49 +86,11 @@ if err != nil {
 > [!TIP]
 > You don’t need to include the address of every node in the cluster. The client fetches the full address list from the first node it is able to contact.
 
-## [](#connection-strings)Connection Strings
+### [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
 
-A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list of parameters.
+Opening resources is asynchronous. That is, the call to `cluster.Bucket` or `gocb.Connect` will complete instantly, and opening that resource will continue in the background.
 
-The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the name and value, with an ampersand (`&`) between each pair. Just as in a URI, the first parameter is prefixed by a question mark (`?`).
-
-Simple connection string with one seed node
-
-127.0.0.1
-
-Connection string with two seed nodes
-
-nodeA.example.com,nodeB.example.com
-
-Connection string with two parameters
-
-127.0.0.1?&kv_timeout=2500&query_timeout=60000
-
-The full list of recognized parameters is documented in the client settings reference.
-
-A connection string may optionally be prefixed by either `"couchbase://"` or `"couchbases://"`. This can be used to control whether the SDK connects using encrypted connections or unencrypted connections.
-
-## [](#waiting-for-bootstrap-completion)Waiting for Bootstrap Completion
-
-Depending on the environment and network latency, bootstrapping the SDK fully might take a little longer than the default key-value timeout of 2.5 seconds. This means that whilst bootstrap is occurring any operations that you make might timeout. To prevent those early timeouts from happening, you can use the `WaitUntilReady` method which will return a timeout error if bootstrap isn’t completed in the specified time. Note that `WaitUntilReady` does not actually retry connecting, the retry is rechecking the connection state. If you are working at the _Cluster_ level, then add to the `cluster()` in the [earlier example](#connecting-to-a-cluster):
-
-```golang
-opts := gocb.ClusterOptions{
-	Username: "Administrator",
-	Password: "password",
-}
-cluster, err := gocb.Connect("couchbase://10.112.193.101", opts)
-if err != nil {
-	panic(err)
-}
-
-err = cluster.WaitUntilReady(5*time.Second, nil)
-if err != nil {
-	panic(err)
-}
-```
-
-If you are working at the _Bucket_ level, then the [Bucket-level WaitUntilReady](https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Bucket.WaitUntilReady) does the same as the Cluster-level version.
+You can force waiting for the resource to be opened with a call to `WaitUntilReady`, which is available on both the `Cluster` and `Bucket`. Here is an example of using it on the bucket:
 
 ```golang
 opts := gocb.ClusterOptions{
@@ -109,58 +110,53 @@ if err != nil {
 }
 ```
 
-Other timeout issues may occur when using the SDK located geographically separately from the Couchbase Server cluster — this is [not recommended](../project-docs/compatibility.md#network-requirements).
+If not present, then the first Key Value (KV) operation on the bucket will wait for it to be ready. Any issues opening that bucket (for instance, if it does not exist), will result in an error being raised from that data operation.
+
+Other timeout issues may occur when using the SDK located geographically separately from the Couchbase Server cluster — this is [not recommended in production deployments](../project-docs/compatibility.md#network-requirements), but often occurs during development. See the [Cloud section](#working-in-the-cloud) below for some suggestions of settings adjustments.
+
+### [](#connection-strings)Connection Strings
+
+A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list of parameters.
+
+The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the name and value, with an ampersand (`&`) between each pair. Just as in a URI, the first parameter is prefixed by a question mark (`?`).
+
+Simple connection string with one seed node
+
+127.0.0.1
+
+Connection string with two seed nodes
+
+nodeA.example.com,nodeB.example.com
+
+Connection string with two parameters
+
+127.0.0.1?io.networkResolution=external&timeout.kvTimeout=10s
+
+The full list of recognized parameters is documented in the client settings reference.
 
 ## [](#connection-lifecycle)Connection Lifecycle
 
-All high-level objects in the Go SDK are designed to be safe for concurrent use by multiple goroutines. You will get the best performance by using only a single Cluster object per cluster, and as few `Bucket`, `Scope` and `Collection` as is reasonable for your application.
+All high-level objects in the Go SDK are designed to be safe for concurrent use by multiple goroutines. You will get the best performance by using only a single Cluster object per cluster, and as few `Bucket`, `Scope`, and `Collection` as is reasonable for your application.
 
 We recommend creating a single `Cluster` instance when your application starts up, and sharing this instance throughout your application. If you know at startup time which buckets, scopes, and collections your application will use, we recommend obtaining them from the `Cluster` at startup time and sharing those instances throughout your application as well.
 
 Before your application stops, gracefully shut down the client by calling the `Close()` method of each `Cluster` you created.
 
-## [](#alternate-addresses)Alternate Addresses and Custom Ports
-
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NATd environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
-
-On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5\. A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
-
-On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports as part of your connection string.
-
-```golang
-opts := gocb.ClusterOptions{
-	Username: "Administrator",
-	Password: "password",
-}
-cluster, err := gocb.Connect("couchbase://192.168.56.101:1234,192.168.56.102:5678", opts)
-if err != nil {
-	panic(err)
-}
-```
-
-> [!TIP]
-> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
-
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `network_type` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
-
-> [!NOTE]
-> Any TLS certificates must be set up at the point where the connections are being made.
-
 ## [](#ssl)Secure Connections
 
-Couchbase Server Enterprise Edition and Couchbase Capella support full encryption of client-side traffic using Transport Layer Security (TLS). That includes key-value type operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
+Both Couchbase Capella, and the [Enterprise Edition](../../../server/current/introduction/editions.md#enterprise-edition) of self-managed Couchbase Server, support full encryption of client-side traffic using Transport Layer Security (TLS). That includes data (key-value type) operations, queries, and configuration communication. Make sure you have the Enterprise Edition of Couchbase Server, or a Couchbase Capella account, before proceeding with configuring encryption on the client side.
 
 * Couchbase Capella
-* Couchbase Server
+* Self-Managed Couchbase Server
 
 The Go SDK bundles Capella’s standard root certificate by default. This means you don’t need any additional configuration to enable TLS — simply use `couchbases://` in your connection string.
 
 > [!NOTE]
 > Capella’s root certificate is **not** signed by a well known CA (Certificate Authority). However, as the certificate is bundled with the SDK, it is trusted by default.
 
-As of SDK 2.6, if you connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `SecurityConfig` settings.
+You connect to a Couchbase Server cluster with a root certificate issued by a trusted CA (Certificate Authority), you no longer need to configure this in the `securityConfig` settings.
 
-The cluster’s root certificate just needs to be issued by a CA whose certificate is in the system store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
+The cluster’s root certificate just needs to be issued by a CA whose certificate is in the JVM’s trust store. This includes well known CAs (e.g., GoDaddy, Verisign, etc…​), plus any other CA certificates that you wish to add.
 
 You can still provide a certificate explicitly if necessary:
 
@@ -169,7 +165,7 @@ You can still provide a certificate explicitly if necessary:
 
 It is important to make sure you are transferring the certificate in an encrypted manner from the server to the client side, so either copy it through SSH or through a similar secure mechanism.
 
-If you are running on `localhost` and just want to enable TLS for a development machine, just copying and pasting it suffices — _so long as you use `127.0.0.1` rather than `localhost` in the connection string_. This is because the certificate will not match the name _localhost_. Setting `TLSSkipVerify` is a workaround if you need to use `couchbases://localhost`.
+If you are running on `localhost` and just want to enable TLS for a development machine, just copying and pasting it suffices — _so long as you use `127.0.0.1` rather than `localhost` in the connection string_. This is because the certificate will not match the name _localhost_.
 
 Navigate in the admin UI to **Settings** **Cluster** and copy the input box of the TLS certificate into a file on your machine (which we will refer to as `cluster.cert`). It looks similar to this:
 
@@ -208,6 +204,8 @@ if err != nil {
 }
 ```
 
+Then use this custom `ClusterEnvironment` when opening the connection to the cluster. See [\[cluster-environment\]](#cluster-environment) for an example of creating a `Cluster` with a custom environment.
+
 If you want to verify it’s actually working, you can use a tool like `tcpdump`. For example, an unencrypted upsert request looks like this (using `sudo tcpdump -i lo0 -A -s 0 port 11210`):
 
 E..e..@.@.............+......q{...#..Y.....
@@ -219,29 +217,34 @@ E.....@.@.............+....Z.'yZ..#........
 ..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.	...W.....U..
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
 
-## [](#cloud-native-gateway)Cloud Native Gateway
+The SDK includes the certificate for Capella. If you are working with a self-managed Couchbase cluster, see [Certificate Authentication](sdk-authentication.md#certificate-authentication).
 
-Couchbase’s next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+## [](#alternate-addresses-and-custom-ports)Alternate Addresses and Custom Ports
 
-The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT’d environment like Docker or Kubernetes, a client running outside that environment may need additional information in order to connect the cluster. Both the client and server require special configuration in this case.
 
-### [](#limitations)Limitations
+On the server side, each server node must be configured to advertise its external address as well as any custom port mapping. This is done with the [setting-alternate-address CLI command](../../../server/current/cli/cbcli/couchbase-cli-setting-alternate-address.md). A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
 
-The protostellar protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.0@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+On the client side, the externally visible ports must be used when connecting. If the external ports are not the default, you can specify custom ports as part of your connection string.
 
-The following are not currently implemented over the `couchbase2://` protocol:
+```golang
+opts := gocb.ClusterOptions{
+	Username: "Administrator",
+	Password: "password",
+}
+cluster, err := gocb.Connect("couchbase://192.168.56.101:1234,192.168.56.102:5678", opts)
+if err != nil {
+	panic(err)
+}
+```
 
-* Authentication by client certificate.
-* Multi-document ACID transactions.
-* Analytics service.
-* Health Check.
+> [!TIP]
+> In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service. A custom manager port may be specified regardless of which services are running on the node.
 
-There are some different behaviors seen with this protocol:
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses. If the detection heuristic fails in your environment, you can override it by setting the `io.networkResolution` client setting to `default` if the client and server are on the same network, or `external` if they’re on different networks.
 
-* Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
-* The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
-* Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
-* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+> [!NOTE]
+> Any TLS certificates must be set up at the point where the connections are being made.
 
 ## [](#using-dns-srv-records)Using DNS SRV records
 
@@ -293,12 +296,51 @@ if err != nil {
 
 If the DNS SRV records could not be loaded properly you’ll get the exception logged and the given host name will be used as a A record lookup.
 
-Also, if you pass in more than one node, DNS SRV bootstrap will not be attempted.
+WARNING: DNS SRV lookup failed, proceeding with normal bootstrap.
+javax.naming.NameNotFoundException: DNS name not found [response code 3];
+   remaining name '_couchbase._tcp.example.com'
+	at com.sun.jndi.dns.DnsClient.checkResponseCode(DnsClient.java:651)
+	at com.sun.jndi.dns.DnsClient.isMatchResponse(DnsClient.java:569)
 
-For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](#cloud:ROOT:index.adoc) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
+
+INFO: DNS SRV enabled, but less or more than one seed node given.
+Proceeding with normal bootstrap.
+
+## [](#cloud-native-gateway)Cloud Native Gateway
+
+Couchbase’s next generation connection protocol, introduced in Go SDK 2.7 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), is enabled by changing the connection string to `couchbase2://` — but there are a few differences to be aware of, described [below](#limitations).
+
+The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+
+### [](#limitations)Limitations
+
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](sqlpp-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+
+The following are not currently implemented over the `couchbase2://` protocol:
+
+* Authentication by client certificate.
+* Multi-document ACID transactions.
+* Analytics service.
+* Health Check.
+
+There are some different behaviors seen with this protocol:
+
+* Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
+* The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
+* Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+
+## [](#working-in-the-cloud)Working in the Cloud
+
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
 
 ### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
 
 Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
+
+## [](#next-steps)Next Steps
+
+* [Certificate Authentication](#secure-connections.adoc)

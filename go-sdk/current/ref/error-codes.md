@@ -2,8 +2,8 @@
 title: Error Messages
 description: The standardized error codes returned by the Couchbase Go SDK, from
   cloud connection to sub-document.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/ref/pages/error-codes.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:ref:error-codes.adoc[]
 ---
 
@@ -407,5 +407,5 @@ Failed to connect. dial tcp: lookup 8676842d-4e8b-4c5b-a44f-e0886f8c0bc1.dp.clou
 
 * Our practical look at [error handling with the SDK](../howtos/error-handling.md).
 * [Diagnostics](../howtos/health-check.md#diagnostics) with Health Check.
-* [Discussion document](../concept-docs/errors.md) on handling exceptions.
+* [Discussion document](../concept-docs/best-practices.md) on handling exceptions.
 * Further reference material in the [API Guide](https://pkg.go.dev/github.com/couchbase/gocb/v2).

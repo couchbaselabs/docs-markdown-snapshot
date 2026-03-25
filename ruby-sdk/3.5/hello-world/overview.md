@@ -1,7 +1,7 @@
 ---
 title: Couchbase Ruby SDK 3.5
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/hello-world/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:hello-world:overview.adoc[]
 ---
 
@@ -79,7 +79,7 @@ Reference
 * [Client Settings](../ref/client-settings.md)
 * [Error Messages](../ref/error-codes.md)
 * [Glossary](../ref/glossary.md)
-* [ref:travel-app-data-model.adoc](../ref/travel-app-data-model.md)
+* [Travel Sample Data Model](../ref/travel-app-data-model.md)
 
 Project Docs
 

@@ -2,8 +2,8 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -89,6 +89,15 @@ Queries can also be combined together. A conjunction query contains multiple chi
 		panic(err)
 	}
 ```
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#working-with-results)Working with Results
 

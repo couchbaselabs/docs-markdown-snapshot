@@ -4,7 +4,7 @@ description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -60,7 +60,18 @@ The current and previous two releases of OS X. At time of writing (March 2024): 
 
 AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04+ (from SDK 3.4).
 
-Unresolved include directive in modules/project-docs/pages/compatibility.adoc - include::7.5@sdk:shared:partial$network-requirements.adoc\[\]
+### [](#network-requirements)Network Requirements
+
+Couchbase SDKs are developed to be run in an environment with local area network (LAN) like throughput and latencies. While there is no technical issue that prevents the use across a wide area network (WAN), SDKs have certain thresholds around timeouts and behaviors to recover that will not be the same once the higher latency and possible bandwidth constraints and congestion of a WAN is introduced. Couchbase tests for correctness under LAN like conditions. For this reason, only LAN-like network environments are officially supported.
+
+Couchbase does document, for purposes of convenience when developing and performing basic operational work, what may need to be tuned when network throughputs and latencies are higher. If you encounter issues, even with these tune-ables, you should attempt the same workload from a supported, LAN-like environment.
+
+#### [](#serverless-environments)Serverless Environments
+
+SDK API 3.4 introduced better resilience in handling errors that may occur when running your application in serverless environments, in particular when processes are frozen or thawed, and a rebalance is required. This means official support for AWS Lambda, Azure Functions, and GCP Functions.
+
+> [!NOTE]
+> When **DNS SRV** records are used to connect to the SDK it is possible for the underlying addresses to change (i.e. the cluster could move). The SDK will detect this and react accordingly so that your application can continue to work correctly.
 
 ## [](#couchbase-server-compatibility)Couchbase Server Compatibility
 
@@ -86,7 +97,7 @@ Note the [End of Life dates](https://www.couchbase.com/support-policy) for Couch
 
 The Couchbase Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the SDK includes the Capella client certificate ready installed.
 
-Unresolved include directive in modules/project-docs/pages/compatibility.adoc - include::7.5@sdk:shared:partial$capella.adoc\[\]
+Note, Capella is offered as a fully provisioned service, so the underlying version of Couchbase Server changes over time. For this reason, compatibility information between Capella and the SDK is available [on the Capella compatibility page](../../../cloud/reference/sdk-compatibility.md).
 
 ### [](#couchbase-new-feature-availability-matrix)Couchbase New Feature Availability Matrix
 
@@ -144,8 +155,21 @@ __SDK API Versions__
 
 ## [](#sdk-api-stability)SDK API Stability
 
-Unresolved include directive in modules/project-docs/pages/compatibility.adoc - include::7.5@sdk:shared:partial$interface-stability-pars.adoc\[\]
+Couchbase SDKs indicate the stability of an API through documentation. Since there are different meanings when developers mention stability, we mean **interface stability**: how likely the interface is to change or be removed entirely. A stable interface is one that is guaranteed not to change between versions, meaning that you may use an API of a given SDK version and be assured that the given API will retain the same parameters and behavior in subsequent versions. An unstable interface is one which may appear to work or behave in a specific way within a given SDK version, but may change in its behavior or arguments in future SDK versions, causing odd application behavior or compiler/API usage errors. **Implementation stability** is implied to be more reliable at higher levels, but all are tested to the level that is appropriate for their stability.
+
+Couchbase uses three interface stability classifiers. You may find these classifiers appended as annotations or comments within documentation for each API:
+
+* **Committed**: This stability level is used to indicate the most stable interfaces that are guaranteed to be supported and remain stable between SDK versions. This is the default — unless otherwise stated in the documentation, each API has **Committed** status.
+* **Uncommitted**: This level is used to indicate APIs that are _unlikely_ to change, but _may_ still change as final consensus on their behavior has not yet been reached. _Uncommitted_ APIs usually end up becoming stable APIs.
+* **Volatile**: This level is used to indicate experimental APIs that are still in flux and may likely be changed. It may also be used to indicate inherently private APIs that may be exposed, but "YMMV" (your mileage may vary) principles apply. _Volatile_ APIs typically end up being promoted to _Uncommitted_ after undergoing some modifications.
+
+APIs that are marked as _Committed_ have a stable implementation. _Uncommitted_ and _Volatile_ APIs should be stable within the bounds of any known and often documented issues, but Couchbase has not made a commitment to these APIs and may not respond to reported defects with the same priority.
+
+Additionally, take note of the following interface labels:
+
+* **Deprecated**: Any API marked deprecated may be removed in the next major version released. Couchbase recommends migrating from the deprecated API to the replacement as soon as possible. In rare instances, deprecated API may be rendered non-functional in a dot-minor release when the API cannot continue to be supported.
+* **Internal**: This level is used to indicate you should not rely on this API as it is not intended for use outside the module, even to other Couchbase components.
 
 ### [](#older-sdk-versions)Older SDK Versions
 
-Unresolved include directive in modules/project-docs/pages/compatibility.adoc - include::7.5@sdk:shared:partial$archive.adoc\[\]
+Documentation on older, unsupported versions of the SDK — that have reached end-of-life — can be found in the [archive](https://docs-archive.couchbase.com/home/index.html).

@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -26,13 +26,14 @@ The Couchbase .NET SDK is compatible with [.NET Standard](https://docs.microsoft
 Couchbase strongly recommends using the [latest LTS version of .NET that’s officially supported](https://versionsof.net/) by both Microsoft and Couchbase. Other .NET implementations may work, but aren’t tested, and are outside the scope of technical support.
 
 __Recommended .NET Versions per SDK__
-|                                           | SDK 3.5, 3.6 | SDK 3.7 | SDK 3.8 |
-| ----------------------------------------- | ------------ | ------- | ------- |
-| .NET 6.0 (Long-Term Support)              | **✔**        | **✖**   | **✖**   |
-| .NET 7.0                                  | **✖**        | **✖**   | **✖**   |
-| .NET 8.0 (Recommended, Long-Term Support) | **✔**        | **✔**   | **✔**   |
-| .NET 9.0                                  | **✖**        | **✖**   | **✖**   |
-| .NET Framework 4.6.2+                     | **✔**        | **✔**   | **✔**   |
+|                                            | SDK 3.5, 3.6 | SDK 3.7 | SDK 3.8 | SDK 3.9 |
+| ------------------------------------------ | ------------ | ------- | ------- | ------- |
+| .NET 6.0 (Long-Term Support)               | **✔**        | **✖**   | **✖**   | **✖**   |
+| .NET 7.0                                   | **✖**        | **✖**   | **✖**   | **✖**   |
+| .NET 8.0                                   | **✔**        | **✔**   | **✔**   | **✔**   |
+| .NET 9.0                                   | **✖**        | **✖**   | **✖**   | **✖**   |
+| .NET 10.0 (Recommended, Long-Term Support) | **✖**        | **✖**   | **✖**   | **✔**   |
+| .NET Framework 4.6.2+                      | **✔**        | **✔**   | **✔**   | **✔**   |
 
 ### [](#os-compatibility)OS Compatibility
 
@@ -91,11 +92,11 @@ The matrix below denotes the version of Couchbase Server, the version of the Sca
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                      | 3.4     | 3.5   | 3.6 - 3.7 | 3.8   |
-| -------------------- | ------- | ----- | --------- | ----- |
-| **Server 7.0 - 7.2** | **✔**   | **✔** | **✔**     | **✔** |
-| **Server 7.6**       | **✔** ① | **✔** | **✔**     | **✔** |
-| **Server 8.0**       | **◎** ① | **◎** | **✔**     | **✔** |
+|                      | 3.4     | 3.5   | 3.6 - 3.7 | 3.8 - 3.9 |
+| -------------------- | ------- | ----- | --------- | --------- |
+| **Server 7.0 - 7.2** | **✔**   | **✔** | **✔**     | **✔**     |
+| **Server 7.6**       | **✔** ① | **✔** | **✔**     | **✔**     |
+| **Server 8.0**       | **◎** ① | **◎** | **✔**     | **✔**     |
 
 | **1** | If you are on SDK versions 3.4.11 - 3.4.15, we strongly encourage you to upgrade to .NET SDK v3.5.1+. While these versions will continue be compatible and supported with server 7.6.0+, you may encounter timeout exceptions during rebalances under KV high workload. 3.6.1+ is recommended for Server 7.6.0+ — more information is on the [Release Notes page](sdk-release-notes.md). |
 | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,30 +125,32 @@ __Couchbase Server and SDK Supported Version Matrix__
 
 ### [](#api-version)API Version
 
-This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __SDK API Versions__
-|                                                                    | API 3.3       | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      |
-| ------------------------------------------------------------------ | ------------- | --------- | ------- | ------- | ------- | ------------ |
-| [.NET](../hello-world/overview.md)                                 | 3.3           | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.0 - 3.3.2 | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-            | \-        | \-      | 1.0     | 1.1     | 1.2          |
-| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.5           | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.3           | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.0           | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.1           | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.0           | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          |
-| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.0           | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.3           | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-            | \-        | \-      | \-      | \-      | 1.0          |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.3           | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9 |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ------- |
+| [.NET](../hello-world/overview.md)                                 | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9     |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②   |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3     |
+| [Go](../../../go-sdk/current/hello-world/overview.md)              | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12    |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11    |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11    |
+| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7     |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5     |
+| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6     |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8     |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0     |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11    |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
+
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Adds Amazon Graviton 3 support. Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 

@@ -1,0 +1,35 @@
+---
+title: Configure a Non-Root Install
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.6/modules/ROOT/pages/howto-non-root-install.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.6@operator::howto-non-root-install.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operator/2.6/howto-non-root-install.html)
+
+# Configure a Non-Root Install
+
+> Prevent Couchbase Server containers from running as root. 
+
+When using Kubernetes all pods are run as root by default. This is a security concern for many enterprises, so they enforce pods be run as a non-root user. By default, Couchbase server pods will change their user to `couchbase` (UID 1000), however performing a `kubectl exec` into a pod still runs as root. This how-to shows how to run as a non-root user in all circumstances.
+
+> [!NOTE]
+> Red Hat OpenShift users should already have mandatory user randomization, so can ignore this guide.
+
+## [](#couchbase-cluster-configuration)Couchbase Cluster Configuration
+
+Non-root Couchbase Server installs are configured as follows:
+
+```yaml
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+spec:
+  securityContext:
+    runAsNonRoot: false (1)
+    runAsUser: 1000 (2)
+```
+
+| **1** | spec.securityContext.runAsNonRoot is not necessary to function, however illustrates that this field **must** be false. The Couchbase Server container image will be validated by kubelet to ensure it runs as a non-root user account when this is set to true. As the container doesn’t run as a non-root account the validation will fail. |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | spec.securityContext.runAsUser is required, and will execute all processes as this user. The value must be 1000 as this maps to the couchbase user within the container image.                                                                                                                                                               |

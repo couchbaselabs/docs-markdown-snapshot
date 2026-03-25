@@ -1,8 +1,8 @@
 ---
 title: Collections &amp; Scopes
 description: Fully supported in Couchbase Server 7.x
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/collections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/collections.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:collections.adoc[]
 ---
 
@@ -22,13 +22,13 @@ Information on _Collections_ can be found in the [server docs](#7.1@server:learn
 Access a non-default collection, in the default scope, with:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/collections.adoc - include::example$CollectionsExample.java[]
+collection = bucket.collection("bookings"); // in default scope
 ```
 
 And for a non-default scope:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/collections.adoc - include::example$CollectionsExample.java[]
+collection = bucket.scope("tenant_agent_00").collection("bookings");
 ```
 
 ## [](#further-reading)Further Reading

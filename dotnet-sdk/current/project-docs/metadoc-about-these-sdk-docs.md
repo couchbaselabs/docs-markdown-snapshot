@@ -2,8 +2,8 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:dotnet-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
-Welcome to the [.NET SDK 3.8](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+Welcome to the [.NET SDK 3.9](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 

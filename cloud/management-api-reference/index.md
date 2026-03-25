@@ -1,7 +1,7 @@
 ---
 title: Management API Reference
-editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/AV-120497-link-service-desc/docs/public/modules/management-api-reference/pages/index.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbasecloud/couchbase-cloud/edit/main/docs/public/modules/management-api-reference/pages/index.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:management-api-reference:index.adoc[]
 ---
 
@@ -86,6 +86,14 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * postInitiate Audit Log Export
     * getList Audit Log Export Jobs
     * getGet Audit Log Export Job
+  * App Services Log Streaming
+    * postResume App Service Log Streaming
+    * delPause App Service Log Streaming
+    * postConfigure App Service Log Streaming
+    * getGet App Service Log Streaming Configuration and State
+    * delDisable App Service Log Streaming
+    * putUpdate App Endpoint Log Streaming Config
+    * getGet App Endpoint Log Streaming Config
   * App Services Private Endpoints
     * postEnable App Service Private Endpoints
     * getGet App Service Private Endpoints State
@@ -158,13 +166,20 @@ link: xref:cloud:management-api-reference:index.adoc[]
   * CMEK
     * getGet Cloud Accounts
     * getGet Azure Application ID
+    * getGet Azure Application ID For Project
     * postCreate Key Metadata
     * getList Key Metadata
+    * postCreate Azure Key Metadata For Project
+    * getList Azure Key Metadata For Project
     * getList Key Rotation History
     * getGet Key Metadata
     * putRotate Key
     * delDelete Key Metadata
+    * getGet Azure Key Metadata For Project
+    * putRotate Azure Key For Project
+    * delDelete Azure Key Metadata For Project
     * putEnable CMEK For Cloud Services Provider
+    * putEnable Azure CMEK For Project
     * postAssociate Key with Cluster
     * postUnassociate Key from Cluster
   * Data API
@@ -212,6 +227,8 @@ link: xref:cloud:management-api-reference:index.adoc[]
     * getGet Cluster On/Off schedule
     * putUpdate Cluster On/Off schedule
     * delDelete Cluster On/Off schedule
+    * delPause Cluster On/Off Schedule
+    * postUnpause Cluster On/Off Schedule
   * Organizations
     * getGet Organization
     * putUpdate Organization Configuration
@@ -219,6 +236,7 @@ link: xref:cloud:management-api-reference:index.adoc[]
   * Private Endpoint Service
     * getGet Private Endpoint Service Status
     * postEnable Private Endpoint Service
+    * putUpdate Private Endpoint Service Configuration
     * delDisable Private Endpoint Service
     * getList Private Endpoints
     * postGet Private Endpoint CLI Command required to setup private endpoint for specific CSP
@@ -2127,7 +2145,7 @@ application/json
 Copy
 
 `{
-* "secret": "GaC4FQLCoUqoKUMBvl6BgRK1Ivqu5yF8OkDBhnP%#CH%S4T@bTVUdP#rY#VSicbx"
+* "secret": "<YOUR_SECRET_KEY_HERE>"
 }`
 
 ### Response samples 
@@ -2145,7 +2163,8 @@ application/json
 Copy
 
 `{
-* "secretKey": "GaC4FQLCoUqoKUMBvl6BgRK1Ivqu5yF8OkDBhnP%#CH%S4T@bTVUdP#rY#VSicbx"
+* "secretKey": "<YOUR_SECRET_KEY_HERE>",
+* "token": "<YOUR_TOKEN_HERE>"
 }`
 
 ## [](#tag/App-Endpoints)App Endpoints
@@ -7578,6 +7597,666 @@ Copy
 * "version": 3
 }`
 
+## [](#tag/App-Services-Log-Streaming)App Services Log Streaming
+
+Log Streaming provides a mechanism for real-time streaming of App Services operational logs to third-party observability platforms or self-hosted HTTP logs collectors. This is a crucial tool to gain instant insights into application behavior, enabling rapid issue detection and resolution to enhance application reliability, performance, and security.
+
+## [](#tag/App-Services-Log-Streaming/operation/resumeAppServiceLogStreaming)Resume App Service Log Streaming 
+
+Re-enables Log Streaming for an App Service that was previously paused. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully resumed log streaming for the app service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/pauseAppServiceLogStreaming)Pause App Service Log Streaming 
+
+Temporarily disables Log Streaming for an App Service. Log Streaming needs to be previously configured for the App Service before it can be paused or resumed.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Successfully paused log streaming for the app service.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/postAppServiceLogStreaming)Configure App Service Log Streaming 
+
+Sets up log streaming for a specific App Service.
+
+Ensure you have provided collector credentials if you wish to begin streaming; log streaming cannot be enabled without credentials. Refer to schema below to see required fields for your log collection provider. Supported providers include Datadog, Sumo Logic, Grafana Loki, Elasticsearch (versions 8 and newer only), generic HTTP, Splunk, and Dynatrace.
+
+Log streaming can only be configured while the config state is either enabled, paused, or disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+##### Request Body schema: application/json
+
+| outputTyperequired  | string Enum: "datadog" "generic\_http" "sumologic" "loki" "elastic" "splunk" "dynatrace" The log collector to have logs streamed to.                                                                              |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| credentialsrequired | datadog (object) or sumologic (object) or generic\_http (object) or elastic (object) or loki (object) or splunk (object) or dynatrace (object) The credentials to be used to authenticate with the log collector. |
+
+### Responses
+
+**202** 
+
+Successful configuration of log streaming
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "outputType": "datadog",
+* "credentials": {
+  * "apiKey": "apiKey",
+  * "url": "<https://http-intake.logs.datadoghq.eu>"  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/getAppServiceLogStreaming)Get App Service Log Streaming Configuration and State 
+
+Retrieves the configured output type, current config state, current streaming state of log streaming for a specific App Service.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**200** 
+
+Successful retrieval of log streaming configuration and state
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "outputType": "datadog",
+* "configState": "enabled",
+* "streamingState": "healthy"
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/deleteAppServiceLogStreaming)Disable App Service Log Streaming 
+
+Disables log streaming for a specific App Service.
+
+This will remove the log streaming configuration for the App Service. To enable log streaming again, you will need to provide the configuration details once more using the "Configure App Service Log Streaming" endpoint.
+
+Log streaming can only be disabled while the config state is either enabled or paused.
+
+It may take a few minutes for the log streaming to be fully disabled.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired   | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+
+### Responses
+
+**202** 
+
+Log streaming disabled
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/logStreaming
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/putAppEndpointLogStreamingConfig)Update App Endpoint Log Streaming Config 
+
+Updates the log streaming config for an app endpoint, which configures log levels and keys used to filter log messages.
+
+This app endpoint log streaming config can only be updated while the log streaming config state is either "paused" or "enabled".
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+ To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+##### Request Body schema: application/json
+
+| logLevelrequired | string Enum: "info" "warn" "error" Controls the verbosity of logs based on the specified log level                                                                          |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| logKeysrequired  | Array of stringsItems Enum: "Admin" "Access" "Auth" "Cache" "Changes" "CRUD" "HTTP" "HTTP+" "Import" "Javascript" "Query" "Sync" "SyncMsg" Filter logs to specific log keys |
+
+### Responses
+
+**204** 
+
+Successful update of the app endpoint log streaming configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "logLevel": "warn",
+* "logKeys": [
+  * "HTTP",
+  * "Import",
+  * "Sync"  
+]
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/App-Services-Log-Streaming/operation/getAppEndpointLogStreamingConfig)Get App Endpoint Log Streaming Config 
+
+Retrieves log streaming config for an app endpoint, which shows log levels and keys used to filter log messages.
+
+This app endpoint log streaming config can only be retrieved while the log streaming config state is either "paused" or "enabled".
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired  | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired       | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+| appServiceIdrequired    | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the appService.   |
+| appEndpointNamerequired | string Example: endpoint1The name of the App Endpoint.                                        |
+
+### Responses
+
+**200** 
+
+Successful retrieval of the app endpoint log streaming configuration
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource. This response can also indicate that the requested App Endpoint or bucket does not exist or the user does not have access to it.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+**503** 
+
+The server is currently unable to handle the request
+
+**504** 
+
+The server did not get a response in time from the upstream server in order to complete the request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/appservices/{appServiceId}/appEndpoints/{appEndpointName}/logStreaming
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 422
+* 429
+* 500
+* 503
+* 504
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "logLevel": "warn",
+* "logKeys": [
+  * "HTTP",
+  * "Import",
+  * "Sync"  
+]
+}`
+
 ## [](#tag/App-Services-Private-Endpoints)App Services Private Endpoints
 
 App Services Private Endpoints enables you to configure a secure private network connection between the Virtual Private Cloud (VPC) hosting your applications and the VPC of your Couchbase Capella App Services. Note: This is currently only available for AWS.
@@ -9993,7 +10672,12 @@ Copy
       },
     * "priority": 0  
   }  
-]
+],
+* "clusterStats": {
+  * "freeMemoryInMb": 640,
+  * "totalMemoryInMb": 1040,
+  * "maxReplicas": 2  
+}
 }`
 
 ## [](#tag/Buckets-Scopes-and-Collections/operation/getBucketByID)Get Bucket 
@@ -11360,6 +12044,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -11397,6 +12085,7 @@ Copy
 * 202
 * 403
 * 404
+* 409
 * 429
 * 500
 
@@ -12092,6 +12781,10 @@ The client does not have the necessary permissions to access this resource.
 
 The requested resource was not found.
 
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
 **429** 
 
 Returned when the client exceeds the rate limit for the given APIKey.
@@ -12129,6 +12822,7 @@ Copy
 * 400
 * 403
 * 404
+* 409
 * 429
 * 500
 
@@ -13792,6 +14486,80 @@ Copy
 * "id": "ffffffff-aaaa-1414-eeee-000000000000"
 }`
 
+## [](#tag/CMEK/operation/getAzureApplicationIDForProject)Get Azure Application ID For Project 
+
+Retrieves the application ID so that the customer can install the service principal in their Azure tenant for a specific project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Organization Member
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+### Responses
+
+**200** 
+
+Successfully retrieved the Azure application ID for a project.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/cmekAzureApplication
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmekAzureApplication
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
 ## [](#tag/CMEK/operation/postCMEKMetadata)Create Key Metadata 
 
 Initializes the metadata record for a customer-managed encryption key stored in AWS, GCP or Azure, linking it to the organization.
@@ -13970,6 +14738,222 @@ Copy
     * "description": "Description of the cluster",
     * "config": {
       * "arn": "arn:aws:kms:us-west-2:123456789012:key/abcd1234-a123-456a-a12b-a123b4cd56ef"  
+      },
+    * "audit": {
+      * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "createdAt": "2021-09-01T12:34:56Z",
+      * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+      * "modifiedAt": "2021-09-01T12:34:56Z",
+      * "version": 1  
+      }  
+  }  
+],
+* "cursor": {
+  * "pages": {
+    * "page": 2,
+    * "next": 3,
+    * "previous": 1,
+    * "last": 10,
+    * "perPage": 10,
+    * "totalItems": 10  
+  },
+  * "hrefs": {
+    * "first": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "last": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "previous": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>",
+    * "next": "<https://cloud.couchbase.com/v4/users?page=1&perPage=10>"  
+  }  
+}
+}`
+
+## [](#tag/CMEK/operation/postCMEKAzureMetadataForProject)Create Azure Key Metadata For Project 
+
+Initializes the metadata record for a customer-managed encryption key stored for a project. This only applies to Azure.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### Request Body schema: application/json
+
+| namerequired   | string <= 256 characters Name of the key.         |
+| -------------- | ------------------------------------------------- |
+| description    | string <= 1024 characters Description of the key. |
+| configrequired | object (AzureConfig)                              |
+
+### Responses
+
+**201** 
+
+Successfully created the encryption key metadata.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/cmek
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "name": "Test Key",
+* "description": "Description of the Key",
+* "config": {
+  * "keyLocation": "<https://my-vault.vault.azure.net/keys/my-key/846dec161545466586fd1f19849dd1ef>",
+  * "region": "eastus"  
+}
+}`
+
+### Response samples 
+
+* 201
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000"
+}`
+
+## [](#tag/CMEK/operation/getAzureKeyMetadataListForProject)List Azure Key Metadata For Project 
+
+Retrieves detailed metadata for all Azure customer-managed encryption keys associated with the project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### query Parameters
+
+| page          | integer Sets the page you would like to view.                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| perPage       | integer Sets the number of results you would like to have on each page.                                                               |
+| sortBy        | Array of strings Example: sortBy=nameSets the order of how you would like to sort the results and the key you would like to order by. |
+| sortDirection | string Enum: "asc" "desc" Example: sortDirection=ascThe order in which the items will be sorted.                                      |
+
+### Responses
+
+**200** 
+
+Successfully listed the detailed metadata for all Azure encryption keys associated with the project.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/cmek
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek
+
+### Response samples 
+
+* 200
+* 400
+* 403
+* 404
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "data": [
+  * {
+    * "id": "ffffffff-aaaa-1414-eeee-000000000000",
+    * "name": "Test Key",
+    * "description": "Description of the cluster",
+    * "config": {
+      * "keyLocation": "<https://my-vault.vault.azure.net/keys/my-key/846dec161545466586fd1f19849dd1ef>",
+      * "region": "eastus"  
       },
     * "audit": {
       * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
@@ -14344,6 +15328,276 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
+## [](#tag/CMEK/operation/getAzureKeyMetadataForProject)Get Azure Key Metadata For Project 
+
+Retrieves the full metadata details for a specific Azure customer-managed encryption key in a project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.     |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.          |
+| cmekIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the KMS Key metadata. |
+
+### Responses
+
+**200** 
+
+Successfully fetched the encryption key details based on its ID in a project.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+get/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+### Response samples 
+
+* 200
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "id": "ffffffff-aaaa-1414-eeee-000000000000",
+* "name": "Test Key",
+* "description": "Description of the cluster",
+* "config": {
+  * "keyLocation": "<https://my-vault.vault.azure.net/keys/my-key/846dec161545466586fd1f19849dd1ef>",
+  * "region": "eastus"  
+},
+* "audit": {
+  * "createdBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "createdAt": "2021-09-01T12:34:56Z",
+  * "modifiedBy": "ffffffff-aaaa-1414-eeee-000000000000",
+  * "modifiedAt": "2021-09-01T12:34:56Z",
+  * "version": 1  
+}
+}`
+
+## [](#tag/CMEK/operation/rotateAzureKeyMetadataForProject)Rotate Azure Key For Project 
+
+Initiates the process to rotate an Azure customer-managed encryption key in a project and update its associated metadata within the system.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+* Project Viewer
+* Database Data Reader/Writer
+* Database Data Reader
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.     |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.          |
+| cmekIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the KMS Key metadata. |
+
+##### Request Body schema: application/json
+
+| configrequired | object (AzureConfig) |
+| -------------- | -------------------- |
+
+### Responses
+
+**204** 
+
+Successfully submitted request to rotate the encryption key.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "config": {
+  * "keyLocation": "<https://my-vault.vault.azure.net/keys/my-key/846dec161545466586fd1f19849dd1ef>",
+  * "region": "eastus"  
+}
+}`
+
+### Response samples 
+
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/CMEK/operation/deleteAzureKeyMetadataForProject)Delete Azure Key Metadata For Project 
+
+Permanently removes the specified Azure customer-managed encryption key's metadata from the project.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization.     |
+| ---------------------- | ------------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.          |
+| cmekIdrequired         | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the KMS Key metadata. |
+
+### Responses
+
+**204** 
+
+Successfully deleted the specified encryption key's metadata by its ID in a project.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek/{cmekId}
+
+### Response samples 
+
+* 403
+* 404
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
 ## [](#tag/CMEK/operation/enableCMEK)Enable CMEK For Cloud Services Provider 
 
 Enables the customer-managed encryption keys feature for the specified cloud service provider within the organization.
@@ -14414,6 +15668,100 @@ Copy
 
 `{
 * "cloudProvider": "aws"
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/CMEK/operation/enableCMEKAzureProject)Enable Azure CMEK For Project 
+
+Enables the customer-managed encryption keys feature for Azure on a project.
+
+The customer-managed encryption keys feature must always be enabled for Azure before Azure keys can be created. This operation provisions a multi-tenant Azure Entra ID application for a project, which is required for Capella to access customer-managed encryption keys.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Owner
+* Project Manager
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+
+##### Request Body schema: application/json
+
+| cloudProviderrequired | string Value: "azure" Cloud provider for CMEK keys. |
+| --------------------- | --------------------------------------------------- |
+
+### Responses
+
+**204** 
+
+Successfully enabled the Azure CMEK feature for a project.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/cmek/providers
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/cmek/providers
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "cloudProvider": "azure"
 }`
 
 ### Response samples 
@@ -17363,7 +18711,12 @@ Copy
       },
     * "priority": 0  
   }  
-]
+],
+* "clusterStats": {
+  * "freeMemoryInMb": 640,
+  * "totalMemoryInMb": 1040,
+  * "maxReplicas": 2  
+}
 }`
 
 ## [](#tag/Free-Tier/operation/getFreeTierBucketByID)Get Free Tier Bucket 
@@ -18192,9 +19545,9 @@ _token_
 
 ##### Request Body schema: application/json
 
-| timezonerequired | string Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| timezonerequired | string (onOffTimezone) Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Responses
 
@@ -18396,6 +19749,7 @@ Copy
  Expand all  Collapse all 
 
 `{
+* "activationStatus": "active",
 * "timezone": "US/Pacific",
 * "days": [
   * {
@@ -18477,9 +19831,9 @@ _token_
 
 ##### Request Body schema: application/json
 
-| timezonerequired | string Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| timezonerequired | string (onOffTimezone) Enum: "Pacific/Midway" "US/Hawaii" "US/Alaska" "US/Pacific" "US/Mountain" "US/Central" "US/Eastern" "America/Puerto\_Rico" "Canada/Newfoundland" "America/Argentina/Buenos\_Aires" "Atlantic/Cape\_Verde" "Europe/London" "Europe/Amsterdam" "Europe/Athens" "Africa/Nairobi" "Asia/Tehran" "Indian/Mauritius" "Asia/Karachi" "Asia/Calcutta" "Asia/Dhaka" "Asia/Bangkok" "Asia/Hong\_Kong" "Asia/Tokyo" "Australia/North" "Australia/Sydney" "Pacific/Ponape" "Antarctica/South\_Pole" Timezone for the schedule |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| daysrequired     | Array of objects (Days)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Responses
 
@@ -18680,6 +20034,162 @@ Copy
 * "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
 }`
 
+## [](#tag/OnOff-Schedule/operation/pauseClusterOnOffSchedule)Pause Cluster On/Off Schedule 
+
+Temporarily suspends the cluster on/off schedule without deleting its configuration. While paused, the cluster will not automatically start or stop based on the defined schedule. You can resume the schedule at any time using the corresponding unpause endpoint.
+
+In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**204** 
+
+Successfully paused the cluster on/off schedule
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+delete/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/onOffSchedule/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/onOffSchedule/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
+## [](#tag/OnOff-Schedule/operation/unpauseClusterOnOffSchedule)Unpause Cluster On/Off Schedule 
+
+Unpause cluster on/off schedule
+
+ In order to access this endpoint, the provided API key must have at least one of the roles referenced below:
+
+* Organization Owner
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+### Responses
+
+**204** 
+
+Successfully unpaused the cluster on/off schedule
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**409** 
+
+Returned when there is a conflict with the current state of a resource.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/onOffSchedule/activationState
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/onOffSchedule/activationState
+
+### Response samples 
+
+* 403
+* 404
+* 409
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 403,
+* "code": 1002,
+* "message": "Access Denied.",
+* "hint": "Your access to the requested resource is denied. Please make sure you have the necessary permissions to access the resource."
+}`
+
 ## [](#tag/Organizations)Organizations
 
 Couchbase Capella uses an ordered hierarchy to help you keep all of your data organized and securely accessible. The entity at the top of the hierarchy is called an organization. Everything you do in Capella, whether it's creating a cluster or managing billing, happens within the scope of an organization.
@@ -18768,18 +20278,17 @@ Copy
 
 Updates an existing organization configuration. Use this endpoint to add, update, and delete network subdomains.
 
+Subdomains are not automatically available. You must contact Couchbase support to enable this feature. To open a Support ticket, see [Create a Support Ticket](https://docs.couchbase.com/cloud/support/manage-support.html#create-support-ticket).
+
 Subdomains:
 
 * Can have a maximum of 30 alphanumeric characters.
 * Must be a unique string and not already in use in another tenant or organization. Empty strings are allowed.
 * Only affect new clusters. You cannot update existing clusters to include a new subdomain.
-* Currently only supported for AWS clusters.
 
 In order to access this endpoint, the provided API key must have the following role:
 
 * Organization Owner
-
-Subdomains are not automatically available. You must contact Couchbase support to enable this feature.
 
 To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
 
@@ -18963,7 +20472,7 @@ Access your Capella cluster from your cloud provider's private network.
 
 Private endpoint service allows you to access your Capella cluster from your private network, using private endpoints.
 
-This endpoint determines if the endpoint service is enabled or disabled on your cluster.
+This endpoint determines if the endpoint service is enabled or disabled on your cluster, and shows which routes are configured to use private endpoints. The REST route (port 18091) is used by XDCR, so enabling it allows XDCR to use private endpoints. The `routes` field is only present when private endpoint service is enabled (`enabled: true`), showing the current state of each route (e.g., `xdcr: true` if enabled, `xdcr: false` if disabled). When private endpoint service is disabled (`enabled: false`), the `routes` field is not included in the response.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -19035,8 +20544,14 @@ application/json
 
 Copy
 
+ Expand all  Collapse all 
+
 `{
-* "enabled": true
+* "enabled": true,
+* "routes": {
+  * "xdcr": true,
+  * "metrics": false  
+}
 }`
 
 ## [](#tag/Private-Endpoint-Service/operation/enablePrivateEndpointService)Enable Private Endpoint Service 
@@ -19044,6 +20559,8 @@ Copy
 Enable private endpoint service on your cluster.
 
 Supporting infrastructure is deployed and it may take a few minutes for private endpoints to be available. After it's enabled, you can create private endpoint in your network. You can do this using the cloud provider's CLI. For an example, use the POST privateEndpointService/endpointCommand endpoint to get the command.
+
+You can optionally enable routes such as REST API (port 18091) to use private endpoints at the time of enablement. Enabling the REST route allows XDCR to use private endpoints since XDCR uses the REST API.
 
 In order to access this endpoint, the provided API key must have at least one of the following roles:
 
@@ -19063,6 +20580,11 @@ _token_
 | ---------------------- | --------------------------------------------------------------------------------------------- |
 | projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
 | clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| routes | object Routes configuration for private endpoints. Only present when private endpoint service is enabled (enabled: true), showing the current state of each route (true if enabled, false if disabled). |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 ### Responses
 
@@ -19101,6 +20623,135 @@ An unexpected error occurred in the server while processing this request.
 post/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService
 
 https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "routes": {
+  * "xdcr": true,
+  * "metrics": false  
+}
+}`
+
+### Response samples 
+
+* 400
+* 403
+* 404
+* 412
+* 422
+* 429
+* 500
+
+Content type
+
+application/json
+
+Copy
+
+`{
+* "httpStatusCode": 400,
+* "code": 1000,
+* "message": "The request was malformed or invalid.",
+* "hint": "The request was malformed or invalid."
+}`
+
+## [](#tag/Private-Endpoint-Service/operation/updatePrivateEndpointService)Update Private Endpoint Service Configuration 
+
+Update the configuration of routes to use private endpoints after private endpoint service has been enabled.
+
+This endpoint allows you to enable or disable private endpoint usage for routes. The REST route (port 18091) is used by XDCR, so enabling it allows XDCR to use private endpoints, while disabling it stops routing XDCR traffic via private endpoints. Setting a route to true routes traffic through private endpoints, while setting it to false stops routing that route's traffic via private endpoints.
+
+In order to access this endpoint, the provided API key must have at least one of the following roles:
+
+* Organization Owner
+* Project Manager
+* Project Owner
+
+To learn more, see [Organization, Project, and Database Access Overview](https://docs.couchbase.com/cloud/organizations/organization-projects-overview.html).
+
+##### Authorizations:
+
+_token_
+
+##### path Parameters
+
+| organizationIdrequired | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the organization. |
+| ---------------------- | --------------------------------------------------------------------------------------------- |
+| projectIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the project.      |
+| clusterIdrequired      | string <uuid\> Example: ffffffff-aaaa-1414-eeee-000000000000The GUID4 ID of the cluster.      |
+
+##### Request Body schema: application/json
+
+| routesrequired | object Routes configuration for private endpoints. Only present when private endpoint service is enabled (enabled: true), showing the current state of each route (true if enabled, false if disabled). |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+### Responses
+
+**202** 
+
+Successfully submitted request to update private endpoint service configuration.
+
+**400** 
+
+Returned when we are unable to decode the recevied payload.
+
+**403** 
+
+The client does not have the necessary permissions to access this resource.
+
+**404** 
+
+The requested resource was not found.
+
+**412** 
+
+Returned when there is a mismatch with the Etag version.
+
+**422** 
+
+Request validation error.
+
+**429** 
+
+Returned when the client exceeds the rate limit for the given APIKey.
+
+**500** 
+
+An unexpected error occurred in the server while processing this request.
+
+put/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService
+
+https://cloudapi.cloud.couchbase.com/v4/organizations/{organizationId}/projects/{projectId}/clusters/{clusterId}/privateEndpointService
+
+### Request samples 
+
+* Payload
+
+Content type
+
+application/json
+
+Copy
+
+ Expand all  Collapse all 
+
+`{
+* "routes": {
+  * "xdcr": true,
+  * "metrics": false  
+}
+}`
 
 ### Response samples 
 
@@ -21709,7 +23360,12 @@ Copy
       },
     * "priority": 0  
   }  
-]
+],
+* "clusterStats": {
+  * "freeMemoryInMb": 640,
+  * "totalMemoryInMb": 1040,
+  * "maxReplicas": 2  
+}
 }`
 
 ## [](#tag/Sample-Bucket/operation/getSampleBucketById)Get Sample Import Bucket 

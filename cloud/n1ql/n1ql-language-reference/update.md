@@ -2,7 +2,7 @@
 title: UPDATE
 description: UPDATE replaces a document that already exists with updated values.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/update.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/update.adoc[]
 ---
 
@@ -18,24 +18,27 @@ link: xref:cloud:n1ql:n1ql-language-reference/update.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-### [](#rbac-privileges)RBAC Privileges
+To execute this statement, your client must have necessary privileges on the keyspace. The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `SELECT` or `RETURNING` clause.
 
-The client executing the UPDATE statement must have the _Query Update_ privilege on the target keyspace. If the statement has any clauses that needs data read, such as SELECT clause, or RETURNING clause, then _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege for UPDATE                                                                      | Privilege for SELECT / RETURNING                                                                                                  |
+| --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                          | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause                         |
+| Advanced        | [Query Update](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |
 
 > [!NOTE]
-> A user with the _Data Writer_ privilege may set documents to expire. When the document expires, the data service deletes the document, even though the user may not have the _Query Delete_ privilege.
+> A user with the `Data Manage` privilege may set documents to expire. When the document expires, the Data Service deletes the document, even though the user may not have the `Query Delete` privilege.
 
 RBAC Examples 
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute the following statement, your client must have the _Query Update_ privilege on `airport`.
+To execute the following statement, your client must have the `Write` / `Query Update` privilege on `airport`.
 
 ```sqlpp
 UPDATE airport SET foo = 5;
 ```
 
-To execute the following statement, your client must have the _Query Update_ privilege on `airport` and _Query Select_ privilege on `` `beer-sample` ``.
+To execute the following statement, your client must have the `Write` / `Query Update` privilege on `airport` and `Read` / `Query Read` privilege on `` `beer-sample` ``.
 
 ```sqlpp
 UPDATE airport
@@ -43,7 +46,7 @@ SET foo = 9
 WHERE city IN (SELECT RAW city FROM `beer-sample` WHERE type = "brewery");
 ```
 
-To execute the following statement, your client must have the _Query Update_ and _Query Select_ privileges on `airport`.
+To execute the following statement, your client must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `airport`.
 
 ```sqlpp
 UPDATE airport

@@ -2,7 +2,7 @@
 title: Managing Connections
 description: This section describes how to connect the Ruby SDK to a Couchbase cluster.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -180,8 +180,6 @@ E.....@.@.............+....Z.'yZ..#........
 ..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.	...W.....U..
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
 
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::7.5@sdk:shared:partial$dnssrv-pars.adoc\[\]
-
 DNS SRV bootstrapping is enabled by default in the Ruby SDK. In order to make the SDK use the SRV records, you need to pass in the hostname from your records (here `example.com`):
 
 ```ruby
@@ -194,7 +192,15 @@ If the DNS SRV records could not be loaded properly you’ll get the message log
 
 [2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
 
-Unresolved include directive in modules/howtos/pages/managing-connections.adoc - include::7.5@sdk:shared:partial$managing-connections.adoc\[\]
+## [](#working-in-the-cloud)Working in the Cloud
+
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+
+We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](../../../cloud/get-started/connect.md#connecting-your-sdk-to-capella).
+
+### [](#troubleshooting-connections-to-cloud)Troubleshooting Connections to Cloud
+
+Some DNS caching providers (notably, home routers) can’t handle an SRV record that’s large — if you have DNS-SRV issues with such a set-up, reduce your DNS-SRV to only include three records. \[_For development only, not production._\]. Our [Troubleshooting Cloud Connections](troubleshooting-cloud-connections.md) page will help you to diagnose this and other problems — as well as introducing the SDK doctor tool.
 
 ## [](#further-reading)Further Reading
 

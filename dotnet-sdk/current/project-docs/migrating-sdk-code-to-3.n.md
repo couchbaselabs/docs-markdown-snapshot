@@ -2,8 +2,8 @@
 title: Migrating to SDK 3 API
 description: The 3.0 API breaks the existing 2.0 APIs in order to provide a
   number of improvements. Collections and Scopes are introduced.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -59,10 +59,10 @@ Now that you are familiar with the general theme of the migration, the next sect
 
 ## [](#installation-and-configuration)Installation and Configuration
 
-The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.8.0:
+The .NET SDK 3.x is available for download from the same resources as the previous generation 2.0 SDK. For example, to get version 3.9.0:
 
-* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.8.0`
-* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.8.0>
+* From NuGet (the most popular choice): `Install-Package CouchbaseNetClient -Version 3.9.0`
+* Or download a NuGet package directly from <https://www.nuget.org/packages/CouchbaseNetClient/3.9.0>
 * (Not officially supported) By cloning and building the source code directly on [github](https://github.com/couchbase/couchbase-net-client/tree/master)
 
 Please see the [Release Notes](sdk-release-notes.md) for up-to-date information.
@@ -73,7 +73,7 @@ Couchbase strongly recommends using the [latest LTS version of .NET that’s off
 
 ### [](#dependencies)Dependencies
 
-There are several dependency changes from SDK 2.x to 3.8.x. Use NuGet so that these dependencies will all be handled for you by the NuGet Package Manager tool in Visual Studio or Visual Studio Code. See the [Start Using](../hello-world/start-using-sdk.md) document for information on adding it via NuGet.
+There are several dependency changes from SDK 2.x to 3.9.x. Use NuGet so that these dependencies will all be handled for you by the NuGet Package Manager tool in Visual Studio or Visual Studio Code. See the [Start Using](../hello-world/start-using-sdk.md) document for information on adding it via NuGet.
 
 ### [](#configuring-the-environment)Configuring the Environment
 
@@ -146,49 +146,75 @@ At the end of this guide you’ll find a [reference](#configurations-options-ref
 
 ### [](#authentication)Authentication
 
-Since SDK 2 supports Couchbase Server clusters older than 5.0, it had to support both Role-Based access control as well as bucket-level passwords. The minimum cluster version supported by SDK 3 is Server 5.0, which means that only RBAC is supported. This is why you can set the username and password when directly connecting:
+Since SDK 2 supports Couchbase Server clusters older than 5.0, it had to support both Role-Based access control as well as bucket-level passwords. The minimum cluster version supported by SDK 3 is Server 5.0, which means that only RBAC is supported.
+
+#### [](#connecting-with-sdk-3-9-0-and-later)Connecting with SDK 3.9.0 and Later
+
+SDK 3.9.0 introduces explicit authenticator objects and a consolidated TLS settings API. The recommended approach is to use `WithPasswordAuthentication()` or `WithCertificateAuthentication()` instead of setting properties directly on `ClusterOptions`.
+
+**Password authentication:**
 
 ```csharp
-var cluster = await Cluster.ConnectAsync("couchbase://your-ip", "user", "pass");
+var options = new ClusterOptions()
+    .WithConnectionString("couchbases://your-ip")
+    .WithPasswordAuthentication("user", "pass");
+
+var cluster = await Cluster.ConnectAsync(options);
 ```
 
-This is just a shorthand for:
+The convenience overload `Cluster.ConnectAsync("connStr", "user", "pass")` still works and will create an `IAuthenticator` internally.
+
+**Certificate authentication (mTLS):**
 
 ```csharp
-var cluster = await Cluster.ConnectAsync("couchbase://your-ip", new ClusterOptions
-{
-    UserName = "user",
-    Password = "pass"
-});
-```
-
-Configuring TLS/SSL is done by using the "couchbases://" scheme in the connection string:
-
-```csharp
-var cluster = await Cluster.ConnectAsync("couchbases://your-ip", new ClusterOptions
-{
-    UserName = "user",
-    Password = "pass"
-});
-```
-
-You may also use this approach to configure certificate-based authentication:
-
-```csharp
-var cluster = await Cluster.ConnectAsync("couchbases://127.0.0.1", new ClusterOptions().
-    WithX509CertificateFactory(CertificateFactory.GetCertificatesFromStore(
+var certFactory = CertificateFactory.GetCertificatesFromStore(
     new CertificateStoreSearchCriteria
     {
         FindValue = "value",
         X509FindType = X509FindType.FindBySubjectName,
         StoreLocation = StoreLocation.CurrentUser,
         StoreName = StoreName.CertificateAuthority
-    })));
+    });
+
+var options = new ClusterOptions()
+    .WithConnectionString("couchbases://your-ip")
+    .WithCertificateAuthentication(certFactory);
+
+var cluster = await Cluster.ConnectAsync(options);
 ```
 
-Note that we are using the scheme "couchbases://" as opposed to "couchbase://" this is an indication to the SDK to use TLS/SSL encryption on the wire. Note that you can also set the `ClusterOptions.EnableTls` flag as well to do this.
+`WithCertificateAuthentication()` automatically enables TLS. Only provide **client** certificates here; server CA certificates, if using `CustomRootTrust`, should go into `TlsSettings.TrustedServerCertificateFactory`.
 
-Please see the [documentation on certificate-based authentication](#howtos:authentication.adoc) for detailed information on how to configure this properly.
+**TLS settings:**
+
+TLS validation options (name-mismatch flags, custom callbacks, protocol versions) have moved from `ClusterOptions` into a dedicated `TlsSettings` object:
+
+```csharp
+var options = new ClusterOptions()
+    .WithConnectionString("couchbases://your-ip")
+    .WithPasswordAuthentication("user", "pass")
+    .WithTlsSettings(tls =>
+    {
+        // Development only, do not use in production.
+        tls.KvIgnoreRemoteCertificateNameMismatch = true;
+        tls.HttpIgnoreRemoteCertificateNameMismatch = true;
+    });
+```
+
+The old `ClusterOptions` properties (`KvIgnoreRemoteCertificateNameMismatch`, `HttpIgnoreRemoteCertificateMismatch`, `KvCertificateCallbackValidation`, `HttpCertificateCallbackValidation`, `EnabledSslProtocols`) still delegate to `TlsSettings` internally but are marked `[Obsolete]`.
+
+#### [](#legacy-precedence)Legacy Precedence
+
+If you mix the new `With*Authentication()` methods with the old `UserName`/`Password`/`X509CertificateFactory` properties, the SDK applies a precedence order at connect time:
+
+1. Explicit `Authenticator` (set via any `With*Authentication()` or `WithAuthenticator()`) — wins; legacy properties are ignored.
+2. `X509CertificateFactory` — if no explicit authenticator was set, the SDK wraps this in a `CertificateAuthenticator`.
+3. `UserName` / `Password` — if nothing else is set and `UserName` is non-empty, the SDK creates a `PasswordAuthenticator`.
+4. None — throws `InvalidConfigurationException` at connect time.
+
+The safest approach: pick one `With*Authentication()` method and remove any legacy credential properties.
+
+Please see the [Authentication how-to](../howtos/sdk-authentication.md) for the full reference, including certificate rotation, runtime authenticator swapping, and custom server CA trust.
 
 ## [](#connection-lifecycle)Connection Lifecycle
 

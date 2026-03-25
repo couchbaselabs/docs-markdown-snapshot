@@ -2,7 +2,7 @@
 title: Couchbase Server Editions
 description: "Couchbase Server is available in two editions: Enterprise and Community."
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/editions.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:introduction:editions.adoc[]
 ---
 
@@ -43,6 +43,6 @@ There are many ways to contribute to the open source project:
 
 * Contribute code to our core engine, our SDKs, connectors and other integration components that help us connect to other products through [github.com/couchbase](https://github.com/couchbase). Find more details on the [Open Source Projects](https://developer.couchbase.com/open-source-projects/) page.
 * Report issues on our tracking system: [JIRA](https://issues.couchbase.com/projects/MB?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page).
-* [Contribute to the documentation](#home:contribute:index.adoc) either by submitting changes on GitHub or by simply clicking the "Feedback" link in our online documentation.
+* [Contribute to the documentation](../../../home/contribute/index.md) either by submitting changes on GitHub or by simply clicking the "Feedback" link in our online documentation.
 
 For a feature by feature comparison between editions, take a look at <https://www.couchbase.com/products/editions>.

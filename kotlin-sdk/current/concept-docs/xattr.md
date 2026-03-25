@@ -2,8 +2,8 @@
 title: Extended Attributes
 description: Extended Attributes (XATTR) are metadata that can be provided on a
   per-application basis.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/xattr.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/xattr.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:xattr.adoc[]
 ---
 
@@ -34,5 +34,9 @@ _Virtual_ extended attributes consist of metadata on an individual document: thi
 These attributes are generated on-demand to expose storage-level document metadata, such as expiry to expose document expiration. For expiry using Virtual XATTR, use the following:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/xattr.adoc - include::example$XattrExample.java[]
+collection.lookupIn(
+    "airport_1254",
+    Collections.singletonList(
+        LookupInSpec.get(LookupInMacro.EXPIRY_TIME).xattr())
+);
 ```

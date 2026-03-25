@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:3.5@ruby-sdk:howtos:provisioning-cluster-resources.adoc[]
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html). 
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+The primary means for managing clusters is through the Couchbase Web UI which provides an easy to use interface for adding, removing, monitoring and modifying buckets. In some instances you may wish to have a programmatic interface. For example, if you wish to manage a cluster from a setup script, or if you are setting up buckets in test scaffolding.
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
@@ -35,7 +35,8 @@ Management operations in the SDK may be performed through several interfaces dep
 
 The [BucketManager](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html) interface may be used to create and delete buckets from the Couchbase cluster. It is instantiated through the `#create_bucket()` method.
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 See the [API docs](https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketSettings.html) for a full list of settings options.
 
@@ -72,7 +73,7 @@ As well as flushing the bucket.
 
 ## [](#flushing-buckets)Flushing Buckets
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+When a bucket is flushed, all content is removed. Because this operation is potentially dangerous it is disabled by default for each bucket. Bucket flushing may be useful in test environments where it becomes a simpler alternative to removing and creating a test bucket. You may enable bucket flushing on a per-bucket basis using the Couchbase Web Console or when creating a bucket.
 
 You can flush a bucket in the SDK by using the `flush_bucket()` method.
 
@@ -170,7 +171,7 @@ In general,you will rarely need to work with Index Managers from the SDK. For th
 
 ## [](#view-management)View Management
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+Views are stored in design documents. The SDK provides convenient methods to create, retrieve, and remove design documents. To set up views, you create design documents that contain one or more view definitions, and then insert the design documents into a bucket. Each view in a design document is represented by a name and a set of MapReduce functions. The mandatory map function describes how to select and transform the data from the bucket, and the optional reduce function describes how to aggregate the results.
 
 In the SDK, design documents are represented by the `DesignDocument` and `View` classes. All operations on design documents are performed on the `ViewIndexManager` instance:
 

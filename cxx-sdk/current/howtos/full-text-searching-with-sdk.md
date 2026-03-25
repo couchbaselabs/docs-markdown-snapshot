@@ -2,8 +2,8 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cxx-sdk:howtos:full-text-searching-with-sdk.adoc[]
 
 > You can use the Full Text Search service (FTS) to create queryable full-text indexes in Couchbase Server. 
 
-Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The {C++} SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
+Full Text Search or FTS allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches. Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries. The Scala SDK exposes an API for performing FTS queries which abstracts some of the complexity of using the underlying REST API.
 
 ## [](#examples)Examples
 
@@ -42,6 +42,15 @@ if (err) {
     // Handle rows
 }
 ```
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 All simple query types are created in the same manner. Some have additional properties, which can be seen in common query type descriptions. Couchbase FTS’s [range of query types](#8.0@server:fts:fts-query-types.adoc) enable powerful searching using multiple options, to ensure results are just within the range wanted.
 

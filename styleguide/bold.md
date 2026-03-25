@@ -1,7 +1,7 @@
 ---
 title: Bold
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/bold.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::bold.adoc[]
 ---
 
@@ -16,7 +16,7 @@ Use bold to format UI elements, such as:
 * Tab names
 * Dialog names
 
-Surround a word or phrase with asterixes (\*) to make it render as bold in Antora. For more information, see [Bold and Code Styles](#home:contribute:basics.adoc#bold-italic-and-code-styles) in the Contributing to the Documentation guide.
+Surround a word or phrase with asterixes (\*) to make it render as bold in Antora. For more information, see [Bold and Code Styles](../home/contribute/basics.md#bold-italic-and-code-styles) in the Contributing to the Documentation guide.
 
 If the UI element is:
 

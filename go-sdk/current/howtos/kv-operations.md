@@ -2,8 +2,8 @@
 title: Data Operations
 description: Key Value (KV) or data service offers the simplest way to retrieve
   or mutate data where the key is known.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/kv-operations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:go-sdk:howtos:kv-operations.adoc[]
 
 > Key Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. Here we cover CRUD operations, document expiration, and optimistic locking with CAS. 
 
-The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.11/modules/devguide/examples/go/kv-crud.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
+The complete code sample used on this page can be downloaded from [here](https://github.com/couchbase/docs-sdk-go/blob/temp/2.12/modules/devguide/examples/go/kv-crud.go) — from which you can see in context how to authenticate and connect to a Couchbase Cluster, then perform these Collection operations.
 
 ## [](#documents)Documents
 
@@ -457,4 +457,4 @@ Another way of increasing network performance is to _pipeline_ operations with [
 
 As well as various [Formats](../concept-docs/data-model.md) of JSON, Couchbase can work directly with [arbitary bytes, or binary format](../concept-docs/nonjson.md).
 
-Our [Query Engine](n1ql-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql).
+Our [Query Engine](sqlpp-queries-with-sdk.md) enables retrieval of information using the SQL-like syntax of [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql).

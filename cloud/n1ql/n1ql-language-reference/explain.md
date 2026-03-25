@@ -3,7 +3,7 @@ title: EXPLAIN
 description: The EXPLAIN statement when used before any SQL++ statement,
   provides information about the execution plan for the statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/explain.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/explain.adoc[]
 ---
 
@@ -16,13 +16,20 @@ link: xref:cloud:n1ql:n1ql-language-reference/explain.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-To execute the EXPLAIN statement, your client must have the privileges required for the SQL++ statement that is being explained. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+To execute this statement, your client must have the same privileges required to run the query being explained. The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
+
+For example, to explain an `INSERT` statement, your client must have:
+
+| Credential Type | Privilege                                                                                 |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                          |
+| Advanced        | [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 RBAC Examples 
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute the following statement, your client must have the _Query Insert_ privilege on the `landmark` keyspace and the _Query Select_ privilege on the `` `beer-sample` `` keyspace.
+To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `landmark` and the `Read` / `Query Read` privilege on `beer-sample`.
 
 ```sqlpp
 EXPLAIN INSERT INTO landmark (KEY foo, VALUE bar)
@@ -30,10 +37,13 @@ EXPLAIN INSERT INTO landmark (KEY foo, VALUE bar)
         FROM `beer-sample` AS doc WHERE type = "brewery";
 ```
 
-To execute the following statement, your client must have the _Query Insert_, _Query Update_, and _Query Select_ privileges on the `testbucket` keyspace.
+To execute the following statement, your client must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `landmark`.
 
 ```sqlpp
-EXPLAIN UPSERT INTO testbucket VALUES ("key1", { "a" : "b" }) RETURNING meta().cas;
+EXPLAIN UPDATE landmark
+        USE KEYS "landmark_10090"
+        SET nickname = "Squiggly Bridge"
+        RETURNING landmark.nickname;
 ```
 
 ## [](#syntax)Syntax

@@ -2,7 +2,7 @@
 title: EXECUTE FUNCTION
 description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/execfunction.adoc[]
 ---
 
@@ -15,13 +15,19 @@ link: xref:cloud:n1ql:n1ql-language-reference/execfunction.adoc[]
 
 ## [](#purpose)Purpose
 
-The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It is useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
+The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It’s useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
 
 You cannot use the `EXECUTE FUNCTION` statement to execute a built-in SQL++ function. If you do this, error `10101: Function not found` is generated.
 
 ## [](#prerequisites)Prerequisites
 
-* To manage user-defined functions on your operational cluster, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or the [Cluster Data Reader/Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role.
+To execute this statement, your client must have necessary privileges depending on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the function is global or scoped.
+
+| Credential Type | Function Type    | Privilege                                                                                            |
+| --------------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
+| Basic           | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                     |
+| Advanced        | Global           | [Global Function Execute](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
+| Advanced        | Scoped           | [Query Execute](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials)           |
 
 ## [](#syntax)Syntax
 
@@ -45,12 +51,10 @@ function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 
 The name of the function. This is usually an unqualified identifier, such as `func1` or `` `func-1` ``. In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to execute a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
-
-You cannot have 2 functions with the same name in the same scope. You can have 2 functions in the same name across different scopes.
+To execute a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to execute a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. For more information, see [Global Functions and Scoped Functions](createfunction.md#context).
 
 > [!NOTE]
-> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
 
 ### [](#expression)Arguments
 
@@ -80,8 +84,9 @@ For examples, see [CREATE FUNCTION](createfunction.md#examples).
 
 ## [](#related-links)Related Links
 
+* For an introduction to user-defined functions, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* For more information about JavaScript functions, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
 * To create user-defined functions, see [CREATE FUNCTION](createfunction.md).
-* To manage UDF libraries and JavaScript functions, see [Create a JavaScript Library](../../guides/create-javascript-library.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
 * To monitor user-defined functions, see [Monitor Functions](../n1ql-intro/sysinfo.md#sys-functions).

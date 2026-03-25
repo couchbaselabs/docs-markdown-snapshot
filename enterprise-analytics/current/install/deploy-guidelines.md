@@ -3,7 +3,7 @@ title: Deployment Guidelines
 description: Before you install Enterprise Analytics, follow the recommended
   deployment guidelines for setting up your production environment.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/install/pages/deploy-guidelines.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:enterprise-analytics:install:deploy-guidelines.adoc[]
 ---
 
@@ -20,7 +20,7 @@ __Table 1\. Enterprise Analytics Deployment Guidelines__
 | **Time keeping**                              | Keeping accurate time is essential to a properly functioning database. Make sure that you follow the guidelines for synchronizing each Couchbase node using Network Time Protocol (NTP). [Clock Sync with NTP](synchronize-clocks-using-ntp.md)                                                                          |
 | **Disable Transparent Huge Pages (THP)**      | You must disable the THP memory management system on each node that runs Enterprise Analytics. [Disabling Transparent Huge Pages (THP)](thp-disable.md)                                                                                                                                                                  |
 | **Set kernel swappiness**                     | The kernel swappiness setting defines how aggressively the kernel swaps memory pages versus dropping pages from the page cache. You need to set the swappiness setting to 0, or at most 1, for optimal Enterprise Analytics operation. [Swap Space and Kernel Swappiness](swap-space-kernel-swappiness.md)               |
-| **Couchbase client deployment**               | Deploy client applications that incorporate SDKs to enable interaction with Enterprise Analytics clusters. [home:ROOT:sdk.adoc](#home:ROOT:sdk.adoc)                                                                                                                                                                     |
+| **Couchbase client deployment**               | Deploy client applications that incorporate SDKs to enable interaction with Enterprise Analytics clusters. [SDKs & Connectors](../../../home/sdk.md)                                                                                                                                                                     |
 | **Security**                                  | Enterprise Analytics provides security features that allow administrators to implement various security controls for a secure deployment. You should take Couchbase security best practices into consideration before, during, and after deployment. [Enterprise Analytics Processes](enterprise-analytics-processes.md) |
 | **Virtualized and containerized deployments** | Couchbase recommends following specific guidelines and considerations for deploying Enterprise Analytics on a virtual machine or container. [Deployment Considerations for Virtual Machines and Containers](vm-container-guidelines.md)                                                                                  |
 | **Clusters with less than 3 nodes**           | Enterprise Analytics clusters with less than 3 nodes are not recommended in production. You can use a smaller deployment for test and development purposes. [Two-Node and Single-Node Clusters](single-two-node-clusters.md)                                                                                             |

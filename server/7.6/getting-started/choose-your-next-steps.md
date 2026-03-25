@@ -3,7 +3,7 @@ title: Choose Your Next Steps
 description: To complete the Getting Started sequence, consider your options as
   to what to do next to continue improving your knowledge.
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.6/modules/getting-started/pages/choose-your-next-steps.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:getting-started:choose-your-next-steps.adoc[]
 ---
 
@@ -36,7 +36,7 @@ The Develop section also contains important background detail that you will need
 
 ## [](#using-the-couchbase-sdk)Using the Couchbase SDK
 
-The Couchbase SDK is available for several different programming languages. Take a look at the section [home:ROOT:sdk.adoc](#home:ROOT:sdk.adoc). You can select a language, and the page for that language provides information on installing supportive modules and libraries, and also includes code-examples to help you with development.
+The Couchbase SDK is available for several different programming languages. Take a look at the section [SDKs & Connectors](../../../home/sdk.md). You can select a language, and the page for that language provides information on installing supportive modules and libraries, and also includes code-examples to help you with development.
 
 ## [](#concepts-and-architecture)Concepts and Architecture
 

@@ -1,7 +1,7 @@
 ---
 title: MapReduce Views
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/understanding-views.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/understanding-views.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:concept-docs:understanding-views.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:go-sdk:concept-docs:understanding-views.adoc[]
 > You can use MapReduce views to create queryable indexes in Couchbase Server. 
 
 > [!WARNING]
-> Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](data-services.md).
+> Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, [our Query service](n1ql-query.md) for your application, see [our guide to choosing the right service](querying-your-data.md).
 
 # [](#mapreduce-views)MapReduce Views
 

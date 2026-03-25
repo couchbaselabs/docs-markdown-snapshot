@@ -3,7 +3,7 @@ title: Sub-Document Operations with the C SDK
 description: <em>Sub-document</em> operations can be used to efficiently access
   <em>parts</em> of documents.
 editUrl: https://github.com/couchbase/docs-sdk-c/edit/release/3.3/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:c-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -224,4 +224,6 @@ If you need to combine both JSON _and_ path-syntax literals you can do so by esc
 > [!NOTE]
 > Currently, paths cannot exceed 1024 characters, and cannot be more than 32 levels deep.
 
-Unresolved include directive in modules/howtos/pages/subdocument-operations.adoc - include::6.6@sdk:shared:partial$sdk-xattr-overview.adoc\[\]
+## [](#extended-attributes)Extended Attributes
+
+Extended Attributes (also known as XATTRs), built upon the Sub-Document API, allow developers to define application-specific metadata that will only be visible to those applications that request it or attempt to modify it. This might be, for example, meta-data specific to a programming framework that should be hidden by default from other frameworks or libraries, or possibly from other versions of the same framework. They are not intended for use in general applications, and data stored there cannot be accessed easily by some Couchbase services, such as Search.

@@ -2,7 +2,7 @@
 title: New In 3.2
 description: Couchbase Sync Gateway -- What's new in the latest release
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/whatsnew.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.2@sync-gateway::whatsnew.adoc[]
 ---
 
@@ -75,7 +75,7 @@ Couchbase now provides Audit Logging support for Sync Gateway. Audit Logging pro
 
 ## [](#see-also)See Also
 
-[What’s new in previous version 3.1](#3.1@sync-gateway:ROOT:whatsnew.adoc).
+[What’s new in previous version 3.1](../3.1/whatsnew.md).
 
 ### [](#sync-gateway-release-notes)Sync Gateway Release Notes
 

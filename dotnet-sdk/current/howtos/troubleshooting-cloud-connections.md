@@ -2,8 +2,8 @@
 title: Troubleshooting Cloud Connections
 description: Diagnose DNS-SRV problems. Troubleshoot other network connection
   trouble with SDK doctor.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/troubleshooting-cloud-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/troubleshooting-cloud-connections.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:howtos:troubleshooting-cloud-connections.adoc[]
 ---
 

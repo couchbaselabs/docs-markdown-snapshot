@@ -1,7 +1,7 @@
 ---
 title: Setting Up Secure Connections
 editUrl: https://github.com/couchbase/docs-elastic-search/edit/main/modules/ROOT/pages/secure-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:elasticsearch-connector::secure-connections.adoc[]
 ---
 
@@ -32,7 +32,7 @@ You will need:
 
 ## [](#get-couchbase-cert)Get the Couchbase CA Certificate
 
-The steps for getting the Couchbase certificate are different depending on whether you are hosting your own Couchbase Server cluster or using [Couchbase Capella](#cloud:ROOT:index.adoc).
+The steps for getting the Couchbase certificate are different depending on whether you are hosting your own Couchbase Server cluster or using [Couchbase Capella](../../home/cloud.md).
 
 * Couchbase Capella
 * Couchbase Server

@@ -1,8 +1,8 @@
 ---
 title: Document Expiry
 description: Setting an expiry lets you control how long Couchbase keeps a document.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/document-expiry.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/document-expiry.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:document-expiry.adoc[]
 ---
 
@@ -32,7 +32,11 @@ A CRUD operation that changes a document can set the document’s expiry. Here i
 Upserting a document that expires 3 hours in the future
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
+collection.upsert(
+    id = "alice",
+    content = mapOf("favoriteColor" to "red"),
+    expiry = Expiry.of(3.hours), (1)
+)
 ```
 
 | **1** | 3.hours is a kotlin.time.Duration. You can say seconds, minutes, hours, or days. |
@@ -45,7 +49,14 @@ The `touch` method sets a document’s expiry, but does not change the document 
 Set a document’s expiry
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
+try {
+    collection.touch(
+        id = "alice",
+        expiry = Expiry.of(3.hours),
+    )
+} catch (t: DocumentNotFoundException) {
+    println("Touch failed because the document does not exist.")
+}
 ```
 
 The `getAndTouch` method reads a document and sets its expiry at the same time. This is more efficient than calling `get` and `touch` separately.
@@ -53,7 +64,16 @@ The `getAndTouch` method reads a document and sets its expiry at the same time. 
 Read a document and set its expiry at the same time
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
+try {
+    val result: GetResult = collection.getAndTouch(
+        id = "alice",
+        expiry = Expiry.of(3.hours), (1)
+    )
+    val content = result.contentAs<Map<String, Any?>>()
+    println("The character's favorite color is ${content["favoriteColor"]}")
+} catch (t: DocumentNotFoundException) {
+    println("GetAndTouch failed because the document does not exist.")
+}
 ```
 
 | **1** | This line is the only difference from the [get](kv-operations.md#get) example. |
@@ -71,7 +91,16 @@ If the expiry is an instance of `Expiry.None`, the document does not expire. If 
 Getting a document’s expiry
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
+val result: GetResult = collection.get(
+    id = "alice",
+    withExpiry = true, (1)
+)
+
+when (val expiry = result.expiry) {
+    is Expiry.None -> println("Document does not expire.")
+    is Expiry.Absolute -> println("Document expires at ${expiry.instant}.")
+    else -> println("Oops, forgot to pass `withExpiry = true`.")
+}
 ```
 
 | **1** | If you do not say withExpiry = true, then result.expiry is Expiry.Unknown. |
@@ -87,7 +116,11 @@ If you use Couchbase 7 or newer, this is easy. If you use an older version of Co
 * Before Couchbase 7
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/document-expiry.adoc - include::example$KvBasic.kt[]
+collection.replace(
+    id = "alice",
+    content = mapOf("favoriteColor" to "red"),
+    preserveExpiry = true,
+)
 ```
 
 > [!CAUTION]

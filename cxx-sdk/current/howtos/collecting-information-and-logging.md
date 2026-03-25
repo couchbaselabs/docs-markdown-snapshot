@@ -1,8 +1,8 @@
 ---
 title: Logging
 description: ""
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/collecting-information-and-logging.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/collecting-information-and-logging.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:howtos:collecting-information-and-logging.adoc[]
 ---
 
@@ -61,6 +61,8 @@ And the Prometheus-format metrics fetched with:
 ```console
 curl --user Administrator:password http://172.17.0.2:8091/metrics
 ```
+
+Further details can be found in the [Application Telemetry](../../../server/current/rest-api/application-telemetry.md) page.
 
 There may be advantages to collecting information this way, but note that metrics are collected per node, and a central Prometheus instance should be set to collect all metrics so that information is not lost in case of a sudden failover.
 

@@ -2,7 +2,7 @@
 title: Full Installation
 description: Installation instructions for the Couchbase Go Client.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-go/edit/release/1.0/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
@@ -13,7 +13,7 @@ link: xref:go-analytics-sdk:project-docs:sdk-full-installation.adoc[]
 
 > Installation instructions for the Couchbase Go Client. 
 
-Analytics SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](#home:ROOT:sdk.adoc), they are purpose built for analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
+Analytics SDKs are developed from the ground-up and while they maintain some syntactic similarities with the [operational SDKs](../../../home/sdk.md), they are purpose built for analytical use cases. They support streaming APIs to handle large datasets, as well as the common features expected to be present in any modern database SDK — such as connection management and robust error handling.
 
 ## [](#installing-the-sdk)Installing the SDK
 

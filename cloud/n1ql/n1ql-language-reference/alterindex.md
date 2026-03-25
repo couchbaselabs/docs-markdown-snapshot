@@ -3,7 +3,7 @@ title: ALTER INDEX
 description: The ALTER INDEX statement increases or decreases the number of
   index replicas and partition replicas.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alterindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/alterindex.adoc[]
 ---
 
@@ -30,7 +30,12 @@ If a node goes down while an ALTER INDEX operation is happening, then the index 
 
 ## [](#prerequisites)Prerequisites
 
-Only users with the RBAC role of `Administrator` are allowed to run the `ALTER INDEX` directive.
+To execute this statement, your client must have necessary privileges on the keyspace that contains the index. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
+
+| Credential Type | Privilege                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Index](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

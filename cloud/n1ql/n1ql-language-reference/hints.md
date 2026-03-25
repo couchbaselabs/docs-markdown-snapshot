@@ -3,7 +3,7 @@ title: USE Clause
 description: The USE clause enables you to specify that the query should use
   particular keys, or a particular index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/hints.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/hints.adoc[]
 ---
 
@@ -23,7 +23,12 @@ The `USE` clause is used within the [FROM](from.md) clause. It enables you to pr
 
 ## [](#prerequisites)Prerequisites
 
-To select data from a document or keyspace, your client must have the `query_select` privilege on the document or keyspace. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+To select data from a document or keyspace, your client must have necessary privileges on the document or keyspace. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
+
+| Credential Type | Privilege                                                                               |
+| --------------- | --------------------------------------------------------------------------------------- |
+| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

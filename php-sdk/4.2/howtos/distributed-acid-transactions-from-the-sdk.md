@@ -2,7 +2,7 @@
 title: Using Couchbase Transactions
 description: Distributed ACID Transactions in Couchbase SDKs
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:howtos:distributed-acid-transactions-from-the-sdk.adoc[]
 ---
 
@@ -33,11 +33,20 @@ Refer to the [Transaction Concepts](../concept-docs/transactions.md) material fo
 * If your application is using [extended attributes (XATTRs)](../concept-docs/xattr.md), you should avoid using the XATTR field `txn` — this is reserved for Couchbase use.
 * NTP should be configured so nodes of the Couchbase cluster are in sync with time.
 
-Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+> [!CAUTION]
+> Single Node Cluster
+> 
+> When using a single node cluster (for example, during development), the default number of replicas for a newly created bucket is **1**. If left at this default, all key-value writes performed with durability will fail with a `DurabilityImpossibleException`. In turn, this will cause all transactions (which perform all key-value writes durably) to fail. This setting can be changed via:
+> 
+> * [Capella UI](../../../cloud/clusters/data-service/manage-buckets.md#add-bucket)
+> * [Couchbase Server UI](../../../server/7.6/manage/manage-buckets/create-bucket.md#couchbase-bucket-settings)
+> * [Command Line](../../../server/7.6/cli/cbcli/couchbase-cli-bucket-create.md#options)
+> 
+> If the bucket already exists, then the server needs to be rebalanced for the setting to take effect.
 
 ## [](#creating-a-transaction)Creating a Transaction
 
-Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+To create a transaction, an application must supply its logic inside a `lambda`, including any conditional logic required. Once the lambda has successfully run to conclusion, the transaction will be automatically committed. If at any point an error occurs, the transaction will rollback and the lambda may run again.
 
 ```php
 try {
@@ -89,9 +98,16 @@ try {
 }
 ```
 
-Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+The transaction lambda gets passed a `TransactionAttemptContext` object — generally referred to as `ctx` in these examples. Since the lambda could be rerun multiple times, it is important that it does not contain any side effects. In particular, you should never perform regular operations on a `Collection`, such as `collection.insert()`, inside the lambda. Such operations may be performed multiple times, and will not be performed transactionally. Instead, you should perform these operations through the `ctx` object, e.g. `ctx.insert()`.
 
-Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+The result of a transaction is represented by a `TransactionResult` object, which can be used to expose debugging and logging information to help track what happened during a transaction.
+
+In the event that a transaction fails, your application could run into the following errors:
+
+* `TransactionCommitAmbiguousException`
+* `TransactionFailedException`
+
+Refer to [Error Handling](../concept-docs/transactions-error-handling.md#transaction%5Ferrors) for more details on these.
 
 ### [](#logging)Logging
 
@@ -340,7 +356,10 @@ $options->transactionsConfiguration($transactions_configuration);
 $cluster = new Cluster($CB_HOST, $options);
 ```
 
-Unresolved include directive in modules/howtos/pages/distributed-acid-transactions-from-the-sdk.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+The default configuration will perform all writes with the durability setting `Majority`, ensuring that each write is available in-memory on the majority of replicas before the transaction continues. There are two higher durability settings available that will additionally wait for all mutations to be written to physical storage on either the active or the majority of replicas, before continuing. This further increases safety, at a cost of additional latency.
+
+> [!CAUTION]
+> A level of `None` is present but its use is discouraged and unsupported. If durability is set to `None`, then ACID semantics are not guaranteed.
 
 ## [](#additional-resources)Additional Resources
 

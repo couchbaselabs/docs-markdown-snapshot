@@ -3,8 +3,8 @@ title: Compression
 description: In response to increasing volumes of data being sent over the wire,
   Couchbase Data Platform now provides data compression between the SDK and
   Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/compression.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/compression.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:concept-docs:compression.adoc[]
 ---
 

@@ -3,7 +3,7 @@ title: DROP FUNCTION
 description: The <code>DROP FUNCTION</code> statement enables you to delete a
   user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropfunction.adoc[]
 ---
 
@@ -16,7 +16,13 @@ link: xref:cloud:n1ql:n1ql-language-reference/dropfunction.adoc[]
 
 ## [](#prerequisites)Prerequisites
 
-* To manage user-defined functions on your operational cluster, you must have the [Project Owner](../../projects/project-roles.md#project-owner-role) or the [Cluster Data Reader/Writer](../../projects/project-roles.md#project-cluster-data-reader-writer) role.
+To execute this statement, your client must have necessary privileges depending on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the function is global or scoped.
+
+| Credential Type | Function Type    | Privilege                                                                                           |
+| --------------- | ---------------- | --------------------------------------------------------------------------------------------------- |
+| Basic           | Global or scoped | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                    |
+| Advanced        | Global           | [Global Function Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
+| Advanced        | Scoped           | [Query Manage](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials)           |
 
 ## [](#syntax)Syntax
 
@@ -24,7 +30,7 @@ link: xref:cloud:n1ql:n1ql-language-reference/dropfunction.adoc[]
 drop-function ::= 'DROP' 'FUNCTION' function ( 'IF' 'EXISTS' )?
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/drop-function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/drop-function.png) 
 
 | function | [Function Name](#name) |
 | -------- | ---------------------- |
@@ -35,20 +41,18 @@ drop-function ::= 'DROP' 'FUNCTION' function ( 'IF' 'EXISTS' )?
 function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 ```
 
-![Syntax diagram: refer to source code listing](../_images/n1ql-language-reference/function.png) 
+![Syntax diagram: see source code listing](../_images/n1ql-language-reference/function.png) 
 
 The name of the function. This is usually an unqualified identifier, such as `func1` or `` `func-1` ``. In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context).
 
-To delete a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to delete a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
-
-You cannot have 2 functions with the same name in the same scope. You can have 2 functions in the same name across different scopes.
+To delete a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to delete a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. For more information, see [Global Functions and Scoped Functions](createfunction.md#context).
 
 > [!NOTE]
-> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created.
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must delete the user-defined function using the same case that was used when it was created.
 
 ### [](#if-exists-clause)IF EXISTS Clause
 
-The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function doesn’t exist.
+The optional `IF EXISTS` clause enables the statement to complete successfully when the specified function does not exist.
 
 When the function does not exist within the specified context: \[[1](#%5Ffootnotedef%5F1 "View footnote.")\]
 
@@ -57,13 +61,15 @@ When the function does not exist within the specified context: \[[1](#%5Ffootnot
 
 ## [](#usage)Usage
 
-When you drop a user-defined function whose definition is stored in a UDF library, the library and function on which the user-defined function depended are not deleted. This enables you to create a new user-defined function with a different name, or a different number of parameters, using the same UDF library and JavaScript function.
+When you drop a user-defined function whose definition is stored in a JavaScript library, the JavaScript library and function on which the user-defined function depended are not deleted. This enables you to create a new user-defined function with a different name, or a different number of parameters, using the same JavaScript library and function.
 
-To change or delete a UDF library or the JavaScript function code, see [Delete a User-Defined Function Library](../../guides/create-javascript-library.md#delete-udf).
+To change or delete a JavaScript library or the JavaScript function code, see [Create a JavaScript Library](../../guides/create-javascript-library.md).
 
-When you drop an inline SQL++ user-defined function, the associated JavaScript function code is deleted also.
+When you drop a SQL++ managed JavaScript function, the associated JavaScript function code is also deleted.
 
 ## [](#examples)Examples
+
+To try the examples in this section, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
 Example 1\. Drop an inline function
 
@@ -79,9 +85,9 @@ You can run the following query to check that the function is no longer availabl
 SELECT * FROM system:functions;
 ```
 
-Example 2\. Drop a SQL++ managed user-defined function
+Example 2\. Drop a SQL++ managed JavaScript function
 
-This statement deletes an inline SQL++ user-defined function called `add100`.
+This statement deletes a SQL++ managed JavaScript function called `add100`.
 
 ```sqlpp
 DROP FUNCTION add100 IF EXISTS;
@@ -108,4 +114,4 @@ DROP FUNCTION adjacent;
 
 ---
 
-[1](#%5Ffootnoteref%5F1). That is, you are dropping a global function, and the function does not exist within the specified namespace; or, you are dropping a scoped function, and the function does not exist within the specified scope.
+[1](#%5Ffootnoteref%5F1). In other words, you’re dropping a global function, and the function does not exist within the specified namespace; or, you’re dropping a scoped function, and the function does not exist within the specified scope.

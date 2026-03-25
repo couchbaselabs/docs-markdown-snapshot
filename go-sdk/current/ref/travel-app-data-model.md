@@ -1,8 +1,8 @@
 ---
 title: Travel Sample Data Model
 description: An overview of the travel sample application data model and documents.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/ref/pages/travel-app-data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/ref/pages/travel-app-data-model.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:ref:travel-app-data-model.adoc[]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Images and Diagrams
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/images-diagrams.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::images-diagrams.adoc[]
 ---
 
@@ -68,7 +68,7 @@ Make sure the rectangle surrounds the part of the screenshot you want to highlig
 
 ![annotation example](_images/annotation-example.png) 
 
-For more information about how to specify the format and add an image in Antora, see [Images](#home:contribute:basics.adoc#images) in the Contributing to the Documentation guide.
+For more information about how to specify the format and add an image in Antora, see [Images](../home/contribute/basics.md#images) in the Contributing to the Documentation guide.
 
 ## [](#diagrams)Diagrams
 

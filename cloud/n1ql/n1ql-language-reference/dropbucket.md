@@ -2,7 +2,7 @@
 title: DROP BUCKET
 description: The DROP BUCKET statement enables you to delete a bucket.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropbucket.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropbucket.adoc[]
 ---
 
@@ -20,15 +20,16 @@ Use the DROP BUCKET statement to permanently delete an existing bucket from your
 > [!WARNING]
 > This operation is irreversible, so use this statement with caution.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-Only administrators with the following roles can execute the DROP BUCKET statement:
+To execute this statement in the Capella UI, you must have one of the following roles:
 
-* Full Admin
-* Cluster Admin
-* Bucket Admin (if privileges are extended to the specific bucket or all buckets on the cluster)
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
 
-For more information about roles and privileges, see [Roles](#learn:security/roles.adoc).
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

@@ -1,7 +1,7 @@
 ---
 title: Unordered Lists
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/unordered-list.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::unordered-list.adoc[]
 ---
 
@@ -31,7 +31,7 @@ Use an unordered list when:
 
 Use an asterix (`*`) to render an item as an unordered list item. The number of asterixes sets the depth of the list item.
 
-For more information about how to format an unordered list in Antora, see [Unordered Lists](#home:contribute:basics.adoc#unordered-lists) in the Contributing to the Documentation guide.
+For more information about how to format an unordered list in Antora, see [Unordered Lists](../home/contribute/basics.md#unordered-lists) in the Contributing to the Documentation guide.
 
 ## [](#punctuation-in-unordered-lists)Punctuation in Unordered Lists
 

@@ -2,8 +2,8 @@
 title: Buckets and Clusters
 description: The Couchbase Java SDK provides an API for managing a Couchbase
   cluster programmatically.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/buckets-and-clusters.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/buckets-and-clusters.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:buckets-and-clusters.adoc[]
 ---
 
@@ -25,7 +25,9 @@ Management operations in the Java SDK may be performed through several interface
 To create or delete a bucket, call the bucket manager with the `buckets()` call on the cluster:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/buckets-and-clusters.adoc - include::example$BucketsAndClustersExample.java[]
+BucketManager manager = cluster.buckets();
+bucketSettings = BucketSettings.create("myBucket");
+manager.createBucket(bucketSettings);
 ```
 
 This class is also used to expose information about an existing bucket (`manager.getBucket(string)`) or to update an existing bucket (`manager.updateBucket(bucketSettings)`).

@@ -1,7 +1,7 @@
 ---
 title: Welcome to Couchbase Capella
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/get-started/pages/intro.adoc
-pubDate: 2026-03-24T03:43:23.693Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:get-started:intro.adoc[]
 ---
 
@@ -9,8 +9,6 @@ link: xref:cloud:get-started:intro.adoc[]
 [View original HTML](/cloud/get-started/intro.html)
 
 # Welcome to Couchbase Capella
-
-Unresolved include directive in modules/get-started/pages/intro.adoc - include::home::partial$info-banner.adoc\[\]
 
 # Welcome to Couchbase Capella
 
@@ -56,7 +54,7 @@ Ready to dive into development? Explore our APIs and SDKs.
 
 * [Manage Deployments with the Capella Operational Management API](../management-api-guide/management-api-intro.md)
 * [Manage App Services with the App Services API](../../app-services/references/rest-api-introduction.md)
-* [home::sdk.adoc](#home::sdk.adoc)
+* [SDKs & Connectors](../../home/sdk.md)
 * [SQL++ for Query Reference](../n1ql/n1ql-language-reference/index.md)
 
 ###  Optimize A Cluster

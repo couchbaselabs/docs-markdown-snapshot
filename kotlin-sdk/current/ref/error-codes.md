@@ -2,8 +2,8 @@
 title: Error Codes
 description: The standardized error codes returned by the Couchbase Kotlin SDK,
   from cloud connection to sub-document.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/ref/pages/error-codes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/ref/pages/error-codes.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:ref:error-codes.adoc[]
 ---
 
@@ -395,7 +395,7 @@ Although the SDK and client application should be located in the same LAN-like e
 
 In order for your application to connect to your cloud, Capella creates a special kind of DNS record, called a Service record, or DNS-SRV record. DNS SRV records are widely supported and used frequently in systems like XMPP, and Kubernetes services. Occasionally, some DNS providers can run into issues with large DNS SRV records. This can manifest as a host not found issue. The actual problem is (a typically older) DNS server that cannot handle large responses which converts the error to host not found. This has frequently been observed when working from home with a service provider router that embeds a caching DNS Server.
 
-Below is a list of log messages that you may see if you hit DNS SRV issues. These examples have been created in the circumstance that the SRV record is too long for the DNS provider to handle, and are included here so that they are findable by search, and you can then go to our [cloud connection troubleshooting page](../howtos/troubleshooting-cloud-connections.md#troubleshooting-host-not-found).
+Below is a list of log messages that you may see if you hit DNS SRV issues. These examples have been created in the circumstance that the SRV record is too long for the DNS provider to handle, and are included here so that they are findable by search, and you can then go to our [cloud connection troubleshooting page](#howtos:troubleshooting-cloud-connections.adoc#troubleshooting-host-not-found).
 
 DNS SRV lookup failed
 

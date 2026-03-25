@@ -1,7 +1,7 @@
 ---
 title: Service Selection
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/data-services.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/data-services.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:data-services.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Couchbase Data Services
 
 * [KV Operations](../howtos/kv-operations.md)
 * [Sub-Document API](#howtos:subdocument-operations.adoc)
-* [Couchbase Analytics Service (CBAS)](../howtos/analytics-using-sdk.md)
+* [Couchbase Analytics Service (CBAS)](analytics-for-sdk-users.md)
 * [Query Service](n1ql-query.md)
 * [Full Text Search](full-text-search-overview.md)
 * [MapReduce Views](understanding-views.md)

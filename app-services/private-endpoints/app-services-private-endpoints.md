@@ -4,7 +4,7 @@ description: Private endpoints for App Services enable you to connect a client
   app directly to Couchbase App Services, assuming that they both use the same
   cloud service provider (CSP).
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/private-endpoints/app-services-private-endpoints.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:app-services::private-endpoints/app-services-private-endpoints.adoc[]
 ---
 
@@ -16,6 +16,13 @@ link: xref:app-services::private-endpoints/app-services-private-endpoints.adoc[]
 > Private endpoints for App Services enable you to connect a client app directly to Couchbase App Services, assuming that they both use the same cloud service provider (CSP). 
 
 This feature allows your mobile or IoT infrastructure to connect to the network encompassing your Capella infrastructure, so that your data does not have to flow over the internet. This can improve security whilst also lowering ingestion costs.
+
+> [!NOTE]
+> Private endpoints for App Services cover all App Services connectivity, including:
+> 
+> * Couchbase Lite sync
+> * Admin API access
+> * Metrics API access (for example, Prometheus exporters)
 
 Currently, private endpoints for App Services are only available using Amazon Web Services (AWS).
 

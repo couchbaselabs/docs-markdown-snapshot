@@ -1,0 +1,79 @@
+---
+title: About These Docs
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.5/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:3.5@java-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/java-sdk/3.5/project-docs/metadoc-about-these-sdk-docs.html)
+
+# About These Docs
+
+> Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
+
+Welcome to the [SDK 3.4](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+
+## [](#assumptions-presumptions)Assumptions & Presumptions
+
+Couchbase is a complex and powerful product, with many components. The SDKs interact with Couchbase Server and its various services; although some links are given to the pages for these services, gaining an understanding of them is not the principal aim of the SDK documentation, rather it is to gain an understanding of how to interact with them programmatically from the SDK, as many application programmers will have the task specced out for them.
+
+Some concepts, such as Role-Based Access Control, do need to be understood in greater depth — but this is documented [in the appropriate place in the Server docs](#7.1@server:learn:security/roles.adoc), and linked from the [Getting Started Guide](../hello-world/start-using-sdk.md). Furthermore, things which are essential in production can be a barrier to getting up and running quickly in order to try something out — so the _Full Admin_ RBAC role is used in the _Hello World_ code example, contrary to best practice (but this is, of course, called out).
+
+## [](#getting-started)Getting Started
+
+The Getting Started section contains tutorial pages — in intention, if not always in style — covering [how to install and start using](../hello-world/start-using-sdk.md) the SDK, as well as a longer [Sample Application](../hello-world/sample-application.md) (which is not present for every SDK).
+
+## [](#how-to-work-with-the-sdk)How to Work With the SDK
+
+The next four sections are collections of practical, task-oriented pages, featuring snippets of code designed to help you with the individual pieces that will become your application.
+
+### [](#working-with-data)Working with Data
+
+This section deals with all of the main Couchbase Services: [The Data Service](../howtos/kv-operations.md) (including [Sub-Document Operations](../howtos/subdocument-operations.md)); the [Query Service](../howtos/n1ql-queries-with-sdk.md); the [Analytics Service](../howtos/analytics-using-sdk.md); Full-Text [Search Service](../howtos/full-text-searching-with-sdk.md); and [MapReduce Views](../howtos/view-queries-with-sdk.md).
+
+> [!NOTE]
+> Some SDKs feature an additional [fully-worked, complete code example](#3.0@python-sdk:howtos:caching-example.adoc). Others may be added at a later date.
+
+### [](#advanced-data-operations)Advanced Data Operations
+
+In using the above services, there are several more advanced Couchbase and SDK features that may be advantageous or even critical to your app. Everything from [Asynchronous APIs](../howtos/concurrent-async-apis.md) to [Distributed Transactions](../howtos/distributed-acid-transactions-from-the-sdk.md).
+
+### [](#managing-couchbase)Managing Couchbase
+
+In this section are collected practical documents grouped around the Management APIs, and around other management tasks, particularly those needed in getting your application talking to the Couchbase Server ([Managing Connections](../howtos/managing-connections.md)), and [programmatically dealing with Cluster resources](../howtos/provisioning-cluster-resources.md).
+
+### [](#errors-diagnostics)Errors & Diagnostics
+
+[Error handling](../howtos/error-handling.md) is an essential part of developing any application — as is [logging](../howtos/collecting-information-and-logging.md) — but this section also includes some useful diagnostic tools, all too necessary in a distributed environment.
+
+## [](#concept-docs)Concept Docs
+
+The [Learn](../concept-docs/concepts.md) section is a collection of concept docs offering expansive background and context to key areas of the SDKs. These understanding-oriented docs are aimed at broadening coverage beyond the goal-oriented howtos, to clarify and illuminate each subject. They are a work in progress — with more breadth and depth to be added over time.
+
+## [](#reference-docs)Reference Docs
+
+The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
+
+The first link in the navigation for the Reference Section is to the API Guide for the _latest version_ of the SDK. Links to previous versions can be found with the [Release Notes](sdk-release-notes.md).
+
+Other reference material includes the [Client Settings](../ref/client-settings.md) that can be adjusted, and a listing of all [Error Codes](../ref/error-codes.md).
+
+## [](#project-docs)Project Docs
+
+All of the above (tutorials, howtos, concept docs, and reference docs) help you directly in _using_ the software, but there remain several decisions around managing your use of the software that can be grouped into documentation about the software _as a project_. Things like [License Information](sdk-licenses.md) and [Compatibility](compatibility.md) (with versions of Couchbase Server, with the language, or with the underlying platform). Here can also be found the [Release Notes](sdk-release-notes.md), and help in [migrating](migrating-sdk-code-to-3.n.md) from the previous major release.
+
+## [](#another-route-through)Another Route Through?
+
+Each page contains several links to related pages in the docs, as well as to relevant sections of the latest generated API docs. Links are made to cover as many common user journeys as we could think of. For cases where we didn’t anticipate your needs, every page in each SDK is linked from the left-hand navigation, and the paragraphs above detail the broad purpose of these groupings and some of their content.
+
+> [!NOTE]
+> Several _non-pages_ exist, in the sense that where a page found in one or more SDKs, such as the _Travel Sample Application_, is not available in one (or more) SDKs — as, for example, we have not made a [libcouchbase Travel Sample Application](#3.0@c-sdk:hello-world:sample-application.adoc) — then a page will still exist, so that when navigating between SDKs through either the dropdown nav, or changing ghe name in the URL bar, you will not find yourself facing a 404 error, and will still have access to the left-hand nvigation for that SDK.
+
+### [](#site-search)Site Search
+
+Our internal _Site Search_ is an excellent resource for finding information across Couchbase components and (supported) versions.
+
+## [](#older-sdk-versions)Older SDK Versions
+
+All supported versions of the SDKs can be found in the doc set — use the dropdown version selector in the left-hand navigation to reach each one. Documentation on older, unsupported versions of the SDK — that have reached end-of-life — can be found in the [archive](https://docs-archive.couchbase.com/home/index.html).

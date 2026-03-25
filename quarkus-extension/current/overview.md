@@ -2,8 +2,8 @@
 title: Couchbase Quarkus Java Extension
 description: The Couchbase Quarkus extension integrates the Couchbase Java SDK
   within the Quarkus ecosystem.
-editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.2/modules/ROOT/pages/overview.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.3/modules/ROOT/pages/overview.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:quarkus-extension::overview.adoc[]
 ---
 

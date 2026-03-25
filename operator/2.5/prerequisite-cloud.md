@@ -1,0 +1,204 @@
+---
+title: Public Cloud Prerequisites
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/prerequisite-cloud.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.5@operator::prerequisite-cloud.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operator/2.5/prerequisite-cloud.html)
+
+# Public Cloud Prerequisites
+
+> Vendor-specific tasks to perform before installing the Operator. 
+
+Kubernetes is supposed to be portable so a workload can be moved seamlessly from one cloud to another. There is, however, scope in Kubernetes that allows for implementations to differ in ways that are not generic. This page details any tasks that need to be performed before deploying the Operator on public cloud infrastructure.
+
+## [](#amazon-eks)Amazon EKS
+
+### [](#authentication)Authentication
+
+Amazon EKS uses proprietary authentication based on IAM. The use of Couchbase provided tools ([cao](tools/cao.md)) will require your Kubernetes configuration file to be set up to use IAM authentication. Instructions for installing the authenticator can be found in the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+
+### [](#configuring-for-xdcr)Configuring for XDCR
+
+If you wish to take advantage of XDCR capabilities using the Operator, there are a few extra steps to complete.
+
+#### [](#create-the-peering-connection)Create the Peering Connection
+
+Follow the Amazon [documentation](https://docs.aws.amazon.com/vpc/latest/peering/create-vpc-peering-connection.html) to create a peering connection between two VPCs in the availability zones of your choosing. Bear in mind that each cluster needs to have different CIDR ranges, in the private ranges of 192.168.0.0/16, 172.16.0.0/12, or 10.0.0.0/8 as per RFC 1918.
+
+You will need to then accept the connection request in the region of the accepting VPC to establish the connection.
+
+#### [](#configure-route-tables-and-security-groups)Configure Route Tables and Security Groups
+
+Once the peering connection is accepted, you must [add a route](https://docs.aws.amazon.com/vpc/latest/peering/vpc-peering-routing.html) to the route tables of each of the VPCs so that they can send and receive traffic across the VPC peering connection. To do this, go to **Route Tables** and select the route table associated with the public subnet of one of your VPCs. Select **Routes** and then **Edit**. Add the other VPC’s CIDR block as the **Destination**, and add the `pcx-` (peering connection) as the **Target**. Repeat these steps for the other VPC **Public Subnet**.
+
+Next, find the security groups for the worker node CloudFormation stacks and edit their Inbound Rules.
+
+* Allow TCP traffic from ports 30000 - 32767 from the other cluster’s CIDR. Do this for both clusters. This will allow nodes in each cluster to talk to each other.
+* Allow ICMP from the same cluster’s CIDR to be able to ping the other cluster’s nodes to see if it has the desired network setup.
+
+### [](#eks-best-practices)Best Practices
+
+Storage classes
+
+The EBS volume type `io2` is recommended over `gp3` for any Storage Classes due to its performance characteristics. However, `gp3` at times could be more cost-effective and flexible in terms of storage provisioning. Follow the [official AWS user guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) for more details on recommendations relating to "large database workloads".
+
+## [](#google-gke)Google GKE
+
+* The [Google Cloud SDK](https://cloud.google.com/sdk/) is installed
+
+When the `gcloud` command has been installed and added to your PATH, log in with the following command:
+
+```console
+$ gcloud auth login
+```
+
+> [!TIP]
+> The `gcloud` command can support multiple logins. You can select the user to run as with:
+> 
+> ```console
+> $ gcloud config set account john.doe@acme.com
+> ```
+> 
+> You can also remove the login authentication locally with:
+> 
+> ```console
+> $ gcloud auth revoke john.doe@acme.com
+> ```
+
+The project must also be set so that resources are provisioned into it:
+
+```console
+$ gcloud config set project my-project
+```
+
+### [](#network-setup)Network Setup
+
+For most users, it will suffice to use automatic subnet provisioning with the following command:
+
+```console
+$ gcloud compute networks create my-network
+```
+
+For the purposes of this document, we will manually configure our subnets so we are able to add in the necessary firewall rules to allow XDCR between Couchbase clusters in different GKE clusters. We create two non-overlapping subnets in the 10.0.0.0/8 [RFC-1918](https://tools.ietf.org/html/rfc1918) private address space in different regions, then allow all ingress traffic from the 10.0.0.0/8 prefix via a firewall rule. By default, network traffic is dropped between different GKE clusters.
+
+```console
+$ gcloud compute networks create my-network \
+  --subnet-mode custom
+```
+
+```console
+$ gcloud compute networks subnets create my-subnet-us-east1 \
+  --network my-network \
+  --region us-east1 \
+  --range 10.0.0.0/12
+```
+
+```console
+$ gcloud compute networks subnets create my-subnet-us-west1 \
+  --network my-network \
+  --region us-west1 \
+  --range 10.16.0.0/12
+```
+
+```console
+$ gcloud compute firewall-rules create my-network-allow-all-private \
+  --network my-network \
+  --direction INGRESS \
+  --source-ranges 10.0.0.0/8 \
+  --allow all
+```
+
+### [](#authentication-2)Authentication
+
+Google GKE uses proprietary authentication in order to set up your Kubernetes configuration file. The [Google Cloud SDK](https://cloud.google.com/sdk/) can allow you to authenticate and configure with the `gcloud auth login` command.
+
+### [](#authorization)Authorization
+
+By default, Google GKE does not provide the necessary privileges required to deploy the Autonomous Operator. The required privileges can be granted to a specific user with the following command:
+
+```console
+$ kubectl create clusterrolebinding \
+  john-doe-admin-binding \ (1)
+  --clusterrole cluster-admin \ (2)
+  --user john.doe@acme.com (3)
+```
+
+| **1** | The ClusterRoleBinding name can be anything you wish.                                            |
+| ----- | ------------------------------------------------------------------------------------------------ |
+| **2** | The \--clusterorle name refers to a preinstalled role provided by GKE.                           |
+| **3** | The \--user parameter is the same as your Google Cloud account name used to login to the system. |
+
+### [](#firewalling)Firewalling
+
+By default, the GKE control plane is firewalled off from Kubernetes nodes. This behavior stops the Operator dynamic admission controller (DAC) from functioning. You must configure firewall rules to allow the GKE control plane to connect to port 8443 on the DAC pod.
+
+For further details see the [related issue](https://github.com/kubernetes/kubernetes/issues/79739) and [how to add a firewall rule](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#add%5Ffirewall%5Frules).
+
+## [](#microsoft-azure)Microsoft Azure
+
+### [](#authentication-3)Authentication
+
+Microsoft AKS uses proprietary authentication in order to set up your Kubernetes configuration file. The [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) can allow you to authenticate and configure with the `az login` command.
+
+### [](#ask-best-practices)Best Practices
+
+Disk limits
+
+AKS nodes have a maximum disk limit. This will restrict the number of persistent volumes that can be created within a cluster. The limits apply on a per-node basis. For example, if the VM type in your AKS cluster supports a maximum of eight data disks, and you have four nodes in your cluster, then your cluster can support 32 volumes.
+
+See the [Azure documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes) for more information about max data disks.
+
+Single disk per pod
+
+Given the slow mount time, it’s best to limit each pod to one disk (excluding the default disk). For example, separate server classes should be created for Data, Index, and Analytics pods.
+
+Consider the limitations of Azure Disks
+
+Azure Disks are attached to VMs when pods are created. There are several [known issues](#aks-known-issues) related to this behavior, most notably that manual intervention is required on node failure, as well as the occurrence of failures related to slow detach/attach times when pods are moved.
+
+Third-party storage providers like Portworx decouple volume-to-node attachment by instead creating a replicating pool of storage. Storage nodes may also be run separately from compute nodes. Most issues with persistent volumes on AKS are the result of disks being attached and moved between nodes.
+
+### [](#create-a-network)Create a Network
+
+In order for XDCR to work, a layer 3 tunnel between the two cluster networks is required. This is so that nodes on one network can talk to nodes on the other, which are, in turn, port-forwarded onto your Couchbase nodes. As such, these must be non-overlapping. If we use the default setting, the first cluster would get the prefix 10.0.0.0/8, as would the second.
+
+### [](#install-kubectl)Install `kubectl`
+
+If you do not already have `kubectl` installed in your CLI, run the following command:
+
+```console
+$ az aks install-cli
+```
+
+Get the credentials for your cluster:
+
+```console
+$ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+```
+
+```console
+$ az network vnet create -g myResourceGroup -n myAKSVnet  --address-prefix 10.0.0.0/12  --subnet-name myAKSSubnet --subnet-prefix 10.8.0.0/16
+```
+
+### [](#aks-known-issues)Known Issues
+
+AKS doesn’t support Azure Availability Zones
+
+At the time of this writing, AKS doesn’t support Azure Availability Zones. Rather, AKS supports Azure Availability Sets to achieve high availability.
+
+Availability Sets are labeled numerically (e.g. `0` and `1`). This means that [server groups](concept-server-groups.md) also have to be named "0" and "1".
+
+Failed nodes require manual volume failover
+
+When an Azure node is down and has volumes attached, a forced detach is required. This has to be done using the Azure CLI. If a recovery or upgrade is happening at the time of node failover, then it will fail. \*On delta recovery create new PVC
+
+Slow volume mounts
+
+AKS volume mounts may cause pod creation to time out while waiting for the availability of its underlying disks. The main reason for this is due to the time it takes to attach a disk to the VM versus the time the attach controller expects the disk to be attached. When the latter exceeds the former, failed mount events are generated and the attach controller enters into a state of high back off wait time:
+
+* <https://github.com/Azure/AKS/issues/719>
+* <https://github.com/kubernetes/cloud-provider-azure/blob/master/docs/azuredisk-issues.md>
+* <https://portworx.com/understand-resolve-warning-failed-attach-volume-warning-failed-mount-errors-kubernetes-azure/>

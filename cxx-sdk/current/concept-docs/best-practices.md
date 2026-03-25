@@ -2,8 +2,8 @@
 title: Best Practices
 description: Speed up your application development, with some best practices for
   using Couchbase SDKs.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/best-practices.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/best-practices.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:concept-docs:best-practices.adoc[]
 ---
 

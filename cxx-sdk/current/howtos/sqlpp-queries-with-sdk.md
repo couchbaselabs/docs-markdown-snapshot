@@ -3,8 +3,8 @@ title: Querying with SQL++
 description: You can query for documents in Couchbase using the SQL++ query
   language, a language based on SQL, but designed for structured and flexible
   JSON documents.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/sqlpp-queries-with-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:howtos:sqlpp-queries-with-sdk.adoc[]
 ---
 
@@ -196,7 +196,7 @@ if (err) {
 
 ## [](#querying-at-scope-level)Querying at Scope Level
 
-It is possible to query off the [scope level](../../../server/current/learn/data/scopes-and-collections.md) with _Couchbase Server version 7.0_ onwards, using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
+It is possible to query off the [scope level](#8.0.1@server:learn:data/scopes-and-collections.adoc) with _Couchbase Server version 7.0_ onwards, using the `scope.query()` method. It takes the statement as a required argument, and then allows additional options if needed.
 
 The code snippet below shows how to run a simple query to fetch 10 rows from travel-sample and print the results, the assumption is that the `airline` collection exists within the scope.
 

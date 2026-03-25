@@ -1,7 +1,7 @@
 ---
 title: Ordered Lists
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/ordered-list.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::ordered-list.adoc[]
 ---
 
@@ -30,4 +30,4 @@ You can also use an ordered list in a [concept topic](writing-concepts.md) if:
 
 Use a period (`.`) to render an item as an ordered list item. The number of periods sets the depth of the list item.
 
-For more information about how to format an ordered list in Antora, see [Ordered Lists](#home:contribute:basics.adoc#ordered-lists) in the Contributing to the Documentation guide.
+For more information about how to format an ordered list in Antora, see [Ordered Lists](../home/contribute/basics.md#ordered-lists) in the Contributing to the Documentation guide.

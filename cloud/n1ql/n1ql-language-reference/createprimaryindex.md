@@ -3,7 +3,7 @@ title: CREATE PRIMARY INDEX
 description: The CREATE PRIMARY INDEX statement allows you to create a primary
   index. Primary indexes contain a full set of keys in a given keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/createprimaryindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/createprimaryindex.adoc[]
 ---
 
@@ -24,9 +24,12 @@ You can create multiple identical primary indexes on a keyspace and place them o
 
 ## [](#prerequisites)Prerequisites
 
-##### RBAC Privileges
+To execute this statement, your client must have necessary privileges on the keyspace where you want to create the index. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
 
-To execute the `CREATE PRIMARY INDEX` statement, your client must have the `Query Manage Index` privilege granted on the keyspace. For more information about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Index](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

@@ -1,7 +1,7 @@
 ---
 title: Release Notes for Couchbase Server 7.2
 editUrl: https://github.com/couchbase/docs-server/edit/release/7.2/modules/release-notes/pages/relnotes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.2@server:release-notes:relnotes.adoc[]
 ---
 
@@ -548,7 +548,7 @@ For information on establishing change-history default settings, at bucket-creat
 * Couchbase Server has a new service discovery endpoint to help you configure the Prometheus event monitoring system. The old endpoint, named `/prometheus_sd_config.yaml` is now deprecated. The new endpoint is able to produce the same output as the old endpoint and has additional features. See [Configure Prometheus to Collect Couchbase Metrics](../manage/monitor/set-up-prometheus-for-monitoring.md).
 * You can now have Couchbase Server prune rotated audit logs after a period of time. You set how long Couchbase Server should keep audit logs by using the new `pruneAge` parameter for the `/settings/audit` endpoint. The default value of 0 means that Couchbase Server does not prune audit logs. See [Configure Auditing](../rest-api/rest-auditing.md).
 
-* Power BI Connector version 1.0 released. ([Power BI Connector documentation](#power-bi-connector:ROOT:index.adoc))  
+* Power BI Connector version 1.0 released. ([Power BI Connector documentation](../../../power-bi-connector/current/index.md))  
 You can download the installation package from the following location:  
 
 | Binaries      | [powerbi-connector-1.0.mez](https://packages.couchbase.com/releases/couchbase-powerbi-connector/1.0/couchbase-powerbi-connector-1.0.mez)               |

@@ -2,8 +2,8 @@
 title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/n1ql-query.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -42,11 +42,11 @@ var result = await cluster.QueryAsync<dynamic>(
 ```
 
 > [!CAUTION]
-> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](../../../server/current/install/upgrade-feature-availability.md#prepared-statements) a change in the Server’s behaviour.
+> **When running an application using Prepared Statements through the .NET SDK** — if you plan to upgrade Couchbase Server from 6.0.x or earlier to 6.5.0 or later, and are running a version of the .NET SDK prior to [3.0.1](../project-docs/sdk-release-notes.md#version-3-0-1-13-may-2020), you will need to [restart the app or otherwise work around](#8.0.1@server:install:upgrade-strategy-for-features.adoc#prepared-statements) a change in the Server’s behaviour.
 
 ## [](#indexes)Indexes
 
-The Couchbase query service makes use of [_indexes_](../../../server/current/learn/services-and-indexes/indexes/indexes.md) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](../../../server/current/learn/services-and-indexes/services/services.md) topologies.
+The Couchbase query service makes use of [_indexes_](#8.0.1@server:learn:services-and-indexes/indexes/indexes.adoc) in order to do its work. Indexes replicate subsets of documents from data nodes over to index nodes, allowing specific data (for example, specific document properties) to be retrieved quickly, and to distribute load away from data nodes in [MDS](#8.0.1@server:learn:services-and-indexes/services/services.adoc) topologies.
 
 > [!IMPORTANT]
 > In order to make a bucket queryable, it must have at least one index defined.
@@ -81,7 +81,7 @@ CREATE INDEX ix_users_email ON `users`(email);
 SELECT name, email FROM `users` WHERE name="Monty Python" OR email="monty@python.org";
 ```
 
-Indexes help improve the performance of a query. When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service. An index, in this case, is called a _covering index_, and the query is called a _covered_ query. For more information, see [Covering Indexes](../../../server/current/indexes/covering-indexes.md).
+Indexes help improve the performance of a query. When an index includes the actual values of all the fields specified in the query, the index _covers_ the query, and eliminates the need to fetch the actual values from the Data Service. An index, in this case, is called a _covering index_, and the query is called a _covered_ query. For more information, see [Covering Indexes](#8.0.1@server:n1ql:n1ql-language-reference/covering-indexes.adoc).
 
 You can also create and define indexes in the SDK using:
 
@@ -126,12 +126,7 @@ With default query options, the query service will rely on the current index sta
 
 The following options are available:
 
-* `not_bounded`: Executes the query immediately, without requiring any consistency for the query. If index maintenance is running behind, out-of-date results may be returned.
-* `at_plus`: Executes the query, requiring indexes first to be updated to the timestamp of the last update. If index maintenance is running behind, the query waits for it to catch up.
-* `request_plus`: Executes the query, requiring the indexes first to be updated to the timestamp of the current query request. If index maintenance is running behind, the query waits for it to catch up.
-* `statement_plus`: Executes the query with strong consistency per statement. Before processing each statement, the service obtains a current vector timestamp and uses it as a lower bound for that statement.
-
-For SQL++, the default consistency is `not_bounded`.
+Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::8.0.1@server:learn:page$services-and-indexes/indexes/index-replication.adoc\[\]
 
 Consider the following snippet:
 

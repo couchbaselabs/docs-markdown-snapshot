@@ -3,8 +3,8 @@ title: Search
 description: You can use the Full Text Search (FTS) service to find JSON
   documents that have certain words, phrases, or geographic coordinates -- and
   for vector searches against Server 7.6.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/full-text-search.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/full-text-search.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:full-text-search.adoc[]
 ---
 
@@ -27,7 +27,7 @@ For all kinds of FTS searches, you can ask the server to count the number of mat
 
 You should know [how to create a Full Text Search index](../../../server/current/search/create-search-indexes.md).
 
-You should know [how to connect to a Couchbase cluster](managing-connections.md).
+You should know [how to connect to a Couchbase cluster](connecting.md).
 
 The examples on this page use the `travel-sample` and `beer-sample` [sample buckets](../../../server/current/manage/manage-settings/install-sample-buckets.md).
 
@@ -38,12 +38,31 @@ This example searches for documents that have the word "pool" in one of the inde
 If you want to run this example, first create an index called `travel-sample-index` on the `travel-sample` bucket. Then run:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"), (1)
+    )
+    .execute() (2)
+
+searchResult.rows.forEach { row: SearchRow ->
+    println("Document ${row.id} has score ${row.score}")
+    println(row)
+}
 ```
 
 | **1** | The argument to queryString uses the same syntax as when you search an index using the Couchbase web UI. SearchQuery has other companion factory methods for doing different kinds of searches. |
 | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | The searchQuery method returns a Flow<SearchFlowItem>. Nothing happens until you collect the flow. Calling execute is an easy way to collect the flow.                                          |
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#query-types)Queries
 
@@ -64,7 +83,17 @@ If you want to know how the server calculated the score, pass `explain = true` w
 Explain scoring
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        explain = true, (1)
+    )
+    .execute()
+
+searchResult.rows.forEach { row ->
+    println(String(row.explanation)) (2)
+}
 ```
 
 | **1** | This line tells the server you want to know how each score is calculated. If you don’t do this, row.explanation is an empty ByteArray. |
@@ -81,7 +110,13 @@ Calculating the score takes time. If you don’t need the score, tell the server
 Disable scoring
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        score = Score.none(), (1)
+    )
+    .execute()
 ```
 
 | **1** | This line tells the server you don’t care about scores. |
@@ -97,7 +132,17 @@ By default, the server does not return any document content. You can tell the se
 Include stored fields in result rows
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        fields = listOf("*"), (1)
+    )
+    .execute()
+
+searchResult.rows.forEach { row ->
+    println(row.fieldsAs<Map<String, Any?>>()) (2)
+}
 ```
 
 | **1** | This line tells the server you want the result rows to include _all_ stored fields.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -112,7 +157,19 @@ Couchbase 7.0 and later let you define an index on multiple collections in the s
 > When searching a multi-index collection, the server always returns a field called `_$c`. The value of this field is the name of the matching document’s parent collection.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-multi-collection-index",
+        query = SearchQuery.queryString("San Francisco"),
+        collections = listOf("airport", "landmark") (1)
+    )
+    .execute()
+
+searchResult.rows.forEach { row ->
+    val fields = row.fieldsAs<Map<String, Any?>>()
+    val collection = fields?.get("_\$c") (2)
+    println("Found document ${row.id} in collection $collection")
+}
 ```
 
 | **1** | The server only searches in these collections                             |
@@ -132,7 +189,18 @@ You can ask the server to include a fragment of a matching field value, and high
 Highlight matches
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        highlight = Highlight.html() (1)
+    )
+    .execute()
+
+searchResult.rows.forEach { row ->
+    println(row.locations) (2)
+    println(row.fragments) (3)
+}
 ```
 
 | **1** | This line tells the server you want the result to include fragments, and you want the matching text to be wrapped in HTML tags, like this: <mark>pool</mark>. Alternatively, you can use Highlight.ansi() to mark the matches using ANSI escape codes. The Highlight.html and ansi methods have an optional fields parameter that limits highlighting to only the fields you specify. |
@@ -158,7 +226,13 @@ This example sorts the results by the value of the "country" field:
 Sort by `country` field
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        sort = SearchSort.byField("country"), (1)
+    )
+    .execute()
 ```
 
 | **1** | byField also has optional parameters. We will talk about them next. |
@@ -223,7 +297,9 @@ Optional parameters:
 Sorting with strings
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val sort: SearchSort = SearchSort.by(
+    "country", "state", "city", "-_score"
+)
 ```
 
 ### [](#multi-level-sorting)More than one sort
@@ -233,13 +309,19 @@ You can join `SearchSort` objects to create a sort with more than one level. Her
 Multi-level sort using the `then` infix method
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val multiLevelSort: SearchSort =
+    SearchSort.byField("country") then SearchSort.byId()
 ```
 
 Multi-level sort using the `SearchSort.of` companion factory method
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val multiLevelSort: SearchSort = SearchSort.of(
+    listOf(
+        SearchSort.byField("country"),
+        SearchSort.byId(),
+    )
+)
 ```
 
 First, the rows are sorted by the value of the "country" field. Then, rows with the same country are sorted by document ID.
@@ -264,7 +346,14 @@ For example, this code skips the first 10 rows:
 Offset-based pagination
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        page = SearchPage.startAt(offset = 10), (1)
+        limit = 10,
+    )
+    .execute()
 ```
 
 | **1** | Offsets are zero-based, so this skips the first 10 rows. |
@@ -294,7 +383,35 @@ Here’s an example that uses offset pagination to get the first page. Then it u
 Keyset-based pagination
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val indexName = "travel-sample-index"
+val query = SearchQuery.queryString("pool")
+val sort = SearchSort.byId()
+val pageSize = 10
+
+val firstPage: SearchResult = cluster
+    .searchQuery(
+        indexName = indexName,
+        query = query,
+        sort = sort,
+        limit = pageSize,
+        page = SearchPage.startAt(offset = 0), (1)
+    )
+    .execute()
+
+check(firstPage.rows.isNotEmpty()) { "Oops, no results!" }
+val lastRowOfFirstPage: SearchRow = firstPage.rows.last()
+
+val nextPage: SearchResult = cluster
+    .searchQuery(
+        indexName = indexName,
+        query = query,
+        sort = sort,
+        limit = pageSize,
+        page = SearchPage.searchAfter( (2)
+            lastRowOfFirstPage.keyset
+        ),
+    )
+    .execute()
 ```
 
 | **1** | Starting at offset 0 is the default. You can remove this line.               |
@@ -319,7 +436,16 @@ The search result metadata has a `totalRows` property that tells you how many ro
 Getting the total number of rows
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+        limit = 10,
+    )
+    .execute()
+
+val total = searchResult.metadata.metrics.totalRows (1)
+println("Total matching rows: $total")
 ```
 
 | **1** | This can be greater than the limit argument. |
@@ -336,7 +462,16 @@ Alice can use a `disjunction` query to search for "sauna" _or_ "pool". She can _
 "OR" query with boost
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val saunaOrPool: SearchQuery = SearchQuery.disjunction(
+    SearchQuery.match("sauna") boost 1.5, (1)
+    SearchQuery.match("pool"),
+)
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = saunaOrPool,
+    )
+    .execute()
 ```
 
 | **1** | Alice thinks saunas are better than swimming pools, so she boosts this part of the query. |
@@ -379,7 +514,44 @@ This example uses the `beer-sample` bucket. It requires an index called `beer-sa
 Searching with facets
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+// Count results that fall into these "alcohol by volume" ranges.
+// Optionally assign names to the ranges.
+val low = NumericRange.bounds(min = 0, max = 3.5, name = "low")
+val high = NumericRange.lowerBound(3.5, name = "high")
+val abv = SearchFacet.numeric(
+    field = "abv",
+    ranges = listOf(low, high),
+    name = "Alcohol by volume",
+)
+
+// Find the 5 most frequent values in the "category" field.
+val beerType = SearchFacet.term("category", size = 5)
+
+val result = cluster.searchQuery(
+    indexName = "beer-sample-index",
+    query = SearchQuery.matchAll(),
+    facets = listOf(abv, beerType),
+).execute()
+
+// Print all facet results. Results do not include empty facets
+// or ranges. Categories are ordered by size, descending.
+result.facets.forEach { facet ->
+    println(facet.name)
+    facet.categories.forEach { println("  $it") }
+    facet.other.let { if (it > 0) println("  <other> ($it)") }
+    println()
+}
+
+// Alternatively, print results for a specific facet:
+val abvResult = result[abv]
+if (abvResult == null) {
+    println("No search results matched any of the 'abv' facet ranges.")
+} else {
+    println("Alcohol by volume (again)")
+    println(" low (${abvResult[low]?.count ?: 0})")
+    println(" high (${abvResult[high]?.count ?: 0})")
+    println()
+}
 ```
 
 ## [](#scoped-vs-global-indexes)Scoped vs Global Indexes
@@ -408,7 +580,14 @@ This first example shows how to find documents whose `vector_field` value is nea
 Single vector query
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = scope.search( (1)
+    indexName = "vector-index",
+    spec = SearchSpec.vector(
+        "vector_field",
+        floatArray, (2)
+        numCandidates = 5, (3)
+    ),
+).execute() (4)
 ```
 
 | **1** | This happens to be a scoped index, so we are using scope.search(). If it was a global index we would use cluster.search() instead. See [Scoped vs Global Indexes](#scoped-vs-global-indexes).              |
@@ -424,7 +603,13 @@ You can build compound vector queries using `SearchSpec.allOf` or `SearchSpec.an
 Compound vector search
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = scope.search(
+    indexName = "vector-index",
+    spec = SearchSpec.anyOf( (1)
+        SearchSpec.vector("vector_field", floatArray) boost 1.5, (2)
+        SearchSpec.vector("vector_field", anotherFloatArray),
+    )
+).execute()
 ```
 
 | **1** | SearchSpec.anyOf combines the child queries using a logical OR operator. For logical AND, use SearchSpec.allOf instead. |
@@ -438,7 +623,13 @@ You can use `SearchSpec.mixedMode` to combine a traditional FTS search query wit
 Mixed mode search
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = scope.search(
+    indexName = "vector-and-non-vector-index",
+    spec = SearchSpec.mixedMode(
+        SearchSpec.match("beautiful"), (1)
+        SearchSpec.vector("vector_field", floatArray),
+    )
+).execute()
 ```
 
 | **1** | A traditional textual search query. |
@@ -453,7 +644,10 @@ Note that `cluster.search()` and `scope.search()` also work with traditional FTS
 Traditional textual search
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = scope.search(
+    indexName = "travel-sample-index",
+    spec = SearchSpec.match("beautiful"), (1)
+).execute()
 ```
 
 | **1** | A traditional textual search query. |
@@ -474,7 +668,27 @@ This is the default value for the `searchQuery` method’s `consistency` paramet
 If you made some changes, you can tell the server to wait for the changes to be indexed. In other words, the search results are "consistent with" the changes you made. To use this kind of scan consistency, you must keep track of the mutation tokens from the changes you want to wait for.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val collection = cluster
+    .bucket("travel-sample")
+    .defaultCollection()
+
+val mutationResult: MutationResult =
+    collection.upsert(
+        id = "my-fake-hotel",
+        content = mapOf("description" to "This hotel is imaginary.")
+    )
+
+val mutationState = MutationState()
+mutationState.add(mutationResult)
+
+val queryResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.match("imaginary"),
+        consistency = SearchScanConsistency
+            .consistentWith(mutationState),
+    )
+    .execute()
 ```
 
 ## [](#partial-failures)Partial Failures
@@ -487,7 +701,20 @@ An FTS index can have multiple partitions that live on different Couchbase Serve
 If you want to know if the FTS service was able to search all partitions, check the `SearchMetadata.errors` property. This property is a map where the key is the name of an index partition, and the value is an error reported by that partition.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchResult: SearchResult = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool")
+    )
+    .execute()
+
+if (searchResult.metadata.errors.isNotEmpty()) {
+    println("Partial failure!")
+}
+
+searchResult.metadata.errors.forEach { (indexPartition, errorMessage) ->
+    println("Partition $indexPartition reported error: $errorMessage")
+}
 ```
 
 ## [](#streaming)Streaming
@@ -497,7 +724,14 @@ The previous examples store all result rows in memory. If there are many rows, t
 To use less memory, pass a lambda to `execute` and work on each row one at a time, like this:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/full-text-search.adoc - include::example$FullTextSearch.kt[]
+val searchMetadata: SearchMetadata = cluster
+    .searchQuery(
+        indexName = "travel-sample-index",
+        query = SearchQuery.queryString("pool"),
+    )
+    .execute { row ->
+        println("Found row: $row")
+    }
 ```
 
 > [!NOTE]

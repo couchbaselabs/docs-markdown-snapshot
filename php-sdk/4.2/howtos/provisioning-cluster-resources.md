@@ -3,7 +3,7 @@ title: Provisioning Cluster Resources
 description: Provisioning cluster resources is managed at the collection or
   bucket level, depending upon the service affected.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/howtos/pages/provisioning-cluster-resources.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:howtos:provisioning-cluster-resources.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:4.2@php-sdk:howtos:provisioning-cluster-resources.adoc[]
 
 > Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected. Common use cases are outlined here, less common use cases are covered in the [API docs](https://docs.couchbase.com/sdk-api/couchbase-php-client/namespaces/couchbase.html). 
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+The primary means for managing clusters is through the Couchbase Web UI which provides an easy to use interface for adding, removing, monitoring and modifying buckets. In some instances you may wish to have a programmatic interface. For example, if you wish to manage a cluster from a setup script, or if you are setting up buckets in test scaffolding.
 
 The PHP SDK also comes with some convenience functionality for common Couchbase management requests.
 
@@ -56,7 +56,8 @@ $bucketMgr = $cluster->buckets();
 
 The `BucketSettings` class is used for creating and updating buckets, and for exposing information about existing buckets.
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+> [!WARNING]
+> Note that any property that is not explicitly set when building the bucket settings will use the default value. In the case of the update, this is not necessarily the currently configured value, so you should be careful to set all properties to their correct expected values when updating an existing bucket configuration.
 
 Here is the list of parameters available:
 
@@ -104,7 +105,7 @@ $bucketMgr->dropBucket("hello");
 
 ### [](#flushing-buckets)Flushing Buckets
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+When a bucket is flushed, all content is removed. Because this operation is potentially dangerous it is disabled by default for each bucket. Bucket flushing may be useful in test environments where it becomes a simpler alternative to removing and creating a test bucket. You may enable bucket flushing on a per-bucket basis using the Couchbase Web Console or when creating a bucket.
 
 You can flush a bucket in the SDK by using the `flush()` method:
 
@@ -116,7 +117,14 @@ The `flush()` operation may fail if the bucket does not have [flush enabled](htt
 
 ## [](#index-management)Index Management
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+In general, you will rarely need to work with Index Managers from the SDK. For those occasions when you do, index management operations can be performed with the following interfaces:
+
+* QueryIndexManager — [Cluster::queryIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Cluster.html#method%5FqueryIndexes)
+* AnalyticsIndexManager — [Cluster::analyticsIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Cluster.html#method%5FanalyticsIndexes)
+* SearchIndexManager — [Cluster::searchIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Cluster.html#method%5FsearchIndexes)
+* ViewIndexManager — [Bucket::viewIndexes()](https://docs.couchbase.com/sdk-api/couchbase-php-client/classes/Couchbase-Bucket.html#method%5FviewIndexes)
+
+You will find some of these described in the following section.
 
 ### [](#queryindexmanager)QueryIndexManager
 
@@ -130,7 +138,13 @@ $cluster = new Cluster("couchbase://localhost", $options);
 $queryIndexMgr = $cluster->queryIndexes();
 ```
 
-Unresolved include directive in modules/howtos/pages/provisioning-cluster-resources.adoc - include::7.5@sdk:shared:partial$flush-info-pars.adoc\[\]
+Applications can use this manager to perform operations such as creating, deleting, and fetching _primary_ or _secondary_ indexes:
+
+* A _Primary_ index is built from a document’s key and is mostly suited for simple queries.
+* A _Secondary_ index is the most commonly used type, and is suited for complex queries that require filtering on document fields.
+
+> [!NOTE]
+> To perform query index operations, the provided user must either be an _Admin_ or assigned the _Query Manage Index_ role. See the [Roles](../../../server/current/learn/security/roles.md#query-manage-index) page for more information.
 
 The example below shows how to create a simple primary index, restricted to a named scope and collection, by calling the `createPrimaryIndex()` method. Note that you cannot provide a named scope or collection separately, both must be set for the `QueryIndexManager` to create an index on the relevant keyspace path.
 

@@ -2,7 +2,7 @@
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
 editUrl: https://github.com/couchbase/docs-sdk-rust/edit/release/1.0/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:rust-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -55,7 +55,7 @@ __Table 1\. Couchbase Server and SDK Supported Version Matrix__
 
 ### [](#deploying-couchbase-server)Deploying Couchbase Server
 
-* [Capella](#cloud::index.adoc) — Database as a Service
+* [Capella](../../../home/cloud.md) — Database as a Service
 * [Self-managed Couchbase Server](../../../server/current/install/get-started.md):
 
   * [Docker Install](../../../server/current/install/getting-started-docker.md)

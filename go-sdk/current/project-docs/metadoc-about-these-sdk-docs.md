@@ -2,8 +2,8 @@
 title: About These Docs
 description: Meta documentation -- what you might need to know to get the best
   from these docs, from their intent to their Information Architecture.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/metadoc-about-these-sdk-docs.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:go-sdk:project-docs:metadoc-about-these-sdk-docs.adoc[]
 
 > Meta documentation — what you might need to know to get the best from these docs, from their intent to their Information Architecture. 
 
-Welcome to the [Go SDK 2.11](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
+Welcome to the [Go SDK 2.12](compatibility.md#api-version) docs — this is an _afterword_ to the documentation, rather than something most people will read as a _foreword_. Why so? On most occasions you will arrive at a page directly from a search engine or LLM, perhaps follow a link to another page or two, and then depart (with, we hope, your questions answererd). This page is to help with those occasions when you are unsure precisely what you want, but you are after understanding — so this page is a guide to the SDK docs, to help you to get the most from them.
 
 ## [](#assumptions-presumptions)Assumptions & Presumptions
 
@@ -42,7 +42,7 @@ It also contains information on connecting to the database, and a section of tro
 
 ## [](#data-modelling-durability-and-consistency)Data Modelling, Durability, and Consistency
 
-* [Data Modelling, Durability, and Consistency](#concept-docs:data-durability-acid-transactions.adoc)
+* [Data Modelling, Durability, and Consistency](../concept-docs/data-durability-acid-transactions.md)
 
 A database has a simple job — storing your data, and giving some of it back to you when you ask. Behind that simplicity is a whole world of difficulty, to ensure the best combination of consistency and availability of documents partitioned across many nodes. Our introduction suggests key areas to consider when scaling up your app.
 
@@ -50,11 +50,11 @@ This section also contains details of interacting with our super fast [Data Serv
 
 ## [](#querying-your-data)Querying Your Data
 
-* [concept-docs:querying-your-data.adoc](#concept-docs:querying-your-data.adoc)
+* [Querying Your Data](../concept-docs/querying-your-data.md)
 
 For developers with an RDBMS, Couchbase’s SQL implementation, SQL++, makes querying familiar. But don’t be so quick to jump straight to SQL++ — assess your use case carefully.
 
-In addition to [SQL++ queries](../howtos/n1ql-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service’s speedy binary protocol.
+In addition to [SQL++ queries](../howtos/sqlpp-queries-with-sdk.md), and longer running [analytics queries](../howtos/analytics-using-sdk.md) (OLAP) queries, and a [Search Service](../howtos/full-text-searching-with-sdk.md)(which includes [Vector Search](../howtos/vector-searching-with-sdk.md)), you can quickly access data where you know keys or [key ranges](#howtos:kv-range-scan.adoc), and this can be substantially quicker, thanks to the Data Service’s speedy binary protocol.
 
 ## [](#distributed-acid-transactions)Distributed ACID Transactions
 
@@ -72,7 +72,7 @@ This section also contains details of the [observability](../concept-docs/respon
 
 ## [](#best-practices)Best Practices
 
-* [concept-docs:best-practices.adoc](#concept-docs:best-practices.adoc)
+* [Best Practices](../concept-docs/best-practices.md)
 
 Choice is the mantra of many programming languages, and Couchbase offers support for many approaches to programming and architectural choices. Where possible, we offer strong recommendations, for what will work best in _most_ circumstances.
 
@@ -80,19 +80,19 @@ This section also contains discussions for some of the [best ways of dealing wit
 
 ## [](#managing-couchbase)Managing Couchbase
 
-* [Managing Couchbase](#concept-docs:management-api.adoc)
+* [Managing Couchbase](../concept-docs/management-api.md)
 
 Some will prefer to administer Couchbase programmatically, rather than through UI, REST API, or command line. This section covers the available management APIs in the SDK.
 
 ## [](#sdk-deployment)SDK Deployment
 
-* [SDK Deployment](#project-docs:deployment.adoc)
+* [SDK Deployment](deployment.md)
 
-A section on those non-programmatic considerations — [compatibility guides](compatibility.md), [migration](migrating-sdk-code-to-3.n.md), [third party integrations](#project-docs:third-party-integrations.adoc), [licensing](sdk-licenses.md), and [release notes](sdk-release-notes.md).
+A section on those non-programmatic considerations — [compatibility guides](compatibility.md), [migration](migrating-sdk-code-to-3.n.md), [third party integrations](third-party-integrations.md), [licensing](sdk-licenses.md), and [release notes](sdk-release-notes.md).
 
 ## [](#reference-docs)Reference Docs
 
-* [ref:index.adoc](#ref:index.adoc)
+* [Reference Pages](../ref/index.md)
 
 The key reference doc is the API guide, which should be an accurate and complete source of truth for programming with the Go SDK’s API. Any error here should be filed directly against the individual SDKs bug tracker (JIRA), although a ticket against the docs [here](https://issues.couchbase.com/projects/DOC/issues) will always be converted to the correct project.
 

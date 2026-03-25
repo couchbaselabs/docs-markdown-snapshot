@@ -3,7 +3,7 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-python/edit/release/1.0/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:python-columnar-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -19,7 +19,7 @@ link: xref:python-columnar-sdk:project-docs:compatibility.adoc[]
 > 
 > Do not combine the Python Columnar SDK with the Python Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
 
 ## [](#platform-compatibility)Platform Compatibility
 

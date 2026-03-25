@@ -2,7 +2,7 @@
 title: Client Settings
 description: Client settings
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:ref:client-settings.adoc[]
 ---
 
@@ -16,7 +16,21 @@ link: xref:4.2@php-sdk:ref:client-settings.adoc[]
 > [!TIP]
 > The backend implementation of client settings changed substantially in 4.0\. Full details can be found in [the API Reference](https://docs.couchbase.com/sdk-api/couchbase-php-client-4.0.0/classes/Couchbase-ClusterOptions.html).
 
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::7.5@sdk:shared:partial$client-settings-nowait.adoc\[\]
+## [](#commonly-used-options)Commonly Used Options
+
+The defaults above have been carefully considered and in general it is not recommended to make changes without expert guidance or careful testing of the change. Some options may be commonly used together in certain envionments or to achieve certain effects.
+
+### [](#constrained-network-environments)Constrained Network Environments
+
+Though [wide area network](../project-docs/compatibility.md#network-requirements) (WAN) connections are not directly supported, some development and non-critical operations activities across a WAN are convenient. Most likely for connecting to Couchbase Capella, or Server running in your own cloud account, whilst developing from a laptop or other machine not located in the same data center. These settings are some you may want to consider adjusting:
+
+* Connect Timeout to 30s
+* Key-Value Timeout to 5s
+* Config Poll Interval to 10s
+* Circuit Breaker ErrorThresholdPercentage to 75
+
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
 
 ## [](#configuration-profiles)Configuration Profiles
 

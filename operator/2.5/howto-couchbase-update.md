@@ -1,0 +1,29 @@
+---
+title: Modify a Couchbase Deployment
+editUrl: https://github.com/couchbase/docs-operator/edit/release/2.5/modules/ROOT/pages/howto-couchbase-update.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.5@operator::howto-couchbase-update.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operator/2.5/howto-couchbase-update.html)
+
+# Modify a Couchbase Deployment
+
+Changes to a `CouchbaseCluster` should never be done manually as the Operator will revert the changes if they do not match what is in the configuration. Always update the cluster configuration using the `kubectl` command. We recommend using either the `kubectl replace` or `kubectl edit` command. If you’re using OpenShift, use the `oc replace` or `oc edit` command instead.
+
+To use the `kubectl replace` command, first edit a field in the Couchbase cluster configuration file stored on your local disk, and then run the following command:
+
+```console
+$ kubectl replace -f <path to updated config>
+```
+
+Using the `kubectl edit` command you can edit the Couchbase cluster configuration directly. For example, if your cluster name is `cb-example`, use the following command to edit the configuration:
+
+```console
+$ kubectl edit cbc cb-example
+```
+
+This opens a text editor with the current configuration for the `cb-example` cluster. You can then edit the configuration, save, and then close the text editor. Upon closing the text editor, the changes will be pushed back to Kubernetes.
+
+It is important to remember that some fields in the Couchbase cluster configuration cannot be edited after the cluster is created. The `CouchbaseCluster` documentation notes such fields in their respective descriptions. The current version does not support field validation.

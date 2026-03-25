@@ -3,7 +3,7 @@ title: Create a User-Defined Function
 description: How to create a user-defined function (UDF) to call an inline
   function or a JavaScript function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/create-user-defined-function.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:create-user-defined-function.adoc[]
 ---
 
@@ -16,6 +16,13 @@ link: xref:cloud:guides:create-user-defined-function.adoc[]
 
 ## [](#introduction)Introduction
 
+If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
+
+* [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
+* [Query Tab](../clusters/query-service/query-workbench.md)
+
+### [](#global-and-scoped-user-defined-functions)Global and Scoped User-Defined Functions
+
 A user-defined function can be **global** or **scoped**.
 
 * A **global** user-defined function is created within the `default:` namespace, at the same level as the buckets in your database. A global user-defined function is available to all clients.
@@ -23,12 +30,9 @@ A user-defined function can be **global** or **scoped**.
 
 The name of a user-defined function must be unique within the specified namespace or scope.
 
+### [](#user-defined-function-parameters)User-Defined Function Parameters
+
 When you create a user-defined function, you can specify a list of parameters for any values you need to process or use in your function. If you want to create a user-defined function that can take a variable length list of parameters, you can create a **variadic** function.
-
-If you want to try out the examples in this section, follow the instructions given in [Create an Account and Deploy Your Free Tier Operational Cluster](../get-started/create-account.md) to create a free account, deploy a cluster, and load a sample dataset. Read the following for further information about the tools available for editing and executing queries:
-
-* [cbq: The Command Line Shell for SQL++](../n1ql/n1ql-intro/cbq.md)
-* [Query Tab](../clusters/query-service/query-workbench.md)
 
 ## [](#create-inline)Creating an Inline User-Defined Function
 

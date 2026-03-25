@@ -1,8 +1,8 @@
 ---
 title: Deployment
 description: Transition from dev environment to prod, and keep up with the latest fixes.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/project-docs/pages/deployment.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/deployment.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:project-docs:deployment.adoc[]
 ---
 
@@ -41,7 +41,7 @@ The best way to accommodate developing an application that is to be deployed to 
 
 ### [](#deploying-couchbase-server)Deploying Couchbase Server
 
-* [Capella](#cloud::index.adoc) — Database as a Service
+* [Capella](../../../home/cloud.md) — Database as a Service
 * [Self-managed Couchbase Server](../../../server/current/install/get-started.md):
 
   * [Docker Install](../../../server/current/install/getting-started-docker.md)

@@ -2,8 +2,8 @@
 title: Vector Search
 description: Vector Search from the SDK, to enable AI integration, semantic
   search, and use of RAG frameworks.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/vector-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/vector-searching-with-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:vector-searching-with-sdk.adoc[]
 ---
 
@@ -70,7 +70,7 @@ Hyperscale Index Example
 		}
 ```
 
-Parameterizing the query, as with [regular queries](#sqlpp-queries-with-sdk.adoc#parameterized-queries), will allow the reuse of the [Query Plan](../../../server/current/n1ql/n1ql-intro/queriesandresults.md#prepare-stmts). This can be more efficient, unless you are doing a lot of optimization to your query.
+Parameterizing the query, as with [regular queries](sqlpp-queries-with-sdk.md#parameterized-queries), will allow the reuse of the [Query Plan](../../../server/current/n1ql/n1ql-intro/queriesandresults.md#prepare-stmts). This can be more efficient, unless you are doing a lot of optimization to your query.
 
 Parameterized Vector Query
 

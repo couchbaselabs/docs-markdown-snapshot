@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Data Sync Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile-android/edit/sync/content/modules/userprofile-sync-android/pages/userprofile_sync.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:userprofile-sync-android:userprofile_sync.adoc[]
 ---
 
@@ -25,14 +25,14 @@ What You Will Learn
 
 This tutorial will demonstrate how to -
 
-* Setup the Couchbase Sync Gateway to sync content between multiple Couchbase Lite enabled clients. We will will cover the basics of the [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc).
-* Configure your Sync Gateway to enforce data routing, access control and authorization. We will cover the basics of the [Sync Function API](#3.0@sync-gateway::sync-function.adoc).
+* Setup the Couchbase Sync Gateway to sync content between multiple Couchbase Lite enabled clients. We will will cover the basics of the [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md).
+* Configure your Sync Gateway to enforce data routing, access control and authorization. We will cover the basics of the [Sync Function API](../../sync-gateway/3.0/sync-function.md).
 * Configure your Couchbase Lite clients for replication with the Sync Gateway.
 * Use "Live Queries" or Query events within your Couchbase Lite clients to be asynchronously notified of changes.
 
 We will be using an Android app as an example of a Couchbase Lite enabled client.
 
-You can learn more about Sync Gateway here in the [Sync Gateway Documentation](#3.0@sync-gateway::index.adoc)
+You can learn more about Sync Gateway here in the [Sync Gateway Documentation](../../sync-gateway/3.0/index.md)
 
 ## [](#prerequisites)Prerequisites
 
@@ -212,7 +212,7 @@ docker network create -d bridge workshop
 
 We have a custom docker image `priyacouch/couchbase-server-userprofile:7.0.0-dev` of Couchbase Server, which creates an empty bucket named “userprofile” and an RBAC user “admin” with “sync gateway” role.
 
-Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](#3.0@sync-gateway::get-started-prepare.adoc), to install Couchbase Server and configure it with the relevant bucket.
+Alternatively, you can follow the instructions in our documentation — see: [Get Started - Prepare](../../sync-gateway/3.0/get-started-prepare.md), to install Couchbase Server and configure it with the relevant bucket.
 
 1. Optionally, remove any existing Docker container  
 ```bash  
@@ -252,9 +252,9 @@ Now we will install, configure and run Sync Gateway.
 
 #### [](#lbl-install)Configuration
 
-When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration — see: [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc). We would then provision database, sync and other configuration using the Admin REST endpoints Alternatively, we can continue to run in legacy-mode, using the Pre-3.0 configuration.
+When using Sync Gateway 3.0, we can opt to provide a bootstrap configuration — see: [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md). We would then provision database, sync and other configuration using the Admin REST endpoints Alternatively, we can continue to run in legacy-mode, using the Pre-3.0 configuration.
 
-In this tutorial — for the purposes of backward compatibility — we will run 3.x using its [legacy configuration option](#3.0@sync-gateway::configuration-properties-legacy.adoc). That is, we will be running with the `disable_persistent_config` option in the configuration file set to `true`. You can, if you wish, run a 2.8 version of Sync Gateway instead.
+In this tutorial — for the purposes of backward compatibility — we will run 3.x using its [legacy configuration option](../../sync-gateway/3.0/configuration-properties-legacy.md). That is, we will be running with the `disable_persistent_config` option in the configuration file set to `true`. You can, if you wish, run a 2.8 version of Sync Gateway instead.
 
 The configuration files corresponding to this sample application are shown in [Table 1](#tbl-config-files). They are available in the "sync" branch of the github repo hosting the app, which you cloned — look in:  
 `/path/to/cloned/repo/userprofile-couchbase-mobile/content/modules/userprofile-sync/examples/`  
@@ -358,7 +358,7 @@ The Sync Function is a Javascript function that is specified as part of the [Syn
 
 ### [](#authorization)Authorization
 
-We use the [requireUser()](#3.0@sync-gateway::sync-function-api-require-user-cmd.adoc)API to verify that the `email` property specified in the Document matches the Id of the user making the request. The Id of the user making the request is specified in the `Authorization` header. We will be using _Basic Authentication_ in our application.
+We use the [requireUser()](../../sync-gateway/3.0/sync-function-api-require-user-cmd.md)API to verify that the `email` property specified in the Document matches the Id of the user making the request. The Id of the user making the request is specified in the `Authorization` header. We will be using _Basic Authentication_ in our application.
 
 ```javascript
 function sync(doc, oldDoc) {
@@ -424,11 +424,11 @@ function sync(doc, oldDoc) {
 | **2** | If this a new document, then verify that the Id of the Document is of the required format (i.e. _"user::<email>"_). We throw an exception if that’s not the case. |
 | **3** | If this is a document update, then verify that the email property value has not changed. Again, we throw an exception if that’s not the case.                     |
 
-You can learn more about the Sync Function in the [Sync Function API](#3.0@sync-gateway::sync-function.adoc)
+You can learn more about the Sync Function in the [Sync Function API](../../sync-gateway/3.0/sync-function.md)
 
 ### [](#data-routing)Data Routing
 
-[Channels](#3.0@sync-gateway::channels.adoc) are a mechanism to "tag" documents and is typically used to segregate documents based on the contents of the document. Combined with the [access()](#3.0@sync-gateway::sync-function-api-access-cmd.adoc)and [requireAccess()](#3.0@sync-gateway::sync-function-api-require-access-cmd.adoc)API, it can be used to enforce [Access Control](#access-control). As we shall see in a later section, clients can use channels to pull only a subset of documents.
+[Channels](../../sync-gateway/3.0/channels.md) are a mechanism to "tag" documents and is typically used to segregate documents based on the contents of the document. Combined with the [access()](../../sync-gateway/3.0/sync-function-api-access-cmd.md)and [requireAccess()](../../sync-gateway/3.0/sync-function-api-require-access-cmd.md)API, it can be used to enforce [Access Control](#access-control). As we shall see in a later section, clients can use channels to pull only a subset of documents.
 
 ```javascript
   /* Routing */
@@ -449,7 +449,7 @@ You can learn more about the Sync Function in the [Sync Function API](#3.0@sync-
 
 ### [](#access-control)Access Control
 
-You can enforce access control to channels using the [access()](#3.0@sync-gateway::sync-function-api-access-cmd.adoc)API. This will ensure that only users with access to a specific channel will be able to retrieve documents in the channel.
+You can enforce access control to channels using the [access()](../../sync-gateway/3.0/sync-function-api-access-cmd.md)API. This will ensure that only users with access to a specific channel will be able to retrieve documents in the channel.
 
 ```javascript
   /* Access Control */
@@ -653,6 +653,6 @@ Check out the following links for further details
 
 Further Reading
 
-* [Sync Gateway Configuration](#3.0@sync-gateway::configuration-overview.adoc)
+* [Sync Gateway Configuration](../../sync-gateway/3.0/configuration-overview.md)
 * [Overview of Replication Protocol 2.0](https://blog.couchbase.com/data-replication-couchbase-mobile/)
 * [Installing Sync Gateway using Docker](https://blog.couchbase.com/couchbase-mobile-docker/)

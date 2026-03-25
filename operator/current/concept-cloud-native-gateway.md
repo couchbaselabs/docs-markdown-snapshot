@@ -3,7 +3,7 @@ title: Cloud Native Gateway
 description: A direct gRPC interface to key Couchbase services, abstracting
   topology details behind a service endpoint.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.9/modules/ROOT/pages/concept-cloud-native-gateway.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:operator::concept-cloud-native-gateway.adoc[]
 ---
 
@@ -18,7 +18,7 @@ link: xref:operator::concept-cloud-native-gateway.adoc[]
 
 The Couchbase Cloud Native Gateway (CNG) allows applications to access Couchbase through a set of RPC network endpoints based on [gRPC](https://grpc.io/), a [Cloud Native Computing Foundation](https://cncf.io/) project.
 
-In deployments without CNG, applications using Couchbase SDKs dynamically adjust to the cluster topology, building connections to individual nodes using a combination of memcached binary protocol and HTTP. There are some deployment scenarios, typically in cloud deployments based on Kubernetes and Red Hat OpenShift, where it is preferable to be able to abstract the topology details behind a service endpoint. This allows applications to connect to a single hostname and port and be load balanced across that service. All of the scale and elastic properties of Couchbase Server remain intact — such as scaling up or down the cluster, and upgrading the version being run. In these deployments, the application uses the [Couchbase SDK](#home::sdk.adoc) with only configuration changes, and the Cloud Native Gateway handles topological changes.
+In deployments without CNG, applications using Couchbase SDKs dynamically adjust to the cluster topology, building connections to individual nodes using a combination of memcached binary protocol and HTTP. There are some deployment scenarios, typically in cloud deployments based on Kubernetes and Red Hat OpenShift, where it is preferable to be able to abstract the topology details behind a service endpoint. This allows applications to connect to a single hostname and port and be load balanced across that service. All of the scale and elastic properties of Couchbase Server remain intact — such as scaling up or down the cluster, and upgrading the version being run. In these deployments, the application uses the [Couchbase SDK](../../home/sdk.md) with only configuration changes, and the Cloud Native Gateway handles topological changes.
 
 For Kubernetes and OpenShift, this means the Cloud Native Gateway service can be _exposed outside Kubernetes_ through standard Kubernetes networking configuration. Specifically, this means when deployed, you can build upon the Ingress and Gateway networking in Kubernetes to expose that service outside the Kubernetes / OpenShift cluster to applications running outside Kubernetes. You can define Kubernetes `LoadBalancers` and OpenShift `Routes` to access the `CouchbaseCluster` with the Cloud Native Gateway service defined.
 

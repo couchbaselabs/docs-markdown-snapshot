@@ -1,0 +1,308 @@
+---
+title: cbopinfo
+editUrl: https://github.com/couchbase/couchbase-operator/edit/2.5.x/docs/user/modules/ROOT/pages/tools/cbopinfo.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.5@operator::tools/cbopinfo.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/operator/2.5/tools/cbopinfo.html)
+
+# cbopinfo
+
+> [!IMPORTANT]
+> The `cbopinfo` binary is deprecated and will be removed in a later release. Please use the [cao](cao.md) binary that features all the same functionality under the `cao collect-logs` subcommand.
+
+## [](#installation)Installation
+
+Make sure that you have downloaded the Operator [package](https://www.couchbase.com/downloads) and unpacked it on the same computer where you normally run `kubectl` or `oc`.
+
+After you unpack the download, the resulting directory will be titled something like `couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64`.
+
+* macOS
+* Linux
+* Windows
+
+1. Open a Terminal window and go to the directory where the `cbopinfo` binary is located:  
+```console  
+$ cd couchbase-autonomous-operator-kubernetes_x.x.x-macos_x86_64/bin/  
+```
+2. Make the `cbopinfo` binary executable:  
+```console  
+$ chmod +x ./cbopinfo  
+```
+3. Move the binary into your PATH:  
+```console  
+$ sudo mv ./cbopinfo /usr/local/bin/cbopinfo  
+```
+
+> [!NOTE]
+> On newer versions of macOS, you may encounter errors such as `cannot execute binary file` when trying to use the tools included in the Autonomous Operator package. If you encounter such an error, you’ll need to update your security settings as outlined in Apple’s [support article on macOS Gatekeeper](https://support.apple.com/en-us/HT202491). In System Preferences, click Security & Privacy, then click General. Click the lock and enter your password to make changes. Select App Store and identified developers under the header “Allow apps downloaded from.”
+
+1. Open a command prompt and go to the directory where the `cbopinfo` binary is located:  
+```console  
+$ cd couchbase-autonomous-operator-kubernetes_x.x.x-linux_x86_64/bin/  
+```
+2. Make the `cbopinfo` binary executable:  
+```console  
+$ chmod +x ./cbopinfo  
+```
+3. Move the binary into your PATH:  
+```console  
+$ sudo mv ./cbopinfo /usr/local/bin/cbopinfo  
+```
+
+1. Open a command prompt and go to the directory where the `cbopinfo` binary is located:  
+```console  
+$ cd couchbase-autonomous-operator-kubernetes_x.x.x-windows_x86_64\bin\  
+```
+2. Add the `cbopinfo` binary into your PATH.
+
+## [](#cbopinfo-flags)cbopinfo \[flags\]
+
+Log and resource collection for Couchbase Autonomous Operator support.
+
+When you encounter a problem with the Autonomous Operator, our support teams require more than just the last line of the logs to diagnose and, ultimately, resolve the issue quickly.
+
+cbopinfo, in its most basic form, collects all resources associated with the Autonomous Operator and Couchbase clusters in the specified namespace, this includes associated logs and events. Most resource types are filtered, so the tool collects only what is necessary. Where filtering is not possible, all instances of that resource are collected, so it may be desirable to segregate the Autonomous Operator into its own namespace. Secrets, for example, are not filtered, but the tool redacts values, so if your support request relates to TLS, you may need to manually collect these resources and include them in your support request.
+
+### [](#examples)Examples
+
+```console
+# Collect operator and all couchbase cluster resources
+cbopinfo
+
+# Collect operator and a named cluster's resources
+cbopinfo --couchbase-cluster my-cluster
+
+# Collect operator resources and Couchbase Server logs
+cbopinfo --collectinfo --collectinfo-collect=all
+
+# Collect operator and system (kube-system) resources
+cbopinfo --system
+
+# Collect all known resources, applying no filtering
+cbopinfo --all
+```
+
+### [](#flags)Flags
+
+\--all
+
+**Type**: bool
+
+**Default**: false
+
+Collect all resources from the namespace
+
+\--as
+
+**Type**: string
+
+Username to impersonate for the operation. User could be a regular user or a service account in a namespace.
+
+\--as-group
+
+**Type**: stringArray
+
+**Default**: \[\]
+
+Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
+
+\--as-uid
+
+**Type**: string
+
+UID to impersonate for the operation.
+
+\--cache-dir
+
+**Type**: string
+
+**Default**: $HOME/.kube/cache
+
+Default cache directory
+
+\--certificate-authority
+
+**Type**: string
+
+Path to a cert file for the certificate authority
+
+\--client-certificate
+
+**Type**: string
+
+Path to a client certificate file for TLS
+
+\--client-key
+
+**Type**: string
+
+Path to a client key file for TLS
+
+\--cluster
+
+**Type**: string
+
+The name of the kubeconfig cluster to use
+
+\--collectinfo
+
+**Type**: bool
+
+**Default**: false
+
+Collect couchbase server logs
+
+\--collectinfo-collect
+
+**Type**: string
+
+Collect couchbase server logs non-interactively, requires the -collectinfo flag to be set
+
+\--collectinfo-list
+
+**Type**: bool
+
+**Default**: false
+
+List all log sources in json and exit, requires the -collectinfo flag to be set
+
+\--collectinfo-redact
+
+**Type**: bool
+
+**Default**: false
+
+Redact couchbase server logs, requires the -collectinfo flag to be set
+
+\--context
+
+**Type**: string
+
+The name of the kubeconfig context to use
+
+\--couchbase-cluster
+
+**Type**: string
+
+Collect only resource for the named CouchbaseCluster, may be used multiple times
+
+\--directory
+
+**Type**: string
+
+Collect logs in a specific directory
+
+\--disable-compression
+
+**Type**: bool
+
+**Default**: false
+
+If true, opt-out of response compression for all requests to the server
+
+\--insecure-skip-tls-verify
+
+**Type**: bool
+
+**Default**: false
+
+If true, the server’s certificate will not be checked for validity. This will make your HTTPS connections insecure
+
+\--kubeconfig
+
+**Type**: string
+
+Path to the kubeconfig file to use for CLI requests.
+
+\--log-level
+
+**Type**: int
+
+**Default**: 0
+
+Control the verbosity of collection, 0 will collect couchbase resources and those scoped to the cluster, 1 will collect more sensitive things that may be required for support such as secrets, roles etc.
+
+\--namespace, -n
+
+**Type**: string
+
+If present, the namespace scope for this CLI request
+
+\--operator-image
+
+**Type**: string
+
+**Default**: couchbase/operator:
+
+Operator image name
+
+\--operator-metrics-port
+
+**Type**: string
+
+**Default**: 8383
+
+Operator metrics port
+
+\--operator-rest-port
+
+**Type**: string
+
+**Default**: 8080
+
+Operator rest port
+
+\--request-timeout
+
+**Type**: string
+
+**Default**: 0
+
+The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don’t timeout requests.
+
+\--server, -s
+
+**Type**: string
+
+The address and port of the Kubernetes API server
+
+\--server-image
+
+**Type**: string
+
+**Default**: couchbase/server:7.1.3
+
+Couchbase server image
+
+\--system
+
+**Type**: bool
+
+**Default**: false
+
+Collect kube-system resources and logs
+
+\--tls-server-name
+
+**Type**: string
+
+Server name to use for server certificate validation. If it is not provided, the hostname used to contact the server is used
+
+\--token
+
+**Type**: string
+
+Bearer token for authentication to the API server
+
+\--user
+
+**Type**: string
+
+The name of the kubeconfig user to use
+
+## [](#cbopinfo-version)cbopinfo version
+
+Prints the command version

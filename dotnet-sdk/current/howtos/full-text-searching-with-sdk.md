@@ -2,8 +2,8 @@
 title: Search
 description: You can use the Full Text Search service (FTS) to create queryable
   full-text indexes in Couchbase Server.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/full-text-searching-with-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/full-text-searching-with-sdk.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:howtos:full-text-searching-with-sdk.adoc[]
 ---
 
@@ -47,7 +47,7 @@ var searchResult = await cluster.SearchAsync(
 );
 
 // as a scope-level search
-[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/d40fe14b34a7ba804ad52d16f82bcc37e318229b/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L59-L62]
+[data-source-url=https://github.com/couchbase/docs-sdk-dotnet/blob/f038f1ea7006cb893808f751df88f460497dbe58/modules/howtos/examples/Couchbase.Examples.SearchV2/SearchV2Examples/Program.cs#L59-L62]
 var searchResult = await scope.SearchAsync("index-hotel-description",
     SearchRequest.Create(
         new MatchQuery("swanky")),
@@ -77,6 +77,15 @@ var searchResult = await scope.SearchAsync("index-name",
         new MatchQuery("swanky"))
     ), new SearchOptions().Limit(10));
 ```
+
+> [!TIP]
+> Search Results Limit
+> 
+> By default, the Search Service returns only the first 10 matches (`size: 10`, `from: 0`). To retrieve more results, you must explicitly define pagination settings such as `size` or `from` in your query.
+> 
+> For information about formatting your Search query and specifying limits, see [Search Request JSON Properties](../../../server/current/search/search-request-params.md).
+> 
+> For information about pagination in Search responses, see [Pagination](../../../server/current/fts/fts-search-response.md#pagination).
 
 ## [](#working-with-results)Working with Results
 

@@ -2,8 +2,8 @@
 title: Client Settings for the Java SDK
 description: The <code>ClusterEnvironment</code> class enables you to configure
   Java SDK options for security, timeouts, reliability, and performance.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/ref/pages/client-settings.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:ref:client-settings.adoc[]
 ---
 
@@ -21,7 +21,20 @@ Most client settings are related to the `ClusterEnvironment`. Because `ClusterEn
 Creating a cluster with custom settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    // [Customize client settings here]
+    .build();
+
+// Create a cluster using the custom client settings.
+Cluster cluster = Cluster.connect(connectionString, ClusterOptions
+    .clusterOptions(username, password)
+    .environment(env));
+
+// [Your code to interact with the cluster]
+
+// Shut down gracefully.
+cluster.disconnect();
+env.shutdown();
 ```
 
 ## [](#config-builders)Config Builders
@@ -33,7 +46,11 @@ Timeout settings are configured using an instance of `TimeoutConfig.Builder`. Th
 Creating a new timeout config builder
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .timeoutConfig(TimeoutConfig
+        .kvTimeout(Duration.ofSeconds(5))
+        .queryTimeout(Duration.ofSeconds(10)))
+    .build();
 ```
 
 Another way to obtain an instance of a config builder is to borrow it from the cluster environment builder. This technique may be useful if you’re configuring the environment in stages and wish to preserve values set by a previous stage.
@@ -41,7 +58,11 @@ Another way to obtain an instance of a config builder is to borrow it from the c
 Borrowing the existing timeout config builder
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment.Builder envBuilder = ClusterEnvironment.builder();
+envBuilder.timeoutConfig() // returns a TimeoutConfig.Builder
+    .kvTimeout(Duration.ofSeconds(5))
+    .queryTimeout(Duration.ofSeconds(10));
+ClusterEnvironment env = envBuilder.build();
 ```
 
 The name of the cluster environment builder method for getting and setting each config builder always matches the name of the config class. For example, `TimeoutConfig` is set via the environment builder’s `timeoutConfig` method, `IoConfig` is set via the `ioConfig` method, and so on.
@@ -53,7 +74,12 @@ Many client settings may also be configured by setting a Java system property. I
 Configuration via system property
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+System.setProperty("com.couchbase.env.timeout.kvTimeout", "10s"); (1)
+System.setProperty("com.couchbase.env.timeout.queryTimeout", "15s");
+
+ClusterEnvironment environment = ClusterEnvironment.builder()
+    .timeoutConfig(TimeoutConfig.kvTimeout(Duration.ofSeconds(5))) (2)
+    .build();
 ```
 
 | **1** | When specifying durations, s stands for seconds. Other valid qualifiers are ns for nanoseconds, us for microseconds, ms for milliseconds, and m for minutes.                          |
@@ -74,7 +100,11 @@ By default the client will connect to Couchbase Server using an unencrypted conn
 Template for configuring security settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .securityConfig(SecurityConfig
+        .enableTls(true)
+    )
+    .build();
 ```
 
 > [!NOTE]
@@ -88,7 +118,7 @@ Default: `false`
 
 System Property: `com.couchbase.env.security.enableTls`
 
-Set this to `true` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server 3.0 or later. If TLS is enabled you must also specify the trusted certificates by calling exactly one of `trustCertificate`, `trustCertificates`, or `trustManagerFactory`. Please see the [Managing Connections](../howtos/managing-connections.md) section for more details on how to set it up properly.
+Set this to `true` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server 3.0 or later. If TLS is enabled you must also specify the trusted certificates by calling exactly one of `trustCertificate`, `trustCertificates`, or `trustManagerFactory`. Please see the [Managing Connections](#howtos:managing-connections.adoc) section for more details on how to set it up properly.
 
 Name: **Disabling Native TLS Provider**
 
@@ -108,7 +138,7 @@ Default: N/A
 
 System Property: `com.couchbase.env.security.trustCertificate`
 
-Path to a file containing a single X.509 certificate to trust as a Certificate Authority when establishing secure connections. See the [Connection Management](../howtos/managing-connections.md#ssl) section for more details on how to set it up properly.
+Path to a file containing a single X.509 certificate to trust as a Certificate Authority when establishing secure connections. See the [Connection Management](#howtos:managing-connections.adoc#ssl) section for more details on how to set it up properly.
 
 Name: **TLS Certificates**
 
@@ -118,7 +148,7 @@ Default: N/A
 
 System Property: N/A
 
-If you wish to trust more than one certificate, or prefer to load the certificate yourself, then call this method to specify the certificates to trust as Certificate Authorities when establishing secure connections. See the [Connection Management](../howtos/managing-connections.md#ssl) section for more details on how to set it up properly.
+If you wish to trust more than one certificate, or prefer to load the certificate yourself, then call this method to specify the certificates to trust as Certificate Authorities when establishing secure connections. See the [Connection Management](#howtos:managing-connections.adoc#ssl) section for more details on how to set it up properly.
 
 Name: **Custom TLS Trust Manager Factory**
 
@@ -128,7 +158,7 @@ Default: N/A
 
 System Property: N/A
 
-As an alternative to specifying the certificates to trust, you can specify a custom `TrustManagerFactory` to use when establishing secure connections. See the [Connection Management](../howtos/managing-connections.md#ssl) section for more details on how to set it up properly.
+As an alternative to specifying the certificates to trust, you can specify a custom `TrustManagerFactory` to use when establishing secure connections. See the [Connection Management](#howtos:managing-connections.adoc#ssl) section for more details on how to set it up properly.
 
 ### [](#io-options)I/O Options
 
@@ -137,7 +167,11 @@ I/O settings are represented by the Java class `IoConfig`. The associated `Clust
 Template for configuring I/O settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .ioConfig(IoConfig
+        .networkResolution(NetworkResolution.AUTO)
+    )
+    .build();
 ```
 
 Name: **DNS SRV Enabled**
@@ -148,7 +182,7 @@ Default: `true`
 
 System Property: `com.couchbase.env.io.enableDnsSrv`
 
-Gets the bootstrap node list from a DNS SRV record. See the [Connection Management](../howtos/managing-connections.md#using-dns-srv-records) section for more information on how to use it properly.
+Gets the bootstrap node list from a DNS SRV record. See the [Connection Management](#howtos:managing-connections.adoc#using-dns-srv-records) section for more information on how to use it properly.
 
 Name: **Mutation Tokens Enabled**
 
@@ -269,7 +303,16 @@ Each service has an associated circuit breaker which may be configured independe
 Template for configuring circuit breaker settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .ioConfig(IoConfig.
+        kvCircuitBreakerConfig(CircuitBreakerConfig.builder()
+            .enabled(true)
+            .volumeThreshold(45)
+            .errorThresholdPercentage(25)
+            .sleepWindow(Duration.ofSeconds(1))
+            .rollingWindow(Duration.ofMinutes(2))
+        ))
+    .build();
 ```
 
 The corresponding system properties would be:
@@ -321,7 +364,7 @@ How long the window is in which the number of failed ops are tracked in a rollin
 > [!TIP]
 > Cloud Native Gateway
 > 
-> If using the `couchbase2://` connection protocol with [Cloud Native Gateway](../howtos/managing-connections.md#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure.
+> If using the `couchbase2://` connection protocol with [Cloud Native Gateway](#howtos:managing-connections.adoc#cloud-native-gateway), note that circuit breaker options are not available when using this protocol. The connection protocol uses a separate queue per node, and thus avoids the main cause of possible cascading failure.
 
 ### [](#timeout-options)Timeout Options
 
@@ -334,7 +377,11 @@ Timeout settings are represented by the Java class `TimeoutConfig`. The associat
 Template for configuring timeouts
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .timeoutConfig(TimeoutConfig
+        .kvTimeout(Duration.ofMillis(2500))
+    )
+    .build();
 ```
 
 Name: **Key-Value Timeout**
@@ -442,7 +489,9 @@ Compression settings are represented by the Java class `CompressionConfig`. The 
 Template for configuring CompressionExample settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .compressionConfig(CompressionConfig.create().enable(true))
+    .build();
 ```
 
 Name: **Enabling Compression**
@@ -489,7 +538,10 @@ The settings in this category apply to the client in general. They are configure
 Template for configuring general settings
 
 ```java
-Unresolved include directive in modules/ref/pages/client-settings.adoc - include::example$ClientSettingsExample.java[]
+ClusterEnvironment env = ClusterEnvironment.builder()
+    .retryStrategy(BestEffortRetryStrategy.INSTANCE)
+
+    .build();
 ```
 
 Name: **Retry Strategy**

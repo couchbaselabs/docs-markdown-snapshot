@@ -5,7 +5,7 @@ description: Enterprise Analytics is a self-managed, JSON-native NoSQL
   for the execution of complex analytical queries and the extraction of timely
   insights.
 editUrl: https://github.com/couchbaselabs/docs-enterprise-analytics/edit/release/2.1/modules/intro/pages/intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:enterprise-analytics:intro:intro.adoc[]
 ---
 
@@ -38,7 +38,7 @@ Enterprise Analytics offers the following features:
 > [!TIP]
 > Analytics SDKs
 > 
-> Analytics SDKs for the Java, Node.js, and Python platforms are available [here](#home:ROOT:analytics-sdk.adoc).
+> Analytics SDKs for the Java, Node.js, and Python platforms are available [here](../../../home/analytics-sdk.md).
 
 ## [](#next-steps)Next Steps
 

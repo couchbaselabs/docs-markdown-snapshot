@@ -3,7 +3,7 @@ title: Capella App Services Release Notes
 description: Release notes for Capella App Services, including new features,
   enhancements, and updates.
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/release-notes/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:app-services::release-notes/release-notes.adoc[]
 ---
 
@@ -244,7 +244,7 @@ Capella now automatically notifies you about upcoming upgrades and maintenance j
 ## [](#february-2023)February 2023
 
 * Capella App Services is now generally available on [Microsoft Azure Cloud in 11 regions worldwide](../../cloud/reference/azure.md).  
-[Capella App Services](../index.md) is a fully managed application backend that brings the power of [Couchbase Mobile](#home::mobile.adoc)'s industry-leading offline-first data sync capability to Capella. [Free self-service trials](https://cloud.couchbase.com/sign-up) are also available. Check out the [App Services Getting Started guide](../get-started/configuring-app-services.md) for more details.
+[Capella App Services](../index.md) is a fully managed application backend that brings the power of [Couchbase Mobile](../../home/mobile.md)'s industry-leading offline-first data sync capability to Capella. [Free self-service trials](https://cloud.couchbase.com/sign-up) are also available. Check out the [App Services Getting Started guide](../get-started/configuring-app-services.md) for more details.
 
 ## [](#january-2023)January 2023
 
@@ -255,7 +255,7 @@ App Services will be generally available in Azure in the near future.
 ## [](#july-2022)July 2022
 
 * Capella App Services now available on GCP, plus several new features across all supported clouds.  
-[Capella App Services](../index.md) is now generally available on GCP in [supported regions worldwide](../../cloud/reference/gcp.md). With this release, we bring the power of [Couchbase Mobile](#home::mobile.adoc) as-a-service offering to GCP hosted clusters.
+[Capella App Services](../index.md) is now generally available on GCP in [supported regions worldwide](../../cloud/reference/gcp.md). With this release, we bring the power of [Couchbase Mobile](../../home/mobile.md) as-a-service offering to GCP hosted clusters.
 * In addition, the release also introduces the following feature enhancements available on AWS and GCP.
 
   * The Metrics API is directly accessible to client apps. This endpoint will facilitate integration with third party monitoring frameworks like Prometheus.
@@ -270,7 +270,7 @@ App Services will be generally available in Azure in the near future.
 ## [](#june-2022)June 2022
 
 * Capella App Services 1.0 on AWS  
-Introduces Capella App Services. [Capella App Services](../index.md) is a fully managed application backend that brings the power of [Couchbase Mobile](#home::mobile.adoc)'s industry-leading offline-first data sync capability to Capella.
+Introduces Capella App Services. [Capella App Services](../index.md) is a fully managed application backend that brings the power of [Couchbase Mobile](../../home/mobile.md)'s industry-leading offline-first data sync capability to Capella.
 
   * With this new service:
 

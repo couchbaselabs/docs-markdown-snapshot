@@ -2,7 +2,7 @@
 title: Importing Data
 description: How to import documents into Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/import.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.2@server:guides:import.adoc[]
 ---
 
@@ -47,7 +47,7 @@ The Couchbase Server UI also offers a graphical interface to `cbimport`.
 Read the following for further information about the clients available for importing data:
 
 * [cbimport](../tools/cbimport.md)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../../home/sdk.md)
 * [Couchbase Server UI](../manage/import-documents/import-documents.md)
 
 ## [](#preparing-the-data)Preparing the Data

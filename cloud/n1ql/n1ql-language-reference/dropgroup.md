@@ -2,7 +2,7 @@
 title: DROP GROUP
 description: The DROP GROUP statement enables you to delete a group.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropgroup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropgroup.adoc[]
 ---
 
@@ -19,9 +19,16 @@ You can use this statement to clean up groups that are no longer needed.
 
 Deleting a group removes all roles and privileges associated with the group. Users in the deleted group no longer inherit the roles granted to it.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-To execute the DROP GROUP statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role).
+To execute this statement in the Capella UI, you must have one of the following roles:
+
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
+
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

@@ -2,7 +2,7 @@
 title: EXECUTE FUNCTION
 description: The EXECUTE FUNCTION statement enables you to execute a user-defined function.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/8.0/modules/n1ql/pages/n1ql-language-reference/execfunction.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:n1ql:n1ql-language-reference/execfunction.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:server:n1ql:n1ql-language-reference/execfunction.adoc[]
 
 ## [](#purpose)Purpose
 
-The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It is useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
+The `EXECUTE FUNCTION` statement enables you to execute a user-defined function. It’s useful for testing user-defined functions outside the context of a query. It also enables you to execute functions which have side effects, such as performing mutations, which is not possible when calling a user-defined function in an expression.
 
 You cannot use the `EXECUTE FUNCTION` statement to execute a built-in SQL++ function. If you do this, error `10101: Function not found` is generated.
 
@@ -28,7 +28,7 @@ You cannot use the `EXECUTE FUNCTION` statement to execute a built-in SQL++ func
 | Global external functions | **Execute Global External Functions** role.                                                    |
 | Scoped external functions | **Execute Scope External Functions** role, with permissions on the specified bucket and scope. |
 
-For more details about user roles, see [Authorization](../../learn/security/authorization-overview.md).
+For more information about user roles, see [Authorization](../../learn/security/authorization-overview.md).
 
 ## [](#syntax)Syntax
 
@@ -52,10 +52,10 @@ function ::= ( namespace ':' ( bucket '.' scope '.' )? )? identifier
 
 The name of the function. This is usually an unqualified identifier, such as `func1` or `` `func-1` ``. In this case, the path to the function is determined by the current [query context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to execute a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. Refer to [Global Functions and Scoped Functions](createfunction.md#context) for more information.
+To execute a global function in a particular namespace, the function name must be a qualified identifier with a namespace, such as `default:func1`. Similarly, to execute a scoped function in a particular scope, the function name must be a qualified identifier with the full path to a scope, such as `` default:`travel-sample`.inventory.func1 ``. For more information, see [Global Functions and Scoped Functions](createfunction.md#context).
 
 > [!NOTE]
-> The name of a user-defined function _is_ case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
+> The name of a user-defined function is case-sensitive, unlike that of a built-in function. You must execute the user-defined function using the same case that was used when it was created.
 
 ### [](#expression)Arguments
 
@@ -81,13 +81,14 @@ If the function is variadic:
 
 ## [](#examples)Examples
 
-For examples, refer to [CREATE FUNCTION](createfunction.md#examples).
+For examples, see [CREATE FUNCTION](createfunction.md#examples).
 
 ## [](#related-links)Related Links
 
-* To create user-defined functions, refer to [CREATE FUNCTION](createfunction.md).
-* To manage user-defined functions in the Query Workbench, see [User-Defined Functions UI](../../tools/udfs-ui.md).
-* To manage external libraries and external functions, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* For an introduction to user-defined functions, see [User-Defined Functions for Queries](../../guides/javascript-udfs.md).
+* For more information about JavaScript functions, see [JavaScript Functions for Query Reference](../../javascript-udfs/javascript-functions-with-couchbase.md).
+* To manage JavaScript libraries, see [Query Functions REST API](../../n1ql-rest-functions/index.md).
+* To create user-defined functions, see [CREATE FUNCTION](createfunction.md).
 * To see the execution plan for a user-defined function, see [EXPLAIN FUNCTION](explainfunction.md).
 * To include a user-defined function in an expression, see [User-Defined Functions](userfun.md).
 * To monitor user-defined functions, see [Monitor Functions](../n1ql-intro/sysinfo.md#sys-functions).

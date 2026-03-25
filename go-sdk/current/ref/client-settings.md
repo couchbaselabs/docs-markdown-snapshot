@@ -2,8 +2,8 @@
 title: Client Settings
 description: Client settings using <code>ConnectOptions</code> for
   bootstrapping, timeouts, reliability, and performance.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/ref/pages/client-settings.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/ref/pages/client-settings.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:ref:client-settings.adoc[]
 ---
 

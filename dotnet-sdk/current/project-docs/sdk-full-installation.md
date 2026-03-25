@@ -1,8 +1,8 @@
 ---
 title: Full Installation
 description: Installation instructions for the Couchbase .NET Client.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 

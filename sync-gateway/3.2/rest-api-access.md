@@ -2,7 +2,7 @@
 title: Secure API Access
 description: Sync Gateway REST API Access
 editUrl: https://github.com/couchbase/docs-sync-gateway/edit/release/3.2/modules/ROOT/pages/rest-api-access.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.2@sync-gateway::rest-api-access.adoc[]
 ---
 
@@ -65,7 +65,7 @@ __Table 1\. Sync gateway role availability by release__
 | Bucket Full Access                 | Can access DB / bucket scoped operations                                                                                         | ![no](_images/no.png)   | ![no](_images/no.png)                    | ![yes](_images/yes.png) |
 | Full Admin                         | Can access all operations                                                                                                        | ![no](_images/no.png)   | ![no](_images/no.png)                    | ![yes](_images/yes.png) |
 
-For more information on older, end-of-life versions, see [legacy version role availability](#3.0@rest-api-access.adoc).
+For more information on older, end-of-life versions, see [legacy version role availability](../3.0/rest-api-access.md).
 
 1For more information on Developer Previews, see [Developer Preview Mode and Features](../../server/current/developer-preview/preview-mode.md)
 

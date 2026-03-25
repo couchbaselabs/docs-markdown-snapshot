@@ -3,7 +3,7 @@ title: Java Analytics SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Enterprise Analytics and the Java Analytics SDK.
 editUrl: https://github.com/couchbase/docs-analytics-sdk-java/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:java-analytics-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:java-analytics-sdk:hello-world:start-using-sdk.adoc[]
 
 > Install, connect, try. A quick start guide to get you up and running with Enterprise Analytics and the Java Analytics SDK. 
 
-[Enterprise Analytics](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](#home::sdk.adoc), the Java Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
+[Enterprise Analytics](../../../analytics/intro/intro.md) is a real-time analytical database (RT-OLAP) for real time apps and operational intelligence. Although maintaining some syntactic similarities with [the operational SDKs](../../../home/sdk.md), the Java Analytics SDK is developed from the ground-up for column-based analytical use cases, and supports streaming APIs to handle large datasets.
 
 ## [](#before-you-start)Before You Start
 

@@ -2,7 +2,7 @@
 title: Import Data with an SDK
 description: How to import documents into Couchbase with an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/import.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:import.adoc[]
 ---
 
@@ -35,7 +35,7 @@ The Couchbase Capella UI also offers a graphical interface for import.
 
 Read the following for further information about the clients available for importing data:
 
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../home/sdk.md)
 * [Couchbase Capella UI](../clusters/data-service/import-data-documents.md)
 
 ## [](#preparing-the-data)Preparing the Data

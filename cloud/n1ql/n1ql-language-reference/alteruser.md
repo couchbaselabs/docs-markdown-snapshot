@@ -2,7 +2,7 @@
 title: ALTER USER
 description: The ALTER USER statement enables you to alter the details of an existing user.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/alteruser.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/alteruser.adoc[]
 ---
 
@@ -22,9 +22,16 @@ This statement helps manage access control and keeps user information up to date
 > [!CAUTION]
 > When you add new groups to a user, the ALTER USER statement replaces the user’s existing group assignments with the new ones you provide. It updates the entire group list, so any existing groups not included in the new list will be removed.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-To execute the ALTER USER statement, you must be an [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner) or [Project Owner](../../projects/project-roles.md#project-owner-role).
+To execute this statement in the Capella UI, you must have one of the following roles:
+
+* [Organization Owner](../../organizations/organization-user-roles.md#organization-role-organization-owner)
+* [Project Owner](../../projects/project-roles.md#project-owner-role)
+* [Data Writer](../../projects/project-roles.md#project-cluster-data-reader-writer)
+
+> [!NOTE]
+> You cannot execute this statement using [cluster access credentials](../../clusters/cluster-rbac.md).
 
 ## [](#syntax)Syntax
 

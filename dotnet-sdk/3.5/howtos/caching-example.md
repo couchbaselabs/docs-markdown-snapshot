@@ -1,0 +1,144 @@
+---
+title: Caching Example Use Case
+description: A walk-through of the basics of Key-Value operations with
+  Couchbase, through the lens of a REST api caching layer.
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/release/3.5/modules/howtos/pages/caching-example.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:3.5@dotnet-sdk:howtos:caching-example.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/dotnet-sdk/3.5/howtos/caching-example.html)
+
+# Caching Example Use Case
+
+> A walk-through of the basics of Key-Value operations with Couchbase, through the lens of a REST api caching layer. 
+
+## [](#prerequisites)Prerequisites
+
+This example uses [ASP.NET Core](https://github.com/aspnet/AspNetCore) as a web-framework for a C# REST API, and version 3 of the Couchbase SDK (available on Nuget).
+
+## [](#api-endpoints)API Endpoints
+
+Our first basic endpoints will be a get and set call, using HTTP methods `GET` and `POST`; and Couchbase methods `get` and `insert` respectively.
+
+```csharp
+[HttpGet("{id}")]
+public async Task<ActionResult<string>> Get(int id)
+{
+    // get cache entry
+    var result = await _collection.GetAsync($"key:{id}");
+
+    // cache hit
+    return result.ContentAs<string>();
+}
+
+[HttpPost("{id}")]
+public async Task Post(int id, [FromBody] string value)
+{
+    // insert cache entry
+    await _collection.InsertAsync(
+        $"key:{id}",
+        value,
+        options => options.WithExpiry(TimeSpan.FromSeconds(10))
+    );
+}
+```
+
+This is about as simple as we can make the API, and allows us to set and get arbitrary JSON from any key we specify. We also include the `WithExpiry` option, which will automatically delete the document (ie. invalidate the cache) after the set amount of time.
+
+But there’s many ways this could be improved. For example, what happens in the case of a cache miss? With this code, our view throws an error and .NET returns us a HTTP 500 page. We can fix this by handling the `DocumentNotFoundException` thrown by the get call. Then we can either respond with a HTTP 404, or add a function to get a value from our persistent storage medium.
+
+```csharp
+[HttpGet("{id}")]
+public async Task<ActionResult<string>> Get(int id)
+{
+    string value;
+    try
+    {
+        // get cache entry
+        var result = await _collection.GetAsync($"key:{id}");
+
+        // cache hit
+        value = result.ContentAs<string>();
+    }
+    catch (DocumentNotFoundException)
+    {
+        // cache miss - get value from permanent storage
+        value = GetFromPersistent(id);
+
+        // repopulate cache so subsequent calls get cache hit
+        await _collection.InsertAsync(
+            $"key:{id}",
+            value,
+            options => options.WithExpiry(TimeSpan.FromSeconds(10))
+        );
+    }
+
+    return value;
+}
+```
+
+We can also improve the POST function to deal with some of the errors it may encounter. Even if something unexpected happens, we can still be helpful by including the error in the 500 response, by catching any `CouchbaseException` as a fallback.
+
+```csharp
+[HttpPost("{id}")]
+public async Task Post(int id, [FromBody] string value)
+{
+    try
+    {
+        // insert cache entry
+        await _collection.InsertAsync(
+            $"key:{id}",
+            value,
+            options => options.WithExpiry(TimeSpan.FromSeconds(10))
+        );
+    }
+    catch (DocumentExistsException)
+    {
+        // cache key already exists, use PUT instead
+    }
+    catch (CouchbaseException)
+    {
+        // error performing insert
+        throw;
+    }
+}
+```
+
+The last thing we’ll do is add `PUT` and `DELETE` endpoints, matching up to the couchbase operations `upsert` and `remove`, and apply the same error handling.
+
+```csharp
+[HttpPut("{id}")]
+public async Task Put(int id, [FromBody] string value)
+{
+    try
+    {
+        // add / update cache entry
+        await _collection.UpsertAsync(
+            $"key:{id}",
+            value,
+            options => options.WithExpiry(TimeSpan.FromSeconds(10))
+        );
+    }
+    catch (CouchbaseException)
+    {
+        // error performing upsert
+        throw;
+    }
+}
+
+[HttpDelete("{id}")]
+public async Task Delete(int id)
+{
+    try
+    {
+        await _collection.RemoveAsync($"key:{id}");
+    }
+    catch (DocumentNotFoundException)
+    {
+        // cache key doesn't exist
+        throw;
+    }
+}
+```

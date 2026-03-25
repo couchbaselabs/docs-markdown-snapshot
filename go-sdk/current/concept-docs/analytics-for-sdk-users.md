@@ -2,8 +2,8 @@
 title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/concept-docs/pages/analytics-for-sdk-users.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/concept-docs/pages/analytics-for-sdk-users.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:concept-docs:analytics-for-sdk-users.adoc[]
 ---
 

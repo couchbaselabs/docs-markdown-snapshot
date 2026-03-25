@@ -3,8 +3,8 @@ title: Compatibility
 description: Platform compatibility, and features available in different SDK
   versions, and compatibility between Server and SDK. Plus notes on Cloud,
   networks, and AWS Lambda.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/compatibility.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/compatibility.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:project-docs:compatibility.adoc[]
 ---
 
@@ -15,7 +15,7 @@ link: xref:go-sdk:project-docs:compatibility.adoc[]
 
 > Platform compatibility, and features available in different SDK versions, and compatibility between Server and SDK. Plus notes on Cloud, networks, and AWS Lambda. 
 
-In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. At time of writing (February 2026), this is 1.25 and 1.24\. Older versions may remain compatible, but are not supported.
+In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), we support both the current, and the previous, versions of Go. At time of writing (February 2026), this is 1.25 and 1.26\. Older versions may remain compatible, but are not supported.
 
 ## [](#platform-compatibility)Platform Compatibility
 
@@ -40,7 +40,7 @@ The Go SDK will run on, and is supported on, the following OSs and platforms. Th
 
 ### Mac OS X
 
-* The current and previous two releases of OS X. At time of writing (January 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
+* The current and previous two releases of OS X. At time of writing (February 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
 
 #### [](#platforms-chipsets-and-virtual-environments)Platforms, Chipsets, and Virtual Environments
 
@@ -74,17 +74,17 @@ The matrix below denotes the version of Couchbase Server, the version of the Go 
 * ✔ **Supported**: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
 
 __Recommended SDK per Server Version Matrix__
-|                | SDK 2.6 - 2.7 | 2.8 - 2.9 | 2.10  | 2.11  |
-| -------------- | ------------- | --------- | ----- | ----- |
-| **Server 8.0** | **◎**         | **◎**     | **✔** | **✔** |
-| **Server 7.6** | **◎**         | **✔**     | **✔** | **✔** |
-| **Server 7.2** | **✔**         | **✔**     | **✔** | **✔** |
+|                | SDK 2.6 - 2.7 | 2.8 - 2.9 | 2.10  | 2.11 & 2.12 |
+| -------------- | ------------- | --------- | ----- | ----------- |
+| **Server 8.0** | **◎**         | **◎**     | **✔** | **✔**       |
+| **Server 7.6** | **◎**         | **✔**     | **✔** | **✔**       |
+| **Server 7.2** | **✔**         | **✔**     | **✔** | **✔**       |
 
 Note the [End of Life dates](https://www.couchbase.com/support-policy/EOL/) for Couchbase Server and SDK versions. See the notes there for Support details.
 
 ### [](#capella-compatibility)Capella Compatibility
 
-At time of release, the Couchbase 2.11.1 Go SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the 2.11.1 SDK includes the Capella client certificate already installed.
+At time of release, the Couchbase 2.12.1 Go SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service. To make development easier, the 2.12.1 SDK includes the Capella client certificate already installed.
 
 Note, Capella is offered as a fully provisioned service, so the underlying version of Couchbase Server changes over time. For this reason, compatibility information between Capella and the SDK is available [on the Capella compatibility page](../../../cloud/reference/sdk-compatibility.md).
 
@@ -104,30 +104,32 @@ This table is not an exhaustive list — just a few highlights — provided to h
 
 ### [](#api-version)API Version
 
-This release of the SDK is written to version 3.8 of the SDK API specification (and matching the features available in Couchbase 8.0.0 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
+This release of the SDK is written to version 3.9 of the SDK API specification (and matching the features available in Couchbase 8.0.1 and earlier). For most developers, just using the latest version will be all that matters, and few will need to look at another of our SDKs. Just for those few that do, the table below shows each Couchbase SDK release version that matches the API version (and a table that covers the earliest versions of the 3.x SDK API can be found in documentation for earlier versions of the SDK).
 
 Whilst these two numbers match for the .NET SDK, this is not the case for the others, as version numbers for individual SDKs are bumped up in line with [Semantic Versioning](https://semver.org/) — check the [release notes](#sdk-release-notes) of each SDK for individual details.
 
 __SDK API Versions__
-|                                                                    | API 3.3       | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      |
-| ------------------------------------------------------------------ | ------------- | --------- | ------- | ------- | ------- | ------------ |
-| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.3           | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          |
-| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.0 - 3.3.2 | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        |
-| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-            | \-        | \-      | 1.0     | 1.1     | 1.2          |
-| [Go](../hello-world/overview.md)                                   | 2.5           | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         |
-| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.3           | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   |
-| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.0           | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ |
-| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.1           | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          |
-| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.0           | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          |
-| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.0           | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          |
-| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.3           | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          |
-| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-            | \-        | \-      | \-      | \-      | 1.0          |
-| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.3           | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ |
+|                                                                    | API 3.4   | API 3.5 | API 3.6 | API 3.7 | API 3.8      | API 3.9 |
+| ------------------------------------------------------------------ | --------- | ------- | ------- | ------- | ------------ | ------- |
+| [.NET](../../../dotnet-sdk/current/hello-world/overview.md)        | 3.4       | 3.5     | 3.6     | 3.7     | 3.8          | 3.9     |
+| [C (libcouchbase)](../../../c-sdk/current/hello-world/overview.md) | 3.3.3 ①   | N/A ②   | N/A ②   | N/A ②   | N/A ②        | N/A ②   |
+| [C++](../../../cxx-sdk/current/hello-world/overview.md)            | \-        | \-      | 1.0     | 1.1     | 1.2          | 1.3     |
+| [Go](../hello-world/overview.md)                                   | 2.6 & 2.7 | 2.8     | 2.9     | 2.10    | 2.11         | 2.12    |
+| [Java](../../../java-sdk/current/hello-world/overview.md)          | 3.4 & 3.5 | 3.6     | 3.7     | 3.8     | 3.9 & 3.10   | 3.11    |
+| [Kotlin](../../../kotlin-sdk/current/hello-world/overview.md)      | 1.1 & 1.2 | 1.3     | 1.4     | 1.5     | 3.9 & 3.10 ③ | 3.11    |
+| [Node.js](../../../nodejs-sdk/current/hello-world/overview.md)     | 4.2       | 4.3     | 4.4     | 4.5     | 4.6          | 4.7     |
+| [PHP](../../../php-sdk/current/hello-world/overview.md)            | 4.1       | 4.2     | 4.2.2   | 4.3     | 4.4          | 4.5     |
+| [Python](../../../python-sdk/current/hello-world/overview.md)      | 4.1       | 4.2     | 4.3     | 4.4     | 4.5          | 4.6     |
+| [Ruby](../../../ruby-sdk/current/hello-world/overview.md)          | 3.4       | 3.5     | 3.5.2   | 3.6     | 3.7          | 3.8     |
+| [Rust](../../../rust-sdk/current/hello-world/overview.md)          | \-        | \-      | \-      | \-      | \-           | 1.0     |
+| [Scala](../../../scala-sdk/current/hello-world/overview.md)        | 1.4 & 1.5 | 1.6     | 1.7     | 1.8     | 3.9 & 3.10 ③ | 3.11    |
 
 | **1** | Excludes DNS SRV refresh support in Serverless Environments.                                                                                                                                              |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **2** | For most purposes better productivity and functionality can be found in our [C++ SDK](../../../cxx-sdk/current/hello-world/overview.md).                                                                  |
 | **3** | With the Java 3.9 release, the other JVM SDKs hosted in the Java SDK monorepo adopted common release versions. This includes a number of other artifacts, as can be seen referenced in the release notes. |
+
+**SDK API 3.9**: Provides support for JWT based authentication, as well as mTLS Certs Refresh (without restart). Adds Amazon Graviton 3 support. Deprecates SDK support for MapReduce Views.
 
 **SDK API 3.8**: Introduced alongside Couchbase Server 8.0, which adds support for 128 vBuckets on Magma. Server 8.0 introduced vector query using Global Secondary Indexes (GSI), the Query Service index — using either a fast Hyperscale index, or a composite index to combine scalar queries with semantic search.
 

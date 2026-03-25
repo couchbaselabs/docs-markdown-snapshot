@@ -2,7 +2,7 @@
 title: Work with Documents in Bulk
 description: How to perform bulk CRUD operations with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/bulk-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:bulk-operations.adoc[]
 ---
 
@@ -20,7 +20,7 @@ Performing bulk operations with Couchbase Capella can be done in several ways, d
 Read the following for further information about the clients available:
 
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../home/sdk.md)
 
 > [!WARNING]
 > Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.

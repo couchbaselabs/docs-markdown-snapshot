@@ -2,7 +2,7 @@
 title: DELETE
 description: DELETE immediately removes the specified document from your keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/delete.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/delete.adoc[]
 ---
 
@@ -11,21 +11,24 @@ link: xref:cloud:n1ql:n1ql-language-reference/delete.adoc[]
 
 # DELETE
 
-DELETE immediately removes the specified document from your keyspace.
+> DELETE immediately removes the specified document from your keyspace. 
 
 ## [](#prerequisites)Prerequisites
 
-### [](#rbac-privileges)RBAC Privileges
+To execute this statement, your client must have necessary privileges on the target keyspace. The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `RETURNING` clause.
 
-To execute the DELETE statement, your client must have the _Query Delete_ privilege granted on the target keyspace. If the statement has any RETURNING clauses that need data read, then the _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege for DELETE                                                                      | Privilege for RETURNING                                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                          | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause                         |
+| Advanced        | [Query Delete](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |
 
 RBAC Examples 
 
-| Delete Query Contains | Query Delete Permissions Needed | Query Select Permissions Needed | Example          |
-| --------------------- | ------------------------------- | ------------------------------- | ---------------- |
-| WHERE clause          | Yes                             | No                              | [Example 1](#Q1) |
-| Subquery              | Yes                             | Yes                             | [Example 2](#Q2) |
-| RETURNING clause      | Yes                             | Yes                             | [Example 3](#Q3) |
+| Delete Query Contains | Query Delete Permissions Needed | Query Read Permissions Needed | Example          |
+| --------------------- | ------------------------------- | ----------------------------- | ---------------- |
+| WHERE clause          | Yes                             | No                            | [Example 1](#Q1) |
+| Subquery              | Yes                             | Yes                           | [Example 2](#Q2) |
+| RETURNING clause      | Yes                             | Yes                           | [Example 3](#Q3) |
 
 ## [](#syntax)Syntax
 
@@ -164,7 +167,7 @@ To try the examples in this section, set the query context to the `inventory` sc
 
 Example 1\. Delete query containing a WHERE clause
 
-This example requires the _Query Delete_ privilege on `hotel`.
+This example requires the `Write` / `Query Delete` privilege on `hotel`.
 
 ```sqlpp
 DELETE FROM hotel;
@@ -172,7 +175,7 @@ DELETE FROM hotel;
 
 Example 2\. Delete queries containing a subquery
 
-This example requires the _Query Delete_ privilege on `airport` and the _Query Select_ privilege on `` `beer-sample` ``.
+This example requires the `Write` / `Query Delete` privilege on `airport` and the `Read` / `Query Read` privilege on `` `beer-sample` ``.
 
 ```sqlpp
 DELETE FROM airport
@@ -180,7 +183,7 @@ WHERE city IN (SELECT raw city FROM `beer-sample` WHERE city IS NOT MISSING)
 RETURNING airportname;
 ```
 
-This example requires the _Query Delete_ and _Query Select_ privileges on `airport`.
+This example requires `Write` / `Query Delete` and `Read` / `Query Read` privileges on `airport`.
 
 ```sqlpp
 DELETE FROM airport
@@ -190,7 +193,7 @@ RETURNING airportname;
 
 Example 3\. Delete queries containing a RETURNING clause
 
-These examples require the _Query Delete_ and _Query Select_ privileges on `hotel`.
+These examples require `Write` / `Query Delete` and `Read` / `Query Read` privileges on `hotel`.
 
 ```sqlpp
 DELETE FROM hotel RETURNING *;

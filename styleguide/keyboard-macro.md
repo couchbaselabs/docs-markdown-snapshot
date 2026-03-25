@@ -1,7 +1,7 @@
 ---
 title: Keyboard Macro
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/keyboard-macro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::keyboard-macro.adoc[]
 ---
 
@@ -14,4 +14,4 @@ Use the Antora `kbd:[]` Macro for any keyboard interactions in your documentatio
 
 For example, `kbd:[ESC]` renders an Escape key (ESC).
 
-For more information about how to use the Keyboard Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](#home:contribute:basics.adoc#ui-macros) in the Contributing to the Documentation guide.
+For more information about how to use the Keyboard Macro to format your documentation, see [Button, Keyboard, and Menu UI Macros](../home/contribute/basics.md#ui-macros) in the Contributing to the Documentation guide.

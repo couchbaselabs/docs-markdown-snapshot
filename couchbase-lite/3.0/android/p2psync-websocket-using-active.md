@@ -1,0 +1,934 @@
+---
+title: Active Peer
+description: Couchbase Lite's Peer-to-Peer Synchronization enables edge devices
+  to synchronize securely without consuming centralized cloud-server resources
+editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.0/modules/android/pages/p2psync-websocket-using-active.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:3.0@couchbase-lite:android:p2psync-websocket-using-active.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/couchbase-lite/3.0/android/p2psync-websocket-using-active.html)
+
+# Active Peer
+
+> Description — _Couchbase Lite’s Peer-to-Peer Synchronization enables edge devices to synchronize securely without consuming centralized cloud-server resources_  
+> _Abstract — How to set up a Replicator to connect with a Listener and replicate changes using peer-to-peer sync_  
+> Related Content — [API Reference](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/) | [Passive Peer](p2psync-websocket-using-passive.md) | [Active Peer](p2psync-websocket-using-active.md)
+
+> [!CAUTION]
+> Android enablers
+> 
+> Allow Unencrypted Network Traffic
+> 
+> To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
+> **This not recommended in production**.
+> 
+> Use Background Threads
+> 
+> As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread.
+
+> [!NOTE]
+> Code Snippets
+> 
+> All code examples are indicative only. They demonstrate the basic concepts and approaches to using a feature. Use them as inspiration and adapt these examples to best practice when developing applications for your platform.
+
+## [](#introduction)Introduction
+
+This content provides sample code and configuration examples covering the implementation of [Peer-to-Peer Sync](refer-glossary.md#peer-to-peer-sync) over websockets. Specifically it covers the implementation of an [Active Peer](refer-glossary.md#active-peer).
+
+This _active peer_ (also referred to as a client and-or a replicator) will initiate connection with a [Passive Peer](refer-glossary.md#passive-peer) (also referred to as a server and-or listener) and participate in the replication of database changes to bring both databases into sync.
+
+Subsequent sections provide additional details and examples for the main configuration options.
+
+> [!NOTE]
+> Secure Storage
+> 
+> The use of TLS, its associated keys and certificates requires using secure storage to minimize the chances of a security breach. The implementation of this storage differs from platform to platform — see [Using secure storage](p2psync-websocket.md#using-secure-storage).
+
+## [](#configuration-summary)Configuration Summary
+
+You should configure and initialize a replicator for each Couchbase Lite database instance you want to sync. [Example 1](#simple-replication-to-listener) shows the initialization and configuration process.
+
+> [!NOTE]
+> As with any network or file I/O activity, CouchbaseLite activities should not be performed on the UI thread. **Always** use a **background** thread.
+
+Example 1\. Replication configuration and initialization
+
+* Kotlin
+* Java
+
+```Kotlin
+    // initialize the replicator configuration
+    ReplicatorConfigurationFactory.create(
+        database = database,
+        target = URLEndpoint(URI("wss://listener.com:8954")), (1)
+
+        // Set replicator type
+        type = ReplicatorType.PUSH_AND_PULL,
+
+        // Configure Sync Mode
+        continuous = false, // default value
+
+
+        // Configure Server Authentication --
+        // only accept self-signed certs
+        acceptOnlySelfSignedServerCertificate = true, (2)
+
+        // Configure the credentials the
+        // client will provide if prompted
+        authenticator = BasicAuthenticator("Our Username", "Our PasswordValue".toCharArray()), (3)
+
+
+        /* Optionally set custom conflict resolver call back */
+        conflictResolver = null (4)
+    )
+)
+
+
+// Optionally add a change listener (5)
+val thisListener = repl.addChangeListener { change ->
+    val err: CouchbaseLiteException? = change.status.error
+    if (err != null) {
+        Log.i(TAG, "Error code ::  ${err.code}", err)
+    }
+}
+
+// Start replicator
+repl.start(false) (6)
+thisReplicator = repl
+```
+
+```Java
+// initialize the replicator configuration
+final ReplicatorConfiguration thisConfig
+   = new ReplicatorConfiguration(
+      thisDB,
+      URLEndpoint(URI("wss://listener.com:8954"))); (1) (2)
+
+// Set replicator type
+thisConfig.setReplicatorType(
+  ReplicatorConfiguration.ReplicatorType.PUSH_AND_PULL);
+
+// Configure Sync Mode
+thisConfig.setContinuous(false); // default value
+
+// Configure Server Authentication --
+// only accept self-signed certs
+thisConfig.setAcceptOnlySelfSignedServerCertificate(true); (3)
+
+// Configure the credentials the
+// client will provide if prompted
+final BasicAuthenticator thisAuth
+  = new BasicAuthenticator(
+      "Our Username",
+      "Our PasswordValue")); (4)
+
+thisConfig.setAuthenticator(thisAuth);
+
+/* Optionally set custom conflict resolver call back */
+thisConfig.setConflictResolver( /* define resolver function */); (5)
+
+// Create replicator
+// Consider holding a reference somewhere
+// to prevent the Replicator from being GCed
+final Replicator thisReplicator = new Replicator(thisConfig); (6)
+
+// Optionally add a change listener (7)
+ListenerToken thisListener =
+  new thisReplicator.addChangeListener(change -> {
+    final CouchbaseLiteException err =
+     change.getStatus().getError();
+     if (err != null) {
+       Log.i(TAG, "Error code ::  " + err.getCode(), e);
+     }
+  }); (8)
+
+// Start replicator
+thisReplicator.start(false); (9)
+```
+
+| **1** | Configure how the client will authenticate the server. Here we say connect only to servers presenting a self-signed certificate. By default, clients accept only servers presenting certificates that can be verified using the OS bundled Root CA Certificates — see: [Authenticating the Listener](#authenticate-listener). |
+| ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Configure the credentials the client will present to the server. Here we say to provide _Basic Authentication_ credentials. Other options are available — see: [Example 7](#configuring-client-authentication).                                                                                                               |
+| **3** | Configure how the replication should perform [Conflict Resolution](#conflict-resolution).                                                                                                                                                                                                                                     |
+| **4** | Initialize the replicator using your configuration object.                                                                                                                                                                                                                                                                    |
+| **5** | Register an observer, which will notify you of changes to the replication status.                                                                                                                                                                                                                                             |
+| **6** | Start the replicator.                                                                                                                                                                                                                                                                                                         |
+
+## [](#api-references)API References
+
+You can find [Android API References](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/) here.
+
+## [](#device-discovery)Device Discovery
+
+**This phase is optional:** If the listener is initialized on a well known URL endpoint (for example, a static IP Address or well known DNS address) then you can configure active peers to connect to those.
+
+Prior to connecting with a listener you may execute a peer discovery phase to dynamically discover peers.
+
+For the active peer this involves browsing-for and selecting the appropriate service using a zero-config protocol such as _Network Service Discovery_ — see: <https://developer.android.com/training/connect-devices-wirelessly/nsd>.
+
+## [](#configure-replicator)Configure Replicator
+
+In this section
+
+[Configure Target](#lbl-cfg-tgt)| [Sync Mode](#lbl-cfg-sync)| [Retry Configuration](#lbl-cfg-retry)| [Authenticating the Listener](#authenticate-listener)| [Client Authentication](#lbl-authclnt)
+
+### [](#lbl-cfg-tgt)Configure Target
+
+Use the Initialize and define the replication configuration with local and remote database locations using the [ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html) object.
+
+The constructor provides:
+
+* the name of the local database to be sync’d
+* the server’s URL (including the port number and the name of the remote database to sync with)  
+It is expected that the app will identify the IP address and URL and append the remote database name to the URL endpoint, producing for example: `wss://10.0.2.2:4984/travel-sample`  
+The URL scheme for web socket URLs uses `ws:` (non-TLS) or `wss:` (SSL/TLS) prefixes. To use cleartext, un-encrypted, network traffic (`http://` and-or `ws://`), include `android:usesCleartextTraffic="true"` in the `application` element of the manifest as shown on [android.com](https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted).  
+**This not recommended in production**.
+
+Example 2\. Add Target to Configuration
+
+* Kotlin
+* Java
+
+```Kotlin
+// initialize the replicator configuration
+    val thisConfig = ReplicatorConfigurationFactory.create(
+        database = database,
+        target = URLEndpoint(URI("wss://10.0.2.2:8954/travel-sample"))
+```
+
+```Java
+// initialize the replicator configuration
+final ReplicatorConfiguration thisConfig
+   = new ReplicatorConfiguration(
+      thisDB,
+      URLEndpoint(URI("wss://10.0.2.2:8954/travel-sample"))); (1)
+```
+
+| **1** | Note use of the scheme prefix (wss://to ensure TLS encryption — strongly recommended in production — or ws://) |
+| ----- | -------------------------------------------------------------------------------------------------------------- |
+
+### [](#lbl-cfg-sync)Sync Mode
+
+Here we define the direction and type of replication we want to initiate.
+
+We use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)` class’s [replicatorType](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setReplicatorType-com.couchbase.lite.AbstractReplicatorConfiguration.ReplicatorType-) and `[continuous](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setContinuous-boolean-)` parameters, to tell the replicator:
+
+* The type (or direction) of the replication: `**PUSH_AND_PULL**`; `PULL`; `PUSH`
+* The replication mode, that is either of:
+
+  * Continuous — remaining active indefinitely to replicate changed documents (`continuous=true`).
+  * Ad-hoc — a one-shot replication of changed documents (`continuous=false`).
+
+Example 3\. Configure replicator type and mode
+
+* Kotlin
+* Java
+
+```Kotlin
+// Set replicator type
+type = ReplicatorType.PUSH_AND_PULL,
+
+// Configure Sync Mode
+continuous = false, // default value
+```
+
+```Java
+// Set replicator type
+thisConfig.setReplicatorType(
+  ReplicatorConfiguration.ReplicatorType.PUSH_AND_PULL);
+
+// Configure Sync Mode
+thisConfig.setContinuous(false); // default value
+```
+
+> [!TIP]
+> Unless there is a solid use-case not to, always initiate a single `PUSH_AND_PULL` replication rather than identical separate `PUSH` and `PULL` replications.
+> 
+> This prevents the replications generating the same checkpoint `docID` resulting in multiple conflicts.
+
+### [](#lbl-cfg-retry)Retry Configuration
+
+Couchbase Lite for Android’s replication retry logic assures a resilient connection.
+
+The replicator minimizes the chance and impact of dropped connections by maintaining a heartbeat; essentially pinging the listener at a configurable interval to ensure the connection remains alive.
+
+In the event it detects a transient error, the replicator will attempt to reconnect, stopping only when the connection is re-established, or the number of retries exceeds the retry limit (9 times for a single-shot replication and unlimited for a continuous replication).
+
+On each retry the interval between attempts is increased exponentially (exponential backoff) up to the maximum wait time limit (5 minutes).
+
+The REST API provides configurable control over this replication retry logic using a set of configiurable properties — see: [Table 1](#tbl-repl-retry).
+
+__Table 1\. Replication Retry Configuration Properties__
+| Property                                                                                                                                                                      | Use cases                                                                                                                                                                                                                         | Description                                                                                                                                                                                                                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [setHeartbeat()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setHeartbeat-long-)                   | Reduce to detect connection errors sooner Align to load-balancer or proxy keep-alive interval — see Sync Gateway’s topic [Load Balancer - Keep Alive](../../../sync-gateway/current/deploy/load-balancer.md#websocket-connection) | The interval (in seconds) between the heartbeat pulses. Default: The replicator pings the listener every 300 seconds.                                                                                                                                                                                                                                |
+| [setMaxAttempts()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttempts-int-)                | Change this to limit or extend the number of retry attempts.                                                                                                                                                                      | The maximum number of retry attempts Set this to zero (0) to prevent any retry attempt The retry attempt count is reset when the replicator is able to connect and replicate Default values are: Single-shot replication = 9; Continuous replication = maximum integer value Negative values generate a Couchbase exception InvalidArgumentException |
+| [setMaxAttemptWaitTime()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttemptWaitTime-long-) | Change this to adjust the interval between retries.                                                                                                                                                                               | The maximum interval between retry attempts Whilst you can configure the **maximum permitted** wait time, each individual interval is calculated by the replicator’s exponential backoff algorithm and is not configurable. Default value: 300 seconds (5 minutes) Zero or negative values generate a Couchbase exception, InvalidArgumentException. |
+
+When necessary you can adjust any or all of those configurable values — see: [Example 4](#ex-repl-retry) for how to do this.
+
+Example 4\. Configuring Replication Retries
+
+* Kotlin
+* Java
+
+```Kotlin
+val repl = Replicator(
+    ReplicatorConfigurationFactory.create(
+        database = database,
+        target = URLEndpoint(URI("ws://localhost:4984/mydatabase")),
+        //  other config params as required . .
+        heartbeat = 150, (1)
+        maxAttempts = 20,
+        maxAttemptWaitTime = 600
+    )
+)
+
+repl.start()
+replicator = repl
+```
+
+```Java
+URLEndpoint target =
+new URLEndpoint(new URI("ws://localhost:4984/mydatabase"));
+
+ReplicatorConfiguration config =
+new ReplicatorConfiguration(database, target);
+
+//  other config as required . . .
+config.setHeartbeat(150L); (1)
+config.setMaxattempts(20L); (2)
+config.setMaxAttemptWaitTime(600L); (3)
+
+Replicator repl = new Replicator(config);
+```
+
+| **1** | Here we use [setHeartbeat()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setHeartbeat-long-) to set the required interval (in seconds) between the heartbeat pulses |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Here we use [setMaxAttempts()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttempts-int-) to set the required number of retry attempts                        |
+| **3** | Here we use [setMaxAttemptWaitTime()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicatorConfiguration.html#setMaxAttemptWaitTime-long-) to set the required interval between retry attempts. |
+
+### [](#authenticate-listener)Authenticating the Listener
+
+Define the credentials the your app (the client) is expecting to receive from the server (listener) in order to ensure that the server is one it is prepared to interact with.
+
+Note that the client cannot authenticate the server if TLS is turned off. When TLS is enabled (Sync Gateway’s default) the client _must_ authenticate the server. If the server cannot provide acceptable credentials then the connection will fail.
+
+Use `[ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)` properties [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) and [setPinnedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setPinnedServerCertificate-byte:A-), to tell the replicator how to verify server-supplied TLS server certificates.
+
+* If there is a pinned certificate, nothing else matters, the server cert must **exactly** match the pinned certificate.
+* If there are no pinned certs and [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) is `true` then any self-signed certificate is accepted. Certificates that are not self signed are rejected, no matter who signed them.
+* If there are no pinned certificates and [setAcceptOnlySelfSignedServerCertificate](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAcceptOnlySelfSignedServerCertificate-boolean-) is `false` (default), the client validates the server’s certificates against the system CA certificates. The server must supply a chain of certificates whose root is signed by one of the certificates in the system CA bundle.
+
+Example 5\. Set Server TLS security
+
+* Kotlin
+* Java
+
+* CA Cert
+* Self Signed Cert
+* Pinned Certificate
+
+Set the client to expect and accept only CA attested certificates.
+
+```Kotlin
+// Configure Server Security
+// -- only accept CA attested certs
+acceptOnlySelfSignedServerCertificate = false, (1)
+```
+
+| **1** | This is the default. Only certificate chains with roots signed by a trusted CA are allowed. Self signed certificates are not allowed. |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------- |
+
+Set the client to expect and accept only self-signed certificates
+
+```Kotlin
+// Configure Server Authentication --
+// only accept self-signed certs
+acceptOnlySelfSignedServerCertificate = true, (1)
+```
+
+| **1** | Set this to true to accept any self signed cert. Any certificates that are not self-signed are rejected. |
+| ----- | -------------------------------------------------------------------------------------------------------- |
+
+Set the client to expect and accept only a pinned certificate.
+
+```Kotlin
+
+// Use the pinned certificate from the byte array (cert)
+pinnedServerCertificate = caCert.encoded, (1)
+```
+
+| **1** | Configure the pinned certificate using data from the byte array cert |
+| ----- | -------------------------------------------------------------------- |
+
+* CA Cert
+* Self Signed Cert
+* Pinned Certificate
+
+Set the client to expect and accept only CA attested certificates.
+
+```Java
+// Configure Server Security
+// -- only accept CA attested certs
+thisConfig.setAcceptOnlySelfSignedServerCertificate(false); (1)
+```
+
+| **1** | This is the default. Only certificate chains with roots signed by a trusted CA are allowed. Self signed certificates are not allowed. |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------- |
+
+Set the client to expect and accept only self-signed certificates
+
+```Java
+// Configure Server Authentication --
+// only accept self-signed certs
+thisConfig.setAcceptOnlySelfSignedServerCertificate(true); (1)
+```
+
+| **1** | Set this to true to accept any self signed cert. Any certificates that are not self-signed are rejected. |
+| ----- | -------------------------------------------------------------------------------------------------------- |
+
+Set the client to expect and accept only a pinned certificate.
+
+```Java
+// Use the pinned certificate from the byte array (cert)
+thisConfig.setPinnedServerCertificate(cert.getEncoded()); (1)
+```
+
+| **1** | Configure the pinned certificate using data from the byte array cert |
+| ----- | -------------------------------------------------------------------- |
+
+### [](#lbl-authclnt)Client Authentication
+
+Here we define the credentials that the client can present to the server if prompted to do so in order that the server can authenticate it.
+
+We use [ReplicatorConfiguration](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html)'s [setAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setAuthenticator-com.couchbase.lite.Authenticator-) method to define the authentication method to the replicator.
+
+#### [](#basic-authentication)Basic Authentication
+
+Use the `[BasicAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/BasicAuthenticator.html)` to supply basic authentication credentials (username and password).
+
+Example 6\. Basic Authentication
+
+This example shows basic authentication using user name and password:
+
+* Kotlin
+* Java
+
+```Kotlin
+// Configure the credentials the
+// client will provide if prompted
+authenticator = BasicAuthenticator("Our Username", "Our PasswordValue".toCharArray()), (1)
+```
+
+```Java
+// Configure the credentials the
+// client will provide if prompted
+final BasicAuthenticator thisAuth
+  = new BasicAuthenticator(
+      "Our Username",
+      "Our PasswordValue")); (1)
+
+thisConfig.setAuthenticator(thisAuth);
+```
+
+#### [](#certificate-authentication)Certificate Authentication
+
+Use the `[ClientCertificateAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ClientCertificateAuthenticator.html)` to configure the client TLS certificates to be presented to the server, on connection. This applies only to the [URLEndpointListener](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/URLEndpointListener.html).
+
+> [!NOTE]
+> The **server** (listener) must have `disableTLS` set `false` and have a [ClientCertificateAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ClientCertificateAuthenticator.html) configured, or it will never ask for this client’s certificate.
+
+The certificate to be presented to the server will need to be signed by the root certificates or be valid based on the authentication callback set to the listener via ListenerCertificateAuthenticator.
+
+TLSIdentity.getIdentity uses the Android keystore. Please see (Android developers documentation (for example <https://developer.android.com/training/articles/keystore>) for more information about how to import a keychain.
+
+Example 7\. Client Cert Authentication
+
+This example shows client certificate authentication using an identity from secure storage.
+
+* Kotlin
+* Java
+
+```Kotlin
+        // ... other replicator configuration
+        // Provide a client certificate to the server for authentication
+        authenticator = ClientCertificateAuthenticator(
+            TLSIdentity.getIdentity("clientId")
+                ?: throw IllegalStateException("Cannot find client id")
+        ) (1)
+
+        // ... other replicator configuration
+
+    )
+)
+
+thisReplicator = repl
+```
+
+```Java
+// ... your other replicator configuration
+
+// Provide a client certificate to the server for authentication
+final TLSIdentity thisClientId = TLSIdentity.getIdentity("clientId"); (1)
+
+if (thisClientId == null) { throw new IllegalStateException("Cannot find client id"); }
+
+thisConfig.setAuthenticator(new ClientCertificateAuthenticator(thisClientId)); (2)
+
+// ... your other replicator configuration
+final thisReplicator= new Replicator(thisConfig);
+```
+
+| **1** | Get an identity from secure storage and create a TLS Identity object                                                                                                                                                            |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | Set the authenticator to [ClientCertificateAuthenticator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ClientCertificateAuthenticator.html) and configure it to use the retrieved identity |
+
+## [](#initialize-replicator)Initialize Replicator
+
+Use the `[Replicator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html)` class’s [ReplicatorConfiguration(config)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html#Replicator-com.couchbase.lite.ReplicatorConfiguration-) constructor, to initialize the replicator with the configuration you have defined. You can, optionally, add a change listener (see [Monitor Sync](#lbl-repl-mon)) before starting the replicator running using [start()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#start-boolean-).
+
+Example 8\. Initialize and run replicator
+
+* Kotlin
+* Java
+
+```Kotlin
+// Create replicator
+// Consider holding a reference somewhere
+// to prevent the Replicator from being GCed
+val repl = Replicator( (1)
+
+    // initialize the replicator configuration
+    ReplicatorConfigurationFactory.create(
+        database = database,
+        target = URLEndpoint(URI("wss://listener.com:8954")), (2)
+
+        // Set replicator type
+        type = ReplicatorType.PUSH_AND_PULL,
+
+        // Configure Sync Mode
+        continuous = false, // default value
+
+
+        // set auto-purge behavior
+        // (here we override default)
+        enableAutoPurge = false, (3)
+
+
+        // Configure Server Authentication --
+        // only accept self-signed certs
+        acceptOnlySelfSignedServerCertificate = true, (4)
+
+        // Configure the credentials the
+        // client will provide if prompted
+        authenticator = BasicAuthenticator("Our Username", "Our PasswordValue".toCharArray()), (5)
+
+
+        /* Optionally set custom conflict resolver call back */
+        conflictResolver = null (6)
+    )
+)
+
+
+// Start replicator
+repl.start(false) (7)
+thisReplicator = repl
+```
+
+```Java
+// Create replicator
+// Consider holding a reference somewhere
+// to prevent the Replicator from being GCed
+final Replicator thisReplicator = new Replicator(thisConfig); (1)
+
+// Start replicator
+thisReplicator.start(false); (2)
+```
+
+| **1** | Initialize the replicator with the configuration |
+| ----- | ------------------------------------------------ |
+| **2** | Start the replicator                             |
+
+## [](#lbl-repl-mon)Monitor Sync
+
+In this section
+
+[Change Listeners](#lbl-repl-chng) | [Replicator Status](#lbl-repl-status) | [Documents Pending Push](#lbl-repl-pend)
+
+You can monitor a replication’s status by using a combination of [Change Listeners](#lbl-repl-chng) and the `replication.status.activity` property — see; [getActivityLevel()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getActivityLevel%28%29). This enables you to know, for example, when the replication is actively transferring data and when it has stopped.
+
+### [](#lbl-repl-chng)Change Listeners
+
+Use this to monitor changes and to inform on sync progress; this is an optional step. You can add and a replicator change listener at any point; it will report changes from the point it is registered.
+
+> [!TIP]
+> Best Practice
+> 
+> Don’t forget to save the token so you can remove the listener later
+
+Use the [Replicator](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/Replicator.html) class to add a change listener as a callback to the Replicator ([addChangeListener()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#addChangeListener-java.util.concurrent.Executor-com.couchbase.lite.ReplicatorChangeListener-)) — see: [Example 9](#ex-repl-mon). You will then be asynchronously notified of state changes.
+
+You can remove a change listener with [removeChangeListener(ListenerToken token)](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#removeChangeListener-com.couchbase.lite.ListenerToken-).
+
+#### [](#using-kotlin-flows-and-livedata)Using Kotlin Flows and LiveData
+
+Android Kotlin developers can take advantage of Flows and LiveData to monitor replicators.
+
+```Kotlin
+    val replState: LiveData<ReplicatorActivityLevel> = argRepl.replicatorChangesFlow()
+        .map { it.status.activityLevel }
+        .asLiveData()
+```
+
+### [](#lbl-repl-status)Replicator Status
+
+You can use the [ReplicatorStatus()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html) class to check the replicator status. That is, whether it is actively transferring data or if it has stopped — see: [Example 9](#ex-repl-mon).
+
+The returned _ReplicationStatus_ structure comprises:
+
+* [getActivityLevel()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getActivityLevel%28%29) — stopped, offline, connecting, idle or busy — see states described in: [Table 2](#tbl-states)
+* [getProgress()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getProgress%28%29)
+
+  * completed — the total number of changes completed
+  * total — the total number of changes to be processed
+* [getError()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorStatus.html#getError) — the current error, if any
+
+Example 9\. Monitor replication
+
+* Kotlin
+* Java
+
+* Adding a Change Listener
+* Using replicator.status
+
+```Kotlin
+val thisListener = repl.addChangeListener { change ->
+    val err: CouchbaseLiteException? = change.status.error
+    if (err != null) {
+        Log.i(TAG, "Error code ::  ${err.code}", err)
+    }
+}
+```
+
+```Kotlin
+thisReplicator?.status?.let {
+    Log.i(TAG, "The Replicator is currently ${it.activityLevel}")
+    Log.i(TAG, "The Replicator has processed ${it.progress}")
+    Log.i(
+        TAG,
+        if (it.activityLevel === ReplicatorActivityLevel.BUSY) {
+            "Replication Processing"
+        } else {
+            "It has completed ${it.progress.total} changes"
+        }
+    )
+}
+```
+
+* Adding a Change Listener
+* Using replicator.status
+
+```Java
+ListenerToken thisListener =
+  new thisReplicator.addChangeListener(change -> {
+    final CouchbaseLiteException err =
+     change.getStatus().getError();
+     if (err != null) {
+       Log.i(TAG, "Error code ::  " + err.getCode(), e);
+     }
+  }); (1)
+```
+
+```Java
+
+Log.i(TAG, "The Replicator is currently " +
+  thisReplicator.getStatus().getActivityLevel());
+
+Log.i(TAG, "The Replicator has processed " + t);
+
+if (thisReplicator.getStatus().getActivityLevel() ==
+  Replicator.ActivityLevel.BUSY) {
+    Log.i(TAG, "Replication Processing");
+    Log.i(TAG, "It has completed " +
+      thisReplicator.getStatus().getProgess().getTotal() +
+      " changes");
+  }
+```
+
+#### [](#lbl-repl-states)Replication States
+
+[Table 2](#tbl-states) shows the different states, or activity levels, reported in the API; and the meaning of each.
+
+__Table 2\. Replicator activity levels__
+| State      | Meaning                                                                                                                           |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| STOPPED    | The replication is finished or hit a fatal error.                                                                                 |
+| OFFLINE    | The replicator is offline as the remote host is unreachable.                                                                      |
+| CONNECTING | The replicator is connecting to the remote host.                                                                                  |
+| IDLE       | The replication caught up with all the changes available from the server. The IDLE state is only used in continuous replications. |
+| BUSY       | The replication is actively transferring data.                                                                                    |
+
+> [!NOTE]
+> The replication change object also has properties to track the progress (`change.status.completed` and `change.status.total`). Since the replication occurs in batches the total count can vary through the course of a replication.
+
+#### [](#replication-status-and-app-life-cycle)Replication Status and App Life Cycle
+
+Couchbase Lite replications will continue running until the app terminates, unless the remote system, or the application, terminates the connection.
+
+> [!NOTE]
+> Recall that the Android OS may kill an application without warning. You should explicitly stop replication processes when they are no longer useful (for example, when they are `suspended` or `idle`) to avoid socket connections being closed by the OS, which may interfere with the replication process.
+
+### [](#lbl-repl-pend)Documents Pending Push
+
+> [!TIP]
+> [Replicator.isDocumentPending()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#isDocumentPending-java.lang.String-) is quicker and more efficient. Use it in preference to returning a list of pending document IDs, where possible.
+
+You can check whether documents are waiting to be pushed in any forthcoming sync by using either of the following API methods:
+
+* Use the [Replicator.getPendingDocumentIds()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#getPendingDocumentIds--) method, which returns a list of document IDs that have local changes, but which have not yet been pushed to the server.  
+This can be very useful in tracking the progress of a push sync, enabling the app to provide a visual indicator to the end user on its status, or decide when it is safe to exit.
+* Use the [Replicator.isDocumentPending()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#isDocumentPending-java.lang.String-) method to quickly check whether an individual document is pending a push.
+
+Example 10\. Use Pending Document ID API
+
+* Kotlin
+* Java
+
+```Kotlin
+//
+private fun onStatusChanged(pendingDocs: Set<String>, status: ReplicatorStatus) {
+    // ... sample onStatusChanged function
+    //
+    Log.i(TAG, "Replicator activity level is ${status.activityLevel}")
+
+    // iterate and report-on previously
+    // retrieved pending docids 'list'
+    val itr = pendingDocs.iterator()
+    while (itr.hasNext()) {
+        val docId = itr.next()
+
+        if (!replicator.isDocumentPending(docId)) { (1)
+            continue
+        }
+
+        Log.i(TAG, "Doc ID $docId has been pushed")
+    }
+```
+
+```Java
+//
+private void onStatusChanged(
+  @NonNull final Set<String> pendingDocs,
+  @NonNull final Replicator.Status status) {
+  // ... sample onStatusChanged function
+  //
+  Log.i(TAG,
+    "Replicator activity level is " + status.getActivityLevel().toString());
+
+  // iterate and report-on previously
+  // retrieved pending docids 'list'
+  for (Iterator<String> itr = pendingDocs.iterator(); itr.hasNext(); ) {
+    final String docId = itr.next();
+    try {
+      if (!replicator.isDocumentPending(docId)) { continue; } (1)
+
+      itr.remove();
+      Log.i(TAG, "Doc ID " + docId + " has been pushed");
+    }
+    catch (CouchbaseLiteException e) {
+      Log.w(TAG, "isDocumentPending failed", e); }
+  }
+}
+```
+
+| **1** | [Replicator.getPendingDocumentIds()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#getPendingDocumentIds--) returns a list of the document IDs for all documents waiting to be pushed. This is a snapshot and may have changed by the time the response is received and processed. |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **2** | [Replicator.isDocumentPending()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#isDocumentPending-java.lang.String-) returns true if the document is waiting to be pushed, and false otherwise.                                                                                     |
+
+## [](#lbl-repl-stop)Stop Sync
+
+Stopping a replication is straightforward. It is done using [stop()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#stop--). This initiates an asynchronous operation and so is not necessarily immediate. Your app should account for this potential delay before attempting any subsequent operations.
+
+You can find further information on database operations in [Databases](database.md).
+
+Example 11\. Stop replicator
+
+* Kotlin
+* Java
+
+```Kotlin
+// Stop replication.
+thisReplicator?.stop() (1)
+```
+
+```Java
+// Stop replication.
+thisReplicator.stop(); (1)
+```
+
+| **1** | Here we initiate the stopping of the replication using the [stop()](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/AbstractReplicator.html#stop--) method. It will stop any active [change listener](#lbl-repl-chng) once the replication is stopped. |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+## [](#conflict-resolution)Conflict Resolution
+
+Unless you specify otherwise, Couchbase Lite’s default conflict resolution policy is applied — see [Handling Data Conflicts](conflict.md).
+
+To use a different policy, specify a _conflict resolver_ using [conflictResolver](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/com/couchbase/lite/ReplicatorConfiguration.html#setConflictResolver-com.couchbase.lite.ConflictResolver-) as shown in [Example 12](#using-conflict-resolvers).
+
+For more complex solutions you can provide a custom conflict resolver - see: [Handling Data Conflicts](conflict.md).
+
+Example 12\. Using conflict resolvers
+
+* Kotlin
+* Java
+
+* Local Wins
+* Remote Wins
+* Merge
+
+```Kotlin
+// Using replConfig.setConflictResolver(new LocalWinConflictResolver());
+@Suppress("unused")
+object LocalWinsResolver : ConflictResolver {
+    override fun resolve(conflict: Conflict) = conflict.localDocument
+}
+```
+
+```Kotlin
+// Using replConfig.setConflictResolver(new RemoteWinConflictResolver());
+@Suppress("unused")
+object RemoteWinsResolver : ConflictResolver {
+    override fun resolve(conflict: Conflict) = conflict.remoteDocument
+}
+```
+
+```Kotlin
+// Using replConfig.setConflictResolver(new MergeConflictResolver());
+@Suppress("unused")
+object MergeConflictResolver : ConflictResolver {
+    override fun resolve(conflict: Conflict): Document {
+        val localDoc = conflict.localDocument?.toMap()
+        val remoteDoc = conflict.remoteDocument?.toMap()
+
+        val merge: MutableMap<String, Any>?
+        if (localDoc == null) {
+            merge = remoteDoc
+        } else {
+            merge = localDoc
+            if (remoteDoc != null) {
+                merge.putAll(remoteDoc)
+            }
+        }
+
+        return if (merge == null) {
+            MutableDocument(conflict.documentId)
+        } else {
+            MutableDocument(conflict.documentId, merge)
+        }
+    }
+```
+
+* Local Wins
+* Remote Wins
+* Merge
+
+```Java
+// Using replConfig.setConflictResolver(new LocalWinConflictResolver());
+class LocalWinConflictResolver implements ConflictResolver {
+    public Document resolve(Conflict conflict) {
+        return conflict.getLocalDocument();
+    }
+}
+```
+
+```Java
+// Using replConfig.setConflictResolver(new RemoteWinConflictResolver());
+@Suppress("unused")
+object RemoteWinsResolver : ConflictResolver {
+    override fun resolve(conflict: Conflict) = conflict.remoteDocument
+}
+```
+
+```Java
+// Using replConfig.setConflictResolver(new MergeConflictResolver());
+class MergeConflictResolver implements ConflictResolver {
+    public Document resolve(Conflict conflict) {
+        Map<String, Object> merge = conflict.getLocalDocument().toMap();
+        merge.putAll(conflict.getRemoteDocument().toMap());
+        return new MutableDocument(conflict.getDocumentId(), merge);
+    }
+}
+```
+
+Just as a replicator may observe a conflict — when updating a document that has changed both in the local database and in a remote database — any attempt to save a document may also observe a conflict, if a replication has taken place since the local app retrieved the document from the database. To address that possibility, a version of the `Database.save()` method also takes a conflict resolver as shown in [Example 13](#ex-merge-props).
+
+The following code snippet shows an example of merging properties from the existing document (`current`) into the one being saved (`new`). In the event of conflicting keys, it will pick the key value from `new`.
+
+Example 13\. Merging document properties
+
+* Kotlin
+* Java
+
+```Kotlin
+val mutableDocument = database.getDocument("xyz")?.toMutable() ?: return
+mutableDocument.setString("name", "apples")
+database.save(mutableDocument) { newDoc, curDoc ->  (1)
+    if (curDoc == null) {
+        return@save false
+    } (2)
+    val dataMap: MutableMap<String, Any> = curDoc.toMap()
+    dataMap.putAll(newDoc.toMap()) (3)
+    newDoc.setData(dataMap)
+    true (4)
+} (5)
+```
+
+```Java
+Document doc = database.getDocument("xyz");
+if (doc == null) { return; }
+MutableDocument mutableDocument = doc.toMutable();
+mutableDocument.setString("name", "apples");
+
+database.save(
+    mutableDocument,
+    (newDoc, curDoc) -> { (1)
+        if (curDoc == null) { return false; } (2)
+        Map<String, Object> dataMap = curDoc.toMap();
+        dataMap.putAll(newDoc.toMap()); (3)
+        newDoc.setData(dataMap);
+        return true; (4)
+    }); (5)
+```
+
+For more on replicator conflict resolution see: [Handling Data Conflicts](conflict.md).
+
+## [](#delta-sync)Delta Sync
+
+If delta sync is enabled on the listener, then replication will use delta sync.
+
+## [](#related-content)Related Content
+
+###### [](#)
+
+How to
+
+* [Passive Peer](p2psync-websocket-using-passive.md)
+* [Active Peer](p2psync-websocket-using-active.md)
+
+###### [](#-2)
+
+Concepts
+
+* [Peer-to-Peer Sync](#android:landing-p2psync.adoc)
+* [API References](http://docs.couchbase.com/mobile/3.0.15/couchbase-lite-android/)
+
+###### [](#-3)
+
+Community Resources …​
+
+[Mobile Forum](https://forums.couchbase.com/c/mobile/14) | [Blog](https://blog.couchbase.com/) | [Tutorials](https://docs.couchbase.com/tutorials/)
+
+[Getting Started with Peer-to-Peer Synchronization](../../../tutorials/cbl-p2p-sync-websockets/swift/cbl-p2p-sync-websockets.md)

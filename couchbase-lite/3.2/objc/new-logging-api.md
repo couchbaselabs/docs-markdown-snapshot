@@ -2,7 +2,7 @@
 title: New Logging API
 description: Couchbase Lite 3.2.2 introduces a new Logging API.
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/objc/pages/new-logging-api.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.2@couchbase-lite:objc:new-logging-api.adoc[]
 ---
 
@@ -20,7 +20,7 @@ link: xref:3.2@couchbase-lite:objc:new-logging-api.adoc[]
 
 You can find information about the new Couchbase Lite Logging API introduced in Couchbase Lite 3.2.2.
 
-For information about the now deprecated earlier version of the Logging API, see [3.1@couchbase-lite:objc:troubleshooting-logs.adoc](#3.1@couchbase-lite:objc:troubleshooting-logs.adoc).
+For information about the now deprecated earlier version of the Logging API, see [Using Logs for Troubleshooting](../../3.1/objc/troubleshooting-logs.md).
 
 ## [](#logsinks)LogSinks
 

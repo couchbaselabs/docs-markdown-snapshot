@@ -3,7 +3,7 @@ title: JavaScript Functions for Query Reference
 description: You can write extension functions for SQL++ for Query in Couchbase
   Server, using the JavaScript programming language.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/javascript-udfs/pages/javascript-functions-with-couchbase.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:javascript-udfs:javascript-functions-with-couchbase.adoc[]
 ---
 
@@ -25,7 +25,7 @@ Couchbase Server supports two types of user-defined function in SQL++ for Query:
 
 You can store JavaScript functions in external libraries. This enables you to share external function code for use in more than one SQL++ user-defined function. A library can contain one or more JavaScript functions.
 
-You must create the external library and the external function code using the [Query Workbench](../tools/udfs-ui.md) or the SQL++ [Functions REST API](../n1ql-rest-functions/index.md).
+You must create the external library and the external function code using the [Query Workbench](../guides/javascript-udfs.md) or the SQL++ [Functions REST API](../n1ql-rest-functions/index.md).
 
 You cannot call external function code directly from SQL++. If you want to manage your external function code with a library, you must:
 

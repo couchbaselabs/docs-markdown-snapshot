@@ -1,21 +1,23 @@
 ---
-title: Full Installation
+title: Couchbase Go SDK Installation
 description: Installation instructions for the Couchbase Go Client.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/project-docs/pages/sdk-full-installation.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/project-docs/pages/sdk-full-installation.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:project-docs:sdk-full-installation.adoc[]
 ---
 
 [Consult the llms.txt file for a full list of contents](/llms.txt)
 [View original HTML](/go-sdk/current/project-docs/sdk-full-installation.html)
 
-# Full Installation
+# Couchbase Go SDK Installation
 
 > Installation instructions for the Couchbase Go Client. 
 
-The Couchbase Go SDK 2.x is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like [Collections and Scopes](../concept-docs/collections.md)(available from Couchbase Server 7.0 onwards). The Go 2.x SDK also introduces improved error handling providing extra error information.
+This page gives full installation instructions for the Go SDK. In most cases, the [Quickstart Guide](../hello-world/start-using-sdk.md) should be enough to get you up and running if you’re in a hurry.
 
-If you’re upgrading your application from Couchbase Go SDK 1.x, please read the [Migration Guide](migrating-sdk-code-to-3.n.md).
+## [](#prerequisites)Prerequisites
+
+In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
 
 ## [](#installing-the-sdk)Installing the SDK
 
@@ -24,11 +26,12 @@ Version 2 of the Go SDK has added support for [Go Modules](https://github.com/go
 > [!IMPORTANT]
 > `go get` only works if you have initialised a [Go module](https://go.dev/blog/using-go-modules), and have a `go.mod` file in your working directory.
 
+Install the latest version of the Couchbase 2.12 Go SDK
+
 ```console
-$ go get github.com/couchbase/gocb/v2@v2.7.0
+$ go get github.com/couchbase/gocb/v2@v2.12.1
 ```
 
-> [!NOTE]
-> In line with the [Golang project](https://golang.org/doc/devel/release.html#policy), Couchbase supports both the current, and the previous, versions of Go. Earlier versions may work, but are not supported.
+## [](#further-information)Further Information
 
 Information about new features, fixes, and known issues — as well as information about how to install earlier release versions — is in the [release notes](sdk-release-notes.md).

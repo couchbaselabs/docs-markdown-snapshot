@@ -3,7 +3,7 @@ title: Hello Columnar&#8201;&#8212;&#8201;Node.js SDK Quickstart Guide
 description: Install, connect, try. A quick start guide to get you up and
   running with Columnar and the Node.js Columnar SDK.
 editUrl: https://github.com/couchbase/docs-columnar-sdk-nodejs/edit/release/1.0/modules/hello-world/pages/start-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:nodejs-columnar-sdk:hello-world:start-using-sdk.adoc[]
 ---
 
@@ -21,7 +21,7 @@ link: xref:nodejs-columnar-sdk:hello-world:start-using-sdk.adoc[]
 > 
 > Do not combine the Node.js Columnar SDK with the Node.js Operational SDK on the same app server (or development machine). This combination is not tested and not supported. There may be problems with different versions of shared dependencies if you try this. This only applies to the Node.js and Python Columnar SDKs.
 > 
-> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](#home::analytics-sdk.adoc) for a reminder of which Analytics SDK to use with which Analytics service.
+> Note, this does not apply to combining our Enterprise Analytics SDKs with our Operational SDKs. See the [Analytics SDK page](../../../home/analytics-sdk.md) for a reminder of which Analytics SDK to use with which Analytics service.
 
 ## [](#before-you-start)Before You Start
 

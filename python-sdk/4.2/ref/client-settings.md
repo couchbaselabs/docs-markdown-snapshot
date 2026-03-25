@@ -1,0 +1,657 @@
+---
+title: Client Settings
+description: The <code>ClusterOptions</code> class enables you to configure
+  Python SDK options for bootstrapping, timeouts, reliability, and performance.
+editUrl: https://github.com/couchbase/docs-sdk-python/edit/temp/4.2/modules/ref/pages/client-settings.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:4.2@python-sdk:ref:client-settings.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/python-sdk/4.2/ref/client-settings.html)
+
+# Client Settings
+
+> The `ClusterOptions` class enables you to configure Python SDK options for bootstrapping, timeouts, reliability, and performance. 
+
+Client settings are provided to the Cluster via the `ClusterOptions` class or keyword arguments with `ClusterOptions` being preferred. While all settings can be passed to the Cluster as keyword arguments, when using `ClusterOptions`, some options are grouped into other option classes, namely `ClusterTimeoutOptions`, `ClusterTracingOptions` and `TransactionConfig`.
+
+Once it is passed in to the Cluster constructor or Cluster.connect, its settings are fixed.
+
+Creating a cluster with custom settings
+
+```python
+# Create a cluster using the custom client settings.
+cluster = Cluster.connect(connectionString, ClusterOptions(
+PasswordAuthenticator(username, password), option1=xxx, option2=yyy...))
+# [Your code to interact with the cluster]
+```
+
+## [](#cluster-options)Cluster Options
+
+The following sections cover all possible cluster options and explain their usage and default values. They are categorized into groups for [security](#security-options), [I/O](#io-options), [timeout](#timeout-options), [compression](#compression-options), [tracing](#tracing-options), [transactions](#transaction-config), and [general](#general-options) options.
+
+### [](#security-options)Security Options
+
+By default the client will connect to Couchbase Server using an unencrypted connection. If you are using the Enterprise Edition, it’s possible to secure the connection using TLS. For connecting to Couchbase Capella — our fully hosted cloud service — TLS is a prerequisite.
+
+Name: **Enable Secure Connections**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_tls: Optional[bool]`
+
+Default: `False`
+
+Set this to `True` to encrypt all communication between the client and server using TLS. This feature requires the Enterprise Edition of Couchbase Server 3.0 or later. If TLS is enabled you must also specify the trusted certificates by providing the `cert_path` when using the `PasswordAuthenticator` or providing the client certificate and key when using the `CertificateAuthenticator`. Please see the [Managing Connections](../howtos/managing-connections.md) section for more details on how to set it up properly.
+
+Name: **TLS Verify Mode**
+
+Options Class: `ClusterOptions`
+
+Parameter: `tls_verify: Optional[Union[TLSVerifyMode, str]]`
+
+Default: `TLSVerifyMode.PEER`
+
+Set this to `TLSVerifyMode.NONE` to disable certificate verification.
+
+> [!NOTE]
+> The Python 3.x SDK allowed for `ssl=no_verify` to be passed in as part of the connection string. While this is still permitted in the 4.x SDK, the preferred method would be to pass in tls\_verify=TLSVerifyMode.NONE in the `ClusterOptions`.
+
+Name: **TLS Certificate Location**
+
+Options Class: `ClusterOptions`
+
+Parameter: `trust_store_path: Optional[str]`
+
+Default: `None`
+
+Path to a file containing a single X.509 certificate to trust as a Certificate Authority when establishing secure connections.
+
+### [](#io-options)I/O Options
+
+Name: **DNS SRV Enabled**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_dns_srv: Optional[bool]`
+
+Default: `True`
+
+Gets the bootstrap node list from a DNS SRV record. See the [Connection Management](../howtos/managing-connections.md#using-dns-srv-records) section for more information on how to use it properly.
+
+Name: **Use IP Protocol**
+
+Options Class: `ClusterOptions`
+
+Parameter: `use_ip_protocol: Optional[Union[IpProtocol, str]]`
+
+Default: `IpProtocol.Any`
+
+Set to IpProtocol.ForceIPv4 to force client to use IPv4\. Set to IpProtocol.ForceIPv6 to force client to use IPv6.
+
+Name: **Mutation Tokens Enabled**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_mutation_tokens: Optional[bool]`
+
+Default: `True`
+
+Mutation tokens allow enhanced durability requirements as well as advanced SQL++ (formerly N1QL) querying capabilities. Set this to `False` if you do not require these features and wish to avoid the associated overhead.
+
+Name: **Network Resolution**
+
+Options Class: `ClusterOptions`
+
+Parameter: `network: Optional[str]`
+
+Default: `auto`
+
+> [!NOTE]
+> The network value should be one of `auto`, `default`, or `external` (lower case).
+
+Each node in the Couchbase Server cluster might have multiple addresses associated with it. For example, a node might have one address that should be used when connecting from inside the same virtual network environment where the server is running, and a second address for connecting from outside the server’s network environment.
+
+By default the client will use a simple matching heuristic to determine which set of addresses to use (it will select the set of addresses that contains a seed node’s host and port).
+
+If you wish to override the heuristic, you can set this value to `default` if the client is running in the same network as the server, or `external` if the client is running in a different network.
+
+Name: **Socket Keepalive**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_tcp_keep_alive: Optional[bool]`
+
+Default: `True`
+
+If enabled, the client periodically sends a TCP keepalive to the server to prevent firewalls and other network equipment from dropping idle TCP connections.
+
+Name: **Socket Keepalive Interval**
+
+Options Class: `ClusterOptions`
+
+Parameter: `tcp_keep_alive_interval: Optional[timedelta]`
+
+Default: `None`
+
+> [!NOTE]
+> This setting only propagates to the OS on Linux when the epoll transport is used. On all other platforms, the OS-configured time is used (and you need to tune it there if you want to override the default interval).
+
+Name: **Max HTTP Endpoints per Service per Node**
+
+Options Class: `ClusterOptions`
+
+Parameter: `max_http_connections: Optional[int]`
+
+Default: `None`
+
+Each service (except the Key/Value service) has a separate dynamically sized pool of HTTP connections for issuing requests. This setting puts an upper bound on the number of HTTP connections in each pool.
+
+Name: **Idle HTTP Connection Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `idle_http_connection_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The length of time an HTTP connection may remain idle before it is closed and removed from the pool. Durations longer than 50 seconds are not recommended, since some services have a 1 minute server side idle timeout.
+
+Name: **Config Poll Interval**
+
+Options Class: `ClusterOptions`
+
+Parameter: `config_poll_interval: Optional[timedelta]`
+
+Default: `None`
+
+The interval at which the client fetches cluster topology information in order to proactively detect changes.
+
+Name: **Config Poll Floor**
+
+Options Class: `ClusterOptions`
+
+Parameter: `config_poll_floor: Optional[timedelta]`
+
+Default: `None`
+
+The interval at which the client fetches cluster topology information in order to proactively detect changes.
+
+### [](#timeout-options)Timeout Options
+
+The default timeout values are suitable for most environments, and should be adjusted only after profiling the expected latencies in your deployment environment. If you get a timeout exception, it may be a symptom of another issue; increasing the timeout duration is sometimes not the best long-term solution.
+
+Most timeouts can be overridden on a per-operation basis (for example, by passing a custom options block to a "get" or "query" method). The values set here are used as the defaults when no per-operation timeout is specified.
+
+Timeout settings are configured using an instance of `ClusterTimeoutOptions` or passed in as keyword arguments.
+
+Creating a new timeout config:
+
+```python
+timeout_options=ClusterTimeoutOptions(kv_timeout=timedelta(seconds=5), query_timeout=timedelta(seconds=10))
+options=ClusterOptions(PasswordAuthenticator('username', 'password'), timeout_options=timeout_options)
+cluster.connect('couchbase://host',options)
+```
+
+Name: **Bootstrap Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `bootstrap_timeout: Optional[timedelta]`
+
+Default: `None`
+
+Bootstrap timeout.
+
+Name: **Connect Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `connect_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The connect timeout is used when a Bucket is opened and if not overridden by a custom timeout. If you feel the urge to change this value to something higher, there is a good chance that your network is not properly set up. Connecting to the server should in practice not take longer than a second on a reasonably fast network.
+
+Name: **Resolve Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `resolve_timeout: Optional[timedelta]`
+
+Default: `None`
+
+Resolve timeout.
+
+Name: **Key-Value Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `kv_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The Key/Value default timeout is used on operations which are performed on a specific key if not overridden by a custom timeout. This includes all commands like get(), get\_from\_replica() and all mutation commands, but does not include operations that are performed with enhanced durability requirements.
+
+Name: **Key-Value Durable Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `kv_durable_timeout: Optional[timedelta]`
+
+Default: `None`
+
+Key/Value operations with enhanced durability requirements may take longer to complete, so they have a separate default timeout.
+
+**Do not** set this above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
+
+> [!WARNING]
+> The `kv_durable_timeout` property is not part of the stable API and may change or be removed at any time.
+
+Name: **View Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `views_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The View timeout is used on view operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows. Also, if there is a node failure during the request the internal cluster timeout is set to 60 seconds.
+
+Name: **Query Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `query_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The Query timeout is used on all SQL++ query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Analytics Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `analytics_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The Analytics timeout is used on all Analytics query operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Search Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `search_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The Search timeout is used on all FTS operations if not overridden by a custom timeout. Note that it is set to such a high timeout compared to key/value since it can affect hundreds or thousands of rows.
+
+Name: **Management Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `management_timeout: Optional[timedelta]`
+
+Default: `None`
+
+The management timeout is used on all cluster management APIs (BucketManager, UserManager, CollectionManager, QueryIndexManager, etc.) if not overridden by a custom timeout. The default is quite high because some operations (such as flushing a bucket, for example) might take a long time.
+
+Name: **DNS SRV Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `dns_srv_timeout: Optional[timedelta]`
+
+Default: `None`
+
+DNS SRV timeout.
+
+Name: **Config Idle Redial Timeout**
+
+Options Class: `ClusterTimeoutOptions`
+
+Parameter: `config_idle_redial_timeout: Optional[timedelta]`
+
+Default: `None`
+
+Config Idle Redial Timeout.
+
+### [](#compression-options)Compression Options
+
+Name: **Enabling Compression**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_compression: Optional[bool]`
+
+Default: `True`
+
+If enabled, the client will compress documents before they are sent to Couchbase Server.
+
+### [](#tracing-options)Tracing Options
+
+Tracing settings are configured using an instance of `ClusterTracingOptions` or passed in as keyword arguments.
+
+Creating a new `ClusterTracingOptions` instance:
+
+```python
+tracing_options=ClusterTimeoutOptions(tracing_threshold_kv=timedelta(milliseconds=5), tracing_threshold_query=timedelta(milliseconds=10))
+options=ClusterOptions(PasswordAuthenticator('username', 'password'), tracing_options=tracing_options)
+cluster.connect('couchbase://host',options)
+```
+
+Name: **Tracing Enabled**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_tracing: Optional[bool]`
+
+Default: `True`
+
+Set this to `False` if you do not require tracing.
+
+Name: **Tracing Enabled**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_metrics: Optional[bool]`
+
+Default: `True`
+
+Set this to `False` if you do not require metrics.
+
+Name: **Key-Value Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_kv: Optional[timedelta]`
+
+Default: `None`
+
+Key-Value Threshold.
+
+Name: **View Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_view: Optional[timedelta]`
+
+Default: `None`
+
+View Threshold.
+
+Name: **Query Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_query: Optional[timedelta]`
+
+Default: `None`
+
+Query Threshold.
+
+Name: **Search Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_search: Optional[timedelta]`
+
+Default: `None`
+
+Search reshold.
+
+Name: **Analytics Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_analytics: Optional[timedelta]`
+
+Default: `None`
+
+Analytics Threshold.
+
+Name: **Eventing Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_eventing: Optional[timedelta]`
+
+Default: `None`
+
+Eventing Threshold.
+
+Name: **Management Threshold**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_management: Optional[timedelta]`
+
+Default: `None`
+
+Management Threshold.
+
+Name: **Tracing Queue Size**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_queue_size: Optional[int]`
+
+Default: `None`
+
+Tracing Queue Size.
+
+Name: **Tracing Queue Flush Interval**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_threshold_queue_flush_interval: Optional[timedelta]`
+
+Default: `None`
+
+Tracing Queue Flush Interval.
+
+Name: **Orphaned Queue Size**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_orphaned_queue_size: Optional[int]`
+
+Default: `None`
+
+Orphaned Queue Size.
+
+Name: **Orphaned Queue Flush Interval**
+
+Options Class: `ClusterTracingOptions`
+
+Parameter: `tracing_orphaned_queue_flush_interval: Optional[timedelta]`
+
+Default: `None`
+
+Orphaned Queue Flush Interval.
+
+Name: **Logging Meter Emit Interval**
+
+Options Class: `ClusterOptions`
+
+Parameter: `logging_meter_emit_interval: Optional[timedelta]`
+
+Default: `timedelta(minutes=10)`
+
+Logging Meter Emit Interval.
+
+### [](#transaction-config)Transaction Config
+
+Tracing settings are configured using an instance of `TransactionConfig`.
+
+Creating a new `TransactionConfig` instance:
+
+```python
+transaction_config=TransactionConfig(durability=ServerDurability(DurabilityLevel.MAJORITY), kv_timeout=timedelta(seconds=10))
+options=ClusterOptions(PasswordAuthenticator('username', 'password'), transaction_config=transaction_config)
+cluster.connect('couchbase://host',options)
+```
+
+Name: **Transaction Durability Level**
+
+Options Class: `TransactionConfig`
+
+Parameter: `durability: Optional[ServerDurability]`
+
+Default: `None`
+
+Transaction Durability Level.
+
+Name: **Transaction Cleanup Window**
+
+Options Class: `TransactionConfig`
+
+Parameter: `cleanup_window: Optional[timedelta]`
+
+Default: `None`
+
+Transaction Cleanup Window.
+
+Name: **Transaction Key-Value Timeout**
+
+Options Class: `TransactionConfig`
+
+Parameter: `kv_timeout: Optional[timedelta]`
+
+Default: `None`
+
+Transaction Key-Value Timeout.
+
+Name: **Transaction Expiration Time**
+
+Options Class: `TransactionConfig`
+
+Parameter: `expiration_time: Optional[timedelta]`
+
+Default: `None`
+
+Transaction Expiration Time.
+
+Name: **Transaction Cleanup Lost Attempts**
+
+Options Class: `TransactionConfig`
+
+Parameter: `cleanup_lost_attempts: Optional[bool]`
+
+Default: `None`
+
+Transaction Cleanup Lost Attempts.
+
+Name: **Transaction Cleanup Client Attempts**
+
+Options Class: `TransactionConfig`
+
+Parameter: `cleanup_client_attempts: Optional[bool]`
+
+Default: `None`
+
+Transaction Cleanup Client Attempts.
+
+Name: **Transaction Custom Metadata Collection**
+
+Options Class: `TransactionConfig`
+
+Parameter: `custom_metadata_collection: Optional[Collection]`
+
+Default: `None`
+
+Transaction Custom Metadata Collection.
+
+Name: **Transaction Query Scan Consistency**
+
+Options Class: `TransactionConfig`
+
+Parameter: `scan_consistency: Optional[QueryScanConsistency]`
+
+Default: `None`
+
+Transaction Query Scan Consistency.
+
+### [](#general-options)General Options
+
+Name: **Unordered Execution**
+
+Options Class: `ClusterOptions`
+
+Parameter: `enable_unordered_execution: Optional[bool]`
+
+Default: `True`
+
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions. This means that tuning the number of connections (KV endpoints) is no longer necessary as a workaround where data not available in the cache is causing timeouts.
+
+This is set to `True` by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+Name: **JSON Serializer**
+
+Options Class: `ClusterOptions`
+
+Parameter: `serializer: Optional[Serializer]`
+
+Default: `None`
+
+The JSON serializer handles the conversion between JSON and Python objects.
+
+Name: **Transcoder**
+
+Options Class: `ClusterOptions`
+
+Parameter: `transcoder: Optional[Transcoder]`
+
+Default: `None`
+
+The transcoder is responsible for converting KV binary packages to and from Python objects.
+
+The default transcoder assumes you are working with JSON documents. It uses the configured `serializer` to convert between JSON and Python objects. When writing documents it sets the appropriate flags to indicate the document content is JSON.
+
+The transcoder configured here is just the default; it can be overridden on a per-operation basis.
+
+## [](#commonly-used-options)Commonly Used Options
+
+The defaults above have been carefully considered and in general it is not recommended to make changes without expert guidance or careful testing of the change. Some options may be commonly used together in certain envionments or to achieve certain effects.
+
+### [](#constrained-network-environments)Constrained Network Environments
+
+Though [wide area network](../project-docs/compatibility.md#network-requirements) (WAN) connections are not directly supported, some development and non-critical operations activities across a WAN are convenient. Most likely for connecting to Couchbase Capella, or Server running in your own cloud account, whilst developing from a laptop or other machine not located in the same data center. These settings are some you may want to consider adjusting:
+
+* Connect Timeout to 30s
+* Key-Value Timeout to 5s
+* Config Poll Interval to 10s
+* Circuit Breaker ErrorThresholdPercentage to 75
+
+> [!NOTE]
+> As of SDK API 3.4 you can also use a **Configuration Profile**, which allows you to quickly configure your environment for common use-cases. See the [Configuration Profiles](#configuration-profiles) section for more details.
+
+A program using the SDK can also use the `waitUntilReady()` API call to handle all connection negotiations and related errors at one place. It may be useful to block in, for example, a basic console testing application for up to 30 seconds before proceeding in the program to perform data operations. See the API reference for further details.
+
+## [](#configuration-profiles)Configuration Profiles
+
+Configuration Profiles provide predefined client settings that allow you to quickly configure an environment for common use-cases. When using a configuration profile, the current client settings are overridden with the values provided in the profile. Any property that is not specified in the profile is left unchanged.
+
+> [!CAUTION]
+> The Configuration Profiles feature is currently a [Volatile API](../../current/project-docs/compatibility.md#interface-stability) and may be subject to change.
+
+### [](#wan-development)WAN Development
+
+**Cluster Option:** apply\_profile("wan\_development")
+
+A `wan_development` configuration profile can be used to modify client settings for development or high-latency environments. This profile changes the default timeouts.
+
+__Table 1\. Profile Settings__
+| Setting              | Value |
+| -------------------- | ----- |
+| connect\_timeout     | 20s   |
+| kv\_timeout          | 20s   |
+| kv\_durable\_timeout | 20s   |
+| views\_timeout       | 120s  |
+| query\_timeout       | 120s  |
+| analyticsTimeout     | 120s  |
+| search\_timeout      | 120s  |
+| management\_timeout  | 120s  |

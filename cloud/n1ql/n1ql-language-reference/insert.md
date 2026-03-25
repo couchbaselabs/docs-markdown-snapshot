@@ -3,7 +3,7 @@ title: INSERT
 description: Use the INSERT statement to insert one or more new documents into
   an existing keyspace.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/insert.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/insert.adoc[]
 ---
 
@@ -31,38 +31,34 @@ The INSERT statement must include the following:
 * A well-formed JSON document specified as key-value pairs, or the projection of a SELECT statement which generates a well-formed single JSON to insert. See and for details.
 * Optionally, you can specify the values or an expression to be returned after the INSERT statement completes successfully.
 
-### [](#security-requirements)Security Requirements
-
-You should have read-write permission to the keyspace, to be able to insert documents into a keyspace. Any user who has the keyspace credentials or any Couchbase administrator should be able to insert documents into a keyspace. This includes the keyspace administrator for the specified keyspace, the cluster administrator, and the full administrator roles. See [Manage Organizations and Access](../../organizations/organization-projects-overview.md) for details about access privileges for various administrators.
-
-> [!WARNING]
-> You cannot insert documents into a SASL bucket if you have a read-only role for the SASL bucket.
-
 ### [](#rbac-privileges)RBAC Privileges
 
-To execute the INSERT statement, your client must have the _Query Insert_ privilege on the target keyspace.
+To execute this statement, your client must have necessary privileges on the target keyspace. The required privileges depend on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and whether the statement includes a `SELECT` or `RETURNING` clause.
 
-If the statement has any SELECT or RETURNING data-read clauses, then the _Query Select_ privilege is also required on the keyspaces referred in the respective clauses. For more details about roles and privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege for INSERT                                                                      | Privilege for SELECT / RETURNING                                                                                                  |
+| --------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                          | [Read](../../clusters/cluster-rbac.md#basic-access-credentials) on all keyspaces referenced in the clause                         |
+| Advanced        | [Query Insert](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) on all keyspaces referenced in the clause |
 
 RBAC Examples 
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute the following statement, your client must have the _Query Insert_ privilege on `hotel`.
+To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `hotel`.
 
 ```sqlpp
 INSERT INTO hotel (KEY, VALUE)
 VALUES ("key1", { "type" : "hotel", "name" : "new hotel" });
 ```
 
-To execute the following statement, your client must have the _Query Insert_ and _Query Select_ privileges on `hotel`.
+To execute the following statement, your client must have `Write` / `Query Insert` and `Read` / `Query Read` privileges on `hotel`.
 
 ```sqlpp
 INSERT INTO hotel (KEY, VALUE)
 VALUES ("key1", { "type" : "hotel", "name" : "new hotel" }) RETURNING *;
 ```
 
-To execute the following statement, your client must have the _Query Insert_ privilege on `hotel` and _Query Select_ privilege on `` `beer-sample` ``.
+To execute the following statement, your client must have the `Write` / `Query Insert` privilege on `hotel` and the `Read` / `Query Read` privilege on `beer-sample`.
 
 ```sqlpp
 INSERT INTO landmark (KEY foo, VALUE bar)
@@ -70,7 +66,7 @@ SELECT META(doc).id AS foo, doc AS bar
 FROM `beer-sample` AS doc WHERE type = "brewery";
 ```
 
-To execute the following statement, your client must have the _Query Insert_ and _Query Select_ privileges on `hotel`.
+To execute the following statement, your client must have `Write` / `Query Insert` and `Read` / `Query Read` privileges on `hotel`.
 
 ```sqlpp
 INSERT INTO hotel (KEY foo, VALUE bar)

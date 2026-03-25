@@ -2,8 +2,8 @@
 title: Sub-Document Operations
 description: Sub-Document operations can be used to efficiently access and
   change parts of documents.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/subdocument-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/subdocument-operations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:subdocument-operations.adoc[]
 ---
 
@@ -29,7 +29,7 @@ While full-document retrievals retrieve the entire document and full document up
 You should use sub-document operations when you are modifying only portions of a document, and full-document operations when the contents of a document is to change significantly.
 
 > [!IMPORTANT]
-> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) queries. Sub-document SQL++ queries are explained in the [Query page](n1ql-queries-with-sdk.md).
+> The Sub-Document operations described on this page are for _Key-Value_ requests only: they are not related to Sub-Document [SQL++](../../../server/current/n1ql/n1ql-language-reference/subqueries.md#keyspace-identifier-versus-expression) queries. Sub-document SQL++ queries are explained in the [Query page](sqlpp-queries-with-sdk.md).
 
 In order to use Sub-Document operations you need to specify a _path_ indicating the location of the Sub-Document. The _path_ follows [SQL++ syntax](#Path syntax).
 

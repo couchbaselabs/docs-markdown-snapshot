@@ -2,8 +2,8 @@
 title: Authentication
 description: As well as Role-Based Access Control (RBAC), Couchbase offers
   connection with Certificate Authentication, and works transparently with LDAP.
-editUrl: https://github.com/couchbase/docs-sdk-go/edit/temp/2.11/modules/howtos/pages/sdk-authentication.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.12/modules/howtos/pages/sdk-authentication.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:go-sdk:howtos:sdk-authentication.adoc[]
 ---
 

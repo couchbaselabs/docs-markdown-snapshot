@@ -2,8 +2,8 @@
 title: The Data Model
 description: Couchbase's use of JSON as a storage format allows powerful search
   and query over documents.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/data-model.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/data-model.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:data-model.adoc[]
 ---
 
@@ -51,7 +51,7 @@ The `Set` implementation may contain values of all of the above types except `Js
 If you need to feed a Couchbase document to an existing API that only works with `java.util.Map`, then CouchbaseMap may be a quick way to get started with tackling the task without delving into the [Sub-Document API](subdocument-operations.md). You can create a CouchbaseMap like this:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/data-model.adoc - include::example$DataModelExample.java[]
+Map<String, String> myMap = collection.map("name", String.class);
 ```
 
 ### [](#limitations)Limitations

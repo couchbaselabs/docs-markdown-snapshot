@@ -1,7 +1,7 @@
 ---
 title: Tabbed Content
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/tabbed-content.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::tabbed-content.adoc[]
 ---
 
@@ -43,4 +43,4 @@ Do not use tabbed content when:
 
 Users should be able to use tabs to hide content that they do not need for their specific situation, and only view the content that they do need.
 
-For more information about how to add tabbed content to your documentation, see [home:contribute:tabs.adoc](#home:contribute:tabs.adoc).
+For more information about how to add tabbed content to your documentation, see [Tabbed Content](../home/contribute/tabs.md).

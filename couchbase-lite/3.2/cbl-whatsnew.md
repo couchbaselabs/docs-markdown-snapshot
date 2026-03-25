@@ -1,7 +1,7 @@
 ---
 title: New in 3.2
 editUrl: https://github.com/couchbase/docs-couchbase-lite/edit/release/3.2/modules/ROOT/pages/cbl-whatsnew.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.2@couchbase-lite::cbl-whatsnew.adoc[]
 ---
 
@@ -190,7 +190,7 @@ Read more at:
 
 ## [](#see-also)See also
 
-[What’s new in previous version 3.1](#3.1@couchbase-lite:ROOT:cbl-whatsnew.adoc)
+[What’s new in previous version 3.1](../3.1/cbl-whatsnew.md)
 
 ### [](#couchbase-lite-release-notes)Couchbase Lite Release Notes
 

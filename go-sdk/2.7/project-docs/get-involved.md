@@ -1,0 +1,20 @@
+---
+title: Get Involved
+editUrl: https://github.com/couchbase/docs-sdk-go/edit/release/2.7/modules/project-docs/pages/get-involved.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:2.7@go-sdk:project-docs:get-involved.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/go-sdk/2.7/project-docs/get-involved.html)
+
+# Get Involved
+
+## [](#contributing)Contributing
+
+Couchbase welcomes community contributions to the Go SDK. The [Go SDK source code](https://github.com/couchbase/gocb) is available on GitHub. Please see the [CONTRIBUTING](https://github.com/couchbase/gocb/blob/master/CONTRIBUTING.md) file for further information.
+
+## [](#other-ways-to-contribute)Other Ways to Contribute
+
+* Join the discussion in our [forum](https://forums.couchbase.com/) and on our [Discord server](https://discord.com/invite/sQ5qbPZuTh).
+* Improve the documentation — [bug reports and pull requests are welcome](https://docs.couchbase.com/home/contribute/index.html).

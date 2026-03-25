@@ -1,7 +1,7 @@
 ---
 title: Links
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/links.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::links.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Keep the following formatting and conventions in mind for [Internal Links](#inte
 
 ## [](#internal)Internal Links
 
-Use the `xref` syntax for all links to content within the documentation repositories. For more information about the `xref` syntax in Antora, see [Cross References](#home:contribute:cross-references.adoc) in the Contributing to the Documentation guide.
+Use the `xref` syntax for all links to content within the documentation repositories. For more information about the `xref` syntax in Antora, see [Cross References](../home/contribute/cross-references.md) in the Contributing to the Documentation guide.
 
 You can leave the link text for an `xref` blank to get Antora to use the <h1> heading of the linked page as the link.
 
@@ -35,4 +35,4 @@ Format evergreen links as external links. For an example of using an evergreen l
 
 For links to third-party websites, follow the guidance in [Links to other sites](https://developers.google.com/style/links-external) in the Google Developer Style Guide. Use their guidance for when and how to link.
 
-For more information about external link syntax in Antora, see [URLs](#home:contribute:basics.adoc#urls) in the Contributing to the Documentation guide.
+For more information about external link syntax in Antora, see [URLs](../home/contribute/basics.md#urls) in the Contributing to the Documentation guide.

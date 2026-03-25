@@ -4,7 +4,7 @@ description: With the SELECT statement, you can query and manipulate JSON data.
   You can select, join, project, nest, unnest, group, and sort in a single
   SELECT statement.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/selectintro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/selectintro.adoc[]
 ---
 
@@ -29,7 +29,14 @@ To use the examples on this page, you must set the query context to the `invento
 
 ## [](#prerequisites)Prerequisites
 
-The client executing the SELECT statement must have [read](../../clusters/manage-database-users.md#about-database-user-permissions) access to all keyspaces referred in the query. Note that the SELECT statement may refer to one keyspace, multiple keyspaces, or no keyspaces at all. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+To execute this statement, your client must have necessary privileges on the keyspaces referenced in it. The statement can reference one keyspace, multiple keyspaces, or no keyspaces at all.
+
+The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
+
+| Credential Type | Privilege                                                                               |
+| --------------- | --------------------------------------------------------------------------------------- |
+| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 RBAC Examples 
 

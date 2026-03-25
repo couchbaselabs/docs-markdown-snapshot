@@ -2,8 +2,8 @@
 title: Document
 description: Couchbase supports CRUD operations, various data structures, and
   binary documents.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/documents.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/documents.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:documents.adoc[]
 ---
 
@@ -118,7 +118,10 @@ You can also specify additional options when storing a document in Couchbase
 > If you wish to only modify certain parts of a document, you can use [sub-document](subdocument-operations.md) operations which operate on specific subsets of documents:
 > 
 > ```java
-> Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$DocumentsExample.java[]
+> List<MutateInSpec> spec = Collections.singletonList(
+>         MutateInSpec.upsert("msrp", 18.00)
+> );
+> collection.mutateIn("airline_10", spec);
 > ```
 > 
 > or [N1QL UPDATE](#7.1@server:n1ql:n1ql-language-reference/update.adoc) to update documents based on specific query criteria:
@@ -162,7 +165,12 @@ SELECT * FROM `travel-sample`.inventory.airport WHERE META().id = "airport_1254"
 You can also retrieve _parts_ of documents using [sub-document operations](subdocument-operations.md), by specifying one or more sections of the document to be retrieved
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$DocumentsExample.java[]
+Collection usersCollection = bucket.scope("tenant_agent_00").collection("users");
+List<LookupInSpec> spec = Arrays.asList(
+        LookupInSpec.get("credit_cards[0].type"),
+        LookupInSpec.get("credit_cards[0].expiration")
+);
+usersCollection.lookupIn("1", spec);
 ```
 
 ## [](#counters)Counters
@@ -175,7 +183,15 @@ You can atomically increment or decrement the numerical value of special counter
 A document may be used as a counter if its value is a simple ASCII number, like `42`. Couchbase allows you to increment and decrement these values atomically using a special `counter` operation in the `Binary.Collection`. The example below shows a counter being initialised, then being incremented and decremented:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$DocumentsExample.java[]
+String counterDocId = "counter-doc";
+// Increment by 1, creating doc if needed.
+// By using `.incrementOptions().initial(1)` we set the starting count(non-negative) to 1 if the document needs to be created.
+// If it already exists, the count will increase by 1.
+collection.binary().increment(counterDocId, IncrementOptions.incrementOptions().initial(1));
+// Decrement by 1
+collection.binary().decrement(counterDocId);
+// Decrement by 5
+collection.binary().decrement(counterDocId, DecrementOptions.decrementOptions().delta(5));
 ```
 
 You can simplify by importing `decrementOptions()` statically:
@@ -195,7 +211,17 @@ Couchbase counters are 64-bit unsigned integers in Couchbase and do not wrap aro
 [CAS](#howtos:concurrent-document-mutations.adoc) values are not used with counter operations since counter operations are atomic. The intent of the counter operation is to simply increment the current server-side value of the document. If you wish to only increment the document if it is at a certain value, then you may use a normal `replace` function with CAS:
 
 ```java
-Unresolved include directive in modules/concept-docs/pages/documents.adoc - include::example$DocumentsExample.java[]
+            GetResult getResult = collection.get("counter-doc");
+            int value = getResult.contentAs(Integer.class);
+            int incrementAmnt = 5;
+
+            if (shouldIncrementAmnt(value)) {
+                collection.replace(
+                        "counter-doc",
+                        value + incrementAmnt,
+                        ReplaceOptions.replaceOptions().cas(getResult.cas())
+                );
+            }
 ```
 
 You can also use [sub-document counter operations](subdocument-operations.md) to increment numeric values _within_ a document containing other content. An example can be found in the [practical sub-doc page](#howtos:subdocument-operations.adoc#counters-and-numeric-fields).

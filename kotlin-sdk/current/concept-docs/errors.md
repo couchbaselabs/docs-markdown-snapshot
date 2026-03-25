@@ -1,8 +1,8 @@
 ---
 title: Errors, Exceptions, and Diagnostics
 description: When the unexpected happens, take a step-by-step approach.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/errors.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/errors.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:errors.adoc[]
 ---
 

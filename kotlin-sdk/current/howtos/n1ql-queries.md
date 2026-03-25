@@ -1,8 +1,8 @@
 ---
 title: Query
 description: You can query for documents in Couchbase using the SQL++ query language.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/n1ql-queries.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/n1ql-queries.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:n1ql-queries.adoc[]
 ---
 
@@ -17,7 +17,7 @@ link: xref:kotlin-sdk:howtos:n1ql-queries.adoc[]
 
 You should know [how to write a SQL++ query](http://query.pub.couchbase.com/tutorial/#1).
 
-You should know [how to connect to a Couchbase cluster](managing-connections.md).
+You should know [how to connect to a Couchbase cluster](connecting.md).
 
 You should know about [documents and collections](organizing-documents.md).
 
@@ -28,7 +28,13 @@ The examples on this page use the `travel-sample` [sample bucket](../../../serve
 This example uses a SQL++ query to get 10 documents from the default collection in the `travel-sample` bucket.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query("SELECT * FROM `travel-sample` LIMIT 10")
+    .execute() (1)
+
+queryResult.rows.forEach { row: QueryRow ->
+    println("Found row: " + row.contentAs<Map<String, Any?>>())
+}
 ```
 
 | **1** | The query method returns a Flow<QueryFlowItem>. Nothing happens until you collect the flow. Calling execute is an easy way to collect the flow. |
@@ -51,13 +57,33 @@ This example gets 10 documents from the `airline` collection in the `inventory` 
 If you use `Cluster.query` to search a non-default collection, the `FROM` clause must have the bucket name, scope name, and collection name.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query("""
+        SELECT * 
+        FROM `travel-sample`.inventory.airline 
+        LIMIT 10
+        """)
+    .execute()
+
+queryResult.rows.forEach { row: QueryRow ->
+    println("Found row: " + row.contentAs<Map<String, Any?>>())
+}
 ```
 
 If you use `Scope.query` to search a non-default collection, the `FROM` clause does not need the bucket name or scope name. Instead, this information comes from the `Scope` object.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val scope: Scope = cluster
+    .bucket("travel-sample")
+    .scope("inventory")
+
+val queryResult: QueryResult = scope
+    .query("SELECT * FROM airline LIMIT 10")
+    .execute()
+
+queryResult.rows.forEach { row: QueryRow ->
+    println("Found row: " + row.contentAs<Map<String, Any?>>())
+}
 ```
 
 ## [](#parameters)Query Parameters
@@ -76,7 +102,18 @@ Using named parameters often make it easier to read complex queries.
 A query with named parameters
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = """
+            SELECT *
+            FROM `travel-sample`.inventory.airline
+            WHERE country = @country (1)
+        """,
+        parameters = QueryParameters.named(
+            "country" to "France"
+        )
+    )
+    .execute()
 ```
 
 | **1** | As a courtesy to Kotlin users, Couchbase Server 7.2.0 and later let you use either @ or $ when referencing named parameters in SQL++ statements. If you use an older version of Couchbase Server, use $ instead of @. |
@@ -92,7 +129,18 @@ If you use positional parameters, the order of the parameters must match the ord
 A query with positional parameters
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = """
+            SELECT *
+            FROM `travel-sample`.inventory.airline
+            WHERE country = ?
+        """,
+        parameters = QueryParameters.positional(
+            listOf("France")
+        )
+    )
+    .execute()
 ```
 
 ## [](#metadata)Metadata
@@ -104,7 +152,30 @@ It is expensive to return some kinds of metadata, like metrics and profiling inf
 This example asks for all metadata, and prints it:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = "SELECT * FROM `travel-sample`.inventory.airline",
+        metrics = true,
+        profile = QueryProfile.TIMINGS,
+    )
+    .execute()
+
+val metadata: QueryMetadata = queryResult.metadata
+
+println("Client context ID: ${metadata.clientContextId}")
+println("Request ID: ${metadata.requestId}")
+println("Signature: ${metadata.signature}")
+println("Status: ${metadata.status}")
+println("Warnings: ${metadata.warnings}")
+
+metadata.metrics?.let { metrics: QueryMetrics ->
+    println("Reported execution time: ${metrics.executionTime}")
+    println("Other metrics: $metrics")
+}
+
+metadata.profile?.let { profile: Map<String, Any?> ->
+    println("Profile: $profile")
+}
 ```
 
 ## [](#streaming)Streaming
@@ -114,7 +185,11 @@ The previous examples store all result rows in memory. If there are many rows, t
 To use less memory, pass a lambda to `execute` and work on each row one at a time, like this:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val metadata: QueryMetadata = cluster
+    .query("SELECT * FROM `travel-sample`.inventory.airline")
+    .execute { row: QueryRow ->
+        println("Found row: " + row.contentAs<Map<String, Any?>>())
+    }
 ```
 
 > [!NOTE]
@@ -127,7 +202,12 @@ Each time you execute a query, the server makes a plan for finding the results. 
 To run a query as a prepared statement, pass `adhoc = false` to the `query` method, like this:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = "SELECT * FROM `travel-sample` LIMIT 10",
+        adhoc = false,
+    )
+    .execute()
 ```
 
 A prepared statement is not always faster than an adhoc query. Sometimes the server can make a better plan for an adhoc query than for a prepared statement. It’s good to measure the performance of your query, so you know if it’s good to use a prepared statement.
@@ -141,7 +221,12 @@ The server ensures a read-only query does not change data. If a read-only query 
 To run a read-only query, pass `readonly = true` to the `query` method, like this:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = "SELECT * FROM `travel-sample` LIMIT 10",
+        readonly = true,
+    )
+    .execute()
 ```
 
 ## [](#scan-consistency)Scan Consistency
@@ -163,7 +248,24 @@ When you choose "request plus" scan consistency, changes that happened before yo
 If you made some changes, you can tell the server to wait for the changes to be indexed. In other words, the query results are "consistent with" the changes you made. To use this kind of scan consistency, you must keep track of the mutation tokens from the changes you want to wait for.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val collection = cluster
+    .bucket("travel-sample")
+    .scope("inventory")
+    .collection("airline")
+
+val mutationResult: MutationResult =
+    collection.upsert("my-fake-airline", mapOf("id" to 9000))
+
+val mutationState = MutationState()
+mutationState.add(mutationResult)
+
+val queryResult: QueryResult = cluster
+    .query(
+        statement = "SELECT * FROM `travel-sample`.inventory.airline LIMIT 10",
+        consistency = QueryScanConsistency
+            .consistentWith(mutationState)
+    )
+    .execute()
 ```
 
 ## [](#client-context-id)Client Context ID
@@ -177,5 +279,10 @@ In this example, the client context ID includes the name of an application user,
 Setting the client context ID
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/n1ql-queries.adoc - include::example$Query.kt[]
+val queryResult: QueryResult = cluster
+    .query(
+        statement = "SELECT * FROM `travel-sample` LIMIT 10",
+        clientContextId = "user-44-" + UUID.randomUUID(),
+    )
+    .execute()
 ```

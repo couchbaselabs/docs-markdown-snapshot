@@ -2,8 +2,8 @@
 title: Working with JSON
 description: The SDK makes it easy to turn Kotlin objects into JSON, and JSON
   into Kotlin objects.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/json.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/json.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:json.adoc[]
 ---
 
@@ -33,7 +33,15 @@ The simplest data binding uses a Kotlin `Map` object to represent document conte
 Using a Kotlin `Map` to represent document content
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+collection.upsert(
+    id = "alice",
+    content = mapOf("favoriteColor" to "blue"),
+)
+
+val result: GetResult = collection.get("alice")
+
+println("Content in Couchbase: " + String(result.content.bytes))
+println("Content as Map: " + result.contentAs<Map<String, Any?>>())
 ```
 
 The example prints:
@@ -60,7 +68,19 @@ Here is an example:
 Data binding with a user-defined class
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+data class MyClass(
+    val favoriteColor: String,
+)
+
+collection.upsert(
+    id = "alice",
+    content = MyClass(favoriteColor = "blue"),
+)
+
+val result: GetResult = collection.get("alice")
+
+println("Content in Couchbase: " + String(result.content.bytes))
+println("Content as MyClass: " + result.contentAs<MyClass>())
 ```
 
 The example prints:
@@ -81,7 +101,20 @@ There are two ways to skip data binding. This example shows both ways:
 Writing a JSON document without data binding
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+val jsonContent = """{"favoriteColor":"blue"}"""
+
+// Option A
+collection.upsert(
+    id = "alice",
+    content = jsonContent,
+    transcoder = RawJsonTranscoder, (1)
+)
+
+// Option B
+collection.upsert(
+    id = "alice",
+    content = Content.json(jsonContent), (1)
+)
 ```
 
 | **1** | We will talk more about RawJsonTranscoder and Content in the [transcoders section](#transcoders). |
@@ -91,7 +124,11 @@ Unresolved include directive in modules/howtos/pages/json.adoc - include::exampl
 > If you use a `String` for the content when changing a document, and don’t skip data binding, the SDK assumes you want the document content to be a JSON String. For example, if you write:
 > 
 > ```kotlin
-> Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+> // Don't do this!
+> collection.upsert(
+>     id = "alice",
+>     content = """{"favoriteColor":"blue"}"""
+> )
 > ```
 > 
 > The document content in Couchbase is:
@@ -115,7 +152,8 @@ Sometimes it’s useful to get the content of a JSON document as a byte array. T
 Reading a JSON document as a byte array
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+val result: GetResult = collection.get(id = "alice")
+val jsonBytes: ByteArray = result.content.bytes (1)
 ```
 
 | **1** | The byte array contains the unprocessed document content. You can parse the JSON yourself, or do something else with the bytes. |
@@ -142,7 +180,12 @@ To learn more about Jackson, please read the [Jackson documentation](https://git
 > Jackson can represent a JSON document as a tree of `JsonNode` objects. You can use data binding with `JsonNode`. This is useful if you don’t know the structure of the document. For example:
 > 
 > ```kotlin
-> Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+> val json = collection.get(id = "alice").contentAs<JsonNode>()
+> when {
+>     json is ArrayNode -> println("Content is a JSON Array")
+>     json is ObjectNode -> println("Content is a JSON Object")
+>     else -> println("Content is a JSON primitive")
+> }
 > ```
 > 
 > Sometimes it’s easier to do data binding with a `JsonNode` than a `Map`.
@@ -156,7 +199,11 @@ You can use your own Jackson mapper instead. This example creates a `JacksonJson
 Overriding the default Jackson JsonMapper
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+val jsonMapper: JsonMapper = getMyCustomJsonMapper()
+
+val cluster = Cluster.connect(connectionString, username, password) {
+    jsonSerializer = JacksonJsonSerializer(jsonMapper)
+}
 ```
 
 ### [](#moshi)Moshi
@@ -188,7 +235,13 @@ implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
 When you connect to the cluster, tell the SDK to use Moshi as the default JSON serializer:
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/json.adoc - include::example$Json.kt[]
+val moshi = Moshi.Builder()
+    .add(KotlinJsonAdapterFactory())
+    .build()
+
+val cluster = Cluster.connect(connectionString, username, password) {
+    jsonSerializer = MoshiJsonSerializer(moshi) (1)
+}
 ```
 
 | **1** | Please read the [MoshiJsonSerializer API reference](https://docs.couchbase.com/sdk-api/couchbase-kotlin-client/kotlin-client/com.couchbase.client.kotlin.codec/-moshi-json-serializer/) to see more options. |

@@ -1,0 +1,93 @@
+---
+title: Test Your Changes Locally
+editUrl: https://github.com/couchbase/docs-site/edit/master/home/modules/contribute/pages/test-site.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:home:contribute:test-site.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/home/contribute/test-site.html)
+
+# Test Your Changes Locally
+
+To build the Couchbase Documentation site on your computer, make sure that you have:
+
+* [Installed Antora](install-antora.md)
+* [Configured a local playbook file](playbook.md)
+
+Then, you need to start by configuring your Git credentials in Antora.
+
+## [](#configure-your-git-credentials)Configure Your Git Credentials
+
+If you left some remote repositories in your local playbook file, make sure you configure your GitHub credentials so Antora can access those repositories during a build:
+
+1. Go to the GitHub webpage for the remote repository to make sure you have access.
+2. [Configure a classic personal access token (PAT) for your GitHub account](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with the `repo` scope.  
+Keep the PAT somewhere where you can copy it again later.  
+Make sure you also authorize your token to work with SAML single sign-on.
+3. Open a terminal window.  
+> [!NOTE]  
+> If you’re on Windows, you must do the following steps with Git Bash, not any other terminal program. You should have automatically installed Git Bash when you installed Git on your computer.
+4. Paste the following command:  
+```console  
+git config --global credential.helper store && \  
+# Set the variable to the appropriate URL for the repository that you want to connect to for your build.  
+git ls-remote -h $GITHUB_REPO_URL > /dev/null && \  
+git config --global --remove-section credential  
+```
+5. Paste your PAT after the first prompt, then hit Enter twice.  
+This stores your PAT in the `$HOME/.git-credentials` file on your computer.
+
+> [!TIP]
+> If you run into issues with a private repository when trying to run another build later, run the following command through Git Bash:
+> 
+> ```console
+> git config --global credential.helper store &&
+> echo -n 'Repository URL: ' && read REPLY
+> && git ls-remote -h $REPLY > /dev/null
+> ```
+> 
+> Enter the URL of the repository that’s causing your build to fail when prompted.
+
+## [](#generate-a-local-build-with-antora)Generate a Local Build with Antora
+
+To generate a local build of the documentation site, as configured by your local playbook file:
+
+1. Open a terminal.
+2. Navigate to the folder where you cloned the `docs-site` repository:  
+```console  
+$ cd <path/to/docs-site/repository>  
+```
+3. Enter the following command to tell Antora to run using your local playbook file:  
+```console  
+$ antora local-antora-playbook.yml  
+```
+
+Antora starts by showing the cloning progress of each repository in the playbook. Then, any AsciiDoc or Antora warning or error messages for each file in the build will show.
+
+* Warnings indicate that a file contains invalid AsciiDoc syntax. The site still builds, but pages might not display correctly if they have incorrect syntax.
+* Errors can indicate broken links or other issues. Some errors might cause the site build to fail.
+
+When the site build finishes, Antora should display a message saying `Site generation complete!`. The command prompt reappears in your terminal.
+
+## [](#review-the-changes-in-your-build)Review the Changes in Your Build
+
+> [!TIP]
+> Some terminal programs might display a prompt that lets you directly open the site build from the terminal.
+
+1. Using your terminal or a file explorer, inside the `docs-site` repository, navigate to the `public` folder.
+2. Do one of the following:
+
+  1. If your operating system supports it, enter the following command into your terminal:  
+  ```console  
+  $ open index.html  
+  ```
+  2. In your file explorer, double-click `index.html`.  
+Your web browser should open your local build just like any other website.
+3. Review the changes in your local build to make sure everything appears as expected.
+
+You can make changes to the files in a repository and re-run Antora locally as many times as you need.
+
+## [](#next-step)Next Step
+
+[Commit your changes and push them to the remote repository](send-pr.md#commit).

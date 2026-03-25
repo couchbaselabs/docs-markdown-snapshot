@@ -1,7 +1,7 @@
 ---
 title: Migrate Existing Self-Managed Couchbase Mobile Clusters to App Services
 editUrl: https://github.com/couchbaselabs/docs-capella-app-services/edit/main/modules/ROOT/pages/migrating/on-prem-to-capella.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:app-services::migrating/on-prem-to-capella.adoc[]
 ---
 
@@ -32,7 +32,7 @@ If you are an existing user of Couchbase Mobile, have set up a Couchbase Server 
 > If you are replicating from a 3.x version of Sync Gateway deployment using persistent configuration mode then you MUST SETUP the following XDCR filter
 > 
 > ```sqlpp
-> NOT REGEXP_CONTAINS(META().id, "^_sync:dbconfig:|_sync:registry")
+> NOT REGEXP_CONTAINS("^_sync:(dbconfig|registry|dcp_ck|cfg|.*:cfg).*")
 > ```
 
 ### [](#step-3-wait-for-replication-to-complete)Step 3\. Wait for replication to complete

@@ -2,8 +2,8 @@
 title: Failure Considerations
 description: Data durability refers to the fault tolerance and persistence of
   data in the face of software or hardware failure.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/concept-docs/pages/durability-replication-failure-considerations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:concept-docs:durability-replication-failure-considerations.adoc[]
 ---
 

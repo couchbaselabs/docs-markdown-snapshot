@@ -2,7 +2,7 @@
 title: Work with Documents
 description: How to perform CRUD key-value operations in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:kv-operations.adoc[]
 ---
 
@@ -37,7 +37,7 @@ The Couchbase Shell (cbsh) also provides a quick and streamlined interface for s
 Read the following for further information about the clients available:
 
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../home/sdk.md)
 
 It is also possible to access document data via the Couchbase Capella UI.
 

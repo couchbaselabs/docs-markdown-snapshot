@@ -3,7 +3,7 @@ title: Cleanup
 description: The SDK takes care of failed or lost transactions, using an
   asynchronous cleanup background task.
 editUrl: https://github.com/couchbase/docs-sdk-php/edit/temp/4.2/modules/concept-docs/pages/transactions-cleanup.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:4.2@php-sdk:concept-docs:transactions-cleanup.adoc[]
 ---
 
@@ -14,7 +14,22 @@ link: xref:4.2@php-sdk:concept-docs:transactions-cleanup.adoc[]
 
 > The SDK takes care of failed or lost transactions, using an asynchronous cleanup background task. 
 
-Unresolved include directive in modules/concept-docs/pages/transactions-cleanup.adoc - include::7.5@sdk:shared:partial$acid-transactions.adoc\[\]
+Transactions will try to clean up after themselves in the advent of failures. However, there are situations that inevitably created failed, or 'lost' transactions, such as an application crash.
+
+This requires an asynchronous cleanup task, described in this section.
+
+## [](#background-cleanup)Background Cleanup
+
+The first transaction triggered by an application will spawn a background cleanup task, whose job it is to periodically scan for expired transactions and clean them up. It does this by scanning a subset of the Active Transaction Record (ATR) transaction metadata documents, for each collection used by any transactions.
+
+The default settings are tuned to find expired transactions reasonably quickly, while creating negligible impact from the background reads required by the scanning process. To be exact, with default settings it will generally find expired transactions within 60 seconds, and use less than 20 reads per second, per collection of metadata documents being checked. This is unlikely to impact performance on any cluster, but the settings may be [tuned](#tuning-cleanup) as desired.
+
+All applications connected to the same cluster and running transactions will share in the cleanup, via a low-touch communication protocol on the `_txn:client-record` metadata document that will be created in each collection in the cluster involved with transaction metadata. This document is visible and should not be modified externally as it is maintained automatically. All ATRs will be distributed between all cleanup clients, so increasing the number of applications will not increase the reads required for scanning.
+
+An application may cleanup transactions created by another application.
+
+> [!NOTE]
+> It is important to understand that if an application is not running, then cleanup is not running. This is particularly relevant to developers running unit tests or similar.
 
 ### [](#tuning-cleanup)Configuring Cleanup
 

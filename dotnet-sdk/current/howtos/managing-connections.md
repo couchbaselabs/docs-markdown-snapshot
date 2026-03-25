@@ -1,8 +1,8 @@
 ---
 title: Managing Connections
 description: This section describes how to connect the .NET SDK to a Couchbase cluster.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/howtos/pages/managing-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/howtos/pages/managing-connections.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:howtos:managing-connections.adoc[]
 ---
 
@@ -375,6 +375,34 @@ E.....@.@.............+....Z.'yZ..#........
 ..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.	...W.....U..
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
 
+## [](#cloud-native-gateway)Cloud Native Gateway
+
+Couchbase’s next generation connection protocol, introduced in .NET SDK 3.9 and [Couchbase Autonomous Operator 2.6.1](../../../operator/current/concept-cloud-native-gateway.md), can be enabled simply by changing the connection string to `couchbase2://` but there are a few differences to be aware of, described [below](#limitations).
+
+The protocol implements a gRPC-style interface between the SDK and Couchbase Server (in this case, only available in the Server running on Kubernetes or OpenShift, with a recent version of [Couchbase Autonomous Operator](../../../operator/current/overview.md)).
+
+### [](#limitations)Limitations
+
+The underlying protocol will not work with certain legacy features: MapReduce Views (a deprecated Service — use [Query](n1ql-queries-with-sdk.md) instead) and Memcached buckets (superseded by the improved [Ephemeral Buckets](#8.0.1@server:learn:buckets-memory-and-storage/buckets.adoc#bucket-types)).
+
+The following are not currently implemented over the `couchbase2://` protocol:
+
+* Authentication by client certificate.
+* Multi-document ACID transactions.
+* Analytics service.
+* Health Check.
+
+And the output from these features should be seen as volatile and subject to change:
+
+* Metrics and tracing, including the ThresholdLoggingTracer, LoggingMeter, and spans output.
+
+There are some different behaviors seen with this protocol:
+
+* Some config options are unsupported — see the [Settings page](../ref/client-settings.md#cloud-native-gateway).
+* The SDK will poll the gRPC channels until they are in a good state, or return an error, or timeout while waiting — in our standard protocol there is an option of setting `waitUntilReady()` for just certain services to become available.
+* Some error codes are more generic — in cases where the client would not be expected to need to take specific action — but should cause no problem, unless you have written code looking at individual strings within the error messages.
+* Although documents continue to be stored compressed by Couchbase Server, they will not be transmitted in compressed form (to and from the client) over the wire, using `couchbase2://`.
+
 ## [](#using-dns-srv-records)Using DNS SRV records
 
 As an alternative to specifying multiple hosts in your program, you can get the actual bootstrap node list from a DNS SRV record. For Capella, where you only have one endpoint provided, it’s good practice to always enable DNS-SRV on the client.
@@ -475,7 +503,7 @@ public class ClusterExample2
 
 Other timeout issues may occur when using the SDK located geographically separately from the Couchbase Server cluster — this is [not recommended](../project-docs/compatibility.md#network-requirements). See the [Cloud section](#working-in-the-cloud) below for some suggestions of settings adjustments.
 
-For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](#cloud:ROOT:index.adoc) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
+For most use cases, connecting client software using a Couchbase SDK to the [Couchbase Capella service](../../../home/cloud.md) is similar to connecting to an on-premises Couchbase Cluster. The use of DNS-SRV, Alternate Address, and TLS is covered above.
 
 We strongly recommend that the client and server [are in the same LAN-like environment](../project-docs/compatibility.md#network-requirements) (e.g. AWS Region). As this may not always be possible during development, read the guidance on working with [constrained network environments](../ref/client-settings.md#commonly-used-options). More details on connecting your client code to Couchbase Capella can be found [in the Cloud docs](#cloud:clouds:connect.adoc#connecting-from-sdk-cli-or-cbsh).
 

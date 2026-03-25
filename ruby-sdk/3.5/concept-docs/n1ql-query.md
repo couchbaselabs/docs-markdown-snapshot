@@ -3,7 +3,7 @@ title: Querying with SQL++
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/concept-docs/pages/n1ql-query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:concept-docs:n1ql-query.adoc[]
 ---
 
@@ -14,9 +14,21 @@ link: xref:3.5@ruby-sdk:concept-docs:n1ql-query.adoc[]
 
 > Parallel data management for complex queries over many records, using a familiar SQL-like syntax. 
 
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::7.5@sdk:shared:partial$n1ql-queries.adoc\[\]
+The [SQL++ (formerly N1QL)](https://www.couchbase.com/products/n1ql) Query Language provides a familiar, SQL-like experience for querying documents stored in Couchbase. You can [read up on the language in our reference guide](#7.1@server:n1ql:n1ql-language-reference/index.adoc), but you probably just want to [dive into a practical example](../howtos/n1ql-queries-with-sdk.md).
 
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::7.5@sdk:shared:partial$n1ql-queries.adoc\[\]
+Below, we fill in some of the gaps between reference and rolling-up-your-sleeves practicality, with discussion of a few areas of the Query Service where more background knowledge will help you to better program your application.
+
+## [](#prepared-statements-for-query-optimization)Prepared Statements for Query Optimization
+
+When a SQL++ query string is sent to the server, the server will inspect the string and parse it, planning which indexes to query. Once this is done, it generates a _query plan_ (see the [SQL++ reference](../../../server/current/n1ql/n1ql-language-reference/prepare.md), which gives more information on how to optimize queries using prepared statements). The computation for the plan adds some additional processing time and overhead for the query.
+
+Often-used queries can be _prepared_ so that its _plan_ is generated only once. Subsequent queries using the same query string will use the pre-generated plan instead, saving on the overhead and processing of the plan each time. This is done for queries from the SDK by setting the `adhoc` query option to `false`.
+
+For Couchbase Server 6.0 and earlier, the plan is cached by the SDK (up to a limit of 5000), as well as the Query Service. On Couchbase Server 6.5 and newer, the plan is stored by the Query Service — up to an adjustable limit of 16 384 plans per Query node.
+
+For Couchbase Server 6.0 and earlier, the generated plan is not influenced by placeholders. Thus parameterized queries are considered the same query for caching and planning purposes, even if the supplied parameters are different. With Couchbase Server 6.5 and newer, if a statement has placeholders, _and_ a placeholder is supplied, the Query Service will generate specially optimized plans. Therefore, if you are supplying the placeholder each time, `adhoc = true` will actually return a better-optimized plan (at the price of generating a fresh plan for each query).
+
+If your queries are highly dynamic, we recommend using parameterized queries if possible (epecially when prepared statements are not used). Parameterized queries are more cache efficient and will allow for better performance.
 
 For the Ruby SDK, the `adhoc` parameter should be set to `false` for a plan to be prepared, or a prepared plan to be reused. Do not turn off the `adhoc` flag for _every_ query to Server 6.0 and earlier, since only a finite number of query plans (currently 5000) can be stored in the SDK.
 
@@ -97,7 +109,13 @@ manager.build_deferred_indexes("travel-sample")
 manager.watch_indexes("travel-sample", ["ix_name", "ix_email", "#primary"], 2_000) # wait for 2 seconds
 ```
 
-Unresolved include directive in modules/concept-docs/pages/n1ql-query.adoc - include::7.5@sdk:shared:partial$n1ql-queries.adoc\[\]
+## [](#index-consistency)Index Consistency
+
+Because indexes are by design outside the Data Service, they are _eventually consistent_ with respect to changes to documents and, depending on how you issue the query, may at times not contain the most up-to-date information. This may especially be the case when deployed in a write-heavy environment: changes may take some time to propagate over to the index nodes.
+
+The asynchronous updating nature of [Global Secondary Indexes (GSIs)](#7.1@server:learn:services-and-indexes/indexes/global-secondary-indexes.adoc) means that they can be very quick to query and do not require the additional overhead of index recaclculations at the time documents are modified. SQL++ queries are forwarded to the relevant indexes, and the queries are done based on indexed information, rather than the documents as they exist in the data service.
+
+With default query options, the query service will rely on the current index state: the most up-to-date document versions are not retrieved, and only the indexed versions are queried. This provides the best performance. Only updates occurring with a small time frame may not yet have been indexed. For cases where consistency is more important than performance, the `scan_consistency` property of a query may be set to `REQUEST_PLUS`. ensuring that indexes are synchronized with the data service before querying.
 
 The following options are available:
 

@@ -1,8 +1,8 @@
 ---
 title: Concepts Guides
 description: A discursive look at the features exposed by the Couchbase Java SDK.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/concept-docs/pages/concepts.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/concept-docs/pages/concepts.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:concept-docs:concepts.adoc[]
 ---
 
@@ -32,7 +32,7 @@ The Couchbase SDK docs aim to be practical, and example-led, to get you working 
 * [Field Level Encryption](encryption.md)
 * [Services - choosing the right one](data-services.md)
 
-  * [Analytics](../howtos/analytics-using-sdk.md)
+  * [Analytics](analytics-for-sdk-users.md)
   * [Full Text Search](full-text-search-overview.md)
   * [MapReduce Views](understanding-views.md)
   * [SQL++ Query](n1ql-query.md)

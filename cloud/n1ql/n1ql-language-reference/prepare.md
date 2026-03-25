@@ -2,7 +2,7 @@
 title: PREPARE
 description: The PREPARE statement prepares a query for repeated execution.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/prepare.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/prepare.adoc[]
 ---
 
@@ -19,24 +19,29 @@ Building plans for SQL++ requests may be expensive, in particular where a cluste
 
 If you know that a statement text will be executed repeatedly, you can request the SQL++ service to prepare the execution plan beforehand, and then request to execute the prepared plan as many times as needed, thereby avoiding the cost of repeated planning.
 
-## [](#prerequisites)Prerequisites
+## [](#authorization)Prerequisites
 
-### [](#authorization)RBAC Privileges
+To execute this statement, your client must have the necessary privileges depending on the [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types) and the statement being prepared.
 
-The client executing the PREPARE statement must have the RBAC privileges of the statement being prepared. For more details about cluster access privileges, refer to [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+For example, if the statement being prepared is a `SELECT` statement:
+
+| Credential Type | Privilege                                                                               |
+| --------------- | --------------------------------------------------------------------------------------- |
+| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 RBAC Examples 
 
 For this example, set the query context to the `inventory` scope in the travel sample dataset. For more information, see [Query Context](../n1ql-intro/queriesandresults.md#query-context).
 
-To execute the following statement, user must have the _Query Select_ privilege on both keyspaces `airport` and `landmark`.
+To execute the following statement, user must have `Read` / `Query Read` privileges on both keyspaces `airport` and `landmark`.
 
 ```sqlpp
 PREPARE SELECT * FROM airport
 WHERE city = (SELECT RAW city FROM landmark)
 ```
 
-To execute the following statement, user must have the _Query Update_ and _Query Select_ privileges on `hotel`.
+To execute the following statement, user must have `Write` / `Query Update` and `Read` / `Query Read` privileges on `hotel`.
 
 ```sqlpp
 PREPARE UPDATE hotel

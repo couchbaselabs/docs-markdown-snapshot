@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Fundamentals"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/standalone/content/modules/userprofile-standalone/pages/userprofile_basic.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:userprofile-standalone:userprofile_basic.adoc[]
 ---
 
@@ -71,7 +71,7 @@ git clone -b standalone https://github.com/couchbaselabs/userprofile-couchbase-m
 
 Next, we will download the Couchbase Lite 3.0 XCFramework.
 
-The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built framework — see the [Get Started - Install](#3.0@couchbase-lite:swift:gs-install.adoc) documentation for more information.
+The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built framework — see the [Get Started - Install](../../couchbase-lite/3.0/swift/gs-install.md) documentation for more information.
 
 In our example, we will download the pre-built version of the XCFramework, using a script. To do this, type the following in a command terminal:
 
@@ -120,8 +120,8 @@ Example 1\. A user profile document
 }
 ```
 
-| **1** | The special 'blob' data type associated with the profile image — see: [Working with Blobs](#3.0@couchbase-lite:swift:blob.adoc) |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **1** | The special 'blob' data type associated with the profile image — see: [Working with Blobs](../../couchbase-lite/3.0/swift/blob.md) |
+| ----- | ---------------------------------------------------------------------------------------------------------------------------------- |
 
 ### [](#lbl-user-record)The User Record
 
@@ -375,4 +375,4 @@ This tutorial walked you through a very basic example of how to get up and runni
 Further Reading
 
 * [Couchbase Mobile Blog](https://blog.couchbase.com)
-* [Get Started - Install](#3.0@couchbase-lite:swift:gs-install.adoc)
+* [Get Started - Install](../../couchbase-lite/3.0/swift/gs-install.md)

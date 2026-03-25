@@ -4,7 +4,7 @@ description: Capella Analytics is a JSON-native NoSQL analytical database with
   GenAI capabilities. Use it to bring data from multiple sources together and
   run complex analytical queries to get timely insights from data.
 editUrl: https://github.com/couchbaselabs/docs-columnar/edit/main/modules/intro/pages/intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:analytics:intro:intro.adoc[]
 ---
 
@@ -36,7 +36,7 @@ Capella Analytics offers the following features:
 > [!TIP]
 > Capella Analytics SDKs
 > 
-> Capella Analytics SDKs for the Java, Node.js, and Python platforms are available [here](#home::columnar-sdk.adoc).
+> Capella Analytics SDKs for the Java, Node.js, and Python platforms are available [here](../../home/columnar-sdk.md).
 
 ## [](#next-steps)Next Steps
 

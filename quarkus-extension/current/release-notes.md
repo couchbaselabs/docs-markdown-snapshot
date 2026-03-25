@@ -1,8 +1,8 @@
 ---
 title: Couchbase Quarkus Release Notes
 description: Release notes for the Couchbase Quarkus Java Extension.
-editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.2/modules/ROOT/pages/release-notes.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-quarkus-extension/edit/release/1.3/modules/ROOT/pages/release-notes.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:quarkus-extension::release-notes.adoc[]
 ---
 
@@ -13,17 +13,31 @@ link: xref:quarkus-extension::release-notes.adoc[]
 
 > Release notes for the Couchbase Quarkus Java Extension. 
 
+## [](#couchbase-quarkus-1-3-releases)Couchbase Quarkus 1.3 Releases
+
+### [](#version-1-3-0-27-february-2026)Version 1.3.0 (27 February 2026)
+
+[API Reference](https://javadoc.io/doc/io.quarkiverse.couchbase/quarkus-couchbase/1.3.0/index.html)
+
+#### [](#new-features)New Features
+
+* Added support for Dynamic Ports when using TestContainers.
+
+#### [](#improvements)Improvements
+
+* Upgraded to Couchbase Java SDK `3.10.1`.
+
 ## [](#couchbase-quarkus-1-2-releases)Couchbase Quarkus 1.2 Releases
 
 ### [](#version-1-2-0-24-october-2025)Version 1.2.0 (24 October 2025)
 
 [API Reference](https://javadoc.io/doc/io.quarkiverse.couchbase/quarkus-couchbase/1.2.0/index.html)
 
-#### [](#new-features)New Features
+#### [](#new-features-2)New Features
 
 * Added support for TLS connections in native-mode, either to Capella using the packaged certificate, or using a path to a custom certificate.
 
-#### [](#improvements)Improvements
+#### [](#improvements-2)Improvements
 
 * Upgraded to Couchbase Java SDK `3.9.2`.
 * Added additional security configuration options.
@@ -34,11 +48,11 @@ link: xref:quarkus-extension::release-notes.adoc[]
 
 [API Reference](https://javadoc.io/doc/io.quarkiverse.couchbase/quarkus-couchbase/1.1.0/index.html)
 
-#### [](#new-features-2)New Features
+#### [](#new-features-3)New Features
 
 * Added a configuration item for `preferredServerGroup` to the `application.properties` file.
 
-#### [](#improvements-2)Improvements
+#### [](#improvements-3)Improvements
 
 * Upgraded Couchbase Java SDK from 3.7.7 → 3.8.0
 * Upgraded `metrics-micrometer` from 0.7.6 → 0.8.0

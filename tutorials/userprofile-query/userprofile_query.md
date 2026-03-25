@@ -1,7 +1,7 @@
 ---
 title: "User Profile Sample: Couchbase Lite Query"
 editUrl: https://github.com/couchbaselabs/userprofile-couchbase-mobile/edit/query/content/modules/userprofile-query/pages/userprofile_query.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:userprofile-query:userprofile_query.adoc[]
 ---
 
@@ -69,7 +69,7 @@ git clone -b query https://github.com/couchbaselabs/userprofile-couchbase-mobile
 
 Next, we will download the Couchbase Lite 3.0 XCFramework.
 
-The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built framework — see the [Get Started - Install](#3.0@couchbase-lite:swift:gs-install.adoc) documentation for more information.
+The Couchbase Lite iOS XCFramework is distributed via SPM, CocoaPods, Carthage or you can download the pre-built framework — see the [Get Started - Install](../../couchbase-lite/3.0/swift/gs-install.md) documentation for more information.
 
 In our example, we will download the pre-built version of the XCFramework, using a script. To do this, type the following in a command terminal:
 

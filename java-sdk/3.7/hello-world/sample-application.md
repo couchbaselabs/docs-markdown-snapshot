@@ -1,0 +1,128 @@
+---
+title: Sample Application
+description: Discover how to program interactions with Couchbase via the Data,
+  Query, and Search services.
+editUrl: https://github.com/couchbase/docs-sdk-java/edit/temp/3.7/modules/hello-world/pages/sample-application.adoc
+pubDate: 2026-03-25T08:25:24.097Z
+link: xref:3.7@java-sdk:hello-world:sample-application.adoc[]
+---
+
+[Consult the llms.txt file for a full list of contents](/llms.txt)
+[View original HTML](/java-sdk/3.7/hello-world/sample-application.html)
+
+# Sample Application
+
+> Discover how to program interactions with Couchbase via the Data, Query, and Search services. 
+
+## [](#quick-start)Quick Start
+
+Fetch the [Couchbase Java SDK travel-sample Application REST Backend](https://github.com/couchbaselabs/try-cb-java) from github:
+
+```console
+git clone https://github.com/couchbaselabs/try-cb-java.git
+cd try-cb-java
+```
+
+With [Docker](https://docs.docker.com/get-docker/) installed, you should now be able to run a bare-bones copy of Couchbase Server, load the travel-sample, add indexes, install the sample-application and its frontend, all by running a single command:
+
+```console
+docker-compose --profile local up
+```
+
+## [](#running-the-code-against-your-own-development-couchbase-server)Running the code against your own development Couchbase server.
+
+For Couchbase Server 7.6, make sure that you have at least one node each of data; query; index; and search. For a development box, mixing more than one of these on a single node (given enough memory resources) is perfectly acceptable.
+
+If you have yet to install Couchbase Server in your development environment [start here](#7.1@server:getting-started:do-a-quick-install.adoc).
+
+Then load up the Travel Sample Bucket, using either the [Web interface](#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-ui)or the [command line](#7.1@server:manage:manage-settings/install-sample-buckets.adoc#install-sample-buckets-with-the-cli). You will also need to [create a Search Index](#7.1@server:fts:fts-searching-from-the-ui.adoc#create-an-index) — Query indexes are taken care of by the Sample Bucket.
+
+See the README at <https://github.com/couchbaselabs/try-cb-java> for full details of how to run and tweak the Java SDK travel-sample app.
+
+## [](#using-the-sample-app)Using the Sample App
+
+![Travel Sample Register](../../../sdk/current/shared/_images/Travel-Sample-Register.png) 
+
+Give yourself a username and password and click **Register**.
+
+You can now try out searching for flights, booking flights, and searching for hotels. You can see which Couchbase SDK operations are being executed by clicking the red bar at the bottom of the screen:
+
+![Couchbase Query Bar](../../../sdk/current/shared/_images/Couchbase-Query-Bar.png) 
+
+## [](#sample-app-backend)Sample App Backend
+
+The backend code shows Couchbase Java SDK in action with Query and Search, but also how to plug together all of the elements and build an application with Couchbase Server and the Java SDK. Look at `TenantUser.java` to see some of the pieces necessary in most applications, such as the TenantUser `@Service`:
+
+```java
+@Service
+public class TenantUser {
+
+    private final TokenService jwtService;
+
+    @Autowired
+    public TenantUser(TokenService jwtService) {
+        this.jwtService = jwtService;
+    }
+
+    static final String USERS_COLLECTION_NAME = "users";
+    static final String BOOKINGS_COLLECTION_NAME = "bookings";
+```
+
+Creating a user shows the typical security concerns, with salted password hashes, as well as the mundane but essential business of using the KV interface to `insert` the username into the database:
+
+```java
+public Result<Map<String, Object>> createLogin(final Bucket bucket, final String tenant, final String username,
+        final String password, DurabilityLevel expiry) {
+    String passHash = BCrypt.hashpw(password, BCrypt.gensalt());
+    JsonObject doc = JsonObject.create()
+            .put("type", "user")
+            .put("name", username)
+            .put("password", passHash);
+    InsertOptions options = insertOptions();
+    if (expiry.ordinal() > 0) {
+        options.durability(expiry);
+    }
+
+    Scope scope = bucket.scope(tenant);
+    Collection collection = scope.collection(USERS_COLLECTION_NAME);
+    String queryType = String.format("KV insert - scoped to %s.users: document %s", scope.name(), username);
+    try {
+        collection.insert(username, doc, options);
+        Map<String, Object> data = JsonObject.create().put("token", jwtService.buildToken(username)).toMap();
+        return Result.of(data, queryType);
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw new AuthenticationServiceException("There was an error creating account");
+    }
+}
+```
+
+Here, the _flights_ array, containing the flight IDs, is converted to actual objects:
+
+```java
+    List<Map<String, Object>> results = new ArrayList<Map<String, Object>>();
+    for (int i = 0; i < flights.size(); i++) {
+        String flightId = flights.getString(i);
+        GetResult res;
+        try {
+            res = bookingsCollection.get(flightId);
+        } catch (DocumentNotFoundException ex) {
+            throw new RuntimeException("Unable to retrieve flight id " + flightId);
+        }
+        Map<String, Object> flight = res.contentAsObject().toMap();
+        results.add(flight);
+    }
+
+    String queryType = String.format("KV get - scoped to %s.user: for %d bookings in document %s", scope.name(),
+            results.size(), username);
+    return Result.of(results, queryType);
+}
+```
+
+## [](#data-model)Data Model
+
+See the [Travel App Data Model](../ref/travel-app-data-model.md) reference page for more information about the sample data set used.
+
+## [](#rest-api)REST API
+
+You can explore the REST API here in read-only mode, or once you are running the application, at the `/apidocs` endpoint.

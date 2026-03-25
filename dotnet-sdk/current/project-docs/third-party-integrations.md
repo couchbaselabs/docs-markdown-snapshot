@@ -3,8 +3,8 @@ title: 3<sup>rd</sup> Party Integrations
 description: The Couchbase .NET SDK is often used with unofficial and third
   party tools and applications to integrate into broader language and platform
   ecosystems, and across data lakes in heterogeneous environments.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/project-docs/pages/third-party-integrations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/project-docs/pages/third-party-integrations.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:project-docs:third-party-integrations.adoc[]
 ---
 

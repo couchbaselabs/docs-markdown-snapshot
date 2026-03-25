@@ -1,7 +1,7 @@
 ---
 title: Couchbase Server
 editUrl: https://github.com/couchbase/docs-server/edit/release/8.0/modules/introduction/pages/intro.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:server:introduction:intro.adoc[]
 ---
 
@@ -232,4 +232,4 @@ Project Docs
 Feedback
 
 * [Contact Couchbase](contact-couchbase.md)
-* [Contribute to the Documentation](#home:contribute:index.adoc)
+* [Contribute to the Documentation](../../../home/contribute/index.md)

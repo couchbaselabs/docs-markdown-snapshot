@@ -3,7 +3,7 @@ title: Data Operations
 description: Data service offers the simplest way to retrieve or mutate data
   where the key is known.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.5/modules/howtos/pages/kv-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.5@ruby-sdk:howtos:kv-operations.adoc[]
 ---
 
@@ -235,7 +235,11 @@ res.value
 > [!TIP]
 > Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method — to do this during an increment, use with the `Touch()` method.
 
-Unresolved include directive in modules/howtos/pages/kv-operations.adoc - include::7.5@sdk:shared:partial$atomic.adoc\[\]
+### [](#atomicity-across-data-centers)Atomicity Across Data Centers
+
+If you are using [Cross Data Center Replication](#7.1@server:manage:manage-xdcr/xdcr-management-overview.adoc) (XDCR), be sure to avoid modifying the same counter in more than one datacenter. If the same counter is modified in multiple datacenters between replications, the counter will no longer be atomic, and its value can change in unspecified ways.
+
+A counter must be incremented or decremented by only a single datacenter. Each datacenter must have its own set of counters that it uses — a possible implementation would be including a datacenter name in the counter document ID.
 
 ## [](#kv-range-scan)KV Range Scan
 

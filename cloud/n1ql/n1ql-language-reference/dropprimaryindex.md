@@ -2,7 +2,7 @@
 title: DROP PRIMARY INDEX
 description: The DROP PRIMARY INDEX statement allows you to drop a primary index.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropprimaryindex.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropprimaryindex.adoc[]
 ---
 
@@ -18,9 +18,12 @@ The DROP PRIMARY INDEX statement allows you to drop a primary index.
 
 ## [](#prerequisites)Prerequisites
 
-##### RBAC Privileges
+To execute this statement, your client must have necessary privileges on the keyspace that contains the primary index. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
 
-To execute the DROP PRIMARY INDEX statement, your client must have the `Query Manage Index` privilege granted on the keyspace. For more information about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege                                                                                |
+| --------------- | ---------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Index](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

@@ -3,7 +3,7 @@ title: Analytics
 description: Parallel data management for complex queries over many records,
   using a familiar SQL-like syntax.
 editUrl: https://github.com/couchbase/docs-sdk-ruby/edit/temp/3.6/modules/howtos/pages/analytics-using-sdk.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:3.6@ruby-sdk:howtos:analytics-using-sdk.adoc[]
 ---
 
@@ -19,9 +19,9 @@ This page covers using our operational Ruby SDK to connect to the Analytics Serv
 > [!TIP]
 > Analytics SDKs
 > 
-> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](#home::analytics-sdk.adoc) for more information.
+> SDKs for [Enterprise Analytics](../../../enterprise-analytics/current/intro/intro.md) — Couchbase’s analytical database for real time apps and operational intelligence (RT-OLAP) — are available for the Go, Java, Node.js, and Python platforms. See the [Enterprise Analytics SDK pages](../../../home/analytics-sdk.md) for more information.
 > 
-> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](#home::columnar-sdk.adoc) for more information.
+> Currently, different SDKs are needed to connect to [Capella Analytics](../../../analytics/intro/intro.md) — as this service does not have Enterprise Analytics' load balancer, and uses a different connection protocol. Capella Analytics SDKs (also known as Columnar SDKs) are available for the Go, Java, Node.js, and Python platforms. See the [Capella Analytics SDK pages](../../../home/columnar-sdk.md) for more information.
 
 For complex and long-running queries, involving large ad hoc join, set, aggregation, and grouping operations, Couchbase Data Platform offers the [Couchbase Analytics Service (CBAS)](#7.1@server:analytics:introduction.adoc). This is the analytic counterpart to our [operational data focussed Query Service](n1ql-queries-with-sdk.md). The analytics service is available in Couchbase Data Platform 6.0 and later (developer preview in 5.5).
 

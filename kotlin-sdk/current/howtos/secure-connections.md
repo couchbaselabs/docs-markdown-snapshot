@@ -1,8 +1,8 @@
 ---
 title: Secure Connections with TLS
 description: Learn how to enable client support for TLS and configure trusted certificates.
-editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/release/3.9/modules/howtos/pages/secure-connections.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-kotlin/edit/temp/3.11/modules/howtos/pages/secure-connections.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:kotlin-sdk:howtos:secure-connections.adoc[]
 ---
 
@@ -55,7 +55,14 @@ Here’s an example, suitable for most deployments:
 Enable TLS and trust certificates in a PEM file.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/secure-connections.adoc - include::example$Tls.kt[]
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.certificate( (1)
+            Paths.get("/path/to/ca.pem") (2)
+        )
+    }
+}
 ```
 
 | **1** | If you wish to specify the PEM file path using a connection string parameter or Java system property, the client setting name is security.trustCertificate. |
@@ -84,7 +91,23 @@ You can create a `TrustSource` from a list of `java.security.cert.X509Certificat
 Enable TLS and trust decoded X.509 certificates
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/secure-connections.adoc - include::example$Tls.kt[]
+val pemEncodedCertificates = """
+    -----BEGIN CERTIFICATE-----
+    MIIDAjCCAeqgAwIBAgIIFpZtHpcc9cgwDQYJKoZIhvcNAQELBQAwJDEiMCAGA1UE
+    ...
+    xFptQ/XVtEO/zh0gqSnUD/dROeUG28zbDKdP4Q1b70XE87HKnjYDcpfwfyJwo0Xg
+    -----END CERTIFICATE-----
+"""
+
+val decodedCertificates: List<X509Certificate> =
+    SecurityConfig.decodeCertificates(listOf(pemEncodedCertificates))
+
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.certificates(decodedCertificates)
+    }
+}
 ```
 
 ### [](#keystore)From a PKCS#12 archive or Java KeyStore
@@ -94,7 +117,15 @@ Alternatively, you can store the certificates in a PKCS#12 archive or Java Key S
 Enable TLS and trust certificates in a PKCS#12 archive or Java Key Store.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/secure-connections.adoc - include::example$Tls.kt[]
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.trustStore(
+            path = Paths.get("/path/to/trust-store.p12"),
+            password = "password",
+        )
+    }
+}
 ```
 
 > [!TIP]
@@ -107,7 +138,14 @@ For ultimate control, you can use a custom `javax.net.ssl.TrustManagerFactory`.
 Enable TLS using an insecure trust manager factory.
 
 ```kotlin
-Unresolved include directive in modules/howtos/pages/secure-connections.adoc - include::example$Tls.kt[]
+val cluster = Cluster.connect(connectionString, username, password) {
+    security {
+        enableTls = true
+        trust = TrustSource.factory(
+            InsecureTrustManagerFactory.INSTANCE (1)
+        )
+    }
+}
 ```
 
 | **1** | This example trusts any certificate, regardless of who issued it. This defeats the purpose of using a secure connection, and is not suitable for a production environment. |

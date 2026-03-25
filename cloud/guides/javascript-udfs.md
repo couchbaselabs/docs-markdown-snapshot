@@ -3,7 +3,7 @@ title: User-Defined Functions for Queries
 description: How to extend the SQL++ query language by adding your own
   user-defined functions.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/javascript-udfs.adoc
-pubDate: 2026-03-21T03:36:33.505Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:javascript-udfs.adoc[]
 ---
 
@@ -26,7 +26,7 @@ With user-defined functions, you can:
 
 ## [](#user-defined-functions-in-couchbase-server)User-Defined Functions in Couchbase Server
 
-You can create 3 types of user-defined functions. User-defined functions can be categorized based on the language used to define them, and the location where the function definitions are stored.
+User-defined functions can be categorized based on the language used to define them, and the location where the function definitions are stored.
 
 | Type                                                                      | Language   | Stored                  |
 | ------------------------------------------------------------------------- | ---------- | ----------------------- |

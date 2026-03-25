@@ -2,8 +2,8 @@
 title: Tracing
 description: Tracing and Metrics provide fine-grained insight into how an
   application is performing, and helps to diagnose when it is not.
-editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.8/modules/concept-docs/pages/response-time-observability.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-dotnet/edit/temp/3.9/modules/concept-docs/pages/response-time-observability.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:dotnet-sdk:concept-docs:response-time-observability.adoc[]
 ---
 
@@ -13,6 +13,9 @@ link: xref:dotnet-sdk:concept-docs:response-time-observability.adoc[]
 # Tracing
 
 > Tracing and Metrics provide fine-grained insight into how an application is performing, and helps to diagnose when it is not. 
+
+> [!TIP]
+> In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server — available from 8.0, and in new Capella Operational clusters — for ingestion with other Prometheus metrics. Capella Operatioal exposes these metrics through the UI.
 
 Health indicators can tell you a lot about the performance of an application. Monitoring them is vital both during its development and production lifecycle.
 

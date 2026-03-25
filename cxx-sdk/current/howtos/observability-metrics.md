@@ -2,8 +2,8 @@
 title: Metrics Reporting
 description: Individual request tracing presents a very specific (though
   isolated) view of the system.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/howtos/pages/observability-metrics.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/howtos/pages/observability-metrics.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:howtos:observability-metrics.adoc[]
 ---
 

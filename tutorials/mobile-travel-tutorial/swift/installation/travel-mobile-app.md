@@ -1,7 +1,7 @@
 ---
 title: Travel Sample Mobile App
 editUrl: https://github.com/couchbaselabs/mobile-travel-sample/edit/master/content/modules/mobile-travel-tutorial/pages/swift/installation/travel-mobile-app.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:tutorials:mobile-travel-tutorial:swift/installation/travel-mobile-app.adoc[]
 ---
 
@@ -31,7 +31,7 @@ cd /path/to/mobile-travel-sample/ios/TravelSample
 sh install_13.sh  
 ```  
 > [!NOTE]  
-> If you choose to use Xcode12.3+, you may be impacted by an issue in Xcode while using linked frameworks. Please follow the instructions outlined [here](#2.8@couchbase-lite:swift:gs-install.adoc) to workaround the issue.
+> If you choose to use Xcode12.3+, you may be impacted by an issue in Xcode while using linked frameworks. Please follow the instructions outlined [here](../../../../couchbase-lite/2.8/swift/gs-install.md) to workaround the issue.
 * Open the `TravelSample.xcodeproj` using Xcode
 
 ## [](#configure-app-to-connect-to-backend)Configure App to connect to Backend

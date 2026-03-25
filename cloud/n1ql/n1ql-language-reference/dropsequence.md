@@ -2,7 +2,7 @@
 title: DROP SEQUENCE
 description: The DROP SEQUENCE statement enables you to drop a sequence in a given scope.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/dropsequence.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/dropsequence.adoc[]
 ---
 
@@ -19,9 +19,12 @@ A sequence is a construct that returns a sequence of integer values, one at a ti
 
 ## [](#prerequisites)Prerequisites
 
-RBAC Privileges
+To execute this statement, your client must have necessary privileges on the scope that contains the sequence. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
 
-To execute the DROP SEQUENCE statement, your client must have the _Query Manage Sequences_ privilege granted on the scope. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+| Credential Type | Privilege                                                                                           |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| Basic           | [Write](../../clusters/cluster-rbac.md#basic-access-credentials)                                    |
+| Advanced        | [Query Manage Sequences](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

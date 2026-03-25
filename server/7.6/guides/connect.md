@@ -2,7 +2,7 @@
 title: Connect to Couchbase Server
 description: How to connect to a Couchbase Cluster.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.6/modules/guides/pages/connect.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.6@server:guides:connect.adoc[]
 ---
 
@@ -44,7 +44,7 @@ The command line clients also provide a quick and streamlined interface for simp
 Read the following for further information about the clients available:
 
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../../home/sdk.md)
 
 ## [](#connecting-via-the-web-console)Connecting via the Web Console
 
@@ -251,20 +251,7 @@ The example below connects to a single-node cluster over a secure connection wit
 It’s assumed that a valid client certificate and certificate store have been set up.
 
 ```csharp
-var options = new ClusterOptions();
 
-options.WithX509CertificateFactory(CertificateFactory.GetCertificatesFromStore(
-        new CertificateStoreSearchCriteria
-        {
-            FindValue = "value",
-            X509FindType = X509FindType.FindBySubjectName,
-            StoreLocation = StoreLocation.CurrentUser,
-            StoreName = StoreName.CertificateAuthority
-        }));
-options.WithConnectionString("couchbase://your-ip");
-options.WithCredentials("Administrator", "password");
-
-var cluster = await Cluster.ConnectAsync(options);
 ```
 
 Click the  View button to see this code in context.
@@ -356,4 +343,4 @@ Reference and explanation:
 
 Connecting with SDKs:
 
-* [C](../../../c-sdk/current/howtos/managing-connections.md)| [C++](../../../cxx-sdk/current/howtos/managing-connections.md)| [.NET](../../../dotnet-sdk/current/howtos/managing-connections.md)| [Go](../../../go-sdk/current/howtos/managing-connections.md)| [Java](../../../java-sdk/current/howtos/managing-connections.md)| [Kotlin](../../../kotlin-sdk/current/howtos/managing-connections.md)| [Node.js](../../../nodejs-sdk/current/howtos/managing-connections.md)| [PHP](../../../php-sdk/current/howtos/managing-connections.md)| [Python](../../../python-sdk/current/howtos/managing-connections.md)| [Ruby](../../../ruby-sdk/current/howtos/managing-connections.md)| [Rust](../../../rust-sdk/current/howtos/managing-connections.md)| [Scala](../../../scala-sdk/current/howtos/managing-connections.md)
+* [C](../../../c-sdk/current/howtos/managing-connections.md)| [C++](../../../cxx-sdk/current/howtos/managing-connections.md)| [.NET](../../../dotnet-sdk/current/howtos/managing-connections.md)| [Go](../../../go-sdk/current/howtos/managing-connections.md)| [Java](../../../java-sdk/current/howtos/managing-connections.md)| [Kotlin](../../../kotlin-sdk/current/howtos/connecting.md)| [Node.js](../../../nodejs-sdk/current/howtos/managing-connections.md)| [PHP](../../../php-sdk/current/howtos/managing-connections.md)| [Python](../../../python-sdk/current/howtos/managing-connections.md)| [Ruby](../../../ruby-sdk/current/howtos/managing-connections.md)| [Rust](../../../rust-sdk/current/howtos/managing-connections.md)| [Scala](../../../scala-sdk/current/howtos/managing-connections.md)

@@ -1,7 +1,7 @@
 ---
 title: Code Examples
 editUrl: https://github.com/couchbaselabs/docs-style-guide/edit/main/styleguide/modules/ROOT/pages/examples.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:styleguide::examples.adoc[]
 ---
 
@@ -90,7 +90,7 @@ For more information about how to include specific lines of content, see [Includ
 
 ## [](#explaining-code-examples)Explaining Code Examples
 
-Avoid the [built-in code callouts](#home:contribute:code-blocks.adoc#callouts) in Antora, where possible.
+Avoid the [built-in code callouts](../home/contribute/code-blocks.md#callouts) in Antora, where possible.
 
 Use small code examples with the explanation in regular text around the example. Add one-line code comments directly to the code where appropriate to explain the assumptions made in a code example.
 

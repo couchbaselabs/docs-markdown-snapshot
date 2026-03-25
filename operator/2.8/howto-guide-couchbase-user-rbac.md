@@ -3,7 +3,7 @@ title: "How-to Guide: Couchbase User RBAC"
 description: A how-to guide on configuring Couchbase user authentication and
   authorization using the Kubernetes Operator.
 editUrl: https://github.com/couchbase/docs-operator/edit/release/2.8/modules/ROOT/pages/howto-guide-couchbase-user-rbac.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:2.8@operator::howto-guide-couchbase-user-rbac.adoc[]
 ---
 
@@ -184,7 +184,7 @@ Once the roles are configured, users will have the appropriate permissions, whic
 
 Using the `data_writer` and `data_reader` roles, we cannot use the UI to login.
 
-To verify that the users are assigned the desired roles, use the [cbc CLI](../../c-sdk/current/hello-world/cbc.md) or one of the [SDK Clients](#home::sdk.adoc).
+To verify that the users are assigned the desired roles, use the [cbc CLI](../../c-sdk/current/hello-world/cbc.md) or one of the [SDK Clients](../../home/sdk.md).
 
 Let’s try with user Alice first, and use the `cbc` CLI tool to create a document in Couchbase.
 

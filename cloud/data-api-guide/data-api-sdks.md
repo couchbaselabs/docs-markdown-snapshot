@@ -2,7 +2,7 @@
 title: Data API vs. Couchbase SDKs
 description: This page explains when to use the Data API and when to use Couchbase SDKs.
 editUrl: https://github.com/couchbase/docs-capella/edit/main/modules/data-api-guide/pages/data-api-sdks.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:data-api-guide:data-api-sdks.adoc[]
 ---
 
@@ -65,7 +65,7 @@ Idiomatic interfaces
 
 The SDKs support the idiomatic interface for a programming language. Use the SDKs when you want app developers building backend apps in a specific language to use patterns suitable for that language. For example, handling results as they stream in with an asynchronous or reactive interface is supported in Java, Node.js, .NET, and other SDKs.
 
-For more information, see [home::sdk.adoc](#home::sdk.adoc).
+For more information, see [SDKs & Connectors](../../home/sdk.md).
 
 ## [](#when-to-use-capella-app-services)When to Use Capella App Services
 

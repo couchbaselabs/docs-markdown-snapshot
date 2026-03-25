@@ -2,7 +2,7 @@
 title: Delete Documents
 description: How to delete documents with a command line tool or an SDK.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/guides/pages/deleting-data.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:guides:deleting-data.adoc[]
 ---
 
@@ -20,7 +20,7 @@ In situations where data is no longer needed, Couchbase Capella provides a remov
 Read the following for further information about the clients available:
 
 * [Couchbase Shell (cbsh)](https://couchbase.sh/docs/)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../home/sdk.md)
 
 > [!WARNING]
 > Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Import Data with the Capella UI](../clusters/data-service/import-data-documents.md) for details.

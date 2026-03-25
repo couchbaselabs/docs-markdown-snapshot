@@ -4,7 +4,7 @@ description: The INFER statement enables you to infer the metadata of documents
   in a keyspace, for example the structure of documents, data types of various
   attributes, sample values, and so on.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/capella/modules/n1ql/pages/n1ql-language-reference/infer.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cloud:n1ql:n1ql-language-reference/infer.adoc[]
 ---
 
@@ -20,11 +20,14 @@ The INFER statement enables you to infer the metadata of documents in a keyspace
 
 The Query tab in the Couchbase Capella UI (available under the **Data Tools** tab) uses the INFER statement to display the structure of documents in the [Data Insights](../../clusters/query-service/query-workbench.md#bucket-analyzer) area when you expand the keyspace name.
 
-## [](#rbac-privileges)RBAC Privileges
+## [](#prerequisites)Prerequisites
 
-To execute the INFER statement, your client must have the _Query Select_ privilege granted on the target keyspace. For more details about cluster access privileges, see [Manage Cluster Access Credentials](../../clusters/manage-database-users.md).
+To execute this statement, your client must have necessary privileges on the target keyspace. The required privilege depends on your [cluster access credential type](../../clusters/cluster-rbac.md#cluster-access-credential-types).
 
-For example, to execute [Example 1](#ex-1) below, your client must have the _Query Select_ privilege on the `route` keyspace.
+| Credential Type | Privilege                                                                               |
+| --------------- | --------------------------------------------------------------------------------------- |
+| Basic           | [Read](../../clusters/cluster-rbac.md#basic-access-credentials)                         |
+| Advanced        | [Query Read](../../clusters/cluster-rbac.md#privileges-for-advanced-access-credentials) |
 
 ## [](#syntax)Syntax
 

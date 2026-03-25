@@ -2,7 +2,7 @@
 title: Bulk Operations
 description: How to perform bulk CRUD operations in Couchbase.
 editUrl: https://github.com/couchbaselabs/docs-devex/edit/release/7.2/modules/guides/pages/bulk-operations.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:7.2@server:guides:bulk-operations.adoc[]
 ---
 
@@ -21,7 +21,7 @@ Performing bulk operations with Couchbase Server can be done in several ways, de
 Read the following for further information about the clients available:
 
 * [Command Line Clients](../../../c-sdk/current/hello-world/cbc.md)
-* [SDK Clients](#home::sdk.adoc)
+* [SDK Clients](../../../home/sdk.md)
 
 > [!WARNING]
 > Please note that the examples in this guide will alter the data in your sample database. To restore your sample data, remove and reinstall the travel sample data. Refer to [Sample Buckets](../manage/manage-settings/install-sample-buckets.md) for details.

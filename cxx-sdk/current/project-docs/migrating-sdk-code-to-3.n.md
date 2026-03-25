@@ -2,8 +2,8 @@
 title: Migrating from SDK2 to SDK3 API
 description: This is the first major release of the Couchbase C&#43;&#43; SDK --
   you will not have any code based upon older API versions.
-editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.2/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+editUrl: https://github.com/couchbase/docs-sdk-cxx/edit/release/1.3/modules/project-docs/pages/migrating-sdk-code-to-3.n.adoc
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:cxx-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 ---
 
@@ -14,7 +14,7 @@ link: xref:cxx-sdk:project-docs:migrating-sdk-code-to-3.n.adoc[]
 
 > This is the first major release of the Couchbase C++ SDK — you will not have any code based upon older API versions. 
 
-Couchbase C++ SDK 1.2 implements the Couchbase SDK 3.8 API. 1.x is the first release of the Couchbase C++ SDK, there are no releases implementing older APIs.
+Couchbase C++ SDK 1.3 implements the Couchbase SDK 3.9 API. 1.x is the first release of the Couchbase C++ SDK, there are no releases implementing older APIs.
 
 ## [](#legacy-mapreduce-views)Legacy MapReduce Views
 

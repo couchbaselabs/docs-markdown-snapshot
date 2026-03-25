@@ -3,7 +3,7 @@ title: Request Tracing
 description: Collecting information about an individual request and its response
   is an essential feature of every observability stack.
 editUrl: https://github.com/couchbase/docs-sdk-java/edit/release/3.11/modules/howtos/pages/observability-tracing.adoc
-pubDate: 2026-03-20T03:41:54.898Z
+pubDate: 2026-03-25T08:25:24.097Z
 link: xref:java-sdk:howtos:observability-tracing.adoc[]
 ---
 
@@ -20,13 +20,20 @@ To give insight into a request/response flow, the SDK provides a `RequestTracer`
 
 By default, the SDK will emit information about requests that are over a configurable threshold every 10 seconds. Note that if no requests are over the threshold no event / log will be emitted.
 
-It is possible to customize this behavior by modifying the configuration:
+It is possible to customize this behavior by modifying the configuration. The recommended way to configure the environment is via a callback when connecting to the cluster:
 
 ```java
-ThresholdLoggingTracerConfig.Builder config = ThresholdLoggingTracerConfig.builder()
-    .emitInterval(Duration.ofMinutes(1)).kvThreshold(Duration.ofSeconds(2));
-
-CoreEnvironment environment = CoreEnvironment.builder().thresholdLoggingTracerConfig(config).build();
+var cluster = Cluster.connect(
+  connectionString,
+  clusterOptions(username, password)
+    .environment(env -> env
+      .thresholdLoggingTracerConfig(config -> config
+        .enabled(true)  // it's enabled by default, so this line is not strictly necessary
+        .emitInterval(Duration.ofMinutes(1))
+        .kvThreshold(Duration.ofSeconds(2))
+      )
+    )
+);
 ```
 
 In this case the emit interval is one minute and Key/Value requests will only be considered if their latency is greater or equal than two seconds.
